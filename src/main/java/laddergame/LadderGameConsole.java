@@ -12,7 +12,7 @@ public class LadderGameConsole {
 		int ladderHeight = InputView.inputLadderHeight();
 
 		LadderGame ladderGame = new LadderGame(rawPlayers, ladderHeight);
-		Ladder ladder = ladderGame.drawLadder();
+		Ladder ladder = ladderGame.generateLadder();
 
 		ResultView.printLadder(ladder);
 	}

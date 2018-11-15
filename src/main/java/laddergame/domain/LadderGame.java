@@ -12,7 +12,7 @@ public class LadderGame {
 		this.ladderHeight = ladderHeight;
 	}
 
-	public Ladder drawLadder() {
+	public Ladder generateLadder() {
 		List<Player> players = PlayerGenerator.generate(rawPlayers);
 		List<Line> lines = LadderGenerator.generate(ladderHeight, players.size());
 		return new Ladder(players, lines);
