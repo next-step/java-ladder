@@ -10,6 +10,10 @@ public class ConsoleMain {
         List<Participant> participants = InputView.readParticipant();
 
         // TODO 사다리 높이 입력
+        int height = InputView.readHeight();
+
+        // TODO 사다리 만들기
+
 
         // TODO 사다리 출력
     }
