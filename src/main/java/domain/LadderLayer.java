@@ -13,12 +13,14 @@ import java.util.stream.Stream;
  * Created by hspark on 16/11/2018.
  */
 public class LadderLayer {
+	public static final int MIN_LADDER_WIDTH = 0;
+
 	private List<LadderLine> ladderLines;
 	private LadderLineSupplier supplier;
 
-	public LadderLayer(int humanCount, LadderLineSupplier supplier) {
-		Preconditions.checkArgument(humanCount != 0, "인원수는 1명 이상이어야 합니다.");
-		this.ladderLines = Stream.iterate(0, i -> i + 1).limit(humanCount - 1)
+	public LadderLayer(int width, LadderLineSupplier supplier) {
+		Preconditions.checkArgument(width >= MIN_LADDER_WIDTH, "너비는 0 이상이어야 합니다.");
+		this.ladderLines = Stream.iterate(0, i -> i + 1).limit(width)
 			.map(i -> new LadderLine()).collect(Collectors.toList());
 		this.supplier = supplier;
 	}
