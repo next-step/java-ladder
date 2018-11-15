@@ -18,22 +18,22 @@ import org.junit.Test;
 public class LadderLayerTest {
 
 	@Test(expected = IllegalArgumentException.class)
-	public void test_0명_에러() {
-		LadderLayer ladderLayer = new LadderLayer(0, () -> true);
+	public void test_너비음수_에러() {
+		LadderLayer ladderLayer = new LadderLayer(-1, () -> true);
 		ladderLayer.drawLines();
 	}
 
 	@Test
-	public void test_1명_라인미생성() {
-		LadderLayer ladderLayer = new LadderLayer(1, () -> true);
+	public void test_너비0_라인미생성() {
+		LadderLayer ladderLayer = new LadderLayer(0, () -> true);
 		ladderLayer.drawLines();
 		LadderLayerDTO ladderLineDTO = ladderLayer.getLadderLineDTO();
 		Assertions.assertThat(ladderLineDTO.getLineDTOList()).hasSize(0);
 	}
 
 	@Test
-	public void test_2명_라인한개() {
-		LadderLayer ladderLayer = new LadderLayer(2, () -> true);
+	public void test_너비1_라인한개() {
+		LadderLayer ladderLayer = new LadderLayer(1, () -> true);
 		ladderLayer.drawLines();
 		LadderLayerDTO ladderLineDTO = ladderLayer.getLadderLineDTO();
 		Assertions.assertThat(ladderLineDTO.getLineDTOList()).hasSize(1);
@@ -41,8 +41,8 @@ public class LadderLayerTest {
 	}
 
 	@Test
-	public void test_4명_이어지는_라인_없음() {
-		LadderLayer ladderLayer = new LadderLayer(4, () -> true);
+	public void test_너비3_이어지는_라인_없음() {
+		LadderLayer ladderLayer = new LadderLayer(3, () -> true);
 		ladderLayer.drawLines();
 		LadderLayerDTO ladderLineDTO = ladderLayer.getLadderLineDTO();
 		Assertions.assertThat(ladderLineDTO.getLineDTOList()).hasSize(3);

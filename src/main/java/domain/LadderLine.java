@@ -6,10 +6,6 @@ package domain;
 public class LadderLine {
 	private boolean drawn;
 
-	public LadderLine() {
-		this.drawn = false;
-	}
-
 	public void draw(LadderLine previousLadderLine, LadderLineSupplier supplier) {
 		this.drawn = supplier.get() && !previousLadderLine.isDrawn();
 
