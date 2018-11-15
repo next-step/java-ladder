@@ -6,7 +6,6 @@ import domain.dto.LineDTO;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -15,9 +14,9 @@ import java.util.stream.Stream;
  */
 public class LadderLayer {
 	private List<LadderLine> ladderLines;
-	private Supplier<Boolean> supplier;
+	private LadderLineSupplier supplier;
 
-	public LadderLayer(int humanCount, Supplier<Boolean> supplier) {
+	public LadderLayer(int humanCount, LadderLineSupplier supplier) {
 		Preconditions.checkArgument(humanCount != 0, "인원수는 1명 이상이어야 합니다.");
 		this.ladderLines = Stream.iterate(0, i -> i + 1).limit(humanCount - 1)
 			.map(i -> new LadderLine()).collect(Collectors.toList());

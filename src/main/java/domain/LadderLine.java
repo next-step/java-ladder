@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.function.Supplier;
-
 /**
  * Created by hspark on 16/11/2018.
  */
@@ -12,7 +10,7 @@ public class LadderLine {
 		this.drawn = false;
 	}
 
-	public void draw(LadderLine previousLadderLine, Supplier<Boolean> supplier) {
+	public void draw(LadderLine previousLadderLine, LadderLineSupplier supplier) {
 		this.drawn = supplier.get() && !previousLadderLine.isDrawn();
 
 	}

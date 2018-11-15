@@ -5,7 +5,6 @@ import domain.dto.GamerDTO;
 import domain.dto.LadderLayerDTO;
 
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,7 +15,7 @@ public class Ladder {
 	private List<Gamer> gamers;
 	private List<LadderLayer> ladderLines;
 
-	public Ladder(List<String> gamerNameList, int height, Supplier<Boolean> supplier) {
+	public Ladder(List<String> gamerNameList, int height, LadderLineSupplier supplier) {
 		Preconditions.checkArgument(height > 1, "사다리 높이가 너무 낮습니다.");
 		this.gamers = gamerNameList.stream().map(Gamer::new).collect(Collectors.toList());
 		this.ladderLines = Stream.iterate(0, i -> i + 1).limit(height)
