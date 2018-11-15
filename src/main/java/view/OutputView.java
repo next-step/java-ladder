@@ -8,6 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
+import static domain.Gamer.MAX_GAMER_NAME_LENGTH;
+
 /**
  * Created by hspark on 16/11/2018.
  */
@@ -22,7 +24,7 @@ public class OutputView {
 
 		StringBuilder stringBuilder = new StringBuilder();
 		for (GamerDTO gamer : gamers) {
-			stringBuilder.append(StringUtils.rightPad(gamer.toString(), 6));
+			stringBuilder.append(StringUtils.rightPad(gamer.toString(), MAX_GAMER_NAME_LENGTH + 1));
 		}
 		stringBuilder.append("\n");
 
