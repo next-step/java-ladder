@@ -2,30 +2,24 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
 
 	public static final String NEW_LINE = System.lineSeparator();
 
-	private List<Player> players;
+	private LadderGameInfo ladderGameInfo;
 	private List<Line> lines;
 
-	public Ladder(List<Player> players, List<Line> lines) {
-		this.players = players;
+	public Ladder(LadderGameInfo ladderGameInfo, List<Line> lines) {
+		this.ladderGameInfo = ladderGameInfo;
 		this.lines = lines;
 	}
 
 	public String draw() {
-		String player = getPlayerNames();
+		String playerNames = ladderGameInfo.getPlayerNames();
 		String ladder = getLadder();
-		return String.join(NEW_LINE, player, ladder);
-	}
-
-	private String getPlayerNames() {
-		return players.stream()
-				.map(player -> player.getFomattedName())
-				.collect(Collectors.joining(" "));
+		String results = ladderGameInfo.getResults();
+		return String.join(NEW_LINE, playerNames, ladder, results);
 	}
 
 	private String getLadder() {

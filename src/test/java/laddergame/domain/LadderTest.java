@@ -13,6 +13,10 @@ public class LadderTest {
 		Player player2 = new Player("honux");
 		Player player3 = new Player("crong");
 		Player player4 = new Player("jk");
+		Result result1 = new Result("꽝");
+		Result result2 = new Result("5000");
+		Result result3 = new Result("꽝");
+		Result result4 = new Result("3000");
 		Line line1 = new Line(asList(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
 		Line line2 = new Line(asList(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
 		Line line3 = new Line(asList(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE));
@@ -20,7 +24,10 @@ public class LadderTest {
 		Line line5 = new Line(asList(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.TRUE));
 
 		Ladder ladder = new Ladder(
-				asList(player1, player2, player3, player4),
+				new LadderGameInfo(
+						asList(player1, player2, player3, player4),
+						asList(result1, result2, result3, result4)
+				),
 				asList(line1, line2, line3, line4, line5)
 		);
 
@@ -30,6 +37,7 @@ public class LadderTest {
 						 + "     |     |-----|     |\n"
 				         + "     |-----|     |     |\n"
 				         + "     |     |-----|     |\n"
-				         + "     |-----|     |-----|");
+				         + "     |-----|     |-----|\n"
+						 + "    꽝  5000     꽝  3000");
 	}
 }
