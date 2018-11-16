@@ -10,7 +10,7 @@ public class Gamer {
 	private String name;
 
 	public Gamer(String name) {
-		Preconditions.checkArgument(name.length() <= 5, "이름이 너무 깁니다.");
+		Preconditions.checkArgument(name.length() <= MAX_GAMER_NAME_LENGTH, "이름이 너무 깁니다.");
 		this.name = name;
 	}
 
