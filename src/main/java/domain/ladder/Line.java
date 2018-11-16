@@ -19,7 +19,7 @@ public class Line {
     }
 
     public boolean rightMove(int location) {
-        return location > points.size() ? false : points.get(location+1);
+        return location >= points.size() ? false : points.get(location);
     }
 
     public int Move(int location) {

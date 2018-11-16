@@ -1,6 +1,7 @@
 package view.console;
 
-import java.util.Scanner;
+import domain.ladder.Player;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -29,9 +30,9 @@ public class InputView {
     }
 
     public static String resultPlayer() {
-        System.out.println("\n결과를 보고 싶은 사람은?");
+        System.out.println("\n\n결과를 보고 싶은 사람은?");
         Scanner sc = new Scanner(System.in);
-        String player = sc.nextLine();
-        return player;
+        String playerName = sc.nextLine();
+        return playerName;
     }
 }

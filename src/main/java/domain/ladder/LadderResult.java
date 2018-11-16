@@ -9,7 +9,13 @@ public class LadderResult {
         this.results = result;
     }
 
-    public List<String> getResults() {
+
+    List<String> getResults() {
         return results;
     }
+
+    String getResult(int location){
+        return results.get(location);
+    }
+
 }

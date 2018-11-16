@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import org.junit.Test;
+import view.console.ResultView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +26,10 @@ public class LadderingTest {
         lines.add(new Line(Arrays.asList(true, false, true)));
 
         Laddering laddering = new Laddering(players, lines);
-        assertThat(laddering.showResult(new Player("pobi"))).isEqualTo(0);
+
+        List<String> result = Arrays.asList("꽝","5000","꽝","3000");
+        LadderResult ladderResult = new LadderResult(result);
+        assertThat(laddering.showResult("pobi", ladderResult).get(0)).isEqualTo(new PlayResult(new Player("pobi"), "꽝"));
 
     }
 }
