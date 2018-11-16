@@ -1,16 +1,16 @@
 package domain.ladder;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
 
-    ArrayList<Boolean> points;
+    private List<Boolean> points;
 
-    public Line(ArrayList<Boolean> points) {
+    public Line(List<Boolean> points) {
         this.points = points;
     }
 
-    public ArrayList<Boolean> getPoints() {
+    public List<Boolean> getPoints() {
         return points;
     }
 }
