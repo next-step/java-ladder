@@ -14,7 +14,19 @@ public class LadderGameConsole {
 
 		LadderGame ladderGame = new LadderGame(rawPlayers, rawResults);
 		Ladder ladder = ladderGame.generateLadder(ladderHeight);
-
 		ResultView.printLadder(ladder);
+
+		String playerName = InputView.inputPlayerName();
+		while(!"all".equals(playerName)) {
+			try {
+				String result = ladder.start(playerName);
+				ResultView.printResult(result);
+			} catch (Exception e) {
+				System.out.println("\n" + e.getMessage());
+			}
+
+			playerName = InputView.inputPlayerName();
+		}
+		ResultView.printResult(ladder.end());
 	}
 }

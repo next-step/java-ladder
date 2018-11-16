@@ -1,7 +1,7 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -16,17 +16,29 @@ public class Ladder {
 	}
 
 	public String draw() {
-		String playerNames = ladderGameInfo.getPlayerNames();
+		String playerNames = ladderGameInfo.getFormattedPlayerNames();
 		String ladder = getLadder();
-		String results = ladderGameInfo.getResults();
+		String results = ladderGameInfo.getFormattedResults();
 		return String.join(NEW_LINE, playerNames, ladder, results);
 	}
 
 	private String getLadder() {
-		List<String> ladder = new ArrayList<>();
+		return lines.stream()
+				.map(Line::draw)
+				.collect(Collectors.joining(NEW_LINE));
+	}
+
+	public String end() {
+		return ladderGameInfo.getPlayerNames().stream()
+				.map(playerName -> String.format("%s : %s", playerName, start(playerName)))
+				.collect(Collectors.joining(NEW_LINE));
+	}
+
+	public String start(String playerName) {
+		int currentIndex = ladderGameInfo.findPlayerIndex(playerName);
 		for (Line line : lines) {
-			ladder.add(line.draw());
+			currentIndex = line.move(currentIndex);
 		}
-		return String.join(NEW_LINE, ladder);
+		return ladderGameInfo.findResult(currentIndex);
 	}
 }

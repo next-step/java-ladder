@@ -34,4 +34,34 @@ public class Line {
 		}
 		return lineCharacters.toString();
 	}
+
+	/**
+	 * 현재 인덱스의 좌표에 선이 있는지 확인 (마지막 좌표인 경우는 왼쪽만 체크)
+	 * 선이 없다면 좌표점을 기준으로 왼쪽으로 선이 그려지기 때문에 오른쪽을 체크
+	 * @param index
+	 * @return
+	 */
+	public int move(int index) {
+		Boolean point = points.get(index);
+		if(point) {
+			return index - 1;
+		}
+		if(isLastIndex(index)) {
+			return index;
+		}
+		return findNextIndex(index);
+	}
+
+	private boolean isLastIndex(int index) {
+		return index == points.size() - 1;
+	}
+
+	private int findNextIndex(int index) {
+		int nextIndex = index + 1;
+		Boolean point = points.get(nextIndex);
+		if(point) {
+			return nextIndex;
+		}
+		return index;
+	}
 }

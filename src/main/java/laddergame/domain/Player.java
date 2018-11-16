@@ -16,4 +16,13 @@ public class Player {
 	public String getFomattedName() {
 		return String.format("%" + MAX_NAME_LENGTH + "s", name);
 	}
+
+	public boolean isSameName(String name) {
+		return this.name.equals(name);
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

@@ -18,15 +18,37 @@ public class LadderGameInfo {
 		this.results = results;
 	}
 
-	public String getPlayerNames() {
+	public String getFormattedPlayerNames() {
 		return players.stream()
 				.map(player -> player.getFomattedName())
 				.collect(Collectors.joining(DEFAULT_SEPARATOR));
 	}
 
-	public String getResults() {
+	public String getFormattedResults() {
 		return results.stream()
 				.map(result -> result.getFormattedValue())
 				.collect(Collectors.joining(DEFAULT_SEPARATOR));
 	}
+
+	public int findPlayerIndex(String playerName) {
+		for (int index = 0; index < players.size(); index++) {
+			Player player = players.get(index);
+			if(player.isSameName(playerName)) {
+				return index;
+			}
+		}
+		throw new IllegalArgumentException("해당 플레이어가 존재하지 않습니다.");
+	}
+
+	public String findResult(int index) {
+		Result result = results.get(index);
+		return result.toString();
+	}
+
+	public List<String> getPlayerNames() {
+		return players.stream()
+				.map(Player::toString)
+				.collect(Collectors.toList());
+	}
+
 }
