@@ -1,5 +1,6 @@
 package view.console;
 
+import domain.ladder.LadderManage;
 import domain.ladder.Line;
 import domain.ladder.Player;
 
@@ -7,7 +8,10 @@ import java.util.List;
 
 public class ResultView {
 
-    public void result(List<Player> players, List<Line> lines) {
+    public void result(LadderManage ladderManage, List<String> results) {
+        List<Player> players = ladderManage.getPlayers();
+        List<Line> lines = ladderManage.getLines();
+
         System.out.println("\n실행결과");
 
         players.stream().forEach(player -> System.out.print(player.getName() + " ") );
@@ -27,6 +31,7 @@ public class ResultView {
             System.out.print(sb.toString());
         }
 
-
+        System.out.println();
+        results.stream().forEach(result -> System.out.print(result + "   "));
     }
 }
