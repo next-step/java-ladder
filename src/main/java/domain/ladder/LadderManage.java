@@ -8,7 +8,7 @@ public class LadderManage {
     private List<Player> players;
     private List<Line> lines;
 
-    public LadderManage(String[] names, int ladderCount) {
+    LadderManage(String[] names, int ladderCount) {
         players = Arrays.stream(names).map(name -> new Player(name)).collect(Collectors.toList());
         lines = new LineCreation().getLines(ladderCount, players.size());
     }

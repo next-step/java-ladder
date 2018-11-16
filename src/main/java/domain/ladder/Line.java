@@ -13,4 +13,18 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public boolean leftMove(int location) {
+        return location <= 0 ? false : points.get(location-1);
+    }
+
+    public boolean rightMove(int location) {
+        return location > points.size() ? false : points.get(location+1);
+    }
+
+    public int Move(int location) {
+        if(leftMove(location)) location--;
+        if(rightMove(location)) location++;
+        return location;
+    }
 }
