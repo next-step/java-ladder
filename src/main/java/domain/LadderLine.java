@@ -13,8 +13,8 @@ public class LadderLine {
 		this.rightPosition = rightPosition;
 	}
 
-	public void draw(LadderLine previousLadderLine, LadderLineSupplier supplier) {
-		this.drawn = supplier.get() && !previousLadderLine.isDrawn();
+	public void draw() {
+		this.drawn = true;
 	}
 
 	public boolean isDrawn() {

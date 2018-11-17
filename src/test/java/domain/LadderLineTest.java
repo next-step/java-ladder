@@ -15,6 +15,7 @@ public class LadderLineTest {
 	@Test
 	public void test_이동한_위치_반환() {
 		LadderLine ladderLine = new LadderLine(0, 1);
+		ladderLine.draw();
 		int movePosition = ladderLine.getMovePosition(0);
 		Assertions.assertThat(movePosition).isEqualTo(1);
 	}

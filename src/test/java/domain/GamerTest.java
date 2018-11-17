@@ -7,7 +7,6 @@ import org.junit.Test;
  * Created by hspark on 16/11/2018.
  */
 
-
 /**
  * 1. 사용자는 해당 사다리 라인이 이동 가능한지 확인한다.
  * 2. 이동 가능하면 위치를 바꾼다.
@@ -27,6 +26,7 @@ public class GamerTest {
 	@Test
 	public void test_이동가능_플레이어() {
 		LadderLine ladderLine = new LadderLine(0, 1);
+		ladderLine.draw();
 		Gamer gamer = new Gamer("test", 0);
 		boolean isPassable = gamer.isPassable(ladderLine);
 		Assertions.assertThat(isPassable).isTrue();
@@ -35,6 +35,7 @@ public class GamerTest {
 	@Test
 	public void test_해당사다리_위치_이동() {
 		LadderLine ladderLine = new LadderLine(0, 1);
+		ladderLine.draw();
 		Gamer gamer = new Gamer("test", 0);
 		gamer.passLine(ladderLine);
 		Assertions.assertThat(gamer.getPosition()).isEqualTo(1);

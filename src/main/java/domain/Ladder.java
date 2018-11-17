@@ -4,7 +4,8 @@ import com.google.common.base.Preconditions;
 import domain.dto.GamerDTO;
 import domain.dto.LadderLayerDTO;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,18 +20,17 @@ public class Ladder {
 	private List<LadderLayer> ladderLayers;
 	private List<String> rewards;
 
-	public Ladder(List<String> gamerNameList, List<String> rewardList, int height, LadderLineSupplier supplier) {
-		Preconditions.checkArgument(height > MIN_LADDER_HEIGHT, "사다리 높이가 너무 낮습니다.");
+	public Ladder(List<String> gamerNameList, List<String> rewardList) {
 		Preconditions.checkArgument(gamerNameList.size() == rewardList.size(), "상품 수와 인원수가 맞지 않습니다.");
-
 		this.gamers = initGamer(gamerNameList);
 		this.rewards = rewardList;
-		this.ladderLayers = IntStream.range(MIN_LADDER_HEIGHT - 1, height).mapToObj(integer -> new LadderLayer(getWidth(), supplier))
-			.collect(Collectors.toList());
 	}
 
-	public void drawLadder() {
-		ladderLayers.stream().forEach(LadderLayer::drawLines);
+	public void drawLadder(int height, LadderLineSupplier supplier) {
+		Preconditions.checkArgument(height > MIN_LADDER_HEIGHT, "사다리 높이가 너무 낮습니다.");
+		this.ladderLayers = IntStream.range(MIN_LADDER_HEIGHT - 1, height).mapToObj(integer -> new LadderLayer(getWidth()))
+			.collect(Collectors.toList());
+		ladderLayers.stream().forEach(ladderLayer -> ladderLayer.drawLines(supplier));
 	}
 
 	public LadderResult getLadderGameResult() {
