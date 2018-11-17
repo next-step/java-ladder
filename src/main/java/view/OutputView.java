@@ -37,6 +37,29 @@ public class OutputView {
 			}
 			stringBuilder.append("|\n");
 		}
+
+		List<String> rewardNames = ladderResult.getRewardNames();
+
+		for (String rewardName : rewardNames) {
+			stringBuilder.append(StringUtils.rightPad(rewardName, MAX_GAMER_NAME_LENGTH + 1));
+		}
+
 		System.out.println(stringBuilder.toString());
+	}
+
+	public static void printReward(LadderResult ladderResult, String gamerName) {
+
+		System.out.println("실행결과");
+		if (LadderResult.ALL_GAMER.equalsIgnoreCase(gamerName)) {
+			printAll(ladderResult);
+			return;
+		}
+		System.out.println(ladderResult.getGameRewardByGamer(gamerName));
+	}
+
+	private static void printAll(LadderResult ladderResult) {
+		for (GamerDTO gamer : ladderResult.getGamers()) {
+			System.out.println(gamer.getName() + " : " + ladderResult.getGameRewardByGamer(gamer.getName()));
+		}
 	}
 }

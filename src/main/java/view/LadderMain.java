@@ -12,12 +12,17 @@ import java.util.List;
 public class LadderMain {
 	public static void main(String[] args) {
 		List<String> gamerNames = InputView.inputGamers();
+		List<String> rewards = InputView.inputRewards();
 		int ladderHeight = InputView.inputLadderHeight();
 
-		Ladder ladder = new Ladder(gamerNames, ladderHeight, new RandomLadderLineSupplier());
+		Ladder ladder = new Ladder(gamerNames, rewards, ladderHeight, new RandomLadderLineSupplier());
 		ladder.drawLadder();
+		ladder.moveAll();
 		LadderResult ladderResult = ladder.getLadderGameResult();
 
 		OutputView.printLadder(ladderResult);
+
+		String gamerName = InputView.inputGamerNameForReward();
+		OutputView.printReward(ladderResult, gamerName);
 	}
 }
