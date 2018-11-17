@@ -40,6 +40,14 @@ public class LadderGameInfo {
 		throw new IllegalArgumentException("해당 플레이어가 존재하지 않습니다.");
 	}
 
+	public int findPlayerIndex2(String playerName) {
+		return players.stream()
+				.filter(player -> player.isSameName(playerName))
+				.map(player -> players.indexOf(player))
+				.findFirst()
+				.orElseThrow(() -> new IllegalArgumentException("해당 플레이어가 존재하지 않습니다."));
+	}
+
 	public String findResult(int index) {
 		Result result = results.get(index);
 		return result.toString();

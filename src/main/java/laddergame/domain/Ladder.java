@@ -28,7 +28,7 @@ public class Ladder {
 	}
 
 	public String start(String playerName) {
-		int playerIndex = ladderGameInfo.findPlayerIndex(playerName);
+		int playerIndex = ladderGameInfo.findPlayerIndex2(playerName);
 		return ladderGameInfo.findResult(lines.move(playerIndex));
 	}
 }

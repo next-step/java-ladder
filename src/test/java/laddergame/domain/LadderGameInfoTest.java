@@ -31,7 +31,7 @@ public class LadderGameInfoTest {
 		);
 
 		final String playerName = "crong";
-		assertThat(ladderGameInfo.findPlayerIndex(playerName)).isEqualTo(1);
+		assertThat(ladderGameInfo.findPlayerIndex2(playerName)).isEqualTo(1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -42,7 +42,7 @@ public class LadderGameInfoTest {
 		);
 
 		final String playerName = "cro";
-		ladderGameInfo.findPlayerIndex(playerName);
+		ladderGameInfo.findPlayerIndex2(playerName);
 	}
 
 	@Test
