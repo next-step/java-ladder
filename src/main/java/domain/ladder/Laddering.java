@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Laddering {
+
+    private static final String ALL_USER = "ALL";
+
     private List<Player> players;
     private List<Line> lines;
 
@@ -14,7 +17,7 @@ public class Laddering {
 
     public List<PlayResult> showResult(String playerName, LadderResult ladderResult) {
         List<PlayResult> playResults;
-        if(playerName.equals("all")){
+        if(playerName.equals(ALL_USER)){
             playResults = AllPlayerResult(ladderResult);
         }else{
             playResults =  playerResult(new Player(playerName), ladderResult);
