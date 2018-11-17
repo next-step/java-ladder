@@ -40,13 +40,12 @@ public class LadderTest {
 						asList(player1, player2, player3, player4),
 						asList(result1, result2, result3, result4)
 				),
-				asList(line1, line2, line3, line4, line5)
+				Lines.from(asList(line1, line2, line3, line4, line5))
 		);
 	}
 
 	@Test
 	public void 사다리_문자열_생성() {
-
 		assertThat(ladder.draw())
 				.isEqualTo(" pobi honux crong    jk\n"
 						 + "     |-----|     |-----|\n"

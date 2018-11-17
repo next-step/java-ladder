@@ -14,7 +14,7 @@ public class LadderGame {
 
 	public Ladder generateLadder(int ladderHeight) {
 		LadderGameInfo ladderGameInfo = new LadderGameInfo(players, results);
-		List<Line> lines = LadderGenerator.generate(ladderHeight, players.size());
+		Lines lines = Lines.from(ladderHeight, players.size());
 		return new Ladder(ladderGameInfo, lines);
 	}
 }

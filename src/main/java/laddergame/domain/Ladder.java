@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -8,24 +7,18 @@ public class Ladder {
 	public static final String NEW_LINE = System.lineSeparator();
 
 	private LadderGameInfo ladderGameInfo;
-	private List<Line> lines;
+	private Lines lines;
 
-	public Ladder(LadderGameInfo ladderGameInfo, List<Line> lines) {
+	public Ladder(LadderGameInfo ladderGameInfo, Lines lines) {
 		this.ladderGameInfo = ladderGameInfo;
 		this.lines = lines;
 	}
 
 	public String draw() {
 		String playerNames = ladderGameInfo.getFormattedPlayerNames();
-		String ladder = getLadder();
+		String ladderLine = this.lines.getDisplayLines();
 		String results = ladderGameInfo.getFormattedResults();
-		return String.join(NEW_LINE, playerNames, ladder, results);
-	}
-
-	private String getLadder() {
-		return lines.stream()
-				.map(Line::draw)
-				.collect(Collectors.joining(NEW_LINE));
+		return String.join(NEW_LINE, playerNames, ladderLine, results);
 	}
 
 	public String end() {
@@ -35,10 +28,7 @@ public class Ladder {
 	}
 
 	public String start(String playerName) {
-		int currentIndex = ladderGameInfo.findPlayerIndex(playerName);
-		for (Line line : lines) {
-			currentIndex = line.move(currentIndex);
-		}
-		return ladderGameInfo.findResult(currentIndex);
+		int playerIndex = ladderGameInfo.findPlayerIndex(playerName);
+		return ladderGameInfo.findResult(lines.move(playerIndex));
 	}
 }
