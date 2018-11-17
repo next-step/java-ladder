@@ -9,8 +9,7 @@ public class LadderResult {
         this.results = result;
     }
 
-
-    List<String> getResults() {
+    public List<String> getResults() {
         return results;
     }
 
@@ -18,4 +17,8 @@ public class LadderResult {
         return results.get(location);
     }
 
+    @Override
+    public String toString() {
+        return results.toString();
+    }
 }

@@ -8,7 +8,7 @@ public class RandomPoint {
 
     private List<Boolean> points = new ArrayList<>();
 
-    public List<Boolean> getRandomPoint(int playerCount){
+    List<Boolean> getRandomPoint(int playerCount){
         points.add(getRamdonLine());
         for (int location = 1; location < playerCount - 1; location++) {
             points.add(getPoint(location));
@@ -16,11 +16,11 @@ public class RandomPoint {
         return points;
     }
 
-    public boolean getPoint(int countOfPerson) {
+    private boolean getPoint(int countOfPerson) {
         return points.get(countOfPerson-1) == false && new Random().nextBoolean();
     }
 
-    public boolean getRamdonLine() {
+    private boolean getRamdonLine() {
         return new Random().nextBoolean();
     }
 

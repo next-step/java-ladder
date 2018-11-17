@@ -13,5 +13,8 @@ public class LadderResultTest {
         List<String> result = Arrays.asList("꽝","5000","꽝","3000");
         LadderResult ladderResult = new LadderResult(result);
         assertThat(ladderResult.getResults().get(0)).isEqualTo("꽝");
+        assertThat(ladderResult.getResults().get(1)).isEqualTo("5000");
+        assertThat(ladderResult.getResults().get(2)).isEqualTo("꽝");
+        assertThat(ladderResult.getResults().get(3)).isEqualTo("3000");
     }
 }

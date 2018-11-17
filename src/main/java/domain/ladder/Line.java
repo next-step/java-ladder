@@ -1,5 +1,6 @@
 package domain.ladder;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Line {
@@ -23,8 +24,12 @@ public class Line {
     }
 
     public int Move(int location) {
-        if(leftMove(location)) location--;
-        if(rightMove(location)) location++;
+        if(leftMove(location)){
+            return --location;
+        }
+        if(rightMove(location)){
+            return ++location;
+        }
         return location;
     }
 }

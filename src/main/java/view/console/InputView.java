@@ -30,7 +30,7 @@ public class InputView {
     }
 
     public static String resultPlayer() {
-        System.out.println("\n\n결과를 보고 싶은 사람은?");
+        System.out.println("\n결과를 보고 싶은 사람은?\n");
         Scanner sc = new Scanner(System.in);
         String playerName = sc.nextLine();
         return playerName;

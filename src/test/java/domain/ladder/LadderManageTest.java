@@ -17,6 +17,5 @@ public class LadderManageTest {
         assertThat(ladderManage.getLines()).hasSize(5);
         assertThat(ladderManage.getPlayers()).hasSize(2);
 
-
     }
 }

@@ -1,15 +1,12 @@
 package view.console;
 
-import domain.ladder.LadderManage;
-import domain.ladder.Line;
-import domain.ladder.PlayResult;
-import domain.ladder.Player;
+import domain.ladder.*;
 
 import java.util.List;
 
 public class ResultView {
 
-    public void result(LadderManage ladderManage) {
+    public void result(LadderManage ladderManage, LadderResult ladderResult) {
         List<Player> players = ladderManage.getPlayers();
         List<Line> lines = ladderManage.getLines();
 
@@ -32,10 +29,14 @@ public class ResultView {
             }
             System.out.print(sb.toString());
         }
+
+        System.out.println();
+        ladderResult.getResults().stream().forEach(result -> System.out.print(result.toString() + "   "));
+
     }
 
     public void resultPlay(List<PlayResult> playResult) {
-        System.out.println();
+        System.out.println("실행결과");
         playResult.stream().forEach(result -> System.out.println(result.toString()));
     }
 }

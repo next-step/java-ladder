@@ -13,7 +13,7 @@ public class PlayLadder {
         int ladderCount = InputView.ladderCount();
         LadderManage ladderManage = new LadderManage(names, ladderCount);
         LadderResult ladderResult = new LadderResult(result);
-        resultView.result(ladderManage);
+        resultView.result(ladderManage, ladderResult);
 
         Laddering laddering = new Laddering(ladderManage.getPlayers(), ladderManage.getLines());
         String playerNames = InputView.resultPlayer();
