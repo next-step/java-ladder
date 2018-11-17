@@ -16,7 +16,7 @@ public class LadderMain {
 		int ladderHeight = InputView.inputLadderHeight();
 
 		Ladder ladder = new Ladder(gamerNames, rewards);
-		ladder.drawLadder( ladderHeight, new RandomLadderLineSupplier());
+		ladder.drawLadder(ladderHeight, new RandomLadderLineSupplier());
 		ladder.moveAll();
 		LadderResult ladderResult = ladder.getLadderGameResult();
 
