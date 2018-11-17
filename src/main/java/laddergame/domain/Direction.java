@@ -39,11 +39,6 @@ public enum Direction {
 		return from(index * -2 + index);
 	}
 
-//	public static Direction from(Direction direction) {
-//		if(direction == STRAIGHT) {
-//		}
-//	}
-
 	public int move(int index) {
 		return index + this.index;
 	}
