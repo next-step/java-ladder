@@ -1,22 +1,25 @@
 package game.ladder.domain;
 
-import spark.utils.Assert;
-import spark.utils.StringUtils;
+public class Participant implements Comparable<Participant>{
 
-public class Participant {
-
-    private final String name;
+    private final Name name;
     private final Position position;
 
-    public Participant(String name, Position position) {
-        Assert.isTrue(StringUtils.isNotBlank(name), "name은 공백일 수 없습니다.");
-
+    public Participant(Name name, Position position) {
         this.name = name;
         this.position = position;
     }
 
-    public String getName() {
+    public Name getName() {
         return this.name;
+    }
+
+    public Position getPosition() {
+        return this.position;
+    }
+
+    public String formattedParticipantName() {
+        return this.name.fomattedName();
     }
 
     @Override
@@ -35,5 +38,10 @@ public class Participant {
         int result = name.hashCode();
         result = 31 * result + position.hashCode();
         return result;
+    }
+
+    @Override
+    public int compareTo(Participant other) {
+        return this.position.compareTo(other.position);
     }
 }

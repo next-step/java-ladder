@@ -1,21 +1,21 @@
-import game.ladder.domain.Participant;
+import game.ladder.domain.Height;
+import game.ladder.domain.Ladder;
+import game.ladder.domain.LinesGenerator;
+import game.ladder.domain.Participants;
 import game.ladder.view.InputView;
-
-import java.util.List;
+import game.ladder.view.OutputView;
 
 public class ConsoleMain {
 
     public static void main(String[] args) {
-        // TODO 참여자 입력
-        List<Participant> participants = InputView.readParticipant();
+        Participants participants = InputView.readParticipant();
 
-        // TODO 사다리 높이 입력
-        int height = InputView.readHeight();
+        Height height = InputView.readHeight();
 
-        // TODO 사다리 만들기
+        LinesGenerator linesGenerator = new LinesGenerator(height);
+        Ladder ladder = new Ladder(linesGenerator, participants);
 
-
-        // TODO 사다리 출력
+        OutputView.printLadder(ladder);
     }
 
 }

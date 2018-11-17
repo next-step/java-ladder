@@ -22,18 +22,4 @@ public class LineTest {
         new Line(blockSize);
     }
 
-    @Test
-    public void 만들어진_블럭들_연속_채운블록_존재여부() {
-        final int blockSize = 10;
-
-        Line line = new Line(blockSize);
-
-        List<Block> blocks = line.getBlocks();
-        for (int i = 1; i < blockSize; i++) {
-            Block before = blocks.get(i - 1);
-            Block current = blocks.get(i);
-            assertThat(before.isSequenceFilledBlock(current)).as(String.format("before : %d, after : %d", i - 1, i)).isFalse();
-        }
-    }
-
 }
