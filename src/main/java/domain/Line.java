@@ -3,10 +3,9 @@ package domain;
 import utils.BooleanGenerator;
 import utils.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+public class Line{
     private final String VERTICAL_BAR = "|";
     private final int LINE_WIDTH = 5;
     private List<Boolean> points;
@@ -25,16 +24,13 @@ public class Line {
                 throw new RuntimeException("성립할 수 없는 사다리 구조입니다.");
             }
         }
+
         this.points = points;
     }
 
     @Override
     public String toString() {
-        String line = VERTICAL_BAR;
-        for(Boolean bool : points){
-            line += drawLine(bool) + VERTICAL_BAR;
-        }
-        return line;
+        return points.stream().map(x-> drawLine(x)).reduce("",(x,y)->x + VERTICAL_BAR + y).concat(VERTICAL_BAR);
     }
 
     private String drawLine(Boolean bool) {
@@ -44,5 +40,29 @@ public class Line {
         return StringUtils.getReplace(StringUtils.SPACE, LINE_WIDTH);
     }
 
+    public int nextPosition(int index) {
 
+        if(index==0){
+            if(points.get(index)){
+                return index+1;
+            }
+        }
+
+        if(index==points.size()){
+            if(points.get(index-1)){
+                return index-1;
+            }
+        }
+
+        if(index > 0 && index < points.size()) {
+            if (points.get(index - 1)) {
+                return index - 1;
+            }
+            if (points.get(index)) {
+                return index + 1;
+            }
+        }
+
+        return index;
+    }
 }

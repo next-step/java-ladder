@@ -14,8 +14,8 @@ public class PlayerTest {
         String names = "stron,box,test,kkk,sdfa";
         List<Player> players = StringUtils.joinPlayer(StringUtils.splitDelemeter(names));
         String[] playerNames = names.split(",");
-        for(String playerName : playerNames){
-            Player player =  new Player(playerName);
+        for (String playerName : playerNames) {
+            Player player = new Player(playerName);
         }
         assertThat("kkk").isEqualTo(playerNames[3]);
 
@@ -34,7 +34,7 @@ public class PlayerTest {
     @Test(expected = RuntimeException.class)
     public void 글자수테스트() {
         String names = "stronxxx,box,test,kkk,sdfa";
-        List<Player> players = StringUtils.joinPlayer(StringUtils.splitDelemeter(names));
+        StringUtils.joinPlayer(StringUtils.splitDelemeter(names));
 
     }
 }
