@@ -24,9 +24,6 @@ public class Ladder {
 	}
 
 	public LadderResult start(String playerName) {
-		if ("all".equals(playerName)) {
-			throw new IllegalArgumentException();
-		}
 		int playerIndex = ladderGameInfo.getPlayerIndex(playerName);
 		return getLadderResult(playerIndex);
 	}
