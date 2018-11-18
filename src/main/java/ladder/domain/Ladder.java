@@ -1,8 +1,6 @@
 package ladder.domain;
 
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -31,6 +29,7 @@ public class Ladder {
 
         return pos;
     }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(this.lines);
     }

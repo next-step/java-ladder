@@ -3,79 +3,71 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
 
     private static final int ONE = 1;
+    private static final int TWO = 2;
     private static final int START_POINT = 0;
 
-    private List<Boolean> points;
+    private List<Position> points;
 
-    public Line(List<Boolean> points) {
-        this.points = points;
+    public Line(List<Position> generatedPoints) {
+        this.points = generatedPoints;
     }
 
     public static Line generateLine(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>();
+        List<Position> generatePoints = new ArrayList<>();
 
-        IntStream.range(0, numberOfPoints(countOfPerson))
-                .forEach(i -> points.add(generateCurrentPoint(i, points)));
+        //first : 0
+        generatePoints.add(Position.generateFirstPosition(START_POINT, new Random().nextBoolean()));
 
-        return new Line(points);
+        // 1 ~ before last
+        IntStream.range(ONE, countOfPerson - ONE)
+                .forEach(i -> generatePoints.add(generateNewPosition(i, generatePoints)));
+
+        //last : countOfPerson - 1
+        generatePoints.add(Position.generateLastPosition(countOfPerson - ONE, generatePoints.get(countOfPerson - TWO)));
+
+        return new Line(generatePoints);
     }
 
-    private static boolean generateCurrentPoint(int newPosition, List<Boolean> points) {
-        boolean point = new Random().nextBoolean();
+    private static Position generateNewPosition(int currPosition, List<Position> points) {
+        boolean newPoint = new Random().nextBoolean();
+        Position prevPosition = points.get(currPosition - ONE);
 
-        if(newPosition == START_POINT) {
-            return point;
+        if(prevPosition.isOverlapped(newPoint)) {
+            newPoint = !newPoint;
         }
 
-        if(isOverLapped(point, points.get(newPosition - ONE))) {
-            point = !point;
-        }
-
-        return point;
+        return Position.generateNewPosition(currPosition, prevPosition, newPoint);
     }
 
-    static boolean isOverLapped(boolean newPoint, boolean currPosition) {
+    int moveToNextPoint(int position) {
+        Position currPlayerPosition = this.points.get(position);
 
-        return newPoint == currPosition;
-    }
-
-    private static int numberOfPoints(int countOfPerson) {
-        return countOfPerson - ONE;
-    }
-
-    int moveToNextPoint(int currPlayerPosition) {
-
-        int newLeftPosition = currPlayerPosition - 1;
-
-        if(newLeftPosition > -1 && this.points.get(newLeftPosition)) {
-            return newLeftPosition;
+        if(currPlayerPosition.isMovableToLeft()) {
+            return currPlayerPosition.moveLeft();
         }
 
-        if(currPlayerPosition < this.points.size() && this.points.get(currPlayerPosition)) {
-            return currPlayerPosition + 1;
+        if(currPlayerPosition.isMovableToRight()) {
+            return currPlayerPosition.moveRight();
         }
 
-        return currPlayerPosition;
+        return position;
     }
 
     @Override
     public String toString() {
-        final StringBuilder str = new StringBuilder("   |");
-        points.forEach(b -> str.append(pointToString(b)));
+        StringBuilder str = new StringBuilder("|");
 
-        return str.toString();
-    }
-
-    private String pointToString(boolean b) {
-        if(b) {
-            return "-----|";
-        }
-
-        return "     |";
+        return str.append(
+                this.points.stream()
+                        .map(Position::toString)
+                        .collect(Collectors.joining("|"))
+        ).toString();
     }
 }
