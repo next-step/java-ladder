@@ -1,38 +1,51 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import laddergame.domain.result.DisplayLadder;
+import laddergame.domain.line.Lines;
+import laddergame.domain.result.LadderErrorResult;
+import laddergame.domain.result.LadderFinalResult;
+import laddergame.domain.result.LadderResult;
+import laddergame.domain.result.Printable;
 
 public class Ladder {
 
-	public static final String NEW_LINE = System.lineSeparator();
+	private LadderGameInfo ladderGameInfo;
+	private Lines lines;
 
-	private List<Player> players;
-	private List<Line> lines;
-
-	public Ladder(List<Player> players, List<Line> lines) {
-		this.players = players;
+	public Ladder(LadderGameInfo ladderGameInfo, Lines lines) {
+		this.ladderGameInfo = ladderGameInfo;
 		this.lines = lines;
 	}
 
-	public String draw() {
-		String player = getPlayerNames();
-		String ladder = getLadder();
-		return String.join(NEW_LINE, player, ladder);
+	public DisplayLadder display() {
+		return new DisplayLadder(ladderGameInfo, lines);
 	}
 
-	private String getPlayerNames() {
-		return players.stream()
-				.map(player -> player.getFomattedName())
-				.collect(Collectors.joining(" "));
-	}
-
-	private String getLadder() {
-		List<String> ladder = new ArrayList<>();
-		for (Line line : lines) {
-			ladder.add(line.draw());
+	public Printable start(String playerName) {
+		int playerIndex;
+		try {
+			playerIndex = ladderGameInfo.getPlayerIndex(playerName);
+		} catch (IllegalArgumentException e) {
+			return new LadderErrorResult(e.getMessage());
 		}
-		return String.join(NEW_LINE, ladder);
+		return getLadderResult(playerIndex);
+	}
+
+	public Printable end() {
+		int startIndex = 0;
+		List<LadderResult> ladderResults = IntStream
+				.range(startIndex, ladderGameInfo.getPlayerCount())
+				.mapToObj(this::getLadderResult)
+				.collect(Collectors.toList());
+		return new LadderFinalResult(ladderResults);
+	}
+
+	private LadderResult getLadderResult(int playerIndex) {
+		int resultIndex = lines.move(playerIndex);
+		return new LadderResult(ladderGameInfo.getPlayer(playerIndex),
+				ladderGameInfo.getResult(resultIndex));
 	}
 }

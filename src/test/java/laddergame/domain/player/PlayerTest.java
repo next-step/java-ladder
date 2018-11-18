@@ -1,5 +1,8 @@
-package laddergame.domain;
+package laddergame.domain.player;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import laddergame.domain.player.Player;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 
@@ -19,5 +22,19 @@ public class PlayerTest {
 		softAssertions.assertThat(player1.getFomattedName()).as("5자").isEqualTo("crong");
 		softAssertions.assertThat(player2.getFomattedName()).as("2자").isEqualTo("   jk");
 		softAssertions.assertAll();
+	}
+
+	@Test
+	public void 같은_이름일때_검증() {
+		Player player = new Player("hong");
+
+		assertThat(player.isSameName("hong")).isTrue();
+	}
+
+	@Test
+	public void 다른_이름일때_검증() {
+		Player player = new Player("hong");
+
+		assertThat(player.isSameName("11")).isFalse();
 	}
 }
