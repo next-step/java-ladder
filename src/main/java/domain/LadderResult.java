@@ -11,8 +11,6 @@ import java.util.List;
  * Created by hspark on 16/11/2018.
  */
 public class LadderResult {
-
-	public static final String ALL_GAMER = "all";
 	private Points points;
 	private LadderLayers ladderLayers;
 

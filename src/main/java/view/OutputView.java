@@ -48,7 +48,7 @@ public class OutputView {
 	public static void printReward(LadderResult ladderResult, LadderGameInfo ladderGameInfo, String gamerName) {
 
 		System.out.println("실행결과");
-		if (LadderResult.ALL_GAMER.equalsIgnoreCase(gamerName)) {
+		if (LadderGameInfo.ALL_GAMER.equalsIgnoreCase(gamerName)) {
 			printAll(ladderResult, ladderGameInfo);
 			return;
 		}

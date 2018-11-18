@@ -9,6 +9,7 @@ import domain.reward.Rewards;
  * Created by hspark on 18/11/2018.
  */
 public class LadderGameInfo {
+	public static final String ALL_GAMER = "all";
 	private Gamers gamers;
 	private Rewards rewards;
 
