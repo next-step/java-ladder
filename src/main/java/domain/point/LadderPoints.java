@@ -10,10 +10,10 @@ import java.util.stream.IntStream;
 /**
  * Created by hspark on 18/11/2018.
  */
-public class Points {
+public class LadderPoints {
 	private Map<Point, Point> points;
 
-	public Points(int pointCount) {
+	public LadderPoints(int pointCount) {
 		this.points = IntStream.range(0, pointCount).mapToObj(Point::of)
 			.collect(Collectors.toMap(Function.identity(), Function.identity()));
 	}

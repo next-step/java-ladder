@@ -1,7 +1,7 @@
 package domain.ladder;
 
 import domain.LadderLineSupplier;
-import domain.point.Points;
+import domain.point.LadderPoints;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,8 +25,8 @@ public class LadderLayers {
 		ladderLayers.stream().forEach(ladderLayer -> ladderLayer.drawLines(supplier));
 	}
 
-	public void moveAll(Points points) {
-		ladderLayers.stream().forEach(points::moveAll);
+	public void moveAll(LadderPoints ladderPoints) {
+		ladderLayers.stream().forEach(ladderPoints::moveAll);
 	}
 
 	public List<LadderLayer> getLadderLayers() {

@@ -32,7 +32,7 @@ public class LadderTest {
 		Ladder ladder = new Ladder(1);
 		ladder.drawLadder(5, () -> true);
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		Assertions.assertThat(ladderResult.getPoints()).hasSize(1);
+		Assertions.assertThat(ladderResult.getLadderPoints()).hasSize(1);
 		Assertions.assertThat(ladderResult.getLadderLayers()).hasSize(5);
 	}
 
@@ -41,7 +41,7 @@ public class LadderTest {
 		Ladder ladder = new Ladder(3);
 		ladder.drawLadder(5, () -> true);
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		Assertions.assertThat(ladderResult.getPoints()).hasSize(3);
+		Assertions.assertThat(ladderResult.getLadderPoints()).hasSize(3);
 		Assertions.assertThat(ladderResult.getLadderLayers()).hasSize(5);
 	}
 

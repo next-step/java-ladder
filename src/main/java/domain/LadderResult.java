@@ -3,7 +3,7 @@ package domain;
 import domain.ladder.LadderLayer;
 import domain.ladder.LadderLayers;
 import domain.point.Point;
-import domain.point.Points;
+import domain.point.LadderPoints;
 
 import java.util.List;
 
@@ -11,20 +11,20 @@ import java.util.List;
  * Created by hspark on 16/11/2018.
  */
 public class LadderResult {
-	private Points points;
+	private LadderPoints ladderPoints;
 	private LadderLayers ladderLayers;
 
-	public LadderResult(Points points, LadderLayers ladderLayers) {
-		this.points = points;
+	public LadderResult(LadderPoints ladderPoints, LadderLayers ladderLayers) {
+		this.ladderPoints = ladderPoints;
 		this.ladderLayers = ladderLayers;
 	}
 
 	public Point getEndPointByStartPoint(Point point) {
-		return points.findCurrentPointByStartPoint(point);
+		return ladderPoints.findCurrentPointByStartPoint(point);
 	}
 
-	public List<Point> getPoints() {
-		return points.getPoints();
+	public List<Point> getLadderPoints() {
+		return ladderPoints.getPoints();
 	}
 
 	public List<LadderLayer> getLadderLayers() {
