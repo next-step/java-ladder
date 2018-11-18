@@ -20,12 +20,17 @@ public class Ladder {
 		return new DisplayLadder(ladderGameInfo, lines);
 	}
 
-	public LadderResult start(String playerName) {
-		int playerIndex = ladderGameInfo.getPlayerIndex(playerName);
+	public Printable start(String playerName) {
+		int playerIndex = -1;
+		try {
+			playerIndex = ladderGameInfo.getPlayerIndex(playerName);
+		} catch (IllegalArgumentException e) {
+			return new LadderErrorResult(e.getMessage());
+		}
 		return getLadderResult(playerIndex);
 	}
 
-	public LadderFinalResult end() {
+	public Printable end() {
 		int startIndex = 0;
 		List<LadderResult> ladderResults = IntStream
 				.range(startIndex, ladderGameInfo.getPlayerCount())

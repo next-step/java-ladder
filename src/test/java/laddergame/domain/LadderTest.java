@@ -32,7 +32,7 @@ public class LadderTest {
 		assertResult(ladder.start("jk"), "5000");
 	}
 
-	private void assertResult(LadderResult ladderResult, String expected) {
-		assertThat(ladderResult.getResult()).isEqualTo(expected);
+	private void assertResult(Printable ladderResult, String expected) {
+		assertThat(ladderResult.print()).isEqualTo(expected);
 	}
 }

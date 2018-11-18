@@ -1,9 +1,12 @@
 package laddergame.domain;
 
+import static laddergame.domain.DisplayLadder.NEW_LINE;
+
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class LadderFinalResult {
+public class LadderFinalResult implements Printable {
 
 	private List<LadderResult> ladderResults;
 
@@ -13,5 +16,12 @@ public class LadderFinalResult {
 
 	public List<LadderResult> getLadderResults() {
 		return Collections.unmodifiableList(ladderResults);
+	}
+
+	@Override
+	public String print() {
+		return ladderResults.stream()
+				.map(LadderResult::getFormattedResult)
+				.collect(Collectors.joining(NEW_LINE));
 	}
 }

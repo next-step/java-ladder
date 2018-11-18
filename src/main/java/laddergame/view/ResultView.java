@@ -1,8 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.DisplayLadder;
-import laddergame.domain.LadderFinalResult;
-import laddergame.domain.LadderResult;
+import laddergame.domain.Printable;
 
 public class ResultView {
 
@@ -11,20 +10,8 @@ public class ResultView {
 		System.out.println(displayLadder.draw());
 	}
 
-	public static void printResult(LadderResult ladderResult) {
+	public static void printResult(Printable printer) {
 		System.out.println("\n실행 결과");
-		System.out.println(ladderResult.getResult());
-	}
-
-	public static void printFailMessage(String message) {
-		System.out.println("\n실행 결과");
-		System.out.println(message);
-	}
-
-	public static void printFinalResult(LadderFinalResult ladderFinalResult) {
-		System.out.println("\n실행 결과");
-		for (LadderResult ladderResult : ladderFinalResult.getLadderResults()) {
-			System.out.println(ladderResult.getFormattedResult());
-		}
+		System.out.println(printer.print());
 	}
 }

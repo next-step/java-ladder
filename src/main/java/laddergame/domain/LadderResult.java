@@ -1,6 +1,6 @@
 package laddergame.domain;
 
-public class LadderResult {
+public class LadderResult implements Printable {
 
 	private Player player;
 	private Result result;
@@ -10,11 +10,12 @@ public class LadderResult {
 		this.result = result;
 	}
 
-	public String getResult() {
-		return result.toString();
-	}
-
 	public String getFormattedResult() {
 		return String.format("%s : %s", player.toString(), result.toString());
+	}
+
+	@Override
+	public String print() {
+		return result.toString();
 	}
 }
