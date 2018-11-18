@@ -59,9 +59,9 @@ public class LadderTest {
 		ladder.moveAll();
 		LadderResult ladderResult = ladder.getLadderGameResult();
 		GamerDTO gamerDTO = ladderResult.getGamers().get(0);
-		Assertions.assertThat(gamerDTO.getPosition()).isEqualTo(0);
-		Assertions.assertThat(ladderResult.getGameRewardByGamer("test1")).isEqualTo("꽝");
-		Assertions.assertThat(ladderResult.getGameRewardByGamer("test2")).isEqualTo("1000");
+		Assertions.assertThat(gamerDTO.getPoint()).isEqualTo(new Point(0));
+		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test1")).isEqualTo("꽝");
+		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test2")).isEqualTo("1000");
 	}
 
 	@Test
@@ -71,10 +71,10 @@ public class LadderTest {
 		ladder.moveAll();
 		LadderResult ladderResult = ladder.getLadderGameResult();
 		GamerDTO gamerDTO = ladderResult.getGamers().get(0);
-		Assertions.assertThat(gamerDTO.getPosition()).isEqualTo(0);
-		Assertions.assertThat(ladderResult.getGameRewardByGamer("test1")).isEqualTo("1");
-		Assertions.assertThat(ladderResult.getGameRewardByGamer("test2")).isEqualTo("2");
-		Assertions.assertThat(ladderResult.getGameRewardByGamer("test3")).isEqualTo("3");
-		Assertions.assertThat(ladderResult.getGameRewardByGamer("test4")).isEqualTo("4");
+		Assertions.assertThat(gamerDTO.getPoint()).isEqualTo(new Point(0));
+		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test1")).isEqualTo("1");
+		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test2")).isEqualTo("2");
+		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test3")).isEqualTo("3");
+		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test4")).isEqualTo("4");
 	}
 }

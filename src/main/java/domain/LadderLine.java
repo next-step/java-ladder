@@ -4,13 +4,11 @@ package domain;
  * Created by hspark on 16/11/2018.
  */
 public class LadderLine {
-	private int leftPosition;
-	private int rightPosition;
+	private ConnectionPoint connectionPoint;
 	private boolean drawn;
 
-	public LadderLine(int leftPosition, int rightPosition) {
-		this.leftPosition = leftPosition;
-		this.rightPosition = rightPosition;
+	public LadderLine(Point lefPoint, Point rightPoint) {
+		this.connectionPoint = new ConnectionPoint(lefPoint, rightPoint);
 	}
 
 	public void draw() {
@@ -21,18 +19,15 @@ public class LadderLine {
 		return drawn;
 	}
 
-	public boolean isPassable(int position) {
-		return (position == leftPosition || position == rightPosition) && isDrawn();
+	public boolean isPassable(Point point) {
+		return connectionPoint.isConnection(point) && isDrawn();
 	}
 
-	public int getMovePosition(int position) {
-		if (!isPassable(position)) {
+	public Point getMovePosition(Point point) {
+		if (!isPassable(point)) {
 			throw new IllegalArgumentException();
 		}
-
-		if (this.leftPosition == position) {
-			return rightPosition;
-		}
-		return leftPosition;
+		return connectionPoint.getConnectionPoint(point);
 	}
+
 }

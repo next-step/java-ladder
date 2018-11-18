@@ -14,15 +14,15 @@ public class LadderLineTest {
 
 	@Test
 	public void test_이동한_위치_반환() {
-		LadderLine ladderLine = new LadderLine(0, 1);
+		LadderLine ladderLine = new LadderLine(new Point(0), new Point(1));
 		ladderLine.draw();
-		int movePosition = ladderLine.getMovePosition(0);
-		Assertions.assertThat(movePosition).isEqualTo(1);
+		Point movePosition = ladderLine.getMovePosition(new Point(0));
+		Assertions.assertThat(movePosition).isEqualTo(new Point(1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test_이동불가능한_사다리() {
-		LadderLine ladderLine = new LadderLine(0, 1);
-		ladderLine.getMovePosition(3);
+		LadderLine ladderLine = new LadderLine(new Point(0), new Point(1));
+		ladderLine.getMovePosition(new Point(2));
 	}
 }

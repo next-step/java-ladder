@@ -18,11 +18,10 @@ public class LadderLayer {
 	public static final int MIN_LADDER_WIDTH = 0;
 
 	private List<LadderLine> ladderLines;
-	private LadderLineSupplier supplier;
 
 	public LadderLayer(int width) {
 		Preconditions.checkArgument(width >= MIN_LADDER_WIDTH, "너비는 0 이상이어야 합니다.");
-		this.ladderLines = IntStream.range(MIN_LADDER_WIDTH, width).mapToObj(i -> new LadderLine(i, i + 1))
+		this.ladderLines = IntStream.range(MIN_LADDER_WIDTH, width).mapToObj(i -> new LadderLine(new Point(i), new Point(i + 1)))
 			.collect(Collectors.toList());
 	}
 
@@ -33,7 +32,7 @@ public class LadderLayer {
 
 	public void drawLines(LadderLineSupplier supplier) {
 		BinaryOperator<LadderLine> lineBinaryOperator = ladderLineAccumulator(supplier);
-		ladderLines.stream().reduce(new LadderLine(MIN_LADDER_WIDTH - 1, MIN_LADDER_WIDTH), lineBinaryOperator);
+		ladderLines.stream().reduce(new LadderLine(new Point(MIN_LADDER_WIDTH - 1), new Point(MIN_LADDER_WIDTH)), lineBinaryOperator);
 	}
 
 	public Optional<LadderLine> getPassableLadderLine(Gamer gamer) {

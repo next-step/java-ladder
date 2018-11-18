@@ -33,9 +33,9 @@ public class LadderResult {
 		return Collections.unmodifiableList(rewards);
 	}
 
-	public String getGameRewardByGamer(String gamerName) {
+	public String getGameRewardByGamer2(String gamerName) {
 		Optional<GamerDTO> gamerDTOOptional = gamers.stream().filter(gamerDTO -> gamerDTO.isEqualName(gamerName)).findFirst();
 		GamerDTO gamerDTO = gamerDTOOptional.orElseThrow(IllegalAccessError::new);
-		return rewards.get(gamerDTO.getPosition());
+		return rewards.get(gamerDTO.getPoint().getInteger());
 	}
 }

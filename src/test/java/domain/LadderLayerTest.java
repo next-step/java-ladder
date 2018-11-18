@@ -61,6 +61,6 @@ public class LadderLayerTest {
 		Optional<LadderLine> ladderLine = ladderLayer.getPassableLadderLine(gamer);
 
 		Assertions.assertThat(ladderLine.isPresent()).isTrue();
-		Assertions.assertThat(ladderLine.get().isPassable(gamer.getPosition())).isTrue();
+		Assertions.assertThat(ladderLine.get().isPassable(gamer.getPoint())).isTrue();
 	}
 }

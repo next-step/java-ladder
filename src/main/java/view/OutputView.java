@@ -54,12 +54,12 @@ public class OutputView {
 			printAll(ladderResult);
 			return;
 		}
-		System.out.println(ladderResult.getGameRewardByGamer(gamerName));
+		System.out.println(ladderResult.getGameRewardByGamer2(gamerName));
 	}
 
 	private static void printAll(LadderResult ladderResult) {
 		for (GamerDTO gamer : ladderResult.getGamers()) {
-			System.out.println(gamer.getName() + " : " + ladderResult.getGameRewardByGamer(gamer.getName()));
+			System.out.println(gamer.getName() + " : " + ladderResult.getGameRewardByGamer2(gamer.getName()));
 		}
 	}
 }
