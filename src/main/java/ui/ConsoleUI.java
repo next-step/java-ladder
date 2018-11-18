@@ -22,23 +22,17 @@ public class ConsoleUI {
 
         int ladderHeight = InputView.inputLadderMaxHeight();
 
-        Ladder ladder = new Ladder(ladderHeight, players.size());
-
+        Ladder ladder = Ladder.ofCount(ladderHeight, players.size());
 
         ResultView.resultStart();
         ResultView.printNames(players);
         ResultView.printLadder(ladder);
         ResultView.printNames(results);
 
-        while (true) {
-            String resultViewName = InputView.inputResultViewName();
-            if (resultViewName.equals(StringUtils.ALL)) {
-                ResultView.printAllResult(playerGroup, resultGroup, ladder);
-                break;
-            }
-            ResultView.printOneResult(playerGroup.getNameIndex(resultViewName), resultGroup, ladder);
-        }
+        ResultView.printFinalResult(playerGroup, resultGroup, ladder);
     }
+
+
 
 
 }

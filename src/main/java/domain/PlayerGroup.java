@@ -5,8 +5,9 @@ import java.util.List;
 public class PlayerGroup {
     List<Player> players;
 
+
     public PlayerGroup(List<Player> players) {
-        if(players.stream().count() != players.stream().distinct().count()){
+        if(players.size() != players.stream().distinct().count()){
             throw new IllegalArgumentException("중복된 내용은 올 수 없습니다.");
         }
         this.players = players;
