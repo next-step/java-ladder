@@ -15,7 +15,7 @@ public class Ladder {
 	private LadderLayers ladderLayers;
 
 	public Ladder(int playerCount) {
-		Preconditions.checkArgument(playerCount >= MIN_LADDER_WIDTH, "너비가 너무 좁습니다.");
+		Preconditions.checkArgument(playerCount >= MIN_LADDER_WIDTH, "게이머 수가 너무 적습니다.");
 		this.points = new Points(playerCount);
 	}
 
