@@ -36,7 +36,8 @@ public enum Direction {
 	 * @return
 	 */
 	public Direction getOppositeDirection() {
-		return from(index * -2 + index);
+		final int oppositeIndex = -index;
+		return from(oppositeIndex);
 	}
 
 	public int move(int index) {
