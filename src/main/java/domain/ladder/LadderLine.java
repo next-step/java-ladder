@@ -1,4 +1,7 @@
-package domain;
+package domain.ladder;
+
+import domain.point.ConnectionPoint;
+import domain.point.Point;
 
 /**
  * Created by hspark on 16/11/2018.

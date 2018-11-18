@@ -1,16 +1,27 @@
-package domain;
+package domain.point;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by hspark on 18/11/2018.
  */
-public class Point {
-	private int point;
+public final class Point {
+	private static Map<Integer, Point> CACHE = new HashMap<>();
+	private final int point;
 
-	public Point(int point) {
+	private Point(int point) {
 		this.point = point;
 	}
 
-	public int getInteger() {
+	public static Point of(int pointValue) {
+		Point cachePoint = CACHE.get(pointValue);
+		if (Objects.nonNull(cachePoint)) {
+			return cachePoint;
+		}
+		Point point = new Point(pointValue);
+		CACHE.put(pointValue, point);
 		return point;
 	}
 

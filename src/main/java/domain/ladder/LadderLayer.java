@@ -1,8 +1,8 @@
-package domain;
+package domain.ladder;
 
 import com.google.common.base.Preconditions;
-import domain.dto.LadderLayerDTO;
-import domain.dto.LineDTO;
+import domain.LadderLineSupplier;
+import domain.point.Point;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,22 +21,21 @@ public class LadderLayer {
 
 	public LadderLayer(int width) {
 		Preconditions.checkArgument(width >= MIN_LADDER_WIDTH, "너비는 0 이상이어야 합니다.");
-		this.ladderLines = IntStream.range(MIN_LADDER_WIDTH, width).mapToObj(i -> new LadderLine(new Point(i), new Point(i + 1)))
+		this.ladderLines = IntStream.range(MIN_LADDER_WIDTH, width).mapToObj(i -> new LadderLine(Point.of(i), Point.of(i + 1)))
 			.collect(Collectors.toList());
 	}
 
-	public LadderLayerDTO getLadderLineDTO() {
-		List<LineDTO> lineDTOS = ladderLines.stream().map(LineDTO::of).collect(Collectors.toList());
-		return new LadderLayerDTO(Collections.unmodifiableList(lineDTOS));
+	public List<LadderLine> getLadderLines() {
+		return Collections.unmodifiableList(ladderLines);
 	}
 
 	public void drawLines(LadderLineSupplier supplier) {
 		BinaryOperator<LadderLine> lineBinaryOperator = ladderLineAccumulator(supplier);
-		ladderLines.stream().reduce(new LadderLine(new Point(MIN_LADDER_WIDTH - 1), new Point(MIN_LADDER_WIDTH)), lineBinaryOperator);
+		ladderLines.stream().reduce(new LadderLine(Point.of(MIN_LADDER_WIDTH - 1), Point.of(MIN_LADDER_WIDTH)), lineBinaryOperator);
 	}
 
-	public Optional<LadderLine> getPassableLadderLine(Gamer gamer) {
-		return ladderLines.stream().filter(gamer::isPassable).findFirst();
+	public Optional<LadderLine> getPassableLadderLine(Point point) {
+		return ladderLines.stream().filter(ladderLine -> ladderLine.isPassable(point)).findFirst();
 	}
 
 	private BinaryOperator<LadderLine> ladderLineAccumulator(LadderLineSupplier supplier) {

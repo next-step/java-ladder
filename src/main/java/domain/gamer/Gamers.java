@@ -1,10 +1,8 @@
-package domain;
-
-import domain.dto.GamerDTO;
+package domain.gamer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by hspark on 18/11/2018.
@@ -14,17 +12,6 @@ public class Gamers {
 
 	public Gamers(List<String> gamerValues) {
 		this.gamers = initGamer(gamerValues);
-	}
-
-	public void moveAllGamer(LadderLayer ladderLayer) {
-		for (Gamer gamer : gamers) {
-			LadderLine ladderLine = ladderLayer.getPassableLadderLine(gamer).orElseThrow(IllegalAccessError::new);
-			gamer.passLine2(ladderLine);
-		}
-	}
-
-	public List<GamerDTO> getDTOs() {
-		return gamers.stream().map(GamerDTO::of).collect(Collectors.toList());
 	}
 
 	public int size() {
@@ -39,4 +26,13 @@ public class Gamers {
 		}
 		return gamers;
 	}
+
+	public Gamer findByGamerName(String gamerName) {
+		return gamers.stream().filter(gamer -> gamer.isEqualName(gamerName)).findFirst().orElseThrow(IllegalAccessError::new);
+	}
+
+	public List<Gamer> getGamerList() {
+		return Collections.unmodifiableList(gamers);
+	}
+
 }

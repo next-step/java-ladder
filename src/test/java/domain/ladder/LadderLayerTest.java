@@ -1,9 +1,10 @@
-package domain;
+package domain.ladder;
 
-import domain.dto.LadderLayerDTO;
+import domain.point.Point;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -30,26 +31,26 @@ public class LadderLayerTest {
 	public void test_너비0_라인미생성() {
 		LadderLayer ladderLayer = new LadderLayer(0);
 		ladderLayer.drawLines(() -> true);
-		LadderLayerDTO ladderLineDTO = ladderLayer.getLadderLineDTO();
-		Assertions.assertThat(ladderLineDTO.getLineDTOList()).hasSize(0);
+		List<LadderLine> ladderLine = ladderLayer.getLadderLines();
+		Assertions.assertThat(ladderLine).hasSize(0);
 	}
 
 	@Test
 	public void test_너비1_라인한개() {
 		LadderLayer ladderLayer = new LadderLayer(1);
 		ladderLayer.drawLines(() -> true);
-		LadderLayerDTO ladderLineDTO = ladderLayer.getLadderLineDTO();
-		Assertions.assertThat(ladderLineDTO.getLineDTOList()).hasSize(1);
-		Assertions.assertThat(ladderLineDTO.getLineDTOList()).extracting("drawn").contains(true);
+		List<LadderLine> ladderLine = ladderLayer.getLadderLines();
+		Assertions.assertThat(ladderLine).hasSize(1);
+		Assertions.assertThat(ladderLine).extracting("drawn").contains(true);
 	}
 
 	@Test
 	public void test_너비3_이어지는_라인_없음() {
 		LadderLayer ladderLayer = new LadderLayer(3);
 		ladderLayer.drawLines(() -> true);
-		LadderLayerDTO ladderLineDTO = ladderLayer.getLadderLineDTO();
-		Assertions.assertThat(ladderLineDTO.getLineDTOList()).hasSize(3);
-		Assertions.assertThat(ladderLineDTO.getLineDTOList()).extracting("drawn").contains(true, false, true);
+		List<LadderLine> ladderLine = ladderLayer.getLadderLines();
+		Assertions.assertThat(ladderLine).hasSize(3);
+		Assertions.assertThat(ladderLine).extracting("drawn").contains(true, false, true);
 	}
 
 	@Test
@@ -57,10 +58,10 @@ public class LadderLayerTest {
 		LadderLayer ladderLayer = new LadderLayer(3);
 		ladderLayer.drawLines(() -> true);
 
-		Gamer gamer = new Gamer("test", 0);
-		Optional<LadderLine> ladderLine = ladderLayer.getPassableLadderLine(gamer);
+		Point point = Point.of(0);
+		Optional<LadderLine> ladderLine = ladderLayer.getPassableLadderLine(point);
 
 		Assertions.assertThat(ladderLine.isPresent()).isTrue();
-		Assertions.assertThat(ladderLine.get().isPassable(gamer.getPoint())).isTrue();
+		Assertions.assertThat(ladderLine.get().isPassable(point)).isTrue();
 	}
 }

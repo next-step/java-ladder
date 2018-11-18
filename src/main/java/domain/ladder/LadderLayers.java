@@ -1,7 +1,9 @@
-package domain;
+package domain.ladder;
 
-import domain.dto.LadderLayerDTO;
+import domain.LadderLineSupplier;
+import domain.point.Points;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,11 +25,11 @@ public class LadderLayers {
 		ladderLayers.stream().forEach(ladderLayer -> ladderLayer.drawLines(supplier));
 	}
 
-	public void moveAll(Gamers gamers) {
-		ladderLayers.stream().forEach(gamers::moveAllGamer);
+	public void moveAll(Points points) {
+		ladderLayers.stream().forEach(points::moveAll);
 	}
 
-	public List<LadderLayerDTO> getDTOs() {
-		return ladderLayers.stream().map(LadderLayer::getLadderLineDTO).collect(Collectors.toList());
+	public List<LadderLayer> getLadderLayers() {
+		return Collections.unmodifiableList(ladderLayers);
 	}
 }

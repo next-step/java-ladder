@@ -1,10 +1,8 @@
 package domain;
 
-import domain.dto.GamerDTO;
+import domain.point.Point;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 /**
  * Created by hspark on 16/11/2018.
@@ -18,63 +16,54 @@ public class LadderTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test_높이가_0일때() {
-		Ladder ladder = new Ladder(Arrays.asList("test"), Arrays.asList("꽝"));
+		Ladder ladder = new Ladder(2);
 		ladder.drawLadder(0, () -> true);
 
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test_높이가_1일때() {
-		Ladder ladder = new Ladder(Arrays.asList("test"), Arrays.asList("꽝"));
+		Ladder ladder = new Ladder(2);
 		ladder.drawLadder(1, () -> true);
 	}
 
 	@Test
 	public void test_높이만큼_사다리_생성_5개() {
-		Ladder ladder = new Ladder(Arrays.asList("test"), Arrays.asList("꽝"));
+		Ladder ladder = new Ladder(1);
 		ladder.drawLadder(5, () -> true);
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		Assertions.assertThat(ladderResult.getGamers()).hasSize(1);
-		Assertions.assertThat(ladderResult.getLadderLines()).hasSize(5);
+		Assertions.assertThat(ladderResult.getPoints()).hasSize(1);
+		Assertions.assertThat(ladderResult.getLadderLayers()).hasSize(5);
 	}
 
 	@Test
 	public void test_사다리_참가자_3명() {
-		Ladder ladder = new Ladder(Arrays.asList("test1", "test2", "test3"), Arrays.asList("꽝", "1000", "3000"));
+		Ladder ladder = new Ladder(3);
 		ladder.drawLadder(5, () -> true);
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		Assertions.assertThat(ladderResult.getGamers()).hasSize(3);
-		Assertions.assertThat(ladderResult.getLadderLines()).hasSize(5);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void test_상품수량_인원수가_일치하지않음() {
-		new Ladder(Arrays.asList("test1", "test2", "test3"), Arrays.asList("꽝", "1000"));
+		Assertions.assertThat(ladderResult.getPoints()).hasSize(3);
+		Assertions.assertThat(ladderResult.getLadderLayers()).hasSize(5);
 	}
 
 	@Test
 	public void test_사다리_이동() {
-		Ladder ladder = new Ladder(Arrays.asList("test1", "test2"), Arrays.asList("꽝", "1000"));
+		Ladder ladder = new Ladder(2);
 		ladder.drawLadder(2, () -> true);
 		ladder.moveAll();
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		GamerDTO gamerDTO = ladderResult.getGamers().get(0);
-		Assertions.assertThat(gamerDTO.getPoint()).isEqualTo(new Point(0));
-		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test1")).isEqualTo("꽝");
-		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test2")).isEqualTo("1000");
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(0))).isEqualTo(Point.of(0));
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(1))).isEqualTo(Point.of(1));
 	}
 
 	@Test
 	public void test_사다리_이동_4명() {
-		Ladder ladder = new Ladder(Arrays.asList("test1", "test2", "test3", "test4"), Arrays.asList("1", "2", "3", "4"));
+		Ladder ladder = new Ladder(4);
 		ladder.drawLadder(2, () -> true);
 		ladder.moveAll();
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		GamerDTO gamerDTO = ladderResult.getGamers().get(0);
-		Assertions.assertThat(gamerDTO.getPoint()).isEqualTo(new Point(0));
-		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test1")).isEqualTo("1");
-		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test2")).isEqualTo("2");
-		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test3")).isEqualTo("3");
-		Assertions.assertThat(ladderResult.getGameRewardByGamer2("test4")).isEqualTo("4");
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(0))).isEqualTo(Point.of(0));
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(1))).isEqualTo(Point.of(1));
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(2))).isEqualTo(Point.of(2));
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(3))).isEqualTo(Point.of(3));
 	}
 }
