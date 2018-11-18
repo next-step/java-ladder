@@ -1,7 +1,6 @@
 package domain.ladder;
 
 import domain.LadderLineSupplier;
-import domain.point.LadderPoints;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,11 +24,15 @@ public class LadderLayers {
 		ladderLayers.stream().forEach(ladderLayer -> ladderLayer.drawLines(supplier));
 	}
 
-	public void moveAll(LadderPoints ladderPoints) {
-		ladderLayers.stream().forEach(ladderPoints::moveAll);
-	}
-
 	public List<LadderLayer> getLadderLayers() {
 		return Collections.unmodifiableList(ladderLayers);
+	}
+
+	public boolean isBottomLayer(int layerNumber) {
+		return ladderLayers.size() == layerNumber;
+	}
+
+	public LadderLayer getLayer(int layerNumber) {
+		return ladderLayers.get(layerNumber);
 	}
 }

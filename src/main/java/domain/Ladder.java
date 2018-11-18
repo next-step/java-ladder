@@ -1,6 +1,7 @@
 package domain;
 
 import com.google.common.base.Preconditions;
+import domain.ladder.LadderLayer;
 import domain.ladder.LadderLayers;
 import domain.point.LadderPoints;
 
@@ -30,6 +31,10 @@ public class Ladder {
 	}
 
 	public void moveAll() {
-		ladderLayers.moveAll(ladderPoints);
+		int layerNumber = 0;
+		while (!ladderLayers.isBottomLayer(layerNumber)) {
+			LadderLayer ladderLayer = ladderLayers.getLayer(layerNumber++);
+			ladderPoints.moveAll(ladderLayer);
+		}
 	}
 }
