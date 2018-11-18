@@ -14,10 +14,6 @@ public class LadderFinalResult implements Printable {
 		this.ladderResults = ladderResults;
 	}
 
-	public List<LadderResult> getLadderResults() {
-		return Collections.unmodifiableList(ladderResults);
-	}
-
 	@Override
 	public String print() {
 		return ladderResults.stream()
