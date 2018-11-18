@@ -5,34 +5,34 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
+
     private List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    private Ladder(int ladderHeight, int size) {
+    public static Ladder ofGroup(int height, List<NameTag> nameTagGroup) {
         List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
-            lines.add(Line.ofCount(size));
+        for (int i = 0; i < height; i++) {
+            lines.add(Line.ofCount(nameTagGroup.size()));
         }
-        this.lines = lines;
+        return new Ladder(lines);
     }
 
-    public static Ladder ofCount(int ladderHeight, int size) {
-        return new Ladder(ladderHeight, size);
-    }
-
-    public int getFinalPosition(int position) {
-        int result = 0;
-        for (Line line : lines) {
-            result = line.nextPosition(position);
-        }
-        return result;
+    public static Ladder of(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public int getFinalPosition(int index) {
+        for (Line line : lines) {
+            index = line.getNextPosition(index);
+        }
+        return index;
     }
 
 }

@@ -1,47 +1,46 @@
 package view;
 
 import domain.Ladder;
-import domain.Player;
-import domain.PlayerGroup;
-import utils.StringUtils;
+import domain.InputTagGroup;
+import domain.ResultTagGroup;
 
-import java.util.List;
+import java.util.Scanner;
 
 public class ResultView {
+    private static final String ALL = "all";
 
-    public static void resultStart() {
-        System.out.println("실행결과");
+    public static void ladderResult() {
+        System.out.println("사다리 결과");
     }
 
-    public static void printNames(List<Player> players) {
-        players.forEach(System.out::print);
+
+    public static void printNameTags(InputTagGroup nameTagGroup) {
+        nameTagGroup.getNameTags().stream().forEach(System.out::print);
         System.out.println();
+    }
+
+    public static void printResultNameTags(ResultTagGroup resultTagGroup) {
+        resultTagGroup.getNameTags().stream().forEach(System.out::print);
+        System.out.println();
+    }
+
+    public static void printFinalResult(InputTagGroup nameTagGroup, ResultTagGroup resultTagGroup) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("결과를 보고 싶은 사람은?");
+            String name = sc.nextLine();
+
+            System.out.println("실행 결과");
+            if (name.equals(ALL)) {
+                nameTagGroup.getAllFinalResult(resultTagGroup).forEach(System.out::println);
+                break;
+            }
+            System.out.println(nameTagGroup.getFinalResult(name, resultTagGroup));
+
+        }
     }
 
     public static void printLadder(Ladder ladder) {
         ladder.getLines().forEach(System.out::println);
-    }
-
-    private static void printOneResult(int startPosition, PlayerGroup resultGroup, Ladder ladder) {
-        System.out.println(resultGroup.getName(ladder.getFinalPosition(startPosition)));
-    }
-
-    private static void printAllResult(PlayerGroup playerGroup, PlayerGroup resultGroup, Ladder ladder) {
-        for (int i = 0; i < playerGroup.getSize(); i++) {
-            int finalPosition = ladder.getFinalPosition(i);
-            String str = playerGroup.getName(i) + ": " + resultGroup.getName(finalPosition);
-            System.out.println(str);
-        }
-    }
-
-    public static void printFinalResult(PlayerGroup playerGroup, PlayerGroup resultGroup, Ladder ladder) {
-        while (true) {
-            String resultViewName = InputView.inputResultViewName();
-            if (resultViewName.equals(StringUtils.ALL)) {
-                printAllResult(playerGroup, resultGroup, ladder);
-                break;
-            }
-            printOneResult(playerGroup.getNameIndex(resultViewName), resultGroup, ladder);
-        }
     }
 }
