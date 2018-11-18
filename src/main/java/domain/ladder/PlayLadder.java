@@ -20,11 +20,12 @@ public class PlayLadder {
 
         String playerNames = InputView.resultPlayer();
         Laddering laddering = ladderManage.play(playerNames);
-
-        List<PlayResult> playResult = laddering.playerResult(playerNames, ladderResult);
+        List<PlayResult> playResult = laddering.playerResult(ladderResult);
         resultView.resultPlay(playResult);
+
         String playerNames2 = InputView.resultPlayer();
-        List<PlayResult> playResult2 = laddering.playerResult(playerNames2, ladderResult);
+        Laddering laddering2 = ladderManage.play(playerNames2);
+        List<PlayResult> playResult2 = laddering2.playerResult(ladderResult);
         resultView.resultPlay(playResult2);
 
     }

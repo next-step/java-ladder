@@ -40,4 +40,8 @@ public class Player {
     public boolean findName(String playerName) {
         return this.name.equals(playerName);
     }
+
+    public String Name() {
+        return this.name;
+    }
 }

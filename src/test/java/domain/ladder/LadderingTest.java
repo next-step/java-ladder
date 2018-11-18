@@ -13,6 +13,7 @@ public class LadderingTest {
 
     Laddering laddering;
     LadderResult ladderResult;
+    LadderManage ladderManage;
 
     @Before
     public void init() {
@@ -36,21 +37,23 @@ public class LadderingTest {
         List<String> result = Arrays.asList("꽝","5000","꽝","3000");
         ladderResult = new LadderResult(result);
 
-        LadderManage ladderManage = new LadderManage(player, line);
-        ladderManage.play("ALL");
+        ladderManage = new LadderManage(player, line);
+
     }
 
     @Test
     public void 사다리결과() {
-        assertThat("" + laddering.playerResult("pobi", ladderResult).get(0)+"").isEqualTo("pobi : 꽝");
+        ladderManage.play("pobi");
+        assertThat("" + laddering.playerResult(ladderResult).get(0)+"").isEqualTo("pobi : 꽝");
     }
 
     @Test
     public void 사다리결과_ALL() {
-        assertThat("" + laddering.playerResult("pobi", ladderResult).get(0)+"").isEqualTo("pobi : 꽝");
-        assertThat("" + laddering.playerResult("honux", ladderResult).get(1)+"").isEqualTo("honux : 3000");
-        assertThat("" + laddering.playerResult("crong", ladderResult).get(2)+"").isEqualTo("crong : 꽝");
-        assertThat("" + laddering.playerResult("jk", ladderResult).get(3)+"").isEqualTo("jk : 5000");
+        ladderManage.play("ALL");
+        assertThat("" + laddering.playerResult(ladderResult).get(0)+"").isEqualTo("pobi : 꽝");
+        assertThat("" + laddering.playerResult(ladderResult).get(1)+"").isEqualTo("honux : 3000");
+        assertThat("" + laddering.playerResult(ladderResult).get(2)+"").isEqualTo("crong : 꽝");
+        assertThat("" + laddering.playerResult(ladderResult).get(3)+"").isEqualTo("jk : 5000");
     }
 
 }
