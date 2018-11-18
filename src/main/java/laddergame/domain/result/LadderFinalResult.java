@@ -1,8 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.result;
 
-import static laddergame.domain.DisplayLadder.NEW_LINE;
+import static laddergame.domain.result.DisplayLadder.NEW_LINE;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

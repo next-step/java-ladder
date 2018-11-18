@@ -1,6 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.result;
 
 import java.util.Objects;
+import laddergame.domain.player.Player;
 
 public class Result {
 

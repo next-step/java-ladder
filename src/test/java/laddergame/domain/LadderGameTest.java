@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Results;
 import org.junit.Test;
 
 public class LadderGameTest {

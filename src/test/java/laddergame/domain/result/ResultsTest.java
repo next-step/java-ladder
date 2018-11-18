@@ -1,8 +1,10 @@
-package laddergame.domain;
+package laddergame.domain.result;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import laddergame.domain.result.Result;
+import laddergame.domain.result.Results;
 import org.junit.Before;
 import org.junit.Test;
 

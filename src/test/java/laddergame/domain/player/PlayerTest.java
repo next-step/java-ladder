@@ -1,7 +1,8 @@
-package laddergame.domain;
+package laddergame.domain.player;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import laddergame.domain.player.Player;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 

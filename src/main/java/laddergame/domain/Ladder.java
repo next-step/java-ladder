@@ -3,10 +3,14 @@ package laddergame.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import laddergame.domain.result.DisplayLadder;
+import laddergame.domain.line.Lines;
+import laddergame.domain.result.LadderErrorResult;
+import laddergame.domain.result.LadderFinalResult;
+import laddergame.domain.result.LadderResult;
+import laddergame.domain.result.Printable;
 
 public class Ladder {
-
-	public static final String NEW_LINE = System.lineSeparator();
 
 	private LadderGameInfo ladderGameInfo;
 	private Lines lines;
@@ -21,7 +25,7 @@ public class Ladder {
 	}
 
 	public Printable start(String playerName) {
-		int playerIndex = -1;
+		int playerIndex;
 		try {
 			playerIndex = ladderGameInfo.getPlayerIndex(playerName);
 		} catch (IllegalArgumentException e) {

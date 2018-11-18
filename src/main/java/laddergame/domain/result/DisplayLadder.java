@@ -1,4 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.result;
+
+import laddergame.domain.LadderGameInfo;
+import laddergame.domain.line.Lines;
 
 public class DisplayLadder {
 

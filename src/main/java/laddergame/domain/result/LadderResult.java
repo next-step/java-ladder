@@ -1,4 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.result;
+
+import laddergame.domain.player.Player;
 
 public class LadderResult implements Printable {
 

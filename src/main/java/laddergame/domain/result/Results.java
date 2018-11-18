@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.result;
 
 import static laddergame.domain.LadderGameInfo.DEFAULT_SEPARATOR;
 

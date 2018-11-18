@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.line;
 
 public class RightEdgeDirectionStrategy implements RandomDirectionStrategy {
 

@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.line;
 
 import java.util.Arrays;
 

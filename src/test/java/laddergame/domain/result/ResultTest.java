@@ -1,5 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.result;
 
+import laddergame.domain.result.Result;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 

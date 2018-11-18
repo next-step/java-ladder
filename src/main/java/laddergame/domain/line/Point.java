@@ -1,4 +1,6 @@
-package laddergame.domain;
+package laddergame.domain.line;
+
+import laddergame.domain.result.DisplayLine;
 
 public class Point {
 

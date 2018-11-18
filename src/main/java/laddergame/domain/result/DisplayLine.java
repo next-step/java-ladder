@@ -1,6 +1,7 @@
-package laddergame.domain;
+package laddergame.domain.result;
 
 import java.util.List;
+import laddergame.domain.player.Player;
 
 public class DisplayLine {
 

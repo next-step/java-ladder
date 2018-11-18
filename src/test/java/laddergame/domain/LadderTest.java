@@ -1,11 +1,17 @@
 package laddergame.domain;
 
 import static java.util.Arrays.asList;
-import static laddergame.domain.Direction.LEFT;
-import static laddergame.domain.Direction.RIGHT;
-import static laddergame.domain.Direction.STRAIGHT;
+import static laddergame.domain.line.Direction.LEFT;
+import static laddergame.domain.line.Direction.RIGHT;
+import static laddergame.domain.line.Direction.STRAIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import laddergame.domain.line.Line;
+import laddergame.domain.line.Lines;
+import laddergame.domain.line.Point;
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Printable;
+import laddergame.domain.result.Results;
 import org.junit.Test;
 
 public class LadderTest {

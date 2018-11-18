@@ -2,10 +2,9 @@ package laddergame;
 
 import laddergame.domain.Ladder;
 import laddergame.domain.LadderGame;
-import laddergame.domain.LadderGameRunner;
-import laddergame.domain.Players;
-import laddergame.domain.Printable;
-import laddergame.domain.Results;
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Printable;
+import laddergame.domain.result.Results;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
 

@@ -1,5 +1,10 @@
 package laddergame.domain;
 
+import laddergame.domain.player.Player;
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Result;
+import laddergame.domain.result.Results;
+
 public class LadderGameInfo {
 
 	public static final String DEFAULT_SEPARATOR = " ";

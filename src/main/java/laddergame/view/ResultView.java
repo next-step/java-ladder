@@ -1,7 +1,7 @@
 package laddergame.view;
 
-import laddergame.domain.DisplayLadder;
-import laddergame.domain.Printable;
+import laddergame.domain.result.DisplayLadder;
+import laddergame.domain.result.Printable;
 
 public class ResultView {
 

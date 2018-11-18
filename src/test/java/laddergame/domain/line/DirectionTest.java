@@ -1,10 +1,12 @@
-package laddergame.domain;
+package laddergame.domain.line;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import laddergame.domain.line.Direction;
+import laddergame.domain.line.RightEdgeDirectionStrategy;
 import org.junit.Test;
 
 public class DirectionTest {

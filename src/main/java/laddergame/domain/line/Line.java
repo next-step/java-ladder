@@ -1,8 +1,9 @@
-package laddergame.domain;
+package laddergame.domain.line;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import laddergame.domain.result.DisplayLine;
 
 public class Line {
 

@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Results;
 import org.junit.Test;
 
 public class LadderGameInfoTest {

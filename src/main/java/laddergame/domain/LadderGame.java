@@ -1,5 +1,9 @@
 package laddergame.domain;
 
+import laddergame.domain.line.Lines;
+import laddergame.domain.player.Players;
+import laddergame.domain.result.Results;
+
 public class LadderGame {
 
 	private Players players;

@@ -1,4 +1,7 @@
-package laddergame.domain;
+package laddergame;
+
+import laddergame.domain.Ladder;
+import laddergame.domain.result.Printable;
 
 public class LadderGameRunner {
 
