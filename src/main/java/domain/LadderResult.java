@@ -1,7 +1,9 @@
 package domain;
 
-import domain.dto.GamerDTO;
-import domain.dto.LadderLayerDTO;
+import domain.ladder.LadderLayer;
+import domain.ladder.LadderLayers;
+import domain.point.Point;
+import domain.point.LadderPoints;
 
 import java.util.List;
 
@@ -9,19 +11,23 @@ import java.util.List;
  * Created by hspark on 16/11/2018.
  */
 public class LadderResult {
-	private List<GamerDTO> gamers;
-	private List<LadderLayerDTO> ladderLines;
+	private LadderPoints ladderPoints;
+	private LadderLayers ladderLayers;
 
-	public LadderResult(List<GamerDTO> gamers, List<LadderLayerDTO> ladderLines) {
-		this.gamers = gamers;
-		this.ladderLines = ladderLines;
+	public LadderResult(LadderPoints ladderPoints, LadderLayers ladderLayers) {
+		this.ladderPoints = ladderPoints;
+		this.ladderLayers = ladderLayers;
 	}
 
-	public List<GamerDTO> getGamers() {
-		return gamers;
+	public Point getEndPointByStartPoint(Point point) {
+		return ladderPoints.findCurrentPointByStartPoint(point);
 	}
 
-	public List<LadderLayerDTO> getLadderLines() {
-		return ladderLines;
+	public List<Point> getLadderPoints() {
+		return ladderPoints.getPoints();
+	}
+
+	public List<LadderLayer> getLadderLayers() {
+		return ladderLayers.getLadderLayers();
 	}
 }

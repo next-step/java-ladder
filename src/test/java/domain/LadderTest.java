@@ -1,9 +1,8 @@
 package domain;
 
+import domain.point.Point;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 /**
  * Created by hspark on 16/11/2018.
@@ -17,29 +16,54 @@ public class LadderTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test_높이가_0일때() {
-		Ladder ladder = new Ladder(Arrays.asList("test"), 0, () -> true);
+		Ladder ladder = new Ladder(2);
+		ladder.drawLadder(0, () -> true);
 
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test_높이가_1일때() {
-		Ladder ladder = new Ladder(Arrays.asList("test"), 1, () -> true);
+		Ladder ladder = new Ladder(2);
+		ladder.drawLadder(1, () -> true);
 	}
 
 	@Test
 	public void test_높이만큼_사다리_생성_5개() {
-		Ladder ladder = new Ladder(Arrays.asList("test"), 5, () -> true);
+		Ladder ladder = new Ladder(1);
+		ladder.drawLadder(5, () -> true);
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		Assertions.assertThat(ladderResult.getGamers()).hasSize(1);
-		Assertions.assertThat(ladderResult.getLadderLines()).hasSize(5);
+		Assertions.assertThat(ladderResult.getLadderPoints()).hasSize(1);
+		Assertions.assertThat(ladderResult.getLadderLayers()).hasSize(5);
 	}
 
 	@Test
 	public void test_사다리_참가자_3명() {
-		Ladder ladder = new Ladder(Arrays.asList("test1", "test2", "test3"), 5, () -> true);
-		ladder.drawLadder();
+		Ladder ladder = new Ladder(3);
+		ladder.drawLadder(5, () -> true);
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		Assertions.assertThat(ladderResult.getGamers()).hasSize(3);
-		Assertions.assertThat(ladderResult.getLadderLines()).hasSize(5);
+		Assertions.assertThat(ladderResult.getLadderPoints()).hasSize(3);
+		Assertions.assertThat(ladderResult.getLadderLayers()).hasSize(5);
+	}
+
+	@Test
+	public void test_사다리_이동() {
+		Ladder ladder = new Ladder(2);
+		ladder.drawLadder(2, () -> true);
+		ladder.moveAll();
+		LadderResult ladderResult = ladder.getLadderGameResult();
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(0))).isEqualTo(Point.of(0));
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(1))).isEqualTo(Point.of(1));
+	}
+
+	@Test
+	public void test_사다리_이동_4명() {
+		Ladder ladder = new Ladder(4);
+		ladder.drawLadder(2, () -> true);
+		ladder.moveAll();
+		LadderResult ladderResult = ladder.getLadderGameResult();
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(0))).isEqualTo(Point.of(0));
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(1))).isEqualTo(Point.of(1));
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(2))).isEqualTo(Point.of(2));
+		Assertions.assertThat(ladderResult.getEndPointByStartPoint(Point.of(3))).isEqualTo(Point.of(3));
 	}
 }

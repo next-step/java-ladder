@@ -1,23 +1,27 @@
 package view;
 
-import domain.Ladder;
-import domain.LadderResult;
-import domain.RandomLadderLineSupplier;
-
-import java.util.List;
+import domain.*;
+import domain.gamer.Gamers;
+import domain.reward.Rewards;
 
 /**
  * Created by hspark on 16/11/2018.
  */
 public class LadderMain {
 	public static void main(String[] args) {
-		List<String> gamerNames = InputView.inputGamers();
+		Gamers gamers = new Gamers(InputView.inputGamers());
+		Rewards rewards = new Rewards(InputView.inputRewards());
+		LadderGameInfo ladderGameInfo = new LadderGameInfo(gamers, rewards);
 		int ladderHeight = InputView.inputLadderHeight();
 
-		Ladder ladder = new Ladder(gamerNames, ladderHeight, new RandomLadderLineSupplier());
-		ladder.drawLadder();
+		Ladder ladder = new Ladder(gamers.size());
+		ladder.drawLadder(ladderHeight, new RandomLadderLineSupplier());
+		ladder.moveAll();
 		LadderResult ladderResult = ladder.getLadderGameResult();
 
-		OutputView.printLadder(ladderResult);
+		OutputView.printLadder(ladderResult, ladderGameInfo);
+
+		String gamerName = InputView.inputGamerNameForReward();
+		OutputView.printReward(ladderResult, ladderGameInfo, gamerName);
 	}
 }
