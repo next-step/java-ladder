@@ -14,9 +14,9 @@ public class Ladder {
 	private LadderPoints ladderPoints;
 	private LadderLayers ladderLayers;
 
-	public Ladder(int playerCount) {
-		Preconditions.checkArgument(playerCount >= MIN_LADDER_WIDTH, "게이머 수가 너무 적습니다.");
-		this.ladderPoints = new LadderPoints(playerCount);
+	public Ladder(int gamerCount) {
+		Preconditions.checkArgument(gamerCount >= MIN_LADDER_WIDTH, "게이머 수가 너무 적습니다.");
+		this.ladderPoints = new LadderPoints(gamerCount);
 	}
 
 	public void drawLadder(int height, LadderLineSupplier supplier) {
