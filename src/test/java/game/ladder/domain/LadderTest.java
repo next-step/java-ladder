@@ -2,7 +2,6 @@ package game.ladder.domain;
 
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;

@@ -3,7 +3,6 @@ package game.ladder.domain;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.filter;
 
 public class BlockTest {
 
@@ -48,12 +47,10 @@ public class BlockTest {
     }
 
     @Test
-    public void 연속_채워진_블록_확인() {
+    public void 다음_블록_안채워진_블록인지_확인() {
         final Block before = Block.FILLED_BLOCK;
-        final Block afterFilled = Block.FILLED_BLOCK;
-        final Block afterEmpty = Block.EMPTY_BLOCK;
+        Block next = Block.nextBlock(before);
 
-        assertThat(before.isSequenceFilledBlock(afterFilled)).isTrue();
-        assertThat(before.isSequenceFilledBlock(afterEmpty)).isFalse();
+        assertThat(next).isSameAs(Block.EMPTY_BLOCK);
     }
 }

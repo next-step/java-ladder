@@ -1,5 +1,7 @@
 package game.ladder.domain;
 
+import java.util.Random;
+
 public class Block {
 
     public static final Block EMPTY_BLOCK = new Block(BlockType.EMPTY);
@@ -7,22 +9,28 @@ public class Block {
 
     public static final int WIDTH = 5;
 
+    private static final Random RANDOM = new Random();
+
     private final BlockType blockType;
 
     private Block(BlockType blockType) {
         this.blockType = blockType;
     }
 
+    public static Block nextBlock(Block before) {
+        if (before == FILLED_BLOCK) {
+            return EMPTY_BLOCK;
+        }
+
+        if (RANDOM.nextBoolean()) {
+            return FILLED_BLOCK;
+        }
+
+        return EMPTY_BLOCK;
+    }
+
     public BlockType getType() {
         return this.blockType;
-    }
-
-    public boolean isSequenceFilledBlock(Block other) {
-        return this.isFilledBlock() && this.equals(other);
-    }
-
-    private boolean isFilledBlock() {
-        return this.equals(FILLED_BLOCK);
     }
 
     @Override
