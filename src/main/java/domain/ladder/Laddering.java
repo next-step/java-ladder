@@ -16,13 +16,10 @@ public class Laddering {
     }
 
     public List<PlayResult> showResult(String playerName, LadderResult ladderResult) {
-        List<PlayResult> playResults;
-        if(playerName.equals(ALL_USER)){
-            playResults = AllPlayerResult(ladderResult);
-        }else{
-            playResults =  playerResult(new Player(playerName), ladderResult);
-        }
-        return playResults;
+        if(playerName.equals(ALL_USER))
+            return AllPlayerResult(ladderResult);
+
+        return playerResult(new Player(playerName), ladderResult);
     }
 
     private List<PlayResult> playerResult(Player player, LadderResult ladderResult) {
