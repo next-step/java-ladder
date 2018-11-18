@@ -8,28 +8,27 @@ public class ResultView {
 
     public void result(LadderManage ladderManage, LadderResult ladderResult) {
         List<Player> players = ladderManage.getPlayers();
-        List<Lines> lines = ladderManage.getLines();
+        Lines lines = ladderManage.getLines();
 
         System.out.println("\n사다리 결과");
         System.out.println();
 
         players.stream().forEach(player -> System.out.print(player.getName() + " ") );
 
-        for(Lines line : lines){
+        for(Line line : lines.getLine()){
             StringBuilder sb = new StringBuilder();
             sb.append("\n");
             sb.append("|");
 
-            for(Line onlyLine : line.getLine()){
-                for(Boolean point : onlyLine.getPoints()){
-                    if(point == true){
-                        sb.append("-----");
-                    }else{
-                        sb.append("     ");
-                    }
-                    sb.append("|");
+            for(Boolean point : line.getPoints()){
+                if(point == true){
+                    sb.append("-----");
+                }else{
+                    sb.append("     ");
                 }
+                sb.append("|");
             }
+
             System.out.print(sb.toString());
         }
 

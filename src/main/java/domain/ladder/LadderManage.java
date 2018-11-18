@@ -6,19 +6,18 @@ import java.util.stream.Collectors;
 
 public class LadderManage {
     private List<Player> players;
-
-    private List<Lines> lines;
+    private Lines lines;
 
     LadderManage(String[] names, List<Line> lines) {
         this.players = Arrays.stream(names).map(name -> new Player(name)).collect(Collectors.toList());
-        this.lines = new LineCreation().getLines(lines);
+        this.lines = new Lines(lines);
     }
 
     public List<Player> getPlayers() {
         return players;
     }
 
-    public List<Lines> getLines() {
+    public Lines getLines() {
         return lines;
     }
 }

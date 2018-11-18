@@ -19,7 +19,7 @@ public class LadderManageTest {
         line.add(new Line(Arrays.asList(true, false, false)));
 
         LadderManage ladderManage = new LadderManage(names, line);
-        assertThat(ladderManage.getLines()).hasSize(2);
+        assertThat(ladderManage.getLines().getLine()).hasSize(2);
         assertThat(ladderManage.getPlayers()).hasSize(2);
 
     }

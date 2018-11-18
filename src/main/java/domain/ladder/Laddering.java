@@ -8,9 +8,9 @@ public class Laddering {
     private static final String ALL_USER = "ALL";
 
     private List<Player> players;
-    private List<Lines> lines;
+    private Lines lines;
 
-    public Laddering(List<Player> players, List<Lines> lines) {
+    public Laddering(List<Player> players, Lines lines) {
         this.players = players;
         this.lines = lines;
     }
@@ -38,9 +38,7 @@ public class Laddering {
 
     private int getLocation(int location) {
         int resultLocation = location;
-        for (Lines lines : this.lines) {
-            resultLocation = getResultLocation(resultLocation, lines);
-        }
+        resultLocation = getResultLocation(resultLocation, lines);
         return resultLocation;
     }
 

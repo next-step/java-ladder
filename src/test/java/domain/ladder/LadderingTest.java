@@ -19,32 +19,14 @@ public class LadderingTest {
 
         List<Line> line = new ArrayList<>();
         line.add(new Line(Arrays.asList(true, false, true)));
+        line.add(new Line(Arrays.asList(false, true, false)));
+        line.add(new Line(Arrays.asList(true, false, false)));
+        line.add(new Line(Arrays.asList(false, true, false)));
+        line.add(new Line(Arrays.asList(true, false, true)));
+
         Lines lines = new Lines(line);
 
-        List<Line> line2 = new ArrayList<>();
-        line2.add(new Line(Arrays.asList(false, true, false)));
-        Lines lines2 = new Lines(line2);
-
-        List<Line> line3 = new ArrayList<>();
-        line3.add(new Line(Arrays.asList(true, false, false)));
-        Lines lines3 = new Lines(line3);
-
-        List<Line> line4 = new ArrayList<>();
-        line4.add(new Line(Arrays.asList(false, true, false)));
-        Lines lines4 = new Lines(line4);
-
-        List<Line> line5 = new ArrayList<>();
-        line5.add(new Line(Arrays.asList(true, false, true)));
-        Lines lines5 = new Lines(line5);
-
-        List<Lines> lineList = new ArrayList<>();
-        lineList.add(lines);
-        lineList.add(lines2);
-        lineList.add(lines3);
-        lineList.add(lines4);
-        lineList.add(lines5);
-
-        Laddering laddering = new Laddering(players, lineList);
+        Laddering laddering = new Laddering(players, lines);
 
         List<String> result = Arrays.asList("꽝","5000","꽝","3000");
         LadderResult ladderResult = new LadderResult(result);
