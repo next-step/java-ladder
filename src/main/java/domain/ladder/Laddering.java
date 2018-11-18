@@ -8,9 +8,9 @@ public class Laddering {
     private static final String ALL_USER = "ALL";
 
     private List<Player> players;
-    private List<Line> lines;
+    private List<Lines> lines;
 
-    Laddering(List<Player> players, List<Line> lines) {
+    public Laddering(List<Player> players, List<Lines> lines) {
         this.players = players;
         this.lines = lines;
     }
@@ -27,25 +27,29 @@ public class Laddering {
 
     private List<PlayResult> playerResult(Player player, LadderResult ladderResult) {
         List<PlayResult> playResults = new ArrayList<>();
-        playResults.add(setResult(player, ladderResult.getResult(getLocation(players.indexOf(player)))));
+        playResults.add(new PlayResult(player, ladderResult.getResult(getLocation(players.indexOf(player)))));
         return playResults;
-    }
-
-    private PlayResult setResult(Player player, String result) {
-        return new PlayResult(player, result);
     }
 
     private List<PlayResult> AllPlayerResult(LadderResult ladderResult) {
         List<PlayResult> playResults = new ArrayList<>();
         for(Player player : players){
-            playResults.add(setResult(player, ladderResult.getResult(getLocation(players.indexOf(player)))));
+            playResults.add(new PlayResult(player, ladderResult.getResult(getLocation(players.indexOf(player)))));
         }
         return playResults;
     }
+
     private int getLocation(int location) {
         int resultLocation = location;
-        for (Line line : lines) {
-            resultLocation = line.Move(resultLocation);
+        for (Lines lines : this.lines) {
+            resultLocation = getResultLocation(resultLocation, lines);
+        }
+        return resultLocation;
+    }
+
+    private int getResultLocation(int resultLocation, Lines lines) {
+        for (Line line : lines.getLine()) {
+            resultLocation = line.move(resultLocation);
         }
         return resultLocation;
     }

@@ -1,7 +1,10 @@
 package view.console;
 
+import domain.ladder.Line;
 import domain.ladder.Player;
+import domain.ladder.RandomPoint;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -16,11 +19,15 @@ public class InputView {
         return names;
     }
 
-    public static int ladderCount() {
+    public static List<Line> ladderCount(String[] names){
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         Scanner sc = new Scanner(System.in);
         int ladderCount = sc.nextInt();
-        return ladderCount;
+        List<Line> lines = new ArrayList<>();
+        for(int i = 0; i < ladderCount; i++){
+            lines.add(new Line(new RandomPoint().getRandomPoint(names.length)));
+        }
+        return lines;
     }
 
     public static List<String> result(){

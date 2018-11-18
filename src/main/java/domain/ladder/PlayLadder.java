@@ -10,8 +10,9 @@ public class PlayLadder {
         ResultView resultView = new ResultView();
         String[] names = InputView.names();
         List<String> result = InputView.result();
-        int ladderCount = InputView.ladderCount();
-        LadderManage ladderManage = new LadderManage(names, ladderCount);
+        List<Line> lines = InputView.ladderCount(names);
+
+        LadderManage ladderManage = new LadderManage(names, lines);
         LadderResult ladderResult = new LadderResult(result);
         resultView.result(ladderManage, ladderResult);
 

@@ -1,7 +1,8 @@
 package domain.ladder;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
 
@@ -12,7 +13,7 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     public boolean leftMove(int location) {
@@ -23,7 +24,7 @@ public class Line {
         return location >= points.size() ? false : points.get(location);
     }
 
-    public int Move(int location) {
+    public int move(int location) {
         if(leftMove(location)){
             return --location;
         }
@@ -31,5 +32,18 @@ public class Line {
             return ++location;
         }
         return location;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

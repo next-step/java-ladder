@@ -6,18 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
-public class LineCreationTest {
-
+public class LinesTest {
     @Test
-    public void 라인개수() {
+    public void 생성확인() {
         List<Line> line = new ArrayList<>();
         line.add(new Line(Arrays.asList(true, false, true)));
-        line.add(new Line(Arrays.asList(true, false, true)));
+        Lines lines = new Lines(line);
 
-        assertThat(new LineCreation().getLines(line)).hasSize(2);
+        assertThat(lines.getLine().get(0)).isEqualTo(new Line(Arrays.asList(true, false, true)));
     }
 }

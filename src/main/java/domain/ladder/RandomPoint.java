@@ -8,7 +8,7 @@ public class RandomPoint {
 
     private List<Boolean> points = new ArrayList<>();
 
-    List<Boolean> getRandomPoint(int playerCount){
+    public List<Boolean> getRandomPoint(int playerCount){
         points.add(getRamdonLine());
         for (int location = 1; location < playerCount - 1; location++) {
             points.add(getPoint(location));
