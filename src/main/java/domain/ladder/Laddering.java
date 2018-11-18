@@ -16,21 +16,12 @@ public class Laddering {
         this.lines = lines;
     }
 
-    public List<PlayResult> showResult(String playerName, LadderResult ladderResult) {
-        if(playerName.toUpperCase().equals(ALL_USER))
-            return AllPlayerResult(ladderResult);
-
-        return playerResult(players.getPlayerLocation(playerName), ladderResult);
-    }
-
-    private List<PlayResult> playerResult(int playerLocation, LadderResult ladderResult) {
+    public List<PlayResult> playerResult(String playerNames, LadderResult ladderResult) {
         List<PlayResult> playResults = new ArrayList<>();
-        playResults.add(new PlayResult(players.findPlayLocation(playerLocation), ladderResult.getResult(getLocation(playerLocation))));
-        return playResults;
-    }
+        if(playerNames.toUpperCase().equals(ALL_USER))
+            playResults.add(new PlayResult(players.findPlayLocation(players.getPlayerLocation(playerNames)), ladderResult.getResult(getLocation(players.getPlayerLocation(playerNames)))));
 
-    private List<PlayResult> AllPlayerResult(LadderResult ladderResult) {
-        List<PlayResult> playResults = new ArrayList<>();
+
         for(Player player : players.getPlayers()){
             playResults.add(new PlayResult(player, ladderResult.getResult(getLocation(players.getPlayerLocation(player.getName())))));
         }
