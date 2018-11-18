@@ -1,6 +1,8 @@
 package laddergame.domain;
 
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -16,19 +18,31 @@ public class Ladder {
 
 	public String draw() {
 		String playerNames = ladderGameInfo.getFormattedPlayerNames();
-		String ladderLine = this.lines.getDisplayLines();
+		String ladderLine = lines.getDisplayLines();
 		String results = ladderGameInfo.getFormattedResults();
 		return String.join(NEW_LINE, playerNames, ladderLine, results);
 	}
 
-	public String end() {
-		return ladderGameInfo.getPlayerNames().stream()
-				.map(playerName -> String.format("%s : %s", playerName, start(playerName)))
-				.collect(Collectors.joining(NEW_LINE));
+	public LadderResult start(String playerName) {
+		if ("all".equals(playerName)) {
+			throw new IllegalArgumentException();
+		}
+		int playerIndex = ladderGameInfo.getPlayerIndex(playerName);
+		return getLadderResult(playerIndex);
 	}
 
-	public String start(String playerName) {
-		int playerIndex = ladderGameInfo.findPlayerIndex2(playerName);
-		return ladderGameInfo.findResult(lines.move(playerIndex));
+	public LadderFinalResult end() {
+		int startIndex = 0;
+		List<LadderResult> ladderResults = IntStream
+				.range(startIndex, ladderGameInfo.getPlayerCount())
+				.mapToObj(this::getLadderResult)
+				.collect(Collectors.toList());
+		return new LadderFinalResult(ladderResults);
+	}
+
+	private LadderResult getLadderResult(int playerIndex) {
+		int resultIndex = lines.move(playerIndex);
+		return new LadderResult(ladderGameInfo.getPlayer(playerIndex),
+				ladderGameInfo.getResult(resultIndex));
 	}
 }

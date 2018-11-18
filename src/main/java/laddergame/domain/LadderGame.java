@@ -1,20 +1,21 @@
 package laddergame.domain;
 
-import java.util.List;
-
 public class LadderGame {
 
-	private List<Player> players;
-	private List<Result> results;
+	private Players players;
+	private Results results;
 
-	public LadderGame(String rawPlayers, String rawResults) {
-		players = PlayerGenerator.generate(rawPlayers);
-		results = ResultGenerator.generate(rawResults);
+	public LadderGame(Players players, Results results) {
+		if(players.getPlayerCount() != results.getResultCount()) {
+			throw new IllegalArgumentException("플레이어와 결과의 수가 다릅니다.");
+		}
+		this.players = players;
+		this.results = results;
 	}
 
 	public Ladder generateLadder(int ladderHeight) {
 		LadderGameInfo ladderGameInfo = new LadderGameInfo(players, results);
-		Lines lines = Lines.from(ladderHeight, players.size());
+		Lines lines = Lines.from(ladderHeight, players.getPlayerCount());
 		return new Ladder(ladderGameInfo, lines);
 	}
 }
