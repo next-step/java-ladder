@@ -12,42 +12,55 @@ public class Line {
 
     private List<Boolean> points;
 
-    public Line (int countOfPerson) {
-        generateLine(countOfPerson);
+    public Line(List<Boolean> points) {
+        this.points = points;
     }
 
-    public int generateLine(int countOfPerson) {
-        points = new ArrayList<>();
+    public static Line generateLine(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
 
         IntStream.range(0, numberOfPoints(countOfPerson))
-                .forEach(i -> points.add(generateCurrentPoint(i)));
+                .forEach(i -> points.add(generateCurrentPoint(i, points)));
 
-        return points.size();
+        return new Line(points);
     }
 
-    boolean generateCurrentPoint(int newPosition) {
+    private static boolean generateCurrentPoint(int newPosition, List<Boolean> points) {
         boolean point = new Random().nextBoolean();
 
-        if(isOverLapped(point, newPosition)) {
+        if(newPosition == START_POINT) {
+            return point;
+        }
+
+        if(isOverLapped(point, points.get(newPosition - ONE))) {
             point = !point;
         }
 
         return point;
     }
 
-    private boolean isOverLapped(boolean newPoint, int currPosition) {
-        if(currPosition == START_POINT)
-            return false;
+    static boolean isOverLapped(boolean newPoint, boolean currPosition) {
 
-        return isEqual(newPoint, points.get(currPosition-1));
+        return newPoint == currPosition;
     }
 
-    static boolean isEqual(boolean newPoint, boolean prevPoint) {
-        return newPoint == prevPoint;
-    }
-
-    static int numberOfPoints(int countOfPerson) {
+    private static int numberOfPoints(int countOfPerson) {
         return countOfPerson - ONE;
+    }
+
+    int moveToNextPoint(int currPlayerPosition) {
+
+        int newLeftPosition = currPlayerPosition - 1;
+
+        if(newLeftPosition > -1 && this.points.get(newLeftPosition)) {
+            return newLeftPosition;
+        }
+
+        if(currPlayerPosition < this.points.size() && this.points.get(currPlayerPosition)) {
+            return currPlayerPosition + 1;
+        }
+
+        return currPlayerPosition;
     }
 
     @Override
