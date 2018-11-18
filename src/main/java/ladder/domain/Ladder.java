@@ -1,0 +1,29 @@
+package ladder.domain;
+
+import java.util.ArrayList;
+
+public class Ladder {
+
+    private int height;
+    private ArrayList<Line> lines;
+
+    public Ladder(int height) {
+        this.height = height;
+        lines = new ArrayList<>();
+    }
+
+    public void generateLadder(People people) {
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(people.peopleCount()));
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Line line : lines) {
+            stringBuilder.append(line.toString()+"\n");
+        }
+        return stringBuilder.toString();
+    }
+}
