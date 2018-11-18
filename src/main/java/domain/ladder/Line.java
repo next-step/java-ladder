@@ -46,4 +46,11 @@ public class Line {
     public int hashCode() {
         return Objects.hash(points);
     }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
+    }
 }

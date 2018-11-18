@@ -31,4 +31,10 @@ public class Lines {
         return Objects.hash(lines);
     }
 
+    @Override
+    public String toString() {
+        return "Lines{" +
+                "lines=" + lines +
+                '}';
+    }
 }

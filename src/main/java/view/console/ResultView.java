@@ -7,13 +7,13 @@ import java.util.List;
 public class ResultView {
 
     public void result(LadderManage ladderManage, LadderResult ladderResult) {
-        List<Player> players = ladderManage.getPlayers();
+        Players players = ladderManage.getPlayers();
         Lines lines = ladderManage.getLines();
 
         System.out.println("\n사다리 결과");
         System.out.println();
 
-        players.stream().forEach(player -> System.out.print(player.getName() + " ") );
+        players.getPlayers().stream().forEach(player -> System.out.print(player.getName() + " ") );
 
         for(Line line : lines.getLine()){
             StringBuilder sb = new StringBuilder();

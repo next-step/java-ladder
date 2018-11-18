@@ -36,4 +36,8 @@ public class Player {
     public String toString() {
         return name;
     }
+
+    public boolean findName(String playerName) {
+        return this.name.equals(playerName);
+    }
 }

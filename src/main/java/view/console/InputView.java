@@ -12,20 +12,20 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    public static String[] names(){
+    public static List<Player> names(){
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         Scanner sc = new Scanner(System.in);
-        String[] names = sc.nextLine().split(",");
-        return names;
+        List<Player> players = Arrays.stream(sc.nextLine().split(",")).map(name -> new Player(name)).collect(Collectors.toList());
+        return players;
     }
 
-    public static List<Line> ladderCount(String[] names){
+    public static List<Line> ladderCount(List<Player> players){
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         Scanner sc = new Scanner(System.in);
         int ladderCount = sc.nextInt();
         List<Line> lines = new ArrayList<>();
         for(int i = 0; i < ladderCount; i++){
-            lines.add(new Line(new RandomPoint().getRandomPoint(names.length)));
+            lines.add(new Line(new RandomPoint().getRandomPoint(players.size())));
         }
         return lines;
     }

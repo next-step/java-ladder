@@ -8,16 +8,19 @@ import java.util.List;
 public class PlayLadder {
     public static void main(String[] args) {
         ResultView resultView = new ResultView();
-        String[] names = InputView.names();
-        List<String> result = InputView.result();
-        List<Line> lines = InputView.ladderCount(names);
+        List<Player> players = InputView.names();
 
-        LadderManage ladderManage = new LadderManage(names, lines);
+        List<String> result = InputView.result();
+        List<Line> lines = InputView.ladderCount(players);
+
+        LadderManage ladderManage = new LadderManage(players, lines);
+
         LadderResult ladderResult = new LadderResult(result);
         resultView.result(ladderManage, ladderResult);
 
-        Laddering laddering = new Laddering(ladderManage.getPlayers(), ladderManage.getLines());
         String playerNames = InputView.resultPlayer();
+        Laddering laddering = ladderManage.play(playerNames);
+
         List<PlayResult> playResult = laddering.showResult(playerNames, ladderResult);
         resultView.resultPlay(playResult);
         String playerNames2 = InputView.resultPlayer();
