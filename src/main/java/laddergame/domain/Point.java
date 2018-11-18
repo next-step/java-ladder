@@ -2,9 +2,6 @@ package laddergame.domain;
 
 public class Point {
 
-	private static final String HORIZON_CHARACTER = "-";
-	private static final String EMPTY_CHARACTER = " ";
-
 	private Direction direction;
 
 	private Point(Direction direction) {
@@ -33,16 +30,11 @@ public class Point {
 		this.direction = point.direction.getOppositeDirection();
 	}
 
-	public String getLineCharacters() {
-		StringBuilder lineCharacters = new StringBuilder();
-		String lineCharacter = (direction.equals(Direction.LEFT))? HORIZON_CHARACTER : EMPTY_CHARACTER;
-		for (int count = 0; count < Player.MAX_NAME_LENGTH; count++) {
-			lineCharacters.append(lineCharacter);
-		}
-		return lineCharacters.toString();
-	}
-
 	public int move(int index) {
 		return direction.move(index);
+	}
+
+	public String getDisplayCharacter() {
+		return (direction.equals(Direction.LEFT))? DisplayLine.HORIZON_CHARACTER : DisplayLine.EMPTY_CHARACTER;
 	}
 }

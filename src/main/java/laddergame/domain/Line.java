@@ -2,10 +2,9 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
-
-	private static final String VERTICAL_CHARACTER = "|";
 
 	private List<Point> points;
 
@@ -32,16 +31,15 @@ public class Line {
 		return points.get(points.size() - 1);
 	}
 
-	public String draw() {
-		StringBuilder line = new StringBuilder();
-		for (Point point : points) {
-			line.append(point.getLineCharacters()).append(VERTICAL_CHARACTER);
-		}
-		return line.toString();
-	}
-
 	public int move(int startIndex) {
 		Point point = points.get(startIndex);
 		return point.move(startIndex);
+	}
+
+	public DisplayLine getDisplayLine() {
+		List<String> displayCharacters= points.stream()
+				.map(Point::getDisplayCharacter)
+				.collect(Collectors.toList());
+		return new DisplayLine(displayCharacters);
 	}
 }

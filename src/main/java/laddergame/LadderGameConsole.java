@@ -21,7 +21,7 @@ public class LadderGameConsole {
 
 		int ladderHeight = InputView.inputLadderHeight();
 		Ladder ladder = ladderGame.generateLadder(ladderHeight);
-		ResultView.printLadder(ladder);
+		ResultView.printLadder(ladder.display());
 
 		String playerName = INITIAL_CHARACTER;
 		while(!GAME_OVER.equals(playerName)) {

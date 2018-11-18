@@ -8,11 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-public class LadderTest {
+public class DisplayLadderTest {
 
 	@Test
-	public void 플레이어의_결과_확인() {
-		Ladder ladder = new Ladder(
+	public void 사다리_문자열_생성() {
+		DisplayLadder displayLadder = new DisplayLadder(
 				new LadderGameInfo(
 						Players.fromComma("pobi,honux,crong,jk"),
 						Results.fromComma("꽝,5000,꽝,3000")
@@ -25,14 +25,15 @@ public class LadderTest {
 						Line.from(asList(Point.from(RIGHT), Point.from(LEFT), Point.from(RIGHT), Point.from(LEFT))))
 				)
 		);
-		assertResult(ladder.start("pobi"), "꽝");
-		assertResult(ladder.start("honux"), "3000");
-		assertResult(ladder.start("honux"), "3000");
-		assertResult(ladder.start("crong"), "꽝");
-		assertResult(ladder.start("jk"), "5000");
+
+		assertThat(displayLadder.draw())
+				.isEqualTo(" pobi honux crong    jk\n"
+						+ "     |-----|     |-----|\n"
+						+ "     |     |-----|     |\n"
+						+ "     |-----|     |     |\n"
+						+ "     |     |-----|     |\n"
+						+ "     |-----|     |-----|\n"
+						+ "    꽝  5000     꽝  3000");
 	}
 
-	private void assertResult(LadderResult ladderResult, String expected) {
-		assertThat(ladderResult.getResult()).isEqualTo(expected);
-	}
 }

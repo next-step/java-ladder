@@ -16,11 +16,8 @@ public class Ladder {
 		this.lines = lines;
 	}
 
-	public String draw() {
-		String playerNames = ladderGameInfo.getFormattedPlayerNames();
-		String ladderLine = lines.getDisplayLines();
-		String results = ladderGameInfo.getFormattedResults();
-		return String.join(NEW_LINE, playerNames, ladderLine, results);
+	public DisplayLadder display() {
+		return new DisplayLadder(ladderGameInfo, lines);
 	}
 
 	public LadderResult start(String playerName) {
