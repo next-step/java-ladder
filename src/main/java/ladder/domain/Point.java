@@ -3,9 +3,11 @@ package ladder.domain;
 public class Point {
 
     private boolean value;
+    private Person person;
 
-    public Point(boolean value) {
+    public Point(boolean value, Person person) {
         this.value = value;
+        this.person = person;
     }
 
     public boolean isValue() {
@@ -18,5 +20,13 @@ public class Point {
             return "-----|";
         }
         return "     |";
+    }
+
+    public boolean hasPerson(Person person) {
+        return this.person.equals(person);
+    }
+
+    public Person getPerson() {
+        return person;
     }
 }

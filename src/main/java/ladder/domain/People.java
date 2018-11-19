@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class People {
 
     private static final String delimiter = ",";
+    private static final int DEFAULT_ONE = 1;
     private List<Person> people;
 
     public People(String line) {
@@ -22,5 +23,22 @@ public class People {
 
     public int peopleCount() {
         return people.size();
+    }
+
+    public int personCountForLine() {
+        return this.peopleCount() - DEFAULT_ONE;
+    }
+
+    public Person getPerson(int count) {
+        return this.people.get(count);
+    }
+
+    public int getCountForPerson(Person resultPerson) {
+        for (int i = 0; i < people.size(); i++) {
+            if (people.get(i).equals(resultPerson)) {
+                return i;
+            }
+        }
+        return 0;
     }
 }

@@ -8,9 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LineTest {
 
     private Line line;
+
     @Before
     public void setUp() throws Exception {
-        line = new Line(3);
+        line = new Line(new People("a,b,c"));
     }
 
     @Test

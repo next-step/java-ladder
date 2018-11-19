@@ -14,7 +14,7 @@ public class Ladder {
 
     public ArrayList<Line> generateLadder(People people) {
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(people.peopleCount()));
+            lines.add(new Line(people));
         }
         return lines;
     }
@@ -26,5 +26,14 @@ public class Ladder {
             stringBuilder.append(line.toString()+"\n");
         }
         return stringBuilder.toString();
+    }
+
+    public Person getResult(Person person) {
+
+        for (Line line : lines) {
+            person = line.findNextStep(person);
+        }
+
+        return person;
     }
 }

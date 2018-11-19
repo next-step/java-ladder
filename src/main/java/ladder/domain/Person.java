@@ -14,6 +14,10 @@ public class Person {
         this.name = name.trim();
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -27,5 +31,11 @@ public class Person {
 
     private int getLenthCount() {
         return STANDARD_LENGTH - this.name.length();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Person person = (Person)obj;
+        return this.name.equals(person.getName());
     }
 }
