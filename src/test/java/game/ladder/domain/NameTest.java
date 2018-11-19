@@ -35,4 +35,11 @@ public class NameTest {
         assertThat(name.fomattedName().length()).isEqualTo(6);
     }
 
+    @Test
+    public void isEqualValue() {
+        final String all = "all";
+
+        assertThat(Name.ALL.isEqualValue(all)).isTrue();
+    }
+
 }

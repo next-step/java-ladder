@@ -18,7 +18,7 @@ public class Block {
     }
 
     public static Block nextBlock(Block before) {
-        if (before == FILLED_BLOCK) {
+        if (before.isFilled()) {
             return EMPTY_BLOCK;
         }
 
@@ -27,6 +27,10 @@ public class Block {
         }
 
         return EMPTY_BLOCK;
+    }
+
+    public boolean isFilled() {
+        return this == FILLED_BLOCK;
     }
 
     public BlockType getType() {

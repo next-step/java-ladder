@@ -4,6 +4,9 @@ import spark.utils.Assert;
 import spark.utils.StringUtils;
 
 public class Name {
+
+    public static final Name ALL = new Name("all");
+
     private static final int MIN_LENGTH = 5;
     private static final String FORMAT = "%6s";
 
@@ -21,6 +24,10 @@ public class Name {
 
     public String fomattedName() {
         return String.format(FORMAT, this.value);
+    }
+
+    public boolean isEqualValue(String value) {
+        return this.value.equals(value);
     }
 
     @Override
