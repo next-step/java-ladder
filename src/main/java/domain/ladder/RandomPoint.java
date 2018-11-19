@@ -16,11 +16,11 @@ public class RandomPoint {
         return points;
     }
 
-    public boolean getPoint(int countOfPerson) {
+    private boolean getPoint(int countOfPerson) {
         return points.get(countOfPerson-1) == false && new Random().nextBoolean();
     }
 
-    public boolean getRamdonLine() {
+    private boolean getRamdonLine() {
         return new Random().nextBoolean();
     }
 

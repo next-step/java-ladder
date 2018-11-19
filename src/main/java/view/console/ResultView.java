@@ -1,21 +1,25 @@
 package view.console;
 
-import domain.ladder.Line;
-import domain.ladder.Player;
+import domain.ladder.*;
 
 import java.util.List;
 
 public class ResultView {
 
-    public void result(List<Player> players, List<Line> lines) {
-        System.out.println("\n실행결과");
+    public void result(LadderManage ladderManage, LadderResult ladderResult) {
+        Players players = ladderManage.getPlayers();
+        Lines lines = ladderManage.getLines();
 
-        players.stream().forEach(player -> System.out.print(player.getName() + " ") );
+        System.out.println("\n사다리 결과");
+        System.out.println();
 
-        for(Line line : lines){
+        players.getPlayers().stream().forEach(player -> System.out.print(player.getName() + " ") );
+
+        for(Line line : lines.getLine()){
             StringBuilder sb = new StringBuilder();
             sb.append("\n");
             sb.append("|");
+
             for(Boolean point : line.getPoints()){
                 if(point == true){
                     sb.append("-----");
@@ -24,9 +28,17 @@ public class ResultView {
                 }
                 sb.append("|");
             }
+
             System.out.print(sb.toString());
         }
 
+        System.out.println();
+        ladderResult.getResults().stream().forEach(result -> System.out.print(result.toString() + "   "));
 
+    }
+
+    public void resultPlay(List<PlayResult> playResult) {
+        System.out.println("실행결과");
+        playResult.stream().forEach(result -> System.out.println(result.toString()));
     }
 }
