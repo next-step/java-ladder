@@ -21,7 +21,7 @@ public class LadderTest {
         lines.add(Line.of(4, Arrays.asList(Positive.of(1))));
         lines.add(Line.of(4, Arrays.asList(Positive.of(0))));
         lines.add(Line.of(4, Arrays.asList(Positive.of(1))));
-        ResultView.printResult(participants, lines);
+        ResultView.printResult(participants, lines, Result.getResults("꽝,2000,꽝2,3000"));
     }
 
 }

@@ -34,6 +34,10 @@ public class Line {
             return false;
         }
 
+        if (index < 0) {
+            return false;
+        }
+
         return points.get(index);
     }
 
