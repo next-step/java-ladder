@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 
 public class Line {
     private static final Random random = new Random();
-    private static final int ODD_EVEN = 2;
 
     private final List<Point> points;
     private final int countOfPerson;
@@ -21,24 +20,24 @@ public class Line {
     public static Line ofAutoLine(int countOfPlayer) {
         Line line = new Line(countOfPlayer);
         
-        line.addPoint(Point.of(generateWidthLine()));
+        line.addPoint(Point.of(false, generateWidthLine()));
         IntStream.range(1, countOfPlayer-1).forEach(i -> {
-            boolean point = !line.getLastPoint().hasaWidthLine() && generateWidthLine();
-            line.addPoint(Point.of(point));
+            boolean point = !line.getLastPoint().canMoveRight() && generateWidthLine();
+            line.addPoint(Point.of(line.getLastPoint().canMoveRight(), point));
         });
-        line.addPoint(Point.of(false));
+        line.addPoint(Point.of(line.getLastPoint().canMoveRight(), false));
 
         return line;
     }
 
     public void addPoint(Point nextPoint) {
         validateLineSize();
-        validateOperlapLine(nextPoint);
+        validateOverlapLine(nextPoint);
         this.points.add(nextPoint);
     }
 
-    private void validateOperlapLine(Point nextPoint) {
-        if (!points.isEmpty() && isOverlap(nextPoint)) {
+    private void validateOverlapLine(Point nextPoint) {
+        if (!points.isEmpty() && nextPoint.isOverlap(getLastPoint())) {
             throw new IllegalArgumentException("가로 라인이 겹칩니다.");
         }
     }
@@ -49,19 +48,19 @@ public class Line {
         }
     }
     
-    private boolean isOverlap(Point nextPoint) {
-        return nextPoint.hasaWidthLine() && getLastPoint().equals(nextPoint);
-    }
-
     private Point getLastPoint() {
         return this.points.get(this.points.size()-1);
     }
 
     private static boolean generateWidthLine() {
-        return (random.nextInt(ODD_EVEN) + 1) % 2 == 0;
+        return random.nextBoolean();
     }
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int move(int index) {
+        return points.get(index).move();
     }
 }

@@ -22,4 +22,12 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public int move(int index) {
+        int position = index;
+        for (Line line : lines) {
+            position += line.move(position);
+        }
+        return position;
+    }
 }

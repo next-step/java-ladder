@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.utils.StringUtils;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -12,7 +14,7 @@ public class Players {
 
     public static Players of(String value) {
         List<Player> players = Optional.ofNullable(value)
-                                .map(v -> toPlayers(splitComma(v)))
+                                .map(v -> toPlayers(StringUtils.splitComma(v)))
                                 .orElseThrow(() -> new IllegalArgumentException());
         return new Players(players);
     }
@@ -21,10 +23,6 @@ public class Players {
         return Arrays.stream(values)
                 .map(Player::of)
                 .collect(Collectors.toList());
-    }
-
-    private static String[] splitComma(String value) {
-        return value.split(",");
     }
 
     public int getCountOfPlayer() {
@@ -46,5 +44,9 @@ public class Players {
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
+    }
+
+    public Player getPlayer(int i) {
+        return players.get(i);
     }
 }
