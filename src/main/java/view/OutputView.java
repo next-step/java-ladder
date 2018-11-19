@@ -1,9 +1,10 @@
 package view;
 
-import domain.*;
+import domain.LadderGameInfo;
+import domain.LadderResult;
 import domain.gamer.Gamer;
-import domain.ladder.LadderLayer;
 import domain.ladder.LadderLine;
+import domain.point.LineVertex;
 import domain.point.Point;
 import domain.reward.Reward;
 import org.apache.commons.lang3.StringUtils;
@@ -28,14 +29,10 @@ public class OutputView {
 		}
 		stringBuilder.append("\n");
 
-		List<LadderLayer> ladderLines = ladderResult.getLadderLayers();
+		List<LadderLine> ladderLines = ladderResult.getLadderLines();
 
-		for (LadderLayer ladderLine : ladderLines) {
-			for (LadderLine line : ladderLine.getLadderLines()) {
-				stringBuilder.append(LADDER_LAYER_STR);
-				stringBuilder.append(line.isDrawn() ? LADDER_LINE_CHR : LADDER_NON_LINE_CHR);
-			}
-			stringBuilder.append("|\n");
+		for (LadderLine ladderLine : ladderLines) {
+			stringBuilder = printLine(stringBuilder, ladderLine);
 		}
 
 		for (Reward reward : ladderGameInfo.getRewards().getRewardList()) {
@@ -43,6 +40,16 @@ public class OutputView {
 		}
 
 		System.out.println(stringBuilder.toString());
+	}
+
+	private static StringBuilder printLine(StringBuilder stringBuilder, LadderLine ladderLine) {
+		List<LineVertex> lineVertices = ladderLine.getLineVertices();
+		lineVertices.stream().limit(lineVertices.size() - 1).forEach(lineVertex -> {
+			stringBuilder.append(LADDER_LAYER_STR);
+			stringBuilder.append(lineVertex.isRightDirection() ? LADDER_LINE_CHR : LADDER_NON_LINE_CHR);
+		});
+		stringBuilder.append("|\n");
+		return stringBuilder;
 	}
 
 	public static void printReward(LadderResult ladderResult, LadderGameInfo ladderGameInfo, String gamerName) {

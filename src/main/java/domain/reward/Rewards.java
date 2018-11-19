@@ -32,4 +32,8 @@ public class Rewards {
 	public List<Reward> getRewardList() {
 		return Collections.unmodifiableList(rewards);
 	}
+
+	public int size() {
+		return rewards.size();
+	}
 }

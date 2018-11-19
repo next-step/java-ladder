@@ -1,6 +1,6 @@
 package domain.point;
 
-import domain.ladder.LadderLayer;
+import domain.ladder.LadderLine;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -19,11 +19,8 @@ public class LadderPointsTest {
 	@Test
 	public void test_이동() {
 		LadderPoints ladderPoints = new LadderPoints(2);
-
-		LadderLayer ladderLayer = new LadderLayer(2);
-		ladderLayer.drawLines(() -> true);
-
-		ladderPoints.move(Point.of(0), ladderLayer);
+		LadderLine ladderLine = new LadderLine(2, () -> true);
+		ladderPoints.move(Point.of(0), ladderLine);
 		Point currentPoint = ladderPoints.findCurrentPointByStartPoint(Point.of(0));
 		Assertions.assertThat(currentPoint).isEqualTo(Point.of(1));
 	}

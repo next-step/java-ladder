@@ -1,9 +1,9 @@
 package domain;
 
-import domain.ladder.LadderLayer;
-import domain.ladder.LadderLayers;
-import domain.point.Point;
+import domain.ladder.LadderLine;
+import domain.ladder.LadderLines;
 import domain.point.LadderPoints;
+import domain.point.Point;
 
 import java.util.List;
 
@@ -12,11 +12,11 @@ import java.util.List;
  */
 public class LadderResult {
 	private LadderPoints ladderPoints;
-	private LadderLayers ladderLayers;
+	private LadderLines ladderLines;
 
-	public LadderResult(LadderPoints ladderPoints, LadderLayers ladderLayers) {
+	public LadderResult(LadderPoints ladderPoints, LadderLines ladderLines) {
 		this.ladderPoints = ladderPoints;
-		this.ladderLayers = ladderLayers;
+		this.ladderLines = ladderLines;
 	}
 
 	public Point getEndPointByStartPoint(Point point) {
@@ -27,7 +27,7 @@ public class LadderResult {
 		return ladderPoints.getPoints();
 	}
 
-	public List<LadderLayer> getLadderLayers() {
-		return ladderLayers.getLadderLayers();
+	public List<LadderLine> getLadderLines() {
+		return ladderLines.getLadderLines();
 	}
 }

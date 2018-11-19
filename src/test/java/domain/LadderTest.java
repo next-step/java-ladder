@@ -29,11 +29,11 @@ public class LadderTest {
 
 	@Test
 	public void test_높이만큼_사다리_생성_5개() {
-		Ladder ladder = new Ladder(1);
+		Ladder ladder = new Ladder(2);
 		ladder.drawLadder(5, () -> true);
 		LadderResult ladderResult = ladder.getLadderGameResult();
-		Assertions.assertThat(ladderResult.getLadderPoints()).hasSize(1);
-		Assertions.assertThat(ladderResult.getLadderLayers()).hasSize(5);
+		Assertions.assertThat(ladderResult.getLadderPoints()).hasSize(2);
+		Assertions.assertThat(ladderResult.getLadderLines()).hasSize(5);
 	}
 
 	@Test
@@ -42,7 +42,7 @@ public class LadderTest {
 		ladder.drawLadder(5, () -> true);
 		LadderResult ladderResult = ladder.getLadderGameResult();
 		Assertions.assertThat(ladderResult.getLadderPoints()).hasSize(3);
-		Assertions.assertThat(ladderResult.getLadderLayers()).hasSize(5);
+		Assertions.assertThat(ladderResult.getLadderLines()).hasSize(5);
 	}
 
 	@Test

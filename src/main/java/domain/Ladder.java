@@ -1,8 +1,8 @@
 package domain;
 
 import com.google.common.base.Preconditions;
-import domain.ladder.LadderLayer;
-import domain.ladder.LadderLayers;
+import domain.ladder.LadderLine;
+import domain.ladder.LadderLines;
 import domain.point.LadderPoints;
 
 /**
@@ -13,7 +13,7 @@ public class Ladder {
 	public static final int MIN_LADDER_WIDTH = 0;
 
 	private LadderPoints ladderPoints;
-	private LadderLayers ladderLayers;
+	private LadderLines ladderLines;
 
 	public Ladder(int gamerCount) {
 		Preconditions.checkArgument(gamerCount >= MIN_LADDER_WIDTH, "게이머 수가 너무 적습니다.");
@@ -22,19 +22,18 @@ public class Ladder {
 
 	public void drawLadder(int height, LadderLineSupplier supplier) {
 		Preconditions.checkArgument(height > MIN_LADDER_HEIGHT, "사다리 높이가 너무 낮습니다.");
-		this.ladderLayers = new LadderLayers(height, ladderPoints.getWidth());
-		ladderLayers.drawAllLadders(supplier);
+		this.ladderLines = new LadderLines(height, ladderPoints.getSizeOfGamer(), supplier);
 	}
 
 	public LadderResult getLadderGameResult() {
-		return new LadderResult(ladderPoints, ladderLayers);
+		return new LadderResult(ladderPoints, ladderLines);
 	}
 
 	public void moveAll() {
 		int layerNumber = 0;
-		while (!ladderLayers.isBottomLayer(layerNumber)) {
-			LadderLayer ladderLayer = ladderLayers.getLayer(layerNumber++);
-			ladderPoints.moveAll(ladderLayer);
+		while (!ladderLines.isBottomLayer(layerNumber)) {
+			LadderLine ladderLine = ladderLines.getLine(layerNumber++);
+			ladderPoints.moveAll(ladderLine);
 		}
 	}
 }

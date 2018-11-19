@@ -1,5 +1,6 @@
 package domain;
 
+import com.google.common.base.Preconditions;
 import domain.gamer.Gamers;
 import domain.point.Point;
 import domain.reward.Reward;
@@ -14,6 +15,7 @@ public class LadderGameInfo {
 	private Rewards rewards;
 
 	public LadderGameInfo(Gamers gamers, Rewards rewards) {
+		Preconditions.checkArgument(gamers.size() == rewards.size());
 		this.gamers = gamers;
 		this.rewards = rewards;
 	}

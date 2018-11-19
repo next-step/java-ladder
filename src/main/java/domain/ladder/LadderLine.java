@@ -1,36 +1,49 @@
 package domain.ladder;
 
-import domain.point.ConnectionPoint;
+import domain.LadderLineSupplier;
+import domain.point.LineVertex;
 import domain.point.Point;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
- * Created by hspark on 16/11/2018.
+ * Created by hspark on 20/11/2018.
  */
 public class LadderLine {
-	private ConnectionPoint connectionPoint;
-	private boolean drawn;
+	private List<LineVertex> lineVertices;
 
-	public LadderLine(Point lefPoint, Point rightPoint) {
-		this.connectionPoint = new ConnectionPoint(lefPoint, rightPoint);
+	public LadderLine(int sizeOfGamer, LadderLineSupplier ladderLineSupplier) {
+		lineVertices = new ArrayList<>();
+		LineVertex vertex = initFirst(ladderLineSupplier);
+		vertex = initBody(sizeOfGamer, ladderLineSupplier, vertex);
+		initLast(vertex);
 	}
 
-	public void draw() {
-		this.drawn = true;
+	private LineVertex initFirst(LadderLineSupplier ladderLineSupplier) {
+		return LineVertex.first(ladderLineSupplier);
 	}
 
-	public boolean isDrawn() {
-		return drawn;
+	private void initLast(LineVertex vertex) {
+		vertex = vertex.last();
+		lineVertices.add(vertex);
 	}
 
-	public boolean isPassable(Point point) {
-		return connectionPoint.isConnection(point) && isDrawn();
-	}
-
-	public Point getMovePosition(Point point) {
-		if (!isPassable(point)) {
-			throw new IllegalArgumentException();
+	private LineVertex initBody(int sizeOfGamer, LadderLineSupplier ladderLineSupplier, LineVertex vertex) {
+		lineVertices.add(vertex);
+		for (int i = 1; i < sizeOfGamer - 1; i++) {
+			vertex = vertex.next(ladderLineSupplier);
+			lineVertices.add(vertex);
 		}
-		return connectionPoint.getConnectionPoint(point);
+		return vertex;
 	}
 
+	public Point move(Point point) {
+		return lineVertices.get(point.toInteger()).move();
+	}
+
+	public List<LineVertex> getLineVertices() {
+		return Collections.unmodifiableList(lineVertices);
+	}
 }
