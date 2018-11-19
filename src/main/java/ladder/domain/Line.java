@@ -3,66 +3,71 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
 
     private static final int ONE = 1;
+    private static final int TWO = 2;
     private static final int START_POINT = 0;
 
-    private List<Boolean> points;
+    private List<Position> points;
 
-    public Line (int countOfPerson) {
-        generateLine(countOfPerson);
+    public Line(List<Position> generatedPoints) {
+        this.points = generatedPoints;
     }
 
-    public int generateLine(int countOfPerson) {
-        points = new ArrayList<>();
+    public static Line generateLine(int countOfPerson) {
+        List<Position> generatePoints = new ArrayList<>();
 
-        IntStream.range(0, numberOfPoints(countOfPerson))
-                .forEach(i -> points.add(generateCurrentPoint(i)));
+        //first : 0
+        generatePoints.add(Position.generateFirstPosition(START_POINT, new Random().nextBoolean()));
 
-        return points.size();
+        // 1 ~ before last
+        IntStream.range(ONE, countOfPerson - ONE)
+                .forEach(i -> generatePoints.add(generateNewPosition(i, generatePoints)));
+
+        //last : countOfPerson - 1
+        generatePoints.add(Position.generateLastPosition(countOfPerson - ONE, generatePoints.get(countOfPerson - TWO)));
+
+        return new Line(generatePoints);
     }
 
-    boolean generateCurrentPoint(int newPosition) {
-        boolean point = new Random().nextBoolean();
+    private static Position generateNewPosition(int currPosition, List<Position> points) {
+        boolean newPoint = new Random().nextBoolean();
+        Position prevPosition = points.get(currPosition - ONE);
 
-        if(isOverLapped(point, newPosition)) {
-            point = !point;
+        if(prevPosition.isOverlapped(newPoint)) {
+            newPoint = !newPoint;
         }
 
-        return point;
+        return Position.generateNewPosition(currPosition, prevPosition, newPoint);
     }
 
-    private boolean isOverLapped(boolean newPoint, int currPosition) {
-        if(currPosition == START_POINT)
-            return false;
+    int moveToNextPoint(int position) {
+        Position currPlayerPosition = this.points.get(position);
 
-        return isEqual(newPoint, points.get(currPosition-1));
-    }
+        if(currPlayerPosition.isMovableToLeft()) {
+            return currPlayerPosition.moveLeft();
+        }
 
-    static boolean isEqual(boolean newPoint, boolean prevPoint) {
-        return newPoint == prevPoint;
-    }
+        if(currPlayerPosition.isMovableToRight()) {
+            return currPlayerPosition.moveRight();
+        }
 
-    static int numberOfPoints(int countOfPerson) {
-        return countOfPerson - ONE;
+        return position;
     }
 
     @Override
     public String toString() {
-        final StringBuilder str = new StringBuilder("   |");
-        points.forEach(b -> str.append(pointToString(b)));
+        StringBuilder str = new StringBuilder("|");
 
-        return str.toString();
-    }
-
-    private String pointToString(boolean b) {
-        if(b) {
-            return "-----|";
-        }
-
-        return "     |";
+        return str.append(
+                this.points.stream()
+                        .map(Position::toString)
+                        .collect(Collectors.joining("|"))
+        ).toString();
     }
 }

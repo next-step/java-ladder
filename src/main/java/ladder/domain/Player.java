@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,9 +20,22 @@ public class Player {
     @Override
     public String toString() {
         String str = IntStream.range(0, MAX_NAME_LENGTH - this.name.length())
-                .mapToObj(i -> "  ")
+                .mapToObj(i -> " ")
                 .collect(Collectors.joining("", this.name, " "));
 
         return str;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

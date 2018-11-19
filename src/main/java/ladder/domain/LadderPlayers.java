@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,11 +21,14 @@ public class LadderPlayers {
         return new LadderPlayers(players);
     }
 
-    public int totalPlayerCount() {
+    int totalPlayerCount() {
         return this.players.size();
     }
 
+    Player findNthPlayer(int n) {
+        return players.get(n);
+    }
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(this.players);
     }
 }

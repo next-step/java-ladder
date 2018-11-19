@@ -1,23 +1,34 @@
 package ladder.domain;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-    @Test
-    public void 라인이_겹치는_경우_테스트() {
-        boolean result = Line.isEqual(true, true);
-        assertThat(result).isEqualTo(true);
+    Line oneLine;
+
+    @Before
+    public void setUp() {
+        oneLine = new Line(Arrays.asList(new Position(0,false, true),
+                new Position(1,true, false),
+                new Position(2,false, true),
+                new Position(3,true, false)
+
+        ));
     }
 
     @Test
-    public void 라인이_안겹치는_경우_테스트() {
-        boolean result = Line.isEqual(false, true);
-        assertThat(result).isEqualTo(false);
+    public void 사다리_가장_왼쪽플레이어_움직임_테스트() {
+        int result = oneLine.moveToNextPoint(0);
+        assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    public void 사다리_가장_오른쪽플레이어_움직임_테스트() {
+        int result = oneLine.moveToNextPoint(3);
+        assertThat(result).isEqualTo(2);
     }
 }
