@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -135,8 +136,8 @@ public class Line {
         return true;
     }
 
-    public ArrayList<Boolean> getPoints() {
-        return points;
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     /**

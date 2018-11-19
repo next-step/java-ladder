@@ -4,6 +4,10 @@ public class Positive {
     private int num;
 
     private Positive(int num) {
+        if (num < 0) {
+            throw new IllegalArgumentException("양수를 입력하십시오.");
+        }
+        
         this.num = num;
     }
 
@@ -12,10 +16,6 @@ public class Positive {
     }
 
     public static Positive of(int num) {
-        if (num < 0) {
-            throw new IllegalArgumentException("양수를 입력하십시오.");
-        }
-
         return new Positive(num);
     }
 

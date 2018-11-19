@@ -10,16 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AutoLadderGenerator implements LadderGenerator {
-
-    private static final String COMMA = ",";
-
-    @Override
-    public List<Participant> getParticipants(String names) {
-        return Arrays.stream(split(names))
-                .map(Participant::new)
-                .collect(Collectors.toList());
-    }
-
     @Override
     public List<Line> getLines(String height, int countOfPerson) {
         ArrayList<Line> lines = new ArrayList<Line>();
@@ -30,11 +20,5 @@ public class AutoLadderGenerator implements LadderGenerator {
         lines.forEach(Line::addAutoLines);
 
         return lines;
-    }
-
-    @Override
-    public String[] split(String participants) {
-
-        return participants.split(COMMA);
     }
 }
