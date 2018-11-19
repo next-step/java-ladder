@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.player.People;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
