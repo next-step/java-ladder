@@ -21,7 +21,7 @@ public class AutoLadderGeneratorTest {
 
     @Test
     public void getParticipants() {
-        List<Participant> participants = autoLadderGenerator.getParticipants("pobi,crong,papa,jk");
+        List<Participant> participants = Participant.getParticipants("pobi,crong,papa,jk");
         assertThat(participants.size()).isEqualTo(4);
     }
 

@@ -29,7 +29,7 @@ public class ResultView {
     private static void printLadder(List<Line> lines) {
         for (int i = 0; i < lines.size(); i++) {
             Line line = lines.get(i);
-            ArrayList<Boolean> points = line.getPoints();
+            List<Boolean> points = line.getPoints();
             printLines(points);
         }
     }
@@ -50,7 +50,7 @@ public class ResultView {
      *
      * @param points
      */
-    private static void printLines(ArrayList<Boolean> points) {
+    private static void printLines(List<Boolean> points) {
         System.out.print("   ");
         for (int j = 0; j < points.size(); j++) {
             printLine(points, j);
@@ -64,7 +64,7 @@ public class ResultView {
      * @param points
      * @param j
      */
-    private static void printLine(ArrayList<Boolean> points, int j) {
+    private static void printLine(List<Boolean> points, int j) {
         if (points.get(j).booleanValue()) {
             System.out.print("|-----");
         } else {

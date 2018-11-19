@@ -14,7 +14,7 @@ public class LadderTest {
     public void asd() {
 
 
-        List<Participant> participants = new AutoLadderGenerator().getParticipants("poni,honux,crong,jk");
+        List<Participant> participants = Participant.getParticipants("poni,honux,crong,jk");
         ArrayList<Line> lines = new ArrayList<Line>();
 
         lines.add(Line.of(4, Arrays.asList(Positive.of(0), Positive.of(2))));
