@@ -14,7 +14,7 @@ public class Ladder {
     public static Ladder of(int height, int countOfPlayer) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0 ; i < height; i++) {
-            lines.add(Line.of(countOfPlayer));
+            lines.add(Line.ofAutoLine(countOfPlayer));
         }
         return new Ladder(lines);
     }
