@@ -2,62 +2,44 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static ladder.utils.LadderPointGenerator.generatePoint;
 
 public class Line {
 
     private static final int ONE = 1;
-    private static final int TWO = 2;
-    private static final int START_POINT = 0;
 
-    private List<Position> points;
+    private List<Position> positions;
 
     public Line(List<Position> generatedPoints) {
-        this.points = generatedPoints;
+        this.positions = generatedPoints;
     }
 
-    public static Line generateLine(int countOfPerson) {
-        List<Position> generatePoints = new ArrayList<>();
+    public static Line newLine(int countOfPerson) {
+        List<Position> newPositions = new ArrayList<>();
 
-        //first : 0
-        generatePoints.add(Position.generateFirstPosition(START_POINT, new Random().nextBoolean()));
+        firstLine(newPositions);
 
-        // 1 ~ before last
         IntStream.range(ONE, countOfPerson - ONE)
-                .forEach(i -> generatePoints.add(generateNewPosition(i, generatePoints)));
+                .forEach(i -> newPositions.add(Position.generateNextPosition(newPositions.get(i - ONE))));
 
-        //last : countOfPerson - 1
-        generatePoints.add(Position.generateLastPosition(countOfPerson - ONE, generatePoints.get(countOfPerson - TWO)));
+        lastLine(newPositions, countOfPerson - ONE);
 
-        return new Line(generatePoints);
+        return new Line(newPositions);
     }
 
-    private static Position generateNewPosition(int currPosition, List<Position> points) {
-        boolean newPoint = new Random().nextBoolean();
-        Position prevPosition = points.get(currPosition - ONE);
+    private static void firstLine(List<Position> newPositions) {
+        newPositions.add(Position.generateFirstPosition(generatePoint()));
+    }
 
-        if(prevPosition.isOverlapped(newPoint)) {
-            newPoint = !newPoint;
-        }
-
-        return Position.generateNewPosition(currPosition, prevPosition, newPoint);
+    private static void lastLine(List<Position> newPositions, int countOfPerson) {
+        newPositions.add(Position.generateLastPosition(newPositions.get(countOfPerson - ONE)));
     }
 
     int moveToNextPoint(int position) {
-        Position currPlayerPosition = this.points.get(position);
-
-        if(currPlayerPosition.isMovableToLeft()) {
-            return currPlayerPosition.moveLeft();
-        }
-
-        if(currPlayerPosition.isMovableToRight()) {
-            return currPlayerPosition.moveRight();
-        }
-
-        return position;
+        return this.positions.get(position).move();
     }
 
     @Override
@@ -65,7 +47,7 @@ public class Line {
         StringBuilder str = new StringBuilder("|");
 
         return str.append(
-                this.points.stream()
+                this.positions.stream()
                         .map(Position::toString)
                         .collect(Collectors.joining("|"))
         ).toString();

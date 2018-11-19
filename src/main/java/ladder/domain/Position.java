@@ -1,56 +1,50 @@
 package ladder.domain;
 
-
 public class Position {
 
     private static final int ONE = 1;
+    private static final int START_POSITION = 0;
     private static final boolean FALSE = false;
 
     private int position;
-    private boolean left;
-    private boolean right;
+    private Direction direction;
 
-    public Position(int position, boolean left, boolean right){
+    public Position(int position, Direction direction) {
         this.position = position;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
-    boolean isOverlapped(boolean newPoint) {
-        return this.right == newPoint;
+    public int move() {
+        if (this.direction.isRight()) {
+            return this.position + ONE;
+        }
+
+        if (this.direction.isLeft()) {
+            return this.position - ONE;
+        }
+
+        return this.position;
     }
 
-    boolean isMovableToLeft() {
-        return this.left;
+    static Position generateFirstPosition(boolean b) {
+        return new Position(START_POSITION, Direction.of(FALSE, b));
     }
 
-    int moveLeft() {
-        return this.position - ONE;
+    static Position generateLastPosition(Position prev) {
+        return new Position(prev.position + ONE, Direction.of(prev.direction.isRight(), FALSE));
     }
 
-    boolean isMovableToRight() {
-        return this.right;
+    static Position generateNextPosition(Position prev) {
+        return new Position(prev.position + ONE, prev.direction.isOverlapped());
     }
 
-    int moveRight() {
-        return this.position  + ONE;
-    }
-
-    static Position generateFirstPosition(int currPosition, boolean first) {
-        return new Position(currPosition, FALSE, first);
-    }
-
-    static Position generateLastPosition(int currPosition, Position prev) {
-        return new Position(currPosition, prev.right, FALSE);
-    }
-
-    static Position generateNewPosition(int currPosition, Position prev, boolean newPoint) {
-        return new Position(currPosition, prev.right, newPoint);
+    public Direction getDirection() {
+        return this.direction;
     }
 
     @Override
     public String toString() {
-        if(this.right) {
+        if(this.direction.isRight()) {
             return "-----";
         }
 
