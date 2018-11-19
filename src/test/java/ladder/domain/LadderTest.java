@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.player.People;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import ladder.exception.FormatException;
 

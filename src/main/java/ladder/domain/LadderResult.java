@@ -1,5 +1,9 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Ladder;
+import ladder.domain.player.People;
+import ladder.domain.player.Person;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,5 +24,6 @@ public class LadderResult {
 
     public Result getResultForPerson(Person person, Ladder ladder) {
         return results.get(people.getCountForPerson(ladder.getResult(person)));
+
     }
 }

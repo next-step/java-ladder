@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.People;
-import ladder.domain.Person;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.player.People;
+import ladder.domain.player.Person;
 
 import java.util.Scanner;
 

@@ -1,4 +1,7 @@
-package ladder.domain;
+package ladder.domain.ladder;
+
+import ladder.domain.player.People;
+import ladder.domain.player.Person;
 
 import java.util.ArrayList;
 
@@ -22,7 +25,9 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+
         for (Line line : lines) {
+            stringBuilder.append("|");
             stringBuilder.append(line.toString()+"\n");
         }
         return stringBuilder.toString();

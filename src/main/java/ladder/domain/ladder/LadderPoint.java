@@ -1,24 +1,27 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
-public class Point {
+import ladder.domain.player.Person;
 
-    private boolean value;
+public class LadderPoint {
+
     private Person person;
+    private boolean rightValue;
 
-    public Point(boolean value, Person person) {
-        this.value = value;
+    public LadderPoint(Person person, boolean rightValue) {
         this.person = person;
+        this.rightValue = rightValue;
     }
 
-    public boolean isValue() {
-        return value;
+    public boolean isRightValue() {
+        return this.rightValue;
     }
 
     @Override
     public String toString() {
-        if (this.value) {
+        if (this.rightValue) {
             return "-----|";
         }
+
         return "     |";
     }
 

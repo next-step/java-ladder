@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class People {
 
     private static final String delimiter = ",";
-    private static final int DEFAULT_ONE = 1;
     private List<Person> people;
 
     public People(String line) {
@@ -23,10 +22,6 @@ public class People {
 
     public int peopleCount() {
         return people.size();
-    }
-
-    public int personCountForLine() {
-        return this.peopleCount() - DEFAULT_ONE;
     }
 
     public Person getPerson(int count) {
