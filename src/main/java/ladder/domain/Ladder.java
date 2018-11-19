@@ -12,10 +12,11 @@ public class Ladder {
         lines = new ArrayList<>();
     }
 
-    public void generateLadder(People people) {
+    public ArrayList<Line> generateLadder(People people) {
         for (int i = 0; i < height; i++) {
             lines.add(new Line(people.peopleCount()));
         }
+        return lines;
     }
 
     @Override

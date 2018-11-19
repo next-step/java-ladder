@@ -15,30 +15,6 @@ public class Line {
         points = new ArrayList<>();
         int personCountForLine = countOfPerson - DEFAULT_ONE;
         IntStream.range(START_POINT, personCountForLine).forEach(count -> points.add(makePoints(count)));
-
-        if (allFalseCheck()) {
-            points.get(new Random().nextInt(personCountForLine)).setValue(true);
-        }
-    }
-
-    private boolean allFalseCheck() {
-        int count = START_POINT;
-        for (Point point : points) {
-            count = getCount(count, point);
-        }
-
-        if (count == points.size()) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private int getCount(int count, Point point) {
-        if (!point.isValue()) {
-            count++;
-        }
-        return count;
     }
 
     private Point makePoints(int count) {
@@ -49,11 +25,14 @@ public class Line {
             return new Point(result);
         }
 
-        if (points.get(count - DEFAULT_ONE).isValue() && result) {
+        if (isNotValidateLine(points.get(count - DEFAULT_ONE).isValue(), result))
             return new Point(false);
-        }
 
         return new Point(result);
+    }
+
+    public boolean isNotValidateLine(boolean preResult, boolean result) {
+        return preResult && result;
     }
 
     @Override
