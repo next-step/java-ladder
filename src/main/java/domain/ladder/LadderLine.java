@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import domain.LadderLineSupplier;
+import domain.supplier.LadderLineSupplier;
 import domain.point.LineVertex;
 import domain.point.Point;
 

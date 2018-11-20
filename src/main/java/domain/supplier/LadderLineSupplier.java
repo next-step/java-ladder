@@ -1,4 +1,4 @@
-package domain;
+package domain.supplier;
 
 import java.util.function.Supplier;
 

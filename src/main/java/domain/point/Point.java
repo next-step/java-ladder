@@ -39,12 +39,12 @@ public final class Point {
 		return point - other.point;
 	}
 
-	public Point add(int addPoint) {
-		return Point.of(this.point + addPoint);
+	public Point add() {
+		return Point.of(this.point + 1);
 	}
 
-	public Point sub(int subPoint) {
-		return Point.of(this.point - subPoint);
+	public Point sub() {
+		return Point.of(this.point - 1);
 	}
 
 	@Override
