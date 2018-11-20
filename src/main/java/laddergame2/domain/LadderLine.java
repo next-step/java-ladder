@@ -3,6 +3,7 @@ package laddergame2.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import laddergame2.domain.generator.PointGenerator;
 
 public class LadderLine {
 
@@ -13,10 +14,6 @@ public class LadderLine {
 	}
 
 	public static LadderLine init(int playerCount) {
-		if(playerCount < 2) {
-			throw new IllegalArgumentException("2명 이상부터 가능합니다.");
-		}
-
 		List<Point> points = new ArrayList<>();
 		initFirst(points);
 		initBody(playerCount, points);
@@ -25,7 +22,7 @@ public class LadderLine {
 	}
 
 	private static void initFirst(List<Point> points) {
-		Point first = Point.first(RandomGenerator.generate());
+		Point first = Point.first(PointGenerator.getInstance().generate());
 		points.add(first);
 	}
 
