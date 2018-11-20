@@ -1,6 +1,6 @@
 package utils;
 
-import domain.Player;
+import domain.NameTag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,17 +11,18 @@ public class StringUtils {
     public static final String SPACE = " ";
     public static final String COMMA = ",";
 
-    public static String[] splitDelemeter(String names){
+    private static String[] splitDelemeter(String names){
         return names.split(COMMA);
     }
 
-    public static List<Player> joinPlayer(String[] playerNames) {
-        List<Player> players = new ArrayList<>();
-        for(String playerName : playerNames){
-            Player player =  new Player(playerName);
-            players.add(player);
+    public static List<NameTag> makeNameTag(String names) {
+        String[] nameStr = splitDelemeter(names);
+        List<NameTag> nameTags = new ArrayList<>();
+        for(String name : nameStr){
+            NameTag nameTag = NameTag.of(name);
+            nameTags.add(nameTag);
         }
-        return players;
+        return nameTags;
     }
 
     public static String getReplace(String character, int length) {

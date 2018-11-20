@@ -1,6 +1,6 @@
 package view;
 
-import domain.Player;
+import domain.NameTag;
 import org.junit.Test;
 import utils.StringUtils;
 
@@ -13,8 +13,8 @@ public class ResultViewTest {
     public void printNames() {
 
         String names = "test1,test2,test3,test4";
-        List<Player> players = StringUtils.joinPlayer(StringUtils.splitDelemeter(names));
-        ResultView.printNames(players);
+        List<NameTag> nameTags = StringUtils.makeNameTag(names);
+//        ResultView.printNames(nameTags);
     }
 
 }
