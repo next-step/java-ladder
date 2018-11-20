@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public class Person {
     private static final int NAME_LIMIT_LENGTH = 5;
