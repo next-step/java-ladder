@@ -22,10 +22,6 @@ public class Participant {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public static Participant getParticipant(String name) {
         return new Participant(name);
     }
@@ -72,11 +68,7 @@ public class Participant {
      * @return
      */
     public static boolean isAll(String name) {
-        if (name.equals(ALL)) {
-            return true;
-        }
-
-        return false;
+        return name.equals(ALL);
     }
 
 }

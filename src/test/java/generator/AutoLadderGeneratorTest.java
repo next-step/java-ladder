@@ -2,6 +2,7 @@ package generator;
 
 import model.Line;
 import model.Participant;
+import model.Positive;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +28,7 @@ public class AutoLadderGeneratorTest {
 
     @Test
     public void getLines() {
-        List<Line> lines = autoLadderGenerator.getLines("5", 2);
+        List<Line> lines = autoLadderGenerator.getLines(Positive.of(5), 2);
         assertThat(lines.size()).isEqualTo(5);
     }
 }

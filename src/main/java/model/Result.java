@@ -32,8 +32,8 @@ public class Result {
 
         Participant participant = Participant.findByName(name, participants);
         int idx = participants.indexOf(participant);
-        Positive resultIdx = Ladder.move(lines, Positive.of(idx), Positive.of(lines.size()));
-        Result result = results.get(resultIdx.getNum());
+        Position position = Position.move(lines, new Position(Positive.of(idx), Positive.of(lines.size())));
+        Result result = results.get(position.getX().getNum());
 
         return result;
     }

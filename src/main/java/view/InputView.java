@@ -1,5 +1,7 @@
 package view;
 
+import model.Positive;
+
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -17,9 +19,9 @@ public class InputView {
     /**
      * 최대 사다리 높이 가져오기
      */
-    public static String getMaxHight() {
+    public static Positive getMaxHight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return SCANNER.next();
+        return Positive.of(SCANNER.next());
     }
 
     /**

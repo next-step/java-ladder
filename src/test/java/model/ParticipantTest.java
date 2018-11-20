@@ -25,16 +25,15 @@ public class ParticipantTest {
         List<Participant> participants = Participant.getParticipants("pobi,crong,tg,kkk");
         Participant participant = participants.get(0);
         AutoLadderGenerator autoLadderGenerator = new AutoLadderGenerator();
-        String height = "5";
         int countOfPerson = 4;
-        List<Line> lines = autoLadderGenerator.getLines(height, countOfPerson);
+        List<Line> lines = autoLadderGenerator.getLines(Positive.of(5), countOfPerson);
         List<Result> results = Result.getResults("꽝,5000,꽝2,3000");
         ResultView.printResult(participants, lines, results);
-        Positive resultIdx = Ladder.move(lines, Positive.of(0), Positive.of(5));
+        Position position = Position.move(lines, new Position(Positive.of(0), Positive.of(5)));
 
         System.out.println(results);
-        System.out.println("결과 : " + results.get(resultIdx.getNum()));
-        System.out.println("결과 : " + resultIdx.getNum());
+        System.out.println("결과 : " + results.get(position.getX().getNum()));
+        System.out.println("결과 : " + position.getX());
     }
 
     @Test
