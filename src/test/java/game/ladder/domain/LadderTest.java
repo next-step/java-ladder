@@ -3,7 +3,6 @@ package game.ladder.domain;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -18,17 +17,9 @@ public class LadderTest {
         final LinesGenerator generator = new LinesGenerator(new Height(5));
         final Participants participants = new Participants(makeParticipants());
         final Expects expects = new Expects(Arrays.asList(new Expect("a"), new Expect("b"), new Expect("c")));
+        final UserInputs userInputs = new UserInputs(participants, expects);
 
-        Ladder ladder = new Ladder(generator, participants, expects);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void 만들기_참여자와_기대결과_숫자_다를때() {
-        final LinesGenerator generator = new LinesGenerator(new Height(5));
-        final Participants participants = new Participants(makeParticipants());
-        final Expects expects = new Expects(Arrays.asList(new Expect("a"), new Expect("b")));
-
-        new Ladder(generator, participants, expects);
+        Ladder ladder = new Ladder(generator, userInputs);
     }
 
     @Test
@@ -36,8 +27,9 @@ public class LadderTest {
         final LinesGenerator generator = new LinesGenerator(new Height(5));
         final Participants participants = new Participants(makeParticipants());
         final Expects expects = new Expects(Arrays.asList(new Expect("a"), new Expect("b"), new Expect("c")));
+        final UserInputs userInputs = new UserInputs(participants, expects);
 
-        Ladder ladder = new Ladder(generator, participants, expects);
+        Ladder ladder = new Ladder(generator, userInputs);
 
         GameResults gameResults = ladder.makeGameResults(new Name("1"));
 
@@ -49,8 +41,9 @@ public class LadderTest {
         final LinesGenerator generator = new LinesGenerator(new Height(5));
         final Participants participants = new Participants(makeParticipants());
         final Expects expects = new Expects(Arrays.asList(new Expect("a"), new Expect("b"), new Expect("c")));
+        final UserInputs userInputs = new UserInputs(participants, expects);
 
-        Ladder ladder = new Ladder(generator, participants, expects);
+        Ladder ladder = new Ladder(generator, userInputs);
 
         GameResults gameResults = ladder.makeGameResults(new Name("all"));
 

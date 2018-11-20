@@ -6,13 +6,13 @@ public class ConsoleMain {
 
     public static void main(String[] args) {
         Participants participants = InputView.readParticipant();
-
         Expects expects = InputView.readExpects();
+        UserInputs userInputs = new UserInputs(participants, expects);
 
         Height height = InputView.readHeight();
-
         LinesGenerator linesGenerator = new LinesGenerator(height);
-        Ladder ladder = new Ladder(linesGenerator, participants, expects);
+
+        Ladder ladder = new Ladder(linesGenerator, userInputs);
 
         OutputView.printLadder(ladder);
 

@@ -44,7 +44,9 @@ public class GameResultCacheTest {
         final LinesGenerator generator = new LinesGenerator(new Height(5));
         final Participants participants = createParticipants();
         final Expects expects = createExpects();
-        return new Ladder(generator, participants, expects);
+        final UserInputs userInputs = new UserInputs(participants, expects);
+
+        return new Ladder(generator, userInputs);
     }
 
     private Participants createParticipants() {
