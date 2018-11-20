@@ -14,8 +14,18 @@ public class Line {
         this.points = points;
     }
 
+    private Line(int countOfPerson) {
+        points = new ArrayList<>();
+
+        drawLines(countOfPerson);
+    }
+
     public static Line of(List<Boolean> points) {
         return new Line(points);
+    }
+
+    public static Line of(int countOfPerson) {
+        return new Line(countOfPerson);
     }
 
     public List<Boolean> getPoints() {
@@ -26,11 +36,12 @@ public class Line {
         return points.size();
     }
 
-    public void drawLines(int countOfPerson) {
+    public Line drawLines(int countOfPerson) {
         for(int i = 0; i < countOfPerson; i++) {
             boolean line = getPoint(i);
             draw(line);
         }
+        return this;
     }
 
     public void draw(boolean line) {
@@ -54,7 +65,7 @@ public class Line {
 
     private Boolean prevPoint(int i) {
         if(i == 0) {
-            return false;
+            return true;
         }
         return points.get(i - 1);
     }
@@ -75,4 +86,10 @@ public class Line {
         return points != null ? points.hashCode() : 0;
     }
 
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
+    }
 }

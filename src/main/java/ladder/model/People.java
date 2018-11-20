@@ -12,7 +12,7 @@ public class People {
     private People(String people) {
         this.people = new ArrayList<>();
 
-        Arrays.asList(people.split(COMMA)).stream()
+        Arrays.asList(replaceSpace(people).split(COMMA)).stream()
                 .forEach(name -> this.people.add(Person.of(name)));
     }
 
@@ -20,8 +20,37 @@ public class People {
         return new People(names);
     }
 
+    public List<Person> getPeople() {
+        return people;
+    }
+
     public int count() {
         return people.size();
     }
 
+    private String replaceSpace(String people) {
+        return people.replace(" ", "");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        People people1 = (People) o;
+
+        return people != null ? people.equals(people1.people) : people1.people == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return people != null ? people.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "People{" +
+                "people=" + people +
+                '}';
+    }
 }
