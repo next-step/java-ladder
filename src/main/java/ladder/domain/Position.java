@@ -1,59 +1,86 @@
 package ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import static ladder.utils.LadderPointGenerator.generatePoint;
 
 public class Position {
 
     private static final int ONE = 1;
-    private static final boolean FALSE = false;
+    private static final int START_POSITION = 0;
+
+    private static final Map<String, Position> reusablePosition = new HashMap<>();
 
     private int position;
-    private boolean left;
-    private boolean right;
+    private DirectionType direction;
 
-    public Position(int position, boolean left, boolean right){
+    public Position(int position, DirectionType direction) {
         this.position = position;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
-    boolean isOverlapped(boolean newPoint) {
-        return this.right == newPoint;
+    public static Position getInstance(int pos, DirectionType dir) {
+        String key = pos + "" + dir.isLeft() + "" + dir.isRight();
+
+        if(!reusablePosition.containsKey(key)) {
+            Position position = new Position(pos, dir);
+            reusablePosition.put(key, position);
+        }
+        return reusablePosition.get(key);
     }
 
-    boolean isMovableToLeft() {
-        return this.left;
+    public int move() {
+        if (this.direction.isRight()) {
+            return this.position + ONE;
+        }
+
+        if (this.direction.isLeft()) {
+            return this.position - ONE;
+        }
+
+        return this.position;
     }
 
-    int moveLeft() {
-        return this.position - ONE;
+    static Position generateFirstPosition(boolean b) {
+        return Position.getInstance(START_POSITION, DirectionType.mathDirectionType(Boolean.FALSE, b));
     }
 
-    boolean isMovableToRight() {
-        return this.right;
+    static Position generateLastPosition(Position prev) {
+        return Position.getInstance(prev.position + ONE, DirectionType.mathDirectionType(prev.direction.isRight(), Boolean.FALSE));
     }
 
-    int moveRight() {
-        return this.position  + ONE;
+    static Position generateNextPosition(Position prev) {
+
+        return Position.getInstance(prev.position + ONE, DirectionType.isOverLapped(prev.direction.isRight()));
     }
 
-    static Position generateFirstPosition(int currPosition, boolean first) {
-        return new Position(currPosition, FALSE, first);
-    }
-
-    static Position generateLastPosition(int currPosition, Position prev) {
-        return new Position(currPosition, prev.right, FALSE);
-    }
-
-    static Position generateNewPosition(int currPosition, Position prev, boolean newPoint) {
-        return new Position(currPosition, prev.right, newPoint);
+    public DirectionType getDirection() {
+        return this.direction;
     }
 
     @Override
     public String toString() {
-        if(this.right) {
+        if(this.direction.isRight()) {
             return "-----";
         }
 
         return "     ";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position1 = (Position) o;
+        return position == position1.position &&
+                Objects.equals(direction, position1.direction);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(position, direction);
     }
 }

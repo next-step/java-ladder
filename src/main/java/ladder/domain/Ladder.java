@@ -15,7 +15,7 @@ public class Ladder {
 
     int generateLadder(int ladderHeight, int playerCount) {
         IntStream.range(0, ladderHeight)
-                .forEach(i -> this.lines.add(Line.generateLine(playerCount)));
+                .forEach(i -> this.lines.add(Line.newLine(playerCount)));
 
         return this.lines.size();
     }
