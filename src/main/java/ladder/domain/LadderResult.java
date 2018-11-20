@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 public class LadderResult {
     private Map<Player, Result> results;
@@ -15,6 +17,11 @@ public class LadderResult {
     }
 
     public Result get(Player player) {
-        return results.get(player);
+        return Optional.ofNullable(results.get(player))
+            .orElseThrow(() -> new IllegalArgumentException("참가자가 없습니다."));
+    }
+    
+    public Set<Player> keyset() {
+        return results.keySet();
     }
 }

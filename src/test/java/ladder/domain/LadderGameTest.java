@@ -1,7 +1,10 @@
 package ladder.domain;
 
-import ladder.view.ResultView;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
+
+import ladder.view.ResultView;
 
 public class LadderGameTest {
 
@@ -12,12 +15,21 @@ public class LadderGameTest {
         int height = 5;
 
         LadderGame ladderGame = new LadderGame(players, results);
-        Ladder ladder = ladderGame.makeLadder(height);
+        Ladder ladder = ladderGame.makeLadder(height, (count) -> { return createLine(); });
 
-        LadderResult ladderResult = ladderGame.start();
-        ResultView.printResult(players, ladder, results);
-        System.out.println("a " + ladderResult.get(Player.of("a")).getName());
-        System.out.println("b " + ladderResult.get(Player.of("b")).getName());
-        System.out.println("c " + ladderResult.get(Player.of("c")).getName());
+        LadderResult ladderResult = ladderGame.start(ladder);
+        ResultView.printLadderResult(players, ladder, results);
+        
+        assertThat(ladderResult.get(Player.of("a"))).isEqualTo(Result.of("꽝"));
+        assertThat(ladderResult.get(Player.of("b"))).isEqualTo(Result.of("1"));
+        assertThat(ladderResult.get(Player.of("c"))).isEqualTo(Result.of("2"));
+    }
+
+    private Line createLine() {
+        Line line = new Line();
+        line.addPoint(Point.of(false, false));
+        line.addPoint(Point.of(false, false));
+        line.addPoint(Point.of(false, false));
+        return line;
     }
 }

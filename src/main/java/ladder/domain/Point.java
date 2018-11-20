@@ -7,6 +7,9 @@ public class Point {
     private boolean right;
 
     private Point(boolean left, boolean right) {
+        if (left == true && right == true) {
+            throw new IllegalArgumentException();
+        }
         this.left = left;
         this.right = right;
     }
@@ -29,7 +32,7 @@ public class Point {
         return Objects.hash(left, right);
     }
 
-    public int move() {
+    public int nextDirection() {
         if (left) {
             return -1;
         }

@@ -3,12 +3,11 @@ package ladder.view;
 import ladder.domain.*;
 
 public class ResultView {
-    public static void printResult(Players players, Ladder ladder, Results result) {
-        System.out.println("실행 결과");
+    public static void printLadderResult(Players players, Ladder ladder, Results result) {
+        System.out.println("사다리 결과");
         System.out.println(toPlayers(players));
         System.out.println(toStringLines(ladder));
         System.out.println(toResults(result));
-
     }
 
     private static String toResults(Results results) {
@@ -45,5 +44,18 @@ public class ResultView {
             sb.append(String.format("%5s ", player.getName()));
         }
         return sb.toString();
+    }
+
+    public static void printGameResult(LadderResult ladderResult, String who) {
+        StringBuilder sb = new StringBuilder();
+        if ("all".equals(who)) {
+            for (Player player : ladderResult.keyset()) {
+                sb.append(String.format("%5s : %s\n", player, ladderResult.get(player)));
+            };
+        } else {
+            sb.append(ladderResult.get(Player.of(who)));
+        }
+        System.out.println("실행결과");
+        System.out.println(sb.toString());
     }
 }

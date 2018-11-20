@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,14 +10,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(int height, int countOfPlayer) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0 ; i < height; i++) {
-            lines.add(Line.ofAutoLine(countOfPlayer));
-        }
+    public static Ladder of(List<Line> lines) {
         return new Ladder(lines);
     }
-
+    
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
@@ -26,8 +21,9 @@ public class Ladder {
     public int move(int index) {
         int position = index;
         for (Line line : lines) {
-            position += line.move(position);
+            position += line.nextDirection(position);
         }
         return position;
     }
+
 }
