@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public enum DirectionType {
 
-    TRUE_FALSE(true, false),
-    FALSE_FALSE(false, false),
-    FALSE_TRUE(false, true);
+    TRUE_FALSE(Boolean.TRUE, Boolean.FALSE),
+    FALSE_FALSE(Boolean.FALSE, Boolean.FALSE),
+    FALSE_TRUE(Boolean.FALSE, Boolean.TRUE);
 
     private boolean left;
     private boolean right;
