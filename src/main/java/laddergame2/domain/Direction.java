@@ -1,29 +1,37 @@
 package laddergame2.domain;
 
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
-import java.util.Objects;
+import java.util.Arrays;
 
-public class Direction {
+public enum Direction {
 
-	private final Boolean left;
-	private final Boolean right;
+	LEFT(TRUE, FALSE),
+	STRAIGHT(FALSE, FALSE),
+	RIGHT(FALSE, TRUE);
 
-	private Direction(Boolean left, Boolean right) {
-		if (left && right) {
-			throw new IllegalStateException("모든 방향으로 선을 가질 수 없습니다.");
-		}
+	private boolean left;
+	private boolean right;
 
+	Direction(boolean left, boolean right) {
 		this.left = left;
 		this.right = right;
 	}
 
-	public static Direction first(Boolean right) {
-		return of(FALSE, right);
+	public static Direction of(boolean left, boolean right) {
+		if (left && right) {
+			throw new IllegalStateException("모든 방향으로 선을 가질 수 없습니다.");
+		}
+
+		return Arrays.stream(Direction.values())
+				.filter(direction -> (direction.left && left) || (direction.right && right))
+				.findFirst()
+				.orElse(STRAIGHT);
 	}
 
-	public static Direction of(Boolean left, Boolean right) {
-		return new Direction(left, right);
+	public static Direction first(boolean right) {
+		return of(false, right);
 	}
 
 	public Direction next() {
@@ -33,45 +41,11 @@ public class Direction {
 		return next(RandomGenerator.generate());
 	}
 
-	public Direction next(Boolean nextRight) {
+	public Direction next(boolean nextRight) {
 		return Direction.of(right, nextRight);
 	}
 
 	public Direction last() {
 		return of(right, FALSE);
-	}
-
-	public Boolean isLeft() {
-		return left;
-	}
-
-	public Boolean isRight() {
-		return right;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof Direction)) {
-			return false;
-		}
-		Direction direction = (Direction) o;
-		return Objects.equals(left, direction.left) &&
-				Objects.equals(right, direction.right);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(left, right);
-	}
-
-	@Override
-	public String toString() {
-		return "Direction{" +
-				"left=" + left +
-				", right=" + right +
-				'}';
 	}
 }

@@ -1,8 +1,12 @@
 package laddergame2.domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Point {
+
+	private static final Map<String, Point> cache = new HashMap<>();
 
 	private static final int START_INDEX = 0;
 	private static final int CALCULATION_INDEX = 1;
@@ -20,7 +24,13 @@ public class Point {
 	}
 
 	public static Point of(int index, Direction direction) {
-		return new Point(index, direction);
+		String key = String.format("%d_%s", index, direction);
+		if (cache.containsKey(key)) {
+			return cache.get(key);
+		}
+		Point point = new Point(index, direction);
+		cache.put(key, point);
+		return point;
 	}
 
 	public Point next() {
@@ -32,17 +42,17 @@ public class Point {
 	}
 
 	public int move() {
-		if (direction.isLeft()) {
+		if (Direction.LEFT.equals(direction)) {
 			return index - CALCULATION_INDEX;
 		}
-		if (direction.isRight()) {
+		if (Direction.RIGHT.equals(direction)) {
 			return index + CALCULATION_INDEX;
 		}
 		return index;
 	}
 
-	public Direction getDirection() {
-		return direction;
+	public boolean isLeft() {
+		return direction.equals(Direction.LEFT);
 	}
 
 	@Override

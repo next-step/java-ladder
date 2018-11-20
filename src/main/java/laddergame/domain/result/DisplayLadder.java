@@ -39,7 +39,7 @@ public class DisplayLadder {
 	private String drawLadderLine(LadderLine ladderLine) {
 		StringBuilder line = new StringBuilder();
 		for (Point point : ladderLine.getPoints()) {
-			String lineCharacter = point.getDirection().isLeft()? HORIZON_CHARACTER : EMPTY_CHARACTER;
+			String lineCharacter = point.isLeft()? HORIZON_CHARACTER : EMPTY_CHARACTER;
 			line.append(drawPoint(lineCharacter)).append(VERTICAL_CHARACTER);
 		}
 		return line.toString();
