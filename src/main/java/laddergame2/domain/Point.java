@@ -28,8 +28,8 @@ public class Point {
 		return cache.computeIfAbsent(key, s -> new Point(index, direction));
 	}
 
-	public Point next() {
-		return Point.of(index + CALCULATION_INDEX, direction.next());
+	public Point next(Boolean nextPoint) {
+		return Point.of(index + CALCULATION_INDEX, direction.next(nextPoint));
 	}
 
 	public Point last() {

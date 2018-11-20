@@ -37,15 +37,6 @@ public class DirectionTest {
 	public void 이전에_선이_존재할때_랜덤_방향_생성() {
 		Direction before = Direction.of(FALSE, TRUE);
 
-		assertThat(before.next()).isEqualTo(Direction.of(TRUE, FALSE));
-	}
-
-	@Test
-	public void 이전에_선이_존재하지않을때_랜덤_방향_생성() {
-		Direction before = Direction.of(TRUE, FALSE);
-
-		for (int count = 0; count < 100; count++) {
-			assertThat(before.next()).isIn(Direction.of(FALSE, TRUE), Direction.of(FALSE, FALSE));
-		}
+		assertThat(before.next(TRUE)).isEqualTo(Direction.of(TRUE, FALSE));
 	}
 }

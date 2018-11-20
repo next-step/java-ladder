@@ -20,9 +20,9 @@ public class LadderGame {
 	}
 
 	public Ladder generateLadder(int ladderHeight, PointGenerationStrategy pointGenerationStrategy) {
-		PointGenerator.newInstance(pointGenerationStrategy);
 		LadderGameInfo ladderGameInfo = new LadderGameInfo(players, results);
-		LadderLines ladderLines = LadderLines.init(ladderHeight, players.getPlayerCount());
+		PointGenerator pointGenerator = new PointGenerator(players.getPlayerCount(), pointGenerationStrategy);
+		LadderLines ladderLines = LadderLines.init(ladderHeight, pointGenerator);
 		return new Ladder(ladderGameInfo, ladderLines);
 	}
 }

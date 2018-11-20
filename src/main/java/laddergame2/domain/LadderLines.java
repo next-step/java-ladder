@@ -3,6 +3,7 @@ package laddergame2.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import laddergame2.domain.generator.PointGenerator;
 
 public class LadderLines {
 
@@ -12,10 +13,10 @@ public class LadderLines {
 		this.ladderLines = ladderLines;
 	}
 
-	public static LadderLines init(int ladderHeight, int playerCount) {
+	public static LadderLines init(int ladderHeight, PointGenerator pointGenerator) {
 		List<LadderLine> ladderLines = new ArrayList<>();
 		while (ladderLines.size() < ladderHeight) {
-			ladderLines.add(LadderLine.init(playerCount));
+			ladderLines.add(LadderLine.init(pointGenerator));
 		}
 		return new LadderLines(ladderLines);
 	}

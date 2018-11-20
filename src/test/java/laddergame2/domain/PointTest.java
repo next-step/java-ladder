@@ -44,7 +44,7 @@ public class PointTest {
 	public void 다음_점_생성() {
 		Point point = Point.of(0, Direction.first(TRUE));
 
-		assertThat(point.next()).isEqualTo(Point.of(1, Direction.of(TRUE, FALSE)));
+		assertThat(point.next(TRUE)).isEqualTo(Point.of(1, Direction.of(TRUE, FALSE)));
 	}
 
 	@Test
