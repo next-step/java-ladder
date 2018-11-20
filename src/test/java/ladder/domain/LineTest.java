@@ -1,4 +1,5 @@
-import ladder.domain.Line;
+package ladder.domain;
+
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
