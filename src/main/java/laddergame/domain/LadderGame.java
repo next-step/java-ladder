@@ -1,8 +1,8 @@
 package laddergame.domain;
 
-import laddergame.domain.line.Lines;
 import laddergame.domain.player.Players;
 import laddergame.domain.result.Results;
+import laddergame2.domain.LadderLines;
 
 public class LadderGame {
 
@@ -19,7 +19,7 @@ public class LadderGame {
 
 	public Ladder generateLadder(int ladderHeight) {
 		LadderGameInfo ladderGameInfo = new LadderGameInfo(players, results);
-		Lines lines = Lines.from(ladderHeight, players.getPlayerCount());
-		return new Ladder(ladderGameInfo, lines);
+		LadderLines ladderLines = LadderLines.init(ladderHeight, players.getPlayerCount());
+		return new Ladder(ladderGameInfo, ladderLines);
 	}
 }

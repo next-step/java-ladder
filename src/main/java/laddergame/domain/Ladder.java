@@ -4,24 +4,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import laddergame.domain.result.DisplayLadder;
-import laddergame.domain.line.Lines;
 import laddergame.domain.result.LadderErrorResult;
 import laddergame.domain.result.LadderFinalResult;
 import laddergame.domain.result.LadderResult;
 import laddergame.domain.result.Printable;
+import laddergame2.domain.LadderLines;
 
 public class Ladder {
 
 	private LadderGameInfo ladderGameInfo;
-	private Lines lines;
+	private LadderLines ladderLines;
 
-	public Ladder(LadderGameInfo ladderGameInfo, Lines lines) {
+	public Ladder(LadderGameInfo ladderGameInfo, LadderLines ladderLines) {
 		this.ladderGameInfo = ladderGameInfo;
-		this.lines = lines;
+		this.ladderLines = ladderLines;
 	}
 
 	public DisplayLadder display() {
-		return new DisplayLadder(ladderGameInfo, lines);
+		return new DisplayLadder(ladderGameInfo, ladderLines);
 	}
 
 	public Printable start(String playerName) {
@@ -44,7 +44,7 @@ public class Ladder {
 	}
 
 	private LadderResult getLadderResult(int playerIndex) {
-		int resultIndex = lines.move(playerIndex);
+		int resultIndex = ladderLines.start(playerIndex);
 		return new LadderResult(ladderGameInfo.getPlayer(playerIndex),
 				ladderGameInfo.getResult(resultIndex));
 	}
