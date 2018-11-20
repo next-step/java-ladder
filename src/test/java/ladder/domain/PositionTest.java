@@ -36,11 +36,4 @@ public class PositionTest {
         boolean result2 = Position.generateLastPosition(position).getDirection().isRight();
         assertThat(result2).isEqualTo(FALSE);
     }
-
-    @Test
-    public void 옆에_줄이_있는_경우_새로운_줄_생성_테스트() {
-        Position position = new Position(1, DirectionType.mathDirectionType(FALSE, TRUE));
-        boolean result2 = Position.generateNextPosition(position).getDirection().isRight();
-        assertThat(result2).isEqualTo(FALSE);
-    }
 }
