@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static ladder.utils.LadderPointGenerator.generatePoint;
@@ -10,6 +12,7 @@ public class Direction {
 
     private boolean left;
     private boolean right;
+    private static Map<String, Direction> reusableDirection = new HashMap<>();
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
@@ -20,8 +23,18 @@ public class Direction {
         this.right = right;
     }
 
+    public static Direction getInstance(boolean l, boolean r) {
+        String key = l + "" + r;
+
+        if(!reusableDirection.containsKey(key)) {
+            reusableDirection.put(key, new Direction(l, r));
+        }
+
+        return reusableDirection.get(key);
+    }
+
     static Direction of(boolean first, boolean second) {
-        return new Direction(first, second);
+        return Direction.getInstance(first, second);
     }
 
     public Direction isOverlapped() {
