@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package device;
 
 import java.util.Scanner;
@@ -23,12 +18,8 @@ public class InputDevice {
 
     public static int inputHeight() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
         return sc.nextInt();
-    }
-
-    public static void ladderResult() {
-        System.out.println("사다리 결과");
     }
 
     public static String knowResult() {
@@ -37,7 +28,4 @@ public class InputDevice {
         return sc.nextLine();
     }
 
-    public static void runResult() {
-        System.out.println("실행 결과");
-    }
 }

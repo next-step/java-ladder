@@ -1,6 +1,10 @@
 package domain;
 
+import utils.StringUtils;
+
 public class Point {
+    private final int LINE_WIDTH = 5;
+
     private final int index;
     private final Direction direction;
 
@@ -10,8 +14,6 @@ public class Point {
     }
 
     public int move() {
-        System.out.println("is left? " + this.direction.isLeft());
-        System.out.println("is right? " + this.direction.isRight());
         if (this.direction.isRight()) {
             return this.index + 1;
         } else {
@@ -36,6 +38,10 @@ public class Point {
     }
 
     public String toString() {
-        return "Point{index=" + this.index + ", direction=" + this.direction + '}';
+        if (direction.isRight()) {
+            return StringUtils.getReplace(StringUtils.MID_BAR, LINE_WIDTH);
+        }
+        return StringUtils.getReplace(StringUtils.SPACE, LINE_WIDTH);
     }
+
 }

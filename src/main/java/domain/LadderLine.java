@@ -7,11 +7,14 @@ import java.util.List;
 
 public class LadderLine {
     private final String VERTICAL_BAR = "|";
-    private final int LINE_WIDTH = 5;
     private final List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
+    }
+
+    public static LadderLine ofList(List<Point> points) {
+        return new LadderLine(points);
     }
 
     public int move(int position) {
@@ -50,22 +53,9 @@ public class LadderLine {
     }
 
     public String toString() {
-        return "LadderLine{points=" + this.points + '}';
+        return points.stream()
+                .map(point -> point.toString())
+                .reduce("", (x, y) -> x + VERTICAL_BAR + y);
     }
 
-   /* @Override
-    public String toString() {
-        String line = VERTICAL_BAR;
-        for (Point bool : points) {
-            line += drawLine(bool) + VERTICAL_BAR;
-        }
-        return line;
-    }
-
-    private String drawLine(Point bool) {
-        if (bool.next()) {
-            return StringUtils.getReplace(StringUtils.MID_BAR, LINE_WIDTH);
-        }
-        return StringUtils.getReplace(StringUtils.SPACE, LINE_WIDTH);
-    }*/
 }

@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Random;
 
-public class LadderPointGenerator{
+public class LadderPointGenerator {
     private static Random random = new Random();
 
     public static boolean generatePoint() {

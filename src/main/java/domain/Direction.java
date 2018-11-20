@@ -14,7 +14,6 @@ public class Direction {
         } else {
             this.left = left;
             this.right = right;
-            System.out.println(this);
         }
     }
 
@@ -50,7 +49,7 @@ public class Direction {
         if (this == o) {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
-            Direction pair = (Direction)o;
+            Direction pair = (Direction) o;
             return this.left == pair.left && this.right == pair.right;
         } else {
             return false;
