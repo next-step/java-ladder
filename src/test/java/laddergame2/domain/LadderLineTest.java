@@ -16,11 +16,6 @@ public class LadderLineTest {
 		System.out.println(ladderLine);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void 플레이어가_2명_미만일때_선_생성_오류() {
-		LadderLine.init(1);
-	}
-
 	@Test
 	public void 왼쪽_이동() {
 		LadderLine ladderLine = new LadderLine(

@@ -3,8 +3,6 @@ package laddergame.domain.player;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import laddergame.domain.player.Player;
-import laddergame.domain.player.Players;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,6 +20,11 @@ public class PlayersTest {
 		assertThat(players)
 				.extracting("players")
 				.containsExactly(asList(new Player("pobi"), new Player("crong")));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void 플레이어가_2명_미만일때_생성_오류() {
+		Players.fromComma("hong");
 	}
 
 	@Test

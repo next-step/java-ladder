@@ -11,6 +11,9 @@ public class Players {
 	private List<Player> players;
 
 	private Players(List<Player> players) {
+		if(players.size() < 2) {
+			throw new IllegalArgumentException("2명 이상부터 가능합니다.");
+		}
 		this.players = players;
 	}
 
