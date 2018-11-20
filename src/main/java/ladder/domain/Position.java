@@ -53,15 +53,7 @@ public class Position {
 
     static Position generateNextPosition(Position prev) {
 
-        return Position.getInstance(prev.position + ONE, isOverLapped(prev.direction.isRight()));
-    }
-
-    private static DirectionType isOverLapped(boolean right) {
-        if (right) {
-            return DirectionType.mathDirectionType(right, Boolean.FALSE);
-        }
-
-        return DirectionType.mathDirectionType(right, generatePoint());
+        return Position.getInstance(prev.position + ONE, DirectionType.isOverLapped(prev.direction.isRight()));
     }
 
     public DirectionType getDirection() {

@@ -2,6 +2,8 @@ package ladder.domain;
 
 import java.util.Arrays;
 
+import static ladder.utils.LadderPointGenerator.generatePoint;
+
 public enum DirectionType {
 
     TRUE_FALSE(Boolean.TRUE, Boolean.FALSE),
@@ -29,5 +31,12 @@ public enum DirectionType {
                 .filter(type -> type.left == left && type.right == right)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public static DirectionType isOverLapped(boolean right) {
+        if(right) {
+            return DirectionType.mathDirectionType(right, Boolean.FALSE);
+        }
+        return DirectionType.mathDirectionType(right, generatePoint());
     }
 }
