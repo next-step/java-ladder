@@ -4,24 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static ladder.utils.LadderPointGenerator.generatePoint;
+
 public class Position {
 
     private static final int ONE = 1;
     private static final int START_POSITION = 0;
-    private static final boolean FALSE = false;
 
     private static final Map<String, Position> reusablePosition = new HashMap<>();
 
     private int position;
-    private Direction direction;
+    private DirectionType direction;
 
-    public Position(int position, Direction direction) {
+    public Position(int position, DirectionType direction) {
         this.position = position;
         this.direction = direction;
     }
 
-    public static Position getInstance(int pos, Direction dir) {
-        String key = pos + "" + dir.isRight() + "" + dir.isLeft();
+    public static Position getInstance(int pos, DirectionType dir) {
+        String key = pos + "" + dir.isLeft() + "" + dir.isRight();
 
         if(!reusablePosition.containsKey(key)) {
             Position position = new Position(pos, dir);
@@ -43,18 +44,27 @@ public class Position {
     }
 
     static Position generateFirstPosition(boolean b) {
-        return Position.getInstance(START_POSITION, Direction.of(FALSE, b));
+        return Position.getInstance(START_POSITION, DirectionType.mathDirectionType(Boolean.FALSE, b));
     }
 
     static Position generateLastPosition(Position prev) {
-        return Position.getInstance(prev.position + ONE, Direction.of(prev.direction.isRight(), FALSE));
+        return Position.getInstance(prev.position + ONE, DirectionType.mathDirectionType(prev.direction.isRight(), Boolean.FALSE));
     }
 
     static Position generateNextPosition(Position prev) {
-        return Position.getInstance(prev.position + ONE, prev.direction.isOverlapped());
+
+        return Position.getInstance(prev.position + ONE, isOverLapped(prev.direction.isRight()));
     }
 
-    public Direction getDirection() {
+    private static DirectionType isOverLapped(boolean right) {
+        if (right) {
+            return DirectionType.mathDirectionType(right, Boolean.FALSE);
+        }
+
+        return DirectionType.mathDirectionType(right, generatePoint());
+    }
+
+    public DirectionType getDirection() {
         return this.direction;
     }
 
