@@ -35,4 +35,5 @@ public class LineTest {
         assertThat(line.leftMove(2)).isFalse();
         assertThat(line.leftMove(3)).isTrue();
     }
+
 }
