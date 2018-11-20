@@ -25,12 +25,7 @@ public class Point {
 
 	public static Point of(int index, Direction direction) {
 		String key = String.format("%d_%s", index, direction);
-		if (cache.containsKey(key)) {
-			return cache.get(key);
-		}
-		Point point = new Point(index, direction);
-		cache.put(key, point);
-		return point;
+		return cache.computeIfAbsent(key, s -> new Point(index, direction));
 	}
 
 	public Point next() {
