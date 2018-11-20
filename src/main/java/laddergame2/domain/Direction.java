@@ -34,14 +34,10 @@ public enum Direction {
 		return of(false, right);
 	}
 
-	public Direction next() {
-		if (right) {
-			return next(FALSE);
-		}
-		return next(RandomGenerator.generate());
-	}
-
 	public Direction next(boolean nextRight) {
+		if (right) {
+			return Direction.of(right, FALSE);
+		}
 		return Direction.of(right, nextRight);
 	}
 

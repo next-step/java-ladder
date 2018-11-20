@@ -23,6 +23,12 @@ public class InputView {
 		return ladderHeight;
 	}
 
+	public static String inputComplexity() {
+		System.out.println("\n실행할 사다리의 난이도는?");
+		String complexity = scanner.nextLine();
+		return complexity;
+	}
+
 	public static String inputPlayerName() {
 		System.out.println("\n결과를 보고 싶은 사람은?");
 		return scanner.nextLine();

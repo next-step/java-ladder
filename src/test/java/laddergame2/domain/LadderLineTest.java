@@ -10,18 +10,6 @@ import org.junit.Test;
 public class LadderLineTest {
 
 	@Test
-	public void 생성_확인() {
-		LadderLine ladderLine = LadderLine.init(4);
-
-		System.out.println(ladderLine);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void 플레이어가_2명_미만일때_선_생성_오류() {
-		LadderLine.init(1);
-	}
-
-	@Test
 	public void 왼쪽_이동() {
 		LadderLine ladderLine = new LadderLine(
 				asList(

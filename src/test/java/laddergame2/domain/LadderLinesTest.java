@@ -10,13 +10,6 @@ import org.junit.Test;
 public class LadderLinesTest {
 
 	@Test
-	public void 생성_확인() {
-		LadderLines ladder = LadderLines.init(5, 4);
-
-		System.out.println(ladder);
-	}
-
-	@Test
 	public void 사다리_시작() {
 		LadderLines ladderLines = new LadderLines(
 				asList(
