@@ -1,6 +1,7 @@
 package domain.ladder;
 
-import domain.LadderLineSupplier;
+import domain.GameLevel;
+import domain.supplier.LadderLineSupplier;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +18,12 @@ public class LadderLines {
 
 	public LadderLines(int height, int sizeOfGamer, LadderLineSupplier supplier) {
 		this.ladderLines = IntStream.range(MIN_LADDER_HEIGHT - 1, height).mapToObj(integer -> new LadderLine(sizeOfGamer, supplier))
+			.collect(Collectors.toList());
+	}
+
+	public LadderLines(GameLevel gameLevel, int sizeOfGamer) {
+		this.ladderLines = IntStream.range(MIN_LADDER_HEIGHT - 1, gameLevel.getLadderHeight()).mapToObj(
+			integer -> new LadderLine(sizeOfGamer, gameLevel.getSupplier()))
 			.collect(Collectors.toList());
 	}
 

@@ -1,6 +1,9 @@
 package view;
 
-import domain.*;
+import domain.GameLevel;
+import domain.Ladder;
+import domain.LadderGameInfo;
+import domain.LadderResult;
 import domain.gamer.Gamers;
 import domain.reward.Rewards;
 
@@ -12,10 +15,10 @@ public class LadderMain {
 		Gamers gamers = new Gamers(InputView.inputGamers());
 		Rewards rewards = new Rewards(InputView.inputRewards());
 		LadderGameInfo ladderGameInfo = new LadderGameInfo(gamers, rewards);
-		int ladderHeight = InputView.inputLadderHeight();
+		GameLevel gameLevel = GameLevel.findLineSupplierByLevel(InputView.inputLadderLevel());
 
 		Ladder ladder = new Ladder(gamers.size());
-		ladder.drawLadder(ladderHeight, new RandomLadderLineSupplier());
+		ladder.drawLadder(gameLevel);
 		ladder.moveAll();
 		LadderResult ladderResult = ladder.getLadderGameResult();
 

@@ -1,6 +1,6 @@
 package domain.point;
 
-import domain.LadderLineSupplier;
+import domain.supplier.LadderLineSupplier;
 
 /**
  * Created by hspark on 16/11/2018.
