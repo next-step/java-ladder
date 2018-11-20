@@ -1,13 +1,11 @@
-
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 
 public class Point {
-    private boolean point;
     private static final Map<Boolean, Point> POINT = new HashMap<>();
+    private boolean point;
 
     public Point(boolean point){
         this.point = point;

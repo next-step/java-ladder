@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final int BEFORE_COUNT = 1;
-    private final Boolean LINEAR = true;
-    private final Boolean BLANK = false;
+    private static final int BEFORE_COUNT = 1;
+    private static final Boolean LINEAR = true;
+    private static final Boolean BLANK = false;
     private List<Point> points = new ArrayList<>();
     private int count;
 

@@ -11,7 +11,7 @@ public class LadderTest {
     public void 사람수_구하기() throws Exception {
         String persons="heel,good,fufu,hhh";
         Person personObject = new Person(persons);
-        int result = personObject.getCount();
+        int result = personObject.personCounts();
         assertThat(result).isEqualTo(4);
     }
 
