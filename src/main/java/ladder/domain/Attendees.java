@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,11 +10,9 @@ public class Attendees {
     private List<Attendee> attendees;
 
     private Attendees(String[] names) {
-        attendees = new ArrayList<>();
-        for (int i = 0; i < names.length; i++) {
-            String name = names[i];
-            attendees.add(Attendee.create(name));
-        }
+        attendees = Arrays.asList(names).stream()
+                .map(Attendee::create)
+                .collect(Collectors.toList());
     }
 
     public static Attendees create(String names) {
