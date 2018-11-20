@@ -4,6 +4,7 @@ import ladder.domain.player.People;
 import ladder.domain.player.Person;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -14,29 +15,32 @@ public class Line {
 
     private ArrayList<LadderPoint> ladderPoints;
 
-    public Line (People people) {
+    public Line () {
         ladderPoints = new ArrayList<>();
-        int personCountForLine = people.peopleCount();
-        IntStream.range(START_POINT, personCountForLine).forEach(count -> ladderPoints.add(makePoints(people, count)));
     }
 
-    private LadderPoint makePoints(People people, int count) {
+    public List<LadderPoint> makeLineLadderPoints(People people) {
+        int personCountForLine = people.peopleCount();
+        IntStream.range(START_POINT, personCountForLine).forEach(count -> ladderPoints.add(makePoint(people, count)));
+        return ladderPoints;
+    }
 
-        Person person = people.getPerson(count);
+    private LadderPoint makePoint(People people, int count) {
+
         boolean result = new Random().nextBoolean();
 
         if (count == START_POINT) {
-            return new LadderPoint(person, result);
+            return new LadderPoint(count, result);
         }
 
-        if (count == people.peopleCount()-DEFAULT_ONE) {
-            return new LadderPoint(person, false);
+        if (count == people.peopleCountByValue(DEFAULT_ONE)) {
+            return new LadderPoint(count, false);
         }
 
         if (isNotValidateLine(ladderPoints.get(count-DEFAULT_ONE).isRightValue(), result))
-            return new LadderPoint(person, false);
+            return new LadderPoint(count, false);
 
-        return new LadderPoint(person, result);
+        return new LadderPoint(count, result);
     }
 
     public boolean isNotValidateLine(boolean preResult, boolean result) {
@@ -54,21 +58,21 @@ public class Line {
         return stringBuilder.toString();
     }
 
-    public Person findNextStep(Person person) {
+    public Integer findNextStep(int position) {
 
         for (int i = START_POINT; i < ladderPoints.size(); i++) {
             LadderPoint ladderPoint = ladderPoints.get(i);
 
-            if (ladderPoint.hasPerson(person)) {
+            if (ladderPoint.hasPosition(position)) {
                 if (i != START_POINT && ladderPoints.get(i-DEFAULT_ONE).isRightValue()) {
-                    return ladderPoints.get(i-DEFAULT_ONE).getPerson();
+                    return ladderPoints.get(i-DEFAULT_ONE).getPosition();
                 }
 
                 if (i != ladderPoints.size()-DEFAULT_ONE && ladderPoints.get(i).isRightValue()) {
-                    return ladderPoints.get(i+DEFAULT_ONE).getPerson();
+                    return ladderPoints.get(i+DEFAULT_ONE).getPosition();
                 }
 
-                return ladderPoint.getPerson();
+                return ladderPoint.getPosition();
             }
         }
 

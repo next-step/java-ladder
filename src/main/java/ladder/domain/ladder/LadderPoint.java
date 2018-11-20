@@ -1,14 +1,12 @@
 package ladder.domain.ladder;
 
-import ladder.domain.player.Person;
-
 public class LadderPoint {
 
-    private Person person;
+    int position;
     private boolean rightValue;
 
-    public LadderPoint(Person person, boolean rightValue) {
-        this.person = person;
+    public LadderPoint(int position, boolean rightValue) {
+        this.position = position;
         this.rightValue = rightValue;
     }
 
@@ -25,11 +23,11 @@ public class LadderPoint {
         return "     |";
     }
 
-    public boolean hasPerson(Person person) {
-        return this.person.equals(person);
+    public boolean hasPosition(int position) {
+        return this.position == position;
     }
 
-    public Person getPerson() {
-        return person;
+    public int getPosition() {
+        return this.position;
     }
 }

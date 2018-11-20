@@ -4,20 +4,21 @@ import ladder.domain.player.People;
 import ladder.domain.player.Person;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
 
     private int height;
-    private ArrayList<Line> lines;
+    private List<Line> lines;
 
     public Ladder(int height) {
         this.height = height;
         lines = new ArrayList<>();
     }
 
-    public ArrayList<Line> generateLadder(People people) {
+    public List<Line> generateLadder() {
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(people));
+            lines.add(new Line());
         }
         return lines;
     }
@@ -33,12 +34,18 @@ public class Ladder {
         return stringBuilder.toString();
     }
 
-    public Person getResult(Person person) {
+    public Integer getResult(People people, int personPosition) {
 
         for (Line line : lines) {
-            person = line.findNextStep(person);
+            personPosition = line.findNextStep(personPosition);
         }
 
-        return person;
+        return personPosition;
+    }
+
+    public void makeLadderLines(People people) {
+        for (Line line : lines) {
+            line.makeLineLadderPoints(people);
+        }
     }
 }

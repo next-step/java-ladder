@@ -18,7 +18,8 @@ public class LadderController {
         People people= InputView.getPersonNames();
         LadderResult ladderResult = new LadderResult(InputView.getResult(), people);
         Ladder ladder = InputView.getLadderHeight();
-        ladder.generateLadder(people);
+        ladder.generateLadder();
+        ladder.makeLadderLines(people);
         ResultView.showLadder(people, ladder);
 
         Person person = InputView.getWantPeopleForResult();

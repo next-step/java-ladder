@@ -23,7 +23,7 @@ public class LadderResult {
     }
 
     public Result getResultForPerson(Person person, Ladder ladder) {
-        return results.get(people.getCountForPerson(ladder.getResult(person)));
+        return results.get(ladder.getResult(people, people.getCountForPerson(person)));
 
     }
 }

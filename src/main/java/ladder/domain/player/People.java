@@ -36,4 +36,8 @@ public class People {
         }
         return 0;
     }
+
+    public int peopleCountByValue(int value) {
+        return peopleCount()-value;
+    }
 }

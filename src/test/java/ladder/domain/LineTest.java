@@ -13,7 +13,7 @@ public class LineTest {
 
     @Before
     public void setUp() throws Exception {
-        line = new Line(new People("a,b,c"));
+        line = new Line();
     }
 
     @Test
@@ -27,5 +27,10 @@ public class LineTest {
         line.isNotValidateLine(true, true);
         assertThat(line.isNotValidateLine(false, true)).isEqualTo(false);
         assertThat(line.isNotValidateLine(true, false)).isEqualTo(false);
+    }
+
+    @Test
+    public void makeLineTest() {
+        line.makeLineLadderPoints(new People("a,b,c"));
     }
 }
