@@ -1,6 +1,6 @@
 package domain.point;
 
-import domain.ladder.LadderLayer;
+import domain.ladder.LadderLine;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,19 +33,23 @@ public class LadderPoints {
 		points.put(key, value);
 	}
 
-	public void moveAll(LadderLayer ladderLayer) {
+	public void moveAll(LadderLine ladderLine) {
 		for (Point point : points.keySet()) {
-			move(point, ladderLayer);
+			move(point, ladderLine);
 		}
 	}
 
-	public void move(Point key, LadderLayer ladderLayer) {
-		Point point = findCurrentPointByStartPoint(key);
-		ladderLayer.getPassableLadderLine(point)
-			.ifPresent(ladderLine -> put(key, ladderLine.getMovePosition(point)));
+	public void move(Point key, LadderLine ladderLine) {
+		Point currentPoint = findCurrentPointByStartPoint(key);
+		Point movePoint = ladderLine.move(currentPoint);
+		put(key, movePoint);
 	}
 
 	public int getWidth() {
 		return points.size() - 1;
+	}
+
+	public int getSizeOfGamer() {
+		return points.size();
 	}
 }

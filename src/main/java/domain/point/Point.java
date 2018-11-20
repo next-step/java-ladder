@@ -9,6 +9,8 @@ import java.util.Objects;
  */
 public final class Point {
 	private static Map<Integer, Point> CACHE = new HashMap<>();
+	public static final Point ZERO = Point.of(0);
+
 	private final int point;
 
 	private Point(int point) {
@@ -25,12 +27,24 @@ public final class Point {
 		return point;
 	}
 
+	public int toInteger() {
+		return point;
+	}
+
 	public boolean isAdjacent(Point other) {
 		return Math.abs(point - other.point) == 1;
 	}
 
 	public int getDiff(Point other) {
 		return point - other.point;
+	}
+
+	public Point add(int addPoint) {
+		return Point.of(this.point + addPoint);
+	}
+
+	public Point sub(int subPoint) {
+		return Point.of(this.point - subPoint);
 	}
 
 	@Override
