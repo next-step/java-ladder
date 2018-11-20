@@ -17,6 +17,14 @@ public class Position implements Comparable<Position> {
         return value >= MIN_VALUE;
     }
 
+    public int nextValue() {
+        return this.value + 1;
+    }
+
+    public int previousValue() {
+        return this.value - 1;
+    }
+
     @Override
     public int compareTo(Position other) {
         return Integer.compare(this.value, other.value);
@@ -35,6 +43,13 @@ public class Position implements Comparable<Position> {
     @Override
     public int hashCode() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "value=" + value +
+                '}';
     }
 
     public int getValue() {

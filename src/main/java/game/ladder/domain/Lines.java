@@ -24,4 +24,11 @@ public class Lines {
         return sb.toString();
     }
 
+    public Position computeResultPosition(Position start) {
+        Position result  = start;
+        for (Line line : lines) {
+            result = line.computeNextLinePosition(result);
+        }
+        return result;
+    }
 }

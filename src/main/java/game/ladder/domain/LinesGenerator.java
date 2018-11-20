@@ -15,7 +15,7 @@ public class LinesGenerator {
     public Lines generate(final int blockSize) {
 
         List<Line> lines = IntStream.range(0, blockSize)
-                .mapToObj(i -> new Line(blockSize))
+                .mapToObj(i -> Line.of(blockSize))
                 .collect(Collectors.toList());
 
         return new Lines(lines);

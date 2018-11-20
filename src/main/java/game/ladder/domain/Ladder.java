@@ -2,21 +2,24 @@ package game.ladder.domain;
 
 public class Ladder {
 
-    private final Participants participants;
     private final Lines lines;
+    private final UserInputs userInputs;
 
-    public Ladder(LinesGenerator generator, Participants participants) {
-        this.participants = participants;
-        this.lines = generator.generate(participants.size());
+    public Ladder(LinesGenerator generator, UserInputs userInputs) {
+        this.lines = generator.generate(userInputs.partipantsSize());
+        this.userInputs = userInputs;
     }
 
     public String makeStringLadder() {
         StringBuilder sb = new StringBuilder();
-        sb.append(participants.getAllFormattedNames()).append(System.lineSeparator());
+        sb.append(userInputs.getStringParticipantsNames()).append(System.lineSeparator());
         sb.append(lines.getStringLines()).append(System.lineSeparator());
+        sb.append(userInputs.getStringExpects());
 
         return sb.toString();
     }
 
-
+    public GameResults makeGameResults(Name name) {
+        return this.userInputs.makeGameResults(name, this.lines);
+    }
 }
