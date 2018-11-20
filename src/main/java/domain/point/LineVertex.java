@@ -17,10 +17,10 @@ public class LineVertex {
 
 	public Point move() {
 		if (direction.isRight()) {
-			return point.add(1);
+			return point.add();
 		}
 		if (direction.isLeft()) {
-			return point.sub(1);
+			return point.sub();
 		}
 		return point;
 	}
@@ -31,16 +31,16 @@ public class LineVertex {
 
 	public LineVertex next(LadderLineSupplier supplier) {
 		if (direction.isRight()) {
-			return new LineVertex(point.add(1), Direction.LEFT);
+			return new LineVertex(point.add(), Direction.LEFT);
 		}
-		return new LineVertex(point.add(1), direction.next(supplier.get()));
+		return new LineVertex(point.add(), direction.next(supplier.get()));
 	}
 
 	public LineVertex last() {
 		if (direction.isRight()) {
-			return new LineVertex(point.add(1), Direction.LEFT);
+			return new LineVertex(point.add(), Direction.LEFT);
 		}
-		return new LineVertex(point.add(1), Direction.NONE);
+		return new LineVertex(point.add(), Direction.NONE);
 	}
 
 	public Point getPoint() {
