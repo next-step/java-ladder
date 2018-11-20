@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static domain.ladder.LadderPointGenerator.generatePoint;
@@ -42,6 +43,10 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override

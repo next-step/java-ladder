@@ -11,9 +11,9 @@ public class LadderManage {
     private Players players;
     private Lines lines;
 
-    LadderManage(List<Player> playerList, List<Line> lines) {
+    public LadderManage(List<Player> playerList, List<LadderLine> ladderLine) {
         this.players = new Players(playerList);
-        this.lines = new Lines(lines);
+        this.lines = new Lines(ladderLine);
     }
 
     public Laddering play(String playerNames) {

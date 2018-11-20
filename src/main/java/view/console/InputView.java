@@ -1,5 +1,6 @@
 package view.console;
 
+import domain.ladder.LadderLine;
 import domain.ladder.Line;
 import domain.ladder.Player;
 import domain.ladder.RandomPoint;
@@ -30,6 +31,17 @@ public class InputView {
         return lines;
     }
 
+    public static List<LadderLine>  ladderCount2(List<Player> players) {
+        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+        Scanner sc = new Scanner(System.in);
+        int ladderCount = sc.nextInt();
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for(int i = 0; i < ladderCount; i++){
+            ladderLines.add(LadderLine.init(players.size()));
+        }
+        return ladderLines;
+    }
+
     public static List<String> result(){
         System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         Scanner sc = new Scanner(System.in);
@@ -42,4 +54,6 @@ public class InputView {
         String playerName = sc.nextLine();
         return playerName;
     }
+
+
 }

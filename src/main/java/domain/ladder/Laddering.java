@@ -1,10 +1,9 @@
 package domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import static domain.ladder.LadderManage.ALL_USER;
 
 public class Laddering {
 
@@ -31,7 +30,8 @@ public class Laddering {
     }
 
     private int getResultLocation(int resultLocation, Lines lines) {
-        for (Line line : lines.getLine()) {
+        for (LadderLine line : lines.getLine()) {
+            System.out.println(Arrays.toString(line.getPoints().toArray()));
             resultLocation = line.move(resultLocation);
         }
         return resultLocation;
