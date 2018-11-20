@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Objects;
-import java.util.Optional;
 
 public class Player {
     private final int NAME_LENGTH_LIMIT = 5;
@@ -32,6 +31,11 @@ public class Player {
     }
 
     public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
         return name;
     }
 }
