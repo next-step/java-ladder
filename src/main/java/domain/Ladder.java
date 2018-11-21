@@ -35,7 +35,4 @@ public class Ladder {
         return Collections.unmodifiableList(ladderLines);
     }
 
-    public int getLadderHeight() {
-        return ladderLines.size();
-    }
 }

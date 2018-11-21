@@ -56,7 +56,4 @@ public class NameTagGroup {
         return ladder.getLadderMap();
     }
 
-    public int getLadderHeight(){
-        return ladder.getLadderHeight();
-    }
 }
