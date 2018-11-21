@@ -28,4 +28,10 @@ public class InputDevice {
         return sc.nextLine();
     }
 
+    public static String inputDifficult() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("실행할 사다리의 난이도는?");
+        return sc.nextLine().trim();
+    }
+
 }

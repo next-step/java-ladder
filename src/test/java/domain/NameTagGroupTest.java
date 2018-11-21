@@ -67,4 +67,12 @@ public class NameTagGroupTest {
 
 
     }
+
+
+    @Test
+    public void ofDifficult() {
+        Difficult difficult = Difficult.valueOf("상");
+        NameTagGroup nameTagGroup =  NameTagGroup.ofDifficult(nameTags, difficult);
+        assertThat(nameTagGroup.getLadderHeight()).isEqualTo(20);
+    }
 }

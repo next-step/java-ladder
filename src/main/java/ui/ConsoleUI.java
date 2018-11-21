@@ -2,6 +2,7 @@ package ui;
 
 import device.InputDevice;
 import device.OutputDevice;
+import domain.Difficult;
 import domain.NameTag;
 import domain.NameTagGroup;
 import domain.ResultTagGroup;
@@ -15,7 +16,9 @@ public class ConsoleUI {
         List<NameTag> nameTags = StringUtils.makeNameTag(InputDevice.inputNames());
         ResultTagGroup resultTagGroup = ResultTagGroup.of(StringUtils.makeNameTag(InputDevice.inputResults()));
 
-        NameTagGroup nameTagGroup = NameTagGroup.of(nameTags, InputDevice.inputHeight());
+        Difficult difficult = Difficult.valueOf(InputDevice.inputDifficult());
+
+        NameTagGroup nameTagGroup = NameTagGroup.ofDifficult(nameTags, difficult);
 
         OutputDevice.ladderResult();
         OutputDevice.viewInputValues(nameTagGroup);

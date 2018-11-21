@@ -1,6 +1,5 @@
 package domain;
 
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -35,8 +34,9 @@ public class PointTest {
     }
 
     @Test
-    public void next() {
-        Point second = Point.first(TRUE).next();
+    public void next난이도상() {
+        Difficult difficult = Difficult.valueOf("상");
+        Point second = Point.first(TRUE).next(difficult);
         assertThat(second.move(), is(0));
     }
 }

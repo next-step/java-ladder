@@ -11,15 +11,15 @@ public class Ladder {
         this.ladderLines = ladderLines;
     }
 
-    public static Ladder of(int size, int height) {
-        List<LadderLine> ladderLines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            ladderLines.add(LadderLine.init(size));
-        }
+    public static Ladder ofList(List<LadderLine> ladderLines) {
         return new Ladder(ladderLines);
     }
 
-    public static Ladder ofList(List<LadderLine> ladderLines) {
+    public static Ladder ofDifficult(int size, Difficult diff) {
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for (int i = 0; i < diff.getHeight(); i++) {
+            ladderLines.add(LadderLine.init(size, diff));
+        }
         return new Ladder(ladderLines);
     }
 
@@ -33,5 +33,9 @@ public class Ladder {
     //출력용
     public List<LadderLine> getLadderMap() {
         return Collections.unmodifiableList(ladderLines);
+    }
+
+    public int getLadderHeight() {
+        return ladderLines.size();
     }
 }
