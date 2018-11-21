@@ -20,4 +20,20 @@ public class LineTest {
 
         assertThat(line.toString()).isEqualTo("     |-----|     |-----|");
     }
+
+    @Test
+    public void 이동가능한_라인_있는_경우_인접_인덱스로_이동() {
+        Line line = Line.initialize(Participants.fromInput("aaa,bbb"), () -> true);
+
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+    }
+
+    @Test
+    public void 이동가능한_라인_없는_경우_인덱스_그대로_반환() {
+        Line line = Line.initialize(Participants.fromInput("aaa,bbb"), () -> false);
+
+        assertThat(line.move(0)).isEqualTo(0);
+        assertThat(line.move(1)).isEqualTo(1);
+    }
 }
