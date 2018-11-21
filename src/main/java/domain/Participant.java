@@ -6,6 +6,7 @@ public class Participant {
 
     private static final int MAXIMUM_LENGTH_OF_NAME = 5;
     private static final String OUTPUT_FORMAT = "%6s";
+    private static final String FORBIDDEN_NAME = "all";
 
     private final String name;
 
@@ -16,6 +17,10 @@ public class Participant {
     private String validateName(String name) {
         if (name.length() > MAXIMUM_LENGTH_OF_NAME) {
             throw new IllegalArgumentException("이름은 5자 이하여야 한다.");
+        }
+
+        if (FORBIDDEN_NAME.equals(name)) {
+            throw new IllegalArgumentException("all 은 이름으로 사용할 수 없다");
         }
 
         return name;
