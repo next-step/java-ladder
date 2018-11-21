@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Line {
     private final List<Point> points;
@@ -22,8 +23,17 @@ public class Line {
             throw new IllegalArgumentException("가로 라인이 겹칩니다.");
         }
     }
+
+    public boolean canLastPointGotoRight() {
+        return Optional.ofNullable(getLastPoint())
+                .map(point -> point.canMoveRight())
+                .orElse(false);
+    }
     
-    public Point getLastPoint() {
+    private Point getLastPoint() {
+        if (this.points.isEmpty()) {
+            return null;
+        };
         return this.points.get(this.points.size()-1);
     }
 
