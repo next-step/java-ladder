@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.player.Person;
 import org.junit.Test;
 
 
