@@ -35,7 +35,7 @@ public class Ladder {
         return stringBuilder.toString();
     }
 
-    public Integer getResult(People people, int personPosition) {
+    public Integer getResult(int personPosition) {
 
         for (Line line : lines) {
             personPosition = line.findNextStep(personPosition);
