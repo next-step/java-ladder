@@ -6,18 +6,10 @@ import java.util.List;
 public class Line {
     private List<Boolean> points;
 
-    public Line() {
-        points = new ArrayList<>();
-    }
-
     private Line(List<Boolean> points) {
+        validation(points);
+
         this.points = points;
-    }
-
-    private Line(int countOfPerson) {
-        points = new ArrayList<>();
-
-        drawLines(countOfPerson);
     }
 
     public static Line of(List<Boolean> points) {
@@ -25,7 +17,8 @@ public class Line {
     }
 
     public static Line of(int countOfPerson) {
-        return new Line(countOfPerson);
+        List<Boolean> points = drawLines(countOfPerson);
+        return new Line(points);
     }
 
     public List<Boolean> getPoints() {
@@ -36,40 +29,35 @@ public class Line {
         return points.size();
     }
 
-    public Line drawLines(int countOfPerson) {
+
+    public static List<Boolean> drawLines(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>();
+
         for(int i = 0; i < countOfPerson; i++) {
-            boolean line = getPoint(i);
-            draw(line);
+            boolean line = lastPoint(points) ? false : RandomUtil.getRandomBoolean();
+            points.add(line);
         }
-        return this;
+        return points;
     }
 
-    public void draw(boolean line) {
-        validation(line);
-        points.add(line);
-    }
-
-    private void validation(boolean line) {
+    private static Boolean lastPoint(List<Boolean> points) {
         if(points.size() == 0) {
-            return;
+            return true;
         }
+        return points.get(points.size() - 1);
+    }
 
-        boolean lastPoint = prevPoint(points.size());
-        if(lastPoint && lastPoint == line) {
+    private void validation(List<Boolean> points) {
+        for(int i = 1; i < points.size(); i++) {
+            validationPoint(points, i);
+        }
+    }
+
+    private void validationPoint(List<Boolean> points, int i) {
+        if(points.get(i - 1) && points.get(i)) {
             throw new IllegalArgumentException();
         }
     }
-    private boolean getPoint(int i) {
-        return prevPoint(i) ? false : RandomUtil.getRandomBoolean();
-    }
-
-    private Boolean prevPoint(int i) {
-        if(i == 0) {
-            return true;
-        }
-        return points.get(i - 1);
-    }
-
 
     @Override
     public boolean equals(Object o) {

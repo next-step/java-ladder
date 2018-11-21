@@ -13,14 +13,11 @@ public class LineTest {
 
     @Before
     public void setup() {
-        line = new Line();
     }
 
     @Test
     public void 선_생성() {
-        line.draw(true);
-        line.draw(false);
-        line.draw(true);
+        line = Line.of(Arrays.asList(true, false, true));
         assertThat(line.size()).isEqualTo(3);
 
         Line matchs = Line.of(Arrays.asList(true, false, true));
@@ -29,13 +26,12 @@ public class LineTest {
 
     @Test
     public void 선_5개_생성() {
-        line.drawLines(5);
+        line = Line.of(5);
         assertThat(line.size()).isEqualTo(5);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void 동일_선_생성() {
-        line.draw(true);
-        line.draw(true);
+        line = Line.of(Arrays.asList(true, true));
     }
 }

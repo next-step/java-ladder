@@ -7,18 +7,19 @@ public class Ladder {
     private People people;
     private List<Line> lines;
 
-    private Ladder(String names, int length) {
-        createPeople(names);
-        createLines(names, length);
-    }
-
     private Ladder(String names, List<Line> lines) {
-        createPeople(names);
+        this.people = People.of(names);
         this.lines = lines;
     }
 
     public static Ladder of(String names, int length) {
-        return new Ladder(names, length);
+        List<Line> lines = new ArrayList<>();
+
+        for(int i = 0; i < length; i++) {
+            int countOfPerson = names.split(",").length;
+            lines.add(Line.of(countOfPerson));
+        }
+        return new Ladder(names, lines);
     }
 
     public static Ladder of(String names, List<Line> lines) {
@@ -31,19 +32,6 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
-    }
-
-    private void createPeople(String names) {
-        this.people = People.of(names);
-    }
-
-    private void createLines(String person, int length) {
-        this.lines = new ArrayList<>();
-
-        for(int i = 0; i < length; i++) {
-            int countOfPerson = person.split(",").length;
-            this.lines.add(Line.of(countOfPerson));
-        }
     }
 
     @Override
