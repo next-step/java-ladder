@@ -11,14 +11,14 @@ public class PositionTest {
 
     @Test
     public void 왼쪽으로_움직임_테스트() {
-        Position position = new Position(1, DirectionType.mathDirectionType(TRUE, FALSE));
+        Position position = new Position(1, DirectionType.matchDirectionType(TRUE, FALSE));
         int result = position.move();
         assertThat(result).isEqualTo(0);
     }
 
     @Test
     public void 오른쪽으로_움직임_테스트() {
-        Position position = new Position(1, DirectionType.mathDirectionType(FALSE, TRUE));
+        Position position = new Position(1, DirectionType.matchDirectionType(FALSE, TRUE));
         int result = position.move();
         assertThat(result).isEqualTo(2);
     }
@@ -32,7 +32,7 @@ public class PositionTest {
 
     @Test
     public void 마지막_줄_생성_테스트() {
-        Position position = new Position(1, DirectionType.mathDirectionType(FALSE, TRUE));
+        Position position = new Position(1, DirectionType.matchDirectionType(FALSE, TRUE));
         boolean result2 = Position.generateLastPosition(position).getDirection().isRight();
         assertThat(result2).isEqualTo(FALSE);
     }

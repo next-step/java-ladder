@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.utils.LadderPointGeneratorByDifficulty;
+import ladder.utils.PointGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -11,14 +13,14 @@ public class Main {
 
         String playersName = InputView.inputPlayers();
         String playResults = InputView.inputLadderGameResult();
-        int ladderHeight = InputView.inputLadderHeight();
+        String difficulty = InputView.inputDifficulty();
 
         LadderPlayers ladderPlayers = LadderPlayers.ofComma(playersName);
         LadderResult ladderResult = LadderResult.ofComma(playResults);
 
-        Ladder ladder = new Ladder();
-        ladder.generateLadder(ladderHeight, ladderPlayers.totalPlayerCount());
-
+        PointGenerator pointGenerator = new LadderPointGeneratorByDifficulty(difficulty);
+        Ladder ladder = new Ladder(pointGenerator);
+        ladder.generateLadder(DifficultyType.of(difficulty).lineNumberByDifficultyType(), ladderPlayers.totalPlayerCount());
 
         ResultView.drawLadderPlayers(ladderPlayers);
         ResultView.drawLadder(ladder);
