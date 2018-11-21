@@ -18,40 +18,22 @@ public class ResultView {
 
         players.getPlayers().stream().forEach(player -> System.out.print(player.getName() + " ") );
 
-        //
-        for(LadderLine ladderLine : ladderLines){
+        for(LadderLine line : ladderLines){
             StringBuilder sb = new StringBuilder();
             sb.append("\n");
             sb.append("|");
 
-            for(Point point : ladderLine.getPoints()){
-                if(point.getDirection().isRight() == true){
-                    sb.append("-----");
-                }else{
-                    sb.append("     ");
-                }
-            }
-            sb.append("|");
+            for (int i = 0; i < line.getPoints().size() -1; i++) {
 
-            System.out.print(sb.toString());
-        }
-
-       /* for(Line line : lines.getLine()){
-            StringBuilder sb = new StringBuilder();
-            sb.append("\n");
-            sb.append("|");
-
-            for(Boolean point : line.getPoints()){
-                if(point == true){
+                if(line.getPoints().get(i).getDirection().isRight() ==true){
                     sb.append("-----");
                 }else{
                     sb.append("     ");
                 }
                 sb.append("|");
             }
-
             System.out.print(sb.toString());
-        }*/
+        }
 
         System.out.println();
         ladderResult.getResults().stream().forEach(result -> System.out.print(result.toString() + "   "));
