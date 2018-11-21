@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.player.People;
 import ladder.domain.player.Person;
+import ladder.utils.GenerateRandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;

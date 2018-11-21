@@ -2,10 +2,12 @@ package ladder.domain.ladder;
 
 import ladder.domain.player.People;
 import ladder.domain.player.Person;
+import ladder.utils.GenerateRandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -21,13 +23,14 @@ public class Line {
 
     public List<LadderPoint> makeLineLadderPoints(People people) {
         int personCountForLine = people.peopleCount();
-        IntStream.range(START_POINT, personCountForLine).forEach(count -> ladderPoints.add(makePoint(people, count)));
+        for (int count = START_POINT; count < personCountForLine; count++) {
+            ladderPoints.add(makePoint(people, count, GenerateRandomUtil.generateRandomBoolean()));
+        }
+
         return ladderPoints;
     }
 
-    private LadderPoint makePoint(People people, int count) {
-
-        boolean result = new Random().nextBoolean();
+    public LadderPoint makePoint(People people, int count, boolean result) {
 
         if (count == START_POINT) {
             return new LadderPoint(count, result);
@@ -59,23 +62,27 @@ public class Line {
     }
 
     public Integer findNextStep(int position) {
-
-        for (int i = START_POINT; i < ladderPoints.size(); i++) {
-            LadderPoint ladderPoint = ladderPoints.get(i);
-
-            if (ladderPoint.hasPosition(position)) {
-                if (i != START_POINT && ladderPoints.get(i-DEFAULT_ONE).isRightValue()) {
-                    return ladderPoints.get(i-DEFAULT_ONE).getPosition();
-                }
-
-                if (i != ladderPoints.size()-DEFAULT_ONE && ladderPoints.get(i).isRightValue()) {
-                    return ladderPoints.get(i+DEFAULT_ONE).getPosition();
-                }
-
-                return ladderPoint.getPosition();
-            }
+        List<LadderPoint> stepPoints = ladderPoints.stream().filter(ladderPoint -> ladderPoint.hasPosition(position)).collect(Collectors.toList());
+        for (LadderPoint ladderPoint : stepPoints) {
+            return nextStep(ladderPoint);
         }
 
         return null;
+    }
+
+    private Integer nextStep(LadderPoint ladderPoint) {
+        if (ladderPoint.isNotPosition(START_POINT) && ladderPoints.get(ladderPoint.ladderPositionByMinusValue(DEFAULT_ONE)).isRightValue()) {
+            return ladderPoints.get(ladderPoint.ladderPositionByMinusValue(DEFAULT_ONE)).getPosition();
+        }
+
+        if (ladderPoint.isNotPosition(ladderPoints.size()-DEFAULT_ONE) && ladderPoints.get(ladderPoint.getPosition()).isRightValue()) {
+            return ladderPoints.get(ladderPoint.ladderPositionByPlusValue(DEFAULT_ONE)).getPosition();
+        }
+
+        return ladderPoint.getPosition();
+    }
+
+    public ArrayList<LadderPoint> getLadderPoints() {
+        return ladderPoints;
     }
 }
