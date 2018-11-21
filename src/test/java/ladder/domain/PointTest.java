@@ -11,6 +11,11 @@ public class PointTest {
     public void 생성() {
         assertThat(Point.of(true, false)).isEqualTo(Point.of(true, false));
     }
+    
+    @Test
+    public void 객체_재사용() {
+        assertThat(Point.of(true, false) == Point.of(true, false)).isTrue();
+    }
 
     @Test
     public void 오른쪽이동() {
