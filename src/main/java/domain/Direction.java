@@ -15,9 +15,9 @@ public class Direction {
 
     private static final Map<String, Direction> directions = new HashMap<>();
     static{
-        Direction left = new Direction(true, false);
-        Direction right = new Direction(false, true);
-        Direction center = new Direction(false, false);
+        Direction left = new Direction(Boolean.TRUE, Boolean.FALSE);
+        Direction right = new Direction(Boolean.FALSE, Boolean.TRUE);
+        Direction center = new Direction(Boolean.FALSE, Boolean.FALSE);
 
         directions.put(LEFT,left);
         directions.put(RIGHT,right);
