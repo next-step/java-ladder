@@ -1,7 +1,7 @@
 package domain;
 
 import com.google.common.base.Objects;
-import util.StringUtil;
+import utils.StringUtils;
 
 public class NameTag {
     private static final int NAME_LENGTH_LIMIT = 5;
@@ -19,9 +19,17 @@ public class NameTag {
     }
 
     @Override
+    public String toString() {
+        String str = StringUtils.getReplace(StringUtils.SPACE, NAME_LENGTH_LIMIT + 1);
+        StringBuilder sb = new StringBuilder(str);
+        sb.replace(0, name.length(), name);
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof NameTag)) return false;
         NameTag nameTag = (NameTag) o;
         return Objects.equal(name, nameTag.name);
     }
@@ -29,14 +37,5 @@ public class NameTag {
     @Override
     public int hashCode() {
         return Objects.hashCode(name);
-    }
-
-
-    @Override
-    public String toString() {
-        String str = StringUtil.getReplace(StringUtil.SPACE, NAME_LENGTH_LIMIT + 1);
-        StringBuilder sb = new StringBuilder(str);
-        sb.replace(0, name.length(), name);
-        return sb.toString();
     }
 }

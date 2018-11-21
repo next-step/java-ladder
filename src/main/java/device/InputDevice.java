@@ -1,8 +1,8 @@
-package view;
+package device;
 
 import java.util.Scanner;
 
-public class InputView {
+public class InputDevice {
 
     public static String inputNames() {
         Scanner sc = new Scanner(System.in);
@@ -22,5 +22,10 @@ public class InputView {
         return sc.nextInt();
     }
 
+    public static String knowResult() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("결과를 보고 싶은 사람은?");
+        return sc.nextLine();
+    }
 
 }

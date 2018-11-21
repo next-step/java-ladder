@@ -1,34 +1,29 @@
 package ui;
 
-import domain.Ladder;
+import device.InputDevice;
+import device.OutputDevice;
 import domain.NameTag;
-import domain.InputTagGroup;
+import domain.NameTagGroup;
 import domain.ResultTagGroup;
-import util.StringUtil;
-import view.InputView;
-import view.ResultView;
+import utils.StringUtils;
 
 import java.util.List;
 
 public class ConsoleUI {
+
     public static void main(String[] args) {
+        List<NameTag> nameTags = StringUtils.makeNameTag(InputDevice.inputNames());
+        ResultTagGroup resultTagGroup = ResultTagGroup.of(StringUtils.makeNameTag(InputDevice.inputResults()));
 
-        String names = InputView.inputNames();
-        List<NameTag> nameTagList = StringUtil.makeNameTags(names);
+        NameTagGroup nameTagGroup = NameTagGroup.of(nameTags, InputDevice.inputHeight());
 
-        String result = InputView.inputResults();
-        List<NameTag> resultTagList = StringUtil.makeNameTags(result);
-        ResultTagGroup resultTagGroup = ResultTagGroup.of(resultTagList);
+        OutputDevice.ladderResult();
+        OutputDevice.viewInputValues(nameTagGroup);
 
-        int height = InputView.inputHeight();
-        Ladder ladder = Ladder.ofGroup(height, nameTagList);
-
-        InputTagGroup nameTagGroup = InputTagGroup.of(nameTagList, ladder);
-
-        ResultView.ladderResult();
-        ResultView.printNameTags(nameTagGroup);
-        ResultView.printLadder(ladder);
-        ResultView.printResultNameTags(resultTagGroup);
-        ResultView.printFinalResult(nameTagGroup, resultTagGroup);
+        OutputDevice.ladderView(nameTagGroup);
+        OutputDevice.viewResultValues(resultTagGroup);
+        OutputDevice.viewResultOneAndAll(nameTagGroup, resultTagGroup);
     }
+
+
 }
