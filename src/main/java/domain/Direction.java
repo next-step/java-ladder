@@ -2,28 +2,13 @@ package domain;
 
 import utils.LadderPointGenerator;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class Direction {
     private final boolean left;
     private final boolean right;
-    private static final String LEFT = "LEFT";
-    private static  final String RIGHT = "RIGHT";
-    private static  final String CENTER = "CENTER";
 
-    private static final Map<String, Direction> directions = new HashMap<>();
-    static{
-        Direction left = new Direction(Boolean.TRUE, Boolean.FALSE);
-        Direction right = new Direction(Boolean.FALSE, Boolean.TRUE);
-        Direction center = new Direction(Boolean.FALSE, Boolean.FALSE);
-
-        directions.put(LEFT,left);
-        directions.put(RIGHT,right);
-        directions.put(CENTER,center);
-    }
-    private Direction(boolean left, boolean right) {
+    public Direction(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalStateException();
         } else {
@@ -49,16 +34,7 @@ public class Direction {
     }
 
     public static Direction of(boolean first, boolean second) {
-        if(first && !second){
-            return directions.get(LEFT);
-        }
-        if(!first && second){
-            return directions.get(RIGHT);
-        }
-        if(!first && !second){
-            return directions.get(CENTER);
-        }
-        return new Direction(first, second);
+        return DirectionGroup.valueOf(first,second).getDirection();
     }
 
     public static Direction first(boolean right) {
