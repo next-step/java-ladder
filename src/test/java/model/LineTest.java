@@ -31,7 +31,7 @@ public class LineTest {
     @Test ( expected = IllegalStateException.class)
     public void addPoint_최대높이초과() {
         for (int i = 0; i < countOfPerson +1; i++) {
-            line.addPoint(true);
+            line.addPoint(Direction.STRAIGHT);
         }
     }
 

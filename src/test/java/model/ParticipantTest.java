@@ -29,11 +29,11 @@ public class ParticipantTest {
         List<Line> lines = autoLadderGenerator.getLines(Positive.of(5), countOfPerson);
         List<Result> results = Result.getResults("꽝,5000,꽝2,3000");
         ResultView.printResult(participants, lines, results);
-        Position position = Position.move(lines, new Position(Positive.of(0), Positive.of(5)));
+        Positive position = Line.move(lines, Positive.of(0));
 
         System.out.println(results);
-        System.out.println("결과 : " + results.get(position.getX().getNum()));
-        System.out.println("결과 : " + position.getX());
+        System.out.println("결과 : " + results.get(position.getNum()));
+        System.out.println("결과 : " + position.getNum());
     }
 
     @Test

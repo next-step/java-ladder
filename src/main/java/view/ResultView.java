@@ -63,7 +63,7 @@ public class ResultView {
     private static void printLadder(List<Line> lines) {
         for (int i = 0; i < lines.size(); i++) {
             Line line = lines.get(i);
-            List<Boolean> points = line.getPoints();
+            List<Position> points = line.getPoints();
             printLines(points);
         }
     }
@@ -84,7 +84,7 @@ public class ResultView {
      *
      * @param points
      */
-    private static void printLines(List<Boolean> points) {
+    private static void printLines(List<Position> points) {
         System.out.print("   ");
         for (int j = 0; j < points.size(); j++) {
             printLine(points, j);
@@ -98,8 +98,8 @@ public class ResultView {
      * @param points
      * @param j
      */
-    private static void printLine(List<Boolean> points, int j) {
-        if (points.get(j).booleanValue()) {
+    private static void printLine(List<Position> points, int j) {
+        if (points.get(j).hasRight()) {
             System.out.print("|-----");
         } else {
             System.out.print("|     ");

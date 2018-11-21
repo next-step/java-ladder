@@ -32,9 +32,10 @@ public class Result {
 
         Participant participant = Participant.findByName(name, participants);
         int idx = participants.indexOf(participant);
-        Position position = Position.move(lines, new Position(Positive.of(idx), Positive.of(lines.size())));
-        Result result = results.get(position.getX().getNum());
-
-        return result;
+        int resultIdx = idx;
+        Positive result = Positive.of(idx);
+        result = Line.move(lines, result);
+    
+        return results.get(result.getNum());
     }
 }

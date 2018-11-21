@@ -11,32 +11,26 @@ public class PositionTest {
 
     @Before
     public void setUp() throws Exception {
-        position = new Position(Positive.of(5), Positive.of(5));
+    
     }
 
     @Test
-    public void moveDown() {
-        position.moveDown();
-        assertThat(position.getY().getNum()).isEqualTo(4);
+    public void moveStraight() {
+        position = Position.of(Positive.of(0), Direction.STRAIGHT);
+        
+        assertThat(position.move()).isEqualTo(Positive.of(0));
     }
 
     @Test
-    public void moveLeftDown() {
-        position.moveLeftDown();
-        assertThat(position.getX().getNum()).isEqualTo(4);
-        assertThat(position.getY().getNum()).isEqualTo(4);
+    public void moveLeft() {
+        position = Position.of(Positive.of(5), Direction.LEFT);
+        assertThat(position.moveLeft()).isEqualTo(Positive.of(4));
     }
 
     @Test
-    public void moveRightDown() {
-        position.moveRightDown();
-        assertThat(position.getX().getNum()).isEqualTo(6);
-        assertThat(position.getY().getNum()).isEqualTo(4);
+    public void moveRight() {
+        position = Position.of(Positive.of(5), Direction.RIGHT);
+        assertThat(position.moveRight()).isEqualTo(Positive.of(6));
     }
 
-    @Test
-    public void isZeroY() {
-        position = new Position(Positive.of(5), Positive.of(0));
-        assertThat(position.isZeroY()).isTrue();
-    }
 }

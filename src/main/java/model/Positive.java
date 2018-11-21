@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Positive {
     private int num;
 
@@ -36,6 +38,17 @@ public class Positive {
     public int getNum() {
         return num;
     }
-
-
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Positive positive = (Positive) o;
+        return num == positive.num;
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(num);
+    }
 }

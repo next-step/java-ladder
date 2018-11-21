@@ -7,26 +7,29 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
-    private ArrayList<Boolean> points = new ArrayList<>();
+    private ArrayList<Position> points = new ArrayList<>();
     private int countOfPerson;
 
     private Line(int countOfPerson) {
         this.countOfPerson = countOfPerson;
-
-        for (int i = 0; i < countOfPerson; i++) {
-            addPoint(false);
-        }
     }
 
-    public static Line of(int countOfPerson, List<Positive> indexs) {
+    public static Line of(int countOfPerson, List<Direction> directions) {
         Line line = new Line(countOfPerson);
-        line.addAutoLines(indexs);
-
+        directions.stream()
+                .forEach(d -> {
+                    line.addPoint(d);
+                });
+        
         return line;
     }
 
     public static Line of(int countOfPerson) {
-        return new Line(countOfPerson);
+        Line line = new Line(countOfPerson);
+        for (int i = 0; i < countOfPerson; i++) {
+            line.addPoint(Direction.STRAIGHT);
+        }
+        return line;
     }
 
     public boolean hasLine(int index) {
@@ -38,32 +41,22 @@ public class Line {
             return false;
         }
 
-        return points.get(index);
+        return points.get(index).hasLeftOrRight();
     }
 
     /**
      * 좌표 추가
      *
-     * @param b
+     * @param direction
      */
-    public void addPoint(boolean b) {
+    public void addPoint(Direction direction) {
         if (points.size() >= countOfPerson) {
             throw new IllegalStateException("좌표의 최대값은 인원 수를 초과할 수 없습니다.");
         }
 
-        points.add(b);
+        points.add(Position.of(Positive.of(points.size()), direction));
     }
-
-    /**
-     * 선들 추가
-     *
-     * @param indexs
-     */
-    public void addAutoLines(List<Positive> indexs) {
-        for (Positive idx : indexs) {
-            addLine(idx);
-        }
-    }
+    
 
     /**
      * 선 추가
@@ -83,28 +76,8 @@ public class Line {
         if (!canAddLine(index)) {
             throw new IllegalArgumentException("선 생성 불가");
         }
-
-        points.set(index.getNum(), true);
-    }
-
-    /**
-     * 왼쪽 좌표에 선이 있는지 여부
-     *
-     * @param index
-     * @return
-     */
-    public boolean hasLeftLine(Positive index) {
-        return hasLine(index.getNum() - 1);
-    }
-
-    /**
-     * 오른쪽 좌표에 선이 있는지 여부
-     *
-     * @param index
-     * @return
-     */
-    public boolean hasRightPoint(Positive index) {
-        return hasLine(index.getNum() + 1);
+        int num = index.getNum();
+        points.get(num).setDirectionRight();
     }
 
     /**
@@ -124,23 +97,19 @@ public class Line {
      * @return
      */
     public boolean canAddLine(Positive index) {
+        
         int num = index.getNum();
         if (num >= points.size() - 1) {
             return false;
         }
-
-        if (hasRightPoint(index)) {
-            return false;
-        }
-
-        if (num > 0 && hasLeftLine(index)) {
+        if( points.get(num).hasLeftOrRight() ) {
             return false;
         }
 
         return true;
     }
 
-    public List<Boolean> getPoints() {
+    public List<Position> getPoints() {
         return Collections.unmodifiableList(points);
     }
 
@@ -163,5 +132,12 @@ public class Line {
      */
     private boolean isAddLine(Boolean isAdd, int i) {
         return canAddLine(i) && isAdd;
+    }
+    
+    public static Positive move(List<Line> lines, Positive result) {
+        for (int i = 0; i < lines.size(); i++) {
+            result = lines.get(i).getPoints().get(result.getNum()).move();
+        }
+        return result;
     }
 }
