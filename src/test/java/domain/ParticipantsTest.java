@@ -18,4 +18,13 @@ public class ParticipantsTest {
         Participants.fromInput("aaaaaa");
     }
 
+    @Test
+    public void 참여자의_index_반환() {
+        Participants participants = Participants.fromInput("aaa,bbb,ccc,ddd");
+
+        assertThat(participants.indexOf(new Participant("aaa"))).isEqualTo(0);
+
+        // 참여자가 없으면 -1
+        assertThat(participants.indexOf(new Participant("fff"))).isEqualTo(-1);
+    }
 }
