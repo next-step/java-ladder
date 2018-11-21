@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class ResultTagGroup {
-
     private List<NameTag> nameTags;
 
     private ResultTagGroup(List<NameTag> nameTags) {
@@ -19,7 +18,7 @@ public class ResultTagGroup {
         return nameTags.get(finalPosition).toString().trim();
     }
 
-    public List<NameTag> getNameTags() {
+    public List<NameTag> getNames() {
         return Collections.unmodifiableList(nameTags);
     }
 }

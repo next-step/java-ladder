@@ -1,39 +1,37 @@
 package domain;
 
-
 import org.junit.Test;
-import util.StringUtil;
+import utils.StringUtils;
 
 import java.util.List;
-import java.util.Set;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class NameTagTest {
-
     @Test
-    public void 사람목록만들기() {
-        String names = "pobi,honux,crong,jk";
-        List<NameTag> nameTagGroup = StringUtil.makeNameTags(names);
-        assertThat(3).isEqualTo(nameTagGroup.indexOf(NameTag.of("jk")));
+    public void 플레이어만들기내부로직테스트() {
+        String names = "stron,box,test,kkk,sdfa";
+        List<NameTag> nameTags = StringUtils.makeNameTag(names);
+        String[] playerNames = names.split(",");
+        for(String playerName : playerNames){
+            NameTag nameTag =  NameTag.of(playerName);
+        }
+        assertThat("kkk").isEqualTo(playerNames[3]);
     }
 
     @Test
-    public void 결과보고싶은사람() {
-        String names = "pobi,honux,crong,jk";
-        List<NameTag> nameTagGroup = StringUtil.makeNameTags(names);
-        assertThat(nameTagGroup.indexOf(NameTag.of("pobi"))).isEqualTo(0);
+    public void 플레이어만들기테스트() {
+        String names = "stron,box,test,kkk,sdfa";
+        List<NameTag> nameTags = StringUtils.makeNameTag(names);
+        assertThat(nameTags.get(3)).isEqualTo(NameTag.of("kkk"));
+
     }
 
-    @Test
-    public void 실행결과() {
-        String results = "꽝,5000,꽝,3000";
-        List<NameTag> resultTagGroup = StringUtil.makeNameTags(results);
-        assertThat(resultTagGroup.get(3)).isEqualTo(NameTag.of("3000"));
-    }
 
-    @Test
-    public void 이름길이테스트() {
-        NameTag.of("123456");
+    @Test(expected = RuntimeException.class)
+    public void 글자수테스트() {
+        String names = "stronxxx,box,test,kkk,sdfa";
+        List<NameTag> nameTags = StringUtils.makeNameTag(names);
+
     }
 }

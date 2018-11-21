@@ -5,34 +5,33 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
+    private List<LadderLine> ladderLines;
 
-    private List<Line> lines;
-
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
-    public static Ladder ofGroup(int height, List<NameTag> nameTagGroup) {
-        List<Line> lines = new ArrayList<>();
+    public static Ladder of(int size, int height) {
+        List<LadderLine> ladderLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(Line.ofCount(nameTagGroup.size()));
+            ladderLines.add(LadderLine.init(size));
         }
-        return new Ladder(lines);
+        return new Ladder(ladderLines);
     }
 
-    public static Ladder of(List<Line> lines) {
-        return new Ladder(lines);
-    }
-
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public static Ladder ofList(List<LadderLine> ladderLines) {
+        return new Ladder(ladderLines);
     }
 
     public int getFinalPosition(int index) {
-        for (Line line : lines) {
-            index = line.getNextPosition(index);
+        for (int i = 0; i < ladderLines.size(); i++) {
+            index = ladderLines.get(i).move(index);
         }
         return index;
     }
 
+    //출력용
+    public List<LadderLine> getLadderMap() {
+        return Collections.unmodifiableList(ladderLines);
+    }
 }
