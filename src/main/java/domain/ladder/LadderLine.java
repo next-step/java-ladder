@@ -42,7 +42,6 @@ public class LadderLine {
     }
 
     public int move(int position) {
-        System.out.println(position);
         return points.get(position).move();
     }
 

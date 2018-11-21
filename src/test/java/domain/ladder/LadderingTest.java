@@ -36,48 +36,38 @@ public class LadderingTest {
 
 
         List<Point> points1 = new ArrayList<>();
-        Point first = Point.first(TRUE);
-        Point second = first.next(FALSE);
-        Point third = second.next(TRUE);
-        points1.add(first);
-        points1.add(second);
-        points1.add(third);
+        points1.add(new Point(0, Direction.of(false,true)));
+        points1.add(new Point(1, Direction.of(true,false)));
+        points1.add(new Point(2, Direction.of(false,true)));
+        points1.add(new Point(3, Direction.of(true,false)));
         LadderLine ladderLine = new LadderLine(points1);
 
         List<Point> points2 = new ArrayList<>();
-        Point first2 = Point.first(FALSE);
-        Point second2 = first2.next(TRUE);
-        Point third2 = second2.next(FALSE);
-        points2.add(first2);
-        points2.add(second2);
-        points2.add(third2);
+        points2.add(new Point(0, Direction.of(false,false)));
+        points2.add(new Point(1, Direction.of(false,true)));
+        points2.add(new Point(2, Direction.of(true,false)));
+        points2.add(new Point(3, Direction.of(false,false)));
         LadderLine ladderLine2 = new LadderLine(points2);
 
         List<Point> points3 = new ArrayList<>();
-        Point first3 = Point.first(TRUE);
-        Point second3 = first3.next(FALSE);
-        Point third3 = second3.next(FALSE);
-        points3.add(first3);
-        points3.add(second3);
-        points3.add(third3);
+        points3.add(new Point(0, Direction.of(false,true)));
+        points3.add(new Point(1, Direction.of(true,false)));
+        points3.add(new Point(2, Direction.of(false,false)));
+        points3.add(new Point(3, Direction.of(false,false)));
         LadderLine ladderLine3 = new LadderLine(points3);
 
         List<Point> points4 = new ArrayList<>();
-        Point first4 = Point.first(FALSE);
-        Point second4 = first4.next(TRUE);
-        Point third4 = second4.next(FALSE);
-        points4.add(first4);
-        points4.add(second4);
-        points4.add(third4);
+        points4.add(new Point(0, Direction.of(false,false)));
+        points4.add(new Point(1, Direction.of(false,true)));
+        points4.add(new Point(2, Direction.of(true,false)));
+        points4.add(new Point(3, Direction.of(false,false)));
         LadderLine ladderLine4 = new LadderLine(points4);
 
         List<Point> points5 = new ArrayList<>();
-        Point first5 = Point.first(TRUE);
-        Point second5 = first5.next(FALSE);
-        Point third5 = second5.next(TRUE);
-        points5.add(first5);
-        points5.add(second5);
-        points5.add(third5);
+        points5.add(new Point(0, Direction.of(false,true)));
+        points5.add(new Point(1, Direction.of(true,false)));
+        points5.add(new Point(2, Direction.of(false,true)));
+        points5.add(new Point(3, Direction.of(true,false)));
         LadderLine ladderLine5 = new LadderLine(points5);
 
         List<LadderLine> ladderLines = new ArrayList<>();

@@ -1,12 +1,9 @@
 package domain.ladder;
 
-import java.util.Objects;
+import domain.ladder.Direction;
 
 public class Point {
-
-    private static final int START_POINT = 0;
-
-    private int index;
+    private final int index;
     private final Direction direction;
 
     public Point(int index, Direction direction) {
@@ -14,51 +11,39 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point first(Boolean right) {
-        return new Point(START_POINT, Direction.first(right));
-    }
-
     public int move() {
-        if(direction.isLeft()){
-            --this.index;
+        System.out.println("is left? " + direction.isLeft());
+        System.out.println("is right? " + direction.isRight());
+
+        if (direction.isRight()) {
+            return index + 1;
         }
 
-        if(direction.isRight()){
-            ++this.index;
+        if (direction.isLeft()) {
+            return index - 1;
         }
 
         return this.index;
     }
 
-
-    public Point next(Boolean right) {
-        return new Point(++index, direction.next(right));
+    public Point next() {
+        return new Point(index + 1, direction.next());
     }
 
-    public Point next() {
-        return new Point(++index, direction.next());
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
     }
 
     public Point last() {
-        return new Point(++index, direction.last());
+        return new Point(index + 1, direction.last());
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
     }
 
     public Direction getDirection() {
         return direction;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return index == point.index &&
-                Objects.equals(direction, point.direction);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(index, direction);
     }
 
     @Override

@@ -30,9 +30,8 @@ public class Laddering {
     }
 
     private int getResultLocation(int resultLocation, Lines lines) {
-        for (LadderLine line : lines.getLine()) {
-            System.out.println(Arrays.toString(line.getPoints().toArray()));
-            resultLocation = line.move(resultLocation);
+        for (int i = 0; i < lines.getLine().size(); i++) {
+            resultLocation = lines.getLine().get(i).move(resultLocation);
         }
         return resultLocation;
     }
