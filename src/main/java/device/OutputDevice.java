@@ -3,7 +3,7 @@ package device;
 import domain.NameTagGroup;
 import domain.ResultTagGroup;
 
-public class outputDevice {
+public class OutputDevice {
 
     public static void ladderResult() {
         System.out.println("사다리 결과");
@@ -41,12 +41,12 @@ public class outputDevice {
     public static void viewResultOneAndAll(NameTagGroup nameTagGroup, ResultTagGroup resultTagGroup) {
         while (true) {
             String name = InputDevice.knowResult();
-            outputDevice.runResult();
+            OutputDevice.runResult();
             if (name.equals("all")) {
-                outputDevice.allResultView(nameTagGroup, resultTagGroup);
+                OutputDevice.allResultView(nameTagGroup, resultTagGroup);
                 break;
             }
-            outputDevice.viewName(
+            OutputDevice.viewName(
                     resultTagGroup.getName(
                             nameTagGroup.getFinalPosition(
                                     nameTagGroup.indexOf(name))));

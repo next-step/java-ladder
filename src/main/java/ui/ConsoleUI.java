@@ -1,7 +1,7 @@
 package ui;
 
 import device.InputDevice;
-import device.outputDevice;
+import device.OutputDevice;
 import domain.NameTag;
 import domain.NameTagGroup;
 import domain.ResultTagGroup;
@@ -17,12 +17,12 @@ public class ConsoleUI {
 
         NameTagGroup nameTagGroup = NameTagGroup.of(nameTags, InputDevice.inputHeight());
 
-        outputDevice.ladderResult();
-        outputDevice.viewInputValues(nameTagGroup);
+        OutputDevice.ladderResult();
+        OutputDevice.viewInputValues(nameTagGroup);
 
-        outputDevice.ladderView(nameTagGroup);
-        outputDevice.viewResultValues(resultTagGroup);
-        outputDevice.viewResultOneAndAll(nameTagGroup, resultTagGroup);
+        OutputDevice.ladderView(nameTagGroup);
+        OutputDevice.viewResultValues(resultTagGroup);
+        OutputDevice.viewResultOneAndAll(nameTagGroup, resultTagGroup);
     }
 
 
