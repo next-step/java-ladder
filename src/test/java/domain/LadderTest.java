@@ -14,7 +14,7 @@ public class LadderTest {
         Line line1 = Line.initialize(participants, () -> true);
         Line line2 = Line.initialize(participants, () -> false);
 
-        Ladder ladder = new Ladder(Arrays.asList(line1, line2), participants);
+        Ladder ladder = Ladder.from(Arrays.asList(line1, line2));
 
         // 0     1
         // |-----|

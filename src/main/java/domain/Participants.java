@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,12 +22,20 @@ public class Participants {
                 .collect(Collectors.toList()));
     }
 
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(participants);
+    }
+
     public int countOfParticipants() {
         return participants.size();
     }
 
     public int indexOf(Participant participant) {
         return participants.indexOf(participant);
+    }
+
+    public boolean contains(Participant participant) {
+        return participants.contains(participant);
     }
 
     @Override

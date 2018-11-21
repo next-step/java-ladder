@@ -1,7 +1,4 @@
-import domain.Ladder;
-import domain.Participants;
-import domain.PositiveNumber;
-import domain.Rewards;
+import domain.*;
 import view.InputView;
 import view.ResultView;
 
@@ -17,5 +14,11 @@ public class ConsoleMain {
         Ladder ladder = Ladder.of(height, participants);
 
         ResultView.printLadder(participants, ladder, rewards);
+
+        String nameForReward = InputView.inputNameForReward();
+
+        LadderResult result = new LadderResult(ladder, participants, rewards);
+
+        ResultView.printLadderGameResult(result, nameForReward);
     }
 }

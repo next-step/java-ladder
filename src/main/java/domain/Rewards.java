@@ -18,15 +18,19 @@ public class Rewards {
         return new Rewards(Arrays.asList(input.split(SEPARATOR)));
     }
 
+    public int size() {
+        return rewards.size();
+    }
+
+    public String get(int i) {
+        return rewards.get(i);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         rewards.forEach(reward -> stringBuilder.append(String.format(OUTPUT_FORMAT, reward)));
 
         return stringBuilder.toString();
-    }
-
-    public String get(int i) {
-        return rewards.get(i);
     }
 }

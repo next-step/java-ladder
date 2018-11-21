@@ -6,11 +6,13 @@ import java.util.List;
 public class Ladder {
 
     private final List<Line> lines;
-    private final Participants participants;
 
-    public Ladder(List<Line> lines, Participants participants) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
-        this.participants = participants;
+    }
+
+    public static Ladder from(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     public static Ladder of(PositiveNumber height, Participants participants) {
@@ -19,11 +21,7 @@ public class Ladder {
             lines.add(Line.initialize(participants, new RandomPointGenerator()));
         }
 
-        return new Ladder(lines, participants);
-    }
-
-    public int totalParticipant() {
-        return participants.countOfParticipants();
+        return new Ladder(lines);
     }
 
     public int goingDown(int index) {
