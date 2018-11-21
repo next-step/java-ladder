@@ -10,11 +10,10 @@ public class Direction {
     private final boolean right;
 
     public static Direction of(boolean left, boolean right) {
-        if(left && right) throw new IllegalArgumentException();
-        return new Direction(left, right);
+        return DirectionKind.findDirection(left, right).getDirection();
     }
 
-    private Direction(boolean left, boolean right) {
+    public Direction(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }

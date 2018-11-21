@@ -15,56 +15,52 @@ public class LadderManageTest {
     List<LadderLine> ladderLines;
     LadderManage ladderManage;
     Players players;
-    Lines lines;
 
     @Before
     public void init(){
-        List<Point> points1 = new ArrayList<>();
-        points1.add(Point.of(0, Direction.of(false,true)));
-        points1.add(Point.of(1, Direction.of(true,false)));
-        points1.add(Point.of(2, Direction.of(false,true)));
-        LadderLine ladderLine = new LadderLine(points1);
-        List<Point> points2 = new ArrayList<>();
-        points2.add(Point.of(0, Direction.of(false,false)));
-        points2.add(Point.of(1, Direction.of(false,true)));
-        points2.add(Point.of(2, Direction.of(false,false)));
-        LadderLine ladderLine2 = new LadderLine(points2);
+        List<Point> points = new ArrayList<>();
+        points.add(Point.of(0, Direction.of(false,true)));
+        points.add(Point.of(1, Direction.of(true,false)));
+        points.add(Point.of(2, Direction.of(false,false)));
+        LadderLine ladderLine = new LadderLine(points);
         ladderLines = new ArrayList<>();
         ladderLines.add(ladderLine);
-        ladderLines.add(ladderLine2);
-        lines = new Lines(ladderLines);
-
         player =  new ArrayList<>();
         player.add(new Player("pobi"));
         player.add(new Player("crox"));
+        player.add(new Player("crong"));
         players = new Players(player);
-
         ladderManage = new LadderManage(player, ladderLines);
     }
 
     @Test
     public void 플레이어_라인_생성여부() {
-        assertThat(ladderManage.getLines().getLine()).hasSize(2);
+        assertThat(ladderManage.getLines().getLine()).hasSize(1);
         assertThat(ladderManage.getPlayers().getPlayerLocation("pobi")).isEqualTo(0);
-
     }
 
     @Test
     public void 플레이어_ALL_플레이_생성여부() {
+        Lines lines = new Lines(ladderLines);
         Laddering allUser = ladderManage.play("ALL");
+
         assertThat(allUser.getPlayers()).isEqualTo(new Laddering(players, lines).getPlayers());
         assertThat(allUser.getLines().getLine()).isEqualTo(new Laddering(players, lines).getLines().getLine());
-
     }
 
     @Test
-    public void 플레이어_플레이_생성여부() {
+    public void 플레이어_플레이_이동여부() {
         Laddering user = ladderManage.play("pobi");
 
-        List<Player> findPlayers =  new ArrayList<>();
-        findPlayers.add(new Player("pobi"));
-        Players findPlayer = new Players(findPlayers);
+        assertThat(user.getLocation(0)).isEqualTo(1);
+    }
 
-        assertThat(user.getPlayers()).isEqualTo(findPlayer);
+    @Test
+    public void 플레이어_플레이_ALL_이동여부() {
+        Laddering user = ladderManage.play("ALL");
+
+        assertThat(user.getLocation(0)).isEqualTo(1);
+        assertThat(user.getLocation(1)).isEqualTo(0);
+        assertThat(user.getLocation(2)).isEqualTo(2);
     }
 }

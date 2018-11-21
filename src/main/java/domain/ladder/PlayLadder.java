@@ -18,8 +18,6 @@ public class PlayLadder {
         LadderResult ladderResult = new LadderResult(result);
         resultView.result(ladderManage, ladderResult);
 
-        resultView.result(ladderManage, ladderResult);
-
         String playerNames = InputView.resultPlayer();
         Laddering laddering = ladderManage.play(playerNames);
         List<PlayResult> playResult = laddering.playerResult(ladderResult);

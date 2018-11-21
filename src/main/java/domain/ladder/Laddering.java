@@ -23,13 +23,13 @@ public class Laddering {
         return playResults;
     }
 
-    private int getLocation(int location) {
+    public int getLocation(int location) {
         int resultLocation = location;
         resultLocation = getResultLocation(resultLocation, lines);
         return resultLocation;
     }
 
-    private int getResultLocation(int resultLocation, Lines lines) {
+    public int getResultLocation(int resultLocation, Lines lines) {
         for (int i = 0; i < lines.getLine().size(); i++) {
             resultLocation = lines.getLine().get(i).move(resultLocation);
         }

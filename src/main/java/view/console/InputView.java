@@ -43,6 +43,4 @@ public class InputView {
         String playerName = sc.nextLine();
         return playerName;
     }
-
-
 }
