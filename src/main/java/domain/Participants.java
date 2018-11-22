@@ -1,41 +1,48 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
 
     private static final String SEPARATOR = ",";
-    private static final String NAME_OUTPUT_FORMAT = "%6s";
-    private static final int MAXIMUM_LENGTH_OF_NAME = 5;
 
-    private final List<String> names;
+    private final List<Participant> participants;
 
-    private Participants(List<String> names) {
-        this.names = validateNames(names);
+    private Participants(List<Participant> participants) {
+        this.participants = participants;
     }
 
     public static Participants fromInput(String input) {
-        return new Participants(Arrays.asList(input.split(SEPARATOR)));
+        return new Participants(
+            Arrays.stream(input.split(SEPARATOR))
+                .map(Participant::new)
+                .collect(Collectors.toList()));
     }
 
-    private List<String> validateNames(List<String> names) {
-        if (names.stream().anyMatch(s -> s.length() > MAXIMUM_LENGTH_OF_NAME)) {
-            throw new IllegalArgumentException("이름은 5자 이하여야 한다.");
-        }
-
-        return names;
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(participants);
     }
 
     public int countOfParticipants() {
-        return names.size();
+        return participants.size();
+    }
+
+    public int indexOf(Participant participant) {
+        return participants.indexOf(participant);
+    }
+
+    public boolean contains(Participant participant) {
+        return participants.contains(participant);
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        names.forEach(name -> stringBuilder.append(String.format(NAME_OUTPUT_FORMAT, name)));
+        participants.forEach(participant -> stringBuilder.append(participant.toString()));
 
         return stringBuilder.toString();
     }

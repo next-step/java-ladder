@@ -7,8 +7,12 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    private Ladder(List<Line> lines) {
         this.lines = lines;
+    }
+
+    public static Ladder from(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     public static Ladder of(PositiveNumber height, Participants participants) {
@@ -18,6 +22,14 @@ public class Ladder {
         }
 
         return new Ladder(lines);
+    }
+
+    public int goingDown(int index) {
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+
+        return index;
     }
 
     @Override

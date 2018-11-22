@@ -25,6 +25,18 @@ public class Line {
         return new Line(points);
     }
 
+    public int move(int index) {
+        if (index - 1 >= 0 && points.get(index).isExists()) {
+            return index - 1;
+        }
+
+        if (index + 1 < points.size() && points.get(index + 1).isExists()) {
+            return index + 1;
+        }
+
+        return index;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
