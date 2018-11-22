@@ -4,6 +4,7 @@ import game.ladder.domain.GameResults;
 import game.ladder.domain.Ladder;
 
 public class OutputView {
+
     public static void printLadder(Ladder ladder) {
         System.out.println("사다리 결과");
         System.out.println();

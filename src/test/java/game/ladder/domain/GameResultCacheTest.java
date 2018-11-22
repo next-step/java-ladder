@@ -12,10 +12,6 @@ public class GameResultCacheTest {
 
     @Test
     public void 만들기() {
-        final LinesGenerator generator = new LinesGenerator(new Height(5));
-        final Participants participants = createParticipants();
-        final Expects expects = createExpects();
-
         Ladder ladder = createLadder();
 
         GameResultCache gameResultCache = new GameResultCache(ladder);
@@ -26,8 +22,8 @@ public class GameResultCacheTest {
         final Name name = new Name("a");
         GameResultCache gameResultCache = new GameResultCache(createLadder());
 
-        GameResults result1 = gameResultCache.getGameResults(name);
-        GameResults result2 = gameResultCache.getGameResults(name);
+        GameResults result1 = gameResultCache.getGameResults2(name);
+        GameResults result2 = gameResultCache.getGameResults2(name);
 
         assertThat(result1).isSameAs(result2);
     }
@@ -37,16 +33,16 @@ public class GameResultCacheTest {
         final Name name = new Name("null");
         GameResultCache gameResultCache = new GameResultCache(createLadder());
 
-        gameResultCache.getGameResults(name);
+        gameResultCache.getGameResults2(name);
     }
 
     private Ladder createLadder() {
-        final LinesGenerator generator = new LinesGenerator(new Height(5));
         final Participants participants = createParticipants();
         final Expects expects = createExpects();
         final UserInputs userInputs = new UserInputs(participants, expects);
+        final LadderLines lines = new LadderLines(new Height(5), userInputs.partipantsSize());
 
-        return new Ladder(generator, userInputs);
+        return new Ladder(userInputs, lines);
     }
 
     private Participants createParticipants() {

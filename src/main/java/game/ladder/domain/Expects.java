@@ -4,17 +4,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Expects {
 
     private final Map<Position, Expect> expects;
 
     public Expects(List<Expect> expects) {
-        this.expects = new LinkedHashMap<>();
-        for (int i = 0; i < expects.size(); i++) {
-            this.expects.put(new Position(i + 1), expects.get(i));
-        }
+        this.expects = IntStream.range(0, expects.size()).mapToObj(Position::new)
+                .collect(Collectors.toMap(Function.identity(), p -> expects.get(p.getValue()), (a, b) -> a, LinkedHashMap::new));
     }
 
     public Expect getExpect(Position position) {

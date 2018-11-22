@@ -13,7 +13,7 @@ public class UserInputsTest {
 
     @Test
     public void 만들기() {
-        final Participants participants = makeParticipants();
+        final Participants participants = makeThreeParticipants();
         final Expects expects = makeExpects();
 
         UserInputs userInputs = new UserInputs(participants, expects);
@@ -24,34 +24,33 @@ public class UserInputsTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void 만들기_참여자와_기대결과_숫자_다를때() {
-        final Participants participants = makeParticipants();
+        final Participants participants = makeThreeParticipants();
         final Expects expects = new Expects(Arrays.asList(new Expect("a"), new Expect("b")));
 
         new UserInputs(participants, expects);
     }
 
     @Test
-    public void 최종_결과들_가져오기() {
-        final LinesGenerator generator = new LinesGenerator(new Height(5));
-        final Participants participants = makeParticipants();
+    public void 최종_결과들_가져오기_2() {
+        final Participants participants = makeThreeParticipants();
         final Expects expects = makeExpects();
+        final UserInputs userInputs = new UserInputs(participants, expects);
+        final LadderLines ladderLines = new LadderLines(new Height(5), userInputs.partipantsSize());
 
-        UserInputs userInputs = new UserInputs(participants, expects);
-
-        GameResults gameResults = userInputs.makeGameResults(new Name("a"), generator.generate(participants.size()));
+        GameResults gameResults = userInputs.makeGameResults(new Name("a"), ladderLines);
 
         assertThat(gameResults.size()).isEqualTo(1);
     }
 
     @Test
-    public void 최종_결과들_가져오기_이름이_all_일때() {
-        final LinesGenerator generator = new LinesGenerator(new Height(5));
-        final Participants participants = makeParticipants();
+    public void 최종_결과들_가져오기_이름이_all_일때2() {
+        final Participants participants = makeThreeParticipants();
         final Expects expects = makeExpects();
+        final UserInputs userInputs = new UserInputs(participants, expects);
 
-        UserInputs userInputs = new UserInputs(participants, expects);
+        final LadderLines ladderLines = new LadderLines(new Height(5), userInputs.partipantsSize());
 
-        GameResults gameResults = userInputs.makeGameResults(new Name("all"), generator.generate(participants.size()));
+        GameResults gameResults = userInputs.makeGameResults(new Name("all"), ladderLines);
 
         assertThat(gameResults.size()).isEqualTo(3);
     }
@@ -61,11 +60,11 @@ public class UserInputsTest {
         return new Expects(list);
     }
 
-    private Participants makeParticipants() {
+    private Participants makeThreeParticipants() {
         List<Participant> list = Arrays.asList(
-                new Participant(new Name("a"), new Position(1)),
-                new Participant(new Name("b"), new Position(2)),
-                new Participant(new Name("c"), new Position(3))
+                new Participant(new Name("a"), new Position(0)),
+                new Participant(new Name("b"), new Position(1)),
+                new Participant(new Name("c"), new Position(2))
         );
         SortedSet<Participant> participantSet = new TreeSet<>(list);
         return new Participants(participantSet);

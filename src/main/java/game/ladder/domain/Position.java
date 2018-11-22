@@ -4,7 +4,7 @@ import spark.utils.Assert;
 
 public class Position implements Comparable<Position> {
 
-    public static final int MIN_VALUE = 1;
+    public static final int MIN_VALUE = 0;
 
     private final int value;
 
@@ -15,14 +15,6 @@ public class Position implements Comparable<Position> {
 
     private boolean isNotLowerThanMinValue(int value) {
         return value >= MIN_VALUE;
-    }
-
-    public int nextValue() {
-        return this.value + 1;
-    }
-
-    public int previousValue() {
-        return this.value - 1;
     }
 
     @Override

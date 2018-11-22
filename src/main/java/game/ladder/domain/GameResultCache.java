@@ -6,15 +6,15 @@ import java.util.Map;
 public class GameResultCache {
 
     private final Ladder ladder;
-    private final Map<Name, GameResults> cache;
+    private final Map<Name, GameResults> cache2;
 
     public GameResultCache(Ladder ladder) {
         this.ladder = ladder;
-        this.cache = new HashMap<>();
+        this.cache2 = new HashMap<>();
     }
 
-    public GameResults getGameResults(Name name) {
-        return this.cache.computeIfAbsent(name, this.ladder::makeGameResults);
+    public GameResults getGameResults2(Name name) {
+        return this.cache2.computeIfAbsent(name, this.ladder::makeGameResults);
     }
 
 }

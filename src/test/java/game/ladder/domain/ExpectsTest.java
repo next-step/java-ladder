@@ -25,8 +25,8 @@ public class ExpectsTest {
         final List<Expect> list = Arrays.asList(first, second);
         Expects expects = new Expects(list);
 
-        Expect expect1 = expects.getExpect(new Position(1));
-        Expect expect2 = expects.getExpect(new Position(2));
+        Expect expect1 = expects.getExpect(new Position(0));
+        Expect expect2 = expects.getExpect(new Position(1));
 
         assertThat(expect1).isSameAs(first);
         assertThat(expect2).isSameAs(second);
