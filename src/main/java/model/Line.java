@@ -78,6 +78,7 @@ public class Line {
         }
         int num = index.getNum();
         points.get(num).setDirectionRight();
+        points.get(num + 1).setDirectionLeft();
     }
 
     /**
@@ -102,7 +103,7 @@ public class Line {
         if (num >= points.size() - 1) {
             return false;
         }
-        if( points.get(num).hasLeftOrRight() ) {
+        if( num > 0 && points.get(num - 1 ).hasRight()) {
             return false;
         }
 
@@ -119,8 +120,11 @@ public class Line {
     public void addAutoLines() {
         Random random = new Random();
         IntStream.rangeClosed(0, points.size())
-                .filter(i -> isAddLine(random.nextBoolean(), i))
-                .forEach(this::addLine);
+                .forEach(i -> {
+                    if( isAddLine(random.nextBoolean(), i) ) {
+                        addLine(i);
+                    }
+                });
     }
 
     /**

@@ -22,10 +22,9 @@ public class ParticipantTest {
 
     @Test
     public void move() {
-        List<Participant> participants = Participant.getParticipants("pobi,crong,tg,kkk");
-        Participant participant = participants.get(0);
+        List<Participant> participants = Participant.getParticipants("pobi,crong,tg,kkk,aa,sd");
         AutoLadderGenerator autoLadderGenerator = new AutoLadderGenerator();
-        int countOfPerson = 4;
+        int countOfPerson = participants.size();
         List<Line> lines = autoLadderGenerator.getLines(Positive.of(5), countOfPerson);
         List<Result> results = Result.getResults("꽝,5000,꽝2,3000");
         ResultView.printResult(participants, lines, results);

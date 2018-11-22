@@ -51,7 +51,7 @@ public class ResultView {
      */
     private static void printResults(List<Result> result) {
         for (int i = 0; i < result.size(); i++) {
-            System.out.printf("%-6s", result.get(i).getValue());
+            System.out.printf("%6s", result.get(i).getValue());
         }
     }
 
@@ -75,7 +75,7 @@ public class ResultView {
      */
     private static void printParticipants(List<Participant> participants) {
         for (Participant participant : participants) {
-            System.out.printf("%s  ", participant.getName());
+            System.out.printf("%6s", participant.getName());
         }
     }
 

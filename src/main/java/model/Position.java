@@ -65,6 +65,10 @@ public class Position {
 	public void setDirectionRight() {
 		this.direction = Direction.RIGHT;
 	}
+
+	public void setDirectionLeft() {
+		this.direction = Direction.LEFT;
+	}
 }
 
 
