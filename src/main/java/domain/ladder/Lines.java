@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class Lines {
-    private List<Line> lines;
+    private List<LadderLine> lines;
 
-    public Lines(List<Line> lines) {
+    public Lines(List<LadderLine> lines) {
         this.lines = new ArrayList<>();
-        for(Line line : lines){
+        for(LadderLine line : lines){
             this.lines.add(line);
         }
     }
 
-    public List<Line> getLine() {
+    public List<LadderLine> getLine() {
         return lines;
     }
 

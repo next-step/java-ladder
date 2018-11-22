@@ -1,10 +1,9 @@
 package domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import static domain.ladder.LadderManage.ALL_USER;
 
 public class Laddering {
 
@@ -24,15 +23,15 @@ public class Laddering {
         return playResults;
     }
 
-    private int getLocation(int location) {
+    public int getLocation(int location) {
         int resultLocation = location;
         resultLocation = getResultLocation(resultLocation, lines);
         return resultLocation;
     }
 
-    private int getResultLocation(int resultLocation, Lines lines) {
-        for (Line line : lines.getLine()) {
-            resultLocation = line.move(resultLocation);
+    public int getResultLocation(int resultLocation, Lines lines) {
+        for (int i = 0; i < lines.getLine().size(); i++) {
+            resultLocation = lines.getLine().get(i).move(resultLocation);
         }
         return resultLocation;
     }

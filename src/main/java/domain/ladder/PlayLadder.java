@@ -11,9 +11,9 @@ public class PlayLadder {
         List<Player> players = InputView.names();
 
         List<String> result = InputView.result();
-        List<Line> lines = InputView.ladderCount(players);
+        List<LadderLine> ladderLines = InputView.ladderCount(players);
 
-        LadderManage ladderManage = new LadderManage(players, lines);
+        LadderManage ladderManage = new LadderManage(players, ladderLines);
 
         LadderResult ladderResult = new LadderResult(result);
         resultView.result(ladderManage, ladderResult);
