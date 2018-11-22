@@ -34,5 +34,14 @@ public class LadderTest {
         assertThat(index).isEqualTo(1);
     }
 
+    @Test
+    public void Difficult로찾기() {
+        Difficult diff = Difficult.valueOf("상");
+        Ladder.ofDifficult(5, diff);
+
+        String name = "bang";
+        int index = nameTagGroup.indexOf(name);
+        assertThat(index).isEqualTo(1);
+    }
 
 }

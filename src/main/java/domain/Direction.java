@@ -29,8 +29,8 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
-        return this.right ? this.next(Boolean.FALSE) : this.next(LadderPointGenerator.generatePoint());
+    public Direction next(Difficult difficult) {
+        return this.right ? this.next(Boolean.FALSE) : this.next(LadderPointGenerator.generatePoint(difficult));
     }
 
     public static Direction of(boolean first, boolean second) {

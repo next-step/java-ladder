@@ -15,12 +15,16 @@ public class NameTagGroup {
         this.ladder = ladder;
     }
 
-    public static NameTagGroup of(List<NameTag> makeNameTag, int height) {
-        return new NameTagGroup(makeNameTag, Ladder.of(makeNameTag.size(), height));
-    }
+//    public static NameTagGroup of(List<NameTag> makeNameTag, int height) {
+//        return new NameTagGroup(makeNameTag, Ladder.of(makeNameTag.size(), height));
+//    }
+//
+//    public static NameTagGroup ofLadder(List<NameTag> nameTags, Ladder ladder) {
+//        return new NameTagGroup(nameTags, ladder);
+//    }
 
-    public static NameTagGroup ofLadder(List<NameTag> nameTags, Ladder ladder) {
-        return new NameTagGroup(nameTags, ladder);
+    public static NameTagGroup ofDifficult(List<NameTag> makeNameTag, Difficult difficult) {
+        return new NameTagGroup(makeNameTag, Ladder.ofDifficult(makeNameTag.size(), difficult));
     }
 
     public int size() {
@@ -51,4 +55,5 @@ public class NameTagGroup {
     public List<LadderLine> viewLadder() {
         return ladder.getLadderMap();
     }
+
 }

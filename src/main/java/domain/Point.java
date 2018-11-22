@@ -21,8 +21,8 @@ public class Point {
         }
     }
 
-    public Point next() {
-        return new Point(this.index + 1, this.direction.next());
+    public Point next(Difficult difficult) {
+        return new Point(this.index + 1, this.direction.next(difficult));
     }
 
     public Point next(Boolean right) {
