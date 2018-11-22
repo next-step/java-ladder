@@ -16,12 +16,12 @@ public class LadderTest {
 
         List<Participant> participants = Participant.getParticipants("poni,honux,crong,jk");
         ArrayList<Line> lines = new ArrayList<Line>();
-
-        lines.add(Line.of(4, Arrays.asList(Positive.of(0), Positive.of(2))));
-        lines.add(Line.of(4, Arrays.asList(Positive.of(1))));
-        lines.add(Line.of(4, Arrays.asList(Positive.of(0))));
-        lines.add(Line.of(4, Arrays.asList(Positive.of(1))));
-        ResultView.printResult(participants, lines);
+	
+	    lines.add(Line.of(4, Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT)));
+	    lines.add(Line.of(4, Arrays.asList(Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT)));
+	    lines.add(Line.of(4, Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT, Direction.STRAIGHT)));
+	    lines.add(Line.of(4, Arrays.asList(Direction.STRAIGHT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT)));
+        ResultView.printResult(participants, lines, Result.getResults("꽝,2000,꽝2,3000"));
     }
 
 }
