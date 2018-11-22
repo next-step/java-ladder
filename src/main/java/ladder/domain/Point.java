@@ -20,6 +20,10 @@ public class Point {
         this.direction = direction;
     }
 
+    public boolean isConnected() {
+        return !Direction.isNone(this.direction);
+    }
+
     @Override
     public String toString() {
         return direction.toString();

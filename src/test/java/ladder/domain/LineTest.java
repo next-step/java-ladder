@@ -12,4 +12,19 @@ public class LineTest {
         assertThat(line).isNotNull();
         assertThat(line.size()).isEqualTo(5);
     }
+
+    @Test
+    public void 연결() {
+        Line line = Line.create(5);
+        Connection connection = line.draw(1);
+        assertThat(connection.isConnected()).isTrue();
+
+    }
+
+    @Test
+    public void 연결_불가() {
+        Line line = Line.create(5);
+        Connection connection = line.draw(4);
+        assertThat(connection.isConnected()).isFalse();
+    }
 }

@@ -29,23 +29,23 @@ public class Line {
         }
     }
 
-    public void draw(int countOfPerson) {
+    public Connection draw(int countOfPerson) {
         if (canDraw(countOfPerson)) {
-            this.connect(countOfPerson);
+            return this.connect(countOfPerson);
         }
+        return Connection.EMPTY;
     }
 
-    private void connect(int countOfPerson) {
-        Point current = points.get(countOfPerson);
-        Point next = points.get(countOfPerson + 1);
-        if (current.canConnect() && next.canConnect()) {
-            current.connect(Direction.RIGHT);
-            next.connect(Direction.LEFT);
-        }
+    private Connection connect(int countOfPerson) {
+        Point start = points.get(countOfPerson);
+        Point end = points.get(countOfPerson + 1);
+
+        Connection connection = Connection.create(start, end);
+        return connection.connect();
     }
 
     private boolean canDraw(int countOfPerson) {
-        return countOfPerson < points.size() - 1;
+        return countOfPerson + 1 < points.size();
     }
 
 
