@@ -1,4 +1,4 @@
-package ladder.domain.generator;
+package ladder.domain.lineGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
