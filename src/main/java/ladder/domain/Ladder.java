@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
 
@@ -16,7 +17,7 @@ public class Ladder {
         return new Ladder(height);
     }
 
-    public ArrayList<Line> generateLadder(People people) {
+    public List<Line> generateLadder(People people) {
         for (int i = 0; i < height; i++) {
             lines.add(Line.from(people.peopleCount()));
         }
