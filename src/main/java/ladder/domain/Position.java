@@ -1,10 +1,10 @@
 package ladder.domain;
 
+import ladder.utils.PointGenerator;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import static ladder.utils.LadderPointGenerator.generatePoint;
 
 public class Position {
 
@@ -44,16 +44,16 @@ public class Position {
     }
 
     static Position generateFirstPosition(boolean b) {
-        return Position.getInstance(START_POSITION, DirectionType.mathDirectionType(Boolean.FALSE, b));
+        return Position.getInstance(START_POSITION, DirectionType.matchDirectionType(Boolean.FALSE, b));
     }
 
     static Position generateLastPosition(Position prev) {
-        return Position.getInstance(prev.position + ONE, DirectionType.mathDirectionType(prev.direction.isRight(), Boolean.FALSE));
+        return Position.getInstance(prev.position + ONE, DirectionType.matchDirectionType(prev.direction.isRight(), Boolean.FALSE));
     }
 
-    static Position generateNextPosition(Position prev) {
+    static Position generateNextPosition(Position prev, PointGenerator generator) {
 
-        return Position.getInstance(prev.position + ONE, DirectionType.isOverLapped(prev.direction.isRight()));
+        return Position.getInstance(prev.position + ONE, DirectionType.isOverLapped(prev.direction.isRight(), generator));
     }
 
     public DirectionType getDirection() {

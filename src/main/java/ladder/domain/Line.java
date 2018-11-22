@@ -1,11 +1,11 @@
 package ladder.domain;
 
+import ladder.utils.PointGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static ladder.utils.LadderPointGenerator.generatePoint;
 
 public class Line {
 
@@ -17,21 +17,21 @@ public class Line {
         this.positions = generatedPoints;
     }
 
-    public static Line newLine(int countOfPerson) {
+    public static Line newLine(int countOfPerson, PointGenerator generator) {
         List<Position> newPositions = new ArrayList<>();
 
-        firstLine(newPositions);
+        firstLine(newPositions, generator);
 
         IntStream.range(ONE, countOfPerson - ONE)
-                .forEach(i -> newPositions.add(Position.generateNextPosition(newPositions.get(i - ONE))));
+                .forEach(i -> newPositions.add(Position.generateNextPosition(newPositions.get(i - ONE), generator)));
 
         lastLine(newPositions, countOfPerson - ONE);
 
         return new Line(newPositions);
     }
 
-    private static void firstLine(List<Position> newPositions) {
-        newPositions.add(Position.generateFirstPosition(generatePoint()));
+    private static void firstLine(List<Position> newPositions, PointGenerator generator) {
+        newPositions.add(Position.generateFirstPosition(generator.generatePoint()));
     }
 
     private static void lastLine(List<Position> newPositions, int countOfPerson) {
