@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import ladder.domain.generator.DefaultLineGeneratorTest;
+import ladder.domain.lineGenerator.DefaultLineGeneratorTest;
 
 public class LadderTest {
     @Test
