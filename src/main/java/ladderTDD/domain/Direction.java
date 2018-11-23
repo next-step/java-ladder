@@ -20,15 +20,15 @@ public class Direction {
     }
 
     public static Direction of(boolean left, boolean right) {
-        if (DirectionEnum.SYAY.equals(DirectionEnum.valueOf(left, right))) {
+        if (DirectionEnum.SYAY == DirectionEnum.valueOf(left, right)) {
             return STAY_DIRECTION;
         }
 
-        if (DirectionEnum.LEFT.equals(DirectionEnum.valueOf(left, right))) {
+        if (DirectionEnum.LEFT == DirectionEnum.valueOf(left, right)) {
             return LEFT_DIRECTION;
         }
 
-        if (DirectionEnum.RIGHT.equals(DirectionEnum.valueOf(left, right))) {
+        if (DirectionEnum.RIGHT == DirectionEnum.valueOf(left, right)) {
             return RIGHT_DIRECTION;
         }
 
