@@ -3,10 +3,11 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Ladder {
 
     private int height;
-    private ArrayList<Line> lines;
+    private List<Line> lines;
 
     private Ladder(int height) {
         this.height = height;
@@ -17,11 +18,34 @@ public class Ladder {
         return new Ladder(height);
     }
 
-    public List<Line> generateLadder(People people) {
+    public List<Line> generateLadder(People people, Conditional conditional) {
         for (int i = 0; i < height; i++) {
-            lines.add(Line.from(people.peopleCount()));
+            lines.add(conditional.test(people));
         }
         return lines;
+    }
+
+    public Position calculatePosition(Position position) {
+        for (Line line : lines) {
+            if(position.isNotEndPosition(line.pointCount()) && isExistRightPoint(position, line)) {
+                position.moveRightPosition();
+                continue;
+            }
+
+            if(position.isNotStartPosition() && isExistLeftPoint(position, line)) {
+                position.moveLeftPosition();
+                continue;
+            }
+        }
+        return position;
+    }
+
+    private static boolean isExistRightPoint(Position position, Line line) {
+        return line.isExistPoint(position.rightPosition());
+    }
+
+    private static boolean isExistLeftPoint(Position position, Line line) {
+        return line.isExistPoint(position.leftPosition());
     }
 
     @Override

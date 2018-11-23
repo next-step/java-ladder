@@ -24,7 +24,7 @@ public class Result {
         return rewards;
     }
 
-    public int rewardCount() {
-        return rewards.size();
+    public Reward findPersonResult(Position position) {
+        return rewards.get(position.getPosition());
     }
 }

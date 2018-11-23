@@ -10,7 +10,6 @@ public class LadderGame {
     private LadderGame(People people, Ladder ladder) {
         this.people = people;
         this.ladder = ladder;
-        ladder.generateLadder(people);
     }
 
     public static LadderGame from(People people, Ladder ladder) {
@@ -19,5 +18,9 @@ public class LadderGame {
 
     public List<Person> getPeople() {
         return people.getPeople();
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }

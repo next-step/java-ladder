@@ -27,4 +27,8 @@ public class People {
     public int peopleCount() {
         return people.size();
     }
+
+    public Person findPersonBy(int number) {
+        return people.get(number);
+    }
 }
