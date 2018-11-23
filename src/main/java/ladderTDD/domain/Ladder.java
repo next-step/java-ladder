@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Ladder {
 
+    private static final int DEFAULT_ZERO = 0;
     private List<LadderLine> lines;
 
     private Ladder(List<LadderLine> ladderLines) {
@@ -15,7 +16,7 @@ public class Ladder {
 
     public static Ladder initLadder(int height, People people) {
         List<LadderLine> ladderLines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = DEFAULT_ZERO; i < height; i++) {
             ladderLines.add(LadderLine.init(people.peopleCount()));
         }
         return new Ladder(ladderLines);

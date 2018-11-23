@@ -1,8 +1,9 @@
 package ladderTDD.domain;
 
+import ladder.utils.GenerateRandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LadderLine {
 
@@ -17,13 +18,13 @@ public class LadderLine {
 
     public static LadderLine init(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
-        points.add(Point.first(new Random().nextBoolean()));
+        points.add(Point.first(GenerateRandomUtil.generateRandomBoolean()));
 
-        for (int i = 1; i < sizeOfPerson-1; i++) {
-            points.add(points.get(0).next(new Random().nextBoolean()));
+        for (int i = DEFAULT_ONE; i < sizeOfPerson-DEFAULT_ONE; i++) {
+            points.add(points.get(i-DEFAULT_ONE).next());
         }
 
-        points.add(Point.last(sizeOfPerson-1, new Random().nextBoolean()));
+        points.add(points.get(points.size()-DEFAULT_ONE).last(sizeOfPerson-DEFAULT_ONE));
 
         return new LadderLine(points);
     }

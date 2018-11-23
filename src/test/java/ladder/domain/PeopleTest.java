@@ -11,7 +11,6 @@ public class PeopleTest {
     public void 사람들_count() {
         People people = new People("pobi,honux,crong,jk");
         assertThat(people.peopleCount()).isEqualTo(4);
-
     }
 
 }

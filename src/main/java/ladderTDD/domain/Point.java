@@ -1,54 +1,50 @@
 package ladderTDD.domain;
 
-import java.util.Random;
-
 public class Point {
 
-    private int index;
-    private boolean right;
-    private boolean left;
+    private static final int DEFAULT_ZERO = 0;
+    private static final int DEFAULT_ONE = 1;
 
-    private Point(int index, boolean left, boolean right) {
+    private int index;
+    Direction direction;
+
+    private Point(int index, Direction direction) {
         this.index = index;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
     public static Point first(Boolean right) {
-        return new Point(0, false, right);
+        return new Point(DEFAULT_ZERO, Direction.first(right));
     }
 
     public int move() {
 
-        if (this.left) {
-            return this.index - 1;
+        if (this.direction.isLeft()) {
+            return this.index - DEFAULT_ONE;
         }
 
-        if (this.right) {
-            return this.index + 1;
+        if (this.direction.isRight()) {
+            return this.index + DEFAULT_ONE;
         }
 
         return this.index;
     }
 
     public Point next(Boolean right) {
-        return new Point(this.index + 1, this.right, right);
+        return new Point(this.index + DEFAULT_ONE, this.direction.next(right));
     }
 
     public Point next() {
-        if (this.right) {
-            return new Point(this.index + 1, this.right, false);
-        }
-        return new Point(this.index + 1, this.right, new Random().nextBoolean());
+        return new Point(this.index + DEFAULT_ONE, this.direction.next());
     }
 
-    public static Point last(int lastIndex, Boolean left) {
-        return new Point(lastIndex, left, false);
+    public Point last(int lastIndex) {
+        return new Point(lastIndex, this.direction.last());
     }
 
     @Override
     public String toString() {
-        if (this.right) {
+        if (this.direction.isRight()) {
             return "-----|";
         }
 
