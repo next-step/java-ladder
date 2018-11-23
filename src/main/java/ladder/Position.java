@@ -5,11 +5,15 @@ import java.util.Objects;
 class Position {
     private final int value;
 
-    Position(int value) {
+    private Position(int value) {
         if (value < 0) {
             throw new IllegalArgumentException();
         }
         this.value = value;
+    }
+
+    static Position of(int value) {
+        return new Position(value);
     }
 
     int getValue() {
