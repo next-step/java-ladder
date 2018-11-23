@@ -44,7 +44,6 @@ public class ResultView {
             Attendee attendee = attendees.get(i);
             int countOfPerson = attendees.indexOf(attendee);
             int endpoint = ladder.endpoint(countOfPerson);
-            System.out.println("[" + countOfPerson + "," + endpoint + "]");
             System.out.println(MessageFormat.format("{0} : {1}", attendee, gifts.get(endpoint)));
         }
     }

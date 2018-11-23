@@ -17,7 +17,7 @@ public enum Direction {
         return direction == NONE;
     }
 
-    public static int findPosition(Direction direction) {
+    public static int findStep(Direction direction) {
         return direction.step;
     }
 

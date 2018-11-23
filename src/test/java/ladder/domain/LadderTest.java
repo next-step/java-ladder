@@ -24,6 +24,7 @@ public class LadderTest {
         Ladder ladder = Ladder.create(5, 4);
         ladder.drawLine();
         System.out.println(ladder);
-        System.out.println(ladder.endpoint(0));
+        System.out.println();
+        System.out.println(ladder.endpoint(2));
     }
 }

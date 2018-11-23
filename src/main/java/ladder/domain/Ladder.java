@@ -42,14 +42,14 @@ public class Ladder {
         return follow(countOfPerson, START_COLUMN);
     }
 
-    private int follow(int row, int column) {
+    private int follow(int column, int row) {
         Line line = lines.get(row);
 
-        column = column + line.position(column);
+        column = column + line.step(column);
         row = row + 1;
 
         if(row < line.size() + 1) {
-            return this.follow(row, column);
+            return this.follow(column, row);
         }
         return column;
     }
