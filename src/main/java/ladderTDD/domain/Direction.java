@@ -4,6 +4,10 @@ import ladder.utils.GenerateRandomUtil;
 
 public class Direction {
 
+    private static final Direction STAY_DIRECTION = new Direction(false, false);
+    private static final Direction LEFT_DIRECTION = new Direction(true, false);
+    private static final Direction RIGHT_DIRECTION = new Direction(false, true);
+
     private boolean left;
     private boolean right;
 
@@ -16,6 +20,18 @@ public class Direction {
     }
 
     public static Direction of(boolean left, boolean right) {
+        if (DirectionEnum.SYAY.equals(DirectionEnum.valueOf(left, right))) {
+            return STAY_DIRECTION;
+        }
+
+        if (DirectionEnum.LEFT.equals(DirectionEnum.valueOf(left, right))) {
+            return LEFT_DIRECTION;
+        }
+
+        if (DirectionEnum.RIGHT.equals(DirectionEnum.valueOf(left, right))) {
+            return RIGHT_DIRECTION;
+        }
+
         return new Direction(left, right);
     }
 
