@@ -48,6 +48,9 @@ public class Line {
         return countOfPerson + 1 < points.size();
     }
 
+    public int position(int index) {
+        return points.get(index).position();
+    }
 
     public int size() {
         return this.points.size();

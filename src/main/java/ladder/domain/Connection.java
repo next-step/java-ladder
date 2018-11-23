@@ -31,4 +31,9 @@ public class Connection {
     public boolean isConnected() {
         return start.isConnected() && end.isConnected();
     }
+
+    @Override
+    public String toString() {
+        return start.toString() + end.toString();
+    }
 }

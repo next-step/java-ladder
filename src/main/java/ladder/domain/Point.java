@@ -12,6 +12,10 @@ public class Point {
         return new Point(Direction.NONE);
     }
 
+    public int position() {
+        return Direction.findPosition(direction);
+    }
+
     public boolean canConnect() {
         return Direction.isNone(this.direction);
     }
