@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ladder.domain.Result.START_COLUMN;
+
 public class Ladder {
 
     private List<Line> lines;
@@ -34,6 +36,22 @@ public class Ladder {
             Line line = lines.get(row);
             line.draw(RandomUtils.generate(countOfPerson));
         }
+    }
+
+    public int endpoint(int countOfPerson) {
+        return follow(countOfPerson, START_COLUMN);
+    }
+
+    private int follow(int column, int row) {
+        Line line = lines.get(row);
+
+        column = column + line.step(column);
+        row = row + 1;
+
+        if(row < line.size() + 1) {
+            return this.follow(column, row);
+        }
+        return column;
     }
 
     public int size() {

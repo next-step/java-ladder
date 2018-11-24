@@ -2,6 +2,8 @@ package ladder.domain;
 
 public class Point {
 
+    public static final Point EMPTY = create();
+
     private Direction direction;
 
     private Point(Direction direction) {
@@ -12,11 +14,23 @@ public class Point {
         return new Point(Direction.NONE);
     }
 
+    public int step() {
+        return Direction.findStep(direction);
+    }
+
     public boolean canConnect() {
         return Direction.isNone(this.direction);
     }
 
-    public void connect(Direction direction) {
+    public Point connect(Point point) {
+        if(this.canConnect() && point.canConnect()) {
+            this.connect(Direction.RIGHT);
+            point.connect(Direction.LEFT);
+        }
+        return this;
+    }
+
+    private void connect(Direction direction) {
         this.direction = direction;
     }
 

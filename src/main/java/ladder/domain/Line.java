@@ -29,25 +29,26 @@ public class Line {
         }
     }
 
-    public Connection draw(int countOfPerson) {
+    public Point draw(int countOfPerson) {
         if (canDraw(countOfPerson)) {
             return this.connect(countOfPerson);
         }
-        return Connection.EMPTY;
+        return Point.EMPTY;
     }
 
-    private Connection connect(int countOfPerson) {
+    private Point connect(int countOfPerson) {
         Point start = points.get(countOfPerson);
         Point end = points.get(countOfPerson + 1);
-
-        Connection connection = Connection.create(start, end);
-        return connection.connect();
+        return start.connect(end);
     }
 
     private boolean canDraw(int countOfPerson) {
         return countOfPerson + 1 < points.size();
     }
 
+    public int step(int index) {
+        return points.get(index).step();
+    }
 
     public int size() {
         return this.points.size();

@@ -18,4 +18,13 @@ public class LadderTest {
         Ladder ladder = Ladder.create(5, 4);
         ladder.drawLine(1);
     }
+
+    @Test
+    public void 끝점() {
+        Ladder ladder = Ladder.create(5, 4);
+        ladder.drawLine();
+        System.out.println(ladder);
+        System.out.println();
+        System.out.println(ladder.endpoint(2));
+    }
 }
