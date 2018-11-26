@@ -2,6 +2,7 @@ package net.chandol.domain;
 
 import net.chandol.domain.bridge.Bridges;
 import net.chandol.domain.bridge.BridgesSupplier;
+import net.chandol.domain.line.Lines;
 import net.chandol.value.Positive;
 
 public class Ladder {

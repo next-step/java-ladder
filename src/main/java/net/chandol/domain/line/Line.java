@@ -1,4 +1,4 @@
-package net.chandol.domain;
+package net.chandol.domain.line;
 
 import net.chandol.value.Positive;
 
