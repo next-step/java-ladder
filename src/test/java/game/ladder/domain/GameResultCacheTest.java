@@ -22,8 +22,8 @@ public class GameResultCacheTest {
         final Name name = new Name("a");
         GameResultCache gameResultCache = new GameResultCache(createLadder());
 
-        GameResults result1 = gameResultCache.getGameResults2(name);
-        GameResults result2 = gameResultCache.getGameResults2(name);
+        GameResults result1 = gameResultCache.getGameResults(name);
+        GameResults result2 = gameResultCache.getGameResults(name);
 
         assertThat(result1).isSameAs(result2);
     }
@@ -33,7 +33,7 @@ public class GameResultCacheTest {
         final Name name = new Name("null");
         GameResultCache gameResultCache = new GameResultCache(createLadder());
 
-        gameResultCache.getGameResults2(name);
+        gameResultCache.getGameResults(name);
     }
 
     private Ladder createLadder() {

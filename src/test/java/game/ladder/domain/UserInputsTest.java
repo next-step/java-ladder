@@ -31,7 +31,7 @@ public class UserInputsTest {
     }
 
     @Test
-    public void 최종_결과들_가져오기_2() {
+    public void 최종_결과들_가져오기() {
         final Participants participants = makeThreeParticipants();
         final Expects expects = makeExpects();
         final UserInputs userInputs = new UserInputs(participants, expects);
@@ -43,7 +43,7 @@ public class UserInputsTest {
     }
 
     @Test
-    public void 최종_결과들_가져오기_이름이_all_일때2() {
+    public void 최종_결과들_가져오기_이름이_all_일때() {
         final Participants participants = makeThreeParticipants();
         final Expects expects = makeExpects();
         final UserInputs userInputs = new UserInputs(participants, expects);

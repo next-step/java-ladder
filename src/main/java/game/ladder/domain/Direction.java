@@ -2,12 +2,14 @@ package game.ladder.domain;
 
 import com.google.common.base.Preconditions;
 
-public class Direction {
+public enum Direction {
+
+    LEFT(true, false), PASS(false, false), RIGHT(false, true);
 
     private final boolean left;
     private final boolean right;
 
-    public Direction(boolean left, boolean right) {
+    Direction(boolean left, boolean right) {
         Preconditions.checkState(isNotAllTrue(left, right), "왼쪽과 오른쪽 모두 true 일 수 없습니다.");
         this.left = left;
         this.right = right;
@@ -18,7 +20,16 @@ public class Direction {
     }
 
     public static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
+        for (Direction direction : values()) {
+            if (direction.isSameAs(left, right)) {
+                return direction;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 방향 입니다.");
+    }
+
+    private boolean isSameAs(boolean left, boolean right) {
+        return this.left == left && this.right == right;
     }
 
     public static Direction first(boolean right) {
@@ -45,24 +56,7 @@ public class Direction {
     }
 
     public Direction last() {
-        return new Direction(this.right, false);
+        return Direction.of(this.right, false);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Direction direction = (Direction) o;
-
-        if (left != direction.left) return false;
-        return right == direction.right;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (left ? 1 : 0);
-        result = 31 * result + (right ? 1 : 0);
-        return result;
-    }
 }

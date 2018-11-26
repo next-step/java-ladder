@@ -22,7 +22,7 @@ public class ConsoleMain {
         Name name;
         while (true) {
             name = InputView.readExpectParticipantName();
-            GameResults gameResults = gameResultCache.getGameResults2(name);
+            GameResults gameResults = gameResultCache.getGameResults(name);
             OutputView.printGameResults(gameResults);
 
             if (name.equals(Name.ALL)) {
