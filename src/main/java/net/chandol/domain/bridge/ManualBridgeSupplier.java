@@ -1,6 +1,5 @@
-package net.chandol.domain;
+package net.chandol.domain.bridge;
 
-import net.chandol.value.Bridge;
 import net.chandol.value.Positive;
 
 import java.util.List;

@@ -5,7 +5,7 @@ public class Positive {
     private int value;
 
     private Positive(int value) {
-        if(value < 0) {
+        if (value < 0) {
             throw new IllegalStateException("");
         }
 
@@ -41,5 +41,10 @@ public class Positive {
     @Override
     public int hashCode() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "Pos(" + value + ')';
     }
 }

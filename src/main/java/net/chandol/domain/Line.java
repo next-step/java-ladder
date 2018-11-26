@@ -1,6 +1,5 @@
 package net.chandol.domain;
 
-import com.sun.org.apache.bcel.internal.classfile.LineNumber;
 import net.chandol.value.Positive;
 
 public class Line {

@@ -1,6 +1,8 @@
 package net.chandol.domain;
 
-import net.chandol.value.Bridge;
+import net.chandol.domain.bridge.BridgesSupplier;
+import net.chandol.domain.bridge.ManualBridgeSupplier;
+import net.chandol.domain.bridge.Bridge;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;

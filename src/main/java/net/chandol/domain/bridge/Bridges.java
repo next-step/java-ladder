@@ -1,12 +1,9 @@
-package net.chandol.domain;
+package net.chandol.domain.bridge;
 
-import net.chandol.support.FluentUtil;
-import net.chandol.value.Bridge;
 import net.chandol.value.Positive;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static java.util.Objects.nonNull;
 

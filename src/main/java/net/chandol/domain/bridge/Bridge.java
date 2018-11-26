@@ -1,4 +1,6 @@
-package net.chandol.value;
+package net.chandol.domain.bridge;
+
+import net.chandol.value.Positive;
 
 import java.util.Objects;
 
@@ -60,6 +62,14 @@ public class Bridge {
         result = 31 * result + (rightLineNumber != null ? rightLineNumber.hashCode() : 0);
         result = 31 * result + (row != null ? row.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Bridge{" +
+                "leftLineNumber=" + leftLineNumber +
+                ", row=" + row +
+                '}';
     }
 
     public static Bridge of(Positive leftLineNumber, Positive row) {
