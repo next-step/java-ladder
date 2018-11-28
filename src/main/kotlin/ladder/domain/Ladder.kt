@@ -29,7 +29,7 @@ class Ladder {
 
     fun drawLadder(): String =
             StringBuilder().apply {
-                append(START_EMPTY_SPACES)
+                append(Line.START_EMPTY_SPACES)
                 append(getPlayerNames())
                 append("\n")
                 append(getLines())
@@ -40,7 +40,6 @@ class Ladder {
     private fun getLines(): String = lines.joinToString("\n") { it.drawLine() }
 
     companion object {
-        private const val START_EMPTY_SPACES = "     "
         private const val MIN_LADDER_HEIGHT = 1
     }
 }

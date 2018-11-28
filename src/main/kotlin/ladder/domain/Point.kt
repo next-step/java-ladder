@@ -8,7 +8,7 @@ class Point {
 
     constructor(left: Boolean, right: Boolean) {
         if (left && right) {
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("동시에 인접한 라인을 그릴 수 없습니다.")
         }
         this.left = left
         this.right = right
