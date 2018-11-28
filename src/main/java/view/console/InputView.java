@@ -1,9 +1,6 @@
 package view.console;
 
-import domain.ladder.LadderLine;
-import domain.ladder.Line;
-import domain.ladder.Player;
-import domain.ladder.RandomPoint;
+import domain.ladder.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,5 +39,17 @@ public class InputView {
         Scanner sc = new Scanner(System.in);
         String playerName = sc.nextLine();
         return playerName;
+    }
+
+    public static List<LadderLine> level(List<Player> players) {
+        System.out.println("\n실행할 사다리의 난이도는?");
+        Scanner sc = new Scanner(System.in);
+        String level = sc.nextLine();
+        int randomValue = LadderLevel.findLevel(level).getRandom();
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for(int i = 0; i < randomValue; i++){
+            ladderLines.add(LadderLine.init(players.size()));
+        }
+        return ladderLines;
     }
 }
