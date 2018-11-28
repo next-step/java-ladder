@@ -1,5 +1,6 @@
 package ladder.domain.generators
 
+import ladder.domain.Point
 import java.util.*
 
 object RandomPointGenerator {
@@ -9,6 +10,15 @@ object RandomPointGenerator {
         val points = arrayListOf(false)
         for (i in 1 until countOfPerson) {
             points.add(makePoint(hasPointBeforeMake(points)))
+        }
+        return points
+    }
+
+    fun generator2(countOfPerson: Int): ArrayList<Point> {
+        val point = Point.first(randomPoint())
+        val points = arrayListOf(point)
+        for (i in 1 until countOfPerson) {
+            points.add(points[i-1].next())
         }
         return points
     }
@@ -24,7 +34,7 @@ object RandomPointGenerator {
         return randomPoint()
     }
 
-    private fun randomPoint(): Boolean {
+    fun randomPoint(): Boolean {
         return random.nextBoolean()
     }
 }

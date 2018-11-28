@@ -5,6 +5,7 @@ import java.util.*
 
 class Line {
     private val points: ArrayList<Boolean>
+//    private val points2: ArrayList<Point>
 
     constructor(countOfPerson: Int) {
         this.points = RandomPointGenerator.generator(countOfPerson)

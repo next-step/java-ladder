@@ -1,8 +1,10 @@
 package ladder.domain
 
 class Ladder {
-    private val lines: ArrayList<Line>
-    private val players: ArrayList<Player>
+    var lines: ArrayList<Line>
+        private set
+    var players: ArrayList<Player>
+        private set
 
     constructor(players: ArrayList<Player>, ladderHeight: Int) {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
@@ -10,6 +12,11 @@ class Ladder {
         }
         this.players = players
         this.lines = getLines(players, ladderHeight)
+    }
+
+    constructor(players: ArrayList<Player>, lines: ArrayList<Line>) {
+        this.players = players
+        this.lines = lines
     }
 
     private fun getLines(players: ArrayList<Player>, ladderHeight: Int): ArrayList<Line> {

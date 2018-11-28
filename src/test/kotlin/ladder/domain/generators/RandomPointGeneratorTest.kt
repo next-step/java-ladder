@@ -9,4 +9,12 @@ class RandomPointGeneratorTest {
         val points = RandomPointGenerator.generator(5)
         assertThat(points).hasSize(5)
     }
+
+    @Test
+    fun `라인생성`() {
+        val points = RandomPointGenerator.generator2(10)
+        points.forEach {
+            println(it)
+        }
+    }
 }
