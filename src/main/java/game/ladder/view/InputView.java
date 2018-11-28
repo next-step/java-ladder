@@ -15,7 +15,7 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         final List<Name> names = Spliter.split(scanner.nextLine()).stream().map(Name::new).collect(Collectors.toList());
         TreeSet<Participant> participants = IntStream.range(0, names.size())
-                .mapToObj(i -> new Participant(names.get(i), new Position(i + 1)))
+                .mapToObj(i -> new Participant(names.get(i), new Position(i)))
                 .collect(Collectors.toCollection(TreeSet::new));
 
         return new Participants(participants);

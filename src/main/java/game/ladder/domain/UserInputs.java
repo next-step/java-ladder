@@ -32,13 +32,13 @@ public class UserInputs {
         return expects.getStringExpects();
     }
 
-    public GameResults makeGameResults(Name name, Lines lines) {
+    public GameResults makeGameResults(Name name, LadderLines lines) {
         List<GameResult> gameResults = makeGameResultList(name, lines);
 
         return new GameResults(gameResults);
     }
 
-    private List<GameResult> makeGameResultList(Name name, Lines lines) {
+    private List<GameResult> makeGameResultList(Name name, LadderLines lines) {
         if(name.equals(Name.ALL)) {
             return makeAllGameResult(lines);
         }
@@ -46,7 +46,7 @@ public class UserInputs {
         return getExpectList(name, lines).stream().map(expect -> new GameResult(name, expect)).collect(Collectors.toList());
     }
 
-    private List<GameResult> makeAllGameResult(Lines lines) {
+    private List<GameResult> makeAllGameResult(LadderLines lines) {
         List<GameResult> gameResultList = new ArrayList<>();
 
         for (Name name : this.participants.getAllNames()) {
@@ -57,10 +57,11 @@ public class UserInputs {
         return gameResultList;
     }
 
-    private List<Expect> getExpectList(Name name, Lines lines) {
+    private List<Expect> getExpectList(Name name, LadderLines lines) {
         List<Position> positions = participants.getPositions(name);
         List<Position> resultPositions = positions.stream().map(lines::computeResultPosition).collect(Collectors.toList());
 
         return resultPositions.stream().map(this.expects::getExpect).collect(Collectors.toList());
     }
+
 }

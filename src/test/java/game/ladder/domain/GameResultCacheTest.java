@@ -12,10 +12,6 @@ public class GameResultCacheTest {
 
     @Test
     public void 만들기() {
-        final LinesGenerator generator = new LinesGenerator(new Height(5));
-        final Participants participants = createParticipants();
-        final Expects expects = createExpects();
-
         Ladder ladder = createLadder();
 
         GameResultCache gameResultCache = new GameResultCache(ladder);
@@ -41,12 +37,12 @@ public class GameResultCacheTest {
     }
 
     private Ladder createLadder() {
-        final LinesGenerator generator = new LinesGenerator(new Height(5));
         final Participants participants = createParticipants();
         final Expects expects = createExpects();
         final UserInputs userInputs = new UserInputs(participants, expects);
+        final LadderLines lines = new LadderLines(new Height(5), userInputs.partipantsSize());
 
-        return new Ladder(generator, userInputs);
+        return new Ladder(userInputs, lines);
     }
 
     private Participants createParticipants() {

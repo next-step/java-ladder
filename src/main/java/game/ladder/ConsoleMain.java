@@ -1,3 +1,5 @@
+package game.ladder;
+
 import game.ladder.domain.*;
 import game.ladder.view.InputView;
 import game.ladder.view.OutputView;
@@ -10,9 +12,8 @@ public class ConsoleMain {
         UserInputs userInputs = new UserInputs(participants, expects);
 
         Height height = InputView.readHeight();
-        LinesGenerator linesGenerator = new LinesGenerator(height);
 
-        Ladder ladder = new Ladder(linesGenerator, userInputs);
+        Ladder ladder = new Ladder(userInputs, new LadderLines(height, userInputs.partipantsSize()));
 
         OutputView.printLadder(ladder);
 
