@@ -34,15 +34,15 @@ public class RandomBridgeSupplier implements BridgesSupplier {
         }
 
         public static List<Boolean> getRandomBooleans(int size) {
-            List<Boolean> booleans = RANDOM.ints(size, 0, 10)
+            List<Boolean> booleans = RANDOM.ints(size - 1, 0, 10)
                     .mapToObj(i -> i > 6).collect(toList());
 
             return isBooleansConnected(booleans) ? getRandomBooleans(size) : booleans;
         }
 
-        public static List<Bridge> randomBooleansToBridges(List<Boolean> isBridgeExist, int row) {
-            return IntStream.range(0, isBridgeExist.size())
-                    .filter(isBridgeExist::get)
+        public static List<Bridge> randomBooleansToBridges(List<Boolean> rawBridges, int row) {
+            return IntStream.range(0, rawBridges.size())
+                    .filter(rawBridges::get)
                     .mapToObj(i -> Bridge.of(i, row))
                     .collect(toList());
         }

@@ -1,13 +1,13 @@
 package net.chandol.domain.player;
 
-import net.chandol.value.Positive;
-
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
-public class Players {
+public class Players implements Iterable<Player> {
     private List<Player> players;
 
     public Players(List<Player> players) {
@@ -22,7 +22,22 @@ public class Players {
         return players;
     }
 
-    public Positive size() {
-        return Positive.pos(players.size());
+    public Player getPlayer(int index) {
+        return players.get(index);
     }
+
+    public int size() {
+        return players.size();
+    }
+
+    @Override
+    public Iterator<Player> iterator() {
+        return this.players.iterator();
+    }
+
+    public Stream<Player> stream() {
+        return this.players.stream();
+    }
+
+
 }

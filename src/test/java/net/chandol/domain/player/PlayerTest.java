@@ -24,4 +24,10 @@ public class PlayerTest {
         assertThat(test.getName()).isEqualTo("test");
     }
 
+    @Test
+    public void 이름길이반환() {
+        Player player = new Player("test");
+        assertThat(player.nameLength()).isEqualTo(4);
+    }
+
 }
