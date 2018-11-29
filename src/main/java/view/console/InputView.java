@@ -41,13 +41,16 @@ public class InputView {
         return playerName;
     }
 
-    public static List<LadderLine> level(List<Player> players) {
+    public static LadderLevel getLevel() {
         System.out.println("\n실행할 사다리의 난이도는?");
         Scanner sc = new Scanner(System.in);
         String level = sc.nextLine();
-        int randomValue = LadderLevel.findLevel(level).getRandom();
+        return LadderLevel.findLevel(level);
+    }
+
+    public static List<LadderLine> createLadder(List<Player> players, int ladderCount) {
         List<LadderLine> ladderLines = new ArrayList<>();
-        for(int i = 0; i < randomValue; i++){
+        for(int i = 0; i < ladderCount; i++){
             ladderLines.add(LadderLine.init(players.size()));
         }
         return ladderLines;
