@@ -1,12 +1,12 @@
 package ladder.domain
 
 class Ladder {
-    var lines: ArrayList<Line>
+    var lines: List<Line>
         private set
-    var players: ArrayList<Player>
+    var players: List<Player>
         private set
 
-    constructor(players: ArrayList<Player>, ladderHeight: Int) {
+    constructor(players: List<Player>, ladderHeight: Int) {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw IllegalArgumentException("사다리 높이는 최소 1 이상이어야 합니다.")
         }
@@ -14,14 +14,14 @@ class Ladder {
         this.lines = getLines(players, ladderHeight)
     }
 
-    constructor(players: ArrayList<Player>, lines: ArrayList<Line>) {
+    constructor(players: List<Player>, lines: List<Line>) {
         this.players = players
         this.lines = lines
     }
 
-    private fun getLines(players: ArrayList<Player>, ladderHeight: Int): ArrayList<Line> {
+    private fun getLines(players: List<Player>, ladderHeight: Int): List<Line> {
         val lines = arrayListOf<Line>()
-        for (i in 0..ladderHeight) {
+        for (i in 0 until ladderHeight) {
             lines.add(Line(players.size))
         }
         return lines

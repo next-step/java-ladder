@@ -1,14 +1,16 @@
 package ladder.view
 
 import ladder.domain.Ladder
-import ladder.domain.LadderResult
 
 object ResultView {
     fun showLadder(ladder: Ladder) {
         println(ladder.drawLadder())
     }
 
-    fun showResult(ladderResult: LadderResult) {
-//        println(ladderResult.showResult())
+    fun showResult(ladderResult: String) {
+        val result = StringBuffer("실행 결과\n").apply {
+            append(ladderResult)
+        }.toString()
+        println(result)
     }
 }

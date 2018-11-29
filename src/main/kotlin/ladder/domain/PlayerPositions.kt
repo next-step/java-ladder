@@ -2,11 +2,11 @@ package ladder.domain
 
 class PlayerPositions {
     private val positions: MutableMap<Player, Int> = hashMapOf()
-    constructor(players: ArrayList<Player>) {
+    constructor(players: List<Player>) {
         initPositions(players)
     }
 
-    private fun initPositions(players: ArrayList<Player>) {
+    private fun initPositions(players: List<Player>) {
         players.forEachIndexed { index, player ->
             positions[player] = index
         }
@@ -31,4 +31,10 @@ class PlayerPositions {
     fun allPlayers(): List<Player> {
         return positions.map { it.key }
     }
+
+    override fun toString(): String {
+        return "PlayerPositions(positions=$positions)"
+    }
+
+
 }

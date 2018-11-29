@@ -3,10 +3,10 @@ package ladder.domain
 import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
 
-enum class Direction(private val point: Point) {
-    LEFT(Point(TRUE, FALSE)),
-    RIGHT(Point(FALSE, TRUE)),
-    CURRENT(Point(FALSE, FALSE));
+enum class Direction(private val point: Point, val position: Int) {
+    LEFT(Point(TRUE, FALSE), -1),
+    RIGHT(Point(FALSE, TRUE), 1),
+    CURRENT(Point(FALSE, FALSE), 0);
 
     private fun hasPoint(point: Point): Boolean {
         return this.point == point

@@ -1,24 +1,24 @@
 package ladder.domain
 
 import ladder.domain.generators.RandomPointGenerator
-import java.util.*
 
 class Line {
-    private val points: ArrayList<Point>
+    var points: List<Point>
+        private set
 
     constructor(countOfPerson: Int) {
-        this.points = RandomPointGenerator.generator2(countOfPerson)
+        this.points = RandomPointGenerator.generator(countOfPerson)
     }
 
-    constructor(points: ArrayList<Point>) {
+    constructor(points: List<Point>) {
         this.points = points
     }
 
     fun drawLine(): String {
         val line = StringBuilder(START_EMPTY_SPACES + VERTICAL)
         for (i in 0 until points.size) {
-            line.append(drawFillToEmptyRoom(getFillCharacter(points[i])))
             line.append(VERTICAL)
+            line.append(drawFillToEmptyRoom(getFillCharacter(points[i])))
         }
         return line.toString()
     }
@@ -32,12 +32,18 @@ class Line {
     }
 
     private fun getFillCharacter(point: Point): String {
+        point.next()
         val direction = Direction.findDirection(point)
         return if (direction == Direction.RIGHT) DASH else SPACE
     }
 
-    private fun getFillCharacter(isPointed: Boolean): String {
-        return if (isPointed) DASH else SPACE
+    fun position(index: Int): Int {
+        val direction = Direction.findDirection(points[index])
+        return direction.position
+    }
+
+    override fun toString(): String {
+        return "Line(points=$points)"
     }
 
     companion object {

@@ -11,6 +11,8 @@ class Player {
         this.name = name
     }
 
+
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -20,6 +22,10 @@ class Player {
     }
 
     override fun hashCode(): Int = name.hashCode()
+
+    override fun toString(): String {
+        return "Player(name='$name')"
+    }
 
     companion object {
         const val MAX_NAME_SIZE = 5

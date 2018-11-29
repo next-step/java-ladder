@@ -9,7 +9,7 @@ class LadderTest {
 
     @Before
     fun setup() {
-        ladder = Ladder(dummyPlayers(), 3)
+        ladder = Ladder(dummyPlayers(), 5)
     }
 
     @Test(expected = IllegalArgumentException::class)
