@@ -1,29 +1,31 @@
 package Ladder;
 
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
+import java.util.Map;
 
 public class LadderResult {
-    private LadderGame ladderGame;
-    private Set<Person> personSets;
 
-    public LadderResult(LadderGame ladderGame) {
-        this.ladderGame = ladderGame;
-        this.personSets = ladderGame.getKeySet();
+    private Map<Person, Result> gameResult = new HashMap<>();
+
+    public LadderResult(Map<Person, Result> gameResult) {
+        this.gameResult.putAll(gameResult);
     }
 
     public String toString() {
         StringBuilder allResult = new StringBuilder();
-        Iterator<Person> persons = personSets.iterator();
+        Iterator<Person> persons = gameResult.keySet().iterator();
         while (persons.hasNext()) {
             Person person = persons.next();
-            allResult.append(person.toString()).append(" : ").append(ladderGame.getOneResult(person).toString());
+            allResult.append(person.toString()).append(" : ").append(gameResult.get(person).toString());
             allResult.append("\n");
         }
         return allResult.toString();
     }
 
     public Result oneResult(String person) throws Exception {
-        return ladderGame.getOneResult(new Person(person));
+        return gameResult.get(new Person(person));
     }
+
+
 }

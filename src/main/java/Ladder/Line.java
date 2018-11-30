@@ -9,6 +9,7 @@ public class Line {
     private static final int BEFORE_COUNT = 1;
     private static final Boolean LINEAR = true;
     private static final Boolean BLANK = false;
+
     private List<Point> points = new ArrayList<>();
     private int count;
 
@@ -47,31 +48,49 @@ public class Line {
         return lineString.toString();
     }
 
+    //한 라인마다 결과값을 구하는거! 현재위 위치를 주고 그 위치에서 어디로 가야할지 정하는거!
     public int decideDestination(int position) {
-        if (position != BEGIN_POINT && position != points.size()) {
-            position = compareMiddleLine(position - BEFORE_COUNT, position);
-        }
+            if(position==BEGIN_POINT) {
+                return isRight(position);
+            }
+            if(position==points.size()){
+                return isLeft(position);
+            }
+            int before_position = position - BEFORE_COUNT;
 
-        if (position == BEGIN_POINT && points.get(position).equals(Point.of(LINEAR))) {
-             position+=1;
+            return where(before_position, position);
 
-        }
-        if (position == points.size() && points.get(position - 1).equals(Point.of(LINEAR))) {
-
-             position-=1;
-
+    }
+    //맨처음 포인트에 있는 데이터일 경우
+    public int isRight(int position){
+        if(points.get(position).equals(Point.of(LINEAR))){
+            return ++position;
         }
         return position;
     }
 
-    public int compareMiddleLine(int beforePosition, int position) {
-        if (points.get(beforePosition).equals(Point.of(LINEAR))) {
-            position-=1;
-        }
-        if (points.get(position).equals(Point.of(LINEAR))) {
-            position+=1;
+    //맨 마지막에 있는 포인트에 있는 데이터일 경우
+    public int isLeft(int position){
+        if(points.get(position - BEFORE_COUNT).equals(Point.of(LINEAR))){
+            return --position;
         }
         return position;
+    }
+
+    //중간에 있는 포인트들 일 경우
+    public int where(int before_position ,int position){
+        if(points.get(before_position).equals(Point.of(LINEAR))){
+            return --position;
+        }
+        if(points.get(position).equals(Point.of(LINEAR))){
+            return ++position;
+        }
+        return position;
+
+    }
+
+    public void setPoints(List<Point> points) {
+        this.points = points;
     }
 
     @Override

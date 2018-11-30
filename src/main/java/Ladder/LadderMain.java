@@ -20,9 +20,7 @@ public class LadderMain {
 
         LadderGame ladderGame = new LadderGame(lines);
 
-        ladderGame.calculateResult(persons, results);
-
-        LadderResult ladderResult = new LadderResult(ladderGame);
+        LadderResult ladderResult = ladderGame.calculateResult(persons, results);
 
         while (NOT_ALL) {
             String name = InputView.inputResultPersonName();

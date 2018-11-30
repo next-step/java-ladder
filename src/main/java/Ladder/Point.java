@@ -18,7 +18,7 @@ public class Point {
         POINT.put(false, new Point(false));
     }
 
-    static Point of(Boolean value) {
+    public static Point of(Boolean value) {
         return POINT.get(value);
     }
 
