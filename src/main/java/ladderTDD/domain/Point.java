@@ -1,5 +1,7 @@
 package ladderTDD.domain;
 
+import ladderTDD.domain.levels.LadderLevel;
+
 public class Point {
 
     private static final int DEFAULT_ZERO = 0;
@@ -34,8 +36,8 @@ public class Point {
         return new Point(this.index + DEFAULT_ONE, this.direction.next(right));
     }
 
-    public Point next() {
-        return new Point(this.index + DEFAULT_ONE, this.direction.next());
+    public Point next(LadderLevel ladderLevel) {
+        return new Point(this.index + DEFAULT_ONE, this.direction.next(ladderLevel));
     }
 
     public Point last(int lastIndex) {

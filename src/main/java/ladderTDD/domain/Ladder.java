@@ -1,5 +1,7 @@
 package ladderTDD.domain;
 
+import ladderTDD.domain.levels.LadderLevel;
+import ladderTDD.domain.levels.Level;
 import ladderTDD.player.People;
 
 import java.util.ArrayList;
@@ -14,10 +16,10 @@ public class Ladder {
         this.lines = ladderLines;
     }
 
-    public static Ladder initLadder(int height, People people) {
+    public static Ladder initLadder(LadderLevel ladderLevel, People people) {
         List<LadderLine> ladderLines = new ArrayList<>();
-        for (int i = DEFAULT_ZERO; i < height; i++) {
-            ladderLines.add(LadderLine.init(people.peopleCount()));
+        for (int i = DEFAULT_ZERO; i < ladderLevel.getHeight(); i++) {
+            ladderLines.add(LadderLine.init(ladderLevel, people.peopleCount()));
         }
         return new Ladder(ladderLines);
     }

@@ -1,5 +1,6 @@
 package ladderTDD.domain;
 
+import ladderTDD.domain.levels.BasicLadderLevel;
 import org.junit.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -20,14 +21,14 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(new BasicLadderLevel());
         assertThat(next, is(Direction.of(TRUE, FALSE)));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            Direction.first(FALSE).next(new BasicLadderLevel());
         }
     }
 

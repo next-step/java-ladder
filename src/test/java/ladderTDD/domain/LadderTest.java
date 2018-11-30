@@ -1,5 +1,6 @@
 package ladderTDD.domain;
 
+import ladderTDD.domain.levels.BasicLadderLevel;
 import ladderTDD.player.People;
 import org.junit.Test;
 
@@ -9,8 +10,7 @@ public class LadderTest {
 
     @Test
     public void init() {
-        int height = 5;
-        System.out.println(Ladder.initLadder(height, new People("a,b,c")));
+        System.out.println(Ladder.initLadder(new BasicLadderLevel(), new People("a,b,c")));
     }
 
 }

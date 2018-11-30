@@ -1,5 +1,7 @@
 package ladderTDD.domain;
 
+import ladderTDD.domain.levels.BasicLadderLevel;
+import ladderTDD.domain.levels.LadderLevel;
 import org.junit.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -35,7 +37,8 @@ public class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        LadderLevel ladderLevel = new BasicLadderLevel();
+        Point second = Point.first(TRUE).next(ladderLevel);
         assertThat(second.move(), is(0));
     }
 

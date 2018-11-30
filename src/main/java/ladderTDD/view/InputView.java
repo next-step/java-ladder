@@ -16,11 +16,11 @@ public class InputView {
         return new People(scanner.nextLine());
     }
 
-    public static int getLadderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+    public static String getLadderHeight() {
+        System.out.println("실행할 사다리의 난이도는?");
         Scanner scanner = new Scanner(System.in);
 
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 
     public static String getResult() {

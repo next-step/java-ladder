@@ -1,6 +1,7 @@
 package ladderTDD.domain;
 
 import ladder.utils.GenerateRandomUtil;
+import ladderTDD.domain.levels.LadderLevel;
 
 public class Direction {
 
@@ -48,11 +49,11 @@ public class Direction {
         return false;
     }
 
-    public Direction next() {
+    public Direction next(LadderLevel ladderLevel) {
         if (this.right) {
             return of(this.right, false);
         }
-        return of(this.right, GenerateRandomUtil.generateRandomBoolean());
+        return of(this.right, ladderLevel.generateRandomValue());
     }
 
     public Direction next(boolean right) {
