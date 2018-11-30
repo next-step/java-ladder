@@ -5,6 +5,10 @@ import java.util.Arrays;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
+/**
+ * step4 start
+ */
+
 public enum DirectionEnum {
     SYAY(FALSE, FALSE),
     LEFT(TRUE, FALSE),
