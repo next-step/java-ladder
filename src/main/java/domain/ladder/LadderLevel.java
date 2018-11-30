@@ -3,10 +3,10 @@ package domain.ladder;
 import java.util.Arrays;
 import java.util.Random;
 
-public enum  LadderLevel {
-    Beginning("상", new Random().nextInt(6) + 6, 20),
-    Intermediate("중", new Random().nextInt(4) + 4, 10),
-    Advanced("하", new Random().nextInt(2) + 2, 5);
+public enum LadderLevel {
+    Beginning("상", new Random().nextInt(10) + 10, 20),
+    Intermediate("중", new Random().nextInt(20) + 20, 10),
+    Advanced("하", new Random().nextInt(30) + 50, 5);
 
     private String level;
     private int random;

@@ -40,8 +40,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next() {
-        return Point.of(index + 1, direction.next());
+    public Point next(int random) {
+        return Point.of(index + 1, direction.next(random));
     }
 
     public Point next(Boolean right) {

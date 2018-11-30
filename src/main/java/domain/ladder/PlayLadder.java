@@ -13,7 +13,7 @@ public class PlayLadder {
         List<String> result = InputView.result();
 
         LadderLevel ladderLevel = InputView.getLevel();
-        List<LadderLine> ladderLines = InputView.createLadder(players, ladderLevel.getLadderCount());
+        List<LadderLine> ladderLines = InputView.createLadder(players, ladderLevel);
 
         LadderManage ladderManage = new LadderManage(players, ladderLines);
 
