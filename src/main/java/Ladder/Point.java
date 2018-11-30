@@ -1,3 +1,5 @@
+package Ladder;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -7,16 +9,16 @@ public class Point {
     private static final Map<Boolean, Point> POINT = new HashMap<>();
     private boolean point;
 
-    public Point(boolean point){
+    public Point(boolean point) {
         this.point = point;
     }
 
-    static{
+    static {
         POINT.put(true, new Point(true));
         POINT.put(false, new Point(false));
     }
 
-    static Point of(Boolean value){
+    public static Point of(Boolean value) {
         return POINT.get(value);
     }
 
@@ -35,9 +37,9 @@ public class Point {
 
     @Override
     public String toString() {
-        if(point){
+        if (point) {
             return "-----|";
         }
-        return "-----";
+        return "     |";
     }
 }

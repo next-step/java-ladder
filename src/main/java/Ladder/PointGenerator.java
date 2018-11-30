@@ -1,3 +1,5 @@
+package Ladder;
+
 import java.util.Random;
 
 public class PointGenerator {
