@@ -1,9 +1,6 @@
 package view.console;
 
-import domain.ladder.LadderLine;
-import domain.ladder.Line;
-import domain.ladder.Player;
-import domain.ladder.RandomPoint;
+import domain.ladder.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,17 +17,6 @@ public class InputView {
         return players;
     }
 
-    public static List<LadderLine> ladderCount(List<Player> players) {
-        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
-        Scanner sc = new Scanner(System.in);
-        int ladderCount = sc.nextInt();
-        List<LadderLine> ladderLines = new ArrayList<>();
-        for(int i = 0; i < ladderCount; i++){
-            ladderLines.add(LadderLine.init(players.size()));
-        }
-        return ladderLines;
-    }
-
     public static List<String> result(){
         System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         Scanner sc = new Scanner(System.in);
@@ -42,5 +28,20 @@ public class InputView {
         Scanner sc = new Scanner(System.in);
         String playerName = sc.nextLine();
         return playerName;
+    }
+
+    public static LadderLevel getLevel() {
+        System.out.println("\n실행할 사다리의 난이도는?");
+        Scanner sc = new Scanner(System.in);
+        String level = sc.nextLine();
+        return LadderLevel.findLevel(level);
+    }
+
+    public static List<LadderLine> createLadder(List<Player> players, LadderLevel ladderLevel) {
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for(int i = 0; i < ladderLevel.getLadderCount(); i++){
+            ladderLines.add(LadderLine.init(players.size(), ladderLevel.getRandom()));
+        }
+        return ladderLines;
     }
 }

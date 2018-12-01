@@ -22,11 +22,11 @@ public class Direction {
         return of(FALSE, right);
     }
 
-    public Direction next() {
+    public Direction next(int random) {
         if(this.right)
             return next(FALSE);
 
-        return next(generatePoint());
+        return next(generatePoint(random));
     }
 
     public Direction next(Boolean nextRight) {

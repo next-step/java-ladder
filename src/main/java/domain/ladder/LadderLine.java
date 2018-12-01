@@ -14,10 +14,10 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine init(int sizeOfPerson) {
+    public static LadderLine init(int sizeOfPerson, int random) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(sizeOfPerson, points, point);
+        Point point = initFirst(points, random);
+        point = initBody(sizeOfPerson, points, point, random);
         initLast(points, point);
         return new LadderLine(points);
     }
@@ -27,16 +27,16 @@ public class LadderLine {
         points.add(point);
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point, int random) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(random);
             points.add(point);
         }
         return point;
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private static Point initFirst(List<Point> points, int random) {
+        Point point = Point.first(generatePoint(random));
         points.add(point);
         return point;
     }
