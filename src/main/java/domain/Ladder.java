@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Ladder {
     ArrayList<Line> ladder;
@@ -23,5 +22,18 @@ public class Ladder {
         ArrayList<Line> newLadder = new ArrayList<>();
         IntStream.range(0, depth).forEach(i -> newLadder.add(Line.from(length)));
         return new Ladder(newLadder);
+    }
+
+    public ArrayList<Line> getLadder() {
+        return ladder;
+    }
+
+    public ArrayList<Integer> followLadder() {
+        ArrayList<Integer> result = new ArrayList<>();
+        for(Line line : ladder) {
+            int dot = 0;
+            result = line.processLining(dot);
+        }
+        return result;
     }
 }

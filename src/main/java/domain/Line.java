@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 public class Line implements LineStrategy {
     private ArrayList<Boolean> points = new ArrayList<>();
+    ArrayList<Integer> resultBox = new ArrayList<>();
 
     private Line (int countOfPerson) {
         // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
@@ -21,10 +22,20 @@ public class Line implements LineStrategy {
         return new Line(countOfPerson);
     }
 
+    boolean canMove(int j) {
+        if(points.get(j)) {
+            return true;
+        }
+        return false;
+    }
+
     private void LoopLine(int countOfPerson, Random rand) {
         IntStream.range(1, countOfPerson-1).forEach(i -> {
             points.add(false);
-            hasLineBefore(rand, i);
+            hasLineBefore (rand, i);
+        });
+        IntStream.range(0, countOfPerson).forEach(i -> {
+            resultBox.add(i);
         });
     }
 
@@ -52,6 +63,33 @@ public class Line implements LineStrategy {
             }
         }
         return str;
+    }
+
+    public void followLine(int dot, int j) {
+        if(canMove(j)) {
+            resultBox.set(dot, resultBox.get(dot) + 1);
+        }
+    }
+
+    public ArrayList<Integer> processLining(int dot) {
+        for(int j : resultBox) {
+            followLine(dot, j);
+            if(j != 0) {
+                followBeforeLine(dot, j-1);
+            }
+            dot++;
+        }
+        return resultBox;
+    }
+
+    public void followBeforeLine(int dot, int j) {
+        if(canMove(j)) {
+            resultBox.set(dot, resultBox.get(dot) - 1);
+        }
+    }
+
+    public ArrayList<Boolean> getPoints() {
+        return points;
     }
 
     @Override
