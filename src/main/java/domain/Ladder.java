@@ -1,6 +1,8 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
     ArrayList<Line> ladder;
@@ -19,9 +21,7 @@ public class Ladder {
 
     public static Ladder from(int depth, int length) {
         ArrayList<Line> newLadder = new ArrayList<>();
-        for(int i = 0; i < depth; i++) {
-            newLadder.add(Line.from(length));
-        }
+        IntStream.range(0, depth).forEach(i -> newLadder.add(Line.from(length)));
         return new Ladder(newLadder);
     }
 }

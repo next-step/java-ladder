@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line implements LineStrategy {
     private ArrayList<Boolean> points = new ArrayList<>();
@@ -21,10 +22,10 @@ public class Line implements LineStrategy {
     }
 
     private void LoopLine(int countOfPerson, Random rand) {
-        for (int i = 1; i < countOfPerson - 1; i++) {
+        IntStream.range(1, countOfPerson-1).forEach(i -> {
             points.add(false);
             hasLineBefore(rand, i);
-        }
+        });
     }
 
     private void hasLineBefore(Random rand, int i) {

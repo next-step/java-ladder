@@ -26,10 +26,10 @@ public class LineTest {
     public void 예외처리() {
         String str = "pobi,honux,crong,jk,exception";
         String arr[] = str.split(",");
-        for(String s : arr) {
+        Arrays.stream(arr).forEach(s -> {
             if(s.length() > 5 ) {
                 throw new IllegalArgumentException();
             }
-        }
+        });
     }
 }
