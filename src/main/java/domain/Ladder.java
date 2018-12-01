@@ -20,7 +20,7 @@ public class Ladder {
     public static Ladder from(int depth, int length) {
         ArrayList<Line> newLadder = new ArrayList<>();
         for(int i = 0; i < depth; i++) {
-            newLadder.add(new Line(length));
+            newLadder.add(Line.from(length));
         }
         return new Ladder(newLadder);
     }

@@ -7,22 +7,36 @@ import java.util.Random;
 public class Line implements LineStrategy {
     private ArrayList<Boolean> points = new ArrayList<>();
 
-    public Line (int countOfPerson) {
+    private Line (int countOfPerson) {
         // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
         Random rand = new Random();
         points.add(false);
-        if(rand.nextInt(10) > 5) {
-            points.set(0, true);
-        }
+        canAddLine(rand, 0);
+        LoopLine(countOfPerson, rand);
+        points.add(false);
+    }
+
+    public static Line from(int countOfPerson) {
+        return new Line(countOfPerson);
+    }
+
+    private void LoopLine(int countOfPerson, Random rand) {
         for (int i = 1; i < countOfPerson - 1; i++) {
             points.add(false);
-            if(rand.nextInt(10) > 5) {
-                if (points.get(i - 1) == false) {
-                    points.set(i, true);
-                }
-            }
+            hasLineBefore(rand, i);
         }
-        points.add(false);
+    }
+
+    private void hasLineBefore(Random rand, int i) {
+        if (points.get(i - 1) == false) {
+            canAddLine(rand, i);
+        }
+    }
+
+    private void canAddLine(Random rand, int i) {
+        if (rand.nextInt(10) > 5) {
+            points.set(i, true);
+        }
     }
 
     public String drawOrNot() {
