@@ -1,7 +1,9 @@
+import domain.Line;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,5 +33,35 @@ public class LineTest {
                 throw new IllegalArgumentException();
             }
         });
+    }
+
+    @Test
+    public void 왼쪽으로가기() {
+        int countOfPerson = 4;
+        Line line = Line.from(countOfPerson);
+        int checkPoint = 2;
+        int checkElement = 2;
+        line.moveLeft(checkPoint, checkElement);
+        if(line.canMove(checkPoint)) {
+            assertThat(line.getResultBox().get(checkPoint)).isEqualTo(1);
+        }
+        if(!line.canMove(checkPoint)) {
+            assertThat(line.getResultBox().get(checkPoint)).isEqualTo(2);
+        }
+    }
+
+    @Test
+    public void 오른쪽으로가기() {
+        int countOfPerson = 4;
+        Line line = Line.from(countOfPerson);
+        int checkPoint = 2;
+        int checkElement = 2;
+        line.moveRight(checkPoint, checkElement);
+        if(line.canMove(checkPoint)) {
+            assertThat(line.getResultBox().get(checkPoint)).isEqualTo(3);
+        }
+        if(!line.canMove(checkPoint)) {
+            assertThat(line.getResultBox().get(checkPoint)).isEqualTo(2);
+        }
     }
 }

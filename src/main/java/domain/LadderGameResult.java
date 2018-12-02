@@ -1,35 +1,35 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LadderGameResult {
 
-    Map<String, Integer> map = new HashMap<>();
+    Map<String, Integer> ladderGameResult = new HashMap<>();
 
-    public LadderGameResult(String[] memberArr, ArrayList<Integer> integers) {
+    public LadderGameResult(String[] memberArr, List<Integer> resultOfGame) {
         int index = 0;
-        for(Integer i : integers) {
-            map.put(memberArr[index], i);
+        for(Integer i : resultOfGame) {
+            ladderGameResult.put(memberArr[index], i);
             index++;
         }
     }
 
-    public String showMemberResult(String s, String[] result) {
-        String string = "";
-        if(!s.equals("all")) {
-            return memberResult(s, result);
+    public String showMemberResult(String memberName, String[] result) {
+        String displayResult = "";
+        if(!memberName.equals("all")) {
+            return memberResult(memberName, result);
         }
-        for(Map.Entry<String, Integer> entry : map.entrySet()) {
-            string += entry.getKey() + " : " + result[entry.getValue()] + "\n";
+        for(Map.Entry<String, Integer> entry : ladderGameResult.entrySet()) {
+            displayResult += entry.getKey() + " : " + result[entry.getValue()] + "\n";
         }
-        return string;
+        return displayResult;
     }
 
     private String memberResult(String s, String[] result) {
         String string = "";
-        for(Map.Entry<String, Integer> entry : map.entrySet()) {
+        for(Map.Entry<String, Integer> entry : ladderGameResult.entrySet()) {
             if(s.equals(entry.getKey())) {
                 string = result[entry.getValue()];
             }

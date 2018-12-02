@@ -1,12 +1,14 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    ArrayList<Line> ladder;
+    List<Line> ladder;
 
-    private Ladder(ArrayList<Line> ladder) {
+    private Ladder(List<Line> ladder) {
         this.ladder = ladder;
     }
 
@@ -19,17 +21,17 @@ public class Ladder {
     }
 
     public static Ladder from(int depth, int length) {
-        ArrayList<Line> newLadder = new ArrayList<>();
+        List<Line> newLadder = new ArrayList<>();
         IntStream.range(0, depth).forEach(i -> newLadder.add(Line.from(length)));
         return new Ladder(newLadder);
     }
 
-    public ArrayList<Line> getLadder() {
-        return ladder;
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 
-    public ArrayList<Integer> followLadder() {
-        ArrayList<Integer> result = new ArrayList<>();
+    public List<Integer> followLadder() {
+        List<Integer> result = new ArrayList<>();
         for(Line line : ladder) {
             int dot = 0;
             result = line.processLining(dot);
