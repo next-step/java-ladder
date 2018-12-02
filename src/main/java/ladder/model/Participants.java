@@ -24,6 +24,10 @@ public class Participants {
         return participants.size();
     }
 
+    public Participant match(int index) {
+        return participants.get(index);
+    }
+
     public List<Participant> getParticipants() {
         return Collections.unmodifiableList(participants);
     }
