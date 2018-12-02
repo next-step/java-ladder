@@ -26,9 +26,6 @@ public class Line implements LineStrategy {
             points.add(false);
             hasLineBefore (rand, i);
         });
-        IntStream.range(0, countOfPerson).forEach(i -> {
-            resultBox.add(i);
-        });
     }
 
     private void hasLineBefore(Random rand, int i) {
@@ -64,29 +61,27 @@ public class Line implements LineStrategy {
         return false;
     }
 
-    public void moveRight(int dot, int j) {
+    public void moveRight(int dot, int j, List<Integer> result) {
         if(canMove(j)) {
-            resultBox.set(dot, resultBox.get(dot) + 1);
-            //return 1;
+            result.set(dot, result.get(dot) + 1);
         }
     }
 
-    public void moveLeft(int dot, int j) {
+    public void moveLeft(int dot, int j, List<Integer> result) {
         if(canMove(j)) {
-            resultBox.set(dot, resultBox.get(dot) - 1);
-            //return -1;
+            result.set(dot, result.get(dot) - 1);
         }
     }
 
-    public List<Integer> processLining(int dot) {
-        for(int j : resultBox) {
-            moveRight(dot, j);
+    public List<Integer> processLining(int dot, List<Integer> result) {
+        for(int j : result) {
+            moveRight(dot, j, result);
             if(j != 0) {
-                moveLeft(dot, j-1);
+                moveLeft(dot, j-1, result);
             }
             dot++;
         }
-        return resultBox;
+        return result;
     }
 
     public List<Boolean> getPoints() {

@@ -41,12 +41,13 @@ public class LineTest {
         Line line = Line.from(countOfPerson);
         int checkPoint = 2;
         int checkElement = 2;
-        line.moveLeft(checkPoint, checkElement);
+        List<Integer> checkPosition = new ArrayList<>(Arrays.asList(0, 1, 2, 3));
+        line.moveLeft(checkPoint, checkElement, checkPosition);
         if(line.canMove(checkPoint)) {
-            assertThat(line.getResultBox().get(checkPoint)).isEqualTo(1);
+            assertThat(checkPosition).isEqualTo(Arrays.asList(0, 1, 1, 3));
         }
         if(!line.canMove(checkPoint)) {
-            assertThat(line.getResultBox().get(checkPoint)).isEqualTo(2);
+            assertThat(checkPosition).isEqualTo(Arrays.asList(0, 1, 2, 3));
         }
     }
 
@@ -56,12 +57,13 @@ public class LineTest {
         Line line = Line.from(countOfPerson);
         int checkPoint = 2;
         int checkElement = 2;
-        line.moveRight(checkPoint, checkElement);
+        List<Integer> checkPosition = new ArrayList<>(Arrays.asList(0, 1, 2, 3));
+        line.moveRight(checkPoint, checkElement, checkPosition);
         if(line.canMove(checkPoint)) {
-            assertThat(line.getResultBox().get(checkPoint)).isEqualTo(3);
+            assertThat(checkPosition).isEqualTo(Arrays.asList(0, 1, 3, 3));
         }
         if(!line.canMove(checkPoint)) {
-            assertThat(line.getResultBox().get(checkPoint)).isEqualTo(2);
+            assertThat(checkPosition).isEqualTo(Arrays.asList(0, 1, 2, 3));
         }
     }
 }

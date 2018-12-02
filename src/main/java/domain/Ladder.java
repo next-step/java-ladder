@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     List<Line> ladder;
+    List<Integer> personsPosition = new ArrayList<>();
 
     private Ladder(List<Line> ladder) {
         this.ladder = ladder;
@@ -31,11 +32,16 @@ public class Ladder {
     }
 
     public List<Integer> followLadder() {
-        List<Integer> result = new ArrayList<>();
         for(Line line : ladder) {
             int dot = 0;
-            result = line.processLining(dot);
+            personsPosition = line.processLining(dot, personsPosition);
         }
-        return result;
+        return personsPosition;
+    }
+
+    public void initPosition(int countOfPerson) {
+        IntStream.range(0, countOfPerson).forEach(i -> {
+            personsPosition.add(i);
+        });
     }
 }

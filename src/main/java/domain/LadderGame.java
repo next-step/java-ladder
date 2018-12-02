@@ -9,6 +9,7 @@ public class LadderGame {
         String result[] = InputView.typeResult();
         int depth = InputView.typeDepth();
         Ladder ladder = Ladder.from(depth, memberArr.length);
+        ladder.initPosition(memberArr.length);
         ResultView.printLadder(ladder, memberArr);
         ResultView.printResult(result);
         LadderGameResult ladderGameResult = new LadderGameResult(memberArr, ladder.followLadder());
