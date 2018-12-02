@@ -1,19 +1,19 @@
-package domain;
+    package domain;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Line implements LineStrategy {
-    private ArrayList<Boolean> points = new ArrayList<>();
+    private List<Boolean> points = new ArrayList<>();
+
+    private List<Integer> resultBox = new ArrayList<>();
 
     private Line (int countOfPerson) {
         // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
         Random rand = new Random();
         points.add(false);
         canAddLine(rand, 0);
-        LoopLine(countOfPerson, rand);
+        loopLine(countOfPerson, rand);
         points.add(false);
     }
 
@@ -21,10 +21,10 @@ public class Line implements LineStrategy {
         return new Line(countOfPerson);
     }
 
-    private void LoopLine(int countOfPerson, Random rand) {
+    private void loopLine(int countOfPerson, Random rand) {
         IntStream.range(1, countOfPerson-1).forEach(i -> {
             points.add(false);
-            hasLineBefore(rand, i);
+            hasLineBefore (rand, i);
         });
     }
 
@@ -40,7 +40,7 @@ public class Line implements LineStrategy {
         }
     }
 
-    public String drawOrNot() {
+    String drawOrNot() {
         String str = "";
         for (Boolean bool : points) {
             str += "|";
@@ -52,6 +52,44 @@ public class Line implements LineStrategy {
             }
         }
         return str;
+    }
+
+    public boolean canMove(int j) {
+        if(points.get(j)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void moveRight(int dot, int j, List<Integer> result) {
+        if(canMove(j)) {
+            result.set(dot, result.get(dot) + 1);
+        }
+    }
+
+    public void moveLeft(int dot, int j, List<Integer> result) {
+        if(canMove(j)) {
+            result.set(dot, result.get(dot) - 1);
+        }
+    }
+
+    public List<Integer> processLining(int dot, List<Integer> result) {
+        for(int j : result) {
+            moveRight(dot, j, result);
+            if(j != 0) {
+                moveLeft(dot, j-1, result);
+            }
+            dot++;
+        }
+        return result;
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    public List<Integer> getResultBox() {
+        return Collections.unmodifiableList(resultBox);
     }
 
     @Override

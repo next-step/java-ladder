@@ -25,4 +25,20 @@ public class InputView {
         int depth = sc.nextInt();
         return depth;
     }
+
+    public static String[] typeResult() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String str = sc.nextLine();
+        return str.split(",");
+    }
+
+    public static String typePersonResult() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        String str = sc.nextLine();
+        return str;
+    }
 }
