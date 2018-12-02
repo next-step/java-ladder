@@ -1,33 +1,36 @@
 package ladder.domain
 
-import ladder.domain.generators.RandomPointGenerator
+class Point(private val position: Int,
+            private val direction: Direction) {
 
-class Point {
-    private val left: Boolean
-    private val right: Boolean
-
-    constructor(left: Boolean, right: Boolean) {
-        if (left && right) {
-            throw IllegalArgumentException("동시에 인접한 라인을 그릴 수 없습니다.")
+    fun move(): Int {
+        if (direction.isRight()) {
+            return position + 1
         }
-        this.left = left
-        this.right = right
-    }
 
-    fun next(nextRight: Boolean): Point {
-        return of(left = this.right, right = nextRight)
+        if (direction.isLeft()) {
+            return position - 1
+        }
+
+        return position
     }
 
     fun next(): Point {
-        if (this.right) {
-            return next(false)
-        }
-        val random = RandomPointGenerator.randomPoint()
-        return next(random)
+        return Point(position + 1, direction.next())
     }
 
+    fun next(right: Boolean): Point {
+        return Point(position + 1, direction.next(right))
+    }
+
+    fun last(): Point {
+        return Point(position + 1, direction.last())
+    }
+
+    fun getDirection() = direction
+
     override fun toString(): String {
-        return "Point(left=$left, right=$right)"
+        return "Point(position=$position, direction=$direction)"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -36,23 +39,21 @@ class Point {
 
         other as Point
 
-        if (left != other.left) return false
-        if (right != other.right) return false
+        if (position != other.position) return false
+        if (direction != other.direction) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = left.hashCode()
-        result = 31 * result + right.hashCode()
+        var result = position
+        result = 31 * result + direction.hashCode()
         return result
     }
 
     companion object {
-        fun of(left: Boolean, right: Boolean): Point = Point(left, right)
-
-        fun first(right: Boolean): Point = of(false, right)
-
-        fun last(left: Boolean): Point = of(left, false)
+        fun first(right: Boolean): Point {
+            return Point(0, Direction.first(right))
+        }
     }
 }

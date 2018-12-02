@@ -1,29 +1,29 @@
 package ladder.domain
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 class DirectionTest {
     @Test
-    fun `오른쪽`() {
-        val right = Direction.findDirection(Point(false, true))
-        Assertions.assertThat(right).isEqualTo(Direction.RIGHT)
+    fun `오른쪽 방향 생성`() {
+        val direction = Direction.of(false, true)
+        assertThat(direction.isRight()).isTrue()
     }
 
     @Test
-    fun `왼쪽`() {
-        val left = Direction.findDirection(Point(true, false))
-        Assertions.assertThat(left).isEqualTo(Direction.LEFT)
+    fun `왼쪽 방향 생성`() {
+        val direction = Direction.of(true, false)
+        assertThat(direction.isLeft()).isTrue()
     }
 
     @Test
-    fun `제자리`() {
-        val current = Direction.findDirection(Point(false, false))
-        Assertions.assertThat(current).isEqualTo(Direction.CURRENT)
+    fun `현재 방향 생성`() {
+        val direction = Direction.of(false, false)
+        assertThat(direction.isCurrent()).isTrue()
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun `비정상적인 방향 생성에러`() {
-        Direction.findDirection(Point(true, true))
+    fun `잘못된 방향 입력시 에러`() {
+        Direction.of(true, true)
     }
 }

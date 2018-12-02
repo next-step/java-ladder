@@ -7,7 +7,7 @@ class Line {
         private set
 
     constructor(countOfPerson: Int) {
-        this.points = RandomPointGenerator.generator(countOfPerson)
+        this.points = RandomPointGenerator.generator2(countOfPerson)
     }
 
     constructor(points: List<Point>) {
@@ -15,11 +15,18 @@ class Line {
     }
 
     fun drawLine(): String {
-        val line = StringBuilder(START_EMPTY_SPACES + VERTICAL)
+        val line = StringBuilder(START_EMPTY_SPACES)
+
+        if (points.size == 1) {
+            line.append(VERTICAL)
+            return line.toString()
+        }
+
         for (i in 0 until points.size) {
             line.append(VERTICAL)
             line.append(drawFillToEmptyRoom(getFillCharacter(points[i])))
         }
+
         return line.toString()
     }
 
@@ -33,13 +40,8 @@ class Line {
 
     private fun getFillCharacter(point: Point): String {
         point.next()
-        val direction = Direction.findDirection(point)
-        return if (direction == Direction.RIGHT) DASH else SPACE
-    }
-
-    fun position(index: Int): Int {
-        val direction = Direction.findDirection(points[index])
-        return direction.position
+        val direction = point.getDirection()
+        return if (direction.isRight()) DASH else SPACE
     }
 
     override fun toString(): String {

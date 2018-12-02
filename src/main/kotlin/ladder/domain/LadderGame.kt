@@ -27,8 +27,8 @@ class LadderGame(private val values: String,
         val lines = getLadder().lines
         val players = getPlayers()
         lines.forEach { line ->
-            val position = line.position(index)
-            playerPositions.move(players[index], position)
+//            val position = line.position(index)
+//            playerPositions.move(players[index], position)
         }
     }
 

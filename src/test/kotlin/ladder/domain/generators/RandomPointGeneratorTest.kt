@@ -9,4 +9,10 @@ class RandomPointGeneratorTest {
         val points = RandomPointGenerator.generator(10)
         assertThat(points).hasSize(10)
     }
+
+    @Test
+    fun `포인트 자동생성` () {
+        val point = RandomPointGenerator.generator2(5)
+        println(point)
+    }
 }
