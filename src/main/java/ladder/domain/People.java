@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class People {
 
     private static final String SEPARATOR = ",";
+
     private List<Person> people;
 
     private People(String line) {
@@ -24,7 +25,7 @@ public class People {
         return people;
     }
 
-    public int peopleCount() {
+    public int size() {
         return people.size();
     }
 

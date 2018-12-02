@@ -9,7 +9,7 @@ public class PersonPosition {
 
     private PersonPosition(People people) {
         personPositions = new HashMap<>();
-        for (int i = 0; i < people.peopleCount(); i++) {
+        for (int i = 0; i < people.size(); i++) {
             personPositions.put(people.findPersonBy(i), Position.from(i));
         }
     }
@@ -22,7 +22,7 @@ public class PersonPosition {
         return personPositions;
     }
 
-    public void calculatePersonPosition(Ladder ladder){
+    public void calculateFinalPosition(Ladder ladder){
         for (Person person : personPositions.keySet()) {
             Position position = ladder.calculatePosition(personPositions.get(person));
             personPositions.put(person, position);

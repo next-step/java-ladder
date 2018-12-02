@@ -3,12 +3,12 @@ package ladder.domain;
 import org.junit.Before;
 import org.junit.Test;
 
-import static ladder.domain.Line.from;
+import static ladder.domain.LadderLine.from;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-    private Line line;
+    private LadderLine line;
 
     @Before
     public void setUp() throws Exception {

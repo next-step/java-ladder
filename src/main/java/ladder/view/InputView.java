@@ -23,7 +23,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String getSelectResultPerson() {
+    public static String getResultPerson() {
         System.out.println("\n" +
                 "결과를 보고 싶은 사람은?");
         Scanner scanner = new Scanner(System.in);

@@ -6,34 +6,30 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 
-public class Line {
+public class LadderLine {
 
     private static final int START_POINT = 0;
     private static final int DEFAULT_ONE = 1;
 
     private List<Point> points;
 
-    private Line (int countOfPerson) {
+    private LadderLine(int countOfPerson) {
         points = new ArrayList<>();
         int countOfLine = countOfPerson - DEFAULT_ONE;
         IntStream.range(START_POINT, countOfLine)
                 .forEach(count -> points.add(makePoints(count)));
     }
 
-    private Line(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public static Line from (int countOfPerson) {
-        return new Line(countOfPerson);
+    public static LadderLine from (int countOfPerson) {
+        return new LadderLine(countOfPerson);
     }
 
-    public static Line from (List<Point> points) {
-        return new Line(points);
-    }
-
-    public List<Point> getPoints() {
-        return points;
+    public static LadderLine from (List<Point> points) {
+        return new LadderLine(points);
     }
 
     public int pointCount() {

@@ -13,14 +13,14 @@ public class PersonPositionTest {
     @Test
     public void 사다리게임_테스트_2X1(){
         People people= People.from("AAA,BBB");
-        Ladder ladder = Ladder.from(1);
-        ladder.generateLadder(people, a -> {
+        Ladder ladder = Ladder.from(1,people.size());
+        ladder.generateLadder(a -> {
             List<Point> points = Arrays.asList(new Point(Boolean.TRUE));
-            return Line.from(points);
+            return LadderLine.from(points);
         });
 
         PersonPosition personPosition = PersonPosition.from(people);
-        personPosition.calculatePersonPosition(ladder);
+        personPosition.calculateFinalPosition(ladder);
 
         Map<Person, Position> personPositions = personPosition.getPersonPositions();
 
@@ -31,14 +31,14 @@ public class PersonPositionTest {
     @Test
     public void 사다리게임_테스트_2X2(){
         People people= People.from("AAA,BBB");
-        Ladder ladder = Ladder.from(2);
-        ladder.generateLadder(people, a -> {
+        Ladder ladder = Ladder.from(2,people.size());
+        ladder.generateLadder(a -> {
             List<Point> points = Arrays.asList(new Point(Boolean.TRUE));
-            return Line.from(points);
+            return LadderLine.from(points);
         });
 
         PersonPosition personPosition = PersonPosition.from(people);
-        personPosition.calculatePersonPosition(ladder);
+        personPosition.calculateFinalPosition(ladder);
 
         Map<Person, Position> personPositions = personPosition.getPersonPositions();
 
@@ -50,14 +50,14 @@ public class PersonPositionTest {
     @Test
     public void 사다리게임_테스트_3X2(){
         People people= People.from("AAA,BBB,CCC");
-        Ladder ladder = Ladder.from(2);
-        ladder.generateLadder(people, a -> {
+        Ladder ladder = Ladder.from(2,people.size());
+        ladder.generateLadder(a -> {
             List<Point> points = Arrays.asList(new Point(Boolean.TRUE),new Point(Boolean.FALSE));
-            return Line.from(points);
+            return LadderLine.from(points);
         });
 
         PersonPosition personPosition = PersonPosition.from(people);
-        personPosition.calculatePersonPosition(ladder);
+        personPosition.calculateFinalPosition(ladder);
 
         Map<Person, Position> personPositions = personPosition.getPersonPositions();
 
@@ -70,14 +70,14 @@ public class PersonPositionTest {
     @Test
     public void 사다리게임_테스트_4X2(){
         People people= People.from("AAA,BBB,CCC,DDD");
-        Ladder ladder = Ladder.from(2);
-        ladder.generateLadder(people, a -> {
+        Ladder ladder = Ladder.from(2,people.size());
+        ladder.generateLadder(a -> {
             List<Point> points = Arrays.asList(new Point(Boolean.TRUE),new Point(Boolean.FALSE),new Point(Boolean.TRUE));
-            return Line.from(points);
+            return LadderLine.from(points);
         });
 
         PersonPosition personPosition = PersonPosition.from(people);
-        personPosition.calculatePersonPosition(ladder);
+        personPosition.calculateFinalPosition(ladder);
 
         Map<Person, Position> personPositions = personPosition.getPersonPositions();
 

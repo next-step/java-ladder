@@ -1,29 +1,31 @@
 package ladder.domain;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Reward {
 
-    private static final int STANDARD_LENGTH = 5;
-    private String benefit;
+    private static final String SEPARATOR = ",";
 
-    private Reward(String benefit) {
-        this.benefit = benefit;
+    private List<benefit> benefits;
+
+    private Reward(String line) {
+        benefits = Arrays.asList(line.split(SEPARATOR))
+                    .stream()
+                    .map(benefit::from)
+                    .collect(Collectors.toList());
     }
 
-    public static Reward from(String benefit) {
-        return new Reward(benefit);
+    public static Reward from(String line) {
+        return new Reward(line);
     }
 
-    private int getLengthCount() {
-        return STANDARD_LENGTH - this.benefit.length();
+    public List<benefit> getRewards() {
+        return benefits;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(this.benefit);
-        for (int i = 0; i < getLengthCount(); i++) {
-            stringBuilder.append(" ");
-        }
-        return stringBuilder.toString();
+    public benefit findPersonResult(Position position) {
+        return benefits.get(position.getPosition());
     }
 }
