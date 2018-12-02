@@ -12,6 +12,14 @@ public enum Direction {
     private boolean hasLeft;
     private boolean hasRight;
 
+    public static Direction first(Boolean right) {
+        if( right ) {
+            return RIGHT;
+        }
+
+        return STRAIGHT;
+    }
+
     public boolean isLeft() {
         return LEFT.equals(this);
     }
@@ -23,6 +31,15 @@ public enum Direction {
     public boolean isStraight() {
         return STRAIGHT.equals(this);
     }
+
+    public Direction next() {
+        if( this.isRight() ) {
+            return LEFT;
+        }
+
+        return LadderLineGenerator.generatePoint();
+    }
+
 
 
 }
