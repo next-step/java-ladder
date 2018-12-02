@@ -1,5 +1,6 @@
 package ladder.util;
 
+import ladder.model.Arrow;
 import ladder.model.Point;
 
 import java.util.ArrayList;
@@ -17,28 +18,44 @@ public class LinePointGenerator {
             throw new IllegalArgumentException();
         }
 
-        List<Point> points = new ArrayList<>(Arrays.asList(getRandomPoint()));
-        IntStream.range(BEGIN_INDEX, countOfPoint)
-                .forEach(index -> {
-                    points.add(generateNextPoint(getPrevPoint(points, index)));
-                });
+        int maxIndexOfPoint = countOfPoint - 1;
+        List<Point> points = new ArrayList<>(Arrays.asList(generateBeginPoint()));
+        IntStream.range(BEGIN_INDEX, maxIndexOfPoint)
+                .forEach(index -> points.add(generateNextPoint(index, getLastPoint(points))));
+        points.add(generateEndPoint(maxIndexOfPoint, getLastPoint(points)));
         return points;
     }
 
-    private static Point getPrevPoint(List<Point> points, int currentIndex) {
-        if (currentIndex < 1) {
+    private static Point getLastPoint(List<Point> points) {
+        if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException();
         }
 
-        return points.get(currentIndex - 1);
+        return points.get(points.size() - 1);
     }
 
-    private static Point getRandomPoint() {
-        return Point.from(random.nextBoolean());
+    private static boolean getRandomStatus() {
+        return random.nextBoolean();
     }
 
-    private static Point generateNextPoint(Point currentPoint) {
-        Point nextPoint = getRandomPoint();
-        return currentPoint.isCollapse(nextPoint) ? Point.from(false) : nextPoint;
+    private static Point generateBeginPoint() {
+        return Point.from(0, Arrow.valueOf(false, getRandomStatus()));
+    }
+
+    private static Point generateEndPoint(int endIndex, Point currentPoint) {
+        return Point.from(endIndex, Arrow.valueOf(currentPoint.isRight(), false));
+    }
+
+    private static Point generatePoint(int index, Point currentPoint) {
+        if (currentPoint.isRight()) {
+            return Point.from(index, Arrow.LEFT);
+        }
+
+        return Point.from(index, Arrow.valueOf(false, getRandomStatus()));
+    }
+
+    private static Point generateNextPoint(int nextIndex, Point currentPoint) {
+        Point nextPoint = generatePoint(nextIndex, currentPoint);
+        return currentPoint.isCollapse(nextPoint) ? Point.from(nextIndex, Arrow.LEFT) : nextPoint;
     }
 }

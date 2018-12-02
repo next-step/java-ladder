@@ -5,10 +5,11 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParticipantTest {
+    public static final Participant DEFAULT_PARTICIPANT = Participant.from("test");
 
     @Test
     public void 생성() {
-        assertThat(Participant.from("생성테스트")).isNotNull();
+        assertThat(DEFAULT_PARTICIPANT).isNotNull();
     }
 
     @Test(expected = IllegalArgumentException.class)

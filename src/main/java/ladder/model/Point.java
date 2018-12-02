@@ -3,21 +3,32 @@ package ladder.model;
 import java.util.Objects;
 
 public class Point {
-    private static final Point truePoint = new Point(true);
-    private static final Point falsePoint = new Point(false);
+    private int position;
+    private Arrow arrow;
 
-    private boolean status;
+    private Point(int position, Arrow arrow) {
+        if (position < 0 || (position == 0 && arrow == Arrow.LEFT)) {
+            throw new IllegalArgumentException();
+        }
 
-    private Point(boolean status) {
-        this.status = status;
+        this.position = position;
+        this.arrow = arrow;
     }
 
-    public static Point from(boolean status) {
-        return status ? truePoint : falsePoint;
+    public static Point from(int position, Arrow arrow) {
+        return new Point(position, arrow);
     }
 
     public boolean isCollapse(Point target) {
-        return status && this.equals(target);
+        return arrow == Arrow.RIGHT && this.equals(target);
+    }
+
+    public int nextPosition() {
+        return position + arrow.getIndex();
+    }
+
+    public boolean isRight() {
+        return arrow == Arrow.RIGHT;
     }
 
     @Override
@@ -25,11 +36,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return status == point.status;
+        return arrow == point.arrow;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(status);
+        return Objects.hash(arrow);
     }
 }

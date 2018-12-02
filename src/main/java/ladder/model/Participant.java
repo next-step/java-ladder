@@ -19,6 +19,10 @@ public class Participant {
         return new Participant(name);
     }
 
+    public boolean isMatch(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public String toString() {
         return name;
