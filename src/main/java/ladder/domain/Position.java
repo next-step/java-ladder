@@ -42,6 +42,15 @@ public class Position {
         return position > START_POINT;
     }
 
+    public boolean isExistRightPoint(LadderLine line) {
+        return line.isExistPoint(rightPosition());
+    }
+
+    public boolean isExistLeftPoint(LadderLine line) {
+        return line.isExistPoint(leftPosition());
+    }
+
+
     @Override
     public String toString() {
         return "Position{" +

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import static java.lang.Boolean.*;
+
 
 public class LadderLine {
 
@@ -41,18 +43,20 @@ public class LadderLine {
     }
 
     private Point makePoints(int count) {
-        boolean result = new Random().nextBoolean();
+        boolean random = new Random().nextBoolean();
         if (count == START_POINT) {
-            return new Point(result);
+            return new Point(random);
         }
-        if (isValidateLine(points.get(count - DEFAULT_ONE).isPoint(), result))
-            return new Point(false);
 
-        return new Point(result);
+        if (isValidateLine(points.get(count - DEFAULT_ONE).isPoint(), random)) {
+            return new Point(FALSE);
+        }
+
+        return new Point(random);
     }
 
-    public boolean isValidateLine(boolean preResult, boolean result) {
-        return preResult && result;
+    public boolean isValidateLine(boolean first, boolean second) {
+        return first && second;
     }
 
     @Override

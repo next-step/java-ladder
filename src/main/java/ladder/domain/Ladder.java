@@ -30,25 +30,17 @@ public class Ladder {
 
     public Position calculatePosition(Position position) {
         for (LadderLine line : ladderLines) {
-            if(position.isNotEndPosition(line.pointCount()) && isExistRightPoint(position, line)) {
+            if(position.isNotEndPosition(line.pointCount()) && position.isExistRightPoint(line)) {
                 position.moveRightPosition();
                 continue;
             }
 
-            if(position.isNotStartPosition() && isExistLeftPoint(position, line)) {
+            if(position.isNotStartPosition() && position.isExistLeftPoint(line)) {
                 position.moveLeftPosition();
                 continue;
             }
         }
         return position;
-    }
-
-    private static boolean isExistRightPoint(Position position, LadderLine line) {
-        return line.isExistPoint(position.rightPosition());
-    }
-
-    private static boolean isExistLeftPoint(Position position, LadderLine line) {
-        return line.isExistPoint(position.leftPosition());
     }
 
     @Override
