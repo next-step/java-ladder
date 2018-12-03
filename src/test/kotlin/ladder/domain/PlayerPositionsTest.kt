@@ -26,4 +26,9 @@ class PlayerPositionsTest {
         assertThat(lee).isEqualTo(0)
         assertThat(kim).isEqualTo(1)
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `존재하지 않는 유저 입력시 에러`() {
+        playerPositions.get(Player("김아무개"))
+    }
 }
