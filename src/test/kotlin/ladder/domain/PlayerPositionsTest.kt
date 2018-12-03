@@ -9,32 +9,21 @@ class PlayerPositionsTest {
 
     @Before
     fun setup() {
-        playerPositions = PlayerPositions(dummyPlayers())
+        playerPositions = PlayerPositions(PLAYERS, LADDER)
     }
 
     @Test
     fun `세번째 포지션값 확인`() {
-        val position = playerPositions.get(Player("Kim"))
-        assertThat(position).isEqualTo(2)
+        assertThat(playerPositions.size()).isEqualTo(3)
     }
 
     @Test
-    fun `플레이어 비교`() {
-        assertThat(playerPositions.allPlayers()).isEqualTo(dummyPlayers())
+    fun `플레이어 결과 확인`() {
+        val dave = playerPositions.get(Player("Dave"))
+        val lee = playerPositions.get(Player("Lee"))
+        val kim = playerPositions.get(Player("Kim"))
+        assertThat(dave).isEqualTo(2)
+        assertThat(lee).isEqualTo(0)
+        assertThat(kim).isEqualTo(1)
     }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun `사다리 범위 벗어난 포지션`() {
-        playerPositions.move(Player("Dave"), -1)
-    }
-
-    @Test
-    fun `포지션 변경`() {
-        playerPositions.move(Player("Dave"), 1)
-        playerPositions.move(Player("Dave"), 1)
-        val position = playerPositions.get(Player("Dave"))
-        assertThat(position).isEqualTo(2)
-    }
-
-    private fun dummyPlayers() = arrayListOf(Player("Dave"), Player("Lee"), Player("Kim"))
 }

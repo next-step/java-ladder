@@ -1,5 +1,6 @@
 package ladder.domain
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 
@@ -8,30 +9,26 @@ class LineTest {
 
     @Before
     fun setup() {
-        line = Line(dummyPoints())
+        line = Line(POSITION_ONE)
     }
 
     @Test
     fun `라인 생성`() {
-        println(line.drawLine())
+        assertThat(line.drawLine()).isEqualTo("     |-----|     |     ")
     }
 
     @Test
-    fun `라인 방향`() {
-//        assertThat(line.position(0)).isEqualTo(1)
-//        assertThat(line.position(1)).isEqualTo(-1)
-//        assertThat(line.position(2)).isEqualTo(0)
+    fun `오른쪽 방향으로 이동하면 1증가`() {
+        assertThat(line.move(0)).isEqualTo(1)
     }
 
-    private fun dummyPoints() = arrayListOf(
-            Point(0, Direction.first(true)),
-            Point(1, Direction.of(true, false))
-    )
+    @Test
+    fun `왼쪽 방향으로 이동하면 1감소`() {
+        assertThat(line.move(1)).isEqualTo(0)
+    }
 
-    private fun dummyPoints2() = arrayListOf(
-            Point(0, Direction.first(true)),
-            Point(1, Direction.of(true, false)),
-            Point(2, Direction.of(false, false)),
-            Point(3, Direction.of(false, true))
-    )
+    @Test
+    fun `방향 이동 없을때 이동변화 없음`() {
+        assertThat(line.move(2)).isEqualTo(2)
+    }
 }

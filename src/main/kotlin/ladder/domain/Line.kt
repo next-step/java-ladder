@@ -7,7 +7,7 @@ class Line {
         private set
 
     constructor(countOfPerson: Int) {
-        this.points = RandomPointGenerator.generator2(countOfPerson)
+        this.points = RandomPointGenerator.generator(countOfPerson)
     }
 
     constructor(points: List<Point>) {
@@ -42,6 +42,10 @@ class Line {
         point.next()
         val direction = point.getDirection()
         return if (direction.isRight()) DASH else SPACE
+    }
+
+    fun move(position: Int): Int {
+        return points[position].move()
     }
 
     override fun toString(): String {

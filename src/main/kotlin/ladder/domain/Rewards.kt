@@ -10,4 +10,8 @@ class Rewards(reward: String) {
     fun size(): Int = rewards.size
 
     private fun split(reward: String) = reward.split(",")
+
+    override fun toString(): String {
+        return rewards.joinToString("\t")
+    }
 }

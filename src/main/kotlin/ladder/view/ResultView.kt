@@ -1,6 +1,7 @@
 package ladder.view
 
 import ladder.domain.Ladder
+import ladder.domain.Rewards
 
 object ResultView {
     fun showLadder(ladder: Ladder) {
@@ -12,5 +13,9 @@ object ResultView {
             append(ladderResult)
         }.toString()
         println(result)
+    }
+
+    fun showRewards(result: String) {
+        println(Rewards(result))
     }
 }

@@ -1,12 +1,15 @@
 package ladder.domain
 
-class LadderResult(private val rewards: Rewards,
-                   private val playerPositions: PlayerPositions) {
+class LadderResult {
+    private val rewards: Rewards
+    private val playerPositions: PlayerPositions
 
-    init {
+    constructor(rewards: Rewards, playerPositions: PlayerPositions) {
         if(rewards.size() != playerPositions.size()) {
             throw IllegalArgumentException("보상과 플레이어의 수가 일치하지 않습니다.")
         }
+        this.rewards = rewards
+        this.playerPositions = playerPositions
     }
 
     fun showResult(text: String): String {

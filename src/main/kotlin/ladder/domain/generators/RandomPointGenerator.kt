@@ -7,15 +7,6 @@ object RandomPointGenerator {
     private val random = Random()
 
     fun generator(countOfPerson: Int): List<Point> {
-        val point = Point.first(randomPoint())
-        val points = arrayListOf(point)
-        for (i in 1 until countOfPerson) {
-            points.add(points[i-1].next())
-        }
-        return points
-    }
-
-    fun generator2(countOfPerson: Int): List<Point> {
         val points = arrayListOf<Point>()
         val point = first()
         points.add(point)

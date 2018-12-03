@@ -39,6 +39,10 @@ class Ladder {
 
     private fun getLines(): String = lines.joinToString("\n") { it.drawLine() }
 
+    override fun toString(): String {
+        return "Ladder(lines=$lines, players=$players)"
+    }
+
     companion object {
         private const val MIN_LADDER_HEIGHT = 1
     }
