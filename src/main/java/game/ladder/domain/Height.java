@@ -4,6 +4,7 @@ import spark.utils.Assert;
 
 public class Height {
     public static final int MIN = 0;
+
     private final int value;
 
     public Height(int value) {

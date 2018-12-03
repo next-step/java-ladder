@@ -11,9 +11,13 @@ public class ConsoleMain {
         Expects expects = InputView.readExpects();
         UserInputs userInputs = new UserInputs(participants, expects);
 
-        Height height = InputView.readHeight();
+        LevelGenerator levelGenerator = new LevelGenerator(new RandomStrategy());
 
-        Ladder ladder = new Ladder(userInputs, new LadderLines(height, userInputs.partipantsSize()));
+        Level level = levelGenerator.generate();
+
+        OutputView.printLevel(level);
+
+        Ladder ladder = new Ladder(userInputs, new LadderLines(HightConverter.convert(level), userInputs.partipantsSize()));
 
         OutputView.printLadder(ladder);
 

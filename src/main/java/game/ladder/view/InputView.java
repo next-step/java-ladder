@@ -21,11 +21,6 @@ public class InputView {
         return new Participants(participants);
     }
 
-    public static Height readHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return new Height(Integer.parseInt(scanner.nextLine().trim()));
-    }
-
     public static Expects readExpects() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         final List<Expect> expects = Spliter.split(scanner.nextLine()).stream().map(Expect::new).collect(Collectors.toList());

@@ -24,7 +24,7 @@ public class LadderLines {
     }
 
     private List<LadderLine> initLines(final int sizeOfPerson) {
-        return IntStream.range(0, sizeOfPerson)
+        return IntStream.range(0, height.getValue())
                 .mapToObj(i -> LadderLine.init(sizeOfPerson))
                 .collect(Collectors.toList());
     }
