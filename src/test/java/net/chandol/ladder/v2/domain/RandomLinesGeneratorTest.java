@@ -17,7 +17,7 @@ public class RandomLinesGeneratorTest {
         int size = 10;
         int height = 3;
 
-        List<Line> lines = generator.generate(size, height);
+        Lines lines = generator.generate(size, height);
 
         assertThat(lines.size()).isEqualTo(10);
         assertThat(lines).allMatch(l -> l.height() == 3);

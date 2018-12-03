@@ -11,9 +11,9 @@ import static net.chandol.ladder.v2.domain.RandomLinesGenerator.RandomBridgesSup
 
 public class RandomLinesGenerator implements LinesGenerator {
     @Override
-    public List<Line> generate(int size, int height) {
-        List<List<Boolean>> rawLines = createRandomRawLines(size, height);
-        return convertToLines(rawLines);
+    public Lines generate(int size, int height) {
+        List<List<Boolean>> rawLinesValue = createRandomRawLines(size, height);
+        return new Lines(convertToLines(rawLinesValue));
     }
 
     static class RandomBridgesSupplierUtil {

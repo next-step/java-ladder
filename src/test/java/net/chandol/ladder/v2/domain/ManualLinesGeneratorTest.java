@@ -1,9 +1,8 @@
 package net.chandol.ladder.v2.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ManualLinesGeneratorTest {
     @Test
@@ -13,8 +12,8 @@ public class ManualLinesGeneratorTest {
                 Line.of(false, false)
         );
 
-        List<Line> lines = generator.generate(2, 2);
+        Lines lines = generator.generate(2, 2);
 
-        Assertions.assertThat(lines.get(0)).isEqualTo(Line.of(true, false));
+        assertThat(lines.get(0)).isEqualTo(Line.of(true, false));
     }
 }

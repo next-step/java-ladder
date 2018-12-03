@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ManualLinesGenerator implements LinesGenerator {
-    private List<Line> lines;
+    private List<Line> linesValue;
 
-    public ManualLinesGenerator(Line... lines) {
-        this.lines = Arrays.asList(lines);
+    public ManualLinesGenerator(Line... linesValue) {
+        this.linesValue = Arrays.asList(linesValue);
     }
 
     @Override
-    public List<Line> generate(int size, int height) {
-        return lines;
+    public Lines generate(int size, int height) {
+        return new Lines(linesValue);
     }
 }
