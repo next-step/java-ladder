@@ -8,12 +8,12 @@ public class Reward {
 
     private static final String SEPARATOR = ",";
 
-    private List<benefit> benefits;
+    private List<Benefit> benefits;
 
     private Reward(String line) {
         benefits = Arrays.asList(line.split(SEPARATOR))
                     .stream()
-                    .map(benefit::from)
+                    .map(Benefit::from)
                     .collect(Collectors.toList());
     }
 
@@ -21,11 +21,11 @@ public class Reward {
         return new Reward(line);
     }
 
-    public List<benefit> getRewards() {
+    public List<Benefit> getRewards() {
         return benefits;
     }
 
-    public benefit findPersonResult(Position position) {
+    public Benefit findPersonResult(Position position) {
         return benefits.get(position.getPosition());
     }
 }

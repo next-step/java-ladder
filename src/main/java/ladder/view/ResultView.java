@@ -13,7 +13,7 @@ public class ResultView {
         }
         System.out.println("\n");
         System.out.println(game.getLadder().toString());
-        for (benefit reward : result.getRewards()) {
+        for (Benefit reward : result.getRewards()) {
             System.out.print(reward.toString()+" ");
         }
     }

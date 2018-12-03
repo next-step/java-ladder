@@ -3,8 +3,6 @@ package ladder;
 import ladder.domain.*;
 import ladder.view.ResultView;
 
-import java.util.Map;
-
 import static ladder.view.InputView.*;
 import static ladder.view.ResultView.printLadderGame;
 

@@ -1,16 +1,16 @@
 package ladder.domain;
 
-public class benefit {
+public class Benefit {
 
     private static final int STANDARD_LENGTH = 5;
     private String benefit;
 
-    private benefit(String benefit) {
+    private Benefit(String benefit) {
         this.benefit = benefit;
     }
 
-    public static benefit from(String benefit) {
-        return new benefit(benefit);
+    public static Benefit from(String benefit) {
+        return new Benefit(benefit);
     }
 
     private int getLengthCount() {
