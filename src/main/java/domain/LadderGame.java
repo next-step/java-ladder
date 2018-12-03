@@ -9,13 +9,12 @@ public class LadderGame {
         String result[] = InputView.typeResult();
         int depth = InputView.typeDepth();
         Ladder ladder = Ladder.from(depth, memberArr.length);
-        ladder.initPosition(memberArr.length);
         ResultView.printLadder(ladder, memberArr);
         ResultView.printResult(result);
-        LadderGameResult ladderGameResult = new LadderGameResult(memberArr, ladder.followLadder());
+        LadderGameResult ladderGameResult = new LadderGameResult(memberArr, ladder.trackingLadder(), result);
         String memberName = InputView.typePersonResult();
-        ResultView.printMemberResult(ladderGameResult.showMemberResult(memberName, result));
+        ResultView.printMemberResult(ladderGameResult.showMemberResult(memberName));
         String all = InputView.typePersonResult();
-        ResultView.printAllResult(ladderGameResult.showMemberResult(all, result));
+        ResultView.printAllResult(ladderGameResult.showMemberResult(all));
     }
 }
