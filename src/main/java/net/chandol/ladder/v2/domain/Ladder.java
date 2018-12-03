@@ -3,11 +3,17 @@ package net.chandol.ladder.v2.domain;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
 
 public class Ladder {
+    private static final String LINE_START_PADDING = "  ";
+    private static final String BRIDGE_EXIST = "-----";
+    private static final String BRIDGE_EMPTY = "     ";
+    private static final String LINE_CHARACTER = "|";
+
     private List<Line> lines;
     private List<String> players;
     private int height;
@@ -23,28 +29,31 @@ public class Ladder {
         return line.hasPoint(row);
     }
 
-    public void drawColumn(int row) {
-        StringBuilder builder = new StringBuilder("  ");
-        for (int idx = 0; idx < players.size(); idx++) {
-            builder.append("|");
+    public String createColumnString(int row) {
+        StringBuilder builder = new StringBuilder(LINE_START_PADDING);
+        IntStream.range(0, players.size()).forEach(idx -> {
+            builder.append(LINE_CHARACTER);
 
-            String bridge = hasPoint(idx, row) ? "-----" : "     ";
+            String bridge = hasPoint(idx, row) ? BRIDGE_EXIST : BRIDGE_EMPTY;
             builder.append(bridge);
-        }
+        });
 
-        System.out.println(builder.toString());
+        return builder.toString();
     }
 
-    public void drawLadder() {
-        IntStream.range(0, height).forEach(r -> drawColumn(r));
+    public List<String> createLadderString() {
+        return IntStream.range(0, height)
+                .mapToObj(this::createColumnString)
+                .collect(Collectors.toList());
     }
 
-    public void drawPlayers() {
-        String p = players.stream().map(Ladder::fixedLengthString).collect(joining(" "));
-        System.out.println(p);
+    public String createPlayersString() {
+        return players.stream()
+                .map(Ladder::fixedLengthString)
+                .collect(joining(" "));
     }
 
-    public static String fixedLengthString(String player) {
+    private static String fixedLengthString(String player) {
         return StringUtils.center(player, 5);
     }
 }

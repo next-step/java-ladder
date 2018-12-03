@@ -1,11 +1,13 @@
 package net.chandol.ladder.v2.domain;
 
+import net.chandol.ladder.v2.domain.RandomLinesGenerator.RandomBridgesSupplierUtil;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomLinesGeneratorTest {
 
@@ -17,7 +19,20 @@ public class RandomLinesGeneratorTest {
 
         List<Line> lines = generator.generate(size, height);
 
-        Assertions.assertThat(lines.size()).isEqualTo(10);
-        Assertions.assertThat(lines).allMatch(l -> l.height() == 3);
+        assertThat(lines.size()).isEqualTo(10);
+        assertThat(lines).allMatch(l -> l.height() == 3);
+    }
+
+    @Test
+    public void 다리연속여부확인_연속되는경우() {
+        List<Boolean> target = Arrays.asList(true, true);
+        RandomBridgesSupplierUtil.isBooleansContinuance(target);
+    }
+
+
+    @Test
+    public void 다리연속여부확인_정상케이스() {
+        List<Boolean> target = Arrays.asList(false, true);
+        RandomBridgesSupplierUtil.isBooleansContinuance(target);
     }
 }

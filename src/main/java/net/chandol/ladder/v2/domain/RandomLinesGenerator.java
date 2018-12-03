@@ -23,7 +23,7 @@ public class RandomLinesGenerator implements LinesGenerator {
             return rawLines.stream().map(Line::new).collect(toList());
         }
 
-        // 복잡도를 어떻게 하면 줄일 수 있을까??
+        // 복잡도를 어떻게 하면 줄일 수 있는지 고민할 것.
         public static List<List<Boolean>> createRandomRawLines(int size, int height) {
             List<List<Boolean>> rawLines = new ArrayList<>();
             IntStream.range(0, size).forEach(i -> rawLines.add(new ArrayList<>()));

@@ -11,10 +11,6 @@ import java.util.stream.Collectors;
 
 public class LadderGameConsoleView {
 
-    private static final String BRIDGE_EXIST = "-----";
-    private static final String BRIDGE_EMPTY = "     ";
-    private static final String LINE_CHARACTER = "|";
-
     public static LadderGameInitializeRequest getLadderGameInitializeRequest() {
         String rawPlayerNames = getInputString("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         List<String> playerNames = getPlayerNames(rawPlayerNames);
@@ -25,8 +21,8 @@ public class LadderGameConsoleView {
 
     public static void drawLadderAndPlayers(LadderGame ladderGame) {
         Ladder ladder = ladderGame.getLadder();
-        ladder.drawPlayers();
-        ladder.drawLadder();
+        System.out.println(ladder.createPlayersString());
+        System.out.println(ladder.createLadderString());
     }
 
     private static String getInputString(String message) {
