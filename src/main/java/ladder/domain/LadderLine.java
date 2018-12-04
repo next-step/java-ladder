@@ -38,10 +38,6 @@ public class LadderLine {
         return points.size();
     }
 
-    public boolean isExistPoint(int position) {
-        return points.get(position).isPoint();
-    }
-
     public boolean isExistRightPoint(int position) {
         return points.get(position).isPoint();
     }

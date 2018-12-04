@@ -5,7 +5,7 @@ import static ladder.domain.Direction.*;
 public class Position {
 
     private static final int START_POINT = 0;
-    private static final int DEFAULT_ONE = 1;
+
     private Integer position;
 
     private Position(Integer position) {
