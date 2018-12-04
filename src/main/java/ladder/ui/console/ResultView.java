@@ -3,6 +3,7 @@ package ladder.ui.console;
 import ladder.model.Ladder;
 import ladder.model.Line;
 import ladder.model.People;
+import ladder.model.Rewards;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ public class ResultView {
         System.out.println("실행결과");
 
         People people = ladder.getPeople();
+        Rewards rewards = ladder.getRewards();
+
         people.getPeople().stream().forEach(person -> {
             System.out.print(String.format("%6s", person.getName()));
         });
@@ -24,6 +27,11 @@ public class ResultView {
             List<Boolean> points = line.getPoints();
             points.stream().forEach(point-> System.out.print(point ? TRUE_POINT : FALSE_POINT));
             System.out.println();
+        });
+
+
+        rewards.getRewards().stream().forEach(reward -> {
+            System.out.print(String.format("%6s", reward.getReward()));
         });
     }
 }

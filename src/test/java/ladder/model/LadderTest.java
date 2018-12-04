@@ -14,13 +14,14 @@ public class LadderTest {
     @Test
     public void 사다리_게임() {
         String names = "aa,bb,cc,dd,ee";
+        String rewards = "0,0,1000,0,3000";
 
         List<Line> lines = new ArrayList<>();
         for(int i = 0; i < HEIGHT; i++) {
             lines.add(Line.of(names.split(",").length));
         }
 
-        ladder = Ladder.of(names, lines);
-        assertThat(ladder).isEqualTo(Ladder.of(names, lines));
+        ladder = Ladder.of(names, rewards, lines);
+        assertThat(ladder).isEqualTo(Ladder.of(names, rewards, lines));
     }
 }

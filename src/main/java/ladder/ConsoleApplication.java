@@ -4,6 +4,7 @@ import ladder.model.Ladder;
 
 import static ladder.ui.console.InputView.inputLadderHeight;
 import static ladder.ui.console.InputView.inputNames;
+import static ladder.ui.console.InputView.inputReward;
 import static ladder.ui.console.ResultView.ladderResult;
 
 public class ConsoleApplication {
@@ -11,7 +12,9 @@ public class ConsoleApplication {
         String names = inputNames();
         int height = inputLadderHeight();
 
-        Ladder ladder = Ladder.of(names, height);
+        String reward = inputReward();
+
+        Ladder ladder = Ladder.of(names, reward, height);
         ladderResult(ladder);
     }
 }

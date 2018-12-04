@@ -5,29 +5,40 @@ import java.util.List;
 
 public class Ladder {
     private People people;
+    private Rewards rewards;
     private List<Line> lines;
 
-    private Ladder(String names, List<Line> lines) {
+    private Ladder(String names, String rewards, List<Line> lines) {
         this.people = People.of(names);
+        this.rewards = Rewards.of(rewards);
         this.lines = lines;
     }
 
-    public static Ladder of(String names, int length) {
+    public static Ladder of(String names, String rewards, int length) {
         List<Line> lines = new ArrayList<>();
+        int countOfPerson = names.split(",").length;
+        int countOfReward = rewards.split(",").length;
+
+        if(countOfPerson != countOfReward) {
+            throw new IllegalArgumentException();
+        }
 
         for(int i = 0; i < length; i++) {
-            int countOfPerson = names.split(",").length;
             lines.add(Line.of(countOfPerson));
         }
-        return new Ladder(names, lines);
+        return new Ladder(names, rewards, lines);
     }
 
-    public static Ladder of(String names, List<Line> lines) {
-        return new Ladder(names, lines);
+    public static Ladder of(String names, String rewards, List<Line> lines) {
+        return new Ladder(names, rewards, lines);
     }
 
     public People getPeople() {
         return people;
+    }
+
+    public Rewards getRewards() {
+        return rewards;
     }
 
     public List<Line> getLines() {
