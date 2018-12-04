@@ -1,34 +1,48 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class Ladder {
 
-    private int height;
-    private ArrayList<Line> lines;
+    private List<LadderLine> ladderLines;
 
-    private Ladder(int height) {
-        this.height = height;
-        lines = new ArrayList<>();
+    private Ladder(LadderSize ladderSize, Conditional conditional) {
+        generateLadder(ladderSize, conditional);
     }
 
-    public static Ladder from(int height) {
-        return new Ladder(height);
+    public static Ladder from(LadderSize ladderSize, Conditional conditional) {
+        return new Ladder(ladderSize, conditional);
     }
 
-    public ArrayList<Line> generateLadder(People people) {
-        for (int i = 0; i < height; i++) {
-            lines.add(Line.from(people.peopleCount()));
+    private List<LadderLine> generateLadder(LadderSize ladderSize, Conditional conditional) {
+        ladderLines = new ArrayList();
+        for (int i = 0; i < ladderSize.heightSize(); i++) {
+            ladderLines.add(conditional.generateLine(ladderSize.wightSize()));
         }
-        return lines;
+        return ladderLines;
+    }
+
+    public Position progressGame(Position position) {
+        for (LadderLine line : ladderLines) {
+            Direction direction = position.checkDirection(line);
+            position.move(direction);
+        }
+        return position;
+    }
+
+    public int size() {
+        return ladderLines.size();
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Line line : lines) {
+        for (LadderLine line : ladderLines) {
             stringBuilder.append(line.toString()+"\n");
         }
         return stringBuilder.toString();
     }
+
 }
