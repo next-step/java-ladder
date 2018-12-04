@@ -16,10 +16,6 @@ public class LadderGame {
         return new LadderGame(people, ladder);
     }
 
-    public List<Person> getPeople() {
-        return people.getPeople();
-    }
-
     public Ladder getLadder() {
         return ladder;
     }

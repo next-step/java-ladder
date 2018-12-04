@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.NotFindMatchNameException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,5 +33,14 @@ public class People {
 
     public Person findPersonBy(int number) {
         return people.get(number);
+    }
+
+    public Position findPositionBy(String name) {
+        int index = people.indexOf(Person.from(name));
+
+        if(index < 0)
+            throw new NotFindMatchNameException();
+
+        return Position.from(index);
     }
 }

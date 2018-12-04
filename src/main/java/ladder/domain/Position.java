@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static ladder.domain.Direction.*;
+
 public class Position {
 
     private static final int START_POINT = 0;
@@ -26,30 +28,30 @@ public class Position {
         this.position ++;
     }
 
-    public int leftPosition() {
-        return position - DEFAULT_ONE;
+    public boolean isFirst() {
+        return position == START_POINT;
     }
 
-    public int rightPosition() {
-        return position;
+    public boolean isLast(LadderLine line) {
+        return position == line.pointCount();
     }
 
-    public boolean isNotEndPosition(int countOfPoint) {
-        return position < countOfPoint;
+    public Direction checkDirection(LadderLine line){
+        if(isFirst())
+            return first(line.isExistRightPoint(position));
+
+        if(isLast(line))
+            return last(line.isExistLeftPoint(position));
+
+        return of(line.isExistLeftPoint(position), line.isExistRightPoint(position));
     }
 
-    public Boolean isNotStartPosition() {
-        return position > START_POINT;
+    public void move(Direction direction) {
+        if(Direction.LEFT == direction)
+            moveLeftPosition();
+        if(Direction.RIGHT == direction)
+            moveRightPosition();
     }
-
-    public boolean isExistRightPoint(LadderLine line) {
-        return line.isExistPoint(rightPosition());
-    }
-
-    public boolean isExistLeftPoint(LadderLine line) {
-        return line.isExistPoint(leftPosition());
-    }
-
 
     @Override
     public String toString() {

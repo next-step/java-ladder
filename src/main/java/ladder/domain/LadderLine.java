@@ -42,6 +42,14 @@ public class LadderLine {
         return points.get(position).isPoint();
     }
 
+    public boolean isExistRightPoint(int position) {
+        return points.get(position).isPoint();
+    }
+
+    public boolean isExistLeftPoint(int position) {
+        return points.get(position - DEFAULT_ONE).isPoint();
+    }
+
     private Point makePoints(int count) {
         boolean random = new Random().nextBoolean();
         if (count == START_POINT) {
@@ -64,6 +72,7 @@ public class LadderLine {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("|");
         points.forEach(point -> stringBuilder.append(point.toString()));
+
         return stringBuilder.toString();
     }
 }

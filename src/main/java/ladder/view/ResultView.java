@@ -6,15 +6,21 @@ import java.util.Map;
 
 public class ResultView {
 
-    public static void printLadderGame(LadderGame game, Reward result) {
+    public static void printLadder(Ladder ladder) {
+        System.out.println(ladder.toString());
+    }
+
+    public static void printPeopleList(People people) {
         System.out.println("사다리 결과");
-        for (Person person : game.getPeople()) {
+        for (Person person : people.getPeople()) {
             System.out.print(person.toString()+" ");
         }
         System.out.println("\n");
-        System.out.println(game.getLadder().toString());
-        for (Benefit reward : result.getRewards()) {
-            System.out.print(reward.toString()+" ");
+    }
+
+    public static void printRewardList(Reward reward) {
+        for (Benefit benefit : reward.getRewards()) {
+            System.out.print(benefit.toString()+" ");
         }
     }
 
@@ -24,7 +30,7 @@ public class ResultView {
     }
 
     public static void printAllReward(Reward reward, PersonPosition personPosition) {
-        Map<Person, Position> personPositions = personPosition.getPersonPositions();
+        Map<Person, Position> personPositions = personPosition.getPersonFinalPositions();
         for (Person person : personPositions.keySet()) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(person.toString());
@@ -35,9 +41,7 @@ public class ResultView {
         }
     }
 
-    public static void printPersonReward(Reward reward, PersonPosition personPosition, String person) {
-        Person rPerson = Person.from(person);
-        Position position = personPosition.findPersonPosition(rPerson);
+    public static void printPersonReward(Reward reward, Position position) {
         System.out.println(reward.findPersonResult(position));
     }
 }

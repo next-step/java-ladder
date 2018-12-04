@@ -5,38 +5,23 @@ import java.util.Map;
 
 public class PersonPosition {
 
-    private Map<Person, Position> personPositions;
+    private Map<Person, Position> personFinalPositions;
 
-    private PersonPosition(People people) {
-        personPositions = new HashMap<>();
+    private PersonPosition(People people, Ladder ladder) {
+        personFinalPositions = new HashMap<>();
         for (int i = 0; i < people.size(); i++) {
-            personPositions.put(people.findPersonBy(i), Position.from(i));
+            Position position = Position.from(i);
+            ladder.progressGame(position);
+            personFinalPositions.put(people.findPersonBy(i), position);
         }
     }
 
-    public static PersonPosition from(People people) {
-        return new PersonPosition(people);
+    public static PersonPosition from(People people, Ladder ladder) {
+        return new PersonPosition(people, ladder);
     }
 
-    public Map<Person, Position> getPersonPositions() {
-        return personPositions;
+    public Map<Person, Position> getPersonFinalPositions() {
+        return personFinalPositions;
     }
 
-    public void calculateFinalPosition(Ladder ladder){
-        for (Person person : personPositions.keySet()) {
-            Position position = ladder.calculatePosition(personPositions.get(person));
-            personPositions.put(person, position);
-        }
-    }
-
-    public Position findPersonPosition(Person person){
-        return personPositions.get(person);
-    }
-
-    @Override
-    public String toString() {
-        return "PersonPosition{" +
-                "personPositions=" + personPositions +
-                '}';
-    }
 }

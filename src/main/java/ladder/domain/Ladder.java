@@ -6,41 +6,34 @@ import java.util.List;
 
 public class Ladder {
 
-    private LadderHeight height;
-    private LadderWidth width;
-
     private List<LadderLine> ladderLines;
 
-    private Ladder(int height, int width) {
-        this.height = LadderHeight.from(height);
-        this.width = LadderWidth.from(width);
-        ladderLines = new ArrayList<>();
+    private Ladder(LadderSize ladderSize, Conditional conditional) {
+        generateLadder(ladderSize, conditional);
     }
 
-    public static Ladder from(int height, int width) {
-        return new Ladder(height, width);
+    public static Ladder from(LadderSize ladderSize, Conditional conditional) {
+        return new Ladder(ladderSize, conditional);
     }
 
-    public List<LadderLine> generateLadder(Conditional conditional) {
-        for (int i = 0; i < height.size(); i++) {
-            ladderLines.add(conditional.generateLine(width));
+    private List<LadderLine> generateLadder(LadderSize ladderSize, Conditional conditional) {
+        ladderLines = new ArrayList();
+        for (int i = 0; i < ladderSize.heightSize(); i++) {
+            ladderLines.add(conditional.generateLine(ladderSize.wightSize()));
         }
         return ladderLines;
     }
 
-    public Position calculatePosition(Position position) {
+    public Position progressGame(Position position) {
         for (LadderLine line : ladderLines) {
-            if(position.isNotEndPosition(line.pointCount()) && position.isExistRightPoint(line)) {
-                position.moveRightPosition();
-                continue;
-            }
-
-            if(position.isNotStartPosition() && position.isExistLeftPoint(line)) {
-                position.moveLeftPosition();
-                continue;
-            }
+            Direction direction = position.checkDirection(line);
+            position.move(direction);
         }
         return position;
+    }
+
+    public int size() {
+        return ladderLines.size();
     }
 
     @Override
@@ -51,4 +44,5 @@ public class Ladder {
         }
         return stringBuilder.toString();
     }
+
 }

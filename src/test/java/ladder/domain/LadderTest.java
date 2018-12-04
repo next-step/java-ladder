@@ -2,6 +2,7 @@ package ladder.domain;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,15 +10,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderTest {
 
     @Test
-    public void generateLadder() {
-        Ladder ladder = Ladder.from(1,2);
-        People people = People.from("a,b,c");
+    public void 사다리생성() {
+        People people= People.from("AAA,BBB");
+        Ladder ladder = Ladder.from(LadderSize.from(2, people.size()),
+                width -> {
+                    List<Point> points = Arrays.asList(new Point(Boolean.FALSE));
+                    return LadderLine.from(points);
+                });
 
-        List<LadderLine> lines = ladder.generateLadder(getConditional());
-        assertThat(lines.size()).isEqualTo(1);
-    }
 
-    private Conditional getConditional() {
-        return people -> LadderLine.from(2);
+        assertThat(ladder.size()).isEqualTo(2);
     }
 }

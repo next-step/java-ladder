@@ -4,35 +4,34 @@ import ladder.domain.*;
 import ladder.view.ResultView;
 
 import static ladder.view.InputView.*;
-import static ladder.view.ResultView.printLadderGame;
 
 public class Main {
     public static void main(String[] args) {
-        People people= People.from(getPersonNames());
-        Ladder ladder = Ladder.from(getLadderHeight(), people.size());
-        ladder.generateLadder(getConditional());
+        People people = People.from(getPersonNames());
+        LadderSize ladderSize = LadderSize.from(getLadderHeight(), people.size());
+        Ladder ladder = Ladder.from(ladderSize, getConditional());
 
-        LadderGame ladderGame = LadderGame.from(people, ladder);
         Reward reward = Reward.from(getResultReward());
-        printLadderGame(ladderGame, reward);
+        ResultView.printPeopleList(people);
+        ResultView.printLadder(ladder);
+        ResultView.printRewardList(reward);
 
-        PersonPosition personPosition = PersonPosition.from(people);
-        personPosition.calculateFinalPosition(ladder);
-
-        do{
+        do {
+            String input = getResultPerson();
             ResultView.printReward();
-            String result = getResultPerson();
-            if ("all".equals(result)) {
+            if ("all".equals(input)) {
+                PersonPosition personPosition = PersonPosition.from(people, ladder);
                 ResultView.printAllReward(reward, personPosition);
             } else {
-                ResultView.printPersonReward(reward, personPosition, result);
+                Position position = people.findPositionBy(input);
+                ladder.progressGame(position);
+                ResultView.printPersonReward(reward, position);
             }
         } while (true);
     }
 
     private static Conditional getConditional() {
-        return width -> LadderLine.from(width.size());
+        return width -> LadderLine.from(width);
     }
-
 
 }
