@@ -31,8 +31,8 @@ public class ArrowTest {
 
     @Test
     public void 방향에_따른_위치값() {
-        assertThat(LEFT_ARROW.move()).isEqualTo(-1);
-        assertThat(BOTTOM_ARROW.move()).isEqualTo(0);
-        assertThat(RIGHT_ARROW.move()).isEqualTo(1);
+        assertThat(LEFT_ARROW.move(1)).isEqualTo(0);
+        assertThat(BOTTOM_ARROW.move(0)).isEqualTo(0);
+        assertThat(RIGHT_ARROW.move(2)).isEqualTo(3);
     }
 }
