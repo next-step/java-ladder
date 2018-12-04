@@ -5,7 +5,7 @@ class PlayerPositions {
 
     constructor(players: List<Player>, ladder: Ladder) {
         initPositions(players)
-        moveDown(players, ladder)
+        move(ladder)
     }
 
     private fun initPositions(players: List<Player>) {
@@ -14,16 +14,8 @@ class PlayerPositions {
         }
     }
 
-    private fun moveDown(players: List<Player>, ladder: Ladder) {
-        ladder.lines.forEach {
-            movePlayers(players, it)
-        }
-    }
-
-    private fun movePlayers(players: List<Player>, it: Line) {
-        players.forEach { player ->
-            positions[player] = it.move(positions[player]!!)
-        }
+    private fun move(ladder: Ladder) {
+        ladder.move(positions)
     }
 
     fun size() = positions.size

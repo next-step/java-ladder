@@ -60,11 +60,24 @@ class Direction {
 
     companion object {
         fun of(left: Boolean, right: Boolean): Direction {
-            return Direction(left, right)
+            if (left && right) {
+                throw IllegalArgumentException()
+            }
+            if (left && !right) {
+                return LEFT_DIRECTION
+            }
+            if (!left && right) {
+                return RIGHT_DIRECTION
+            }
+            return CURRENT_DIRECTION
         }
 
         fun first(right: Boolean): Direction {
             return of(false, right)
         }
+
+        private val LEFT_DIRECTION = Direction(true, false)
+        private val RIGHT_DIRECTION = Direction(false, true)
+        private val CURRENT_DIRECTION = Direction(false, false)
     }
 }

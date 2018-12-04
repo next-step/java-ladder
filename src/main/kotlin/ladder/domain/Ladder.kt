@@ -1,10 +1,8 @@
 package ladder.domain
 
 class Ladder {
-    var lines: List<Line>
-        private set
-    var players: List<Player>
-        private set
+    private val players: List<Player>
+    private var lines: List<Line>
 
     constructor(players: List<Player>, ladderHeight: Int) {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
@@ -14,6 +12,7 @@ class Ladder {
         this.lines = getLines(players, ladderHeight)
     }
 
+    // 테스트를 위해 필요
     constructor(players: List<Player>, lines: List<Line>) {
         this.players = players
         this.lines = lines
@@ -38,6 +37,18 @@ class Ladder {
     private fun getPlayerNames(): String = players.joinToString(" ") { it.name }
 
     private fun getLines(): String = lines.joinToString("\n") { it.drawLine() }
+
+    fun move(positions: MutableMap<Player, Int>) {
+        lines.forEach { line ->
+            movePlayers(positions, line)
+        }
+    }
+
+    private fun movePlayers(positions: MutableMap<Player, Int>, line: Line) {
+        players.forEach { player ->
+            positions[player] = line.move(positions[player]!!)
+        }
+    }
 
     override fun toString(): String {
         return "Ladder(lines=$lines, players=$players)"
