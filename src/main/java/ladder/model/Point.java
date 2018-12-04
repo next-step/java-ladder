@@ -24,7 +24,7 @@ public class Point {
     }
 
     public int nextPosition() {
-        return position + arrow.getIndex();
+        return arrow.move(position);
     }
 
     public boolean isRight() {

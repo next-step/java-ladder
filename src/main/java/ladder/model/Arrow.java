@@ -27,8 +27,8 @@ public enum Arrow {
         return BOTTOM;
     }
 
-    public int getIndex() {
-        return index;
+    public int move(int position) {
+        return position + index;
     }
 
     private static boolean isNext(boolean prev, boolean next) {
