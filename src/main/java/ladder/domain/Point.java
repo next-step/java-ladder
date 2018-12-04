@@ -2,40 +2,44 @@ package ladder.domain;
 
 public class Point {
 
-    public static final Point EMPTY = create();
+    private final int index;
+    private final Direction direction;
 
-    private Direction direction;
-
-    private Point(Direction direction) {
+    private Point(int index, Direction direction) {
+        this.index = index;
         this.direction = direction;
     }
 
-    public static Point create() {
-        return new Point(Direction.NONE);
+    public static Point create(int index, Direction direction) {
+        return new Point(index, direction);
     }
 
-    public int step() {
-        return Direction.findStep(direction);
-    }
-
-    public boolean canConnect() {
-        return Direction.isNone(this.direction);
-    }
-
-    public Point connect(Point point) {
-        if(this.canConnect() && point.canConnect()) {
-            this.connect(Direction.RIGHT);
-            point.connect(Direction.LEFT);
+    public int move() {
+        if (direction.isRight()) {
+            return index + 1;
         }
-        return this;
+
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+
+        return this.index;
     }
 
-    private void connect(Direction direction) {
-        this.direction = direction;
+    public Point next() {
+        return create(index + 1, direction.next());
     }
 
-    public boolean isConnected() {
-        return !Direction.isNone(this.direction);
+    public Point next(Boolean right) {
+        return create(index + 1, direction.next(right));
+    }
+
+    public Point last() {
+        return create(index + 1, direction.last());
+    }
+
+    public static Point first(Boolean right) {
+        return create(0, Direction.first(right));
     }
 
     @Override

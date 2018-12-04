@@ -1,21 +1,18 @@
 package ladder.domain;
 
-import ladder.utils.RandomUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.domain.Result.START_COLUMN;
-
 public class Ladder {
+    public static final int START_COLUMN = 0;
 
-    private List<Line> lines;
+    private List<LadderLine> ladderLines;
 
     private Ladder(int row, int countOfPerson) {
-        lines = new ArrayList<>();
+        ladderLines = new ArrayList<>();
         for (int i = 0; i < row; i++) {
-            lines.add(Line.create(countOfPerson));
+            ladderLines.add(LadderLine.create(countOfPerson));
         }
     }
 
@@ -27,39 +24,28 @@ public class Ladder {
         return new Ladder(ladderOption.height(), attendees.size());
     }
 
-    public void drawLine() {
-        lines.forEach(Line::draw);
-    }
-
-    public void drawLine(int countOfPerson) {
-        for (int row = 0; row < lines.size(); row++) {
-            Line line = lines.get(row);
-            line.draw(RandomUtils.generate(countOfPerson));
-        }
-    }
-
     public int endpoint(int countOfPerson) {
         return follow(countOfPerson, START_COLUMN);
     }
 
     private int follow(int column, int row) {
-        Line line = lines.get(row);
+        LadderLine ladderLine = ladderLines.get(row);
 
-        column = column + line.step(column);
+        column = ladderLine.move(column);
         row = row + 1;
 
-        if(row < line.size() + 1) {
+        if(row < ladderLine.size() + 1) {
             return this.follow(column, row);
         }
         return column;
     }
 
     public int size() {
-        return lines.size();
+        return ladderLines.size();
     }
 
     @Override
     public String toString() {
-        return lines.stream().map(Line::toString).collect(Collectors.joining("\n"));
+        return ladderLines.stream().map(LadderLine::toString).collect(Collectors.joining("\n"));
     }
 }

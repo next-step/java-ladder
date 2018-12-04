@@ -1,28 +1,57 @@
 package ladder.domain;
 
-public enum Direction {
-    RIGHT(1, "  |--"),
-    LEFT(-1, "--|  "),
-    NONE(0, "  |  ");
+import ladder.utils.RandomUtils;
+import ladder.utils.StringUtils;
 
-    private int step;
-    private String description;
+public class Direction {
+    private boolean left;
+    private boolean right;
 
-    Direction(int step, String description) {
-        this.step = step;
-        this.description = description;
+    private Direction(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException();
+        }
+        this.left = left;
+        this.right = right;
     }
 
-    public static boolean isNone(Direction direction) {
-        return direction == NONE;
+    public static Direction create(boolean left, boolean right) {
+        return new Direction(left, right);
     }
 
-    public static int findStep(Direction direction) {
-        return direction.step;
+    public boolean isRight() {
+        return this.right;
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
+    public boolean isNone() {
+        return !left && !right;
+    }
+
+    public static Direction first(boolean right) {
+        return create(false, right);
+    }
+
+    public Direction next(boolean nextRight) {
+        return create(this.right, nextRight);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(false);
+        }
+        return next(RandomUtils.generate());
+    }
+
+    public Direction last() {
+        return create(this.right, false);
     }
 
     @Override
     public String toString() {
-        return description;
+        return StringUtils.direction(this);
     }
 }
