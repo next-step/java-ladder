@@ -1,5 +1,9 @@
 package net.chandol.ladder.v2.domain;
 
+import net.chandol.ladder.v2.domain.line.Line;
+import net.chandol.ladder.v2.domain.line.LinesGenerator;
+import net.chandol.ladder.v2.domain.line.ManualLinesGenerator;
+import net.chandol.ladder.v2.domain.player.Players;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

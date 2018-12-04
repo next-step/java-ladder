@@ -2,7 +2,7 @@ package net.chandol.ladder.v2.view;
 
 import net.chandol.ladder.v2.domain.Ladder;
 import net.chandol.ladder.v2.domain.LadderGame;
-import net.chandol.ladder.v2.domain.Players;
+import net.chandol.ladder.v2.domain.player.Players;
 import net.chandol.ladder.v2.dto.LadderGameInitializeRequest;
 
 import java.util.Arrays;

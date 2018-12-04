@@ -1,7 +1,7 @@
 package net.chandol.ladder.v2;
 
 import net.chandol.ladder.v2.domain.LadderGame;
-import net.chandol.ladder.v2.domain.RandomLinesGenerator;
+import net.chandol.ladder.v2.domain.line.RandomLinesGenerator;
 import net.chandol.ladder.v2.dto.LadderGameInitializeRequest;
 import net.chandol.ladder.v2.view.LadderGameConsoleView;
 

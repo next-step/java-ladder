@@ -1,4 +1,4 @@
-package net.chandol.ladder.v2.domain;
+package net.chandol.ladder.v2.domain.player;
 
 import java.util.Arrays;
 import java.util.Iterator;

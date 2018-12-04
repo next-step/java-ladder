@@ -1,4 +1,4 @@
-package net.chandol.ladder.v2.domain;
+package net.chandol.ladder.v2.domain.line;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
-import static net.chandol.ladder.v2.domain.RandomLinesGenerator.RandomBridgesSupplierUtil.convertToLines;
-import static net.chandol.ladder.v2.domain.RandomLinesGenerator.RandomBridgesSupplierUtil.createRandomRawLines;
+import static net.chandol.ladder.v2.domain.line.RandomLinesGenerator.RandomBridgesSupplierUtil.convertToLines;
+import static net.chandol.ladder.v2.domain.line.RandomLinesGenerator.RandomBridgesSupplierUtil.createRandomRawLines;
 
 public class RandomLinesGenerator implements LinesGenerator {
     @Override

@@ -1,4 +1,4 @@
-package net.chandol.ladder.v2.domain;
+package net.chandol.ladder.v2.domain.line;
 
 import java.util.Iterator;
 import java.util.List;

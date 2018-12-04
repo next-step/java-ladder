@@ -1,5 +1,9 @@
 package net.chandol.ladder.v2.domain;
 
+import net.chandol.ladder.v2.domain.line.Lines;
+import net.chandol.ladder.v2.domain.line.LinesGenerator;
+import net.chandol.ladder.v2.domain.player.Players;
+
 public class Ladder {
     private Lines lines;
     private Players players;

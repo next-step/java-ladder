@@ -1,5 +1,8 @@
-package net.chandol.ladder.v2.domain;
+package net.chandol.ladder.v2.domain.line;
 
+import net.chandol.ladder.v2.domain.line.Line;
+import net.chandol.ladder.v2.domain.line.Lines;
+import net.chandol.ladder.v2.domain.line.ManualLinesGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 

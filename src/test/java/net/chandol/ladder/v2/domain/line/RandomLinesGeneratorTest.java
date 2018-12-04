@@ -1,7 +1,8 @@
-package net.chandol.ladder.v2.domain;
+package net.chandol.ladder.v2.domain.line;
 
-import net.chandol.ladder.v2.domain.RandomLinesGenerator.RandomBridgesSupplierUtil;
-import org.assertj.core.api.Assertions;
+import net.chandol.ladder.v2.domain.line.Lines;
+import net.chandol.ladder.v2.domain.line.RandomLinesGenerator;
+import net.chandol.ladder.v2.domain.line.RandomLinesGenerator.RandomBridgesSupplierUtil;
 import org.junit.Test;
 
 import java.util.Arrays;

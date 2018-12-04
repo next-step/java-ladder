@@ -1,6 +1,6 @@
 package net.chandol.ladder.v2.dto;
 
-import net.chandol.ladder.v2.domain.Players;
+import net.chandol.ladder.v2.domain.player.Players;
 
 public class LadderGameInitializeRequest {
     private Players players;
