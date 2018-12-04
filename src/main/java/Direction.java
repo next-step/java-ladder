@@ -20,6 +20,13 @@ public enum Direction {
         return STRAIGHT;
     }
 
+    public Direction last() {
+        if(isRight()) {
+            return LEFT;
+        }
+        return STRAIGHT;
+    }
+
     public boolean isLeft() {
         return LEFT.equals(this);
     }
@@ -37,9 +44,22 @@ public enum Direction {
             return LEFT;
         }
 
-        return LadderLineGenerator.generatePoint();
+        return next(LadderLineGenerator.generatePoint());
     }
 
+    public Direction next(boolean nextRight) {
+       if(nextRight) {
+           return RIGHT;
+       }
 
+       return STRAIGHT;
+    }
 
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "hasLeft=" + hasLeft +
+                ", hasRight=" + hasRight +
+                '}';
+    }
 }

@@ -1,6 +1,6 @@
 public class LadderLineGenerator {
-    public static Direction generatePoint() {
+    public static boolean generatePoint() {
 
-        return null;
+        return true;
     }
 }

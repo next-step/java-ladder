@@ -27,4 +27,16 @@ public class Point {
     public static Point first(Boolean right) {
         return new Point(0, Direction.first(right));
     }
+
+    public Point last() {
+        return new Point(idx+1, direction.last());
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "idx=" + idx +
+                ", direction=" + direction +
+                '}';
+    }
 }
