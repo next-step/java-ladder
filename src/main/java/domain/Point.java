@@ -23,4 +23,13 @@ public enum Point {
         return sb.toString();
     }
 
+    public int move() {
+
+        if (this.existence) {
+            return 1;
+        }
+
+        return 0;
+    }
+
 }

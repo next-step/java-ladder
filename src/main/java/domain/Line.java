@@ -15,6 +15,10 @@ public class Line {
         this.points = points;
     }
 
+    public int move(final int step) {
+        return this.points.get(step).move();
+    }
+
     public static Line fromFirst(final int countOfPlayer, final GenerateLine generateLine) {
         final List<Point> points = new ArrayList<>();
         for (int i = 0; i < countOfPlayer; i++) {

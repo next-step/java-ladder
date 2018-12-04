@@ -42,7 +42,7 @@ public class GenerateLadderLineTest {
     }
 
     @Test
-    public void 마지막_사다리인_경우_무조건_연결되지_않음을_검증_처번_실행() {
+    public void 마지막_사다리인_경우_무조건_연결되지_않음을_검증_천번_실행() {
         final GenerateLine generateLine = new GenerateLadderLine();
         for (int i = 0; i < 1000; i++) {
             final Line lastLine = Line.fromLast(3, generateLine);

@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderReward;
 import domain.Line;
 import domain.Players;
 
@@ -44,4 +45,7 @@ public abstract class ResultView {
         System.out.println();
     }
 
+    public static void printRewards(final LadderReward reward) {
+        System.out.println(reward.toString());
+    }
 }

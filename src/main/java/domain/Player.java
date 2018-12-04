@@ -13,6 +13,14 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public boolean eqName(final String name) {
+        return this.name.equals(name);
+    }
+
     private void validation(final String name) {
         ofNullable(name).filter(n -> n.length() <= 5 && n.length() > 0)
                 .orElseThrow(IllegalArgumentException::new);
