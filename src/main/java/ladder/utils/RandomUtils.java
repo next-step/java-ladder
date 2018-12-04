@@ -9,7 +9,7 @@ public class RandomUtils {
 
     }
 
-    public static int generate(int max) {
-        return RANDOM.nextInt(max);
+    public static boolean generate() {
+        return RANDOM.nextBoolean();
     }
 }
