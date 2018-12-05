@@ -9,19 +9,17 @@ class LadderTest {
 
     @Before
     fun setup() {
-        ladder = Ladder(dummyPlayers(), 3)
+        ladder = Ladder(PLAYERS, 5)
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun `사다리 길이 1보다 작으면 에러`() {
-        Ladder(dummyPlayers(), 0)
+        Ladder(PLAYERS, 0)
     }
 
     @Test
     fun `이름이 잘 들어갔는지 확인`() {
-        val isIncludeNames = ladder.drawLadder().contains("Dave Gib Mlb")
+        val isIncludeNames = ladder.drawLadder().contains("Dave Lee Kim")
         assertThat(isIncludeNames).isTrue()
     }
-
-    private fun dummyPlayers() = arrayListOf(Player("Dave"), Player("Gib"), Player("Mlb"))
 }

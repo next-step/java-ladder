@@ -5,7 +5,7 @@ import org.junit.Test
 
 class RandomPointGeneratorTest {
     @Test
-    fun `랜덤 라인생성 사이즈 체크`() {
+    fun `포인트 자동생성` () {
         val points = RandomPointGenerator.generator(5)
         assertThat(points).hasSize(5)
     }

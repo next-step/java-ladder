@@ -1,12 +1,14 @@
 package ladder.domain
 
-import ladder.domain.generators.PlayerGenerator
+class LadderGame(private val players: List<Player>,
+                 private val ladder: Ladder) {
 
-class LadderGame(private val values: String,
-                 private val ladderHeight: Int) {
+    fun ladderGameResult(result: String): LadderResult {
+        val rewards = Rewards(result)
+        return LadderResult(rewards, movedPositions())
+    }
 
-    fun getLadder(): Ladder {
-        val players = PlayerGenerator.generator(values)
-        return Ladder(players, ladderHeight)
+    private fun movedPositions(): PlayerPositions {
+        return PlayerPositions(players, ladder)
     }
 }

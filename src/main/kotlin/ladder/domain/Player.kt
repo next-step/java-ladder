@@ -21,6 +21,10 @@ class Player {
 
     override fun hashCode(): Int = name.hashCode()
 
+    override fun toString(): String {
+        return "Player(name='$name')"
+    }
+
     companion object {
         const val MAX_NAME_SIZE = 5
     }
