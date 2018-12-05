@@ -8,12 +8,15 @@ public class ConsoleMain {
 
     public static void main(String[] args) {
 
-        Attendees attendees = InputView.inputAttendees();
-        Gifts gifts = InputView.inputGifts();
-        LadderOption ladderOption = InputView.inputLadderOption();
+//        Attendees attendees = InputView.inputAttendees();
+        Attendees attendees = Attendees.create("pobi,honux,crong,jk");
+
+//        Gifts gifts = InputView.inputGifts();
+        Gifts gifts = Gifts.create("꽝,5000,꽝,3000");
+//        LadderOption ladderOption = InputView.inputLadderOption();
+        LadderOption ladderOption = LadderOption.create(5);
 
         Ladder ladder = Ladder.create(ladderOption, attendees);
-        ladder.drawLine();
 
         ResultView resultView = ResultView.create(attendees, gifts, ladder);
         resultView.showLadder();
