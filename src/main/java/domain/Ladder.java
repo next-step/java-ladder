@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
+    private final int participantCount;
     private final List<LadderLine> lines;
 
-    Ladder(List<LadderLine> lines) {
+    Ladder(int participantCount, List<LadderLine> lines) {
+        this.participantCount = participantCount;
         this.lines = lines;
     }
 
@@ -19,10 +21,21 @@ public class Ladder {
             lines.add(LadderLine.initialize(participantCount, new RandomValueGenerator()));
         }
 
-        return new Ladder(lines);
+        return new Ladder(participantCount, lines);
     }
 
-    Position play(Position position) {
+    public PlayResults play() {
+        PlayResults results = new PlayResults();
+
+        for (int i = 0; i < participantCount; i++) {
+            Position end = goDown(Position.from(i));
+            results.add(new PlayResult(Position.from(i), end));
+        }
+
+        return results;
+    }
+
+    Position goDown(Position position) {
         for (LadderLine line : lines) {
             position = line.move(position);
         }

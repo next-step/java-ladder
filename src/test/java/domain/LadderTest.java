@@ -9,12 +9,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderTest {
 
     @Test
-    public void play_테스트() {
+    public void goDown_테스트() {
         LadderLine line1 = LadderLine.initialize(2, () -> true);
         LadderLine line2 = LadderLine.initialize(2, () -> false);
 
-        Ladder ladder = new Ladder(Arrays.asList(line1, line2));
+        Ladder ladder = new Ladder(2, Arrays.asList(line1, line2));
 
-        assertThat(ladder.play(Position.from(0))).isEqualTo(Position.from(1));
+        assertThat(ladder.goDown(Position.from(0))).isEqualTo(Position.from(1));
     }
 }

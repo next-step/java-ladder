@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position {
 
-    private int index;
+    private final int index;
 
     private Position(int index) {
         this.index = index;
@@ -15,13 +15,11 @@ public class Position {
     }
 
     Position next() {
-        index++;
-        return this;
+        return new Position(index + 1);
     }
 
     Position prev() {
-        index--;
-        return this;
+        return new Position(index - 1);
     }
 
     int value() {

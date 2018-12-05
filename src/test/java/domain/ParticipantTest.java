@@ -18,4 +18,9 @@ public class ParticipantTest {
 
         assertThat(participant.toString()).isEqualTo(expected);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void all_은_이름으로_사용_불가() {
+        new Participant("all");
+    }
 }

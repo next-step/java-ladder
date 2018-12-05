@@ -24,6 +24,10 @@ public class Participants {
         return participants.size();
     }
 
+    Participant get(int i) {
+        return participants.get(i);
+    }
+
     @Override
     public String toString() {
         return participants.stream()
