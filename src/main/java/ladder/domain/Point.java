@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.strategy.Difficulty;
+
 public class Point {
 
     private final int index;
@@ -26,8 +28,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next() {
-        return create(index + 1, direction.next());
+    public Point next(Difficulty difficulty) {
+        return create(index + 1, direction.next(difficulty));
     }
 
     public Point next(Boolean right) {

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.utils.RandomUtils;
+import ladder.strategy.Difficulty;
 import ladder.utils.StringUtils;
 
 public class Direction {
@@ -39,11 +39,11 @@ public class Direction {
         return create(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(Difficulty difficulty) {
         if (this.right) {
             return next(false);
         }
-        return next(RandomUtils.generate());
+        return next(difficulty.generate());
     }
 
     public Direction last() {

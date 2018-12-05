@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.strategy.Difficulty;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -14,7 +15,7 @@ public class ConsoleMain {
 //        Gifts gifts = InputView.inputGifts();
         Gifts gifts = Gifts.create("꽝,5000,꽝,3000");
 //        LadderOption ladderOption = InputView.inputLadderOption();
-        LadderOption ladderOption = LadderOption.create(5);
+        LadderOption ladderOption = LadderOption.create("하");
 
         Ladder ladder = Ladder.create(ladderOption, attendees);
 

@@ -1,25 +1,26 @@
 package ladder.domain;
 
+import ladder.strategy.Difficulty;
+
 public class LadderOption {
 
-    private int height;
+    private Difficulty difficulty;
 
-    private LadderOption(int height) {
-        this.height = height;
+    private LadderOption(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     public static LadderOption create(int height) {
-        if(!isValidHeight(height)) {
-            throw new IllegalArgumentException();
-        }
-        return new LadderOption(height);
+        Difficulty difficulty = Difficulty.findByHeight(height);
+        return new LadderOption(difficulty);
     }
 
-    private static boolean isValidHeight(int height) {
-        return 0 < height;
+    public static LadderOption create(String text) {
+        Difficulty difficulty = Difficulty.findByText(text);
+        return new LadderOption(difficulty);
     }
 
-    public int height() {
-        return this.height;
+    public Difficulty difficulty() {
+        return difficulty;
     }
 }
