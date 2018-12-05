@@ -1,32 +1,43 @@
 package net.chandol.ladder.v2.domain.player;
 
-import org.apache.commons.lang3.StringUtils;
+import net.chandol.ladder.v2.support.StringUtils;
 
-import java.util.function.Predicate;
+import java.util.Objects;
+
+import static net.chandol.ladder.v2.support.Constants.PLAYER_MAX_LENGTH;
 
 public class Player {
-    private static final int MAX_LENGTH = 5;
     private String name;
 
     public Player(String name) {
-        validateName(name);
+        StringUtils.validateString(name, PLAYER_MAX_LENGTH);
         this.name = name;
-    }
-
-    private void validateName(String name) {
-        Predicate<String> isNullOrEmpty = n -> null == n || n.length() == 0;
-        Predicate<String> isExceedLength = n -> n.length() > MAX_LENGTH;
-
-        if (isNullOrEmpty.test(name) || isExceedLength.test(name)) {
-            throw new IllegalArgumentException("name길이를 확인해주세요.");
-        }
     }
 
     public String getName() {
         return name;
     }
 
-    public String getNameWithFixedLength() {
-        return StringUtils.center(name, MAX_LENGTH);
+    public String getNameWithFixedLength(){
+        return StringUtils.toFixedLength(name, PLAYER_MAX_LENGTH);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
+
+    public static Player player(String name){
+        return new Player(name);
     }
 }

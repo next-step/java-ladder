@@ -18,8 +18,24 @@ public class Lines implements Iterable<Line> {
     }
 
     public boolean hasPoint(int column, int row) {
+        if (column < 0 || column >= size()) {
+            return false;
+        }
+
         Line line = lines.get(column);
         return line.hasPoint(row);
+    }
+
+    public Direction getDirection(int column, int row) {
+        if (hasPoint(column, row)) {
+            return Direction.RIGHT;
+        }
+
+        if (hasPoint(column - 1, row)) {
+            return Direction.LEFT;
+        }
+
+        return Direction.STRAIGHT;
     }
 
     public Line get(int idx) {
@@ -50,6 +66,19 @@ public class Lines implements Iterable<Line> {
         return IntStream.range(0, height())
                 .mapToObj(this::createColumnString)
                 .collect(Collectors.toList());
+    }
+
+    public int calculateResult(int startLine) {
+        int currentLine = startLine;
+        for (int row = 0; row < height(); row++) {
+            currentLine = move(currentLine, row);
+        }
+
+        return currentLine;
+    }
+
+    private int move(int currentLine, int row) {
+        return getDirection(currentLine, row).nextLineNumber(currentLine);
     }
 
     @Override

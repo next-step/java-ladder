@@ -18,6 +18,10 @@ public class Players implements Iterable<Player> {
         return players.size();
     }
 
+    public Player getPlayer(int idx) {
+        return players.get(idx);
+    }
+
     @Override
     public Iterator<Player> iterator() {
         return players.iterator();
