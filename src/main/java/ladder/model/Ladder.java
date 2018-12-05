@@ -2,72 +2,53 @@ package ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Ladder {
-    private People people;
-    private Rewards rewards;
     private List<Line> lines;
 
-    private Ladder(String names, String rewards, List<Line> lines) {
-        this.people = People.of(names);
-        this.rewards = Rewards.of(rewards);
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Ladder of(String names, String rewards, int length) {
+    public static Ladder of(int countOfPerson, int length) {
         List<Line> lines = new ArrayList<>();
-        int countOfPerson = names.split(",").length;
-        int countOfReward = rewards.split(",").length;
-
-        if(countOfPerson != countOfReward) {
-            throw new IllegalArgumentException();
-        }
 
         for(int i = 0; i < length; i++) {
             lines.add(Line.of(countOfPerson));
         }
-        return new Ladder(names, rewards, lines);
+        return new Ladder(lines);
     }
 
-    public static Ladder of(String names, String rewards, List<Line> lines) {
-        return new Ladder(names, rewards, lines);
-    }
-
-    public People getPeople() {
-        return people;
-    }
-
-    public Rewards getRewards() {
-        return rewards;
+    public static Ladder of(List<Line> lines) {
+        return new Ladder(lines);
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
+    public int size() {
+        return lines.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Ladder ladder = (Ladder) o;
-
-        if (people != null ? !people.equals(ladder.people) : ladder.people != null) return false;
-        return lines != null ? lines.equals(ladder.lines) : ladder.lines == null;
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        int result = people != null ? people.hashCode() : 0;
-        result = 31 * result + (lines != null ? lines.hashCode() : 0);
-        return result;
+        return Objects.hash(lines);
     }
 
     @Override
     public String toString() {
         return "Ladder{" +
-                "people=" + people +
-                ", lines=" + lines +
+                "lines=" + lines +
                 '}';
     }
 }

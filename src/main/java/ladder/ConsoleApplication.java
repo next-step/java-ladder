@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.model.Ladder;
+import ladder.model.LadderGame;
 
 import static ladder.ui.console.InputView.inputLadderHeight;
 import static ladder.ui.console.InputView.inputNames;
@@ -14,7 +15,7 @@ public class ConsoleApplication {
 
         String reward = inputReward();
 
-        Ladder ladder = Ladder.of(names, reward, height);
+        LadderGame ladder = LadderGame.of(names, reward, height);
         ladderResult(ladder);
     }
 }

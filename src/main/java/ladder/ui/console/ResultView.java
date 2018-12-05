@@ -1,6 +1,7 @@
 package ladder.ui.console;
 
 import ladder.model.Ladder;
+import ladder.model.LadderGame;
 import ladder.model.Line;
 import ladder.model.People;
 import ladder.model.Rewards;
@@ -11,24 +12,23 @@ public class ResultView {
     private static final String TRUE_POINT = "-----|";
     private static final String FALSE_POINT = "     |";
 
-    public static void ladderResult(Ladder ladder) {
+    public static void ladderResult(LadderGame ladderGame) {
         System.out.println("실행결과");
 
-        People people = ladder.getPeople();
-        Rewards rewards = ladder.getRewards();
+        People people = ladderGame.getPeople();
+        Rewards rewards = ladderGame.getRewards();
 
         people.getPeople().stream().forEach(person -> {
             System.out.print(String.format("%6s", person.getName()));
         });
 
-        List<Line> lines = ladder.getLines();
-        System.out.println();
-        lines.stream().forEach(line -> {
+        Ladder ladder = ladderGame.getLadder();
+
+        ladder.getLines().stream().forEach(line -> {
             List<Boolean> points = line.getPoints();
             points.stream().forEach(point-> System.out.print(point ? TRUE_POINT : FALSE_POINT));
             System.out.println();
         });
-
 
         rewards.getRewards().stream().forEach(reward -> {
             System.out.print(String.format("%6s", reward.getReward()));
