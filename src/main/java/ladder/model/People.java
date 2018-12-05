@@ -28,6 +28,10 @@ public class People {
         return people.size();
     }
 
+    public Person getPersonByIndex(int index) {
+        return people.get(index);
+    }
+
     private String replaceSpace(String people) {
         return people.replace(" ", "");
     }
