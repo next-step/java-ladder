@@ -2,6 +2,7 @@ package ladder.ui.console;
 
 import ladder.model.Ladder;
 import ladder.model.LadderGame;
+import ladder.model.LadderResult;
 import ladder.model.Line;
 import ladder.model.People;
 import ladder.model.Rewards;
@@ -12,7 +13,7 @@ public class ResultView {
     private static final String TRUE_POINT = "-----|";
     private static final String FALSE_POINT = "     |";
 
-    public static void ladderResult(LadderGame ladderGame) {
+    public static void showLadder(LadderGame ladderGame) {
         System.out.println("실행결과");
 
         People people = ladderGame.getPeople();
@@ -21,6 +22,7 @@ public class ResultView {
         people.getPeople().stream().forEach(person -> {
             System.out.print(String.format("%6s", person.getName()));
         });
+        System.out.println();
 
         Ladder ladder = ladderGame.getLadder();
 
@@ -33,5 +35,16 @@ public class ResultView {
         rewards.getRewards().stream().forEach(reward -> {
             System.out.print(String.format("%6s", reward.getReward()));
         });
+        System.out.println();
+    }
+
+
+    public static void ladderResult(LadderResult ladderResult, String person) {
+        if(person.equals("all")) {
+            return;
+        }
+
+        System.out.println("실행 결과");
+        System.out.println(ladderResult.getRewardByPerson(person).getReward());
     }
 }

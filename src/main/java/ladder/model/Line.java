@@ -17,8 +17,7 @@ public class Line {
     }
 
     public static Line of(int countOfPerson) {
-        List<Boolean> points = drawLines(countOfPerson);
-        return new Line(points);
+        return new Line(drawLines(countOfPerson));
     }
 
     public List<Boolean> getPoints() {
@@ -30,7 +29,7 @@ public class Line {
     }
 
 
-    public static List<Boolean> drawLines(int countOfPerson) {
+    private static List<Boolean> drawLines(int countOfPerson) {
         List<Boolean> points = new ArrayList<>();
 
         for(int i = 0; i < countOfPerson; i++) {
@@ -45,6 +44,14 @@ public class Line {
             return true;
         }
         return points.get(points.size() - 1);
+    }
+
+    public boolean isLeftPoint(int position) {
+        return points.get(position);
+    }
+
+    public boolean isRightPoint(int position) {
+        return points.get(position + 1);
     }
 
     private void validation(List<Boolean> points) {

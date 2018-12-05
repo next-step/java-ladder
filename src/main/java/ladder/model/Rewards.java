@@ -33,6 +33,10 @@ public class Rewards {
         return people.replace(" ", "");
     }
 
+    public Reward getRewardByIndex(Position position) {
+        return rewards.get(position.getPosition());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,4 +56,5 @@ public class Rewards {
                 "rewards=" + rewards +
                 '}';
     }
+
 }

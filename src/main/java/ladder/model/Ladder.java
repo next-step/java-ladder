@@ -32,6 +32,13 @@ public class Ladder {
         return lines.size();
     }
 
+    public void move(Position position) {
+        lines.stream().forEach(line -> {
+            Direction direction = position.getDirection(line);
+            direction.move(position);
+        });
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

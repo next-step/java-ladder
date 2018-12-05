@@ -31,4 +31,18 @@ public class LadderGameTest {
 
         LadderGame.of(names, rewards, height);
     }
+
+    @Test
+    public void 사다리게임_결과() {
+        String names = "aa,bb,cc,dd,ee";
+        String rewards = "0,0,1000,0,3000";
+
+        int height = 5;
+
+        LadderGame ladderGame = LadderGame.of(names, rewards, height);
+        LadderResult result = ladderGame.result();
+
+        result.getRewardByPerson("aa");
+        result.getRewardByPerson("bb");
+    }
 }
