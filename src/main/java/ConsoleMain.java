@@ -1,20 +1,17 @@
-import generator.AutoLadderGenerator;
-import generator.LadderGenerator;
-import model.Ladder;
-import model.Positive;
-import model.Result;
-import view.InputView;
-import view.ResultView;
+import java.util.List;
 
 public class ConsoleMain {
-    public static void main(String[] args) {
-        String participants = InputView.getParticipants();
-        String results = InputView.getResults();
-        Positive maxHight = InputView.getMaxHight();
-        Ladder ladder = new Ladder(participants, maxHight, new AutoLadderGenerator());
-        ResultView.printResult(ladder.getParticipants(), ladder.getLines(), Result.getResults(results));
-        for (int i = 0; i < 2; i++) {
-            ResultView.printExecuteResult(InputView.getResultView(), ladder.getParticipants(), ladder.getLines(), Result.getResults(results));
-        }
-    }
+	public static void main(String[] args) {
+		List<Person> persons = Person.getPersons(InputView.getParticipants());
+		List<Result> results = Result.getResults(InputView.getResults());
+		Positive height = new Positive(InputView.getHeight());
+		
+		LadderGame ladderGame = new LadderGame(persons, height, new DefaultLadderLineGenerator());
+		ResultView.printLadder(ladderGame, results);
+		
+		for (int i = 0; i < 2; i++) {
+			
+			ResultView.printResult(ladderGame, results, InputView.getPersonResult());
+		}
+	}
 }
