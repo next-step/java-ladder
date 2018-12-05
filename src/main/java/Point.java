@@ -1,4 +1,6 @@
 public class Point {
+    public static final String LINE_RIGHT = "|-----";
+    public static final String LINE_STRAIGHT = "|";
     private int idx;
     private Direction direction;
 
@@ -32,6 +34,14 @@ public class Point {
         return new Point(idx+1, direction.last());
     }
 
+    public String getLine() {
+        if(direction.isRight()) {
+            return LINE_RIGHT;
+        }
+        
+        return LINE_STRAIGHT;
+    }
+    
     @Override
     public String toString() {
         return "Point{" +

@@ -1,6 +1,11 @@
-public class LadderLineGenerator {
-    public static boolean generatePoint() {
+import java.util.Random;
 
-        return true;
+public class LadderLineGenerator {
+    
+    public static final Random RANDOM = new Random();
+    
+    public static boolean generatePoint() {
+        
+        return RANDOM.nextBoolean();
     }
 }

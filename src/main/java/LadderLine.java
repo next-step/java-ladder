@@ -28,8 +28,7 @@ public class LadderLine {
     }
 
     private static void initLast(List<Point> points, Point point) {
-        point.last();
-        points.add(point);
+        points.add(point.last());
     }
 
     private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
@@ -45,7 +44,20 @@ public class LadderLine {
         points.add(point);
         return point;
     }
-
+    
+    
+    public static int move(int idx, List<LadderLine> ladderLines) {
+        for (int i = 0; i < ladderLines.size(); i++) {
+            idx = ladderLines.get(i).move(idx);
+        }
+        
+        return idx;
+    }
+    
+    public List<Point> getPoints() {
+        return points;
+    }
+    
     @Override
     public String toString() {
         return "LadderLine{" +
