@@ -39,12 +39,12 @@ public enum Direction {
         return STRAIGHT.equals(this);
     }
 
-    public Direction next() {
+    public Direction next(LadderLineGenerator ladderLineGenerator) {
         if( this.isRight() ) {
             return LEFT;
         }
 
-        return next(LadderLineGenerator.generatePoint());
+        return next(ladderLineGenerator.generatePoint());
     }
 
     public Direction next(boolean nextRight) {

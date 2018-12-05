@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Person {
-	private static final String ALL = "all";
+	public static final String ALL = "all";
 	private static final int LIMIT_LENGTH = 5;
 	private String name;
 	
