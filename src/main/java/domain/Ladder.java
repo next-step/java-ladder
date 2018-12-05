@@ -2,8 +2,9 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-class Ladder {
+public class Ladder {
 
     private final List<LadderLine> lines;
 
@@ -26,5 +27,12 @@ class Ladder {
             position = line.move(position);
         }
         return position;
+    }
+
+    @Override
+    public String toString() {
+        return lines.stream()
+            .map(LadderLine::toString)
+            .collect(Collectors.joining("\n"));
     }
 }
