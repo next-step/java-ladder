@@ -6,7 +6,7 @@ public class ConsoleMain {
 		List<Result> results = Result.getResults(InputView.getResults());
 		Positive height = new Positive(InputView.getHeight());
 		
-		LadderGame ladderGame = new LadderGame(persons, height, new DefaultLadderLineGen());
+		LadderGame ladderGame = new LadderGame(persons, height, new DefaultLadderLineGenerator());
 		ResultView.printLadder(ladderGame, results);
 		
 		for (int i = 0; i < 2; i++) {

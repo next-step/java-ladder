@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class DefaultLadderLineGen implements LadderLineGen {
+public class DefaultLadderLineGenerator implements LadderLineGenerator {
 	
 	@Override
 	public List<LadderLine> getLadderLines(Positive height, int sizeOfPerson) {

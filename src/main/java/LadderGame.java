@@ -5,8 +5,8 @@ public class LadderGame {
 	private List<LadderLine> ladderLines = new ArrayList<LadderLine>();
 	private List<Person> persons;
 	
-	public LadderGame(List<Person> persons, Positive height, LadderLineGen ladderLineGen) {
-		ladderLines = ladderLineGen.getLadderLines(height, persons.size());
+	public LadderGame(List<Person> persons, Positive height, LadderLineGenerator ladderLineGenerator) {
+		ladderLines = ladderLineGenerator.getLadderLines(height, persons.size());
 		this.persons = persons;
 	}
 	
