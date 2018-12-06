@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Point {
 
-    int index;
-    Direction direction;
+    private int index;
+    private Direction direction;
 
     public Point(int index,Direction direction) {
         if(index < 0){
@@ -39,4 +39,18 @@ public class Point {
     public Direction getDirection() {
         return direction;
     }
+
+    /**
+     * move logic
+     */
+    public int move(){
+        if(this.direction.isLeft()){
+            return this.index -1;
+        }
+        if(this.direction.isRight()){
+            return this.index +1;
+        }
+        return this.index;
+    }
+
 }

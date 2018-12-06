@@ -1,12 +1,9 @@
 package dto;
 
-import java.util.Arrays;
-import java.util.Optional;
 import java.util.Random;
 
 /**
  * 이전값의 영향을 받아서 다음 값이 정해진다....흠
- *
  */
 public enum Direction {
 
