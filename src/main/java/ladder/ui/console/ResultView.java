@@ -1,11 +1,6 @@
 package ladder.ui.console;
 
-import ladder.model.Ladder;
-import ladder.model.LadderGame;
-import ladder.model.LadderResult;
-import ladder.model.Line;
-import ladder.model.People;
-import ladder.model.Rewards;
+import ladder.model.*;
 
 import java.util.List;
 
@@ -26,9 +21,12 @@ public class ResultView {
 
         Ladder ladder = ladderGame.getLadder();
 
-        ladder.getLines().stream().forEach(line -> {
-            List<Boolean> points = line.getPoints();
-            points.stream().forEach(point-> System.out.print(point ? TRUE_POINT : FALSE_POINT));
+        ladder.getLadderLines().stream().forEach(ladderLine -> {
+            List<Point> points = ladderLine.getPoints();
+
+            points.stream().forEach(point-> {
+                System.out.print(point.getDirection().isLeft() ? TRUE_POINT : FALSE_POINT);
+            });
             System.out.println();
         });
 

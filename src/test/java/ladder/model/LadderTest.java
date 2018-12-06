@@ -15,14 +15,14 @@ public class LadderTest {
     public void 사다리_만들기() {
         int countOfPerson = 5;
 
-        List<Line> lines = new ArrayList<>();
+        List<LadderLine> ladderLines = new ArrayList<>();
 
         for(int i = 0; i < HEIGHT; i++) {
-            lines.add(Line.of(countOfPerson));
+            ladderLines.add(LadderLine.init(countOfPerson));
         }
 
-        ladder = Ladder.of(lines);
-        assertThat(ladder).isEqualTo(Ladder.of(lines));
+        ladder = Ladder.of(ladderLines);
+        assertThat(ladder).isEqualTo(Ladder.of(ladderLines));
         assertThat(ladder.size()).isEqualTo(5);
     }
 
@@ -33,4 +33,6 @@ public class LadderTest {
         ladder = Ladder.of(countOfPerson, HEIGHT);
         assertThat(ladder.size()).isEqualTo(5);
     }
+
+
 }
