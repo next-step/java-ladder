@@ -3,13 +3,13 @@ package domain.level;
 public enum PointLevel {
     EASY(20), NORMAL(15), HARD(10);
 
-    private final int height;
+    private final int bound;
 
-    PointLevel(int height) {
-        this.height = height;
+    PointLevel(int bound) {
+        this.bound = bound;
     }
 
     public int value() {
-        return height;
+        return bound;
     }
 }
