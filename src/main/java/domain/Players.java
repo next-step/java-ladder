@@ -24,7 +24,7 @@ public class Players {
     }
 
     public int size() {
-        return players.size() - 1;
+        return players.size();
     }
 
     public Player findPlayerByIndex(final int index) {
@@ -35,6 +35,14 @@ public class Players {
         Optional.ofNullable(player)
                 .filter(p -> !"".equals(p))
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    public int findByName(final String name) {
+        return IntStream.range(0, this.players.size())
+                .filter(i -> this.players.get(i).eqName(name))
+                .findFirst()
+                .getAsInt();
     }
 
     @Override
@@ -62,11 +70,4 @@ public class Players {
         return sb.toString();
     }
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public int findByName(final String name) {
-        return IntStream.range(0, this.players.size())
-                .filter(i -> this.players.get(i).eqName(name))
-                .findFirst()
-                .getAsInt();
-    }
 }

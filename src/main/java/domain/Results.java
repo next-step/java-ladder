@@ -4,61 +4,61 @@ import java.util.Arrays;
 
 import static java.util.Optional.ofNullable;
 
-public class Rewards {
+public class Results {
 
-    private final String[] rewards;
+    private final String[] results;
 
-    public Rewards(final String[] rewards) {
+    public Results(final String[] results) {
 
-        ofNullable(rewards).orElseThrow(IllegalArgumentException::new);
+        ofNullable(results).orElseThrow(IllegalArgumentException::new);
 
-        if (rewards.length == 0) {
+        if (results.length == 0) {
             throw new IllegalArgumentException();
         }
 
-        for (final String reward : rewards) {
-            if (reward == null) {
+        for (final String result : results) {
+            if (result == null) {
                 throw new IllegalArgumentException();
             }
         }
 
-        this.rewards = rewards;
+        this.results = results;
     }
 
     public boolean eqRewards(final String[] values) {
-        return this.rewards == values;
+        return this.results == values;
     }
 
     public int size() {
-        return this.rewards.length;
+        return this.results.length;
     }
 
     public String findReward(final int playerNo) {
-        return this.rewards[playerNo];
+        return this.results[playerNo];
     }
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final Rewards rewards1 = (Rewards) o;
-        return Arrays.equals(rewards, rewards1.rewards);
+        final Results results1 = (Results) o;
+        return Arrays.equals(results, results1.results);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(rewards);
+        return Arrays.hashCode(results);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < rewards.length; i++) {
-            final String reward = rewards[i];
+        for (int i = 0; i < results.length; i++) {
+            final String result = results[i];
             if (i > 0) {
                 sb.append("     ");
             }
-            sb.append(reward);
+            sb.append(result);
         }
         return sb.toString();
     }

@@ -22,7 +22,7 @@ public class PlayersTest {
     @Test
     public void 콤마를_구분자로_입력한_참가자가_만들어졌는지_검사() {
         final Players players = new Players("홍길동,홍길순,나인제로,둘리");
-        assertThat(players.size()).isEqualTo(3);
+        assertThat(players.size()).isEqualTo(4);
     }
 
     @Test(expected = IllegalArgumentException.class)
