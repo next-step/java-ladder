@@ -9,7 +9,7 @@ public class LadderResultTest {
     public void 라인리스트확인하기() {
         LadderResult ladderResult = new LadderResult();
         for(int i =0 ; i< 4 ; i++){
-            ladderResult.addLine(new Line(5));
+            ladderResult.addLine(new LadderLine(5));
         }
         assertThat(ladderResult.ofladder()).hasSize(4);
     }

@@ -5,30 +5,30 @@ import java.util.List;
 
 public class LadderResult {
 
-    private List<Line> lines = new ArrayList<>();
+    private List<LadderLine> lines = new ArrayList<>();
     private Score score;
 
     public LadderResult() {
     }
 
-    public LadderResult(List<Line> lines, Score score) {
+    public LadderResult(List<LadderLine> lines, Score score) {
         this.lines = lines;
         this.score = score;
     }
 
-    public List<Line> ofladder() {
+    public List<LadderLine> ofladder() {
         return this.lines;
     }
 
     public int lastIndex(int n){
         int moveIndex = n;
-        for(Line line : this.lines){
+        for(LadderLine line : this.lines){
             moveIndex = line.move(moveIndex);
         }
         return moveIndex;
     }
 
-    public void addLine(Line line) {
+    public void addLine(LadderLine line) {
         this.lines.add(line);
     }
 
