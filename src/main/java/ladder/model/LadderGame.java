@@ -34,10 +34,8 @@ public class LadderGame {
 
 
         for(int i = 0; i < people.count(); i++) {
-            Position position = Position.of(i);
             Person person = people.getPersonByIndex(i);
-
-            ladder.move(position);
+            int position = ladder.move(i);
 
             Reward reward = rewards.getRewardByIndex(position);
             ladderResult.setResult(person, reward);

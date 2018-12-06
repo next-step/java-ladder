@@ -5,38 +5,39 @@ import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
-    private List<Line> lines;
+    private List<LadderLine> ladderLines;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
     public static Ladder of(int countOfPerson, int length) {
-        List<Line> lines = new ArrayList<>();
+        List<LadderLine> ladderLines = new ArrayList<>();
 
         for(int i = 0; i < length; i++) {
-            lines.add(Line.of(countOfPerson));
+            ladderLines.add(LadderLine.init(countOfPerson));
         }
-        return new Ladder(lines);
+        return new Ladder(ladderLines);
     }
 
-    public static Ladder of(List<Line> lines) {
-        return new Ladder(lines);
+    public static Ladder of(List<LadderLine> ladderLines) {
+        return new Ladder(ladderLines);
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 
     public int size() {
-        return lines.size();
+        return ladderLines.size();
     }
 
-    public void move(Position position) {
-        lines.stream().forEach(line -> {
-            Direction direction = position.getDirection(line);
-            direction.move(position);
-        });
+    public int move(int position) {
+        for(int i = 0; i < ladderLines.size(); i++) {
+            position = ladderLines.get(i).move(position);
+        }
+
+        return position;
     }
 
     @Override
@@ -44,18 +45,18 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(lines, ladder.lines);
+        return Objects.equals(ladderLines, ladder.ladderLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lines);
+        return Objects.hash(ladderLines);
     }
 
     @Override
     public String toString() {
         return "Ladder{" +
-                "lines=" + lines +
+                "ladderLines=" + ladderLines +
                 '}';
     }
 }

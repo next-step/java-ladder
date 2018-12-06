@@ -33,8 +33,8 @@ public class Rewards {
         return people.replace(" ", "");
     }
 
-    public Reward getRewardByIndex(Position position) {
-        return rewards.get(position.getPosition());
+    public Reward getRewardByIndex(int position) {
+        return rewards.get(position);
     }
 
     @Override
