@@ -1,8 +1,8 @@
 
+
 import Ladder.Persons;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LadderTest {
@@ -25,5 +25,4 @@ public class LadderTest {
         persons = "hwanseok,good,hhlleoe";
         Persons personsObject = new Persons(persons);
     }
-
 }

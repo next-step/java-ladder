@@ -36,18 +36,14 @@ public class LadderGameTest {
     }
     @Test
     public void 맨처음_위치에서_이동(){
-
         assertThat(oneLine.move(BEGIN_POINT)).isEqualTo(1);
-
     }
     @Test
     public void 중간_위치에서_이동(){
         assertThat(oneLine.move(MIDDLE_POINT)).isEqualTo(0);
-
     }
     @Test
     public void 마지막_위치에서_이동(){
         assertThat(oneLine.move(LAST_POINT)).isEqualTo(2);
-
     }
 }
