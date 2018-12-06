@@ -3,17 +3,17 @@ package ladder.domain
 class Ladder {
     private val players: List<Player>
     private var lines: List<Line>
+    private val level: Level
 
-    constructor(players: List<Player>, ladderHeight: Int) {
-        if (ladderHeight < MIN_LADDER_HEIGHT) {
-            throw IllegalArgumentException("사다리 높이는 최소 1 이상이어야 합니다.")
-        }
+    constructor(players: List<Player>, ladderLevel: String) {
+        this.level = Level.findLevel(ladderLevel)
         this.players = players
-        this.lines = getLines(players, ladderHeight)
+        this.lines = getLines(players, level.getHeight())
     }
 
     // 테스트를 위해 필요
-    constructor(players: List<Player>, lines: List<Line>) {
+    constructor(players: List<Player>, lines: List<Line>, level: Level) {
+        this.level = level
         this.players = players
         this.lines = lines
     }
@@ -21,7 +21,7 @@ class Ladder {
     private fun getLines(players: List<Player>, ladderHeight: Int): List<Line> {
         val lines = arrayListOf<Line>()
         for (i in 0 until ladderHeight) {
-            lines.add(Line(players.size))
+            lines.add(Line(players.size, level))
         }
         return lines
     }
