@@ -1,9 +1,6 @@
 package domain;
 
 import java.util.*;
-import java.util.stream.IntStream;
-
-import static domain.LadderPointGenerator.generatePoint;
 
 public class LadderLine {
     private final List<Point> points;
@@ -17,10 +14,10 @@ public class LadderLine {
         return points.get(position).move();
     }
 
-    public static LadderLine from(int countOfPerson) {
+    public static LadderLine from(int countOfPerson, LevelLadderGenerator levelLadderGenerator) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(countOfPerson, points, point);
+        Point point = initFirst(points, levelLadderGenerator);
+        point = initBody(countOfPerson, points, point, levelLadderGenerator);
         initLast(points, point);
         return new LadderLine(points);
     }
@@ -30,16 +27,16 @@ public class LadderLine {
         points.add(point);
     }
 
-    private static Point initBody(int countOfPerson, List<Point> points, Point point) {
+    private static Point initBody(int countOfPerson, List<Point> points, Point point, LevelLadderGenerator levelLadderGenerator) {
         for(int i = 1; i < countOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(levelLadderGenerator);
             points.add(point);
         }
         return point;
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private static Point initFirst(List<Point> points, LevelLadderGenerator levelLadderGenerator) {
+        Point point = Point.first(levelLadderGenerator.generate());
         points.add(point);
         return point;
     }
@@ -82,7 +79,7 @@ public class LadderLine {
         return Objects.hash(points);
     }
 
-    public List<Integer> trackingLine(List<Integer> personsPosition, int countOfPerson, ArrayList<Integer> tempBox) {
+    public List<Integer> trackingLine(int countOfPerson, ArrayList<Integer> tempBox) {
         //이 메소드 구현 로직을 좀 더 단순하게 구현할 수 없을까?
         ArrayList<Integer> temp = new ArrayList<>(tempBox);
         for(int i = 0; i < countOfPerson; i++) {

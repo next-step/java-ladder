@@ -41,4 +41,11 @@ public class InputView {
         String str = sc.nextLine();
         return str;
     }
+
+    public static String typeLevel() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("실행할 사다리의 난이도는?");
+        return sc.next();
+    }
 }
