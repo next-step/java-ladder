@@ -14,11 +14,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    static Ladder of(int participantCount, int height) {
+    public static Ladder of(int participantCount, int height, int randomBound) {
         List<LadderLine> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(LadderLine.initialize(participantCount, new RandomValueGenerator()));
+            lines.add(LadderLine.initialize(participantCount, new RandomValueGenerator(randomBound)));
         }
 
         return new Ladder(participantCount, lines);

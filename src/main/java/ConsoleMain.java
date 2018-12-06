@@ -1,4 +1,5 @@
 import domain.*;
+import domain.generator.LadderGenerator;
 import view.InputView;
 import view.ResultView;
 
@@ -7,12 +8,12 @@ public class ConsoleMain {
     public static void main(String[] args) {
         String inputNames = InputView.inputParticipantsName();
         String inputRewards = InputView.inputRewards();
-        int height = InputView.inputHeightOfLadder();
+        String inputLevel = InputView.inputLevel();
 
-        LadderGenerator ladderGenerator = new DefaultLadderGenerator();
+        LadderGenerator ladderGenerator = LadderGeneratorFactory.create(inputLevel);
         Participants participants = Participants.from(inputNames);
         Rewards rewards = Rewards.from(inputRewards);
-        Ladder ladder = ladderGenerator.generate(participants.size(), height);
+        Ladder ladder = ladderGenerator.generate(participants.size());
 
         ResultView.printLadder(participants, ladder, rewards);
 
