@@ -26,14 +26,4 @@ public class LadderTest {
         Persons personsObject = new Persons(persons);
     }
 
-/*    @Test
-    public void 앞좌표상태_체크() {
-        LadderLine line = LadderLine(4);
-        List<Point> points = new ArrayList<>();
-        //points.add(Point.of(true));
-        points.add(new Point(true));
-        boolean result = line.validationCheck(points);
-        assertThat(result).isEqualTo(true);
-    }*/
-
 }
