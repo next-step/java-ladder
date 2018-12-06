@@ -1,38 +1,56 @@
 package domain;
 
-public class Point {
+import java.util.Objects;
+
+class Point {
 
     private static final String EXIST = "-----|";
     private static final String NOT_EXIST = "     |";
 
-    private final boolean exist;
+    private final int index;
+    private final Direction direction;
 
-    public Point(boolean exist) {
-        this.exist = exist;
+    Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point of(Point prev, boolean exist) {
-        if (prev.isExists()) {
-            return new Point(false);
-        }
-
-        return new Point(exist);
+    static Point first(boolean canMake) {
+        return new Point(0, Direction.first(canMake));
     }
 
-    public static Point first() {
-        return new Point(false);
+    Point next(boolean canMake) {
+        return new Point(index + 1, direction.next(canMake));
     }
 
-    public boolean isExists() {
-        return exist;
+    Point last() {
+        return new Point(index + 1, direction.last());
+    }
+
+    boolean canMoveLeft() {
+        return direction.isLeft();
+    }
+
+    boolean canMoveRight() {
+        return direction.isRight();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return index == point.index &&
+            direction == point.direction;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, direction);
     }
 
     @Override
     public String toString() {
-        if (this.exist) {
-            return EXIST;
-        }
-
-        return NOT_EXIST;
+        return direction.isLeft() ? EXIST : NOT_EXIST;
     }
 }

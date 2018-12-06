@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,35 +14,24 @@ public class Participants {
         this.participants = participants;
     }
 
-    public static Participants fromInput(String input) {
-        return new Participants(
-            Arrays.stream(input.split(SEPARATOR))
-                .map(Participant::new)
-                .collect(Collectors.toList()));
+    public static Participants from(String names) {
+        return new Participants(Arrays.stream(names.split(SEPARATOR))
+            .map(Participant::new)
+            .collect(Collectors.toList()));
     }
 
-    public List<Participant> getParticipants() {
-        return Collections.unmodifiableList(participants);
-    }
-
-    public int countOfParticipants() {
+    public int size() {
         return participants.size();
     }
 
-    public int indexOf(Participant participant) {
-        return participants.indexOf(participant);
-    }
-
-    public boolean contains(Participant participant) {
-        return participants.contains(participant);
+    Participant get(int i) {
+        return participants.get(i);
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        participants.forEach(participant -> stringBuilder.append(participant.toString()));
-
-        return stringBuilder.toString();
+        return participants.stream()
+            .map(Participant::toString)
+            .collect(Collectors.joining());
     }
 }

@@ -6,11 +6,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RewardsTest {
 
-    @Test
-    public void 사다리_결과_생성() {
-        Rewards rewards = Rewards.fromInput("꽝,꽝,5000,4000");
+    public static final Rewards DEFAULT_REWARDS = Rewards.from("good,bad,good");
 
-        assertThat(rewards.get(0)).isEqualTo("꽝");
-        assertThat(rewards.get(3)).isEqualTo("4000");
+    @Test
+    public void 생성() {
+        Rewards rewards = Rewards.from("good,bad");
+
+        assertThat(rewards.size()).isEqualTo(2);
     }
 }

@@ -3,22 +3,23 @@ import view.InputView;
 import view.ResultView;
 
 public class ConsoleMain {
+
     public static void main(String[] args) {
-        String participantsName = InputView.inputParticipantsName();
-        String rewardsStr = InputView.inputRewards();
-        PositiveNumber height = PositiveNumber.from(InputView.inputHeightOfLadder());
+        String inputNames = InputView.inputParticipantsName();
+        String inputRewards = InputView.inputRewards();
+        int height = InputView.inputHeightOfLadder();
 
-        Participants participants = Participants.fromInput(participantsName);
-        Rewards rewards = Rewards.fromInput(rewardsStr);
-
-        Ladder ladder = Ladder.of(height, participants);
+        LadderGenerator ladderGenerator = new DefaultLadderGenerator();
+        Participants participants = Participants.from(inputNames);
+        Rewards rewards = Rewards.from(inputRewards);
+        Ladder ladder = ladderGenerator.generate(participants.size(), height);
 
         ResultView.printLadder(participants, ladder, rewards);
 
+        RewardMap rewardMap = new RewardMap(participants, rewards);
+        rewardMap.initMapFromResult(ladder.play());
+
         String nameForReward = InputView.inputNameForReward();
-
-        LadderResult result = new LadderResult(ladder, participants, rewards);
-
-        ResultView.printLadderGameResult(result, nameForReward);
+        ResultView.printLadderGameResult(rewardMap, nameForReward);
     }
 }

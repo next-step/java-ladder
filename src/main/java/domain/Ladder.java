@@ -2,40 +2,50 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final int participantCount;
+    private final List<LadderLine> lines;
 
-    private Ladder(List<Line> lines) {
+    Ladder(int participantCount, List<LadderLine> lines) {
+        this.participantCount = participantCount;
         this.lines = lines;
     }
 
-    public static Ladder from(List<Line> lines) {
-        return new Ladder(lines);
-    }
+    static Ladder of(int participantCount, int height) {
+        List<LadderLine> lines = new ArrayList<>();
 
-    public static Ladder of(PositiveNumber height, Participants participants) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height.value(); i++) {
-            lines.add(Line.initialize(participants, new RandomPointGenerator()));
+        for (int i = 0; i < height; i++) {
+            lines.add(LadderLine.initialize(participantCount, new RandomValueGenerator()));
         }
 
-        return new Ladder(lines);
+        return new Ladder(participantCount, lines);
     }
 
-    public int goingDown(int index) {
-        for (Line line : lines) {
-            index = line.move(index);
+    public PlayResults play() {
+        PlayResults results = new PlayResults();
+
+        for (int i = 0; i < participantCount; i++) {
+            Position end = goDown(Position.from(i));
+            results.add(new PlayResult(Position.from(i), end));
         }
 
-        return index;
+        return results;
+    }
+
+    Position goDown(Position position) {
+        for (LadderLine line : lines) {
+            position = line.move(position);
+        }
+        return position;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        lines.forEach(line -> stringBuilder.append(line.toString()).append("\n"));
-        return stringBuilder.toString();
+        return lines.stream()
+            .map(LadderLine::toString)
+            .collect(Collectors.joining("\n"));
     }
 }

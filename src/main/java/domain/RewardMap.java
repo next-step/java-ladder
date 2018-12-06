@@ -3,24 +3,23 @@ package domain;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class LadderResult {
+public class RewardMap {
 
     private static final String RESULT_ALL = "all";
 
-    private final Map<Participant, String> result = new LinkedHashMap<>();
+    private final Participants participants;
+    private final Rewards rewards;
+    private final Map<Participant, String> rewardMap = new LinkedHashMap<>();
 
-    public LadderResult(Ladder ladder, Participants participants, Rewards rewards) {
-        if (participants.countOfParticipants() != rewards.size()) {
-            throw new IllegalArgumentException("참여자 수와 실행 결과 수는 같아야 한다.");
-        }
-
-        initResult(ladder, participants, rewards);
+    public RewardMap(Participants participants, Rewards rewards) {
+        this.participants = participants;
+        this.rewards = rewards;
     }
 
-    private void initResult(Ladder ladder, Participants participants, Rewards rewards) {
-        for (Participant participant : participants.getParticipants()) {
-            int finalIndex = ladder.goingDown(participants.indexOf(participant));
-            result.put(participant, rewards.get(finalIndex));
+    public void initMapFromResult(PlayResults results) {
+        for (PlayResult result : results.getResults()) {
+            Map.Entry<Participant, String> entry = result.getEntry(participants, rewards);
+            rewardMap.put(entry.getKey(), entry.getValue());
         }
     }
 
@@ -39,7 +38,7 @@ public class LadderResult {
     private String allResult() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (Map.Entry<Participant, String> each : result.entrySet()) {
+        for (Map.Entry<Participant, String> each : rewardMap.entrySet()) {
             stringBuilder
                 .append(each.getKey().toString())
                 .append(" : ")
@@ -52,11 +51,10 @@ public class LadderResult {
 
     private String singleResult(String name) {
         Participant target = new Participant(name);
-        if (!result.containsKey(target)) {
+        if (!rewardMap.containsKey(target)) {
             throw new IllegalArgumentException("참여자 중 선택해야한다.");
         }
 
-        return result.get(target);
+        return rewardMap.get(target);
     }
-
 }

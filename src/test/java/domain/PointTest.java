@@ -7,21 +7,41 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PointTest {
 
     @Test
-    public void 첫_포인트는_false() {
-        Point first = Point.first();
+    public void 첫번째_Point_방향_생성시_무조건_RIGHT() {
+        Point first = Point.first(true);
 
-        assertThat(first.isExists()).isFalse();
+        assertThat(first).isEqualTo(new Point(0, Direction.RIGHT));
     }
 
     @Test
-    public void 연속된_포인트는_둘_다_true_일_수_없다() {
-        Point p1 = Point.first();
-        Point p2 = Point.of(p1, true);
-        Point p3 = Point.of(p2, true);
-        Point p4 = Point.of(p3, true);
+    public void 현재_Point_방향_RIGHT_면_다음_Point_방향_무조건_LEFT() {
+        Point point = new Point(0, Direction.RIGHT);
+        Point next = point.next(true);
 
-        assertThat(p2.isExists()).isTrue();
-        assertThat(p3.isExists()).isFalse();
-        assertThat(p4.isExists()).isTrue();
+        assertThat(next).isEqualTo(new Point(1, Direction.LEFT));
+    }
+
+    @Test
+    public void 현재_Point_방향_RIGHT_아닐_때_다음_Point_방향_생성시엔_RIGHT() {
+        Point point = new Point(0, Direction.NONE);
+        Point next = point.next(true);
+
+        assertThat(next).isEqualTo(new Point(1, Direction.RIGHT));
+    }
+
+    @Test
+    public void 마지막_Point_의_이전_Point_가_RIGHT_면_무조건_LEFT() {
+        Point prev = new Point(1, Direction.RIGHT);
+        Point last = prev.last();
+
+        assertThat(last).isEqualTo(new Point(2, Direction.LEFT));
+    }
+
+    @Test
+    public void 마지막_Point_의_이전_Point_RIGHT_아니면_무조건_NONE() {
+        Point prev = new Point(1, Direction.NONE);
+        Point last = prev.last();
+
+        assertThat(last).isEqualTo(new Point(2, Direction.NONE));
     }
 }

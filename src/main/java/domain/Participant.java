@@ -2,33 +2,28 @@ package domain;
 
 import java.util.Objects;
 
-public class Participant {
+class Participant {
 
-    private static final int MAXIMUM_LENGTH_OF_NAME = 5;
+    private static final int LENGTH_BOUND = 5;
     private static final String OUTPUT_FORMAT = "%6s";
-    private static final String FORBIDDEN_NAME = "all";
+    private static final String NOT_ALLOWED_NAME = "all";
 
     private final String name;
 
-    public Participant(String name) {
-        this.name = validateName(name);
+    Participant(String name) {
+        this.name = validate(name);
     }
 
-    private String validateName(String name) {
-        if (name.length() > MAXIMUM_LENGTH_OF_NAME) {
-            throw new IllegalArgumentException("이름은 5자 이하여야 한다.");
+    private String validate(String name) {
+        if (NOT_ALLOWED_NAME.equals(name)) {
+            throw new IllegalArgumentException("all 은 이름으로 사용불가임.");
         }
 
-        if (FORBIDDEN_NAME.equals(name)) {
-            throw new IllegalArgumentException("all 은 이름으로 사용할 수 없다");
+        if (name.length() > LENGTH_BOUND) {
+            throw new IllegalArgumentException("참여자 명 5자 이내여야함.");
         }
 
         return name;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(OUTPUT_FORMAT, name);
     }
 
     @Override
@@ -42,5 +37,10 @@ public class Participant {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(OUTPUT_FORMAT, name);
     }
 }
