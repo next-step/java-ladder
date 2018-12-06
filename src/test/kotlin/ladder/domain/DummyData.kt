@@ -14,7 +14,7 @@ val POSITION_THREE = listOf(Point(0, Direction.first(false)),
 
 val PLAYERS = arrayListOf(Player("Dave"), Player("Lee"), Player("Kim"))
 val LINES = arrayListOf(Line(POSITION_ONE), Line(POSITION_TWO), Line(POSITION_THREE))
-val LADDER = Ladder(PLAYERS, LINES)
+val LADDER = Ladder(PLAYERS, LINES, Level.MEDIUM)
 
 val REWARDS = Rewards("꽝,1000,꽝")
 

@@ -6,8 +6,8 @@ class Line {
     var points: List<Point>
         private set
 
-    constructor(countOfPerson: Int) {
-        this.points = RandomPointGenerator.generator(countOfPerson)
+    constructor(countOfPerson: Int, level: Level) {
+        this.points = RandomPointGenerator.generator(countOfPerson, level)
     }
 
     constructor(points: List<Point>) {
