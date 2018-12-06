@@ -8,32 +8,28 @@ public class Ladder {
 
     private List<LadderLine> ladderLines;
 
-    private Ladder(LadderSize ladderSize, Conditional conditional) {
-        generateLadder(ladderSize, conditional);
+    private Ladder(LadderSize ladderSize) {
+        generateLadder(ladderSize);
     }
 
-    public static Ladder from(LadderSize ladderSize, Conditional conditional) {
-        return new Ladder(ladderSize, conditional);
+    public static Ladder from(LadderSize ladderSize) {
+        return new Ladder(ladderSize);
     }
 
-    private List<LadderLine> generateLadder(LadderSize ladderSize, Conditional conditional) {
+    private List<LadderLine> generateLadder(LadderSize ladderSize) {
         ladderLines = new ArrayList();
         for (int i = 0; i < ladderSize.heightSize(); i++) {
-            ladderLines.add(conditional.generateLine(ladderSize.wightSize()));
+            ladderLines.add(LadderLine.init(ladderSize.wightSize()));
         }
         return ladderLines;
     }
 
-    public Position progressGame(Position position) {
+    public int progressGame(int index) {
+        int position = 0;
         for (LadderLine line : ladderLines) {
-            Direction direction = position.checkDirection(line);
-            position.move(direction);
+            position = line.move(index);
         }
         return position;
-    }
-
-    public int size() {
-        return ladderLines.size();
     }
 
     @Override

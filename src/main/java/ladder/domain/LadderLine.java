@@ -2,73 +2,51 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
 
-import static java.lang.Boolean.*;
-
+import static ladder.util.DirectionGenerator.randomDirectionGenerator;
 
 public class LadderLine {
+    private final List<Point> points;
 
-    private static final int START_POINT = 0;
-    private static final int DEFAULT_ONE = 1;
-
-    private List<Point> points;
-
-    private LadderLine(int countOfPerson) {
-        points = new ArrayList<>();
-        int countOfLine = countOfPerson - DEFAULT_ONE;
-        IntStream.range(START_POINT, countOfLine)
-                .forEach(count -> points.add(makePoints(count)));
-    }
-
-    private LadderLine(List<Point> points) {
+    public LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public static LadderLine from (int countOfPerson) {
-        return new LadderLine(countOfPerson);
+    public int move(int index) {
+        return points.get(index).move();
     }
 
-    public static LadderLine from (List<Point> points) {
+    public static LadderLine init(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(sizeOfPerson, points, point);
+        initLast(points, point);
         return new LadderLine(points);
     }
 
-    public int pointCount() {
-        return points.size();
-    }
-
-    public boolean isExistRightPoint(int position) {
-        return points.get(position).isPoint();
-    }
-
-    public boolean isExistLeftPoint(int position) {
-        return points.get(position - DEFAULT_ONE).isPoint();
-    }
-
-    private Point makePoints(int count) {
-        boolean random = new Random().nextBoolean();
-        if (count == START_POINT) {
-            return new Point(random);
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
         }
-
-        if (isValidateLine(points.get(count - DEFAULT_ONE).isPoint(), random)) {
-            return new Point(FALSE);
-        }
-
-        return new Point(random);
+        return point;
     }
 
-    public boolean isValidateLine(boolean first, boolean second) {
-        return first && second;
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(randomDirectionGenerator());
+        points.add(point);
+        return point;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("|");
         points.forEach(point -> stringBuilder.append(point.toString()));
-
         return stringBuilder.toString();
     }
 }

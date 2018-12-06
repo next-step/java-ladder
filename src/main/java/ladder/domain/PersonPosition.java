@@ -5,14 +5,12 @@ import java.util.Map;
 
 public class PersonPosition {
 
-    private Map<Person, Position> personFinalPositions;
+    private Map<Person, Integer> personFinalPositions;
 
     private PersonPosition(People people, Ladder ladder) {
         personFinalPositions = new HashMap<>();
-        for (int i = 0; i < people.size(); i++) {
-            Position position = Position.from(i);
-            ladder.progressGame(position);
-            personFinalPositions.put(people.findPersonBy(i), position);
+        for (int index = 0; index < people.size(); index++) {
+            personFinalPositions.put(people.findPersonBy(index), ladder.progressGame(index));
         }
     }
 
@@ -20,7 +18,7 @@ public class PersonPosition {
         return new PersonPosition(people, ladder);
     }
 
-    public Map<Person, Position> getPersonFinalPositions() {
+    public Map<Person, Integer> getPersonFinalPositions() {
         return personFinalPositions;
     }
 

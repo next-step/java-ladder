@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         People people = People.from(getPersonNames());
         LadderSize ladderSize = LadderSize.from(getLadderHeight(), people.size());
-        Ladder ladder = Ladder.from(ladderSize, getConditional());
+        Ladder ladder = Ladder.from(ladderSize);
 
         Reward reward = Reward.from(getResultReward());
         ResultView.printPeopleList(people);
@@ -23,15 +23,11 @@ public class Main {
                 PersonPosition personPosition = PersonPosition.from(people, ladder);
                 ResultView.printAllReward(reward, personPosition);
             } else {
-                Position position = people.findPositionBy(input);
-                ladder.progressGame(position);
-                ResultView.printPersonReward(reward, position);
+                int index = people.findPositionBy(input);
+                int resultPosition = ladder.progressGame(index);
+                ResultView.printPersonReward(reward, resultPosition);
             }
         } while (true);
-    }
-
-    private static Conditional getConditional() {
-        return width -> LadderLine.from(width);
     }
 
 }
