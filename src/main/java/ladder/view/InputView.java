@@ -4,6 +4,7 @@ import ladder.domain.Attendee;
 import ladder.domain.Attendees;
 import ladder.domain.Gifts;
 import ladder.domain.LadderOption;
+import ladder.strategy.Difficulty;
 
 import java.util.Scanner;
 
@@ -20,9 +21,10 @@ public class InputView {
     }
 
     public static LadderOption inputLadderOption() {
-        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+        System.out.println("\n실행할 사다리의 난이도는?");
         Scanner scanner = new Scanner(System.in);
-        return LadderOption.create(scanner.nextInt());
+        String difficulty = scanner.nextLine();
+        return LadderOption.create(difficulty);
     }
 
     public static Gifts inputGifts() {

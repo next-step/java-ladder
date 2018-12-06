@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.strategy.Difficulty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,19 +11,19 @@ public class Ladder {
 
     private List<LadderLine> ladderLines;
 
-    private Ladder(int row, int countOfPerson) {
+    private Ladder(Difficulty difficulty, int countOfPerson) {
         ladderLines = new ArrayList<>();
-        for (int i = 0; i < row; i++) {
-            ladderLines.add(LadderLine.create(countOfPerson));
+        for (int i = 0; i < difficulty.height(); i++) {
+            ladderLines.add(LadderLine.create(countOfPerson, difficulty));
         }
     }
 
-    public static Ladder create(int row, int countOfPerson) {
-        return new Ladder(row, countOfPerson);
+    public static Ladder create(Difficulty difficulty, int countOfPerson) {
+        return new Ladder(difficulty, countOfPerson);
     }
 
     public static Ladder create(LadderOption ladderOption, Attendees attendees) {
-        return new Ladder(ladderOption.height(), attendees.size());
+        return new Ladder(ladderOption.difficulty(), attendees.size());
     }
 
     public int endpoint(int countOfPerson) {
@@ -34,7 +36,7 @@ public class Ladder {
         column = ladderLine.move(column);
         row = row + 1;
 
-        if(row < ladderLine.size() + 1) {
+        if(row < ladderLine.size() - 1) {
             return this.follow(column, row);
         }
         return column;

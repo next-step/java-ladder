@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.utils.RandomUtils;
+import ladder.strategy.Difficulty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,38 +9,48 @@ import java.util.stream.Collectors;
 public class LadderLine {
 
     private List<Point> points;
+    private Difficulty difficulty;
 
-    public LadderLine(List<Point> points) {
-        this.points = points;
+    private LadderLine(int sizeOfPerson, Difficulty difficulty) {
+        this.difficulty = difficulty;
+        this.points = init(sizeOfPerson);
+    }
+
+    public static LadderLine create(int sizeOfPerson) {
+        return new LadderLine(sizeOfPerson, Difficulty.MIDDLE);
+    }
+
+    public static LadderLine create(int sizeOfPerson, Difficulty difficulty) {
+        return new LadderLine(sizeOfPerson, difficulty);
     }
 
     public int move(int position) {
         return points.get(position).move();
     }
 
-    public static LadderLine create(int sizeOfPerson) {
-        List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(sizeOfPerson, points, point);
-        initLast(points, point);
-        return new LadderLine(points);
+    public List<Point> init(int sizeOfPerson) {
+        points = new ArrayList<>();
+        Point point = initFirst();
+        point = initBody(sizeOfPerson, point);
+        initLast(point);
+        return points;
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+    private Point initBody(int sizeOfPerson, Point point) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(difficulty);
             points.add(point);
         }
         return point;
     }
 
-    private static void initLast(List<Point> points, Point point) {
+    private void initLast(Point point) {
         point = point.last();
         points.add(point);
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(RandomUtils.generate());
+    private Point initFirst() {
+        Point point = Point.first(difficulty.generate());
         points.add(point);
         return point;
     }
