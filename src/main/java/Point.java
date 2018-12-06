@@ -22,8 +22,8 @@ public class Point {
         return idx;
     }
 
-    public Point next() {
-        return new Point(idx + 1, direction.next());
+    public Point next(LadderLineGenerator ladderLineGenerator) {
+        return new Point(idx + 1, direction.next(ladderLineGenerator));
     }
 
     public static Point first(Boolean right) {
