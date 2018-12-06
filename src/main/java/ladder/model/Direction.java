@@ -1,30 +1,41 @@
 package ladder.model;
 
-import java.util.Objects;
+import java.util.Arrays;
 
 import static java.lang.Boolean.FALSE;
 import static ladder.model.LadderPointGenerator.generatePoint;
 
-public class Direction {
-    private final boolean left;
-    private final boolean right;
+public enum Direction {
 
-    private Direction(boolean left, boolean right) {
+    PASS(false, false),
+    LEFT(true, false),
+    RIGHT(false, true);
+
+    private boolean left;
+    private boolean right;
+
+    Direction(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalStateException();
         }
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
+    public static Direction of(boolean left, boolean right) {
+        return Arrays.stream(Direction.values())
+                .filter(direction -> direction.left == left && direction.right == right)
+                .findFirst().orElseThrow(IllegalStateException::new);
+    }
+
+
     public boolean isRight() {
-        return this.right;
+        return RIGHT.equals(this);
     }
 
     public boolean isLeft() {
-        return this.left;
+        return LEFT.equals(this);
     }
 
     public Direction next(boolean nextRight) {
@@ -38,30 +49,12 @@ public class Direction {
         return next(generatePoint());
     }
 
-    public static Direction of(boolean first, boolean second) {
-        return new Direction(first, second);
-    }
-
     public static Direction first(boolean right) {
         return of(FALSE, right);
     }
 
     public Direction last() {
         return of(this.right, FALSE);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Direction pair = (Direction) o;
-        return left == pair.left &&
-                right == pair.right;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(left, right);
     }
 
     @Override
