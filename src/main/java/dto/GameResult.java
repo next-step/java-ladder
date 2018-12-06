@@ -8,9 +8,7 @@ public class GameResult {
 
     private Map<Player,String> results = new HashMap<>();
 
-
-    public GameResult() {
-    }
+    public GameResult() { }
 
     public GameResult(Map<Player, String> result) {
         this.results = result;

@@ -3,19 +3,25 @@ package dto;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineTest {
+public class LadderLineTest {
 
     @Test
     public void 라인초기화테스트() {
-        Line lines = new Line(4);
+        LadderLine lines = new LadderLine(4);
         assertThat(lines.getPoints()).hasSize(4);
     }
 
     @Test
     public void 라인_디렉션출력_스트() {
-        Line lines = new Line(6);
+        LadderLine lines = new LadderLine(6);
         for(Point point : lines.getPoints()){
             System.out.println(point.getDirection());
         }
+    }
+
+    @Test
+    public void 이동테스트() {
+        LadderLine line = new LadderLine(5);
+        System.out.println("ladder result : " + line.move(0));
     }
 }

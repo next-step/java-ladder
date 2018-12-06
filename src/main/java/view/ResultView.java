@@ -19,7 +19,7 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printLine(Line line){
+    public static void printLine(LadderLine line){
         StringBuilder sb = new StringBuilder();
         for(Point point : line.getPoints()){
             sb.append(isLine(point.getDirection().isLeft()));

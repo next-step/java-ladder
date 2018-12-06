@@ -20,12 +20,17 @@ public class PointTest {
     public void 오른쪽이동() {
         Point point = new Point(5,Direction.LEFT);
         assertThat(point.move()).isEqualTo(4);
-
     }
 
     @Test
     public void 왼쪽이동() {
         Point point = new Point(5,Direction.RIGHT);
         assertThat(point.move()).isEqualTo(6);
+    }
+
+    @Test
+    public void 이동없음() {
+        Point point = new Point(5,Direction.BOTTOM);
+        assertThat(point.move()).isEqualTo(5);
     }
 }
