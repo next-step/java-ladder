@@ -12,9 +12,9 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder from(int depth, int length, LineStrategy levelLadderGenerator) {
+    public static Ladder from(int depth, int length, LineStrategy ladderPointGenerator) {
         List<LadderLine> newLadder = new ArrayList<>();
-        IntStream.range(0, depth).forEach(i -> newLadder.add(LadderLine.from(length, levelLadderGenerator)));
+        IntStream.range(0, depth).forEach(i -> newLadder.add(LadderLine.from(length).generatePoints(ladderPointGenerator)));
         return new Ladder(newLadder);
     }
 

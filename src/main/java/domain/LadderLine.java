@@ -5,25 +5,48 @@ import java.util.*;
 
 public class LadderLine {
     private final List<Point> points;
+    private int countOfPerson;
 
-    private LadderLine(List<Point> points) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
-        this.points = points;
+    private LadderLine(int countOfPerson) {
+        this.countOfPerson = countOfPerson;
+        this.points = new ArrayList<>();
     }
 
     public int move(int position) {
         return points.get(position).move();
     }
 
-    public static LadderLine from(int countOfPerson, LineStrategy ladderPointGenerator) {
-        List<Point> points = new ArrayList<>();
-        Point point = initFirst(points, ladderPointGenerator);
-        point = initBody(countOfPerson, points, point, ladderPointGenerator);
-        initLast(points, point);
-        return new LadderLine(points);
+    public LadderLine generatePoints(LineStrategy ladderPointGenerator) {
+        Point point = initFirst(ladderPointGenerator);
+        point = initBody(point, ladderPointGenerator);
+        initLast(point);
+        return this;
     }
 
-    private static void initLast(List<Point> points, Point point) {
+    public static LadderLine from(int countOfPerson) {
+        return new LadderLine(countOfPerson);
+    }
+
+    private void initLast(Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
+    private Point initBody(Point point, LineStrategy ladderPointGenerator) {
+        for(int i = 1; i < countOfPerson - 1; i++) {
+            point = point.next(ladderPointGenerator);
+            points.add(point);
+        }
+        return point;
+    }
+
+    private Point initFirst(LineStrategy levelLadderGenerator) {
+        Point point = Point.first(levelLadderGenerator.generate());
+        points.add(point);
+        return point;
+    }
+
+   /* private static void initLast(List<Point> points, Point point) {
         point = point.last();
         points.add(point);
     }
@@ -40,7 +63,7 @@ public class LadderLine {
         Point point = Point.first(levelLadderGenerator.generate());
         points.add(point);
         return point;
-    }
+    }*/
 
     String drawOrNot() {
         String str = "";

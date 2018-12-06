@@ -36,18 +36,7 @@ public enum Difficulty {
 
     public boolean generatePoint() {
         Random rand = new Random();
-        int limit = 0;
-        if(probability >= 15) {
-            limit = 5;
-        }
-        if(probability >= 6 && probability <= 14) {
-            limit = 10;
-        }
-        if(probability <= 5) {
-            limit = 15;
-        }
-
-        if(rand.nextInt(30) > limit) {
+        if(rand.nextInt(30) > probability) {
             return true;
         }
         return false;
