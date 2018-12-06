@@ -34,7 +34,7 @@ public class ConsoleMain {
         }
 
         String seePlayer = InputView.wantToSeePlayerResult();
-        if(seePlayer == "all"){
+        if(seePlayer.contains("all")){
             ResultView.seePlayerResult(gameResult);
         }else{
             ResultView.seePlayerResult(gameResult.playersResult(players.hasPlayer(seePlayer)));

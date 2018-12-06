@@ -11,6 +11,6 @@ public class LadderResultTest {
         for(int i =0 ; i< 4 ; i++){
             ladderResult.addLine(new Line(5));
         }
-        assertThat(ladderResult.isLines()).hasSize(4);
+        assertThat(ladderResult.ofladder()).hasSize(4);
     }
 }

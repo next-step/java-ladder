@@ -16,14 +16,14 @@ public class LadderResult {
         this.score = score;
     }
 
-    public List<Line> isLines() {
+    public List<Line> ofladder() {
         return this.lines;
     }
 
     public int lastIndex(int n){
         int moveIndex = n;
         for(Line line : this.lines){
-            moveIndex = line.getPoints().get(moveIndex).move();
+            moveIndex = line.move(moveIndex);
         }
         return moveIndex;
     }

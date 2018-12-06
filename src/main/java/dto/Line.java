@@ -20,6 +20,10 @@ public class Line {
         return points;
     }
 
+    public int move(int index){
+        return this.points.get(index).move();
+    }
+
     public int isSize() {
         return points.size();
     }

@@ -34,7 +34,7 @@ public class Players {
 
     public Player hasPlayer(String name){
         for(Player player : this.players){
-            if(player.getName().equals(name)){
+            if(player.equals(name)){
                 return player;
             }
         }
