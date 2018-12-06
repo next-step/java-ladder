@@ -40,11 +40,11 @@ public enum Direction {
         //return of(this.right, nextRight);
     }
 
-    public Direction next(LevelLadderGenerator levelLadderGenerator) {
+    public Direction next(LineStrategy ladderPointGenerator) {
         if (isRight()) {
             return LEFT;
         }
-        return next(levelLadderGenerator.generate());
+        return next(ladderPointGenerator.generate());
     }
 
     public static Direction first(boolean right) {

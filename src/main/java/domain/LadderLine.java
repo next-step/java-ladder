@@ -1,5 +1,6 @@
 package domain;
 
+import javax.sound.sampled.Line;
 import java.util.*;
 
 public class LadderLine {
@@ -14,10 +15,10 @@ public class LadderLine {
         return points.get(position).move();
     }
 
-    public static LadderLine from(int countOfPerson, LevelLadderGenerator levelLadderGenerator) {
+    public static LadderLine from(int countOfPerson, LineStrategy ladderPointGenerator) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points, levelLadderGenerator);
-        point = initBody(countOfPerson, points, point, levelLadderGenerator);
+        Point point = initFirst(points, ladderPointGenerator);
+        point = initBody(countOfPerson, points, point, ladderPointGenerator);
         initLast(points, point);
         return new LadderLine(points);
     }
@@ -27,15 +28,15 @@ public class LadderLine {
         points.add(point);
     }
 
-    private static Point initBody(int countOfPerson, List<Point> points, Point point, LevelLadderGenerator levelLadderGenerator) {
+    private static Point initBody(int countOfPerson, List<Point> points, Point point, LineStrategy ladderPointGenerator) {
         for(int i = 1; i < countOfPerson - 1; i++) {
-            point = point.next(levelLadderGenerator);
+            point = point.next(ladderPointGenerator);
             points.add(point);
         }
         return point;
     }
 
-    private static Point initFirst(List<Point> points, LevelLadderGenerator levelLadderGenerator) {
+    private static Point initFirst(List<Point> points, LineStrategy levelLadderGenerator) {
         Point point = Point.first(levelLadderGenerator.generate());
         points.add(point);
         return point;
@@ -80,7 +81,6 @@ public class LadderLine {
     }
 
     public List<Integer> trackingLine(int countOfPerson, ArrayList<Integer> tempBox) {
-        //이 메소드 구현 로직을 좀 더 단순하게 구현할 수 없을까?
         ArrayList<Integer> temp = new ArrayList<>(tempBox);
         for(int i = 0; i < countOfPerson; i++) {
             tempBox.set(i, temp.get(move(i)));

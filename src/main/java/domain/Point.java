@@ -24,8 +24,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next(LevelLadderGenerator levelLadderGenerator) {
-        return new Point(index + 1, direction.next(levelLadderGenerator));
+    public Point next(LineStrategy ladderPointGenerator) {
+        return new Point(index + 1, direction.next(ladderPointGenerator));
     }
 
     public Point last() {
