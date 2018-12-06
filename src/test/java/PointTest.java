@@ -32,13 +32,13 @@ public class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(defaultLadderGenerator);
         assertThat(second.move()).isEqualTo(0);
     }
 
     @Test
     public void left() {
-        Direction direction = Point.first(TRUE).next().lineDirection();
+        Direction direction = Point.first(TRUE).next(defaultLadderGenerator).lineDirection();
         assertThat(direction.isLeft()).isEqualTo(true);
     }
 

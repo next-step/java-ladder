@@ -1,7 +1,5 @@
 package domain;
 
-import static domain.LadderPointGenerator.generatePoint;
-
 public enum Direction {
     LEFT(true, false),
     RIGHT(false, true),
@@ -17,7 +15,7 @@ public enum Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
+        //System.out.println(this);
     }
 
     public boolean isRight() {
@@ -42,16 +40,12 @@ public enum Direction {
         //return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(LineStrategy ladderPointGenerator) {
         if (isRight()) {
             return LEFT;
         }
-        return next(generatePoint());
+        return next(ladderPointGenerator.generate());
     }
-
-    /*public Direction of(boolean first, boolean second) {
-        return Direction.valueOf(FORWARD);
-    }*/
 
     public static Direction first(boolean right) {
         if(right) {

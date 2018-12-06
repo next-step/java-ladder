@@ -1,7 +1,5 @@
 package domain;
 
-import java.awt.*;
-
 public class Point {
     private final int index;
     private final Direction direction;
@@ -26,12 +24,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
-    }
-
-    public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
+    public Point next(LineStrategy ladderPointGenerator) {
+        return new Point(index + 1, direction.next(ladderPointGenerator));
     }
 
     public Point last() {

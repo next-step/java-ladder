@@ -37,13 +37,13 @@ public class LadderLineTest {
     @Test
     public void init() {
         int countOfPerson = 5;
-        System.out.println(LadderLine.from(countOfPerson));
+        System.out.println(LadderLine.from(countOfPerson, defaultLadderGenerator));
     }
 
     @Test
     public void move() {
         int countOfPerson = 4;
-        LadderLine ladderLine = LadderLine.from(countOfPerson);
+        LadderLine ladderLine = LadderLine.from(countOfPerson, defaultLadderGenerator);
         for(int i = 0; i < countOfPerson; i++) {
             System.out.println("ladder result : " + ladderLine.move(i));
         }

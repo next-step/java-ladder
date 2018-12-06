@@ -6,7 +6,7 @@ public class LadderTest {
     public void 사다리그리기() {
         int depth = 5;
         int countOfPerson = 4;
-        Ladder ladder = Ladder.from(depth, countOfPerson);
+        Ladder ladder = Ladder.from(depth, countOfPerson, defaultLadderGenerator);
         System.out.println(ladder.drawLadder());
     }
 
@@ -14,7 +14,7 @@ public class LadderTest {
     public void 사다리타기결과() {
         int depth = 3;
         int countOfPerson = 4;
-        Ladder ladder = Ladder.from(depth, countOfPerson);
+        Ladder ladder = Ladder.from(depth, countOfPerson, defaultLadderGenerator);
         System.out.println(ladder.drawLadder());
         System.out.println(ladder.trackingLadder(countOfPerson));
     }

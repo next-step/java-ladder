@@ -1,48 +1,69 @@
 package domain;
 
+import javax.sound.sampled.Line;
 import java.util.*;
-import java.util.stream.IntStream;
-
-import static domain.LadderPointGenerator.generatePoint;
 
 public class LadderLine {
     private final List<Point> points;
+    private int countOfPerson;
 
-    private LadderLine(List<Point> points) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
-        this.points = points;
+    private LadderLine(int countOfPerson) {
+        this.countOfPerson = countOfPerson;
+        this.points = new ArrayList<>();
     }
 
     public int move(int position) {
         return points.get(position).move();
     }
 
-    public static LadderLine from(int countOfPerson) {
-        List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(countOfPerson, points, point);
-        initLast(points, point);
-        return new LadderLine(points);
+    public LadderLine generatePoints(LineStrategy ladderPointGenerator) {
+        Point point = initFirst(ladderPointGenerator);
+        point = initBody(point, ladderPointGenerator);
+        initLast(point);
+        return this;
     }
 
-    private static void initLast(List<Point> points, Point point) {
+    public static LadderLine from(int countOfPerson) {
+        return new LadderLine(countOfPerson);
+    }
+
+    private void initLast(Point point) {
         point = point.last();
         points.add(point);
     }
 
-    private static Point initBody(int countOfPerson, List<Point> points, Point point) {
+    private Point initBody(Point point, LineStrategy ladderPointGenerator) {
         for(int i = 1; i < countOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(ladderPointGenerator);
             points.add(point);
         }
         return point;
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private Point initFirst(LineStrategy levelLadderGenerator) {
+        Point point = Point.first(levelLadderGenerator.generate());
         points.add(point);
         return point;
     }
+
+   /* private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
+    private static Point initBody(int countOfPerson, List<Point> points, Point point, LineStrategy ladderPointGenerator) {
+        for(int i = 1; i < countOfPerson - 1; i++) {
+            point = point.next(ladderPointGenerator);
+            points.add(point);
+        }
+        return point;
+    }
+
+    private static Point initFirst(List<Point> points, LineStrategy levelLadderGenerator) {
+        Point point = Point.first(levelLadderGenerator.generate());
+        points.add(point);
+        return point;
+    }*/
 
     String drawOrNot() {
         String str = "";
@@ -82,8 +103,7 @@ public class LadderLine {
         return Objects.hash(points);
     }
 
-    public List<Integer> trackingLine(List<Integer> personsPosition, int countOfPerson, ArrayList<Integer> tempBox) {
-        //이 메소드 구현 로직을 좀 더 단순하게 구현할 수 없을까?
+    public List<Integer> trackingLine(int countOfPerson, ArrayList<Integer> tempBox) {
         ArrayList<Integer> temp = new ArrayList<>(tempBox);
         for(int i = 0; i < countOfPerson; i++) {
             tempBox.set(i, temp.get(move(i)));
