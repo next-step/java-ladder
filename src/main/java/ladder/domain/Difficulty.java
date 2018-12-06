@@ -28,19 +28,8 @@ public enum Difficulty{
                 .orElse(Difficulty.MIDDLE);
     }
 
-    public static Difficulty findByHeight(int height) {
-        if(!isValidHeight(height)) {
-            throw new IllegalArgumentException();
-        }
-
-        return Arrays.asList(Difficulty.values()).stream()
-                .filter(difficulty -> difficulty.height == height)
-                .findAny()
-                .orElse(Difficulty.MIDDLE);
-    }
-
-    private static boolean isValidHeight(int height) {
-        return 0 < height;
+    public boolean generate() {
+        return strategy.generate();
     }
 
     public int height() {

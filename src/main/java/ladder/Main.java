@@ -8,15 +8,15 @@ import static ladder.view.InputView.*;
 public class Main {
     public static void main(String[] args) {
         People people = People.from(getPersonNames());
-        LadderSize ladderSize = LadderSize.from(getLadderHeight(), people.size());
+        Reward reward = Reward.from(getResultReward());
+        Difficulty difficulty = Difficulty.findByText(getDifficulty());
+
+        LadderSize ladderSize = LadderSize.from(difficulty, people.size());
         Ladder ladder = Ladder.from(ladderSize);
 
-        Reward reward = Reward.from(getResultReward());
         ResultView.printPeopleList(people);
         ResultView.printLadder(ladder);
         ResultView.printRewardList(reward);
-
-        getDifficulty();
 
         do {
             String input = getResultPerson();

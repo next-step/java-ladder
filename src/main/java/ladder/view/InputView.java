@@ -16,10 +16,10 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static int getDifficulty() {
+    public static String getDifficulty() {
         System.out.println("실행할 사다리의 난이도는?");
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 
 

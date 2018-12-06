@@ -22,8 +22,8 @@ public class Point {
         return new Point(DEFAULT_ZENO, Direction.first(right));
     }
 
-    public Point next() {
-        return new Point(index + DEFAULT_ONE, direction.next());
+    public Point next(Difficulty difficulty) {
+        return new Point(index + DEFAULT_ONE, direction.next(difficulty));
     }
 
     public Point next(Boolean right) {
