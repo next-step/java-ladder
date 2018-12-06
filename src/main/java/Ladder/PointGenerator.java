@@ -1,9 +1,11 @@
+package Ladder;
+
 import java.util.Random;
 
 public class PointGenerator {
 
-    public Point getRandomBoolean() {
+    public static boolean generatePoint() {
         Random random = new Random();
-        return Point.of(random.nextBoolean());
+        return random.nextBoolean();
     }
 }
