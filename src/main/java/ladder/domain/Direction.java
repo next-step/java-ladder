@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static ladder.util.DirectionGenerator.randomDirectionGenerator;
 
 public class Direction{
     private final boolean left;
@@ -27,26 +26,26 @@ public class Direction{
     }
 
     public Direction next(boolean nextRight) {
-        return of(this.right, nextRight);
+        return from(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(Difficulty difficulty) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(randomDirectionGenerator());
+        return next(difficulty.generate());
     }
 
-    public static Direction of(boolean first, boolean second) {
+    public static Direction from(boolean first, boolean second) {
         return new Direction(first, second);
     }
 
     public static Direction first(boolean right) {
-        return of(FALSE, right);
+        return from(FALSE, right);
     }
 
     public Direction last() {
-        return of(this.right, FALSE);
+        return from(this.right, FALSE);
     }
 
     @Override

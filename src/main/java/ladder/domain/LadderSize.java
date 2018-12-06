@@ -14,6 +14,10 @@ public class LadderSize {
         return new LadderSize(height, width);
     }
 
+    public static LadderSize from(Difficulty difficulty, int width) {
+        return new LadderSize(difficulty.height(), width);
+    }
+
     public int heightSize(){
        return ladderHeight.size();
     }
