@@ -1,5 +1,6 @@
-package net.chandol.ladder.v2.domain;
+package net.chandol.ladder.v2.domain.player;
 
+import net.chandol.ladder.v2.domain.player.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 

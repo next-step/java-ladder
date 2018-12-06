@@ -1,4 +1,4 @@
-package net.chandol.ladder.v2.domain;
+package net.chandol.ladder.v2.domain.player;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -16,6 +16,10 @@ public class Players implements Iterable<Player> {
 
     public int size() {
         return players.size();
+    }
+
+    public Player getPlayer(int idx) {
+        return players.get(idx);
     }
 
     @Override
