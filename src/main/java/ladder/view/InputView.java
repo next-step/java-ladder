@@ -16,6 +16,14 @@ public class InputView {
         return scanner.nextInt();
     }
 
+    public static String getDifficulty() {
+        System.out.println("실행할 사다리의 난이도는?");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+
+
     public static String getResultReward() {
         System.out.println("\n" +
                 "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");

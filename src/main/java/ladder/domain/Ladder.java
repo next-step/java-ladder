@@ -19,7 +19,7 @@ public class Ladder {
     private List<LadderLine> generateLadder(LadderSize ladderSize) {
         ladderLines = new ArrayList();
         for (int i = 0; i < ladderSize.heightSize(); i++) {
-            ladderLines.add(LadderLine.init(ladderSize.wightSize()));
+            ladderLines.add(LadderLine.create(ladderSize.wightSize()));
         }
         return ladderLines;
     }
