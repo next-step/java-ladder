@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.util.DirectionGenerator.randomDirectionGenerator;
+import static ladder.utils.RandomUtils.randomDirectionGenerator;
 
 public class LadderLine {
     private final List<Point> points;

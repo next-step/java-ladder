@@ -16,6 +16,8 @@ public class Main {
         ResultView.printLadder(ladder);
         ResultView.printRewardList(reward);
 
+        getDifficulty();
+
         do {
             String input = getResultPerson();
             ResultView.printReward();
