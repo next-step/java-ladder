@@ -1,9 +1,7 @@
 package view;
 
 import domain.Ladder;
-import domain.Line;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ResultView {
@@ -13,7 +11,7 @@ public class ResultView {
         System.out.println();
         Arrays.stream(memberArr).forEach(str -> System.out.print(str + "   "));
         System.out.println();
-        System.out.println(ladder.drawOneLine());
+        System.out.print(ladder.drawLadder());
     }
 
     public static void printResult(String[] result) {

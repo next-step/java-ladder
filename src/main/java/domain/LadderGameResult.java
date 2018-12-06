@@ -6,32 +6,36 @@ import java.util.Map;
 
 public class LadderGameResult {
 
-    Map<String, Integer> ladderGameResult = new HashMap<>();
+    Map<String, String> ladderGameResult = new HashMap<>();
 
-    public LadderGameResult(String[] memberArr, List<Integer> resultOfGame) {
+    public LadderGameResult(LadderMember ladderMember, List<Integer> resultOfGame) {
         int index = 0;
         for(Integer i : resultOfGame) {
-            ladderGameResult.put(memberArr[index], i);
+            ladderGameResult.put(ladderMember.memberNo(i), ladderMember.resultNo(index));
             index++;
         }
     }
 
-    public String showMemberResult(String memberName, String[] result) {
+    public Map<String, String> getLadderGameResult() {
+        return ladderGameResult;
+    }
+
+    public String showMemberResult(String memberName) {
         String displayResult = "";
         if(!memberName.equals("all")) {
-            return memberResult(memberName, result);
+            return memberResult(memberName);
         }
-        for(Map.Entry<String, Integer> entry : ladderGameResult.entrySet()) {
-            displayResult += entry.getKey() + " : " + result[entry.getValue()] + "\n";
+        for(Map.Entry<String, String> entry : ladderGameResult.entrySet()) {
+            displayResult += entry.getKey() + " : " + entry.getValue() + "\n";
         }
         return displayResult;
     }
 
-    private String memberResult(String s, String[] result) {
+    private String memberResult(String s) {
         String string = "";
-        for(Map.Entry<String, Integer> entry : ladderGameResult.entrySet()) {
+        for(Map.Entry<String, String> entry : ladderGameResult.entrySet()) {
             if(s.equals(entry.getKey())) {
-                string = result[entry.getValue()];
+                string = entry.getValue();
             }
         }
         return string;

@@ -1,22 +1,21 @@
 import domain.Ladder;
-import domain.Line;
 import org.junit.Test;
-import view.ResultView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     @Test
-    public void 사다리타기테스트() {
+    public void 사다리그리기() {
         int depth = 5;
-        int length = 4;
-        Ladder ladder = Ladder.from(depth, length);
-        List<Integer> resultBox = ladder.followLadder();
-        assertThat(resultBox).hasSize(4);
-        assertThat(resultBox).contains(0, 1, 2, 3);
+        int countOfPerson = 4;
+        Ladder ladder = Ladder.from(depth, countOfPerson);
+        System.out.println(ladder.drawLadder());
+    }
+
+    @Test
+    public void 사다리타기결과() {
+        int depth = 3;
+        int countOfPerson = 4;
+        Ladder ladder = Ladder.from(depth, countOfPerson);
+        System.out.println(ladder.drawLadder());
+        System.out.println(ladder.trackingLadder(countOfPerson));
     }
 }
