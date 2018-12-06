@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import static ladder2.model.LadderLineTest.DEFAULT_LINE;
 import static ladder2.model.ParticipantsTest.DEFAULT_PARTICIPANTS;
+import static ladder2.util.DefaultLadderPointGeneratorTest.DEFAULT_LADDER_POINT_GENERATOR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
@@ -12,7 +13,7 @@ public class LadderTest {
 
     @Test
     public void 생성() {
-        assertThat(Ladder.from(5, DEFAULT_PARTICIPANTS).getLines().size()).isEqualTo(5);
+        assertThat(Ladder.from(5, DEFAULT_PARTICIPANTS, DEFAULT_LADDER_POINT_GENERATOR).getLines().size()).isEqualTo(5);
     }
 
     @Test()

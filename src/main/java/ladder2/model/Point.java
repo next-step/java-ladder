@@ -1,5 +1,7 @@
 package ladder2.model;
 
+import ladder2.util.LadderPointGenerator;
+
 public class Point {
     private final int index;
     private final Direction direction;
@@ -25,8 +27,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
+    public Point next(LadderPointGenerator ladderPointGenerator) {
+        return new Point(index + 1, direction.next(ladderPointGenerator));
     }
 
     public Point next(boolean right) {
