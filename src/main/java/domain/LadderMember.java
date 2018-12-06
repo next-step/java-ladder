@@ -28,4 +28,8 @@ public class LadderMember {
     public String resultNo(int index) {
         return result[index];
     }
+
+    public int totalMember() {
+        return memberArr.length;
+    }
 }
