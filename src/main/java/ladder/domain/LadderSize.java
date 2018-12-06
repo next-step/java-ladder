@@ -2,12 +2,12 @@ package ladder.domain;
 
 public class LadderSize {
 
-    private LadderHeight height;
-    private LadderWidth width;
+    private LadderHeight ladderHeight;
+    private PersonSize personSize;
 
-    private LadderSize(int height, int width) {
-        this.height = LadderHeight.from(height);
-        this.width = LadderWidth.from(width);
+    private LadderSize(int height, int size) {
+        this.ladderHeight = LadderHeight.from(height);
+        this.personSize = PersonSize.from(size);
     }
 
     public static LadderSize from(int height, int width) {
@@ -15,10 +15,10 @@ public class LadderSize {
     }
 
     public int heightSize(){
-       return height.size();
+       return ladderHeight.size();
     }
 
     public int wightSize(){
-        return width.size();
+        return personSize.size();
     }
 }

@@ -35,12 +35,12 @@ public class People {
         return people.get(number);
     }
 
-    public Position findPositionBy(String name) {
+    public int findPositionBy(String name) {
         int index = people.indexOf(Person.from(name));
 
         if(index < 0)
             throw new NotFindMatchNameException();
 
-        return Position.from(index);
+        return index;
     }
 }

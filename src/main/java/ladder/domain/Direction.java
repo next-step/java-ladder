@@ -1,44 +1,74 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import static java.lang.Boolean.FALSE;
+import static ladder.util.DirectionGenerator.randomDirectionGenerator;
 
-public enum Direction {
+public class Direction{
+    private final boolean left;
+    private final boolean right;
 
-    LEFT                             (Boolean.TRUE , Boolean.FALSE),
-    RIGHT                            (Boolean.FALSE, Boolean.TRUE ),
-    DOWN                             (Boolean.FALSE, Boolean.FALSE);
-
-    private boolean leftPoint;
-    private boolean rightPoint;
-
-    Direction(boolean leftPoint, boolean rightPoint) {
-        if (leftPoint && rightPoint) {
+    private Direction(boolean left, boolean right) {
+        if (left && right) {
             throw new IllegalStateException();
         }
-        this.leftPoint = leftPoint;
-        this.rightPoint = rightPoint;
+
+        this.left = left;
+        this.right = right;
+    }
+
+    public boolean isRight() {
+        return this.right;
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(FALSE);
+        }
+        return next(randomDirectionGenerator());
     }
 
     public static Direction of(boolean first, boolean second) {
-        return Arrays.stream(Direction.values())
-                .filter(
-                        direction ->
-                                direction.leftPoint == first &&
-                                direction.rightPoint == second)
-                .findAny()
-                .orElseThrow(() -> new IllegalStateException());
+        return new Direction(first, second);
     }
 
     public static Direction first(boolean right) {
         return of(FALSE, right);
     }
 
-    public static Direction last(boolean left) {
-        return of(left, FALSE);
+    public Direction last() {
+        return of(this.right, FALSE);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction pair = (Direction) o;
+        return left == pair.left &&
+                right == pair.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
+
 }

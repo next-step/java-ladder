@@ -25,7 +25,7 @@ public class Reward {
         return benefits;
     }
 
-    public Benefit findPersonResult(Position position) {
-        return benefits.get(position.getPosition());
+    public Benefit findPersonResult(int position) {
+        return benefits.get(position);
     }
 }

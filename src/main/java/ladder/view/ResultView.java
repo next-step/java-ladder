@@ -30,7 +30,7 @@ public class ResultView {
     }
 
     public static void printAllReward(Reward reward, PersonPosition personPosition) {
-        Map<Person, Position> personPositions = personPosition.getPersonFinalPositions();
+        Map<Person, Integer> personPositions = personPosition.getPersonFinalPositions();
         for (Person person : personPositions.keySet()) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(person.toString());
@@ -41,7 +41,7 @@ public class ResultView {
         }
     }
 
-    public static void printPersonReward(Reward reward, Position position) {
+    public static void printPersonReward(Reward reward, int position) {
         System.out.println(reward.findPersonResult(position));
     }
 }

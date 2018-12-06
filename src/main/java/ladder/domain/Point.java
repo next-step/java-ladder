@@ -1,22 +1,43 @@
 package ladder.domain;
 
+import static ladder.domain.DirectionSelection.of;
+
 public class Point {
 
-    private boolean point;
+    private static final int DEFAULT_ZENO = 0;
+    private static final int DEFAULT_ONE = 1;
+    private final int index;
+    private final Direction direction;
 
-    public Point(boolean value) {
-        this.point = value;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public boolean isPoint() {
-        return point;
+    public int move() {
+        return of(direction.isLeft(), direction.isRight()).move(index);
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(DEFAULT_ZENO, Direction.first(right));
+    }
+
+    public Point next() {
+        return new Point(index + DEFAULT_ONE, direction.next());
+    }
+
+    public Point next(Boolean right) {
+        return new Point(index + DEFAULT_ONE, direction.next(right));
+    }
+
+    public Point last() {
+        return new Point(index + DEFAULT_ONE, direction.last());
     }
 
     @Override
     public String toString() {
-        if (this.point) {
-            return "-----|";
-        }
-        return "     |";
+        if (direction.isRight())
+            return "|-----";
+        return "|     ";
     }
 }
