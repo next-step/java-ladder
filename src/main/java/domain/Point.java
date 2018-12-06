@@ -5,7 +5,6 @@ import java.awt.*;
 public class Point {
     private final int index;
     private final Direction direction;
-    private int prevIndex;
 
     public Point(int index, Direction direction) {
         this.index = index;

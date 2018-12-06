@@ -1,12 +1,12 @@
 package domain;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 import static domain.LadderPointGenerator.generatePoint;
 
 public class LadderLine {
     private final List<Point> points;
-    private List<Integer> personsPosition = new ArrayList<>();
 
     private LadderLine(List<Point> points) {
         // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
@@ -58,14 +58,6 @@ public class LadderLine {
         return str;
     }
 
-    private void setPosition(List<Integer> personsPosition) {
-        this.personsPosition = personsPosition;
-    }
-
-    public List<Integer> getPersonsPosition() {
-        return Collections.unmodifiableList(personsPosition);
-    }
-
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
@@ -90,25 +82,12 @@ public class LadderLine {
         return Objects.hash(points);
     }
 
-    public List<Integer> trackingLine(List<Integer> personsPosition, ArrayList<Integer> tempBox) {
-        int position = 0;
-        for(Point point : points) {
-            if(tempBox.isEmpty()) {
-                personsPosition.set(position, point.move());
-            }
-            if(!tempBox.isEmpty()) {
-                int num = 0;
-                if (point.lineDirection().isRight()) {
-                    num = 1;
-                }
-                if (point.lineDirection().isLeft()) {
-                    num = -1;
-                }
-                int res = tempBox.get(position + num);
-                personsPosition.set(position, res);
-            }
-            position++;
+    public List<Integer> trackingLine(List<Integer> personsPosition, int countOfPerson, ArrayList<Integer> tempBox) {
+        //이 메소드 구현 로직을 좀 더 단순하게 구현할 수 없을까?
+        ArrayList<Integer> temp = new ArrayList<>(tempBox);
+        for(int i = 0; i < countOfPerson; i++) {
+            tempBox.set(i, temp.get(move(i)));
         }
-        return personsPosition;
+        return tempBox;
     }
 }

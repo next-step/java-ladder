@@ -1,3 +1,4 @@
+import domain.Direction;
 import domain.Point;
 import org.junit.Test;
 import static java.lang.Boolean.FALSE;
@@ -33,5 +34,24 @@ public class PointTest {
     public void next() {
         Point second = Point.first(TRUE).next();
         assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    public void left() {
+        Direction direction = Point.first(TRUE).next().lineDirection();
+        assertThat(direction.isLeft()).isEqualTo(true);
+    }
+
+    @Test
+    public void right() {
+        Direction direction = Point.first(TRUE).lineDirection();
+        assertThat(direction.isRight()).isEqualTo(true);
+    }
+
+    @Test
+    public void forward() {
+        Direction direction = Point.first(false).next(false).lineDirection();
+        assertThat(direction.isRight()).isEqualTo(false);
+        assertThat(direction.isLeft()).isEqualTo(false);
     }
 }

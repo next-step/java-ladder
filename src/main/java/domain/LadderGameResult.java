@@ -8,10 +8,10 @@ public class LadderGameResult {
 
     Map<String, String> ladderGameResult = new HashMap<>();
 
-    public LadderGameResult(String[] memberArr, List<Integer> resultOfGame, String[] result) {
+    public LadderGameResult(LadderMember ladderMember, List<Integer> resultOfGame) {
         int index = 0;
         for(Integer i : resultOfGame) {
-            ladderGameResult.put(memberArr[i], result[index]);
+            ladderGameResult.put(ladderMember.memberNo(i), ladderMember.resultNo(index));
             index++;
         }
     }

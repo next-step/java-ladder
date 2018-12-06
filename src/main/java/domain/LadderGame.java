@@ -11,10 +11,13 @@ public class LadderGame {
         Ladder ladder = Ladder.from(depth, memberArr.length);
         ResultView.printLadder(ladder, memberArr);
         ResultView.printResult(result);
-        LadderGameResult ladderGameResult = new LadderGameResult(memberArr, ladder.trackingLadder(), result);
-        String memberName = InputView.typePersonResult();
-        ResultView.printMemberResult(ladderGameResult.showMemberResult(memberName));
-        String all = InputView.typePersonResult();
-        ResultView.printAllResult(ladderGameResult.showMemberResult(all));
+
+        LadderMember ladderMember = LadderMember.from(memberArr, result);
+        LadderGameResult ladderGameResult = new LadderGameResult(ladderMember ,ladder.trackingLadder(memberArr.length));
+
+        int repeat = 2;
+        for(int i = 0; i < repeat; i++) {
+            ResultView.printMemberResult(ladderGameResult.showMemberResult(InputView.typePersonResult()));
+        }
     }
 }

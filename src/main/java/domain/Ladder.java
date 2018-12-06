@@ -30,12 +30,15 @@ public class Ladder {
         return str;
     }
 
-    public List<Integer> trackingLadder() {
+    public List<Integer> trackingLadder(int length) {
         ArrayList<Integer> tempBox = new ArrayList<>();
-        for(LadderLine ladderLine : ladder) {
-            tempBox = new ArrayList<>(ladderLine.trackingLine(personsPosition, tempBox));
+        for(int i = 0; i < length; i++) {
+            tempBox.add(i);
         }
-        return personsPosition;
+        for(LadderLine ladderLine : ladder) {
+            tempBox = new ArrayList<>(ladderLine.trackingLine(personsPosition, length, tempBox));
+        }
+        return tempBox;
     }
 
     public List<LadderLine> getLadder() {

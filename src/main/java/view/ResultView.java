@@ -11,7 +11,7 @@ public class ResultView {
         System.out.println();
         Arrays.stream(memberArr).forEach(str -> System.out.print(str + "   "));
         System.out.println();
-        System.out.println(ladder.drawLadder());
+        System.out.print(ladder.drawLadder());
     }
 
     public static void printResult(String[] result) {
