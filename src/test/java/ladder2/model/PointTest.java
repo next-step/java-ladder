@@ -2,6 +2,7 @@ package ladder2.model;
 
 import org.junit.Test;
 
+import static ladder2.util.DefaultLadderPointGeneratorTest.DEFAULT_LADDER_POINT_GENERATOR;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
@@ -14,7 +15,7 @@ public class PointTest {
 
     @Test
     public void 이동_두번째지점에서() {
-        Point nextPoint = Point.first(true).next();
+        Point nextPoint = Point.first(true).next(DEFAULT_LADDER_POINT_GENERATOR);
         assertThat(nextPoint.move()).isEqualTo(0);
     }
 

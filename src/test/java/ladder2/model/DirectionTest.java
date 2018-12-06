@@ -2,9 +2,12 @@ package ladder2.model;
 
 import org.junit.Test;
 
+import static ladder2.util.DefaultLadderPointGeneratorTest.DEFAULT_LADDER_POINT_GENERATOR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DirectionTest {
+    public static final Direction DEFAULT_DIRECTION = Direction.from(false, true);
+
     @Test
     public void 생성() {
         assertThat(Direction.from(true, false)).isEqualTo(Direction.from(true, false));
@@ -17,7 +20,7 @@ public class DirectionTest {
 
     @Test
     public void 다음_방향_False() {
-        Direction next = Direction.first(true).next();
+        Direction next = Direction.first(true).next(DEFAULT_LADDER_POINT_GENERATOR);
         assertThat(next).isEqualTo(Direction.from(true, false));
     }
 

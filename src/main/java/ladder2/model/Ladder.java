@@ -1,5 +1,7 @@
 package ladder2.model;
 
+import ladder2.util.LadderPointGenerator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,9 +22,9 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public static Ladder from(int countOfLine, Participants participants) {
+    public static Ladder from(int countOfLine, Participants participants, LadderPointGenerator ladderPointGenerator) {
         List<LadderLine> lines = IntStream.range(0, countOfLine)
-                .mapToObj(index -> LadderLine.from(participants.size()))
+                .mapToObj(index -> LadderLine.from(participants.size()).generate(ladderPointGenerator))
                 .collect(Collectors.toList());
         return new Ladder(lines);
     }

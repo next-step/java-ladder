@@ -1,22 +1,31 @@
 package ladder2.model;
 
+import ladder2.util.LadderPointGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static ladder2.LadderPointGenerator.generatePoint;
-
 public class LadderLine {
     private final List<Point> points;
+    private int countOfPoint;
 
     public LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public static LadderLine from(int sizeOfParticipants) {
-        List<Point> points = new ArrayList<>();
-        initLast(points, initBody(sizeOfParticipants, points, initFirst(points)));
-        return new LadderLine(points);
+    private LadderLine(int countOfPoint) {
+        this.countOfPoint = countOfPoint;
+        this.points = new ArrayList<>();
+    }
+
+    public static LadderLine from(int countOfPoint) {
+        return new LadderLine(countOfPoint);
+    }
+
+    public LadderLine generate(LadderPointGenerator ladderPointGenerator) {
+        initLast(initBody(initFirst(ladderPointGenerator), ladderPointGenerator));
+        return this;
     }
 
     public int move(int position) {
@@ -31,23 +40,22 @@ public class LadderLine {
         return Collections.unmodifiableList(points);
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private Point initFirst(LadderPointGenerator ladderPointGenerator) {
+        Point point = Point.first(ladderPointGenerator.generatePoint());
         points.add(point);
         return point;
     }
 
-    private static void initLast(List<Point> points, Point bodyLastPoint) {
-        points.add(bodyLastPoint.last());
-    }
-
-    private static Point initBody(int sizeOfParticipants, List<Point> points, Point firstPoint) {
+    private Point initBody(Point firstPoint, LadderPointGenerator ladderPointGenerator) {
         Point point = firstPoint;
-        for (int i = 1; i < sizeOfParticipants - 1; i++) {
-            point = point.next();
+        for (int i = 1; i < countOfPoint - 1; i++) {
+            point = point.next(ladderPointGenerator);
             points.add(point);
         }
         return point;
     }
 
+    private void initLast(Point bodyLastPoint) {
+        points.add(bodyLastPoint.last());
+    }
 }

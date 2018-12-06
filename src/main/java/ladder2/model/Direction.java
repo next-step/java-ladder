@@ -1,8 +1,8 @@
 package ladder2.model;
 
-import java.util.Objects;
+import ladder2.util.LadderPointGenerator;
 
-import static ladder2.LadderPointGenerator.generatePoint;
+import java.util.Objects;
 
 public class Direction {
     private static final Direction LEFT_DIRECTION = new Direction(true, false);
@@ -57,12 +57,12 @@ public class Direction {
         return this.left;
     }
 
-    public Direction next() {
+    public Direction next(LadderPointGenerator ladderPointGenerator) {
         if (this.right) {
             return next(false);
         }
 
-        return next(generatePoint());
+        return next(ladderPointGenerator.generatePoint());
     }
 
     @Override
