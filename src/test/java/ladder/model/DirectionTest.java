@@ -19,14 +19,14 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(Difficult.HIGH);
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            Direction.first(FALSE).next(Difficult.HIGH);
         }
     }
 

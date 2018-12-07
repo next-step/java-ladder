@@ -11,11 +11,13 @@ public class Ladder {
         this.ladderLines = ladderLines;
     }
 
-    public static Ladder of(int countOfPerson, int length) {
+    public static Ladder of(int countOfPerson, String level) {
         List<LadderLine> ladderLines = new ArrayList<>();
 
-        for(int i = 0; i < length; i++) {
-            ladderLines.add(LadderLine.init(countOfPerson));
+        Difficult difficult = Difficult.of(level);
+
+        for(int i = 0; i < difficult.getHeight(); i++) {
+            ladderLines.add(LadderLine.init(countOfPerson, difficult));
         }
         return new Ladder(ladderLines);
     }

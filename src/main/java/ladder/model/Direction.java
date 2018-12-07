@@ -3,7 +3,6 @@ package ladder.model;
 import java.util.Arrays;
 
 import static java.lang.Boolean.FALSE;
-import static ladder.model.LadderPointGenerator.generatePoint;
 
 public enum Direction {
 
@@ -42,11 +41,11 @@ public enum Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(Difficult difficult) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(generatePoint());
+        return next(difficult.generatePoint());
     }
 
     public static Direction first(boolean right) {
