@@ -5,16 +5,16 @@ public class LadderGame {
     private Rewards rewards;
     private Ladder ladder;
 
-    private LadderGame(String names, String rewards, int length) {
+    private LadderGame(String names, String rewards, String level) {
         int countOfPerson = validation(names, rewards);
 
         this.people = People.of(names);
         this.rewards = Rewards.of(rewards);
-        this.ladder = Ladder.of(countOfPerson, length);
+        this.ladder = Ladder.of(countOfPerson, level);
     }
 
-    public static LadderGame of(String names, String rewards, int length) {
-        return new LadderGame(names, rewards, length);
+    public static LadderGame of(String names, String rewards, String level) {
+        return new LadderGame(names, rewards, level);
     }
 
     public People getPeople() {

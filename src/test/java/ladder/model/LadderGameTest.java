@@ -11,10 +11,9 @@ public class LadderGameTest {
     public void 사다리_게임() {
         String names = "aa,bb,cc,dd,ee";
         String rewards = "0,0,1000,0,3000";
+        String level = "하";
 
-        int height = 5;
-
-        LadderGame ladderGame = LadderGame.of(names, rewards, height);
+        LadderGame ladderGame = LadderGame.of(names, rewards, level);
 
         assertThat(ladderGame.getPeople()).isEqualTo(People.of(names));
         assertThat(ladderGame.getRewards()).isEqualTo(Rewards.of(rewards));
@@ -26,20 +25,18 @@ public class LadderGameTest {
     public void 사다리_게임_사용자와_결과개수가_다른경우() {
         String names = "aa,bb,cc,dd,ee";
         String rewards = "0,0,1000,0,3000,1111";
+        String level = "상";
 
-        int height = 5;
-
-        LadderGame.of(names, rewards, height);
+        LadderGame.of(names, rewards, level);
     }
 
     @Test
     public void 사다리게임_결과() {
         String names = "aa,bb,cc,dd,ee";
         String rewards = "0,0,1000,0,3000";
+        String level = "상";
 
-        int height = 5;
-
-        LadderGame ladderGame = LadderGame.of(names, rewards, height);
+        LadderGame ladderGame = LadderGame.of(names, rewards, level);
         LadderResult result = ladderGame.result();
 
         result.getRewardByPerson("aa");
