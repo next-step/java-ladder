@@ -12,10 +12,11 @@ public class ConsoleMain {
     public static void main(String args[]){
         Players players = new Players(InputView.inputNames());
         Score score = new Score(InputView.scores());
-        int lineCount = InputView.lineCount();
+        //int lineCount = InputView.lineCount();
+        Mode mode = Mode.find(InputView.difficulty());
         List<LadderLine> lines = new ArrayList<>();
-        for(int i =0 ; i< lineCount ; i++){
-            lines.add(new LadderLine(players.size()));
+        for(int i = 0; i< mode.getLineCount() ; i++){
+            lines.add(new LadderLine(players.size(), mode));
         }
         LadderResult ladderResult = new LadderResult(lines,score);
         GameResult gameResult = new GameResult();

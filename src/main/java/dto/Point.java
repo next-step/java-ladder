@@ -1,7 +1,5 @@
 package dto;
 
-import java.util.Random;
-
 public class Point {
 
     private int index;
@@ -15,12 +13,12 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point isFirst(){
-        return new Point(0,Direction.find(false,new Random().nextBoolean()));
+    public static Point isFirst(Mode mode){
+        return new Point(0,Direction.find(false,Mode.drawLineByPercentage(mode)));
     }
 
-    public static Point isNext(Point before){
-        return new Point(before.nextIndex(),Direction.next(before.direction.isRight()));
+    public static Point isNext(Point before, Mode mode){
+        return new Point(before.nextIndex(),Direction.next(before.direction.isRight() , mode));
     }
 
     public static Point isLast(Point before){
@@ -39,6 +37,8 @@ public class Point {
     public Direction getDirection() {
         return direction;
     }
+
+
 
     /**
      * move logic
