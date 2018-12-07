@@ -8,8 +8,7 @@ public enum Mode {
 
     NORMAL("하" , 5 , 20),
     HARDCORE("중", 10 , 50),
-    HELL("상", 20 , 100),
-    ERROR("로또확률" , 0);
+    HELL("상", 20 , 100);
 
 //    private static final int HELL_LEVEL = 80;
 //    private static final int HARDCORE_LEVEL = 50;
