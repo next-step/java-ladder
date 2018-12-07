@@ -15,12 +15,12 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point isFirst(){
-        return new Point(0,Direction.find(false,new Random().nextBoolean()));
+    public static Point isFirst(Difficulty difficulty){
+        return new Point(0,Direction.find(false,Difficulty.drawLineByPercentage(difficulty)));
     }
 
-    public static Point isNext(Point before){
-        return new Point(before.nextIndex(),Direction.next(before.direction.isRight()));
+    public static Point isNext(Point before, Difficulty difficulty){
+        return new Point(before.nextIndex(),Direction.next(before.direction.isRight() , difficulty));
     }
 
     public static Point isLast(Point before){
@@ -39,6 +39,8 @@ public class Point {
     public Direction getDirection() {
         return direction;
     }
+
+
 
     /**
      * move logic

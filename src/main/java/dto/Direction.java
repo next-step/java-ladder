@@ -36,10 +36,10 @@ public enum Direction {
         return Direction.ERROR;
     }
 
-    public static Direction next(boolean right) {
+    public static Direction next(boolean right, Difficulty difficulty) {
         if(right) {
             return Direction.find(right, Boolean.FALSE);
         }
-        return Direction.find(right,new Random().nextBoolean());
+        return Direction.find(right,Difficulty.drawLineByPercentage(difficulty));
     }
 }

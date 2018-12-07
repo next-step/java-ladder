@@ -11,9 +11,9 @@ public class InputView {
         return sc.nextLine();
     }
 
-    public static int lineCount(){
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(sc.nextLine());
+    public static String difficulty(){
+        System.out.println("실행할 사다리의 난이도는?");
+        return sc.nextLine();
     }
 
     public static String scores(){
@@ -26,5 +26,12 @@ public class InputView {
         return sc.nextLine();
     }
 
+    /*
+    Deprecated
+     */
+    public static int lineCount(){
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return Integer.parseInt(sc.nextLine());
+    }
 
 }

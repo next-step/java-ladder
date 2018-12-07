@@ -15,11 +15,11 @@ public class DirectionTest {
 
     @Test
     public void getFirts() {
-        assertThat(Direction.next(false)).isNotEqualByComparingTo(Direction.LEFT);
+        assertThat(Direction.next(false,Difficulty.NORMAL)).isNotEqualByComparingTo(Direction.LEFT);
     }
 
     @Test
     public void getLast() {
-        assertThat(Direction.next(true)).isNotEqualByComparingTo(Direction.RIGHT);
+        assertThat(Direction.next(true,Difficulty.NORMAL)).isNotEqualByComparingTo(Direction.RIGHT);
     }
 }
