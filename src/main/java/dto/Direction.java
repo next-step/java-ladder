@@ -1,7 +1,5 @@
 package dto;
 
-import java.util.Random;
-
 /**
  * 이전값의 영향을 받아서 다음 값이 정해진다....흠
  */
@@ -36,10 +34,10 @@ public enum Direction {
         return Direction.ERROR;
     }
 
-    public static Direction next(boolean right, Difficulty difficulty) {
+    public static Direction next(boolean right, Mode mode) {
         if(right) {
             return Direction.find(right, Boolean.FALSE);
         }
-        return Direction.find(right,Difficulty.drawLineByPercentage(difficulty));
+        return Direction.find(right,Mode.drawLineByPercentage(mode));
     }
 }

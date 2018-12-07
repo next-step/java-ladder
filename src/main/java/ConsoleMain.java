@@ -13,10 +13,10 @@ public class ConsoleMain {
         Players players = new Players(InputView.inputNames());
         Score score = new Score(InputView.scores());
         //int lineCount = InputView.lineCount();
-        Difficulty difficulty = Difficulty.find(InputView.difficulty());
+        Mode mode = Mode.find(InputView.difficulty());
         List<LadderLine> lines = new ArrayList<>();
-        for(int i =0 ; i< difficulty.getLineCount() ; i++){
-            lines.add(new LadderLine(players.size(),difficulty));
+        for(int i = 0; i< mode.getLineCount() ; i++){
+            lines.add(new LadderLine(players.size(), mode));
         }
         LadderResult ladderResult = new LadderResult(lines,score);
         GameResult gameResult = new GameResult();

@@ -3,9 +3,8 @@ package dto;
 import utils.Generator;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
-public enum Difficulty {
+public enum Mode {
 
     NORMAL("하" , 5 , 20),
     HARDCORE("중", 10 , 50),
@@ -20,13 +19,13 @@ public enum Difficulty {
     private int lineCount;
     private int percentage;
 
-    Difficulty(String level, int lineCount, int percentage) {
+    Mode(String level, int lineCount, int percentage) {
         this.level = level;
         this.lineCount = lineCount;
         this.percentage = percentage;
     }
 
-    Difficulty(String level, int lineCount) {
+    Mode(String level, int lineCount) {
         this.level = level;
         this.lineCount = lineCount;
     }
@@ -37,23 +36,23 @@ public enum Difficulty {
 /*
     derpecated
 
-    public static Difficulty find(String level) {
-        for (Difficulty difficulty : Difficulty.values()){
-            if(difficulty.level == level){
-                return difficulty;
+    public static Mode find(String level) {
+        for (Mode mode : Mode.values()){
+            if(mode.level == level){
+                return mode;
             }
         }
-        return Difficulty.ERROR;
+        return Mode.ERROR;
     }
     */
 
-    public static boolean drawLineByPercentage(Difficulty difficulty) {
-        if(Generator.difficultyRandom() <difficulty.percentage)
+    public static boolean drawLineByPercentage(Mode mode) {
+        if(Generator.difficultyRandom() < mode.percentage)
             return true;
         return false;
     }
 
-    public static Difficulty find(String level){
-        return Arrays.stream(Difficulty.values()).filter(e -> e.level.equals(level)).findFirst().orElseThrow(IllegalArgumentException::new);
+    public static Mode find(String level){
+        return Arrays.stream(Mode.values()).filter(e -> e.level.equals(level)).findFirst().orElseThrow(IllegalArgumentException::new);
     }
 }

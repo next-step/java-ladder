@@ -7,7 +7,7 @@ public class PointTest {
 
     @Test
     public void 포인트_First_생성테스트() {
-        assertThat(Point.isFirst(Difficulty.NORMAL).getDirection()).isNotEqualByComparingTo(Direction.LEFT);
+        assertThat(Point.isFirst(Mode.NORMAL).getDirection()).isNotEqualByComparingTo(Direction.LEFT);
     }
 
     @Test
