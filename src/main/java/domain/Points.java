@@ -1,6 +1,6 @@
 package domain;
 
-import util.RandomUtil;
+import util.DirectionGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,9 @@ public class Points {
         this.points = points;
     }
 
-    public static Points from(final int sizeOfPlayers) {
+    public static Points from(final int sizeOfPlayers, final DirectionGenerator generator) {
         final List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
+        Point point = initFirst(points, generator);
         point = initBody(sizeOfPlayers, points, point);
         initLast(points, point);
         return new Points(points);
@@ -25,8 +25,8 @@ public class Points {
         return points.get(position).move();
     }
 
-    private static Point initFirst(final List<Point> points) {
-        final Point point = Point.first(RandomUtil.generate());
+    private static Point initFirst(final List<Point> points, final DirectionGenerator generator) {
+        final Point point = Point.first(generator.apply());
         points.add(point);
         return point;
     }

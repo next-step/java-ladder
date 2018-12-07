@@ -1,5 +1,7 @@
 package domain;
 
+import util.DirectionGenerator;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -10,8 +12,8 @@ public class Lines {
     private final List<Line> lines;
     private final int height;
 
-    public Lines(final Players players, final int height) {
-        lines = IntStream.range(0, height).mapToObj(i -> Line.from(players.size())).collect(toList());
+    public Lines(final Players players, final int height, final DirectionGenerator generator) {
+        lines = IntStream.range(0, height).mapToObj(i -> Line.from(players.size(), generator)).collect(toList());
         this.height = height;
     }
 
