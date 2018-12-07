@@ -1,5 +1,6 @@
 package util;
 
+import domain.Level;
 import org.junit.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -12,7 +13,7 @@ public class DirectionGeneratorTest {
     @Test
     public void 연결선이_전부_연결되었는지_검사() {
 
-        generator = new DirectionGenerator(100);
+        generator = new DirectionGenerator(Level.MAXIMUM_WEIGHT);
 
         for (int i = 0; i < 100; i++) {
             assertThat(generator.apply()).isTrue();
