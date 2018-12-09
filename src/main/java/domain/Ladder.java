@@ -1,11 +1,13 @@
 package domain;
 
+import util.DirectionGenerator;
+
 public class Ladder {
 
     private final Lines lines;
 
-    public Ladder(final Players players, final int height) {
-        lines = new Lines(players, height);
+    public Ladder(final Players players, final int height, final DirectionGenerator generator) {
+        lines = new Lines(players, height, generator);
     }
 
     public int move(final int position) {
@@ -14,9 +16,7 @@ public class Ladder {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer();
-        sb.append(lines.toString());
-        return sb.toString();
+        return lines.toString();
     }
 
 }

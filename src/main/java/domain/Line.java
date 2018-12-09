@@ -1,5 +1,7 @@
 package domain;
 
+import util.DirectionGenerator;
+
 public class Line {
 
     private final Points points;
@@ -8,8 +10,8 @@ public class Line {
         this.points = points;
     }
 
-    public static Line from(final int sizeOPlayers) {
-        return new Line(Points.from(sizeOPlayers));
+    public static Line from(final int sizeOPlayers, final DirectionGenerator generator) {
+        return new Line(Points.from(sizeOPlayers, generator));
     }
 
     public int move(final int position) {
@@ -18,9 +20,7 @@ public class Line {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append(points.toString());
-        return sb.toString();
+        return points.toString();
     }
 
 }
