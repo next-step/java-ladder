@@ -22,4 +22,11 @@ public class PersonTest {
 
         assertThat(person.toString()).isEqualTo("njkim");
     }
+
+    @Test
+    public void 이름_포매팅_확인_5글자_이하() {
+        Person person = new Person("nj");
+
+        assertThat(person.toString()).isEqualTo("   nj");
+    }
 }

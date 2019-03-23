@@ -13,6 +13,10 @@ public class Person {
 
     @Override
     public String toString() {
-        return this.name;
+        return beautify();
+    }
+
+    private String beautify() {
+        return String.format("%" + MAX + "s", name);
     }
 }
