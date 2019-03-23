@@ -2,6 +2,8 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.Participant;
+import java.util.stream.IntStream;
 
 public class ConsoleResultView {
 
@@ -20,7 +22,8 @@ public class ConsoleResultView {
   }
 
   private static void printPoint(Boolean point) {
-    System.out.print(point ? "-----" : "     ");
+    IntStream.range(0, Participant.MAXIMUM_NAME_LENGTH)
+        .forEach(index -> System.out.print(point ? "-" : " "));
     System.out.print("|");
   }
 }

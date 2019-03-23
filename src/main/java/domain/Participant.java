@@ -2,7 +2,7 @@ package domain;
 
 public class Participant {
 
-  private final static int MAXIMUM_NAME_LENGTH = 5;
+  public final static int MAXIMUM_NAME_LENGTH = 5;
 
   private String name;
 
