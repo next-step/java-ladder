@@ -13,6 +13,6 @@ public class LineTest {
         Line line1 = new Line(height);
         Line line2 = new Line(height);
         line1.checkLine(line2);
-        assertThat(line1.checkLineDuplicata(line2)).isFalse();
+        assertThat(line1.checkLineDuplicate(line2)).isFalse();
     }
 }

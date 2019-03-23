@@ -7,14 +7,9 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LadderOutputView {
-    public static void printResult(List<Gamer> gamers, int maxNameLength, Ladder ladder) {
+    public static void printGamers(List<Gamer> gamers, int maxNameLength) {
         System.out.println("\n실행결과");
 
-        printGamers(gamers, maxNameLength);
-        printLadder(ladder, maxNameLength);
-    }
-
-    public static void printGamers(List<Gamer> gamers, int maxNameLength) {
         gamers.forEach(gamer -> {
             System.out.print(gamer.toString());
 
@@ -24,27 +19,31 @@ public class LadderOutputView {
         System.out.println();
     }
 
-    private static void printLadder(Ladder ladder, int maxNameLength) {
-
+    public static void printLadder(Ladder ladder, int maxNameLength, int height) {
         int width = ladder.getLines().size();
-        int height = ladder.getHeight();
 
-        for (int k = 0; k < height; k++) {
-            System.out.print("|");
-            for (int i = 0; i < width - 1; i++) {
-                if (ladder.getLines().get(i).getLine().get(k)) {
-                    for (int j = 0; j < maxNameLength; j++) {
-                        System.out.print("-");
-                    }
-                } else {
-                    for (int j = 0; j < maxNameLength; j++) {
-                        System.out.print(" ");
-                    }
-                }
-                System.out.print("|");
-            }
+        for (int i = 0; i < height; i++) {
+            drawRow(ladder, maxNameLength, width, i);
             System.out.println();
         }
 
+    }
+
+    private static void drawRow(Ladder ladder, int maxNameLength, int width, int i) {
+        System.out.print("|");
+        for (int column = 0; column < width - 1; column++) {
+            drawBlock(ladder, maxNameLength, i, column);
+            System.out.print("|");
+        }
+    }
+
+    private static void drawBlock(Ladder ladder, int maxNameLength, int height, int column) {
+        if (ladder.getLines().get(column).getLine().get(height)) {
+            IntStream.range(0, maxNameLength)
+                    .forEach(count -> System.out.print("-"));
+        } else {
+            IntStream.range(0, maxNameLength)
+                    .forEach(count -> System.out.print(" "));
+        }
     }
 }

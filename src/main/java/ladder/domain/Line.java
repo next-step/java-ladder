@@ -35,7 +35,7 @@ public class Line {
         return isChange;
     }
 
-    public boolean checkLineDuplicata(Line nextLine) {
+    public boolean checkLineDuplicate(Line nextLine) {
         for (int i = 0; i < line.size(); i++) {
             if (changeLine(nextLine, i)) {
                 return true;
