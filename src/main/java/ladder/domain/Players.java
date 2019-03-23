@@ -9,7 +9,7 @@ public class Players {
 
     private List<Person> people;
 
-    public Players(List<Person> people) {
+    private Players(List<Person> people) {
         this.people = people;
     }
 
