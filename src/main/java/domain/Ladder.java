@@ -18,6 +18,7 @@ public class Ladder {
     if (participants == null || participants.isEmpty() || participants.size() == 1) {
       throw new IllegalArgumentException();
     }
+    this.participants = participants;
 
     this.lines = IntStream.range(0, height)
         .mapToObj(index -> new Line(participants.size()))
@@ -26,5 +27,12 @@ public class Ladder {
 
   public List<Line> getLines() {
     return lines;
+  }
+
+  public String getParticipantNames() {
+
+    return participants.stream()
+        .map(participant -> String.format("%5s", participant.getName()))
+        .collect(Collectors.joining(" "));
   }
 }

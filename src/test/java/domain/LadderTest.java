@@ -35,6 +35,28 @@ public class LadderTest {
     assertThat(ladder.getLines().size()).isEqualTo(height);
   }
 
+  @Test
+  public void test_getParticipantNames() {
+
+    // Given
+    String pobi = "pobi";
+    String honux = "honux";
+    int height = 5;
+
+    List<Participant> participants = Arrays.asList(
+        new Participant(pobi),
+        new Participant(honux)
+    );
+
+    // When
+    Ladder ladder = new Ladder(participants, height);
+
+    // Then
+    assertThat(ladder).isNotNull();
+    assertThat(ladder.getParticipantNames()).isEqualTo(" " + pobi + " " + honux);
+  }
+
+
   @Test(expected = IllegalArgumentException.class)
   public void test_ladder_heightIsZero_exception() {
 

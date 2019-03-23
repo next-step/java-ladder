@@ -17,6 +17,6 @@ public class LineTest {
 
     // Then
     assertThat(line).isNotNull();
-    assertThat(line.getPoints().size()).isEqualTo(countOfPerson - 1);
+    assertThat(line.getPoints().size()).isEqualTo(countOfPerson);
   }
 }

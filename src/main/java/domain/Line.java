@@ -10,12 +10,15 @@ public class Line {
 
   public Line(int countOfPerson) {
 
-    IntStream.range(1, countOfPerson)
-        .mapToObj(count -> hasPoint())
+    IntStream.range(0, countOfPerson)
+        .mapToObj(this::hasPoint)
         .forEach(point -> points.add(point));
   }
 
-  private boolean hasPoint() {
+  private boolean hasPoint(int count) {
+    if (count == 0) {
+      return false;
+    }
     return new Random().nextBoolean();
   }
 
