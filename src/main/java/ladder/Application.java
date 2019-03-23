@@ -16,30 +16,35 @@ public class Application {
     }
 
     private static void doLadderGame() {
-        //참여자 input
-        String inputName = LadderInputView.inputName();
+        try {
+            //참여자 input
+            String inputName = LadderInputView.inputName();
 
-        //input 값 validation 체크 및 split
-        String[] names = LadderInputView.splitInputName(inputName);
+            //input 값 validation 체크 및 split
+            String[] names = LadderInputView.splitInputName(inputName);
 
-        //게이머 생성
-        List<Gamer> gamers = new ArrayList<>();
-        Arrays.stream(names).forEach(name -> gamers.add(new Gamer(name)));
+            //게이머 생성
+            List<Gamer> gamers = new ArrayList<>();
+            Arrays.stream(names).forEach(name -> gamers.add(new Gamer(name)));
 
-        //참여자 이름중 가장 긴 이름 확인
-        List<Gamer> sortedGamers = new ArrayList<>(gamers);
-        sortedGamers.sort(Collections.reverseOrder());
-        int maxNameLength = sortedGamers.get(0).getNameLength();
+            //참여자 이름중 가장 긴 이름 확인
+            List<Gamer> sortedGamers = new ArrayList<>(gamers);
+            sortedGamers.sort(Collections.reverseOrder());
+            int maxNameLength = sortedGamers.get(0).getNameLength();
 
-        //높이 input
-        int height = LadderInputView.inputHeight();
+            //높이 input
+            int height = LadderInputView.inputHeight();
 
-        //사다리생성 및 겹치는 라인 확인
-        Ladder ladder = new Ladder(height, gamers.size());
-        ladder.checkLadder();
+            //사다리생성 및 겹치는 라인 확인
+            Ladder ladder = new Ladder(height, gamers.size());
+            ladder.checkLadder();
 
-        //output result
-        LadderOutputView.printGamers(gamers, maxNameLength);
-        LadderOutputView.printLadder(ladder, maxNameLength, height);
+            //output result
+            LadderOutputView.printGamers(gamers, maxNameLength);
+            LadderOutputView.printLadder(ladder, maxNameLength, height);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+
     }
 }

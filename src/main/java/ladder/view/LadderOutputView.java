@@ -12,7 +12,6 @@ public class LadderOutputView {
 
         gamers.forEach(gamer -> {
             System.out.print(gamer.toString());
-
             IntStream.range(0, maxNameLength - gamer.getNameLength() + 1)
                     .forEach(name -> System.out.print(" "));
         });

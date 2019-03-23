@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
     private int height;
@@ -13,15 +14,13 @@ public class Line {
         this.height = height;
         line = new ArrayList<>();
         Random random = new Random();
-        for (int i = 0; i < height; i++) {
-            line.add(random.nextBoolean());
-        }
+        IntStream.range(0, height)
+                .forEach(count -> line.add(random.nextBoolean()));
     }
 
     public void checkLine(Line nextLine) {
-        for (int i = 0; i < height; i++) {
-            changeLine(nextLine, i);
-        }
+        IntStream.range(0, height)
+                .forEach(count -> changeLine(nextLine, count));
     }
 
     public boolean changeLine(Line nextLine, int row) {
