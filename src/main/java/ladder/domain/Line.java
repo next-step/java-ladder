@@ -23,7 +23,7 @@ public class Line {
                 .forEach(count -> changeLine(nextLine, count));
     }
 
-    public boolean changeLine(Line nextLine, int row) {
+    private boolean changeLine(Line nextLine, int row) {
         boolean isChange = false;
 
         if (this.line.get(row) && nextLine.line.get(row)) {
@@ -34,6 +34,9 @@ public class Line {
         return isChange;
     }
 
+    /**
+     * 테스트용 메서드
+     */
     public boolean checkLineDuplicate(Line nextLine) {
         for (int i = 0; i < line.size(); i++) {
             if (changeLine(nextLine, i)) {

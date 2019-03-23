@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.dto;
 
 public class Gamer implements Comparable<Gamer> {
     private String name;

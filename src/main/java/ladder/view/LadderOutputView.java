@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.domain.Gamer;
 import ladder.domain.Ladder;
+import ladder.dto.Gamer;
 
 import java.util.List;
 import java.util.stream.IntStream;
