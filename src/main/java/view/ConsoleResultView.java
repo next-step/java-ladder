@@ -10,9 +10,9 @@ public class ConsoleResultView {
   public static void printCreatedLadder(Ladder ladder) {
 
     System.out.println("실행결과\n");
-    System.out.println(ladder.getParticipantNames());
+    System.out.println(ladder.getParticipants().names());
 
-    ladder.getLines()
+    ladder.getLines().gets()
         .forEach(ConsoleResultView::printLine);
   }
 

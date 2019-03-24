@@ -1,7 +1,9 @@
 package view;
 
 import domain.Ladder;
+import domain.Lines;
 import domain.Participant;
+import domain.Participants;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +15,7 @@ public class ConsoleView {
   public static void main(String[] args) {
 
     String participantNames = consoleInputView.inputParticipantNames();
-    List<Participant> participants = generateParticipants(participantNames);
+    Participants participants = generateParticipants(participantNames);
 
     int maximumLadderHeight = consoleInputView.inputMaximumLadderHeight();
     Ladder ladder = new Ladder(participants, maximumLadderHeight);
@@ -21,10 +23,11 @@ public class ConsoleView {
     ConsoleResultView.printCreatedLadder(ladder);
   }
 
-  private static List<Participant> generateParticipants(String participantNames) {
+  private static Participants generateParticipants(String participantNames) {
 
-    return Arrays.stream(participantNames.split(","))
+    List<Participant> participants = Arrays.stream(participantNames.split(","))
         .map(Participant::new)
         .collect(Collectors.toList());
+    return new Participants(participants);
   }
 }
