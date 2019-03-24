@@ -19,11 +19,12 @@ public class Point {
         return new Point(!target.point);
     }
 
-    public static Boolean isEqual(Point randomPoint, Point beforePoint) {
-        return randomPoint.point == beforePoint.point;
+    public static Boolean isTrueOverlap(Point randomPoint, Point beforePoint) {
+        return randomPoint.point && beforePoint.point;
     }
 
-    public String beautify() {
+    @Override
+    public String toString() {
         StringBuilder builder = new StringBuilder();
         String fill = " ";
         if (point) {

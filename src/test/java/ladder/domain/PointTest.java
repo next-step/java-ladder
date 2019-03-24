@@ -10,15 +10,15 @@ public class PointTest {
     private Point point;
 
     @Test
-    public void 포인트가_일치한다() {
-        assertTrue(Point.isEqual(new Point(true), new Point(true)));
-        assertTrue(Point.isEqual(new Point(false), new Point(false)));
+    public void 포인트가_겹친다() {
+        assertTrue(Point.isTrueOverlap(new Point(true), new Point(true)));
     }
 
     @Test
-    public void 포인트가_일치하지_않는다() {
-        assertFalse(Point.isEqual(new Point(true), new Point(false)));
-        assertFalse(Point.isEqual(new Point(false), new Point(true)));
+    public void 포인트가_겹치지_않는다() {
+        assertFalse(Point.isTrueOverlap(new Point(true), new Point(false)));
+        assertFalse(Point.isTrueOverlap(new Point(false), new Point(true)));
+        assertFalse(Point.isTrueOverlap(new Point(false), new Point(false)));
     }
 
     @Test
@@ -31,12 +31,12 @@ public class PointTest {
     @Test
     public void 라인을_그리지_않는다() {
         point = new Point(false);
-        assertThat(point.beautify()).isEqualTo("     ");
+        assertThat(point.toString()).isEqualTo("     ");
     }
 
     @Test
     public void 라인을_그린다() {
         point = new Point(true);
-        assertThat(point.beautify()).isEqualTo("-----");
+        assertThat(point.toString()).isEqualTo("-----");
     }
 }

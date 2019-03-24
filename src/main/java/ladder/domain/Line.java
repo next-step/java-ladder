@@ -9,15 +9,13 @@ public class Line {
     private List<Point> points;
 
     public Line(int size) {
-        this.points = new ArrayList<>(size);
-        this.generate();
+        this.generate(size);
     }
 
-    public List<Point> generate() {
-        IntStream.range(0, points.size())
+    public void generate(int size) {
+        points = new ArrayList<>();
+        IntStream.range(0, size)
             .forEach(i -> this.points.add(fillCurrent(i)));
-
-        return this.points;
     }
 
     private Point fillCurrent(int position) {
@@ -26,21 +24,21 @@ public class Line {
 
         Point randomPoint = Point.generateRandom();
 
-        if (isSameBefore(points.get(position), randomPoint)) {
+        if (isOverlap(this.points.get(position - 1), randomPoint)) {
             return Point.reverse(randomPoint);
         }
 
         return randomPoint;
     }
 
-    static boolean isSameBefore(Point beforeBoolean, Point randomBoolean) {
-        return Point.isEqual(beforeBoolean, randomBoolean);
+    static boolean isOverlap(Point beforeBoolean, Point randomBoolean) {
+        return Point.isTrueOverlap(beforeBoolean, randomBoolean);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        points.forEach(point -> builder.append(point.beautify()).append("|"));
+        this.points.forEach(point -> builder.append(point).append("l"));
         return builder.toString();
     }
 }

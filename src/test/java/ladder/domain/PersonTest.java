@@ -20,13 +20,13 @@ public class PersonTest {
     public void 이름_확인() {
         Person person = new Person("njkim");
 
-        assertThat(person.toString()).isEqualTo("njkim");
+        assertThat(person.toString()).isEqualTo(" njkim");
     }
 
     @Test
     public void 이름_포매팅_확인_5글자_이하() {
         Person person = new Person("nj");
 
-        assertThat(person.toString()).isEqualTo("   nj");
+        assertThat(person.toString()).isEqualTo("    nj");
     }
 }

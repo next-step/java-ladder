@@ -23,4 +23,8 @@ public class Players {
     public int size() {
         return this.people.size();
     }
+
+    public List<Person> getPeople() {
+        return people;
+    }
 }

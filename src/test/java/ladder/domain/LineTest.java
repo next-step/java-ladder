@@ -9,13 +9,13 @@ public class LineTest {
 
     @Test
     public void 라인이_겹칠때() {
-        assertTrue(Line.isSameBefore(new Point(true), new Point(true)));
-        assertTrue(Line.isSameBefore(new Point(false), new Point(false)));
+        assertTrue(Line.isOverlap(new Point(true), new Point(true)));
     }
 
     @Test
     public void 라인이_안겹칠때() {
-        assertFalse(Line.isSameBefore(new Point(true), new Point(false)));
-        assertFalse(Line.isSameBefore(new Point(false), new Point(true)));
+        assertFalse(Line.isOverlap(new Point(true), new Point(false)));
+        assertFalse(Line.isOverlap(new Point(false), new Point(true)));
+        assertFalse(Line.isOverlap(new Point(false), new Point(false)));
     }
 }

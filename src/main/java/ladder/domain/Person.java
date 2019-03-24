@@ -18,6 +18,6 @@ public class Person {
     }
 
     private String beautify() {
-        return String.format("%" + Constants.Person.MAX_NAME_LENGTH + "s", name);
+        return String.format("%" + (Constants.Person.MAX_NAME_LENGTH + 1) + "s", name);
     }
 }
