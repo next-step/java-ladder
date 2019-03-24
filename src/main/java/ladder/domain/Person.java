@@ -1,11 +1,12 @@
 package ladder.domain;
 
+import ladder.common.Constants;
+
 public class Person {
-    private static final int MAX = 5;
     private final String name;
 
     public Person(String name) {
-        if (name.length() > MAX) {
+        if (name.length() > Constants.Person.MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
         this.name = name;
@@ -17,6 +18,6 @@ public class Person {
     }
 
     private String beautify() {
-        return String.format("%" + MAX + "s", name);
+        return String.format("%" + Constants.Person.MAX_NAME_LENGTH + "s", name);
     }
 }
