@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.common.Constants;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,6 @@ public class Players {
     }
 
     public List<Person> getPeople() {
-        return people;
+        return Collections.unmodifiableList(people);
     }
 }
