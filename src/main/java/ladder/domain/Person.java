@@ -5,10 +5,17 @@ public class Person {
     private final String name;
 
     public Person(String name) {
+        if (isBlank(name)) {
+            throw new IllegalArgumentException();
+        }
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
         this.name = name;
+    }
+
+    private static boolean isBlank(String input) {
+        return input == null || input.trim().isEmpty();
     }
 
     @Override

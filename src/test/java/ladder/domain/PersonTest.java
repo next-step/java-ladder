@@ -6,6 +6,17 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class PersonTest {
 
+    @Test(expected = IllegalArgumentException.class)
+    public void 사람의_이름_NULL() {
+        Person person = new Person(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 사람의_이름_공백() {
+        Person person = new Person(" ");
+    }
+
+
     @Test
     public void 사람의_이름이_5글자_이하() {
         Person person = new Person("njkim");
