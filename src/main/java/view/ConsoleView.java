@@ -1,7 +1,6 @@
 package view;
 
 import domain.Ladder;
-import domain.Lines;
 import domain.Participant;
 import domain.Participants;
 import java.util.Arrays;

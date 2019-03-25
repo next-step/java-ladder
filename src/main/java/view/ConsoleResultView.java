@@ -3,6 +3,7 @@ package view;
 import domain.Ladder;
 import domain.Line;
 import domain.Participant;
+import domain.Point;
 import java.util.stream.IntStream;
 
 public class ConsoleResultView {
@@ -21,9 +22,9 @@ public class ConsoleResultView {
     System.out.print("\n");
   }
 
-  private static void printPoint(Boolean point) {
+  private static void printPoint(Point point) {
     IntStream.range(0, Participant.MAXIMUM_NAME_LENGTH)
-        .forEach(index -> System.out.print(point ? "-" : " "));
+        .forEach(index -> System.out.print(point.is() ? "-" : " "));
     System.out.print("|");
   }
 }

@@ -1,33 +1,20 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
 
-  private ArrayList<Boolean> points = new ArrayList<>();
+  private Points points;
 
   public Line(int countOfPerson) {
 
+    points = new Points();
     IntStream.range(0, countOfPerson)
-        .forEach(count -> points.add(hasPoint(count)));
+        .forEach(count -> points.add());
   }
 
-  private boolean hasPoint(int count) {
-
-    if (count == 0) {
-      return false;
-    }
-
-    if (points.get(count - 1)) {
-      return false;
-    }
-
-    return new Random().nextBoolean();
-  }
-
-  public ArrayList<Boolean> getPoints() {
-    return points;
+  public List<Point> getPoints() {
+    return points.gets();
   }
 }
