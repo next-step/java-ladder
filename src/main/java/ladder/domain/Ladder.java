@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Ladder() {
         this.lines = new ArrayList<>();
@@ -14,8 +14,8 @@ public class Ladder {
 
     public int generate(int low, int column) {
         IntStream.range(0, low)
-            .mapToObj(i -> new Line(column))
-            .forEach(line -> this.lines.add(line));
+            .mapToObj(i -> Line.generate(column))
+            .forEach(this.lines::add);
 
         return low;
     }

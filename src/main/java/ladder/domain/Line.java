@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -8,23 +9,24 @@ public class Line {
     private static final int STARTING_POINT = 0;
     private List<Point> points;
 
-    public Line(int size) {
-        this.generate(size);
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public void generate(int size) {
-        points = new ArrayList<>();
-        IntStream.range(0, size)
-            .forEach(i -> this.points.add(fillCurrent(i)));
+    public static Line generate(int height) {
+        List<Point> generatedPoints = new ArrayList<>();
+        IntStream.range(0, height)
+            .forEach(i -> generatedPoints.add(fillCurrent(generatedPoints, i)));
+        return new Line(generatedPoints);
     }
 
-    private Point fillCurrent(int position) {
+    private static Point fillCurrent(List<Point> generatedPoints, int position) {
         if (position == STARTING_POINT)
             return new Point(false);
 
         Point randomPoint = Point.generateRandom();
 
-        if (isOverlap(this.points.get(position - 1), randomPoint)) {
+        if (isOverlap(generatedPoints.get(position - 1), randomPoint)) {
             return Point.reverse(randomPoint);
         }
 
@@ -40,5 +42,9 @@ public class Line {
         StringBuilder builder = new StringBuilder();
         this.points.forEach(point -> builder.append(point).append("l"));
         return builder.toString();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }
