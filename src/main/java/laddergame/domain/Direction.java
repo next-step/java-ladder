@@ -3,7 +3,7 @@ package laddergame.domain;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static laddergame.service.LadderPointGenerator.generateNextToRight;
+import static laddergame.service.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean toLeft;
@@ -34,7 +34,7 @@ public class Direction {
         if (toRight) {
             return next(FALSE);
         }
-        return next(generateNextToRight());
+        return next(generatePoint());
     }
 
     public static Direction of(boolean toLeft, boolean toRight) {

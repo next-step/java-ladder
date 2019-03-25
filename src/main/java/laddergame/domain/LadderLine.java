@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static laddergame.domain.Participant.PARTICIPANT_MAXIMUM_NAME_LENGTH;
-import static laddergame.service.LadderPointGenerator.generateNextToRight;
+import static laddergame.service.LadderPointGenerator.generatePoint;
 
 public class LadderLine {
 
@@ -14,7 +14,7 @@ public class LadderLine {
 
     private final List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
     }
 
@@ -31,7 +31,7 @@ public class LadderLine {
     }
 
     private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generateNextToRight());
+        Point point = Point.first(generatePoint());
         points.add(point);
         return point;
     }
@@ -50,20 +50,13 @@ public class LadderLine {
         points.add(point);
     }
 
-    public String toResultString() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
 
         sb.append(StringUtils.repeat(" ", PARTICIPANT_MAXIMUM_NAME_LENGTH));
         points.stream().forEach(sb::append);
 
-        return sb.toString();
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("LadderLine{");
-        sb.append("points=").append(points);
-        sb.append('}');
         return sb.toString();
     }
 }

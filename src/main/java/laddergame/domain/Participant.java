@@ -21,7 +21,7 @@ public class Participant implements Validatable<String> {
         return name;
     }
 
-    public String toResultString() {
+    public String getResultName() {
         return String.format("%5s", name);
     }
 
@@ -53,9 +53,6 @@ public class Participant implements Validatable<String> {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Participant{");
-        sb.append("name='").append(name).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return name;
     }
 }

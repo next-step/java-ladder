@@ -36,7 +36,7 @@ public class Participants implements Validatable<Set<Participant>> {
 
         participants.stream()
                 .forEach(participant ->  {
-                    sb.append(participant.toResultString());
+                    sb.append(participant.getResultName());
                     sb.append(" ");
                 });
 

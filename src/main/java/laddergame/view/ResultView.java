@@ -17,6 +17,6 @@ public class ResultView {
     }
 
     public static void showLadderLines(LadderLines ladderLines) {
-        System.out.println(ladderLines.toResultString());
+        System.out.println(ladderLines);
     }
 }

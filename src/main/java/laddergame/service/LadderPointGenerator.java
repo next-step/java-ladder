@@ -5,7 +5,7 @@ import java.util.Random;
 public class LadderPointGenerator{
     private static Random random = new Random();
 
-    public static Boolean generateNextToRight() {
+    public static Boolean generatePoint() {
         return random.nextBoolean();
     }
 }
