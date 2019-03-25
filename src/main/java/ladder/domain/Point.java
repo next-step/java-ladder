@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.common.Constants;
-
 import java.util.Random;
 
 public class Point {
@@ -30,7 +28,7 @@ public class Point {
         if (point) {
             fill = "-";
         }
-        for (int i = 0; i < Constants.Person.MAX_NAME_LENGTH; i++) {
+        for (int i = 0; i < Person.MAX_NAME_LENGTH; i++) {
             builder.append(fill);
         }
         return builder.toString();
