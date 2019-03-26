@@ -18,4 +18,21 @@ public class Points {
   public List<Point> gets() {
     return points;
   }
+
+  public int move(int position) {
+
+    if (points.get(position).is()) {
+      return position - 1;
+    }
+
+    if ((points.size() - 1) == position) {
+      return position;
+    }
+
+    if (points.get(position + 1).is()) {
+      return position + 1;
+    }
+
+    return position;
+  }
 }
