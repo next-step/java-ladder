@@ -37,7 +37,7 @@ public class LadderOutputView {
     }
 
     private static void drawBlock(Ladder ladder, int maxNameLength, int height, int column) {
-        if (ladder.getLines().get(column).getRows().get(height)) {
+        if (ladder.getLines().get(column).getRows().get(height).isRow()) {
             IntStream.range(0, maxNameLength)
                     .forEach(count -> System.out.print("-"));
         } else {
