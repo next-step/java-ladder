@@ -2,6 +2,7 @@ package ladder.domain.rewards;
 
 import ladder.common.Constants;
 import ladder.domain.players.Players;
+import ladder.domain.result.Position;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,6 +33,10 @@ public class Rewards {
 
     public int size() {
         return this.items.size();
+    }
+
+    public Item getItemByIndex(Position position) {
+        return this.items.get(position.getPrimitive());
     }
 
     public List<Item> getPeople() {

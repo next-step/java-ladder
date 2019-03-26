@@ -18,6 +18,9 @@ public class Item {
         return input == null || input.trim().isEmpty();
     }
 
+    public String value() {
+        return this.name;
+    }
     @Override
     public String toString() {
         return beautify();

@@ -2,6 +2,8 @@ package ladder;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.players.Players;
+import ladder.domain.result.LadderGame;
+import ladder.domain.result.LadderResult;
 import ladder.domain.rewards.Rewards;
 import ladder.view.ConsoleInput;
 import ladder.view.ConsoleOutput;
@@ -22,5 +24,17 @@ public class Application {
         ConsoleOutput.printPlayers(players);
         ConsoleOutput.printLadders(ladder);
         ConsoleOutput.printRewards(rewards);
+
+        LadderGame ladderGame = LadderGame.generate(players, ladder, rewards);
+        LadderResult ladderResult = ladderGame.result();
+
+        Boolean exit = false;
+        while (!exit) {
+            String nameForRewards = ConsoleInput.readNameForRewards();
+            ConsoleOutput.printRewardOfPlayers(ladderResult, nameForRewards);
+            if (nameForRewards.equals("exit")) {
+                exit = true;
+            }
+        }
     }
 }

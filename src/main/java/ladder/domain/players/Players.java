@@ -25,6 +25,10 @@ public class Players {
         return this.people.size();
     }
 
+    public Person getPersonByIndex(int index) {
+        return this.people.get(index);
+    }
+
     public List<Person> getPeople() {
         return Collections.unmodifiableList(people);
     }
