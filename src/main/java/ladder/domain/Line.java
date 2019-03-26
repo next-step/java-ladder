@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -16,19 +15,28 @@ public class Line {
     }
 
     public List<Boolean> createRow() {
-        Random random = new Random();
-        IntStream.range(0, height)
-                .forEach(count -> rows.add(random.nextBoolean()));
-
+        for (int i = 0; i < height; i++) {
+            addRow(getRandomValue());
+        }
         return rows;
     }
 
-    public void checkLine(Line nextLine) {
-        IntStream.range(0, height)
-                .forEach(count -> changeLine(nextLine, count));
+    public void addRow(boolean randomValue) {
+        rows.add(randomValue);
     }
 
-    private boolean changeLine(Line nextLine, int row) {
+    public boolean getRandomValue() {
+        Random random = new Random();
+        return random.nextBoolean();
+    }
+
+    public void checkLine(Line nextLine) {
+        for (int i = 0; i < height; i++) {
+            changeLine(nextLine, i);
+        }
+    }
+
+    public boolean changeLine(Line nextLine, int row) {
         boolean isChange = false;
 
         if (this.rows.get(row) && nextLine.rows.get(row)) {
@@ -37,19 +45,6 @@ public class Line {
         }
 
         return isChange;
-    }
-
-    /**
-     * 테스트용 메서드
-     */
-    public boolean checkLineDuplicate(Line nextLine) {
-        for (int i = 0; i < rows.size(); i++) {
-            if (changeLine(nextLine, i)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public List<Boolean> getRows() {

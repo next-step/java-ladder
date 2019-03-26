@@ -6,7 +6,6 @@ import ladder.view.LadderInputView;
 import ladder.view.LadderOutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,8 +24,7 @@ public class Application {
             List<String> names = LadderInputView.splitInputName(inputName);
 
             //게이머 생성
-            List<Gamer> gamers = new ArrayList<>();
-            names.stream()
+            List<Gamer> gamers = names.stream()
                     .map(Gamer::new)
                     .collect(Collectors.toList());
 
