@@ -21,4 +21,13 @@ public class Lines {
   public int size() {
     return lines.size();
   }
+
+  public int move(int participantPosition) {
+
+    for(Line line : lines) {
+      participantPosition = line.move(participantPosition);
+    }
+
+    return participantPosition;
+  }
 }
