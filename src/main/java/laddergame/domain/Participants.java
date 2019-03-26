@@ -1,5 +1,7 @@
 package laddergame.domain;
 
+import laddergame.validator.ParticipantValidator;
+import laddergame.validator.ParticipantsValidator;
 import laddergame.validator.Validatable;
 
 import java.util.Objects;
@@ -7,9 +9,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Participants implements Validatable<Set<Participant>> {
+public class Participants {
     private static final String PARTICIPANT_NAME_DELIMITER = ",";
 
+    private Validatable<Set<Participant>> validator = new ParticipantsValidator();
     private final Set<Participant> participants;
 
     public Participants(String participants) {
@@ -18,8 +21,8 @@ public class Participants implements Validatable<Set<Participant>> {
                 .collect(Collectors.toSet()));
     }
 
-    public Participants(Set<Participant> participants) {
-        validate(participants);
+    private Participants(Set<Participant> participants) {
+        validator.validate(participants);
         this.participants = participants;
     }
 
@@ -32,25 +35,14 @@ public class Participants implements Validatable<Set<Participant>> {
     }
 
     public String toResultString() {
-        final StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-        participants.stream()
-                .forEach(participant ->  {
-                    sb.append(participant.getResultName());
-                    sb.append(" ");
-                });
+        participants.forEach(participant ->  {
+            sb.append(participant.getResultName());
+            sb.append(" ");
+        });
 
         return sb.toString();
-    }
-
-    @Override
-    public boolean isValid(Set<Participant> target) {
-        return target != null && target.size() >= 2;
-    }
-
-    @Override
-    public String getInvalidMessage() {
-        return "참가자는 2인 이상이어야 합니다.";
     }
 
     @Override
@@ -68,7 +60,7 @@ public class Participants implements Validatable<Set<Participant>> {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Participants{");
+        StringBuilder sb = new StringBuilder("Participants{");
         sb.append("participants=").append(participants);
         sb.append('}');
         return sb.toString();

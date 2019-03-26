@@ -5,8 +5,8 @@ import laddergame.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static laddergame.domain.Participant.PARTICIPANT_MAXIMUM_NAME_LENGTH;
 import static laddergame.service.LadderPointGenerator.generatePoint;
+import static laddergame.validator.ParticipantValidator.PARTICIPANT_MAXIMUM_NAME_LENGTH;
 
 public class LadderLine {
 
@@ -55,7 +55,7 @@ public class LadderLine {
         StringBuilder sb = new StringBuilder();
 
         sb.append(StringUtils.repeat(" ", PARTICIPANT_MAXIMUM_NAME_LENGTH));
-        points.stream().forEach(sb::append);
+        points.forEach(sb::append);
 
         return sb.toString();
     }

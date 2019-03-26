@@ -3,13 +3,13 @@ package laddergame.domain;
 import laddergame.util.StringUtils;
 
 import static laddergame.domain.LadderLine.LADDER_LINE_STRING;
-import static laddergame.domain.Participant.PARTICIPANT_MAXIMUM_NAME_LENGTH;
+import static laddergame.validator.ParticipantValidator.PARTICIPANT_MAXIMUM_NAME_LENGTH;
 
 public class Point {
     private final int index;
     private final Direction direction;
 
-    public Point(int index, Direction direction) {
+    private Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;
     }
