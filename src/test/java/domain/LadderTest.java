@@ -11,25 +11,27 @@ public class LadderTest {
   public void test_ladder_constructor() {
 
     // Given
-    String pobi = "pobi";
-    String honux = "honux";
-    String crong = "crong";
-    String jk = "jk";
-    int height = 5;
-
     Participants participants = new Participants(Arrays.asList(
-        new Participant(pobi),
-        new Participant(honux),
-        new Participant(crong),
-        new Participant(jk)
+        new Participant("pobi"),
+        new Participant("honux"),
+        new Participant("crong"),
+        new Participant("jk")
     ));
 
+    Results results = new Results(
+        Arrays.asList(
+            new Result("꽝"),
+            new Result("3000"),
+            new Result("꽝"),
+            new Result("5000")
+        )
+    );
+
     // When
-    Ladder ladder = new Ladder(participants, height);
+    Ladder ladder = new Ladder(participants, results);
 
     // Then
     assertThat(ladder).isNotNull();
-    assertThat(ladder.height()).isEqualTo(height);
   }
 
 
@@ -37,41 +39,51 @@ public class LadderTest {
   public void test_ladder_heightIsZero_exception() {
 
     // Given
-    String pobi = "pobi";
-    String honux = "honux";
-    String crong = "crong";
-    String jk = "jk";
-    int height = 0;
-
     Participants participants = new Participants(Arrays.asList(
-        new Participant(pobi),
-        new Participant(honux),
-        new Participant(crong),
-        new Participant(jk)
+        new Participant("pobi"),
+        new Participant("honux"),
+        new Participant("crong"),
+        new Participant("jk")
     ));
 
+    Results results = new Results(
+        Arrays.asList(
+            new Result("꽝"),
+            new Result("3000"),
+            new Result("꽝"),
+            new Result("5000")
+        )
+    );
+    int height = 0;
+
     // When
-    new Ladder(participants, height);
+    Ladder ladder = new Ladder(participants, results);
+    ladder.create(height);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void test_ladder_heightIsNegative_exception() {
 
     // Given
-    String pobi = "pobi";
-    String honux = "honux";
-    String crong = "crong";
-    String jk = "jk";
-    int height = -5;
-
     Participants participants = new Participants(Arrays.asList(
-        new Participant(pobi),
-        new Participant(honux),
-        new Participant(crong),
-        new Participant(jk)
+        new Participant("pobi"),
+        new Participant("honux"),
+        new Participant("crong"),
+        new Participant("jk")
     ));
 
+    Results results = new Results(
+        Arrays.asList(
+            new Result("꽝"),
+            new Result("3000"),
+            new Result("꽝"),
+            new Result("5000")
+        )
+    );
+    int height = -5;
+
     // When
-    new Ladder(participants, height);
+    Ladder ladder = new Ladder(participants, results);
+    ladder.create(height);
   }
 }

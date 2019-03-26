@@ -15,11 +15,19 @@ public class Points {
     points.add(Point.generatePoint(points));
   }
 
+  public void add(Point point) {
+    points.add(point);
+  }
+
   public List<Point> gets() {
     return points;
   }
 
   public int move(int position) {
+
+    if (position >= points.size()) {
+      throw new IllegalArgumentException();
+    }
 
     if (points.get(position).is()) {
       return position - 1;

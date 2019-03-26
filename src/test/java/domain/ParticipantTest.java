@@ -16,8 +16,7 @@ public class ParticipantTest {
     Participant participant = new Participant(participantName);
 
     // Then
-    assertThat(participant).isNotNull();
-    assertThat(participant.getName()).isEqualTo(participantName);
+    assertThat(participant.toString()).isEqualTo(participantName);
   }
 
   @Test(expected = IllegalArgumentException.class)
