@@ -6,16 +6,21 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
-    private int height;
 
-    private List<Boolean> line;
+    private int height;
+    private List<Boolean> rows;
 
     public Line(int height) {
         this.height = height;
-        line = new ArrayList<>();
+        rows = new ArrayList<>();
+    }
+
+    public List<Boolean> createRow() {
         Random random = new Random();
         IntStream.range(0, height)
-                .forEach(count -> line.add(random.nextBoolean()));
+                .forEach(count -> rows.add(random.nextBoolean()));
+
+        return rows;
     }
 
     public void checkLine(Line nextLine) {
@@ -26,8 +31,8 @@ public class Line {
     private boolean changeLine(Line nextLine, int row) {
         boolean isChange = false;
 
-        if (this.line.get(row) && nextLine.line.get(row)) {
-            nextLine.line.set(row, false);
+        if (this.rows.get(row) && nextLine.rows.get(row)) {
+            nextLine.rows.set(row, false);
             isChange = true;
         }
 
@@ -38,7 +43,7 @@ public class Line {
      * 테스트용 메서드
      */
     public boolean checkLineDuplicate(Line nextLine) {
-        for (int i = 0; i < line.size(); i++) {
+        for (int i = 0; i < rows.size(); i++) {
             if (changeLine(nextLine, i)) {
                 return true;
             }
@@ -47,7 +52,7 @@ public class Line {
         return false;
     }
 
-    public List<Boolean> getLine() {
-        return line;
+    public List<Boolean> getRows() {
+        return rows;
     }
 }

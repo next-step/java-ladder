@@ -13,6 +13,7 @@ public class Ladder {
         IntStream.range(0, lineCount)
                 .forEach(count -> {
                     Line line = new Line(height);
+                    line.createRow();
                     lines.add(line);
                 });
     }

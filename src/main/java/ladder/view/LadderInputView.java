@@ -1,5 +1,7 @@
 package ladder.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,9 +20,9 @@ public class LadderInputView {
         return scanner.nextInt();
     }
 
-    public static String[] splitInputName(String inputName) throws IllegalArgumentException {
+    public static List<String> splitInputName(String inputName) throws IllegalArgumentException {
         checkPattern(inputName);
-        return inputName.split(",");
+        return Arrays.asList(inputName.split(","));
     }
 
     public static void checkPattern(String input) throws IllegalArgumentException {

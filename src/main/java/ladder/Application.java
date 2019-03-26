@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -21,11 +22,13 @@ public class Application {
             String inputName = LadderInputView.inputName();
 
             //input 값 validation 체크 및 split
-            String[] names = LadderInputView.splitInputName(inputName);
+            List<String> names = LadderInputView.splitInputName(inputName);
 
             //게이머 생성
             List<Gamer> gamers = new ArrayList<>();
-            Arrays.stream(names).forEach(name -> gamers.add(new Gamer(name)));
+            names.stream()
+                    .map(Gamer::new)
+                    .collect(Collectors.toList());
 
             //참여자 이름중 가장 긴 이름 확인
             List<Gamer> sortedGamers = new ArrayList<>(gamers);
