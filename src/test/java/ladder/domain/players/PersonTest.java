@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.players;
 
 import org.junit.Test;
 

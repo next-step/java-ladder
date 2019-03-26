@@ -1,10 +1,10 @@
-package ladder.domain;
+package ladder.domain.rewards;
 
-public class Person {
+public class Item {
     public static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    public Person(String name) {
+    public Item(String name) {
         if (isBlank(name)) {
             throw new IllegalArgumentException();
         }

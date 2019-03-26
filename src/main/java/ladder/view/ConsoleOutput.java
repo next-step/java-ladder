@@ -1,7 +1,8 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Players;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.players.Players;
+import ladder.domain.rewards.Rewards;
 
 public class ConsoleOutput {
 
@@ -16,5 +17,9 @@ public class ConsoleOutput {
     public static void printLadders(Ladder ladder) {
         System.out.println();
         ladder.getLines().forEach(System.out::println);
+    }
+
+    public static void printRewards(Rewards rewards) {
+        rewards.getPeople().forEach(System.out::print);
     }
 }

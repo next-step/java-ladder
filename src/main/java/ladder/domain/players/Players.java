@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.players;
 
 import ladder.common.Constants;
 
