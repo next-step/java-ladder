@@ -1,17 +1,19 @@
 package laddergame.domain;
 
-import laddergame.validator.ParticipantValidator;
+import laddergame.util.StringUtils;
 import laddergame.validator.Validatable;
 
 import java.util.Objects;
+import java.util.Optional;
 
-public class Participant {
+public class Participant implements Validatable<String> {
 
-    private Validatable<String> validator = new ParticipantValidator();
+    public static final int PARTICIPANT_MAXIMUM_NAME_LENGTH = 5;
+
     private final String name;
 
     public Participant(String name) {
-        validator.validate(name);
+        validate(name);
         this.name = name;
     }
 
@@ -21,6 +23,19 @@ public class Participant {
 
     public String getResultName() {
         return String.format("%5s", name);
+    }
+
+    @Override
+    public boolean isValid(String target) {
+        return Optional.ofNullable(target)
+                .filter(StringUtils::isNotEmpty)
+                .filter(name -> name.length() <= PARTICIPANT_MAXIMUM_NAME_LENGTH)
+                .isPresent();
+    }
+
+    @Override
+    public String getInvalidMessage() {
+        return "참가자 명은 5글자 이하이어야 합니다.";
     }
 
     @Override

@@ -5,11 +5,12 @@ import laddergame.util.StringUtils;
 import laddergame.validator.InputLineValidator;
 import laddergame.validator.Validatable;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class InputView {
     private static Scanner scanner = new Scanner(System.in);
-    private final static Validatable<String> validator = new InputLineValidator();
+    private static final Validatable<String> validator = new InputLineValidator();
 
     public static Participants getParticipants() {
         showParticipantsInputMessage();
