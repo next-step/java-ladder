@@ -17,4 +17,8 @@ public class Line {
   public List<Point> getPoints() {
     return points.gets();
   }
+
+  public int move(int position) {
+    return points.move(position);
+  }
 }
