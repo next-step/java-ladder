@@ -40,11 +40,7 @@ public class Direction {
         if (toRight) {
             return next(FALSE);
         }
-        return next(generatePoint(ladderPointGenerator));
-    }
-
-    private boolean generatePoint(LadderPointGenerator ladderPointGenerator) {
-        return ladderPointGenerator.generate();
+        return next(ladderPointGenerator.generate());
     }
 
     public static Direction of(boolean toLeft, boolean toRight) {
