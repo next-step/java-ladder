@@ -8,20 +8,25 @@ import java.util.Optional;
 
 import static java.lang.Boolean.FALSE;
 
-public class EndPoint extends Point implements Validatable<String> {
+public class EndPoint implements Validatable<String> {
 
     public static final int PARTICIPANT_MAXIMUM_NAME_LENGTH = 5;
 
     private final String name;
+    private final int index;
 
     public EndPoint(String name, int index) {
-        super(index, Direction.of(FALSE, FALSE));
         validate(name);
         this.name = name;
+        this.index = index;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     @Override

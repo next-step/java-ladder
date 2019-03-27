@@ -41,7 +41,6 @@ public class Result {
     }
 
     public List<String> getRewardResultStrings(String name) {
-
         if(ALL.equals(name)) {
             return getAllRewardResultStrings();
         }
