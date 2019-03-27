@@ -3,7 +3,7 @@ package laddergame.domain;
 import laddergame.util.StringUtils;
 
 import static laddergame.domain.LadderLine.LADDER_LINE_STRING;
-import static laddergame.validator.ParticipantValidator.PARTICIPANT_MAXIMUM_NAME_LENGTH;
+import static laddergame.domain.Participant.PARTICIPANT_MAXIMUM_NAME_LENGTH;
 
 public class Point {
     private final int index;
