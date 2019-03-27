@@ -11,4 +11,12 @@ public class LadderGame {
         this.memberGroup = memberGroup;
         this.ladder = ladder;
     }
+
+    public MemberGroup getMemberGroup() {
+        return memberGroup;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
 }
