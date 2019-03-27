@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
-    private static final String LEFT_PADDING = "  ";
+    private static final String LEFT_PADDING = "   ";
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
