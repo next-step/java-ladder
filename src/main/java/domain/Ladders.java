@@ -29,10 +29,4 @@ public class Ladders {
         return ladders;
     }
 
-    @Override
-    public String toString() {
-        return ladders.stream()
-                .map(Ladder::toString)
-                .collect(Collectors.joining("\n"));
-    }
 }
