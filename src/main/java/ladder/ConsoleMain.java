@@ -20,8 +20,11 @@ public class ConsoleMain {
             String memberNames = ConsoleInputView.inputMemberNames(scanner);
             memberGroup = MemberParser.parseMemberGroup(memberNames);
 
+            ConsoleOutputView.printEmptyLine();
+
             int inputHeight = ConsoleInputView.inputLadderHeight(scanner);
             height = new Length(inputHeight);
+            ConsoleOutputView.printEmptyLine();
         }
 
         LadderGenerator ladderGenerator = new LadderGenerator();
