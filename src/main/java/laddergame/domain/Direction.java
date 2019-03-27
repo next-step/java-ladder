@@ -1,9 +1,11 @@
 package laddergame.domain;
 
+import laddergame.service.LadderPointGenerator;
+import laddergame.service.LadderPointGeneratorImpl;
+
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static laddergame.service.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean toLeft;
@@ -31,10 +33,18 @@ public class Direction {
     }
 
     public Direction next() {
+        return next(LadderPointGeneratorImpl.getInstance());
+    }
+
+    Direction next(LadderPointGenerator ladderPointGenerator) {
         if (toRight) {
             return next(FALSE);
         }
-        return next(generatePoint());
+        return next(generatePoint(ladderPointGenerator));
+    }
+
+    private boolean generatePoint(LadderPointGenerator ladderPointGenerator) {
+        return ladderPointGenerator.generate();
     }
 
     public static Direction of(boolean toLeft, boolean toRight) {

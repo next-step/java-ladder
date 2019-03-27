@@ -1,12 +1,13 @@
 package laddergame.domain;
 
+import laddergame.service.LadderPointGenerator;
+import laddergame.service.LadderPointGeneratorImpl;
 import laddergame.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static laddergame.domain.Participant.PARTICIPANT_MAXIMUM_NAME_LENGTH;
-import static laddergame.service.LadderPointGenerator.generatePoint;
+import static laddergame.domain.EndPoint.PARTICIPANT_MAXIMUM_NAME_LENGTH;
 
 public class LadderLine {
 
@@ -23,15 +24,19 @@ public class LadderLine {
     }
 
     public static LadderLine init(int sizeOfPerson) {
+        return init(sizeOfPerson, LadderPointGeneratorImpl.getInstance());
+    }
+
+    static LadderLine init(int sizeOfPerson, LadderPointGenerator ladderPointGenerator) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
+        Point point = initFirst(points, ladderPointGenerator);
         point = initBody(sizeOfPerson, points, point);
         initLast(points, point);
         return new LadderLine(points);
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    static Point initFirst(List<Point> points, LadderPointGenerator ladderPointGenerator) {
+        Point point = Point.first(ladderPointGenerator.generate());
         points.add(point);
         return point;
     }
