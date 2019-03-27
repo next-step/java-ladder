@@ -3,6 +3,7 @@ package laddergame.domain;
 import laddergame.validator.EndPointsValidator;
 import laddergame.validator.Validatable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -13,11 +14,9 @@ public class EndPoints {
     private final List<EndPoint> endPoints;
 
     public EndPoints(String[] inputs) {
-        this(IntStream.range(0, inputs.length)
+        this(new ArrayList<>(IntStream.range(0, inputs.length)
                 .mapToObj(i -> new EndPoint(inputs[i], i))
-                .collect(Collectors.toSet())
-                .stream()
-                .collect(Collectors.toList()));
+                .collect(Collectors.toSet())));
     }
 
     private EndPoints(List<EndPoint> endPoints) {

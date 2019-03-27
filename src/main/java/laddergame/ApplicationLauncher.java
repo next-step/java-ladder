@@ -21,7 +21,7 @@ public class ApplicationLauncher {
         showRewardResult(result);
     }
 
-    public static void showRewardResult(Result result) {
+    private static void showRewardResult(Result result) {
         String key;
         do {
             key = InputView.getRewardResultKey();

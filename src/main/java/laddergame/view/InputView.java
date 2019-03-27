@@ -11,7 +11,7 @@ public class InputView {
     private static final String DELIMITER = ",";
 
     private static final Validatable<String> validator = new InputLineValidator();
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static EndPoints getParticipants() {
         showParticipantsInputMessage();
@@ -49,7 +49,7 @@ public class InputView {
         System.out.println("\n결과를 보고 싶은 사람은?");
     }
 
-    public static String getInputLine() {
+    private static String getInputLine() {
         String inputLine = scanner.nextLine();
         validator.validate(inputLine);
         return StringUtils.removeWhitespace(inputLine);

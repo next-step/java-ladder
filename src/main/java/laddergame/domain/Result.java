@@ -18,7 +18,7 @@ public class Result {
     }
 
     private List<String> getLadderLineStrings(EndPoints participants, LadderLines ladderLines, EndPoints rewards) {
-        List<String> ladderLineStrings = new ArrayList();
+        List<String> ladderLineStrings = new ArrayList<>();
         ladderLineStrings.add(participants.toString());
         ladderLineStrings.add(ladderLines.toString());
         ladderLineStrings.add(rewards.toString());
