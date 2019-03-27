@@ -29,6 +29,6 @@ public class Line {
     }
 
     private boolean checkCrossDuplicated(Point previous, Point current) {
-        return previous.isCross() && current.isCross();
+        return ((Point.CROSS == previous) && (Point.CROSS == current));
     }
 }

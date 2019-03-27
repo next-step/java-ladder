@@ -11,8 +11,8 @@ public class LineTest {
     @Test
     public void 가로가_겹치는_경우_IllegalArgumentException() {
         // given
-        Point cross = new Point(true);
-        Point notCross = new Point(false);
+        Point cross = Point.CROSS;
+        Point notCross = Point.NOT_CROSS;
 
         // when
         List<Point> points = Arrays.asList(notCross, cross, cross);
