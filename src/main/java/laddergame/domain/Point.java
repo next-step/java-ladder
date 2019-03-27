@@ -2,6 +2,8 @@ package laddergame.domain;
 
 import laddergame.util.StringUtils;
 
+import java.util.Objects;
+
 import static laddergame.domain.LadderLine.LADDER_LINE_STRING;
 import static laddergame.validator.EndPointValidator.PARTICIPANT_MAXIMUM_NAME_LENGTH;
 
@@ -34,16 +36,30 @@ public class Point {
         return new Point(index + 1, direction.next());
     }
 
-    public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
+    public Point next(Boolean toRight) {
+        return new Point(index + 1, direction.next(toRight));
     }
 
     public Point last() {
         return new Point(index + 1, direction.last());
     }
 
-    public static Point first(Boolean right) {
-        return new Point(0, Direction.first(right));
+    public static Point first(Boolean toRight) {
+        return new Point(0, Direction.first(toRight));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return index == point.index &&
+                direction.equals(point.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, direction);
     }
 
     @Override
