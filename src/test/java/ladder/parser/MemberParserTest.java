@@ -11,18 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberParserTest {
     @Test
-    public void 문자열을_MemberGroup_으로_변환() {
-        // given
-        String members = "pobi, crong, son";
-
-        // when
-        MemberGroup memberGroup = MemberParser.parseMemberGroup(members);
-
-        // then
-        assertThat(memberGroup.getMembers()).hasSize(3);
-    }
-
-    @Test
     public void 문자열을_Member_list_로_변환() {
         // given
         String pobi = "pobi";
@@ -31,12 +19,33 @@ public class MemberParserTest {
         String memberNames = String.join(", ", pobi, crong, son);
 
         // when
-        List<Member> members = MemberParser.parseMembers(memberNames);
+        List<Member> parsedMembers = MemberParser.parseMembers(memberNames);
 
         // then
-        List<String> memberNamesOfMembers = members.stream()
+        List<String> nameOfParsedMembers = parsedMembers.stream()
                 .map(Member::getName)
                 .collect(Collectors.toList());
-        assertThat(memberNamesOfMembers).containsExactly(pobi, crong, son);
+
+        assertThat(nameOfParsedMembers).containsExactly(pobi, crong, son);
+    }
+
+    @Test
+    public void 문자열을_MemberGroup_으로_변환() {
+        // given
+        String pobi = "pobi";
+        String crong = "crong";
+        String son = "son";
+        String memberNames = String.join(", ", pobi, crong, son);
+
+        // when
+        MemberGroup parsedMemberGroup = MemberParser.parseMemberGroup(memberNames);
+
+        // then
+        List<Member> parsedMembers = parsedMemberGroup.getMembers();
+        List<String> nameOfParsedMembers = parsedMembers.stream()
+                .map(Member::getName)
+                .collect(Collectors.toList());
+
+        assertThat(nameOfParsedMembers).containsExactly(pobi, crong, son);
     }
 }
