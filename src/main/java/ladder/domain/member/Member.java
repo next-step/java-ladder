@@ -19,7 +19,8 @@ public class Member {
         return StringUtils.isNotBlank(name) && (name.length() <= MAX_NAME_LENGTH);
     }
 
-    String getName() {
-        return name;
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

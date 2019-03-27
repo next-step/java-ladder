@@ -1,5 +1,6 @@
 package ladder.domain.member;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MemberGroup {
@@ -7,5 +8,9 @@ public class MemberGroup {
 
     public MemberGroup(List<Member> members) {
         this.members = members;
+    }
+
+    public List<Member> getMembers() {
+        return Collections.unmodifiableList(members);
     }
 }
