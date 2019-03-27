@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
+
+import ladder.domain.players.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,8 +36,15 @@ public class Line {
         return randomBoolean;
     }
 
-    static boolean isOverlap(Boolean beforeBoolean, Boolean randomBoolean) {
+    public static boolean isOverlap(Boolean beforeBoolean, Boolean randomBoolean) {
         return beforeBoolean && randomBoolean;
+    }
+
+    public boolean getLeftPoint(int position) {
+        return this.points.get(position);
+    }
+    public boolean getRightPoint(int position) {
+        return this.points.get(position + 1);
     }
 
     @Override

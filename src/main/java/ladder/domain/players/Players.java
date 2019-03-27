@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.players;
 
 import ladder.common.Constants;
 
@@ -23,6 +23,10 @@ public class Players {
 
     public int size() {
         return this.people.size();
+    }
+
+    public Person getPersonByIndex(int index) {
+        return this.people.get(index);
     }
 
     public List<Person> getPeople() {
