@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.vo.Length;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +10,23 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
+        if (!isValidLines(lines)) {
+            throw new IllegalArgumentException("All lines must be the same width");
+        }
+
         this.lines = lines;
+    }
+
+    private boolean isValidLines(List<Line> lines) {
+        long countOfUniqueWidth = lines.stream()
+                .mapToInt(line -> {
+                    Length width = line.getWidth();
+                    return width.getValue();
+                })
+                .distinct()
+                .count();
+
+        return (1 == countOfUniqueWidth);
     }
 
     @Override

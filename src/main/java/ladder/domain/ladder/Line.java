@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.vo.Length;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +34,10 @@ public class Line {
 
     private boolean isCrossDuplicated(Point previous, Point current) {
         return ((Point.CROSS == previous) && (Point.CROSS == current));
+    }
+
+    public Length getWidth() {
+        return new Length(this.points.size());
     }
 
     @Override
