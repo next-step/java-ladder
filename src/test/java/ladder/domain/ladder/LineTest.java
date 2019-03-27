@@ -9,14 +9,21 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class LineTest {
     @Test
-    public void 가로가_겹치는_경우_IllegalArgumentException() {
+    public void 가로가_겹치지_않는_정상의_경우() {
         // given
-        Point cross = Point.CROSS;
-        Point notCross = Point.NOT_CROSS;
+        List<Point> points = Arrays.asList(Point.NOT_CROSS, Point.NOT_CROSS, Point.CROSS);
 
         // when
-        List<Point> points = Arrays.asList(notCross, cross, cross);
+        // then
+        new Line(points);
+    }
 
+    @Test
+    public void 가로가_겹치는_경우_IllegalArgumentException() {
+        // given
+        List<Point> points = Arrays.asList(Point.NOT_CROSS, Point.CROSS, Point.CROSS);
+
+        // when
         // then
         assertThatIllegalArgumentException().isThrownBy(() -> new Line(points));
     }
