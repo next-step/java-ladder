@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class MemberGroup {
     private final List<Member> members;
+    private static final String WHITE_SPACE = " ";
 
     public MemberGroup(List<Member> members) {
         this.members = members;
@@ -19,7 +20,7 @@ public class MemberGroup {
     public String toString() {
         return this.members.stream()
                 .map(Member::toString)
-                .collect(Collectors.joining(" "))
+                .collect(Collectors.joining(WHITE_SPACE))
                 .trim();
     }
 }
