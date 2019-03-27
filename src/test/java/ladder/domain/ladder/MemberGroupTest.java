@@ -22,6 +22,6 @@ public class MemberGroupTest {
         String memberGroupString = memberGroup.toString();
 
         // then
-        assertThat(memberGroupString).isEqualTo("pobi  crong son");
+        assertThat(memberGroupString).isEqualTo("pobi crong   son");
     }
 }
