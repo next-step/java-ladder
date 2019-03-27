@@ -35,17 +35,18 @@ public class LadderGenerator {
     Line makeLine(Length width) {
         int lineWidth = width.getValue();
         List<Point> points = new ArrayList<>(lineWidth);
+
         points.add(pointGenerator.generate());
 
         for (int i = 0; i < lineWidth - 1; i++) {
-            Point point = points.get(i);
-            points.add(getNextPoint(point));
+            Point currentPoint = points.get(i);
+            points.add(getNextPoint(currentPoint));
         }
 
         return new Line(points);
     }
 
-    private Point getNextPoint(Point point) {
-        return ((Point.CROSS == point) ? Point.NOT_CROSS : pointGenerator.generate());
+    private Point getNextPoint(Point currentPoint) {
+        return ((Point.CROSS == currentPoint) ? Point.NOT_CROSS : pointGenerator.generate());
     }
 }
