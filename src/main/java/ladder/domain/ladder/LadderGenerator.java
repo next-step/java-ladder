@@ -1,21 +1,27 @@
 package ladder.domain.ladder;
 
+import ladder.random.PointGenerator;
+import ladder.random.RandomPointGenerator;
 import ladder.vo.LadderSize;
 import ladder.vo.Length;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGenerator {
-    private static final Random RANDOM = new Random();
+    private final PointGenerator pointGenerator;
 
-    private LadderGenerator() {
+    public LadderGenerator() {
+        this(new RandomPointGenerator());
     }
 
-    static Ladder generateLadder(LadderSize ladderSize) {
+    public LadderGenerator(PointGenerator pointGenerator) {
+        this.pointGenerator = pointGenerator;
+    }
+
+    public Ladder generateLadder(LadderSize ladderSize) {
         Length width = ladderSize.getWidth();
         Length height = ladderSize.getHeight();
 
@@ -26,23 +32,20 @@ public class LadderGenerator {
         return new Ladder(lines);
     }
 
-    static Line makeLine(Length width) {
+    Line makeLine(Length width) {
         int lineWidth = width.getValue();
-
         List<Point> points = new ArrayList<>(lineWidth);
-        points.add(new Point(RANDOM.nextBoolean()));
+        points.add(pointGenerator.generate());
 
         for (int i = 0; i < lineWidth - 1; i++) {
             Point point = points.get(i);
-
-            Point nextPoint = getNextPoint(point);
-            points.add(nextPoint);
+            points.add(getNextPoint(point));
         }
 
         return new Line(points);
     }
 
-    private static Point getNextPoint(Point point) {
-        return point.isCross() ? new Point(false) : new Point(RANDOM.nextBoolean());
+    private Point getNextPoint(Point point) {
+        return ((Point.CROSS == point) ? Point.NOT_CROSS : pointGenerator.generate());
     }
 }
