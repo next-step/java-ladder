@@ -10,28 +10,27 @@ public class Line {
     private final List<Point> points;
 
     public Line(List<Point> points) {
-        if (!isValidLine(points)) {
-            throw new IllegalArgumentException("Horizontal cross lines are duplicated");
-        }
+        validateLine(points);
 
         this.points = points;
     }
 
-    // TODO indent 제거
-    private boolean isValidLine(List<Point> points) {
+    private void validateLine(List<Point> points) {
         for (int i = SECOND_INDEX; i < points.size(); i++) {
             Point previous = points.get(i - 1);
             Point current = points.get(i);
 
-            if (checkCrossDuplicated(previous, current)) {
-                return false;
-            }
+            checkCrossDuplicated(previous, current);
         }
-
-        return true;
     }
 
-    private boolean checkCrossDuplicated(Point previous, Point current) {
+    private void checkCrossDuplicated(Point previous, Point current) {
+        if (isCrossDuplicated(previous, current)) {
+            throw new IllegalArgumentException("Horizontal cross lines are duplicated");
+        }
+    }
+
+    private boolean isCrossDuplicated(Point previous, Point current) {
         return ((Point.CROSS == previous) && (Point.CROSS == current));
     }
 
