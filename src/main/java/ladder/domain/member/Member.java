@@ -19,8 +19,12 @@ public class Member {
         return StringUtils.isNotBlank(name) && (name.length() <= MAX_NAME_LENGTH);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
-        return String.format("%-" + MAX_NAME_LENGTH + "s", this.name);
+        return String.format("%" + MAX_NAME_LENGTH + "s", this.name);
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
+    private static final String LEFT_PADDING = "  ";
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
@@ -13,7 +14,7 @@ public class Ladder {
     @Override
     public String toString() {
         return this.lines.stream()
-                .map(Line::toString)
+                .map(line -> LEFT_PADDING + line.toString())
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 }
