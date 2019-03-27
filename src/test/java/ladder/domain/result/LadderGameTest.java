@@ -22,7 +22,7 @@ public class LadderGameTest {
 
         Rewards rewards = Rewards.generate(rewardNames, players);
 
-        LadderGame.generate(players, ladder, rewards);
+        LadderGame.generate(players, rewards);
     }
 
     @Test
@@ -37,8 +37,8 @@ public class LadderGameTest {
 
         Rewards rewards = Rewards.generate(rewardNames, players);
 
-        LadderGame ladderGame = LadderGame.generate(players, ladder, rewards);
+        LadderGame ladderGame = LadderGame.generate(players, rewards);
 
-        assertThat(ladderGame.result(), instanceOf(LadderResult.class));
+        assertThat(ladderGame.result(ladder), instanceOf(LadderResult.class));
     }
 }

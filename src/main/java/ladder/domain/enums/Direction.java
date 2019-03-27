@@ -9,8 +9,8 @@ public enum Direction {
     RIGHT(false, true),
     PASS(false, false);
 
-    private boolean left;
-    private boolean current;
+    private final boolean left;
+    private final boolean current;
 
     Direction(boolean left, boolean current) {
         this.left = left;

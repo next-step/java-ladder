@@ -25,10 +25,10 @@ public class Application {
         ConsoleOutput.printLadders(ladder);
         ConsoleOutput.printRewards(rewards);
 
-        LadderGame ladderGame = LadderGame.generate(players, ladder, rewards);
-        LadderResult ladderResult = ladderGame.result();
+        LadderGame ladderGame = LadderGame.generate(players, rewards);
+        LadderResult ladderResult = ladderGame.result(ladder);
 
-        Boolean exit = false;
+        boolean exit = false;
         while (!exit) {
             String nameForRewards = ConsoleInput.readNameForRewards();
             ConsoleOutput.printRewardOfPlayers(ladderResult, nameForRewards);
