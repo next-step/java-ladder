@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import laddergame.service.LadderLinesGenerator;
 import laddergame.service.LadderPointGenerator;
 import org.junit.Test;
 
@@ -12,19 +11,8 @@ import static org.junit.Assert.assertEquals;
 
 public class LadderLineTest {
 
-    private static LadderPointGenerator falseGenerator = new LadderPointGenerator() {
-        @Override
-        public Boolean generate() {
-            return false;
-        }
-    };
-
-    private static LadderPointGenerator trueGenerator = new LadderPointGenerator() {
-        @Override
-        public Boolean generate() {
-            return true;
-        }
-    };
+    private static LadderPointGenerator falseGenerator = () -> false;
+    private static LadderPointGenerator trueGenerator = () -> true;
 
     @Test
     public void init() {
@@ -33,7 +21,7 @@ public class LadderLineTest {
     }
 
     @Test
-    public void initFirst_for_FALSE() {
+    public void initFirst_for_Point_toRight_FALSE() {
         Point expected = new Point(0, Direction.of(FALSE, FALSE));
         Point actual = LadderLine.initFirst(new ArrayList(), falseGenerator);
 
@@ -41,7 +29,7 @@ public class LadderLineTest {
     }
 
     @Test
-    public void initFirst_for_TRUE() {
+    public void initFirst_for_Point_toRight_TRUE() {
         Point expected = new Point(0, Direction.of(FALSE, TRUE));
         Point actual = LadderLine.initFirst(new ArrayList(), trueGenerator);
 
