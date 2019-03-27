@@ -29,6 +29,15 @@ public class Ladder {
         return (1 == countOfUniqueWidth);
     }
 
+    public Length getWidth() {
+        Line firstLine = this.lines.get(0);
+        return firstLine.getWidth();
+    }
+
+    public Length getHeight() {
+        return new Length(this.lines.size());
+    }
+
     @Override
     public String toString() {
         return this.lines.stream()
