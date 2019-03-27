@@ -7,7 +7,7 @@ public class Length {
 
     public Length(int value) {
         if (value < MIN_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Length must be larger than " + MIN_LENGTH);
         }
 
         this.value = value;
