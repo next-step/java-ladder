@@ -12,6 +12,10 @@ public class LadderLines {
         ladderLines = LadderLinesGenerator.generate(sizeOfPerson, height);
     }
 
+    LadderLines(List<LadderLine> ladderlines) {
+        this.ladderLines = ladderlines;
+    }
+
     public int move(int startPointIndex) {
         int curIndex = startPointIndex;
 

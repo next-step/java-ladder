@@ -1,6 +1,5 @@
 package laddergame.domain;
 
-import laddergame.validator.EndPointsValidator;
 import laddergame.validator.Validatable;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class EndPoints {
+public class EndPoints implements Validatable<List<EndPoint>> {
 
     private final List<EndPoint> endPoints;
 
@@ -19,9 +18,8 @@ public class EndPoints {
                 .collect(Collectors.toSet())));
     }
 
-    private EndPoints(List<EndPoint> endPoints) {
-        Validatable<List<EndPoint>> validator = new EndPointsValidator();
-        validator.validate(endPoints);
+    EndPoints(List<EndPoint> endPoints) {
+        validate(endPoints);
         this.endPoints = endPoints;
     }
 
@@ -35,6 +33,16 @@ public class EndPoints {
 
     public EndPoint getEndPoint(int index) {
         return endPoints.get(index);
+    }
+
+    @Override
+    public boolean isValid(List<EndPoint> target) {
+        return target != null && target.size() >= 2;
+    }
+
+    @Override
+    public String getInvalidMessage() {
+        return "참가자는 2인 이상이어야 합니다.";
     }
 
     @Override

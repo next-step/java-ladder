@@ -1,5 +1,5 @@
 package laddergame.service;
 
-public interface LadderPointGenerator {
+public interface LadderValueGenerator {
     Boolean generate();
 }

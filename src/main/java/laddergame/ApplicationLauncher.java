@@ -1,8 +1,9 @@
 package laddergame;
 
 import laddergame.domain.EndPoints;
+import laddergame.domain.LadderGameResult;
 import laddergame.domain.LadderLines;
-import laddergame.domain.Result;
+import laddergame.domain.LadderLineResult;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
 
@@ -15,17 +16,18 @@ public class ApplicationLauncher {
         int maximumHeight = InputView.getMaximumHeight();
 
         LadderLines ladderLines = new LadderLines(participants.size(), maximumHeight);
-        Result result = new Result(participants, ladderLines, rewards);
+        LadderLineResult ladderLineResult = new LadderLineResult(participants, ladderLines, rewards);
+        ResultView.showLadderLineResult(ladderLineResult);
 
-        ResultView.showLadderLines(result);
-        showRewardResult(result);
+        LadderGameResult ladderGameResult = new LadderGameResult(participants, ladderLines, rewards);
+        showRewardResult(ladderGameResult);
     }
 
-    private static void showRewardResult(Result result) {
+    private static void showRewardResult(LadderGameResult result) {
         String key;
         do {
             key = InputView.getRewardResultKey();
-            ResultView.showRewardResult(result, key);
+            ResultView.showGameResult(result, key);
         } while(!ALL.equals(key));
     }
 }
