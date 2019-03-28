@@ -12,6 +12,20 @@ public class LadderLines {
         ladderLines = LadderLinesGenerator.generate(sizeOfPerson, height);
     }
 
+    LadderLines(List<LadderLine> ladderlines) {
+        this.ladderLines = ladderlines;
+    }
+
+    public int move(int startPointIndex) {
+        int curIndex = startPointIndex;
+
+        for(LadderLine line : ladderLines) {
+            curIndex = line.move(curIndex);
+        }
+
+        return curIndex;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -21,6 +35,7 @@ public class LadderLines {
             sb.append("\n");
         });
 
-        return sb.toString();
+        String returnString = sb.toString();
+        return returnString.substring(0, returnString.lastIndexOf('\n'));
     }
 }

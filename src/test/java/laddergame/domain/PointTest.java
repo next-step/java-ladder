@@ -4,38 +4,37 @@ import org.junit.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class PointTest {
 
     @Test
     public void first() {
-        assertThat(Point.first(TRUE).move(), is(1));
-        assertThat(Point.first(FALSE).move(), is(0));
+        assertEquals(Point.first(TRUE).move(),1);
+        assertEquals(Point.first(FALSE).move(),0);
     }
 
     @Test
     public void next_stay() {
         Point second = Point.first(FALSE).next(FALSE);
-        assertThat(second.move(), is(1));
+        assertEquals(second.move(),1);
     }
 
     @Test
     public void next_left() {
         Point second = Point.first(TRUE).next(FALSE);
-        assertThat(second.move(), is(0));
+        assertEquals(second.move(),0);
     }
 
     @Test
     public void next_right() {
         Point second = Point.first(FALSE).next(TRUE);
-        assertThat(second.move(), is(2));
+        assertEquals(second.move(),2);
     }
 
     @Test
     public void next() {
         Point second = Point.first(TRUE).next();
-        assertThat(second.move(), is(0));
+        assertEquals(second.move(),0);
     }
 }

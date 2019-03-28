@@ -9,9 +9,9 @@ public class InputLineValidator implements Validatable<String> {
     @Override
     public boolean isValid(String target) {
         return Optional.ofNullable(target)
-                        .map(StringUtils::removeWhitespace)
-                        .filter(StringUtils::isNotEmpty)
-                        .isPresent();
+                .map(StringUtils::removeWhitespace)
+                .filter(StringUtils::isNotEmpty)
+                .isPresent();
     }
 
     @Override

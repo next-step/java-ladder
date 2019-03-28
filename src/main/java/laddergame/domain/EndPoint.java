@@ -6,23 +6,25 @@ import laddergame.validator.Validatable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Participant implements Validatable<String> {
+public class EndPoint implements Validatable<String> {
 
     public static final int PARTICIPANT_MAXIMUM_NAME_LENGTH = 5;
 
     private final String name;
+    private final int index;
 
-    public Participant(String name) {
+    public EndPoint(String name, int index) {
         validate(name);
         this.name = name;
+        this.index = index;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getResultName() {
-        return String.format("%5s", name);
+    public int getIndex() {
+        return index;
     }
 
     @Override
@@ -35,15 +37,15 @@ public class Participant implements Validatable<String> {
 
     @Override
     public String getInvalidMessage() {
-        return "참가자 명은 5글자 이하이어야 합니다.";
+        return "잘못된 이름입니다.";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Participant that = (Participant) o;
-        return Objects.equals(name, that.name);
+        EndPoint endPoint = (EndPoint) o;
+        return Objects.equals(name, endPoint.name);
     }
 
     @Override
@@ -53,6 +55,6 @@ public class Participant implements Validatable<String> {
 
     @Override
     public String toString() {
-        return name;
+        return String.format("%5s", name);
     }
 }
