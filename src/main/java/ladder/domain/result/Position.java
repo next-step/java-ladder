@@ -13,7 +13,7 @@ public class Position {
         this.position = position;
     }
 
-    public static Position of(int position) {
+    static Position of(int position) {
         return new Position(position);
     }
 
