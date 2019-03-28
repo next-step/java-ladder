@@ -54,7 +54,7 @@ public class Line {
         return builder.toString();
     }
 
-    public static String beautify(Boolean point) {
+    static String beautify(Boolean point) {
         StringBuilder builder = new StringBuilder();
         String fill = " ";
         if (point) {

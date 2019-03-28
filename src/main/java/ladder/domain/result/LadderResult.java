@@ -10,11 +10,11 @@ import java.util.Map;
 public class LadderResult {
     private Map<Person, Item> results;
 
-    public LadderResult() {
+    LadderResult() {
         results = new LinkedHashMap<>();
     }
 
-    public void addResult(Person person, Item item) {
+    void addResult(Person person, Item item) {
         results.put(person, item);
     }
 

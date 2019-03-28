@@ -35,7 +35,7 @@ public class ConsoleOutput {
         System.out.println(ladderResult.getItemByPersonName(name).value());
     }
 
-    public static void printAllPlayersReward(LadderResult ladderResult) {
+    private static void printAllPlayersReward(LadderResult ladderResult) {
         for (Person person : ladderResult.getResults().keySet()) {
             System.out.println(person.value() + " : "
                 + ladderResult.getItemByPersonName(person.value()).value());
