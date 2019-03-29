@@ -2,6 +2,7 @@ package laddergame.domain;
 
 import org.junit.Test;
 
+import static laddergame.ApplicationLauncher.ALL;
 import static org.junit.Assert.*;
 
 public class EndPointTest {
@@ -24,6 +25,13 @@ public class EndPointTest {
     @Test
     public void constructor_for_valid_name() {
         String expected = "abcde";
+        EndPoint participant = new EndPoint(expected, 0);
+        assertEquals(expected, participant.getName());
+    }
+
+    @Test
+    public void constructor_for_ALL() {
+        String expected = ALL;
         EndPoint participant = new EndPoint(expected, 0);
         assertEquals(expected, participant.getName());
     }

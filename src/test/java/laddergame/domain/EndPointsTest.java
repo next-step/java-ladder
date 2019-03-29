@@ -18,16 +18,25 @@ public class EndPointsTest {
         new EndPoints(new String[]{"a"});
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void constructor_for_duplicated_participants1() {
-        new EndPoints(new String[]{"a","a"});
+        List<EndPoint> expected = Arrays.asList(
+                new EndPoint("a", 0),
+                new EndPoint("a", 1)
+        );
+        EndPoints actual = new EndPoints(new String[]{"a","a"});
+
+        for(int i = 0; i < expected.size(); ++i) {
+            assertEquals(expected.get(i), actual.getEndPoint(i));
+        }
     }
 
     @Test
     public void constructor_for_duplicated_participants2() {
         List<EndPoint> expected = Arrays.asList(
                 new EndPoint("a", 0),
-                new EndPoint("b", 1)
+                new EndPoint("a", 1),
+                new EndPoint("b", 2)
         );
         EndPoints actual = new EndPoints(new String[]{"a","a","b"});
 
@@ -36,14 +45,27 @@ public class EndPointsTest {
         }
     }
 
-
     @Test
-    public void constructor_for_valid_participants() {
+    public void constructor_for_two_valid_participants() {
         List<EndPoint> expected = Arrays.asList(
             new EndPoint("a", 0),
             new EndPoint("b", 1)
         );
         EndPoints actual = new EndPoints(new String[]{"a","b"});
+
+        for(int i = 0; i < expected.size(); ++i) {
+            assertEquals(expected.get(i), actual.getEndPoint(i));
+        }
+    }
+
+    @Test
+    public void constructor_for_three_valid_participants() {
+        List<EndPoint> expected = Arrays.asList(
+                new EndPoint("a", 0),
+                new EndPoint("b", 1),
+                new EndPoint("c", 2)
+        );
+        EndPoints actual = new EndPoints(new String[]{"a","b","c"});
 
         for(int i = 0; i < expected.size(); ++i) {
             assertEquals(expected.get(i), actual.getEndPoint(i));

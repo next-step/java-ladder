@@ -11,7 +11,7 @@ import static java.lang.Boolean.TRUE;
 import static laddergame.ApplicationLauncher.ALL;
 import static org.junit.Assert.assertEquals;
 
-public class ResultTest {
+public class ResultTest extends BaseDomainTest {
 
     @Test
     public void getGameResult_for_one_line_with_two_points1() {
@@ -392,46 +392,5 @@ public class ResultTest {
         Result expected = new Result(null, gameResult);
 
         assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
-    }
-
-    private LadderLines getLadderLines(List<List<Boolean>> linksPerLine) {
-
-        List<LadderLine> ladderLines = new ArrayList<>();
-
-        for(List<Boolean> curLine : linksPerLine) {
-            List<Point> points = new ArrayList<>();
-
-            if( curLine.size() > 0 ) {
-                points.add(new Point(0, Direction.of(FALSE, curLine.get(0))));
-
-                for (int i = 1; i < curLine.size(); ++i) {
-                    points.add(new Point(i, Direction.of(curLine.get(i - 1), curLine.get(i))));
-                }
-
-                points.add(new Point(curLine.size(), Direction.of(curLine.get(curLine.size() - 1), FALSE)));
-            }
-            ladderLines.add(new LadderLine(points));
-        }
-
-        return new LadderLines(ladderLines);
-    }
-
-    private EndPoints getEndPoints(List<String> names) {
-        return new EndPoints(
-            IntStream.range(0, names.size())
-                    .mapToObj(i -> new EndPoint(names.get(i), i))
-                    .collect(Collectors.toList())
-        );
-    }
-
-    private Map<EndPoint, EndPoint> getGameResult(EndPoints participants, EndPoints rewards, List<List<Integer>> pointIndexPairs) {
-
-        Map<EndPoint, EndPoint> gameResult = new LinkedHashMap<>();
-
-        for( List<Integer> curIndexPair : pointIndexPairs ) {
-            gameResult.put(participants.getEndPoint(curIndexPair.get(0)), rewards.getEndPoint(curIndexPair.get(1)));
-        }
-
-        return gameResult;
     }
 }

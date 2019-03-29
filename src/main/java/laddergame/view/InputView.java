@@ -1,6 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.EndPoints;
+import laddergame.domain.Participants;
 import laddergame.util.StringUtils;
 import laddergame.validator.InputLineValidator;
 import laddergame.validator.Validatable;
@@ -13,9 +14,9 @@ public class InputView {
     private static final Validatable<String> validator = new InputLineValidator();
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static EndPoints getParticipants() {
+    public static Participants getParticipants() {
         showParticipantsInputMessage();
-        return new EndPoints(getInputLine().split(DELIMITER));
+        return new Participants(getInputLine().split(DELIMITER));
     }
 
     private static void showParticipantsInputMessage() {

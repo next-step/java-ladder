@@ -13,9 +13,11 @@ public class EndPoints implements Validatable<List<EndPoint>> {
     private final List<EndPoint> endPoints;
 
     public EndPoints(String[] inputs) {
-        this(new ArrayList<>(IntStream.range(0, inputs.length)
-                .mapToObj(i -> new EndPoint(inputs[i], i))
-                .collect(Collectors.toSet())));
+        this(
+            IntStream.range(0, inputs.length)
+                    .mapToObj(i -> new EndPoint(inputs[i], i))
+                    .collect(Collectors.toList())
+        );
     }
 
     EndPoints(List<EndPoint> endPoints) {
