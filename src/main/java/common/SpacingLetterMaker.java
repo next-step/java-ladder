@@ -1,12 +1,12 @@
 package common;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class SpacingLetterMaker {
-    public static int makeLengthFrom(String... strings) {
-        return Arrays.stream(strings)
+    public static int makeLengthFrom(List<String> strings) {
+        return strings.stream()
             .mapToInt(string -> string.length())
             .max()
-            .getAsInt();
+            .getAsInt() + 4;
     }
 }

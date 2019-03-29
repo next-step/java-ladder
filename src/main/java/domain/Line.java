@@ -1,9 +1,14 @@
 package domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    public static String BAR = "|";
+    public static String LINE_LOOKS = "-";
+    public static String LINE_LOOKS_NONE = " ";
 
     private List<Boolean> points = new ArrayList<>();
 
@@ -26,10 +31,10 @@ public class Line {
         return points;
     }
 
-    public String paint() {
-        StringBuilder result = new StringBuilder("|");
-        final String lineLooks = "-----|";
-        final String noneLooks = "     |";
+    public String paint(int spacingLetterLength) {
+        StringBuilder result = new StringBuilder(BAR);
+        final String lineLooks = StringUtils.repeat(LINE_LOOKS, spacingLetterLength) + BAR;
+        final String noneLooks = StringUtils.repeat(LINE_LOOKS_NONE, spacingLetterLength) + BAR;
 
         for (int i = 0; i < points.size(); i++) {
             if (canPaint(i)) {
