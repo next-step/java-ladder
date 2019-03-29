@@ -6,6 +6,7 @@ import laddergame.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static laddergame.domain.EndPoint.PARTICIPANT_MAXIMUM_NAME_LENGTH;
 
@@ -23,36 +24,53 @@ public class LadderLine {
         return points.get(position).move();
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     public static LadderLine init(int sizeOfPerson) {
         return init(sizeOfPerson, LadderRandomValueGenerator.getInstance());
     }
 
-    static LadderLine init(int sizeOfPerson, LadderValueGenerator ladderPointGenerator) {
+    static LadderLine init(int sizeOfPerson, LadderValueGenerator ladderValueGenerator) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points, ladderPointGenerator);
-        point = initBody(sizeOfPerson, points, point);
+        Point point = initFirst(points, ladderValueGenerator);
+        point = initBody(sizeOfPerson, points, point, ladderValueGenerator);
         initLast(points, point);
         return new LadderLine(points);
     }
 
-    static Point initFirst(List<Point> points, LadderValueGenerator ladderPointGenerator) {
-        Point point = Point.first(ladderPointGenerator.generate());
+    static Point initFirst(List<Point> points, LadderValueGenerator ladderValueGenerator) {
+        Point point = Point.first(ladderValueGenerator.generate());
         points.add(point);
         return point;
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+    static Point initBody(int sizeOfPerson, List<Point> points, Point point, LadderValueGenerator ladderValueGenerator) {
         for( int i = 1; i < sizeOfPerson-1; ++i ) {
-            point = point.next();
+            point = point.next(ladderValueGenerator);
             points.add(point);
         }
 
         return point;
     }
 
-    private static void initLast(List<Point> points, Point point) {
+    static void initLast(List<Point> points, Point point) {
         point = point.last();
         points.add(point);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderLine that = (LadderLine) o;
+        return Objects.equals(points, that.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 
     @Override

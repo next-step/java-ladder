@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.service.LadderValueGenerator;
 import laddergame.util.StringUtils;
 
 import java.util.Objects;
@@ -35,6 +36,11 @@ public class Point {
     public Point next() {
         return new Point(index + 1, direction.next());
     }
+
+    Point next(LadderValueGenerator ladderValueGenerator) {
+        return new Point(index + 1, direction.next(ladderValueGenerator));
+    }
+
 
     public Point next(Boolean toRight) {
         return new Point(index + 1, direction.next(toRight));

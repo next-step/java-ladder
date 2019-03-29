@@ -4,12 +4,9 @@ import org.junit.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 public class DirectionTest {
-
     @Test
     public void init() {
         assertEquals(Direction.of(true, false), Direction.of(true, false));
@@ -23,14 +20,13 @@ public class DirectionTest {
     @Test
     public void next_random_true() {
         Direction next = Direction.first(TRUE).next();
-        assertThat(next, is(Direction.of(TRUE, FALSE)));
+        assertEquals(next, Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void next_random_false() {
-        for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
-        }
+        Direction next = Direction.first(FALSE).next();
+        assertEquals(next.isToLeft(), FALSE);
     }
 
     @Test
