@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Line {
     public static String BAR = "|";
@@ -12,21 +14,24 @@ public class Line {
 
     private List<Boolean> points = new ArrayList<>();
 
-    public Line(final int countOfPerson) {
-        int countOfLines = countOfPerson - 1;
-
+    protected Line(final int countOfLines) {
         while (!points.contains(true)) {
             points = this.generate(countOfLines);
         }
     }
 
-    private List<Boolean> generate(int countOfLines) {
-        List<Boolean> points = new ArrayList<>();
-
-        while (points.size() != countOfLines) {
-            double random = Math.round(Math.random());
-            points.add(random == 1);
+    protected Line(List<Boolean> points) {
+        if (!points.contains(true)) {
+            throw new IllegalArgumentException();
         }
+
+        this.points = points;
+    }
+
+    private List<Boolean> generate(int countOfLines) {
+        List<Boolean> points = Stream.generate(() -> Math.round(Math.random()) == 1)
+                .limit(countOfLines)
+                .collect(Collectors.toList());
 
         return points;
     }
@@ -56,7 +61,7 @@ public class Line {
         return points.get(index);
     }
 
-    public boolean contains(boolean b) {
+    protected boolean contains(boolean b) {
         return points.contains(b);
     }
 

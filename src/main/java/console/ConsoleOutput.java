@@ -1,13 +1,13 @@
 package console;
 
-import domain.Line;
+import domain.LadderGame;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
 public class ConsoleOutput {
 
-    public static void printResult(List<String> users, List<Line> lines) {
+    public static void printResult(List<String> users, LadderGame ladderGame) {
         System.out.println("실행결과");
         System.out.println();
 
@@ -16,7 +16,7 @@ public class ConsoleOutput {
         users.forEach(user -> System.out.print(StringUtils.center(user, spacingLetterLength)));
         System.out.println();
 
-        lines.forEach(line -> System.out.println(line.paint(spacingLetterLength)));
+        ladderGame.paint(ladder -> System.out.println(ladder.paint(spacingLetterLength)));
         System.out.println();
     }
 }
