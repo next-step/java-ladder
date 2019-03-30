@@ -1,11 +1,11 @@
 package ladder.domain.ladder;
 
+import ladder.domain.enums.Complexity;
 import ladder.domain.players.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -16,18 +16,18 @@ public class Line {
         this.points = points;
     }
 
-    public static Line generate(int height) {
+    public static Line generate(Complexity complexity, int height) {
         List<Boolean> generatedPoints = new ArrayList<>();
         IntStream.range(0, height)
-            .forEach(i -> generatedPoints.add(fillCurrent(generatedPoints, i)));
+            .forEach(i -> generatedPoints.add(fillCurrent(complexity, generatedPoints, i)));
         return new Line(generatedPoints);
     }
 
-    private static Boolean fillCurrent(List<Boolean> generatedPoints, int position) {
+    private static Boolean fillCurrent(Complexity complexity, List<Boolean> generatedPoints, int position) {
         if (position == STARTING_POINT)
             return false;
 
-        Boolean randomBoolean = new Random().nextBoolean();
+        Boolean randomBoolean = BooleanGenerator.createBooleanByComplexity(complexity);
 
         if (isOverlap(generatedPoints.get(position - 1), randomBoolean)) {
             return !randomBoolean;
@@ -40,20 +40,6 @@ public class Line {
         return beforeBoolean && randomBoolean;
     }
 
-    public boolean getLeftPoint(int position) {
-        return this.points.get(position);
-    }
-    public boolean getRightPoint(int position) {
-        return this.points.get(position + 1);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        this.points.forEach(point -> builder.append(beautify(point)).append("l"));
-        return builder.toString();
-    }
-
     static String beautify(Boolean point) {
         StringBuilder builder = new StringBuilder();
         String fill = " ";
@@ -63,6 +49,21 @@ public class Line {
         for (int i = 0; i < Person.MAX_NAME_LENGTH; i++) {
             builder.append(fill);
         }
+        return builder.toString();
+    }
+
+    public boolean getLeftPoint(int position) {
+        return this.points.get(position);
+    }
+
+    public boolean getRightPoint(int position) {
+        return this.points.get(position + 1);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        this.points.forEach(point -> builder.append(beautify(point)).append("l"));
         return builder.toString();
     }
 

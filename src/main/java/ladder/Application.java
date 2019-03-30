@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.enums.Complexity;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.players.Players;
 import ladder.domain.result.LadderGame;
@@ -12,12 +13,12 @@ public class Application {
     public static void main(String[] args) {
         String playerNames = ConsoleInput.readPlayers();
         String rewardNames = ConsoleInput.readRewards();
-        int ladderHeight = ConsoleInput.readLadderHeight();
+        String ladderDifficulty = ConsoleInput.readLadderDifficulty();
 
         Players players = Players.generate(playerNames);
 
         Ladder ladder = new Ladder();
-        ladder.generate(ladderHeight, players.size());
+        ladder.generate(Complexity.of(ladderDifficulty), players.size());
 
         Rewards rewards = Rewards.generate(rewardNames, players);
 

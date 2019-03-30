@@ -1,11 +1,6 @@
 package ladder.domain.enums;
 
-import ladder.domain.ladder.Line;
-import ladder.domain.result.Position;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 

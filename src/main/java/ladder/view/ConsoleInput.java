@@ -18,12 +18,11 @@ public class ConsoleInput {
         return scanner.nextLine();
     }
 
-    public static int readLadderHeight() {
-        System.out.println();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+    public static String readLadderDifficulty() {
+        System.out.println("실행할 사다리의 난이도는? (상, 중, 하 선택)");
         Scanner scanner = new Scanner(System.in);
 
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 
     public static String readNameForRewards() {
