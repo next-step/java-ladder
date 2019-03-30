@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.enums.Complexity;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
@@ -10,7 +11,7 @@ public class LineTest {
 
     @Test
     public void 라인_생성() {
-        Line line = Line.generate(5);
+        Line line = Line.generate(Complexity.EASY, 5);
         assertThat(line.getPoints().size()).isEqualTo(5);
     }
 

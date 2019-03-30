@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.enums.Complexity;
 import ladder.domain.enums.Direction;
 import ladder.domain.result.Position;
 
@@ -15,12 +16,12 @@ public class Ladder {
         this.lines = new ArrayList<>();
     }
 
-    public int generate(int low, int column) {
-        IntStream.range(0, low)
-            .mapToObj(i -> Line.generate(column))
+    public int generate(Complexity difficulty, int column) {
+        IntStream.range(0, difficulty.height())
+            .mapToObj(i -> Line.generate(difficulty, column))
             .forEach(this.lines::add);
 
-        return low;
+        return difficulty.height();
     }
 
     public void move(Position position) {

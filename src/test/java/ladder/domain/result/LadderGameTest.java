@@ -1,5 +1,6 @@
 package ladder.domain.result;
 
+import ladder.domain.enums.Complexity;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.players.Players;
 import ladder.domain.rewards.Rewards;
@@ -18,7 +19,7 @@ public class LadderGameTest {
         Players players = Players.generate(playerNames);
 
         Ladder ladder = new Ladder();
-        ladder.generate(5, players.size());
+        ladder.generate(Complexity.EASY, players.size());
 
         Rewards rewards = Rewards.generate(rewardNames, players);
 
@@ -33,7 +34,7 @@ public class LadderGameTest {
         Players players = Players.generate(playerNames);
 
         Ladder ladder = new Ladder();
-        ladder.generate(5, players.size());
+        ladder.generate(Complexity.EASY, players.size());
 
         Rewards rewards = Rewards.generate(rewardNames, players);
 
