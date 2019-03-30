@@ -1,6 +1,5 @@
 package console;
 
-import common.SpacingLetterMaker;
 import domain.Line;
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,7 +11,7 @@ public class ConsoleOutput {
         System.out.println("실행결과");
         System.out.println();
 
-        int spacingLetterLength = SpacingLetterMaker.makeLengthFrom(users);
+        int spacingLetterLength = SpacingLetterHelper.makeLengthFrom(users);
 
         users.forEach(user -> System.out.print(StringUtils.center(user, spacingLetterLength)));
         System.out.println();
