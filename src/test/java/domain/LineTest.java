@@ -8,15 +8,6 @@ import org.junit.Test;
 import java.util.Arrays;
 
 public class LineTest {
-
-    @Test
-    public void autoLine_has_at_least_one_point() {
-        assertThat(new Line(4).contains(true)).isEqualTo(true);
-        assertThat(new Line(5).contains(true)).isEqualTo(true);
-        assertThat(new Line(6).contains(true)).isEqualTo(true);
-        assertThat(new Line(7).contains(true)).isEqualTo(true);
-    }
-
     @Test(expected = RuntimeException.class)
     public void manualLine_wrong() {
         new Line(Arrays.asList(false, false, false));

@@ -2,25 +2,16 @@ package domain;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
-    public static String BAR = "|";
-    public static String LINE_LOOKS = "-";
-    public static String LINE_LOOKS_NONE = " ";
+    public static final String BAR = "|";
+    public static final String LINE_LOOKS = "-";
+    public static final String LINE_LOOKS_NONE = " ";
 
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
-    protected Line(final int countOfLines) {
-        while (!points.contains(true)) {
-            points = this.generate(countOfLines);
-        }
-    }
-
-    protected Line(List<Boolean> points) {
+    Line(List<Boolean> points) {
         if (!points.contains(true)) {
             throw new IllegalArgumentException();
         }
@@ -28,18 +19,11 @@ public class Line {
         this.points = points;
     }
 
-    private List<Boolean> generate(int countOfLines) {
-        List<Boolean> points = Stream.generate(() -> Math.round(Math.random()) == 1)
-                .limit(countOfLines)
-                .collect(Collectors.toList());
-
-        return points;
-    }
-
     public String paint(int spacingLetterLength) {
-        StringBuilder result = new StringBuilder(BAR);
         final String lineLooks = StringUtils.repeat(LINE_LOOKS, spacingLetterLength) + BAR;
         final String noneLooks = StringUtils.repeat(LINE_LOOKS_NONE, spacingLetterLength) + BAR;
+
+        StringBuilder result = new StringBuilder(BAR);
 
         for (int i = 0; i < points.size(); i++) {
             if (canPaint(i)) {
@@ -59,10 +43,6 @@ public class Line {
         }
 
         return points.get(index);
-    }
-
-    protected boolean contains(boolean b) {
-        return points.contains(b);
     }
 
     @Override

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class Ladder {
-    final private List<Line> lines;
+    private final List<Line> lines;
 
     Ladder(List<Line> lines) {
         this.lines = lines;
