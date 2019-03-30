@@ -9,12 +9,9 @@ import java.util.Arrays;
 public class SpacingLetterHelperTest {
 
     @Test
-    public void max_length() {
-        assertThat(SpacingLetterHelper.makeLengthFrom(Arrays.asList(""))).isEqualTo(0);
+    public void spacingLetterLength_greater_than_longest_name() {
+        final String longestName = "loooong";
 
-        assertThat(SpacingLetterHelper.makeLengthFrom(Arrays.asList("", "a", "abc"))).isEqualTo(3);
-
-        assertThat(SpacingLetterHelper.makeLengthFrom(Arrays.asList("bcdaaa", "a", "abc")))
-            .isEqualTo(6);
+        assertThat(SpacingLetterHelper.makeLengthFrom(Arrays.asList("", "a", longestName))).isGreaterThan(longestName.length());
     }
 }
