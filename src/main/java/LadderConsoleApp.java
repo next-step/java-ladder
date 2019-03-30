@@ -3,6 +3,7 @@ import console.ConsoleOutput;
 import domain.DefaultLadderGenerator;
 import domain.LadderGame;
 
+import domain.LadderGenerator;
 import java.util.List;
 
 public class LadderConsoleApp {
@@ -11,7 +12,10 @@ public class LadderConsoleApp {
         final List<String> users = ConsoleInput.enterUsers();
         final int height = ConsoleInput.enterHeight();
 
-        LadderGame ladderGame = new LadderGame(new DefaultLadderGenerator(), height, users.size());
+        LadderGenerator ladderGenerator = new DefaultLadderGenerator();
+        LadderGame ladderGame = new LadderGame(ladderGenerator);
+
+        ladderGame.generate(height, users.size());
 
         ConsoleOutput.printResult(users,ladderGame);
     }
