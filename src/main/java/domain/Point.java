@@ -1,20 +1,31 @@
 package domain;
 
-public class Point {
-    private Integer x;
-    private Integer y;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class Point implements Comparable<Point>{
+    private final Integer x;
+    private final Integer y;
 
     private Point(Integer x, Integer y) {
         this.x = x;
         this.y = y;
     }
 
-    public static Point of(Integer x, Integer y) {
+    public static Point valueOf(Integer x, Integer y) {
         if(x <= 0 || y <= 0) {
             throw new IllegalArgumentException();
         }
 
         return new Point(x, y);
+    }
+
+    public static List<Point> valuesOf(Integer width, Integer height) {
+        return IntStream.rangeClosed(1, height)
+            .boxed()
+            .flatMap(y -> IntStream.rangeClosed(1, width).mapToObj(x -> Point.valueOf(x, y)))
+            .collect(Collectors.toList());
     }
 
     public Integer distanceOfX(Point point) {
@@ -26,11 +37,11 @@ public class Point {
     }
 
     public Point increaseX() {
-        return Point.of(x + 1, y);
+        return Point.valueOf(x + 1, y);
     }
 
     public Point increaseY() {
-        return Point.of(x, y + 1);
+        return Point.valueOf(x, y + 1);
     }
 
     public Integer getX() {
@@ -62,5 +73,14 @@ public class Point {
     @Override
     public int hashCode() {
         return x.hashCode() + y.hashCode();
+    }
+
+    @Override
+    public int compareTo(Point point) {
+        if(y.equals(point.y)) {
+            return x.compareTo(point.x);
+        }
+
+        return y.compareTo(point.y);
     }
 }

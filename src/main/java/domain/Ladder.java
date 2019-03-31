@@ -1,45 +1,41 @@
 package domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
-    private Set<Line> lines;
     private Set<Point> points;
+    private Set<Line> lines = new HashSet<>();
 
-    public Ladder(Integer length, Integer height) {
-        lines = new HashSet<>();
-        points = IntStream.rangeClosed(1, height)
-            .boxed()
-            .flatMap(x -> IntStream.rangeClosed(1, length).mapToObj(y -> Point.of(x, y)))
-            .collect(Collectors.toSet());
+    public Ladder(List<Point> points, List<Point> drewPoint) {
+        this.points = new HashSet<>(points);
+        this.points.stream()
+            .filter(this::canAdd)
+            .filter(drewPoint::contains)
+            .map(Line::create)
+            .forEach(lines::add);
     }
 
-    public void init() {
-        points.forEach(this::createLine);
+    private boolean canAdd(Point point) {
+        return lines.stream().noneMatch(l -> l.contains(point)) && points.contains(point.increaseX());
     }
 
-    public boolean lineExist(Point point) {
-        return lines.stream()
-            .anyMatch(l -> l.contains(point));
-    }
-
-    public void createLine(Point point) {
-        if(!lineExist(point)) {
-            Point rightPoint = Point.of(point.getX() + 1, point.getY());
-            if(points.contains(rightPoint)) {
-                lines.add(new Line(point, rightPoint));
-            }
-            //        if(true /* && rule.pass() */) {
-            //        }
+    public Point findLast(Point point) {
+        if(!point.getY().equals(1)) {
+            throw new IllegalArgumentException();
         }
 
+        while (points.contains(point)) {
+            point = nextPoint(point);
+        }
+
+        return Point.valueOf(point.getX(), point.getY() - 1);
     }
 
-    public Point nextPoint(Point point) {
+    private Point nextPoint(Point point) {
         Optional<Line> optionalLine = lines.stream()
             .filter(l -> l.contains(point))
             .findFirst();
@@ -57,7 +53,21 @@ public class Ladder {
         return lines;
     }
 
-    public Set<Point> getPoints() {
-        return points;
+    public List<Point> getPoints() {
+        return points.stream()
+            .sorted()
+            .collect(Collectors.toList());
+    }
+
+    public Integer getWidth() {
+        return (int) points.stream()
+            .filter(p -> p.getY().equals(1))
+            .count();
+    }
+
+    public Integer getHeight() {
+        return (int) points.stream()
+            .filter(p -> p.getX().equals(1))
+            .count();
     }
 }
