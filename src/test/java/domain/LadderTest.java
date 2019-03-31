@@ -1,6 +1,6 @@
 package domain;
 
-import generator.RandomBooleanGenerator;
+import generator.impl.RandomBooleanGenerator;
 import org.junit.*;
 
 import java.util.Arrays;

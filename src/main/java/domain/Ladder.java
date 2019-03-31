@@ -2,7 +2,7 @@ package domain;
 
 import generator.BooleansGenerator;
 import generator.impl.NonContinuousGenerator;
-import generator.RandomBooleanGenerator;
+import generator.impl.RandomBooleanGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
