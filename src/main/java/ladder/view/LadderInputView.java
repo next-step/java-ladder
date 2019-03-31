@@ -39,16 +39,26 @@ public class LadderInputView {
         }
     }
 
-    public static List<String> splitInputResult(String inputResult) throws IllegalArgumentException {
+    public static List<String> splitInputResult(String inputResult, int gamerCount) throws IllegalArgumentException {
         checkResultPattern(inputResult);
-        return Arrays.asList(inputResult.split(","));
+        List<String> results = Arrays.asList(inputResult.split(","));
+        if (results.size() != gamerCount) {
+            throw new IllegalArgumentException("결과 갯수 맞지 않음");
+        }
+        return results;
     }
 
-    public static void checkResultPattern(String input) throws IllegalArgumentException {
+    private static void checkResultPattern(String input) throws IllegalArgumentException {
         Pattern pattern = Pattern.compile("^([a-zA-Z가-힣0-9]{1,5},)+[a-zA-Z가-힣0-9]{1,5}$");
         Matcher matcher = pattern.matcher(input.trim());
         if (!matcher.find()) {
             throw new IllegalArgumentException("패턴 불일치");
         }
+    }
+
+    public static String inputGamer() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }

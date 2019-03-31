@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Application {
+
+    public static final String SHOW_ALL_KEYWORD = "all";
+
     public static void main(String[] args) {
         doLadderGame();
     }
@@ -38,7 +41,7 @@ public class Application {
             String inputResult = LadderInputView.inputResult();
 
             //input 값 validation 체크 및 split
-            List<String> results = LadderInputView.splitInputResult(inputResult);
+            List<String> results = LadderInputView.splitInputResult(inputResult, gamers.size());
 
             //보상생성
             List<Result> rewards = results.stream()
@@ -49,7 +52,7 @@ public class Application {
             int height = LadderInputView.inputHeight();
 
             //사다리생성 및 겹치는 라인 확인
-            Ladder ladder = new Ladder(height, gamers.size());
+            Ladder ladder = new Ladder(height, gamers.size(), gamers);
             ladder.checkLadder();
 
             //output ladder
@@ -57,7 +60,20 @@ public class Application {
             LadderOutputView.printLadder(ladder, maxNameLength, height);
             LadderOutputView.printResults(rewards, maxNameLength);
 
-            
+            //game result
+            String gamerName;
+            while (true) {
+                gamerName = LadderInputView.inputGamer();
+
+                if (gamerName.equals(SHOW_ALL_KEYWORD)) {
+                    LadderOutputView.printAllReward();
+                    break;
+                }
+
+                ladder.containGamer(gamerName);
+                LadderOutputView.printReward(gamerName);
+            }
+
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }

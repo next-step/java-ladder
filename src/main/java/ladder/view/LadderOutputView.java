@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 public class LadderOutputView {
     public static void printGamers(List<Gamer> gamers, int maxNameLength) {
-        System.out.println("\n실행결과");
+        System.out.println("\n사다리 결과");
 
         gamers.forEach(gamer -> {
             System.out.print(gamer.toString());
@@ -53,6 +53,18 @@ public class LadderOutputView {
             IntStream.range(0, maxNameLength - reward.getRewardLength() + 1)
                     .forEach(name -> System.out.print(" "));
         });
+        System.out.println();
+    }
+
+    public static void printReward(String gamer) {
+        System.out.println("\n실행 결과");
+        System.out.println(gamer);
+        System.out.println();
+    }
+
+    public static void printAllReward() {
+        System.out.println("\n실행 결과");
+        System.out.println("all");
         System.out.println();
     }
 }
