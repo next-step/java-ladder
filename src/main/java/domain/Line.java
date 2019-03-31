@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 
 public class Line {
+
     public static final String BAR = "|";
     public static final String LINE_LOOKS = "-";
     public static final String LINE_LOOKS_NONE = " ";
@@ -25,8 +26,8 @@ public class Line {
 
         StringBuilder result = new StringBuilder(BAR);
 
-        for (int i = 0; i < points.size(); i++) {
-            if (canPaint(i)) {
+        for (Boolean point : points) {
+            if (point) {
                 result.append(lineLooks);
                 continue;
             }
@@ -37,12 +38,8 @@ public class Line {
         return result.toString();
     }
 
-    private boolean canPaint(int index) {
-        if (index > 0 && points.get(index - 1)) {
-            return false;
-        }
-
-        return points.get(index);
+    int size() {
+        return points.size();
     }
 
     @Override
@@ -50,5 +47,30 @@ public class Line {
         return "Line{" +
             "points=" + points +
             '}';
+    }
+
+    public Integer move(Integer position) {
+        int left = 0;
+        int right = 0;
+
+        if (position == 0) {
+            left = 0;
+        }
+
+        if (position > 0) {
+            left = points.get(position - 1) ? -1 : 0;
+        }
+
+        if (position == points.size()) {
+            right = 0;
+        }
+
+        if (position < points.size()) {
+            right = points.get(position) ? 1 : 0;
+        }
+
+        int result = position + (left + right);
+
+        return result;
     }
 }

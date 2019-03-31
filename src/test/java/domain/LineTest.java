@@ -26,4 +26,13 @@ public class LineTest {
 
         assertThat(lineLooks).isEqualTo(expected);
     }
+
+    @Test
+    public void move() {
+        final Line line = new Line(Arrays.asList(true, false));
+
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(2)).isEqualTo(2);
+    }
 }

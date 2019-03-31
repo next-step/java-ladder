@@ -12,17 +12,25 @@ public class DefaultLineGenerator implements LineGenerator {
         List<Boolean> points = new ArrayList<>(lineSize);
 
         while (!points.contains(true)) {
-            points = this.generatePoints(lineSize);
+            points = this.createPoints(lineSize);
         }
 
         return new Line(points);
     }
 
-    private List<Boolean> generatePoints(int lineSize) {
+    private List<Boolean> createPoints(int lineSize) {
+        // generate
         List<Boolean> points = Stream
             .generate(() -> Math.round(Math.random()) == 1)
             .limit(lineSize)
             .collect(Collectors.toList());
+
+        // clear up
+        for (int i = 1; i < lineSize; i++) {
+            if (points.get(i - 1)) {
+                points.set(i, false);
+            }
+        }
 
         return points;
     }
