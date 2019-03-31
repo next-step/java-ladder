@@ -21,6 +21,6 @@ public class LadderConsoleApp {
 
         ladderGame.generate(height, users.size());
 
-        ConsoleOutput.printResult(users,ladderGame);
+        ConsoleOutput.printLadder(users, ladderGame);
     }
 }

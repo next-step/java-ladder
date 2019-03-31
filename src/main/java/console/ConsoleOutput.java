@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ConsoleOutput {
 
-    public static void printResult(List<String> users, LadderGame ladderGame) {
+    public static void printLadder(List<String> users, LadderGame ladderGame) {
         System.out.println("실행결과");
         System.out.println();
 
