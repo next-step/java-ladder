@@ -1,11 +1,11 @@
-package generator;
+package generator.impl;
 
 import java.util.Random;
 import java.util.function.BooleanSupplier;
 
 public class RandomBooleanGenerator implements BooleanSupplier {
 
-    Random random;
+    private Random random;
 
     public RandomBooleanGenerator() {
         this.random = new Random();
