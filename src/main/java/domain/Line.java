@@ -25,8 +25,8 @@ public class Line {
 
         StringBuilder result = new StringBuilder(BAR);
 
-        for (int i = 0; i < points.size(); i++) {
-            if (canPaint(i)) {
+        for (Boolean point : points) {
+            if (point) {
                 result.append(lineLooks);
                 continue;
             }
@@ -35,14 +35,6 @@ public class Line {
         }
 
         return result.toString();
-    }
-
-    private boolean canPaint(int index) {
-        if (index > 0 && points.get(index - 1)) {
-            return false;
-        }
-
-        return points.get(index);
     }
 
     @Override
