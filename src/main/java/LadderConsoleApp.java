@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 public class LadderConsoleApp {
+    public static final String ALL = "all";
 
     public static void main(String[] args) {
         final List<String> users = ConsoleInput.enterUsers();
@@ -28,12 +29,12 @@ public class LadderConsoleApp {
         StoryResult gameResult = ladderGame.getResult();
 
         String userName = ConsoleInput.enterUserWantResult();
-        while (!StringUtils.equals(userName, "all")) {
+        while (!StringUtils.equals(userName, ALL)) {
             ConsoleOutput.printResult(gameResult, users.indexOf(userName), results);
             userName = ConsoleInput.enterUserWantResult();
         }
 
-        if (StringUtils.equals(userName, "all")) {
+        if (StringUtils.equals(userName, ALL)) {
             ConsoleOutput.printResult(gameResult, users, results);
         }
     }
