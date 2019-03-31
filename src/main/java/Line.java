@@ -5,8 +5,15 @@ public class Line {
     private final List<Point> points;
 
     public Line(List<Point> points) {
+        verifyCountOfPerson(points);
         verifyValidLine(points);
         this.points = points;
+    }
+
+    private void verifyCountOfPerson(List<Point> points) {
+        if(points.size() < 2) {
+            throw new IllegalArgumentException("사다리게임은 두 명이상부터만 가능합니다.");
+        }
     }
 
     private void verifyValidLine(List<Point> points) {
@@ -28,7 +35,11 @@ public class Line {
         return sb.toString();
     }
 
-    public int getSize() {
+    public int getNumberOfPoints() {
         return points.size();
+    }
+
+    public boolean matchCountOfPoint(Line line) {
+        return line.points.size() == this.points.size();
     }
 }

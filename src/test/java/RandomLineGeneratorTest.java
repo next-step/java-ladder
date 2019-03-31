@@ -1,4 +1,3 @@
-import com.sun.tools.javac.code.Lint;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,6 +12,6 @@ public class RandomLineGeneratorTest {
         LineGenerator lineGenerator = new RandomLineGenerator();
         Line line = lineGenerator.generate(5);
         // then
-        assertThat(line.getSize()).isEqualTo(countOfPerson);
+        assertThat(line.getNumberOfPoints()).isEqualTo(countOfPerson);
     }
 }
