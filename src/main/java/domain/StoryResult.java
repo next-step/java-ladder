@@ -38,4 +38,8 @@ public class StoryResult {
     public int hashCode() {
         return Objects.hash(positions);
     }
+
+    public Integer finalPositionOf(int userIndex) {
+        return positions.get(userIndex);
+    }
 }
