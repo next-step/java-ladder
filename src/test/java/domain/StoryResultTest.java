@@ -3,7 +3,6 @@ package domain;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.junit.Test;
@@ -22,9 +21,9 @@ public class StoryResultTest {
                 .collect(Collectors.toList()));
 
         // When
-        List<Integer> result = storyResult.move(line);
+        StoryResult result = storyResult.move(line);
 
         // Then
-        assertThat(result).isEqualTo(Arrays.asList(1, 0, 2));
+        assertThat(result).isEqualTo(new StoryResult(Arrays.asList(1, 0, 2)));
     }
 }
