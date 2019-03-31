@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.dto.Gamer;
+import ladder.dto.Result;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -44,5 +45,14 @@ public class LadderOutputView {
             IntStream.range(0, maxNameLength)
                     .forEach(count -> System.out.print(" "));
         }
+    }
+
+    public static void printResults(List<Result> rewards, int maxNameLength) {
+        rewards.forEach(reward -> {
+            System.out.print(reward.toString());
+            IntStream.range(0, maxNameLength - reward.getRewardLength() + 1)
+                    .forEach(name -> System.out.print(" "));
+        });
+        System.out.println();
     }
 }

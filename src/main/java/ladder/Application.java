@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.dto.Gamer;
+import ladder.dto.Result;
 import ladder.view.LadderInputView;
 import ladder.view.LadderOutputView;
 
@@ -33,6 +34,17 @@ public class Application {
             sortedGamers.sort(Collections.reverseOrder());
             int maxNameLength = sortedGamers.get(0).getNameLength();
 
+            //결과 input
+            String inputResult = LadderInputView.inputResult();
+
+            //input 값 validation 체크 및 split
+            List<String> results = LadderInputView.splitInputResult(inputResult);
+
+            //보상생성
+            List<Result> rewards = results.stream()
+                    .map(Result::new)
+                    .collect(Collectors.toList());
+
             //높이 input
             int height = LadderInputView.inputHeight();
 
@@ -40,9 +52,12 @@ public class Application {
             Ladder ladder = new Ladder(height, gamers.size());
             ladder.checkLadder();
 
-            //output result
+            //output ladder
             LadderOutputView.printGamers(gamers, maxNameLength);
             LadderOutputView.printLadder(ladder, maxNameLength, height);
+            LadderOutputView.printResults(rewards, maxNameLength);
+
+            
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
