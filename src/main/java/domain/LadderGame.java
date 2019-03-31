@@ -17,4 +17,8 @@ public class LadderGame {
     public void paint(Consumer<Line> consumer) {
         ladder.paint(consumer);
     }
+
+    public StoryResult getResult() {
+        return ladder.getResult();
+    }
 }

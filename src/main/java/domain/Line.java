@@ -38,6 +38,10 @@ public class Line {
         return result.toString();
     }
 
+    int size() {
+        return points.size();
+    }
+
     @Override
     public String toString() {
         return "Line{" +
@@ -54,7 +58,7 @@ public class Line {
         }
 
         if (position > 0) {
-            left = points.get(position-1) ? -1 : 0;
+            left = points.get(position - 1) ? -1 : 0;
         }
 
         if (position == points.size()) {
