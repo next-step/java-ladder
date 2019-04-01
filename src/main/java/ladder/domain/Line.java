@@ -61,5 +61,4 @@ public class Line {
     public int getHeight() {
         return height;
     }
-
 }

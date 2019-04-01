@@ -38,7 +38,7 @@ public class Gamer implements Comparable<Gamer> {
     public String toString() {
         return name;
     }
-
+  
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

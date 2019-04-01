@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Application {
-
     public static final String SHOW_ALL_KEYWORD = "all";
 
     public static void main(String[] args) {
@@ -76,7 +75,6 @@ public class Application {
                 Gamer gamer = ladder.containGamer(gamerName);
                 LadderOutputView.printReward(gamer);
             }
-
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }

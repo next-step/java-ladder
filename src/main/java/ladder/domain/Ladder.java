@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.dto.Gamer;
 import ladder.dto.Result;
-
 import java.util.ArrayList;
 import java.util.List;
 
