@@ -5,12 +5,22 @@ import java.util.Objects;
 public class Gamer implements Comparable<Gamer> {
     private String name;
 
+    private Result result;
+
     public Gamer(String name) {
         this.name = name;
     }
 
     public int getNameLength() {
         return name.length();
+    }
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
     }
 
     @Override

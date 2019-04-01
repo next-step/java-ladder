@@ -56,15 +56,17 @@ public class LadderOutputView {
         System.out.println();
     }
 
-    public static void printReward(String gamer) {
+    public static void printReward(Gamer gamer) {
         System.out.println("\n실행 결과");
-        System.out.println(gamer);
+        System.out.println(gamer.getResult());
         System.out.println();
     }
 
-    public static void printAllReward() {
+    public static void printAllReward(List<Gamer> gamers) {
         System.out.println("\n실행 결과");
-        System.out.println("all");
+        for (Gamer gamer : gamers) {
+            System.out.println(gamer.toString() + " : " + gamer.getResult());
+        }
         System.out.println();
     }
 }

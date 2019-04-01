@@ -14,16 +14,15 @@ public class LadderTest {
     @Test
     public void 해당게이머가참여함() {
         List<Gamer> gamers = Arrays.asList(new Gamer("aaa"), new Gamer("bbb"));
-        Ladder ladder = new Ladder(5, 5, gamers);
-        assertThat(ladder.containGamer("aaa")).isTrue();
+        Ladder ladder = new Ladder(gamers);
+        assertThat(ladder.containGamer("aaa")).isEqualByComparingTo(new Gamer("aaa"));
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void 해당게이머가참여안함() {
         List<Gamer> gamers = Arrays.asList(new Gamer("aaa"), new Gamer("bbb"));
-        Ladder ladder = new Ladder(5, 5, gamers);
-        assertThat(ladder.containGamer("ccc")).isFalse();
-
+        Ladder ladder = new Ladder(gamers);
+        ladder.containGamer("ccc");
     }
 }

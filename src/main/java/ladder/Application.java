@@ -52,7 +52,7 @@ public class Application {
             int height = LadderInputView.inputHeight();
 
             //사다리생성 및 겹치는 라인 확인
-            Ladder ladder = new Ladder(height, gamers.size(), gamers);
+            Ladder ladder = new Ladder(height, gamers.size(), gamers, rewards);
             ladder.checkLadder();
 
             //output ladder
@@ -60,18 +60,21 @@ public class Application {
             LadderOutputView.printLadder(ladder, maxNameLength, height);
             LadderOutputView.printResults(rewards, maxNameLength);
 
-            //game result
+            //게이머-보상 매칭
+            ladder.matchingReward();
+
+            //show game result
             String gamerName;
             while (true) {
                 gamerName = LadderInputView.inputGamer();
 
                 if (gamerName.equals(SHOW_ALL_KEYWORD)) {
-                    LadderOutputView.printAllReward();
+                    LadderOutputView.printAllReward(gamers);
                     break;
                 }
 
-                ladder.containGamer(gamerName);
-                LadderOutputView.printReward(gamerName);
+                Gamer gamer = ladder.containGamer(gamerName);
+                LadderOutputView.printReward(gamer);
             }
 
         } catch (IllegalArgumentException exception) {
