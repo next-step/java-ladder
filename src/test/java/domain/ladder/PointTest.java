@@ -32,6 +32,9 @@ public class PointTest {
         Point right = new Point(0, Direction.RIGHT);
         assertThat(right.beautify())
                 .isEqualTo("    |");
+        Point down = new Point(0, Direction.DOWN);
+        assertThat(down.beautify())
+                .isEqualTo("    |");
 
         Point left = new Point(0, Direction.LEFT);
         assertThat(left.beautify())
@@ -44,14 +47,13 @@ public class PointTest {
         assertThat(right.beautify())
                 .isEqualTo("     |");
 
+        Point down = new Point(1, Direction.DOWN);
+        assertThat(down.beautify())
+                .isEqualTo("     |");
 
         Point left = new Point(1, Direction.LEFT);
         assertThat(left.beautify())
                 .isEqualTo("-----|");
-
-        Point down = new Point(1, Direction.DOWN);
-        assertThat(down.beautify())
-                .isEqualTo("     |");
     }
 
     @Test
