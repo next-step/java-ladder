@@ -8,8 +8,8 @@ public class LadderLines {
 
     private final List<LadderLine> ladderLines;
 
-    public LadderLines(int sizeOfPerson, int height) {
-        ladderLines = LadderLinesGenerator.generate(sizeOfPerson, height);
+    public LadderLines(int sizeOfPerson, Level level) {
+        ladderLines = LadderLinesGenerator.generate(sizeOfPerson, level);
     }
 
     LadderLines(List<LadderLine> ladderlines) {

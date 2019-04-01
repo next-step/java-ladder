@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class EndPointsTest {
 
@@ -27,7 +27,7 @@ public class EndPointsTest {
         EndPoints actual = new EndPoints(new String[]{"a","a"});
 
         for(int i = 0; i < expected.size(); ++i) {
-            assertEquals(expected.get(i), actual.getEndPoint(i));
+            assertThat(expected.get(i)).isEqualTo(actual.getEndPoint(i));
         }
     }
 
@@ -41,7 +41,7 @@ public class EndPointsTest {
         EndPoints actual = new EndPoints(new String[]{"a","a","b"});
 
         for(int i = 0; i < expected.size(); ++i) {
-            assertEquals(expected.get(i), actual.getEndPoint(i));
+            assertThat(expected.get(i)).isEqualTo(actual.getEndPoint(i));
         }
     }
 
@@ -54,7 +54,7 @@ public class EndPointsTest {
         EndPoints actual = new EndPoints(new String[]{"a","b"});
 
         for(int i = 0; i < expected.size(); ++i) {
-            assertEquals(expected.get(i), actual.getEndPoint(i));
+            assertThat(expected.get(i)).isEqualTo( actual.getEndPoint(i));
         }
     }
 
@@ -68,7 +68,7 @@ public class EndPointsTest {
         EndPoints actual = new EndPoints(new String[]{"a","b","c"});
 
         for(int i = 0; i < expected.size(); ++i) {
-            assertEquals(expected.get(i), actual.getEndPoint(i));
+            assertThat(expected.get(i)).isEqualTo( actual.getEndPoint(i));
         }
     }
 }

@@ -1,7 +1,6 @@
 package laddergame.domain;
 
 import laddergame.service.LadderValueGenerator;
-import laddergame.service.LadderRandomValueGenerator;
 import laddergame.util.StringUtils;
 
 import java.util.ArrayList;
@@ -28,11 +27,7 @@ public class LadderLine {
         return points;
     }
 
-    public static LadderLine init(int sizeOfPerson) {
-        return init(sizeOfPerson, LadderRandomValueGenerator.getInstance());
-    }
-
-    static LadderLine init(int sizeOfPerson, LadderValueGenerator ladderValueGenerator) {
+    public static LadderLine init(int sizeOfPerson, LadderValueGenerator ladderValueGenerator) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points, ladderValueGenerator);
         point = initBody(sizeOfPerson, points, point, ladderValueGenerator);

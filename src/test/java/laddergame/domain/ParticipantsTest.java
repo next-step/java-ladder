@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static laddergame.ApplicationLauncher.ALL;
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParticipantsTest {
 
@@ -29,7 +29,7 @@ public class ParticipantsTest {
         Participants actual = new Participants(new String[]{"a","a","b"});
 
         for(int i = 0; i < expected.size(); ++i) {
-            assertEquals(expected.get(i), actual.getEndPoint(i));
+            assertThat(expected.get(i)).isEqualTo(actual.getEndPoint(i));
         }
     }
 }
