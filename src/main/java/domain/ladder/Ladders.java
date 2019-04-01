@@ -1,7 +1,9 @@
-package domain;
+package domain.ladder;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladders {
 
@@ -15,14 +17,23 @@ public class Ladders {
         return this.ladders.size();
     }
 
-    public List<Ladder> getLadders() {
-        return ladders;
+    public List<Integer> move(int... lineIndexes) {
+        return Arrays.stream(lineIndexes)
+                .mapToObj(this::move)
+                .collect(Collectors.toList());
     }
 
-    public int move(int index) {
+    public int move(int lineIndex) {
+        int nextIndex = lineIndex;
         for (Ladder ladder : this.ladders) {
-            index += ladder.nextDirection(index);
+            nextIndex = ladder.move(nextIndex);
         }
-        return index;
+        return nextIndex;
+    }
+
+    public String beautify() {
+        return ladders.stream()
+                .map(Ladder::beautify)
+                .collect(Collectors.joining("\n"));
     }
 }
