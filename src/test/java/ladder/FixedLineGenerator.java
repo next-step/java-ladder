@@ -1,3 +1,5 @@
+package ladder;
+
 import java.util.List;
 
 public class FixedLineGenerator implements LineGenerator {

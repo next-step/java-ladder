@@ -1,3 +1,5 @@
+package ladder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class RandomLadderGenerator implements LadderGenerator {
     }
 
     private void setLines(List<Line> lines, int height, int countOfPerson) {
-        for(int i=0; i<height; i++) {
+        for (int i = 0; i < height; i++) {
             lines.add(lineGenerator.generate(countOfPerson));
         }
     }
