@@ -1,4 +1,4 @@
-package domain;
+package domain.player;
 
 import org.junit.*;
 
@@ -18,11 +18,11 @@ public class PlayerTest {
 
     @Test
     public void test_이름_출력() {
-        String name = "honux";
+        String name = "jk";
         Player player = new Player(name);
 
-        assertThat(player)
-                .hasToString(name);
+        assertThat(player.beautify())
+                .isEqualTo(name);
     }
 
     @Test

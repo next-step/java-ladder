@@ -1,8 +1,6 @@
-package domain;
+package domain.player;
 
 import org.junit.*;
-
-import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,14 +21,16 @@ public class PlayersTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test_인덱스_실패_잘못된_이름() {
+    public void test_인덱스_검색_실패_잘못된_이름() {
         Players players = Players.generate("pobi, honux, crong, jk");
         players.findIndexByName("");
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void test_변경불가() {
+    @Test
+    public void test_사용자목록_출력() {
         Players players = Players.generate("pobi, honux, crong, jk");
-        players.getPlayers().remove(0);
+
+        assertThat(players.beautify())
+                .isEqualTo(" pobi honux crong    jk");
     }
 }
