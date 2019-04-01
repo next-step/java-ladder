@@ -1,8 +1,7 @@
 package domain.ladder;
 
 import domain.player.Player;
-import generator.bool.BooleansGenerator;
-import generator.bool.impl.NonContinuousGenerator;
+import generator.BooleansGenerator;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class Ladder {
     }
 
     private List<Boolean> createLines(int length, BooleanSupplier booleanSupplier) {
-        BooleansGenerator generator = new NonContinuousGenerator(booleanSupplier, true);
+        BooleansGenerator generator = new generator.impl.NonContinuousGenerator(booleanSupplier, true);
 
         List<Boolean> lines = new ArrayList<>();
         lines.add(Boolean.FALSE);

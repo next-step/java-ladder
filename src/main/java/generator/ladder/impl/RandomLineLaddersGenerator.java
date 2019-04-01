@@ -2,8 +2,8 @@ package generator.ladder.impl;
 
 import domain.ladder.Ladder;
 import domain.ladder.Ladders;
+import generator.impl.RandomBooleanGenerator;
 import generator.ladder.LaddersGenerator;
-import generator.bool.impl.RandomBooleanGenerator;
 
 import java.util.List;
 import java.util.function.BooleanSupplier;

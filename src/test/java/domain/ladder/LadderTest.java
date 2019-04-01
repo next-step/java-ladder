@@ -1,6 +1,5 @@
 package domain.ladder;
 
-import generator.bool.impl.RandomBooleanGenerator;
 import org.junit.*;
 
 import java.util.Arrays;
@@ -13,7 +12,7 @@ public class LadderTest {
     public void test_겹치는_라인을_제외하고_랜덤으로_라인을_생성() {
         int length = 8;
         for (int i = 0; i < 100; i++) {
-            Ladder ladder = new Ladder(length, new RandomBooleanGenerator());
+            Ladder ladder = new Ladder(length, new generator.impl.RandomBooleanGenerator());
             assertThat(ladder.getLines())
                     .hasSize(length)
                     .doesNotContainSequence(true, true);
