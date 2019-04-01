@@ -1,6 +1,6 @@
 package domain;
 
-import generator.impl.RandomBooleanGenerator;
+import generator.bool.impl.RandomBooleanGenerator;
 import org.junit.*;
 
 import java.util.Arrays;
@@ -37,5 +37,30 @@ public class LadderTest {
 
         assertThat(ladder.getLines())
                 .isEqualTo(Arrays.asList(false, false, false, false, false, false, false, false));
+    }
+
+    @Test
+    public void test_다음_방향() {
+        Ladder ladder = new Ladder(5, () -> true);
+        assertThat(ladder.nextDirection(0))
+                .isEqualTo(1);
+        assertThat(ladder.nextDirection(1))
+                .isEqualTo(-1);
+        assertThat(ladder.nextDirection(3))
+                .isEqualTo(-1);
+        assertThat(ladder.nextDirection(4))
+                .isEqualTo(0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_다음_방향_에러_음수값() {
+        Ladder ladder = new Ladder(5, () -> true);
+        ladder.nextDirection(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_다음_방향_에러_길이초과() {
+        Ladder ladder = new Ladder(5, () -> true);
+        ladder.nextDirection(5);
     }
 }

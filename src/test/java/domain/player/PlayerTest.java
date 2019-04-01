@@ -24,4 +24,13 @@ public class PlayerTest {
         assertThat(player)
                 .hasToString(name);
     }
+
+    @Test
+    public void test_동일성() {
+        String name = "pobi";
+        Player player = new Player(name);
+        assertThat(player)
+                .isEqualTo(new Player(name))
+                .hasSameHashCodeAs(new Player(name));
+    }
 }

@@ -3,7 +3,9 @@ package domain;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -39,5 +41,13 @@ public class Players {
 
     public List<Player> getPlayers() {
         return this.players;
+    }
+
+    public int findIndexByName(String name) {
+        Player target = new Player(name);
+        return IntStream.range(0, players.size())
+                .filter(i -> players.get(i).equals(target))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
     }
 }

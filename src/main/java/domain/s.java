@@ -13,10 +13,6 @@ public class Ladder {
 
     private final List<Boolean> lines;
 
-    public Ladder(int length) {
-        this(length, new RandomBooleanGenerator());
-    }
-
     public Ladder(int length, BooleanSupplier booleanSupplier) {
         this.lines = Collections.unmodifiableList(createLines(length, booleanSupplier));
     }
