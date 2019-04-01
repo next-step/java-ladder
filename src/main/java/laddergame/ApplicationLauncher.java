@@ -1,9 +1,6 @@
 package laddergame;
 
-import laddergame.domain.EndPoints;
-import laddergame.domain.LadderGame;
-import laddergame.domain.LadderLines;
-import laddergame.domain.Result;
+import laddergame.domain.*;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
 
@@ -13,9 +10,9 @@ public class ApplicationLauncher {
     public static void main(String[] args) {
         EndPoints participants = InputView.getParticipants();
         EndPoints rewards = InputView.getRewards();
-        int maximumHeight = InputView.getMaximumHeight();
+        Level level = InputView.getLevel();
 
-        LadderLines ladderLines = new LadderLines(participants.size(), maximumHeight);
+        LadderLines ladderLines = new LadderLines(participants.size(), level);
 
         Result result = LadderGame.play(participants, ladderLines, rewards);
         ResultView.showLadderLineResult(result);

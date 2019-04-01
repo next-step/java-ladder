@@ -32,9 +32,11 @@ public class Direction {
         return of(toRight, nextToRight);
     }
 
+/*
     public Direction next() {
         return next(LadderRandomValueGenerator.getInstance());
     }
+*/
 
     Direction next(LadderValueGenerator ladderPointGenerator) {
         if (toRight) {

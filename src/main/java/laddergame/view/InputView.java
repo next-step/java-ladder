@@ -1,6 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.EndPoints;
+import laddergame.domain.Level;
 import laddergame.domain.Participants;
 import laddergame.util.StringUtils;
 import laddergame.validator.InputLineValidator;
@@ -32,13 +33,13 @@ public class InputView {
         System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     }
 
-    public static Integer getMaximumHeight() {
-        showMaximumLadderHeightInputMessage();
-        return Integer.parseInt(getInputLine());
+    public static Level getLevel() {
+        showGameLevelInputMessage();
+        return Level.getLevel(getInputLine());
     }
 
-    private static void showMaximumLadderHeightInputMessage() {
-        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+    private static void showGameLevelInputMessage() {
+        System.out.println("\n실행할 사다리의 난이도는?");
     }
 
     public static String getRewardResultKey() {

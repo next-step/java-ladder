@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.service.LadderRandomValueGenerator;
 import laddergame.service.LadderValueGenerator;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class LadderLineTest extends BaseDomainTest {
     @Test
     public void init() {
         int sizeOfPerson = 5;
-        System.out.println(LadderLine.init(sizeOfPerson));
+        System.out.println(LadderLine.init(sizeOfPerson, LadderRandomValueGenerator.getInstance()));
     }
 
     @Test
@@ -116,7 +117,7 @@ public class LadderLineTest extends BaseDomainTest {
 
     @Test
     public void move() {
-        LadderLine line = LadderLine.init(2);
+        LadderLine line = LadderLine.init(2, LadderRandomValueGenerator.getInstance());
         System.out.println("ladder result : " + line.move(0));
     }
 }

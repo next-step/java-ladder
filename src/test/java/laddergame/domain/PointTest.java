@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.service.LadderRandomValueGenerator;
 import org.junit.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -34,7 +35,7 @@ public class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(LadderRandomValueGenerator.getInstance());
         assertEquals(second.move(),0);
     }
 }

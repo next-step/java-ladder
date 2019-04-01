@@ -1,5 +1,6 @@
 package laddergame.domain;
 
+import laddergame.service.LadderRandomValueGenerator;
 import org.junit.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -19,13 +20,13 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(LadderRandomValueGenerator.getInstance());
         assertEquals(next, Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void next_random_false() {
-        Direction next = Direction.first(FALSE).next();
+        Direction next = Direction.first(FALSE).next(LadderRandomValueGenerator.getInstance());
         assertEquals(next.isToLeft(), FALSE);
     }
 
