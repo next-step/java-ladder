@@ -1,6 +1,8 @@
 package generator.impl;
 
-import generator.BooleansGenerator;
+import generator.bool.BooleansGenerator;
+import generator.bool.impl.NonContinuousGenerator;
+import generator.bool.impl.RandomBooleanGenerator;
 import org.junit.*;
 
 import java.util.Arrays;

@@ -1,6 +1,6 @@
-package generator.impl;
+package generator.bool.impl;
 
-import generator.BooleansGenerator;
+import generator.bool.BooleansGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
