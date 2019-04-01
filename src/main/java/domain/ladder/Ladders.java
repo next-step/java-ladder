@@ -17,14 +17,14 @@ public class Ladders {
         return this.ladders.size();
     }
 
-    public List<Integer> move(int... lineIndexes) {
-        return Arrays.stream(lineIndexes)
+    public List<Integer> move(int... positions) {
+        return Arrays.stream(positions)
                 .mapToObj(this::move)
                 .collect(Collectors.toList());
     }
 
-    public int move(int lineIndex) {
-        int nextIndex = lineIndex;
+    public int move(int position) {
+        int nextIndex = position;
         for (Ladder ladder : this.ladders) {
             nextIndex = ladder.move(nextIndex);
         }
