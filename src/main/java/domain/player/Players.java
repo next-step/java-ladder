@@ -1,9 +1,12 @@
-package domain;
+package domain.player;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -37,7 +40,21 @@ public class Players {
         return this.players.size();
     }
 
-    public List<Player> getPlayers() {
-        return this.players;
+    public int findIndexByName(String name) {
+        Player target = new Player(name);
+        return IntStream.range(0, this.players.size())
+                .filter(i -> this.players.get(i).equals(target))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
+    }
+
+    public String beautify() {
+        return this.players.stream()
+                .map(player -> StringUtils.leftPad(player.beautify(), Player.MAX_NAME_LENGTH))
+                .collect(Collectors.joining(" "));
+    }
+
+    public String beautify(int index) {
+        return this.players.get(index).beautify();
     }
 }

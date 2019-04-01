@@ -1,55 +1,35 @@
 package view;
 
-import domain.Ladder;
-import domain.Ladders;
-import domain.Players;
+import domain.game.LaddersAndPrizes;
+import domain.player.Players;
+import domain.prize.Prizes;
 
-import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ResultView {
 
-    private static final String BOUNDARY_LADDER = "|";
-
-    private static final String NOT_CONNECTED_LINE = "     ";
-
-    private static final String CONNECTED_LINE = "-----";
-
-    private static final String SPACE = "%5s";
-
-    public static void viewResult(Players players, Ladders ladders) {
-        System.out.println("실행 결과\n");
-        viewPlayers(players);
-        viewLadders(ladders);
+    public static void viewLadders(Players players, LaddersAndPrizes laddersAndPrizes) {
+        System.out.println("사다리 결과\n");
+        System.out.println(players.beautify());
+        System.out.println(laddersAndPrizes.beautify() + "\n");
     }
 
-    private static void viewLadders(Ladders ladders) {
-        System.out.println(ladders.getLadders()
-                .stream()
-                .map(ResultView::convertLadder)
-                .collect(Collectors.joining("\n")));
-    }
+    public static void viewResults(Players players, Prizes prizes) {
+        if (prizes.size() == 1) {
+            System.out.println("실행 결과");
+            System.out.println(prizes.beautify(0) + "\n");
+            return;
+        }
 
-    private static String convertLadder(Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format(SPACE, BOUNDARY_LADDER))
-                .append(convertLines(ladder.getLines()))
-                .append(BOUNDARY_LADDER);
+        final String playersMessage = IntStream.range(0, players.size())
+                .mapToObj(i -> {
+                    String prefix = players.beautify(i) + " : ";
+                    return prizes.beautify(i, prefix);
+                })
+                .collect(Collectors.joining("\n"));
 
-        return sb.toString();
-    }
-
-    private static String convertLines(List<Boolean> lines) {
-        return lines.stream()
-                .skip(1)
-                .map(line -> line == Boolean.FALSE ? NOT_CONNECTED_LINE : CONNECTED_LINE)
-                .collect(Collectors.joining(BOUNDARY_LADDER));
-    }
-
-    private static void viewPlayers(Players players) {
-        System.out.println(players.getPlayers()
-                .stream()
-                .map(player -> String.format(SPACE, player.toString()))
-                .collect(Collectors.joining(" ")));
+        System.out.println("실행 결과");
+        System.out.println(playersMessage + "\n");
     }
 }

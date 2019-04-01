@@ -30,8 +30,8 @@ public class NonContinuousGenerator implements BooleansGenerator {
     }
 
     private void addNonContinuous(Stack<Boolean> stack) {
-        Boolean prevPoint = stack.peek();
-        Boolean thisPoint = booleanGenerator.getAsBoolean();
+        boolean prevPoint = stack.peek();
+        boolean thisPoint = booleanGenerator.getAsBoolean();
         if (prevPoint == shouldNotBeContinuous && prevPoint == thisPoint) {
             stack.push(!shouldNotBeContinuous);
             return;

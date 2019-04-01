@@ -1,6 +1,6 @@
-package generator;
+package generator.impl;
 
-import generator.impl.NonContinuousGenerator;
+import generator.BooleansGenerator;
 import org.junit.*;
 
 import java.util.Arrays;
