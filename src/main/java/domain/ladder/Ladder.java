@@ -1,8 +1,7 @@
 package domain.ladder;
 
-import domain.player.Player;
-import generator.BooleansGenerator;
-import org.apache.commons.lang3.StringUtils;
+import generator.bool.BooleansGenerator;
+import generator.bool.impl.NonContinuousGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,50 +11,51 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private static final String BOUNDARY = "|";
-
-    private static final String NOT_CONNECTED = " ";
-
-    private static final String CONNECTED = "-";
-
-    private final List<Boolean> lines;
+    private final List<Point> points;
 
     public Ladder(int length, BooleanSupplier booleanSupplier) {
-        this.lines = Collections.unmodifiableList(createLines(length, booleanSupplier));
+        this.points = Collections.unmodifiableList(createPoints(createLines(length, booleanSupplier)));
     }
 
-    private List<Boolean> createLines(int length, BooleanSupplier booleanSupplier) {
-        BooleansGenerator generator = new generator.impl.NonContinuousGenerator(booleanSupplier, true);
+    private List<Point> createPoints(List<Boolean> lines) {
+        List<Point> points = new ArrayList<>();
+        for (int i = 0; i < lines.size(); i++) {
+            Direction direction = Direction.generate(lines, i);
+            points.add(new Point(i, direction));
+        }
+
+        return points;
+    }
+
+    public static List<Boolean> createLines(int length, BooleanSupplier booleanSupplier) {
+        BooleansGenerator generator = new NonContinuousGenerator(booleanSupplier, true);
 
         List<Boolean> lines = new ArrayList<>();
-        lines.add(Boolean.FALSE);
-        lines.addAll(generator.generate(length - 1));
+        initFirst(lines);
+        initBody(lines, length, generator);
 
         return lines;
     }
 
-    public int move(int lineIndex) {
-        return Direction.generate(lines, lineIndex).move(lineIndex);
+    private static void initBody(List<Boolean> lines, int length, BooleansGenerator generator) {
+        lines.addAll(generator.generate(length - 1));
+    }
+
+    private static void initFirst(List<Boolean> lines) {
+        lines.add(Boolean.FALSE);
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     public String beautify() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(StringUtils.leftPad(BOUNDARY, Player.MAX_NAME_LENGTH))
-                .append(convertLinesSkipFirst())
-                .append(BOUNDARY);
-
-        return sb.toString();
+        return this.points.stream()
+                .map(point -> point.beautify())
+                .collect(Collectors.joining());
     }
 
-    private String convertLinesSkipFirst() {
-        return lines.stream()
-                .skip(1)
-                .map(line -> StringUtils.leftPad("",
-                        Player.MAX_NAME_LENGTH, line == Boolean.FALSE ? NOT_CONNECTED : CONNECTED))
-                .collect(Collectors.joining(BOUNDARY));
-    }
-
-    protected List<Boolean> getLines() {
-        return this.lines;
+    public List<Point> getPoints() {
+        return points;
     }
 }
