@@ -2,7 +2,7 @@ package generator.ladder.impl;
 
 import domain.ladder.Ladder;
 import domain.ladder.Ladders;
-import generator.impl.RandomBooleanGenerator;
+import generator.bool.impl.RandomBooleanGenerator;
 import generator.ladder.LaddersGenerator;
 
 import java.util.List;

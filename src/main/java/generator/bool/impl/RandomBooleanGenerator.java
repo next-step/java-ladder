@@ -1,4 +1,4 @@
-package generator.impl;
+package generator.bool.impl;
 
 import java.util.Random;
 import java.util.function.BooleanSupplier;

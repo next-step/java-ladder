@@ -1,4 +1,4 @@
-package generator;
+package generator.bool;
 
 import java.util.List;
 
