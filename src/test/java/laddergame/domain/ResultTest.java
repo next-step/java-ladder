@@ -2,14 +2,13 @@ package laddergame.domain;
 
 import org.junit.Test;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.Map;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static laddergame.ApplicationLauncher.ALL;
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultTest extends BaseDomainTest {
 
@@ -34,7 +33,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -58,7 +57,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
 
@@ -84,7 +83,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
 
@@ -110,7 +109,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -135,7 +134,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -160,7 +159,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -185,7 +184,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -210,7 +209,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -235,7 +234,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -261,7 +260,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -287,7 +286,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -313,7 +312,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -339,7 +338,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -365,7 +364,7 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 
     @Test
@@ -391,6 +390,6 @@ public class ResultTest extends BaseDomainTest {
         );
         Result expected = new Result(null, gameResult);
 
-        assertEquals(expected.getGameResult(ALL), actual.getGameResult(ALL));
+        assertThat(expected.getGameResult(ALL)).isEqualTo(actual.getGameResult(ALL));
     }
 }

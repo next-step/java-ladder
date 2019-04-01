@@ -5,37 +5,37 @@ import org.junit.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
 
     @Test
     public void first() {
-        assertEquals(Point.first(TRUE).move(),1);
-        assertEquals(Point.first(FALSE).move(),0);
+        assertThat(Point.first(TRUE).move()).isEqualTo(1);
+        assertThat(Point.first(FALSE).move()).isEqualTo(0);
     }
 
     @Test
     public void next_stay() {
         Point second = Point.first(FALSE).next(FALSE);
-        assertEquals(second.move(),1);
+        assertThat(second.move()).isEqualTo(1);
     }
 
     @Test
     public void next_left() {
         Point second = Point.first(TRUE).next(FALSE);
-        assertEquals(second.move(),0);
+        assertThat(second.move()).isEqualTo(0);
     }
 
     @Test
     public void next_right() {
         Point second = Point.first(FALSE).next(TRUE);
-        assertEquals(second.move(),2);
+        assertThat(second.move()).isEqualTo(2);
     }
 
     @Test
     public void next() {
         Point second = Point.first(TRUE).next(LadderRandomValueGenerator.getInstance());
-        assertEquals(second.move(),0);
+        assertThat(second.move()).isEqualTo(0);
     }
 }

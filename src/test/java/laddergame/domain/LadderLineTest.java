@@ -10,7 +10,7 @@ import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest extends BaseDomainTest {
 
@@ -28,7 +28,7 @@ public class LadderLineTest extends BaseDomainTest {
         LadderLine expected = getLadderLine(Arrays.asList(FALSE));
         LadderLine actual = LadderLine.init(2, falseGenerator);
 
-        assertEquals(expected, actual);
+        assertThat(expected).isEqualTo(actual);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class LadderLineTest extends BaseDomainTest {
         LadderLine expected = getLadderLine(Arrays.asList(TRUE));
         LadderLine actual = LadderLine.init(2, trueGenerator);
 
-        assertEquals(expected, actual);
+        assertThat(expected).isEqualTo(actual);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class LadderLineTest extends BaseDomainTest {
         LadderLine expected = getLadderLine(Arrays.asList(FALSE, FALSE));
         LadderLine actual = LadderLine.init(3, falseGenerator);
 
-        assertEquals(expected, actual);
+        assertThat(expected).isEqualTo(actual);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class LadderLineTest extends BaseDomainTest {
         curPoint = LadderLine.initBody(3, actualPoints, curPoint, trueGenerator);
         LadderLine.initLast(actualPoints, curPoint);
 
-        assertEquals(expected, new LadderLine(actualPoints));
+        assertThat(expected).isEqualTo(new LadderLine(actualPoints));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class LadderLineTest extends BaseDomainTest {
         curPoint = LadderLine.initBody(3, actualPoints, curPoint, falseGenerator);
         LadderLine.initLast(actualPoints, curPoint);
 
-        assertEquals(expected, new LadderLine(actualPoints));
+        assertThat(expected).isEqualTo(new LadderLine(actualPoints));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class LadderLineTest extends BaseDomainTest {
         LadderLine expected = getLadderLine(Arrays.asList(FALSE, FALSE, FALSE));
         LadderLine actual = LadderLine.init(4, falseGenerator);
 
-        assertEquals(expected, actual);
+        assertThat(expected).isEqualTo( actual);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class LadderLineTest extends BaseDomainTest {
         curPoint = LadderLine.initBody(4, actualPoints, curPoint, falseGenerator);
         LadderLine.initLast(actualPoints, curPoint);
 
-        assertEquals(expected, new LadderLine(actualPoints));
+        assertThat(expected).isEqualTo(new LadderLine(actualPoints));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class LadderLineTest extends BaseDomainTest {
         curPoint = LadderLine.initBody(3, actualPoints, curPoint, falseGenerator);
         LadderLine.initBody(4, actualPoints, curPoint, trueGenerator);
 
-        assertEquals(expected, new LadderLine(actualPoints));
+        assertThat(expected).isEqualTo(new LadderLine(actualPoints));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class LadderLineTest extends BaseDomainTest {
         curPoint = LadderLine.initBody(3, actualPoints, curPoint, trueGenerator);
         LadderLine.initBody(4, actualPoints, curPoint, falseGenerator);
 
-        assertEquals(expected, new LadderLine(actualPoints));
+        assertThat(expected).isEqualTo(new LadderLine(actualPoints));
     }
 
     @Test
