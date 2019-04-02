@@ -1,8 +1,7 @@
 package domain.ladder;
 
-import generator.bool.impl.ProbabilityBasedGenerator;
-import generator.ladder.LaddersGenerator;
-import generator.ladder.impl.RandomLineLaddersGenerator;
+import generator.ladders.LaddersGenerator;
+import generator.ladders.impl.ProbabilityBasedLineGenerator;
 import org.junit.*;
 
 import java.util.Arrays;
@@ -15,14 +14,14 @@ public class LaddersTest {
 
     @Before
     public void setup() {
-        laddersGenerator = new RandomLineLaddersGenerator(new ProbabilityBasedGenerator(100));
+        laddersGenerator = new ProbabilityBasedLineGenerator(100);
     }
 
     @Test
     public void test_크기() {
         //    |-----|     |-----|
         Ladders ladders = laddersGenerator.generate(1, 4);
-        assertThat(ladders.size())
+        assertThat(ladders.lineSize())
                 .isEqualTo(4);
     }
 

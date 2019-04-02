@@ -10,7 +10,7 @@ public class LaddersAndPrizes {
     private final Prizes prizes;
 
     public LaddersAndPrizes(Ladders ladders, Prizes prizes) {
-        if (ladders.size() != prizes.size()) {
+        if (ladders.lineSize() != prizes.size()) {
             throw new IllegalArgumentException();
         }
 
@@ -22,8 +22,8 @@ public class LaddersAndPrizes {
         return this.prizes.filter(this.ladders.move(lineIndexes));
     }
 
-    public int size() {
-        return this.prizes.size();
+    public int lineSize() {
+        return this.ladders.lineSize();
     }
 
     public String beautify() {

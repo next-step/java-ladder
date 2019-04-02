@@ -37,12 +37,12 @@ public class Ladders {
                 .collect(Collectors.joining("\n"));
     }
 
-    public int size() {
+    public int lineSize() {
         if (this.ladders.isEmpty()) {
             return 0;
         }
 
-        return this.ladders.get(0).size();
+        return this.ladders.get(0).lineSize();
     }
 
 }

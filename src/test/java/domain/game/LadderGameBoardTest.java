@@ -3,20 +3,19 @@ package domain.game;
 import domain.ladder.Ladders;
 import domain.player.Players;
 import domain.prize.Prizes;
-import generator.bool.impl.ProbabilityBasedGenerator;
-import generator.ladder.LaddersGenerator;
-import generator.ladder.impl.RandomLineLaddersGenerator;
+import generator.ladders.LaddersGenerator;
+import generator.ladders.impl.ProbabilityBasedLineGenerator;
 import org.junit.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameBoardTest {
 
-    LaddersGenerator laddersGenerator;
+    private LaddersGenerator laddersGenerator;
 
     @Before
     public void setup() {
-        laddersGenerator = new RandomLineLaddersGenerator(new ProbabilityBasedGenerator(100));
+        laddersGenerator = new ProbabilityBasedLineGenerator(100);
     }
 
     @Test(expected = IllegalArgumentException.class)

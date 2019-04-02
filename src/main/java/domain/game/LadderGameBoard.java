@@ -14,7 +14,7 @@ public class LadderGameBoard {
     private final LaddersAndPrizes laddersAndPrizes;
 
     public LadderGameBoard(Players players, LaddersAndPrizes laddersAndPrizes) {
-        if (players.size() != laddersAndPrizes.size()) {
+        if (players.size() != laddersAndPrizes.lineSize()) {
             throw new IllegalArgumentException();
         }
 
@@ -25,7 +25,7 @@ public class LadderGameBoard {
 
     public Prizes raffle(String playerNames) {
         if (playerNames.equals(ALL_PLAYER_NAME)) {
-            return raffle(IntStream.range(0, laddersAndPrizes.size()).toArray());
+            return raffle(IntStream.range(0, laddersAndPrizes.lineSize()).toArray());
         }
 
         return raffle(players.findIndexByName(playerNames));

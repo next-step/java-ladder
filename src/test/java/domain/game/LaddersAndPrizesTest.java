@@ -2,9 +2,8 @@ package domain.game;
 
 import domain.ladder.Ladders;
 import domain.prize.Prizes;
-import generator.bool.impl.ProbabilityBasedGenerator;
-import generator.ladder.LaddersGenerator;
-import generator.ladder.impl.RandomLineLaddersGenerator;
+import generator.ladders.LaddersGenerator;
+import generator.ladders.impl.ProbabilityBasedLineGenerator;
 import org.junit.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,11 +14,11 @@ public class LaddersAndPrizesTest {
 
     @Before
     public void setup() {
-        laddersGenerator = new RandomLineLaddersGenerator(new ProbabilityBasedGenerator(100));
+        laddersGenerator = new ProbabilityBasedLineGenerator(100);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void test_생성실패_사다리와_경품의_크기가_다름() {
+    public void test_생성실패_사다리와_경품의_넓이가_다름() {
         final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
         final Ladders ladders = laddersGenerator.generate(5, 5);
 
@@ -32,7 +31,7 @@ public class LaddersAndPrizesTest {
         final Ladders ladders = laddersGenerator.generate(5, prizes.size());
         LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(ladders, prizes);
 
-        assertThat(laddersAndPrizes.size())
+        assertThat(laddersAndPrizes.lineSize())
                 .isEqualTo(4);
     }
 
