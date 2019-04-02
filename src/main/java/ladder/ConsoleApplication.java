@@ -7,13 +7,25 @@ public class ConsoleApplication {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        String names = InputView.inputNames(scanner);
-        Players players = new Players(names);
+        String playerNames = InputView.inputNames(scanner);
+        Players players = new Players(playerNames);
+
+        String resultNames = InputView.inputResults(scanner);
+        EndPoints ladderResults = new EndPoints(resultNames);
+
         int height = InputView.inputHeight(scanner);
 
         LadderGame ladderGame = new LadderGame(new RandomLadderGenerator());
-        ladderGame.init(players.getCountOfPerson(), height);
+        ladderGame.init(players.getCount(), height);
+        OutputView.printLadder(players, ladderGame, ladderResults);
 
-        OutputView.print(players, ladderGame);
+        GameResults gameResults = ladderGame.play(players, ladderResults);
+
+        String selectionResult = null;
+        do {
+            selectionResult = InputView.inputSelectedPlayer(scanner);
+            OutputView.printResult(gameResults, selectionResult);
+
+        } while (!OutputView.isEndAnswer(selectionResult));
     }
 }

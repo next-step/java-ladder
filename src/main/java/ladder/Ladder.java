@@ -29,6 +29,10 @@ public class Ladder {
         return lines.get(0);
     }
 
+    public void moveLines(Player player) {
+        this.lines.forEach(line -> line.moveOneLine(player));
+    }
+
     @Override
     public String toString() {
         return String.join("\n",

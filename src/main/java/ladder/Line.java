@@ -26,4 +26,9 @@ public class Line {
     public int getNumberOfPoints() {
         return points.size();
     }
+
+    public void moveOneLine(Player player) {
+        Point current = points.get(player.getDestination());
+        player.movePoint(current);
+    }
 }
