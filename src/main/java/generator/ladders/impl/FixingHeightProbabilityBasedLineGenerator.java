@@ -5,9 +5,9 @@ import generator.ladders.LaddersGenerator;
 
 public class FixingHeightProbabilityBasedLineGenerator {
 
-    private LaddersGenerator laddersGenerator;
+    private final LaddersGenerator laddersGenerator;
 
-    private int height;
+    private final int height;
 
     public FixingHeightProbabilityBasedLineGenerator(int height, int percentage) {
         this.laddersGenerator = new ProbabilityBasedLineGenerator(percentage);

@@ -9,7 +9,7 @@ public class ProbabilityBasedGenerator implements BooleanSupplier {
 
     private static final int UNDER_BOUND_INCLUSIVE = 1;
 
-    private Random random;
+    private final Random random;
 
     private final int percentage;
 
