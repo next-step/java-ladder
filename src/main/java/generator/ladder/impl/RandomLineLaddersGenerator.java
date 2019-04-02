@@ -2,7 +2,6 @@ package generator.ladder.impl;
 
 import domain.ladder.Ladder;
 import domain.ladder.Ladders;
-import generator.bool.impl.RandomBooleanGenerator;
 import generator.ladder.LaddersGenerator;
 
 import java.util.List;
@@ -14,8 +13,8 @@ public class RandomLineLaddersGenerator implements LaddersGenerator {
 
     BooleanSupplier booleanGenerator;
 
-    public RandomLineLaddersGenerator() {
-        booleanGenerator = new RandomBooleanGenerator();
+    public RandomLineLaddersGenerator(BooleanSupplier booleanSupplier) {
+        this.booleanGenerator = booleanSupplier;
     }
 
     @Override

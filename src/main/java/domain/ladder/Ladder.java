@@ -58,4 +58,8 @@ public class Ladder {
     public List<Point> getPoints() {
         return points;
     }
+
+    public int size() {
+        return this.points.size();
+    }
 }

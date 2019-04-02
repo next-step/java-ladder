@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import generator.bool.impl.RandomBooleanGenerator;
+import generator.bool.impl.ProbabilityBasedGenerator;
 import org.junit.*;
 
 import java.util.Arrays;
@@ -13,7 +13,7 @@ public class LadderTest {
     public void test_겹치는_라인을_제외하고_랜덤으로_라인을_생성() {
         int length = 8;
         for (int i = 0; i < 100; i++) {
-            assertThat(Ladder.createLines(length, new RandomBooleanGenerator()))
+            assertThat(Ladder.createLines(length, new ProbabilityBasedGenerator(50)))
                     .hasSize(length)
                     .doesNotContainSequence(true, true);
         }
@@ -26,6 +26,14 @@ public class LadderTest {
         assertThat(Ladder.createLines(length, () -> true))
                 .hasSize(length)
                 .isEqualTo(Arrays.asList(false, true, false, true, false, true, false, true));
+    }
+
+    @Test
+    public void test_크기() {
+        Ladder ladder = new Ladder(8, () -> true);
+
+        assertThat(ladder.size())
+            .isEqualTo(8);
     }
 
     @Test
