@@ -2,8 +2,6 @@ package domain.game;
 
 import domain.ladder.Ladders;
 import domain.prize.Prizes;
-import generator.ladder.LaddersGenerator;
-import generator.ladder.impl.RandomLineLaddersGenerator;
 
 public class LaddersAndPrizes {
 
@@ -11,13 +9,13 @@ public class LaddersAndPrizes {
 
     private final Prizes prizes;
 
-    public LaddersAndPrizes(int height, Prizes prizes) {
-        this(new RandomLineLaddersGenerator(), height, prizes);
-    }
+    public LaddersAndPrizes(Ladders ladders, Prizes prizes) {
+        if (ladders.size() != prizes.size()) {
+            throw new IllegalArgumentException();
+        }
 
-    public LaddersAndPrizes(LaddersGenerator laddersGenerator, int height, Prizes prizes) {
         this.prizes = prizes;
-        this.ladders = laddersGenerator.generate(height, size());
+        this.ladders = ladders;
     }
 
     public Prizes raffle(int... lineIndexes) {

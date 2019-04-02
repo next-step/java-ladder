@@ -1,8 +1,10 @@
 package domain.game;
 
+import domain.ladder.Ladders;
 import domain.prize.Prizes;
+import generator.bool.impl.ProbabilityBasedGenerator;
 import generator.ladder.LaddersGenerator;
-import generator.ladder.impl.FixingLineLaddersGenerator;
+import generator.ladder.impl.RandomLineLaddersGenerator;
 import org.junit.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,13 +15,23 @@ public class LaddersAndPrizesTest {
 
     @Before
     public void setup() {
-        laddersGenerator = new FixingLineLaddersGenerator();
+        laddersGenerator = new RandomLineLaddersGenerator(new ProbabilityBasedGenerator(100));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_생성실패_사다리와_경품의_크기가_다름() {
+        final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
+        final Ladders ladders = laddersGenerator.generate(5, 5);
+
+        new LaddersAndPrizes(ladders, prizes);
     }
 
     @Test
     public void test_크기() {
         final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
-        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(5, prizes);
+        final Ladders ladders = laddersGenerator.generate(5, prizes.size());
+        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(ladders, prizes);
+
         assertThat(laddersAndPrizes.size())
                 .isEqualTo(4);
     }
@@ -27,7 +39,9 @@ public class LaddersAndPrizesTest {
     @Test
     public void test_사다리와_경품_출력() {
         final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
-        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(laddersGenerator, 5, prizes);
+        final Ladders ladders = laddersGenerator.generate(5, prizes.size());
+        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(ladders, prizes);
+
         assertThat(laddersAndPrizes.beautify())
                 .isEqualTo(
                     "    |-----|     |-----|\n" +
@@ -41,10 +55,11 @@ public class LaddersAndPrizesTest {
 
     @Test
     public void test_개별_추첨_결과_높이1() {
-        final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
         //    |-----|     |-----|
         // 꽝    5000  꽝    3000
-        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(laddersGenerator, 1, prizes);
+        final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
+        final Ladders ladders = laddersGenerator.generate(1, prizes.size());
+        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(ladders, prizes);
 
         assertThat(laddersAndPrizes.raffle(0))
                 .isEqualTo(Prizes.generate("5000"));
@@ -58,11 +73,12 @@ public class LaddersAndPrizesTest {
 
     @Test
     public void test_개별_추첨_결과_높이2() {
-        final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
         //    |-----|     |-----|
         //    |-----|     |-----|
         // 꽝    5000  꽝    3000
-        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(laddersGenerator, 2, prizes);
+        final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
+        final Ladders ladders = laddersGenerator.generate(2, prizes.size());
+        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(ladders, prizes);
 
         assertThat(laddersAndPrizes.raffle(0))
                 .isEqualTo(Prizes.generate("꽝"));
@@ -76,10 +92,11 @@ public class LaddersAndPrizesTest {
 
     @Test
     public void test_전체_추첨_결과_높이1() {
-        final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
         //    |-----|     |-----|
         // 꽝    5000  꽝    3000
-        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(laddersGenerator, 1, prizes);
+        final Prizes prizes = Prizes.generate("꽝,5000,꽝,3000");
+        final Ladders ladders = laddersGenerator.generate(1, prizes.size());
+        LaddersAndPrizes laddersAndPrizes = new LaddersAndPrizes(ladders, prizes);
 
         assertThat(laddersAndPrizes.raffle(0, 1, 2, 3))
                 .isEqualTo(Prizes.generate("5000,꽝,3000,꽝"));
