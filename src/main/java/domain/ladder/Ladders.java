@@ -32,8 +32,17 @@ public class Ladders {
     }
 
     public String beautify() {
-        return ladders.stream()
+        return this.ladders.stream()
                 .map(Ladder::beautify)
                 .collect(Collectors.joining("\n"));
     }
+
+    public int size() {
+        if (this.ladders.isEmpty()) {
+            return 0;
+        }
+
+        return this.ladders.get(0).size();
+    }
+
 }
