@@ -2,19 +2,19 @@ package ladder;
 
 
 public class LadderGame {
-    private final Ladder ladder;
-    private final Players players;
+    private final LadderGenerator ladderGenerator;
+    private Ladder ladder;
 
-    public LadderGame(LadderGenerator ladderGenerator, Players players, int height) {
-        this.players = players;
-        this.ladder = ladderGenerator.generate(players.getCountOfPerson(), height);
+    public LadderGame(LadderGenerator ladderGenerator) {
+        this.ladderGenerator = ladderGenerator;
     }
+
+    public void init(int countOfPerson, int height) {
+        this.ladder = ladderGenerator.generate(countOfPerson, height);
+    }
+
 
     public Ladder getLadder() {
         return ladder;
-    }
-
-    public Players getPlayers() {
-        return players;
     }
 }

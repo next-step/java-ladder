@@ -22,7 +22,11 @@ public class Ladder {
     }
 
     public int getCountOfPoints() {
-        return lines.get(0).getNumberOfPoints();
+        return getFirstLine().getNumberOfPoints();
+    }
+
+    private Line getFirstLine() {
+        return lines.get(0);
     }
 
     @Override

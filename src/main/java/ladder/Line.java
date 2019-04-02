@@ -26,8 +26,4 @@ public class Line {
     public int getNumberOfPoints() {
         return points.size();
     }
-
-    public boolean matchCountOfPoint(Line line) {
-        return line.points.size() == this.points.size();
-    }
 }

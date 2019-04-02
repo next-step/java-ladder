@@ -4,9 +4,9 @@ package ladder;
 public class OutputView {
     public static final String GAME_RESULT_MENT = "실행결과";
 
-    public static void print(LadderGame ladderGame) {
+    public static void print(Players players, LadderGame ladderGame) {
         System.out.println(GAME_RESULT_MENT);
-        printPlayers(ladderGame.getPlayers());
+        printPlayers(players);
         printLadder(ladderGame.getLadder());
     }
 

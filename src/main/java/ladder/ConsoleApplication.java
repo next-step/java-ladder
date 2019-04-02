@@ -11,9 +11,9 @@ public class ConsoleApplication {
         Players players = new Players(names);
         int height = InputView.inputHeight(scanner);
 
-        LadderGenerator ladderGenerator = new RandomLadderGenerator();
-        LadderGame ladderGame = new LadderGame(ladderGenerator, players, height);
+        LadderGame ladderGame = new LadderGame(new RandomLadderGenerator());
+        ladderGame.init(players.getCountOfPerson(), height);
 
-        OutputView.print(ladderGame);
+        OutputView.print(players, ladderGame);
     }
 }
