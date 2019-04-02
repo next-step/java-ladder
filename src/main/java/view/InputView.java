@@ -25,12 +25,12 @@ public class InputView {
         return runResults;
     }
 
-    public static int inputHeight() throws IOException {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int height = Integer.parseInt(reader.readLine());
+    public static String inputLevel() throws IOException {
+        System.out.println("실행할 사다리의 난이도는?");
+        String result = reader.readLine();
         System.out.println();
 
-        return height;
+        return result;
     }
 
     public static String inputWantSeeResult() throws IOException {
