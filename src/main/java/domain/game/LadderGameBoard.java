@@ -14,12 +14,13 @@ public class LadderGameBoard {
     private final LaddersAndPrizes laddersAndPrizes;
 
     public LadderGameBoard(Players players, LaddersAndPrizes laddersAndPrizes) {
-        this.players = players;
-        this.laddersAndPrizes = laddersAndPrizes;
-
         if (players.size() != laddersAndPrizes.size()) {
             throw new IllegalArgumentException();
         }
+
+        this.players = players;
+        this.laddersAndPrizes = laddersAndPrizes;
+
     }
 
     public Prizes raffle(String playerNames) {
