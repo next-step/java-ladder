@@ -2,12 +2,14 @@ package domain;
 
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class UserTest {
-    @Test
-    public void 순서에_맞춰_위치를_초기화한다() {
-        User user = new User("user1", 1);
-        assertThat(user.getPosition()).isEqualTo(Point.valueOf(1, 1));
+    @Test(expected = IllegalArgumentException.class)
+    public void 이름이_한글자_미만일_경우_예외가_발생한다() {
+        new User("");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 이름이_다섯글자를_초과할_경우_예외가_발생한다() {
+        new User("123456");
     }
 }

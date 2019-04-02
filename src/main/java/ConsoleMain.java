@@ -1,5 +1,4 @@
 import domain.LadderGame;
-import domain.RandomNumberPointLottery;
 import view.ConsoleInputView;
 import view.ConsoleOutputView;
 
@@ -10,7 +9,7 @@ public class ConsoleMain {
         List<String> userNames = ConsoleInputView.inputUserNames();
         Integer ladderHeight = ConsoleInputView.inputLadderHeight();
 
-        LadderGame ladderGame = new LadderGame(userNames, ladderHeight, new RandomNumberPointLottery());
+        LadderGame ladderGame = new LadderGame(userNames, ladderHeight);
         ConsoleOutputView.printResult(ladderGame);
     }
 }

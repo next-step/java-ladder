@@ -3,11 +3,22 @@ package domain;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
+    @Test
+    public void 사용자수x높이의_사다리를_생성한다() {
+        List<User> users = Arrays.asList(
+            new User("user1"), new User("user2"), new User("user3"));
+        Ladder ladder = new Ladder(users.size(), 5);
+
+        assertThat(ladder.getLines()).hasSize(5);
+        assertThat(ladder.getLines().get(0).getPoints()).hasSize(3);
+    }
+
+    /*
     @Test
     public void 전달받은_포인트에_라인_추가가_가능하면_라인을_추가한다() {
         Ladder ladder = new Ladder(Point.valuesOf(5, 6), Arrays.asList(Point.valueOf(1, 1), Point.valueOf(2, 1)));
@@ -33,4 +44,5 @@ public class LadderTest {
         assertThat(ladder.getWidth()).isEqualTo(5);
         assertThat(ladder.getHeight()).isEqualTo(6);
     }
+    */
 }

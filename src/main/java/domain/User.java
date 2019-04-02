@@ -1,19 +1,23 @@
 package domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class User {
+    private static final Integer MIN_USER_NAME_LENGTH = 1;
+    private static final Integer MAX_USER_NAME_LENGTH = 5;
+
     private String name;
-    private Point position;
 
-    public User(String name, Integer order) {
+    public User(String name) {
+        if(name.length() < MIN_USER_NAME_LENGTH || name.length() > MAX_USER_NAME_LENGTH) {
+            throw new IllegalArgumentException();
+        }
+
         this.name = name;
-        this.position = Point.valueOf(order, 1);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Point getPosition() {
-        return position;
+    @Override
+    public String toString() {
+        return StringUtils.rightPad(name, MAX_USER_NAME_LENGTH + 1);
     }
 }

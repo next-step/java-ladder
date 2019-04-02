@@ -1,55 +1,38 @@
 package domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+public class Point {
+    private static final Integer MIN_POINT_NUMBER = 1;
 
-public class Point implements Comparable<Point>{
-    private final Integer x;
-    private final Integer y;
+    private Integer idx;
+    private Boolean movable;
 
-    private Point(Integer x, Integer y) {
-        this.x = x;
-        this.y = y;
+    private Point(Integer idx, Boolean movable) {
+        this.idx = idx;
+        this.movable = movable;
     }
 
-    public static Point valueOf(Integer x, Integer y) {
-        if(x <= 0 || y <= 0) {
+    public static Point valueOf(Integer idx, Boolean movable) {
+        validatePoint(idx);
+
+        return new Point(idx, movable);
+    }
+
+    private static void validatePoint(Integer idx) {
+        if(idx < MIN_POINT_NUMBER) {
             throw new IllegalArgumentException();
         }
-
-        return new Point(x, y);
     }
 
-    public static List<Point> valuesOf(Integer width, Integer height) {
-        return IntStream.rangeClosed(1, height)
-            .boxed()
-            .flatMap(y -> IntStream.rangeClosed(1, width).mapToObj(x -> Point.valueOf(x, y)))
-            .collect(Collectors.toList());
+    public Point next(Boolean movable) {
+        if(this.movable) {
+            return Point.valueOf(idx + 1, false);
+        }
+
+        return Point.valueOf(idx + 1, movable);
     }
 
-    public Integer distanceOfX(Point point) {
-        return Math.abs(x - point.getX());
-    }
-
-    public Integer distanceOfY(Point point) {
-        return Math.abs(y - point.getY());
-    }
-
-    public Point increaseX() {
-        return Point.valueOf(x + 1, y);
-    }
-
-    public Point increaseY() {
-        return Point.valueOf(x, y + 1);
-    }
-
-    public Integer getX() {
-        return x;
-    }
-
-    public Integer getY() {
-        return y;
+    public Boolean isMovable() {
+        return movable;
     }
 
     @Override
@@ -64,7 +47,7 @@ public class Point implements Comparable<Point>{
 
         if(obj.getClass() == getClass()) {
             Point point = (Point) obj;
-            return x.equals(point.x) && y.equals(point.y);
+            return idx.equals(point.idx);
         }
 
         return false;
@@ -72,15 +55,11 @@ public class Point implements Comparable<Point>{
 
     @Override
     public int hashCode() {
-        return x.hashCode() + y.hashCode();
+        return idx.hashCode();
     }
 
     @Override
-    public int compareTo(Point point) {
-        if(y.equals(point.y)) {
-            return x.compareTo(point.x);
-        }
-
-        return y.compareTo(point.y);
+    public String toString() {
+        return "|";
     }
 }
