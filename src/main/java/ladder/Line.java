@@ -27,7 +27,8 @@ public class Line {
         return points.size();
     }
 
-    public boolean matchCountOfPoint(Line line) {
-        return line.points.size() == this.points.size();
+    public void moveOneLine(Player player) {
+        Point current = points.get(player.getDestination());
+        player.movePoint(current);
     }
 }

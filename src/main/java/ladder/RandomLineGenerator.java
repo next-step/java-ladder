@@ -13,10 +13,11 @@ public class RandomLineGenerator implements LineGenerator {
 
     private void setLine(int countOfPerson, List<Point> points) {
         Point previous = null;
-        for (int i = 0; i < countOfPerson; i++) {
+        for (int i = 0; i < countOfPerson - 1; i++) {
             Point current = Point.valueOf(previous);
             points.add(current);
             previous = current;
         }
+        points.add(Point.getRightNotLinked(previous));
     }
 }

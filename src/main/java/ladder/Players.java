@@ -1,28 +1,33 @@
 package ladder;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class Players {
-    private static final String COMMA = ",";
-    private final List<Player> players;
-
+public class Players extends EndPoints {
     public Players(String names) {
-        this.players = Arrays.stream(names.split(COMMA))
-                .map(Player::new)
+        super(parse(StringUtils.split(names)));
+    }
+
+    private static List<Player> parse(List<String> strings) {
+        return IntStream.range(0, strings.size())
+                .mapToObj(i -> new Player(i, strings.get(i)))
                 .collect(Collectors.toList());
     }
 
-    public int getCountOfPerson() {
-        return players.size();
+    public void descendByOrder(Ladder ladder) {
+        getPlayers().forEach(player -> player.descend(ladder));
     }
 
-    @Override
-    public String toString() {
-        return Player.BLANK + String.join(Player.BLANK,
-                players.stream()
-                        .map(Player::toString)
-                        .collect(Collectors.toList()));
+    public List<Player> getPlayers() {
+        return this.endPoints.stream().map(player -> (Player) player).collect(Collectors.toList());
+    }
+
+    public Player match(String selectedPlayer) {
+        Optional<Player> found = getPlayers()
+                .stream()
+                .filter(player -> player.equalsName(selectedPlayer)).findFirst();
+        return found.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
     }
 }

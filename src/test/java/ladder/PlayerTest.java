@@ -6,41 +6,35 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerTest {
     @Test
-    public void 플레이어이름_5자() {
+    public void 양쪽단절상태포인트_지나가기() {
         // given
-        String name = "하하하하하";
+        Point point = Point.neitherLinkedPoint;
+        Player player = new Player(4, "이름");
         // when
-        Player player = new Player(name);
+        player.movePoint(point);
         // then
-        assertThat(player.getName()).isEqualTo(name);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void 플레이어이름_5자초과() {
-        // given
-        String name = "하하하하하하";
-        // when
-        Player player = new Player(name);
-        // then
+        assertThat(player.getDestination()).isEqualTo(4);
     }
 
     @Test
-    public void 플레이어이름4자_출력시_길이6() {
+    public void 오른쪽연결상태포인트_지나가기() {
         // given
-        String name = "하하하하";
+        Point point = Point.onlyRightLinkedPoint;
+        Player player = new Player(4, "이름");
         // when
-        Player player = new Player(name);
+        player.movePoint(point);
         // then
-        assertThat(player.toString().length()).isEqualTo(5);
+        assertThat(player.getDestination()).isEqualTo(5);
     }
 
     @Test
-    public void 플레이어이름5자_출력시_길이() {
+    public void 왼쪽연결상태포인트_지나가기() {
         // given
-        String name = "하하하하하";
+        Point point = Point.onlyLeftLinkedPoint;
+        Player player = new Player(4, "이름");
         // when
-        Player player = new Player(name);
+        player.movePoint(point);
         // then
-        assertThat(player.toString().length()).isEqualTo(5);
+        assertThat(player.getDestination()).isEqualTo(3);
     }
 }

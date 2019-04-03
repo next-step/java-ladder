@@ -1,31 +1,33 @@
 package ladder;
 
-public class Player {
-    public static final String BLANK = " ";
-    private final String name;
+public class Player extends EndPoint {
+    private final int index;
+    private int destination;
 
-    public Player(String name) {
-        verifyLenthOfName(name);
-        this.name = name;
+    public Player(final int index, final String name) {
+        super(name);
+        this.index = index;
+        this.destination = index;
     }
 
-    private void verifyLenthOfName(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 최대5글자까지만 설정할 수 있습니다.");
+    public void descend(Ladder ladder) {
+        ladder.moveLines(this);
+    }
+
+    public void movePoint(Point current) {
+        if (current.isRightLinked()) {
+            destination += 1;
+        }
+        if (current.isLeftLinked()) {
+            destination -= 1;
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name);
-        while (sb.length() < 5) {
-            sb.insert(0, BLANK);
-        }
-        return sb.toString();
+    public int getDestination() {
+        return destination;
     }
 
-    public String getName() {
-        return name;
+    public boolean equalsName(String selectedPlayer) {
+        return name.equals(selectedPlayer);
     }
 }
