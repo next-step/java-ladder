@@ -63,11 +63,11 @@ public class Ladder {
         int nowHeight = height;
         int nowLine = line;
 
-        if (lines.get(nowLine).getRows().get(nowHeight).isRow()) {
+        if (lines.get(nowLine).hasRow(nowHeight)) {
             //왼쪽에 길있음
             nowHeight++;
             nowLine++;
-        } else if (nowLine > 0 && lines.get(nowLine - 1).getRows().get(nowHeight).isRow()) {
+        } else if (nowLine > 0 && lines.get(nowLine - 1).hasRow(nowHeight)) {
             //오른쪽에 길있음
             nowHeight++;
             nowLine--;
