@@ -2,7 +2,8 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.dto.Gamer;
-import ladder.dto.Result;
+import ladder.dto.LadderGenerator;
+import ladder.dto.Reward;
 import ladder.view.LadderInputView;
 import ladder.view.LadderOutputView;
 
@@ -43,15 +44,15 @@ public class Application {
             List<String> results = LadderInputView.splitInputResult(inputResult, gamers.size());
 
             //보상생성
-            List<Result> rewards = results.stream()
-                    .map(Result::new)
+            List<Reward> rewards = results.stream()
+                    .map(Reward::new)
                     .collect(Collectors.toList());
 
             //높이 input
             int height = LadderInputView.inputHeight();
 
             //사다리생성 및 겹치는 라인 확인
-            Ladder ladder = new Ladder(height, gamers.size(), gamers, rewards);
+            Ladder ladder = LadderGenerator.createLadde(height, gamers.size(), gamers, rewards);
             ladder.checkLadder();
 
             //output ladder

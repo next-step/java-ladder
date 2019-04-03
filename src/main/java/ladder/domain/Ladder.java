@@ -1,31 +1,24 @@
 package ladder.domain;
 
 import ladder.dto.Gamer;
-import ladder.dto.Result;
-import java.util.ArrayList;
+import ladder.dto.Reward;
+
 import java.util.List;
 
 public class Ladder {
 
     private List<Line> lines;
-
     private List<Gamer> gamers;
-
-    private List<Result> rewards;
+    private List<Reward> rewards;
 
     public Ladder(List<Gamer> gamers) {
         this.gamers = gamers;
     }
 
-    public Ladder(int height, int lineCount, List<Gamer> gamers, List<Result> rewards) {
+    public Ladder(List<Line> lines, List<Gamer> gamers, List<Reward> rewards) {
         this.gamers = gamers;
         this.rewards = rewards;
-        lines = new ArrayList<>();
-        for (int i = 0; i < lineCount; i++) {
-            Line line = new Line(height);
-            line.createRow();
-            lines.add(line);
-        }
+        this.lines = lines;
     }
 
     public void checkLadder() {
@@ -35,7 +28,7 @@ public class Ladder {
         deleteLastLineRow();
     }
 
-    public void deleteLastLineRow() {
+    private void deleteLastLineRow() {
         lines.get(lines.size() - 1).deleteRow();
     }
 
@@ -54,21 +47,24 @@ public class Ladder {
     }
 
     public void matchingReward() {
-        for (int i = 0; i < lines.size(); i++) {
-            gamers.get(i).setResult(rewards.get(downLine(i, 0)));
+        int line = 0;
+        for (Gamer gamer : gamers) {
+            gamer.setReward(rewards.get(downLine(line, 0)));
+            line++;
         }
     }
 
     private int downLine(int line, int height) {
-        //마지막 높이
+        //마지막칸의 라인위치 리턴
         if (height == lines.get(0).getHeight()) {
             return line;
         }
 
         int nowHeight = height;
         int nowLine = line;
-        //왼쪽에 길있음
+
         if (lines.get(nowLine).getRows().get(nowHeight).isRow()) {
+            //왼쪽에 길있음
             nowHeight++;
             nowLine++;
         } else if (nowLine > 0 && lines.get(nowLine - 1).getRows().get(nowHeight).isRow()) {

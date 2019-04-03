@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.dto.Gamer;
-import ladder.dto.Result;
+import ladder.dto.Reward;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -47,7 +47,7 @@ public class LadderOutputView {
         }
     }
 
-    public static void printResults(List<Result> rewards, int maxNameLength) {
+    public static void printResults(List<Reward> rewards, int maxNameLength) {
         rewards.forEach(reward -> {
             System.out.print(reward.toString());
             IntStream.range(0, maxNameLength - reward.getRewardLength() + 1)
@@ -58,14 +58,14 @@ public class LadderOutputView {
 
     public static void printReward(Gamer gamer) {
         System.out.println("\n실행 결과");
-        System.out.println(gamer.getResult());
+        System.out.println(gamer.getReward());
         System.out.println();
     }
 
     public static void printAllReward(List<Gamer> gamers) {
         System.out.println("\n실행 결과");
         for (Gamer gamer : gamers) {
-            System.out.println(gamer.toString() + " : " + gamer.getResult());
+            System.out.println(gamer.toString() + " : " + gamer.getReward());
         }
         System.out.println();
     }

@@ -4,8 +4,7 @@ import java.util.Objects;
 
 public class Gamer implements Comparable<Gamer> {
     private String name;
-
-    private Result result;
+    private Reward reward;
 
     public Gamer(String name) {
         this.name = name;
@@ -15,12 +14,12 @@ public class Gamer implements Comparable<Gamer> {
         return name.length();
     }
 
-    public Result getResult() {
-        return result;
+    public Reward getReward() {
+        return reward;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    public void setReward(Reward reward) {
+        this.reward = reward;
     }
 
     @Override
