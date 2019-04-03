@@ -1,7 +1,7 @@
 package domain.ladder;
 
-import generator.bool.BooleansGenerator;
-import generator.bool.impl.NonContinuousGenerator;
+import generator.bools.BooleansGenerator;
+import generator.bools.impl.NonContinuousGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,10 +11,12 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
+    private static final boolean LINE = true;
+
     private final List<Point> points;
 
-    public Ladder(int length, BooleanSupplier booleanSupplier) {
-        this.points = Collections.unmodifiableList(createPoints(createLines(length, booleanSupplier)));
+    public Ladder(int lineSize, BooleanSupplier booleanSupplier) {
+        this.points = Collections.unmodifiableList(createPoints(createLines(lineSize, booleanSupplier)));
     }
 
     private List<Point> createPoints(List<Boolean> lines) {
@@ -27,22 +29,14 @@ public class Ladder {
         return points;
     }
 
-    public static List<Boolean> createLines(int length, BooleanSupplier booleanSupplier) {
-        BooleansGenerator generator = new NonContinuousGenerator(booleanSupplier, true);
+    public static List<Boolean> createLines(int size, BooleanSupplier booleanSupplier) {
+        BooleansGenerator generator = new NonContinuousGenerator(booleanSupplier, LINE);
 
         List<Boolean> lines = new ArrayList<>();
-        initFirst(lines);
-        initBody(lines, length, generator);
+        lines.add(!LINE);
+        lines.addAll(generator.generate(size - 1));
 
         return lines;
-    }
-
-    private static void initBody(List<Boolean> lines, int length, BooleansGenerator generator) {
-        lines.addAll(generator.generate(length - 1));
-    }
-
-    private static void initFirst(List<Boolean> lines) {
-        lines.add(Boolean.FALSE);
     }
 
     public int move(int position) {
@@ -57,5 +51,9 @@ public class Ladder {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int lineSize() {
+        return this.points.size();
     }
 }

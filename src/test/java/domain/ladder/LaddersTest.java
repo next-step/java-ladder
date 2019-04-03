@@ -1,10 +1,9 @@
 package domain.ladder;
 
-import generator.ladder.LaddersGenerator;
-import generator.ladder.impl.FixingLineLaddersGenerator;
+import generator.ladders.LaddersGenerator;
+import generator.ladders.impl.ProbabilityBasedLineGenerator;
 import org.junit.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +14,15 @@ public class LaddersTest {
 
     @Before
     public void setup() {
-        laddersGenerator = new FixingLineLaddersGenerator();
+        laddersGenerator = new ProbabilityBasedLineGenerator(100);
+    }
+
+    @Test
+    public void test_크기() {
+        //    |-----|     |-----|
+        Ladders ladders = laddersGenerator.generate(1, 4);
+        assertThat(ladders.lineSize())
+                .isEqualTo(4);
     }
 
     @Test

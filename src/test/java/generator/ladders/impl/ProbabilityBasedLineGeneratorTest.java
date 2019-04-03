@@ -1,16 +1,16 @@
-package generator.ladder.impl;
+package generator.ladders.impl;
 
 import domain.ladder.Ladders;
-import generator.ladder.LaddersGenerator;
+import generator.ladders.LaddersGenerator;
 import org.junit.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RandomLineLaddersGeneratorTest {
+public class ProbabilityBasedLineGeneratorTest {
 
     @Test
-    public void test_랜덤_라인_사다리_생성() {
-        LaddersGenerator laddersGenerator = new RandomLineLaddersGenerator();
+    public void test_랜덤_라인_사다리목록_생성() {
+        LaddersGenerator laddersGenerator = new ProbabilityBasedLineGenerator((50));
         int height = 5;
 
         Ladders ladders = laddersGenerator.generate(height, 4);

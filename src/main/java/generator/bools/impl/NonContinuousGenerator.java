@@ -1,6 +1,6 @@
-package generator.bool.impl;
+package generator.bools.impl;
 
-import generator.bool.BooleansGenerator;
+import generator.bools.BooleansGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +31,21 @@ public class NonContinuousGenerator implements BooleansGenerator {
 
     private void addNonContinuous(Stack<Boolean> stack) {
         boolean prevPoint = stack.peek();
+        if (prevPoint == shouldNotBeContinuous) {
+            pushCanBeContinuous(stack);
+            return;
+        }
+
         boolean thisPoint = booleanGenerator.getAsBoolean();
-        if (prevPoint == shouldNotBeContinuous && prevPoint == thisPoint) {
-            stack.push(!shouldNotBeContinuous);
+        if (prevPoint == thisPoint) {
+            pushCanBeContinuous(stack);
             return;
         }
 
         stack.push(thisPoint);
+    }
+
+    private void pushCanBeContinuous(Stack<Boolean> stack) {
+        stack.push(!shouldNotBeContinuous);
     }
 }
