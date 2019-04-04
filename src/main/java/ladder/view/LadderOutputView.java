@@ -2,13 +2,14 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.dto.Gamer;
+import ladder.dto.Reward;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class LadderOutputView {
     public static void printGamers(List<Gamer> gamers, int maxNameLength) {
-        System.out.println("\n실행결과");
+        System.out.println("\n사다리 결과");
 
         gamers.forEach(gamer -> {
             System.out.print(gamer.toString());
@@ -44,5 +45,28 @@ public class LadderOutputView {
             IntStream.range(0, maxNameLength)
                     .forEach(count -> System.out.print(" "));
         }
+    }
+
+    public static void printResults(List<Reward> rewards, int maxNameLength) {
+        rewards.forEach(reward -> {
+            System.out.print(reward.toString());
+            IntStream.range(0, maxNameLength - reward.getRewardLength() + 1)
+                    .forEach(name -> System.out.print(" "));
+        });
+        System.out.println();
+    }
+
+    public static void printReward(Gamer gamer) {
+        System.out.println("\n실행 결과");
+        System.out.println(gamer.getReward());
+        System.out.println();
+    }
+
+    public static void printAllReward(List<Gamer> gamers) {
+        System.out.println("\n실행 결과");
+        for (Gamer gamer : gamers) {
+            System.out.println(gamer.toString() + " : " + gamer.getReward());
+        }
+        System.out.println();
     }
 }

@@ -50,7 +50,19 @@ public class Line {
         return isChange;
     }
 
+    public void deleteRow() {
+        rows.replaceAll(row -> row = new Block(false));
+    }
+
+    public boolean hasRow(int height) {
+        return rows.get(height).isRow();
+    }
+
     public List<Block> getRows() {
         return rows;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
