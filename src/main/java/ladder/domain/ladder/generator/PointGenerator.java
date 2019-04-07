@@ -1,4 +1,4 @@
-package ladder.random;
+package ladder.domain.ladder.generator;
 
 import ladder.domain.ladder.Point;
 
