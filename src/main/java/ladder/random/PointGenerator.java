@@ -3,5 +3,7 @@ package ladder.random;
 import ladder.domain.ladder.Point;
 
 public interface PointGenerator {
-    Point generate();
+    Point generate(Point previous);
+    Point generateLeftmost();
+    Point generateRightmost(Point previous);
 }
