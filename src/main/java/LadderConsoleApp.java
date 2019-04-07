@@ -6,7 +6,7 @@ import domain.LadderGame;
 
 import domain.LadderGenerator;
 import domain.LineGenerator;
-import domain.StoryResult;
+import domain.LadderGameResult;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
@@ -26,7 +26,7 @@ public class LadderConsoleApp {
         ladderGame.generate(height, users.size());
         ConsoleOutput.printLadder(users, ladderGame, results);
 
-        StoryResult gameResult = ladderGame.getResult();
+        LadderGameResult gameResult = ladderGame.getResult();
 
         String userName = ConsoleInput.enterUserWantResult();
         while (!StringUtils.equals(userName, ALL)) {

@@ -17,17 +17,17 @@ public class Ladder {
         lines.forEach(consumer);
     }
 
-    StoryResult getResult() {
-        StoryResult storyResult = new StoryResult(
+    LadderGameResult getResult() {
+        LadderGameResult results = new LadderGameResult(
             IntStream
-                .range(0, lines.get(0).size() + 1)
+                .range(0, lines.get(0).size())
                 .boxed()
                 .collect(Collectors.toList()));
 
         for (Line line : lines) {
-            storyResult = storyResult.move(line);
+            results = results.move(line);
         }
 
-        return storyResult;
+        return results;
     }
 }

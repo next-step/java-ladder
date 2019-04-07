@@ -1,7 +1,7 @@
 package console;
 
 import domain.LadderGame;
-import domain.StoryResult;
+import domain.LadderGameResult;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -24,13 +24,13 @@ public class ConsoleOutput {
         System.out.println();
     }
 
-    public static void printResult(StoryResult gameResult, int userIndex, List<String> results) {
+    public static void printResult(LadderGameResult gameResult, int userIndex, List<String> results) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println(results.get(gameResult.finalPositionOf(userIndex)));
     }
 
-    public static void printResult(StoryResult gameResult, List<String> users, List<String> results) {
+    public static void printResult(LadderGameResult gameResult, List<String> users, List<String> results) {
         System.out.println();
         System.out.println("실행결과");
 

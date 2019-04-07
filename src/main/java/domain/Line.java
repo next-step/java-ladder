@@ -3,74 +3,69 @@ package domain;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
-
     public static final String BAR = "|";
     public static final String LINE_LOOKS = "-";
     public static final String LINE_LOOKS_NONE = " ";
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    Line(List<Boolean> points) {
-        if (!points.contains(true)) {
+    Line(List<Point> points) {
+        if (isInvalid(points)) {
+            System.err.println(points);
             throw new IllegalArgumentException();
         }
 
         this.points = points;
     }
 
+    public int positionAfterMove(int position) {
+        return points.get(position).move();
+    }
+
     public String paint(int spacingLetterLength) {
         final String lineLooks = StringUtils.repeat(LINE_LOOKS, spacingLetterLength) + BAR;
         final String noneLooks = StringUtils.repeat(LINE_LOOKS_NONE, spacingLetterLength) + BAR;
 
-        StringBuilder result = new StringBuilder(BAR);
-
-        for (Boolean point : points) {
-            if (point) {
-                result.append(lineLooks);
-                continue;
-            }
-
-            result.append(noneLooks);
-        }
-
-        return result.toString();
+        return BAR +
+                IntStream.range(0, points.size() - 1)
+                .mapToObj(i -> points.get(i).hasDirection(Direction.RIGHT) ? lineLooks : noneLooks)
+                .collect(Collectors.joining());
     }
 
-    int size() {
+    public int size() {
         return points.size();
+    }
+
+    private boolean isValid(List<Point> points) {
+        final int countOfPoints = points.size();
+
+        if (points.stream().filter(p -> p.hasDirection(Direction.NONE)).count() == countOfPoints) {
+            return false;
+        }
+
+        if (points.stream().filter(p -> p.hasDirection(Direction.RIGHT)).count() == countOfPoints) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isInvalid(List<Point> points) {
+        return !isValid(points);
+    }
+
+    public boolean isValid() {
+        return isValid(this.points);
     }
 
     @Override
     public String toString() {
         return "Line{" +
-            "points=" + points +
-            '}';
-    }
-
-    public Integer move(Integer position) {
-        int left = 0;
-        int right = 0;
-
-        if (position == 0) {
-            left = 0;
-        }
-
-        if (position > 0) {
-            left = points.get(position - 1) ? -1 : 0;
-        }
-
-        if (position == points.size()) {
-            right = 0;
-        }
-
-        if (position < points.size()) {
-            right = points.get(position) ? 1 : 0;
-        }
-
-        int result = position + (left + right);
-
-        return result;
+                "points=" + points +
+                '}';
     }
 }

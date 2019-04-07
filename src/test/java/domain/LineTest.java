@@ -8,31 +8,45 @@ import org.junit.Test;
 import java.util.Arrays;
 
 public class LineTest {
+
     @Test(expected = RuntimeException.class)
-    public void manualLine_wrong() {
-        new Line(Arrays.asList(false, false, false));
+    public void invalid_아무_이동_없음() {
+        new Line(Arrays.asList(
+                new Point(0, Direction.NONE),
+                new Point(1, Direction.NONE),
+                new Point(2, Direction.NONE)));
     }
 
     @Test
     public void paint() {
-        final Line line = new Line(Arrays.asList(true, false, true));
+        final Point first = Point.first(Movable.TRUE);
+        final Point second = first.next(Movable.FALSE);
+        final Line line = new Line(Arrays.asList(
+                first,
+                second,
+                second.last()));
         final int spacingLetterLength = 5;
 
         String lineLooks = line.paint(spacingLetterLength);
         String expected = Line.BAR
                 + StringUtils.repeat(Line.LINE_LOOKS, spacingLetterLength) + Line.BAR
-                + StringUtils.repeat(Line.LINE_LOOKS_NONE, spacingLetterLength) + Line.BAR
-                + StringUtils.repeat(Line.LINE_LOOKS, spacingLetterLength) + Line.BAR;
+                + StringUtils.repeat(Line.LINE_LOOKS_NONE, spacingLetterLength) + Line.BAR;
 
         assertThat(lineLooks).isEqualTo(expected);
     }
 
     @Test
     public void move() {
-        final Line line = new Line(Arrays.asList(true, false));
+        final Point first = Point.first(Movable.TRUE);
+        final Point second = first.next(Movable.FALSE);
 
-        assertThat(line.move(0)).isEqualTo(1);
-        assertThat(line.move(1)).isEqualTo(0);
-        assertThat(line.move(2)).isEqualTo(2);
+        final Line line = new Line(Arrays.asList(
+                first,
+                second,
+                second.last()));
+
+        assertThat(line.positionAfterMove(0)).isEqualTo(1);
+        assertThat(line.positionAfterMove(1)).isEqualTo(0);
+        assertThat(line.positionAfterMove(2)).isEqualTo(2);
     }
 }

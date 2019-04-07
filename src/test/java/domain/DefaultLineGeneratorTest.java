@@ -18,11 +18,23 @@ public class DefaultLineGeneratorTest {
         final String wrongLine = BAR + StringUtils.repeat(oneEmptyLine, lineSize); // "| | | |"
 
         final Line line = new DefaultLineGenerator().generate(lineSize);
+        System.out.println(line);
 
         System.out.println("WRONG   -->  " + wrongLine);
         System.out.println("ACTUAL  -->  " + line.paint(spacingLetterLength));
 
         assertThat(line.paint(spacingLetterLength))
             .isNotEqualTo(wrongLine);
+    }
+
+    @Test
+    public void generate() {
+        final int lineSize = 4;
+
+        for (int i = 0; i < 100; i++) {
+            Line line = new DefaultLineGenerator().generate(lineSize);
+            System.out.println(line);
+            assertThat(line.isValid()).isEqualTo(true);
+        }
     }
 }
