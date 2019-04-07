@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.vo.Length;
+
 import java.util.List;
 
 public class Line {
@@ -58,7 +60,8 @@ public class Line {
         }
     }
 
-    int getWidth() {
-        return this.points.size();
+    Length getWidth() {
+        int width = this.points.size() - 1;
+        return new Length(width);
     }
 }

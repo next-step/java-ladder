@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.vo.Length;
+
 import java.util.List;
 
 public class Lines {
@@ -21,8 +23,17 @@ public class Lines {
 
     private long getNumberOfUniqueWidths(List<Line> lines) {
         return lines.stream()
-                    .mapToInt(Line::getWidth)
+                    .map(Line::getWidth)
                     .distinct()
                     .count();
+    }
+
+    Length getWidth() {
+        return this.lines.get(0).getWidth();
+    }
+
+    Length getHeight() {
+        int height = this.lines.size();
+        return new Length(height);
     }
 }
