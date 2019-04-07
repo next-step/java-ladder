@@ -60,7 +60,7 @@ public class Line {
         }
     }
 
-    Length getWidth() {
+    public Length getWidth() {
         int width = this.points.size() - 1;
         return new Length(width);
     }

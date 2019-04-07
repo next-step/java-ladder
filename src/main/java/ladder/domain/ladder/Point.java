@@ -21,11 +21,11 @@ public class Point {
         }
     }
 
-    boolean canCrossLeft() {
+    public boolean canCrossLeft() {
         return this.left.isCross();
     }
 
-    boolean canCrossRight() {
+    public boolean canCrossRight() {
         return this.right.isCross();
     }
 }

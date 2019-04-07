@@ -28,11 +28,11 @@ public class Lines {
                     .count();
     }
 
-    Length getWidth() {
+    public Length getWidth() {
         return this.lines.get(0).getWidth();
     }
 
-    Length getHeight() {
+    public Length getHeight() {
         int height = this.lines.size();
         return new Length(height);
     }

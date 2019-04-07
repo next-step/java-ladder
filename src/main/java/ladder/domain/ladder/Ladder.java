@@ -9,11 +9,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    Length getWidth() {
+    public Length getWidth() {
         return this.lines.getWidth();
     }
 
-    Length getHeight() {
+    public Length getHeight() {
         return this.lines.getHeight();
     }
 }
