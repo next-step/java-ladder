@@ -2,16 +2,40 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
 
-    public Line(Integer size, Lottery lottery) {
-        points.add(Point.valueOf(1, lottery.test()));
-        for (int i = 1; i < size - 1; i++) {
-            points.add(points.get(points.size() - 1).next(lottery.test()));
+    public Line(List<Boolean> booleans) {
+        points.add(Point.first(booleans.get(0)));
+
+        for (int i = 1; i < booleans.size() - 1; i++) {
+            Point point = Point.next(points.get(i - 1), booleans.get(i));
+            points.add(point);
         }
-        points.add(Point.valueOf(size, false));
+
+        points.add(Point.last(booleans.size()));
+    }
+
+    public Integer move(Integer location) {
+        if(canMoveRight(location)) {
+            return location + 1;
+        }
+
+        if(canMoveLeft(location)) {
+            return location - 1;
+        }
+
+        return location;
+    }
+
+    private boolean canMoveRight(Integer location) {
+        return points.get(location - 1).isMovable();
+    }
+
+    private boolean canMoveLeft(Integer location) {
+        return location >= 2 && points.get(location - 2).isMovable();
     }
 
     public boolean contains(Point point) {

@@ -8,10 +8,18 @@ import java.util.stream.IntStream;
 public class Ladder {
     private List<Line> lines = new ArrayList<>();
 
-    public Ladder(Integer length, Integer height) {
+    public Ladder(int length, int height, BooleanGenerator booleanGenerator) {
         IntStream.range(0, height)
-            .mapToObj(i -> new Line(length, new RandomNumberLottery()))
+            .mapToObj(i -> new Line(booleanGenerator.generate(length)))
             .forEach(lines::add);
+    }
+
+    public Integer search(Integer location) {
+        for (Line line : lines) {
+            location = line.move(location);
+        }
+
+        return location;
     }
 
     public List<Line> getLines() {

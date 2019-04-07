@@ -3,32 +3,36 @@ package domain;
 public class Point {
     private static final Integer MIN_POINT_NUMBER = 1;
 
-    private Integer idx;
+    private Integer location;
     private Boolean movable;
 
-    private Point(Integer idx, Boolean movable) {
-        this.idx = idx;
+    private Point(Integer location, Boolean movable) {
+        this.location = location;
         this.movable = movable;
     }
 
     public static Point valueOf(Integer idx, Boolean movable) {
-        validatePoint(idx);
+        if(idx < MIN_POINT_NUMBER) {
+            throw new IllegalArgumentException();
+        }
 
         return new Point(idx, movable);
     }
 
-    private static void validatePoint(Integer idx) {
-        if(idx < MIN_POINT_NUMBER) {
-            throw new IllegalArgumentException();
-        }
+    public static Point first(boolean movable) {
+        return new Point(1, movable);
     }
 
-    public Point next(Boolean movable) {
-        if(this.movable) {
-            return Point.valueOf(idx + 1, false);
+    public static Point last(int location) {
+        return new Point(location, false);
+    }
+
+    public static Point next(Point point, boolean movable) {
+        if(point.isMovable()){
+            return new Point(point.location + 1, false);
         }
 
-        return Point.valueOf(idx + 1, movable);
+        return new Point(point.location + 1, movable);
     }
 
     public Boolean isMovable() {
@@ -47,7 +51,8 @@ public class Point {
 
         if(obj.getClass() == getClass()) {
             Point point = (Point) obj;
-            return idx.equals(point.idx);
+            return location.equals(point.location)
+                && movable.equals(point.movable);
         }
 
         return false;
@@ -55,7 +60,7 @@ public class Point {
 
     @Override
     public int hashCode() {
-        return idx.hashCode();
+        return location.hashCode();
     }
 
     @Override
