@@ -3,9 +3,10 @@ package ladder.domain.ladder;
 import java.util.List;
 
 public class Line {
-    private final List<Point> points;
     private static final int MIN_POINTS_SIZE = 2;
     private static final int FIRST_INDEX = 0;
+
+    private final List<Point> points;
 
     public Line(List<Point> points) {
         validatePoints(points);

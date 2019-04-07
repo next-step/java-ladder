@@ -3,8 +3,9 @@ package ladder.domain.ladder;
 import java.util.List;
 
 public class Lines {
-    private final List<Line> lines;
     private static final int NUMBER_OF_UNIQUE_WIDTHS = 1;
+
+    private final List<Line> lines;
 
     public Lines(List<Line> lines) {
         validateLines(lines);
