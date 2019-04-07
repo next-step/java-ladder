@@ -10,15 +10,15 @@ public class LadderGame {
         this.ladderGenerator = ladderGenerator;
     }
 
-    public void generate(int height, int countOfUsers) {
-        this.ladder = ladderGenerator.generate(height, countOfUsers - 1);
+    public void generate(int height, int countOfPlayers) {
+        this.ladder = ladderGenerator.generate(height, countOfPlayers - 1);
     }
 
     public void paint(Consumer<Line> consumer) {
         ladder.paint(consumer);
     }
 
-    public StoryResult getResult() {
+    public LadderGameResult getResult() {
         return ladder.getResult();
     }
 }

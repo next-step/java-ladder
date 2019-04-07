@@ -4,22 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class StoryResult {
+public class LadderGameResult {
 
     private final List<Integer> positions;
 
-    StoryResult(List<Integer> positions) {
+    LadderGameResult(List<Integer> positions) {
         this.positions = positions;
     }
 
-    public StoryResult move(Line line) {
+    public LadderGameResult move(Line line) {
         List<Integer> movedPositions = new ArrayList<>();
 
         for (Integer position : positions) {
-            movedPositions.add(line.move(position));
+            movedPositions.add(line.positionAfterMove(position));
         }
 
-        return new StoryResult(movedPositions);
+        return new LadderGameResult(movedPositions);
+    }
+
+    public Integer finalPositionOf(int userIndex) {
+        return positions.get(userIndex);
     }
 
     @Override
@@ -30,16 +34,12 @@ public class StoryResult {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        StoryResult that = (StoryResult) o;
+        LadderGameResult that = (LadderGameResult) o;
         return Objects.equals(positions, that.positions);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(positions);
-    }
-
-    public Integer finalPositionOf(int userIndex) {
-        return positions.get(userIndex);
     }
 }
