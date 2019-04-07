@@ -13,7 +13,7 @@ public class DefaultLineGenerator implements LineGenerator {
     public Line generate(int lineSize) {
         List<Point> points = new ArrayList<>(lineSize);
 
-        while (points.stream().filter(p -> p.hasDirection(Direction.NONE)).count() == points.size()) {
+        while (points.stream().filter(p -> p.hasDirectionType(DirectionType.NONE)).count() == points.size()) {
             points = this.createPoints(lineSize);
         }
 
