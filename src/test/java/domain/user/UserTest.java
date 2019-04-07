@@ -1,4 +1,4 @@
-package domain;
+package domain.user;
 
 import org.junit.Test;
 

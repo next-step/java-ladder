@@ -1,4 +1,4 @@
-package domain;
+package domain.user;
 
 import java.util.Optional;
 
