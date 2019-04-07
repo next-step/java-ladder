@@ -1,14 +1,23 @@
-package ladder.domain.ladder;
+package ladder.domain.member;
 
-import ladder.domain.member.Member;
-import ladder.domain.member.MemberGroup;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class MemberGroupTest {
+    @Test
+    public void 참여자가_2명_미만일_경우_IllegalArgumentException() {
+        // given
+        Member member = new Member("son");
+
+        // when
+        // then
+        assertThatIllegalArgumentException().isThrownBy(() -> new MemberGroup(Arrays.asList(member)));
+    }
+
     @Test
     public void toString_공백_5글자_기준_확인() {
         // given
