@@ -1,6 +1,5 @@
 package ladder.domain.member;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +21,8 @@ public class MemberGroup {
         }
     }
 
-    public List<Member> getMembers() {
-        return Collections.unmodifiableList(members);
+    public int getNumberOfMembers() {
+        return this.members.size();
     }
 
     @Override
