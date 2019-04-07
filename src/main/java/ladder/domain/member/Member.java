@@ -8,15 +8,15 @@ public class Member {
     private final String name;
 
     public Member(String name) {
-        if (!isValidName(name)) {
-            throw new IllegalArgumentException("It's not valid name");
-        }
+        validateName(name);
 
         this.name = name;
     }
 
-    private boolean isValidName(String name) {
-        return StringUtils.isNotBlank(name) && (name.length() <= MAX_NAME_LENGTH);
+    private void validateName(String name) {
+        if (StringUtils.isBlank(name) || (MAX_NAME_LENGTH < name.length())) {
+            throw new IllegalArgumentException("It's not valid name : " + name);
+        }
     }
 
     public String getName() {
