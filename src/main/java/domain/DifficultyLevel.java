@@ -1,9 +1,11 @@
 package domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 public enum DifficultyLevel {
-    상(10, 0.8),
-    중(7, 0.6),
-    하(4, 0.4);
+    ADVANCED(10, 0.8),
+    INTERMEDIATE(7, 0.6),
+    BASIC(4, 0.4);
 
     private int height;
     private double probability;
@@ -27,5 +29,21 @@ public enum DifficultyLevel {
 
     public int getHeight() {
         return height;
+    }
+
+    public static DifficultyLevel valueFrom(String name) {
+        if (StringUtils.equals(name, "상")) {
+            return ADVANCED;
+        }
+
+        if (StringUtils.equals(name, "중")) {
+            return INTERMEDIATE;
+        }
+
+        if (StringUtils.equals(name, "하")) {
+            return BASIC;
+        }
+
+        throw new IllegalArgumentException();
     }
 }

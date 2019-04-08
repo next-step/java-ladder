@@ -34,7 +34,7 @@ public class ConsoleInput {
         System.out.println();
         System.out.println("실행할 사다리의 난이도는?");
 
-        return DifficultyLevel.valueOf(scanner.next());
+        return DifficultyLevel.valueFrom(scanner.next());
     }
 
     public static String enterUserWantResult() {
