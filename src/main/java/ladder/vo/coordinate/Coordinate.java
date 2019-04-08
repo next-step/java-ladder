@@ -11,6 +11,14 @@ public class Coordinate {
         this.y = y;
     }
 
+    public CoordinateValue getX() {
+        return x;
+    }
+
+    public CoordinateValue getY() {
+        return y;
+    }
+
     public int getXValue() {
         return x.getValue();
     }
