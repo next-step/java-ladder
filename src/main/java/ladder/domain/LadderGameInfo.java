@@ -7,6 +7,8 @@ import ladder.domain.reward.Rewards;
 import ladder.vo.Length;
 import ladder.vo.coordinate.CoordinateValue;
 
+import java.util.List;
+
 public class LadderGameInfo {
     private final MemberGroup memberGroup;
     private final Rewards rewards;
@@ -22,6 +24,10 @@ public class LadderGameInfo {
         if (memberGroup.getNumberOfMembers() != rewards.getNumberOfRewards()) {
             throw new IllegalArgumentException("The number of members and rewards doesn't match");
         }
+    }
+
+    List<Member> getMembers() {
+        return memberGroup.getMembers();
     }
 
     CoordinateValue getStartXCoordinateOfMember(Member member) {

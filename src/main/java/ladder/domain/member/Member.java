@@ -25,6 +25,6 @@ public class Member {
 
     @Override
     public String toString() {
-        return String.format("%" + MAX_NAME_LENGTH + "s", this.name);
+        return name;
     }
 }
