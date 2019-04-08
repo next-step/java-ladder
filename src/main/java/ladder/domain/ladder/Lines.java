@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.vo.Length;
+import ladder.vo.coordinate.Coordinate;
 
 import java.util.List;
 
@@ -35,5 +36,16 @@ public class Lines {
     public Length getHeight() {
         int height = this.lines.size();
         return new Length(height);
+    }
+
+    Coordinate cross(Coordinate coordinate) {
+        Line line = this.lines.get(getLineIndex(coordinate));
+
+        return line.cross(coordinate)
+                .down();
+    }
+
+    private int getLineIndex(Coordinate coordinate) {
+        return coordinate.getYValue() - 1;
     }
 }
