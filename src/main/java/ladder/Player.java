@@ -5,11 +5,16 @@ public class Player {
     private PlayerName playerName;
 
     public Player(PlayerName playerName) {
-        this.playerName =  playerName;
+        this.playerName = playerName;
     }
 
-    String getName() {
+    public String getName() {
         return playerName.getName();
+    }
+
+    @Override
+    public String toString() {
+        return "     " + playerName.getName();
     }
 
 }
