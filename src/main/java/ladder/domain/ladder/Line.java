@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.vo.Length;
+import ladder.vo.coordinate.Coordinate;
 
 import java.util.List;
 
@@ -63,5 +64,19 @@ public class Line {
     public Length getWidth() {
         int width = this.points.size() - 1;
         return new Length(width);
+    }
+
+    Coordinate cross(Coordinate coordinate) {
+        Point point = this.points.get(coordinate.getXValue());
+
+        if (point.canCrossLeft()) {
+            return coordinate.left();
+        }
+
+        if (point.canCrossRight()) {
+            return coordinate.right();
+        }
+
+        return coordinate;
     }
 }

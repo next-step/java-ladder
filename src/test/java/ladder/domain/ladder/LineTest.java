@@ -1,9 +1,13 @@
 package ladder.domain.ladder;
 
+import ladder.vo.coordinate.Coordinate;
+import ladder.vo.coordinate.CoordinateValue;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
@@ -45,5 +49,33 @@ public class LineTest {
         // then
         assertThatIllegalArgumentException().isThrownBy(() ->
                 new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.LEFT_CROSS_POINT)));
+    }
+
+    @Test
+    public void Line에서_좌표_좌우로_넘어가기() {
+        // given
+        /**
+         * | --- |     |
+         */
+        List<Point> points = Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT);
+        Line line = new Line(points);
+
+        Coordinate firstCoordinate = getCoordinate(0, 0);
+        Coordinate secondCoordinate = getCoordinate(1, 0);
+        Coordinate thirdCoordinate = getCoordinate(2, 0);
+
+        // when
+        Coordinate shouldBeSecond = line.cross(firstCoordinate);
+        Coordinate shouldBeFirst = line.cross(secondCoordinate);
+        Coordinate shouldBeThird = line.cross(thirdCoordinate);
+
+        // then
+        assertThat(shouldBeFirst).isEqualTo(getCoordinate(0, 0));
+        assertThat(shouldBeSecond).isEqualTo(getCoordinate(1, 0));
+        assertThat(shouldBeThird).isEqualTo(getCoordinate(2, 0));
+    }
+
+    private Coordinate getCoordinate(int x, int y) {
+        return new Coordinate(new CoordinateValue(x), new CoordinateValue(y));
     }
 }
