@@ -1,5 +1,7 @@
 package console;
 
+import domain.DifficultyLevel;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -26,6 +28,13 @@ public class ConsoleInput {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
 
         return scanner.nextInt();
+    }
+
+    public static DifficultyLevel enterDifficultyLevel() {
+        System.out.println();
+        System.out.println("실행할 사다리의 난이도는?");
+
+        return DifficultyLevel.valueOf(scanner.next());
     }
 
     public static String enterUserWantResult() {
