@@ -1,16 +1,15 @@
 import domain.Ladder;
-import domain.Line;
-import domain.Participants;
+import domain.Players;
 import view.InputView;
 import view.ResultView;
 
 public class LadderMain {
-    public static void main (String args[]) {
-        Participants participants = InputView.getNameOfParticipants();
+    public static void main (String[] args) {
+        Players players = InputView.getNameOfParticipants();
         int depthOfLadders = InputView.getDepthOfLadders();
-        Ladder ladder = new Ladder(depthOfLadders, participants.getNumber());
+        Ladder ladder = new Ladder(depthOfLadders, players.getNumber());
 
-        ResultView.printLadders(participants, ladder);
+        ResultView.printLadders(players, ladder);
 
 
     }

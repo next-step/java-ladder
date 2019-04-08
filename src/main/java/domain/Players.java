@@ -5,20 +5,20 @@ import lombok.Getter;
 import java.util.List;
 
 
-public class Participants {
-    private List<String> names;
+public class Players {
+    private List<Player> players;
 
     @Getter
     private int number;
 
-    public Participants(List list) {
-        this.names = list;
+    public Players(List<Player> list) {
+        this.players = list;
         this.number = list.size();
     }
 
     @Override
     public String toString() {
-        return names +
+        return players.toString() +
                 "  ";
     }
 }

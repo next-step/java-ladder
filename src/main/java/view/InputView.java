@@ -1,17 +1,29 @@
 package view;
 
-import domain.Participants;
+import domain.Player;
+import domain.Players;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
-    public static Participants getNameOfParticipants() {
+    private final static String splitter = ",";
+
+    public static Players getNameOfParticipants() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.)");
+
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        return new Participants(Arrays.asList(splitNames(input)));
+
+        List<String> names = Arrays.asList(splitNames(input));
+        List<Player> pariticipants = new ArrayList<>();
+        for (String name : names) {
+            pariticipants.add(new Player(name));
+        }
+        return new Players(pariticipants);
     }
 
     public static int getDepthOfLadders() {
@@ -22,6 +34,6 @@ public class InputView {
     }
 
     private static String[] splitNames(String input) {
-        return input.split(",");
+        return input.split(splitter);
     }
 }

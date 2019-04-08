@@ -1,12 +1,12 @@
 package view;
 
 import domain.Ladder;
-import domain.Participants;
+import domain.Players;
 
 public class ResultView {
-    public static void printLadders(Participants participants, Ladder ladder) {
+    public static void printLadders(Players players, Ladder ladder) {
         System.out.println("실행결과");
-        System.out.println(participants.toString());
+        System.out.println(players.toString());
         ladder.printLadder();
     }
 }

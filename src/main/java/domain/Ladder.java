@@ -18,4 +18,9 @@ public class Ladder {
             line.printLine();
         }
     }
+
+    public int getNumberOfLines(){
+        return lines.size();
+    }
+
 }

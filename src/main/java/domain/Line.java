@@ -5,48 +5,48 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    public List<Boolean> points = new ArrayList<>();
+    private List<Boolean> points = new ArrayList<>();
 
-    public Line (int numberOfPerson) {
+    public Line(int numberOfPerson) {
         int countToPoint = numberOfPerson - 1;
 
         points.add(new Random().nextBoolean());
 
-        while (points.size() < (countToPoint) && !(numberOfTrue(points) < 0))  {
-            generatePoint(countToPoint, points);
+        while (points.size() < countToPoint && (numberOfTruePoints() >= 0))  {
+            generatePoint(countToPoint);
         }
     }
 
     private boolean nextPoint(boolean prevPoint) {
-        return (prevPoint == true) ? false : (new Random().nextBoolean());
+        return !prevPoint && new Random().nextBoolean();
     }
 
-    private void generatePoint(int countToPoint, List<Boolean> points) {
-        for (int i = 0 ; i < countToPoint-1 ; i++) {
+    private void generatePoint(int countToPoint) {
+        for (int i = 0 ; i < countToPoint-1 ; i ++) {
             points.add(nextPoint(points.get(i)));
         }
     }
 
-    private int numberOfTrue(List<Boolean> list) {
+    public int numberOfTruePoints() {
         int sum = 0;
-        for(boolean b : list) {
-            sum += b ? 1 : 0;
+        for(boolean point : points) {
+            sum += point ? 1 : 0;
         }
         return sum;
     }
 
     public void printLine() {
         String line = "";
-        for (int i = 0 ; i < points.size() ; i++) {
+
+        for (boolean point : points) {
             line += "|";
-            if (points.get(i) == true) {
-                line += "-----";
-            } else {
-                line += "     ";
-            }
+            line += point ? "-----" : "     ";
         }
+
         line += "|";
         System.out.println(line);
     }
+
+
 
 }
