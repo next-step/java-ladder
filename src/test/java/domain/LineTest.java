@@ -12,9 +12,9 @@ public class LineTest {
     @Test(expected = RuntimeException.class)
     public void invalid_아무_이동_없음() {
         new Line(Arrays.asList(
-                new Point(0, Direction.NONE),
-                new Point(1, Direction.NONE),
-                new Point(2, Direction.NONE)));
+                new Point(0, DirectionType.NONE),
+                new Point(1, DirectionType.NONE),
+                new Point(2, DirectionType.NONE)));
     }
 
     @Test

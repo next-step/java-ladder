@@ -2,47 +2,39 @@ package domain;
 
 public class Point {
     private final int position;
-    private final Direction direction;
+    private final DirectionType directionType;
 
-    public Point(int position, Direction direction) {
+    public Point(int position, DirectionType directionType) {
         this.position = position;
-        this.direction = direction;
+        this.directionType = directionType;
     }
 
     public int move() {
-        if (direction == Direction.RIGHT) {
-            return position + 1;
-        }
-
-        if (direction == Direction.LEFT) {
-            return position - 1;
-        }
-
-        return this.position;
+        return directionType.move(position);
     }
 
     public static Point first(Movable right) {
-        return new Point(0, Direction.first(right));
+        return new Point(0, DirectionType.first(right));
     }
 
     public Point last() {
-        return new Point(position + 1, direction.last());
+        return new Point(position + 1, directionType.last());
     }
 
     public Point next(Movable right) {
-        return new Point(position + 1, direction.next(right));
+        return new Point(position + 1, directionType.next(right));
     }
 
     public boolean hasIndex(int index) {
         return this.position == index;
     }
 
-    public boolean hasDirection(Direction direction) {
-        return this.direction.equals(direction);
+    public boolean hasDirectionType(DirectionType directionType) {
+        return this.directionType.equals(directionType);
     }
 
     public boolean hasNoneDirection() {
-        return this.direction.equals(Direction.NONE);
+        return this.directionType.equals(DirectionType.NONE);
     }
 
     public boolean hasMoveDirection() {
@@ -53,7 +45,7 @@ public class Point {
     public String toString() {
         return "Point{" +
                 "position=" + position +
-                ", direction=" + direction +
+                ", directionType=" + directionType +
                 '}';
     }
 }

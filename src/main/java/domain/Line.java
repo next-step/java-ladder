@@ -32,7 +32,7 @@ public class Line {
 
         return BAR +
                 IntStream.range(0, points.size() - 1)
-                .mapToObj(i -> points.get(i).hasDirection(Direction.RIGHT) ? lineLooks : noneLooks)
+                .mapToObj(i -> points.get(i).hasDirectionType(DirectionType.RIGHT) ? lineLooks : noneLooks)
                 .collect(Collectors.joining());
     }
 
@@ -43,11 +43,11 @@ public class Line {
     private boolean isValid(List<Point> points) {
         final int countOfPoints = points.size();
 
-        if (points.stream().filter(p -> p.hasDirection(Direction.NONE)).count() == countOfPoints) {
+        if (points.stream().filter(p -> p.hasDirectionType(DirectionType.NONE)).count() == countOfPoints) {
             return false;
         }
 
-        if (points.stream().filter(p -> p.hasDirection(Direction.RIGHT)).count() == countOfPoints) {
+        if (points.stream().filter(p -> p.hasDirectionType(DirectionType.RIGHT)).count() == countOfPoints) {
             return false;
         }
 
