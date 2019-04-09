@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -10,7 +11,7 @@ public class Ladder {
 
     public Ladder(int length, int height) {
         IntStream.range(0, height)
-            .mapToObj(i -> Line.newLine(length, () -> Boolean.TRUE))
+            .mapToObj(i -> Line.newLine(length, new Random()::nextBoolean))
             .forEach(lines::add);
     }
 
