@@ -4,6 +4,7 @@ import domain.Ladder;
 import domain.Position;
 
 import java.util.List;
+import java.util.Map;
 
 public class ConsoleOutputView {
     public static void printPositions(List<Position> positions) {
@@ -15,19 +16,12 @@ public class ConsoleOutputView {
         System.out.println(ladder.toString());
     }
 
-    public static void printAllResult(List<Position> users, List<Position> results, Ladder ladder) {
-        for (Position user : users) {
-            System.out.print(user.getName() + " : ");
-
-            Position result = results.get(ladder.search(user.getLocation()) - 1);
-            System.out.println(result.getName());
-        }
+    public static void printAllResult(Map<String, String> totalResult) {
+        totalResult.keySet()
+            .forEach(s -> printOneResult(s, totalResult.get(s)));
     }
 
-    public static void printOneResult(String name, List<Position> users, List<Position> results, Ladder ladder) {
-        Position user = users.stream().filter(p -> p.getName().equals(name)).findFirst().get();
-
-        Position result = results.get(ladder.search(user.getLocation()) - 1);
-        System.out.println(result.getName());
+    public static void printOneResult(String name, String result) {
+        System.out.println(name + " : " + result);
     }
 }
