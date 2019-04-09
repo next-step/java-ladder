@@ -22,14 +22,14 @@ public class Line {
     }
 
     private void generatePoint(int countToPoint) {
-        for (int i = 0 ; i < countToPoint-1 ; i ++) {
+        for (int i = 0; i < countToPoint - 1; i ++) {
             points.add(nextPoint(points.get(i)));
         }
     }
 
     public int numberOfTruePoints() {
         int sum = 0;
-        for(boolean point : points) {
+        for (boolean point : points) {
             sum += point ? 1 : 0;
         }
         return sum;
