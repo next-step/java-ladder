@@ -11,20 +11,16 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point valueOf(Integer idx, Direction direction) {
+    public static Point valueOf(Integer idx, boolean movable) {
         if(idx < MIN_CREATABLE_POINT_NUMBER) {
             throw new IllegalArgumentException();
         }
 
-        return new Point(idx, direction);
+        return new Point(idx, Direction.nextDirection(movable));
     }
 
-    public static Point first(Direction direction) {
-        if (direction == Direction.LEFT) {
-            throw new IllegalArgumentException();
-        }
-
-        return new Point(1, direction);
+    public static Point first(boolean movable) {
+        return new Point(1, Direction.nextDirection(movable));
     }
 
     public static Point last(Point point) {
@@ -35,33 +31,22 @@ public class Point {
         return new Point(point.location + 1, Direction.NONE);
     }
 
-    public static Point next(Point point, Direction direction) {
+    public static Point next(Point point, boolean movable) {
         if(point.direction == Direction.RIGHT){
             return new Point(point.location + 1, Direction.LEFT);
         }
 
-        if(point.direction == Direction.LEFT && direction == Direction.LEFT) {
-            return new Point(point.location + 1, Direction.NONE);
-        }
-
-        return new Point(point.location + 1, direction);
+        return new Point(point.location + 1, Direction.nextDirection(movable));
     }
 
-    public boolean leftMovable(Point leftPoint) {
-        if(location - leftPoint.location != 1) {
-            return false;
-        }
-
-        return leftPoint.direction == Direction.RIGHT;
+    public boolean rightMovable() {
+        return direction == Direction.RIGHT;
     }
 
-    public boolean rightMovable(Point rightPoint) {
-        if(rightPoint.location - location != 1) {
-            return false;
-        }
-
-        return rightPoint.direction == Direction.LEFT;
+    public boolean leftMovable() {
+        return direction == Direction.LEFT;
     }
+
 
     public Integer getLocation() {
         return location;
