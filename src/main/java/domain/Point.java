@@ -3,8 +3,8 @@ package domain;
 public class Point {
     private static final Integer MIN_CREATABLE_POINT_NUMBER = 2;
 
-    private Integer location;
-    private Direction direction;
+    private final Integer location;
+    private final Direction direction;
 
     private Point(Integer location, Direction direction) {
         this.location = location;

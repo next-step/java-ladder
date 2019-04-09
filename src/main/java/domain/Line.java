@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class Line {
     private static final Integer MIN_CREATABLE_LINE_LENGTH = 2;
 
-    private List<Point> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     private Line(List<Boolean> booleans) {
         points.add(Point.first(booleans.get(0)));
