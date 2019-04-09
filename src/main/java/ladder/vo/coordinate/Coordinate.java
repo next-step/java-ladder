@@ -39,6 +39,10 @@ public class Coordinate {
         return new Coordinate(this.x, this.y.decrement());
     }
 
+    public boolean canGoDown() {
+        return CoordinateValue.MIN_COORDINATE_VALUE < getYValue();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,5 +55,10 @@ public class Coordinate {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(%s, %s)", x, y);
     }
 }

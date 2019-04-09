@@ -3,7 +3,7 @@ package ladder.vo.coordinate;
 import java.util.Objects;
 
 public class CoordinateValue {
-    private static final int MIN_COORDINATE_VALUE = 0;
+    static final int MIN_COORDINATE_VALUE = 0;
 
     private final int value;
 
@@ -55,5 +55,10 @@ public class CoordinateValue {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
     }
 }
