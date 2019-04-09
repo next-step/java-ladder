@@ -2,7 +2,9 @@ package ladder.domain;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.member.Member;
+import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 import ladder.vo.Length;
 import ladder.vo.coordinate.Coordinate;
 import ladder.vo.coordinate.CoordinateValue;
@@ -52,5 +54,17 @@ public class LadderGame {
                 .collect(Collectors.toList());
 
         return new LadderGameResults(results);
+    }
+
+    public MemberGroup getMemberGroup() {
+        return ladderGameInfo.getMemberGroup();
+    }
+
+    public Rewards getRewards() {
+        return ladderGameInfo.getRewards();
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }

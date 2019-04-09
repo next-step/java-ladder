@@ -22,7 +22,7 @@ public class LadderGenerator {
     }
 
 
-    Ladder generateLadder(MemberGroup memberGroup, Length height) {
+    public Ladder generateLadder(MemberGroup memberGroup, Length height) {
         return new Ladder(generateLines(memberGroup, height));
     }
 

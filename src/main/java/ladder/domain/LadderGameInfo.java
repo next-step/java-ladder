@@ -43,4 +43,12 @@ public class LadderGameInfo {
     public Reward getReward(CoordinateValue x) {
         return this.rewards.getReward(x);
     }
+
+    MemberGroup getMemberGroup() {
+        return memberGroup;
+    }
+
+    Rewards getRewards() {
+        return rewards;
+    }
 }
