@@ -37,7 +37,6 @@ public class MemberGroup {
     public String toString() {
         return this.members.stream()
                 .map(Member::toFormedString)
-                .collect(Collectors.joining(WHITE_SPACE))
-                .trim();
+                .collect(Collectors.joining(WHITE_SPACE));
     }
 }

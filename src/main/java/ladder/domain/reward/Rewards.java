@@ -3,9 +3,11 @@ package ladder.domain.reward;
 import ladder.vo.coordinate.CoordinateValue;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Rewards {
     private static final int MIN_REWARDS_SIZE = 2;
+    private static final String WHITE_SPACE = " ";
 
     private final List<Reward> rewards;
 
@@ -27,5 +29,12 @@ public class Rewards {
 
     public Reward getReward(CoordinateValue x) {
         return this.rewards.get(x.getValue());
+    }
+
+    @Override
+    public String toString() {
+        return this.rewards.stream()
+                .map(Reward::toFormedString)
+                .collect(Collectors.joining(WHITE_SPACE));
     }
 }

@@ -18,6 +18,10 @@ public class Reward {
         }
     }
 
+    public String toFormedString() {
+        return String.format("%" + MAX_NAME_LENGTH + "s", this.reward);
+    }
+
     @Override
     public String toString() {
         return reward;
