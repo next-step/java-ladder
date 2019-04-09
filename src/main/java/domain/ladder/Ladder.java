@@ -22,12 +22,7 @@ public class Ladder {
         return ladder.size();
     }
 
-    public String toString(int margin) {
-        String result = "";
-        for (Line line : ladder) {
-            result += line.toString(margin);
-            result += "\n";
-        }
-        return result;
+    public List<Line> getLadder() {
+        return ladder;
     }
 }

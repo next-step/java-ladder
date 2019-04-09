@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class BridgeGenerator {
     private static final Random random;
+
     static {
         random = new Random();
     }

@@ -1,7 +1,5 @@
 package domain.user;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Optional;
 
 public class User {
@@ -16,11 +14,8 @@ public class User {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public int length() {
-        return name.length();
-    }
-
-    public String toString(int margin) {
-        return StringUtils.repeat(" ", margin - length() + 1) + name;
+    @Override
+    public String toString() {
+        return name;
     }
 }
