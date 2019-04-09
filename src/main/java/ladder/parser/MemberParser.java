@@ -17,10 +17,13 @@ public class MemberParser {
         return new MemberGroup(parseMembers(memberNames));
     }
 
-    static List<Member> parseMembers(String members) {
+    private static List<Member> parseMembers(String members) {
         return Arrays.stream(members.split(SEPARATOR))
-                .map(String::trim)
-                .map(Member::new)
+                .map(MemberParser::parseMember)
                 .collect(Collectors.toList());
+    }
+
+    public static Member parseMember(String name) {
+        return new Member(name.trim());
     }
 }
