@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder {
     private final List<Line> ladder;
@@ -18,31 +17,9 @@ public class Ladder {
     private List<Line> generateLadder() {
         List<Line> lines = new ArrayList<>();
         for(int i = 0; i < height; i++) {
-            lines.add(generateLine());
+            lines.add(new Line(countOfPerson));
         }
         return lines;
-    }
-
-    private Line generateLine() {
-        List<Point> points = new ArrayList<>();
-        boolean previousPoint = generateRandomBoolean();
-        firstPoint(points, previousPoint);
-        for(int i = 1; i < countOfPerson - 1; i++) {
-            boolean currentPoint = generateRandomBoolean();
-            points.add(new Point(previousPoint, currentPoint));
-            previousPoint = currentPoint;
-        }
-        lastPoint(points, previousPoint);
-
-        return new Line(points);
-    }
-
-    private void lastPoint(List<Point> points, boolean point) {
-        points.add(new Point(point, false));
-    }
-
-    private void firstPoint(List<Point> points, boolean point) {
-        points.add(new Point(false, point));
     }
 
     public int ladderHeight() {
@@ -57,8 +34,5 @@ public class Ladder {
         return ladder.get(index);
     }
 
-    private boolean generateRandomBoolean() {
-        Random random = new Random();
-        return random.nextBoolean();
-    }
+
 }

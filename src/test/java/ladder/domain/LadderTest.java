@@ -16,11 +16,9 @@ public class LadderTest {
     public void setUp() throws Exception {
         Point point1 = new Point(false, true);
         Point point2 = new Point(true, false);
-        Point point3 = new Point(false, false);
         points = new ArrayList<>();
         points.add(point1);
         points.add(point2);
-//        points.add(point3);
     }
 
     @Test

@@ -1,21 +1,23 @@
 package ladder.view;
 
 import ladder.Utils;
+import ladder.domain.Player;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
-    public List<String> printInputUserNames() {
+    public List<Player> printInputUserNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         Scanner scanner = new Scanner(System.in);
         String inputValue = scanner.nextLine();
         String[] names = Utils.stringSplitWithDelimiter(inputValue, ",");
-        for (String name : names) {
-            checkNameLength(name);
-        }
-        return Arrays.asList(names);
+        List<Player> players = Arrays.stream(names)
+                .map(Player::new)
+                .collect(Collectors.toList());
+        return players;
     }
 
     public int printInputLadderHeight() {
@@ -26,9 +28,5 @@ public class InputView {
         return Integer.parseInt(inputValue);
     }
 
-    private void checkNameLength(String name) {
-        if(name.length() > 5) {
-            throw new IllegalArgumentException("이름의 최대길이는 5자입니다.");
-        }
-    }
+
 }
