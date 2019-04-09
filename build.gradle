@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    compile('org.projectlombok:lombok:1.16.6')
     compile('com.sparkjava:spark-core:2.8.0')
     compile('com.sparkjava:spark-template-handlebars:2.7.1')
     compile('ch.qos.logback:logback-classic:1.2.3')
