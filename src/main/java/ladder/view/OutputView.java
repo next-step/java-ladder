@@ -12,12 +12,12 @@ public class OutputView {
         println("실행결과");
         println("==================================");
 
-        ladderGame.players().forEach(player -> System.out.print(player.name() + LadderGame.LADDER_EMPTY_WIDTH));
+        ladderGame.players().forEach(player -> System.out.print(player.getName() + LadderGame.LADDER_EMPTY_WIDTH));
         System.out.println();
         ladderGame.ladder().forEach(line -> {
-            print(LadderGame.PILLAR);
-            line.points().forEach(point -> {
-                drawLine(point, ladderGame.ladderWidth());
+            print(LadderGame.LADDER_SIDE);
+            line.getPoints().forEach(point -> {
+                drawLine(point, ladderGame.maxtWidthDrawTimes());
             });
             println("");
         });
@@ -26,18 +26,17 @@ public class OutputView {
     private static void drawLine(Point point, int maxLadderWidth) {
         if(point.isCurrent()) {
             print(drawWidth(maxLadderWidth,LadderGame.LADDER_WIDTH));
-            print(LadderGame.PILLAR);
+            print(LadderGame.LADDER_SIDE);
             return;
         }
         print(drawWidth(maxLadderWidth,LadderGame.LADDER_EMPTY_WIDTH));
-        print(LadderGame.PILLAR);
+        print(LadderGame.LADDER_SIDE);
     }
 
     private static String drawWidth(int maxLadderWidth, String widthType) {
         final StringBuilder ladderWidth = new StringBuilder("");
 
         IntStream.range(0, maxLadderWidth).forEach(count -> {
-            String test = "";
             ladderWidth.append(widthType);
         });
         return ladderWidth.toString();

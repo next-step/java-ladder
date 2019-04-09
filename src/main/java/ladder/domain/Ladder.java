@@ -17,7 +17,7 @@ public class Ladder {
 
     public Ladder(int countOfPerson, int height) {
         validateHeight(height);
-        lines.addAll(initLine(countOfPerson, height));
+        initLine(countOfPerson, height);
     }
 
     private void validateHeight(int height) {
@@ -26,9 +26,7 @@ public class Ladder {
         }
     }
 
-    List<Line> initLine(int countOfPerson, int height) {
-        List<Line> initLines = new ArrayList<>();
-        IntStream.range(0, height).forEach(count -> initLines.add(new Line(countOfPerson)));
-        return initLines;
+    private void initLine(int countOfPerson, int height) {
+        IntStream.range(0, height).forEach(count -> lines.add(new Line(countOfPerson)));
     }
 }

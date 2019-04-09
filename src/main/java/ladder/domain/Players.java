@@ -17,7 +17,7 @@ public class Players {
         });
     }
 
-    public int ladderWidth() {
-        return Collections.max(players, Comparator.comparing(players -> players.nameLength())).nameLength();
+    public int maxNameLength() {
+        return Collections.max(players, Comparator.comparing(Player::getNameLength)).getNameLength();
     }
 }

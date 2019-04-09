@@ -12,12 +12,12 @@ public class LineTest {
     public void 라인그리기_테스트() {
         Line result = new Line(2) {
             @Override
-            List<Point> initPoints(int countOfPerson) {
+            protected List<Point> initPoints(int countOfPerson) {
                 return Arrays.asList(Point.first(true), Point.last(true));
             }
         };
-        Assertions.assertThat(result.points()).isEqualTo(Arrays.asList(Point.first(true), Point.last(true)));
-        Assertions.assertThat(result.points().size()).isEqualTo(2);
+        Assertions.assertThat(result.getPoints()).isEqualTo(Arrays.asList(Point.first(true), Point.last(true)));
+        Assertions.assertThat(result.getPoints().size()).isEqualTo(2);
     }
 
     @Test(expected = IllegalArgumentException.class)
