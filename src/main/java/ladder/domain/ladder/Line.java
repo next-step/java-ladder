@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Line {
     private static final int MIN_POINTS_SIZE = 2;
     private static final int FIRST_INDEX = 0;
-    private static final String LEFT_PADDING = "   ";
+    private static final String LEFT_PADDING = "    ";
 
     private final List<Point> points;
 
