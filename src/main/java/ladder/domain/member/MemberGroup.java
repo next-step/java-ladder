@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 public class MemberGroup {
     private static final int MIN_MEMBERS_SIZE = 2;
+    private static final String WHITE_SPACE = " ";
 
     private final List<Member> members;
-    private static final String WHITE_SPACE = " ";
 
     public MemberGroup(List<Member> members) {
         validateMembers(members);
@@ -36,7 +36,7 @@ public class MemberGroup {
     @Override
     public String toString() {
         return this.members.stream()
-                .map(Member::toString)
+                .map(Member::toFormedString)
                 .collect(Collectors.joining(WHITE_SPACE))
                 .trim();
     }
