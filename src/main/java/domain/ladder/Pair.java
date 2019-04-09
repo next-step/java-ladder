@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import util.BridgeGenerator;
-
 public class Pair {
     private boolean left;
     private boolean right;
@@ -14,17 +12,16 @@ public class Pair {
         this.right = right;
     }
 
-    public Pair make(boolean left) {
-        this.left = left;
-        this.right = generateBridge(left);
-        return this;
+    public static Pair first(boolean right) {
+        return new Pair(Boolean.FALSE, right);
     }
 
-    private boolean generateBridge(boolean isLeft) {
-        if (isLeft) {
-            return false;
-        }
-        return BridgeGenerator.generate();
+    public static Pair last(boolean left) {
+        return new Pair(left, Boolean.FALSE);
+    }
+
+    public static Pair middle(boolean left, boolean right) {
+        return new Pair(left, right);
     }
 
     public boolean isLeft() {

@@ -8,8 +8,10 @@ public class BridgeGenerator {
         random = new Random();
     }
 
-    public static boolean generate() {
+    public static boolean generate(boolean left) {
+        if (left) {
+            return false;
+        }
         return random.nextBoolean();
     }
-
 }

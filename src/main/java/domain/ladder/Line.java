@@ -1,6 +1,7 @@
 package domain.ladder;
 
 import org.apache.commons.lang3.StringUtils;
+import util.BridgeGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +14,31 @@ public class Line {
     }
 
     public Line generate(int userCount) {
-        Pair pair = first();
-        pairs.add(pair);
-
-        for (int i = 1; i < userCount - 1; i++) {
-            pair = new Pair().make(pair.isRight());
-            pairs.add(pair);
-        }
-        pairs.add(last(pair.isRight()));
-
+        boolean isRight = false;
+        isRight = addFirst();
+        isRight = addMiddle(userCount, isRight);
+        addLast(isRight);
         return this;
     }
 
-    private Pair first() {
-        return new Pair().make(Boolean.FALSE);
+    private boolean addFirst() {
+        Pair pair = Pair.first(BridgeGenerator.generate(Boolean.FALSE));
+        pairs.add(pair);
+        return pair.isRight();
     }
 
-    private Pair last(boolean left) {
-        return new Pair(left, Boolean.FALSE);
+    private void addLast(boolean left) {
+        Pair pair = Pair.last(left);
+        pairs.add(pair);
+    }
+
+    private boolean addMiddle(int userCount, boolean left) {
+        for (int i = 0; i < userCount -2 ; i++) {
+            Pair pair = Pair.middle(left, BridgeGenerator.generate(left));
+            pairs.add(pair);
+            left = pair.isRight();
+        }
+        return left;
     }
 
     public int size() {
