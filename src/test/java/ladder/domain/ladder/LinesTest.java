@@ -29,9 +29,9 @@ public class LinesTest {
          * | --- |     |
          * |     | --- |
          */
-        Line secondLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
-        Line firstLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
-        Lines lines = new Lines(Arrays.asList(firstLine, secondLine));
+        Line topLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
+        Line bottomLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
+        Lines lines = new Lines(Arrays.asList(topLine, bottomLine));
 
         Coordinate firstCoordinate = getCoordinate(0, 2);
         Coordinate secondCoordinate = getCoordinate(1, 2);

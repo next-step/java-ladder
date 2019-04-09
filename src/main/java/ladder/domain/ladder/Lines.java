@@ -4,6 +4,7 @@ import ladder.vo.Length;
 import ladder.vo.coordinate.Coordinate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lines {
     private static final int NUMBER_OF_UNIQUE_WIDTHS = 1;
@@ -46,6 +47,13 @@ public class Lines {
     }
 
     private int getLineIndex(Coordinate coordinate) {
-        return coordinate.getYValue() - 1;
+        return this.lines.size() - coordinate.getYValue();
+    }
+
+    @Override
+    public String toString() {
+        return this.lines.stream()
+                .map(Line::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }

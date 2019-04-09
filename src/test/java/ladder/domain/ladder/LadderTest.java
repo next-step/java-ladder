@@ -16,10 +16,10 @@ public class LadderTest {
          * | --- |     |
          * |     | --- |
          */
-        Line secondLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
-        Line firstLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
+        Line topLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
+        Line bottomLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
 
-        Ladder ladder = new Ladder(new Lines(Arrays.asList(firstLine, secondLine)));
+        Ladder ladder = new Ladder(new Lines(Arrays.asList(topLine, bottomLine)));
 
         // when
         Coordinate shouldBeThird = ladder.getLadderResultCoordinate(getCoordinate(0, 2));
