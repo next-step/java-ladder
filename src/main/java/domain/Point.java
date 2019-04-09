@@ -1,42 +1,74 @@
 package domain;
 
 public class Point {
-    private static final Integer MIN_POINT_NUMBER = 1;
+    private static final Integer MIN_CREATABLE_POINT_NUMBER = 2;
 
     private Integer location;
-    private Boolean movable;
+    private Direction direction;
 
-    private Point(Integer location, Boolean movable) {
+    private Point(Integer location, Direction direction) {
         this.location = location;
-        this.movable = movable;
+        this.direction = direction;
     }
 
-    public static Point valueOf(Integer idx, Boolean movable) {
-        if(idx < MIN_POINT_NUMBER) {
+    public static Point valueOf(Integer idx, Direction direction) {
+        if(idx < MIN_CREATABLE_POINT_NUMBER) {
             throw new IllegalArgumentException();
         }
 
-        return new Point(idx, movable);
+        return new Point(idx, direction);
     }
 
-    public static Point first(boolean movable) {
-        return new Point(1, movable);
-    }
-
-    public static Point last(int location) {
-        return new Point(location, false);
-    }
-
-    public static Point next(Point point, boolean movable) {
-        if(point.isMovable()){
-            return new Point(point.location + 1, false);
+    public static Point first(Direction direction) {
+        if (direction == Direction.LEFT) {
+            throw new IllegalArgumentException();
         }
 
-        return new Point(point.location + 1, movable);
+        return new Point(1, direction);
     }
 
-    public Boolean isMovable() {
-        return movable;
+    public static Point last(Point point) {
+        if(point.direction == Direction.RIGHT) {
+            return new Point(point.location + 1, Direction.LEFT);
+        }
+
+        return new Point(point.location + 1, Direction.NONE);
+    }
+
+    public static Point next(Point point, Direction direction) {
+        if(point.direction == Direction.RIGHT){
+            return new Point(point.location + 1, Direction.LEFT);
+        }
+
+        if(point.direction == Direction.LEFT && direction == Direction.LEFT) {
+            return new Point(point.location + 1, Direction.NONE);
+        }
+
+        return new Point(point.location + 1, direction);
+    }
+
+    public boolean leftMovable(Point leftPoint) {
+        if(location - leftPoint.location != 1) {
+            return false;
+        }
+
+        return leftPoint.direction == Direction.RIGHT;
+    }
+
+    public boolean rightMovable(Point rightPoint) {
+        if(rightPoint.location - location != 1) {
+            return false;
+        }
+
+        return rightPoint.direction == Direction.LEFT;
+    }
+
+    public Integer getLocation() {
+        return location;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override
@@ -52,7 +84,7 @@ public class Point {
         if(obj.getClass() == getClass()) {
             Point point = (Point) obj;
             return location.equals(point.location)
-                && movable.equals(point.movable);
+                && direction == point.direction;
         }
 
         return false;
