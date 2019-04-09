@@ -4,10 +4,12 @@ import ladder.vo.Length;
 import ladder.vo.coordinate.Coordinate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
     private static final int MIN_POINTS_SIZE = 2;
     private static final int FIRST_INDEX = 0;
+    private static final String LEFT_PADDING = "   ";
 
     private final List<Point> points;
 
@@ -78,5 +80,12 @@ public class Line {
         }
 
         return coordinate;
+    }
+
+    @Override
+    public String toString() {
+        return LEFT_PADDING + this.points.stream()
+                .map(Point::toString)
+                .collect(Collectors.joining());
     }
 }

@@ -5,9 +5,7 @@ import ladder.vo.coordinate.Coordinate;
 import ladder.vo.coordinate.CoordinateValue;
 
 public class Ladder {
-    private static final int LADDER_BOTTOM = 0;
-
-    private Lines lines;
+    private final Lines lines;
 
     public Ladder(Lines lines) {
         this.lines = lines;
@@ -27,10 +25,15 @@ public class Ladder {
     }
 
     public Coordinate getLadderResultCoordinate(Coordinate coordinate) {
-        while (LADDER_BOTTOM < coordinate.getYValue()) {
+        while (coordinate.canGoDown()) {
             coordinate = this.lines.cross(coordinate);
         }
 
         return coordinate;
+    }
+
+    @Override
+    public String toString() {
+        return this.lines.toString();
     }
 }
