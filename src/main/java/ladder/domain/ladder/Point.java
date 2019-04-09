@@ -28,4 +28,13 @@ public class Point {
     public boolean canCrossRight() {
         return this.right.isCross();
     }
+
+    @Override
+    public String toString() {
+        if (canCrossRight()) {
+            return "|-----";
+        }
+
+        return "|     ";
+    }
 }
