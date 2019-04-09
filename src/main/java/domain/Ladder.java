@@ -8,9 +8,9 @@ import java.util.stream.IntStream;
 public class Ladder {
     private List<Line> lines = new ArrayList<>();
 
-    public Ladder(int length, int height, BooleanGenerator booleanGenerator) {
+    public Ladder(int length, int height) {
         IntStream.range(0, height)
-            .mapToObj(i -> new Line(booleanGenerator.generate(length)))
+            .mapToObj(i -> Line.newLine(length, () -> Boolean.TRUE))
             .forEach(lines::add);
     }
 

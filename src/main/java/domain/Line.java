@@ -2,12 +2,16 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+
+
     private List<Point> points = new ArrayList<>();
 
-    public Line(List<Boolean> booleans) {
+    private Line(List<Boolean> booleans) {
         points.add(Point.first(booleans.get(0)));
 
         for (int i = 1; i < booleans.size() - 1; i++) {
@@ -17,6 +21,13 @@ public class Line {
 
         points.add(Point.last(booleans.size()));
     }
+
+    public static Line newLine(int length, Supplier<Boolean> booleanGenerator) {
+        return new Line(IntStream.range(0, length)
+            .mapToObj(i -> booleanGenerator.get())
+            .collect(Collectors.toList()));
+    }
+
 
     public Integer move(Integer location) {
         if(canMoveRight(location)) {

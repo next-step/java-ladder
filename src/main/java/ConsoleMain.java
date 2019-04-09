@@ -1,6 +1,5 @@
 import domain.Ladder;
 import domain.Position;
-import domain.RandomBooleanGenerator;
 import view.ConsoleInputView;
 import view.ConsoleOutputView;
 
@@ -14,7 +13,7 @@ public class ConsoleMain {
         List<Position> results = createPositions(ConsoleInputView.inputResults());
         Integer height = ConsoleInputView.inputLadderHeight();
 
-        Ladder ladder = new Ladder(users.size(), height, new RandomBooleanGenerator());
+        Ladder ladder = new Ladder(users.size(), height);
         ConsoleOutputView.printPositions(users);
         ConsoleOutputView.printLadder(ladder);
         ConsoleOutputView.printPositions(results);
