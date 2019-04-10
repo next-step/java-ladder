@@ -20,14 +20,20 @@ public class LadderGameInfo {
         this.rewards = rewards;
     }
 
-    private void validateLadderGameInfo(MemberGroup memberGroup, Rewards rewards) {
-        if (memberGroup.getNumberOfMembers() != rewards.getNumberOfRewards()) {
-            throw new IllegalArgumentException("The number of members and rewards doesn't match");
-        }
+    public Reward getReward(CoordinateValue x) {
+        return this.rewards.getReward(x);
     }
 
     List<Member> getMembers() {
         return memberGroup.getMembers();
+    }
+
+    MemberGroup getMemberGroup() {
+        return memberGroup;
+    }
+
+    Rewards getRewards() {
+        return rewards;
     }
 
     CoordinateValue getStartXCoordinateOfMember(Member member) {
@@ -40,15 +46,9 @@ public class LadderGameInfo {
         return new Length(ladderWidthForMembers);
     }
 
-    public Reward getReward(CoordinateValue x) {
-        return this.rewards.getReward(x);
-    }
-
-    MemberGroup getMemberGroup() {
-        return memberGroup;
-    }
-
-    Rewards getRewards() {
-        return rewards;
+    private void validateLadderGameInfo(MemberGroup memberGroup, Rewards rewards) {
+        if (memberGroup.getNumberOfMembers() != rewards.getNumberOfRewards()) {
+            throw new IllegalArgumentException("The number of members and rewards doesn't match");
+        }
     }
 }

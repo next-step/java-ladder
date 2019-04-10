@@ -16,11 +16,6 @@ public class MemberGroup {
         this.members = members;
     }
 
-    private void validateMembers(List<Member> members) {
-        if (members.size() < MIN_MEMBERS_SIZE) {
-            throw new IllegalArgumentException("The number of members must be at least " + MIN_MEMBERS_SIZE);
-        }
-    }
     public int getNumberOfMembers() {
         return this.members.size();
     }
@@ -31,6 +26,12 @@ public class MemberGroup {
 
     public List<Member> getMembers() {
         return Collections.unmodifiableList(this.members);
+    }
+
+    private void validateMembers(List<Member> members) {
+        if (members.size() < MIN_MEMBERS_SIZE) {
+            throw new IllegalArgumentException("The number of members must be at least " + MIN_MEMBERS_SIZE);
+        }
     }
 
     @Override

@@ -17,19 +17,6 @@ public class Lines {
         this.lines = lines;
     }
 
-    private void validateLines(List<Line> lines) {
-        if (NUMBER_OF_UNIQUE_WIDTHS != getNumberOfUniqueWidths(lines)) {
-            throw new IllegalArgumentException("Every line must has the same width");
-        }
-    }
-
-    private long getNumberOfUniqueWidths(List<Line> lines) {
-        return lines.stream()
-                    .map(Line::getWidth)
-                    .distinct()
-                    .count();
-    }
-
     public Length getWidth() {
         return this.lines.get(0).getWidth();
     }
@@ -44,6 +31,19 @@ public class Lines {
 
         return line.cross(coordinate)
                 .down();
+    }
+
+    private void validateLines(List<Line> lines) {
+        if (NUMBER_OF_UNIQUE_WIDTHS != getNumberOfUniqueWidths(lines)) {
+            throw new IllegalArgumentException("Every line must has the same width");
+        }
+    }
+
+    private long getNumberOfUniqueWidths(List<Line> lines) {
+        return lines.stream()
+                    .map(Line::getWidth)
+                    .distinct()
+                    .count();
     }
 
     private int getLineIndex(Coordinate coordinate) {

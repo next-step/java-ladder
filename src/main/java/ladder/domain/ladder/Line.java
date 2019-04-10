@@ -19,6 +19,25 @@ public class Line {
         this.points = points;
     }
 
+    public Length getWidth() {
+        int width = this.points.size() - 1;
+        return new Length(width);
+    }
+
+    Coordinate cross(Coordinate coordinate) {
+        Point point = this.points.get(coordinate.getXValue());
+
+        if (point.canCrossLeft()) {
+            return coordinate.left();
+        }
+
+        if (point.canCrossRight()) {
+            return coordinate.right();
+        }
+
+        return coordinate;
+    }
+
     private void validatePoints(List<Point> points) {
         validatePointsSize(points);
         validateLeftmostPoint(points);
@@ -61,25 +80,6 @@ public class Line {
         if (currentPoint.canCrossRight() != nextPoint.canCrossLeft()) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public Length getWidth() {
-        int width = this.points.size() - 1;
-        return new Length(width);
-    }
-
-    Coordinate cross(Coordinate coordinate) {
-        Point point = this.points.get(coordinate.getXValue());
-
-        if (point.canCrossLeft()) {
-            return coordinate.left();
-        }
-
-        if (point.canCrossRight()) {
-            return coordinate.right();
-        }
-
-        return coordinate;
     }
 
     @Override

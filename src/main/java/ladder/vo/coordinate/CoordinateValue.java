@@ -13,16 +13,6 @@ public class CoordinateValue {
         this.value = value;
     }
 
-    private void validateInitialValue(int value) {
-        if (isNotValidValue(value)) {
-            throw new IllegalArgumentException("Coordinate value must be at least " + MIN_COORDINATE_VALUE);
-        }
-    }
-
-    private boolean isNotValidValue(int value) {
-        return value < MIN_COORDINATE_VALUE;
-    }
-
     public int getValue() {
         return value;
     }
@@ -36,6 +26,16 @@ public class CoordinateValue {
         validationDecrementValue(decrementedValue);
 
         return new CoordinateValue(decrementedValue);
+    }
+
+    private void validateInitialValue(int value) {
+        if (isNotValidValue(value)) {
+            throw new IllegalArgumentException("Coordinate value must be at least " + MIN_COORDINATE_VALUE);
+        }
+    }
+
+    private boolean isNotValidValue(int value) {
+        return value < MIN_COORDINATE_VALUE;
     }
 
     private void validationDecrementValue(int decrementedValue) {

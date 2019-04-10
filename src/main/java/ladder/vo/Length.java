@@ -13,18 +13,18 @@ public class Length {
         this.value = value;
     }
 
-    private void validateValue(int value) {
-        if (value < MIN_LENGTH) {
-            throw new IllegalArgumentException("Length must be larger than " + MIN_LENGTH);
-        }
-    }
-
     public int getValue() {
         return value;
     }
 
     public boolean isEqualValue(int value){
         return this.value == value;
+    }
+
+    private void validateValue(int value) {
+        if (value < MIN_LENGTH) {
+            throw new IllegalArgumentException("Length must be larger than " + MIN_LENGTH);
+        }
     }
 
     @Override

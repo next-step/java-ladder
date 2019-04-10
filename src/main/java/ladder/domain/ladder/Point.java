@@ -15,18 +15,18 @@ public class Point {
         this.right = right;
     }
 
-    private void validateCross(Cross left, Cross right) {
-        if (left.isCross() && right.isCross()) {
-            throw new IllegalArgumentException("Point can't cross both directions");
-        }
-    }
-
     public boolean canCrossLeft() {
         return this.left.isCross();
     }
 
     public boolean canCrossRight() {
         return this.right.isCross();
+    }
+
+    private void validateCross(Cross left, Cross right) {
+        if (left.isCross() && right.isCross()) {
+            throw new IllegalArgumentException("Point can't cross both directions");
+        }
     }
 
     @Override

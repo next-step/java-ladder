@@ -17,18 +17,18 @@ public class Rewards {
         this.rewards = rewards;
     }
 
-    private void validateRewards(List<Reward> rewards) {
-        if (rewards.size() < MIN_REWARDS_SIZE) {
-            throw new IllegalArgumentException("The number of rewards must be at least " + MIN_REWARDS_SIZE);
-        }
-    }
-
     public int getNumberOfRewards() {
         return this.rewards.size();
     }
 
     public Reward getReward(CoordinateValue x) {
         return this.rewards.get(x.getValue());
+    }
+
+    private void validateRewards(List<Reward> rewards) {
+        if (rewards.size() < MIN_REWARDS_SIZE) {
+            throw new IllegalArgumentException("The number of rewards must be at least " + MIN_REWARDS_SIZE);
+        }
     }
 
     @Override

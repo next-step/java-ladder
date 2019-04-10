@@ -9,17 +9,18 @@ public class Reward {
 
     public Reward(String reward) {
         validateReward(reward);
+
         this.reward = reward;
+    }
+
+    public String toFormedString() {
+        return String.format("%" + MAX_NAME_LENGTH + "s", this.reward);
     }
 
     private void validateReward(String reward) {
         if (StringUtils.isBlank(reward) || (MAX_NAME_LENGTH < reward.length())) {
             throw new IllegalArgumentException("It's not valid reward : " + reward);
         }
-    }
-
-    public String toFormedString() {
-        return String.format("%" + MAX_NAME_LENGTH + "s", this.reward);
     }
 
     @Override
