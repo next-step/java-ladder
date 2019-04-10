@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.Objects;
+
 public class PlayerName {
     public static final int MAXIMUM_NAME_LENGTH = 5;
     private String name;
@@ -19,4 +21,16 @@ public class PlayerName {
         return name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlayerName name1 = (PlayerName) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

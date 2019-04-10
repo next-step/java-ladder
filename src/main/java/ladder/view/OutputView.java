@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.Ladder;
-import ladder.LadderPlayers;
-import ladder.LadderResult;
-import ladder.Prizes;
+import ladder.*;
 
 public class OutputView {
 
@@ -22,18 +19,20 @@ public class OutputView {
         System.out.println(prizes.toString());
     }
 
-    public static void printLadderGameResult2(LadderResult ladderResult, String name) {
+    public static void printLadderGameResult(LadderResult ladderResult, String name) {
         System.out.println("실행 결과");
-        if (name.equals("all")) {
-            printAllResult(ladderResult);
-            return;
+        while (!name.isEmpty()) {
+            if (name.equals("all")) {
+                printAllResult(ladderResult);
+                return;
+            }
+            System.out.println(ladderResult.getResultPrize(name));
         }
-        System.out.println(ladderResult.getResultPrize(name));
     }
 
     private static void printAllResult(LadderResult ladderResult) {
-        for (String key : ladderResult.getLadderResult().keySet()) {
-            System.out.println(key + " : " + ladderResult.getResultPrize(key));
+        for (Player player : ladderResult.getLadderResult().keySet()) {
+            System.out.println(player.getName() + " : " + ladderResult.getLadderResult().get(player));
         }
     }
 }

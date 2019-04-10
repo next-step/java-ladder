@@ -22,10 +22,10 @@ public class Main {
 
         LadderResult ladderResult = new LadderResult(ladder, players, prizes);
         String userInputPrizes = null;
-            do {
-                userInputPrizes = InputView.getInputPrizes();
-                OutputView.printLadderGameResult2(ladderResult, userInputPrizes);
-            } while (isEnd(userInputPrizes));
+        do {
+            userInputPrizes = InputView.getInputPrizes();
+            OutputView.printLadderGameResult(ladderResult, userInputPrizes);
+        } while (isEnd(userInputPrizes));
     }
 
     private static boolean isEnd(String userInputPrizes) {
