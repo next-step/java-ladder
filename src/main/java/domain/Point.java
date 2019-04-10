@@ -1,38 +1,59 @@
 package domain;
 
 public class Point {
-    private static final Integer MIN_POINT_NUMBER = 1;
+    private static final Integer MIN_CREATABLE_POINT_NUMBER = 2;
 
-    private Integer idx;
-    private Boolean movable;
+    private final Integer location;
+    private final Direction direction;
 
-    private Point(Integer idx, Boolean movable) {
-        this.idx = idx;
-        this.movable = movable;
+    private Point(Integer location, Direction direction) {
+        this.location = location;
+        this.direction = direction;
     }
 
-    public static Point valueOf(Integer idx, Boolean movable) {
-        validatePoint(idx);
-
-        return new Point(idx, movable);
-    }
-
-    private static void validatePoint(Integer idx) {
-        if(idx < MIN_POINT_NUMBER) {
+    public static Point valueOf(Integer idx, boolean movable) {
+        if(idx < MIN_CREATABLE_POINT_NUMBER) {
             throw new IllegalArgumentException();
         }
+
+        return new Point(idx, Direction.nextDirection(movable));
     }
 
-    public Point next(Boolean movable) {
-        if(this.movable) {
-            return Point.valueOf(idx + 1, false);
+    public static Point first(boolean movable) {
+        return new Point(1, Direction.nextDirection(movable));
+    }
+
+    public static Point last(Point point) {
+        if(point.direction == Direction.RIGHT) {
+            return new Point(point.location + 1, Direction.LEFT);
         }
 
-        return Point.valueOf(idx + 1, movable);
+        return new Point(point.location + 1, Direction.NONE);
     }
 
-    public Boolean isMovable() {
-        return movable;
+    public static Point next(Point point, boolean movable) {
+        if(point.direction == Direction.RIGHT){
+            return new Point(point.location + 1, Direction.LEFT);
+        }
+
+        return new Point(point.location + 1, Direction.nextDirection(movable));
+    }
+
+    public boolean rightMovable() {
+        return direction == Direction.RIGHT;
+    }
+
+    public boolean leftMovable() {
+        return direction == Direction.LEFT;
+    }
+
+
+    public Integer getLocation() {
+        return location;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override
@@ -47,7 +68,8 @@ public class Point {
 
         if(obj.getClass() == getClass()) {
             Point point = (Point) obj;
-            return idx.equals(point.idx);
+            return location.equals(point.location)
+                && direction == point.direction;
         }
 
         return false;
@@ -55,7 +77,7 @@ public class Point {
 
     @Override
     public int hashCode() {
-        return idx.hashCode();
+        return location.hashCode();
     }
 
     @Override

@@ -2,14 +2,23 @@ import domain.LadderGame;
 import view.ConsoleInputView;
 import view.ConsoleOutputView;
 
-import java.util.List;
-
 public class ConsoleMain {
     public static void main(String[] args) {
-        List<String> userNames = ConsoleInputView.inputUserNames();
-        Integer ladderHeight = ConsoleInputView.inputLadderHeight();
+        LadderGame ladderGame = new LadderGame(
+            ConsoleInputView.inputUserNames(),
+            ConsoleInputView.inputResults(),
+            ConsoleInputView.inputLadderHeight());
 
-        LadderGame ladderGame = new LadderGame(userNames, ladderHeight);
-        ConsoleOutputView.printResult(ladderGame);
+        ConsoleOutputView.printPositions(ladderGame.getUsers());
+        ConsoleOutputView.printLadder(ladderGame.getLadder());
+        ConsoleOutputView.printPositions(ladderGame.getResults());
+
+        String name = ConsoleInputView.inputNameForResult();
+        if(name.equals("all")) {
+            ConsoleOutputView.printAllResult(ladderGame.search());
+        } else {
+            ConsoleOutputView.printOneResult(name, ladderGame.search(name));
+        }
+
     }
 }
