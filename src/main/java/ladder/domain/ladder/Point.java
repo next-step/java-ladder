@@ -1,17 +1,40 @@
 package ladder.domain.ladder;
 
-public enum Point {
-    CROSS("-----"),
-    NOT_CROSS("     ");
+public class Point {
+    public static final Point LEFT_CROSS_POINT = new Point(Cross.CROSS, Cross.NOT_CROSS);
+    public static final Point RIGHT_CROSS_POINT = new Point(Cross.NOT_CROSS, Cross.CROSS);
+    public static final Point CANNOT_CROSS_POINT = new Point(Cross.NOT_CROSS, Cross.NOT_CROSS);
 
-    private final String view;
+    private final Cross left;
+    private final Cross right;
 
-    Point(String view) {
-        this.view = view;
+    Point(Cross left, Cross right) {
+        validateCross(left, right);
+
+        this.left = left;
+        this.right = right;
+    }
+
+    private void validateCross(Cross left, Cross right) {
+        if (left.isCross() && right.isCross()) {
+            throw new IllegalArgumentException("Point can't cross both directions");
+        }
+    }
+
+    public boolean canCrossLeft() {
+        return this.left.isCross();
+    }
+
+    public boolean canCrossRight() {
+        return this.right.isCross();
     }
 
     @Override
     public String toString() {
-        return this.view;
+        if (canCrossRight()) {
+            return "|-----";
+        }
+
+        return "|     ";
     }
 }

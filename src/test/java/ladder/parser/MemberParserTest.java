@@ -11,22 +11,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberParserTest {
     @Test
-    public void 문자열을_Member_list_로_변환() {
+    public void 문자열을_Member_객체로_변환() {
         // given
         String pobi = "pobi";
-        String crong = "crong";
-        String son = "son";
-        String memberNames = String.join(", ", pobi, crong, son);
 
         // when
-        List<Member> parsedMembers = MemberParser.parseMembers(memberNames);
+        Member member = MemberParser.parseMember(pobi);
 
         // then
-        List<String> nameOfParsedMembers = parsedMembers.stream()
-                .map(Member::getName)
-                .collect(Collectors.toList());
-
-        assertThat(nameOfParsedMembers).containsExactly(pobi, crong, son);
+        assertThat(member.getName()).isEqualTo(pobi);
     }
 
     @Test
@@ -42,10 +35,6 @@ public class MemberParserTest {
 
         // then
         List<Member> parsedMembers = parsedMemberGroup.getMembers();
-        List<String> nameOfParsedMembers = parsedMembers.stream()
-                .map(Member::getName)
-                .collect(Collectors.toList());
-
-        assertThat(nameOfParsedMembers).containsExactly(pobi, crong, son);
+        assertThat(parsedMembers).containsExactly(new Member(pobi), new Member(crong), new Member(son));
     }
 }

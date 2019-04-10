@@ -1,22 +1,38 @@
 package ladder.domain.ladder;
 
+import ladder.vo.coordinate.Coordinate;
+import ladder.vo.coordinate.CoordinateValue;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     @Test
-    public void Ladder_생성_시_Line들의_width_가_일치하지_않으면_IllegalArgumentException() {
+    public void 사다리의_최종_좌표_결과_가져오기() {
         // given
-        Line two = new Line(Arrays.asList(Point.CROSS, Point.NOT_CROSS));
-        Line three = new Line(Arrays.asList(Point.NOT_CROSS, Point.CROSS, Point.NOT_CROSS));
-        List<Line> lines = Arrays.asList(two, three, three);
+        /**
+         * | --- |     |
+         * |     | --- |
+         */
+        Line topLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
+        Line bottomLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
+
+        Ladder ladder = new Ladder(new Lines(Arrays.asList(topLine, bottomLine)));
 
         // when
+        Coordinate shouldBeThird = ladder.getLadderResultCoordinate(getCoordinate(0, 2));
+        Coordinate shouldBeFirst = ladder.getLadderResultCoordinate(getCoordinate(1, 2));
+        Coordinate shouldBeSecond = ladder.getLadderResultCoordinate(getCoordinate(2, 2));
+
         // then
-        assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(lines));
+        assertThat(shouldBeFirst).isEqualTo(getCoordinate(0, 0));
+        assertThat(shouldBeSecond).isEqualTo(getCoordinate(1, 0));
+        assertThat(shouldBeThird).isEqualTo(getCoordinate(2, 0));
+    }
+
+    private Coordinate getCoordinate(int x, int y) {
+        return new Coordinate(new CoordinateValue(x), new CoordinateValue(y));
     }
 }
