@@ -6,7 +6,7 @@ import java.util.List;
 public class Lines {
     private List<Line> values;
 
-    public Lines(final List<Line> values) {
+    Lines(final List<Line> values) {
         this.values = new ArrayList<>(values);
     }
 

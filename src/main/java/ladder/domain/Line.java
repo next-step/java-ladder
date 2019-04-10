@@ -10,7 +10,7 @@ public class Line {
         this.points = new ArrayList<>(points);
     }
 
-    public int startWith(final int index) {
+    int startWith(final int index) {
         return this.points.get(index)
                 .move()
                 ;
@@ -24,26 +24,42 @@ public class Line {
         return this.points.size();
     }
 
-    public static class Builder {
+    static class Builder {
         private final List<Point> points;
         private Point current;
 
-        public Builder(final boolean value) {
-            this.current = Point.first(value);
+        public Builder() {
             this.points = new ArrayList<>();
-            this.points.add(this.current);
         }
 
         public Builder point(final boolean value) {
-            this.current = this.current.next(value);
-            this.points.add(this.current);
+            if (isEmpty()) {
+                add(Point.first(value));
+                return this;
+            }
+            add(this.current.next(value));
             return this;
         }
 
         public Line build() {
-            this.current = this.current.last();
-            this.points.add(this.current);
+            validate();
+            add(this.current.last());
             return new Line(this.points);
+        }
+
+        private boolean isEmpty() {
+            return this.points.size() == 0 && this.current == null;
+        }
+
+        private void add(final Point current) {
+            this.current = current;
+            this.points.add(current);
+        }
+
+        private void validate() {
+            if (isEmpty()) {
+                throw new IllegalStateException();
+            }
         }
     }
 }

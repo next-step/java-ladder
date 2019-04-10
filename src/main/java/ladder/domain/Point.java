@@ -9,21 +9,21 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point first(final boolean right) {
+    static Point first(final boolean right) {
         return new Point(0, Direction.first(right));
     }
 
-    public Point next(final boolean right) {
+    Point next(final boolean right) {
         return new Point(this.index + 1, Direction.of(canMoveRight(), right));
     }
 
-    public Point last() {
+    Point last() {
         return new Point(this.index + 1, Direction.last(canMoveRight()));
     }
 
-    public int move() {
+    int move() {
         if (canMoveRight()) {
-            return index + 1;
+            return this.index + 1;
         }
         if (canMoveLeft()) {
             return this.index - 1;

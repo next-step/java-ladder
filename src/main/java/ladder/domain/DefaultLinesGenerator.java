@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class DefaultLinesGenerator implements LinesGenerator {
+    private static final int SIZE_OF_FIRST_AND_LAST_POINT = 2;
+
     private final int numberOfPlayers;
     private final int height;
 
@@ -23,9 +25,10 @@ public class DefaultLinesGenerator implements LinesGenerator {
         );
     }
 
-    public Line generateLine() {
+    private Line generateLine() {
         boolean current = RandomUtils.nextBoolean();
-        final Line.Builder builder = new Line.Builder(current);
+        final Line.Builder builder = new Line.Builder();
+        builder.point(current);
 
         final int betweenSize = getBetweenSize();
         for (int number = 0; number < betweenSize; number++) {
@@ -37,7 +40,7 @@ public class DefaultLinesGenerator implements LinesGenerator {
     }
 
     private int getBetweenSize() {
-        return this.numberOfPlayers - 2;
+        return this.numberOfPlayers - SIZE_OF_FIRST_AND_LAST_POINT;
     }
 
     private boolean getNext(final boolean current) {

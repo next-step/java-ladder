@@ -17,24 +17,24 @@ public class Direction {
         this.right = right;
     }
 
-    public static Direction of(final boolean left, final boolean right) {
+    static Direction of(final boolean left, final boolean right) {
         validate(left, right);
         return cache[getCacheIndex(left, right)];
     }
 
-    public static Direction first(final boolean right) {
+    static Direction first(final boolean right) {
         return of(false, right);
     }
 
-    public static Direction last(final boolean left) {
+    static Direction last(final boolean left) {
         return of(left, false);
     }
 
-    public boolean isLeft() {
+    boolean isLeft() {
         return left;
     }
 
-    public boolean isRight() {
+    boolean isRight() {
         return right;
     }
 
