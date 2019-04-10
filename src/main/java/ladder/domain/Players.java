@@ -20,4 +20,8 @@ public class Players {
     public int maxNameLength() {
         return Collections.max(players, Comparator.comparing(Player::getNameLength)).getNameLength();
     }
+
+    public int playerIndex(String UserName) {
+        return players.indexOf(new Player(UserName));
+    }
 }

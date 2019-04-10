@@ -7,18 +7,18 @@ import java.util.stream.IntStream;
 
 public class OutputView {
 
-    public static void printWinningResult(LadderGame ladderGame) {
+    public static void printLadder(LadderGame ladderGame) {
 
         println("실행결과");
         println("==================================");
 
-        ladderGame.players().forEach(player -> System.out.print(player.getName() + LadderGame.LADDER_EMPTY_WIDTH));
+        ladderGame.getPlayers().forEach(player -> System.out.print(player.getName() + LadderGame.LADDER_EMPTY_WIDTH));
         System.out.println();
-        ladderGame.ladder().forEach(line -> {
+        ladderGame.getLadder().forEach(line -> {
             print(LadderGame.LADDER_SIDE);
-            line.getPoints().forEach(point -> {
-                drawLine(point, ladderGame.maxtWidthDrawTimes());
-            });
+            IntStream.range(0, line.getPoints().size() -1).forEach(index -> {
+            drawLine(line.getPoints().get(index), ladderGame.maxWidthDrawTimes());
+        });
             println("");
         });
     }
@@ -40,6 +40,10 @@ public class OutputView {
             ladderWidth.append(widthType);
         });
         return ladderWidth.toString();
+    }
+
+    public static void printResult(String result) {
+        print(result);
     }
 
     private static void print(String input) {

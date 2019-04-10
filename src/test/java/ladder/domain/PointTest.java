@@ -28,4 +28,22 @@ public class PointTest {
         Point result = Point.first(true).next(true);
         Assertions.assertThat(result).isEqualTo(new Point(true, false));
     }
+
+    @Test
+    public void 오른쪽_이동테스트_move() {
+        int result = Point.first(true).move(0);
+        Assertions.assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    public void 왼쪽_이동테스트_move() {
+        int result = Point.last(true).move(1);
+        Assertions.assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    public void 이동안함_테스트_move() {
+        int result = Point.first(false).move(0);
+        Assertions.assertThat(result).isEqualTo(0);
+    }
 }

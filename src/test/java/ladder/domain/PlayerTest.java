@@ -12,4 +12,10 @@ public class PlayerTest {
         Player result = new Player("hyerin");
         Assertions.assertThat(result.getName()).isEqualTo("hyerin");
     }
+
+    @Test
+    public void 유저이름길이_테스트() {
+        Player result = new Player("hyerin");
+        Assertions.assertThat(result.getNameLength()).isEqualTo(6);
+    }
 }

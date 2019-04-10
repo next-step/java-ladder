@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public interface PointGenerator {
-    int OUT_SIDES = 2;
+    int OUT_SIDES = 1;
     double SEED_VALUE = 0.5;
 
     default List<Point> generate(int countOfPerson) {

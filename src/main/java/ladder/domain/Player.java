@@ -19,4 +19,5 @@ public class Player {
     public int getNameLength() {
         return this.name.length();
     }
+
 }

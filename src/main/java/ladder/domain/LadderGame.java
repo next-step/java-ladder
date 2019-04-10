@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -16,7 +17,12 @@ public class LadderGame {
         this.ladder = new Ladder(players.size(), height);
     }
 
-    public int maxtWidthDrawTimes() {
+    protected LadderGame(List<String> players, Ladder ladder) {
+        this.players = new Players(players);
+        this.ladder = ladder;
+    }
+
+    public int maxWidthDrawTimes() {
         return getWidthDrawTimes();
     }
 
@@ -24,11 +30,20 @@ public class LadderGame {
         return (players.maxNameLength() / DEFAULT_LADDER_WIDTH) + DEFAULT_DRAW_TIME;
     }
 
-    public List<Line> ladder() {
+    public List<Line> getLadder() {
         return ladder.getLines();
     }
 
-    public List<Player> players() {
+    public List<Player> getPlayers() {
         return players.getPlayers();
+    }
+
+    public List<PlayResult> play() {
+        List<PlayResult> playerResults = new ArrayList<>();
+        players.getPlayers().forEach(player -> {
+            String playerName = player.getName();
+            playerResults.add(new PlayResult(playerName, ladder.move(players.playerIndex(playerName))));
+        });
+        return playerResults;
     }
 }

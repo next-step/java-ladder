@@ -28,4 +28,12 @@ public class Line implements PointGenerator {
     public List<Point> getPoints() {
         return points;
     }
+
+    public int movePoint(int index) {
+        int moveResult = points.get(index).move(index);
+        if(points.size() == moveResult) {
+            return moveResult - 1;
+        }
+        return moveResult;
+    }
 }
