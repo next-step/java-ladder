@@ -30,12 +30,27 @@ public class Line {
         boolean previousPoint = BooleanGenerator.pick();
         firstPoint(previousPoint);
         for(int i = 1; i < countOfPerson - 1; i++) {
-            boolean currentPoint = BooleanGenerator.pick();
+            boolean currentPoint = BooleanGenerator.pick(previousPoint);
             points.add(new Point(previousPoint, currentPoint));
             previousPoint = currentPoint;
         }
         lastPoint(previousPoint);
 
+    }
+
+    public int move(int lineIndex) {
+        int result = 0;
+        if(points.get(lineIndex).isLeft()) {
+            result = -1;
+        }
+        if(points.get(lineIndex).isRight()) {
+            result = 1;
+        }
+        if(points.get(lineIndex).isCenter()) {
+            result = 0;
+        }
+
+        return result;
     }
 
     private void lastPoint(boolean point) {

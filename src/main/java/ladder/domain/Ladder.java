@@ -1,25 +1,38 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Ladder {
     private final List<Line> ladder;
-    private final int countOfPerson;
-    private final int height;
 
     public Ladder(int countOfPerson, int height) {
-        this.countOfPerson = countOfPerson;
-        this.height = height;
-        this.ladder = generateLadder();
+        this.ladder = generateLadder(countOfPerson, height);
     }
 
-    private List<Line> generateLadder() {
+    public Ladder(List<Line> ladder) {
+        this.ladder = ladder;
+    }
+
+    private List<Line> generateLadder(int countOfPerson, int height) {
         List<Line> lines = new ArrayList<>();
         for(int i = 0; i < height; i++) {
             lines.add(new Line(countOfPerson));
         }
         return lines;
+    }
+
+    public Results playLadder(Players players, Winnings winnings) {
+        List<Result> results = new ArrayList<>();
+        Iterator<Player> playerIterator = players.iterator();
+        while(playerIterator.hasNext()) {
+            Player player = playerIterator.next();
+            int playResult = player.playLadder(this);
+            results.add(new Result(player.toString().trim(), winnings.valueOf(playResult).toString()));
+        }
+
+        return new Results(results);
     }
 
     public int ladderHeight() {
@@ -34,5 +47,7 @@ public class Ladder {
         return ladder.get(index);
     }
 
-
+    public Iterator<Line> iterator() {
+        return ladder.iterator();
+    }
 }

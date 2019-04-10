@@ -6,7 +6,7 @@ public class Point {
 
     public Point(boolean left, boolean current) {
         if(left && current) {
-            current = false;
+            throw new IllegalArgumentException();
         }
         this.left = left;
         this.current = current;
@@ -14,5 +14,17 @@ public class Point {
 
     public boolean hasHorizontalLine() {
         return current;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return current;
+    }
+
+    public boolean isCenter() {
+        return !left && !current;
     }
 }
