@@ -20,8 +20,13 @@ public class ConsoleMain {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             MemberGroup memberGroup = inputMemberGroup(scanner);
+            ConsoleOutputView.printEmptyLine();
+
             Rewards rewards = inputRewards(scanner);
+            ConsoleOutputView.printEmptyLine();
+
             Length height = inputLadderHeight(scanner);
+            ConsoleOutputView.printEmptyLine();
 
             LadderGame ladderGame = getLadderGame(memberGroup, rewards, height);
 
@@ -29,15 +34,23 @@ public class ConsoleMain {
             ConsoleOutputView.printEmptyLine();
 
             Member target = inputResultMember(scanner);
+            ConsoleOutputView.printEmptyLine();
 
             ConsoleOutputView.printLadderGameResult(ladderGame, target);
         }
     }
 
     private static MemberGroup inputMemberGroup(Scanner scanner) {
-        MemberGroup memberGroup = MemberParser.parseMemberGroup(ConsoleInputView.inputMemberNames(scanner));
-        ConsoleOutputView.printEmptyLine();
-        return memberGroup;
+        return MemberParser.parseMemberGroup(ConsoleInputView.inputMemberNames(scanner));
+    }
+
+    private static Rewards inputRewards(Scanner scanner) {
+        return RewardParser.parseRewards(ConsoleInputView.inputRewards(scanner));
+    }
+
+    private static Length inputLadderHeight(Scanner scanner) {
+        int inputHeight = ConsoleInputView.inputLadderHeight(scanner);
+        return new Length(inputHeight);
     }
 
     private static LadderGame getLadderGame(MemberGroup memberGroup, Rewards rewards, Length height) {
@@ -47,23 +60,8 @@ public class ConsoleMain {
         return new LadderGame(ladderGameInfo, ladder);
     }
 
-    private static Rewards inputRewards(Scanner scanner) {
-        Rewards rewards = RewardParser.parseRewards(ConsoleInputView.inputRewards(scanner));
-        ConsoleOutputView.printEmptyLine();
-        return rewards;
-    }
-
-    private static Length inputLadderHeight(Scanner scanner) {
-        int inputHeight = ConsoleInputView.inputLadderHeight(scanner);
-        Length height = new Length(inputHeight);
-        ConsoleOutputView.printEmptyLine();
-        return height;
-    }
-
     private static Member inputResultMember(Scanner scanner) {
         String targetName = ConsoleInputView.inputMemberNameForResult(scanner);
-        Member target = MemberParser.parseMember(targetName);
-        ConsoleOutputView.printEmptyLine();
-        return target;
+        return MemberParser.parseMember(targetName);
     }
 }
