@@ -28,7 +28,8 @@ public class Players {
         return players.iterator();
     }
 
-    public String playersNames() {
+    @Override
+    public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
         for (Player player : players) {
             stringBuffer.append(player.toString());

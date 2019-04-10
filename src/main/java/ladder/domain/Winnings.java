@@ -17,7 +17,8 @@ public class Winnings {
         this.winnings = Arrays.stream(values).map(Winning::new).collect(Collectors.toList());
     }
 
-    public String winningsString() {
+    @Override
+    public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
         for (Winning winning : winnings) {
             stringBuffer.append(winning.toString());

@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Ladder {
     private final List<Line> ladder;
+    private static final String LINE_SEPARATOR = "line.separator";
 
     public Ladder(int countOfPerson, int height) {
         this.ladder = generateLadder(countOfPerson, height);
@@ -23,18 +24,6 @@ public class Ladder {
         return lines;
     }
 
-    public Results playLadder(Players players, Winnings winnings) {
-        List<Result> results = new ArrayList<>();
-        Iterator<Player> playerIterator = players.iterator();
-        while(playerIterator.hasNext()) {
-            Player player = playerIterator.next();
-            int playResult = player.playLadder(this);
-            results.add(new Result(player.toString().trim(), winnings.valueOf(playResult).toString()));
-        }
-
-        return new Results(results);
-    }
-
     public int ladderHeight() {
         return ladder.size();
     }
@@ -43,11 +32,22 @@ public class Ladder {
         return ladder.get(0).lineCount();
     }
 
-    public Line getLine(int index) {
+    private Line getLine(int index) {
         return ladder.get(index);
     }
 
     public Iterator<Line> iterator() {
         return ladder.iterator();
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        int ladderHeight = ladderHeight();
+        for(int i = 0; i < ladderHeight; i++) {
+            stringBuffer.append(getLine(i).toString());
+            stringBuffer.append(System.getProperty(LINE_SEPARATOR));
+        }
+        return stringBuffer.toString();
     }
 }

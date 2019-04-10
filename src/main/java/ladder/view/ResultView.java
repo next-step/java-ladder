@@ -6,23 +6,20 @@ public class ResultView {
 
     private static final String ALL_RESULT = "all";
 
-    public void printNames(String playerNames) {
+    public static void printNames(String playerNames) {
         System.out.println(playerNames);
     }
 
-    public void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder) {
         System.out.println();
-        int ladderHeight = ladder.ladderHeight();
-        for(int i = 0; i < ladderHeight; i++) {
-            System.out.println(ladder.getLine(i).toString());
-        }
+        System.out.println(ladder.toString());
     }
 
-    public void printWinnings(String winnings) {
+    public static void printWinnings(String winnings) {
         System.out.println(winnings);
     }
 
-    public void printResults(String result) {
+    public static void printResults(String result) {
         System.out.println();
         System.out.println("실행 결과");
         System.out.println(result);
