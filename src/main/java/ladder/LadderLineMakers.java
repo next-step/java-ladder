@@ -23,11 +23,9 @@ public class LadderLineMakers {
         if (currentPoint == INIT_POINT_VALUE) {
             return false;
         }
-
         if (compareWithBeforePoint(points, currentPoint)) {
             return false;
         }
-
         boolean newBooleanPoint = new Random().nextBoolean();
         return newBooleanPoint;
     }

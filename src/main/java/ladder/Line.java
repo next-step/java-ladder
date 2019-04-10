@@ -12,6 +12,17 @@ public class Line {
         this.points = points;
     }
 
+    public int move(int point) {
+        if (point - 1 >= 0 && points.get(point)) {
+            return point - 1;
+        }
+        if (point + 1 < points.size() && points.get(point + 1)) {
+            return point + 1;
+        }
+
+        return point;
+}
+
     @Override
     public String toString() {
         final StringBuilder str = new StringBuilder();

@@ -20,6 +20,10 @@ public class LadderPlayers {
         );
     }
 
+    public int getPlayer(Player player) {
+        return players.indexOf(player);
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

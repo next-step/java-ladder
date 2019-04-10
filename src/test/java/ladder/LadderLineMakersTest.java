@@ -14,6 +14,7 @@ public class LadderLineMakersTest {
         List<Boolean> linePoint = new ArrayList<>();
         linePoint.add(false);
         linePoint.add(true);
+
         Boolean aBoolean = LadderLineMakers.randomBooleanPoint(linePoint, 2);
         assertThat(aBoolean).isFalse();
     }

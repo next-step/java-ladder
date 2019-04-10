@@ -8,9 +8,19 @@ public class Ladder {
 
     private List<Line> lines;
 
-    public Ladder(int inputLadderHeight, int size) {
+    public Ladder(int inputLadderHeight, int playersCount, int prizes) {
+        if (prizes != playersCount) {
+            throw new IllegalArgumentException("플레이어와, 상품수는 같아야 합니다.");
+        }
         this.lines = new ArrayList<>();
-        createLadder(inputLadderHeight, size);
+        createLadder(inputLadderHeight, playersCount);
+    }
+
+    public int move(int point) {
+        for (Line line : lines) {
+            point = line.move(point);
+        }
+        return point;
     }
 
     private void createLadder(int inputLadderHeight, int playerCount) {
