@@ -28,4 +28,12 @@ public class Ladder {
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
+
+    public int result(int current) {
+        int result = current;
+        for (Line line : ladder) {
+            result = line.next(result);
+        }
+        return result;
+    }
 }

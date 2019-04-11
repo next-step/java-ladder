@@ -1,7 +1,5 @@
-package util;
+package domain.bridge;
 
-import domain.bridge.BridgeGenerator;
-import domain.bridge.BridgeRandomGenerator;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,6 +11,5 @@ public class BridgeGeneratorTest {
         BridgeGenerator bridgeGenerator = new BridgeRandomGenerator();
         boolean result = bridgeGenerator.generate(Boolean.TRUE);
         assertThat(result).isFalse();
-
     }
 }

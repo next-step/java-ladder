@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
+    private static final int SINGLE = 1;
+
     private List<Pair> pairs;
     private BridgeGenerator bridgeGenerator;
 
@@ -16,9 +18,19 @@ public class Line {
     }
 
     public Line generate(int userCount) {
+        
+        if (userCount == SINGLE) {
+            return generateSinglePair();
+        }
+        
         boolean isRight = addFirst();
         isRight = addMiddle(userCount, isRight);
         addLast(isRight);
+        return this;
+    }
+
+    private Line generateSinglePair() {
+        pairs.add(Pair.single());
         return this;
     }
 
@@ -48,5 +60,9 @@ public class Line {
 
     public List<Pair> getPairs() {
         return Collections.unmodifiableList(pairs);
+    }
+
+    public int next(int current) {
+        return pairs.get(current).next(current);
     }
 }
