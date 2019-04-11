@@ -20,6 +20,9 @@ public class OutputView {
     }
 
     public static void printLadderGameResult(LadderResult ladderResult, String name) {
+        if (name == null||name.isEmpty()) {
+            return;
+        }
         if (name.equals("exit")) {
             return;
         }
