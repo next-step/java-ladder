@@ -38,20 +38,6 @@ public class DirectionTest {
         assertThat(nextDirection.isLeft()).isEqualTo(rightOfPreviousDirection);
     }
 
-    // TODO Point를 만드는 쪽에서 테스트
-//    @Test
-//    public void 이전_Direction의_right가_true면_다음_Direction의_right는_false() {
-//        // given
-//        boolean rightOfPreviousDirection = true;
-//        Direction direction = new Direction(false, rightOfPreviousDirection);
-//
-//        // when
-//        Direction nextDirection = direction.next(false);
-//
-//        // then
-//        assertThat(nextDirection.isLeft()).isEqualTo(rightOfPreviousDirection);
-//    }
-
     @Test
     public void 마지막_Direction() {
         // given
