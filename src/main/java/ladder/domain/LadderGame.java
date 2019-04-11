@@ -21,14 +21,6 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public int maxWidthDrawTimes() {
-        return getWidthDrawTimes();
-    }
-
-    private int getWidthDrawTimes() {
-        return (players.maxNameLength() / DEFAULT_LADDER_WIDTH) + DEFAULT_DRAW_TIME;
-    }
-
     public List<Line> getLadder() {
         return ladder.getLines();
     }
@@ -39,5 +31,13 @@ public class LadderGame {
 
     public PlayResults play() {
         return players.play(ladder);
+    }
+
+    public int maxWidthDrawTimes() {
+        return getWidthDrawTimes();
+    }
+
+    private int getWidthDrawTimes() {
+        return (players.maxNameLength() / DEFAULT_LADDER_WIDTH) + DEFAULT_DRAW_TIME;
     }
 }

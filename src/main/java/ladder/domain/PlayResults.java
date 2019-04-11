@@ -14,7 +14,7 @@ import java.util.Optional;
 public class PlayResults {
     private List<PlayResult> playResults = new ArrayList<>();
 
-    PlayResults(List<PlayResult> playerResults) {
+    public PlayResults(List<PlayResult> playerResults) {
         this.playResults.addAll(playerResults);
     }
 

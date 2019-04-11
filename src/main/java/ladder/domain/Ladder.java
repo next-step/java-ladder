@@ -28,6 +28,11 @@ public class Ladder {
         this.gameResults = new GameResults(gameResults);
     }
 
+    public GameResult move(int index) {
+        int pointResult = movePoint(index);
+        return gameResults.getGemeReuslt(pointResult);
+    }
+
     private void validateHeight(int height) {
         if(height < MIN_FLOOR) {
             throw new IllegalArgumentException("적어도 2층정돈 해줘야죠ㅠㅠ");
@@ -36,12 +41,6 @@ public class Ladder {
 
     private void initLine(int countOfPerson, int height) {
         IntStream.range(0, height).forEach(count -> lines.add(new Line(countOfPerson)));
-    }
-
-    public GameResult move(int index) {
-        int pointResult = movePoint(index);
-        return gameResults.getGemeReuslt(pointResult);
-
     }
 
     private int movePoint(int index) {
