@@ -1,18 +1,10 @@
 package util;
 
-import java.util.Random;
+/**
+ * 의존 역전 원칙 : http://wonwoo.ml/index.php/post/1717
+ * 개방 폐쇠 원칙 : http://wonwoo.ml/index.php/post/1726
+ */
 
-public class BridgeGenerator {
-    private static final Random random;
-
-    static {
-        random = new Random();
-    }
-
-    public static boolean generate(boolean left) {
-        if (left) {
-            return false;
-        }
-        return random.nextBoolean();
-    }
+public interface BridgeGenerator {
+    public boolean generate(boolean left);
 }

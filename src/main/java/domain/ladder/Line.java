@@ -7,9 +7,11 @@ import java.util.List;
 
 public class Line {
     private List<Pair> pairs;
+    private BridgeGenerator bridgeGenerator;
 
-    public Line() {
+    public Line(BridgeGenerator bridgeGenerator) {
         this.pairs = new ArrayList<>();
+        this.bridgeGenerator = bridgeGenerator;
     }
 
     public Line generate(int userCount) {
@@ -20,7 +22,7 @@ public class Line {
     }
 
     private boolean addFirst() {
-        Pair pair = Pair.first(BridgeGenerator.generate(Boolean.FALSE));
+        Pair pair = Pair.first(bridgeGenerator.generate(Boolean.FALSE));
         pairs.add(pair);
         return pair.isRight();
     }
@@ -32,7 +34,7 @@ public class Line {
 
     private boolean addMiddle(int userCount, boolean left) {
         for (int i = 0; i < userCount - 2; i++) {
-            Pair pair = Pair.middle(left, BridgeGenerator.generate(left));
+            Pair pair = Pair.middle(left, bridgeGenerator.generate(left));
             pairs.add(pair);
             left = pair.isRight();
         }
