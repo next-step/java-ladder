@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import com.sun.javafx.collections.ImmutableObservableList;
-import jdk.nashorn.internal.ir.annotations.Immutable;
 import util.BridgeGenerator;
 
 import java.util.ArrayList;
