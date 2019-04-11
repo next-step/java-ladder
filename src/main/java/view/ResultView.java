@@ -1,12 +1,20 @@
 package view;
 
-import domain.Line;
+import domain.Ladder;
 import util.Console;
 
-public class ResultView {
+import java.util.Map;
 
-    public static void printLine(Line line) {
-        Console.print(line.printLine());
+public class ResultView {
+    public static void printLine(Ladder ladder) {
+        Console.print(ladder.toString());
     }
 
+    public static void result(String player, String value) {
+        Console.print(player + ": " + value);
+    }
+
+    public static void allResult(Map<String, String> map) {
+        map.forEach((k, v) -> Console.print(k + ": " + v));
+    }
 }

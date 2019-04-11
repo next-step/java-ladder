@@ -1,19 +1,44 @@
-import domain.Line;
-import domain.Person;
+import domain.Ladder;
+import domain.Match;
+import domain.Players;
+import domain.Result;
 import util.Console;
 import view.InputView;
 import view.ResultView;
 
-import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LadderApplication {
     public static void main(String[] args) {
         try {
-            Person person = new Person(InputView.inputPalyer());
+            List<String> inputPlayer = Arrays.asList(InputView.inputPalyer().split(","));
+            Players players = new Players(inputPlayer);
+            int countOfPerson = players.countOfPerson();
+            Result result = new Result(InputView.inputResult(), countOfPerson);
             int ladderHeight = InputView.inputLadderHeight();
-            Console.print(person.toString());
-            IntStream.range(0, ladderHeight)
-                    .forEach(height -> ResultView.printLine(new Line(person.personCount())));
+            Ladder ladder = new Ladder(countOfPerson, ladderHeight);
+
+            Console.print(players.toString());
+            ResultView.printLine(ladder);
+            Console.print(result.toString());
+            String player = InputView.inputWho();
+
+            Map<String, String> map = new HashMap<>();
+            inputPlayer.forEach(playerName -> {
+                Match match = new Match(players, playerName);
+                int playerPoint = match.calcPlayerPoint();
+                int resultIndex = ladder.calcStartIndex(playerPoint);
+                map.put(playerName, result.getResult(resultIndex));
+            });
+
+            if ("all".equals(player)) {
+                ResultView.allResult(map);
+            } else {
+                ResultView.result(player, map.get(player));
+            }
 
         } catch (Exception e) {
             Console.print(e.getMessage());
