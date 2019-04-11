@@ -24,8 +24,9 @@ public class InputView {
     }
 
     public static String getInputPrizes() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은? 종료는 exit");
-        return SCANNER.nextLine();
+        return scanner.nextLine();
     }
 }

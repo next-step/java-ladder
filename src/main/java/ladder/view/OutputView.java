@@ -20,17 +20,18 @@ public class OutputView {
     }
 
     public static void printLadderGameResult(LadderResult ladderResult, String name) {
-        System.out.println("실행 결과");
-        while (!name.isEmpty()) {
-            if (name.equals("all")) {
-                printAllResult(ladderResult);
-                return;
-            }
-            System.out.println(ladderResult.getResultPrize(name));
+        if (name.equals("exit")) {
+            return;
         }
+        if (name.equals("all")) {
+            printAllResult(ladderResult);
+            return;
+        }
+        System.out.println(ladderResult.getResultPrize(name));
     }
 
     private static void printAllResult(LadderResult ladderResult) {
+        System.out.println("실행 결과");
         for (Player player : ladderResult.getLadderResult().keySet()) {
             System.out.println(player.getName() + " : " + ladderResult.getLadderResult().get(player));
         }
