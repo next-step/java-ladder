@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import spark.utils.StringUtils;
+
 import java.util.List;
 
 public class Results {
@@ -17,6 +19,9 @@ public class Results {
     }
 
     public String getResult(String condition) {
+        if(StringUtils.isEmpty(condition)) {
+            throw new IllegalArgumentException("입력값이 없습니다.");
+        }
         if(condition.equals(ALL_RESULT)) {
             return toString();
         }

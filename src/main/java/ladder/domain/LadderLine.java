@@ -6,8 +6,8 @@ import java.util.List;
 import static ladder.domain.BooleanGenerator.generatePoint;
 
 public class LadderLine {
-    private final List<Point> points;
     private static final String EMPTY_LINE = "     ";
+    private final List<Point> points;
 
     public LadderLine(List<Point> points) {
         this.points = points;

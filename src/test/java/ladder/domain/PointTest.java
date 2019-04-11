@@ -12,6 +12,10 @@ public class PointTest {
     @Test
     public void first() {
         assertThat(Point.first(TRUE).move(), is(1));
+    }
+
+    @Test
+    public void first_dont_move() {
         assertThat(Point.first(FALSE).move(), is(0));
     }
 

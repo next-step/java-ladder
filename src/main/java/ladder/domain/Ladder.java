@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Ladder {
-    private final List<LadderLine> ladder;
     private static final String LINE_SEPARATOR = "line.separator";
+    private final List<LadderLine> ladder;
 
     public Ladder(int countOfPerson, int height) {
         this.ladder = generateLadder(countOfPerson, height);

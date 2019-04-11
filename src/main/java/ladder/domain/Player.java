@@ -13,12 +13,6 @@ public class Player {
         this.lineIndex = lineIndex;
     }
 
-    private void checkNameLength(String name) {
-        if(name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름의 최대길이는 5자입니다.");
-        }
-    }
-
     public int playLadder(Ladder ladder) {
         int index = this.lineIndex;
         Iterator<LadderLine> lines = ladder.iterator();
@@ -28,6 +22,12 @@ public class Player {
         }
 
         return index;
+    }
+
+    private void checkNameLength(String name) {
+        if(name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름의 최대길이는 5자입니다.");
+        }
     }
 
     @Override

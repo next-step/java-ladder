@@ -1,15 +1,24 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
 import static ladder.domain.BooleanGenerator.generatePoint;
 
 public class Direction {
+    private static final List<Direction> directions = new ArrayList<>();
     private final boolean left;
     private final boolean right;
 
-    public Direction(boolean left, boolean right) {
+    static {
+        directions.add(new Direction(false, false));
+        directions.add(new Direction(false, true));
+        directions.add(new Direction(true, false));
+    }
+
+    private Direction(boolean left, boolean right) {
         if(left && right) {
             throw new IllegalStateException();
         }
@@ -42,6 +51,15 @@ public class Direction {
     }
 
     public static Direction of(boolean first, boolean second) {
+        if(!first && !second) {
+            return directions.get(0);
+        }
+        if(!first && second) {
+            return directions.get(1);
+        }
+        if(first && !second) {
+            return directions.get(2);
+        }
         return new Direction(first, second);
     }
 

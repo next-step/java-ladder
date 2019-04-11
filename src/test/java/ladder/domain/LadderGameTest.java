@@ -16,14 +16,14 @@ public class LadderGameTest {
 
     @Before
     public void setUp() {
-        Direction direction1 = new Direction(false, true);
-        Direction direction2 = new Direction(true, false);
-        Direction direction3 = new Direction(false, true);
-        Direction direction4 = new Direction(true, false);
-        List<Point> points = Arrays.asList(new Point(0, direction1),
-                new Point(1, direction2),
-                new Point(2, direction3),
-                new Point(3, direction4));
+        Direction direction1 = Direction.of(false, true);
+        Direction direction2 = Direction.of(true, false);
+        Direction direction3 = Direction.of(false, true);
+        Direction direction4 = Direction.of(true, false);
+        List<Point> points = Arrays.asList(Point.of(0, direction1),
+                Point.of(1, direction2),
+                Point.of(2, direction3),
+                Point.of(3, direction4));
         firstLadderLine = new LadderLine(points);
 
         Player player1 = new Player("test1", 0);

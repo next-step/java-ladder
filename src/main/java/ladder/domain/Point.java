@@ -1,41 +1,63 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Point {
+    private static final List<Point> points = new ArrayList<>();
+    private static final int INT_MOVE = 1;
     private static final String EMPTY_LINE = "     ";
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-----";
+    private static final int MAX_INDEX = 50;
     private final int index;
     private final Direction direction;
 
-    public Point(int index, Direction direction) {
+    static {
+        for(int i = 0; i < MAX_INDEX; i++) {
+            points.add(new Point(i, Direction.of(false, false)));
+            points.add(new Point(i, Direction.of(false, true)));
+            points.add(new Point(i, Direction.of(true, false)));
+        }
+    }
+
+    public static Point of(int index, Direction direction) {
+        return points.stream().filter(p -> p.index == index)
+                .filter(p -> direction == Direction.of(false, false) ||
+                        direction == Direction.of(false, true) ||
+                        direction == Direction.of(true, false))
+                .findFirst().orElse(new Point(index, direction));
+    }
+
+    private Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;
     }
 
     public int move() {
         if(direction.isRight()) {
-            return index + 1;
+            return index + INT_MOVE;
         }
         if(direction.isLeft()) {
-            return index - 1;
+            return index - INT_MOVE;
         }
         return this.index;
     }
 
     public Point next() {
-        return new Point(index + 1, direction.next());
+        return Point.of(index + INT_MOVE, direction.next());
     }
 
     public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
+        return Point.of(index + INT_MOVE, direction.next(right));
     }
 
     public static Point first(Boolean right) {
-        return new Point(0, Direction.first(right));
+        return Point.of(0, Direction.first(right));
     }
 
     public Point last() {
-        return new Point(index + 1, direction.last());
+        return Point.of(index + INT_MOVE, direction.last());
     }
 
     @Override
