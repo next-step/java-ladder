@@ -11,24 +11,33 @@ public class LadderGame {
     private Players players;
     private Ladder ladder;
 
-    public LadderGame(List<String> players, int height) {
+    public LadderGame(List<String> players, int height, List<String> inputResults) {
         this.players = new Players(players);
-        this.ladder = new Ladder(players.size(), height);
+        this.ladder = new Ladder(players.size(), height, inputResults);
     }
 
-    public int maxtWidthDrawTimes() {
+    protected LadderGame(List<String> players, Ladder ladder) {
+        this.players = new Players(players);
+        this.ladder = ladder;
+    }
+
+    public List<Line> getLadder() {
+        return ladder.getLines();
+    }
+
+    public List<Player> getPlayers() {
+        return players.getPlayers();
+    }
+
+    public PlayResults play() {
+        return players.play(ladder);
+    }
+
+    public int maxWidthDrawTimes() {
         return getWidthDrawTimes();
     }
 
     private int getWidthDrawTimes() {
         return (players.maxNameLength() / DEFAULT_LADDER_WIDTH) + DEFAULT_DRAW_TIME;
-    }
-
-    public List<Line> ladder() {
-        return ladder.getLines();
-    }
-
-    public List<Player> players() {
-        return players.getPlayers();
     }
 }

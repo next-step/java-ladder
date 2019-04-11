@@ -16,7 +16,12 @@ public class Player {
         return this.name;
     }
 
+    public boolean isEqualsName(String playerName) {
+        return this.name.equals(playerName);
+    }
+
     public int getNameLength() {
         return this.name.length();
     }
+
 }

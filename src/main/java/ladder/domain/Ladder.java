@@ -14,10 +14,23 @@ import java.util.stream.IntStream;
 public class Ladder {
     public static final int MIN_FLOOR = 2;
     private List<Line> lines = new ArrayList<>();
+    private GameResults gameResults;
 
-    public Ladder(int countOfPerson, int height) {
+    public Ladder(int countOfPerson, int height, List<String> gameResults) {
         validateHeight(height);
         initLine(countOfPerson, height);
+        this.gameResults = new GameResults(gameResults);
+    }
+
+    public Ladder(List<Line> lines, List<String> gameResults) {
+        validateHeight(lines.size());
+        this.lines = lines;
+        this.gameResults = new GameResults(gameResults);
+    }
+
+    public GameResult move(int index) {
+        int pointResult = movePoint(index);
+        return gameResults.getGemeReuslt(pointResult);
     }
 
     private void validateHeight(int height) {
@@ -28,5 +41,13 @@ public class Ladder {
 
     private void initLine(int countOfPerson, int height) {
         IntStream.range(0, height).forEach(count -> lines.add(new Line(countOfPerson)));
+    }
+
+    private int movePoint(int index) {
+        int pointIndex = index;
+        for (Line line : lines) {
+            pointIndex = line.movePoint(pointIndex);
+        }
+        return pointIndex;
     }
 }

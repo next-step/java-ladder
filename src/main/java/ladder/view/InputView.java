@@ -13,8 +13,20 @@ public class InputView {
         return Arrays.asList(scanner.nextLine().split(REGEX));
     }
 
+    public static List<String> inputResults() {
+        System.out.println("실행 결과를 입력하세요! (쉼표로 구분!)");
+        if(scanner.nextLine().isEmpty()) {
+        }
+        return Arrays.asList(scanner.nextLine().split(REGEX));
+    }
+
     public static int inputHeight() {
         System.out.println("사다리 높이는 얼마에요?");
         return scanner.nextInt();
+    }
+
+    public static String inputUserResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
     }
 }

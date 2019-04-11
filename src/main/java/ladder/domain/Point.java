@@ -23,10 +23,21 @@ public class Point {
     }
 
     public Point next(boolean current) {
-        if(this.current == true && current == true) {
+        if(this.current && current) {
             return new Point(true, false);
         }                                         
         return new Point(this.current, current);
+    }
+
+    public int move(int index) {
+        if(!previous && current) {
+            return index + 1;
+        }
+
+        if(previous && !current) {
+            return index - 1;
+        }
+        return index;
     }
 
     public boolean isCurrent() {

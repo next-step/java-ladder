@@ -2,10 +2,7 @@ package ladder.domain;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Getter
 public class Players {
@@ -19,5 +16,30 @@ public class Players {
 
     public int maxNameLength() {
         return Collections.max(players, Comparator.comparing(Player::getNameLength)).getNameLength();
+    }
+
+    public int playerIndex(String UserName) {
+        return players.indexOf(new Player(UserName));
+    }
+
+    public PlayResults play(Ladder ladder) {
+        List<PlayResult> playerResults = new ArrayList<>();
+        players.forEach(player -> {
+            playerResults.add(new PlayResult(findPlayer(player.getName()), getGameResult(ladder, player.getName())));
+        });
+        return new PlayResults(playerResults);
+    }
+
+    public Player findPlayer(String name) {
+        return findByName(name);
+    }
+
+    public GameResult getGameResult(Ladder ladder, String name) {
+        return ladder.move(playerIndex(name));
+    }
+
+    private Player findByName(String playerName) {
+        Optional<Player> findPlayer = players.stream().filter(player -> player.isEqualsName(playerName)).findFirst();
+        return findPlayer.orElseThrow(() -> new IllegalArgumentException("없는유저에욤"));
     }
 }
