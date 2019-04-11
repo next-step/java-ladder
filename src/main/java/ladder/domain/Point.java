@@ -15,18 +15,14 @@ public class Point {
 
     static {
         for(int i = 0; i < MAX_INDEX; i++) {
-            points.add(new Point(i, Direction.of(false, false)));
             points.add(new Point(i, Direction.of(false, true)));
+            points.add(new Point(i, Direction.of(false, false)));
             points.add(new Point(i, Direction.of(true, false)));
         }
     }
 
     public static Point of(int index, Direction direction) {
-        return points.stream().filter(p -> p.index == index)
-                .filter(p -> direction == Direction.of(false, false) ||
-                        direction == Direction.of(false, true) ||
-                        direction == Direction.of(true, false))
-                .findFirst().orElse(new Point(index, direction));
+        return new Point(index, direction);
     }
 
     private Point(int index, Direction direction) {
