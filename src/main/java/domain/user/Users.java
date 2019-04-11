@@ -1,6 +1,7 @@
 package domain.user;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Users {
@@ -27,6 +28,6 @@ public class Users {
     }
 
     public List<User> getUsers() {
-        return users;
+        return Collections.unmodifiableList(users);
     }
 }

@@ -1,8 +1,11 @@
 package domain.ladder;
 
+import com.sun.javafx.collections.ImmutableObservableList;
+import jdk.nashorn.internal.ir.annotations.Immutable;
 import util.BridgeGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -46,6 +49,6 @@ public class Line {
     }
 
     public List<Pair> getPairs() {
-        return pairs;
+        return Collections.unmodifiableList(pairs);
     }
 }

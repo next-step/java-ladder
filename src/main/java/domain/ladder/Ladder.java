@@ -3,6 +3,7 @@ package domain.ladder;
 import util.BridgeGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -25,6 +26,6 @@ public class Ladder {
     }
 
     public List<Line> getLadder() {
-        return ladder;
+        return Collections.unmodifiableList(ladder);
     }
 }
