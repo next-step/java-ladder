@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Results {
     private static final String LINE_SEPARATOR = "line.separator";
+    private static final String ALL_RESULT = "all";
     private final List<Result> results;
 
     public Results(List<Result> results) {
@@ -16,7 +17,7 @@ public class Results {
     }
 
     public String getResult(String condition) {
-        if(condition.equals("all")) {
+        if(condition.equals(ALL_RESULT)) {
             return toString();
         }
         return findResult(condition).getWinning().trim();

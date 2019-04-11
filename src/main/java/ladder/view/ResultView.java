@@ -4,8 +4,6 @@ import ladder.domain.Ladder;
 
 public class ResultView {
 
-    private static final String ALL_RESULT = "all";
-
     public static void printNames(String playerNames) {
         System.out.println(playerNames);
     }

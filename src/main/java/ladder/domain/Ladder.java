@@ -5,23 +5,23 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> ladder;
+    private final List<LadderLine> ladder;
     private static final String LINE_SEPARATOR = "line.separator";
 
     public Ladder(int countOfPerson, int height) {
         this.ladder = generateLadder(countOfPerson, height);
     }
 
-    public Ladder(List<Line> ladder) {
+    public Ladder(List<LadderLine> ladder) {
         this.ladder = ladder;
     }
 
-    private List<Line> generateLadder(int countOfPerson, int height) {
-        List<Line> lines = new ArrayList<>();
+    private List<LadderLine> generateLadder(int countOfPerson, int height) {
+        List<LadderLine> ladderLines = new ArrayList<>();
         for(int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
+            ladderLines.add(LadderLine.init(countOfPerson));
         }
-        return lines;
+        return ladderLines;
     }
 
     public int ladderHeight() {
@@ -32,11 +32,11 @@ public class Ladder {
         return ladder.get(0).lineCount();
     }
 
-    private Line getLine(int index) {
+    private LadderLine getLine(int index) {
         return ladder.get(index);
     }
 
-    public Iterator<Line> iterator() {
+    public Iterator<LadderLine> iterator() {
         return ladder.iterator();
     }
 

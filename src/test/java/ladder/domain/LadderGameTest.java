@@ -4,34 +4,27 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
-    private Line firstLine;
-    private Line secondLine;
-    private Line thirdLine;
+    private LadderLine firstLadderLine;
+    private LadderLine secondLadderLine;
+    private LadderLine thirdLadderLine;
     private Players players;
 
     @Before
     public void setUp() {
-        Point point1 = new Point(false, true);
-        Point point2 = new Point(true, false);
-        Point point3 = new Point(false, true);
-        Point point4 = new Point(true, false);
-        firstLine = new Line(Arrays.asList(point1, point2, point3, point4));
-
-        point1 = new Point(false, false);
-        point2 = new Point(false, true);
-        point3 = new Point(true, false);
-        point4 = new Point(false, false);
-        secondLine = new Line(Arrays.asList(point1, point2, point3, point4));
-
-        point1 = new Point(false, true);
-        point2 = new Point(true, false);
-        point3 = new Point(false, true);
-        point4 = new Point(true, false);
-        thirdLine = new Line(Arrays.asList(point1, point2, point3, point4));
+        Direction direction1 = new Direction(false, true);
+        Direction direction2 = new Direction(true, false);
+        Direction direction3 = new Direction(false, true);
+        Direction direction4 = new Direction(true, false);
+        List<Point> points = Arrays.asList(new Point(0, direction1),
+                new Point(1, direction2),
+                new Point(2, direction3),
+                new Point(3, direction4));
+        firstLadderLine = new LadderLine(points);
 
         Player player1 = new Player("test1", 0);
         Player player2 = new Player("test2", 1);
@@ -42,12 +35,12 @@ public class LadderGameTest {
 
     @Test
     public void 첫번째줄사다리결과() {
-        Ladder ladder = new Ladder(Arrays.asList(firstLine, secondLine, thirdLine));
+        Ladder ladder = new Ladder(Arrays.asList(firstLadderLine));
         Winnings winnings = new Winnings("1, 2, 3, 4", players.size());
         LadderGame ladderGame = new LadderGame(ladder);
         Results results = ladderGame.playLadder(players, winnings);
         Result result = results.findResult("test1");
         System.out.println(result);
-        assertThat(result.getWinning().trim()).isEqualTo("4");
+        assertThat(result.getWinning().trim()).isEqualTo("2");
     }
 }

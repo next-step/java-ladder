@@ -1,46 +1,57 @@
 package ladder.domain;
 
 public class Point {
-    private static final int MOVE_RIGHT = 1;
-    private static final int MOVE_LEFT = -1;
-    private static final int MOVE_CENTER = 0;
-    private final boolean left;
-    private final boolean current;
+    private static final String EMPTY_LINE = "     ";
+    private static final String VERTICAL_LINE = "|";
+    private static final String HORIZONTAL_LINE = "-----";
+    private final int index;
+    private final Direction direction;
 
-    public Point(boolean left, boolean current) {
-        if(left && current) {
-            current = false;
-        }
-        this.left = left;
-        this.current = current;
-    }
-
-    public boolean hasHorizontalLine() {
-        return current;
-    }
-
-    public boolean isLeft() {
-        return left;
-    }
-
-    public boolean isRight() {
-        return current;
-    }
-
-    public boolean isCenter() {
-        return !left && !current;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
     public int move() {
-        int result = 0;
-        if(isRight()) result = MOVE_RIGHT;
-        if(isLeft()) result = MOVE_LEFT;
-        if(isCenter()) result = MOVE_CENTER;
-
-        return result;
+        if(direction.isRight()) {
+            return index + 1;
+        }
+        if(direction.isLeft()) {
+            return index - 1;
+        }
+        return this.index;
     }
 
-    public boolean next() {
-        return current;
+    public Point next() {
+        return new Point(index + 1, direction.next());
+    }
+
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.last());
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(VERTICAL_LINE);
+        if(direction.isRight()) {
+            stringBuffer.append(HORIZONTAL_LINE);
+        }
+        if(direction.isLeft()) {
+            stringBuffer.append(EMPTY_LINE);
+        }
+        if(direction.isCenter()) {
+            stringBuffer.append(EMPTY_LINE);
+        }
+
+        return stringBuffer.toString();
     }
 }

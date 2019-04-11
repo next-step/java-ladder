@@ -21,10 +21,10 @@ public class Player {
 
     public int playLadder(Ladder ladder) {
         int index = this.lineIndex;
-        Iterator<Line> lines = ladder.iterator();
+        Iterator<LadderLine> lines = ladder.iterator();
         while(lines.hasNext()) {
-            Line line = lines.next();
-            index += line.move(index);
+            LadderLine ladderLine = lines.next();
+            index = ladderLine.move(index);
         }
 
         return index;

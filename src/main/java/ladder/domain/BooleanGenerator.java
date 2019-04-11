@@ -8,7 +8,7 @@ public class BooleanGenerator {
     private BooleanGenerator() {
     }
 
-    public static boolean pick() {
+    public static boolean generatePoint() {
         return random.nextBoolean();
     }
 }
