@@ -11,29 +11,23 @@ public class Line {
     }
 
     private void createLines(int countOfPerson) {
-        this.points.add(Point.first());
-        boolean isLeft = this.isRight(this.points.get(0));
+        this.points.add(Point.createPoint(false, Point.isNextPoint(false)));
+        boolean isLeft = this.isLeft(this.points.get(0));
 
         for (int i = 1; i < countOfPerson - 1; i++) {
-            Point point = Point.next(isLeft);
+            Point point = Point.createPoint(isLeft, Point.isNextPoint(isLeft));
             this.points.add(point);
-            isLeft = this.isRight(point);
+            isLeft = this.isLeft(point);
         }
-        this.points.add(Point.last(isLeft));
+        this.points.add(Point.createPoint(isLeft, false));
     }
 
-    boolean isRight(Point point) {
-        return point.isRight();
+    public boolean isLeft(Point point) {
+        return point.isRightMovable();
     }
 
-    public Integer location(Line line, int startPoint) {
-        List<Point> points = line.points;
-        if (points.get(startPoint).isRight()) {
-            return startPoint + 1;
-        } else if (points.get(startPoint).isLeft()) {
-            return startPoint - 1;
-        }
-        return startPoint;
+    public int movePoint(int startPoint) {
+        return startPoint + this.points.get(startPoint).movePoint();
     }
 
     public String printLine() {

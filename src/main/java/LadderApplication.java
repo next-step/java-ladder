@@ -29,12 +29,12 @@ public class LadderApplication {
             Map<String, String> map = new HashMap<>();
             inputPlayer.forEach(playerName -> {
                 Match match = new Match(players, playerName);
-                int playerIndex = match.getPlayerIndex();
-                int resultIndex = ladder.calcStartIndex(playerIndex);
+                int playerPoint = match.calcPlayerPoint();
+                int resultIndex = ladder.calcStartIndex(playerPoint);
                 map.put(playerName, result.getResult(resultIndex));
             });
 
-            if (player.equals("all")) {
+            if ("all".equals(player)) {
                 ResultView.allResult(map);
             } else {
                 ResultView.result(player, map.get(player));

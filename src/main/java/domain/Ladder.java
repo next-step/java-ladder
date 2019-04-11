@@ -12,17 +12,22 @@ public class Ladder {
                 .forEach(i -> this.lines.add(new Line(countOfPerson)));
     }
 
-    public void print() {
-        this.lines.forEach(line -> System.out.println(line.printLine()));
-    }
-
-    public int calcStartIndex(int playerIndex) {
-        int startIndex = playerIndex;
+    public int calcStartIndex(int playerPoint) {
+        int startPoint = playerPoint;
         for (int i = 0; i < this.lines.size(); i++) {
-            this.lines.get(i).location(this.lines.get(i), startIndex);
-            startIndex = this.lines.get(i).location(this.lines.get(i), startIndex);
+            Line line = this.lines.get(i);
+            line.movePoint(startPoint);
+            startPoint = line.movePoint(startPoint);
         }
-        return startIndex;
+        return startPoint;
     }
 
+    @Override
+    public String toString() {
+        String result = "";
+        for (Line line : this.lines) {
+            result += line.printLine() + "\n";
+        }
+        return result;
+    }
 }

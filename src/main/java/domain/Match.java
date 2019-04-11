@@ -4,8 +4,8 @@ import util.ErrorMessage;
 
 public class Match {
     private static final String ALL = "all";
-    private Players players;
-    private String player;
+    private final Players players;
+    private final String player;
 
     public Match(Players players, String playerName) {
         this.checkName(players, playerName);
@@ -23,7 +23,7 @@ public class Match {
         return players.equals(playerName);
     }
 
-    public int getPlayerIndex() {
-        return this.players.getPlayerIndex(this.player);
+    public int calcPlayerPoint() {
+        return this.players.calcPlayerPoint(this.player);
     }
 }

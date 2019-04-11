@@ -9,17 +9,12 @@ public class LineTest {
     private Line line;
 
     @Before
-    public void line_생성() {
+    public void 라인_생성() {
         this.line = new Line(3);
     }
 
     @Test
-    public void setLeftTest() {
-        assertThat(this.line.isRight(Point.next(true))).isFalse();
-    }
-
-    @Test
-    public void locationTest() {
-        System.out.println(this.line.location(this.line, 2));
+    public void true끼리_이을_수_없다() {
+        assertThat(this.line.isLeft(PointTest.LEFT_MOVABLE_POINT)).isFalse();
     }
 }

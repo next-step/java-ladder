@@ -27,14 +27,14 @@ public class Players {
         return this.players.size();
     }
 
-    public int getPlayerIndex(String playerName) {
-        int playerIndex = 0;
+    public int calcPlayerPoint(String playerName) {
+        int playerPoint = 0;
         for (int i = 0; i < this.players.size(); i++) {
             if (this.players.get(i).toString().equals(playerName)) {
-                playerIndex = i;
+                playerPoint = i;
             }
         }
-        return playerIndex;
+        return playerPoint;
     }
 
     @Override

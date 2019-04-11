@@ -42,6 +42,6 @@ public class PlayersTest {
 
     @Test
     public void 참여자_인덱스() {
-        assertThat(this.players.getPlayerIndex("yeon")).isEqualTo(1);
+        assertThat(this.players.calcPlayerPoint("yeon")).isEqualTo(1);
     }
 }

@@ -2,6 +2,7 @@ package domain;
 
 import org.junit.Before;
 import org.junit.Test;
+import util.Console;
 
 public class LadderTest {
     private Ladder ladder;
@@ -9,7 +10,7 @@ public class LadderTest {
     @Before
     public void Ladder_생성() {
         this.ladder = new Ladder(4,3);
-        ladder.print();
+        Console.print(this.ladder.toString());
     }
 
     @Test

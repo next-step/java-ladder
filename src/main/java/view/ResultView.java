@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ResultView {
     public static void printLine(Ladder ladder) {
-        ladder.print();
+        Console.print(ladder.toString());
     }
 
     public static void result(String player, String value) {

@@ -13,30 +13,31 @@ public class Point {
         this.right = right;
     }
 
-    public static Point first() {
-        return new Point(false, generatePoint(false));
+    public static Point createPoint(boolean left, boolean right) {
+        return new Point(left, right);
     }
 
-    public static Point last(boolean left) {
-        return new Point(left, false);
-    }
-
-    public static Point next(boolean left) {
-        return new Point(left, generatePoint(left));
-    }
-
-    public static boolean generatePoint(boolean left) {
+    public static boolean isNextPoint(boolean left) {
         if (left) {
             return false;
         }
         return new Random().nextBoolean();
     }
 
-    public boolean isLeft() {
+    public int movePoint() {
+        if (this.isRightMovable()) {
+            return 1;
+        } else if (this.isLeftMovable()) {
+            return - 1;
+        }
+        return 0;
+    }
+
+    public boolean isLeftMovable() {
         return this.left;
     }
 
-    public boolean isRight() {
+    public boolean isRightMovable() {
         return this.right;
     }
 
