@@ -9,7 +9,7 @@ public class Point {
     private static final String EMPTY_LINE = "     ";
     private static final String VERTICAL_LINE = "|";
     private static final String HORIZONTAL_LINE = "-----";
-    private static final int MAX_INDEX = 50;
+    private static final int MAX_INDEX = 10;
     private final int index;
     private final Direction direction;
 
@@ -22,7 +22,9 @@ public class Point {
     }
 
     public static Point of(int index, Direction direction) {
-        return new Point(index, direction);
+        return points.stream().filter(p -> p.index == index)
+                .filter(p -> p.direction == direction)
+                .findFirst().orElse(new Point(index, direction));
     }
 
     private Point(int index, Direction direction) {
