@@ -1,4 +1,4 @@
-package util;
+package domain.bridge;
 
 import java.util.Random;
 

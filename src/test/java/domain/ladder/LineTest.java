@@ -1,8 +1,8 @@
 package domain.ladder;
 
 import org.junit.Test;
-import util.BridgeGenerator;
-import util.BridgeRandomGenerator;
+import domain.bridge.BridgeGenerator;
+import domain.bridge.BridgeRandomGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,6 +1,6 @@
 package domain.ladder;
 
-import util.BridgeGenerator;
+import domain.bridge.BridgeGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;

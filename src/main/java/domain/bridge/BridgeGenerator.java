@@ -1,4 +1,4 @@
-package util;
+package domain.bridge;
 
 /**
  * 의존 역전 원칙 : http://wonwoo.ml/index.php/post/1717
