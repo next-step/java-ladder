@@ -11,9 +11,9 @@ public class LadderGame {
     private Players players;
     private Ladder ladder;
 
-    public LadderGame(List<String> players, int height) {
+    public LadderGame(List<String> players, int height, List<String> inputResults) {
         this.players = new Players(players);
-        this.ladder = new Ladder(players.size(), height);
+        this.ladder = new Ladder(players.size(), height, inputResults);
     }
 
     protected LadderGame(List<String> players, Ladder ladder) {
@@ -37,7 +37,7 @@ public class LadderGame {
         return players.getPlayers();
     }
 
-    public PlayResults play(GameResults gameResults) {
-        return players.play(gameResults, ladder);
+    public PlayResults play() {
+        return players.play(ladder);
     }
 }

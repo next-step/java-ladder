@@ -16,12 +16,13 @@ public class Fixture {
     public static final GameResult LOSE_RESULT = new GameResult(LOSE);
     public static final GameResult WIN_RESULT = new GameResult(WIN);
     public static final List<String> GAME_RESULT_LIST = Arrays.asList(LOSE, WIN);
-    public static final GameResults GAME_RESULTS = new GameResults(GAME_RESULT_LIST);
 
     public static final PlayResult HYERIN_PLAY_RESULT = new PlayResult(HYERIN_PLAYER, WIN_RESULT);
     public static final PlayResult ISISRIN_PLAY_RESULT = new PlayResult(ISISRIN_PLAYER, LOSE_RESULT);
     public static final List<PlayResult> PLAY_RESULTS_LIST = Arrays.asList(HYERIN_PLAY_RESULT, ISISRIN_PLAY_RESULT);
     public static final PlayResults PLAY_RESULTS = new PlayResults(PLAY_RESULTS_LIST);
 
-    public static final LadderGameResult LADDER_GAME_RESULT = new LadderGameResult(GAME_RESULT_LIST);
+    public static final int HEIGHT = 2;
+    public static final Ladder LADDER = new Ladder(PLAYER_LIST.size(), HEIGHT, GAME_RESULT_LIST);
+    public static final LadderGameResult LADDER_GAME_RESULT = new LadderGameResult(PLAY_RESULTS);
 }

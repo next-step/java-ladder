@@ -22,10 +22,10 @@ public class Players {
         return players.indexOf(new Player(UserName));
     }
 
-    public PlayResults play(GameResults gameResults, Ladder ladder) {
+    public PlayResults play(Ladder ladder) {
         List<PlayResult> playerResults = new ArrayList<>();
         players.forEach(player -> {
-            playerResults.add(new PlayResult(findPlayer(player.getName()), findGameResult(gameResults, ladder, player.getName())));
+            playerResults.add(new PlayResult(findPlayer(player.getName()), getGameResult(ladder, player.getName())));
         });
         return new PlayResults(playerResults);
     }
@@ -34,11 +34,7 @@ public class Players {
         return findByName(name);
     }
 
-    public GameResult findGameResult(GameResults gameResults, Ladder ladder, String name) {
-        return gameResults.getGemeReuslt(playResultIndex(ladder, name));
-    }
-
-    public int playResultIndex(Ladder ladder, String name) {
+    public GameResult getGameResult(Ladder ladder, String name) {
         return ladder.move(playerIndex(name));
     }
 
