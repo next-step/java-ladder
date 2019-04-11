@@ -68,4 +68,20 @@ public class Line2Test {
 
         log.debug("line\n{}", line);
     }
+
+    @Test
+    public void view로_보이는_String_테스트() {
+        // given
+        Point2 first = new Point2(0, new Direction(false, false));
+        Point2 middle = new Point2(1, new Direction(false, true));
+        Point2 last = new Point2(2, new Direction(true, false));
+
+        // when
+        Line2 line = new Line2(Arrays.asList(first, middle, last));
+
+        // then
+        assertThat(line.toString()).contains("|     |-----|");
+
+        log.debug("line\n{}", line);
+    }
 }
