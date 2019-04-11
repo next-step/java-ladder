@@ -3,6 +3,8 @@ package ladder.domain.ladder;
 import ladder.vo.coordinate.Coordinate;
 import ladder.vo.coordinate.CoordinateValue;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
+    private static final Logger log = LoggerFactory.getLogger(LineTest.class);
 
     @Test
     public void Line의_Point가_하나일_경우_IllegalArgumentException() {
@@ -54,9 +57,6 @@ public class LineTest {
     @Test
     public void Line에서_좌표_좌우로_넘어가기() {
         // given
-        /**
-         * | --- |     |
-         */
         List<Point> points = Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT);
         Line line = new Line(points);
 
@@ -73,6 +73,22 @@ public class LineTest {
         assertThat(shouldBeFirst).isEqualTo(getCoordinate(0, 0));
         assertThat(shouldBeSecond).isEqualTo(getCoordinate(1, 0));
         assertThat(shouldBeThird).isEqualTo(getCoordinate(2, 0));
+
+        log.debug("line\n{}", line);
+    }
+
+    @Test
+    public void view로_보이는_String_테스트() {
+        // given
+        List<Point> points = Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT);
+
+        // when
+        Line line = new Line(points);
+
+        // then
+        assertThat(line.toString()).contains("|-----|     |");
+
+        log.debug("line\n{}", line);
     }
 
     private Coordinate getCoordinate(int x, int y) {

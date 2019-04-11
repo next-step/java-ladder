@@ -3,12 +3,15 @@ package ladder.domain.ladder;
 import ladder.vo.coordinate.Coordinate;
 import ladder.vo.coordinate.CoordinateValue;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class LinesTest {
+    private static final Logger log = LoggerFactory.getLogger(LinesTest.class);
 
     @Test
     public void Line_들의_size가_전부_일치하지_않는_경우_IllegalArgumentException() {
@@ -25,10 +28,6 @@ public class LinesTest {
     @Test
     public void 라인을_따라_다음_라인으로_건너가기() {
         // given
-        /**
-         * | --- |     |
-         * |     | --- |
-         */
         Line topLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
         Line bottomLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
         Lines lines = new Lines(Arrays.asList(topLine, bottomLine));
@@ -46,6 +45,26 @@ public class LinesTest {
         assertThat(shouldBeFirst).isEqualTo(getCoordinate(0, 1));
         assertThat(shouldBeSecond).isEqualTo(getCoordinate(1, 1));
         assertThat(shouldBeThird).isEqualTo(getCoordinate(2, 1));
+
+        log.debug("lines\n{}", lines);
+    }
+
+    @Test
+    public void view로_보이는_String_테스트() {
+        // given
+        Line topLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
+        Line bottomLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
+
+        // when
+        Lines lines = new Lines(Arrays.asList(topLine, bottomLine));
+
+        // then
+        assertThat(lines.toString())
+                .containsSubsequence(
+                "|-----|     |",
+                "|     |-----|");
+
+        log.debug("lines\n{}", lines);
     }
 
     private Coordinate getCoordinate(int x, int y) {
