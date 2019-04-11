@@ -69,7 +69,8 @@ public class Line {
     }
 
     private void validateCrossOfPoints(List<Point> points) {
-        for (int i = 0, pointsSizeMinusOne = points.size() - 1; i < pointsSizeMinusOne; i++) {
+        int pointsSizeMinusOne = points.size() - 1;
+        for (int i = 0; i < pointsSizeMinusOne; i++) {
             Point currentPoint = points.get(i);
             Point nextPoint = points.get(i + 1);
             validateCrossOfPoints(currentPoint, nextPoint);
