@@ -24,4 +24,8 @@ public class Goals {
     public List<String> getGoals() {
         return goals;
     }
+
+    public String findGoal(int position) {
+        return goals.get(position);
+    }
 }

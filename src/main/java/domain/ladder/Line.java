@@ -18,11 +18,11 @@ public class Line {
     }
 
     public Line generate(int userCount) {
-        
+
         if (userCount == SINGLE) {
             return generateSinglePair();
         }
-        
+
         boolean isRight = addFirst();
         isRight = addMiddle(userCount, isRight);
         addLast(isRight);

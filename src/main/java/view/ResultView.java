@@ -4,6 +4,7 @@ import domain.ladder.Goals;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.Pair;
+import domain.result.Results;
 import domain.user.User;
 import domain.user.Users;
 import org.apache.commons.lang3.StringUtils;
@@ -14,11 +15,26 @@ public class ResultView {
     private static final String BRIDGE = "-";
     private static final String LADDER = "|";
     private static final String SPACE = " ";
+    private static final String ALL_USERS = "all";
 
-    public static void result(Users users, Ladder ladder, Goals goals) {
+    public static void ladder(Users users, Ladder ladder, Goals goals) {
         printUsers(users);
         printLadder(ladder);
         printGoals(goals);
+    }
+
+    public static void result(String resultUser, Users users, Results results) {
+        System.out.println("실행 결과");
+
+        if (!ALL_USERS.equals(resultUser)) {
+            System.out.println(results.findOne(resultUser));
+            return;
+        }
+
+        for (int i = 0; i < users.size(); i++) {
+            String result = results.findOne(users.getUserName(i));
+            System.out.println(users.getUserName(i) + " : " + result);
+        }
     }
 
     private static void printUsers(Users users) {
