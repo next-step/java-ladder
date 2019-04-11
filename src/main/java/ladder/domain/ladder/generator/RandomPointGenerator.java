@@ -30,10 +30,12 @@ public class RandomPointGenerator implements PointGenerator {
 
     @Override
     public Point generateRightmost(Point previous) {
+        // - |
         if (previous.canCrossRight()) {
             return Point.LEFT_CROSS_POINT;
         }
 
+        //   |
         return Point.CANNOT_CROSS_POINT;
     }
 
