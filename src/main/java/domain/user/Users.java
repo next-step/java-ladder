@@ -1,17 +1,18 @@
 package domain.user;
 
+import util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Users {
     public static final Integer MARGIN = 5;
-    private static final String DELIMITER = ",";
 
     private List<User> users;
 
     public Users(String name) {
-        String[] names = name.split(DELIMITER);
+        String[] names = StringUtils.toStringArrays(name);
         this.users = register(names);
     }
 

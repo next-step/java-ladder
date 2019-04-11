@@ -1,5 +1,6 @@
 package view;
 
+import domain.ladder.Goals;
 import domain.ladder.Ladder;
 import domain.ladder.Line;
 import domain.ladder.Pair;
@@ -14,15 +15,24 @@ public class ResultView {
     private static final String LADDER = "|";
     private static final String SPACE = " ";
 
-    public static void result(Users users, Ladder ladder) {
+    public static void result(Users users, Ladder ladder, Goals goals) {
         printUsers(users);
         printLadder(ladder);
+        printGoals(goals);
     }
 
     private static void printUsers(Users users) {
         List<User> userNames = users.getUsers();
         for (User name : userNames) {
             System.out.print(formatter(SPACE, name.toString()));
+        }
+        System.out.println();
+    }
+
+    private static void printGoals(Goals goals) {
+        List<String> results = goals.getGoals();
+        for (String result : results) {
+            System.out.print(formatter(SPACE, result));
         }
         System.out.println();
     }
