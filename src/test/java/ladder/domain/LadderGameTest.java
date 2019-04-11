@@ -6,20 +6,22 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static ladder.domain.Fixture.*;
+
 public class LadderGameTest {
 
     @Test
     public void 유저이름_최대길이_테스트() {
         List<String> players = Arrays.asList("1번", "이번타자애오", "삼번타자임니당", "열글자넘기기귀찮구만요");
+        
         LadderGame ladderGame = new LadderGame(players, 4);
         Assertions.assertThat(ladderGame.maxWidthDrawTimes()).isEqualTo(3);
     }
 
     @Test
     public void 플레이_결과() {
-        List<String> players = Arrays.asList("1번", "이번타자애오");
+        List<String> players = PLAYER_LIST;
 
-        Ladder result = new Ladder(2,2);
         Line resultLine1 = new Line(2) {
             @Override
             protected List<Point> initPoints(int countOfPerson) {
@@ -33,11 +35,10 @@ public class LadderGameTest {
                 return Arrays.asList(Point.first(true), Point.last(true));
             }
         };
-        result.setLines(Arrays.asList(resultLine1, resultLine2));
+        Ladder result = new Ladder(2, Arrays.asList(resultLine1, resultLine2));
 
         LadderGame ladderGame = new LadderGame(players, result);
-        Assertions.assertThat(ladderGame.play()).isEqualTo(Arrays.asList(new PlayResult("1번", 1),
-                new PlayResult("이번타자애오", 0)));
+        Assertions.assertThat(ladderGame.play(GAME_RESULTS)).isEqualTo(PLAY_RESULTS);
     }
 
 }

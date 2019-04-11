@@ -30,11 +30,11 @@ public class Point {
     }
 
     public int move(int index) {
-        if(previous == false && current) {
+        if(!previous && current) {
             return index + 1;
         }
 
-        if(previous && current == false) {
+        if(previous && !current) {
             return index - 1;
         }
         return index;

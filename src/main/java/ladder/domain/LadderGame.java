@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -38,12 +37,7 @@ public class LadderGame {
         return players.getPlayers();
     }
 
-    public List<PlayResult> play() {
-        List<PlayResult> playerResults = new ArrayList<>();
-        players.getPlayers().forEach(player -> {
-            String playerName = player.getName();
-            playerResults.add(new PlayResult(playerName, ladder.move(players.playerIndex(playerName))));
-        });
-        return playerResults;
+    public PlayResults play(GameResults gameResults) {
+        return players.play(gameResults, ladder);
     }
 }

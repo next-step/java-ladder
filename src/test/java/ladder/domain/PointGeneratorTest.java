@@ -13,16 +13,8 @@ public class PointGeneratorTest {
 
     @Test
     public void 생성테스트() {
-        pointGenerator = new PointGenerator() {
-            @Override
-            public List<Point> generate(int countOfPerson) {
-                return Arrays.asList(Point.first(true), new Point(true, false), Point.last(false));
-            }
-        };
-
+        pointGenerator = new PointGenerator();
         List<Point> result = pointGenerator.generate(3);
-        
         assertThat(result.size()).isEqualTo(3);
-        assertThat(result).isEqualTo(Arrays.asList(Point.first(true), new Point(true, false), Point.last(false)));
     }
 }

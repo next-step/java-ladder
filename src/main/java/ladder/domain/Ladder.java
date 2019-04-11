@@ -2,7 +2,6 @@ package ladder.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.util.ArrayList;
@@ -14,15 +13,15 @@ import java.util.stream.IntStream;
 @EqualsAndHashCode
 public class Ladder {
     public static final int MIN_FLOOR = 2;
+    private List<Line> lines = new ArrayList<>();
 
     public Ladder(int countOfPerson, int height) {
         validateHeight(height);
         initLine(countOfPerson, height);
     }
 
-    private List<Line> lines = new ArrayList<>();
-
-    protected void setLines(List<Line> lines) {
+    public Ladder(int countOfPerson, List<Line> lines) {
+        validateHeight(lines.size());
         this.lines = lines;
     }
 
@@ -37,8 +36,10 @@ public class Ladder {
     }
 
     public int move(int index) {
-        final int[] pointIndex = {index};
-        IntStream.range(0, lines.size()).forEach(lineIndex -> pointIndex[0] = lines.get(lineIndex).movePoint(pointIndex[0]));
-        return pointIndex[0];
+        int pointIndex = index;
+        for (Line line : lines) {
+            pointIndex = line.movePoint(pointIndex);
+        }
+        return pointIndex;
     }
 }

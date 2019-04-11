@@ -5,14 +5,17 @@ import lombok.ToString;
 import java.util.List;
 
 @ToString
-public class Line implements PointGenerator {
-
+public class Line extends PointGenerator {
     public static final int MIN_PLAYERS = 2;
     private List<Point> points;
 
     public Line (int countOfPerson) {
         validate(countOfPerson);
         points = initPoints(countOfPerson);
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 
     protected List<Point> initPoints(int countOfPerson) {
@@ -23,10 +26,6 @@ public class Line implements PointGenerator {
         if(countOfPerson < MIN_PLAYERS) {
             throw new IllegalArgumentException("혼자서 어떻게 게임을 해 ...ㅠㅠ");
         }
-    }
-
-    public List<Point> getPoints() {
-        return points;
     }
 
     public int movePoint(int index) {

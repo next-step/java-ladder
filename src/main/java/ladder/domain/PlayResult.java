@@ -8,15 +8,23 @@ import lombok.ToString;
 @Getter
 @EqualsAndHashCode
 public class PlayResult {
-    private String name;
-    private int resultIndex;
+    private Player player;
+    private GameResult gameResult;
 
-    public PlayResult(String name, int resultIndex) {
-        this.name = name;
-        this.resultIndex = resultIndex;
+    public PlayResult(Player player, GameResult gameResult) {
+        this.player = player;
+        this.gameResult = gameResult;
     }
 
     public boolean isEqualsName(String userName) {
-        return name.equals(userName);
+        return player.isEqualsName(userName);
+    }
+
+    public String getName() {
+        return player.getName();
+    }
+
+    public String getGameResult() {
+        return gameResult.getGameResult();
     }
 }

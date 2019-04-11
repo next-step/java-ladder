@@ -12,9 +12,9 @@ public class ConsoleMain {
         LadderGameResult ladderGameResult = new LadderGameResult(InputView.inputResults());
 
         OutputView.printLadder(ladderGame);
-        ladderGameResult.initPlayerResults(ladderGame.play());
+        ladderGameResult.initPlayResults(ladderGame.play(ladderGameResult.getInputGameResults()));
 
-        OutputView.printResult(ladderGameResult.getPlayResults(InputView.inputUserResult()));
+        OutputView.printResult(InputView.inputUserResult(), ladderGameResult);
 
     }
 }

@@ -1,11 +1,14 @@
 package ladder.view;
 
 import ladder.domain.LadderGame;
+import ladder.domain.LadderGameResult;
+import ladder.domain.PlayResults;
 import ladder.domain.Point;
 
 import java.util.stream.IntStream;
 
 public class OutputView {
+    public static final String ALL = "all";
 
     public static void printLadder(LadderGame ladderGame) {
 
@@ -42,8 +45,29 @@ public class OutputView {
         return ladderWidth.toString();
     }
 
-    public static void printResult(String result) {
-        print(result);
+    public static void printResult(String inputUserResult, LadderGameResult ladderGameResult) {
+        print(getPlayResults(inputUserResult, ladderGameResult));
+    }
+
+
+    private static String getPlayResults(String userName, LadderGameResult ladderGameResult) {
+        if(userName.equals(ALL)) {
+            return getAllPlayResults(ladderGameResult.getPlayResults());
+        }
+        return getPlayResult(userName, ladderGameResult);
+    }
+
+    private static String getPlayResult(String userName, LadderGameResult ladderGameResult) {
+        return ladderGameResult.findResultByName(userName).getGameResult();
+    }
+
+    private static String getAllPlayResults(PlayResults playResults) {
+        StringBuilder stringBuilder = new StringBuilder("");
+        playResults.getPlayResults().forEach(playResult -> {
+            String template = String.format("%s : %s \n", playResult.getName(), playResult.getGameResult());
+            stringBuilder.append(template);
+        });
+        return stringBuilder.toString();
     }
 
     private static void print(String input) {

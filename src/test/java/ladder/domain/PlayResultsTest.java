@@ -5,26 +5,23 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static ladder.domain.Fixture.*;
 import static org.junit.Assert.*;
 
 public class PlayResultsTest {
 
     @Test
     public void 이름으로_결과찾기() {
+        PlayResults playResults = PLAY_RESULTS;
 
-        PlayResults playResults = new PlayResults(Arrays.asList(new PlayResult("hyerin", 0),
-                                                                new PlayResult("isisrin", 1)));
-
-        PlayResult result = playResults.findResultByName("hyerin");
-        Assertions.assertThat(result.isEqualsName("hyerin")).isTrue();
+        PlayResult result = playResults.findResultByName(HYERIN);
+        Assertions.assertThat(result.isEqualsName(HYERIN)).isTrue();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void 이름으로_결과찾기_없는이름() {
-
-        PlayResults playResults = new PlayResults(Arrays.asList(new PlayResult("hyerin", 0),
-                new PlayResult("isisrin", 1)));
-
-        PlayResult result = playResults.findResultByName("hoho");
+        PlayResults playResults = PLAY_RESULTS;
+        
+        playResults.findResultByName("hoho");
     }
 }
