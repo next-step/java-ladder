@@ -1,24 +1,30 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.Player;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.List;
-
 public class ConsoleMain {
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        List<Player> players = inputView.printInputUserNames();
+        String userNames = InputView.printInputUserNames();
+        String[] names = Utils.stringSplitWithDelimiter(userNames, ",");
+        Players players = new Players(names);
 
-        int height = inputView.printInputLadderHeight();
+        int height = InputView.printInputLadderHeight();
         int countOfPerson = players.size();
 
-        Ladder ladder = new Ladder(countOfPerson, height);
+        String winningValues = InputView.printInputWinnings();
+        Winnings winnings = new Winnings(winningValues, countOfPerson);
 
-        ResultView resultView = new ResultView();
-        resultView.printNames(players);
-        resultView.printLadder(ladder);
+        Ladder ladder = new Ladder(countOfPerson, height);
+        LadderGame ladderGame = new LadderGame(ladder);
+        Results results = ladderGame.playLadder(players, winnings);
+
+        ResultView.printNames(players.toString());
+        ResultView.printLadder(ladder);
+        ResultView.printWinnings(winnings.toString());
+        String wantResult = InputView.printInputWantResult();
+        String result = results.getResult(wantResult);
+        ResultView.printResults(result);
     }
 }

@@ -1,23 +1,27 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
-import ladder.domain.Player;
-
-import java.util.List;
 
 public class ResultView {
 
-    public void printNames(List<Player> names) {
-        for (Player player : names) {
-            System.out.print(player.toString());
-        }
-        System.out.println();
+    private static final String ALL_RESULT = "all";
+
+    public static void printNames(String playerNames) {
+        System.out.println(playerNames);
     }
 
-    public void printLadder(Ladder ladder) {
-        int ladderHeight = ladder.ladderHeight();
-        for(int i = 0; i < ladderHeight; i++) {
-            System.out.println(ladder.getLine(i).toString());
-        }
+    public static void printLadder(Ladder ladder) {
+        System.out.println();
+        System.out.println(ladder.toString());
+    }
+
+    public static void printWinnings(String winnings) {
+        System.out.println(winnings);
+    }
+
+    public static void printResults(String result) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(result);
     }
 }

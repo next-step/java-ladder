@@ -31,11 +31,16 @@ public class Line {
         firstPoint(previousPoint);
         for(int i = 1; i < countOfPerson - 1; i++) {
             boolean currentPoint = BooleanGenerator.pick();
-            points.add(new Point(previousPoint, currentPoint));
-            previousPoint = currentPoint;
+            Point point = new Point(previousPoint, currentPoint);
+            points.add(point);
+            previousPoint = point.next();
         }
         lastPoint(previousPoint);
 
+    }
+
+    public int move(int lineIndex) {
+        return points.get(lineIndex).move();
     }
 
     private void lastPoint(boolean point) {
