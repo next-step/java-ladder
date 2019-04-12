@@ -4,7 +4,7 @@ import ladder.domain.LadderGame;
 import ladder.domain.LadderGameInfo;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.generator.LadderGenerator;
-import ladder.domain.ladder.generator.RandomPointGenerator;
+import ladder.domain.ladder.generator.RandomDirectionGenerator;
 import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Rewards;
@@ -12,7 +12,6 @@ import ladder.parser.MemberParser;
 import ladder.parser.RewardParser;
 import ladder.view.ConsoleInputView;
 import ladder.view.ConsoleOutputView;
-import ladder.vo.Length;
 
 import java.util.Scanner;
 
@@ -25,7 +24,7 @@ public class ConsoleMain {
             Rewards rewards = inputRewards(scanner);
             ConsoleOutputView.printEmptyLine();
 
-            Length height = inputLadderHeight(scanner);
+            int height = inputLadderHeight(scanner);
             ConsoleOutputView.printEmptyLine();
 
             LadderGame ladderGame = getLadderGame(memberGroup, rewards, height);
@@ -48,15 +47,16 @@ public class ConsoleMain {
         return RewardParser.parseRewards(ConsoleInputView.inputRewards(scanner));
     }
 
-    private static Length inputLadderHeight(Scanner scanner) {
-        int inputHeight = ConsoleInputView.inputLadderHeight(scanner);
-        return new Length(inputHeight);
+    private static int inputLadderHeight(Scanner scanner) {
+        return ConsoleInputView.inputLadderHeight(scanner);
     }
 
-    private static LadderGame getLadderGame(MemberGroup memberGroup, Rewards rewards, Length height) {
+    private static LadderGame getLadderGame(MemberGroup memberGroup, Rewards rewards, int height) {
         LadderGameInfo ladderGameInfo = new LadderGameInfo(memberGroup, rewards);
-        LadderGenerator ladderGenerator = new LadderGenerator(new RandomPointGenerator());
+
+        LadderGenerator ladderGenerator = new LadderGenerator(new RandomDirectionGenerator());
         Ladder ladder = ladderGenerator.generateLadder(memberGroup, height);
+
         return new LadderGame(ladderGameInfo, ladder);
     }
 
