@@ -8,14 +8,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGenerator {
+    private static final int MIN_LADDER_HEIGHT = 1;
     private final DirectionGenerator directionGenerator;
+
 
     public LadderGenerator(DirectionGenerator directionGenerator) {
         this.directionGenerator= directionGenerator;
     }
 
-
     public Ladder generateLadder(MemberGroup memberGroup, int height) {
+        validateLadderHeight(height);
+
         return new Ladder(generateLines(memberGroup, height));
     }
 
@@ -25,5 +28,11 @@ public class LadderGenerator {
                 .collect(Collectors.toList());
 
         return new Lines(lines);
+    }
+
+    private void validateLadderHeight(int height) {
+        if (height < MIN_LADDER_HEIGHT) {
+            throw new IllegalArgumentException("Height of ladder must be at least " + MIN_LADDER_HEIGHT);
+        }
     }
 }
