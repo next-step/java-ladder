@@ -4,9 +4,11 @@ import ladder.domain.ladder.generator.DirectionGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line2 {
     private static final int MIN_SIZE = 2;
+    private static final String LEFT_PADDING = "    ";
 
     private final List<Point2> points;
 
@@ -22,17 +24,25 @@ public class Line2 {
         List<Point2> points = new ArrayList<>(size);
 
         Point2 point = Point2.first(directionGenerator.generate());
+
         points.add(point);
-
-        for (int i = 0; i < size - 2; i++) {
-            point = point.next(directionGenerator.generate());
-            points.add(point);
-        }
-
+        point = makeLineBody(size, point, points, directionGenerator);
         points.add(point.last());
 
         return new Line2(points);
     }
+
+    public int move(int index) {
+        return this.points.get(index).move();
+    }
+
+    @Override
+    public String toString() {
+        return LEFT_PADDING + this.points.stream()
+                .map(Point2::toString)
+                .collect(Collectors.joining());
+    }
+
 
     int getSize() {
         return this.points.size();
@@ -74,5 +84,16 @@ public class Line2 {
         if (size < MIN_SIZE) {
             throw new IllegalArgumentException("Line size must be at least " + MIN_SIZE);
         }
+    }
+
+    private static Point2 makeLineBody(int size, Point2 point, List<Point2> points, DirectionGenerator directionGenerator) {
+        int bodySize = size - MIN_SIZE;
+
+        for (int i = 0; i < bodySize; i++) {
+            point = point.next(directionGenerator.generate());
+            points.add(point);
+        }
+
+        return point;
     }
 }
