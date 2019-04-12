@@ -1,8 +1,6 @@
 package ladder.domain.ladder.generator;
 
-import ladder.domain.ladder.Ladder2;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.Lines;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.vo.Length;
@@ -31,7 +29,7 @@ public class LadderGeneratorTest {
         Length height = new Length(3);
 
         // when
-        Ladder2 ladder = ladderGenerator.generateLadder(memberGroup, height);
+        Ladder ladder = ladderGenerator.generateLadder(memberGroup, height);
 
         // then
         /**

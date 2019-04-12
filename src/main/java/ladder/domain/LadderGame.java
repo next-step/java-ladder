@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.ladder.Ladder2;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Reward;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
     private final LadderGameInfo ladderGameInfo;
-    private final Ladder2 ladder;
+    private final Ladder ladder;
 
-    public LadderGame(LadderGameInfo ladderGameInfo, Ladder2 ladder) {
+    public LadderGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
         validateLadderGame(ladderGameInfo, ladder);
 
         this.ladderGameInfo = ladderGameInfo;
@@ -47,7 +47,7 @@ public class LadderGame {
         return new Coordinate(x, y);
     }
 
-    private void validateLadderGame(LadderGameInfo ladderGameInfo, Ladder2 ladder) {
+    private void validateLadderGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
         int ladderSize = ladder.getWidth();
         int ladderWidthForMembers = ladderGameInfo.getLadderWidthForMembers().getValue();
 
@@ -65,7 +65,7 @@ public class LadderGame {
         return ladderGameInfo.getRewards();
     }
 
-    public Ladder2 getLadder() {
+    public Ladder getLadder() {
         return ladder;
     }
 }

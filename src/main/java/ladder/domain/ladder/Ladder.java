@@ -2,10 +2,10 @@ package ladder.domain.ladder;
 
 import ladder.vo.LadderLocation;
 
-public class Ladder2 {
-    private final Lines2 lines;
+public class Ladder {
+    private final Lines lines;
 
-    public Ladder2(Lines2 lines) {
+    public Ladder(Lines lines) {
         this.lines = lines;
     }
 

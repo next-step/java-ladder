@@ -16,15 +16,15 @@ public class LadderGenerator {
     }
 
 
-    public Ladder2 generateLadder(MemberGroup memberGroup, Length height) {
-        return new Ladder2(generateLines(memberGroup, height));
+    public Ladder generateLadder(MemberGroup memberGroup, Length height) {
+        return new Ladder(generateLines(memberGroup, height));
     }
 
-    Lines2 generateLines(MemberGroup memberGroup, Length height) {
-        List<Line2> lines = IntStream.range(0, height.getValue())
-                .mapToObj(i -> Line2.init(memberGroup.getNumberOfMembers(), directionGenerator))
+    Lines generateLines(MemberGroup memberGroup, Length height) {
+        List<Line> lines = IntStream.range(0, height.getValue())
+                .mapToObj(i -> Line.init(memberGroup.getNumberOfMembers(), directionGenerator))
                 .collect(Collectors.toList());
 
-        return new Lines2(lines);
+        return new Lines(lines);
     }
 }

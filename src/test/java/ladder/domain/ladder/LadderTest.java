@@ -8,17 +8,17 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Ladder2Test {
-    private static final Logger log = LoggerFactory.getLogger(Ladder2Test.class);
+public class LadderTest {
+    private static final Logger log = LoggerFactory.getLogger(LadderTest.class);
 
     @Test
     public void 최종_index_가져오기() {
         // given
-        Line2 topLine = new Line2(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false), newPoint(2, false, false)));
-        Line2 bottomLine = new Line2(Arrays.asList(newPoint(0, false, false), newPoint(1, false, true), newPoint(2, true, false)));
-        Lines2 lines = new Lines2(Arrays.asList(topLine, bottomLine));
+        Line topLine = new Line(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false), newPoint(2, false, false)));
+        Line bottomLine = new Line(Arrays.asList(newPoint(0, false, false), newPoint(1, false, true), newPoint(2, true, false)));
+        Lines lines = new Lines(Arrays.asList(topLine, bottomLine));
 
-        Ladder2 ladder = new Ladder2(lines);
+        Ladder ladder = new Ladder(lines);
 
         // when
         int shouldBeTwo = ladder.getResultIndex(0);
@@ -37,12 +37,12 @@ public class Ladder2Test {
     public void view에_보이는_String_테스트() {
         // given
         // given
-        Line2 topLine = new Line2(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false), newPoint(2, false, false)));
-        Line2 bottomLine = new Line2(Arrays.asList(newPoint(0, false, false), newPoint(1, false, true), newPoint(2, true, false)));
-        Lines2 lines = new Lines2(Arrays.asList(topLine, bottomLine));
+        Line topLine = new Line(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false), newPoint(2, false, false)));
+        Line bottomLine = new Line(Arrays.asList(newPoint(0, false, false), newPoint(1, false, true), newPoint(2, true, false)));
+        Lines lines = new Lines(Arrays.asList(topLine, bottomLine));
 
         // when
-        Ladder2 ladder = new Ladder2(lines);
+        Ladder ladder = new Ladder(lines);
 
         // then
         assertThat(ladder.toString())
@@ -53,8 +53,8 @@ public class Ladder2Test {
         log.debug("ladden\n{}", ladder);
     }
 
-    private Point2 newPoint(int index, boolean left, boolean right) {
+    private Point newPoint(int index, boolean left, boolean right) {
         Direction direction = new Direction(left, right);
-        return new Point2(index, direction);
+        return new Point(index, direction);
     }
 }

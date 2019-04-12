@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
-import ladder.vo.coordinate.Coordinate;
-import ladder.vo.coordinate.CoordinateValue;
+import ladder.domain.ladder.generator.StayDirectionGenerator;
+import ladder.vo.LadderLocation;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,44 +16,40 @@ public class LinesTest {
     @Test
     public void Line_들의_size가_전부_일치하지_않는_경우_IllegalArgumentException() {
         // given
-        Point point = new Point(Cross.NOT_CROSS, Cross.NOT_CROSS);
-        Line two = new Line(Arrays.asList(point, point));
-        Line three = new Line(Arrays.asList(point, point, point));
+        StayDirectionGenerator directionGenerator = new StayDirectionGenerator();
+        Line two = Line.init(2, directionGenerator);
+        Line three = Line.init(3, directionGenerator);
 
         // when
         // then
-        assertThatIllegalArgumentException().isThrownBy(() -> new Lines(Arrays.asList(two, two, three)));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Lines(Arrays.asList(two, three)));
     }
 
     @Test
-    public void 라인을_따라_다음_라인으로_건너가기() {
+    public void 다음_Line으로_건너가기() {
         // given
-        Line topLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
-        Line bottomLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
+        Line topLine = new Line(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false), newPoint(2, false, false)));
+        Line bottomLine = new Line(Arrays.asList(newPoint(0, false, false), newPoint(1, false, true), newPoint(2, true, false)));
         Lines lines = new Lines(Arrays.asList(topLine, bottomLine));
 
-        Coordinate firstCoordinate = getCoordinate(0, 2);
-        Coordinate secondCoordinate = getCoordinate(1, 2);
-        Coordinate thirdCoordinate = getCoordinate(2, 2);
-
         // when
-        Coordinate shouldBeSecond = lines.cross(firstCoordinate);
-        Coordinate shouldBeFirst = lines.cross(secondCoordinate);
-        Coordinate shouldBeThird = lines.cross(thirdCoordinate);
+        LadderLocation shouldBeSecond = lines.cross(new LadderLocation(0, 2));
+        LadderLocation shouldBeFirst = lines.cross(new LadderLocation(1, 2));
+        LadderLocation shouldBeThird = lines.cross(new LadderLocation(2, 2));
 
         // then
-        assertThat(shouldBeFirst).isEqualTo(getCoordinate(0, 1));
-        assertThat(shouldBeSecond).isEqualTo(getCoordinate(1, 1));
-        assertThat(shouldBeThird).isEqualTo(getCoordinate(2, 1));
+        assertThat(shouldBeSecond).isEqualTo(new LadderLocation(1,1));
+        assertThat(shouldBeFirst).isEqualTo(new LadderLocation(0, 1));
+        assertThat(shouldBeThird).isEqualTo(new LadderLocation(2, 1));
 
         log.debug("lines\n{}", lines);
     }
 
     @Test
-    public void view로_보이는_String_테스트() {
+    public void view에_보이는_String_테스트() {
         // given
-        Line topLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT, Point.CANNOT_CROSS_POINT));
-        Line bottomLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
+        Line topLine = new Line(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false), newPoint(2, false, false)));
+        Line bottomLine = new Line(Arrays.asList(newPoint(0, false, false), newPoint(1, false, true), newPoint(2, true, false)));
 
         // when
         Lines lines = new Lines(Arrays.asList(topLine, bottomLine));
@@ -61,13 +57,14 @@ public class LinesTest {
         // then
         assertThat(lines.toString())
                 .containsSubsequence(
-                "|-----|     |",
-                "|     |-----|");
+                        "|-----|     |",
+                        "|     |-----|");
 
         log.debug("lines\n{}", lines);
     }
 
-    private Coordinate getCoordinate(int x, int y) {
-        return new Coordinate(new CoordinateValue(x), new CoordinateValue(y));
+    private Point newPoint(int index, boolean left, boolean right) {
+        Direction direction = new Direction(left, right);
+        return new Point(index, direction);
     }
 }

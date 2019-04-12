@@ -1,14 +1,13 @@
 package ladder.domain.ladder;
 
-import ladder.vo.Length;
-import ladder.vo.coordinate.Coordinate;
+import ladder.domain.ladder.generator.DirectionGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    private static final int MIN_POINTS_SIZE = 2;
-    private static final int FIRST_INDEX = 0;
+    private static final int MIN_SIZE = 2;
     private static final String LEFT_PADDING = "    ";
 
     private final List<Point> points;
@@ -19,68 +18,22 @@ public class Line {
         this.points = points;
     }
 
-    public Length getWidth() {
-        int width = this.points.size() - 1;
-        return new Length(width);
+    public static Line init(int size, DirectionGenerator directionGenerator) {
+        validateSize(size);
+
+        List<Point> points = new ArrayList<>(size);
+
+        Point point = Point.first(directionGenerator.generate());
+
+        points.add(point);
+        point = makeLineBody(size, point, points, directionGenerator);
+        points.add(point.last());
+
+        return new Line(points);
     }
 
-    Coordinate cross(Coordinate coordinate) {
-        Point point = this.points.get(coordinate.getXValue());
-
-        if (point.canCrossLeft()) {
-            return coordinate.left();
-        }
-
-        if (point.canCrossRight()) {
-            return coordinate.right();
-        }
-
-        return coordinate;
-    }
-
-    private void validatePoints(List<Point> points) {
-        validatePointsSize(points);
-        validateLeftmostPoint(points);
-        validateRightmostPoint(points);
-        validateCrossOfPoints(points);
-    }
-
-    private void validatePointsSize(List<Point> points) {
-        if (points.size() < MIN_POINTS_SIZE) {
-            throw new IllegalArgumentException("Min points size is " + MIN_POINTS_SIZE);
-        }
-    }
-
-    private void validateLeftmostPoint(List<Point> points) {
-        Point leftmostPoint = points.get(FIRST_INDEX);
-
-        if (leftmostPoint.canCrossLeft()) {
-            throw new IllegalArgumentException("The leftmost point can't cross left");
-        }
-    }
-
-    private void validateRightmostPoint(List<Point> points) {
-        int lastIndex = points.size() - 1;
-        Point rightmostPoint = points.get(lastIndex);
-
-        if (rightmostPoint.canCrossRight()) {
-            throw new IllegalArgumentException("The rightmost point can't cross right");
-        }
-    }
-
-    private void validateCrossOfPoints(List<Point> points) {
-        int pointsSizeMinusOne = points.size() - 1;
-        for (int i = 0; i < pointsSizeMinusOne; i++) {
-            Point currentPoint = points.get(i);
-            Point nextPoint = points.get(i + 1);
-            validateCrossOfPoints(currentPoint, nextPoint);
-        }
-    }
-
-    private void validateCrossOfPoints(Point currentPoint, Point nextPoint) {
-        if (currentPoint.canCrossRight() != nextPoint.canCrossLeft()) {
-            throw new IllegalArgumentException();
-        }
+    public int move(int index) {
+        return this.points.get(index).move();
     }
 
     @Override
@@ -88,5 +41,59 @@ public class Line {
         return LEFT_PADDING + this.points.stream()
                 .map(Point::toString)
                 .collect(Collectors.joining());
+    }
+
+
+    int getSize() {
+        return this.points.size();
+    }
+
+    private void validatePoints(List<Point> points) {
+        validateSize(points.size());
+        validateFirstPoint(points.get(0));
+        validateLastPoint(points.get(points.size() - 1));
+
+        int pointsSizeMinusOne = points.size() - 1;
+        for (int i = 0; i < pointsSizeMinusOne; i++) {
+            Point previous = points.get(i);
+            Point current = points.get(i + 1);
+
+            validatePoints(previous, current);
+        }
+    }
+
+    private void validateFirstPoint(Point firstPoint) {
+        if (firstPoint.canMoveLeft()) {
+            throw new IllegalArgumentException("You can't move left at first point");
+        }
+    }
+
+    private void validateLastPoint(Point lastPoint) {
+        if (lastPoint.canMoveRight()) {
+            throw new IllegalArgumentException("You can't move right at last point");
+        }
+    }
+
+    private void validatePoints(Point previous, Point current) {
+        if (previous.canMoveRight() != current.canMoveLeft()) {
+            throw new IllegalStateException("Points aren't engaged");
+        }
+    }
+
+    private static void validateSize(int size) {
+        if (size < MIN_SIZE) {
+            throw new IllegalArgumentException("Line size must be at least " + MIN_SIZE);
+        }
+    }
+
+    private static Point makeLineBody(int size, Point point, List<Point> points, DirectionGenerator directionGenerator) {
+        int bodySize = size - MIN_SIZE;
+
+        for (int i = 0; i < bodySize; i++) {
+            point = point.next(directionGenerator.generate());
+            points.add(point);
+        }
+
+        return point;
     }
 }
