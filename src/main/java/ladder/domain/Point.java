@@ -6,41 +6,36 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Point {
-    private boolean previous;
-    private boolean current;
+    public static final int MOVE_POINT = 1;
 
-    public Point(boolean previous, boolean current) {
-        this.previous = previous;
-        this.current = current;
+    private int index;
+    private Direction direction;
+
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point first(boolean current) {
-        return new Point(false, current);
+    public static Point first() {
+        return new Point(0, Direction.first());
     }
 
-    public static Point last(boolean previous) {
-        return new Point(previous, false);
+    public Point next() {
+        return new Point(index + MOVE_POINT, direction.next());
     }
 
-    public Point next(boolean current) {
-        if(this.current && current) {
-            return new Point(true, false);
-        }                                         
-        return new Point(this.current, current);
-    }
-
-    public int move(int index) {
-        if(!previous && current) {
-            return index + 1;
+    public int move() {
+        if(direction.isRight()) {
+            return index + MOVE_POINT;
         }
 
-        if(previous && !current) {
-            return index - 1;
+        if(direction.isLeft()) {
+            return index - MOVE_POINT;
         }
-        return index;
+        return this.index;
     }
 
-    public boolean isCurrent() {
-        return current;
+    public boolean isRight() {
+        return direction.isRight();
     }
 }

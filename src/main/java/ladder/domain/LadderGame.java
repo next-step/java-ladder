@@ -12,6 +12,7 @@ public class LadderGame {
     private Ladder ladder;
 
     public LadderGame(List<String> players, int height, List<String> inputResults) {
+        validate(players, inputResults);
         this.players = new Players(players);
         this.ladder = new Ladder(players.size(), height, inputResults);
     }
@@ -39,5 +40,11 @@ public class LadderGame {
 
     private int getWidthDrawTimes() {
         return (players.maxNameLength() / DEFAULT_LADDER_WIDTH) + DEFAULT_DRAW_TIME;
+    }
+
+    private void validate(List<String> players, List<String> inputResults) {
+        if(players.size() != inputResults.size()) {
+            throw new IllegalArgumentException("실행결과가 터무니 없이 부족하군욧!");
+        }
     }
 }

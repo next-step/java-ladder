@@ -30,7 +30,7 @@ public class Ladder {
 
     public GameResult move(int index) {
         int pointResult = movePoint(index);
-        return gameResults.getGemeReuslt(pointResult);
+        return gameResults.getGameResult(pointResult);
     }
 
     private void validateHeight(int height) {

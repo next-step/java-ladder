@@ -20,6 +20,10 @@ public class PlayResult {
         return player.isEqualsName(userName);
     }
 
+    public boolean isEqualsPlayer(Player searchPlayer) {
+        return player.isEquals(searchPlayer);
+    }
+
     public String getName() {
         return player.getName();
     }

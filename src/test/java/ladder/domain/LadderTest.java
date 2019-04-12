@@ -26,19 +26,8 @@ public class LadderTest {
 
     @Test
     public void 이동테스트() {
-        Line resultLine1 = new Line(2) {
-            @Override
-            protected List<Point> initPoints(int countOfPerson) {
-                return Arrays.asList(Point.first(false), Point.last(false));
-            }
-        };
-
-        Line resultLine2 = new Line(2) {
-            @Override
-            protected List<Point> initPoints(int countOfPerson) {
-                return Arrays.asList(Point.first(true), Point.last(true));
-            }
-        };
+        Line resultLine1 = DISCONNECTED_LINE;
+        Line resultLine2 = CONNECTED_LINE;
 
         Ladder result = new Ladder(Arrays.asList(resultLine1, resultLine2), GAME_RESULT_LIST);
 

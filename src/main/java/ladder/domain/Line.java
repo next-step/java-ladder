@@ -4,8 +4,10 @@ import lombok.ToString;
 
 import java.util.List;
 
+import static ladder.domain.PointGenerator.generate;
+
 @ToString
-public class Line extends PointGenerator {
+public class Line {
     public static final int MIN_PLAYERS = 2;
     public static final int POINT_MAINTAINER = 1;
     private List<Point> points;
@@ -15,19 +17,24 @@ public class Line extends PointGenerator {
         points = initPoints(countOfPerson);
     }
 
+    protected Line (List<Point> points) {
+        validate(points.size());
+        this.points = points;
+    }
+
     public List<Point> getPoints() {
         return points;
     }
 
     public int movePoint(int index) {
-        int moveResult = points.get(index).move(index);
+        int moveResult = points.get(index).move();
         if(points.size() == moveResult) {
             return moveResult - POINT_MAINTAINER;
         }
         return moveResult;
     }
 
-    protected List<Point> initPoints(int countOfPerson) {
+    private List<Point> initPoints(int countOfPerson) {
         return generate(countOfPerson);
     }
 

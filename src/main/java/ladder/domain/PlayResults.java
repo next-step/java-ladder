@@ -18,9 +18,9 @@ public class PlayResults {
         this.playResults.addAll(playerResults);
     }
 
-    public PlayResult findResultByName(String userName) {
+    public PlayResult findResultByPlayer(Player searchPlayer) {
         Optional<PlayResult> playResult = playResults.stream()
-                .filter(playerResult -> playerResult.isEqualsName(userName))
+                .filter(playerResult -> playerResult.isEqualsPlayer(searchPlayer))
                 .findFirst();
         return playResult.orElseThrow(() -> new IllegalArgumentException("없는유저에욤"));
     }

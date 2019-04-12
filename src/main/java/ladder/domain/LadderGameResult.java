@@ -10,7 +10,7 @@ public class LadderGameResult {
         this.playResults = playResults;
     }
 
-    public PlayResult findResultByName(String inputUserResult) {
-        return playResults.findResultByName(inputUserResult);
+    public PlayResult findResult(Player player) {
+        return playResults.findResultByPlayer(player);
     }
 }

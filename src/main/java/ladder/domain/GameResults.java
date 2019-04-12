@@ -15,7 +15,7 @@ public class GameResults {
         });
     }
 
-    public GameResult getGemeReuslt(int index) {
+    public GameResult getGameResult(int index) {
         return gameResults.get(index);
     }
 }
