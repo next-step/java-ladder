@@ -26,6 +26,10 @@ public class Point {
         return new Point(FIRST_INDEX, Direction.first(right));
     }
 
+    Point next() {
+        return new Point(this.index + 1, this.direction.next(Boolean.FALSE));
+    }
+
     Point next(boolean right) {
         return new Point(this.index + 1, this.direction.next(right));
     }

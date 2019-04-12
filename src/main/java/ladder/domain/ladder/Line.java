@@ -97,7 +97,7 @@ public class Line {
         int bodySize = size - MIN_SIZE;
 
         for (int i = 0; i < bodySize; i++) {
-            point = point.next(directionGenerator.generate());
+            point = (point.canMoveRight() ? point.next() : point.next(directionGenerator.generate()));
             points.add(point);
         }
 
