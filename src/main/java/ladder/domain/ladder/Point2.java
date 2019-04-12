@@ -13,6 +13,15 @@ public class Point2 {
         this.direction = direction;
     }
 
+    @Override
+    public String toString() {
+        if (canMoveRight()) {
+            return "|-----";
+        }
+
+        return "|     ";
+    }
+
     static Point2 first(boolean right) {
         return new Point2(FIRST_INDEX, Direction.first(right));
     }
