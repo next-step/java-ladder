@@ -12,9 +12,9 @@ public class Line {
     public static final int POINT_MAINTAINER = 1;
     private List<Point> points;
 
-    public Line (int countOfPerson) {
+    public Line (int countOfPerson, LEVEL level) {
         validate(countOfPerson);
-        points = initPoints(countOfPerson);
+        points = initPoints(countOfPerson, level);
     }
 
     protected Line (List<Point> points) {
@@ -34,8 +34,8 @@ public class Line {
         return moveResult;
     }
 
-    private List<Point> initPoints(int countOfPerson) {
-        return generate(countOfPerson);
+    private List<Point> initPoints(int countOfPerson, LEVEL level) {
+        return generate(countOfPerson, level);
     }
 
     private void validate(int countOfPerson) {

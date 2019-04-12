@@ -20,7 +20,7 @@ public class LineTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void 라인그리기_실패_테스트() {
-        new Line(1);
+        new Line(1, LEVEL.LOW);
     }
 
     @Test

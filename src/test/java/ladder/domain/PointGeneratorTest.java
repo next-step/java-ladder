@@ -10,7 +10,7 @@ public class PointGeneratorTest {
 
     @Test
     public void 생성테스트() {
-        List<Point> result = PointGenerator.generate(3);
+        List<Point> result = PointGenerator.generate(3, LEVEL.LOW);
         assertThat(result.size()).isEqualTo(3);
     }
 }

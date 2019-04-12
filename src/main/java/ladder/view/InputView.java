@@ -15,14 +15,12 @@ public class InputView {
 
     public static List<String> inputResults() {
         System.out.println("실행 결과를 입력하세요! (쉼표로 구분!)");
-        if(scanner.nextLine().isEmpty()) {
-        }
         return Arrays.asList(scanner.nextLine().split(REGEX));
     }
 
-    public static int inputHeight() {
-        System.out.println("사다리 높이는 얼마에요?");
-        return scanner.nextInt();
+    public static String inputLevel() {
+        System.out.println("실행할 사다리의 난이도는?");
+        return scanner.nextLine();
     }
 
     public static String inputUserResult() {

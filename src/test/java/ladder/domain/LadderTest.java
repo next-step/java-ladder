@@ -14,14 +14,9 @@ public class LadderTest {
     public void 사다리생성() {
         Ladder result = LADDER;
         
-        Assertions.assertThat(result.getLines().size()).isEqualTo(2);
+        Assertions.assertThat(result.getLines().size()).isEqualTo(5);
         Assertions.assertThat(result.getLines().get(0).getPoints().size()).isEqualTo(2);
         Assertions.assertThat(result.getLines().get(1).getPoints().size()).isEqualTo(2);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void 사다리생성_실패() {
-          new Ladder(3, 1, GAME_RESULT_LIST);
     }
 
     @Test

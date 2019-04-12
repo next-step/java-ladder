@@ -8,7 +8,7 @@ import ladder.view.OutputView;
 public class ConsoleMain {
 
     public static void main(String[] args) {
-        LadderGame ladderGame = new LadderGame(InputView.inputUser(), InputView.inputHeight(), InputView.inputResults());
+        LadderGame ladderGame = new LadderGame(InputView.inputUser(), InputView.inputLevel(), InputView.inputResults());
         OutputView.printLadder(ladderGame);
 
         LadderGameResult ladderGameResult = new LadderGameResult(ladderGame.play());
