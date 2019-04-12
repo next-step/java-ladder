@@ -70,6 +70,21 @@ public class Line2Test {
     }
 
     @Test
+    public void Line_내에서_이동() {
+        // given
+        Point2 previous = new Point2(0, new Direction(false, true));
+        Point2 next = new Point2(1, new Direction(true, false));
+
+        Line2 line = new Line2(Arrays.asList(previous, next));
+
+        // when
+        int shouldBeOne = line.move(0);
+
+        // then
+        assertThat(shouldBeOne).isEqualTo(1);
+    }
+
+    @Test
     public void view로_보이는_String_테스트() {
         // given
         Point2 first = new Point2(0, new Direction(false, false));

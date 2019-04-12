@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.generator.StayDirectionGenerator;
+import ladder.vo.LadderLocation;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,21 +26,21 @@ public class Lines2Test {
     }
 
     @Test
-    public void 다음_Line으로_건넌_index_가져오기() {
+    public void 다음_Line으로_건너가기() {
         // given
         Line2 topLine = new Line2(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false), newPoint(2, false, false)));
         Line2 bottomLine = new Line2(Arrays.asList(newPoint(0, false, false), newPoint(1, false, true), newPoint(2, true, false)));
         Lines2 lines = new Lines2(Arrays.asList(topLine, bottomLine));
 
         // when
-        int shouldBeTwo =  lines.cross(0);
-        int shouldBeZero =  lines.cross(1);
-        int shouldBeOne =  lines.cross(2);
+        LadderLocation shouldBeSecond = lines.cross(new LadderLocation(0, 2));
+        LadderLocation shouldBeFirst = lines.cross(new LadderLocation(1, 2));
+        LadderLocation shouldBeThird = lines.cross(new LadderLocation(2, 2));
 
         // then
-        assertThat(shouldBeZero).isEqualTo(0);
-        assertThat(shouldBeOne).isEqualTo(1);
-        assertThat(shouldBeTwo).isEqualTo(2);
+        assertThat(shouldBeSecond).isEqualTo(new LadderLocation(1,1));
+        assertThat(shouldBeFirst).isEqualTo(new LadderLocation(0, 1));
+        assertThat(shouldBeThird).isEqualTo(new LadderLocation(2, 1));
 
         log.debug("lines\n{}", lines);
     }
