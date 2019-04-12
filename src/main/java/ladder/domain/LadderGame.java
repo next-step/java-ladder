@@ -38,11 +38,10 @@ public class LadderGame {
     }
 
     private void validateLadderGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
-        int ladderSize = ladder.getWidth();
-        int ladderWidthForMembers = ladderGameInfo.getLadderWidthForMembers().getValue();
+        int ladderWidth = ladder.getWidth();
+        int ladderWidthForMembers = ladderGameInfo.getLadderWidthForMembers();
 
-
-        if (ladderSize != ladderWidthForMembers) {
+        if (ladderWidth != ladderWidthForMembers) {
             throw new IllegalArgumentException("It's a wrong ladder for the members");
         }
     }

@@ -4,7 +4,6 @@ import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
-import ladder.vo.Length;
 
 import java.util.List;
 
@@ -35,9 +34,8 @@ public class LadderGameInfo {
         return rewards;
     }
 
-    Length getLadderWidthForMembers() {
-        int ladderWidthForMembers = this.memberGroup.getNumberOfMembers() - 1;
-        return new Length(ladderWidthForMembers);
+    int getLadderWidthForMembers() {
+        return this.memberGroup.getNumberOfMembers() - 1;
     }
 
     private void validateLadderGameInfo(MemberGroup memberGroup, Rewards rewards) {

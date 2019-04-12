@@ -2,7 +2,6 @@ package ladder.domain.ladder.generator;
 
 import ladder.domain.ladder.*;
 import ladder.domain.member.MemberGroup;
-import ladder.vo.Length;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,12 +15,12 @@ public class LadderGenerator {
     }
 
 
-    public Ladder generateLadder(MemberGroup memberGroup, Length height) {
+    public Ladder generateLadder(MemberGroup memberGroup, int height) {
         return new Ladder(generateLines(memberGroup, height));
     }
 
-    Lines generateLines(MemberGroup memberGroup, Length height) {
-        List<Line> lines = IntStream.range(0, height.getValue())
+    Lines generateLines(MemberGroup memberGroup, int height) {
+        List<Line> lines = IntStream.range(0, height)
                 .mapToObj(i -> Line.init(memberGroup.getNumberOfMembers(), directionGenerator))
                 .collect(Collectors.toList());
 

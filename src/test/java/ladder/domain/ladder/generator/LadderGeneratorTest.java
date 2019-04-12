@@ -3,7 +3,6 @@ package ladder.domain.ladder.generator;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
-import ladder.vo.Length;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,22 +25,14 @@ public class LadderGeneratorTest {
                 Arrays.asList(new Member("pobi"), new Member("crong"), new Member("son"));
         MemberGroup memberGroup = new MemberGroup(members);
 
-        Length height = new Length(3);
+        int height = 3;
 
         // when
         Ladder ladder = ladderGenerator.generateLadder(memberGroup, height);
 
         // then
-        /**
-         * pobi   crong    son
-         *  |       |       |
-         *  |       |       |
-         *  |       |       |
-         */
-
-
         assertThat(ladder.getWidth()).isEqualTo(memberGroup.getNumberOfMembers() - 1);
-        assertThat(ladder.getHeight()).isEqualTo(height.getValue());
+        assertThat(ladder.getHeight()).isEqualTo(height);
 
         log.debug("ladder\n", ladder);
     }
