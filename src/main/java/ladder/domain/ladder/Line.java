@@ -22,7 +22,6 @@ public class Line {
         validateSize(size);
 
         List<Point> points = new ArrayList<>(size);
-
         Point point = Point.first(directionGenerator.generate());
 
         points.add(point);
@@ -50,16 +49,14 @@ public class Line {
 
     private void validatePoints(List<Point> points) {
         validateSize(points.size());
-        validateFirstPoint(points.get(0));
-        validateLastPoint(points.get(points.size() - 1));
 
-        int pointsSizeMinusOne = points.size() - 1;
-        for (int i = 0; i < pointsSizeMinusOne; i++) {
-            Point previous = points.get(i);
-            Point current = points.get(i + 1);
+        Point firstPoint = points.get(0);
+        validateFirstPoint(firstPoint);
 
-            validatePoints(previous, current);
-        }
+        Point lastPoint = points.get(points.size() - 1);
+        validateLastPoint(lastPoint);
+
+        validatePointDirection(points);
     }
 
     private void validateFirstPoint(Point firstPoint) {
@@ -74,7 +71,17 @@ public class Line {
         }
     }
 
-    private void validatePoints(Point previous, Point current) {
+    private void validatePointDirection(List<Point> points) {
+        int pointsSizeMinusOne = points.size() - 1;
+        for (int i = 0; i < pointsSizeMinusOne; i++) {
+            Point previous = points.get(i);
+            Point current = points.get(i + 1);
+
+            validatePointPointDirection(previous, current);
+        }
+    }
+
+    private void validatePointPointDirection(Point previous, Point current) {
         if (previous.canMoveRight() != current.canMoveLeft()) {
             throw new IllegalStateException("Points aren't engaged");
         }

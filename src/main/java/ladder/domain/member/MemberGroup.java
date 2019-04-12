@@ -28,16 +28,16 @@ public class MemberGroup {
         return Collections.unmodifiableList(this.members);
     }
 
-    private void validateMembers(List<Member> members) {
-        if (members.size() < MIN_MEMBERS_SIZE) {
-            throw new IllegalArgumentException("The number of members must be at least " + MIN_MEMBERS_SIZE);
-        }
-    }
-
     @Override
     public String toString() {
         return this.members.stream()
                 .map(Member::toFormedString)
                 .collect(Collectors.joining(WHITE_SPACE));
+    }
+
+    private void validateMembers(List<Member> members) {
+        if (members.size() < MIN_MEMBERS_SIZE) {
+            throw new IllegalArgumentException("The number of members must be at least " + MIN_MEMBERS_SIZE);
+        }
     }
 }

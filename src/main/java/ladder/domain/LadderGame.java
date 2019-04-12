@@ -21,7 +21,7 @@ public class LadderGame {
     }
 
     public LadderGameResult getResult(Member member) {
-        int startIndex = this.ladderGameInfo.getMembers().indexOf(member);
+        int startIndex = this.ladderGameInfo.getIndexOfMember(member);
         int resultIndex = ladder.getResultIndex(startIndex);
 
         Reward reward = this.ladderGameInfo.getReward(resultIndex);
@@ -37,15 +37,6 @@ public class LadderGame {
         return new LadderGameResults(results);
     }
 
-    private void validateLadderGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
-        int ladderWidth = ladder.getWidth();
-        int ladderWidthForMembers = ladderGameInfo.getLadderWidthForMembers();
-
-        if (ladderWidth != ladderWidthForMembers) {
-            throw new IllegalArgumentException("It's a wrong ladder for the members");
-        }
-    }
-
     public MemberGroup getMemberGroup() {
         return ladderGameInfo.getMemberGroup();
     }
@@ -57,4 +48,14 @@ public class LadderGame {
     public Ladder getLadder() {
         return ladder;
     }
+
+    private void validateLadderGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
+        int ladderWidth = ladder.getWidth();
+        int ladderWidthForMembers = ladderGameInfo.getLadderWidthForMembers();
+
+        if (ladderWidth != ladderWidthForMembers) {
+            throw new IllegalArgumentException("It's a wrong ladder for the members");
+        }
+    }
+
 }

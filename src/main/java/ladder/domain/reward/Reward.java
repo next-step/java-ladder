@@ -17,14 +17,14 @@ public class Reward {
         return String.format("%" + MAX_NAME_LENGTH + "s", this.reward);
     }
 
+    @Override
+    public String toString() {
+        return reward;
+    }
+
     private void validateReward(String reward) {
         if (StringUtils.isBlank(reward) || (MAX_NAME_LENGTH < reward.length())) {
             throw new IllegalArgumentException("It's not valid reward : " + reward);
         }
-    }
-
-    @Override
-    public String toString() {
-        return reward;
     }
 }

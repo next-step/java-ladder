@@ -23,12 +23,6 @@ public class Member {
         return String.format("%" + MAX_NAME_LENGTH + "s", this.name);
     }
 
-    private void validateName(String name) {
-        if (StringUtils.isBlank(name) || (MAX_NAME_LENGTH < name.length())) {
-            throw new IllegalArgumentException("It's not valid name : " + name);
-        }
-    }
-
     @Override
     public String toString() {
         return name;
@@ -45,5 +39,11 @@ public class Member {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    private void validateName(String name) {
+        if (StringUtils.isBlank(name) || (MAX_NAME_LENGTH < name.length())) {
+            throw new IllegalArgumentException("It's not valid name : " + name);
+        }
     }
 }

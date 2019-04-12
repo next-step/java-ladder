@@ -18,10 +18,6 @@ public class LadderGameInfo {
         this.rewards = rewards;
     }
 
-    public Reward getReward(int index) {
-        return this.rewards.getReward(index);
-    }
-
     List<Member> getMembers() {
         return memberGroup.getMembers();
     }
@@ -32,6 +28,14 @@ public class LadderGameInfo {
 
     Rewards getRewards() {
         return rewards;
+    }
+
+    Reward getReward(int index) {
+        return this.rewards.getReward(index);
+    }
+
+    int getIndexOfMember(Member member) {
+        return this.memberGroup.getIndexOfMember(member);
     }
 
     int getLadderWidthForMembers() {

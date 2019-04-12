@@ -23,16 +23,16 @@ public class Rewards {
         return this.rewards.get(index);
     }
 
-    private void validateRewards(List<Reward> rewards) {
-        if (rewards.size() < MIN_REWARDS_SIZE) {
-            throw new IllegalArgumentException("The number of rewards must be at least " + MIN_REWARDS_SIZE);
-        }
-    }
-
     @Override
     public String toString() {
         return this.rewards.stream()
                 .map(Reward::toFormedString)
                 .collect(Collectors.joining(WHITE_SPACE));
+    }
+
+    private void validateRewards(List<Reward> rewards) {
+        if (rewards.size() < MIN_REWARDS_SIZE) {
+            throw new IllegalArgumentException("The number of rewards must be at least " + MIN_REWARDS_SIZE);
+        }
     }
 }

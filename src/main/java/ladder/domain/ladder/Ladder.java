@@ -11,7 +11,6 @@ public class Ladder {
 
     public int getResultIndex(int index) {
         LadderLocation location = new LadderLocation(index, lines.getHeight());
-
         LadderLocation resultLocation = crossDownToBottom(location);
         return resultLocation.getIndex();
     }
@@ -36,5 +35,4 @@ public class Ladder {
 
         return location;
     }
-
 }
