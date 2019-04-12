@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.LadderGameResult;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +21,9 @@ public class Ladder2Test {
         Ladder2 ladder = new Ladder2(lines);
 
         // when
-        int shouldBeTwo = ladder.getResult(0);
-        int shouldBeZero = ladder.getResult(1);
-        int shouldBeOne = ladder.getResult(2);
+        int shouldBeTwo = ladder.getResultIndex(0);
+        int shouldBeZero = ladder.getResultIndex(1);
+        int shouldBeOne = ladder.getResultIndex(2);
 
         // then
         assertThat(shouldBeZero).isEqualTo(0);

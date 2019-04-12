@@ -1,9 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.Lines;
-import ladder.domain.ladder.Point;
+import ladder.domain.ladder.*;
 import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Reward;
@@ -15,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -35,8 +33,8 @@ public class LadderGameTest {
 
         LadderGameInfo ladderGameInfo = new LadderGameInfo(memberGroup, rewards);
 
-        Line firstLine = new Line(Arrays.asList(Point.CANNOT_CROSS_POINT, Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
-        Ladder ladder = new Ladder(new Lines(Arrays.asList(firstLine)));
+        Line2 line = new Line2(Arrays.asList(newPoint(0, false, false), newPoint(1, false, true), newPoint(2, true, false)));
+        Ladder2 ladder = new Ladder2(new Lines2(Arrays.asList(line)));
 
         // when
         // then
@@ -58,8 +56,8 @@ public class LadderGameTest {
 
         LadderGameInfo ladderGameInfo = new LadderGameInfo(memberGroup, rewards);
 
-        Line firstLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
-        Ladder ladder = new Ladder(new Lines(Arrays.asList(firstLine)));
+        Line2 line = new Line2(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false)));
+        Ladder2 ladder = new Ladder2(new Lines2(Arrays.asList(line)));
 
         LadderGame ladderGame = new LadderGame(ladderGameInfo, ladder);
 
@@ -87,8 +85,8 @@ public class LadderGameTest {
 
         LadderGameInfo ladderGameInfo = new LadderGameInfo(memberGroup, rewards);
 
-        Line firstLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
-        Ladder ladder = new Ladder(new Lines(Arrays.asList(firstLine)));
+        Line2 line = new Line2(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false)));
+        Ladder2 ladder = new Ladder2(new Lines2(Arrays.asList(line)));
 
         LadderGame ladderGame = new LadderGame(ladderGameInfo, ladder);
 
@@ -118,8 +116,8 @@ public class LadderGameTest {
 
         LadderGameInfo ladderGameInfo = new LadderGameInfo(memberGroup, rewards);
 
-        Line firstLine = new Line(Arrays.asList(Point.RIGHT_CROSS_POINT, Point.LEFT_CROSS_POINT));
-        Ladder ladder = new Ladder(new Lines(Arrays.asList(firstLine)));
+        Line2 line = new Line2(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false)));
+        Ladder2 ladder = new Ladder2(new Lines2(Arrays.asList(line)));
 
         LadderGame ladderGame = new LadderGame(ladderGameInfo, ladder);
 
@@ -137,5 +135,10 @@ public class LadderGameTest {
 
     private Coordinate getCoordinate(int x, int y) {
         return new Coordinate(new CoordinateValue(x), new CoordinateValue(y));
+    }
+
+    private Point2 newPoint(int index, boolean left, boolean right) {
+        Direction direction = new Direction(left, right);
+        return new Point2(index, direction);
     }
 }

@@ -21,6 +21,10 @@ public class Rewards {
         return this.rewards.size();
     }
 
+    public Reward getReward(int index) {
+        return this.rewards.get(index);
+    }
+
     public Reward getReward(CoordinateValue x) {
         return this.rewards.get(x.getValue());
     }

@@ -20,6 +20,10 @@ public class LadderGameInfo {
         this.rewards = rewards;
     }
 
+    public Reward getReward(int index) {
+        return this.rewards.getReward(index);
+    }
+
     public Reward getReward(CoordinateValue x) {
         return this.rewards.getReward(x);
     }

@@ -9,11 +9,24 @@ public class Ladder2 {
         this.lines = lines;
     }
 
-    int getResult(int index) {
+    public int getResultIndex(int index) {
         LadderLocation location = new LadderLocation(index, lines.getHeight());
 
         LadderLocation resultLocation = crossDownToBottom(location);
         return resultLocation.getIndex();
+    }
+
+    public int getWidth() {
+        return this.lines.getSize() - 1;
+    }
+
+    public int getHeight() {
+        return this.lines.getHeight();
+    }
+
+    @Override
+    public String toString() {
+        return this.lines.toString();
     }
 
     private LadderLocation crossDownToBottom(LadderLocation location) {
@@ -24,8 +37,4 @@ public class Ladder2 {
         return location;
     }
 
-    @Override
-    public String toString() {
-        return this.lines.toString();
-    }
 }
