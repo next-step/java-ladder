@@ -2,56 +2,44 @@ package ladder.domain;
 
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class PointTest {
 
     @Test
-    public void 라인중복안됨() {
-        Point point = new Point(false, true);
-        boolean result = point.hasHorizontalLine();
-        assertThat(result).isTrue();
+    public void first() {
+        assertThat(Point.first(TRUE).move(), is(1));
     }
 
     @Test
-    public void 왼쪽으로이동() {
-        Point point = new Point(true, false);
-        boolean result = point.isLeft();
-        assertThat(result).isTrue();
+    public void first_dont_move() {
+        assertThat(Point.first(FALSE).move(), is(0));
     }
 
     @Test
-    public void 오른쪽으로이동() {
-        Point point = new Point(false, true);
-        boolean result = point.isRight();
-        assertThat(result).isTrue();
+    public void next_stay() {
+        Point second = Point.first(FALSE).next(FALSE);
+        assertThat(second.move(), is(1));
     }
 
     @Test
-    public void 이동안함() {
-        Point point = new Point(false, false);
-        boolean result = point.isCenter();
-        assertThat(result).isTrue();
+    public void next_left() {
+        Point second = Point.first(TRUE).next(FALSE);
+        assertThat(second.move(), is(0));
     }
 
     @Test
-    public void moveTest() {
-        Point point = new Point(false, true);
-        int result = point.move();
-        assertThat(result).isEqualTo(1);
+    public void next_right() {
+        Point second = Point.first(FALSE).next(TRUE);
+        assertThat(second.move(), is(2));
     }
 
     @Test
-    public void moveLeftTest() {
-        Point point = new Point(true, false);
-        int result = point.move();
-        assertThat(result).isEqualTo(-1);
-    }
-
-    @Test
-    public void moveCenterTest() {
-        Point point = new Point(false, false);
-        int result = point.move();
-        assertThat(result).isEqualTo(0);
+    public void next() {
+        Point second = Point.first(TRUE).next();
+        assertThat(second.move(), is(0));
     }
 }

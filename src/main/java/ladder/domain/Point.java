@@ -1,46 +1,77 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Point {
-    private static final int MOVE_RIGHT = 1;
-    private static final int MOVE_LEFT = -1;
-    private static final int MOVE_CENTER = 0;
-    private final boolean left;
-    private final boolean current;
+    private static final List<Point> points = new ArrayList<>();
+    private static final int INT_MOVE = 1;
+    private static final String EMPTY_LINE = "     ";
+    private static final String VERTICAL_LINE = "|";
+    private static final String HORIZONTAL_LINE = "-----";
+    private static final int MAX_INDEX = 10;
+    private final int index;
+    private final Direction direction;
 
-    public Point(boolean left, boolean current) {
-        if(left && current) {
-            current = false;
+    static {
+        for(int i = 0; i < MAX_INDEX; i++) {
+            points.add(new Point(i, Direction.of(false, true)));
+            points.add(new Point(i, Direction.of(false, false)));
+            points.add(new Point(i, Direction.of(true, false)));
         }
-        this.left = left;
-        this.current = current;
     }
 
-    public boolean hasHorizontalLine() {
-        return current;
+    public static Point of(int index, Direction direction) {
+        return points.stream().filter(p -> p.index == index)
+                .filter(p -> p.direction == direction)
+                .findFirst().orElse(new Point(index, direction));
     }
 
-    public boolean isLeft() {
-        return left;
-    }
-
-    public boolean isRight() {
-        return current;
-    }
-
-    public boolean isCenter() {
-        return !left && !current;
+    private Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
     public int move() {
-        int result = 0;
-        if(isRight()) result = MOVE_RIGHT;
-        if(isLeft()) result = MOVE_LEFT;
-        if(isCenter()) result = MOVE_CENTER;
-
-        return result;
+        if(direction.isRight()) {
+            return index + INT_MOVE;
+        }
+        if(direction.isLeft()) {
+            return index - INT_MOVE;
+        }
+        return this.index;
     }
 
-    public boolean next() {
-        return current;
+    public Point next() {
+        return Point.of(index + INT_MOVE, direction.next());
+    }
+
+    public Point next(Boolean right) {
+        return Point.of(index + INT_MOVE, direction.next(right));
+    }
+
+    public static Point first(Boolean right) {
+        return Point.of(0, Direction.first(right));
+    }
+
+    public Point last() {
+        return Point.of(index + INT_MOVE, direction.last());
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(VERTICAL_LINE);
+        if(direction.isRight()) {
+            stringBuffer.append(HORIZONTAL_LINE);
+        }
+        if(direction.isLeft()) {
+            stringBuffer.append(EMPTY_LINE);
+        }
+        if(direction.isCenter()) {
+            stringBuffer.append(EMPTY_LINE);
+        }
+
+        return stringBuffer.toString();
     }
 }

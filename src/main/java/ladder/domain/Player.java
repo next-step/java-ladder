@@ -13,21 +13,21 @@ public class Player {
         this.lineIndex = lineIndex;
     }
 
+    public int playLadder(Ladder ladder) {
+        int index = this.lineIndex;
+        Iterator<LadderLine> lines = ladder.iterator();
+        while(lines.hasNext()) {
+            LadderLine ladderLine = lines.next();
+            index = ladderLine.move(index);
+        }
+
+        return index;
+    }
+
     private void checkNameLength(String name) {
         if(name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름의 최대길이는 5자입니다.");
         }
-    }
-
-    public int playLadder(Ladder ladder) {
-        int index = this.lineIndex;
-        Iterator<Line> lines = ladder.iterator();
-        while(lines.hasNext()) {
-            Line line = lines.next();
-            index += line.move(index);
-        }
-
-        return index;
     }
 
     @Override

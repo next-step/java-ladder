@@ -21,6 +21,5 @@ public class LadderTest {
         int countOfPersion = 3;
         int height = 3;
         Ladder ladder = new Ladder(countOfPersion, height);
-
     }
 }
