@@ -27,4 +27,7 @@ public class LadderGameInfoTest {
         // then
         assertThatIllegalArgumentException().isThrownBy(() -> new LadderGameInfo(memberGroup, rewards));
     }
+
+    // TODO
+    // member의 index 가져오기
 }

@@ -1,7 +1,5 @@
 package ladder.domain.reward;
 
-import ladder.vo.coordinate.CoordinateValue;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,10 +21,6 @@ public class Rewards {
 
     public Reward getReward(int index) {
         return this.rewards.get(index);
-    }
-
-    public Reward getReward(CoordinateValue x) {
-        return this.rewards.get(x.getValue());
     }
 
     private void validateRewards(List<Reward> rewards) {

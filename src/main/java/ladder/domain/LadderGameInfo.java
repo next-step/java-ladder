@@ -5,7 +5,6 @@ import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
 import ladder.vo.Length;
-import ladder.vo.coordinate.CoordinateValue;
 
 import java.util.List;
 
@@ -24,10 +23,6 @@ public class LadderGameInfo {
         return this.rewards.getReward(index);
     }
 
-    public Reward getReward(CoordinateValue x) {
-        return this.rewards.getReward(x);
-    }
-
     List<Member> getMembers() {
         return memberGroup.getMembers();
     }
@@ -38,11 +33,6 @@ public class LadderGameInfo {
 
     Rewards getRewards() {
         return rewards;
-    }
-
-    CoordinateValue getStartXCoordinateOfMember(Member member) {
-        int indexOfMember = this.memberGroup.getIndexOfMember(member);
-        return new CoordinateValue(indexOfMember);
     }
 
     Length getLadderWidthForMembers() {

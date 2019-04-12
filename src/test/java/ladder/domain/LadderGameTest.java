@@ -5,8 +5,6 @@ import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
-import ladder.vo.coordinate.Coordinate;
-import ladder.vo.coordinate.CoordinateValue;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,35 +36,6 @@ public class LadderGameTest {
         // when
         // then
         assertThatIllegalArgumentException().isThrownBy(() -> new LadderGame(ladderGameInfo, ladder));
-
-        log.debug("memberGroup, ladder, rewards\n{}\n{}\n{}", memberGroup, ladder,rewards);
-    }
-
-    @Test
-    public void 참가자로부터_사다리_시작_좌표_가져오기() {
-        // given
-        Member pobi = new Member("pobi");
-        Member crong = new Member("crong");
-        MemberGroup memberGroup = new MemberGroup(Arrays.asList(pobi, crong));
-
-        Reward mac = new Reward("mac");
-        Reward note = new Reward("note");
-        Rewards rewards = new Rewards(Arrays.asList(mac, note));
-
-        LadderGameInfo ladderGameInfo = new LadderGameInfo(memberGroup, rewards);
-
-        Line line = new Line(Arrays.asList(newPoint(0, false, true), newPoint(1, true, false)));
-        Ladder ladder = new Ladder(new Lines(Arrays.asList(line)));
-
-        LadderGame ladderGame = new LadderGame(ladderGameInfo, ladder);
-
-        // when
-        Coordinate pobiStartCoordinate = ladderGame.getStartCoordinateOfMember(pobi);
-        Coordinate crongStartCoordinate = ladderGame.getStartCoordinateOfMember(crong);
-
-        // then
-        assertThat(pobiStartCoordinate).isEqualTo(getCoordinate(0, 1));
-        assertThat(crongStartCoordinate).isEqualTo(getCoordinate(1, 1));
 
         log.debug("memberGroup, ladder, rewards\n{}\n{}\n{}", memberGroup, ladder,rewards);
     }
@@ -130,10 +99,6 @@ public class LadderGameTest {
 
         log.debug("memberGroup, ladder, rewards\n{}\n{}\n{}", memberGroup, ladder,rewards);
         log.debug("ladderGameResults\n{}", ladderGameResults);
-    }
-
-    private Coordinate getCoordinate(int x, int y) {
-        return new Coordinate(new CoordinateValue(x), new CoordinateValue(y));
     }
 
     private Point newPoint(int index, boolean left, boolean right) {

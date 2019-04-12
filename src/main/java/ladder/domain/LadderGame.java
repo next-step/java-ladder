@@ -5,8 +5,6 @@ import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
-import ladder.vo.coordinate.Coordinate;
-import ladder.vo.coordinate.CoordinateValue;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +21,7 @@ public class LadderGame {
     }
 
     public LadderGameResult getResult(Member member) {
-        Coordinate startCoordinate = getStartCoordinateOfMember(member);
-        int startIndex = startCoordinate.getXValue();
+        int startIndex = this.ladderGameInfo.getMembers().indexOf(member);
         int resultIndex = ladder.getResultIndex(startIndex);
 
         Reward reward = this.ladderGameInfo.getReward(resultIndex);
@@ -38,13 +35,6 @@ public class LadderGame {
                 .collect(Collectors.toList());
 
         return new LadderGameResults(results);
-    }
-
-    Coordinate getStartCoordinateOfMember(Member member) {
-        CoordinateValue x = this.ladderGameInfo.getStartXCoordinateOfMember(member);
-        CoordinateValue y = new CoordinateValue(this.ladder.getHeight());
-
-        return new Coordinate(x, y);
     }
 
     private void validateLadderGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
