@@ -15,15 +15,12 @@ public class LadderLocation {
         this.floor = floor;
     }
 
-    private void validationLocationValue(int index, int floor) {
-        validationLocationValue(index);
-        validationLocationValue(floor);
+    public int getIndex() {
+        return this.index;
     }
 
-    private void validationLocationValue(int value) {
-        if (value < MIN_LOCATION_VALUE) {
-            throw new IllegalArgumentException("Location value must be at least " + MIN_LOCATION_VALUE);
-        }
+    public int getFloor() {
+        return this.floor;
     }
 
     public boolean isBottom() {
@@ -48,4 +45,16 @@ public class LadderLocation {
     public int hashCode() {
         return Objects.hash(index, floor);
     }
+
+    private void validationLocationValue(int index, int floor) {
+        validationLocationValue(index);
+        validationLocationValue(floor);
+    }
+
+    private void validationLocationValue(int value) {
+        if (value < MIN_LOCATION_VALUE) {
+            throw new IllegalArgumentException("Location value must be at least " + MIN_LOCATION_VALUE);
+        }
+    }
+
 }
