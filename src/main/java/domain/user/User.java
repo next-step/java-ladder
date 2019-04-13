@@ -18,4 +18,12 @@ public class User {
     public String toString() {
         return name;
     }
+
+    public boolean match(String name) {
+        return this.name.equals(name);
+    }
+
+    public String getName() {
+        return name;
+    }
 }
