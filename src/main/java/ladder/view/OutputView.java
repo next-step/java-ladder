@@ -1,10 +1,8 @@
 package ladder.view;
 
-import ladder.domain.LadderGame;
-import ladder.domain.LadderGameResult;
-import ladder.domain.PlayResults;
-import ladder.domain.Point;
+import ladder.domain.*;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class OutputView {
@@ -27,7 +25,7 @@ public class OutputView {
     }
 
     private static void drawLine(Point point, int maxLadderWidth) {
-        if(point.isCurrent()) {
+        if(point.isRight()) {
             print(drawWidth(maxLadderWidth,LadderGame.LADDER_WIDTH));
             print(LadderGame.LADDER_SIDE);
             return;
@@ -45,8 +43,16 @@ public class OutputView {
         return ladderWidth.toString();
     }
 
+    public static void printInputResults(List<String> inputResults) {
+        println("");
+        for (String inputResult : inputResults) {
+            print(inputResult + LadderGame.LADDER_EMPTY_WIDTH);
+        }
+        println("");
+    }
+
     public static void printResult(String inputUserResult, LadderGameResult ladderGameResult) {
-        print(getPlayResults(inputUserResult, ladderGameResult));
+        println(getPlayResults(inputUserResult, ladderGameResult));
     }
 
 
@@ -54,11 +60,11 @@ public class OutputView {
         if(userName.equals(ALL)) {
             return getAllPlayResults(ladderGameResult.getPlayResults());
         }
-        return getPlayResult(userName, ladderGameResult);
+        return getPlayResult(new Player(userName), ladderGameResult);
     }
 
-    private static String getPlayResult(String userName, LadderGameResult ladderGameResult) {
-        return ladderGameResult.findResultByName(userName).getGameResult();
+    private static String getPlayResult(Player player, LadderGameResult ladderGameResult) {
+        return ladderGameResult.findResult(player).getGameResult();
     }
 
     private static String getAllPlayResults(PlayResults playResults) {

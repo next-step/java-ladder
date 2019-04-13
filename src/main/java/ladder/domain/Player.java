@@ -20,6 +20,10 @@ public class Player {
         return this.name.equals(playerName);
     }
 
+    public boolean isEquals(Player player) {
+        return this.equals(player);
+    }
+
     public int getNameLength() {
         return this.name.length();
     }

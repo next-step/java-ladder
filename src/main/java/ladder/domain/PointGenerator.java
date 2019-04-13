@@ -6,21 +6,23 @@ import java.util.stream.IntStream;
 
 public class PointGenerator {
     public static final int OUT_SIDES = 1;
-    public static final double SEED_VALUE = 0.5;
+    public static double SEED_VALUE;
 
-    public static List<Point> generate(int countOfPerson) {
+    public static List<Point> generate(int countOfPerson, Level level) {
         List<Point> points = new ArrayList<>(countOfPerson);
+        SEED_VALUE = level.getSeed();
         initPoints(countOfPerson, points);
         return points;
     }
 
+
     private static void initPoints(int countOfPerson, List<Point> points) {
-        points.add(Point.first(getRandomBoolean()));
+        points.add(Point.first());
         IntStream.range(0, countOfPerson - OUT_SIDES)
-                .forEach(count -> points.add(points.get(count).next(getRandomBoolean())));
+                .forEach(count -> points.add(points.get(count).next()));
     }
 
-    private static boolean getRandomBoolean() {
+    public static boolean getRandomBoolean() {
         return Math.random() < SEED_VALUE;
     }
 

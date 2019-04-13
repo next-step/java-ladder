@@ -22,7 +22,13 @@ public class Fixture {
     public static final List<PlayResult> PLAY_RESULTS_LIST = Arrays.asList(HYERIN_PLAY_RESULT, ISISRIN_PLAY_RESULT);
     public static final PlayResults PLAY_RESULTS = new PlayResults(PLAY_RESULTS_LIST);
 
-    public static final int HEIGHT = 2;
-    public static final Ladder LADDER = new Ladder(PLAYER_LIST.size(), HEIGHT, GAME_RESULT_LIST);
+    public static final Ladder LADDER = new Ladder(PLAYER_LIST.size(), Level.LOW, GAME_RESULT_LIST);
     public static final LadderGameResult LADDER_GAME_RESULT = new LadderGameResult(PLAY_RESULTS);
+
+    public static final Direction DOUBLE_FALSE = Direction.of(false, false);
+    public static final Point FIRST_POINT = new Point(0, Direction.of(false, true));
+    public static final Point LAST_POINT = new Point(1, Direction.of(true, false));
+    public static final Line DISCONNECTED_LINE = new Line(Arrays.asList(LAST_POINT, FIRST_POINT));
+    public static final Line CONNECTED_LINE = new Line(Arrays.asList(FIRST_POINT, LAST_POINT));
+
 }

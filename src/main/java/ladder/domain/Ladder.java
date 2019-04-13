@@ -16,9 +16,8 @@ public class Ladder {
     private List<Line> lines = new ArrayList<>();
     private GameResults gameResults;
 
-    public Ladder(int countOfPerson, int height, List<String> gameResults) {
-        validateHeight(height);
-        initLine(countOfPerson, height);
+    public Ladder(int countOfPerson, Level level, List<String> gameResults) {
+        initLine(countOfPerson, level);
         this.gameResults = new GameResults(gameResults);
     }
 
@@ -30,7 +29,7 @@ public class Ladder {
 
     public GameResult move(int index) {
         int pointResult = movePoint(index);
-        return gameResults.getGemeReuslt(pointResult);
+        return gameResults.getGameResult(pointResult);
     }
 
     private void validateHeight(int height) {
@@ -39,8 +38,8 @@ public class Ladder {
         }
     }
 
-    private void initLine(int countOfPerson, int height) {
-        IntStream.range(0, height).forEach(count -> lines.add(new Line(countOfPerson)));
+    private void initLine(int countOfPerson, Level level) {
+        IntStream.range(0, level.getLineSize()).forEach(count -> lines.add(new Line(countOfPerson, level)));
     }
 
     private int movePoint(int index) {

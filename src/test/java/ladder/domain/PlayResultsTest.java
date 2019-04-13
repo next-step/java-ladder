@@ -11,17 +11,16 @@ import static org.junit.Assert.*;
 public class PlayResultsTest {
 
     @Test
-    public void 이름으로_결과찾기() {
+    public void 플레이어로_결과찾기() {
         PlayResults playResults = PLAY_RESULTS;
 
-        PlayResult result = playResults.findResultByName(HYERIN);
+        PlayResult result = playResults.findResultByPlayer(HYERIN_PLAYER);
         Assertions.assertThat(result.isEqualsName(HYERIN)).isTrue();
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void 이름으로_결과찾기_없는이름() {
+    public void 플레이어로_결과찾기_없는플레이어() {
         PlayResults playResults = PLAY_RESULTS;
-        
-        playResults.findResultByName("hoho");
+        playResults.findResultByPlayer(new Player("끄오옼"));
     }
 }

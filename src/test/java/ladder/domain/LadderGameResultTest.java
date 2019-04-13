@@ -11,7 +11,7 @@ public class LadderGameResultTest {
     public void 실행결과_단건_가져오기() {
         LadderGameResult ladderGameResult = LADDER_GAME_RESULT;
 
-        PlayResult result = ladderGameResult.findResultByName(HYERIN);
+        PlayResult result = ladderGameResult.findResult(HYERIN_PLAYER);
         assertThat(result).isEqualTo(HYERIN_PLAY_RESULT);
     }
 

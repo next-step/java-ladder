@@ -18,28 +18,22 @@ public class Players {
         return Collections.max(players, Comparator.comparing(Player::getNameLength)).getNameLength();
     }
 
-    public int playerIndex(String UserName) {
-        return players.indexOf(new Player(UserName));
+    public int playerIndex(Player player) {
+        return players.indexOf(player);
     }
 
     public PlayResults play(Ladder ladder) {
         List<PlayResult> playerResults = new ArrayList<>();
-        players.forEach(player -> {
-            playerResults.add(new PlayResult(findPlayer(player.getName()), getGameResult(ladder, player.getName())));
-        });
+        players.forEach(player -> playerResults.add(new PlayResult(findPlayer(player), getGameResult(ladder, player))));
         return new PlayResults(playerResults);
     }
 
-    public Player findPlayer(String name) {
-        return findByName(name);
+    public GameResult getGameResult(Ladder ladder, Player player) {
+        return ladder.move(playerIndex(player));
     }
 
-    public GameResult getGameResult(Ladder ladder, String name) {
-        return ladder.move(playerIndex(name));
-    }
-
-    private Player findByName(String playerName) {
-        Optional<Player> findPlayer = players.stream().filter(player -> player.isEqualsName(playerName)).findFirst();
+    private Player findPlayer(Player searchPlayer) {
+        Optional<Player> findPlayer = players.stream().filter(player -> player.isEquals(searchPlayer)).findFirst();
         return findPlayer.orElseThrow(() -> new IllegalArgumentException("없는유저에욤"));
     }
 }
