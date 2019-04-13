@@ -3,44 +3,44 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.domain.BooleanGenerator.generatePoint;
-
 public class LadderLine {
     private static final String EMPTY_LINE = "     ";
     private final List<Point> points;
+    private BooleanGenerator booleanGenerator;
+    private int countOfPerson;
 
-    public LadderLine(List<Point> points) {
-        this.points = points;
+    public LadderLine(int countOfPerson, BooleanGenerator booleanGenerator) {
+        this.points = new ArrayList<>();
+        this.booleanGenerator = booleanGenerator;
+        this.countOfPerson = countOfPerson;
+        init();
     }
 
     public int lineCount() {
         return points.size();
     }
 
-    public static LadderLine init(int countOfPerson) {
-        List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(countOfPerson, points, point);
-        initLast(points, point);
-
-        return new LadderLine(points);
+    private void init() {
+        Point point = initFirst();
+        point = initBody(point);
+        initLast(point);
     }
 
-    private static Point initBody(int countOfPerson, List<Point> points, Point point) {
+    private Point initBody(Point point) {
         for(int i = 1; i < countOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(booleanGenerator);
             points.add(point);
         }
         return point;
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private Point initFirst() {
+        Point point = Point.first(booleanGenerator.generatePoint());
         points.add(point);
         return point;
     }
 
-    private static void initLast(List<Point> points, Point point) {
+    private void initLast(Point point) {
         point = point.last();
         points.add(point);
     }

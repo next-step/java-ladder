@@ -1,10 +1,13 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Point {
     private static final List<Point> points = new ArrayList<>();
+    private static final Map<Integer, Point> pointsM = new HashMap<>();
     private static final int INT_MOVE = 1;
     private static final String EMPTY_LINE = "     ";
     private static final String VERTICAL_LINE = "|";
@@ -15,16 +18,21 @@ public class Point {
 
     static {
         for(int i = 0; i < MAX_INDEX; i++) {
-            points.add(new Point(i, Direction.of(false, true)));
-            points.add(new Point(i, Direction.of(false, false)));
-            points.add(new Point(i, Direction.of(true, false)));
+            Direction direction1 = Direction.of(false, false);
+            Direction direction2 = Direction.of(false, true);
+            Direction direction3 = Direction.of(true, false);
+
+            Point point = new Point(i, direction1);
+            Point point2 = new Point(i, direction2);
+            Point point3 = new Point(i, direction3);
+            pointsM.put(direction1.hashCode() + i, point);
+            pointsM.put(point2.hashCode() + i, point2);
+            pointsM.put(point3.hashCode() + i, point3);
         }
     }
 
     public static Point of(int index, Direction direction) {
-        return points.stream().filter(p -> p.index == index)
-                .filter(p -> p.direction == direction)
-                .findFirst().orElse(new Point(index, direction));
+        return pointsM.getOrDefault(direction.hashCode() + index, new Point(index, direction));
     }
 
     private Point(int index, Direction direction) {
@@ -42,8 +50,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next() {
-        return Point.of(index + INT_MOVE, direction.next());
+    public Point next(BooleanGenerator booleanGenerator) {
+        return Point.of(index + INT_MOVE, direction.next(booleanGenerator));
     }
 
     public Point next(Boolean right) {

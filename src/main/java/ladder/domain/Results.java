@@ -22,7 +22,7 @@ public class Results {
         if(StringUtils.isEmpty(condition)) {
             throw new IllegalArgumentException("입력값이 없습니다.");
         }
-        if(condition.equals(ALL_RESULT)) {
+        if(ALL_RESULT.equals(condition)) {
             return toString();
         }
         return findResult(condition).getWinning().trim();

@@ -39,7 +39,16 @@ public class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        Level level = Level.findLevel("middle");
+        BooleanGenerator booleanGenerator = new BooleanGenerator(level);
+        Point second = Point.first(TRUE).next(booleanGenerator);
         assertThat(second.move(), is(0));
+    }
+
+    @Test
+    public void generatePointTest() {
+        Point point1 = Point.of(0, Direction.of(false, false));
+        Point point2 = Point.of(0, Direction.of(false, false));
+
     }
 }

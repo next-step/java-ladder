@@ -5,17 +5,19 @@ import java.util.List;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static ladder.domain.BooleanGenerator.generatePoint;
 
 public class Direction {
     private static final List<Direction> directions = new ArrayList<>();
+    private static final int CENTER = 0;
+    private static final int RIGHT = 1;
+    private static final int LEFT = 2;
     private final boolean left;
     private final boolean right;
 
     static {
-        directions.add(new Direction(false, false));
-        directions.add(new Direction(false, true));
-        directions.add(new Direction(true, false));
+        directions.add(new Direction(DirectionType.CENTER));
+        directions.add(new Direction(DirectionType.RIGHT));
+        directions.add(new Direction(DirectionType.LEFT));
     }
 
     private Direction(boolean left, boolean right) {
@@ -24,6 +26,14 @@ public class Direction {
         }
         this.left = left;
         this.right = right;
+    }
+
+    private Direction(DirectionType directionType) {
+        this.left = directionType.isLeft();
+        this.right = directionType.isRight();
+        if(left && right) {
+            throw  new IllegalStateException();
+        }
     }
 
     public boolean isLeft() {
@@ -42,23 +52,23 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(BooleanGenerator booleanGenerator) {
         if(this.right) {
             return next(FALSE);
         }
 
-        return next(generatePoint());
+        return next(booleanGenerator.generatePoint());
     }
 
     public static Direction of(boolean first, boolean second) {
         if(!first && !second) {
-            return directions.get(0);
+            return directions.get(CENTER);
         }
         if(!first && second) {
-            return directions.get(1);
+            return directions.get(RIGHT);
         }
         if(first && !second) {
-            return directions.get(2);
+            return directions.get(LEFT);
         }
         return new Direction(first, second);
     }

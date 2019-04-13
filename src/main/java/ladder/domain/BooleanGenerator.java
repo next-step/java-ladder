@@ -3,12 +3,18 @@ package ladder.domain;
 import java.util.Random;
 
 public class BooleanGenerator {
-    private static final Random random = new Random();
+    private Level level;
 
-    private BooleanGenerator() {
+    public BooleanGenerator(Level level) {
+        this.level = level;
     }
 
-    public static boolean generatePoint() {
-        return random.nextBoolean();
+    public boolean generatePoint() {
+        Random random = new Random();
+        int r = random.nextInt(100);
+        if(r < level.getWeight()) {
+            return true;
+        }
+        return false;
     }
 }

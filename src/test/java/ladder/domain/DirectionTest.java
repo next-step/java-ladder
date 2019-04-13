@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -8,6 +9,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class DirectionTest {
+    private BooleanGenerator booleanGenerator;
+
+    @Before
+    public void setUp() throws Exception {
+        Level level = Level.findLevel("middle");
+        this.booleanGenerator = new BooleanGenerator(level);
+    }
 
     @Test
     public void init() {
@@ -21,14 +29,14 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(booleanGenerator);
         assertThat(next, is(Direction.of(TRUE, FALSE)));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            Direction.first(FALSE).next(booleanGenerator);
         }
     }
 

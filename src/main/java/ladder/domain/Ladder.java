@@ -7,19 +7,18 @@ import java.util.List;
 public class Ladder {
     private static final String LINE_SEPARATOR = "line.separator";
     private final List<LadderLine> ladder;
+    private final Level level;
 
-    public Ladder(int countOfPerson, int height) {
-        this.ladder = generateLadder(countOfPerson, height);
-    }
-
-    public Ladder(List<LadderLine> ladder) {
-        this.ladder = ladder;
+    public Ladder(int countOfPerson, Level level) {
+        this.level = level;
+        this.ladder = generateLadder(countOfPerson, level.getHeight());
     }
 
     private List<LadderLine> generateLadder(int countOfPerson, int height) {
         List<LadderLine> ladderLines = new ArrayList<>();
+        BooleanGenerator booleanGenerator = new BooleanGenerator(level);
         for(int i = 0; i < height; i++) {
-            ladderLines.add(LadderLine.init(countOfPerson));
+            ladderLines.add(new LadderLine(countOfPerson, booleanGenerator));
         }
         return ladderLines;
     }

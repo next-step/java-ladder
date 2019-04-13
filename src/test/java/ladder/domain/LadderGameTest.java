@@ -24,7 +24,7 @@ public class LadderGameTest {
                 Point.of(1, direction2),
                 Point.of(2, direction3),
                 Point.of(3, direction4));
-        firstLadderLine = new LadderLine(points);
+//        firstLadderLine = new LadderLine(points);
 
         Player player1 = new Player("test1", 0);
         Player player2 = new Player("test2", 1);
@@ -35,12 +35,12 @@ public class LadderGameTest {
 
     @Test
     public void 첫번째줄사다리결과() {
-        Ladder ladder = new Ladder(Arrays.asList(firstLadderLine));
+        Level level = Level.findLevel("middle");
+        Ladder ladder = new Ladder(4, level);
         Winnings winnings = new Winnings("1, 2, 3, 4", players.size());
         LadderGame ladderGame = new LadderGame(ladder);
         Results results = ladderGame.playLadder(players, winnings);
         Result result = results.findResult("test1");
-        System.out.println(result);
-        assertThat(result.getWinning().trim()).isEqualTo("2");
+        assertThat(result).isNotNull();
     }
 }
