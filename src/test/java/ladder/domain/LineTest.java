@@ -3,9 +3,6 @@ package ladder.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static ladder.domain.Fixture.CONNECTED_LINE;
 import static ladder.domain.Fixture.DISCONNECTED_LINE;
 
@@ -20,7 +17,7 @@ public class LineTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void 라인그리기_실패_테스트() {
-        new Line(1, LEVEL.LOW);
+        new Line(1, Level.LOW);
     }
 
     @Test

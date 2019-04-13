@@ -22,7 +22,7 @@ public class Fixture {
     public static final List<PlayResult> PLAY_RESULTS_LIST = Arrays.asList(HYERIN_PLAY_RESULT, ISISRIN_PLAY_RESULT);
     public static final PlayResults PLAY_RESULTS = new PlayResults(PLAY_RESULTS_LIST);
 
-    public static final Ladder LADDER = new Ladder(PLAYER_LIST.size(), LEVEL.LOW, GAME_RESULT_LIST);
+    public static final Ladder LADDER = new Ladder(PLAYER_LIST.size(), Level.LOW, GAME_RESULT_LIST);
     public static final LadderGameResult LADDER_GAME_RESULT = new LadderGameResult(PLAY_RESULTS);
 
     public static final Direction DOUBLE_FALSE = Direction.of(false, false);

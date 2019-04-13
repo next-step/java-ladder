@@ -16,7 +16,7 @@ public class Ladder {
     private List<Line> lines = new ArrayList<>();
     private GameResults gameResults;
 
-    public Ladder(int countOfPerson, LEVEL level, List<String> gameResults) {
+    public Ladder(int countOfPerson, Level level, List<String> gameResults) {
         initLine(countOfPerson, level);
         this.gameResults = new GameResults(gameResults);
     }
@@ -38,7 +38,7 @@ public class Ladder {
         }
     }
 
-    private void initLine(int countOfPerson, LEVEL level) {
+    private void initLine(int countOfPerson, Level level) {
         IntStream.range(0, level.getLineSize()).forEach(count -> lines.add(new Line(countOfPerson, level)));
     }
 

@@ -14,7 +14,7 @@ public class LadderGame {
     public LadderGame(List<String> players,  String inputLevel, List<String> inputResults) {
         validate(players, inputResults);
         this.players = new Players(players);
-        this.ladder = new Ladder(players.size(), LEVEL.findLevel(inputLevel), inputResults);
+        this.ladder = new Ladder(players.size(), Level.findLevel(inputLevel), inputResults);
     }
 
     protected LadderGame(List<String> players, Ladder ladder) {

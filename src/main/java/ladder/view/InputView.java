@@ -8,7 +8,7 @@ public class InputView {
     public static final String REGEX = ",";
     private static Scanner scanner = new Scanner(System.in);
 
-    public static List<String> inputUser() {
+    public static List<String> inputPlayers() {
         System.out.println("참여할 사람 이름을 입력하세요 (쉼표로 구분!)");
         return Arrays.asList(scanner.nextLine().split(REGEX));
     }

@@ -3,23 +3,23 @@ package ladder.domain;
 import lombok.ToString;
 
 @ToString
-public enum LEVEL {
+public enum Level {
     HIGH("상", 0.8, 20),
-    MIDDEL("중", 0.5, 10),
+    MIDDLE("중", 0.5, 10),
     LOW("하", 0.2, 5);
 
     private String level;
     private double seed;
     private int lineSize;
 
-    LEVEL(String level, double seed, int lineSize) {
+    Level(String level, double seed, int lineSize) {
         this.level = level;
         this.seed = seed;
         this.lineSize = lineSize;
     }
 
-    public static LEVEL findLevel(String searchLevel) {
-        for (LEVEL value : LEVEL.values()) {
+    public static Level findLevel(String searchLevel) {
+        for (Level value : Level.values()) {
             if(value.level.equals(searchLevel)) {
                 return value;
             }
