@@ -53,3 +53,4 @@ public class LadderTest {
         assertThat(ladder.descend(1)).isEqualTo(1);
     }
 }
+
