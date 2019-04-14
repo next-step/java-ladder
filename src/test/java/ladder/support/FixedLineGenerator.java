@@ -1,4 +1,8 @@
-package ladder;
+package ladder.support;
+
+import ladder.domain.Line;
+import ladder.domain.Point;
+import ladder.domain.generator.LineGenerator;
 
 import java.util.List;
 

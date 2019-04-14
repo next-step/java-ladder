@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,8 +29,12 @@ public class Ladder {
         return lines.get(0);
     }
 
-    public void moveLines(Player player) {
-        this.lines.forEach(line -> line.moveOneLine(player));
+    public int descend(int i) {
+        int index = i;
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+        return index;
     }
 
     @Override
