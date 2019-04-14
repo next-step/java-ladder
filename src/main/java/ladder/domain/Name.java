@@ -1,16 +1,16 @@
-package ladder;
+package ladder.domain;
 
-public class EndPoint {
+public class Name {
     public static final int MAX_NAME_SIZE = 5;
     public static final String BLANK = " ";
-    protected final String name;
+    private final String name;
 
-    public EndPoint(final String name) {
-        verifyLenthOfName(name);
+    public Name(String name) {
+        verifyLengthOfName(name);
         this.name = name;
     }
 
-    private void verifyLenthOfName(String name) {
+    private void verifyLengthOfName(String name) {
         if (name.length() > MAX_NAME_SIZE) {
             throw new IllegalArgumentException("이름은 최대5글자까지만 설정할 수 있습니다.");
         }
@@ -28,5 +28,9 @@ public class EndPoint {
             sb.insert(0, BLANK);
         }
         return sb.toString();
+    }
+
+    public boolean isEqual(String selectedPlayer) {
+        return this.name.equals(selectedPlayer);
     }
 }

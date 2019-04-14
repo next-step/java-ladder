@@ -1,5 +1,13 @@
 package ladder;
 
+import ladder.domain.BetItems;
+import ladder.domain.GameResults;
+import ladder.domain.LadderGame;
+import ladder.domain.Players;
+import ladder.domain.generator.RandomLadderGenerator;
+import ladder.view.InputView;
+import ladder.view.OutputView;
+
 import java.util.Scanner;
 
 public class ConsoleApplication {
@@ -7,11 +15,8 @@ public class ConsoleApplication {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        String playerNames = InputView.inputNames(scanner);
-        Players players = new Players(playerNames);
-
-        String resultNames = InputView.inputResults(scanner);
-        EndPoints ladderResults = new EndPoints(resultNames);
+        Players players = Players.valueOfComma(InputView.inputNames(scanner));
+        BetItems ladderResults = BetItems.valueOfComma(InputView.inputResults(scanner));
 
         int height = InputView.inputHeight(scanner);
 
@@ -25,7 +30,7 @@ public class ConsoleApplication {
         do {
             selectionResult = InputView.inputSelectedPlayer(scanner);
             OutputView.printResult(gameResults, selectionResult);
-
         } while (!OutputView.isEndAnswer(selectionResult));
+        OutputView.endResult(gameResults);
     }
 }
