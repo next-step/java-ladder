@@ -5,9 +5,6 @@ import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Reward;
 import ladder.domain.reward.Rewards;
-import ladder.vo.Length;
-import ladder.vo.coordinate.Coordinate;
-import ladder.vo.coordinate.CoordinateValue;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,27 +20,11 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    private void validateLadderGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
-        Length width = ladder.getWidth();
-        Length ladderWidthForMembers = ladderGameInfo.getLadderWidthForMembers();
-
-        if (!width.equals(ladderWidthForMembers)) {
-            throw new IllegalArgumentException("It's a wrong ladder for the members");
-        }
-    }
-
-    Coordinate getStartCoordinateOfMember(Member member) {
-        CoordinateValue x = this.ladderGameInfo.getStartXCoordinateOfMember(member);
-        CoordinateValue y = this.ladder.getStartYCoordinate();
-
-        return new Coordinate(x, y);
-    }
-
     public LadderGameResult getResult(Member member) {
-        Coordinate resultCoordinate = this.ladder.getLadderResultCoordinate(getStartCoordinateOfMember(member));
+        int startIndex = this.ladderGameInfo.getIndexOfMember(member);
+        int resultIndex = ladder.getResultIndex(startIndex);
 
-        CoordinateValue x = resultCoordinate.getX();
-        Reward reward = this.ladderGameInfo.getReward(x);
+        Reward reward = this.ladderGameInfo.getReward(resultIndex);
 
         return new LadderGameResult(member, reward);
     }
@@ -67,4 +48,14 @@ public class LadderGame {
     public Ladder getLadder() {
         return ladder;
     }
+
+    private void validateLadderGame(LadderGameInfo ladderGameInfo, Ladder ladder) {
+        int ladderWidth = ladder.getWidth();
+        int ladderWidthForMembers = ladderGameInfo.getLadderWidthForMembers();
+
+        if (ladderWidth != ladderWidthForMembers) {
+            throw new IllegalArgumentException("It's a wrong ladder for the members");
+        }
+    }
+
 }

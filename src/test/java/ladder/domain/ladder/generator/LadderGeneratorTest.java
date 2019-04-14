@@ -1,90 +1,57 @@
 package ladder.domain.ladder.generator;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.Lines;
 import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
-import ladder.vo.Length;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderGeneratorTest {
+    private static final Logger log = LoggerFactory.getLogger(LadderGeneratorTest.class);
 
     @Test
-    public void Line_객체_정상_생성() {
+    public void 사다리의_높이가_1_미만일_경우_IllegalArgumentException() {
         // given
-        PointGenerator pointGenerator = new CannotCrossPointGenerator();
-        LadderGenerator ladderGenerator = new LadderGenerator(pointGenerator);
+        DirectionGenerator directionGenerator = new StayDirectionGenerator();
+        LadderGenerator ladderGenerator = new LadderGenerator(directionGenerator);
 
         List<Member> members =
                 Arrays.asList(new Member("pobi"), new Member("crong"), new Member("son"));
         MemberGroup memberGroup = new MemberGroup(members);
 
-        // when
-        Line line = ladderGenerator.generateLine(memberGroup);
-
-        // then
-        /**
-         * pobi   crong    son
-         *  |       |       |
-         */
-        assertThat(line.getWidth().isEqualValue(memberGroup.getNumberOfMembers() - 1)).isTrue();
-    }
-
-    @Test
-    public void Lines_객체_정상_생성() {
-        // given
-        PointGenerator pointGenerator = new CannotCrossPointGenerator();
-        LadderGenerator ladderGenerator = new LadderGenerator(pointGenerator);
-
-        List<Member> members =
-                Arrays.asList(new Member("pobi"), new Member("crong"), new Member("son"));
-        MemberGroup memberGroup = new MemberGroup(members);
-
-        Length height = new Length(3);
+        int height = 0;
 
         // when
-        Lines lines = ladderGenerator.generateLines(memberGroup, height);
-
         // then
-        /**
-         * pobi   crong    son
-         *  |       |       |
-         *  |       |       |
-         *  |       |       |
-         */
-        assertThat(lines.getWidth().isEqualValue(memberGroup.getNumberOfMembers() - 1)).isTrue();
-        assertThat(lines.getHeight()).isEqualTo(height);
+        assertThatIllegalArgumentException().isThrownBy(() -> ladderGenerator.generateLadder(memberGroup, height));
     }
 
     @Test
     public void Ladder_객체_정상_생성() {
         // given
-        PointGenerator pointGenerator = new CannotCrossPointGenerator();
-        LadderGenerator ladderGenerator = new LadderGenerator(pointGenerator);
+        DirectionGenerator directionGenerator = new StayDirectionGenerator();
+        LadderGenerator ladderGenerator = new LadderGenerator(directionGenerator);
 
         List<Member> members =
                 Arrays.asList(new Member("pobi"), new Member("crong"), new Member("son"));
         MemberGroup memberGroup = new MemberGroup(members);
 
-        Length height = new Length(3);
+        int height = 3;
 
         // when
         Ladder ladder = ladderGenerator.generateLadder(memberGroup, height);
 
         // then
-        /**
-         * pobi   crong    son
-         *  |       |       |
-         *  |       |       |
-         *  |       |       |
-         */
-        assertThat(ladder.getWidth().isEqualValue(memberGroup.getNumberOfMembers() - 1)).isTrue();
+        assertThat(ladder.getWidth()).isEqualTo(memberGroup.getNumberOfMembers() - 1);
         assertThat(ladder.getHeight()).isEqualTo(height);
+
+        log.debug("ladder\n", ladder);
     }
 }

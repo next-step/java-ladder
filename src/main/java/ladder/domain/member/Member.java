@@ -15,12 +15,6 @@ public class Member {
         this.name = name;
     }
 
-    private void validateName(String name) {
-        if (StringUtils.isBlank(name) || (MAX_NAME_LENGTH < name.length())) {
-            throw new IllegalArgumentException("It's not valid name : " + name);
-        }
-    }
-
     public String getName() {
         return name;
     }
@@ -45,5 +39,11 @@ public class Member {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    private void validateName(String name) {
+        if (StringUtils.isBlank(name) || (MAX_NAME_LENGTH < name.length())) {
+            throw new IllegalArgumentException("It's not valid name : " + name);
+        }
     }
 }

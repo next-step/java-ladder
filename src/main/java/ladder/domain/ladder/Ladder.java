@@ -1,8 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.vo.Length;
-import ladder.vo.coordinate.Coordinate;
-import ladder.vo.coordinate.CoordinateValue;
+import ladder.vo.LadderLocation;
 
 public class Ladder {
     private final Lines lines;
@@ -11,29 +9,30 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Length getWidth() {
-        return this.lines.getWidth();
+    public int getResultIndex(int index) {
+        LadderLocation location = new LadderLocation(index, lines.getHeight());
+        LadderLocation resultLocation = crossDownToBottom(location);
+        return resultLocation.getIndex();
     }
 
-    public Length getHeight() {
+    public int getWidth() {
+        return this.lines.getSize() - 1;
+    }
+
+    public int getHeight() {
         return this.lines.getHeight();
-    }
-
-    public CoordinateValue getStartYCoordinate() {
-        int y = getHeight().getValue();
-        return new CoordinateValue(y);
-    }
-
-    public Coordinate getLadderResultCoordinate(Coordinate coordinate) {
-        while (coordinate.canGoDown()) {
-            coordinate = this.lines.cross(coordinate);
-        }
-
-        return coordinate;
     }
 
     @Override
     public String toString() {
         return this.lines.toString();
+    }
+
+    private LadderLocation crossDownToBottom(LadderLocation location) {
+        while (!location.isBottom()) {
+            location = this.lines.cross(location);
+        }
+
+        return location;
     }
 }

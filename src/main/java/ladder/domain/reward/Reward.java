@@ -9,13 +9,8 @@ public class Reward {
 
     public Reward(String reward) {
         validateReward(reward);
-        this.reward = reward;
-    }
 
-    private void validateReward(String reward) {
-        if (StringUtils.isBlank(reward) || (MAX_NAME_LENGTH < reward.length())) {
-            throw new IllegalArgumentException("It's not valid reward : " + reward);
-        }
+        this.reward = reward;
     }
 
     public String toFormedString() {
@@ -25,5 +20,11 @@ public class Reward {
     @Override
     public String toString() {
         return reward;
+    }
+
+    private void validateReward(String reward) {
+        if (StringUtils.isBlank(reward) || (MAX_NAME_LENGTH < reward.length())) {
+            throw new IllegalArgumentException("It's not valid reward : " + reward);
+        }
     }
 }

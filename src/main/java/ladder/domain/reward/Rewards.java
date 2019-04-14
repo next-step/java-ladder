@@ -1,7 +1,5 @@
 package ladder.domain.reward;
 
-import ladder.vo.coordinate.CoordinateValue;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,18 +15,12 @@ public class Rewards {
         this.rewards = rewards;
     }
 
-    private void validateRewards(List<Reward> rewards) {
-        if (rewards.size() < MIN_REWARDS_SIZE) {
-            throw new IllegalArgumentException("The number of rewards must be at least " + MIN_REWARDS_SIZE);
-        }
-    }
-
     public int getNumberOfRewards() {
         return this.rewards.size();
     }
 
-    public Reward getReward(CoordinateValue x) {
-        return this.rewards.get(x.getValue());
+    public Reward getReward(int index) {
+        return this.rewards.get(index);
     }
 
     @Override
@@ -36,5 +28,11 @@ public class Rewards {
         return this.rewards.stream()
                 .map(Reward::toFormedString)
                 .collect(Collectors.joining(WHITE_SPACE));
+    }
+
+    private void validateRewards(List<Reward> rewards) {
+        if (rewards.size() < MIN_REWARDS_SIZE) {
+            throw new IllegalArgumentException("The number of rewards must be at least " + MIN_REWARDS_SIZE);
+        }
     }
 }

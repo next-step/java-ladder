@@ -21,6 +21,17 @@ public class ConsoleOutputView {
         printRewards(ladderGame.getRewards());
     }
 
+    public static void printLadderGameResult(LadderGame ladderGame, Member target) {
+        System.out.println("실행 결과");
+
+        if (ALL.equals(target.getName())) {
+            System.out.println(ladderGame.getAllResult());
+            return;
+        }
+
+        System.out.println(ladderGame.getResult(target));
+    }
+
     private static void printMemberGroup(MemberGroup memberGroup) {
         System.out.println(memberGroup);
     }
@@ -31,16 +42,5 @@ public class ConsoleOutputView {
 
     private static void printRewards(Rewards rewards) {
         System.out.println(rewards);
-    }
-
-    public static void printLadderGameResult(LadderGame ladderGame, Member target) {
-        System.out.println("실행 결과");
-
-        if (ALL.equals(target.getName())) {
-            System.out.println(ladderGame.getAllResult());
-            return;
-        }
-
-        System.out.println(ladderGame.getResult(target));
     }
 }

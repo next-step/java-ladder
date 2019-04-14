@@ -16,11 +16,6 @@ public class MemberGroup {
         this.members = members;
     }
 
-    private void validateMembers(List<Member> members) {
-        if (members.size() < MIN_MEMBERS_SIZE) {
-            throw new IllegalArgumentException("The number of members must be at least " + MIN_MEMBERS_SIZE);
-        }
-    }
     public int getNumberOfMembers() {
         return this.members.size();
     }
@@ -38,5 +33,11 @@ public class MemberGroup {
         return this.members.stream()
                 .map(Member::toFormedString)
                 .collect(Collectors.joining(WHITE_SPACE));
+    }
+
+    private void validateMembers(List<Member> members) {
+        if (members.size() < MIN_MEMBERS_SIZE) {
+            throw new IllegalArgumentException("The number of members must be at least " + MIN_MEMBERS_SIZE);
+        }
     }
 }

@@ -1,40 +1,70 @@
 package ladder.domain.ladder;
 
 public class Point {
-    public static final Point LEFT_CROSS_POINT = new Point(Cross.CROSS, Cross.NOT_CROSS);
-    public static final Point RIGHT_CROSS_POINT = new Point(Cross.NOT_CROSS, Cross.CROSS);
-    public static final Point CANNOT_CROSS_POINT = new Point(Cross.NOT_CROSS, Cross.NOT_CROSS);
+    private static final int FIRST_INDEX = 0;
 
-    private final Cross left;
-    private final Cross right;
+    private final int index;
+    private final Direction direction;
 
-    Point(Cross left, Cross right) {
-        validateCross(left, right);
+    public Point(int index, Direction direction) {
+        validateIndex(index);
 
-        this.left = left;
-        this.right = right;
-    }
-
-    private void validateCross(Cross left, Cross right) {
-        if (left.isCross() && right.isCross()) {
-            throw new IllegalArgumentException("Point can't cross both directions");
-        }
-    }
-
-    public boolean canCrossLeft() {
-        return this.left.isCross();
-    }
-
-    public boolean canCrossRight() {
-        return this.right.isCross();
+        this.index = index;
+        this.direction = direction;
     }
 
     @Override
     public String toString() {
-        if (canCrossRight()) {
+        if (canMoveRight()) {
             return "|-----";
         }
 
         return "|     ";
+    }
+
+    static Point first(boolean right) {
+        return new Point(FIRST_INDEX, Direction.first(right));
+    }
+
+    Point next() {
+        return new Point(this.index + 1, this.direction.next(Boolean.FALSE));
+    }
+
+    Point next(boolean right) {
+        return new Point(this.index + 1, this.direction.next(right));
+    }
+
+    Point last() {
+        return next(Boolean.FALSE);
+    }
+
+    int move() {
+        if (canMoveLeft()) {
+            return this.index - 1;
+        }
+
+        if (canMoveRight()) {
+            return this.index + 1;
+        }
+
+        return this.index;
+    }
+
+    boolean canMoveLeft() {
+        return this.direction.isLeft();
+    }
+
+    boolean canMoveRight() {
+        return this.direction.isRight();
+    }
+
+    int getIndex() {
+        return this.index;
+    }
+
+    private void validateIndex(int index) {
+        if (index < FIRST_INDEX) {
+            throw new IllegalArgumentException("A value of index must be at least " + FIRST_INDEX);
+        }
     }
 }
