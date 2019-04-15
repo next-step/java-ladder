@@ -8,18 +8,21 @@ public class Ladder {
     private static final String LINE_SEPARATOR = "line.separator";
     private final List<LadderLine> ladder;
 
+    public Ladder(int countOfPerson, Level level) {
+        BooleanGenerator booleanGenerator = new BooleanGeneratorWithLevel(level);
+        this.ladder = generateLadder(countOfPerson, level.getHeight(), booleanGenerator);
+    }
+
     public Ladder(int countOfPerson, int height) {
-        this.ladder = generateLadder(countOfPerson, height);
+        BooleanGenerator booleanGenerator = new BooleanGeneratorNormal();
+        this.ladder = generateLadder(countOfPerson, height, booleanGenerator);
     }
 
-    public Ladder(List<LadderLine> ladder) {
-        this.ladder = ladder;
-    }
-
-    private List<LadderLine> generateLadder(int countOfPerson, int height) {
+    private List<LadderLine> generateLadder(int countOfPerson, int height, BooleanGenerator booleanGenerator) {
         List<LadderLine> ladderLines = new ArrayList<>();
+
         for(int i = 0; i < height; i++) {
-            ladderLines.add(LadderLine.init(countOfPerson));
+            ladderLines.add(new LadderLine(countOfPerson, booleanGenerator));
         }
         return ladderLines;
     }

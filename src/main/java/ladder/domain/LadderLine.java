@@ -3,44 +3,42 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.domain.BooleanGenerator.generatePoint;
-
 public class LadderLine {
     private static final String EMPTY_LINE = "     ";
     private final List<Point> points;
+    private int countOfPerson;
 
-    public LadderLine(List<Point> points) {
-        this.points = points;
+    public LadderLine(int countOfPerson, BooleanGenerator booleanGenerator) {
+        this.points = new ArrayList<>();
+        this.countOfPerson = countOfPerson;
+        init(booleanGenerator);
     }
 
     public int lineCount() {
         return points.size();
     }
 
-    public static LadderLine init(int countOfPerson) {
-        List<Point> points = new ArrayList<>();
-        Point point = initFirst(points);
-        point = initBody(countOfPerson, points, point);
-        initLast(points, point);
-
-        return new LadderLine(points);
+    private void init(BooleanGenerator booleanGenerator) {
+        Point point = initFirst(booleanGenerator);
+        point = initBody(point, booleanGenerator);
+        initLast(point);
     }
 
-    private static Point initBody(int countOfPerson, List<Point> points, Point point) {
+    private Point initBody(Point point, BooleanGenerator booleanGenerator) {
         for(int i = 1; i < countOfPerson - 1; i++) {
-            point = point.next();
+            point = point.next(booleanGenerator);
             points.add(point);
         }
         return point;
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+    private Point initFirst(BooleanGenerator booleanGenerator) {
+        Point point = Point.first(booleanGenerator.generatePoint());
         points.add(point);
         return point;
     }
 
-    private static void initLast(List<Point> points, Point point) {
+    private void initLast(Point point) {
         point = point.last();
         points.add(point);
     }
@@ -53,8 +51,8 @@ public class LadderLine {
     public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(EMPTY_LINE);
-        for(int i = 0; i < points.size(); i++) {
-            stringBuffer.append(points.get(i).toString());
+        for (Point point : points) {
+            stringBuffer.append(point.toString());
         }
         return stringBuffer.toString();
     }

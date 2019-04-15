@@ -10,13 +10,15 @@ public class ConsoleMain {
         String[] names = Utils.stringSplitWithDelimiter(userNames, ",");
         Players players = new Players(names);
 
-        int height = InputView.printInputLadderHeight();
         int countOfPerson = players.size();
 
         String winningValues = InputView.printInputWinnings();
         Winnings winnings = new Winnings(winningValues, countOfPerson);
 
-        Ladder ladder = new Ladder(countOfPerson, height);
+        String level = InputView.printInputLevel();
+        Level ladderLevel = Level.findLevel(level);
+
+        Ladder ladder = new Ladder(countOfPerson, ladderLevel);
         LadderGame ladderGame = new LadderGame(ladder);
         Results results = ladderGame.playLadder(players, winnings);
 

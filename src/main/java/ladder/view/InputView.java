@@ -31,4 +31,11 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static String printInputLevel() {
+        System.out.println();
+        System.out.println("실행할 사다리의 난이도는?(high, middle, low)");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
 }
