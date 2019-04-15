@@ -40,15 +40,15 @@ public class PointTest {
     @Test
     public void next() {
         Level level = Level.findLevel("middle");
-        BooleanGenerator booleanGenerator = new BooleanGenerator(level);
+        BooleanGenerator booleanGenerator = new BooleanGeneratorWithLevel(level);
         Point second = Point.first(TRUE).next(booleanGenerator);
         assertThat(second.move(), is(0));
     }
 
     @Test
     public void generatePointTest() {
-        Point point1 = Point.of(0, Direction.of(false, false));
-        Point point2 = Point.of(0, Direction.of(false, false));
-
+        Point point1 = Point.of(0, DirectionType.of(false, false));
+        Point point2 = Point.of(0, DirectionType.of(false, false));
+        assertThat(point1.hashCode(), is(point2.hashCode()));
     }
 }

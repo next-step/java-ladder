@@ -10,7 +10,6 @@ public class ConsoleMain {
         String[] names = Utils.stringSplitWithDelimiter(userNames, ",");
         Players players = new Players(names);
 
-//        int height = InputView.printInputLadderHeight();
         int countOfPerson = players.size();
 
         String winningValues = InputView.printInputWinnings();
