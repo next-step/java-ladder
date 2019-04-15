@@ -16,9 +16,9 @@ public class ConsoleInputView {
         return scanner.nextLine();
     }
 
-    public static int inputLadderHeight(Scanner scanner) {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(scanner.nextLine());
+    public static String inputDifficulty(Scanner scanner) {
+        System.out.println("실행할 사다리의 난이도는?");
+        return scanner.nextLine();
     }
 
     public static String inputMemberNameForResult(Scanner scanner) {

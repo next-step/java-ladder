@@ -2,12 +2,13 @@ package ladder;
 
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGameInfo;
+import ladder.domain.ladder.Difficulty;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.generator.LadderGenerator;
-import ladder.domain.ladder.generator.RandomDirectionGenerator;
 import ladder.domain.member.Member;
 import ladder.domain.member.MemberGroup;
 import ladder.domain.reward.Rewards;
+import ladder.parser.DifficultyParser;
 import ladder.parser.MemberParser;
 import ladder.parser.RewardParser;
 import ladder.view.ConsoleInputView;
@@ -24,10 +25,10 @@ public class ConsoleMain {
             Rewards rewards = inputRewards(scanner);
             ConsoleOutputView.printEmptyLine();
 
-            int height = inputLadderHeight(scanner);
+            Difficulty difficulty = inputDifficulty(scanner);
             ConsoleOutputView.printEmptyLine();
 
-            LadderGame ladderGame = getLadderGame(memberGroup, rewards, height);
+            LadderGame ladderGame = getLadderGame(memberGroup, rewards, difficulty);
 
             ConsoleOutputView.printLadderGame(ladderGame);
             ConsoleOutputView.printEmptyLine();
@@ -47,15 +48,15 @@ public class ConsoleMain {
         return RewardParser.parseRewards(ConsoleInputView.inputRewards(scanner));
     }
 
-    private static int inputLadderHeight(Scanner scanner) {
-        return ConsoleInputView.inputLadderHeight(scanner);
+    private static Difficulty inputDifficulty(Scanner scanner) {
+        return DifficultyParser.parseDifficulty(ConsoleInputView.inputDifficulty(scanner));
     }
 
-    private static LadderGame getLadderGame(MemberGroup memberGroup, Rewards rewards, int height) {
+    private static LadderGame getLadderGame(MemberGroup memberGroup, Rewards rewards, Difficulty difficulty) {
         LadderGameInfo ladderGameInfo = new LadderGameInfo(memberGroup, rewards);
 
-        LadderGenerator ladderGenerator = new LadderGenerator(new RandomDirectionGenerator());
-        Ladder ladder = ladderGenerator.generateLadder(memberGroup, height);
+        LadderGenerator ladderGenerator = new LadderGenerator(difficulty.getDirectionGenerator());
+        Ladder ladder = ladderGenerator.generateLadder(memberGroup, difficulty.getLadderHeight());
 
         return new LadderGame(ladderGameInfo, ladder);
     }
