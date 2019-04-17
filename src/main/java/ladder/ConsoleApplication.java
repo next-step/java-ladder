@@ -5,6 +5,8 @@ import ladder.domain.GameResults;
 import ladder.domain.LadderGame;
 import ladder.domain.Players;
 import ladder.domain.generator.RandomLadderGenerator;
+import ladder.domain.generator.RandomLineGenerator;
+import ladder.domain.generator.RandomValueGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -20,7 +22,7 @@ public class ConsoleApplication {
 
         int height = InputView.inputHeight(scanner);
 
-        LadderGame ladderGame = new LadderGame(new RandomLadderGenerator());
+        LadderGame ladderGame = new LadderGame(new RandomLadderGenerator(new RandomLineGenerator(new RandomValueGenerator())));
         ladderGame.init(players.getCount(), height);
         OutputView.printLadder(players, ladderGame, ladderResults);
 

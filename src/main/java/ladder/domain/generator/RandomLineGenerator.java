@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLineGenerator implements LineGenerator {
+    private ValueGenerator valueGenerator;
+
+    public RandomLineGenerator(ValueGenerator valueGenerator) {
+        this.valueGenerator = valueGenerator;
+    }
+
     @Override
     public Line generate(int countOfPerson) {
         List<Point> points = new ArrayList<>(countOfPerson);
@@ -18,13 +24,13 @@ public class RandomLineGenerator implements LineGenerator {
 
     private void initFirst(int countOfPerson, List<Point> points) {
         if (countOfPerson > 0)
-            points.add(Point.getFirst());
+            points.add(Point.getFirst(valueGenerator.generateValue()));
     }
 
     private void initBody(int countOfPerson, List<Point> points) {
         Point current = points.get(0);
         for (int i = 1; i < countOfPerson - 1; i++) {
-            current = Point.valueOf(current);
+            current = Point.valueOf(current, valueGenerator.generateValue());
             points.add(current);
         }
     }
