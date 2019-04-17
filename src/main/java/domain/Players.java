@@ -21,4 +21,15 @@ public class Players {
         return players.toString() +
                 "  ";
     }
+
+    public Player get(int i) {
+        return players.get(i);
+    }
+
+    public Player find(String name) {
+        for (Player player : players) {
+            if (player.equals(name)) return player;
+        }
+        return null;
+    }
 }
