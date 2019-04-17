@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
     private Ladder ladder;
-    private Map<Player, Result> ladderGameResult;
 
     public LadderGame(Ladder ladder) {
         this.ladder = ladder;
@@ -20,7 +19,7 @@ public class LadderGame {
             finalPositions.add(ladder.move(i));
         }
 
-        ladderGameResult = new HashMap<>();
+        Map<Player, Result> ladderGameResult = new HashMap<>();
         IntStream.range(0, players.getNumber())
                  .forEach(i -> ladderGameResult.put(players.get(i),
                             results.get(finalPositions.get(i))));
