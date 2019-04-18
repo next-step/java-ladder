@@ -15,10 +15,9 @@ public class ConsoleMain {
 
         String name = ConsoleInputView.inputNameForResult();
         if(name.equals("all")) {
-            ConsoleOutputView.printAllResult(ladderGame.search());
+            ConsoleOutputView.printAllResult(ladderGame.getUsers().getNames(), ladderGame.search());
         } else {
             ConsoleOutputView.printOneResult(name, ladderGame.search(name));
         }
-
     }
 }
