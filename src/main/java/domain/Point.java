@@ -40,8 +40,12 @@ public class Point {
         return location;
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
     @Override
     public String toString() {
-        return "|";
+        return "|" + (direction.rightMovable() ? "-----" : "     ");
     }
 }
