@@ -12,14 +12,15 @@ public class Line {
     private final List<Point> points = new ArrayList<>();
 
     private Line(List<Boolean> booleans) {
-        points.add(Point.first(booleans.get(0)));
+        Point point = Point.first(booleans.remove(0));
+        points.add(point);
 
-        for (int i = 1; i < booleans.size() - 1; i++) {
-            Point point = Point.next(points.get(i - 1), booleans.get(i));
+        for (Boolean bool : booleans) {
+            point = point.next(bool);
             points.add(point);
         }
 
-        points.add(Point.last(points.get(points.size() - 1)));
+        points.add(point.last());
     }
 
     public static Line newLine(int length, Supplier<Boolean> booleanGenerator) {
@@ -27,7 +28,7 @@ public class Line {
             throw new IllegalArgumentException();
         }
 
-        return new Line(IntStream.range(0, length)
+        return new Line(IntStream.range(0, length - 1)
             .mapToObj(i -> booleanGenerator.get())
             .collect(Collectors.toList()));
     }
@@ -36,15 +37,7 @@ public class Line {
     public Integer move(Integer location) {
         Point current = points.get(location - 1);
 
-        if(current.rightMovable()) {
-            return location + 1;
-        }
-
-        if(current.leftMovable()) {
-            return location - 1;
-        }
-
-        return location;
+        return current.move();
     }
 
     public List<Point> getPoints() {
@@ -54,10 +47,7 @@ public class Line {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Point point : points) {
-            sb.append(point);
-            sb.append(point.rightMovable() ? "-----" : "     ");
-        }
+        points.forEach(sb::append);
 
         return sb.toString();
     }
