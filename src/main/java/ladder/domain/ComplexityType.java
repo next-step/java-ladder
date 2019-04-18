@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public enum ComplexityType {
     HIGH("상", 0.9, 20),

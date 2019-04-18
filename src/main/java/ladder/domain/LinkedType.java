@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.generator.ValueGenerator;
-
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 

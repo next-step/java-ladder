@@ -1,12 +1,9 @@
 package ladder;
 
-import ladder.domain.BetItems;
-import ladder.domain.GameResults;
-import ladder.domain.LadderGame;
-import ladder.domain.Players;
+import ladder.domain.*;
+import ladder.domain.generator.ProbabilityValueGenerator;
 import ladder.domain.generator.RandomLadderGenerator;
 import ladder.domain.generator.RandomLineGenerator;
-import ladder.domain.generator.RandomValueGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -20,10 +17,10 @@ public class ConsoleApplication {
         Players players = Players.valueOfComma(InputView.inputNames(scanner));
         BetItems ladderResults = BetItems.valueOfComma(InputView.inputResults(scanner));
 
-        int height = InputView.inputHeight(scanner);
+        ComplexityType complexityType = ComplexityType.of(InputView.inputComplexity(scanner));
 
-        LadderGame ladderGame = new LadderGame(new RandomLadderGenerator(new RandomLineGenerator(new RandomValueGenerator())));
-        ladderGame.init(players.getCount(), height);
+        LadderGame ladderGame = new LadderGame(new RandomLadderGenerator(new RandomLineGenerator(new ProbabilityValueGenerator(complexityType.getProbabilityOfLink()))));
+        ladderGame.init(players.getCount(), complexityType.getHeight());
         OutputView.printLadder(players, ladderGame, ladderResults);
 
         GameResults gameResults = ladderGame.play(players, ladderResults);

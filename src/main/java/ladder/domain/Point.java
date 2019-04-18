@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.generator.ValueGenerator;
-
 public class Point {
     public static final String LINK = "-----";
     public static final String NO_LINK = "     ";

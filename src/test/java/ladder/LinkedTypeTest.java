@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.LinkedType;
-import ladder.domain.generator.RandomValueGenerator;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
