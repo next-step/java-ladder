@@ -5,6 +5,7 @@ import ladder.domain.LinkedType;
 import ladder.domain.Point;
 import ladder.domain.generator.LineGenerator;
 import ladder.domain.generator.RandomLineGenerator;
+import ladder.domain.generator.RandomValueGenerator;
 import ladder.support.FixedLineGenerator;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class LineTest {
     public void 참여인원이_2명_미만일때() {
         // given
         int sizeOfPerson = 1;
-        LineGenerator lineGenerator = new RandomLineGenerator();
+        LineGenerator lineGenerator = new RandomLineGenerator(new RandomValueGenerator());
         // when
         Line line = lineGenerator.generate(sizeOfPerson);
         // then
@@ -28,7 +29,7 @@ public class LineTest {
     public void 인원수에_따라_초기화() {
         // given
         int sizeOfPerson = 5;
-        LineGenerator lineGenerator = new RandomLineGenerator();
+        LineGenerator lineGenerator = new RandomLineGenerator(new RandomValueGenerator());
         // when
         Line line = lineGenerator.generate(sizeOfPerson);
         // then

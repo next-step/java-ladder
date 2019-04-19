@@ -6,6 +6,8 @@ import ladder.domain.LinkedType;
 import ladder.domain.Point;
 import ladder.domain.generator.LadderGenerator;
 import ladder.domain.generator.RandomLadderGenerator;
+import ladder.domain.generator.RandomLineGenerator;
+import ladder.domain.generator.RandomValueGenerator;
 import ladder.support.FixedLadderGenerator;
 import org.junit.Test;
 
@@ -33,7 +35,7 @@ public class LadderTest {
     @Test
     public void 높이5_참여자5인_사다리() {
         // given
-        LadderGenerator ladderGenerator = new RandomLadderGenerator();
+        LadderGenerator ladderGenerator = new RandomLadderGenerator(new RandomLineGenerator(new RandomValueGenerator()));
         // when
         Ladder ladder = ladderGenerator.generate(5, 5);
         // then
@@ -53,3 +55,4 @@ public class LadderTest {
         assertThat(ladder.descend(1)).isEqualTo(1);
     }
 }
+

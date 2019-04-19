@@ -13,12 +13,12 @@ public class Point {
         this.linkedType = linkedType;
     }
 
-    public static Point getFirst() {
-        return new Point(0, LinkedType.first());
+    public static Point getFirst(Boolean value) {
+        return new Point(0, LinkedType.first(value));
     }
 
-    public static Point valueOf(Point previous) {
-        return new Point(previous.index + 1, previous.linkedType.next());
+    public static Point valueOf(Point previous, Boolean value) {
+        return new Point(previous.index + 1, previous.linkedType.next(value));
     }
 
     public static Point getLast(Point previous) {

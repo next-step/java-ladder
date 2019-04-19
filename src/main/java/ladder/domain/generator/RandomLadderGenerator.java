@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLadderGenerator implements LadderGenerator {
-    private LineGenerator lineGenerator = new RandomLineGenerator();
+    private LineGenerator lineGenerator;
+
+    public RandomLadderGenerator(LineGenerator lineGenerator) {
+        this.lineGenerator = lineGenerator;
+    }
 
     @Override
     public Ladder generate(int countOfPerson, int height) {
