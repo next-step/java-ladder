@@ -3,7 +3,7 @@ package domain;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LineTest {
+public class LadderLineTest {
     LadderLine ladderLine;
 
     @Before
