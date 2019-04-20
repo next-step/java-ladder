@@ -10,32 +10,32 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine init(int countOfPerson) {
+    public static LadderLine init(int countOfPerson, Level level) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirstPoint(points);
-        point = initNextPoint(points, countOfPerson, point);
-        initLastPoint(points, point.isRightMovable());
+        Point point = initFirstPoint(points, level);
+        point = initNextPoint(points, countOfPerson, point, level);
+        initLastPoint(points, point);
 
         return new LadderLine(points);
     }
 
-    private static Point initFirstPoint(List<Point> points) {
-        Point point = Point.createPoint(false, Point.isNextPoint(false));
+    private static Point initFirstPoint(List<Point> points, Level level) {
+        Point point = Point.first(level);
         points.add(point);
         return point;
     }
 
-    private static Point initNextPoint(List<Point> points, int countOfPerson, Point point) {
+    private static Point initNextPoint(List<Point> points, int countOfPerson, Point point, Level level) {
         for (int i = 1; i < countOfPerson - 1; i++) {
-            point = Point.createPoint(point.isRightMovable(), Point.isNextPoint(point.isRightMovable()));
+            point = point.next(level);
             points.add(point);
         }
 
         return point;
     }
 
-    private static void initLastPoint(List<Point> points, boolean isRightMovable) {
-        points.add(Point.createPoint(isRightMovable, false));
+    private static void initLastPoint(List<Point> points, Point point) {
+        points.add(point.last());
     }
 
     public int movePoint(int startPoint) {
@@ -45,7 +45,7 @@ public class LadderLine {
     public String printLine() {
         String result = "";
         for (Point point : this.points) {
-            result += point.lineType(point);
+            result += point.lineType();
         }
 
         return result;

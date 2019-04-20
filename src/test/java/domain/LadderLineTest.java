@@ -9,7 +9,7 @@ public class LadderLineTest {
     @Before
     public void init() {
         int countOfPerson = 5;
-        ladderLine = LadderLine.init(countOfPerson);
+        ladderLine = LadderLine.init(countOfPerson, Level.INTERMEDIATE);
     }
 
     @Test

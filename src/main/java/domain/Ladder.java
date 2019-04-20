@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 public class Ladder {
     private List<LadderLine> lines = new ArrayList<>();
 
-    public Ladder(int countOfPerson, int ladderHeight) {
-        IntStream.range(0, ladderHeight)
-                .forEach(i -> this.lines.add(LadderLine.init(countOfPerson)));
+    public Ladder(int countOfPerson, Level level) {
+        IntStream.range(0, level.getHeight())
+                 .forEach(i -> this.lines.add(LadderLine.init(countOfPerson, level)));
     }
 
     public int calcStartIndex(int playerPoint) {

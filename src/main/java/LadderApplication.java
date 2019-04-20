@@ -1,7 +1,4 @@
-import domain.Ladder;
-import domain.Match;
-import domain.Players;
-import domain.Result;
+import domain.*;
 import util.Console;
 import view.InputView;
 import view.ResultView;
@@ -18,12 +15,11 @@ public class LadderApplication {
             Players players = new Players(inputPlayer);
             int countOfPerson = players.countOfPerson();
             Result result = new Result(InputView.inputResult(), countOfPerson);
-            int ladderHeight = InputView.inputLadderHeight();
-            Ladder ladder = new Ladder(countOfPerson, ladderHeight);
+            Level level = Level.fineLevel(InputView.inputLever());
 
-            Console.print(players.toString());
-            ResultView.printLine(ladder);
-            Console.print(result.toString());
+            Ladder ladder = new Ladder(countOfPerson, level);
+
+            ResultView.printLadderBoard(players, ladder, result);
             String player = InputView.inputWho();
 
             Map<String, String> map = new HashMap<>();

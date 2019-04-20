@@ -9,7 +9,7 @@ public class LadderTest {
 
     @Before
     public void Ladder_생성() {
-        this.ladder = new Ladder(4,3);
+        this.ladder = new Ladder(4,Level.INTERMEDIATE);
         Console.print(this.ladder.toString());
     }
 
