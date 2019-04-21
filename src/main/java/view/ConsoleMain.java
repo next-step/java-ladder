@@ -8,6 +8,9 @@ import domain.result.Results;
 import domain.user.Users;
 
 public class ConsoleMain {
+
+    private static final String RESULT_ALL = "all";
+
     public static void main(String[] args) {
         String names = InputView.inputUsers();
         String result = InputView.inputGoals();
@@ -18,9 +21,16 @@ public class ConsoleMain {
         Goals goals = new Goals(result);
         ResultView.ladder(users, ladder, goals);
 
-        String resultUser = InputView.inputResultUser();
         LadderGame ladderGame = new LadderGame(ladder, users);
-        Results results = ladderGame.result(resultUser, goals);
-        ResultView.result(resultUser, users, results);
+        checkResult(users, goals, ladderGame);
+    }
+
+    private static void checkResult(Users users, Goals goals, LadderGame ladderGame) {
+        String resultUser = "";
+        do {
+            resultUser = InputView.inputResultUser();
+            Results results = ladderGame.result(resultUser, goals);
+            ResultView.result(resultUser, users, results);
+        } while(!RESULT_ALL.equals(resultUser));
     }
 }
