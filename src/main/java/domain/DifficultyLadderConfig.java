@@ -40,6 +40,7 @@ public class DifficultyLadderConfig implements LadderConfig{
 
     public enum Difficulty {
         GOOD(1, 4), FAIR(0.5, 2), POOR(0.2, 1);
+        GOOD("상", 0.9, 4), FAIR("중", 0.5, 2), POOR("하", 0.2, 1);
 
         private double probability;
         private int multiple;

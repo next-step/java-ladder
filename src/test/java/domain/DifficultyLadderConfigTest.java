@@ -50,6 +50,6 @@ public class DifficultyLadderConfigTest {
 
         difficultyLadderConfig = new DifficultyLadderConfig(5, DifficultyLadderConfig.Difficulty.GOOD);
         assertThat(difficultyLadderConfig.booleans().stream()
-            .filter(b -> b.equals(Boolean.TRUE)).count()).isEqualTo(5);
+            .filter(b -> b.equals(Boolean.TRUE)).count()).isEqualTo(4);
     }
 }
