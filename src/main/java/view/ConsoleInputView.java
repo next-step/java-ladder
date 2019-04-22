@@ -29,6 +29,12 @@ public class ConsoleInputView {
         return height;
     }
 
+    public static String inputLadderDifficulty() {
+        System.out.println("실행할 사다리 난이도는?");
+
+        return scanner.nextLine();
+    }
+
     public static String inputNameForResult() {
         System.out.println("결과를 보고 싶은 사람은?");
 

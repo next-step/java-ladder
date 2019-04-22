@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -39,15 +40,23 @@ public class DifficultyLadderConfig implements LadderConfig{
     }
 
     public enum Difficulty {
-        GOOD(1, 4), FAIR(0.5, 2), POOR(0.2, 1);
         GOOD("상", 0.9, 4), FAIR("중", 0.5, 2), POOR("하", 0.2, 1);
 
+        private String name;
         private double probability;
         private int multiple;
 
-        Difficulty(double probability, int multiple) {
+        Difficulty(String name, double probability, int multiple) {
+            this.name = name;
             this.probability = probability;
             this.multiple = multiple;
+        }
+
+        public static Difficulty findByName(String name) {
+            return Arrays.stream(values())
+                .filter(d -> d.name.equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
         }
     }
 }

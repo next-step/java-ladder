@@ -7,7 +7,7 @@ public class ConsoleMain {
         LadderGame ladderGame = new LadderGame(
             ConsoleInputView.inputUserNames(),
             ConsoleInputView.inputResults(),
-            ConsoleInputView.inputLadderHeight());
+            ConsoleInputView.inputLadderDifficulty());
 
         ConsoleOutputView.printPositions(ladderGame.getUsers());
         ConsoleOutputView.printLadder(ladderGame.getLadder());
