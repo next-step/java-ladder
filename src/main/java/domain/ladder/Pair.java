@@ -2,8 +2,6 @@ package domain.ladder;
 
 public class Pair {
 
-    private static final int NEXT = 1;
-
     private boolean left;
     private boolean right;
 
@@ -40,21 +38,6 @@ public class Pair {
     }
 
     public int next(int current) {
-        if (isLeft()) {
-            return toLeft(current);
-        }
-        if (isRight()) {
-            return toRight(current);
-        }
-
-        return current;
-    }
-
-    private int toLeft(int current) {
-        return current - NEXT;
-    }
-
-    private int toRight(int current) {
-        return current + NEXT;
+        return Direction.move(this, current);
     }
 }
