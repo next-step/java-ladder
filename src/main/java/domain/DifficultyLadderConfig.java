@@ -12,7 +12,7 @@ public class DifficultyLadderConfig implements LadderConfig{
     private int trueCount;
 
     public DifficultyLadderConfig(int length, Difficulty difficulty) {
-        this.length = length;
+        this.length = length - 1;
         this.height = length * difficulty.multiple;
         this.trueCount = (int)(length * difficulty.probability);
     }

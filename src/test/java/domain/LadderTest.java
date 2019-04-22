@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     @Test
-    public void LadderConfig에_맞춰_사다리를_생성한다() {
+    public void 난이도에_따라_높이가_다르다() {
         Ladder ladder = new Ladder(new DifficultyLadderConfig(5, DifficultyLadderConfig.Difficulty.POOR));
         assertThat(ladder.getLines()).hasSize(5);
 

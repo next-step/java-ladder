@@ -6,11 +6,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DifficultyLadderConfigTest {
     @Test
-    public void 전달한_길이만큼_boolean_list를_반환한다() {
+    public void booleans는_전달한_길이보다_하나_작아야한다() {
         DifficultyLadderConfig difficultyLadderConfig =
             new DifficultyLadderConfig(5, DifficultyLadderConfig.Difficulty.POOR);
 
-        assertThat(difficultyLadderConfig.booleans()).hasSize(5);
+        assertThat(difficultyLadderConfig.booleans()).hasSize(4);
     }
 
     @Test

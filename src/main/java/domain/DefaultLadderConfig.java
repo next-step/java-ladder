@@ -10,7 +10,7 @@ public class DefaultLadderConfig implements LadderConfig {
     private int height;
 
     public DefaultLadderConfig(int length, int height) {
-        this.length = length;
+        this.length = length - 1;
         this.height = height;
     }
 
