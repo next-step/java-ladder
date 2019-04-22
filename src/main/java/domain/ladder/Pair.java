@@ -9,6 +9,10 @@ public class Pair {
     }
 
     public Pair(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
+        }
+
         this.left = left;
         this.right = right;
     }

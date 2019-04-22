@@ -6,6 +6,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PairTest {
 
+    @Test(expected = IllegalStateException.class)
+    public void 양쪽사다리_생성_오류() {
+        Pair pair = new Pair(Boolean.TRUE, Boolean.TRUE);
+    }
+
     @Test
     public void check_true_false() {
         Pair pair = new Pair(Boolean.FALSE, Boolean.TRUE);
