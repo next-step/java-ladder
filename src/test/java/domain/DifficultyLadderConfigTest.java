@@ -10,7 +10,7 @@ public class DifficultyLadderConfigTest {
         DifficultyLadderConfig difficultyLadderConfig =
             new DifficultyLadderConfig(5, DifficultyLadderConfig.Difficulty.POOR);
 
-        assertThat(difficultyLadderConfig.booleanList()).hasSize(5);
+        assertThat(difficultyLadderConfig.booleans()).hasSize(5);
     }
 
     @Test
@@ -41,15 +41,15 @@ public class DifficultyLadderConfigTest {
     public void 난이도가_높아질수록_TRUE가_더많이_나온다() {
         DifficultyLadderConfig difficultyLadderConfig
             = new DifficultyLadderConfig(5, DifficultyLadderConfig.Difficulty.POOR);
-        assertThat(difficultyLadderConfig.booleanList().stream()
+        assertThat(difficultyLadderConfig.booleans().stream()
             .filter(b -> b.equals(Boolean.TRUE)).count()).isEqualTo(1);
 
         difficultyLadderConfig = new DifficultyLadderConfig(5, DifficultyLadderConfig.Difficulty.FAIR);
-        assertThat(difficultyLadderConfig.booleanList().stream()
+        assertThat(difficultyLadderConfig.booleans().stream()
             .filter(b -> b.equals(Boolean.TRUE)).count()).isEqualTo(2);
 
         difficultyLadderConfig = new DifficultyLadderConfig(5, DifficultyLadderConfig.Difficulty.GOOD);
-        assertThat(difficultyLadderConfig.booleanList().stream()
+        assertThat(difficultyLadderConfig.booleans().stream()
             .filter(b -> b.equals(Boolean.TRUE)).count()).isEqualTo(5);
     }
 }

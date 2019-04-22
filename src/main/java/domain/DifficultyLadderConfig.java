@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class DifficultyLadderConfig {
+public class DifficultyLadderConfig implements LadderConfig{
     private int length;
     private int height;
     private int trueCount;
@@ -16,7 +16,8 @@ public class DifficultyLadderConfig {
         this.trueCount = (int)(length * difficulty.probability);
     }
 
-    public List<Boolean> booleanList() {
+    @Override
+    public List<Boolean> booleans() {
         List<Boolean> booleans = new ArrayList<>();
 
         Stream.generate(() -> Boolean.TRUE)
@@ -32,6 +33,7 @@ public class DifficultyLadderConfig {
         return booleans;
     }
 
+    @Override
     public int height() {
         return height;
     }
