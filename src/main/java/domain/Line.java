@@ -23,16 +23,13 @@ public class Line {
         points.add(point.last());
     }
 
-    public static Line newLine(int length, Supplier<Boolean> booleanGenerator) {
-        if(length < MIN_CREATABLE_LINE_LENGTH) {
+    public static Line newLine(List<Boolean> booleans) {
+        if(booleans.size() < MIN_CREATABLE_LINE_LENGTH) {
             throw new IllegalArgumentException();
         }
 
-        return new Line(IntStream.range(0, length - 1)
-            .mapToObj(i -> booleanGenerator.get())
-            .collect(Collectors.toList()));
+        return new Line(booleans);
     }
-
 
     public Integer move(Integer location) {
         Point current = points.get(location - 1);

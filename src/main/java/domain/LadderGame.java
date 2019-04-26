@@ -8,11 +8,12 @@ public class LadderGame {
     private Positions results;
     private Ladder ladder;
 
-    public LadderGame(List<String> userNames, List<String> resultNames, Integer height) {
+    public LadderGame(List<String> userNames, List<String> resultNames, String difficulty) {
         users = new Positions(userNames);
         results = new Positions(resultNames);
 
-        ladder = new Ladder(userNames.size(), height);
+        ladder = new Ladder(new DifficultyLadderConfig(userNames.size(),
+            DifficultyLadderConfig.Difficulty.findByName(difficulty)));
     }
 
     public String search(String name) {
