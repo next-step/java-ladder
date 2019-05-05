@@ -19,4 +19,8 @@ public class ResultView {
         ladderGameResult.printAll();
     }
 
+    public static void showSinglePlayerResult(Player player, LadderGameResult ladderGameResult) {
+        System.out.println("실행 결과\n" + ladderGameResult.getResultOf(player));
+    }
+
 }
