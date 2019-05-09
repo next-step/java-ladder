@@ -14,13 +14,17 @@ public class LadderMain {
         LadderGame ladderGame = new LadderGame(ladder);
         LadderGameResult ladderGameResult = ladderGame.playGame(players, results);
 
-        Player player = InputView.getPlayerToShowResult(players);
-        if (player.equals(Player.ALL)) {
-            ResultView.showAllResults(ladderGameResult);
-        } else {
-            Result resultOfPlayer = ResultView.getResultOfPlayer(player, ladderGameResult);
-            System.out.println("실행 결과\n" + resultOfPlayer.toString());
+        Player player = null;
 
-        }
+        do {
+            player = InputView.getPlayerToShowResult(players);
+
+            if (player.equals(Player.ALL)) {
+                ResultView.showAllResults(ladderGameResult);
+            } else {
+                ResultView.showSinglePlayerResult(player, ladderGameResult);
+            }
+        } while (!player.equals(Player.ALL));
+
     }
 }
