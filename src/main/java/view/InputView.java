@@ -1,9 +1,6 @@
 package view;
 
-import domain.Player;
-import domain.Players;
-import domain.Result;
-import domain.Results;
+import domain.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +30,12 @@ public class InputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         scanner = new Scanner(System.in);
         return scanner.nextInt();
+    }
+
+    public static Level getLevelOfLadderGame() {
+        System.out.println("실행할 사다리의 난이도는? (상, 중, 하 중 선택)");
+        scanner = new Scanner(System.in);
+        return Level.valueOf(scanner.nextLine());
     }
 
     public static Results getResultOfGame() {
