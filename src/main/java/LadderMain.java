@@ -5,9 +5,12 @@ import view.ResultView;
 public class LadderMain {
     public static void main (String[] args) {
         Players players = InputView.getNameOfParticipants();
-        int depthOfLadders = InputView.getDepthOfLadders();
-        Ladder ladder = new Ladder(depthOfLadders, players.getNumber());
         Results results = InputView.getResultOfGame();
+
+        Level level = InputView.getLevelOfLadderGame();
+
+        int depthOfLadders = level.getDepthOfLadders();
+        Ladder ladder = new Ladder(depthOfLadders, players.getNumber());
 
         ResultView.printLadders(players, ladder, results);
 
