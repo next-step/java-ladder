@@ -20,6 +20,7 @@ public class StreamStudyTest {
 	public void countWords() throws Exception {
 		long result = StreamStudy.countWords();
 		System.out.println("result : " + result);
+		assertThat(result).isEqualTo(1946);
 	}
 	
 	@Test
@@ -38,7 +39,7 @@ public class StreamStudyTest {
 		long sum = StreamStudy.sumAll(numbers);
 		assertThat(sum).isEqualTo(21);
 	}
-	
+
 	@Test
 	public void sumOverThreeAndDouble() throws Exception {
 		numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
