@@ -32,13 +32,9 @@ public class Lambda {
 	}
 	
 	public static int sumAllEven(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        if (number % 2 == 0) {
-	            total += number;
-	        }
-	    }
-	    return total;
+		return numbers.stream()
+				.filter(number -> number % 2 == 0)
+				.reduce(0, Integer::sum);
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
