@@ -21,24 +21,27 @@ public class Lambda {
 		new Thread(() -> System.out.println("Hello from thread")).start();
 	}
 
-	public static int sumAll(List<Integer> numbers) {
+	public static int sumAll(List<Integer> numbers, Conditional conditional) {
 		return numbers.stream()
-				.mapToInt(Integer::intValue)
-				.sum();
-	}
-	
-	public static int sumAllEven(List<Integer> numbers) {
-		return numbers.stream()
-				.filter(Lambda::isEven)
+				.filter(conditional::test)
 				.mapToInt(Integer::intValue)
 				.sum();
 	}
 
+	public static int sumAll(List<Integer> numbers) {
+		return sumAll(numbers, Lambda::always);
+	}
+	
+	public static int sumAllEven(List<Integer> numbers) {
+		return sumAll(numbers, Lambda::isEven);
+	}
+
 	public static int sumAllOverThree(List<Integer> numbers) {
-		return numbers.stream()
-				.filter(Lambda::isOverThree)
-				.mapToInt(Integer::intValue)
-				.sum();
+		return sumAll(numbers, Lambda::isOverThree);
+	}
+
+	private static boolean always(final Integer ignore) {
+		return true;
 	}
 
 	private static boolean isEven(final Integer number) {
