@@ -27,30 +27,47 @@ public class Lambda {
 	}
 
 	public static int sumAll(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        total += number;
-	    }
-	    return total;
+	    return sumAll(numbers, number -> true);
 	}
 	
 	public static int sumAllEven(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        if (number % 2 == 0) {
-	            total += number;
-	        }
-	    }
-	    return total;
+	    return sumAll(numbers, number -> number % 2 == 0);
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	    	if (number > 3) {
-	    		total += number;
-	    	}
-	    }
-	    return total;
+	    return sumAll(numbers, number -> number > 3);
+	}
+
+	public static int sumAll(List<Integer> numbers, Condition c) {
+		Number total = new Number(0);
+		numbers.forEach(number -> {
+			if (c.test(number)) {
+				total.plus(number);
+			}
+		});
+
+		return total.value();
+	}
+
+	static class Number {
+		private int number;
+
+		public Number(int number) {
+			this.number = number;
+		}
+
+		public int plus(int operand) {
+			number += operand;
+
+			return number;
+		}
+
+		public int value() {
+			return number;
+		}
+	}
+
+	public interface Condition {
+		boolean test(Integer number);
 	}
 }
