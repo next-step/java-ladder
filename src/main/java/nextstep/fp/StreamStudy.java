@@ -21,10 +21,6 @@ public class StreamStudy {
 				.count();
 	}
 
-	private static Stream<String> split(final String words) {
-		return Arrays.stream(words.split("[\\P{L}]+"));
-	}
-
 	public static void printLongestWordTop100() throws IOException {
 		String contents = new String(Files.readAllBytes(Paths
 				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
@@ -38,14 +34,18 @@ public class StreamStudy {
 				.forEach(System.out::println);
 	}
 
-	private static Predicate<String> isOverLength(final int length) {
-		return word -> word.length() > length;
-	}
-
 	public static List<Integer> doubleNumbers(List<Integer> numbers) {
 		return numbers.stream()
 				.map(StreamStudy::doubleNumber)
 				.collect(Collectors.toList());
+	}
+
+	private static Stream<String> split(final String words) {
+		return Arrays.stream(words.split("[\\P{L}]+"));
+	}
+
+	private static Predicate<String> isOverLength(final int length) {
+		return word -> word.length() > length;
 	}
 
 	private static boolean isOverThree(final int number) {
