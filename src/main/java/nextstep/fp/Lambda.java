@@ -18,39 +18,34 @@ public class Lambda {
 	}
 	
 	public static void runThread() {
-		new Thread(new Runnable() {
-		    @Override
-		    public void run() {
-		        System.out.println("Hello from thread");
-		    }
-		}).start();
+		new Thread(() -> System.out.println("Hello from thread")).start();
 	}
 
 	public static int sumAll(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        total += number;
-	    }
-	    return total;
+		return numbers.stream()
+				.mapToInt(Integer::intValue)
+				.sum();
 	}
 	
 	public static int sumAllEven(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        if (number % 2 == 0) {
-	            total += number;
-	        }
-	    }
-	    return total;
+		return numbers.stream()
+				.filter(Lambda::isEven)
+				.mapToInt(Integer::intValue)
+				.sum();
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	    	if (number > 3) {
-	    		total += number;
-	    	}
-	    }
-	    return total;
+		return numbers.stream()
+				.filter(Lambda::isOverThree)
+				.mapToInt(Integer::intValue)
+				.sum();
+	}
+
+	private static boolean isEven(final Integer number) {
+		return number % 2 == 0;
+	}
+
+	private static boolean isOverThree(final Integer number) {
+		return number > 3;
 	}
 }
