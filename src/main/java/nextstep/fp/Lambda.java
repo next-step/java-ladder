@@ -39,34 +39,17 @@ public class Lambda {
 	}
 
 	public static int sumAll(List<Integer> numbers, Condition c) {
-		Number total = new Number(0);
-		numbers.forEach(number -> {
+		int result = 0;
+		for (Integer number : numbers) {
 			if (c.test(number)) {
-				total.plus(number);
+				result += number;
 			}
-		});
+		}
 
-		return total.value();
+		return result;
 	}
 
-	static class Number {
-		private int number;
-
-		public Number(int number) {
-			this.number = number;
-		}
-
-		public int plus(int operand) {
-			number += operand;
-
-			return number;
-		}
-
-		public int value() {
-			return number;
-		}
-	}
-
+	@FunctionalInterface
 	public interface Condition {
 		boolean test(Integer number);
 	}
