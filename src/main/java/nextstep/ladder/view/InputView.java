@@ -11,4 +11,5 @@ package nextstep.ladder.view;
  * create date  : 2019-06-29 01:58
  */
 public interface InputView {
+    String inputCustomNames();
 }
