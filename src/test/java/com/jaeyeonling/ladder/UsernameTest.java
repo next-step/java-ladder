@@ -1,7 +1,9 @@
 package com.jaeyeonling.ladder;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class UsernameTest {
@@ -16,5 +18,15 @@ class UsernameTest {
     })
     void Create(final String rawUsername) {
         final Username username = Username.of(rawUsername);
+    }
+
+    @DisplayName("유저 이름에 빈 값이나 null 값이 들어가면 실패한다.")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void Create_UsernameEmptyOrNull_ThrowException(final String rawUsername) {
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Username.of(rawUsername);
+                });
     }
 }
