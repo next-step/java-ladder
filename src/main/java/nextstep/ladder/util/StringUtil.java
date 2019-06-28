@@ -15,9 +15,13 @@ import java.util.List;
  */
 public class StringUtil {
 
-    private static final String SPLIT_FORMAT_COMMA = ",";
+    private static final String FORMAT_SPLIT_COMMA = ",";
+    private static final String FORMAT_REPLACE_SPACE_SOURCE = " ";
+    private static final String FORMAT_REPLACE_SPACE_TARGET = "";
 
     public static List<String> split(String split) {
-        return Arrays.asList(split.split(SPLIT_FORMAT_COMMA));
+        return Arrays.asList(
+                split.replaceAll(FORMAT_REPLACE_SPACE_SOURCE, FORMAT_REPLACE_SPACE_TARGET)
+                        .split(FORMAT_SPLIT_COMMA));
     }
 }
