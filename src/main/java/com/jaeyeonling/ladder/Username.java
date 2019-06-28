@@ -1,11 +1,18 @@
 package com.jaeyeonling.ladder;
 
 import com.jaeyeonling.ladder.exception.EmptyUsernameException;
+import com.jaeyeonling.ladder.exception.LongerThanMaxLengthUsernameException;
 import com.jaeyeonling.ladder.utils.StringUtils;
 
-class Username {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
-    static final int MAX_LENGTH = 5;
+public class Username {
+
+    private static final Map<String, Username> CACHE = new HashMap<>();
+
+    public static final int MAX_LENGTH = 5;
 
     private final String username;
 
@@ -17,7 +24,28 @@ class Username {
         if (StringUtils.isNullOrEmpty(username)) {
             throw new EmptyUsernameException();
         }
+        if (username.length() > MAX_LENGTH) {
+            throw new LongerThanMaxLengthUsernameException(username);
+        }
 
-        return new Username(username);
+        return CACHE.computeIfAbsent(username, Username::new);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Username)) {
+            return false;
+        }
+
+        final Username that = (Username) o;
+        return Objects.equals(this.username, that.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.username);
     }
 }
