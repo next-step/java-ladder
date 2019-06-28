@@ -21,7 +21,11 @@ class UsernameTest {
             "ggg"
     })
     void Create(final String rawUsername) {
+        // when
         final Username username = Username.of(rawUsername);
+
+        // then
+        assertThat(username).isNotNull();
     }
 
     @DisplayName("유저 이름에 빈 값이나 null 값이 들어가면 실패한다.")
