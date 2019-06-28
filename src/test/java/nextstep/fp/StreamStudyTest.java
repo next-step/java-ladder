@@ -38,7 +38,7 @@ public class StreamStudyTest {
 		long sum = StreamStudy.sumAll(numbers);
 		assertThat(sum).isEqualTo(21);
 	}
-	
+
 	@Test
 	public void sumOverThreeAndDouble() throws Exception {
 		numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
