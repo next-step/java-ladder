@@ -33,5 +33,4 @@ class StringUtilsTest {
         // then
         assertThat(isNullOrEmpty).isFalse();
     }
-
 }

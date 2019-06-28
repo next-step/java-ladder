@@ -1,5 +1,7 @@
 package com.jaeyeonling.ladder;
 
+import com.jaeyeonling.ladder.utils.StringUtils;
+
 class Username {
 
     private final String username;
@@ -9,7 +11,7 @@ class Username {
     }
 
     public static Username of(final String username) {
-        if (username == null || username.isEmpty()) {
+        if (StringUtils.isNullOrEmpty(username)) {
             throw new IllegalArgumentException();
         }
 
