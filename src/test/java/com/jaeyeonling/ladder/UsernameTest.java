@@ -1,6 +1,7 @@
 package com.jaeyeonling.ladder;
 
 import com.jaeyeonling.ladder.exception.EmptyUsernameException;
+import com.jaeyeonling.ladder.exception.LongerThanMaxLengthUsernameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,7 +41,7 @@ class UsernameTest {
             "gggdsa 아ㅏㅏㅏㅏㅏ sadsas "
     })
     void Create_LongerThanMaxLengthUsername_ThrowException(final String longerThanMaxLengthUsername) {
-        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+        Assertions.assertThatExceptionOfType(LongerThanMaxLengthUsernameException.class)
                 .isThrownBy(() -> {
                     Username.of(longerThanMaxLengthUsername);
                 });
