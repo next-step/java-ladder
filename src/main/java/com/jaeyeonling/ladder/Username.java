@@ -9,6 +9,10 @@ class Username {
     }
 
     public static Username of(final String username) {
+        if (username == null || username.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
         return new Username(username);
     }
 }
