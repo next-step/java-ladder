@@ -32,6 +32,5 @@ public class PlayersTest {
       Players players = new Players("jun");
     }).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("player 는 최소 2명입니다.");
-
   }
 }

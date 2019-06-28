@@ -40,4 +40,7 @@ public class Players {
     }
   }
 
+  public int count() {
+    return players.size();
+  }
 }

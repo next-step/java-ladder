@@ -1,10 +1,11 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
-  List<Boolean> positions;
+  List<Boolean> positions = new ArrayList<>();
 
   public Line(int playersCount) {
     makeLine(playersCount);
