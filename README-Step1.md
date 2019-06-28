@@ -15,7 +15,7 @@
 -------
 
 # 다양한 stream method(map, filter, reduce) 실습
-1. src/main/resources/fp 디렉토리 아래에 있는 war-and-peace.txt 파일을 읽어 다음 요구사항을 만족하세요.
+- src/main/resources/fp 디렉토리 아래에 있는 war-and-peace.txt 파일을 읽어 다음 요구사항을 만족하세요.
 
 ## map, reduce, filter 실습 1
 - nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass해야 한다.
