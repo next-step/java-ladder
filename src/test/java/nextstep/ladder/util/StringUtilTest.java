@@ -29,4 +29,13 @@ class StringUtilTest {
         assertThat(StringUtil.split(split).contains(names)).isTrue();
     }
 
+    @DisplayName("문자열을 공백' '  제거하고 자르기")
+    @ParameterizedTest
+    @ValueSource(strings = {"kwon", "byeon", "yun"})
+    void splitCommaHasSpace(String names) {
+        String split = "kwon ,b ye on, y un";
+
+        assertThat(StringUtil.split(split).contains(names)).isTrue();
+    }
+
 }
