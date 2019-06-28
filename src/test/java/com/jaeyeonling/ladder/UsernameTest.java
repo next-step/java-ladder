@@ -14,7 +14,7 @@ class UsernameTest {
             "kjy",
             "ggg"
     })
-    void create(final String rawUsername) {
+    void Create(final String rawUsername) {
         final Username username = Username.of(rawUsername);
     }
 }
