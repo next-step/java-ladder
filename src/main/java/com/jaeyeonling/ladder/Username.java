@@ -1,8 +1,11 @@
 package com.jaeyeonling.ladder;
 
+import com.jaeyeonling.ladder.exception.EmptyUsernameException;
 import com.jaeyeonling.ladder.utils.StringUtils;
 
 class Username {
+
+    static final int MAX_LENGTH = 5;
 
     private final String username;
 
@@ -12,7 +15,7 @@ class Username {
 
     public static Username of(final String username) {
         if (StringUtils.isNullOrEmpty(username)) {
-            throw new IllegalArgumentException();
+            throw new EmptyUsernameException();
         }
 
         return new Username(username);
