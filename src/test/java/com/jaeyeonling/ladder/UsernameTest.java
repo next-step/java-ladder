@@ -1,5 +1,6 @@
 package com.jaeyeonling.ladder;
 
+import com.jaeyeonling.ladder.exception.EmptyUsernameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +25,7 @@ class UsernameTest {
     @ParameterizedTest
     @NullAndEmptySource
     void Create_UsernameEmptyOrNull_ThrowException(final String rawUsername) {
-        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+        Assertions.assertThatExceptionOfType(EmptyUsernameException.class)
                 .isThrownBy(() -> {
                     Username.of(rawUsername);
                 });
