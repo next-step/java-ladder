@@ -12,3 +12,5 @@
 * 다음 테스트 코드에서 MoveStrategy에 대한 익명 클래스로 구현하고 있는데 람다를 적용해 구현한다.
 (nextstep.fp.CarTest의 이동, 정지 method)
 * 람다를 활용해 중복 제거
+* map, reduce, filter 실습 1 
+  * List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다. 지금까지 학습한 map, reduce, filter를 활용해 구현해야 한다.
