@@ -30,4 +30,19 @@ class UsernameTest {
                     Username.of(rawUsername);
                 });
     }
+
+    @DisplayName("유저 이름에 길이가 " + Username.MAX_LENGTH + " 를 넘는 값이 들어가면 실패한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "김재연123",
+            "mattsdasda",
+            "kjysgadasadgads",
+            "gggdsa 아ㅏㅏㅏㅏㅏ sadsas "
+    })
+    void Create_LongerThanMaxLengthUsername_ThrowException(final String longerThanMaxLengthUsername) {
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Username.of(longerThanMaxLengthUsername);
+                });
+    }
 }
