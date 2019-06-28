@@ -9,6 +9,6 @@ class Username {
     }
 
     public static Username of(final String username) {
-        return null;
+        return new Username(username);
     }
 }
