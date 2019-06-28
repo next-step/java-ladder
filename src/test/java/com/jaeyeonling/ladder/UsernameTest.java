@@ -67,5 +67,6 @@ class UsernameTest {
 
         // then
         assertThat(equals).isTrue();
+        assertThat(username == expect).isTrue();
     }
 }
