@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class StringUtilsTest {
 
-    @DisplayName("isNullOrEmpty에 null 이나 빈 값을 입력 시 성공한다.")
+    @DisplayName("isNullOrEmpty에 null 이나 빈 값을 입력 시 true를 리턴한다.")
     @ParameterizedTest
     @NullAndEmptySource
     void isNullOrEmpty_nullOrEmptyValue_returnTrue(final String nullOrEmptyValue) {
@@ -18,6 +18,5 @@ class StringUtilsTest {
         // then
         assertThat(isNullOrEmpty).isTrue();
     }
-
 
 }
