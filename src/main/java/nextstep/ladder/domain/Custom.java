@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
+
 /**
  * author       : gwonbyeong-yun <sksggg123>
  * ------------------------------------------
@@ -11,4 +13,16 @@ package nextstep.ladder.domain;
  * create date  : 2019-06-29 02:15
  */
 public class Custom {
+    private List<String> names;
+
+    public Custom(List<String> names) {
+        this.names = names;
+    }
+
+    public boolean hasCustom(String name) {
+        return names.stream()
+                .filter(sourceName -> name.equals(sourceName))
+                .findFirst()
+                .isPresent();
+    }
 }
