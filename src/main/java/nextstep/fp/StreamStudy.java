@@ -5,7 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,12 +33,13 @@ public class StreamStudy {
 		//추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
 		
 		// TODO 이 부분에 구현한다.
-		words.stream()
+        System.out.println(words.stream()
 			.filter(word -> word.length() > 12)
-			.sorted(Comparator.comparing(String::length))
+			.sorted((str1, str2) -> str2.length() - str1.length())
 			.map(String::toLowerCase)
 			.distinct()
-			.limit(100);
+			.limit(100)
+            .collect(Collectors.toList()));
 	}
 
 	public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -56,4 +56,8 @@ public class StreamStudy {
 			.mapToInt(number -> number * 2)
 			.sum();
 	}
+    
+    public static void main(String[] args) throws IOException {
+        StreamStudy.printLongestWordTop100();
+    }
 }
