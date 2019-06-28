@@ -31,6 +31,16 @@ public class Lambda {
 		return total;
 	}
 
+	public static int sum(List<Integer> numbers, Conditional conditional) {
+		int total = 0;
+		for (int number : numbers) {
+			if(conditional.cal(number)) {
+				total += number;
+			}
+		}
+		return total;
+	}
+
 	public static int sumAll(List<Integer> numbers) {
 	    return sum(numbers, number -> true);
 	}
