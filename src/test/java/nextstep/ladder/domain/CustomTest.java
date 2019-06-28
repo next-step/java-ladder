@@ -1,8 +1,7 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,11 +21,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CustomTest {
 
     @DisplayName("사용자들 이름을 전달받아 Custom 객체 생성하여 이름 리스트 받아오기")
-    @ParameterizedTest
-    @ValueSource(strings = {"kwon","byeon", "yun"})
-    void createCustoms(String names) {
-        List<String> customName = Arrays.asList("kwon", "byeon", "yun");
+    @Test
+    void createCustoms() {
+        List<Name> customName = Arrays.asList(
+                Name.of("kwon"),
+                Name.of("byeon"),
+                Name.of("yun"));
+
         Custom custom = new Custom(customName);
-        assertThat(custom.hasCustom(names)).isTrue();
+        Name kwon = new Name("kwon");
+
+        assertThat(custom.hasCustom(kwon)).isTrue();
     }
 }

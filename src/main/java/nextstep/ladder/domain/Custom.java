@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -13,16 +14,45 @@ import java.util.List;
  * create date  : 2019-06-29 02:15
  */
 public class Custom {
-    private List<String> names;
 
-    public Custom(List<String> names) {
+    private List<Name> names;
+
+    /*
+     궁금증 1)
+
+     생성자 public으로 열어서 객체화 가능하게 하는것과
+     아래의 정적팩토리의 of메서드를 인자값 type만 다르게 하여 사용가능하게 2가지 생성방식을 사용하는것에데해 괜찮은 방법일까요?
+      */
+    public Custom(List<Name> names) {
         this.names = names;
     }
 
-    public boolean hasCustom(String name) {
+    public static Custom of(List<String> names) {
+        return new Custom(names.stream()
+                .distinct()
+                .map(name -> Name.of(name.trim()))
+                .collect(Collectors.toList()));
+    }
+
+    public boolean hasCustom(Name name) {
         return names.stream()
-                .filter(sourceName -> name.equals(sourceName))
+                .filter(sourceName -> sourceName.isName(name))
                 .findFirst()
                 .isPresent();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
