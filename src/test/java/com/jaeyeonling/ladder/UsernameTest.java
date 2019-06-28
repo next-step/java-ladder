@@ -8,6 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class UsernameTest {
 
     @DisplayName("유저 이름 생성에 성공한다.")
@@ -45,5 +47,25 @@ class UsernameTest {
                 .isThrownBy(() -> {
                     Username.of(longerThanMaxLengthUsername);
                 });
+    }
+
+    @DisplayName("유저 이름이 같다면 같은 객체여야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "김재연",
+            "matt",
+            "kjy",
+            "ggg"
+    })
+    void Equals_SameUsername_EqualsObject(final String rawUsername) {
+        // given
+        final Username username = Username.of(rawUsername);
+        final Username expect = Username.of(rawUsername);
+
+        // when
+        final boolean equals = username.equals(expect);
+
+        // then
+        assertThat(equals).isTrue();
     }
 }
