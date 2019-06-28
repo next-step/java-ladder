@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Custom;
+import nextstep.ladder.util.StringUtil;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.impl.InputViewImpl;
 
@@ -29,5 +31,7 @@ public class LadderApplication {
     public void run() {
         // 사용자 이름 입력
         String customNames = inputView.inputCustomNames();
+        // 사용자 생성
+        Custom custom = Custom.of(StringUtil.split(customNames));
     }
 }
