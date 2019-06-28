@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.concurrent.locks.Condition;
 
 public class Lambda {
 	public static void printAllOld(List<Integer> numbers) {
@@ -28,18 +27,30 @@ public class Lambda {
 	}
 
 	public static int sumAll(List<Integer> numbers) {
-	    return sumAll(numbers, number -> true);
+	    return sumAll(numbers, isAllTrue());
 	}
 	
 	public static int sumAllEven(List<Integer> numbers) {
-	    return sumAll(numbers, number -> number % 2 == 0);
+	    return sumAll(numbers, isAllEven());
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
-	    return sumAll(numbers, number -> number > 3);
+	    return sumAll(numbers, isAllOverThree());
 	}
 	
-	public static int sumAll(List<Integer> numbers, Conditional c) {
+	private static Conditional isAllTrue() {
+		return number -> true;
+	}
+	
+	private static Conditional isAllEven() {
+		return number -> number % 2 == 0;
+	}
+	
+	private static Conditional isAllOverThree() {
+		return number -> number > 3;
+	}
+	
+	private static int sumAll(List<Integer> numbers, Conditional c) {
 		return numbers.stream()
 			.filter(c::test)
 			.mapToInt(number -> number)
