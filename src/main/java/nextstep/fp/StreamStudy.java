@@ -1,7 +1,5 @@
 package nextstep.fp;
 
-import static java.util.Comparator.comparing;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -52,5 +50,13 @@ public class StreamStudy {
         .filter(number -> number > 3)
         .map(number -> number * 2)
         .reduce(0, (x, y) -> x + y);
+  }
+
+  public static long sumOverThreeAndDoubleMapToInt(List<Integer> numbers) {
+    return numbers.stream()
+        .filter(number -> number > 3)
+        .map(number -> number * 2)
+        .mapToInt(Integer::intValue)
+        .sum();
   }
 }
