@@ -26,8 +26,15 @@ public class StreamStudy {
 		String contents = new String(Files.readAllBytes(Paths
 				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
 		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-		
-		// TODO 이 부분에 구현한다.
+
+		List<String> top100Words = words.stream()
+				.filter(word -> word.length() > 12)
+				.sorted((a, b) -> b.length() - a.length())
+				.map(String::toLowerCase)
+				.distinct()
+				.limit(100)
+				.collect(Collectors.toList());
+		System.out.println(top100Words);
 	}
 
 	public static List<Integer> doubleNumbers(List<Integer> numbers) {
