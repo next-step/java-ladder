@@ -6,9 +6,9 @@ import java.util.stream.IntStream;
 
 public class ResultString {
 
-    public static final String SERO = "|";
-    private static final String EMPTY = " ";
+    public static final String STEP = "|";
     private static final String CONNECT = "-";
+    private static final String EMPTY = " ";
 
     public static String buildConnectString(int size) {
 

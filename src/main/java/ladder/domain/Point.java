@@ -25,7 +25,7 @@ public class Point {
         return Point.of(isOdd(step, lineNumber));
     }
 
-    public boolean isPoint() {
+    public boolean hasPoint() {
 
         return point;
     }

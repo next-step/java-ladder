@@ -55,20 +55,20 @@ public class ResultView {
     private static void printLine(Ladder ladder, int lineNumber) {
 
         ladder.getLines().forEach(line -> {
-            printSero();
-            printGaro(line.hasPoint(lineNumber));
+            printStep();
+            printConnect(line.hasPoint(lineNumber));
         });
         printNewLine();
     }
 
-    private static void printSero() {
+    private static void printStep() {
 
-        printStream.print(SERO);
+        printStream.print(STEP);
     }
 
-    private static void printGaro(boolean isHasPoint) {
+    private static void printConnect(boolean hasPoint) {
 
-        if (isHasPoint) {
+        if (hasPoint) {
             printStream.print(CONNECT_STRING);
             return;
         }

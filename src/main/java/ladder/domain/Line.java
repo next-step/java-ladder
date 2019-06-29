@@ -24,7 +24,7 @@ public class Line {
 
     public boolean hasPoint(int lineNumber) {
 
-        return points.get(lineNumber) != null && points.get(lineNumber).isPoint();
+        return points.get(lineNumber) != null && points.get(lineNumber).hasPoint();
     }
 
 }
