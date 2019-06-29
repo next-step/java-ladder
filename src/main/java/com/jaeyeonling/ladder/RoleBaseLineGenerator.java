@@ -17,7 +17,7 @@ public abstract class RoleBaseLineGenerator implements LineGenerator {
     private List<Boolean> generatePoints(final CountOfUsers countOfUsers) {
         final List<Boolean> points = initializePoints();
         for (int i = points.size(); i < countOfUsers.getValue(); i++) {
-            final Boolean before =points.get(points.size() - 1);
+            final Boolean before = points.get(points.size() - 1);
 
             final Boolean point = generate(before);
 
