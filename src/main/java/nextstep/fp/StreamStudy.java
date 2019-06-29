@@ -19,7 +19,7 @@ public class StreamStudy {
 				.filter(w -> w.length() > 12)
 				.count();
 	}
-	
+
 	public static void printLongestWordTop100() throws IOException {
 		String contents = new String(Files.readAllBytes(Paths
 				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
@@ -27,7 +27,7 @@ public class StreamStudy {
 
 		words.stream()
 				.filter(s -> s.length() > 12)
-				.sorted((s1, s2)-> s2.length() -  s1.length())
+				.sorted((s1, s2) -> s2.length() - s1.length())
 				.limit(100)
 				.distinct()
 				.map(String::toLowerCase)
@@ -41,7 +41,8 @@ public class StreamStudy {
 	}
 
 	public static long sumAll(List<Integer> numbers) {
-		return numbers.stream().reduce(0, Integer::sum);
+		return numbers.stream()
+				.reduce(0, Integer::sum);
 	}
 
 	public static long sumOverThreeAndDouble(List<Integer> numbers) {
