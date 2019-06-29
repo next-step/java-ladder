@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Users {
 
-
+    static final String SEPARATOR = ",";
 
     private final List<User> users;
 
@@ -14,5 +14,9 @@ public class Users {
 
     public static Users of(String rawUsers) {
         return new Users(List.of(User.of(rawUsers)));
+    }
+
+    int size() {
+        return users.size();
     }
 }
