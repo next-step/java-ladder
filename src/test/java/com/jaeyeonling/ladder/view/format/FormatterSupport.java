@@ -1,9 +1,9 @@
 package com.jaeyeonling.ladder.view.format;
 
-import com.jaeyeonling.ladder.Line;
-import com.jaeyeonling.ladder.User;
-import com.jaeyeonling.ladder.Username;
-import com.jaeyeonling.ladder.Users;
+import com.jaeyeonling.ladder.domain.line.Line;
+import com.jaeyeonling.ladder.domain.user.User;
+import com.jaeyeonling.ladder.domain.user.Username;
+import com.jaeyeonling.ladder.domain.user.Users;
 
 public class FormatterSupport {
 

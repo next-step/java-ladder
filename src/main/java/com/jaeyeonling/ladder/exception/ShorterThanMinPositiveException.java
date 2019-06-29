@@ -1,6 +1,6 @@
 package com.jaeyeonling.ladder.exception;
 
-import com.jaeyeonling.ladder.Positive;
+import com.jaeyeonling.ladder.domain.Positive;
 
 public class ShorterThanMinPositiveException extends IllegalArgumentException {
 

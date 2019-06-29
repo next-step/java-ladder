@@ -1,4 +1,10 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain;
+
+import com.jaeyeonling.ladder.domain.line.Line;
+import com.jaeyeonling.ladder.domain.user.CountOfUsers;
+import com.jaeyeonling.ladder.domain.user.User;
+import com.jaeyeonling.ladder.domain.user.Username;
+import com.jaeyeonling.ladder.domain.user.Users;
 
 import java.util.List;
 

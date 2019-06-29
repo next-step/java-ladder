@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.user;
 
 
 import java.util.Arrays;
@@ -32,7 +32,7 @@ public class Users {
         return this.users.size();
     }
 
-    CountOfUsers getCountOfUsers() {
+    public CountOfUsers getCountOfUsers() {
         return CountOfUsers.of(this);
     }
 }

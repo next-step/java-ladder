@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.user;
 
 import java.util.HashMap;
 import java.util.Map;

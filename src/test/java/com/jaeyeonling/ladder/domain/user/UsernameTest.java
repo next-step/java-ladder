@@ -1,27 +1,41 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.user;
 
+import com.jaeyeonling.ladder.exception.EmptyUsernameException;
 import com.jaeyeonling.ladder.exception.LongerThanMaxLengthUsernameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UserTest {
+class UsernameTest {
 
-    @DisplayName("유저 생성에 성공한다.")
+    @DisplayName("유저 이름 생성에 성공한다.")
     @ParameterizedTest
     @ValueSource(strings = {
-            "T",
-            "TEST!"
+            "김재연",
+            "matt",
+            "kjy",
+            "ggg"
     })
-    void should_return_user_when_create_by_username(final String username) {
+    void should_return_username_when_create_by_username(final String rawUsername) {
         // when
-        final User user = User.of(username);
+        final Username username = Username.of(rawUsername);
 
         // then
-        assertThat(user).isNotNull();
+        assertThat(username).isNotNull();
+    }
+
+    @DisplayName("유저 이름에 빈 값이나 null 값이 들어가면 실패한다.")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void should_throw_EmptyUsernameException_when_create_by_emptyOrNullUsername(final String rawUsername) {
+        Assertions.assertThatExceptionOfType(EmptyUsernameException.class)
+                .isThrownBy(() -> {
+                    Username.of(rawUsername);
+                });
     }
 
     @DisplayName("유저 이름에 길이가 " + Username.MAX_LENGTH + " 를 넘는 값이 들어가면 실패한다.")
@@ -36,7 +50,7 @@ class UserTest {
             final String longerThanMaxLengthUsername) {
         Assertions.assertThatExceptionOfType(LongerThanMaxLengthUsernameException.class)
                 .isThrownBy(() -> {
-                    User.of(longerThanMaxLengthUsername);
+                    Username.of(longerThanMaxLengthUsername);
                 });
     }
 
@@ -50,14 +64,14 @@ class UserTest {
     })
     void should_equals_object_when_create_by_same_username(final String rawUsername) {
         // given
-        final User user = User.of(rawUsername);
-        final User expect = User.of(rawUsername);
+        final Username username = Username.of(rawUsername);
+        final Username expect = Username.of(rawUsername);
 
         // when
-        final boolean equals = user.equals(expect);
+        final boolean equals = username.equals(expect);
 
         // then
         assertThat(equals).isTrue();
-        assertThat(user == expect).isTrue();
+        assertThat(username == expect).isTrue();
     }
 }

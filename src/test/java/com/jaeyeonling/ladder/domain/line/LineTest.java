@@ -1,5 +1,9 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.line;
 
+import com.jaeyeonling.ladder.domain.Fixture;
+import com.jaeyeonling.ladder.domain.line.Line;
+import com.jaeyeonling.ladder.domain.line.LineGenerator;
+import com.jaeyeonling.ladder.domain.line.StrategyBaseLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

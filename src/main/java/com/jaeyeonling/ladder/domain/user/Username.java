@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.user;
 
 import com.jaeyeonling.ladder.exception.EmptyUsernameException;
 import com.jaeyeonling.ladder.exception.LongerThanMaxLengthUsernameException;

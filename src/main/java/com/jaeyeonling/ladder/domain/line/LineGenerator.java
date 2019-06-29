@@ -1,4 +1,6 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.line;
+
+import com.jaeyeonling.ladder.domain.user.CountOfUsers;
 
 @FunctionalInterface
 public interface LineGenerator {

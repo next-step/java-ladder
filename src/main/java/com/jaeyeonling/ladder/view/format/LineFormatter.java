@@ -1,6 +1,6 @@
 package com.jaeyeonling.ladder.view.format;
 
-import com.jaeyeonling.ladder.Line;
+import com.jaeyeonling.ladder.domain.line.Line;
 
 import java.util.stream.Collectors;
 

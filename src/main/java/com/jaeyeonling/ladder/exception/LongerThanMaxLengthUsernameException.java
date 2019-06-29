@@ -1,6 +1,6 @@
 package com.jaeyeonling.ladder.exception;
 
-import com.jaeyeonling.ladder.Username;
+import com.jaeyeonling.ladder.domain.user.Username;
 
 public class LongerThanMaxLengthUsernameException extends IllegalArgumentException {
 

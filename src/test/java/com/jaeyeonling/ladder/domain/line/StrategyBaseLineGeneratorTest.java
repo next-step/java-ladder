@@ -1,5 +1,7 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.line;
 
+import com.jaeyeonling.ladder.domain.user.CountOfUsers;
+import com.jaeyeonling.ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.line;
 
 public class StrategyBaseLineGenerator extends RoleBaseLineGenerator {
 

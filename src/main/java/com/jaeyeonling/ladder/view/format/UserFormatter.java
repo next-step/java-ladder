@@ -1,7 +1,7 @@
 package com.jaeyeonling.ladder.view.format;
 
-import com.jaeyeonling.ladder.User;
-import com.jaeyeonling.ladder.Username;
+import com.jaeyeonling.ladder.domain.user.User;
+import com.jaeyeonling.ladder.domain.user.Username;
 
 public class UserFormatter implements Formatter<User> {
 

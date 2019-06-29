@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain.line;
 
 @FunctionalInterface
 public interface PointGenerateStrategy {

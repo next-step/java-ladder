@@ -1,6 +1,6 @@
 package com.jaeyeonling.ladder.view.format;
 
-import com.jaeyeonling.ladder.Users;
+import com.jaeyeonling.ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

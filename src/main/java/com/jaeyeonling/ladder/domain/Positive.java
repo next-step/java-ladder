@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder;
+package com.jaeyeonling.ladder.domain;
 
 import com.jaeyeonling.ladder.exception.ShorterThanMinPositiveException;
 
@@ -18,7 +18,7 @@ public class Positive {
         this.value = value;
     }
 
-    static Positive valueOf(final int value) {
+    public static Positive valueOf(final int value) {
         if (value < MIN) {
             throw new ShorterThanMinPositiveException(value);
         }
