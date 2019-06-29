@@ -29,4 +29,19 @@ public class UsersFormatterTest extends FormatterSupport {
         // then
         assertThat(formatted).isEqualTo(expect);
     }
+
+    @DisplayName("이름이 1글자인 유저들에 포맷팅에 성공한다.")
+    @Test
+    void Format__Username1Length_ExpectFormat() {
+        // given
+        final String rawUsers = "ㅁ,ㅇ,아";
+        final Users users = Users.of(rawUsers);
+
+        // when
+        final String formatted = usersFormatter.format(users);
+        final String expect = "    ㅁ     ㅇ     아";
+
+        // then
+        assertThat(formatted).isEqualTo(expect);
+    }
 }
