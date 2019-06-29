@@ -3,6 +3,8 @@ package com.ladder.model;
 import com.ladder.exception.PlayersLessMinimumException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static com.ladder.model.Players.MIN_NUMBER_OF_PLAYERS;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,5 +35,13 @@ class PlayersTest {
         String onePlayer = "pobi";
         assertThatExceptionOfType(PlayersLessMinimumException.class)
                 .isThrownBy(() -> Players.of(onePlayer));
+    }
+
+    @DisplayName("플레이어 생성 시 공백 및 null 일 시 exception")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void createUsername_whenEmptyOrNull_exception(String wrongPlayers) {
+        assertThatExceptionOfType(AssertionError.class)
+                .isThrownBy(() -> Players.of(wrongPlayers));
     }
 }

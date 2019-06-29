@@ -1,6 +1,7 @@
 package com.ladder.model;
 
 import com.ladder.exception.PlayersLessMinimumException;
+import com.ladder.utils.AssertUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +23,7 @@ public class Players {
     }
 
     public static Players of(String inputOfNames) {
+        AssertUtils.checkNull(inputOfNames);
         String[] names = inputOfNames.split(SEPARATOR_OF_NAMES);
         if (names.length < MIN_NUMBER_OF_PLAYERS) {
             throw new PlayersLessMinimumException();
