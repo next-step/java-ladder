@@ -45,4 +45,13 @@ public class StreamStudyTest {
 		long sum = StreamStudy.sumOverThreeAndDouble(numbers);
 		assertThat(sum).isEqualTo(36);
 	}
+
+	@Test
+	public void sumOverThreeAndDoubleMapToInt() throws Exception {
+		numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
+		long sum = StreamStudy.sumOverThreeAndDoubleMapToInt(numbers);
+		assertThat(sum).isEqualTo(36);
+	}
+
+
 }

@@ -31,3 +31,8 @@
 * Optional에서 exception 처리
   > nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현한다.
     단, of 메소드를 구현할 때 자바 8의 stream을 기반으로 구현한다.
+    
+## 사다리타기 요구사항
+* player의 이름은 5글자 이하여야한다.
+* player는 최소 2명이다.
+* -----|-----| 모양과 같이 가로 라인이 겹치지 않는다. 
