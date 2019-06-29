@@ -7,8 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -40,22 +38,5 @@ public class UserNameTest {
     void createUsername_whenInputEmptyOrNull_exception(String nullName) {
         assertThatExceptionOfType(AssertionError.class)
                 .isThrownBy(() -> UserName.of(nullName));
-    }
-
-    @DisplayName("콤마를 기준으로 여러 유저 이름을 생성한다")
-    @Test
-    void createUsername_whenManyUsers_success() {
-        // given
-        String names = "a,b,c,d,e";
-        int expectedSize = 5;
-        // when
-        List<UserName> result = UserName.ofComma(names);
-        // then
-        assertThat(result).contains(UserName.of("a"),
-                UserName.of("b"),
-                UserName.of("c"),
-                UserName.of("d"),
-                UserName.of("e"));
-        assertThat(result).hasSize(expectedSize);
     }
 }
