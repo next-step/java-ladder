@@ -26,10 +26,6 @@ public class Positive {
         return CACHE.computeIfAbsent(value, Positive::new);
     }
 
-    public boolean equalsValue(final int value) {
-        return this.value == value;
-    }
-
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
