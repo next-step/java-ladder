@@ -1,5 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.Persons;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

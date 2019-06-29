@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.Random;
 
@@ -9,13 +9,11 @@ import java.util.Random;
  */
 public class RandomBooleanGenerator {
     private static final Random RANDOM = new Random();
-    private static final int TRUE_CONDITION = 1;
-    private static final int BOUND = 2;
 
     private RandomBooleanGenerator() {
     }
 
     public static boolean generate() {
-        return RANDOM.nextInt(BOUND) == TRUE_CONDITION;
+        return RANDOM.nextBoolean();
     }
 }
