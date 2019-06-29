@@ -24,7 +24,7 @@ class UsersFormatterTest extends FormatterSupport {
 
         // when
         final String formatted = usersFormatter.format(users);
-        final String expect = " ㅁㅁㅁㅁ ㅇㅇㅇㅇㅇ 아아아아아";
+        final String expect = "  ㅁㅁㅁㅁ ㅇㅇㅇㅇㅇ 아아아아아";
 
         // then
         assertThat(formatted).isEqualTo(expect);
@@ -39,7 +39,7 @@ class UsersFormatterTest extends FormatterSupport {
 
         // when
         final String formatted = usersFormatter.format(users);
-        final String expect = "    ㅁ     ㅇ     아";
+        final String expect = "     ㅁ     ㅇ     아";
 
         // then
         assertThat(formatted).isEqualTo(expect);
