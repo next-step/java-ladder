@@ -1,9 +1,6 @@
 package com.jaeyeonling.ladder;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class StrategyBaseLineGenerator implements LineGenerator {
+public class StrategyBaseLineGenerator extends RoleBaseLineGenerator {
 
     private final PointGenerateStrategy pointGenerateStrategy;
 
@@ -16,36 +13,11 @@ public class StrategyBaseLineGenerator implements LineGenerator {
     }
 
     @Override
-    public Line generate(final CountOfUsers countOfUsers) {
-        final List<Boolean> points = generatePoints(countOfUsers);
-
-        return Line.of(points);
-    }
-
-    private List<Boolean> generatePoints(final CountOfUsers countOfUsers) {
-        final List<Boolean> points = initializePoints();
-        for (int i = points.size(); i < countOfUsers.getValue(); i++) {
-            generate(points);
-        }
-
-        return points;
-    }
-
-    private List<Boolean> initializePoints() {
-        final List<Boolean> points = new ArrayList<>();
-
-        points.add(false);
-
-        return points;
-    }
-
-    private void generate(List<Boolean> points) {
-        final Boolean before = points.get(points.size() - 1);
+    Boolean generate(final Boolean before) {
         if (before) {
-            points.add(false);
-            return;
+            return false;
         }
 
-        points.add(pointGenerateStrategy.generate());
+        return pointGenerateStrategy.generate();
     }
 }
