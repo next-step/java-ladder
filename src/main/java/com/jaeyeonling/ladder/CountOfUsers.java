@@ -22,6 +22,10 @@ public class CountOfUsers {
         return CACHE.computeIfAbsent(countOfUsers, CountOfUsers::new);
     }
 
+    public int getValue() {
+        return countOfUsers.getValue();
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

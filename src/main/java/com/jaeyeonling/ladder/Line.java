@@ -1,6 +1,5 @@
 package com.jaeyeonling.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -11,9 +10,11 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(final int countOfPerson) {
-        final List<Boolean> points = new ArrayList<>();
-
+    public static Line of(final List<Boolean> points) {
         return new Line(points);
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 }
