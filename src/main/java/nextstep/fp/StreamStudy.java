@@ -31,8 +31,7 @@ public class StreamStudy {
 			.filter(word -> word.length() > 12)
 			.sorted(Comparator.comparing(String::length).reversed())
 			.distinct()
-			.collect(Collectors.toList())
-			.subList(0,100)
+			.limit(100)
 			.forEach(word -> System.out.println(word.toLowerCase()));
 
 	}
@@ -49,7 +48,7 @@ public class StreamStudy {
 		//return numbers.stream().collect(Collectors.summingLong(Integer::intValue));
 		return numbers.stream()
 					.filter(num -> num > 3)
-					.map(num -> num * 2)
-					.collect(Collectors.summingInt(Integer::intValue));
+					.mapToLong(num -> num * 2)
+					.sum();
 	}
 }
