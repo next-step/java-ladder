@@ -13,7 +13,7 @@ public class LadderTest {
   public void setup() {
     int lineHeight = 6;
     Players players = new Players("lee,chang,jun");
-    ladder = new Ladder(new LadderGameInformation(players,lineHeight));
+    ladder = new Ladder(6, players.count());
   }
 
   @Test

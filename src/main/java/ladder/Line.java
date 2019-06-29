@@ -11,6 +11,10 @@ public class Line {
     makeLine(playersCount);
   }
 
+  public Line(List<Boolean> line) {
+    positions = line;
+  }
+
   private void makeLine(int playersCount) {
     firstPositionMakeLine();
     otherPositionMakeLine(playersCount);
@@ -28,6 +32,10 @@ public class Line {
 
   private boolean hasBeforePositionLine(int position) {
     return positions.get(position - 1);
+  }
+
+  public LineDisplay draw() {
+    return new LineDisplay(positions);
   }
 
 }

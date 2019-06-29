@@ -1,5 +1,7 @@
 package ladder;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +9,8 @@ public class Ladder {
 
   List<Line> ladder = new ArrayList<>();
 
-  public Ladder(LadderGameInformation ladderGameInformation) {
-    makeLine(ladderGameInformation.ladderHeight(),ladderGameInformation.playersCount());
+  public Ladder(int lineHeight, int playerCount) {
+    makeLine(lineHeight, playerCount);
   }
 
   private void makeLine(int lineHeight, int playerCount) {
@@ -20,4 +22,11 @@ public class Ladder {
   public int getHeight() {
     return ladder.size();
   }
+
+  public LadderDisplay draw() {
+    return new LadderDisplay(ladder.stream()
+        .map(Line::draw)
+        .collect(toList()));
+  }
+
 }
