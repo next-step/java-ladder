@@ -24,9 +24,13 @@
         - 안내문구를 출력한다.
         - 참여할 사람들의 이름모음 문자열을 리턴한다.
         - 최대 사다리 높이는 몇개 인지를 리턴한다.
+        
+    - `LadderPlayerNames` 클래스를 제작한다. 해당 객체는 `List<LadderPlayerName>`를 가지는 일급 객체이다.
+        - `,로 구분된 사람 이름 문자열`을 받는다.
+        - `String.split()` 메서드를 이용하여, 문자열을 추출한 후, `List<LadderPlayerName>`를 구성한다.
   
 - 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
-    - `LadderPlayerNames` 클래스를 제작한다. 해당 객체는 `List<LadderPlayerName>`를 가지는 일급 객체이다.
+    - `LadderPlayerNames` 클래스를 이용한다.
         - `toString()` 메서드를 오버라이딩 한다.
             - `String.join()` 메서드를 사용하여 빈칸 기준으로(` `) `LadderPlayName` 문자열을 이어서 만든다.
                 
