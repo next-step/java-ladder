@@ -5,6 +5,7 @@ import com.jaeyeonling.ladder.exception.ShorterThanMinPositiveException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Positive {
 
@@ -28,6 +29,10 @@ public class Positive {
 
     public int getValue() {
         return value;
+    }
+
+    public IntStream rangeClosed() {
+        return IntStream.rangeClosed(MIN, this.value);
     }
 
     @Override

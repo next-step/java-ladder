@@ -5,6 +5,7 @@ import com.jaeyeonling.ladder.domain.Positive;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class HeightOfLadder {
 
@@ -22,6 +23,10 @@ public class HeightOfLadder {
 
     public static HeightOfLadder valueOf(final Positive countOfUsers) {
         return CACHE.computeIfAbsent(countOfUsers, HeightOfLadder::new);
+    }
+
+    public IntStream rangeClosed() {
+        return heightOfLadder.rangeClosed();
     }
 
     @Override
