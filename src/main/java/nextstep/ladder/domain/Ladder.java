@@ -1,4 +1,4 @@
-package nextstep.ladder.view;
+package nextstep.ladder.domain;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -8,9 +8,7 @@ package nextstep.ladder.view;
  * | blog         : sksggg123.github.io     |
  * ------------------------------------------
  * project      : java-ladder
- * create date  : 2019-06-29 01:58
+ * create date  : 2019-06-29 03:27
  */
-public interface InputView {
-    String inputCustomNames();
-    int inputLadderHeight();
+public class Ladder {
 }
