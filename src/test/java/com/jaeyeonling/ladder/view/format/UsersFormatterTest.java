@@ -10,14 +10,14 @@ public class UsersFormatterTest extends FormatterSupport {
 
     @DisplayName("유저들 포매터 생성에 성공한다.")
     @Test
-    void create() {
+    void should_create() {
         // then
         assertThat(usersFormatter).isNotNull();
     }
 
     @DisplayName("이름이 5글자인 유저들에 포맷팅에 성공한다.")
     @Test
-    void Format__Username5Length_ExpectFormat() {
+    void should_equals_5_lengthUsername_and_expectFormatUsername() {
         // given
         final String rawUsers = "ㅁㅁㅁㅁ,ㅇㅇㅇㅇㅇ,아아아아아";
         final Users users = Users.of(rawUsers);
@@ -32,7 +32,7 @@ public class UsersFormatterTest extends FormatterSupport {
 
     @DisplayName("이름이 1글자인 유저들에 포맷팅에 성공한다.")
     @Test
-    void Format__Username1Length_ExpectFormat() {
+    void should_equals_1_lengthUsername_and_expectFormatUsername() {
         // given
         final String rawUsers = "ㅁ,ㅇ,아";
         final Users users = Users.of(rawUsers);

@@ -13,20 +13,14 @@ class UserFormatterTest extends FormatterSupport {
 
     @DisplayName("유저 포매터 생성에 성공한다.")
     @Test
-    void create() {
+    void should_create() {
         // then
         assertThat(userFormatter).isNotNull();
     }
 
     @DisplayName("포맷팅 시 길이는 " + Username.MAX_LENGTH + " 이어야 한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "김재연",
-            "matt",
-            "kjy",
-            "ggg"
-    })
-    void Format_User_LengthShouldSame(final String rawUsername) {
+    @Test
+    void should_equals_formattedUser_and_maxUsernameLength(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
 
@@ -46,7 +40,7 @@ class UserFormatterTest extends FormatterSupport {
             "ggg",
             "다섯글자다"
     })
-    void FormatAndTrim_User_ShouldSameValue(final String rawUsername) {
+    void should_equals_formattedUser_and_trimInputValue(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
 

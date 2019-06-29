@@ -12,7 +12,7 @@ class UsernameFormatterTest extends FormatterSupport {
 
     @DisplayName("유저 이름 포매터 생성에 성공한다.")
     @Test
-    void create() {
+    void should_create() {
         // then
         assertThat(usernameFormatter).isNotNull();
     }
@@ -26,7 +26,7 @@ class UsernameFormatterTest extends FormatterSupport {
             "ggg",
             "다섯글자다"
     })
-    void Format_Username_ShouldSameValue(final String rawUsername) {
+    void should_equals_formattedUsername_and_username(final String rawUsername) {
         // given
         final Username username = Username.of(rawUsername);
 

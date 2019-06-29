@@ -12,7 +12,7 @@ class StringUtilsTest {
     @DisplayName("isNullOrEmpty에 null 이나 빈 값을 입력 시 true를 리턴한다.")
     @ParameterizedTest
     @NullAndEmptySource
-    void isNullOrEmpty_nullOrEmptyValue_returnTrue(final String nullOrEmptyValue) {
+    void should_return_true_when_isNullOrEmpty_by_nullOrEmptyValue(final String nullOrEmptyValue) {
         // when
         final boolean isNullOrEmpty = StringUtils.isNullOrEmpty(nullOrEmptyValue);
 
@@ -26,7 +26,7 @@ class StringUtilsTest {
             "asda", "sdfsdf", "asfsdfsd", "e23r32f", "dsvsdfsdsds",
             "sdvsdvsds", "dvsdwwe", "a", "23gr3eggre23erthge3r4er"
     })
-    void isNullOrEmpty_notEmptyValue_returnFalse(final String notEmptyValue) {
+    void should_return_false_when_isNullOrEmpty_by_notEmptyValue(final String notEmptyValue) {
         // when
         final boolean isNullOrEmpty = StringUtils.isNullOrEmpty(notEmptyValue);
 
