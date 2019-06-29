@@ -1,5 +1,6 @@
 package com.jaeyeonling.ladder.view.format;
 
+import com.jaeyeonling.ladder.Username;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ class UsernameFormatterTest {
     @Test
     void create() {
         // when
-        final UsernameFormatter usernameFormatter = new UsernameFormatter();
+        final Formatter<Username> usernameFormatter = new UsernameFormatter();
 
         // then
         assertThat(usernameFormatter).isNotNull();

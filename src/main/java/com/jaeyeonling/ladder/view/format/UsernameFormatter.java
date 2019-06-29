@@ -1,4 +1,11 @@
 package com.jaeyeonling.ladder.view.format;
 
-public class UsernameFormatter {
+import com.jaeyeonling.ladder.Username;
+
+public class UsernameFormatter implements Formatter<Username> {
+
+    @Override
+    public String format(final Username username) {
+        return null;
+    }
 }
