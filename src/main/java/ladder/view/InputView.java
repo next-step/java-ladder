@@ -14,7 +14,7 @@ public class InputView {
     public static String askParticipantNames() {
 
         printStream.println(ASK_PARTICIPANT_NAMES_MESSAGE);
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     public static int askLadderHeights() {
