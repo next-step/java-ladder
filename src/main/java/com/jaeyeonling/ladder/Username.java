@@ -31,6 +31,10 @@ public class Username {
         return CACHE.computeIfAbsent(username, Username::new);
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
