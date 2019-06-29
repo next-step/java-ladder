@@ -14,7 +14,8 @@ import java.util.Objects;
  */
 public class Name {
 
-    private static final int RANGE_NAME_LENGTH = 5;
+    private static final int RANGE_NAME_MAX_LENGTH = 5;
+    private static final int RANGE_NAME_MIN_LENGTH = 1;
     private final String name;
 
     public Name(String name) {
@@ -22,8 +23,8 @@ public class Name {
     }
 
     public static Name of(String targetName) {
-        if(targetName.length() > RANGE_NAME_LENGTH ) {
-            throw new IllegalArgumentException("사용자 이름은 5글자 이하만 가능합니다.");
+        if (targetName.length() > RANGE_NAME_MAX_LENGTH || targetName.length() < RANGE_NAME_MIN_LENGTH) {
+            throw new IllegalArgumentException("사용자 이름은 0글자 이상, 5글자 이하만 가능합니다.");
         }
         return new Name(targetName);
     }
