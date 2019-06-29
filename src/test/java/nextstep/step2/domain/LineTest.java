@@ -3,8 +3,6 @@ package nextstep.step2.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import nextstep.step2.domain.Line;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
