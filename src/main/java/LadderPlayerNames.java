@@ -1,0 +1,28 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class LadderPlayerNames {
+    private final List<LadderPlayerName> ladderPlayerNames;
+
+    private LadderPlayerNames(List<LadderPlayerName> ladderPlayerNames) {
+        this.ladderPlayerNames = ladderPlayerNames;
+    }
+
+    public static LadderPlayerNames of(String playerNamesString) {
+        String[] playerNameStrings = playerNamesString.split(",");
+
+        List<LadderPlayerName> ladderPlayerNames = Arrays.stream(playerNameStrings)
+                                                         .map(LadderPlayerName::of)
+                                                         .collect(Collectors.toList());
+
+        return new LadderPlayerNames(ladderPlayerNames);
+    }
+
+    @Override
+    public String toString() {
+        return this.ladderPlayerNames.stream()
+                                     .map(LadderPlayerName::toString)
+                                     .collect(Collectors.joining(" "));
+    }
+}
