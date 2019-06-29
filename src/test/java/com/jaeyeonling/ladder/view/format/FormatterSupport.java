@@ -9,4 +9,5 @@ public class FormatterSupport {
     protected static final Formatter<Username> usernameFormatter = new UsernameFormatter();
     protected static final Formatter<User> userFormatter = UserFormatter.of(usernameFormatter);
     protected static final Formatter<Users> usersFormatter = UsersFormatter.of(userFormatter);
+    protected static final Formatter<Boolean> pointFormatter = new PointFormatter();
 }
