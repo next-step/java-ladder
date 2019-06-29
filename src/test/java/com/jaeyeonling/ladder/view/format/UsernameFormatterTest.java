@@ -10,12 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class UsernameFormatterTest {
 
+    private static final Formatter<Username> usernameFormatter = new UsernameFormatter();
+
     @DisplayName("유저 이름 포매터 생성에 성공한다.")
     @Test
     void create() {
-        // when
-        final Formatter<Username> usernameFormatter = new UsernameFormatter();
-
         // then
         assertThat(usernameFormatter).isNotNull();
     }
@@ -31,7 +30,6 @@ class UsernameFormatterTest {
     void Format_Username_LengthShouldSame(final String rawUsername) {
         // given
         final Username username = Username.of(rawUsername);
-        final Formatter<Username> usernameFormatter = new UsernameFormatter();
 
         // when
         final String formattedUsername = usernameFormatter.format(username);
@@ -39,4 +37,5 @@ class UsernameFormatterTest {
         // then
         assertThat(formattedUsername).hasSize(Username.MAX_LENGTH);
     }
+
 }
