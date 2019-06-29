@@ -8,12 +8,8 @@ public class Rung {
         this.rung = rung;
     }
 
-    public static Rung newDrawLine() {
-        return new Rung(true);
-    }
-
-    public static Rung newEmptyLine() {
-        return new Rung(false);
+    public static Rung of(boolean randomBoolean) {
+        return new Rung(randomBoolean);
     }
 
     public boolean value() {

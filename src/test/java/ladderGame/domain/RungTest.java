@@ -11,21 +11,21 @@ class RungTest {
     @Test
     @DisplayName("라인 생성")
     public void create() {
-        Rung rung = Rung.newDrawLine();
+        Rung rung = Rung.of(true);
         assertThat(rung.value()).isTrue();
     }
 
     @Test
     @DisplayName("빈라인 생성")
     public void createEmpty() {
-        Rung rung = Rung.newEmptyLine();
+        Rung rung = Rung.of(false);
         assertThat(rung.value()).isFalse();
     }
 
     @Test
     @DisplayName("계단 생성 확인")
     public void hasRung() {
-        Rung rung = Rung.newEmptyLine();
+        Rung rung = Rung.of(true);
         assertThat(rung.isEmpty()).isTrue();
     }
 }
