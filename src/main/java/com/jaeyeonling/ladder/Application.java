@@ -49,6 +49,6 @@ public class Application {
 
         final LadderGame ladderGame = ladderGameGenerator.generate(users, ladderHeight);
 
-        ConsoleOutputView.print(ladderGameFormatter.format(ladderGame));
+        ConsoleOutputView.printResult(ladderGameFormatter.format(ladderGame));
     }
 }

@@ -1,7 +1,5 @@
 package com.jaeyeonling.ladder.view.console;
 
-import com.jaeyeonling.ladder.domain.ladder.LadderGame;
-
 import java.io.PrintStream;
 
 public final class ConsoleOutputView {
