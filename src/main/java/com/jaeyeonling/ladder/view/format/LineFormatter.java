@@ -2,6 +2,8 @@ package com.jaeyeonling.ladder.view.format;
 
 import com.jaeyeonling.ladder.Line;
 
+import java.util.stream.Collectors;
+
 public class LineFormatter implements Formatter<Line> {
 
     private final Formatter<Boolean> pointFormatter;
@@ -16,6 +18,9 @@ public class LineFormatter implements Formatter<Line> {
 
     @Override
     public String format(final Line line) {
-        return null;
+        return line.getPoints()
+                .stream()
+                .map(pointFormatter::format)
+                .collect(Collectors.joining());
     }
 }
