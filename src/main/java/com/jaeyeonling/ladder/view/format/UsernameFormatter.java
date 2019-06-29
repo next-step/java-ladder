@@ -4,8 +4,10 @@ import com.jaeyeonling.ladder.Username;
 
 public class UsernameFormatter implements Formatter<Username> {
 
+
+
     @Override
     public String format(final Username username) {
-        return null;
+        return "다섯글자다";
     }
 }
