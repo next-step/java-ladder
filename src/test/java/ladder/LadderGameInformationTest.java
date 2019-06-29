@@ -25,4 +25,5 @@ public class LadderGameInformationTest {
   public void 사다리높이를_구해온다() {
     assertThat(information.ladderHeight()).isEqualTo(5);
   }
+
 }

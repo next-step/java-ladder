@@ -9,7 +9,6 @@ public class LineDisplay {
   private static final String USER_LINE_SYMBOL = "|";
   private static final String HORIZONTAL_LINE_SYMBOL = "-----";
   private static final String BLANK_SYMBOL = "     ";
-  private static final String LINE_SEPARATOR = System.lineSeparator();
 
   String ladderLine;
 
@@ -25,7 +24,7 @@ public class LineDisplay {
 
   public String draw() {
     ladderLine = drawBothEnds();
-    return ladderLine + LINE_SEPARATOR;
+    return ladderLine;
   }
 
   private String drawBothEnds() {

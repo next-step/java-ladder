@@ -47,4 +47,5 @@ public class PlayersTest {
     String result = "lee   chang junn  ";
     assertThat(new Players(playerNames).getLengthFormatPlayersName(6)).isEqualTo(result);
   }
+
 }

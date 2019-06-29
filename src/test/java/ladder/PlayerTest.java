@@ -31,5 +31,4 @@ class PlayerTest {
     assertThat(player.nameFormat(length).length()).isEqualTo(length);
   }
 
-
 }

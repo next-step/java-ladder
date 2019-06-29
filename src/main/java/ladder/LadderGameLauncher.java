@@ -13,7 +13,6 @@ public class LadderGameLauncher {
 
     OutputView.printPlayersName(playersName);
     OutputView.printLadder(ladder.draw());
-
   }
 
   public static void main(String[] args) {

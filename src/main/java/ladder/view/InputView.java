@@ -14,12 +14,12 @@ public class InputView {
   public static LadderGameInformation askLadderGameInformation() {
     Players players = askPlayersName();
     int height = askLadderHeight();
-    return new LadderGameInformation(players,height);
+    return new LadderGameInformation(players, height);
   }
 
   private static Players askPlayersName() {
     System.out.println(QUESTION_PLAYERS_NAME);
-    String playersName =  scanner.next();
+    String playersName = scanner.next();
     return new Players(playersName);
   }
 
@@ -27,7 +27,5 @@ public class InputView {
     System.out.println(QUESTION_HEIGHT_LADDER);
     return scanner.nextInt();
   }
-
-
 
 }
