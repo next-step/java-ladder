@@ -3,6 +3,7 @@ package ladder;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Players {
@@ -42,5 +43,20 @@ public class Players {
 
   public int count() {
     return players.size();
+  }
+
+  public int maxNameLength() {
+    return players.stream()
+        .map(Player::nameLength)
+        .max(Comparator.comparingInt(Integer::intValue))
+        .orElse(0);
+  }
+
+  public String getLengthFormatPlayersName(int length) {
+    StringBuffer playersName = new StringBuffer();
+    for (Player player : players) {
+      playersName.append(player.nameFormat(length));
+    }
+    return playersName.toString();
   }
 }

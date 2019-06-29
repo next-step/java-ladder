@@ -23,5 +23,13 @@ class PlayerTest {
         .hasMessage("이름은 다섯글자 이하여야 합니다.");
   }
 
+  @Test
+  public void 이름을_자리수에_맞추어_공백을_추가해서_return한다() {
+    int length = 6;
+    Player player = new Player("lee");
+    assertThat(player.nameFormat(length)).isEqualTo("lee   ");
+    assertThat(player.nameFormat(length).length()).isEqualTo(length);
+  }
+
 
 }
