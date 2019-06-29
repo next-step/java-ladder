@@ -1,0 +1,33 @@
+package com.ladder.model;
+
+import com.ladder.exception.LadderColumnsException;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class Lines {
+
+    public static final int MIN_NUMBER_OF_COLUMNS = 1;
+    private List<Line> lines;
+
+    private Lines(List<Line> lines) {
+        this.lines = new ArrayList<>(lines);
+    }
+
+    public static Lines of(int numberOfColumns, int numberOfUsers) {
+        if (numberOfColumns < MIN_NUMBER_OF_COLUMNS) {
+            throw new LadderColumnsException();
+        }
+        List<Line> lines = IntStream.range(0, numberOfColumns)
+                .mapToObj((num) -> Line.of(numberOfUsers))
+                .collect(Collectors.toList());
+        return new Lines(lines);
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
+    }
+}
