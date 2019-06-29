@@ -28,6 +28,7 @@
     - `LadderPlayerNames` 클래스를 제작한다. 해당 객체는 `List<LadderPlayerName>`를 가지는 일급 객체이다.
         - `,로 구분된 사람 이름 문자열`을 받는다.
         - `String.split()` 메서드를 이용하여, 문자열을 추출한 후, `List<LadderPlayerName>`를 구성한다.
+        - `몇명인지` 리턴한다.
   
 - 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
     - `LadderPlayerNames` 클래스를 이용한다.

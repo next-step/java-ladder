@@ -19,6 +19,10 @@ public class LadderPlayerNames {
         return new LadderPlayerNames(ladderPlayerNames);
     }
 
+    public int size() {
+        return this.ladderPlayerNames.size();
+    }
+
     @Override
     public String toString() {
         return this.ladderPlayerNames.stream()

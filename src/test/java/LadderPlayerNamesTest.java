@@ -28,4 +28,16 @@ public class LadderPlayerNamesTest {
 
         assertThat(result).isEqualTo(expect);
     }
+
+    @DisplayName("파싱된 플레이어 들의 이름 개수가 정확해야 합니다.")
+    @Test
+    public void testNumberOfParsedPlayerNames() {
+        String playerNamesString = "mo, m1, m2, mmmm, good";
+        int expectedCountOfPerson = playerNamesString.split(",").length;
+
+        LadderPlayerNames ladderPlayerNames = LadderPlayerNames.of(playerNamesString);
+        int resultCountOfPerson = ladderPlayerNames.size();
+
+        assertThat(resultCountOfPerson).isEqualTo(expectedCountOfPerson);
+    }
 }
