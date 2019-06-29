@@ -4,6 +4,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +23,12 @@ public class LadderLineTest {
     @ParameterizedTest
     @ValueSource(ints={0,1,2,3,4,5,6,7,8,9,10})
     public void testIfMadeAtCurrentIdxThenNotMadeAtNextIdx() {
-        List<Integer> establishedIndexes = this.ladderLine.getEstablishIndexes();
+        List<Boolean> establishedResults = this.ladderLine.getEstablishResults();
+        List<Integer> establishedIndexes = IntStream.range(0, establishedResults.size())
+                                                    .filter(establishedResults::get)
+                                                    .boxed()
+                                                    .collect(Collectors.toList());
+
         boolean isInvalid = establishedIndexes.stream()
                 .map(index -> index+1)
                 .anyMatch(establishedIndexes::contains);

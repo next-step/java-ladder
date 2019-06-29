@@ -45,12 +45,7 @@ public class LadderLine {
         return new LadderLine(establishedResults);
     }
 
-    public List<Integer> getEstablishIndexes() {
-        List<Integer> establishedIndexes = IntStream.range(0, this.establishedResults.size())
-                                                    .filter(this.establishedResults::get)
-                                                    .boxed()
-                                                    .collect(Collectors.toList());
-
-        return Collections.unmodifiableList(establishedIndexes);
+    public List<Boolean> getEstablishResults() {
+        return Collections.unmodifiableList(this.establishedResults);
     }
 }
