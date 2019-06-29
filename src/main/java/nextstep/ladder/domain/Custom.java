@@ -34,6 +34,10 @@ public class Custom {
                 .collect(Collectors.toList()));
     }
 
+    public int count() {
+        return names.size();
+    }
+
     public boolean hasCustom(Name name) {
         return names.stream()
                 .filter(sourceName -> sourceName.isName(name))
