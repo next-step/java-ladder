@@ -1,10 +1,11 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest {
     private static final int MOCK_COUNT_OF_PERSON_NUMBER = 5;
@@ -17,7 +18,8 @@ public class LadderLineTest {
     }
 
     @DisplayName("현재 인덱스가 사다리 설치가 됬다면, 다음 인덱스는 반드시 설치되지 않아야 합니다.")
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints={0,1,2,3,4,5,6,7,8,9,10})
     public void testIfMadeAtCurrentIdxThenNotMadeAtNextIdx() {
         List<Integer> establishedIndexes = this.ladderLine.getEstablishIndexes();
         boolean isInvalid = establishedIndexes.stream()
