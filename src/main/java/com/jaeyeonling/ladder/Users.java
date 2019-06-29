@@ -28,7 +28,11 @@ public class Users {
         return users.stream();
     }
 
-    int size() {
-        return users.size();
+    public int size() {
+        return this.users.size();
+    }
+
+    CountOfUsers getCountOfUsers() {
+        return CountOfUsers.valueOf(this);
     }
 }
