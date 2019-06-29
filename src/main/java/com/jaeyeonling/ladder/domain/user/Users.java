@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class Users {
 
-    static final String SEPARATOR = ",";
+    static final String SEPARATOR = "\\s*,\\s*";
 
     private final List<User> users;
 
