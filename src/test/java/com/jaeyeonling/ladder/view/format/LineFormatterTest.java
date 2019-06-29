@@ -31,7 +31,7 @@ class LineFormatterTest extends FormatterSupport {
     void should_equals_true_formattedLine_and_expectFormat_when_allTrueLine() {
         // when
         final String formatted = lineFormatter.format(Fixture.allTrueLine);
-        final String expect = "-----|".repeat(Fixture.allTruePoint.size());
+        String expect = "     |-----|     |-----|     |";
 
         // then
         assertThat(formatted).isEqualTo(expect);

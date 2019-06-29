@@ -13,7 +13,8 @@ public interface Fixture {
     CountOfUsers countOfusers = multiUsers.getCountOfUsers();
 
     List<Boolean> allFalsePoint = List.of(false, false, false, false, false);
-    List<Boolean> allTruePoint = List.of(true, true, true, true, true);
+    List<Boolean> allTruePoint = List.of(false, true, false, true, false);
+
     Line allFalseLine = Line.of(allFalsePoint);
     Line allTrueLine = Line.of(allTruePoint);
 }
