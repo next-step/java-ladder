@@ -32,7 +32,7 @@
 - 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
     - `LadderPlayerNames` 클래스를 이용한다.
         - `toString()` 메서드를 오버라이딩 한다.
-            - `String.join()` 메서드를 사용하여 빈칸 기준으로(` `) `LadderPlayName` 문자열을 이어서 만든다.
+            - `Stream API`를 이용하여 빈칸 기준으로(` `) `LadderPlayName` 문자열을 이어서 만든다.
                 
     - `ResultView` 클래스를 이용한다.
         - `LadderPlayerName` 클래스가 제공하는 이름 최대 개수만큼 문자열`-`를 이은 사다리 다리와 빈칸을 미리 제작한다.
