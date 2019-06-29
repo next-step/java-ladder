@@ -19,26 +19,7 @@ class UsernameFormatterTest {
         assertThat(usernameFormatter).isNotNull();
     }
 
-    @DisplayName("포맷팅 시 길이는 " + Username.MAX_LENGTH + " 이어야 한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "김재연",
-            "matt",
-            "kjy",
-            "ggg"
-    })
-    void Format_Username_LengthShouldSame(final String rawUsername) {
-        // given
-        final Username username = Username.of(rawUsername);
-
-        // when
-        final String formattedUsername = usernameFormatter.format(username);
-
-        // then
-        assertThat(formattedUsername).hasSize(Username.MAX_LENGTH);
-    }
-
-    @DisplayName("포맷팅 후 trim 시 입력과 같은 값이어야 한다.")
+    @DisplayName("포맷팅 후 입력과 같은 값이어야 한다.")
     @ParameterizedTest
     @ValueSource(strings = {
             "김재연",
@@ -47,12 +28,12 @@ class UsernameFormatterTest {
             "ggg",
             "다섯글자다"
     })
-    void FormatAndTrim_Username_ShouldSameValue(final String rawUsername) {
+    void Format_Username_ShouldSameValue(final String rawUsername) {
         // given
         final Username username = Username.of(rawUsername);
 
         // when
-        final String formattedUsername = usernameFormatter.format(username).trim();
+        final String formattedUsername = usernameFormatter.format(username);
 
         // then
         assertThat(formattedUsername).isEqualTo(rawUsername);
