@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UsersFormatterTest extends FormatterSupport {
+class UsersFormatterTest extends FormatterSupport {
 
     @DisplayName("유저들 포매터 생성에 성공한다.")
     @Test
