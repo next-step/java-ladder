@@ -1,33 +1,37 @@
 package com.ladder.model;
 
-import com.ladder.exception.UserNameLengthException;
+import com.ladder.exception.PlayerNameLengthException;
 import com.ladder.utils.AssertUtils;
 
 import java.util.Objects;
 
-public class UserName {
+public class Player {
 
     public static final int LENGTH_OF_USER_NAME = 5;
     private final String name;
 
-    private UserName(String name) {
+    private Player(String name) {
         this.name = name;
     }
 
-    static UserName of(final String name) {
+    public static Player of(final String name) {
         AssertUtils.checkNull(name);
         if (name.length() > LENGTH_OF_USER_NAME) {
-            throw new UserNameLengthException(name);
+            throw new PlayerNameLengthException(name);
         }
-        return new UserName(name);
+        return new Player(name);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserName userName = (UserName) o;
-        return Objects.equals(name, userName.name);
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
     }
 
     @Override
@@ -37,7 +41,7 @@ public class UserName {
 
     @Override
     public String toString() {
-        return "UserName{" +
+        return "Player{" +
                 "name='" + name + '\'' +
                 '}';
     }
