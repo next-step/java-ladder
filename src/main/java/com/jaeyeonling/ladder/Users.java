@@ -4,6 +4,7 @@ package com.jaeyeonling.ladder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Users {
 
@@ -21,6 +22,10 @@ public class Users {
                 .collect(Collectors.toList());
 
         return new Users(users);
+    }
+
+    public Stream<User> stream() {
+        return users.stream();
     }
 
     int size() {
