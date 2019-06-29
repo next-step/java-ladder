@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class UsersFormatter implements Formatter<Users> {
 
+    private static final String PREFIX = " ";
     private static final String BLANK = " ";
 
     private final Formatter<User> userFormatter;
@@ -21,7 +22,7 @@ public class UsersFormatter implements Formatter<Users> {
 
     @Override
     public String format(final Users users) {
-        return users.stream()
+        return PREFIX + users.stream()
                 .map(userFormatter::format)
                 .collect(Collectors.joining(BLANK));
     }
