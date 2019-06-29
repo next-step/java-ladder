@@ -24,16 +24,19 @@ public class Application {
 
     public static void main(final String... args) {
         final PointGenerateStrategy pointGenerateStrategy = new RandomPointGenerateStrategy();
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(pointGenerateStrategy);
-        final LadderGameGenerator ladderGameGenerator = LadderGameGenerator.of(lineGenerator);
+        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(pointGenerateStrategy);
+        final LadderGameGenerator ladderGameGenerator = LadderGameGenerator.withLineGenerator(lineGenerator);
 
         final Formatter<Username> usernameFormatter = new UsernameFormatter();
-        final Formatter<User> userFormatter = UserFormatter.of(usernameFormatter);
-        final Formatter<Users> usersFormatter = UsersFormatter.of(userFormatter);
+        final Formatter<User> userFormatter = UserFormatter.withUsernameFormatter(usernameFormatter);
+        final Formatter<Users> usersFormatter = UsersFormatter.withUserFormatter(userFormatter);
+
         final Formatter<Boolean> pointFormatter = new PointFormatter();
-        final Formatter<Line> lineFormatter = LineFormatter.of(pointFormatter);
-        final Formatter<Lines> linesFormatter = LinesFormatter.of(lineFormatter);
-        final Formatter<LadderGame> ladderGameFormatter = LadderGameFormatter.of(usersFormatter, linesFormatter);
+        final Formatter<Line> lineFormatter = LineFormatter.withPointFormatter(pointFormatter);
+        final Formatter<Lines> linesFormatter = LinesFormatter.withLineFormatter(lineFormatter);
+
+        final Formatter<LadderGame> ladderGameFormatter = LadderGameFormatter.withUsersFormatterAndLinesFormatter(
+                usersFormatter, linesFormatter);
 
         final Application application = new Application(ladderGameGenerator, ladderGameFormatter);
 
@@ -41,7 +44,7 @@ public class Application {
     }
 
     private void start() {
-        final Users users = Users.of(ConsoleInputView.readUsers());
+        final Users users = Users.ofSeparator(ConsoleInputView.readUsers());
         final HeightOfLadder ladderHeight = HeightOfLadder.valueOf(ConsoleInputView.readLadderHeight());
 
         final LadderGame ladderGame = ladderGameGenerator.generate(users, ladderHeight);

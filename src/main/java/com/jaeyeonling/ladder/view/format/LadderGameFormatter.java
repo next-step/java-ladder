@@ -17,8 +17,8 @@ public class LadderGameFormatter implements Formatter<LadderGame> {
         this.linesFormatter = linesFormatter;
     }
 
-    public static LadderGameFormatter of(final Formatter<Users> usersFormatter,
-                                         final Formatter<Lines> linesFormatter) {
+    public static LadderGameFormatter withUsersFormatterAndLinesFormatter(final Formatter<Users> usersFormatter,
+                                                                          final Formatter<Lines> linesFormatter) {
         return new LadderGameFormatter(usersFormatter, linesFormatter);
     }
 

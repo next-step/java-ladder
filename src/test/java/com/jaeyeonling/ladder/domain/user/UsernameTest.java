@@ -22,7 +22,7 @@ class UsernameTest {
     })
     void should_return_username_when_create_by_username(final String rawUsername) {
         // when
-        final Username username = Username.of(rawUsername);
+        final Username username = Username.valueOf(rawUsername);
 
         // then
         assertThat(username).isNotNull();
@@ -34,7 +34,7 @@ class UsernameTest {
     void should_throw_EmptyUsernameException_when_create_by_emptyOrNullUsername(final String rawUsername) {
         Assertions.assertThatExceptionOfType(EmptyUsernameException.class)
                 .isThrownBy(() -> {
-                    Username.of(rawUsername);
+                    Username.valueOf(rawUsername);
                 });
     }
 
@@ -50,7 +50,7 @@ class UsernameTest {
             final String longerThanMaxLengthUsername) {
         Assertions.assertThatExceptionOfType(LongerThanMaxLengthUsernameException.class)
                 .isThrownBy(() -> {
-                    Username.of(longerThanMaxLengthUsername);
+                    Username.valueOf(longerThanMaxLengthUsername);
                 });
     }
 
@@ -64,8 +64,8 @@ class UsernameTest {
     })
     void should_equals_object_when_create_by_same_username(final String rawUsername) {
         // given
-        final Username username = Username.of(rawUsername);
-        final Username expect = Username.of(rawUsername);
+        final Username username = Username.valueOf(rawUsername);
+        final Username expect = Username.valueOf(rawUsername);
 
         // when
         final boolean equals = username.equals(expect);

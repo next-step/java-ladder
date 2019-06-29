@@ -21,11 +21,11 @@ public class HeightOfLadder {
         return valueOf(Positive.valueOf(heightOfLadder));
     }
 
-    public static HeightOfLadder valueOf(final Positive countOfUsers) {
+    static HeightOfLadder valueOf(final Positive countOfUsers) {
         return CACHE.computeIfAbsent(countOfUsers, HeightOfLadder::new);
     }
 
-    public IntStream rangeClosed() {
+    IntStream rangeClosed() {
         return heightOfLadder.rangeClosed();
     }
 

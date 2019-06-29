@@ -12,15 +12,15 @@ public interface Fixture {
     String rawUsername = "test";
     String rawUsers = "test1,test2,test3,test4,test5";
 
-    Username username = Username.of(rawUsername);
+    Username username = Username.valueOf(rawUsername);
     User user = User.of(rawUsername);
-    Users signleUsers = Users.of(rawUsername);
-    Users multiUsers = Users.of(rawUsers);
+    Users signleUsers = Users.ofSeparator(rawUsername);
+    Users multiUsers = Users.ofSeparator(rawUsers);
     CountOfUsers countOfusers = multiUsers.getCountOfUsers();
 
     List<Boolean> allFalsePoint = List.of(false, false, false, false, false);
     List<Boolean> allTruePoint = List.of(false, true, false, true, false);
 
-    Line allFalseLine = Line.of(allFalsePoint);
-    Line allTrueLine = Line.of(allTruePoint);
+    Line allFalseLine = Line.ofPoints(allFalsePoint);
+    Line allTrueLine = Line.ofPoints(allTruePoint);
 }

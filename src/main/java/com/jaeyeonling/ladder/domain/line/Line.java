@@ -10,7 +10,7 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(final List<Boolean> points) {
+    public static Line ofPoints(final List<Boolean> points) {
         return new Line(points);
     }
 

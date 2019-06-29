@@ -15,7 +15,7 @@ public class User {
     }
 
     public static User of(final String username) {
-        return of(Username.of(username));
+        return of(Username.valueOf(username));
     }
 
     public static User of(final Username username) {

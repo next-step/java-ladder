@@ -20,7 +20,7 @@ public class Username {
         this.username = username;
     }
 
-    public static Username of(final String username) {
+    public static Username valueOf(final String username) {
         if (StringUtils.isNullOrEmpty(username)) {
             throw new EmptyUsernameException();
         }

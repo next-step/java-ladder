@@ -13,7 +13,7 @@ class CountOfUsersTest {
     @Test
     void should_return_countOfUsers_when_usersGetCountOfUsers() {
         // when
-        final Users users = Users.of("a,b,c");
+        final Users users = Users.ofSeparator("a,b,c");
         final CountOfUsers countOfUsers = users.getCountOfUsers();
 
         // then
@@ -28,10 +28,10 @@ class CountOfUsersTest {
     })
     void should_return_equalsObject_when_sameUsers(final String rawUsers) {
         // given
-        final Users users = Users.of(rawUsers);
+        final Users users = Users.ofSeparator(rawUsers);
         final CountOfUsers countOfUsers = users.getCountOfUsers();
 
-        final Users expectUsers = Users.of(rawUsers);
+        final Users expectUsers = Users.ofSeparator(rawUsers);
         final CountOfUsers expectCountOfUsers = expectUsers.getCountOfUsers();
 
         // when

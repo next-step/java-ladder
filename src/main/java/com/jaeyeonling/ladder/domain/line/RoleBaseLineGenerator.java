@@ -7,19 +7,21 @@ import java.util.List;
 
 public abstract class RoleBaseLineGenerator implements LineGenerator {
 
+    private static final int BEFORE_TERM = 1;
+
     abstract Boolean generate(final Boolean before);
 
     @Override
     public Line generate(final CountOfUsers countOfUsers) {
         final List<Boolean> points = generatePoints(countOfUsers);
 
-        return Line.of(points);
+        return Line.ofPoints(points);
     }
 
     private List<Boolean> generatePoints(final CountOfUsers countOfUsers) {
         final List<Boolean> points = initializePoints();
         for (int i = points.size(); i < countOfUsers.getValue(); i++) {
-            final Boolean before = points.get(points.size() - 1);
+            final Boolean before = points.get(points.size() - BEFORE_TERM);
 
             final Boolean point = generate(before);
 

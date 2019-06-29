@@ -19,9 +19,9 @@ class StrategyBaseLineGeneratorTest {
             "김,kjy,글자다"
     })
     void should_return_false_when_if_firstPoint() {
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(() -> true);
+        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(() -> true);
 
-        final Users users = Users.of("1ddd,g23,g3223");
+        final Users users = Users.ofSeparator("1ddd,g23,g3223");
         final CountOfUsers countOfUsers = users.getCountOfUsers();
 
         final Line line = lineGenerator.generate(countOfUsers);
@@ -45,9 +45,9 @@ class StrategyBaseLineGeneratorTest {
 
     private void should_return_false_when_if_before_point_true(final String rawUsers,
                                                                final PointGenerateStrategy pointGenerateStrategy) {
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(pointGenerateStrategy);
+        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(pointGenerateStrategy);
 
-        final Users users = Users.of(rawUsers);
+        final Users users = Users.ofSeparator(rawUsers);
         final CountOfUsers countOfUsers = users.getCountOfUsers();
 
         final Line line = lineGenerator.generate(countOfUsers);

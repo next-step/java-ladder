@@ -15,7 +15,7 @@ public class LinesFormatter implements Formatter<Lines> {
         this.lineFormatter = lineFormatter;
     }
 
-    public static LinesFormatter of(final Formatter<Line> lineFormatter) {
+    public static LinesFormatter withLineFormatter(final Formatter<Line> lineFormatter) {
         return new LinesFormatter(lineFormatter);
     }
 

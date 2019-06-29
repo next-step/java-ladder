@@ -28,7 +28,7 @@ class UsernameFormatterTest extends FormatterSupport {
     })
     void should_equals_formattedUsername_and_username(final String rawUsername) {
         // given
-        final Username username = Username.of(rawUsername);
+        final Username username = Username.valueOf(rawUsername);
 
         // when
         final String formattedUsername = usernameFormatter.format(username);

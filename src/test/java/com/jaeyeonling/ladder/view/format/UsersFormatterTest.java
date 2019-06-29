@@ -20,7 +20,7 @@ class UsersFormatterTest extends FormatterSupport {
     void should_equals_5_lengthUsername_and_expectFormatUsername() {
         // given
         final String rawUsers = "ㅁㅁㅁㅁ,ㅇㅇㅇㅇㅇ,아아아아아";
-        final Users users = Users.of(rawUsers);
+        final Users users = Users.ofSeparator(rawUsers);
 
         // when
         final String formatted = usersFormatter.format(users);
@@ -35,7 +35,7 @@ class UsersFormatterTest extends FormatterSupport {
     void should_equals_1_lengthUsername_and_expectFormatUsername() {
         // given
         final String rawUsers = "ㅁ,ㅇ,아";
-        final Users users = Users.of(rawUsers);
+        final Users users = Users.ofSeparator(rawUsers);
 
         // when
         final String formatted = usersFormatter.format(users);

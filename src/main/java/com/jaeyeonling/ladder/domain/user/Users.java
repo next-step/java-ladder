@@ -16,7 +16,7 @@ public class Users {
         this.users = users;
     }
 
-    public static Users of(final String rawUsers) {
+    public static Users ofSeparator(final String rawUsers) {
         final List<User> users = Arrays.stream(rawUsers.split(SEPARATOR))
                 .map(User::of)
                 .collect(Collectors.toList());
@@ -33,6 +33,6 @@ public class Users {
     }
 
     public CountOfUsers getCountOfUsers() {
-        return CountOfUsers.of(this);
+        return CountOfUsers.fromUsers(this);
     }
 }

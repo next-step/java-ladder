@@ -14,10 +14,10 @@ class LadderGameGeneratorTest {
     @Test
     void should_create() {
         // given
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(() -> true);
+        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(() -> true);
 
         // when
-        final LadderGameGenerator ladderGameGenerator = LadderGameGenerator.of(lineGenerator);
+        final LadderGameGenerator ladderGameGenerator = LadderGameGenerator.withLineGenerator(lineGenerator);
 
         // then
         assertThat(ladderGameGenerator).isNotNull();
@@ -27,8 +27,8 @@ class LadderGameGeneratorTest {
     @Test
     void should_create_ladderGame_by_ladderGameGenerator_when_generate() {
         // given
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(() -> true);
-        final LadderGameGenerator ladderGameGenerator = LadderGameGenerator.of(lineGenerator);
+        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(() -> true);
+        final LadderGameGenerator ladderGameGenerator = LadderGameGenerator.withLineGenerator(lineGenerator);
         final HeightOfLadder heightOfLadder = HeightOfLadder.valueOf(10);
 
         // when

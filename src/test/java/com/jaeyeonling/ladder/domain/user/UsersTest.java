@@ -16,7 +16,7 @@ class UsersTest {
     })
     void should_return_users_when_create_by_comma_separateValue(final String rawUsers) {
         // when
-        final Users users = Users.of(rawUsers);
+        final Users users = Users.ofSeparator(rawUsers);
         final int expectLength = rawUsers.split(Users.SEPARATOR).length;
 
         // then
@@ -32,7 +32,7 @@ class UsersTest {
     })
     void should_return_users_when_create_by_single_username(final String singleUsername) {
         // when
-        final Users users = Users.of(singleUsername);
+        final Users users = Users.ofSeparator(singleUsername);
 
         // then
         assertThat(users).isNotNull();

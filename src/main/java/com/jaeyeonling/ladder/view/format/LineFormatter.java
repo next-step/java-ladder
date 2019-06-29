@@ -12,7 +12,7 @@ public class LineFormatter implements Formatter<Line> {
         this.pointFormatter = pointFormatter;
     }
 
-    public static LineFormatter of(final Formatter<Boolean> pointFormatter) {
+    public static LineFormatter withPointFormatter(final Formatter<Boolean> pointFormatter) {
         return new LineFormatter(pointFormatter);
     }
 

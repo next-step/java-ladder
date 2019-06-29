@@ -8,7 +8,7 @@ public class StrategyBaseLineGenerator extends RoleBaseLineGenerator {
         this.pointGenerateStrategy = pointGenerateStrategy;
     }
 
-    public static StrategyBaseLineGenerator of(final PointGenerateStrategy pointGenerateStrategy) {
+    public static StrategyBaseLineGenerator withStrategy(final PointGenerateStrategy pointGenerateStrategy) {
         return new StrategyBaseLineGenerator(pointGenerateStrategy);
     }
 

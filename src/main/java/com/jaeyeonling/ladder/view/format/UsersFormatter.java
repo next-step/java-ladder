@@ -15,7 +15,7 @@ public class UsersFormatter implements Formatter<Users> {
         this.userFormatter = userFormatter;
     }
 
-    public static UsersFormatter of(final Formatter<User> userFormatter) {
+    public static UsersFormatter withUserFormatter(final Formatter<User> userFormatter) {
         return new UsersFormatter(userFormatter);
     }
 

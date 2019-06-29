@@ -16,7 +16,7 @@ public class LadderGameGenerator {
         this.lineGenerator = lineGenerator;
     }
 
-    public static LadderGameGenerator of(final LineGenerator lineGenerator) {
+    public static LadderGameGenerator withLineGenerator(final LineGenerator lineGenerator) {
         return new LadderGameGenerator(lineGenerator);
     }
 

@@ -16,11 +16,11 @@ public class CountOfUsers {
         this.countOfUsers = countOfUsers;
     }
 
-    public static CountOfUsers of(final Users users) {
+    static CountOfUsers fromUsers(final Users users) {
         return valueOf(Positive.valueOf(users.size()));
     }
 
-    public static CountOfUsers valueOf(final Positive countOfUsers) {
+    static CountOfUsers valueOf(final Positive countOfUsers) {
         return CACHE.computeIfAbsent(countOfUsers, CountOfUsers::new);
     }
 

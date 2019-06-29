@@ -13,7 +13,7 @@ public class UserFormatter implements Formatter<User> {
         this.usernameFormatter = usernameFormatter;
     }
 
-    public static UserFormatter of(final Formatter<Username> usernameFormatter) {
+    public static UserFormatter withUsernameFormatter(final Formatter<Username> usernameFormatter) {
         return new UserFormatter(usernameFormatter);
     }
 

@@ -13,7 +13,7 @@ class LineTest {
     @DisplayName("라인 생성을 성공한다.")
     @Test
     void should_create() {
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(() -> true);
+        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(() -> true);
 
         final Line line = lineGenerator.generate(Fixture.countOfusers);
 
@@ -23,7 +23,7 @@ class LineTest {
     @DisplayName("첫 라인과 앞 라인에 포인트가 있는 경우가 아니면 항상 포인트가 있다.")
     @Test
     void should_true_when_notFirst_and_notBeforeTrue() {
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(() -> true);
+        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(() -> true);
 
         final Line line = lineGenerator.generate(Fixture.countOfusers);
         final List<Boolean> points = line.getPoints();
