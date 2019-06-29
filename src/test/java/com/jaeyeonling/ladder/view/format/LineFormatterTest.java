@@ -15,12 +15,23 @@ class LineFormatterTest extends FormatterSupport {
         assertThat(lineFormatter).isNotNull();
     }
 
-    @DisplayName("라인 포맷팅에 성공한다.")
+    @DisplayName("포인트가 전부 없는 라인 포맷팅에 성공한다.")
     @Test
-    void should_equals_true_formattedLine_and_expectFormat() {
+    void should_equals_true_formattedLine_and_expectFormat_when_allFalseLine() {
         // when
         final String formatted = lineFormatter.format(Fixture.allFalseLine);
         final String expect = "     |".repeat(Fixture.allFalsePoint.size());
+
+        // then
+        assertThat(formatted).isEqualTo(expect);
+    }
+
+    @DisplayName("포인트가 전부 있는 라인 포맷팅에 성공한다.")
+    @Test
+    void should_equals_true_formattedLine_and_expectFormat_when_allTrueLine() {
+        // when
+        final String formatted = lineFormatter.format(Fixture.allTrueLine);
+        final String expect = "-----|".repeat(Fixture.allTruePoint.size());
 
         // then
         assertThat(formatted).isEqualTo(expect);
