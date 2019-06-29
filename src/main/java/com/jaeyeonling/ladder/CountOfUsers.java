@@ -14,7 +14,7 @@ public class CountOfUsers {
         this.countOfUsers = countOfUsers;
     }
 
-    public static CountOfUsers valueOf(final Users users) {
+    public static CountOfUsers of(final Users users) {
         return valueOf(Positive.valueOf(users.size()));
     }
 

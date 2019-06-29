@@ -9,19 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class UsersTest {
 
-    @DisplayName("유저들에 1명을 생성에 성공한다.")
-    @Test
-    void Create() {
-        // given
-        final String rawUsers = "user";
-
-        // when
-        final Users users = Users.of(rawUsers);
-
-        // then
-        assertThat(users).isNotNull();
-    }
-
     @DisplayName("유저들에 여러명을 생성에 성공한다.")
     @ParameterizedTest
     @ValueSource(strings = {
@@ -35,5 +22,18 @@ class UsersTest {
 
         // then
         assertThat(users.size()).isEqualTo(expectLength);
+    }
+
+    @DisplayName("유저들에 1명을 생성에 성공한다.")
+    @Test
+    void Create() {
+        // given
+        final String rawUsers = "user";
+
+        // when
+        final Users users = Users.of(rawUsers);
+
+        // then
+        assertThat(users).isNotNull();
     }
 }

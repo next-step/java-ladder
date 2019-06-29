@@ -33,6 +33,6 @@ public class Users {
     }
 
     CountOfUsers getCountOfUsers() {
-        return CountOfUsers.valueOf(this);
+        return CountOfUsers.of(this);
     }
 }
