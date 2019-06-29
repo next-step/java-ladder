@@ -11,15 +11,15 @@ public class LadderTest {
     @Test
     void createLadder_success() {
         // given
-        int numberOfLines = 4;
+        int numberOfPlayers = 4;
         int numberOfColumns = 6;
 
         // when
-        Ladder ladder = Ladder.generate(numberOfColumns, numberOfLines);
+        Ladder ladder = Ladder.generate(numberOfColumns, numberOfPlayers);
 
         // then
         assertThat(ladder).isNotNull();
         assertThat(ladder.getLines()).hasSize(numberOfColumns);
-        assertThat(ladder.getLines().get(0).getPoints()).hasSize(numberOfLines);
+        assertThat(ladder.getLines().get(0).getPoints()).hasSize(numberOfPlayers);
     }
 }

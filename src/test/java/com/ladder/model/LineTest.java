@@ -11,24 +11,24 @@ public class LineTest {
     @Test
     void createLine_success() {
         // given
-        int numberOfPerson = 5;
+        int numberOfPlayers = 5;
         // when
-        Line positions = Line.of(numberOfPerson);
+        Line points = Line.of(numberOfPlayers);
         // then
-        assertThat(positions).isNotNull();
-        assertThat(positions.getPoints()).hasSize(numberOfPerson);
+        assertThat(points).isNotNull();
+        assertThat(points.getPoints()).hasSize(numberOfPlayers);
     }
 
     @DisplayName("위치를 갖는 한 개의 라인을 생성한다")
     @Test
     void createLine_hasStrategy_success() {
         // given
-        int numberOfPerson = 2;
+        int numberOfPlayers = 2;
         // when
-        Line positions = Line.of(numberOfPerson, ()-> true);
+        Line points = Line.of(numberOfPlayers, ()-> true);
         // then
-        assertThat(positions).isNotNull();
-        assertThat(positions.getPoints()).containsExactly(true, false);
+        assertThat(points).isNotNull();
+        assertThat(points.getPoints()).containsExactly(true, false);
     }
 
 }

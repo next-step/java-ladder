@@ -10,8 +10,8 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder generate(int numberOfColumns, int numberOfUsers) {
-        return new Ladder(Lines.of(numberOfColumns, numberOfUsers));
+    public static Ladder generate(int numberOfColumns, int numberOfPlayers) {
+        return new Ladder(Lines.of(numberOfColumns, numberOfPlayers));
     }
 
     public List<Line> getLines() {

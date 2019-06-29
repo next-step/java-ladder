@@ -15,11 +15,11 @@ class LinesTest {
     @Test
     void createLines_success() {
         // given
-        int numberOfUsers = 4;
+        int numberOfPlayers = 4;
         int numberOfColumns = 6;
 
         // when
-        Lines lines = Lines.of(numberOfColumns, numberOfUsers);
+        Lines lines = Lines.of(numberOfColumns, numberOfPlayers);
 
         // then
         assertThat(lines).isNotNull();

@@ -17,12 +17,12 @@ public class Lines {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Lines of(int numberOfColumns, int numberOfUsers) {
+    public static Lines of(int numberOfColumns, int numberOfPlayers) {
         if (numberOfColumns < MIN_NUMBER_OF_COLUMNS) {
             throw new LadderColumnsException();
         }
         List<Line> lines = IntStream.range(0, numberOfColumns)
-                .mapToObj((num) -> Line.of(numberOfUsers))
+                .mapToObj((num) -> Line.of(numberOfPlayers))
                 .collect(Collectors.toList());
         return new Lines(lines);
     }

@@ -11,9 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PointsGeneratorTest {
 
-    private final int countByPlayers = 5;
-    private final PointsGenerator pointsGenerator = new PointsGenerator(() -> true);
-    private final List<Boolean> points = pointsGenerator.generate(countByPlayers);
+    private PointsGenerator pointsGenerator;
+
+    @BeforeEach
+    void setUp() {
+        pointsGenerator = new PointsGenerator(() -> true);
+    }
 
     @DisplayName("플레이어 수 만큼 위치를 생성하는데 성공한다")
     @Test
@@ -26,21 +29,23 @@ class PointsGeneratorTest {
         assertThat(points).hasSize(countByPlayers);
     }
 
-    @DisplayName("전 위치가 true면 현 위치는 항상 false이다.")
+    @DisplayName("전 위치에서 이동가능 한 경우, 위치는 이동이 불가능하다.")
     @Test
     void whenBeforePointTrue_Then_currentPoint_isFalse() {
         // when
-        boolean nextPosition = points.get(1);
+        List<Boolean> points = pointsGenerator.generate(5);
+        boolean nextPoint = points.get(1);
         // then
-        assertThat(nextPosition).isFalse();
+        assertThat(nextPoint).isFalse();
     }
 
-    @DisplayName("마지막 위치는 항상 false 이다")
+    @DisplayName("마지막 위치는 항상 이동이 불가능하다")
     @Test
     void lastPoint_isFalse_success() {
         // when
-        boolean lastPosition = points.get(points.size() - 1);
+        List<Boolean> points = pointsGenerator.generate(5);
+        boolean lastPoint = points.get(points.size() - 1);
         // then
-        assertThat(lastPosition).isFalse();
+        assertThat(lastPoint).isFalse();
     }
 }

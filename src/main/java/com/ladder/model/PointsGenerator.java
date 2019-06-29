@@ -6,6 +6,7 @@ import java.util.List;
 public class PointsGenerator {
 
     private final PointStrategy pointStrategy;
+    private List<Boolean> points = new ArrayList<>();
 
     PointsGenerator() {
         this.pointStrategy = new PointRandomStrategy();
@@ -16,21 +17,24 @@ public class PointsGenerator {
     }
 
     List<Boolean> generate(int countByPlayers) {
-        List<Boolean> points = new ArrayList();
         points.add(pointStrategy.generate());
         for (int i = 1; i < countByPlayers - 1; i++) {
             Boolean beforePoint = points.get(i - 1);
-            generateNextPoint(points, beforePoint);
+            generateNextPoint(beforePoint);
         }
-        points.add(false);
+        generateEndPoint();
         return points;
     }
 
-    private void generateNextPoint(List<Boolean> points, boolean before) {
+    private void generateNextPoint(boolean before) {
         if (before) {
             points.add(false);
             return;
         }
         points.add(pointStrategy.generate());
+    }
+
+    private void generateEndPoint() {
+        points.add(false);
     }
 }
