@@ -38,4 +38,23 @@ class UsernameFormatterTest {
         assertThat(formattedUsername).hasSize(Username.MAX_LENGTH);
     }
 
+    @DisplayName("포맷팅 후 trim 시 입력과 같은 값이어야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "김재연",
+            "matt",
+            "kjy",
+            "ggg",
+            "다섯글자다"
+    })
+    void FormatAndTrim_Username_ShouldSameValue(final String rawUsername) {
+        // given
+        final Username username = Username.of(rawUsername);
+
+        // when
+        final String formattedUsername = usernameFormatter.format(username).trim();
+
+        // then
+        assertThat(formattedUsername).isEqualTo(rawUsername);
+    }
 }
