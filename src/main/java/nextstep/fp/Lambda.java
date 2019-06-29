@@ -27,30 +27,33 @@ public class Lambda {
 	}
 
 	public static int sumAll(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        total += number;
-	    }
-	    return total;
+	    return sumAll(numbers, isAllTrue());
 	}
 	
 	public static int sumAllEven(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        if (number % 2 == 0) {
-	            total += number;
-	        }
-	    }
-	    return total;
+	    return sumAll(numbers, isAllEven());
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	    	if (number > 3) {
-	    		total += number;
-	    	}
-	    }
-	    return total;
+	    return sumAll(numbers, isAllOverThree());
+	}
+	
+	private static Conditional isAllTrue() {
+		return number -> true;
+	}
+	
+	private static Conditional isAllEven() {
+		return number -> number % 2 == 0;
+	}
+	
+	private static Conditional isAllOverThree() {
+		return number -> number > 3;
+	}
+	
+	private static int sumAll(List<Integer> numbers, Conditional c) {
+		return numbers.stream()
+			.filter(c::test)
+			.mapToInt(number -> number)
+			.sum();
 	}
 }
