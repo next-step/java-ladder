@@ -13,6 +13,7 @@ public class LadderPlayerNames {
         String[] playerNameStrings = playerNamesString.split(",");
 
         List<LadderPlayerName> ladderPlayerNames = Arrays.stream(playerNameStrings)
+                                                         .map(String::trim)
                                                          .map(LadderPlayerName::of)
                                                          .collect(Collectors.toList());
 
