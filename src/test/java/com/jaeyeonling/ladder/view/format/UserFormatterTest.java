@@ -9,10 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UserFormatterTest {
-
-    private static final Formatter<Username> usernameFormatter = new UsernameFormatter();
-    private static final Formatter<User> userFormatter = UserFormatter.of(usernameFormatter);
+class UserFormatterTest extends FormatterSupport {
 
     @DisplayName("유저 포매터 생성에 성공한다.")
     @Test

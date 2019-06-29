@@ -8,9 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UsernameFormatterTest {
-
-    private static final Formatter<Username> usernameFormatter = new UsernameFormatter();
+class UsernameFormatterTest extends FormatterSupport {
 
     @DisplayName("유저 이름 포매터 생성에 성공한다.")
     @Test
