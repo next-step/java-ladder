@@ -1,8 +1,6 @@
 package com.jaeyeonling.ladder.domain.line;
 
 import com.jaeyeonling.ladder.domain.Fixture;
-import com.jaeyeonling.ladder.domain.line.Line;
-import com.jaeyeonling.ladder.domain.line.Lines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
