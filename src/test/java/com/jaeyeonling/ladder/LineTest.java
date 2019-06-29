@@ -7,10 +7,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
-    @DisplayName("라인 생성에 성공한다.")
+    @DisplayName("라인 생성을 성공한다.")
     @Test
-    void Create() {
-        final Line line = Line.of(0);
+    void should_create() {
+        final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(() -> true);
+
+        final Line line = lineGenerator.generate(Fixture.countOfusers);
 
         assertThat(line).isNotNull();
     }

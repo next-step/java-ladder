@@ -19,7 +19,14 @@ class UserFormatterTest extends FormatterSupport {
     }
 
     @DisplayName("포맷팅 시 길이는 " + Username.MAX_LENGTH + " 이어야 한다.")
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "김재연",
+            "matt",
+            "kjy",
+            "ggg",
+            "다섯글자다"
+    })
     void should_equals_formattedUser_and_maxUsernameLength(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
