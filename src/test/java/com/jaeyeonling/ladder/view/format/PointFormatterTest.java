@@ -13,4 +13,18 @@ class PointFormatterTest extends FormatterSupport {
         // then
         assertThat(pointFormatter).isNotNull();
     }
+
+    @DisplayName("포인트가 True 인 경우 포맷팅에 성공한다.")
+    @Test
+    void should_equals_true_formattedPoint_and_expectFormat() {
+        // given
+        final boolean point = true;
+
+        // when
+        final String formatted = pointFormatter.format(point);
+        final String expect = "-----|";
+
+        // then
+        assertThat(formatted).isEqualTo(expect);
+    }
 }
