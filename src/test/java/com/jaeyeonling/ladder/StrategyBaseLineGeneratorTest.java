@@ -11,7 +11,7 @@ class StrategyBaseLineGeneratorTest {
 
     @DisplayName("첫 포인트는 무조건 False를 리턴한다.")
     @Test
-    void Generate_FirstPointFalse_Always() {
+    void should_return_false_when_if_firstPoint() {
         final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(() -> true);
 
         final Users users = Users.of("1ddd,g23,g3223");
@@ -27,7 +27,7 @@ class StrategyBaseLineGeneratorTest {
 
     @DisplayName("앞 포인트가 True면 다음 포인트는 무조건 False를 리턴한다.")
     @Test
-    void Generate_IfBeforeTrue_Always() {
+    void should_return_false_when_if_before_point_true() {
         final LineGenerator lineGenerator = StrategyBaseLineGenerator.of(() -> true);
 
         final Users users = Users.of("1,2,3,4,5,6,7");

@@ -20,7 +20,7 @@ class UsernameTest {
             "kjy",
             "ggg"
     })
-    void Create(final String rawUsername) {
+    void should_return_username_when_create_by_username(final String rawUsername) {
         // when
         final Username username = Username.of(rawUsername);
 
@@ -31,7 +31,7 @@ class UsernameTest {
     @DisplayName("유저 이름에 빈 값이나 null 값이 들어가면 실패한다.")
     @ParameterizedTest
     @NullAndEmptySource
-    void Create_UsernameEmptyOrNull_ThrowException(final String rawUsername) {
+    void should_throw_EmptyUsernameException_when_create_by_emptyOrNullUsername(final String rawUsername) {
         Assertions.assertThatExceptionOfType(EmptyUsernameException.class)
                 .isThrownBy(() -> {
                     Username.of(rawUsername);
@@ -46,7 +46,8 @@ class UsernameTest {
             "kjysgadasadgads",
             "gggdsa 아ㅏㅏㅏㅏㅏ sadsas "
     })
-    void Create_LongerThanMaxLengthUsername_ThrowException(final String longerThanMaxLengthUsername) {
+    void should_throw_LongerThanMaxLengthUsernameException_when_create_by_longerThanMaxLengthUsername(
+            final String longerThanMaxLengthUsername) {
         Assertions.assertThatExceptionOfType(LongerThanMaxLengthUsernameException.class)
                 .isThrownBy(() -> {
                     Username.of(longerThanMaxLengthUsername);
@@ -61,7 +62,7 @@ class UsernameTest {
             "kjy",
             "ggg"
     })
-    void Equals_SameUsername_EqualsObject(final String rawUsername) {
+    void should_equals_object_when_create_by_same_username(final String rawUsername) {
         // given
         final Username username = Username.of(rawUsername);
         final Username expect = Username.of(rawUsername);

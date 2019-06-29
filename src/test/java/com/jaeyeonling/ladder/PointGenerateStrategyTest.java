@@ -9,7 +9,7 @@ class PointGenerateStrategyTest {
 
     @DisplayName("무조건 True를 리턴한다.")
     @Test
-    void Create_True_Always() {
+    void should_return_true_always_when_generate_by_trueStrategy() {
         final PointGenerateStrategy pointGenerateStrategy = () -> true;
 
         assertThat(pointGenerateStrategy.generate()).isTrue();
@@ -17,7 +17,7 @@ class PointGenerateStrategyTest {
 
     @DisplayName("무조건 False를 생성한다.")
     @Test
-    void Create_False_Always() {
+    void should_return_false_always_when_generate_by_falseStrategy() {
         final PointGenerateStrategy pointGenerateStrategy = () -> false;
 
         assertThat(pointGenerateStrategy.generate()).isFalse();

@@ -3,7 +3,6 @@ package com.jaeyeonling.ladder;
 import com.jaeyeonling.ladder.exception.LongerThanMaxLengthUsernameException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -12,11 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UserTest {
 
     @DisplayName("유저 생성에 성공한다.")
-    @Test
-    void Create() {
-        // given
-        final Username username = Username.of("TEST");
-
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "T",
+            "TEST!"
+    })
+    void should_return_user_when_create_by_username(final String username) {
         // when
         final User user = User.of(username);
 
@@ -32,7 +32,8 @@ class UserTest {
             "kjysgadasadgads",
             "gggdsa 아ㅏㅏㅏㅏㅏ sadsas "
     })
-    void Create_LongerThanMaxLengthUsername_ThrowException(final String longerThanMaxLengthUsername) {
+    void should_throw_LongerThanMaxLengthUsernameException_when_create_by_longerThanMaxLengthUsername(
+            final String longerThanMaxLengthUsername) {
         Assertions.assertThatExceptionOfType(LongerThanMaxLengthUsernameException.class)
                 .isThrownBy(() -> {
                     User.of(longerThanMaxLengthUsername);
@@ -47,7 +48,7 @@ class UserTest {
             "kjy",
             "ggg"
     })
-    void Equals_SameUsername_EqualsObject(final String rawUsername) {
+    void should_equals_object_when_create_by_same_username(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
         final User expect = User.of(rawUsername);

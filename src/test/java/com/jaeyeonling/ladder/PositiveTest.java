@@ -16,7 +16,7 @@ class PositiveTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void Create(final int lowPositive) {
+    void should_return_positive_when_create_by_positiveNumber(final int lowPositive) {
         // when
         final Positive positive = Positive.valueOf(lowPositive);
 
@@ -26,7 +26,7 @@ class PositiveTest {
 
     @DisplayName("음수 값이 들어가면 실패한다.")
     @Test
-    void Create_NegativeNumber_ThrowException() {
+    void should_throw_ShorterThanMinPositiveException_when_create_by_negativeNumber() {
         Assertions.assertThatExceptionOfType(ShorterThanMinPositiveException.class)
                 .isThrownBy(() -> {
                     Positive.valueOf(-1);
@@ -38,10 +38,10 @@ class PositiveTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void Equals_SameUsername_EqualsObject(final int lowPosition) {
+    void should_return_equalsObject_when_equalsPositive(final int lowPositive) {
         // given
-        final Positive positive = Positive.valueOf(lowPosition);
-        final Positive expect = Positive.valueOf(lowPosition);
+        final Positive positive = Positive.valueOf(lowPositive);
+        final Positive expect = Positive.valueOf(lowPositive);
 
         // when
         final boolean equals = positive.equals(expect);

@@ -1,7 +1,6 @@
 package com.jaeyeonling.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -15,7 +14,7 @@ class UsersTest {
             "김재연,matt,kjy,ggg,다섯글자다",
             "김,kjy,글자다"
     })
-    void Create_CommaValue(final String rawUsers) {
+    void should_return_users_when_create_by_comma_separateValue(final String rawUsers) {
         // when
         final Users users = Users.of(rawUsers);
         final int expectLength = rawUsers.split(Users.SEPARATOR).length;
@@ -25,13 +24,15 @@ class UsersTest {
     }
 
     @DisplayName("유저들에 1명을 생성에 성공한다.")
-    @Test
-    void Create() {
-        // given
-        final String rawUsers = "user";
-
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "d",
+            "zzzdd",
+            "김재연"
+    })
+    void should_return_users_when_create_by_single_username(final String singleUsername) {
         // when
-        final Users users = Users.of(rawUsers);
+        final Users users = Users.of(singleUsername);
 
         // then
         assertThat(users).isNotNull();

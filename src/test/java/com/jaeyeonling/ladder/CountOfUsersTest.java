@@ -11,7 +11,7 @@ class CountOfUsersTest {
 
     @DisplayName("유저의 갯수를 생성에 성공한다.")
     @Test
-    void Create() {
+    void should_return_countOfUsers_when_usersGetCountOfUsers() {
         // when
         final Users users = Users.of("a,b,c");
         final CountOfUsers countOfUsers = users.getCountOfUsers();
@@ -26,7 +26,7 @@ class CountOfUsersTest {
             "김재연,matt,kjy,ggg,다섯글자다",
             "김,kjy,글자다"
     })
-    void Equals_SameUsers_EqualsObject(final String rawUsers) {
+    void should_return_equalsObject_when_sameUsers(final String rawUsers) {
         // given
         final Users users = Users.of(rawUsers);
         final CountOfUsers countOfUsers = users.getCountOfUsers();
