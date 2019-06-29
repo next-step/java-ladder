@@ -38,4 +38,25 @@ class UserTest {
                     User.of(longerThanMaxLengthUsername);
                 });
     }
+
+    @DisplayName("유저 이름이 같다면 같은 객체여야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "김재연",
+            "matt",
+            "kjy",
+            "ggg"
+    })
+    void Equals_SameUsername_EqualsObject(final String rawUsername) {
+        // given
+        final User user = User.of(rawUsername);
+        final User expect = User.of(rawUsername);
+
+        // when
+        final boolean equals = user.equals(expect);
+
+        // then
+        assertThat(equals).isTrue();
+        assertThat(user == expect).isTrue();
+    }
 }
