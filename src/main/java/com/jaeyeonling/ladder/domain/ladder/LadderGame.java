@@ -14,16 +14,16 @@ public class LadderGame {
         this.lines = lines;
     }
 
+    public static LadderGame of(final Users users,
+                                final Lines lines) {
+        return new LadderGame(users, lines);
+    }
+
     public Users getUsers() {
         return users;
     }
 
     public Lines getLines() {
         return lines;
-    }
-
-    public static LadderGame of(final Users users,
-                                final Lines lines) {
-        return new LadderGame(users, lines);
     }
 }
