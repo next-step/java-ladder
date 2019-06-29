@@ -16,7 +16,7 @@ public class HeightOfLadder {
         this.heightOfLadder = heightOfLadder;
     }
 
-    public static HeightOfLadder of(final int heightOfLadder) {
+    public static HeightOfLadder valueOf(final int heightOfLadder) {
         return valueOf(Positive.valueOf(heightOfLadder));
     }
 

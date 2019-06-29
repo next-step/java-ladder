@@ -15,7 +15,7 @@ class HeightOfLadderTest {
     })
     void should_return_heightOfLadder_when_create_by_rawHeightOfLadder(final int rawHeightOfLadder) {
         // when
-        final HeightOfLadder heightOfLadder = HeightOfLadder.of(rawHeightOfLadder);
+        final HeightOfLadder heightOfLadder = HeightOfLadder.valueOf(rawHeightOfLadder);
 
         // then
         assertThat(heightOfLadder).isNotNull();
@@ -28,8 +28,8 @@ class HeightOfLadderTest {
     })
     void should_return_equalsObject_when_sameHeightOfLadder(final int rawHeightOfLadder) {
         // given
-        final HeightOfLadder heightOfLadder = HeightOfLadder.of(rawHeightOfLadder);
-        final HeightOfLadder expect = HeightOfLadder.of(rawHeightOfLadder);
+        final HeightOfLadder heightOfLadder = HeightOfLadder.valueOf(rawHeightOfLadder);
+        final HeightOfLadder expect = HeightOfLadder.valueOf(rawHeightOfLadder);
 
         // when
         final boolean equals = heightOfLadder.equals(expect);
