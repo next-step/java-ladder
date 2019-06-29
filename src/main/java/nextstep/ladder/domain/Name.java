@@ -16,6 +16,8 @@ public class Name {
 
     private static final int RANGE_NAME_MAX_LENGTH = 5;
     private static final int RANGE_NAME_MIN_LENGTH = 1;
+    private static final int PRINT_NAME_FIVE_LETTER_INDXE_RANGE = 6;
+    private static final String PRINT_NAME_FIVE_LETTER_MATCH_SPACE = " ";
     private final String name;
 
     public Name(String name) {
@@ -36,7 +38,6 @@ public class Name {
     equals()를 오버라이딩 해서 사용중이고 console에도 hashcode의 주소값이 같게 되어있는데 false로만 떨어지네요.
      */
     public boolean isName(Name sourceName) {
-//        return this.equals(sourceName);
         return name.equals(sourceName.name);
     }
 
@@ -50,10 +51,17 @@ public class Name {
         return Objects.hash(name);
     }
 
+    /*
+    출력에 필요한 커스터마이징
+     */
     @Override
     public String toString() {
-        return "Name{" +
-                "name='" + name + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        int appendCount = PRINT_NAME_FIVE_LETTER_INDXE_RANGE - name.length();
+        for (int i = 0; i < appendCount; i++) {
+            sb.append(PRINT_NAME_FIVE_LETTER_MATCH_SPACE);
+        }
+        return sb.toString();
     }
 }

@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -30,6 +31,7 @@ public class Custom {
     public static Custom of(List<String> names) {
         return new Custom(names.stream()
                 .distinct()
+                .filter(name -> !"".equals(name))
                 .map(name -> Name.of(name.trim()))
                 .collect(Collectors.toList()));
     }
@@ -43,6 +45,10 @@ public class Custom {
                 .filter(sourceName -> sourceName.isName(name))
                 .findFirst()
                 .isPresent();
+    }
+
+    public Stream<Name> stream() {
+        return names.stream();
     }
 
     @Override
