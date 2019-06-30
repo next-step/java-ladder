@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Custom;
+import nextstep.ladder.domain.Ladder;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -14,4 +15,6 @@ import nextstep.ladder.domain.Custom;
  */
 public interface ResultView {
     void printCustoms(Custom custom);
+
+    void printLadder(Ladder ladder);
 }
