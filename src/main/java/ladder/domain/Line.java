@@ -14,4 +14,8 @@ public class Line {
         return points.size();
     }
 
+    public boolean isLine(int point) {
+        return points.get(point);
+    }
+
 }

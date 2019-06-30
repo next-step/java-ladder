@@ -9,8 +9,15 @@ public class LadderGenerator {
 
     public static Line lineGenerator(int input) {
         List<Boolean> points = new ArrayList<>();
+        points.add(random.nextBoolean());
         for (int i = 1; i < input; i++) {
-            points.add(random.nextBoolean());
+            if (points.get(i - 1)) {
+                points.add(false);
+                continue;
+            }
+            if (!points.get(i - 1)) {
+                points.add(random.nextBoolean());
+            }
         }
         return new Line(points);
     }
