@@ -7,7 +7,7 @@ public class Ladder {
 
     private List<Layer> layers;
 
-    public Ladder(List<Layer> layers) {
+    private Ladder(List<Layer> layers) {
         this.layers = layers;
     }
 

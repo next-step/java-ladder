@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Layer {
-    final static int ONE_RUNG = 1;
+    private final static int ONE_RUNG = 1;
     private List<Rung> rungs;
 
     private Layer(List<Boolean> rungs) {
         verifyRule(rungs);
         this.rungs = rungs.stream()
-                .map(Rung::new)
+                .map(Rung::of)
                 .collect(Collectors.toList());
     }
 

@@ -4,7 +4,7 @@ public class Rung {
 
     private Boolean isRung;
 
-    public Rung(boolean rung) {
+    private Rung(boolean rung) {
         this.isRung = rung;
     }
 
@@ -14,9 +14,5 @@ public class Rung {
 
     public boolean value() {
         return isRung;
-    }
-
-    public boolean isEmpty() {
-        return !isRung;
     }
 }
