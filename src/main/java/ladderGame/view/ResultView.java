@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class ResultView {
 
     private static final String PLAYER_PRINT_INTERVAL = "\t";
-    private static final String EMPTY_RUNG = "    |";
-    private static final String RUNG = "----|";
+    private static final String EMPTY_RUNG = "     |";
+    private static final String RUNG = "-----|";
 
 
     public static void drawLadderAndPlayer(Players players, Ladder ladder) {
