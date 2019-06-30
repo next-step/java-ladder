@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 public class Line {
     private final int START_POINT = 0;
     private final int ONCE_POINT = 1;
+    private final int REMOVE_FINAL_LINE = 1;
 
     private List<Boolean> points = new ArrayList<>();
 
@@ -19,7 +20,7 @@ public class Line {
     }
 
     private void makeLine(int countOfPerson) {
-        IntStream.range(0, countOfPerson - 1)
+        IntStream.range(0, countOfPerson - REMOVE_FINAL_LINE)
                 .forEach(point -> points.add(createPoint(point)));
     }
 
