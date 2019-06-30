@@ -33,4 +33,16 @@ public class CustomTest {
 
         assertThat(custom.hasCustom(kwon)).isTrue();
     }
+
+    @DisplayName("입력된 사용자의 count 가지고 오기")
+    @Test
+    void countCustoms() {
+        List<Name> customName = Arrays.asList(
+                Name.of("kwon"),
+                Name.of("byeon"),
+                Name.of("yun"));
+
+        Custom custom = new Custom(customName);
+        assertThat(custom.count()).isEqualTo(3);
+    }
 }
