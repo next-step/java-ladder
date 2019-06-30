@@ -24,4 +24,11 @@ public class Link {
     public boolean status() {
         return this.link;
     }
+
+    @Override
+    public String toString() {
+        return "Link{" +
+                "link=" + link +
+                '}';
+    }
 }
