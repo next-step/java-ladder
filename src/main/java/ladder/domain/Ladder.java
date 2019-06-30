@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -13,7 +14,11 @@ public class Ladder {
         return ladder.size();
     }
 
-    public int sizeOfLine() {
+    public int countOfLine() {
         return ladder.get(0).size();
+    }
+
+    public List<Line> isLadderInfo() {
+        return Collections.unmodifiableList(ladder);
     }
 }

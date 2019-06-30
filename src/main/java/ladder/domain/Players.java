@@ -21,4 +21,16 @@ public class Players {
         return players.size();
     }
 
+    public int lengthOfLongestName() {
+        return players.stream()
+                .map(player -> player.lengthOfName())
+                .max(Integer::compareTo).get();
+    }
+
+    public List<String> isPlayersNameList() {
+        return players.stream()
+                .map(player -> player.isName())
+                .collect(Collectors.toList());
+    }
+
 }

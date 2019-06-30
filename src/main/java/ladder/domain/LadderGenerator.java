@@ -7,10 +7,10 @@ import java.util.Random;
 public class LadderGenerator {
     private static Random random = new Random();
 
-    public static Ladder ladderGenerator(int height, int countOfPlayers) {
+    public static Ladder ladderGenerator(int height, Players players) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(lineGenerator(countOfPlayers - 1));
+            ladder.add(lineGenerator(players.size() - 1));
         }
         return new Ladder(ladder);
     }

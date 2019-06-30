@@ -26,14 +26,14 @@ public class LadderGeneratorTest {
     }
 
     @Test
-    @DisplayName("입력한 값(Height/Person)으로 사다리 생성 ")
+    @DisplayName("입력한 값(Height/Players)으로 사다리 생성 ")
     void ladderGeneratorTest() {
         int height = 5;
-        int countOfPerson = 5;
-        Ladder ladder = LadderGenerator.ladderGenerator(height, countOfPerson);
+        Players players = new Players("Keep, Going, MJH, Super, HeroM");
+        Ladder ladder = LadderGenerator.ladderGenerator(height, players);
 
         assertThat(ladder.height()).isEqualTo(height);
-        assertThat(ladder.sizeOfLine()).isEqualTo(countOfPerson - 1);
+        assertThat(ladder.countOfLine()).isEqualTo(players.size());
     }
 
 }

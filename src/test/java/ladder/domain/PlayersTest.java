@@ -22,4 +22,12 @@ public class PlayersTest {
         Players players = new Players(player);
         assertThat(players.size()).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("플레이어 이름중 가장 긴 이름의 길이 확인 테스트")
+    void lengthOfLongestName() {
+        String player = "Keep, Going, MJH, Super, HeroM";
+        Players players = new Players(player);
+        assertThat(players.lengthOfLongestName()).isEqualTo(5);
+    }
 }

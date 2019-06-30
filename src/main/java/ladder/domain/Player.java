@@ -19,4 +19,8 @@ public class Player {
     public String isName() {
         return name;
     }
+
+    public int lengthOfName() {
+        return name.length();
+    }
 }
