@@ -12,5 +12,6 @@ package nextstep.ladder.view;
  */
 public interface InputView {
     String inputCustomNames();
+
     int inputLadderHeight();
 }
