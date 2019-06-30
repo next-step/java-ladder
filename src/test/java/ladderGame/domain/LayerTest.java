@@ -13,7 +13,7 @@ class LayerTest {
     @DisplayName("생성된 층의 개수 확인")
     public void create() {
 
-        Layer layer = Layer.fromEntry(Arrays.asList(true, false, true, false));
+        Layer layer = Layer.of(Arrays.asList(true, false, true, false));
         assertThat(layer.getRungs().size()).isEqualTo(4);
 
     }
@@ -23,7 +23,7 @@ class LayerTest {
     public void createByEntry() {
 
         Layer layer = Layer.fromEntry(5);
-        assertThat(layer.getRungs().size()).isEqualTo(5);
+        assertThat(layer.getRungs().size()).isEqualTo(4);
 
     }
 
