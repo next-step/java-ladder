@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.model;
 
 import java.util.Objects;
 

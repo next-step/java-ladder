@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Line {
     }
 
     private boolean isExistBefore(int point) {
-        if(START_POINT < point) {
+        if (START_POINT < point) {
             return points.get(point - ONCE_POINT);
         }
         return false;

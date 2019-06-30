@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.model;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Players {
     private List<Player> names;
 
-    Players(String continuousName) {
+    public Players(String continuousName) {
         this.names = splitName(continuousName);
     }
 
@@ -15,7 +15,7 @@ public class Players {
         String[] names = continuousName.replace(" ", "").split(",");
         return Arrays.stream(names)
                 .peek(name -> {
-                    if (name.length()>5) {
+                    if (name.length() > 5) {
                         throw new IllegalArgumentException("각 이름은 다섯 글자 내로 입력해주세요.");
                     }
                 })

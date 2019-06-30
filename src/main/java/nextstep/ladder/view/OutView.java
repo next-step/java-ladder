@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
 public class OutView {
     private static String ASK_PLAYERS_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -19,5 +19,9 @@ public class OutView {
 
     public static void askLadderHeight() {
         println(ASK_LADDER_HEIGHT);
+    }
+
+    public static void printResult() {
+        println(GAME_RESULT);
     }
 }

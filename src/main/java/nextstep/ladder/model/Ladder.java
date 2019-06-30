@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.model;
+
+import nextstep.ladder.view.LineFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
