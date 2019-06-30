@@ -23,8 +23,10 @@ class PointsGeneratorTest {
     void createPoint_countByPlayer_success() {
         // given
         int countByPlayers = 5;
+
         // when
         List<Boolean> points = pointsGenerator.generate(countByPlayers);
+
         // then
         assertThat(points).hasSize(countByPlayers);
     }
@@ -35,6 +37,7 @@ class PointsGeneratorTest {
         // when
         List<Boolean> points = pointsGenerator.generate(5);
         boolean nextPoint = points.get(1);
+
         // then
         assertThat(nextPoint).isFalse();
     }
@@ -45,6 +48,7 @@ class PointsGeneratorTest {
         // when
         List<Boolean> points = pointsGenerator.generate(5);
         boolean lastPoint = points.get(points.size() - 1);
+
         // then
         assertThat(lastPoint).isFalse();
     }

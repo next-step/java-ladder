@@ -12,8 +12,10 @@ public class LineTest {
     void createLine_success() {
         // given
         int numberOfPlayers = 5;
+
         // when
         Line points = Line.of(numberOfPlayers);
+
         // then
         assertThat(points).isNotNull();
         assertThat(points.getPoints()).hasSize(numberOfPlayers);
@@ -24,8 +26,10 @@ public class LineTest {
     void createLine_hasStrategy_success() {
         // given
         int numberOfPlayers = 2;
+
         // when
-        Line points = Line.of(numberOfPlayers, ()-> true);
+        Line points = Line.of(numberOfPlayers, () -> true);
+
         // then
         assertThat(points).isNotNull();
         assertThat(points.getPoints()).containsExactly(true, false);

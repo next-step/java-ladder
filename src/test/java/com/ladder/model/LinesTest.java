@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static com.ladder.model.Lines.MIN_NUMBER_OF_COLUMNS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -26,9 +27,9 @@ class LinesTest {
         assertThat(lines.getLines()).hasSize(6);
     }
 
-    @DisplayName("사다리 높이 또는 플레이어의 수가 0보다 작을 시 exception")
+    @DisplayName("사다리 높이 또는 플레이어의 수가 " + MIN_NUMBER_OF_COLUMNS + "보다 작을 시 생성에 실패한다")
     @ParameterizedTest
-    @ValueSource(ints = {-1, 0})
+    @ValueSource(ints = {MIN_NUMBER_OF_COLUMNS - 1, MIN_NUMBER_OF_COLUMNS -2})
     void createLines_noPositive_exception(int numberOfColumns) {
         assertThatExceptionOfType(LadderColumnsException.class)
                 .isThrownBy(() -> Lines.of(numberOfColumns, 1));

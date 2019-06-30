@@ -16,8 +16,10 @@ class PlayerFormatterTest {
         // given
         Player player = Player.of("pobi");
         String expected = "  pobi";
+
         // when
         String result =userNameFormatter.format(player);
+
         // then
         assertThat(result).isEqualTo(expected);
     }

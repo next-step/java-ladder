@@ -18,8 +18,10 @@ class PlayersTest {
         // given
         String names = "a,b,c,d,e";
         int expectedSize = 5;
+
         // when
         Players result = Players.of(names);
+
         // then
         assertThat(result.getPlayers()).contains(Player.of("a"),
                                                     Player.of("b"),
@@ -29,7 +31,7 @@ class PlayersTest {
         assertThat(result.getPlayers()).hasSize(expectedSize);
     }
 
-    @DisplayName("플레이어가 " + MIN_NUMBER_OF_PLAYERS + "미만일 시 exception")
+    @DisplayName("플레이어가 " + MIN_NUMBER_OF_PLAYERS + "미만일 시 생성에 실패한다")
     @Test
     void createUsername_whenOnePlayer_exception() {
         String onePlayer = "pobi";
@@ -37,7 +39,7 @@ class PlayersTest {
                 .isThrownBy(() -> Players.of(onePlayer));
     }
 
-    @DisplayName("플레이어 생성 시 공백 및 null 일 시 exception")
+    @DisplayName("플레이어 생성 시 공백 및 null 일 시 실패한다")
     @ParameterizedTest
     @NullAndEmptySource
     void createUsername_whenEmptyOrNull_exception(String wrongPlayers) {
