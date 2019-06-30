@@ -41,8 +41,10 @@ public class LadderApplication {
         // 사다리 높이 입력받기
         int ladderHeight = inputView.inputLadderHeight();
         // 사다리 생성 (사용자 수, 사다리 높이)
-        Ladder ladderLine = new Ladder(custom.count(), ladderHeight);
+        Ladder ladder = new Ladder(custom.count(), ladderHeight);
         // 사용자 이름 출력
         resultView.printCustoms(custom);
+        // 사다리 출력
+        resultView.printLadder(ladder);
     }
 }
