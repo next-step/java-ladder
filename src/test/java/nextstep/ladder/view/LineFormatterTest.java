@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
 import nextstep.ladder.model.Line;
 import nextstep.ladder.view.LineFormatter;

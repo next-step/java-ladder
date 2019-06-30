@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.model;
 
 import nextstep.ladder.model.Ladder;
 import org.junit.jupiter.api.BeforeEach;
