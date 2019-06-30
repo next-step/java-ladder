@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +9,7 @@ import java.util.stream.Collectors;
 public class Names {
     private final List<Name> names;
 
-    public Names(List<String> nameStrings) {
+    private Names(List<String> nameStrings) {
         this.names = nameStrings.stream()
                 .map(Name::new)
                 .collect(Collectors.toList());
@@ -16,6 +17,11 @@ public class Names {
 
     public List<Name> getNames() {
         return Collections.unmodifiableList(names);
+    }
+
+    public static Names of(String nameString) {
+        List<String> names = Arrays.asList(nameString.split(","));
+        return new Names(names);
     }
 
     @Override
