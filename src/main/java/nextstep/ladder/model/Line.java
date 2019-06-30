@@ -8,10 +8,14 @@ public class Line {
     private final int START_POINT = 0;
     private final int ONCE_POINT = 1;
 
-    private final List<Boolean> points = new ArrayList<>();
+    private List<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         makeLine(countOfPerson);
+    }
+
+    public Line(List<Boolean> points) {
+        this.points = points;
     }
 
     private void makeLine(int countOfPerson) {

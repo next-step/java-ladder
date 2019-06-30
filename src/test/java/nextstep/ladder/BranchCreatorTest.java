@@ -6,11 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineTest {
-    @DisplayName("(사람 수 - 1) 만큼의 사다리 Line 생성")
+public class BranchCreatorTest {
+    @DisplayName("Line을 위한 랜덤 Boolean 값 정상 생성")
     @Test
-    void Line_만들기 () {
-        Line line = new Line(3);
-        assertThat(line.getPoints().size()).isEqualTo(2);
+    void createBranchRandomlyTest() {
+        assertThat(new Line(5).getPoints()).contains(true, false);
     }
 }
