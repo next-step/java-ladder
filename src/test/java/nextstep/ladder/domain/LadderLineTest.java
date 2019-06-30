@@ -8,8 +8,8 @@ package nextstep.ladder.domain;
  * | blog         : sksggg123.github.io     |
  * ------------------------------------------
  * project      : java-ladder
- * create date  : 2019-06-30 04:18
+ * create date  : 2019-06-29 03:22
  */
-public class LadderTest {
+public class LadderLineTest {
 
 }

@@ -29,6 +29,9 @@ public class Custom {
     }
 
     public static Custom of(List<String> names) {
+        if (names.size() == 0) {
+            throw new IllegalArgumentException("사람이 입력되지 않았습니다.");
+        }
         return new Custom(names.stream()
                 .distinct()
                 .filter(name -> !"".equals(name))

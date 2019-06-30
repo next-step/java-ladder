@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * author       : gwonbyeong-yun <sksggg123>
  * ------------------------------------------
@@ -8,18 +11,20 @@ package nextstep.ladder.domain;
  * | blog         : sksggg123.github.io     |
  * ------------------------------------------
  * project      : java-ladder
- * create date  : 2019-06-29 03:27
+ * create date  : 2019-06-30 04:19
  */
 public class Ladder {
-    private static final int MIN_LADDER_HEIGHT = 3;
-    private final int customNumber;
-    private final int ladderHeight;
 
-    public Ladder(int customNumber, int ladderHeight) {
-        if(ladderHeight < MIN_LADDER_HEIGHT) {
+    private static final int MIN_LADDER_HEIGHT = 3;
+    private List<LadderLine> ladder;
+
+    public Ladder(int line, int row) {
+        // line 유효성 체크는 Custom에서 해주기 때문에 별도로 처리 X
+        if (row < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 3이상만 가능합니다.");
         }
-        this.customNumber = customNumber;
-        this.ladderHeight = ladderHeight;
+
+        List<LadderLine> ladderLines = new ArrayList<>();
+        this.ladder = ladderLines;
     }
 }
