@@ -22,7 +22,7 @@ public class LadderLineTest {
     @DisplayName("사다리 Line 생성된 상태 확인 - 마지막 index는 무조건 flase")
     @Test
     void createLadderLineStatue() {
-        LadderLine line = new LadderLine(1);
+        LadderLine line = new LadderLine(2);
         List<Boolean> convertLine = line.stream()
                 .map(Link::status)
                 .collect(Collectors.toList());

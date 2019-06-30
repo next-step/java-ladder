@@ -16,7 +16,6 @@ import java.util.stream.Stream;
  * create date  : 2019-06-30 04:19
  */
 public class Ladder {
-
     private static final int MIN_LADDER_HEIGHT = 3;
     private static final int MIN_LADDER_LINE = 2;
     private static final String EXCEPTION_MESSAGE_FORMANT = "사다리의 높이는 3, 길이는 2이상만 가능합니다. 높이:[%d] 길이:[%d]";

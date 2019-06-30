@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
  * create date  : 2019-06-29 03:08
  */
 public class StringUtil {
-
     private static final String FORMAT_SPLIT_COMMA = ",";
     private static final String FORMAT_REPLACE_SPACE_SOURCE = " ";
     private static final String FORMAT_REPLACE_SPACE_TARGET = "";

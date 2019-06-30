@@ -19,7 +19,6 @@ import nextstep.step2.ladder.view.impl.ResultViewImpl;
  * create date  : 2019-06-29 01:57
  */
 public class LadderApplication {
-
     private final InputView inputView;
     private final ResultView resultView;
 

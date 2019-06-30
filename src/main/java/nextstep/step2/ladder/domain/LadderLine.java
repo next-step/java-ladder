@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 public class LadderLine {
     private static final int LINE_MIN_INDEX = 0;
     private static final int DECREASE_INDEX = 1;
+
     private List<Link> ladderLine = new ArrayList<>();
 
     public LadderLine(int line) {
