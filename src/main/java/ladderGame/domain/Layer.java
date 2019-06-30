@@ -1,19 +1,22 @@
 package ladderGame.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Layer {
     final static int ONE_RUNG = 1;
     private List<Rung> rungs;
 
     private Layer(List<Boolean> rungs) {
-        this.rungs = build(rungs);
+        verifyRule(rungs);
+        this.rungs = rungs.stream()
+                .map(Rung::new)
+                .collect(Collectors.toList());
     }
 
-    public static Layer fromEntry(int entry) {
+    public static Layer fromNumberOfPlayer(int numberOfPlayer) {
         RandomRungsGenerator rungsGenerator = new RandomRungsGenerator();
-        return new Layer(rungsGenerator.generate(entry - ONE_RUNG));
+        return new Layer(rungsGenerator.generate(numberOfPlayer - ONE_RUNG));
     }
 
     public static Layer of(List<Boolean> rungs) {
@@ -24,14 +27,14 @@ public class Layer {
         return rungs;
     }
 
-    private List<Rung> build(List<Boolean> inputRungs) {
-        List<Rung> rungs = new ArrayList<>();
+    private void verifyRule(List<Boolean> inputRungs) {
+        Boolean previous = false;
         int bound = inputRungs.size();
         for (int index = 0; index < bound; index++) {
-            verifyRepeatedTrueValue(inputRungs.get(index), inputRungs.get(index + ONE_RUNG));
-            rungs.add(new Rung(inputRungs.get(index)));
+            Boolean current = inputRungs.get(index);
+            verifyRepeatedTrueValue(previous, current);
+            previous = current;
         }
-        return rungs;
     }
 
     private void verifyRepeatedTrueValue(Boolean current, Boolean next) {
