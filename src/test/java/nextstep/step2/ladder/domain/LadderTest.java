@@ -33,9 +33,17 @@ public class LadderTest {
 
     @DisplayName("사다리를 생성할때 예외상황 - 높이")
     @Test
-    void createLadder() {
+    void createLadderHeight() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Ladder ladder = new Ladder(1, 2);
+        }).withMessageContaining("사다리의 높이는 3, 길이는 2이상만 가능합니다.");
+    }
+
+    @DisplayName("사다리를 생성할때 예외상황 - 길이")
+    @Test
+    void createLadderLine() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Ladder ladder = new Ladder(5, 1);
         }).withMessageContaining("사다리의 높이는 3, 길이는 2이상만 가능합니다.");
     }
 }

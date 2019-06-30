@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * create date  : 2019-06-29 03:22
  */
 public class LadderLineTest {
-    @DisplayName("사다리 Line 생성된 상태 확인 - 마지막 index는 무조건 flase")
+    @DisplayName("사다리 Line 생성된 상태 확인 - 마지막 index는 무조건 false")
     @Test
     void createLadderLineStatue() {
         LadderLine line = new LadderLine(2);
