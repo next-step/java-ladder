@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -32,5 +33,9 @@ public class Ladder {
 
     public List<LadderLine> getLadder() {
         return Collections.unmodifiableList(ladder);
+    }
+
+    public Stream<LadderLine> stream() {
+        return ladder.stream();
     }
 }

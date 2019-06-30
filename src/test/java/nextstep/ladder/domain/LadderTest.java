@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -20,12 +21,13 @@ public class LadderTest {
     @Test
     void createLadderStatus() {
         Ladder ladder = new Ladder(5, 5);
-        int row = ladder.getLadder().size();
-        for (int i = 0; i < row; i++) {
-            List<Link> ladderLine = ladder.getLadder().get(i).getLadderLine();
-            ladderLine.stream()
-                    .forEach(link -> System.out.print(link.status() + " "));
-            System.out.println();
+        List<String> printStatus = ladder.stream()
+                .map(ladderLine -> ladderLine.toString())
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < printStatus.size(); i++) {
+            System.out.println(printStatus.get(i));
         }
+
     }
 }
