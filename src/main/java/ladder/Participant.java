@@ -1,13 +1,13 @@
 package ladder;
 
 public class Participant {
-    private String name;
+    private Name name;
 
     public Participant(String name) {
-        this.name = name;
+        this.name = new Name(name);
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 }
