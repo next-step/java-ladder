@@ -11,14 +11,12 @@ public class LadderGenerator {
         List<Boolean> points = new ArrayList<>();
         points.add(random.nextBoolean());
         for (int i = 1; i < input; i++) {
-            if (points.get(i - 1)) {
-                points.add(false);
-                continue;
-            }
-            if (!points.get(i - 1)) {
-                points.add(random.nextBoolean());
-            }
+            points.add(frontLineChecker(points.get(i - 1)));
         }
         return new Line(points);
+    }
+
+    private static boolean frontLineChecker(boolean point) {
+        return point ? false : random.nextBoolean();
     }
 }
