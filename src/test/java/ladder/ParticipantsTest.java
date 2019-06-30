@@ -15,8 +15,8 @@ public class ParticipantsTest {
     void ofList() {
         List<String> nameList = Arrays.asList("1,2");
         List<Participant> participantList = new ArrayList<>();
-        participantList.add(new Participant("1"));
-        participantList.add(new Participant("2"));
+        participantList.add(new Participant(new Name("1")));
+        participantList.add(new Participant(new Name("2")));
 
         Participants participants = Participants.of(nameList);
         assertThat(participants).isEqualTo(participantList);
