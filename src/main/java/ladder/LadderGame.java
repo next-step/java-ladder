@@ -40,8 +40,6 @@ public class LadderGame {
 
     private boolean isThereTooLong(String[] rawNames) {
         return Arrays.stream(rawNames)
-                .filter(name -> name.length() > 5)
-                .findFirst()
-                .isPresent();
+                .anyMatch(name -> name.length() > 5);
     }
 }
