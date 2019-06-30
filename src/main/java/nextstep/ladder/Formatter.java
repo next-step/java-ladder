@@ -1,4 +1,5 @@
 package nextstep.ladder;
 
-public interface Formatter {
+public interface Formatter<T> {
+    String format(T target);
 }
