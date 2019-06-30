@@ -10,7 +10,7 @@ public class VerticalLines {
     public VerticalLines(int lineQuantity, int lineLength) {
         this.verticalLines = new ArrayList<>();
         for (int i = 0; i < lineQuantity; i++) {
-            verticalLines.add(new VerticalLine(lineLength));
+            verticalLines.add(new VerticalLine(lineLength, false));
         }
     }
 

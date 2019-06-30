@@ -4,9 +4,11 @@ public class VerticalLine {
     private final int length;
     private HorizontalLine horizontalLine;
 
-    public VerticalLine(int length) {
+    public VerticalLine(int length, boolean hasHorizontalLine) {
         this.length = length;
-        this.horizontalLine = HorizontalLine.LINE_FALSE;
+        this.horizontalLine = hasHorizontalLine
+                ? HorizontalLine.LINE_TRUE
+                : HorizontalLine.LINE_FALSE;
     }
 
     public int getLength() {
