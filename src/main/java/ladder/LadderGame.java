@@ -15,15 +15,15 @@ public class LadderGame {
         this.height = height;
     }
 
-    public List<Line> generate(LineStrategy strategy) {
-        ArrayList ladder = new ArrayList<>();
+    public Ladder generate(LineStrategy strategy) {
+        ArrayList lines = new ArrayList<>();
         for (int i = 0 ; i < height ; i++ ) {
             Line line = new Line(players.size(), strategy);
 
-            ladder.add(line);
+            lines.add(line);
         }
 
-        return ladder;
+        return new Ladder(lines);
     }
 
     private List<String> generatePlayer(String names) {

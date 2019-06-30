@@ -25,8 +25,9 @@ public class LadderGameTest {
         LineStrategy strategy = new LineEvenStrategy();
 
         Line line = new Line(4, new LineEvenStrategy());
-        ArrayList<Line> ladderForm = new ArrayList<>();
-        ladderForm.add(line);
+        ArrayList<Line> list = new ArrayList();
+        list.add(line);
+        Ladder ladderForm = new Ladder(list);
 
         assertThat(ladder.generate(strategy)).isEqualTo(ladderForm);
     }
