@@ -1,10 +1,9 @@
-package ladder.domain;
+package ladder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Boolean> points;
 
     public Line(List<Boolean> points) {
         this.points = points;
