@@ -36,7 +36,7 @@ public class LadderTest {
     @Test
     void createLadder() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Ladder ladder = new Ladder(1,2);
+            Ladder ladder = new Ladder(1, 2);
         }).withMessageContaining("사다리의 높이는 3, 길이는 2이상만 가능합니다.");
     }
 }

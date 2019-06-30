@@ -14,25 +14,19 @@ import java.util.stream.Stream;
  * project      : java-ladder
  * create date  : 2019-06-29 02:15
  */
-public class Custom {
+public class Participant {
 
     private List<Name> names;
 
-    /*
-     궁금증 1)
-
-     생성자 public으로 열어서 객체화 가능하게 하는것과
-     아래의 정적팩토리의 of메서드를 인자값 type만 다르게 하여 사용가능하게 2가지 생성방식을 사용하는것에데해 괜찮은 방법일까요?
-      */
-    public Custom(List<Name> names) {
-        this.names = names;
-    }
-
-    public static Custom of(List<String> names) {
+    public Participant(List<Name> names) {
         if (null == names || names.isEmpty()) {
             throw new IllegalArgumentException("사람이 입력되지 않았습니다.");
         }
-        return new Custom(names.stream()
+        this.names = names;
+    }
+
+    public static Participant of(List<String> names) {
+        return new Participant(names.stream()
                 .distinct()
                 .filter(name -> !"".equals(name))
                 .map(name -> Name.of(name.trim()))

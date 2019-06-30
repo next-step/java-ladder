@@ -1,10 +1,10 @@
 package nextstep.step2.ladder.view.impl;
 
-import nextstep.step2.ladder.domain.*;
+import nextstep.step2.ladder.domain.Ladder;
+import nextstep.step2.ladder.domain.LadderLine;
+import nextstep.step2.ladder.domain.Link;
+import nextstep.step2.ladder.domain.Participant;
 import nextstep.step2.ladder.view.ResultView;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -25,8 +25,8 @@ public class ResultViewImpl implements ResultView {
     private static final int PRINT_NAME_FIVE_LETTER_MATCH_SPACE = 6;
 
     @Override
-    public void printCustoms(Custom custom) {
-        custom.stream()
+    public void printCustoms(Participant participant) {
+        participant.stream()
                 .map(name -> combineLetterLength(name.getName()))
                 .forEach(System.out::print);
         println();

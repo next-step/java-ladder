@@ -1,7 +1,5 @@
 package nextstep.step2.ladder.domain;
 
-import java.util.Objects;
-
 /**
  * author       : gwonbyeong-yun <sksggg123>
  * ------------------------------------------
@@ -46,29 +44,5 @@ public class Name {
         if (o == null || getClass() != o.getClass()) return false;
         Name name1 = (Name) o;
         return name.equals(name1.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    /*
-    출력에 필요한 커스터마이징
-     */
-//    @Override
-//    public String toString() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(name);
-//        int appendCount = PRINT_NAME_FIVE_LETTER_INDXE_RANGE - name.length();
-//        for (int i = 0; i < appendCount; i++) {
-//            sb.append(PRINT_NAME_FIVE_LETTER_MATCH_SPACE);
-//        }
-//        return sb.toString();
-//    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }

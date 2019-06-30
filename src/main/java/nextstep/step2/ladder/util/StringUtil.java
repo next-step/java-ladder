@@ -24,8 +24,8 @@ public class StringUtil {
         return Arrays.asList(
                 nameSplit.replaceAll(FORMAT_REPLACE_SPACE_SOURCE, FORMAT_REPLACE_SPACE_TARGET)
                         .split(FORMAT_SPLIT_COMMA)).stream()
-                        .filter(name -> !"".equals(name))
-                        .distinct()
-                        .collect(Collectors.toList());
+                .filter(name -> !"".equals(name))
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

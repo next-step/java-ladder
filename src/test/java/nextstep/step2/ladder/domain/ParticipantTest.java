@@ -19,9 +19,9 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  * project      : java-ladder
  * create date  : 2019-06-29 02:11
  */
-public class CustomTest {
+public class ParticipantTest {
 
-    @DisplayName("사용자들 이름을 전달받아 Custom 객체 생성하여 이름 리스트 받아오기")
+    @DisplayName("사용자들 이름을 전달받아 Participant 객체 생성하여 이름 리스트 받아오기")
     @Test
     void createCustoms() {
         List<Name> customName = Arrays.asList(
@@ -29,10 +29,10 @@ public class CustomTest {
                 Name.of("byeon"),
                 Name.of("yun"));
 
-        Custom custom = new Custom(customName);
+        Participant participant = new Participant(customName);
         Name kwon = Name.of("kwon");
 
-        assertThat(custom.hasCustom(kwon)).isTrue();
+        assertThat(participant.hasCustom(kwon)).isTrue();
     }
 
     @DisplayName("입력된 사용자의 count 가지고 오기")
@@ -43,8 +43,8 @@ public class CustomTest {
                 Name.of("byeon"),
                 Name.of("yun"));
 
-        Custom custom = new Custom(customName);
-        assertThat(custom.count()).isEqualTo(3);
+        Participant participant = new Participant(customName);
+        assertThat(participant.count()).isEqualTo(3);
     }
 
     @DisplayName("입력된 사용자가 비어있을 경우")
@@ -53,7 +53,7 @@ public class CustomTest {
         List<String> names = Arrays.asList();
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Custom custom = Custom.of(names);
+            Participant participant = Participant.of(names);
         }).withMessageContaining("사람이 입력되지 않았습니다.");
     }
 
@@ -63,7 +63,7 @@ public class CustomTest {
         List<String> names = null;
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Custom custom = Custom.of(names);
+            Participant participant = Participant.of(names);
         }).withMessageContaining("사람이 입력되지 않았습니다.");
     }
 }

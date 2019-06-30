@@ -1,7 +1,7 @@
 package nextstep.step2.ladder.view;
 
-import nextstep.step2.ladder.domain.Custom;
 import nextstep.step2.ladder.domain.Ladder;
+import nextstep.step2.ladder.domain.Participant;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -14,7 +14,7 @@ import nextstep.step2.ladder.domain.Ladder;
  * create date  : 2019-06-30 02:49
  */
 public interface ResultView {
-    void printCustoms(Custom custom);
+    void printCustoms(Participant participant);
 
     void printLadder(Ladder ladder);
 }

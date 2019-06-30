@@ -57,9 +57,8 @@ public class LadderLine {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        ladderLine.stream()
-                .forEach(link -> sb.append(link + " "));
-        return sb.toString();
+        return "LadderLine{" +
+                "ladderLine=" + ladderLine +
+                '}';
     }
 }
