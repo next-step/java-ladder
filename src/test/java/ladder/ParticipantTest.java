@@ -11,6 +11,6 @@ public class ParticipantTest {
     void constructor() {
         Name name = new Name("pobi");
         Participant participant = new Participant(name);
-        assertThat(participant.getName()).isEqualTo(name);
+        assertThat(participant.getName()).isEqualTo(name.getName());
     }
 }
