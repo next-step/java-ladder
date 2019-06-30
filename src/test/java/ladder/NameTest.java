@@ -20,4 +20,10 @@ public class NameTest {
     void constructor_error() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new Name("pobicrong"));
     }
+
+    @Test
+    @DisplayName("1글짜 미만 이름은 에러")
+    void constructor_null() {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new Name(""));
+    }
 }
