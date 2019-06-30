@@ -16,34 +16,36 @@ public class Name {
 
     private static final int RANGE_NAME_MAX_LENGTH = 5;
     private static final int RANGE_NAME_MIN_LENGTH = 1;
-    private static final int PRINT_NAME_FIVE_LETTER_INDXE_RANGE = 6;
-    private static final String PRINT_NAME_FIVE_LETTER_MATCH_SPACE = " ";
+    private static final String EXCEPTION_MESSAGE_FORMANT = "사용자의 이름이 유효하지 않습니다. (1~5글자만 입력가능)";
+
     private final String name;
 
-    public Name(String name) {
+    private Name(String name) {
         this.name = name;
     }
 
     public static Name of(String targetName) {
-        if (targetName.length() > RANGE_NAME_MAX_LENGTH || targetName.length() < RANGE_NAME_MIN_LENGTH) {
-            throw new IllegalArgumentException("사용자 이름은 0글자 이상, 5글자 이하만 가능합니다.");
+        if (targetName.length() > RANGE_NAME_MAX_LENGTH
+                || targetName.length() < RANGE_NAME_MIN_LENGTH) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_FORMANT);
         }
         return new Name(targetName);
     }
 
-    /*
-    궁금증 2)
-
-    return this.equals(sourceName); 으로 구현했을 경우 비교가 안되나요?
-    equals()를 오버라이딩 해서 사용중이고 console에도 hashcode의 주소값이 같게 되어있는데 false로만 떨어지네요.
-     */
     public boolean isName(Name sourceName) {
-        return name.equals(sourceName.name);
+        return this.equals(sourceName);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name1 = (Name) o;
+        return name.equals(name1.name);
     }
 
     @Override
@@ -54,14 +56,19 @@ public class Name {
     /*
     출력에 필요한 커스터마이징
      */
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(name);
+//        int appendCount = PRINT_NAME_FIVE_LETTER_INDXE_RANGE - name.length();
+//        for (int i = 0; i < appendCount; i++) {
+//            sb.append(PRINT_NAME_FIVE_LETTER_MATCH_SPACE);
+//        }
+//        return sb.toString();
+//    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name);
-        int appendCount = PRINT_NAME_FIVE_LETTER_INDXE_RANGE - name.length();
-        for (int i = 0; i < appendCount; i++) {
-            sb.append(PRINT_NAME_FIVE_LETTER_MATCH_SPACE);
-        }
-        return sb.toString();
+        return super.toString();
     }
 }

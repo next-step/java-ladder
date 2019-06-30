@@ -30,7 +30,7 @@ public class CustomTest {
                 Name.of("yun"));
 
         Custom custom = new Custom(customName);
-        Name kwon = new Name("kwon");
+        Name kwon = Name.of("kwon");
 
         assertThat(custom.hasCustom(kwon)).isTrue();
     }
