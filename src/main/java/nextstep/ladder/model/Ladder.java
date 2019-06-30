@@ -14,7 +14,7 @@ public class Ladder {
         lines = makeLadder(countOfHeight, countOfPerson);
     }
 
-    private List<Line> makeLadder(int countOfHeight, int countOfPerson) {
+    protected List<Line> makeLadder(int countOfHeight, int countOfPerson) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, countOfHeight)
                 .forEach(height -> lines.add(new Line(countOfPerson)));
