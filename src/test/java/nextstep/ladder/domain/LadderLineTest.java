@@ -18,7 +18,7 @@ public class LadderLineTest {
     @Test
     void createLadderLineStatue() {
         LadderLine line = new LadderLine(10);
-        line.getLadderLine().stream()
+        line.stream()
                 .forEach(System.out::println);
     }
 }

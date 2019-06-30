@@ -1,9 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -17,7 +17,7 @@ import java.util.Random;
  */
 public class LadderLine {
     private static final int LINE_MIN_INDEX = 0;
-    private static final int BEFOR_INDEX = 1;
+    private static final int DECREASE_INDEX = 1;
     private List<Link> ladderLine = new ArrayList<>();
 
     public LadderLine(int line) {
@@ -27,20 +27,21 @@ public class LadderLine {
 
         ladderLine.add(Link.of(generate(() -> random())));
         for (int i = 1; i < line; i++) {
-            ladderLine.add(initStatus(i, line));
+            ladderLine.add(addStatusByIndexPosition(i, line));
         }
     }
 
-    private Link initStatus(int index, int line) {
+    public Stream<Link> stream() {
+        return ladderLine.stream();
+    }
+
+    private Link addStatusByIndexPosition(int index, int line) {
         int size = ladderLine.size();
-        if(line != size) {
-            return Link.of(generate(() -> ladderLine.get(index - BEFOR_INDEX).status() ? false : random()));
+        if (line - DECREASE_INDEX != size) {
+            return Link.of(generate(() ->
+                    ladderLine.get(index - DECREASE_INDEX).status() ? false : random()));
         }
         return Link.of(false);
-    }
-
-    public List<Link> getLadderLine() {
-        return Collections.unmodifiableList(ladderLine);
     }
 
     // 함수형 인터페이스로 구현하려 함.
@@ -50,5 +51,13 @@ public class LadderLine {
 
     private boolean random() {
         return new Random().nextBoolean();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        ladderLine.stream()
+                .forEach(link -> sb.append(link + " "));
+        return sb.toString();
     }
 }
