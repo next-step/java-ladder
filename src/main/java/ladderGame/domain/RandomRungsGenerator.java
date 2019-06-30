@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class RandomRungsGenerator {
 
-    private List<Boolean> rungs = new ArrayList<>();;
+    private List<Boolean> rungs = new ArrayList<>();
     private Random random = new Random();
 
     public List<Boolean> generate(int count) {
@@ -18,7 +18,7 @@ public class RandomRungsGenerator {
     }
 
     private Boolean getPreviousValue() {
-        if(rungs.isEmpty()) {
+        if (rungs.isEmpty()) {
             return false;
         }
         return rungs.get(rungs.size() - 1);
