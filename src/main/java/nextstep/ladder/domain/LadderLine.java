@@ -17,6 +17,7 @@ import java.util.Random;
  */
 public class LadderLine {
     private static final int LINE_MIN_INDEX = 0;
+    private static final int BEFOR_INDEX = 1;
     private List<Link> ladderLine = new ArrayList<>();
 
     public LadderLine(int line) {
@@ -26,11 +27,16 @@ public class LadderLine {
 
         ladderLine.add(Link.of(generate(() -> random())));
         for (int i = 1; i < line; i++) {
-            int index = i - 1;
-            ladderLine.add(
-                    Link.of(
-                            generate(() -> ladderLine.get(index).status() ? false : random())));
+            ladderLine.add(initStatus(i, line));
         }
+    }
+
+    private Link initStatus(int index, int line) {
+        int size = ladderLine.size();
+        if(line != size) {
+            return Link.of(generate(() -> ladderLine.get(index - BEFOR_INDEX).status() ? false : random()));
+        }
+        return Link.of(false);
     }
 
     public List<Link> getLadderLine() {

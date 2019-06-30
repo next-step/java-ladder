@@ -1,5 +1,10 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 /**
  * author       : gwonbyeong-yun <sksggg123>
  * ------------------------------------------
@@ -11,5 +16,16 @@ package nextstep.ladder.domain;
  * create date  : 2019-06-30 04:18
  */
 public class LadderTest {
-
+    @DisplayName("사다리 생성 상태 확인")
+    @Test
+    void createLadderStatus() {
+        Ladder ladder = new Ladder(5, 5);
+        int row = ladder.getLadder().size();
+        for (int i = 0; i < row; i++) {
+            List<Link> ladderLine = ladder.getLadder().get(i).getLadderLine();
+            ladderLine.stream()
+                    .forEach(link -> System.out.print(link.status() + " "));
+            System.out.println();
+        }
+    }
 }

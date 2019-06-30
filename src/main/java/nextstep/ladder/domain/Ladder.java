@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 public class Ladder {
 
     private static final int MIN_LADDER_HEIGHT = 3;
-    private List<LadderLine> ladder;
+    private List<LadderLine> ladder = new ArrayList<>();
 
     public Ladder(int line, int row) {
         // line 유효성 체크는 Custom에서 해주기 때문에 별도로 처리 X
@@ -24,7 +25,12 @@ public class Ladder {
             throw new IllegalArgumentException("사다리의 높이는 3이상만 가능합니다.");
         }
 
-        List<LadderLine> ladderLines = new ArrayList<>();
-        this.ladder = ladderLines;
+        for (int i = 0; i < row; i++) {
+            ladder.add(new LadderLine(line));
+        }
+    }
+
+    public List<LadderLine> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 }
