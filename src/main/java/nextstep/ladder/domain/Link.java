@@ -27,8 +27,6 @@ public class Link {
 
     @Override
     public String toString() {
-        return "Link{" +
-                "link=" + link +
-                '}';
+        return link + "";
     }
 }
