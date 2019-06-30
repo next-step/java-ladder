@@ -30,10 +30,6 @@ public class Ladder {
         this.ladder = createLadder(line, row);
     }
 
-    public List<LadderLine> getLadder() {
-        return Collections.unmodifiableList(ladder);
-    }
-
     public Stream<LadderLine> stream() {
         return ladder.stream();
     }
