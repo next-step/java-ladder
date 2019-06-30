@@ -1,4 +1,4 @@
-package ladder.domain.user;
+package ladder.domain.gamer.info;
 
 public class Gamer {
     private final Name name;
@@ -9,5 +9,9 @@ public class Gamer {
     
     public static Gamer of(String name) {
         return new Gamer(name);
+    }
+    
+    public String getName() {
+        return name.toString();
     }
 }

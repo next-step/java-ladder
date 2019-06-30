@@ -1,6 +1,6 @@
-package ladder.domain.user;
+package ladder.domain.gamer.info;
 
-import ladder.domain.user.message.ErrorMessages;
+import ladder.domain.gamer.message.ErrorMessages;
 import ladder.util.StringUtils;
 
 public class Name {
@@ -16,12 +16,14 @@ public class Name {
         if (StringUtils.isEmpty(name)) {
             throw new IllegalArgumentException(ErrorMessages.EMPTY_INPUT.message());
         }
-        
-        name = name.trim();
-        if (!name.matches(VALIDATION_REGEX)) {
+        if (!name.trim().matches(VALIDATION_REGEX)) {
             throw new IllegalArgumentException(ErrorMessages.REQUIRE_NOT_KOREAN.message());
         }
-        
         return new Name(name);
+    }
+    
+    @Override
+    public String toString() {
+        return name;
     }
 }

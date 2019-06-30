@@ -1,8 +1,11 @@
-package ladder.domain.user;
+package ladder.domain.gamer;
+
+import ladder.domain.gamer.info.Gamer;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Gamers {
     private static final String DELIMITER = ",";
@@ -20,5 +23,9 @@ public class Gamers {
     
     public int getSize() {
         return gamers.size();
+    }
+
+    public Stream<Gamer> getStream() {
+        return gamers.stream();
     }
 }

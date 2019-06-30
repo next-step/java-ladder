@@ -1,4 +1,4 @@
-package ladder.domain.user.message;
+package ladder.domain.gamer.message;
 
 public enum ErrorMessages {
     EMPTY_INPUT("빈 문자열이나 null 을 입력할 수 없습니다."),

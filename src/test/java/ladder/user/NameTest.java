@@ -1,7 +1,7 @@
 package ladder.user;
 
-import ladder.domain.user.message.ErrorMessages;
-import ladder.domain.user.Name;
+import ladder.domain.gamer.message.ErrorMessages;
+import ladder.domain.gamer.info.Name;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

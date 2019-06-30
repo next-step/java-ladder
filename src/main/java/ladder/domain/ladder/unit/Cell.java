@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.unit;
 
 public class Cell {
     private final boolean rightConnected;
@@ -29,7 +29,6 @@ public class Cell {
         if (connected) {
             return makeRightConnectedCell();
         }
-        
         return new Cell(false, false);
     }
     

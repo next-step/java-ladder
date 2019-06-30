@@ -1,13 +1,13 @@
 package ladder.ladder;
 
-import ladder.domain.ladder.Cell;
-import ladder.domain.ladder.Row;
+import ladder.domain.ladder.unit.Cell;
+import ladder.domain.ladder.unit.Line;
 import ladder.domain.ladder.message.ErrorMessages;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RowTest {
+class LineTest {
     @Test
     @DisplayName("[success] 생성시 Cell 의 갯수를 받아 해당 갯수만큼의 Cell 을 생성한다.")
     void makeCellsSuccessTest() {
@@ -15,8 +15,8 @@ class RowTest {
         int maxCellsSize = 5;
         
         //When
-        Row row = Row.from(maxCellsSize);
-        int cellsSize = row.getSize();
+        Line line = Line.from(maxCellsSize);
+        int cellsSize = line.getSize();
         
         //Then
         Assertions.assertThat(cellsSize).isEqualTo(maxCellsSize);
@@ -30,28 +30,28 @@ class RowTest {
         
         //Then
         Assertions.assertThatIllegalArgumentException()
-          .isThrownBy(() -> Row.from(maxCellSize))
+          .isThrownBy(() -> Line.from(maxCellSize))
           .withMessage(ErrorMessages.CANT_INPUT_LESS_THAN_ZERO.message());
     }
     
     
     @Test
-    @DisplayName("[success] 이전에 생성된 Row 를 받아 연결선이 중복되지 않는 Row 를 생성한다.")
+    @DisplayName("[success] 이전에 생성된 Line 를 받아 연결선이 중복되지 않는 Line 를 생성한다.")
     void makeCellsDuplicateTest() {
         //Given
         int cellsSize = 5;
-        Row beforeRow = Row.from(cellsSize);
+        Line beforeLine = Line.from(cellsSize);
         
         //When
-        Row afterRow = Row.from(beforeRow, false);
+        Line afterLine = Line.from(beforeLine, false);
         
         //Then
         boolean same = false;
         for (int i = 0; i < cellsSize; i++) {
-            boolean beforeCellRightConnected = beforeRow.get(i).isRightConnected();
+            boolean beforeCellRightConnected = beforeLine.get(i).isRightConnected();
             
             if (beforeCellRightConnected) {
-                if (beforeCellRightConnected == afterRow.get(i).isRightConnected()) {
+                if (beforeCellRightConnected == afterLine.get(i).isRightConnected()) {
                     same = true;
                     break;
                 }
@@ -62,15 +62,15 @@ class RowTest {
     }
     
     @Test
-    @DisplayName("[success] 마지막 Row 는 오른쪽 연결선이 없다.")
+    @DisplayName("[success] 마지막 Line 는 오른쪽 연결선이 없다.")
     void makeCellsLastTest() {
         //Given
         int cellsSize = 5;
-        Row beforeRow = Row.from(cellsSize);
-        Row afterRow = Row.from(beforeRow, true);
+        Line beforeLine = Line.from(cellsSize);
+        Line afterLine = Line.from(beforeLine, true);
         
         //When
-        boolean noneMatchRightConnected = afterRow.getStream()
+        boolean noneMatchRightConnected = afterLine.getStream()
           .noneMatch(Cell::isRightConnected);
         
         //Then

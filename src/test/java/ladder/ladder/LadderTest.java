@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class LadderTest {
     @Test
-    @DisplayName("[success] 파라미터로 입력된 숫자만큼의 Row 를 생성한다.")
+    @DisplayName("[success] 파라미터로 입력된 숫자만큼의 Line 를 생성한다.")
     void makeRowsTest() {
         //Given
         int rowsSize = 5;
