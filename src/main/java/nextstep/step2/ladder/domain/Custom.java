@@ -29,7 +29,7 @@ public class Custom {
     }
 
     public static Custom of(List<String> names) {
-        if (names.isEmpty()) {
+        if (null == names || names.isEmpty()) {
             throw new IllegalArgumentException("사람이 입력되지 않았습니다.");
         }
         return new Custom(names.stream()

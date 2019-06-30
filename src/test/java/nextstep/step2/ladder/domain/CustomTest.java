@@ -56,4 +56,14 @@ public class CustomTest {
             Custom custom = Custom.of(names);
         }).withMessageContaining("사람이 입력되지 않았습니다.");
     }
+
+    @DisplayName("List가 null일 경우")
+    @Test
+    void isNullCustom() {
+        List<String> names = null;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Custom custom = Custom.of(names);
+        }).withMessageContaining("사람이 입력되지 않았습니다.");
+    }
 }
