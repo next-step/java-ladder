@@ -9,8 +9,8 @@ public class LineTest {
     @Test
     @DisplayName("주어진 길이로 Line 인스턴스 생성")
     void constructor() {
-        int maxLine = 5;
-        Line line = new Line(maxLine);
-        assertThat(line.getMaxLine()).isEqualTo(maxLine);
+        int lineLength = 5;
+        Line line = new Line(lineLength);
+        assertThat(line.getLength()).isEqualTo(lineLength);
     }
 }

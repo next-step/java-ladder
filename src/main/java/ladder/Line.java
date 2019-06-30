@@ -1,13 +1,13 @@
 package ladder;
 
 public class Line {
-    private final int maxLine;
+    private final int length;
 
-    public Line(int maxLine) {
-        this.maxLine = maxLine;
+    public Line(int length) {
+        this.length = length;
     }
 
-    public int getMaxLine() {
-        return maxLine;
+    public int getLength() {
+        return length;
     }
 }
