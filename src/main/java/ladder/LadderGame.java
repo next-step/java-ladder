@@ -3,11 +3,12 @@ package ladder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final String DELIMITER_NAMES = ",";
 
-    private List<String> players;
+    private List<Player> players;
     private int height;
 
     public LadderGame(String names, int height) {
@@ -26,13 +27,15 @@ public class LadderGame {
         return new Ladder(lines);
     }
 
-    private List<String> generatePlayer(String names) {
+    private List<Player> generatePlayer(String names) {
         String[] rawNames = names.split(DELIMITER_NAMES);
         if (isThereTooLong(rawNames)) {
             throw new IllegalArgumentException("이름은 최대 5자까지 설정할 수 있습니다.");
         }
 
-        return Arrays.asList(rawNames);
+        return Arrays.stream(rawNames)
+                .map(name -> new Player(name))
+                .collect(Collectors.toList());
     }
 
     private boolean isThereTooLong(String[] rawNames) {
