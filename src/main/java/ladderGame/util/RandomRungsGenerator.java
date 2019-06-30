@@ -1,4 +1,4 @@
-package ladderGame.domain;
+package ladderGame.util;
 
 import java.util.ArrayList;
 import java.util.List;

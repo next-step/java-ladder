@@ -1,5 +1,7 @@
 package ladderGame.domain;
 
+import ladderGame.util.RandomRungsGenerator;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
