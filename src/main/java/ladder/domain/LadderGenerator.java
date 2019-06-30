@@ -10,15 +10,15 @@ public class LadderGenerator {
     public static Ladder ladderGenerator(int height, Players players) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(lineGenerator(players.size() - 1));
+            ladder.add(lineGenerator(players));
         }
         return new Ladder(ladder);
     }
 
-    public static Line lineGenerator(int lineCount) {
+    public static Line lineGenerator(Players players) {
         List<Boolean> points = new ArrayList<>();
         points.add(random.nextBoolean());
-        for (int i = 1; i < lineCount; i++) {
+        for (int i = 1; i < players.size() - 1; i++) {
             points.add(frontLineChecker(points.get(i - 1)));
         }
         return new Line(points);
