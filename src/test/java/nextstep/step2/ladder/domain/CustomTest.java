@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -44,5 +45,15 @@ public class CustomTest {
 
         Custom custom = new Custom(customName);
         assertThat(custom.count()).isEqualTo(3);
+    }
+
+    @DisplayName("입력된 사용자가 비어있을 경우")
+    @Test
+    void isEmptyCustom() {
+        List<String> names = Arrays.asList();
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Custom custom = Custom.of(names);
+        }).withMessageContaining("사람이 입력되지 않았습니다.");
     }
 }
