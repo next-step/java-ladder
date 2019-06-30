@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
 /**
  * author       : gwonbyeong-yun <sksggg123>
  * ------------------------------------------
@@ -28,6 +30,13 @@ public class LadderTest {
         for (int i = 0; i < printStatus.size(); i++) {
             System.out.println(printStatus.get(i));
         }
+    }
 
+    @DisplayName("사다리를 생성할때 예외상황 - 높이")
+    @Test
+    void createLadder() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Ladder ladder = new Ladder(1,2);
+        }).withMessageContaining("사다리의 높이는 3, 길이는 2이상만 가능합니다.");
     }
 }

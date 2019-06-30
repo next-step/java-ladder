@@ -18,17 +18,17 @@ import java.util.stream.Stream;
 public class Ladder {
 
     private static final int MIN_LADDER_HEIGHT = 3;
-    private List<LadderLine> ladder = new ArrayList<>();
+    private static final int MIN_LADDER_LINE = 2;
+    private static final String EXCEPTION_MESSAGE_FORMANT = "사다리의 높이는 3, 길이는 2이상만 가능합니다. 높이:[%d] 길이:[%d]";
+
+    private List<LadderLine> ladder;
 
     public Ladder(int line, int row) {
-        // line 유효성 체크는 Custom에서 해주기 때문에 별도로 처리 X
-        if (row < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("사다리의 높이는 3이상만 가능합니다.");
+        if (row < MIN_LADDER_HEIGHT || line < MIN_LADDER_LINE) {
+            throw new IllegalArgumentException(String.format(EXCEPTION_MESSAGE_FORMANT, row, line));
         }
 
-        for (int i = 0; i < row; i++) {
-            ladder.add(new LadderLine(line));
-        }
+        this.ladder = createLadder(line, row);
     }
 
     public List<LadderLine> getLadder() {
@@ -37,5 +37,13 @@ public class Ladder {
 
     public Stream<LadderLine> stream() {
         return ladder.stream();
+    }
+
+    private List<LadderLine> createLadder(int line, int row) {
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for (int i = 0; i < row; i++) {
+            ladderLines.add(new LadderLine(line));
+        }
+        return ladderLines;
     }
 }
