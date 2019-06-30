@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class LadderGame {
     private static final String DELIMITER_NAMES = ",";
 
-    private List<Player> players;
+    private Players players;
     private int height;
 
     public LadderGame(String names, int height) {
@@ -27,15 +27,15 @@ public class LadderGame {
         return new Ladder(lines);
     }
 
-    private List<Player> generatePlayer(String names) {
+    private Players generatePlayer(String names) {
         String[] rawNames = names.split(DELIMITER_NAMES);
         if (isThereTooLong(rawNames)) {
             throw new IllegalArgumentException("이름은 최대 5자까지 설정할 수 있습니다.");
         }
 
-        return Arrays.stream(rawNames)
+        return new Players(Arrays.stream(rawNames)
                 .map(name -> new Player(name))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     private boolean isThereTooLong(String[] rawNames) {

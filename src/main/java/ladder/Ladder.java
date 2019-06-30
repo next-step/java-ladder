@@ -10,6 +10,10 @@ public class Ladder {
         this.ladder = lines;
     }
 
+    public List<Line> getLadder() {
+        return ladder;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
