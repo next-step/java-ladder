@@ -1,4 +1,4 @@
-package LineDefaultStrategy;
+package ladder;
 
 import ladder.LineStrategy;
 

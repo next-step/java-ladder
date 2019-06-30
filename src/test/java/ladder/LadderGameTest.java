@@ -22,9 +22,9 @@ public class LadderGameTest {
 
     @Test
     void generate() {
-        LineStrategy strategy = new LineDefaultStrategy.LineEvenStrategy();
+        LineStrategy strategy = new LineEvenStrategy();
 
-        Line line = new Line(4, new LineDefaultStrategy.LineEvenStrategy());
+        Line line = new Line(4, new LineEvenStrategy());
         ArrayList<Line> ladderForm = new ArrayList<>();
         ladderForm.add(line);
 
