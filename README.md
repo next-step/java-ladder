@@ -19,8 +19,8 @@
 - [x] Rung 일급컬렉션 사용. 
 - [x] Layer 계단 연속시 예외처리
 - [x] 계단을 생성한다. (높이와 사용자 수)
-- [ ] 사용자를 , 형태로 입력받는다. 
-- [ ] Player(name, position) 생성 
+- [x] 사용자를 , 형태로 입력받는다. 
+- [x] Player(name, position) 생성 
 - [ ] Ladder Game을 생성한다. 
 - [ ] 사다리를 출력한다. 
 
