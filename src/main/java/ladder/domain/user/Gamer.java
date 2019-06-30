@@ -1,4 +1,4 @@
-package ladder.domain.content.user;
+package ladder.domain.user;
 
 public class Gamer {
     private final Name name;

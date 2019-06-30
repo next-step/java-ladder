@@ -1,8 +1,8 @@
-package ladder.domain.constant;
+package ladder.domain.ladder.message;
 
 public enum ErrorMessages {
-    EMPTY_INPUT("빈 문자열이나 null 을 입력할 수 없습니다."),
-    REQUIRE_NOT_KOREAN("알파벳이나 숫자만 입력이 가능합니다.");
+    OVER_RANGE("1 ~ 10 까지만 입력이 가능합니다."),
+    CANT_INPUT_LESS_THAN_ZERO("0을 입력할 수 없습니다.");
     
     private String message;
     

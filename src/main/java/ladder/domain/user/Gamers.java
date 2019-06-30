@@ -1,4 +1,4 @@
-package ladder.domain.content.user;
+package ladder.domain.user;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +8,7 @@ public class Gamers {
     private static final String DELIMITER = ",";
     private final List<Gamer> gamers;
     
-    public Gamers(String names) {
+    private Gamers(String names) {
         gamers = Arrays.stream(names.split(DELIMITER))
           .map(Gamer::of)
           .collect(Collectors.toList());
