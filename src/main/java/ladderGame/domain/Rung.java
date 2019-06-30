@@ -15,4 +15,8 @@ public class Rung {
     public boolean value() {
         return isRung;
     }
+
+    public boolean isEmpty() {
+        return !isRung;
+    }
 }

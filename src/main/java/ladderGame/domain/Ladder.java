@@ -19,6 +19,10 @@ public class Ladder {
         return new Ladder(layers);
     }
 
+    public List<Layer> getLayers() {
+        return layers;
+    }
+
     public int size() {
         return layers.size();
     }

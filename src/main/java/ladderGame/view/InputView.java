@@ -3,12 +3,12 @@ package ladderGame.view;
 import ladderGame.domain.Player;
 import ladderGame.domain.Players;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
-
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -18,11 +18,16 @@ public class InputView {
         return Players.of(buildPlayers(playerNames.split(",")));
     }
 
+    public static int askLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        int height = scanner.nextInt();
+        scanner.nextLine();
+        return height;
+    }
+
     private static List<Player> buildPlayers(String[] split) {
-        List<Player> players = new ArrayList<>();
-        for (int position = 0; position < split.length; position++) {
-            players.add(Player.of(split[position], position));
-        }
-        return players;
+        return Arrays.stream(split)
+                .map(Player::of)
+                .collect(Collectors.toList());
     }
 }
