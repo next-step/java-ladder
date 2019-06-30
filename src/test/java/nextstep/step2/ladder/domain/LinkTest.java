@@ -20,7 +20,7 @@ public class LinkTest {
     @DisplayName("Link의 상태를 가지고 온다")
     @Test
     void status() {
-        Link link = Link.of(true);
+        Link link = Link.of(() -> true);
         assertThat(link.status()).isTrue();
     }
 

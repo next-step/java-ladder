@@ -25,7 +25,7 @@ public class LadderLine {
             throw new IllegalArgumentException("사다리 라인이 유효한 개수가 아닙니다.");
         }
 
-        ladderLine.add(Link.of(generate(() -> random())));
+        ladderLine.add(Link.of(() -> random()));
         for (int i = 1; i < line; i++) {
             ladderLine.add(addStatusByIndexPosition(i, line));
         }
@@ -40,15 +40,9 @@ public class LadderLine {
         int exclusionLastIndex = line - DECREASE_INDEX;
 
         if (exclusionLastIndex != size) {
-            return Link.of(generate(() ->
-                    ladderLine.get(index - DECREASE_INDEX).status() ? false : random()));
+            return Link.of(() -> ladderLine.get(index - DECREASE_INDEX).status() ? false : random());
         }
-        return Link.of(false);
-    }
-
-    // 함수형 인터페이스로 구현하려 함.
-    private boolean generate(RandomGenerator random) {
-        return random.generate();
+        return Link.of(() -> false);
     }
 
     private boolean random() {

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 /**
@@ -19,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  * create date  : 2019-06-30 04:18
  */
 public class LadderTest {
-    @DisplayName("사다리 생성 상태 확인")
+    @DisplayName("사다리 생성 상태 확인 - 사다리 높이")
     @Test
     void createLadderStatus() {
         Ladder ladder = new Ladder(5, 5);
@@ -27,9 +28,7 @@ public class LadderTest {
                 .map(ladderLine -> ladderLine.toString())
                 .collect(Collectors.toList());
 
-        for (int i = 0; i < printStatus.size(); i++) {
-            System.out.println(printStatus.get(i));
-        }
+        assertThat(printStatus.size()).isEqualTo(5);
     }
 
     @DisplayName("사다리를 생성할때 예외상황 - 높이")

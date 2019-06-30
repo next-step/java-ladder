@@ -17,8 +17,8 @@ public class Link {
         this.link = link;
     }
 
-    public static Link of(boolean link) {
-        return new Link(link);
+    public static Link of(RandomGenerator random) {
+        return new Link(random.generate());
     }
 
     public boolean status() {
