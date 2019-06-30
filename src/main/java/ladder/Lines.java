@@ -5,20 +5,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lines {
-    private final List<Line> lines;
+    private final List<VerticalLine> verticalLines;
 
     public Lines(int lineQuantity, int lineLength) {
-        this.lines = new ArrayList<>();
+        this.verticalLines = new ArrayList<>();
         for (int i = 0; i < lineQuantity; i++) {
-            lines.add(new Line(lineLength));
+            verticalLines.add(new VerticalLine(lineLength));
         }
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<VerticalLine> getVerticalLines() {
+        return Collections.unmodifiableList(verticalLines);
     }
 
     public int size() {
-        return lines.size();
+        return verticalLines.size();
     }
 }

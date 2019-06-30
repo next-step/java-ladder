@@ -1,9 +1,9 @@
 package ladder;
 
-public class Line {
+public class VerticalLine {
     private final int length;
 
-    public Line(int length) {
+    public VerticalLine(int length) {
         this.length = length;
     }
 
