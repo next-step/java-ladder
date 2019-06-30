@@ -12,12 +12,19 @@ public class OutputView {
 
     public static void printLadderModel(Players players, Ladder ladder) {
         System.out.println("\n실행결과\n");
+        printPlayersName(players);
+        printLadder(ladder);
+    }
+
+    private static void printPlayersName(final Players players) {
         players.getPlayers()
                .stream()
                .map(player -> String.format("%-5s", player))
                .forEach(System.out::print);
         System.out.println();
+    }
 
+    private static void printLadder(final Ladder ladder) {
         for (Line line : ladder.getLines()) {
             line.getPoints()
                 .stream()
