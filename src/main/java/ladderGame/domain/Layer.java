@@ -1,6 +1,6 @@
 package ladderGame.domain;
 
-import ladderGame.util.RandomRungsGenerator;
+import ladderGame.util.RungsGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,13 +16,8 @@ public class Layer {
                 .collect(Collectors.toList());
     }
 
-    public static Layer fromNumberOfPlayer(int numberOfPlayer) {
-        RandomRungsGenerator rungsGenerator = new RandomRungsGenerator();
+    public static Layer ofGenerator(int numberOfPlayer, RungsGenerator rungsGenerator) {
         return new Layer(rungsGenerator.generate(numberOfPlayer - ONE_RUNG));
-    }
-
-    public static Layer of(List<Boolean> rungs) {
-        return new Layer(rungs);
     }
 
     public List<Rung> getRungs() {

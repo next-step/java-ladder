@@ -11,16 +11,9 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 class LayerTest {
 
     @Test
-    @DisplayName("생성된 층의 개수 확인")
-    public void create() {
-        Layer layer = Layer.of(Arrays.asList(true, false, true, false));
-        assertThat(layer.getRungs().size()).isEqualTo(4);
-    }
-
-    @Test
     @DisplayName("참가자 수로 생성된 층의 개수 확인")
     public void createByEntry() {
-        Layer layer = Layer.fromNumberOfPlayer(5);
+        Layer layer = Layer.ofGenerator(5, count -> Arrays.asList(true, false, true, false));
         assertThat(layer.getRungs().size()).isEqualTo(4);
     }
 
@@ -28,7 +21,7 @@ class LayerTest {
     @DisplayName("true 가 연속됐을 경우 예외처리")
     public void test() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Layer.of(Arrays.asList(false, false, true, true));
+            Layer.ofGenerator(5, count -> Arrays.asList(true, true, true, false));
         });
     }
 

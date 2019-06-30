@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomRungsGenerator {
+public class RandomRungsGenerator implements RungsGenerator {
 
     private List<Boolean> rungs = new ArrayList<>();
     private Random random = new Random();
