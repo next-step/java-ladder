@@ -1,10 +1,10 @@
 package nextstep.step2.ladder.view.impl;
 
-import nextstep.step2.ladder.domain.Custom;
-import nextstep.step2.ladder.domain.Ladder;
-import nextstep.step2.ladder.domain.LadderLine;
-import nextstep.step2.ladder.domain.Link;
+import nextstep.step2.ladder.domain.*;
 import nextstep.step2.ladder.view.ResultView;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -21,11 +21,14 @@ public class ResultViewImpl implements ResultView {
     private static final String PORINT_PRINT_ROMAP = "|";
     private static final String TRUE_PRINT_FORMAT = "-----";
     private static final String FASLE_PRINT_FORMAT = "     ";
+    private static final String PRINT_NAME_FIVE_LETTER_MATCH_SPACE_FORMAT = " ";
+    private static final int PRINT_NAME_FIVE_LETTER_MATCH_SPACE = 6;
 
     @Override
     public void printCustoms(Custom custom) {
         custom.stream()
-                .forEach(name -> System.out.print(name.toString()));
+                .map(name -> combineLetterLength(name.getName()))
+                .forEach(System.out::print);
         println();
     }
 
@@ -33,6 +36,15 @@ public class ResultViewImpl implements ResultView {
     public void printLadder(Ladder ladder) {
         ladder.stream()
                 .forEach(ladderLine -> printLadderLine(ladderLine));
+    }
+
+    private String combineLetterLength(String name) {
+        int appendLength = PRINT_NAME_FIVE_LETTER_MATCH_SPACE - name.length();
+        StringBuilder sb = new StringBuilder(name);
+        for (int i = 0; i < appendLength; i++) {
+            sb.append(PRINT_NAME_FIVE_LETTER_MATCH_SPACE_FORMAT);
+        }
+        return sb.toString();
     }
 
     private void printLadderLine(LadderLine ladderLine) {
