@@ -10,7 +10,7 @@ public class Line {
 
     private final List<Boolean> points = new ArrayList<>();
 
-    Line(int countOfPerson) {
+    public Line(int countOfPerson) {
         makeLine(countOfPerson);
     }
 
