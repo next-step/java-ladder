@@ -12,7 +12,7 @@ public class VerticalLineTest {
 
     @BeforeEach
     void setUp() {
-        verticalLine = new VerticalLine(lineLength);
+        verticalLine = new VerticalLine(lineLength, false);
     }
 
     @Test
@@ -22,8 +22,12 @@ public class VerticalLineTest {
     }
 
     @Test
-    @DisplayName("최초 생성된 VerticalLine 은 HorizontalLine 이 없다")
-    void hasDefaultHorizontalLine() {
+    @DisplayName("hasHorizontalLine 에 의해서 hasHorizontalLine 값이 다르다")
+    void hasHorizontalLine() {
+        VerticalLine hasHorizontal = new VerticalLine(lineLength, true);
+
         assertThat(verticalLine.hasHorizontalLine()).isFalse();
+        assertThat(hasHorizontal.hasHorizontalLine()).isTrue();
+
     }
 }
