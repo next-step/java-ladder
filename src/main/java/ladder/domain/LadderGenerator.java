@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import ladder.Ladder;
-import ladder.Line;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,10 +7,10 @@ import java.util.Random;
 public class LadderGenerator {
     private static Random random = new Random();
 
-    public static Ladder ladderGenerator(int height, int countOfPerson) {
+    public static Ladder ladderGenerator(int height, int countOfPlayers) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(lineGenerator(countOfPerson - 1));
+            ladder.add(lineGenerator(countOfPlayers - 1));
         }
         return new Ladder(ladder);
     }
