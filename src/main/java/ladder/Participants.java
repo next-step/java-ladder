@@ -23,6 +23,10 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
+    public int size() {
+        return participants.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
