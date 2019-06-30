@@ -37,7 +37,9 @@ public class LadderLine {
 
     private Link addStatusByIndexPosition(int index, int line) {
         int size = ladderLine.size();
-        if (line - DECREASE_INDEX != size) {
+        int exclusionLastIndex = line - DECREASE_INDEX;
+
+        if (exclusionLastIndex != size) {
             return Link.of(generate(() ->
                     ladderLine.get(index - DECREASE_INDEX).status() ? false : random()));
         }
