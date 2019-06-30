@@ -36,6 +36,8 @@ public class Lambda {
 	}
 
 	private static int sum(List<Integer> numbers, Predicate<Integer> predicate) {
-	    return numbers.stream().filter(predicate).reduce(0, Integer::sum);
+	    return numbers.stream()
+				.filter(predicate)
+				.reduce(0, Integer::sum);
     }
 }
