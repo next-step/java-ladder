@@ -15,17 +15,17 @@ import java.util.stream.Stream;
  * create date  : 2019-06-29 02:15
  */
 public class Participant {
-
     private List<Name> names;
 
-    public Participant(List<Name> names) {
-        if (null == names || names.isEmpty()) {
-            throw new IllegalArgumentException("사람이 입력되지 않았습니다.");
-        }
+    private Participant(List<Name> names) {
         this.names = names;
     }
 
     public static Participant of(List<String> names) {
+        if (null == names || names.isEmpty()) {
+            throw new IllegalArgumentException("사람이 입력되지 않았습니다.");
+        }
+
         return new Participant(names.stream()
                 .distinct()
                 .filter(name -> !"".equals(name))
