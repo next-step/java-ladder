@@ -22,10 +22,4 @@ class RungTest {
         assertThat(rung.value()).isFalse();
     }
 
-    @Test
-    @DisplayName("계단 생성 확인")
-    public void hasRung() {
-        Rung rung = Rung.of(true);
-        assertThat(rung.isEmpty()).isTrue();
-    }
 }

@@ -2,21 +2,21 @@ package ladderGame.domain;
 
 public class Rung {
 
-    private Boolean rung;
+    private Boolean isRung;
 
     public Rung(boolean rung) {
-        this.rung = rung;
+        this.isRung = rung;
     }
 
-    public static Rung of(boolean randomBoolean) {
-        return new Rung(randomBoolean);
+    public static Rung of(boolean isRung) {
+        return new Rung(isRung);
     }
 
     public boolean value() {
-        return rung;
+        return isRung;
     }
 
     public boolean isEmpty() {
-        return !rung;
+        return !isRung;
     }
 }
