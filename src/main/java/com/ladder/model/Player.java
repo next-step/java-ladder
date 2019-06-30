@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Player {
 
     public static final int LENGTH_OF_USER_NAME = 5;
+
     private final String name;
 
     private Player(String name) {

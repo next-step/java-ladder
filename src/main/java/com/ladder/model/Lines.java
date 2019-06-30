@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 public class Lines {
 
     public static final int MIN_NUMBER_OF_COLUMNS = 1;
+
     private List<Line> lines;
 
     private Lines(List<Line> lines) {
