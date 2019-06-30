@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LayerTest {
 
@@ -25,6 +26,14 @@ class LayerTest {
         Layer layer = Layer.fromEntry(5);
         assertThat(layer.getRungs().size()).isEqualTo(4);
 
+    }
+
+    @Test
+    @DisplayName("true가 연속됐을 경우 예외처리")
+    public void test() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Layer.of(Arrays.asList(false, false, true, true));
+        });
     }
 
 }
