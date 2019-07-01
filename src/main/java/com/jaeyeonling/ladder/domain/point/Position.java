@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder.domain;
+package com.jaeyeonling.ladder.domain.point;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +7,8 @@ import java.util.Objects;
 public class Position {
 
     private static final Map<Integer, Position> CACHE = new HashMap<>();
+
+    private static final int INCREMENT = 1;
 
     private final int value;
 
@@ -21,6 +23,14 @@ public class Position {
     public Position move(final Distance movingDistance) {
         final Distance distance = Distance.valueOf(this.value);
         return distance.move(movingDistance);
+    }
+
+    int getValue() {
+        return this.value;
+    }
+
+    Position next() {
+        return valueOf(this.value + INCREMENT);
     }
 
     @Override

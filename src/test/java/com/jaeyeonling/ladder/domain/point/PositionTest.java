@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder.domain;
+package com.jaeyeonling.ladder.domain.point;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

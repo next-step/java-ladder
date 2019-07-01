@@ -1,43 +1,49 @@
 package com.jaeyeonling.ladder.domain.point;
 
-import com.jaeyeonling.ladder.domain.Position;
-
 import java.util.Objects;
 
 public class Point {
 
     public static final Point DEFAULT = Point.of(0, 0);
 
-    private final Position x;
-    private final Position y;
+    private final Position indexOfLadder;
+    private final Position indexOfLine;
 
-    private Point(final Position x,
-                  final Position y) {
-        this.x = x;
-        this.y = y;
+    private Point(final Position indexOfLadder,
+                  final Position indexOfLine) {
+        this.indexOfLadder = indexOfLadder;
+        this.indexOfLine = indexOfLine;
     }
 
-    public static Point of(final int x,
-                           final int y) {
-        return of(Position.valueOf(x), Position.valueOf(y));
+    public static Point of(final int indexOfLadder,
+                           final int indexOfLine) {
+        return of(Position.valueOf(indexOfLadder), Position.valueOf(indexOfLine));
     }
 
-    public static Point of(Position x,
-                           Position y) {
-        return new Point(x, y);
+    public static Point of(final Position indexOfLadder,
+                           final Position indexOfLine) {
+        return new Point(indexOfLadder, indexOfLine);
     }
 
     public Point move(final Direction direction) {
         if (direction.isX()) {
-            final Position movedX = x.move(direction.getDistance());
-            return of(movedX, this.y);
+            final Position movedIndexOfLadder = indexOfLadder.move(direction.getDistance());
+            return of(movedIndexOfLadder, this.indexOfLine.next());
         }
         if (direction.isY()) {
-            final Position movedY = y.move(direction.getDistance());
-            return of(this.x, movedY);
+            final Position movedIndexOfLine = indexOfLine.move(direction.getDistance());
+            return of(this.indexOfLadder, movedIndexOfLine);
         }
 
         return this;
+    }
+
+    public int getIndexOfLadder() {
+        return indexOfLadder.getValue();
+    }
+
+    public int getIndexOfLine() {
+        return indexOfLine.getValue();
     }
 
     @Override
@@ -50,12 +56,12 @@ public class Point {
         }
 
         final Point that = (Point) o;
-        return Objects.equals(this.x, that.x) &&
-                Objects.equals(this.y, that.y);
+        return Objects.equals(this.indexOfLadder, that.indexOfLadder) &&
+                Objects.equals(this.indexOfLine, that.indexOfLine);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.x, this.y);
+        return Objects.hash(this.indexOfLadder, this.indexOfLine);
     }
 }

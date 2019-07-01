@@ -13,7 +13,7 @@ class LinesTest {
     @DisplayName("라인들 생성을 성공한다.")
     @Test
     void should_create() {
-        final List<Line> rawLines = List.of(Fixture.allFalseLine, Fixture.allTrueLine);
+        final List<Line> rawLines = List.of(Fixture.allStraightLine, Fixture.rightLeftLine);
 
         final Lines lines = Lines.of(rawLines);
 

@@ -32,7 +32,7 @@ class PointTest {
         for (int i = 0; i < movingCount; i++) {
             point = point.move(direction);
         }
-        final Point expect = Point.of(-movingCount, 0);
+        final Point expect = Point.of(-movingCount, movingCount);
 
         // then
         assertThat(point).isEqualTo(expect);
@@ -52,7 +52,7 @@ class PointTest {
         for (int i = 0; i < movingCount; i++) {
             point = point.move(direction);
         }
-        final Point expect = Point.of(movingCount, 0);
+        final Point expect = Point.of(movingCount, movingCount);
 
         // then
         assertThat(point).isEqualTo(expect);

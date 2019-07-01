@@ -19,8 +19,8 @@ class LineFormatterTest extends FormatterSupport {
     @Test
     void should_equals_true_formattedLine_and_expectFormat_when_allFalseLine() {
         // when
-        final String formatted = lineFormatter.format(Fixture.allFalseLine);
-        final String expect = "     |".repeat(Fixture.allConnectDirection.size());
+        final String formatted = lineFormatter.format(Fixture.allStraightLine);
+        final String expect = "     |".repeat(Fixture.rightLeftDirection.size());
 
         // then
         assertThat(formatted).isEqualTo(expect);
@@ -30,7 +30,7 @@ class LineFormatterTest extends FormatterSupport {
     @Test
     void should_equals_true_formattedLine_and_expectFormat_when_allTrueLine() {
         // when
-        final String formatted = lineFormatter.format(Fixture.allTrueLine);
+        final String formatted = lineFormatter.format(Fixture.rightLeftLine);
         String expect = "     |-----|     |-----|     |";
 
         // then

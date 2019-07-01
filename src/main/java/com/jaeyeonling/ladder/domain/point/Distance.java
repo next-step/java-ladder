@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder.domain;
+package com.jaeyeonling.ladder.domain.point;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ public class Distance {
 
     private static final Map<Integer, Distance> CACHE = new HashMap<>();
 
-    public static final Distance STOP = valueOf(0);
+    static final Distance STOP = valueOf(0);
 
     private final Integer value;
 
@@ -20,7 +20,7 @@ public class Distance {
         return CACHE.computeIfAbsent(value, Distance::new);
     }
 
-    public Position move(final Distance movingDistance) {
+    Position move(final Distance movingDistance) {
         final Distance addedDistance = add(movingDistance);
 
         return Position.valueOf(addedDistance.value);

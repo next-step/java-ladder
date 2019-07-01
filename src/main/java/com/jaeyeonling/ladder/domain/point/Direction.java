@@ -1,7 +1,5 @@
 package com.jaeyeonling.ladder.domain.point;
 
-import com.jaeyeonling.ladder.domain.Distance;
-
 public enum Direction {
 
     LEFT(       Axis.X,         Distance.valueOf(-Direction.DEFAULT_MOVING_DISTANCE_VALUE)),
