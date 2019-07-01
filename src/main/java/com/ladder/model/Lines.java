@@ -18,6 +18,10 @@ public class Lines {
         this.lines = new ArrayList<>(lines);
     }
 
+    static Lines of(List<Line> lines) {
+        return new Lines(new ArrayList<>(lines));
+    }
+
     public static Lines of(int numberOfColumns, int numberOfPlayers) {
         if (numberOfColumns < MIN_NUMBER_OF_COLUMNS) {
             throw new LadderColumnsException();

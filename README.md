@@ -79,7 +79,7 @@ a,b,c,e,d
 2-1. 플레이어는 위치를 갖는다. 
 - play : position 
 2-2. 사다리를 실행한다.
-- [ ] (operator) 플레이어의 위치를 입력하면, 보상 위치를 리턴받는다. (in: playerOfIndex or playerOfPosition)
+- [x] (operator) 플레이어의 위치를 입력하면, 보상 위치를 리턴받는다. (in: playerOfIndex or playerOfPosition)
 
 3. 실행 결과를 출력한다.
 3-1. 보상을 입력한다 (reward)

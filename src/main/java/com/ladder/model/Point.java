@@ -58,4 +58,14 @@ public class Point {
                 ", right=" + right +
                 '}';
     }
+
+    public Position move(Position position) {
+        if (this.equals(POINT_LEFT)) {
+            return Position.of(position.getPosition() - 1);
+        }
+        if (this.equals(POINT_RIGHT)) {
+            return Position.of(position.getPosition() + 1);
+        }
+        return position;
+    }
 }

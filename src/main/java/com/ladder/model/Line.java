@@ -12,6 +12,10 @@ public class Line {
         this.points = new ArrayList<>(point);
     }
 
+    static Line of(List<Point> points) {
+        return new Line(new ArrayList<>(points));
+    }
+
     static Line of(int countByPlayers) {
         PointStrategy pointStrategy = new RandomPointStrategy();
         return of(countByPlayers, pointStrategy);
@@ -31,5 +35,9 @@ public class Line {
         return "Line{" +
                 "points=" + points +
                 '}';
+    }
+
+    public Position move(Position startPosition) {
+        return points.get(startPosition.getPosition()).move(startPosition);
     }
 }

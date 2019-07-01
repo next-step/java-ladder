@@ -20,6 +20,10 @@ public class Position {
         return new Position(position);
     }
 
+    int getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
