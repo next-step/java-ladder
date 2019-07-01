@@ -8,13 +8,13 @@ public class Ladder {
     private final List<Line> Lines = new ArrayList <>();
 
     public Ladder(int userCount, int ladderHeight){
-        createladder(userCount, ladderHeight);
+        for(int i=0; i<ladderHeight; i++){
+            Lines.add(createLine(userCount));
+        }
     }
 
-    private void createladder(int userCount, int ladderHeight){
-        for(int i=0; i<ladderHeight; i++){
-            Lines.add(new Line(userCount));
-        }
+    public Line createLine(int userCount){
+        return new Line(userCount);
     }
 
 }

@@ -5,23 +5,27 @@ import java.util.List;
 
 public class Line {
 
-    private List<Boolean> points = new ArrayList <>();
+    private final List<Boolean> points = new ArrayList <>();
     private boolean beforeLine = false;
 
     public Line(int countOfPerson) {
         for (int i = 1; i < countOfPerson; i++) {
-            createLine();
+            this.points.add(createLine());
         }
     }
 
-    private void createLine(){
+    public List<Boolean> getPoints(){
+        return this.points;
+    }
+
+    private boolean createLine(){
         if(beforeLine){
-            points.add(false);
             beforeLine = false;
+            return false;
         }
         boolean random = randomLine();
-        points.add(random);
         beforeLine = random;
+        return random;
     }
 
     private boolean randomLine() {
