@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Ladder;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +14,7 @@ class LadderTest {
     @Test
     void create() {
         int rowSize = 5;
-        Ladder ladder = new Ladder(5);
+        Ladder ladder = new Ladder(5, 1);
 
         assertThat(ladder.size()).isEqualTo(rowSize);
     }
@@ -23,6 +22,6 @@ class LadderTest {
     @Test
     void 사다리_높이는_1이상() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new Ladder(0));
+                .isThrownBy(() -> new Ladder(0, 1));
     }
 }

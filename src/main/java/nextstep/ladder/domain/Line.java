@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * Created by wyparks2@gmail.com on 2019-06-29
@@ -50,6 +51,10 @@ public class Line {
 
     public int size() {
         return this.points.size();
+    }
+
+    public Stream<Boolean> stream() {
+        return this.points.stream();
     }
 
     @Override
