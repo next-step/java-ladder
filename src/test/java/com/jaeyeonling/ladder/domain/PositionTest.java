@@ -13,9 +13,9 @@ class PositionTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void should_return_position_when_create_by_positionNumber(final int lowPosition) {
+    void should_return_position_when_create_by_positionNumber(final int rawPosition) {
         // when
-        final Position position = Position.valueOf(lowPosition);
+        final Position position = Position.valueOf(rawPosition);
 
         // then
         assertThat(position).isNotNull();
@@ -26,10 +26,10 @@ class PositionTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void should_return_equalsObject_when_equalsPosition(final int lowPosition) {
+    void should_return_equalsObject_when_equalsPosition(final int rawPosition) {
         // given
-        final Position position = Position.valueOf(lowPosition);
-        final Position expect = Position.valueOf(lowPosition);
+        final Position position = Position.valueOf(rawPosition);
+        final Position expect = Position.valueOf(rawPosition);
 
         // when
         final boolean equals = position.equals(expect);
@@ -44,14 +44,14 @@ class PositionTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void should_return_sumPosition_when_move(final int lowPosition) {
+    void should_return_sumPosition_when_move(final int rawPosition) {
         // given
-        final Position position = Position.valueOf(lowPosition);
-        final Distance movingDistance = Distance.valueOf(lowPosition);
+        final Position position = Position.valueOf(rawPosition);
+        final Distance movingDistance = Distance.valueOf(rawPosition);
 
         // when
         final Position movedPosition = position.move(movingDistance);
-        final Position expect = Position.valueOf(lowPosition * 2);
+        final Position expect = Position.valueOf(rawPosition * 2);
 
         // then
         assertThat(movedPosition).isEqualTo(expect);

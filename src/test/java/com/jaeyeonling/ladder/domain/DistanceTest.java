@@ -22,10 +22,10 @@ class DistanceTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void should_return_equalsObject_when_equalsDistance(final int lowDistance) {
+    void should_return_equalsObject_when_equalsDistance(final int rawDistance) {
         // given
-        final Distance distance = Distance.valueOf(lowDistance);
-        final Distance expect = Distance.valueOf(lowDistance);
+        final Distance distance = Distance.valueOf(rawDistance);
+        final Distance expect = Distance.valueOf(rawDistance);
 
         // when
         final boolean equals = distance.equals(expect);
@@ -40,13 +40,13 @@ class DistanceTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void should_return_sumPosition_when_move(final int lowDistance) {
+    void should_return_sumPosition_when_move(final int rawDistance) {
         // given
-        final Distance distance = Distance.valueOf(lowDistance);
+        final Distance distance = Distance.valueOf(rawDistance);
 
         // when
         final Position movedPosition = distance.move(distance);
-        final Position expect = Position.valueOf(lowDistance * 2);
+        final Position expect = Position.valueOf(rawDistance * 2);
 
                 // then
         assertThat(movedPosition).isEqualTo(expect);
