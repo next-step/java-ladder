@@ -31,8 +31,8 @@ public class WinInfoTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             WinInfo info = WinInfo.of(
                     Arrays.asList(
-                            "5000",
-                            "꽝"), participantCount);
+                            Win.of(5000),
+                            Win.of("꽝")), participantCount);
         }).withMessageContaining("결과값이 참여자와 다릅니다.");
     }
 

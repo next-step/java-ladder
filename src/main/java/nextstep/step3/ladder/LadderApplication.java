@@ -2,12 +2,18 @@ package nextstep.step3.ladder;
 
 import nextstep.step3.ladder.domain.Ladder;
 import nextstep.step3.ladder.domain.Participant;
+import nextstep.step3.ladder.domain.Win;
 import nextstep.step3.ladder.domain.WinInfo;
 import nextstep.step3.ladder.util.StringUtil;
 import nextstep.step3.ladder.view.InputView;
 import nextstep.step3.ladder.view.ResultView;
 import nextstep.step3.ladder.view.impl.InputViewImpl;
 import nextstep.step3.ladder.view.impl.ResultViewImpl;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -36,20 +42,30 @@ public class LadderApplication {
     public void run() {
         // 사용자 이름 입력
         String customNames = inputView.inputCustomNames();
+
         // 사용자 생성
         Participant participant = Participant.of(StringUtil.split(customNames));
+
         // 실행 결과를 입력
         String executionResult = inputView.inputExecutionResult();
         int participantCount = participant.count();
-        WinInfo winInfo = WinInfo.of(StringUtil.split(executionResult), participantCount);
+        List<Win> wins = StringUtil.split(executionResult).stream()
+                        .map(win -> Win.of(win))
+                        .collect(Collectors.toList());
+        WinInfo winInfo = WinInfo.of(wins, participantCount);
+
         // 사다리 높이 입력받기
         int ladderHeight = inputView.inputLadderHeight();
+
         // 사다리 생성 (사용자 수, 사다리 높이)
         Ladder ladder = new Ladder(participant.count(), ladderHeight);
+
         // 사용자 이름 출력
         resultView.printParticipant(participant);
+
         // 사다리 출력
         resultView.printLadder(ladder);
+
         // 실행정보 출력
         resultView.printWinInfo(winInfo);
     }

@@ -17,13 +17,13 @@ public class WinInfo {
     private static final String NULL_EMPTY_EXCEPTION_MESSAGE = "실행 결과 값이 없습니다.";
     private static final String INFO_RESULT_SIZE_EXCEPTION_MESSAGE = "결과값이 참여자와 다릅니다.";
 
-    private List<String> winInfo;
+    private List<Win> winInfo;
 
-    private WinInfo(List<String> winInfo) {
+    private WinInfo(List<Win> winInfo) {
         this.winInfo = winInfo;
     }
 
-    public static WinInfo of(List<String> info, int participantCount) {
+    public static WinInfo of(List<Win> info, int participantCount) {
         if (info == null || info.isEmpty()) {
             throw new IllegalArgumentException(NULL_EMPTY_EXCEPTION_MESSAGE);
         }
@@ -32,11 +32,10 @@ public class WinInfo {
         if (infoCount != participantCount) {
             throw new IllegalArgumentException(INFO_RESULT_SIZE_EXCEPTION_MESSAGE);
         }
-
         return new WinInfo(info);
     }
 
-    public Stream<String> stream() {
+    public Stream<Win> stream() {
         return this.winInfo.stream();
     }
 }
