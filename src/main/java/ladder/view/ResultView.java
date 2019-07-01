@@ -56,7 +56,7 @@ public class ResultView {
 
         ladder.getLines().forEach(line -> {
             printStep();
-            printConnect(line.hasPoint(lineNumber));
+            printConnect(line.getPoints().isPoint(lineNumber));
         });
         printNewLine();
     }
@@ -66,9 +66,9 @@ public class ResultView {
         printStream.print(STEP);
     }
 
-    private static void printConnect(boolean hasPoint) {
+    private static void printConnect(boolean isPoint) {
 
-        if (hasPoint) {
+        if (isPoint) {
             printStream.print(CONNECT_STRING);
             return;
         }

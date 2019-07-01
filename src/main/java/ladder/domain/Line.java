@@ -1,35 +1,26 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.function.IntFunction;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 public class Line {
 
-    private final List<Point> points;
+    private Points points;
 
-    private Line(int height, IntFunction<Point> pointFunction) {
+    private Line(Points points) {
 
-        this.points = IntStream.range(0, height)
-                .mapToObj(pointFunction)
-                .collect(Collectors.toList());
+        this.points = points;
     }
 
     public static Line of(int lineNumber, int height) {
 
-        return new Line(height, step -> Point.of(step, lineNumber));
+        return new Line(Points.of(height, lineNumber));
     }
 
     public static Line ofLastLine(int height) {
 
-        return new Line(height, step -> Point.of(false));
+        return new Line(Points.of(height, false));
     }
 
-    public boolean hasPoint(int lineNumber) {
+    public Points getPoints() {
 
-        Point point = points.get(lineNumber);
-        return point != null && point.isPoint();
+        return points;
     }
-
 }
