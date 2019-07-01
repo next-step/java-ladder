@@ -55,19 +55,18 @@
 
 ## STEP3 요구사항
 - 사다리 실행 결과를 출력해야 한다.
-    - `LadderReward` 클래스를 제작한다. 
+    - `LadderRewards` 클래스를 제작한다. 
         - `List<LadderRewardType>`를 가지는 일급 컬렉션으로 제작한다.
         - `사람 수`를 받는다.
         - `LadderRewardType`의 랜덤 값을 사람 수 만큼 배치한다.
         - 배치된 `LadderRewardType`을 리턴한다.
-        - 인덱스를 입력받으면 해당 `LadderRewardType`를 리턴한다.
     
     - `LadderRewardType` Enum 클래스를 제작한다.
         - `꽝, 3000, 5000, 10000` 상수를 가진다.
         - 랜덤 `LadderRewardType`를 리턴하는 기능을 만든다.
         
     - `ResultView` 클래스를 이용한다.
-        - `LadderReward` 인스턴스를 받아, `LadderRewardType` 리스트를 받아 일렬로 출력한다.
+        - `LadderRewards` 인스턴스를 받아, `LadderRewardType` 리스트를 받아 일렬로 출력한다.
         
 - 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
     - `InputView` 클래스를 이용한다.
@@ -77,6 +76,9 @@
         - 이름을 입력하면, 컬럼의 인덱스를 리턴하는 기능을 만든다.
             - "all"를 입력하는 경우, 모든 인덱스를 리턴한다.
             - 포함되지 않는 이름을 입력하면, `IllegalArgumentException` 를 발생시킨다.
+            
+    - `LadderPlayerName` 클래스를 이용한다.
+        - 이름을 리턴하는 기능을 추가한다.
             
     - `Ladder` 클래스를 이용한다.
         - 시작 인덱스를 입력하면, 사다리 끝 인덱스를 리턴하는 기능을 만든다.
