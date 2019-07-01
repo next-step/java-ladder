@@ -12,8 +12,9 @@ public class PointTest {
     @DisplayName("Point 생성")
     void create() {
         assertAll(
-            () -> assertThat(new Point()).isInstanceOf(Point.class),
-            () -> assertThat(Point.create(new Point())).isInstanceOf(Point.class)
+            () -> assertThat(Point.create(new RandomPointCreationStrategy())).isInstanceOf(Point.class),
+            () -> assertThat(Point.create(() -> true)).isEqualTo(Point.create(true)).hasSameHashCodeAs(Point.create(true)),
+            () -> assertThat(Point.create(() -> false)).isEqualTo(Point.create(false)).hasSameHashCodeAs(Point.create(false))
         );
     }
 }
