@@ -1,6 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.model.GameResult;
+import nextstep.ladder.model.GamePrize;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.model.Players;
 import nextstep.ladder.view.InView;
@@ -9,9 +9,9 @@ import nextstep.ladder.view.OutView;
 public class LadderMain {
     public static void main(String[] args) {
         Players players = new Players(askPlayersName());
-        GameResult gameResult = new GameResult(askGameResult());
+        GamePrize gamePrize = new GamePrize(askGameResult());
         Ladder ladder = new Ladder(askLadderHeight(), players.countOfPlayer());
-        printGameResult(players, ladder, gameResult);
+        printGameResult(players, ladder, gamePrize);
         OutView.println(ladder.resultLadder());
     }
 
@@ -30,10 +30,10 @@ public class LadderMain {
         return InView.getInt();
     }
 
-    private static void printGameResult(Players players, Ladder ladder, GameResult gameResult) {
+    private static void printGameResult(Players players, Ladder ladder, GamePrize gamePrize) {
         OutView.printLadder();
         OutView.println(players.getFormattedName());
         OutView.println(ladder.getFormattedLine());
-        OutView.println(gameResult.getFormattedResult());
+        OutView.println(gamePrize.getFormattedResult());
     }
 }

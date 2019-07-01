@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GameResult {
+public class GamePrize {
     private List<String> gameResult;
 
-    public GameResult(String continuousResult) {
+    public GamePrize(String continuousResult) {
         this.gameResult = splitName(continuousResult);
     }
 
