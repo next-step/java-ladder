@@ -48,6 +48,5 @@ public class Main {
     private static LadderRewardType computeLadderRewardType(int position, Ladder ladder, List<LadderRewardType> types) {
         int rewardPosition = ladder.getRewardPosition(position);
         return types.get(rewardPosition);
-
     }
 }
