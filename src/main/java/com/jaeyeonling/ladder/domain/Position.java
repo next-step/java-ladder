@@ -18,6 +18,11 @@ public class Position {
         return CACHE.computeIfAbsent(position, Position::new);
     }
 
+    public Position move(final Distance movingDistance) {
+        final Distance distance = Distance.valueOf(this.value);
+        return distance.move(movingDistance);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

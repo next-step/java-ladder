@@ -34,4 +34,21 @@ class DistanceTest {
         assertThat(equals).isTrue();
         assertThat(distance == expect).isTrue();
     }
+
+    @DisplayName("거리를 이동하면 현재 거리 + 이동 거리의 위치를 가진다.")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
+    })
+    void should_return_sumPosition_when_move(final int lowDistance) {
+        // given
+        final Distance distance = Distance.valueOf(lowDistance);
+
+        // when
+        final Position movedPosition = distance.move(distance);
+        final Position expect = Position.valueOf(lowDistance * 2);
+
+                // then
+        assertThat(movedPosition).isEqualTo(expect);
+    }
 }

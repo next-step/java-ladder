@@ -20,6 +20,16 @@ public class Distance {
         return CACHE.computeIfAbsent(value, Distance::new);
     }
 
+    public Position move(final Distance movingDistance) {
+        final Distance addedDistance = add(movingDistance);
+
+        return Position.valueOf(addedDistance.value);
+    }
+
+    private Distance add(final Distance other) {
+        return valueOf(this.value + other.value);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
