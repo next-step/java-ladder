@@ -32,14 +32,14 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public Position playByOnePosition(Position startByPosition) {
+    Position playByOnePosition(Position startByPosition) {
         for (Line line : lines) {
             startByPosition = line.move(startByPosition);
         }
         return startByPosition;
     }
 
-    public List<Line> getLines() {
+    List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 }

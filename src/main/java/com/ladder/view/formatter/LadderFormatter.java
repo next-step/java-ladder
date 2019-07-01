@@ -1,11 +1,11 @@
 package com.ladder.view.formatter;
 
-import com.ladder.model.Ladder;
+import com.ladder.model.LadderGame;
 import com.ladder.model.Line;
 
 import java.util.stream.Collectors;
 
-public class LadderFormatter implements Formatter<Ladder> {
+public class LadderFormatter implements Formatter<LadderGame> {
 
     static final String LADDER_OF_COLUMNS = "|";
     public static final String LADDER_OF_EMPTY = "     ";
@@ -15,8 +15,8 @@ public class LadderFormatter implements Formatter<Ladder> {
     private final Formatter<Line> lineFormatter = new LineFormatter();
 
     @Override
-    public String format(Ladder ladder) {
-        return ladder.getLadder().stream()
+    public String format(LadderGame ladderGame) {
+        return ladderGame.getLadder().stream()
                 .map(lineFormatter::format)
                 .collect(Collectors.joining());
     }
