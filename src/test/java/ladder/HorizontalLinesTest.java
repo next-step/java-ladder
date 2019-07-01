@@ -19,6 +19,6 @@ public class HorizontalLinesTest {
     @DisplayName("HorizontalLines 는 VerticalLines 을 인자로 받아 of 로 생성한다")
     void of() {
         HorizontalLines horizontalLines = HorizontalLines.of(verticalLines);
-        assertThat(horizontalLines.getLines().size()).isEqualTo(names.getNames().size())
+        assertThat(horizontalLines.getHorizontalLines().size()).isEqualTo(names.getNames().size())
     }
 }
