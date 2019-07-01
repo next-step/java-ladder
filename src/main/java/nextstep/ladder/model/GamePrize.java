@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GamePrize {
-    private List<String> gameResult;
+    private List<String> prizes;
 
     public GamePrize(String continuousResult) {
-        this.gameResult = splitName(continuousResult);
+        this.prizes = splitName(continuousResult);
     }
 
     private List<String> splitName(String continuousName) {
@@ -23,8 +23,16 @@ public class GamePrize {
     }
 
     public String getFormattedResult() {
-        return this.gameResult.stream()
+        return this.prizes.stream()
                 .map(name -> String.format("%6s", name))
                 .collect(Collectors.joining());
+    }
+
+    public String getPrize(int point) {
+        return prizes.get(point);
+    }
+
+    public List<String> getPrizes() {
+        return prizes;
     }
 }

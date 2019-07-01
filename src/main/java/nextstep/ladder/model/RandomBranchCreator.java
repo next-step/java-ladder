@@ -2,7 +2,7 @@ package nextstep.ladder.model;
 
 import java.util.Random;
 
-public class RandomBranchCreator implements BranchCreator{
+public class RandomBranchCreator implements BranchCreator {
     private static Random random = new Random();
 
     RandomBranchCreator() {

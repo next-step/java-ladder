@@ -30,19 +30,7 @@ public class Ladder {
                 .collect(Collectors.joining());
     }
 
-    public List<Integer> resultLadder() {
-        List<Integer> result = makeCurrentPoints();
-        for (Line line : lines) {
-            result = line.lineResult(result);
-        }
-        return result;
-    }
-
-    private List<Integer> makeCurrentPoints() {
-        Line line = lines.get(0);
-        List<Boolean> lineSize = line.getPoints();
-        return IntStream.range(0, lineSize.size() + JUST_ONE_MORE)
-                .boxed()
-                .collect(Collectors.toList());
+    public List<Line> getLines() {
+        return lines;
     }
 }

@@ -1,7 +1,5 @@
 package nextstep.ladder.model;
 
-import nextstep.ladder.view.OutView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -27,9 +27,27 @@ public class Players {
         return names.size();
     }
 
+    public int getPosition(String playerName) {
+        // 플레이어 찾아서 indexof에 넣기
+        return names.stream()
+                .filter(name -> name.isEquals(playerName))
+                .mapToInt(name -> names.indexOf(name))
+                .boxed()
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("이름이 일치하는 사람이 없습니다."));
+    }
+
     public String getFormattedName() {
         return this.names.stream()
-                .map(name -> name.getName())
+                .map(name -> name.getNameFormatted())
                 .collect(Collectors.joining());
+    }
+
+    public String getName(int position) {
+        return names.get(position).getName();
+    }
+
+    public List<Player> getNames() {
+        return names;
     }
 }

@@ -40,13 +40,14 @@ public class OutView {
         printBlankLine();
     }
 
-    public static void printResult() {
-        printBlankLine();
-        println(GAME_RESULT);
-    }
-
     public static void askWhoesResult() {
         printBlankLine();
         println(ASK_WHOES_RESULT);
+    }
+
+    public static void printResult(String result) {
+        printBlankLine();
+        println(GAME_RESULT);
+        println(result);
     }
 }

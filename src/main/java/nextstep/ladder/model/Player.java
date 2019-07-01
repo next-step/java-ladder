@@ -9,8 +9,16 @@ public class Player {
         this.name = name;
     }
 
-    public String getName() {
+    public String getNameFormatted() {
         return String.format("%6s", name);
+    }
+
+    public Boolean isEquals(String playerName) {
+        return name.equals(playerName);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
