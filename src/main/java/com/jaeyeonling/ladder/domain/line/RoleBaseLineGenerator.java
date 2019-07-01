@@ -1,13 +1,12 @@
 package com.jaeyeonling.ladder.domain.line;
 
+import com.jaeyeonling.ladder.domain.point.Direction;
 import com.jaeyeonling.ladder.domain.user.CountOfUsers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RoleBaseLineGenerator implements LineGenerator {
-
-    private static final int BEFORE_TERM = 1;
 
     abstract Boolean generate(final Boolean before);
 
@@ -21,7 +20,7 @@ public abstract class RoleBaseLineGenerator implements LineGenerator {
     private List<Boolean> generatePoints(final int countOfUsers) {
         final List<Boolean> points = initializePoints();
         for (int i = points.size(); i < countOfUsers; i++) {
-            final Boolean before = points.get(points.size() - BEFORE_TERM);
+            final Boolean before = points.get(points.size() - Direction.DEFAULT_MOVING_DISTANCE_VALUE);
 
             final Boolean point = generate(before);
 
