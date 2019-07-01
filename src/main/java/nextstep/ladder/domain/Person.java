@@ -10,6 +10,9 @@ import java.util.Objects;
 public class Person {
     private String name;
 
+    private Person() {
+    }
+
     public Person(String name) {
         if (Objects.isNull(name) || "".equals(name)) {
             throw new IllegalArgumentException("이름은 공백이거나 null일수 없습니다.");
