@@ -21,7 +21,7 @@ public class HeightOfLadder {
         return valueOf(Positive.valueOf(heightOfLadder));
     }
 
-    static HeightOfLadder valueOf(final Positive countOfUsers) {
+    private static HeightOfLadder valueOf(final Positive countOfUsers) {
         return CACHE.computeIfAbsent(countOfUsers, HeightOfLadder::new);
     }
 

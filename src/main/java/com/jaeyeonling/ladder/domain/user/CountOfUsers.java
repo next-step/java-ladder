@@ -20,7 +20,7 @@ public class CountOfUsers {
         return valueOf(Positive.valueOf(users.size()));
     }
 
-    static CountOfUsers valueOf(final Positive countOfUsers) {
+    private static CountOfUsers valueOf(final Positive countOfUsers) {
         return CACHE.computeIfAbsent(countOfUsers, CountOfUsers::new);
     }
 
