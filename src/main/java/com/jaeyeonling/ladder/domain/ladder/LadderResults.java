@@ -1,6 +1,7 @@
 package com.jaeyeonling.ladder.domain.ladder;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,11 @@ public class LadderResults {
         return results.get(index);
     }
 
-    int size() {
+    public List<String> getResults() {
+        return Collections.unmodifiableList(results);
+    }
+
+    public int size() {
         return results.size();
     }
 }

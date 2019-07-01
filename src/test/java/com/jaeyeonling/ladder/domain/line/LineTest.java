@@ -47,9 +47,10 @@ class LineTest {
 
         // when
         final Point movedPoint = Fixture.allStraightLine.ride(point);
+        final Point expect = Point.of(indexOfLadder, indexOfLine + 1);
 
         // then
-        assertThat(movedPoint).isEqualTo(Point.of(indexOfLadder, indexOfLine + 1));
+        assertThat(movedPoint).isEqualTo(expect);
     }
 
     @DisplayName("Point가 RIGHT를 따라가면 indexOfLine와 indexOfLadder가 1 증가한다.")
@@ -62,9 +63,10 @@ class LineTest {
 
         // when
         final Point movedPoint = Fixture.rightLeftLine.ride(point);
+        final Point expect = Point.of(indexOfLadder + 1, indexOfLine + 1);
 
         // then
-        assertThat(movedPoint).isEqualTo(Point.of(indexOfLadder + 1, indexOfLine + 1));
+        assertThat(movedPoint).isEqualTo(expect);
     }
 
     @DisplayName("Point가 LEFT를 따라가면 indexOfLine가 1 증가하고 indexOfLadder가 1 감소한다.")
@@ -77,8 +79,9 @@ class LineTest {
 
         // when
         final Point movedPoint = Fixture.rightLeftLine.ride(point);
+        final Point expect = Point.of(indexOfLadder - 1, indexOfLine + 1);
 
         // then
-        assertThat(movedPoint).isEqualTo(Point.of(indexOfLadder - 1, indexOfLine + 1));
+        assertThat(movedPoint).isEqualTo(expect);
     }
 }

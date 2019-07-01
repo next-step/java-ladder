@@ -1,5 +1,7 @@
 package com.jaeyeonling.ladder.domain.line;
 
+import com.jaeyeonling.ladder.domain.point.Point;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,5 +20,22 @@ public class Lines {
 
     public Stream<Line> stream() {
         return lines.stream();
+    }
+
+    public Point ride(Point point) {
+        while (isNotArriveEndLines(point)) {
+            point = rideOnce(point);
+        }
+
+        return point;
+    }
+
+    private boolean isNotArriveEndLines(final Point point) {
+        return point.getIndexOfLine() != lines.size();
+    }
+
+    private Point rideOnce(final Point point) {
+        return lines.get(point.getIndexOfLine())
+                .ride(point);
     }
 }
