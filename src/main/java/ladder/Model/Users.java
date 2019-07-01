@@ -16,6 +16,10 @@ public class Users {
         return this.users.size();
     }
 
+    public List<User> getUsers(){
+        return this.users;
+    }
+
     private List<User> createUsers(String userNmaes){
         List<String> users = Arrays.asList(userNmaes.split(","));
         return users.stream()

@@ -5,15 +5,19 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> Lines = new ArrayList <>();
+    private final List<Line> ladder = new ArrayList <>();
 
     public Ladder(int userCount, int ladderHeight){
         for(int i=0; i<ladderHeight; i++){
-            Lines.add(createLine(userCount));
+            ladder.add(createLine(userCount));
         }
     }
 
-    public Line createLine(int userCount){
+    public List<Line> getLadder(){
+        return this.ladder;
+    }
+
+    private Line createLine(int userCount){
         return new Line(userCount);
     }
 
