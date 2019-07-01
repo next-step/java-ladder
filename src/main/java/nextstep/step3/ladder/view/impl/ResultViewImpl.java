@@ -1,9 +1,6 @@
 package nextstep.step3.ladder.view.impl;
 
-import nextstep.step3.ladder.domain.Ladder;
-import nextstep.step3.ladder.domain.LadderLine;
-import nextstep.step3.ladder.domain.Link;
-import nextstep.step3.ladder.domain.Participant;
+import nextstep.step3.ladder.domain.*;
 import nextstep.step3.ladder.view.ResultView;
 
 /**
@@ -24,7 +21,7 @@ public class ResultViewImpl implements ResultView {
     private static final int PRINT_NAME_FIVE_LETTER_MATCH_SPACE = 6;
 
     @Override
-    public void printCustoms(Participant participant) {
+    public void printParticipant(Participant participant) {
         participant.stream()
                 .map(name -> combineLetterLength(name.getName()))
                 .forEach(System.out::print);
@@ -35,6 +32,14 @@ public class ResultViewImpl implements ResultView {
     public void printLadder(Ladder ladder) {
         ladder.stream()
                 .forEach(ladderLine -> printLadderLine(ladderLine));
+    }
+
+    @Override
+    public void printWinInfo(WinInfo winInfo) {
+        winInfo.stream()
+                .map(info -> combineLetterLength(info))
+                .forEach(System.out::print);
+        println();
     }
 
     private String combineLetterLength(String name) {

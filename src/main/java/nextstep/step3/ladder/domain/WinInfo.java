@@ -1,6 +1,7 @@
 package nextstep.step3.ladder.domain;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -33,6 +34,9 @@ public class WinInfo {
         }
 
         return new WinInfo(info);
+    }
 
+    public Stream<String> stream() {
+        return this.winInfo.stream();
     }
 }

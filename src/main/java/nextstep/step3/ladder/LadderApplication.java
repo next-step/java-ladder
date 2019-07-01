@@ -2,6 +2,7 @@ package nextstep.step3.ladder;
 
 import nextstep.step3.ladder.domain.Ladder;
 import nextstep.step3.ladder.domain.Participant;
+import nextstep.step3.ladder.domain.WinInfo;
 import nextstep.step3.ladder.util.StringUtil;
 import nextstep.step3.ladder.view.InputView;
 import nextstep.step3.ladder.view.ResultView;
@@ -39,15 +40,17 @@ public class LadderApplication {
         Participant participant = Participant.of(StringUtil.split(customNames));
         // 실행 결과를 입력
         String executionResult = inputView.inputExecutionResult();
-        StringUtil.split(executionResult);
-
+        int participantCount = participant.count();
+        WinInfo winInfo = WinInfo.of(StringUtil.split(executionResult), participantCount);
         // 사다리 높이 입력받기
         int ladderHeight = inputView.inputLadderHeight();
         // 사다리 생성 (사용자 수, 사다리 높이)
         Ladder ladder = new Ladder(participant.count(), ladderHeight);
         // 사용자 이름 출력
-        resultView.printCustoms(participant);
+        resultView.printParticipant(participant);
         // 사다리 출력
         resultView.printLadder(ladder);
+        // 실행정보 출력
+        resultView.printWinInfo(winInfo);
     }
 }

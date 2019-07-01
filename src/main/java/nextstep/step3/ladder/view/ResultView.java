@@ -2,6 +2,7 @@ package nextstep.step3.ladder.view;
 
 import nextstep.step3.ladder.domain.Ladder;
 import nextstep.step3.ladder.domain.Participant;
+import nextstep.step3.ladder.domain.WinInfo;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -14,7 +15,9 @@ import nextstep.step3.ladder.domain.Participant;
  * create date  : 2019-06-30 02:49
  */
 public interface ResultView {
-    void printCustoms(Participant participant);
+    void printParticipant(Participant participant);
 
     void printLadder(Ladder ladder);
+
+    void printWinInfo(WinInfo winInfo);
 }
