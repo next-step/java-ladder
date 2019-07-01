@@ -19,7 +19,8 @@ public class InputView {
     public static int getMaxLadderHeight() {
         System.out.println();
         System.out.println(MAX_LADDER_GUIDE_TEXT);
-        return SCANNER.nextInt();
+        String sHeight = SCANNER.nextLine();
+        return Integer.parseInt(sHeight);
     }
 
     public static String getResultOfPersonName() {

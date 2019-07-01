@@ -24,4 +24,14 @@ public class Ladder {
     public List<LadderLine> getLadderLines() {
         return Collections.unmodifiableList(ladderLines);
     }
+
+    public int getRewardPosition(int beginPosition) {
+        int nextPosition = beginPosition;
+
+        for (LadderLine ladderLine : this.ladderLines) {
+            nextPosition = ladderLine.computeNextPosition(nextPosition);
+        }
+
+        return nextPosition;
+    }
 }

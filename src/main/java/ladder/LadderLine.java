@@ -12,6 +12,39 @@ public class LadderLine {
         this.establishedResults = establishedResults;
     }
 
+    public static LadderLine of(int countOfColumn) {
+        List<Boolean> establishedResults = doLadderEstablish(countOfColumn);
+        return new LadderLine(establishedResults);
+    }
+
+    public List<Boolean> getEstablishResults() {
+        return Collections.unmodifiableList(this.establishedResults);
+    }
+
+    public int computeNextPosition(int beginPosition) {
+        if (isCanLeftGo(beginPosition)) {
+            return beginPosition - 1;
+        } else if (isCanRightGo(beginPosition)) {
+            return beginPosition + 1;
+        } else {
+            return beginPosition;
+        }
+    }
+
+    private boolean isCanLeftGo(int beginPosition) {
+        if (beginPosition == 0) {
+            return false;
+        }
+        return establishedResults.get(beginPosition - 1);
+    }
+
+    private boolean isCanRightGo(int beginPosition) {
+        if (beginPosition == this.establishedResults.size()) {
+            return false;
+        }
+        return establishedResults.get(beginPosition);
+    }
+
     private static List<Boolean> doLadderEstablish(int countOfColumn) {
         List<Boolean> results = new ArrayList<>(countOfColumn);
         Random random = new Random();
@@ -31,14 +64,5 @@ public class LadderLine {
         }
 
         return !establishedResult.get(currentIndex - 1);
-    }
-
-    public static LadderLine of(int countOfColumn) {
-        List<Boolean> establishedResults = doLadderEstablish(countOfColumn);
-        return new LadderLine(establishedResults);
-    }
-
-    public List<Boolean> getEstablishResults() {
-        return Collections.unmodifiableList(this.establishedResults);
     }
 }

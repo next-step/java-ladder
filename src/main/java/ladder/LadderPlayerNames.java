@@ -37,7 +37,7 @@ public class LadderPlayerNames {
         int indexOf = indexOf(personName);
 
         if (indexOf == -1) {
-            throw new IllegalArgumentException("the person name " + personName +" is not contained");
+            throw new IllegalArgumentException("the person name \"" + personName +"\" is not contained");
         }
 
         return Collections.singletonList(indexOf);
