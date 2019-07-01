@@ -19,10 +19,7 @@ public class Ladder {
     }
 
     Position playByOnePosition(Position playerOfPosition) {
-        for (Line line : ladder.getLines()) {
-            playerOfPosition = line.move(playerOfPosition);
-        }
-        return playerOfPosition;
+        return ladder.playByOnePosition(playerOfPosition);
     }
 
     public List<Line> getLadder() {

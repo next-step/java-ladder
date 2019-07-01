@@ -28,6 +28,34 @@ public class PositionTest {
     void createPosition_whenLessThanZero_exception() {
         // given
         assertThatExceptionOfType(NegativeNumberException.class)
-                .isThrownBy(()-> Position.of(-1));
+                .isThrownBy(() -> Position.of(-1));
+    }
+
+    @DisplayName("현 위치에서 앞으로 이동한다")
+    @Test
+    void moveForward_currentPosition_success() {
+        // given
+        int position = MIN_NUMBER_OF_POSITION;
+        Position currentPosition = Position.of(position);
+
+        // when
+        Position movingResult = currentPosition.moveForward();
+
+        // then
+        assertThat(movingResult).isEqualTo(Position.of(position + 1));
+    }
+
+    @DisplayName("현 위치에서 뒤로 이동한다")
+    @Test
+    void moveBackForward_currentPosition_success() {
+        // given
+        int position = MIN_NUMBER_OF_POSITION + 1;
+        Position currentPosition = Position.of(position);
+
+        // when
+        Position movingResult = currentPosition.moveBackward();
+
+        // then
+        assertThat(movingResult).isEqualTo(Position.of(position - 1));
     }
 }

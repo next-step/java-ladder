@@ -1,11 +1,13 @@
 package com.ladder.model;
 
+import com.ladder.exception.NameLengthException;
 import com.ladder.exception.RewardsLessMinimumException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import static com.ladder.model.Rewards.MIN_NUMBER_OF_REWARDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -30,7 +32,7 @@ public class RewardsTest {
         assertThat(result.getRewards()).hasSize(expectedSize);
     }
 
-    @DisplayName("보상이 " + Rewards.MIN_NUMBER_OF_REWARDS + "미만일 시 생성에 실패한다")
+    @DisplayName("보상이 " + MIN_NUMBER_OF_REWARDS + "개미만 일 시 생성에 실패한다")
     @Test
     void createRewards_whenOneReward_exception() {
         String oneReward = "꽝";

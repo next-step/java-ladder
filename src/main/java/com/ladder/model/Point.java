@@ -37,6 +37,16 @@ public class Point {
         return right;
     }
 
+    Position move(Position position) {
+        if (this.equals(POINT_LEFT)) {
+            return position.moveBackward();
+        }
+        if (this.equals(POINT_RIGHT)) {
+            return position.moveForward();
+        }
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,15 +67,5 @@ public class Point {
                 "left=" + left +
                 ", right=" + right +
                 '}';
-    }
-
-    public Position move(Position position) {
-        if (this.equals(POINT_LEFT)) {
-            return Position.of(position.getPosition() - 1);
-        }
-        if (this.equals(POINT_RIGHT)) {
-            return Position.of(position.getPosition() + 1);
-        }
-        return position;
     }
 }

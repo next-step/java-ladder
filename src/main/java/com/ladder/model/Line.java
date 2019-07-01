@@ -26,6 +26,10 @@ public class Line {
         return new Line(pointsGenerator.generate(countByPlayers, pointStrategy));
     }
 
+    Position move(Position position) {
+        return points.get(position.getPosition()).move(position);
+    }
+
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
@@ -35,9 +39,5 @@ public class Line {
         return "Line{" +
                 "points=" + points +
                 '}';
-    }
-
-    public Position move(Position startPosition) {
-        return points.get(startPosition.getPosition()).move(startPosition);
     }
 }

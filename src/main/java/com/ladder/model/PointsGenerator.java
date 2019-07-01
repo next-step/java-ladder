@@ -22,7 +22,7 @@ public class PointsGenerator {
     }
 
     private void generateMiddle(int countByPlayers, PointStrategy pointStrategy) {
-        for (int i = 0; i < countByPlayers - 1; i++) {
+        for (int i = 0; i < countByPlayers - 2; i++) {
             points.add(generateNextPoint(points.get(i), pointStrategy));
         }
     }

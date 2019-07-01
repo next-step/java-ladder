@@ -31,7 +31,7 @@ class PointsGeneratorTest {
         int countByPlayers = 5;
 
         // when
-        List<Point> points = pointsGenerator.generate(countByPlayers, () -> true);
+        List<Point> points = this.pointsGenerator.generate(countByPlayers, () -> true);
 
         // then
         assertThat(points).hasSize(countByPlayers);
@@ -42,7 +42,7 @@ class PointsGeneratorTest {
     @MethodSource("pointStrategyAndResultPointProvider")
     void whenBeforePointTrue_Then_currentPoint_isFalse(Boolean beforePoint, Point expectedNextPoint) {
         // when
-        List<Point> points = pointsGenerator.generate(3, () -> beforePoint);
+        List<Point> points = this.pointsGenerator.generate(3, () -> beforePoint);
         Point nextPoint = points.get(1);
 
         // then
@@ -54,7 +54,7 @@ class PointsGeneratorTest {
     @MethodSource("pointStrategyAndResultPointProvider")
     void lastPoint_isFalse_success(Boolean beforePoint, Point expectedLastPoint) {
         // when
-        List<Point> points = pointsGenerator.generate(3, () -> beforePoint);
+        List<Point> points = this.pointsGenerator.generate(3, () -> beforePoint);
         Point lastPoint = points.get(points.size() - 1);
 
         // then

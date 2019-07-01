@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Rewards {
 
-    public static final int MIN_NUMBER_OF_REWARDS = 1;
+    public static final int MIN_NUMBER_OF_REWARDS = 2;
     private static final String SEPARATOR_OF_NAMES = ",";
 
     private List<Reward> rewards;

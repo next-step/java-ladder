@@ -24,6 +24,14 @@ public class Position {
         return position;
     }
 
+    Position moveForward() {
+        return Position.of(position + 1);
+    }
+
+    Position moveBackward() {
+        return Position.of(position - 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
