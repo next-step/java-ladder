@@ -29,20 +29,12 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
-        words.stream().filter(w -> w.length() > 12).sorted(new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                int o1Length = o1.length();
-                int o2Length = o2.length();
-
-                int result = Integer.compare(o1Length, o2Length);
-                if (result == 0) {
-                    return o1.compareTo(o2);
-                }
-                return result;
-            }
-        }).distinct().limit(100)
-                .map(String::toLowerCase).forEach(System.out::println);
+        words.stream()
+                .filter(w -> w.length() > 12)
+                .sorted(Comparator.comparingInt(String::length).reversed())
+                .distinct().limit(100)
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
