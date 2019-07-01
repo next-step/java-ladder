@@ -21,4 +21,8 @@ public class LadderPlayerName {
     public String toString() {
         return String.format("%5s", playerName);
     }
+
+    public String getName() {
+        return playerName;
+    }
 }
