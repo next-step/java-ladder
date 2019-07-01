@@ -37,6 +37,10 @@ public class LadderApplication {
         String customNames = inputView.inputCustomNames();
         // 사용자 생성
         Participant participant = Participant.of(StringUtil.split(customNames));
+        // 실행 결과를 입력
+        String executionResult = inputView.inputExecutionResult();
+        StringUtil.split(executionResult);
+
         // 사다리 높이 입력받기
         int ladderHeight = inputView.inputLadderHeight();
         // 사다리 생성 (사용자 수, 사다리 높이)
