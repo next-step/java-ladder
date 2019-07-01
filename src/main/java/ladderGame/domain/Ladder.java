@@ -2,8 +2,9 @@ package ladderGame.domain;
 
 import ladderGame.util.RandomRungsGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -14,11 +15,9 @@ public class Ladder {
     }
 
     public static Ladder of(int numberOfPlayer, int height) {
-        List<Layer> layers = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            layers.add(Layer.ofGenerator(numberOfPlayer, new RandomRungsGenerator()));
-        }
-        return new Ladder(layers);
+        return new Ladder(IntStream.range(0, height)
+                .mapToObj(i -> Layer.ofGenerator(numberOfPlayer, new RandomRungsGenerator()))
+                .collect(Collectors.toList()));
     }
 
     public List<Layer> getLayers() {
