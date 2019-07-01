@@ -16,7 +16,7 @@ public class LadderFormatter implements Formatter<Ladder> {
 
     @Override
     public String format(Ladder ladder) {
-        return ladder.getLines().stream()
+        return ladder.getLadder().stream()
                 .map(lineFormatter::format)
                 .collect(Collectors.joining());
     }

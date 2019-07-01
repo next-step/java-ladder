@@ -19,7 +19,7 @@ public class LadderTest {
 
         // then
         assertThat(ladder).isNotNull();
-        assertThat(ladder.getLines()).hasSize(numberOfColumns);
-        assertThat(ladder.getLines().get(0).getPoints()).hasSize(numberOfPlayers);
+        assertThat(ladder.getLadder()).hasSize(numberOfColumns);
+        assertThat(ladder.getLadder().get(0).getPoints()).hasSize(numberOfPlayers);
     }
 }

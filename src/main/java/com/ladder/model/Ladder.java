@@ -4,17 +4,17 @@ import java.util.List;
 
 public class Ladder {
 
-    private final Lines lines;
+    private final Lines ladder;
 
-    private Ladder(Lines lines) {
-        this.lines = lines;
+    private Ladder(Lines ladder) {
+        this.ladder = ladder;
     }
 
     public static Ladder generate(int numberOfColumns, int numberOfPlayers) {
         return new Ladder(Lines.of(numberOfColumns, numberOfPlayers));
     }
 
-    public List<Line> getLines() {
-        return lines.getLines();
+    public List<Line> getLadder() {
+        return ladder.getLines();
     }
 }
