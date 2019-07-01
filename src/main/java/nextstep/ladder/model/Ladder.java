@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final int JUST_ONE_MORE = 1;
-
     private final List<Line> lines;
 
     public Ladder(int countOfHeight, int countOfPerson) {
