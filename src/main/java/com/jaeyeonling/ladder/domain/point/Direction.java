@@ -17,6 +17,7 @@ public enum Direction {
     public boolean isX() {
         return axis == Axis.X;
     }
+
     public boolean isY() {
         return axis == Axis.Y;
     }
