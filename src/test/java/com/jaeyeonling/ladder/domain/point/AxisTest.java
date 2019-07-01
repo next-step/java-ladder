@@ -46,4 +46,24 @@ class AxisTest {
 
         assertThat(isX).isFalse();
     }
+
+    @DisplayName("Axis ORIGIN은 x가 아니다.")
+    @Test
+    void should_return_false_when_isX_of_AxisORIGIN() {
+        final Axis axis = Axis.ORIGIN;
+
+        final boolean isX = axis.isX();
+
+        assertThat(isX).isFalse();
+    }
+
+    @DisplayName("Axis ORIGIN은 y가 아니다.")
+    @Test
+    void should_return_false_when_isY_of_AxisORIGIN() {
+        final Axis axis = Axis.ORIGIN;
+
+        final boolean isY = axis.isY();
+
+        assertThat(isY).isFalse();
+    }
 }
