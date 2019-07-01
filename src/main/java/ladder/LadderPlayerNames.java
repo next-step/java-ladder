@@ -43,6 +43,21 @@ public class LadderPlayerNames {
         return Collections.singletonList(indexOf);
     }
 
+    public String getPlayerName(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IllegalArgumentException("the range of index should between 0 and " + (size()-1));
+        }
+
+        return this.ladderPlayerNames.get(index)
+                                     .getName();
+    }
+
+    public List<String> getPlayerNames() {
+        return this.ladderPlayerNames.stream()
+                                     .map(LadderPlayerName::getName)
+                                     .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         return this.ladderPlayerNames.stream()
