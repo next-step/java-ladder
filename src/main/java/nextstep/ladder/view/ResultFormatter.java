@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.model.Game;
-import nextstep.ladder.model.Players;
 
 import java.util.stream.IntStream;
 

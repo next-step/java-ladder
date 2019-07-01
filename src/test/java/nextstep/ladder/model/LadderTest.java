@@ -23,7 +23,7 @@ public class LadderTest {
 
     @DisplayName("Ladder 생성결과 인원수 - 1 만큼 List<Boolean> 생성")
     @Test
-    void makeLadder() {
+    void makeLadderTest() {
         List<Line> lines = ladder.makeLadder(COUNT_OF_HEIGHT, COUNT_OF_PERSON);
         assertThat(lines.size()).isEqualTo(COUNT_OF_PERSON - 1);
     }

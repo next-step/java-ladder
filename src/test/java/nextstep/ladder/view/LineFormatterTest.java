@@ -22,7 +22,6 @@ public class LineFormatterTest {
     @DisplayName("Line |-----|     |-----|-----|")
     @Test
     void formatTest() {
-
         assertThat(lineFormatter.format(line)).isEqualTo("     |-----|     |-----|-----|\n");
     }
 }
