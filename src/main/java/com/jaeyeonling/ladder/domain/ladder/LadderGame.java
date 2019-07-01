@@ -5,6 +5,8 @@ import com.jaeyeonling.ladder.domain.point.Point;
 
 public class LadderGame {
 
+    private static final int START_LINE = 0;
+
     private final Lines lines;
 
     private LadderGame(final Lines lines) {
@@ -20,7 +22,7 @@ public class LadderGame {
     }
 
     public int ride(final int indexOfLadder) {
-        final Point point = Point.of(indexOfLadder, 0);
+        final Point point = Point.of(indexOfLadder, START_LINE);
         final Point resultPoint = lines.ride(point);
 
         return resultPoint.getIndexOfLadder();
