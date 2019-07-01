@@ -9,10 +9,10 @@ public class Line {
 
     private final List<Point> points;
 
-    private Line(int height, IntFunction<Point> function) {
+    private Line(int height, IntFunction<Point> pointFunction) {
 
         this.points = IntStream.range(0, height)
-                .mapToObj(function)
+                .mapToObj(pointFunction)
                 .collect(Collectors.toList());
     }
 
@@ -28,7 +28,8 @@ public class Line {
 
     public boolean hasPoint(int lineNumber) {
 
-        return points.get(lineNumber) != null && points.get(lineNumber).hasPoint();
+        Point point = points.get(lineNumber);
+        return point != null && point.isPoint();
     }
 
 }
