@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.ladder.model.Point.POINT_LEFT;
+import static com.ladder.model.Point.POINT_RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
@@ -34,7 +36,7 @@ public class LineTest {
 
         // then
         assertThat(points).isNotNull();
-        assertThat(points.getPoints()).containsExactly(true, false);
+        assertThat(points.getPoints()).containsExactly(POINT_RIGHT, POINT_LEFT);
     }
 
 
@@ -46,33 +48,9 @@ public class LineTest {
 
         // when
         Line line = Line.of(countByPlayers);
-        List<Boolean> points = line.getPoints();
+        List<Point> points = line.getPoints();
 
         // then
         assertThat(points).hasSize(countByPlayers);
-    }
-
-    @DisplayName("전 위치에서 이동가능 한 경우, 위치는 이동이 불가능하다.")
-    @Test
-    void whenBeforePointTrue_Then_currentPoint_isFalse() {
-        // when
-        Line line = Line.of(5);
-        List<Boolean> points = line.getPoints();
-        boolean nextPoint = points.get(1);
-
-        // then
-        assertThat(nextPoint).isFalse();
-    }
-
-    @DisplayName("마지막 위치는 항상 이동이 불가능하다")
-    @Test
-    void lastPoint_isFalse_success() {
-        // when
-        Line line = Line.of(5);
-        List<Boolean> points = line.getPoints();
-        boolean lastPoint = points.get(points.size() - 1);
-
-        // then
-        assertThat(lastPoint).isFalse();
     }
 }

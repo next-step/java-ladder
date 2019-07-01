@@ -66,8 +66,10 @@ a,b,c,e,d
 
 ## 추가 기능 및 수정 
 1. (수정사항) 사다리 생성
- - point 생성이 음..랜덤...
- - (현) point type boolean > point 필요
+1-1. point를 생성한다.
+ - [x] (input) 전 point의 상태와 비교하여 랜덤하게 생성 
+ - [ ] (operator) point를 이동한다.
+  
  - point는 이동 가능한 방향은 3가지 ( RIGHT, LEFT, DOWN )
  - [ ] (조건 1) First point : RIGHT, DOWN
  - [ ] (조건 2) Body point : RIGHT, LEFT, DOWN
