@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class InputView {
     private static final String JOIN_GUIDE_TEXT = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요.)";
     private static final String MAX_LADDER_GUIDE_TEXT = "최대 사다리 높이는 몇 개인가요?";
+    private static final String WANT_RESULT_OF_PERSON_NAME_TEXT = "결과를 보고 싶은 사람은?";
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -19,5 +20,11 @@ public class InputView {
         System.out.println();
         System.out.println(MAX_LADDER_GUIDE_TEXT);
         return SCANNER.nextInt();
+    }
+
+    public static String getResultOfPersonName() {
+        System.out.println();
+        System.out.println(WANT_RESULT_OF_PERSON_NAME_TEXT);
+        return SCANNER.nextLine();
     }
 }
