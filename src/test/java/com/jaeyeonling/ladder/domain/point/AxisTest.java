@@ -30,20 +30,20 @@ class AxisTest {
     @DisplayName("Axis Y는 y다.")
     @Test
     void should_return_true_when_isY_of_AxisY() {
-        final Axis axis = Axis.X;
+        final Axis axis = Axis.Y;
 
         final boolean isY = axis.isY();
 
-        assertThat(isY).isFalse();
+        assertThat(isY).isTrue();
     }
 
     @DisplayName("Axis Y는 x가 아니다.")
     @Test
     void should_return_false_when_isX_of_AxisY() {
-        final Axis axis = Axis.X;
+        final Axis axis = Axis.Y;
 
         final boolean isX = axis.isX();
 
-        assertThat(isX).isTrue();
+        assertThat(isX).isFalse();
     }
 }
