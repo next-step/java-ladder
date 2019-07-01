@@ -48,7 +48,7 @@ public class ResultView {
 
     private static void printLadder(Ladder ladder) {
 
-        IntStream.range(0, ladder.getHeights())
+        IntStream.range(0, ladder.getHeight())
                 .forEach(lineNumber -> printLine(ladder, lineNumber));
     }
 

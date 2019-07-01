@@ -15,7 +15,7 @@ class LadderTest {
         Ladder ladder = new Ladder(lineSize, heights);
 
         assertThat(ladder.getLines().size()).isEqualTo(lineSize);
-        assertThat(ladder.getHeights()).isEqualTo(heights);
+        assertThat(ladder.getHeight()).isEqualTo(heights);
     }
 
     @ParameterizedTest(name = "사다리 생성 시 Exception 발생. lineSize={0}, height={1}")

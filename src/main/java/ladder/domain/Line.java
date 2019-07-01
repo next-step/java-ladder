@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -8,18 +9,21 @@ public class Line {
 
     private final List<Point> points;
 
-    public Line(int lineNumber, int heights) {
+    private Line(int height, IntFunction<Point> function) {
 
-        this.points = IntStream.range(0, heights)
-                .mapToObj(step -> Point.of(step, lineNumber))
+        this.points = IntStream.range(0, height)
+                .mapToObj(function)
                 .collect(Collectors.toList());
     }
 
-    public Line(int heights) {
+    public static Line of(int lineNumber, int height) {
 
-        this.points = IntStream.range(0, heights)
-                .mapToObj(i -> Point.of(false))
-                .collect(Collectors.toList());
+        return new Line(height, step -> Point.of(step, lineNumber));
+    }
+
+    public static Line ofLastLine(int height) {
+
+        return new Line(height, step -> Point.of(false));
     }
 
     public boolean hasPoint(int lineNumber) {
