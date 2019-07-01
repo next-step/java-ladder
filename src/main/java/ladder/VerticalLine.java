@@ -2,11 +2,11 @@ package ladder;
 
 public class VerticalLine {
     private final int length;
-    private HorizontalLine horizontalLine;
+    private HorizontalLine leftHorizontalLine;
 
-    public VerticalLine(int length, boolean hasHorizontalLine) {
+    public VerticalLine(int length, boolean hasLeftHorizontalLine) {
         this.length = length;
-        this.horizontalLine = hasHorizontalLine
+        this.leftHorizontalLine = hasLeftHorizontalLine
                 ? HorizontalLine.LINE_TRUE
                 : HorizontalLine.LINE_FALSE;
     }
@@ -15,7 +15,7 @@ public class VerticalLine {
         return length;
     }
 
-    public boolean hasHorizontalLine() {
-        return horizontalLine.hasLine();
+    public boolean hasLeftHorizontalLine() {
+        return leftHorizontalLine.hasLine();
     }
 }

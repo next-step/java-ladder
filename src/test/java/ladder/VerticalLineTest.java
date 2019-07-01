@@ -22,12 +22,12 @@ public class VerticalLineTest {
     }
 
     @Test
-    @DisplayName("hasHorizontalLine 에 의해서 hasHorizontalLine 값이 다르다")
+    @DisplayName("생성자에 따라서 hasLeftHorizontalLine 값이 다르다")
     void hasHorizontalLine() {
         VerticalLine hasHorizontal = new VerticalLine(lineLength, true);
 
-        assertThat(verticalLine.hasHorizontalLine()).isFalse();
-        assertThat(hasHorizontal.hasHorizontalLine()).isTrue();
+        assertThat(verticalLine.hasLeftHorizontalLine()).isFalse();
+        assertThat(hasHorizontal.hasLeftHorizontalLine()).isTrue();
 
     }
 }
