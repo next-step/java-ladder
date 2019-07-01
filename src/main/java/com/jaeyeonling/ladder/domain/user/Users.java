@@ -1,7 +1,8 @@
 package com.jaeyeonling.ladder.domain.user;
 
 
-import com.jaeyeonling.ladder.exception.UserNotFoundException;
+import com.jaeyeonling.ladder.exception.DuplicateUsernameException;
+import com.jaeyeonling.ladder.exception.NotFoundUserException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,9 +20,16 @@ public class Users {
     }
 
     public static Users ofSeparator(final String rawUsers) {
+        final int rawUsersSize = rawUsers.split(SEPARATOR).length;
+
         final List<User> users = Arrays.stream(rawUsers.split(SEPARATOR))
+                .distinct()
                 .map(User::of)
                 .collect(Collectors.toList());
+
+        if (rawUsersSize != users.size()) {
+            throw new DuplicateUsernameException();
+        }
 
         return new Users(users);
     }
@@ -35,7 +43,7 @@ public class Users {
                 .filter(u -> u.equalsUsername(username))
                 .findFirst()
                 .map(this::findIndexByUser)
-                .orElseThrow(() -> new UserNotFoundException(username.getUsername()));
+                .orElseThrow(() -> new NotFoundUserException(username.getUsername()));
     }
 
     public int findIndexByUser(final User user) {

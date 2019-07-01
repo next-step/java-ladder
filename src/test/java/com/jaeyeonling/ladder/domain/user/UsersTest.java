@@ -1,6 +1,7 @@
 package com.jaeyeonling.ladder.domain.user;
 
-import com.jaeyeonling.ladder.exception.UserNotFoundException;
+import com.jaeyeonling.ladder.exception.DuplicateUsernameException;
+import com.jaeyeonling.ladder.exception.NotFoundUserException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -58,12 +59,23 @@ class UsersTest {
 
     @DisplayName("해당 이름이 없으면 에러를 발생한다.")
     @Test
-    void should_throw_UserNotFoundException_when_notFoundIndexByUsername() {
+    void should_throw_DuplicateUsernameException_when_duplicateUsername() {
+        // when / then
+        assertThatExceptionOfType(DuplicateUsernameException.class)
+                .isThrownBy(() -> {
+                    Users.ofSeparator("a,b,c,d,e,a");
+                });
+
+    }
+
+    @DisplayName("이름이 중복되면 에러를 발생한다.")
+    @Test
+    void should_throw_NotFoundUserException_when_notFoundIndexByUsername() {
         // given
         final Users users = Users.ofSeparator("a,b,c,d,e");
 
         // when / then
-        assertThatExceptionOfType(UserNotFoundException.class)
+        assertThatExceptionOfType(NotFoundUserException.class)
                 .isThrownBy(() -> {
                     users.findIndexByUsername(Username.valueOf("z"));
                 });
