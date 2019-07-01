@@ -23,6 +23,12 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
+    public String getFormattedName() {
+        return this.names.stream()
+                .map(name -> name.getNameFormatted())
+                .collect(Collectors.joining());
+    }
+
     public int getPosition(String playerName) {
         return names.stream()
                 .filter(name -> name.isEquals(playerName))
@@ -30,12 +36,6 @@ public class Players {
                 .boxed()
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("이름이 일치하는 사람이 없습니다."));
-    }
-
-    public String getFormattedName() {
-        return this.names.stream()
-                .map(name -> name.getNameFormatted())
-                .collect(Collectors.joining());
     }
 
     public int countOfPlayer() {

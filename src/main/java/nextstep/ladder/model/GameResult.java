@@ -28,8 +28,4 @@ public class GameResult {
                 .boxed()
                 .collect(Collectors.toList());
     }
-
-    public List<Integer> getPositions() {
-        return positions;
-    }
 }
