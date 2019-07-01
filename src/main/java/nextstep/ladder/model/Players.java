@@ -23,12 +23,7 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int countOfPlayer() {
-        return names.size();
-    }
-
     public int getPosition(String playerName) {
-        // 플레이어 찾아서 indexof에 넣기
         return names.stream()
                 .filter(name -> name.isEquals(playerName))
                 .mapToInt(name -> names.indexOf(name))
@@ -41,6 +36,10 @@ public class Players {
         return this.names.stream()
                 .map(name -> name.getNameFormatted())
                 .collect(Collectors.joining());
+    }
+
+    public int countOfPlayer() {
+        return names.size();
     }
 
     public String getName(int position) {
