@@ -7,39 +7,39 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.ladder.model.Player.LENGTH_OF_USER_NAME;
+import static com.ladder.model.Reward.LENGTH_OF_REWARD;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
-public class PlayerTest {
+public class RewardTest {
 
-    @DisplayName("플레이어 이름을 생성하는데 성공한다")
+    @DisplayName("보상을 생성한다")
     @Test
-    void createUsername_success() {
+    void createReward_success() {
         // given
-        String name = "abcde";
+        String reward = "꽝";
 
         // when
-        Player result = Player.of(name);
+        Reward result = Reward.of(reward);
 
         // then
         assertThat(result).isNotNull();
-        assertThat(result).isEqualTo(Player.of(name));
+        assertThat(result).isEqualTo(Reward.of(reward));
     }
 
-    @DisplayName("플레이어 이름이 " + LENGTH_OF_USER_NAME + "자리 초과할 시 실패한다")
+    @DisplayName("보상 이름이 " + LENGTH_OF_REWARD + "초과할 시 실패한다")
     @ParameterizedTest
     @ValueSource(strings = {"abcdef"})
     void createUsername_whenLengthMoreThanFive_exception(String wrongName) {
         assertThatExceptionOfType(NameLengthException.class)
-                .isThrownBy(() -> Player.of(wrongName));
+                .isThrownBy(() -> Reward.of(wrongName));
     }
 
-    @DisplayName("플레이어 이름 빈 문자열 또는 null 일 시 실패한다")
+    @DisplayName("보상 이름이 빈 문자열 또는 null 일 시 실패한다")
     @ParameterizedTest
     @NullAndEmptySource
     void createUsername_whenInputEmptyOrNull_exception(String nullName) {
         assertThatExceptionOfType(AssertionError.class)
-                .isThrownBy(() -> Player.of(nullName));
+                .isThrownBy(() -> Reward.of(nullName));
     }
 }

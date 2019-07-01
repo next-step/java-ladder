@@ -1,6 +1,6 @@
 package com.ladder.model;
 
-import com.ladder.exception.PlayerNameLengthException;
+import com.ladder.exception.NameLengthException;
 import com.ladder.utils.AssertUtils;
 
 import java.util.Objects;
@@ -18,7 +18,7 @@ public class Player {
     public static Player of(final String name) {
         AssertUtils.checkNull(name);
         if (name.length() > LENGTH_OF_USER_NAME) {
-            throw new PlayerNameLengthException(name);
+            throw new NameLengthException(name);
         }
         return new Player(name);
     }

@@ -37,7 +37,7 @@ class PointsGeneratorTest {
         assertThat(points).hasSize(countByPlayers);
     }
 
-    @DisplayName("전 위치에서 오른쪽으로 이동하는 경우, 현 위치는 왼쪽으로 이동한다.")
+    @DisplayName("전 위치에서 오른쪽으로 이동하는 경우, 현 위치는 왼쪽으로 이동한다")
     @ParameterizedTest
     @MethodSource("pointStrategyAndResultPointProvider")
     void whenBeforePointTrue_Then_currentPoint_isFalse(Boolean beforePoint, Point expectedNextPoint) {
@@ -49,7 +49,7 @@ class PointsGeneratorTest {
         assertThat(nextPoint).isEqualTo(expectedNextPoint);
     }
 
-    @DisplayName("마지막 위치는 왼쪽 또는 아래로 이동이 가능하다.")
+    @DisplayName("마지막 위치는 왼쪽 또는 아래로 이동이 가능하다")
     @ParameterizedTest
     @MethodSource("pointStrategyAndResultPointProvider")
     void lastPoint_isFalse_success(Boolean beforePoint, Point expectedLastPoint) {
