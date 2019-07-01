@@ -1,6 +1,7 @@
 package nextstep.step2.domain;
 
 import java.util.List;
+import java.util.Map;
 
 public class Ladder {
     private final List<Line> lines;
@@ -11,6 +12,11 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public Map<Player, Result> getGameResults() {
+
+        return Map.of();
     }
 
     @Override
