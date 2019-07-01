@@ -2,7 +2,6 @@ package ladderGame.view;
 
 import ladderGame.domain.*;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -26,10 +25,8 @@ public class ResultView {
     }
 
     private static void drawLadder(Ladder ladder) {
-        List<Layer> layers = ladder.getLayers();
-        for (Layer layer : layers) {
-            System.out.println(EMPTY_RUNG + printLayer(layer));
-        }
+        ladder.getLayers()
+                .forEach(layer -> System.out.println(EMPTY_RUNG + printLayer(layer)));
     }
 
     private static String printLayer(Layer layer) {
