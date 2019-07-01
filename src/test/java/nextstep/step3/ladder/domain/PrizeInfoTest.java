@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  * project      : java-ladder
  * create date  : 2019-07-01 21:38
  */
-public class WinInfoTest {
+public class PrizeInfoTest {
     @DisplayName("결과정보 생성 - 예외상황(참여자의 수와 결과가 다를 경우)")
     @Test
     void createWinInfoDifferent() {
@@ -29,10 +29,10 @@ public class WinInfoTest {
         int participantCount = participant.count();
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            WinInfo info = WinInfo.of(
+            PrizeInfo info = PrizeInfo.of(
                     Arrays.asList(
-                            Win.of(5000),
-                            Win.of("꽝")), participantCount);
+                            Prize.of(5000),
+                            Prize.of("꽝")), participantCount);
         }).withMessageContaining("결과값이 참여자와 다릅니다.");
     }
 
@@ -47,7 +47,7 @@ public class WinInfoTest {
         int participantCount = participant.count();
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            WinInfo info = WinInfo.of(null, participantCount);
+            PrizeInfo info = PrizeInfo.of(null, participantCount);
         }).withMessageContaining("실행 결과 값이 없습니다.");
     }
 
@@ -62,7 +62,7 @@ public class WinInfoTest {
         int participantCount = participant.count();
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            WinInfo info = WinInfo.of(
+            PrizeInfo info = PrizeInfo.of(
                     Arrays.asList(), participantCount);
         }).withMessageContaining("실행 결과 값이 없습니다.");
     }

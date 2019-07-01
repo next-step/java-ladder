@@ -35,9 +35,9 @@ public class ResultViewImpl implements ResultView {
     }
 
     @Override
-    public void printWinInfo(WinInfo winInfo) {
-        winInfo.stream()
-                .map(info -> combineLetterLength(info.getWin()))
+    public void printPrizeInfo(PrizeInfo prizeInfo) {
+        prizeInfo.stream()
+                .map(info -> combineLetterLength(info.getPrize()))
                 .forEach(System.out::print);
         println();
     }

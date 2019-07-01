@@ -2,16 +2,14 @@ package nextstep.step3.ladder;
 
 import nextstep.step3.ladder.domain.Ladder;
 import nextstep.step3.ladder.domain.Participant;
-import nextstep.step3.ladder.domain.Win;
-import nextstep.step3.ladder.domain.WinInfo;
+import nextstep.step3.ladder.domain.Prize;
+import nextstep.step3.ladder.domain.PrizeInfo;
 import nextstep.step3.ladder.util.StringUtil;
 import nextstep.step3.ladder.view.InputView;
 import nextstep.step3.ladder.view.ResultView;
 import nextstep.step3.ladder.view.impl.InputViewImpl;
 import nextstep.step3.ladder.view.impl.ResultViewImpl;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,10 +47,10 @@ public class LadderApplication {
         // 실행 결과를 입력
         String executionResult = inputView.inputExecutionResult();
         int participantCount = participant.count();
-        List<Win> wins = StringUtil.split(executionResult).stream()
-                        .map(win -> Win.of(win))
+        List<Prize> prizes = StringUtil.split(executionResult).stream()
+                        .map(prize -> Prize.of(prize))
                         .collect(Collectors.toList());
-        WinInfo winInfo = WinInfo.of(wins, participantCount);
+        PrizeInfo prizeInfo = PrizeInfo.of(prizes, participantCount);
 
         // 사다리 높이 입력받기
         int ladderHeight = inputView.inputLadderHeight();
@@ -67,6 +65,6 @@ public class LadderApplication {
         resultView.printLadder(ladder);
 
         // 실행정보 출력
-        resultView.printWinInfo(winInfo);
+        resultView.printPrizeInfo(prizeInfo);
     }
 }

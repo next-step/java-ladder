@@ -2,7 +2,7 @@ package nextstep.step3.ladder.view;
 
 import nextstep.step3.ladder.domain.Ladder;
 import nextstep.step3.ladder.domain.Participant;
-import nextstep.step3.ladder.domain.WinInfo;
+import nextstep.step3.ladder.domain.PrizeInfo;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -19,5 +19,5 @@ public interface ResultView {
 
     void printLadder(Ladder ladder);
 
-    void printWinInfo(WinInfo winInfo);
+    void printPrizeInfo(PrizeInfo prizeInfo);
 }
