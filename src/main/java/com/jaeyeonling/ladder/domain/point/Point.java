@@ -4,8 +4,6 @@ import java.util.Objects;
 
 public class Point {
 
-    public static final Point DEFAULT = Point.of(0, 0);
-
     private final Position indexOfLadder;
     private final Position indexOfLine;
 

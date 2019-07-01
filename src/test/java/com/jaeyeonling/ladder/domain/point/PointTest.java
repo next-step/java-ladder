@@ -28,7 +28,7 @@ class PointTest {
         final Direction direction = Direction.LEFT;
 
         // when
-        Point point = Point.DEFAULT;
+        Point point = Point.of(0, 0);
         for (int i = 0; i < movingCount; i++) {
             point = point.move(direction);
         }
@@ -48,7 +48,7 @@ class PointTest {
         final Direction direction = Direction.RIGHT;
 
         // when
-        Point point = Point.DEFAULT;
+        Point point = Point.of(0, 0);
         for (int i = 0; i < movingCount; i++) {
             point = point.move(direction);
         }
@@ -68,7 +68,7 @@ class PointTest {
         final Direction direction = Direction.STRAIGHT;
 
         // when
-        Point point = Point.DEFAULT;
+        Point point = Point.of(0, 0);
         for (int i = 0; i < movingCount; i++) {
             point = point.move(direction);
         }
