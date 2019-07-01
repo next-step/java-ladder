@@ -6,10 +6,14 @@ import java.util.stream.Collectors;
 
 public class Users {
 
-    private List<User> users;
+    private final List<User> users;
 
     public Users(String userNmaes){
         users = createUsers(userNmaes);
+    }
+
+    public int userCount(){
+        return this.users.size();
     }
 
     private List<User> createUsers(String userNmaes){
