@@ -1,10 +1,13 @@
 package com.jaeyeonling.ladder.domain.user;
 
+import com.jaeyeonling.ladder.exception.UserNotFoundException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class UsersTest {
 
@@ -36,5 +39,34 @@ class UsersTest {
 
         // then
         assertThat(users).isNotNull();
+    }
+
+    @DisplayName("유저 이름으로 인덱스를 가져온다.")
+    @Test
+    void should_return_userIndex_when_findIndexByUsername() {
+        // given
+        final Users users = Users.ofSeparator("a,b,c,d,e");
+
+        // when
+        final int aIndex = users.findIndexByUsername(Username.valueOf("a"));
+        final int eIndex = users.findIndexByUsername(Username.valueOf("e"));
+
+        // then
+        assertThat(aIndex).isEqualTo(0);
+        assertThat(eIndex).isEqualTo(4);
+    }
+
+    @DisplayName("해당 이름이 없으면 에러를 발생한다.")
+    @Test
+    void should_throw_UserNotFoundException_when_notFoundIndexByUsername() {
+        // given
+        final Users users = Users.ofSeparator("a,b,c,d,e");
+
+        // when / then
+        assertThatExceptionOfType(UserNotFoundException.class)
+                .isThrownBy(() -> {
+                    users.findIndexByUsername(Username.valueOf("z"));
+                });
+
     }
 }
