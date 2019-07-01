@@ -1,6 +1,7 @@
 package com.jaeyeonling.ladder.domain;
 
 import com.jaeyeonling.ladder.domain.line.Line;
+import com.jaeyeonling.ladder.domain.point.Direction;
 import com.jaeyeonling.ladder.domain.user.CountOfUsers;
 import com.jaeyeonling.ladder.domain.user.User;
 import com.jaeyeonling.ladder.domain.user.Username;
@@ -18,9 +19,11 @@ public interface Fixture {
     Users multiUsers = Users.ofSeparator(rawUsers);
     CountOfUsers countOfusers = multiUsers.getCountOfUsers();
 
-    List<Boolean> allFalsePoint = List.of(false, false, false, false, false);
-    List<Boolean> allTruePoint = List.of(false, true, false, true, false);
+    List<Direction> allConnectDirection = List.of(Direction.RIGHT, Direction.LEFT,
+            Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT);
+    List<Direction> allNotConnectDirection = List.of(Direction.STRAIGHT, Direction.STRAIGHT,
+            Direction.STRAIGHT, Direction.STRAIGHT, Direction.STRAIGHT);
 
-    Line allFalseLine = Line.ofPoints(allFalsePoint);
-    Line allTrueLine = Line.ofPoints(allTruePoint);
+    Line allTrueLine = Line.ofDirections(allConnectDirection);
+    Line allFalseLine = Line.ofDirections(allNotConnectDirection);
 }

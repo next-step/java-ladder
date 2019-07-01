@@ -4,6 +4,7 @@ import com.jaeyeonling.ladder.domain.ladder.HeightOfLadder;
 import com.jaeyeonling.ladder.domain.ladder.LadderGame;
 import com.jaeyeonling.ladder.domain.ladder.LadderGameGenerator;
 import com.jaeyeonling.ladder.domain.line.*;
+import com.jaeyeonling.ladder.domain.point.Direction;
 import com.jaeyeonling.ladder.domain.user.User;
 import com.jaeyeonling.ladder.domain.user.Username;
 import com.jaeyeonling.ladder.domain.user.Users;
@@ -31,8 +32,8 @@ public class Application {
         final Formatter<User> userFormatter = UserFormatter.withUsernameFormatter(usernameFormatter);
         final Formatter<Users> usersFormatter = UsersFormatter.withUserFormatter(userFormatter);
 
-        final Formatter<Boolean> pointFormatter = new PointFormatter();
-        final Formatter<Line> lineFormatter = LineFormatter.withPointFormatter(pointFormatter);
+        final Formatter<Direction> directionFormatter = new DirectionFormatter();
+        final Formatter<Line> lineFormatter = LineFormatter.withDirectionFormatter(directionFormatter);
         final Formatter<Lines> linesFormatter = LinesFormatter.withLineFormatter(lineFormatter);
 
         final Formatter<LadderGame> ladderGameFormatter = LadderGameFormatter.withUsersFormatterAndLinesFormatter(

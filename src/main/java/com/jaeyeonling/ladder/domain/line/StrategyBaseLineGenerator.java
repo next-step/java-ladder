@@ -1,5 +1,7 @@
 package com.jaeyeonling.ladder.domain.line;
 
+import com.jaeyeonling.ladder.domain.point.Direction;
+
 public class StrategyBaseLineGenerator extends RoleBaseLineGenerator {
 
     private final PointGenerateStrategy pointGenerateStrategy;
@@ -13,11 +15,29 @@ public class StrategyBaseLineGenerator extends RoleBaseLineGenerator {
     }
 
     @Override
-    Boolean generate(final Boolean before) {
-        if (before) {
-            return false;
+    Direction generateFirst() {
+        return generate();
+    }
+
+    @Override
+    Direction generateMiddle(final Direction before) {
+        if (before == Direction.RIGHT) {
+            return Direction.LEFT;
         }
 
-        return pointGenerateStrategy.generate();
+        return generate();
+    }
+
+    @Override
+    Direction generateEnd(final Direction before) {
+        if (before == Direction.RIGHT) {
+            return Direction.LEFT;
+        }
+
+        return Direction.STRAIGHT;
+    }
+
+    private Direction generate() {
+        return pointGenerateStrategy.generate() ? Direction.RIGHT : Direction.STRAIGHT;
     }
 }

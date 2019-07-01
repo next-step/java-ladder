@@ -1,6 +1,5 @@
 package com.jaeyeonling.ladder.domain;
 
-import com.jaeyeonling.ladder.domain.Positive;
 import com.jaeyeonling.ladder.exception.ShorterThanMinPositiveException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

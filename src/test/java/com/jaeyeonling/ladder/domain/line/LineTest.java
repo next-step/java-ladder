@@ -1,6 +1,7 @@
 package com.jaeyeonling.ladder.domain.line;
 
 import com.jaeyeonling.ladder.domain.Fixture;
+import com.jaeyeonling.ladder.domain.point.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,20 +21,18 @@ class LineTest {
         assertThat(line).isNotNull();
     }
 
-    @DisplayName("첫 라인과 앞 라인에 포인트가 있는 경우가 아니면 항상 포인트가 있다.")
+    @DisplayName("앞 방향이 RIGHT면 지금 방향은 LEFT이다.")
     @Test
     void should_true_when_notFirst_and_notBeforeTrue() {
         final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(() -> true);
 
         final Line line = lineGenerator.generate(Fixture.countOfusers);
-        final List<Boolean> points = line.getPoints();
-        for (int i = 2; i < points.size(); i++) {
-            final Boolean before = points.get(i - 1);
-            if (before) {
-                assertThat(points.get(i)).isFalse();
+        final List<Direction> directions = line.getDirections();
+        for (int i = 1; i < directions.size(); i++) {
+            final Direction before = directions.get(i - Direction.DEFAULT_MOVING_DISTANCE_VALUE);
+            if (before == Direction.RIGHT) {
+                assertThat(directions.get(i)).isEqualTo(Direction.LEFT);
             }
         }
-
-        assertThat(line).isNotNull();
     }
 }

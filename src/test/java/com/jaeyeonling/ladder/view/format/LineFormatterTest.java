@@ -20,7 +20,7 @@ class LineFormatterTest extends FormatterSupport {
     void should_equals_true_formattedLine_and_expectFormat_when_allFalseLine() {
         // when
         final String formatted = lineFormatter.format(Fixture.allFalseLine);
-        final String expect = "     |".repeat(Fixture.allFalsePoint.size());
+        final String expect = "     |".repeat(Fixture.allConnectDirection.size());
 
         // then
         assertThat(formatted).isEqualTo(expect);

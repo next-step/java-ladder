@@ -8,33 +8,41 @@ import java.util.List;
 
 public abstract class RoleBaseLineGenerator implements LineGenerator {
 
-    abstract Boolean generate(final Boolean before);
+    abstract Direction generateFirst();
+    abstract Direction generateMiddle(final Direction before);
+    abstract Direction generateEnd(final Direction before);
 
     @Override
     public Line generate(final CountOfUsers countOfUsers) {
-        final List<Boolean> points = generatePoints(countOfUsers.getValue());
+        final List<Direction> directions = new ArrayList<>();
 
-        return Line.ofPoints(points);
+        initializeFirst(directions);
+        initializeMiddle(directions, countOfUsers.getValue() - Direction.DEFAULT_MOVING_DISTANCE_VALUE);
+        initializeEnd(directions);
+
+        return Line.ofDirections(directions);
     }
 
-    private List<Boolean> generatePoints(final int countOfUsers) {
-        final List<Boolean> points = initializePoints();
-        for (int i = points.size(); i < countOfUsers; i++) {
-            final Boolean before = points.get(points.size() - Direction.DEFAULT_MOVING_DISTANCE_VALUE);
+    private void initializeFirst(final List<Direction> directions) {
+        directions.add(generateFirst());
+    }
 
-            final Boolean point = generate(before);
+    private void initializeMiddle(final List<Direction> directions,
+                                  final int end) {
+        for (int i = directions.size(); i < end; i++) {
+            final Direction before = extractBefore(directions);
 
-            points.add(point);
+            directions.add(generateMiddle(before));
         }
-
-        return points;
     }
 
-    private List<Boolean> initializePoints() {
-        final List<Boolean> points = new ArrayList<>();
+    private void initializeEnd(List<Direction> directions) {
+        final Direction before = extractBefore(directions);
 
-        points.add(false);
+        directions.add(generateEnd(before));
+    }
 
-        return points;
+    private Direction extractBefore(final List<Direction> directions) {
+        return directions.get(directions.size() - Direction.DEFAULT_MOVING_DISTANCE_VALUE);
     }
 }
