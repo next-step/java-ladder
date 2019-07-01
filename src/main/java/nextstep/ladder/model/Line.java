@@ -45,7 +45,7 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    private int goDown(int point) {
+    protected int goDown(int point) {
         return goDownLeft(point) ? point - ONCE_POINT : goDownRight(point) ? point + ONCE_POINT : point;
     }
 
