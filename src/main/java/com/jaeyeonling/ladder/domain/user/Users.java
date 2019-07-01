@@ -38,12 +38,12 @@ public class Users {
         return users.stream();
     }
 
-    public int findIndexByUsername(final Username username) {
+    public int findIndexByUsername(final String username) {
         return this.users.stream()
                 .filter(u -> u.equalsUsername(username))
                 .findFirst()
                 .map(this::findIndexByUser)
-                .orElseThrow(() -> new NotFoundUserException(username.getUsername()));
+                .orElseThrow(() -> new NotFoundUserException(username));
     }
 
     public int findIndexByUser(final User user) {

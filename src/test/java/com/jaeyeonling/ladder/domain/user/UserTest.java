@@ -72,10 +72,9 @@ class UserTest {
     void should_return_true_equalsName(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
-        final Username username = Username.valueOf(rawUsername);
 
         // when
-        final boolean equals = user.equalsUsername(username);
+        final boolean equals = user.equalsUsername(rawUsername);
 
         // then
         assertThat(equals).isTrue();
@@ -92,7 +91,7 @@ class UserTest {
     void should_return_false_otherUsername(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
-        final Username username = Username.valueOf("XXXXX");
+        final String username = "XXXXX";
 
         // when
         final boolean equals = user.equalsUsername(username);
