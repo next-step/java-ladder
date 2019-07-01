@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Point {
 
+    public static final Point DEFAULT = Point.of(0, 0);
+
     private final Position x;
     private final Position y;
 
@@ -23,6 +25,19 @@ public class Point {
     public static Point of(Position x,
                            Position y) {
         return new Point(x, y);
+    }
+
+    public Point move(final Direction direction) {
+        if (direction.isX()) {
+            final Position movedX = x.move(direction.getDistance());
+            return of(movedX, this.y);
+        }
+        if (direction.isY()) {
+            final Position movedY = y.move(direction.getDistance());
+            return of(this.x, movedY);
+        }
+
+        return this;
     }
 
     @Override

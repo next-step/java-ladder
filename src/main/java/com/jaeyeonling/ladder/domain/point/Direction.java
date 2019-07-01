@@ -22,6 +22,10 @@ public enum Direction {
         return axis == Axis.Y;
     }
 
+    public Distance getDistance() {
+        return distance;
+    }
+
     Direction(final Axis axis,
               final Distance distance) {
         this.axis = axis;
