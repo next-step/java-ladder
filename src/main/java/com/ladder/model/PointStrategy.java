@@ -4,5 +4,4 @@ package com.ladder.model;
 public interface PointStrategy {
 
     boolean generate();
-
 }

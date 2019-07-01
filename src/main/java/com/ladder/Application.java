@@ -15,7 +15,7 @@ public class Application {
 
     public static void main(String[] args) {
         Players players = InputView.writeUserNames();
-        int numberOfColumns =InputView.askNumberOfColumns();
+        int numberOfColumns = InputView.askNumberOfColumns();
 
         Ladder ladder = Ladder.generate(numberOfColumns, players.countOfPlayers());
 

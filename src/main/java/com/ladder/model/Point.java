@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Point {
 
+    public static final Point POINT_RIGHT = Point.of(false, true);
     static final Point POINT_LEFT = Point.of(true, false);
-    static final Point POINT_RIGHT = Point.of(false, true);
     static final Point POINT_DOWN = Point.of(false, false);
     static final boolean NO_MOVABLE = false;
 
@@ -22,15 +22,15 @@ public class Point {
     }
 
     static Point of(String left, String right) {
-        return new Point(Boolean.valueOf(left), Boolean.valueOf(right));
+        return of(Boolean.valueOf(left), Boolean.valueOf(right));
     }
 
     static Point ofFirst(boolean current) {
-        return new Point(NO_MOVABLE, current);
+        return of(NO_MOVABLE, current);
     }
 
     static Point ofLast(boolean current) {
-        return new Point(current, NO_MOVABLE);
+        return of(current, NO_MOVABLE);
     }
 
     boolean isRight() {

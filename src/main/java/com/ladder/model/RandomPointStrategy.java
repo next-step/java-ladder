@@ -2,7 +2,7 @@ package com.ladder.model;
 
 import java.util.Random;
 
-public class PointRandomStrategy implements PointStrategy {
+public class RandomPointStrategy implements PointStrategy {
 
     private static final Random random = new Random();
 
@@ -10,5 +10,4 @@ public class PointRandomStrategy implements PointStrategy {
     public boolean generate() {
         return random.nextBoolean();
     }
-
 }

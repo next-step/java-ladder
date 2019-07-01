@@ -15,9 +15,9 @@ public class LineFormatter implements Formatter<Line> {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(LADDER_OF_EMPTY);
 
-//        line.getPoints().stream()
-//                .map(pointFormatter::format)
-//                .forEach(stringBuilder::append);
+        line.getPoints().stream()
+                .map(pointFormatter::format)
+                .forEach(stringBuilder::append);
 
         stringBuilder.append(LADDER_OF_FINISH);
         return stringBuilder.toString();

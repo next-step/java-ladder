@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
 
-    @DisplayName("방향을 가지는 포인트를 생성한다")
+    @DisplayName("위치을 가지는 포인트를 생성한다")
     @ParameterizedTest
     @CsvSource({
             "true, true",
@@ -25,7 +25,7 @@ public class PointTest {
         assertThat(result).isEqualTo(Point.of(left, right));
     }
 
-    @DisplayName("오른쪽 또는 아래로 이동하는 첫번째 포인트를 생성하는데 성공한다")
+    @DisplayName("오른쪽 또는 아래로 이동하는 첫번째 위치를 생성하는데 성공한다")
     @ParameterizedTest
     @ValueSource(strings = {"true", "false"})
     void createFirst_inputOne_success(Boolean current) {
@@ -36,7 +36,7 @@ public class PointTest {
         assertThat(result).isEqualTo(Point.of(false, current));
     }
 
-    @DisplayName("왼쪽 또는 이동하는 마지막 포인트를 생성하는데 성공한다")
+    @DisplayName("왼쪽 또는 이동하는 마지막 위치를 생성하는데 성공한다")
     @ParameterizedTest
     @ValueSource(strings = {"true", "false"})
     void createLast_inputOne_success(Boolean current) {

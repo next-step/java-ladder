@@ -22,14 +22,16 @@ public class PointsGenerator {
     }
 
     private void generateMiddle(int countByPlayers, PointStrategy pointStrategy) {
-        Point before = points.get(0);
-        for (int i = 1; i < countByPlayers - 1; i++) {
-            if (before.isRight()) {
-                points.add(POINT_LEFT);
-                continue;
-            }
-            points.add(Point.of(pointStrategy.generate(), pointStrategy.generate()));
+        for (int i = 0; i < countByPlayers - 1; i++) {
+            points.add(generateNextPoint(points.get(i), pointStrategy));
         }
+    }
+
+    private Point generateNextPoint(Point before, PointStrategy pointStrategy) {
+        if (before.isRight()) {
+            return POINT_LEFT;
+        }
+        return Point.of(NO_MOVABLE, pointStrategy.generate());
     }
 
     private void generateLast(PointStrategy pointStrategy) {

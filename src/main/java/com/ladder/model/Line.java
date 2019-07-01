@@ -13,7 +13,7 @@ public class Line {
     }
 
     static Line of(int countByPlayers) {
-        PointStrategy pointStrategy = new PointRandomStrategy();
+        PointStrategy pointStrategy = new RandomPointStrategy();
         return of(countByPlayers, pointStrategy);
     }
 
@@ -22,7 +22,14 @@ public class Line {
         return new Line(pointsGenerator.generate(countByPlayers, pointStrategy));
     }
 
-    List<Point> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }
