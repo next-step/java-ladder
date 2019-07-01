@@ -22,6 +22,10 @@ public class User {
         return CACHE.computeIfAbsent(username, User::new);
     }
 
+    public boolean equalsUsername(final User other) {
+        return this.username.equals(other.username);
+    }
+
     public Username getUsername() {
         return username;
     }

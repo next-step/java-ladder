@@ -60,4 +60,44 @@ class UserTest {
         assertThat(equals).isTrue();
         assertThat(user == expect).isTrue();
     }
+
+    @DisplayName("유저 이름 같으면 유저 이름은 같다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "김재연",
+            "matt",
+            "kjy",
+            "ggg"
+    })
+    void should_return_true_equalsName(final String rawUsername) {
+        // given
+        final User user = User.of(rawUsername);
+        final User expect = User.of(rawUsername);
+
+        // when
+        final boolean equals = user.equalsUsername(expect);
+
+        // then
+        assertThat(equals).isTrue();
+    }
+
+    @DisplayName("유저 이름이 다르면 유저 이름은 다르다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "김재연",
+            "matt",
+            "kjy",
+            "ggg"
+    })
+    void should_return_false_otherUsername(final String rawUsername) {
+        // given
+        final User user = User.of(rawUsername);
+        final User expect = User.of(rawUsername + "ㅋ");
+
+        // when
+        final boolean equals = user.equalsUsername(expect);
+
+        // then
+        assertThat(equals).isFalse();
+    }
 }
