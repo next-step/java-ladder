@@ -14,12 +14,7 @@ class PlayersTest {
     @DisplayName("게임 참가자들 생성")
     public void create() {
 
-        List<Player> source = Arrays.asList(
-                Player.of("hello"),
-                Player.of("world"),
-                Player.of("nice")
-        );
-
+        List<String> source = Arrays.asList("hello", "world", "nice");
         Players players = Players.of(source);
         assertThat(players.size()).isEqualTo(3);
     }

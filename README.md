@@ -23,5 +23,7 @@
 - [x] Player(name, position) 생성 
 - [x] Ladder Game을 생성한다. 
 - [x] 사다리를 출력한다. 
+- [ ] refactor : stream
+- [x] players 내부 위임. 
 
 
