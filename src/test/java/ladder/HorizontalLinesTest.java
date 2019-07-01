@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HorizontalLinesTest {
-    int lineLength = 3;
+    int verticalHeight = 3;
     Names names = Names.of("1,2,3");
     VerticalLines verticalLines;
     HorizontalLines horizontalLines;
@@ -15,7 +15,7 @@ public class HorizontalLinesTest {
     @BeforeEach
     void setUp() {
         Participants participants = Participants.of(names);
-        verticalLines = new VerticalLines(participants.size(), lineLength);
+        verticalLines = new VerticalLines(participants.size(), verticalHeight);
         horizontalLines = HorizontalLines.of(verticalLines);
     }
 
