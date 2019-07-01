@@ -49,8 +49,8 @@ class UsersTest {
         final Users users = Users.ofSeparator("a,b,c,d,e");
 
         // when
-        final int aIndex = users.findIndexByUsername(Username.valueOf("a"));
-        final int eIndex = users.findIndexByUsername(Username.valueOf("e"));
+        final int aIndex = users.findIndexByUsername("a");
+        final int eIndex = users.findIndexByUsername("e");
 
         // then
         assertThat(aIndex).isEqualTo(0);
@@ -65,7 +65,6 @@ class UsersTest {
                 .isThrownBy(() -> {
                     Users.ofSeparator("a,b,c,d,e,a");
                 });
-
     }
 
     @DisplayName("이름이 중복되면 에러를 발생한다.")
@@ -77,8 +76,7 @@ class UsersTest {
         // when / then
         assertThatExceptionOfType(NotFoundUserException.class)
                 .isThrownBy(() -> {
-                    users.findIndexByUsername(Username.valueOf("z"));
+                    users.findIndexByUsername("z");
                 });
-
     }
 }

@@ -23,14 +23,14 @@ public class Lines {
     }
 
     public Point ride(Point point) {
-        while (isNotArriveEndLines(point)) {
+        while (isNotArriveEndLine(point)) {
             point = rideOnce(point);
         }
 
         return point;
     }
 
-    private boolean isNotArriveEndLines(final Point point) {
+    private boolean isNotArriveEndLine(final Point point) {
         return point.getIndexOfLine() != lines.size();
     }
 

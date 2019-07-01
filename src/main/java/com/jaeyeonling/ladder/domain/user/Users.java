@@ -4,6 +4,7 @@ package com.jaeyeonling.ladder.domain.user;
 import com.jaeyeonling.ladder.exception.DuplicateUsernameException;
 import com.jaeyeonling.ladder.exception.NotFoundUserException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ public class Users {
     private final List<User> users;
 
     private Users(final List<User> users) {
-        this.users = users;
+        this.users = new ArrayList<>(users);
     }
 
     public static Users ofSeparator(final String rawUsers) {
@@ -46,15 +47,15 @@ public class Users {
                 .orElseThrow(() -> new NotFoundUserException(username));
     }
 
-    public int findIndexByUser(final User user) {
-        return this.users.indexOf(user);
-    }
-
     public int size() {
         return this.users.size();
     }
 
     public CountOfUsers getCountOfUsers() {
         return CountOfUsers.fromUsers(this);
+    }
+
+    private int findIndexByUser(final User user) {
+        return this.users.indexOf(user);
     }
 }

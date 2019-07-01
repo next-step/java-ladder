@@ -12,6 +12,12 @@ public enum Direction {
     private final Axis axis;
     private final Distance distance;
 
+    Direction(final Axis axis,
+              final Distance distance) {
+        this.axis = axis;
+        this.distance = distance;
+    }
+
     public boolean isX() {
         return axis == Axis.X;
     }
@@ -22,11 +28,5 @@ public enum Direction {
 
     public Distance getDistance() {
         return distance;
-    }
-
-    Direction(final Axis axis,
-              final Distance distance) {
-        this.axis = axis;
-        this.distance = distance;
     }
 }

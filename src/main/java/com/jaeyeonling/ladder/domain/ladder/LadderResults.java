@@ -16,10 +16,8 @@ public class LadderResults {
     }
 
     public static LadderResults ofSeparator(final String rawResults) {
-        final List<String> results = Arrays.stream(rawResults.split(SEPARATOR))
-                .collect(Collectors.toList());
-
-        return new LadderResults(results);
+        return Arrays.stream(rawResults.split(SEPARATOR))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderResults::new));
     }
 
     public String findByIndex(final int index) {
