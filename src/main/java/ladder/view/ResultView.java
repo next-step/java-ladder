@@ -1,7 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Participants;
+import ladder.domain.*;
 
 import java.io.PrintStream;
 import java.util.stream.IntStream;
@@ -19,13 +18,14 @@ public class ResultView {
     private static final String EMPTY_STRING = buildEmptyString(SIZE);
     private static final String PRINT_PARTICIPANTS_FORMAT = "%-" + SIZE + "s";
 
-    public static void printResult(Participants participants, Ladder ladder) {
+    public static void print(Participants participants, Ladder ladder, LadderResults ladderResults) {
 
         printResultMessage();
         printNewLine();
 
         printParticipants(participants);
         printLadder(ladder);
+        printLadderResults(ladderResults);
     }
 
     private static void printResultMessage() {
@@ -50,6 +50,14 @@ public class ResultView {
 
         IntStream.range(0, ladder.getHeight())
                 .forEach(lineNumber -> printLine(ladder, lineNumber));
+    }
+
+    private static void printLadderResults(LadderResults ladderResults) {
+
+        ladderResults.getLadderResults()
+                .stream().map(LadderResult::getResult)
+                .forEach(result -> printStream.print(String.format(PRINT_PARTICIPANTS_FORMAT, result)));
+        printStream.println();
     }
 
     private static void printLine(Ladder ladder, int lineNumber) {
