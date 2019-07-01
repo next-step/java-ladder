@@ -1,15 +1,15 @@
 package nextstep.ladder.model;
 
 import nextstep.ladder.view.LineFormatter;
-import nextstep.ladder.view.OutView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    private final int JUST_ONE_MORE = 1;
+
     private final List<Line> lines;
 
     public Ladder(int countOfHeight, int countOfPerson) {
@@ -28,5 +28,21 @@ public class Ladder {
         return lines.stream()
                 .map(lineFormatter::format)
                 .collect(Collectors.joining());
+    }
+
+    public List<Integer> resultLadder() {
+        List<Integer> result = makeCurrentPoints();
+        for (Line line : lines) {
+            result = line.lineResult(result);
+        }
+        return result;
+    }
+
+    private List<Integer> makeCurrentPoints() {
+        Line line = lines.get(0);
+        List<Boolean> lineSize = line.getPoints();
+        return IntStream.range(0, lineSize.size() + JUST_ONE_MORE)
+                .boxed()
+                .collect(Collectors.toList());
     }
 }

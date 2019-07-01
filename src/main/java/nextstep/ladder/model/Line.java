@@ -1,8 +1,10 @@
 package nextstep.ladder.model;
 
+import nextstep.ladder.view.OutView;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -36,6 +38,31 @@ public class Line {
             return points.get(point - ONCE_POINT);
         }
         return false;
+    }
+
+    public List<Integer> lineResult(List<Integer> currentPoints) {
+        return currentPoints.stream()
+                .mapToInt(n -> goDown(n))
+                .boxed()
+                .collect(Collectors.toList());
+    }
+
+    private int goDown(int point) {
+        return goDownLeft(point) ? point - ONCE_POINT : goDownRight(point) ? point + ONCE_POINT : point;
+    }
+
+    private boolean goDownLeft(int point) {
+        if ((point - ONCE_POINT) < START_POINT) {
+            return false;
+        }
+        return points.get(point - ONCE_POINT);
+    }
+
+    private boolean goDownRight(int point) {
+        if (points.size() == point) {
+            return false;
+        }
+        return points.get(point);
     }
 
     public List<Boolean> getPoints() {

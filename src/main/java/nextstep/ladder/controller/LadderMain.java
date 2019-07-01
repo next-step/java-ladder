@@ -12,6 +12,7 @@ public class LadderMain {
         GameResult gameResult = new GameResult(askGameResult());
         Ladder ladder = new Ladder(askLadderHeight(), players.countOfPlayer());
         printGameResult(players, ladder, gameResult);
+        OutView.println(ladder.resultLadder());
     }
 
     private static String askPlayersName() {
