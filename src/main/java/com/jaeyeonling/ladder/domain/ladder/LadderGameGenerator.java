@@ -29,6 +29,6 @@ public class LadderGameGenerator {
 
         final Lines lines = Lines.of(rawLines);
 
-        return LadderGame.of(users, lines);
+        return LadderGame.of(lines);
     }
 }

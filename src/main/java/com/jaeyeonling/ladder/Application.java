@@ -16,11 +16,14 @@ public class Application {
 
     private final LadderGameGenerator ladderGameGenerator;
     private final Formatter<LadderGame> ladderGameFormatter;
+    private final Formatter<Users> usersFormatter;
 
     private Application(final LadderGameGenerator ladderGameGenerator,
-                        final Formatter<LadderGame> ladderGameFormatter) {
+                        final Formatter<LadderGame> ladderGameFormatter,
+                        final Formatter<Users> usersFormatter) {
         this.ladderGameGenerator = ladderGameGenerator;
         this.ladderGameFormatter = ladderGameFormatter;
+        this.usersFormatter = usersFormatter;
     }
 
     public static void main(final String... args) {
@@ -36,10 +39,9 @@ public class Application {
         final Formatter<Line> lineFormatter = LineFormatter.withDirectionFormatter(directionFormatter);
         final Formatter<Lines> linesFormatter = LinesFormatter.withLineFormatter(lineFormatter);
 
-        final Formatter<LadderGame> ladderGameFormatter = LadderGameFormatter.withUsersFormatterAndLinesFormatter(
-                usersFormatter, linesFormatter);
+        final Formatter<LadderGame> ladderGameFormatter = LadderGameFormatter.withLinesFormatter(linesFormatter);
 
-        final Application application = new Application(ladderGameGenerator, ladderGameFormatter);
+        final Application application = new Application(ladderGameGenerator, ladderGameFormatter, usersFormatter);
 
         application.start();
     }
@@ -50,6 +52,8 @@ public class Application {
 
         final LadderGame ladderGame = ladderGameGenerator.generate(users, ladderHeight);
 
-        ConsoleOutputView.printResult(ladderGameFormatter.format(ladderGame));
+        ConsoleOutputView.printResult();
+        ConsoleOutputView.print(usersFormatter.format(users));
+        ConsoleOutputView.print(ladderGameFormatter.format(ladderGame));
     }
 }

@@ -10,12 +10,10 @@ public final class ConsoleOutputView {
 
     private ConsoleOutputView() { }
 
-    public static void printResult(final String result) {
+    public static void printResult() {
         newline();
         print(RESULT_MESSAGE);
         newline();
-
-        print(result);
     }
 
     public static void print(final Object message) {
