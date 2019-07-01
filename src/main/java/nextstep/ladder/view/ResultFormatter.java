@@ -11,11 +11,10 @@ public class ResultFormatter implements Formatter<Game> {
     @Override
     public String format(Game game) {
         StringBuilder builder = new StringBuilder();
-        Players players = game.getPlayers();
 
-        IntStream.range(0, players.countOfPlayer())
+        IntStream.range(0, game.countOfPlayer())
                 .boxed()
-                .map(n -> players.getName(n) + LINE_CONNECTOR + game.getPrize(n))
+                .map(n -> game.getName(n) + LINE_CONNECTOR + game.getPrize(n))
                 .map(resultText -> resultText + LineFormatter.LINE_END)
                 .forEach(builder::append);
 

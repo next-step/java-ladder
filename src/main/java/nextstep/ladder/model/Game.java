@@ -27,25 +27,21 @@ public class Game {
         return gamePrize.getPrize(resultPosition);
     }
 
+    public String getFormattedResult() {
+        ResultFormatter resultFormatter = new ResultFormatter();
+        return resultFormatter.format(this);
+    }
+
+    public String getName(int position) {
+        return players.getName(position);
+    }
+
     public String getPrize(int position) {
         int resultPosition = gameResult.getOnePosition(position);
         return gamePrize.getPrize(resultPosition);
     }
 
-    public Players getPlayers() {
-        return players;
-    }
-
-    public GamePrize getGamePrize() {
-        return gamePrize;
-    }
-
-    public GameResult getGameResult() {
-        return gameResult;
-    }
-
-    public String getFormattedResult() {
-        ResultFormatter resultFormatter = new ResultFormatter();
-        return resultFormatter.format(this);
+    public int countOfPlayer() {
+        return players.countOfPlayer();
     }
 }

@@ -45,8 +45,4 @@ public class Players {
     public String getName(int position) {
         return names.get(position).getName();
     }
-
-    public List<Player> getNames() {
-        return names;
-    }
 }
