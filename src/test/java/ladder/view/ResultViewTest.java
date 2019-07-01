@@ -1,7 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Participants;
+import ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,8 @@ class ResultViewTest {
 
         Participants participants = new Participants("pobi,honux,crong,jk");
         Ladder ladder = new Ladder(participants.size(), 5);
+        LadderResults ladderResults = new LadderResults("꽝,5000,꽝,3000", participants.size());
 
-        ResultView.printResult(participants, ladder);
+        ResultView.print(participants, ladder, ladderResults);
     }
 }
