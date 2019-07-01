@@ -1,3 +1,5 @@
+package view;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -14,6 +16,7 @@ public class InputView {
     }
 
     public static int getMaxLadderHeight() {
+        System.out.println();
         System.out.println(MAX_LADDER_GUIDE_TEXT);
         return SCANNER.nextInt();
     }

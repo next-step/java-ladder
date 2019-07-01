@@ -1,3 +1,5 @@
+package ladder;
+
 public class LadderPlayerName {
     public static final int MAX_PLAYER_NAME_LENGTH = 5;
 

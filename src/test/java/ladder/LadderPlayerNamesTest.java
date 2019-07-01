@@ -1,3 +1,7 @@
+package ladder;
+
+import ladder.LadderPlayerName;
+import ladder.LadderPlayerNames;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

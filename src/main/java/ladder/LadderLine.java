@@ -1,15 +1,14 @@
+package ladder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class LadderLine {
-    private static final int DO = 0;
-    private static final int DO_OR_NOT = 2;
-
     private final List<Boolean> establishedResults;
 
-    private LadderLine(List<Boolean> establishedResults){
+    private LadderLine(List<Boolean> establishedResults) {
         this.establishedResults = establishedResults;
     }
 
@@ -17,8 +16,9 @@ public class LadderLine {
         List<Boolean> results = new ArrayList<>(countOfColumn);
         Random random = new Random();
 
-        for (int index = 0 ; index < countOfColumn ; index++) {
-            boolean isDoEstablish = isPreviousNotEstablished(results, index) && isCanEstablish(random);
+        for (int index = 0; index < countOfColumn; index++) {
+            boolean isCanEstablish = random.nextBoolean();
+            boolean isDoEstablish = isPreviousNotEstablished(results, index) && isCanEstablish;
             results.add(isDoEstablish);
         }
 
@@ -31,11 +31,6 @@ public class LadderLine {
         }
 
         return !establishedResult.get(currentIndex - 1);
-    }
-
-    private static boolean isCanEstablish(Random random) {
-        int randomNum = random.nextInt(DO_OR_NOT);
-        return randomNum == DO;
     }
 
     public static LadderLine of(int countOfColumn) {

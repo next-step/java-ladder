@@ -1,7 +1,11 @@
+import ladder.Ladder;
+import ladder.LadderPlayerNames;
+import view.InputView;
+import view.ResultView;
+
 public class Main {
     public static void main(String[] args) {
         String playerNamesString = InputView.getJoinMembersString();
-        System.out.println();
         int maxLadderHeight = InputView.getMaxLadderHeight();
 
         LadderPlayerNames ladderPlayerNames = LadderPlayerNames.of(playerNamesString);

@@ -1,16 +1,25 @@
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+package view;
 
-public class Ladder {
+import ladder.Ladder;
+import ladder.LadderLine;
+import ladder.LadderPlayerName;
+import ladder.LadderPlayerNames;
+
+import java.util.stream.Collectors;
+
+public class ResultView {
+    private static final String LUNCH_RESULT_TEXT = "실행결과";
+
     private static final String ESTABLISHED_LADDER = createLadderLineString("-");
     private static final String NOT_ESTABLISHED_LADDER = createLadderLineString(" ");
     private static final String LADDER_GUTTER = "|";
 
-    private final List<LadderLine> ladderLines;
+    private ResultView() {/*prevent creating instance.*/}
 
-    private Ladder(List<LadderLine> ladderLines) {
-        this.ladderLines = ladderLines;
+    public static void printLunchResult(LadderPlayerNames ladderPlayerNames, Ladder ladder) {
+        System.out.println(LUNCH_RESULT_TEXT);
+        System.out.println(ladderPlayerNames);
+        printLadder(ladder);
     }
 
     private static String createLadderLineString(String lineString) {
@@ -23,7 +32,15 @@ public class Ladder {
         return builder.toString();
     }
 
-    private String buildLineString(LadderLine ladderLine) {
+    private static void printLadder(Ladder ladder) {
+        String ladderText = ladder.getLadderLines().stream()
+              .map(ResultView::buildLineString)
+              .collect(Collectors.joining("\n"));
+
+        System.out.println(ladderText);
+    }
+
+    private static String buildLineString(LadderLine ladderLine) {
         StringBuilder builder = new StringBuilder();
         String leftBlank = String.format("%4s", " ");
 
@@ -37,20 +54,5 @@ public class Ladder {
         builder.append(LADDER_GUTTER);
 
         return builder.toString();
-    }
-
-    public static Ladder of(int countOfColumn, int ladderHeight) {
-        List<LadderLine> ladderLines = IntStream.range(0, ladderHeight)
-                                                .mapToObj(index -> LadderLine.of(countOfColumn))
-                                                .collect(Collectors.toList());
-
-        return new Ladder(ladderLines);
-    }
-
-    @Override
-    public String toString() {
-        return this.ladderLines.stream()
-                               .map(this::buildLineString)
-                               .collect(Collectors.joining("\n"));
     }
 }
