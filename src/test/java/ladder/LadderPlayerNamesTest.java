@@ -1,9 +1,9 @@
 package ladder;
 
-import ladder.LadderPlayerName;
-import ladder.LadderPlayerNames;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -43,5 +43,42 @@ public class LadderPlayerNamesTest {
         int resultCountOfPerson = ladderPlayerNames.size();
 
         assertThat(resultCountOfPerson).isEqualTo(expectedCountOfPerson);
+    }
+
+    @DisplayName("파싱된 플레이어 이름이 아닌 다른 이름을 검색하는 경우, 예외가 발생합니다.")
+    @Test
+    public void testIfSearchByNotParsedNameThenInvokedException() {
+        String playerNamesString = "Moo, Goo, Zii, Ham";
+        LadderPlayerNames ladderPlayerNames = LadderPlayerNames.of(playerNamesString);
+
+        assertThatIllegalArgumentException().isThrownBy(() -> ladderPlayerNames.getIndexesOf("GGGG"));
+    }
+
+    @DisplayName("파싱된 플레이어 이름으로 검색 할 때, 순서가 맞아야 합니다.")
+    @Test
+    public void testIfSearchByNameThenMatchedPosition() {
+        String[] playerNames = {"Moo", "Goo", "Zii", "Ham"};
+        String playerNamesString = String.join(",", playerNames);
+        LadderPlayerNames ladderPlayerNames = LadderPlayerNames.of(playerNamesString);
+
+        for (int i = 0; i < playerNames.length; i++) {
+            String playerName = playerNames[i];
+            int position = ladderPlayerNames.getIndexesOf(playerName).get(0);
+            assertThat(position).isEqualTo(i);
+        }
+    }
+
+    @DisplayName("all 로 검색 할 때, 순서가 크기 만큼 증가하는 리스트가 리턴돠어야 합니다.")
+    @Test
+    public void testIfSearchByAllThenReturnedIncreaseList() {
+        String[] playerNames = {"Moo", "Goo", "Zii", "Ham"};
+        String playerNamesString = String.join(",", playerNames);
+        LadderPlayerNames ladderPlayerNames = LadderPlayerNames.of(playerNamesString);
+
+        List<Integer> indexes = ladderPlayerNames.getIndexesOf("all");
+        for (int i = 0; i < indexes.size(); i++) {
+            int value = indexes.get(i);
+            assertThat(value).isEqualTo(i);
+        }
     }
 }
