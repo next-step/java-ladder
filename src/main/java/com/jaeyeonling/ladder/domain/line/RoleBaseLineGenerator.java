@@ -13,14 +13,14 @@ public abstract class RoleBaseLineGenerator implements LineGenerator {
 
     @Override
     public Line generate(final CountOfUsers countOfUsers) {
-        final List<Boolean> points = generatePoints(countOfUsers);
+        final List<Boolean> points = generatePoints(countOfUsers.getValue());
 
         return Line.ofPoints(points);
     }
 
-    private List<Boolean> generatePoints(final CountOfUsers countOfUsers) {
+    private List<Boolean> generatePoints(final int countOfUsers) {
         final List<Boolean> points = initializePoints();
-        for (int i = points.size(); i < countOfUsers.getValue(); i++) {
+        for (int i = points.size(); i < countOfUsers; i++) {
             final Boolean before = points.get(points.size() - BEFORE_TERM);
 
             final Boolean point = generate(before);

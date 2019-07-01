@@ -1,5 +1,7 @@
 package com.jaeyeonling.ladder.domain.line;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -7,7 +9,7 @@ public class Line {
     private final List<Boolean> points;
 
     private Line(final List<Boolean> points) {
-        this.points = points;
+        this.points = new ArrayList<>(points);
     }
 
     public static Line ofPoints(final List<Boolean> points) {
@@ -15,6 +17,6 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 }
