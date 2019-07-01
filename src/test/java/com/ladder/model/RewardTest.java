@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.ladder.model.Reward.LENGTH_OF_REWARD;
+import static com.ladder.model.Reward.LENGTH_OF_REWARD_NAME;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
@@ -27,7 +27,7 @@ public class RewardTest {
         assertThat(result).isEqualTo(Reward.of(reward));
     }
 
-    @DisplayName("보상 이름이 " + LENGTH_OF_REWARD + "초과할 시 실패한다")
+    @DisplayName("보상 이름이 " + LENGTH_OF_REWARD_NAME + "초과할 시 실패한다")
     @ParameterizedTest
     @ValueSource(strings = {"abcdef"})
     void createUsername_whenLengthMoreThanFive_exception(String wrongName) {

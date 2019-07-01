@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Reward {
 
-    static final int LENGTH_OF_REWARD = 5;
+    static final int LENGTH_OF_REWARD_NAME = 5;
 
     private String reward;
 
@@ -17,7 +17,7 @@ public class Reward {
 
     public static Reward of(String reward) {
         AssertUtils.checkNull(reward);
-        if (reward.length() > LENGTH_OF_REWARD) {
+        if (reward.length() > LENGTH_OF_REWARD_NAME) {
             throw new NameLengthException(reward);
         }
         return new Reward(reward);

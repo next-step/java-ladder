@@ -82,13 +82,12 @@ a,b,c,e,d
 - [ ] (operator) 플레이어의 위치를 입력하면, 보상 위치를 리턴받는다. (in: playerOfIndex or playerOfPosition)
 
 3. 실행 결과를 출력한다.
-3-1. 보상을 입력한다 (rewards)
-- [ ] (input) 입력받은 보상을 구분자(,)를 사용하여 생성한다 (in:String)
-- [ ] (operator) 
-   
+3-1. 보상을 입력한다 (reward)
+- [x] (exception) 보상이름이 5글자 초과 시 에러
 3-2. 여러 보상을 입력한다 (rewards)
-- [ ] (input) 입력받은 보상을 구분자(,)를 사용하여 보상을 생성한다 (in:String)
-- [ ] (operator) 보상의 개수를  
+- [x] (input) 입력받은 보상을 구분자(,)를 사용하여 보상을 생성한다 (in:String)
+- [x] (exception) 1개 미만의 보상 입력시 에러 
+- [x] (operator) 보상의 개수를 대답한다 (out: int)  
 
 3-1. 실행 결과를 출력한다.
 - [ ] (input) 보상과 플레이어을 입력받는다. (in:rewards, out:players)
