@@ -9,11 +9,11 @@ public class LadderMain {
         Players players = new Players(askPlayersName());
         GamePrize gamePrize = new GamePrize(askGameResult());
         Ladder ladder = new Ladder(askLadderHeight(), players.countOfPlayer());
+
         GameResult gameResult = new GameResult(ladder, players.countOfPlayer());
         Game game = new Game(players, gamePrize, gameResult);
 
         printGameResult(ladder, game);
-
         while (showPlayerResult(game)) ;
     }
 
