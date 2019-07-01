@@ -20,6 +20,13 @@ public class Users {
         return this.users;
     }
 
+    public int getMaxUserNameLength(){
+        return users.stream()
+                    .map(User::getNameLength)
+                    .max(Integer::compare)
+                    .get();
+    }
+
     private List<User> createUsers(String userNmaes){
         List<String> users = Arrays.asList(userNmaes.split(","));
         return users.stream()
