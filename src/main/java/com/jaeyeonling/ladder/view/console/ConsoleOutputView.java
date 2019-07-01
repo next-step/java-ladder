@@ -25,7 +25,6 @@ public final class ConsoleOutputView {
 
     public static void printMatchingResult(final String username,
                                            final String winningResult) {
-        newline();
         print(String.format(MATCHING_RESULT_FORMAT, username, winningResult));
     }
 

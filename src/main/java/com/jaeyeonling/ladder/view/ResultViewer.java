@@ -35,7 +35,7 @@ public class ResultViewer {
     }
 
     private void showResult() {
-        final String usernameOfWantResult = ConsoleInputView.readLadderResults();
+        final String usernameOfWantResult = ConsoleInputView.readUsernameOfWantResult();
         if (isShowAll(usernameOfWantResult)) {
             showAllResult();
         }
@@ -53,10 +53,13 @@ public class ResultViewer {
 
         final String winningResult = ladderResults.findByIndex(indexOfResult);
 
+        ConsoleOutputView.printResult();
         ConsoleOutputView.print(winningResult);
     }
 
     private void showAllResult() {
+        ConsoleOutputView.printResult();
+
         users.stream()
                 .map(User::getUsername)
                 .map(Username::getUsername)
