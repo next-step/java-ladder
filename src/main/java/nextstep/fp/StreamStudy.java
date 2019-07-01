@@ -11,49 +11,52 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
-	public static long countWords() throws IOException {
-		String contents = new String(Files.readAllBytes(Paths
-				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+    public static long countWords() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-		long count = 0;
-		for (String w : words) {
-		  if (w.length() > 12) count++;  
-		}
-		return count;
-	}
-	
-	public static void printLongestWordTop100() throws IOException {
-		String contents = new String(Files.readAllBytes(Paths
-				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-		
-		// TODO 이 부분에 구현한다.
-		words.stream().filter(w -> w.length() > 12).sorted(new Comparator<String>() {
-			@Override
-			public int compare(String o1, String o2) {
-				int o1Length = o1.length();
-				int o2Length = o2.length();
+        long count = 0;
+        for (String w : words) {
+            if (w.length() > 12) count++;
+        }
+        return count;
+    }
 
-				int result = Integer.compare(o1Length, o2Length);
-				if ( result == 0){
-					return o1.compareTo(o2);
-				}
-				return result;
-			}
-		}).distinct().limit(100)
-				.map(String::toLowerCase).forEach(System.out::println);
-	}
+    public static void printLongestWordTop100() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-	public static List<Integer> doubleNumbers(List<Integer> numbers) {
-		return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
-	}
+        // TODO 이 부분에 구현한다.
+        words.stream().filter(w -> w.length() > 12).sorted(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                int o1Length = o1.length();
+                int o2Length = o2.length();
 
-	public static long sumAll(List<Integer> numbers) {
-		return numbers.stream().reduce(0, (x, y) -> x + y);
-	}
+                int result = Integer.compare(o1Length, o2Length);
+                if (result == 0) {
+                    return o1.compareTo(o2);
+                }
+                return result;
+            }
+        }).distinct().limit(100)
+                .map(String::toLowerCase).forEach(System.out::println);
+    }
 
-	public static long sumOverThreeAndDouble(List<Integer> numbers) {
-		return numbers.stream().filter(n -> n > 3).map(n -> (long)(n * 2)).reduce(0L, (x, y) -> x + y);
-	}
+    public static List<Integer> doubleNumbers(List<Integer> numbers) {
+        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+    }
+
+    public static long sumAll(List<Integer> numbers) {
+        return numbers.stream().reduce(0, (x, y) -> x + y);
+    }
+
+    public static long sumOverThreeAndDouble(List<Integer> numbers) {
+        return numbers.stream()
+                .filter(n -> n > 3)
+                .map(n -> (long) (n * 2))
+                .reduce(0L, (x, y) -> x + y);
+    }
 }
