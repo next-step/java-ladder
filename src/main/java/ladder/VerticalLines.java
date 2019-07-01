@@ -1,6 +1,7 @@
 package ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class VerticalLines {
@@ -15,5 +16,9 @@ public class VerticalLines {
 
     public int size() {
         return verticalLines.size();
+    }
+
+    public List<VerticalLine> getVerticalLines() {
+        return Collections.unmodifiableList(verticalLines);
     }
 }

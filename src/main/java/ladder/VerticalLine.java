@@ -18,4 +18,8 @@ public class VerticalLine {
     public boolean hasLeftHorizontalLine() {
         return leftHorizontalLine.hasLine();
     }
+
+    public HorizontalLine getLeftHorizontalLine() {
+        return leftHorizontalLine;
+    }
 }
