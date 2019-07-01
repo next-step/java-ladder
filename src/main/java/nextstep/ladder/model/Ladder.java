@@ -11,7 +11,11 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(int countOfHeight, int countOfPerson) {
-        lines = makeLadder(countOfHeight, countOfPerson);
+        this.lines = makeLadder(countOfHeight, countOfPerson);
+    }
+
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     protected List<Line> makeLadder(int countOfHeight, int countOfPerson) {
