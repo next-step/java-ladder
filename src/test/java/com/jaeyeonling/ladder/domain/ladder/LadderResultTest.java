@@ -32,7 +32,7 @@ class LadderResultTest {
     @DisplayName("사다리 결과에 빈 값이나 null 값이 들어가면 실패한다.")
     @ParameterizedTest
     @NullAndEmptySource
-    void should_throw_EmptyLadderResultException_when_create_by_emptyOrNullUsername(final String nullAndEmptyValue) {
+    void should_throw_EmptyLadderResultException_when_create_by_emptyOrNullValue(final String nullAndEmptyValue) {
         assertThatExceptionOfType(EmptyLadderResultException.class)
                 .isThrownBy(() -> {
                     LadderResult.valueOf(nullAndEmptyValue);
