@@ -23,14 +23,19 @@ public class GameResult {
         return result;
     }
 
-    public int getOnePosition(int firstPoint) {
-        return positions.get(firstPoint);
-    }
-
     private List<Integer> makeCurrentPoints(int countOfPerson) {
         return IntStream.range(0, countOfPerson)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    public int getOnePosition(int firstPoint) {
+        return positions.get(firstPoint);
+    }
+
+    public String getFormattedResult() {
+        ResultFormatter resultFormatter = new ResultFormatter();
+        return resultFormatter.format(this);
     }
 
     public String getPrize(String playerName) {
@@ -42,11 +47,6 @@ public class GameResult {
     public String getPrize(int position) {
         int resultPosition = getOnePosition(position);
         return players.getPrize(resultPosition);
-    }
-
-    public String getFormattedResult() {
-        ResultFormatter resultFormatter = new ResultFormatter();
-        return resultFormatter.format(this);
     }
 
     public Players getPlayers() {
