@@ -9,7 +9,7 @@ public class Line {
     public Line(int countOfPerson, BooleanFunction booleanFunction) {
         boolean buf = false;
 
-        for (int i = 0; i < countOfPerson; i++) {
+        for (int i = 0; i < countOfPerson - 1; i++) {
             buf = booleanFunction.apply(buf);
             points.add(buf);
         }

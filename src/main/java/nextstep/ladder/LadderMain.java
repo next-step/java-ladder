@@ -13,9 +13,10 @@ public class LadderMain {
                 .map(userName -> new User(userName))
                 .collect(Collectors.toList());
 
-
         int height = Input.getMaxHeight();
 
+        Ladder ladder = new Ladder(height, users, new RandomBooleanFunction());
+        PrintLadder.print(ladder);
 
     }
 }
