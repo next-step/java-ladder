@@ -10,13 +10,13 @@ public class Ladder {
     private final Lines lines;
     private final int height;
 
-    public Ladder(int lineSize, int height) {
+    public Ladder(int width, int height) {
 
-        if (lineSize <= 0 || height <= 0) {
+        if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException("라인 개수 또는 길이가 유효하지 않습니다.");
         }
 
-        this.lines = Lines.of(lineSize, height);
+        this.lines = Lines.of(width, height);
         this.height = height;
     }
 

@@ -6,4 +6,18 @@ public class Lines {
 
     private List<Line> lines;
 
+    public Lines(List<Line> lines) {
+
+        this.lines = lines;
+    }
+
+    public static Lines of(int width, int height) {
+
+        return null;
+    }
+
+    public List<Line> getLines() {
+
+        return lines;
+    }
 }
