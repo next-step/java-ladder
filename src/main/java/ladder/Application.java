@@ -18,9 +18,11 @@ public class Application {
 
         int height = InputView.askHeight();
 
+        RungGenerator rungGenerator = new RungGenerator();
+
         List<Layer> layers = new ArrayList<>();
         for(int i = 0; i < height; i++) {
-            layers.add(new Layer(RungGenerator.generate(players.size() - 1)));
+            layers.add(new Layer(rungGenerator.generate(players.size() - 1)));
         }
 
         OutputView.print(players, layers);
