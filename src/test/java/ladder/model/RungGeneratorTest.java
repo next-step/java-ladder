@@ -37,4 +37,10 @@ public class RungGeneratorTest {
         List<Rung> falseRungList = Arrays.asList(new Rung(false));
         assertThat(RungGenerator.getPreviousValue(falseRungList)).isFalse();
     }
+
+    @Test
+    void oppositeRule() {
+        assertThat(RungGenerator.oppositeRule(false)).isTrue();
+        assertThat(RungGenerator.oppositeRule(true)).isFalse();
+    }
 }
