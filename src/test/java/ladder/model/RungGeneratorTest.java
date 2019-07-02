@@ -24,6 +24,11 @@ public class RungGeneratorTest {
         List<Rung> rungs = RungGenerator.generate(countOfPlayers);
 
         assertThat(rungs.size()).isEqualTo(4);
+
+        assertThat(rungs.get(0).isRung()).isTrue();
+        assertThat(rungs.get(1).isRung()).isFalse();
+        assertThat(rungs.get(2).isRung()).isTrue();
+        assertThat(rungs.get(3).isRung()).isFalse();
     }
 
     @Test
