@@ -1,6 +1,6 @@
-package ladder;
+package ladder.domain.strategy;
 
-import ladder.LineStrategy;
+import ladder.domain.LineStrategy;
 
 public class LineEvenStrategy implements LineStrategy {
     @Override

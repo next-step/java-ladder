@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Line {
         line = new ArrayList<>(size);
 
         for(int i = 0 ; i < size ; i++) {
-            line.add(false);
+            line.add(strategy.putPoint(i));
         }
     }
 

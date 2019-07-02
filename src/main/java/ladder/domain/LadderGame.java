@@ -1,8 +1,11 @@
-package ladder;
+package ladder.domain;
+
+import ladder.domain.strategy.LineEvenStrategy;
+import ladder.domain.strategy.LineOddStrategy;
+import ladder.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGame {
@@ -16,15 +19,30 @@ public class LadderGame {
         this.height = height;
     }
 
-    public Ladder generate(LineStrategy strategy) {
+    public void start() {
+        Ladder ladder = generate();
+
+        ResultView.printUsers(this.players);
+        ResultView.printLadder(players.getMaxNameLength(), ladder);
+    }
+
+    public Ladder generate() {
         ArrayList lines = new ArrayList<>();
         for (int i = 0 ; i < height ; i++ ) {
-            Line line = new Line(players.size(), strategy);
+            Line line = new Line(players.size() - 1, getStrategy(i));
 
             lines.add(line);
         }
 
         return new Ladder(lines);
+    }
+
+    private LineStrategy getStrategy(int lineNo) {
+        if (lineNo % 2 == 0) {
+            return new LineEvenStrategy();
+        }
+
+        return new LineOddStrategy();
     }
 
     private Players generatePlayer(String names) {

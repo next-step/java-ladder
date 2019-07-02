@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.*;
+import ladder.domain.strategy.LineEvenStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,14 +24,12 @@ public class LadderGameTest {
 
     @Test
     void generate() {
-        LineStrategy strategy = new LineEvenStrategy();
-
         Line line = new Line(4, new LineEvenStrategy());
         ArrayList<Line> list = new ArrayList();
         list.add(line);
-        Ladder ladderForm = new Ladder(list);
 
-        assertThat(ladder.generate(strategy)).isEqualTo(ladderForm);
+        Ladder ladderForm = new Ladder(list);
+        assertThat(ladder.generate()).isEqualTo(ladderForm);
     }
 
     @Test
