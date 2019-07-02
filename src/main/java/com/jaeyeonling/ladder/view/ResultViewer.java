@@ -63,12 +63,12 @@ public class ResultViewer {
         users.stream()
                 .map(User::getUsername)
                 .map(Username::getUsername)
-                .forEach(this::getUsernameConsumer);
+                .forEach(this::showMatchingResultByUsername);
 
         System.exit(0);
     }
 
-    private void getUsernameConsumer(final String username) {
+    private void showMatchingResultByUsername(final String username) {
         final int indexOfLadder = users.findIndexByUsername(username);
         final int indexOfResult = ladderGame.ride(indexOfLadder);
 
