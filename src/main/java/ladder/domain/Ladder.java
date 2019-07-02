@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<VerticalLines> levels;
@@ -12,6 +13,18 @@ public class Ladder {
             verticalLines.add(new VerticalLines(verticalLineQuantity));
         }
         this.levels = verticalLines;
+    }
+
+    private Ladder(List<VerticalLines> levels) {
+        this.levels = levels;
+    }
+
+    public static Ladder of(List<HorizontalLines> horizontalLinesList) {
+        return new Ladder(
+                horizontalLinesList.stream()
+                        .map(VerticalLines::of)
+                        .collect(Collectors.toList())
+        );
     }
 
     public VerticalLines verticalLinesByLevel(int level) {
