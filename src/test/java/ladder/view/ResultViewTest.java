@@ -12,8 +12,8 @@ class ResultViewTest {
 
         Participants participants = new Participants("pobi,honux,crong,jk");
         Ladder ladder = new Ladder(participants.size(), 5);
-        LadderResults ladderResults = new LadderResults("꽝,5000,꽝,3000", participants.size());
+        Goals goals = new Goals("꽝,5000,꽝,3000", participants.size());
 
-        ResultView.print(participants, ladder, ladderResults);
+        ResultView.print(participants, ladder, goals);
     }
 }

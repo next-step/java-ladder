@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.domain.generator.RandomPointGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -9,10 +8,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Participants participants = new Participants(InputView.askParticipantNames());
-        LadderResults ladderResults = new LadderResults(InputView.askResults(), participants.size());
-        Ladder ladder = new Ladder(participants.size(), InputView.askLadderHeights());
+        String participantsNames = InputView.askParticipantNames();
+        Participants participants = new Participants(participantsNames);
 
-        ResultView.print(participants, ladder, ladderResults);
+        String goalsString = InputView.askGoals();
+        Goals goals = new Goals(goalsString, participants.size());
+        int height = InputView.askHeight();
+        Ladder ladder = new Ladder(participants.size(), height);
+
+        ResultView.printResultMessage();
+        ResultView.printNewLine();
+        ResultView.printParticipants(participants);
+        ResultView.printLadder(ladder);
+        ResultView.printGoals(goals);
+
+
     }
 }

@@ -1,10 +1,10 @@
 package ladder.domain;
 
-public class LadderResult {
+public class Goal {
 
     private final String result;
 
-    public LadderResult(String result) {
+    public Goal(String result) {
 
         this.result = result;
     }

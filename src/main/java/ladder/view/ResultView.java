@@ -17,22 +17,22 @@ public class ResultView {
     private static final String EMPTY_STRING = buildEmptyString(SIZE);
     private static final String PRINT_PARTICIPANTS_FORMAT = "%-" + SIZE + "s";
 
-    public static void print(Participants participants, Ladder ladder, LadderResults ladderResults) {
+    public static void print(Participants participants, Ladder ladder, Goals goals) {
 
         printResultMessage();
         printNewLine();
 
         printParticipants(participants);
         printLadder(ladder);
-        printLadderResults(ladderResults);
+        printGoals(goals);
     }
 
-    private static void printResultMessage() {
+    public static void printResultMessage() {
 
         printStream.println(RESULT_MESSAGE);
     }
 
-    private static void printParticipants(Participants participants) {
+    public static void printParticipants(Participants participants) {
 
         participants.getParticipantsName()
                 .forEach(ResultView::printName);
@@ -45,7 +45,7 @@ public class ResultView {
         printStream.print(String.format(PRINT_PARTICIPANTS_FORMAT, name));
     }
 
-    private static void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder) {
 
         ladder.getLines()
                 .forEach(ResultView::printLine);
@@ -71,15 +71,15 @@ public class ResultView {
 
     }
 
-    private static void printLadderResults(LadderResults ladderResults) {
+    public static void printGoals(Goals goals) {
 
-        ladderResults.getLadderResults()
-                .stream().map(LadderResult::getResult)
+        goals.getGoals()
+                .stream().map(Goal::getResult)
                 .forEach(result -> printStream.print(String.format(PRINT_PARTICIPANTS_FORMAT, result)));
         printStream.println();
     }
 
-    private static void printNewLine() {
+    public static void printNewLine() {
 
         printStream.println();
     }
