@@ -3,9 +3,6 @@ package ladder.domain;
 import ladder.domain.generator.PointGenerator;
 import ladder.domain.generator.RandomPointGenerator;
 
-import java.util.Collections;
-import java.util.List;
-
 public class Ladder {
 
     private final PointGenerator pointGenerator;
@@ -14,7 +11,12 @@ public class Ladder {
 
     public Ladder(LadderInfo ladderInfo) {
 
-        this.pointGenerator = new RandomPointGenerator();
+        this(ladderInfo, new RandomPointGenerator());
+    }
+
+    public Ladder(LadderInfo ladderInfo, PointGenerator pointGenerator) {
+
+        this.pointGenerator = pointGenerator;
         this.ladderInfo = ladderInfo;
         this.lines = Lines.of(ladderInfo, pointGenerator);
     }

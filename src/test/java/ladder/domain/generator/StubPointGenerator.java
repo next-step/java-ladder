@@ -2,16 +2,16 @@ package ladder.domain.generator;
 
 public class StubPointGenerator implements PointGenerator {
 
-    private boolean b;
+    private boolean value;
 
-    public StubPointGenerator(boolean b) {
+    public StubPointGenerator(boolean value) {
 
-        this.b = b;
+        this.value = value;
     }
 
     @Override
     public boolean generate() {
 
-        return b;
+        return value;
     }
 }

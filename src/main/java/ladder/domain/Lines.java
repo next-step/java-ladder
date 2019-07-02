@@ -29,7 +29,7 @@ public class Lines {
 
     public int move(int startPosition) {
 
-        if (startPosition < 0 || startPosition >= maxIndex()) {
+        if (startPosition < 0 || startPosition >= maxWidth()) {
             throw new IllegalArgumentException("시작 위치가 유효하지 않습니다.");
         }
 
@@ -41,7 +41,7 @@ public class Lines {
         return position;
     }
 
-    private int maxIndex() {
+    private int maxWidth() {
 
         return lines.size() - 1;
     }

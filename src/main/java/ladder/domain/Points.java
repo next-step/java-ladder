@@ -4,6 +4,7 @@ import ladder.domain.generator.PointGenerator;
 
 import java.util.*;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Points {
 
@@ -20,14 +21,14 @@ public class Points {
         return new Points(points);
     }
 
-    public static Points arrangePoints(int width, PointGenerator pointGenerator) {
+    public static Points createPoints(int width, PointGenerator pointGenerator) {
 
         List<Point> points = new ArrayList<>();
         points.add(Point.first(pointGenerator.generate()));
-        IntStream.range(FIRST, getLastIndex(width))
-                .mapToObj(position -> Point.middle(position, getLastPoint(points).getDirection(), pointGenerator.generate()))
+        IntStream.range(FIRST, width - 1)
+                .mapToObj(position -> Point.middle(getLastPoint(points), pointGenerator.generate()))
                 .forEach(points::add);
-        points.add(Point.last(getLastIndex(width), getLastPoint(points).getDirection()));
+        points.add(Point.last(getLastPoint(points)));
         return Points.of(points);
     }
 

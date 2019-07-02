@@ -23,7 +23,7 @@ public class LadderResult {
         return new LadderResult(positionGoals);
     }
 
-    public ParticipantGoals createPariticipantGoal(Participants participants, Goals goals) {
+    public ParticipantGoals createParticipantGoal(Participants participants, Goals goals) {
 
         return new ParticipantGoals(
                 positionGoals.entrySet()

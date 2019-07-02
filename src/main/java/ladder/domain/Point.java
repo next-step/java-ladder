@@ -5,6 +5,9 @@ import java.util.Objects;
 public class Point {
 
     private static final int FIRST = 0;
+    private static final int NEXT = 1;
+    private static final int PREV = 1;
+
     private int position;
     private Direction direction;
 
@@ -15,6 +18,7 @@ public class Point {
     }
 
     public static Point of(int position, Direction direction) {
+
         return new Point(position, direction);
     }
 
@@ -23,24 +27,24 @@ public class Point {
         return Point.of(FIRST, Direction.first(generateValue));
     }
 
-    public static Point middle(int position, Direction before, boolean generateValue) {
+    public static Point middle(Point before, boolean generateValue) {
 
-        return Point.of(position, Direction.middle(before, generateValue));
+        return Point.of(before.position + NEXT, Direction.middle(before.direction, generateValue));
     }
 
-    public static Point last(int lastPosition, Direction before) {
+    public static Point last(Point before) {
 
-        return Point.of(lastPosition, Direction.last(before));
+        return Point.of(before.position + NEXT, Direction.last(before.direction));
     }
 
     public int move() {
 
         if (direction == Direction.LEFT) {
-            return position - 1;
+            return position - PREV;
         }
 
         if (direction == Direction.RIGHT) {
-            return position + 1;
+            return position + NEXT;
         }
 
         return position;
@@ -65,5 +69,14 @@ public class Point {
     public int hashCode() {
 
         return Objects.hash(position, direction);
+    }
+
+    @Override
+    public String toString() {
+
+        return "Point{" +
+                "position=" + position +
+                ", direction=" + direction +
+                '}';
     }
 }

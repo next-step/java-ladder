@@ -15,7 +15,7 @@ public class Line {
 
     public static Line of(int width, PointGenerator pointGenerator) {
 
-        return new Line(Points.arrangePoints(width, pointGenerator));
+        return new Line(Points.createPoints(width, pointGenerator));
     }
 
     public int move(int position) {
