@@ -1,18 +1,12 @@
 package ladder;
 
 public class VerticalLine {
-    private final int height;
     private HorizontalLine leftHorizontalLine;
 
-    public VerticalLine(int height, boolean hasLeftHorizontalLine) {
-        this.height = height;
+    public VerticalLine(boolean hasLeftHorizontalLine) {
         this.leftHorizontalLine = hasLeftHorizontalLine
                 ? HorizontalLine.LINE_TRUE
                 : HorizontalLine.LINE_FALSE;
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public boolean hasLeftHorizontalLine() {

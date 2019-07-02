@@ -7,10 +7,10 @@ import java.util.List;
 public class VerticalLines {
     private final List<VerticalLine> verticalLines;
 
-    public VerticalLines(int lineQuantity, int height) {
+    public VerticalLines(int lineQuantity) {
         this.verticalLines = new ArrayList<>();
         for (int i = 0; i < lineQuantity; i++) {
-            verticalLines.add(new VerticalLine(height, false));
+            verticalLines.add(new VerticalLine(false));
         }
     }
 
