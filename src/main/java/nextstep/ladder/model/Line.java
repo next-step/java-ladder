@@ -46,21 +46,23 @@ public class Line {
     }
 
     protected int goDown(int point) {
-        return goDownLeft(point) ? point - ONCE_POINT : goDownRight(point) ? point + ONCE_POINT : point;
+        return goDownLeft(point)
+                ? point - ONCE_POINT
+                : goDownRight(point)
+                ? point + ONCE_POINT
+                : point;
     }
 
     private boolean goDownLeft(int point) {
-        if ((point - ONCE_POINT) < START_POINT) {
-            return false;
-        }
-        return points.get(point - ONCE_POINT);
+        return (point - ONCE_POINT) < START_POINT
+                ? false
+                : points.get(point - ONCE_POINT);
     }
 
     private boolean goDownRight(int point) {
-        if (points.size() == point) {
-            return false;
-        }
-        return points.get(point);
+        return points.size() == point
+                ? false
+                : points.get(point);
     }
 
     public List<Boolean> getPoints() {
