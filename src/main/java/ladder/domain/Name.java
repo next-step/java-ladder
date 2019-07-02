@@ -23,7 +23,7 @@ public class Name {
 
     public String getViewName() {
         StringBuilder name = new StringBuilder(getName());
-        while (name.length() < 5) {
+        while (name.length() < MAX_NAME_LENGTH) {
             name.insert(0, " ");
         }
         return name.toString();
