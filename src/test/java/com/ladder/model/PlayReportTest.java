@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.ladder.Application.ALL_SEARCH_KEYWORD;
 import static com.ladder.model.PlayerTest.ofPlayer;
+import static com.ladder.view.OutputView.ALL_SEARCH_KEYWORD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlayReportTest {

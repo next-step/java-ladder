@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class OutputView {
 
-    private static final String ALL_SEARCH_KEYWORD = "all";
+    public static final String ALL_SEARCH_KEYWORD = "all";
     private static final String PRINT_MESSAGE_OF_RESULT = "실행 결과";
     private final Formatter<Players> userNamesFormatter;
     private final Formatter<LadderGame> ladderFormatter;
