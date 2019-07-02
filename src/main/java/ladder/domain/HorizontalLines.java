@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,5 +20,9 @@ public class HorizontalLines {
 
     public int size() {
         return horizontalLines.size();
+    }
+
+    public List<HorizontalLine> getHorizontalLines() {
+        return Collections.unmodifiableList(horizontalLines);
     }
 }
