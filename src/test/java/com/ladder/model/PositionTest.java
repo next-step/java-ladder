@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.ladder.model.Position.MIN_NUMBER_OF_POSITION;
+import static com.ladder.model.Position.MOVING_DISTANCE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -42,7 +43,7 @@ public class PositionTest {
         Position movingResult = currentPosition.moveForward();
 
         // then
-        assertThat(movingResult).isEqualTo(Position.of(position + 1));
+        assertThat(movingResult).isEqualTo(Position.of(position + MOVING_DISTANCE));
     }
 
     @DisplayName("현 위치에서 뒤로 이동한다")
@@ -56,6 +57,6 @@ public class PositionTest {
         Position movingResult = currentPosition.moveBackward();
 
         // then
-        assertThat(movingResult).isEqualTo(Position.of(position - 1));
+        assertThat(movingResult).isEqualTo(Position.of(position - MOVING_DISTANCE));
     }
 }

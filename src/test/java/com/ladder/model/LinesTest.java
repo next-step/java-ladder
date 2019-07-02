@@ -8,14 +8,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import static com.ladder.model.Direction.*;
 import static com.ladder.model.LineTest.ofLine;
 import static com.ladder.model.Lines.MIN_NUMBER_OF_COLUMNS;
-import static com.ladder.model.Point.POINT_DOWN;
-import static com.ladder.model.Point.POINT_LEFT;
-import static com.ladder.model.Point.POINT_RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -53,10 +50,10 @@ class LinesTest {
         Position expectedPosition = Position.of(end);
 
         // when
-        List linesList = new ArrayList();
-        linesList.add(ofLine(POINT_RIGHT, POINT_LEFT, POINT_RIGHT, POINT_LEFT));
-        linesList.add(ofLine(POINT_RIGHT, POINT_LEFT, POINT_DOWN, POINT_DOWN));
-        linesList.add(ofLine(POINT_DOWN, POINT_DOWN, POINT_RIGHT, POINT_LEFT));
+        List<Line> linesList = new ArrayList<>();
+        linesList.add(ofLine(RIGHT, LEFT, RIGHT, LEFT));
+        linesList.add(ofLine(RIGHT, LEFT, DOWN, DOWN));
+        linesList.add(ofLine(DOWN, DOWN, RIGHT, LEFT));
         Lines lines = Lines.of(linesList);
         Position result = lines.playByOnePosition(startPosition);
 

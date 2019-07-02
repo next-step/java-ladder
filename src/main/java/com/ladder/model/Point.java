@@ -2,49 +2,47 @@ package com.ladder.model;
 
 import java.util.Objects;
 
+import static com.ladder.model.Direction.DOWN;
+import static com.ladder.model.Direction.LEFT;
+
 public class Point {
 
-    public static final Point POINT_RIGHT = Point.of(false, true);
-    static final Point POINT_LEFT = Point.of(true, false);
-    static final Point POINT_DOWN = Point.of(false, false);
-    static final boolean NO_MOVABLE = false;
+    static final int INDEX_OF_FIRST = 0;
+    private final Position indexOfLadder;
+    private final Direction direction;
 
-    private final boolean left;
-    private final boolean right;
-
-    private Point(boolean left, boolean right) {
-        this.left = left;
-        this.right = right;
+    private Point(Position indexOfLadder, Direction direction) {
+        this.indexOfLadder = indexOfLadder;
+        this.direction = direction;
     }
 
-    static Point of(boolean left, boolean right) {
-        return new Point(left, right);
+    static Point of(Position indexOfLadder, Direction direction) {
+        return new Point(indexOfLadder, direction);
     }
 
-    static Point of(String left, String right) {
-        return of(Boolean.valueOf(left), Boolean.valueOf(right));
+    static Point of(int indexOfLadder, Direction direction) {
+        return of(Position.of(indexOfLadder), direction);
     }
 
-    static Point ofFirst(boolean current) {
-        return of(NO_MOVABLE, current);
+    static Point ofFirst(Direction direction) {
+        return of(INDEX_OF_FIRST, direction);
     }
 
-    static Point ofLast(boolean current) {
-        return of(current, NO_MOVABLE);
+    Point next(Direction direction) {
+        return of(indexOfLadder.moveForward(), direction);
     }
 
-    boolean isRight() {
-        return right;
+    Point last() {
+        Direction afterDirection = this.direction.isRight() ? LEFT : DOWN;
+        return of(indexOfLadder.moveForward(), afterDirection);
     }
 
-    Position move(Position position) {
-        if (this.equals(POINT_LEFT)) {
-            return position.moveBackward();
-        }
-        if (this.equals(POINT_RIGHT)) {
-            return position.moveForward();
-        }
-        return position;
+    Position move() {
+        return direction.move(indexOfLadder);
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 
     @Override
@@ -52,20 +50,20 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return left == point.left &&
-                right == point.right;
+        return Objects.equals(indexOfLadder, point.indexOfLadder) &&
+                direction == point.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(left, right);
+        return Objects.hash(indexOfLadder, direction);
     }
 
     @Override
     public String toString() {
         return "Point{" +
-                "left=" + left +
-                ", right=" + right +
+                "indexOfLadder=" + indexOfLadder +
+                ", direction=" + direction +
                 '}';
     }
 }

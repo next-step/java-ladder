@@ -18,7 +18,6 @@ public class PlayerTest {
     @Test
     void createUsername_success() {
         // given
-        Position position = MIN_OF_POSITION;
         String name = "abcde";
 
         // when
