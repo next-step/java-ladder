@@ -24,7 +24,7 @@ public class Username {
         if (StringUtils.isNullOrEmpty(username)) {
             throw new EmptyUsernameException();
         }
-        if (username.length() > MAX_LENGTH) {
+        if (StringUtils.isOverLength(username, MAX_LENGTH)) {
             throw new LongerThanMaxLengthUsernameException(username);
         }
 

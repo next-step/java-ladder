@@ -2,10 +2,9 @@ package com.jaeyeonling.ladder.view.format;
 
 import com.jaeyeonling.ladder.domain.user.User;
 import com.jaeyeonling.ladder.domain.user.Username;
+import com.jaeyeonling.ladder.utils.StringUtils;
 
 public class UserFormatter implements Formatter<User> {
-
-    private static final String FORMAT = String.format("%s%d%s", "%", Username.MAX_LENGTH, "s");
 
     private final Formatter<Username> usernameFormatter;
 
@@ -20,6 +19,6 @@ public class UserFormatter implements Formatter<User> {
     @Override
     public String format(final User user) {
         final String formattedUsername = usernameFormatter.format(user.getUsername());
-        return String.format(FORMAT, formattedUsername);
+        return StringUtils.rightAlign(formattedUsername, Username.MAX_LENGTH);
     }
 }
