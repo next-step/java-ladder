@@ -1,6 +1,5 @@
 package com.jaeyeonling.ladder.domain.line;
 
-import com.jaeyeonling.ladder.domain.line.PointGenerateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

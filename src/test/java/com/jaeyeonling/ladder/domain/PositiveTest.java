@@ -1,6 +1,5 @@
 package com.jaeyeonling.ladder.domain;
 
-import com.jaeyeonling.ladder.domain.Positive;
 import com.jaeyeonling.ladder.exception.ShorterThanMinPositiveException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,9 +16,9 @@ class PositiveTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void should_return_positive_when_create_by_positiveNumber(final int lowPositive) {
+    void should_return_positive_when_create_by_positiveNumber(final int rawPositive) {
         // when
-        final Positive positive = Positive.valueOf(lowPositive);
+        final Positive positive = Positive.valueOf(rawPositive);
 
         // then
         assertThat(positive).isNotNull();
@@ -39,10 +38,10 @@ class PositiveTest {
     @ValueSource(ints = {
             1, 12, 3, 2432, 535643, 64, 563, 5236, 35364, 364526425
     })
-    void should_return_equalsObject_when_equalsPositive(final int lowPositive) {
+    void should_return_equalsObject_when_equalsPositive(final int rawPositive) {
         // given
-        final Positive positive = Positive.valueOf(lowPositive);
-        final Positive expect = Positive.valueOf(lowPositive);
+        final Positive positive = Positive.valueOf(rawPositive);
+        final Positive expect = Positive.valueOf(rawPositive);
 
         // when
         final boolean equals = positive.equals(expect);
