@@ -5,7 +5,7 @@ import ladder.domain.Names;
 
 public class ResultView {
     public static String getDefaultResultText() {
-        return "실행결과";
+        return "\n실행결과\n";
     }
 
     public static String getNamesView(Names names) {

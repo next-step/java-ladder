@@ -6,6 +6,6 @@ public class InputView {
     }
 
     public static String getLadderHeightInputText() {
-        return "최대 사다리 높이는 몇 개인가요?";
+        return "\n최대 사다리 높이는 몇 개인가요?";
     }
 }
