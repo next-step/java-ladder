@@ -18,6 +18,13 @@ public class HorizontalLines {
         return new HorizontalLines(horizontalLines);
     }
 
+    public static HorizontalLines of(List<Boolean> booleans) {
+        List<HorizontalLine> horizontalLines = booleans.stream()
+                .map(HorizontalLine::of)
+                .collect(Collectors.toList());
+        return new HorizontalLines(horizontalLines);
+    }
+
     public int size() {
         return horizontalLines.size();
     }
