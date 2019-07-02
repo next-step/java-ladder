@@ -20,7 +20,7 @@ public class Points {
         return new Points(points);
     }
 
-    public static Points draw(int width, PointGenerator pointGenerator) {
+    public static Points arrangePoints(int width, PointGenerator pointGenerator) {
 
         List<Point> points = new ArrayList<>();
         points.add(Point.first(pointGenerator.generate()));
@@ -39,6 +39,11 @@ public class Points {
     private static int getLastIndex(int width) {
 
         return width - 1;
+    }
+
+    public List<Point> getPoints() {
+
+        return Collections.unmodifiableList(points);
     }
 
     public Point getPoint(int position) {

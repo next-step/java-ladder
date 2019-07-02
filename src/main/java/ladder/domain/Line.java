@@ -2,7 +2,7 @@ package ladder.domain;
 
 import ladder.domain.generator.PointGenerator;
 
-import java.util.Objects;
+import java.util.*;
 
 public class Line {
 
@@ -15,12 +15,17 @@ public class Line {
 
     public static Line of(int width, PointGenerator pointGenerator) {
 
-        return new Line(Points.draw(width, pointGenerator));
+        return new Line(Points.arrangePoints(width, pointGenerator));
     }
 
     public int move(int position) {
 
         return points.getPoint(position).move();
+    }
+
+    public List<Point> getPoints() {
+
+        return Collections.unmodifiableList(points.getPoints());
     }
 
     @Override

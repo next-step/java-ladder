@@ -3,9 +3,8 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.io.PrintStream;
-import java.util.stream.IntStream;
 
-import static ladder.view.ResultString.*;
+import static ladder.view.PrintSymbol.*;
 
 public class ResultView {
 
@@ -48,8 +47,28 @@ public class ResultView {
 
     private static void printLadder(Ladder ladder) {
 
-        IntStream.range(0, ladder.getHeight())
-                .forEach(lineNumber -> printLine(ladder, lineNumber));
+        ladder.getLines()
+                .forEach(ResultView::printLine);
+    }
+
+    private static void printLine(Line line) {
+
+        line.getPoints()
+                .forEach(ResultView::printPoint);
+
+        printNewLine();
+
+    }
+
+    private static void printPoint(Point point) {
+
+        printStream.print(STEP);
+        if (Direction.RIGHT == point.getDirection()) {
+            printStream.print(CONNECT_STRING);
+            return;
+        }
+        printStream.print(EMPTY_STRING);
+
     }
 
     private static void printLadderResults(LadderResults ladderResults) {
@@ -60,37 +79,9 @@ public class ResultView {
         printStream.println();
     }
 
-    private static void printLine(Ladder ladder, int lineNumber) {
-
-        ladder.getLines().forEach(line -> {
-            printStep();
-//            printConnect(line.getPoints().isPoint(lineNumber));
-        });
-        printNewLine();
-    }
-
-    private static void printStep() {
-
-        printStream.print(STEP);
-    }
-
-    private static void printConnect(boolean isPoint) {
-
-        if (isPoint) {
-            printStream.print(CONNECT_STRING);
-            return;
-        }
-        printEmpty();
-    }
-
     private static void printNewLine() {
 
         printStream.println();
-    }
-
-    private static void printEmpty() {
-
-        printStream.print(EMPTY_STRING);
     }
 
 }

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.generator.PointGenerator;
+import ladder.domain.generator.StubPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,19 +44,4 @@ class LineTest {
         assertThat(line).isEqualTo(expected);
     }
 
-    public static class StubPointGenerator implements PointGenerator {
-
-        private boolean b;
-
-        public StubPointGenerator(boolean b) {
-
-            this.b = b;
-        }
-
-        @Override
-        public boolean generate() {
-
-            return b;
-        }
-    }
 }
