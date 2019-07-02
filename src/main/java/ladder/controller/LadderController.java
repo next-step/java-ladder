@@ -4,6 +4,7 @@ import ladder.core.controller.Controller;
 import ladder.domain.Model;
 import ladder.message.gamer.GamerNamesDTO;
 import ladder.message.ladder.LadderSizeDTO;
+import ladder.message.reward.RewardDTO;
 import ladder.view.MainView;
 
 public class LadderController implements Controller {
@@ -17,12 +18,15 @@ public class LadderController implements Controller {
     
     private void inputGamers(GamerNamesDTO gamerNames) {
         model.newGamers(gamerNames.getGamerNames());
-        mainView.render(model.getMessage());
+    }
+    
+    
+    private void inputReward(RewardDTO reward) {
+        model.newRewards(reward.getReward());
     }
     
     private void inputLadderSize(LadderSizeDTO ladderSize) {
         model.newLadder(ladderSize.getInputNumber());
-        mainView.render(model.getMessage());
     }
     
     @Override
@@ -33,13 +37,13 @@ public class LadderController implements Controller {
     @Override
     public void input(Object data) {
         if (data instanceof GamerNamesDTO) {
-            this.inputGamers((GamerNamesDTO) data);
-            return;
+            inputGamers((GamerNamesDTO) data);
+        } else if (data instanceof RewardDTO) {
+            inputReward((RewardDTO) data);
+        } else if (data instanceof LadderSizeDTO) {
+            inputLadderSize((LadderSizeDTO) data);
         }
         
-        if (data instanceof LadderSizeDTO) {
-            this.inputLadderSize((LadderSizeDTO) data);
-            return;
-        }
+        mainView.render(model.getMessage());
     }
 }

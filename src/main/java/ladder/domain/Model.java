@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.gamer.Gamers;
+import ladder.domain.reward.Rewards;
 import ladder.message.gamer.GamerMessage;
 import ladder.message.ladder.LadderSizeMessage;
 import ladder.core.message.Message;
@@ -19,6 +20,7 @@ public class Model {
     private final static int GAMERS_STEP = 1;
     private Ladder ladder;
     private Gamers gamers;
+    private Rewards rewards;
     private Step step;
     
     public Model() {
@@ -27,8 +29,14 @@ public class Model {
     
     public void newGamers(String gamerNames) {
         gamers = Gamers.of(gamerNames);
+        step = Step.REWARD_INPUT_STEP;
+    }
+    
+    public void newRewards(String reward) {
+        rewards = Rewards.of(gamers.getSize(), reward);
         step = Step.LADDER_SIZE_STEP;
     }
+    
     
     public void newLadder(int rowSize) {
         ladder = Ladder.from(rowSize, gamers.getSize());
@@ -39,12 +47,12 @@ public class Model {
         switch (step) {
             case GAMERS_STEP:
                 return new GamerMessage();
-            case LADDER_SIZE_STEP:
-                return new LadderSizeMessage();
             case REWARD_INPUT_STEP:
                 return new RewardMessage();
+            case LADDER_SIZE_STEP:
+                return new LadderSizeMessage();
             case RESULT_STEP:
-                return new ResultMessage(gamers, ladder);
+                return new ResultMessage(gamers.getGamerNames(), ladder, rewards.getRewardNames());
             default:
                 return new GamerMessage();
         }

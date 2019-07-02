@@ -28,4 +28,10 @@ public class Gamers {
     public Stream<Gamer> getStream() {
         return gamers.stream();
     }
+    
+    public List<String> getGamerNames() {
+        return gamers.stream()
+          .map(gamer -> gamer.getName())
+          .collect(Collectors.toList());
+    }
 }

@@ -5,9 +5,12 @@ import ladder.core.message.Message;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
+import ladder.message.reward.RewardDTO;
 import ladder.view.component.View;
 
 public class RewardView implements ViewImpl {
+    private static final String ANSWER = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    
     private View view;
     
     public RewardView(Controller controller, Printer printer, Inputor inputor) {
@@ -22,5 +25,7 @@ public class RewardView implements ViewImpl {
         if (!message.isRewardStep()) {
             return;
         }
+        view.print(ANSWER);
+        view.pushDataToController(new RewardDTO(view.inputString()));
     }
 }

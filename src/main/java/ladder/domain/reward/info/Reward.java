@@ -4,7 +4,7 @@ import ladder.domain.reward.message.ErrorMessages;
 import ladder.util.StringUtils;
 
 public class Reward {
-    private String reward;
+    private final String reward;
     
     private Reward(String reward) {
         if (StringUtils.isEmpty(reward)) {
@@ -13,8 +13,11 @@ public class Reward {
         this.reward = reward;
     }
     
-    
     public static Reward from(String reward) {
         return new Reward(reward);
+    }
+    
+    public String getReward() {
+        return reward;
     }
 }
