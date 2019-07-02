@@ -1,10 +1,13 @@
 package ladder.view;
 
-import ladder.Model.Ladder;
-import ladder.Model.Line;
-import ladder.Model.Users;
+import ladder.model.Ladder;
+import ladder.model.Line;
+import ladder.model.Users;
 
 import java.util.stream.Collectors;
+
+import static com.google.common.base.Strings.repeat;
+
 
 public class OutputView {
 
@@ -59,9 +62,9 @@ public class OutputView {
     }
 
     private static void outputSepartorInit(int maxNameLength){
-        ladderDefaultWidthLine = createlineSeparator(maxNameLength, "-");
-        ladderTrimWidthLine = createlineSeparator(maxNameLength, " ");
-        ladderStartWidthLine = createlineSeparator(maxNameLength-1, " ");
+        ladderDefaultWidthLine = repeat("-", maxNameLength);
+        ladderTrimWidthLine = repeat(" ", maxNameLength);
+        ladderStartWidthLine = repeat(" ", maxNameLength-1);
     }
 
     private static String createlineSeparator(int maxNameLength, String separator){
