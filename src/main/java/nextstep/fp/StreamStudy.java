@@ -30,6 +30,7 @@ public class StreamStudy {
 				.distinct()
 				.sorted(comparing(String::length))
 				.limit(limitCount)
+				.map(String::toLowerCase)
 				.forEach(System.out::println);
 	}
 
