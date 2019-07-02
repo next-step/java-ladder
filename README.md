@@ -7,3 +7,12 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+# 사다리 (생성)
+## 구현 기능 
+*  User 객체 
+- 사용자 이름 유효성 체크 
+*  LadderGame/Line 객체 
+*  사용자 입력
+- 입력 문자 유효성 체크, , 파싱 유효 체크 
+* 결과 출력 
