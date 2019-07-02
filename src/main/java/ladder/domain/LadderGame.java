@@ -8,15 +8,15 @@ public class LadderGame {
 
     public LadderGame(String players, int heightOfLadder) {
         this.players = new Players(players);
-        this.ladder = LadderGenerator.ladderGenerator(heightOfLadder, this.players);
+        this.ladder = LadderGenerator.generateLadder(heightOfLadder, this.players);
     }
 
-    public List<String> isPlayersNameList(){
-        return players.isPlayersNameList();
+    public List<Player> getPlayers(){
+        return players.getPlayers();
     }
 
-    public List<Line> isLadder(){
-        return ladder.isLadderInfo();
+    public List<Line> getLadder(){
+        return ladder.getLadder();
     }
 
 }

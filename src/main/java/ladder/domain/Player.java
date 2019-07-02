@@ -16,7 +16,7 @@ public class Player {
                 .orElseThrow(() -> new IllegalArgumentException("Player 이름은 최대 5자 까지 입니다."));
     }
 
-    public String isName() {
+    public String getName() {
         return name;
     }
 

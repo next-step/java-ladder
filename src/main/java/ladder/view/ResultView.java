@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.LadderGame;
 import ladder.domain.Line;
+import ladder.domain.Player;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,19 +17,19 @@ public class ResultView {
     public static void outputOfResult(LadderGame ladderGame) {
         changeNextLine();
         System.out.println("실행 결과");
-        printPlayers(ladderGame.isPlayersNameList());
+        printPlayers(ladderGame.getPlayers());
         changeNextLine();
-        printLadder(ladderGame.isLadder());
+        printLadder(ladderGame.getLadder());
     }
 
-    private static void printPlayers(List<String> playerNameList) {
-        playerNameList.stream()
-                .forEach(playerName -> System.out.print(String.format(NAME_FORMAT, playerName)));
+    private static void printPlayers(List<Player> players) {
+        players.stream()
+                .forEach(player -> System.out.print(String.format(NAME_FORMAT, player.getName())));
     }
 
     private static void printLadder(List<Line> ladder) {
         for (Line line : ladder) {
-            String ladderLine = line.isLineStream()
+            String ladderLine = line.getStream()
                     .map(x -> x ? LINE_FORMAT : BLANK_FORMAT)
                     .collect(Collectors.joining(POLE_FORMAT));
             System.out.println(FIRST_FORMAT + ladderLine + POLE_FORMAT);

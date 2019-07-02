@@ -1,11 +1,12 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
-    List<Player> players;
+    private List<Player> players;
 
     public Players(String players) {
         this.players = register(players);
@@ -27,10 +28,8 @@ public class Players {
                 .max(Integer::compareTo).get();
     }
 
-    public List<String> isPlayersNameList() {
-        return players.stream()
-                .map(player -> player.isName())
-                .collect(Collectors.toList());
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
     }
 
 }

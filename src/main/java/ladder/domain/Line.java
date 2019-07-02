@@ -18,7 +18,7 @@ public class Line {
         return points.get(point);
     }
 
-    public Stream<Boolean> isLineStream() {
+    public Stream<Boolean> getStream() {
         return points.stream();
     }
 
