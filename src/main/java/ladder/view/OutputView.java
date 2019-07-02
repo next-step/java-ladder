@@ -12,18 +12,19 @@ public class OutputView {
     private static String RUNG = "-----|";
     private static String EMPTY_RUNG = "     |";
 
-    public static void print(List<Player> players, List<Layer> layers) {
+    public static void print(List<Player> players, Ladder ladder) {
         printPlayers(players);
-        printLayers(layers);
+        printLadder(ladder);
     }
 
-    public static void printPlayers(List<Player> players) {
+    private static void printPlayers(List<Player> players) {
         String line = players.stream().map(Player::getName).collect(Collectors.joining("\t"));
 
         System.out.println(line);
     }
 
-    public static void printLayers(List<Layer> layers) {
+    private static void printLadder(Ladder ladder) {
+        List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {
             String line = layer.getRungs().stream().map(rung -> rung.isRung() ? RUNG : EMPTY_RUNG).collect(Collectors.joining());
             System.out.println(EMPTY_RUNG.concat(line));

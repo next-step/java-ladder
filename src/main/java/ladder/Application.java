@@ -8,7 +8,6 @@ import ladder.util.RungGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -19,13 +18,8 @@ public class Application {
 
         int height = InputView.askHeight();
 
-        RungGenerator rungGenerator = new RandomRungGenerator();
+        Ladder ladder = Ladder.of(players.size(), height);
 
-        List<Layer> layers = new ArrayList<>();
-        for(int i = 0; i < height; i++) {
-            layers.add(Layer.of(rungGenerator, players.size()));
-        }
-
-        OutputView.print(players, layers);
+        OutputView.print(players, ladder);
     }
 }
