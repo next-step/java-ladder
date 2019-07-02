@@ -1,7 +1,10 @@
 package ladder;
 
+import ladder.model.Layer;
 import ladder.model.Player;
+import ladder.util.RungGenerator;
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.List;
 
@@ -13,8 +16,9 @@ public class Application {
 
         int height = InputView.askHeight();
 
-        System.out.println(players.size());
-        System.out.println(height);
+        Layer layer = new Layer(RungGenerator.generate(players.size() - 1));
+
+        OutputView.print(layer);
 
     }
 }
