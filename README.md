@@ -22,10 +22,9 @@
 * 사다리 개수 구하기
     * 게임 참여자 0명 -> error
     * 게임 참여자 1명 -> error (사다리 게임이므로 1명도 에러로 처리합니다.)
-    * 게임 참여자 2명 -> 1개 -> point[0]
-    * 게임 참여자 3명 -> 2개 -> point[0], point[1]
-    * 게임 참여자 4명 -> 3개 -> point[0], point[1], point[2]
-    * 게임 참여자 5명 -> 4개 -> point[0], point[1], point[2], point[3]
+    * 게임 참여자 2명 -> 2개 -> point[0], point[1]
+    * 게임 참여자 3명 -> 3개 -> point[0], point[1], point[2]
+    * 게임 참여자 4명 -> 4개 -> point[0], point[1], point[2], point[3]
     * ...
     * 게임 참여자 2명부터 규칙적으로 사다리 개수가 생성
 * 사다리 높이 입력값
@@ -33,13 +32,14 @@
     * 숫자형의 String 입력
     * 숫자형이 아닌 문자열입력 
 * 사다리 구성
-    * 사다리 개수 + 사다리 높이 
-    * 사다리 높이 1개 Line -> 여러개의 사다리 개수 List<Boolean> points
+    * 사다리 게임 참여자 + 사다리 높이 
+    * 사다리 높이 1개 Line -> 여러개의 사다리 List<Boolean> points
     * 사다리 Ladder -> 여러개 높이 List<Line> Lines
     * 사다리 구분 '|' -> 게임 참여자 명수 개수와 동일
     * 마지막 명수에 해당하는 '|' 을 그리면, 
       사다리를 그리지 않고,
       그 다음 높이(Line)로 이동한다.
+      마지막 point[last] 는 무조건 false 이다
     * 사다리를 그리는 것은 Boolean 형의 point 가 true 일 때만 그린다.
     * List<Boolean> points 에서 이전의 point 가 true 일 경우,
       그 다음 point는 반드시 false 가 온다.

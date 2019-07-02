@@ -2,7 +2,6 @@ package ladder.domain;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
