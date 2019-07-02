@@ -24,13 +24,20 @@ public class Players {
 
     public static Players of(String inputOfNames) {
         AssertUtils.checkNull(inputOfNames);
+
         String[] names = inputOfNames.split(SEPARATOR_OF_NAMES);
-        if (names.length < MIN_NUMBER_OF_PLAYERS) {
+        int numberOfPlayers = names.length;
+        if (numberOfPlayers < MIN_NUMBER_OF_PLAYERS) {
             throw new PlayersLessMinimumException();
         }
+
         return Arrays.stream(names)
                 .map(Player::of)
                 .collect(collectingAndThen(toList(), Players::new));
+    }
+
+    Player findByPosition(Position position) {
+        return players.get(position.getPosition());
     }
 
     public int countOfPlayers() {

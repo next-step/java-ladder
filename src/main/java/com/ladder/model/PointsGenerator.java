@@ -3,38 +3,38 @@ package com.ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ladder.model.Point.NO_MOVABLE;
+import static com.ladder.model.Point.POINT_LEFT;
+
 public class PointsGenerator {
 
-    private final PointStrategy pointStrategy;
-    private List<Boolean> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
-    PointsGenerator() {
-        this.pointStrategy = new PointRandomStrategy();
-    }
-
-    PointsGenerator(PointStrategy pointStrategy) {
-        this.pointStrategy = pointStrategy;
-    }
-
-    List<Boolean> generate(int countByPlayers) {
-        points.add(pointStrategy.generate());
-        for (int i = 1; i < countByPlayers - 1; i++) {
-            Boolean beforePoint = points.get(i - 1);
-            generateNextPoint(beforePoint);
-        }
-        generateEndPoint();
+    List<Point> generate(int countByPlayers, PointStrategy pointStrategy) {
+        generateFirst(pointStrategy);
+        generateMiddle(countByPlayers, pointStrategy);
+        generateLast(pointStrategy);
         return points;
     }
 
-    private void generateNextPoint(boolean before) {
-        if (before) {
-            points.add(false);
-            return;
-        }
-        points.add(pointStrategy.generate());
+    private void generateFirst(PointStrategy pointStrategy) {
+        points.add(Point.ofFirst(pointStrategy.generate()));
     }
 
-    private void generateEndPoint() {
-        points.add(false);
+    private void generateMiddle(int countByPlayers, PointStrategy pointStrategy) {
+        for (int i = 0; i < countByPlayers - 2; i++) {
+            points.add(generateNextPoint(points.get(i), pointStrategy));
+        }
+    }
+
+    private Point generateNextPoint(Point before, PointStrategy pointStrategy) {
+        if (before.isRight()) {
+            return POINT_LEFT;
+        }
+        return Point.of(NO_MOVABLE, pointStrategy.generate());
+    }
+
+    private void generateLast(PointStrategy pointStrategy) {
+        points.add(Point.of(pointStrategy.generate(), NO_MOVABLE));
     }
 }

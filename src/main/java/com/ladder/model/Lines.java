@@ -11,13 +11,18 @@ import java.util.stream.IntStream;
 public class Lines {
 
     public static final int MIN_NUMBER_OF_COLUMNS = 1;
+
     private List<Line> lines;
 
     private Lines(List<Line> lines) {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Lines of(int numberOfColumns, int numberOfPlayers) {
+    static Lines of(List<Line> lines) {
+        return new Lines(new ArrayList<>(lines));
+    }
+
+    static Lines of(int numberOfColumns, int numberOfPlayers) {
         if (numberOfColumns < MIN_NUMBER_OF_COLUMNS) {
             throw new LadderColumnsException();
         }
@@ -27,7 +32,14 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public List<Line> getLines() {
+    Position playByOnePosition(Position startByPosition) {
+        for (Line line : lines) {
+            startByPosition = line.move(startByPosition);
+        }
+        return startByPosition;
+    }
+
+    List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 }

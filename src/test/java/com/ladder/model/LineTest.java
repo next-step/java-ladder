@@ -3,6 +3,11 @@ package com.ladder.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static com.ladder.model.Point.POINT_LEFT;
+import static com.ladder.model.Point.POINT_RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
@@ -12,8 +17,10 @@ public class LineTest {
     void createLine_success() {
         // given
         int numberOfPlayers = 5;
+
         // when
         Line points = Line.of(numberOfPlayers);
+
         // then
         assertThat(points).isNotNull();
         assertThat(points.getPoints()).hasSize(numberOfPlayers);
@@ -24,11 +31,45 @@ public class LineTest {
     void createLine_hasStrategy_success() {
         // given
         int numberOfPlayers = 2;
+
         // when
-        Line points = Line.of(numberOfPlayers, ()-> true);
+        Line points = Line.ofWithStrategy(numberOfPlayers, () -> true);
+
         // then
         assertThat(points).isNotNull();
-        assertThat(points.getPoints()).containsExactly(true, false);
+        assertThat(points.getPoints()).containsExactly(POINT_RIGHT, POINT_LEFT);
     }
 
+
+    @DisplayName("플레이어 수 만큼 위치를 생성하는데 성공한다")
+    @Test
+    void createPoint_countByPlayer_success() {
+        // given
+        int countByPlayers = 5;
+
+        // when
+        Line line = Line.of(countByPlayers);
+        List<Point> points = line.getPoints();
+
+        // then
+        assertThat(points).hasSize(countByPlayers);
+    }
+
+    @DisplayName("플레이어의 위치를 이동하는데 성공한다")
+    @Test
+    void movePoint_positionOfPlayer_success() {
+        // given
+        Position currentPosition = Position.of(1);
+
+        // when
+        Line line = ofLine(POINT_LEFT, POINT_RIGHT, POINT_LEFT);
+        Position movingResult = line.move(currentPosition);
+
+        // then
+        assertThat(movingResult).isEqualTo(currentPosition.moveForward());
+    }
+
+    public static Line ofLine(Point... points) {
+        return Line.ofPoints(Arrays.asList(points));
+    }
 }

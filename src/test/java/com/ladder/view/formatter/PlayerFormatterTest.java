@@ -4,6 +4,7 @@ import com.ladder.model.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.ladder.model.PlayerTest.ofPlayer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlayerFormatterTest {
@@ -14,10 +15,12 @@ class PlayerFormatterTest {
     @Test
     void printUserName_success() {
         // given
-        Player player = Player.of("pobi");
+        Player player = ofPlayer("pobi");
         String expected = "  pobi";
+
         // when
-        String result =userNameFormatter.format(player);
+        String result = userNameFormatter.format(player);
+
         // then
         assertThat(result).isEqualTo(expected);
     }

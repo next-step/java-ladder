@@ -6,23 +6,38 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    private Line(List<Boolean> point) {
+    private Line(List<Point> point) {
         this.points = new ArrayList<>(point);
     }
 
-    public static Line of(int numberOfPoints) {
+    static Line ofPoints(List<Point> points) {
+        return new Line(new ArrayList<>(points));
+    }
+
+    static Line of(int countByPlayers) {
+        PointStrategy pointStrategy = new RandomPointStrategy();
+        return ofWithStrategy(countByPlayers, pointStrategy);
+    }
+
+    static Line ofWithStrategy(int countByPlayers, PointStrategy pointStrategy) {
         PointsGenerator pointsGenerator = new PointsGenerator();
-        return new Line(pointsGenerator.generate(numberOfPoints));
+        return new Line(pointsGenerator.generate(countByPlayers, pointStrategy));
     }
 
-    public static Line of(int numberOfPoints, PointStrategy pointStrategy) {
-        PointsGenerator pointsGenerator = new PointsGenerator(pointStrategy);
-        return new Line(pointsGenerator.generate(numberOfPoints));
+    Position move(Position position) {
+        return points.get(position.getPosition()).move(position);
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }
