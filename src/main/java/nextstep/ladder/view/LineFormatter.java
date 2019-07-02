@@ -3,10 +3,10 @@ package nextstep.ladder.view;
 import nextstep.ladder.model.Line;
 
 public class LineFormatter implements Formatter<Line> {
-    private final String LINE_BLANK = "     ";
-    private final String LINE_BRANCH = "-----";
-    private final String LINE_CONNECTOR = "|";
-    private final String LINE_END = "\n";
+    protected static final String LINE_BLANK = "     ";
+    protected static final String LINE_BRANCH = "-----";
+    protected static final String LINE_CONNECTOR = "|";
+    protected static final String LINE_END = "\n";
 
     @Override
     public String format(Line line) {

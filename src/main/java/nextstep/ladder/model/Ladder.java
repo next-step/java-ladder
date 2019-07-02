@@ -11,10 +11,14 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(int countOfHeight, int countOfPerson) {
-        lines = makeLadder(countOfHeight, countOfPerson);
+        this.lines = makeLadder(countOfHeight, countOfPerson);
     }
 
-    private List<Line> makeLadder(int countOfHeight, int countOfPerson) {
+    public Ladder(List<Line> lines) {
+        this.lines = lines;
+    }
+
+    protected List<Line> makeLadder(int countOfHeight, int countOfPerson) {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, countOfHeight)
                 .forEach(height -> lines.add(new Line(countOfPerson)));
@@ -26,5 +30,9 @@ public class Ladder {
         return lines.stream()
                 .map(lineFormatter::format)
                 .collect(Collectors.joining());
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }
