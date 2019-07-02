@@ -40,12 +40,4 @@ public class Point {
     public boolean showLeft() {
         return direction.isLeft();
     }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "index=" + index +
-                ", direction=" + direction +
-                '}';
-    }
 }
