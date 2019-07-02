@@ -1,5 +1,6 @@
 package com.jaeyeonling.ladder.domain.ladder;
 
+import com.jaeyeonling.ladder.view.format.Formatters;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,8 +36,8 @@ class LadderResultsTest {
 
         // then
         for (int i = 0; i < expectLadderResults.length; i++) {
-            assertThat(ladderResults.findByIndex(i)).isEqualTo(expectLadderResults[i]);
+            final LadderResult ladderResult = ladderResults.findByIndex(i);
+            assertThat(Formatters.ladderResultFormatter.format(ladderResult)).isEqualTo(expectLadderResults[i]);
         }
     }
-
 }

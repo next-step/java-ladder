@@ -1,6 +1,7 @@
 package com.jaeyeonling.ladder.domain;
 
 import com.jaeyeonling.ladder.domain.ladder.LadderGame;
+import com.jaeyeonling.ladder.domain.ladder.LadderResult;
 import com.jaeyeonling.ladder.domain.ladder.LadderResults;
 import com.jaeyeonling.ladder.domain.user.User;
 import com.jaeyeonling.ladder.domain.user.Users;
@@ -34,8 +35,8 @@ public class GameInfo {
         return FINISH_CHARACTER.equalsIgnoreCase(usernameOfWantResult);
     }
 
-    public String findWinningResult(final String usernameOfWantResult,
-                                    final LadderGame ladderGame) {
+    public LadderResult findWinningResult(final String usernameOfWantResult,
+                                          final LadderGame ladderGame) {
         final int indexOfLadder = users.findIndexByUsername(usernameOfWantResult);
         final int indexOfResult = ladderGame.ride(indexOfLadder);
 

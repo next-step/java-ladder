@@ -1,5 +1,6 @@
 package com.jaeyeonling.ladder.domain.ladder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -9,22 +10,23 @@ public class LadderResults {
 
     public static final String SEPARATOR = "\\s*,\\s*";
 
-    private final List<String> results;
+    private final List<LadderResult> results;
 
-    private LadderResults(final List<String> results) {
-        this.results = results;
+    private LadderResults(final List<LadderResult> results) {
+        this.results = new ArrayList<>(results);
     }
 
     public static LadderResults ofSeparator(final String rawResults) {
         return Arrays.stream(rawResults.split(SEPARATOR))
+                .map(LadderResult::valueOf)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), LadderResults::new));
     }
 
-    public String findByIndex(final int index) {
+    public LadderResult findByIndex(final int index) {
         return results.get(index);
     }
 
-    public List<String> getResults() {
+    public List<LadderResult> getResults() {
         return Collections.unmodifiableList(results);
     }
 

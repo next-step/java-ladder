@@ -1,5 +1,6 @@
 package com.jaeyeonling.ladder.view.format;
 
+import com.jaeyeonling.ladder.domain.ladder.LadderResult;
 import com.jaeyeonling.ladder.domain.line.Line;
 import com.jaeyeonling.ladder.domain.point.Direction;
 import com.jaeyeonling.ladder.domain.user.User;
@@ -13,4 +14,5 @@ public class FormatterSupport {
     protected static final Formatter<Users> usersFormatter = UsersFormatter.withUserFormatter(userFormatter);
     protected static final Formatter<Direction> directionFormatter = new DirectionFormatter();
     protected static final Formatter<Line> lineFormatter = LineFormatter.withDirectionFormatter(directionFormatter);
+    protected static final Formatter<LadderResult> ladderResultFormatter = new LadderResultFormatter();
 }

@@ -1,9 +1,11 @@
 package com.jaeyeonling.ladder.domain;
 
 import com.jaeyeonling.ladder.domain.ladder.LadderGame;
+import com.jaeyeonling.ladder.domain.ladder.LadderResult;
 import com.jaeyeonling.ladder.domain.ladder.LadderResults;
 import com.jaeyeonling.ladder.domain.user.Users;
 import com.jaeyeonling.ladder.exception.NotEqualsUserSizeAndResultSizeException;
+import com.jaeyeonling.ladder.view.format.Formatters;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -74,10 +76,11 @@ class GameInfoTest {
             final String expectLadderResult = splitLadderResults[i];
 
             // when
-            final String foundWinningResult = gameInfo.findWinningResult(username, ladderGame);
+            final LadderResult foundWinningResult = gameInfo.findWinningResult(username, ladderGame);
+            final String formattedFoundWinningResult = Formatters.ladderResultFormatter.format(foundWinningResult);
 
             // then
-            assertThat(foundWinningResult).isEqualTo(expectLadderResult);
+            assertThat(formattedFoundWinningResult).isEqualTo(expectLadderResult);
         }
     }
 }

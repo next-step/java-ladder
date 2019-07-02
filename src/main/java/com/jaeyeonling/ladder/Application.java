@@ -1,10 +1,7 @@
 package com.jaeyeonling.ladder;
 
 import com.jaeyeonling.ladder.domain.GameInfo;
-import com.jaeyeonling.ladder.domain.ladder.HeightOfLadder;
-import com.jaeyeonling.ladder.domain.ladder.LadderGame;
-import com.jaeyeonling.ladder.domain.ladder.LadderGameGenerator;
-import com.jaeyeonling.ladder.domain.ladder.LadderResults;
+import com.jaeyeonling.ladder.domain.ladder.*;
 import com.jaeyeonling.ladder.domain.line.*;
 import com.jaeyeonling.ladder.domain.user.User;
 import com.jaeyeonling.ladder.domain.user.Username;
@@ -65,10 +62,10 @@ public class Application {
             System.exit(0);
         }
 
-        final String winningResult = gameInfo.findWinningResult(usernameOfWantResult, ladderGame);
+        final LadderResult winningResult = gameInfo.findWinningResult(usernameOfWantResult, ladderGame);
 
         ConsoleOutputView.printResult();
-        ConsoleOutputView.print(winningResult);
+        ConsoleOutputView.print(Formatters.ladderResultFormatter.format(winningResult));
     }
 
     private void showAll(final LadderGame ladderGame,
@@ -77,8 +74,10 @@ public class Application {
                 .map(User::getUsername)
                 .map(Username::getUsername)
                 .forEach(username -> {
-                    final String winningResult = gameInfo.findWinningResult(username, ladderGame);
-                    ConsoleOutputView.printMatchingResult(username, winningResult);
+                    final LadderResult winningResult = gameInfo.findWinningResult(username, ladderGame);
+                    final String formattedWinningResult = Formatters.ladderResultFormatter.format(winningResult);
+
+                    ConsoleOutputView.printMatchingResult(username, formattedWinningResult);
                 });
     }
 }
