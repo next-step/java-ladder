@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
+
 public class StreamStudy {
 
 	public static long countWords() throws IOException {
@@ -18,12 +20,17 @@ public class StreamStudy {
 		return words.stream().filter(w -> w.length() > 12).count();
 	}
 	
-	public static void printLongestWordTop100() throws IOException {
+	public static void printLongestWordTopWithLimit(int minWordSize, int limitCount) throws IOException {
 		String contents = new String(Files.readAllBytes(Paths
 				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
 		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 		
-		// TODO 이 부분에 구현한다.
+		words.stream()
+				.filter(word -> word.length() > minWordSize)
+				.distinct()
+				.sorted(comparing(String::length))
+				.limit(limitCount)
+				.forEach(System.out::println);
 	}
 
 	public static List<Integer> doubleNumbers(List<Integer> numbers) {
