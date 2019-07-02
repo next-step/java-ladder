@@ -10,8 +10,6 @@ import com.ladder.view.formatter.RewardsFormatter;
 
 public class Application {
 
-    public static final String ALL_SEARCH_KEYWORD = "all";
-
     private static final Formatter<Players> userNamesFormatter = new PlayersFormatter();
     private static final Formatter<LadderGame> ladderFormatter = new LadderFormatter();
     private static final Formatter<Rewards> rewardsFormatter = new RewardsFormatter();
@@ -30,10 +28,6 @@ public class Application {
         outputView.printReward(rewards);
 
         String searchPlayerName = InputView.writeFindPlayerNameOfWanted();
-        if (ALL_SEARCH_KEYWORD.equals(searchPlayerName)){
-            outputView.printResultAll(playReport.searchByAll());
-            return;
-        }
-        outputView.printResult(playReport.searchByName(searchPlayerName));
+        outputView.printResult(searchPlayerName, playReport);
     }
 }
