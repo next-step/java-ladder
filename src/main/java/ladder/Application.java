@@ -1,10 +1,7 @@
 package ladder;
 
 import ladder.model.Ladder;
-import ladder.model.Layer;
 import ladder.model.Player;
-import ladder.util.RandomRungGenerator;
-import ladder.util.RungGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 

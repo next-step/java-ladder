@@ -5,8 +5,6 @@ import ladder.util.RungGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class LayerTest {
