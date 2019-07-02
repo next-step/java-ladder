@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class VerticalLine {
     private HorizontalLine leftHorizontalLine;

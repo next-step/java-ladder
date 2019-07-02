@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class HorizontalLine {
     private static final HorizontalLine LINE_TRUE = new HorizontalLine(true);
