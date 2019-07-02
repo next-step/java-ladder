@@ -26,7 +26,7 @@ public class Lambda {
 		}).start();
 	}
 
-	public static int sumWithConditional(List<Integer> numbers, Conditional conditional) {
+	private static int sumWithConditional(List<Integer> numbers, Conditional conditional) {
 
 		int total = 0;
 		for (int number : numbers) {
@@ -39,11 +39,12 @@ public class Lambda {
 	}
 
 	public static int sumAll(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        total += number;
-	    }
-	    return total;
+	    return sumWithConditional(numbers, new Conditional() {
+			@Override
+			public boolean test(Integer number) {
+				return true;
+			}
+		});
 	}
 	
 	public static int sumAllEven(List<Integer> numbers) {
