@@ -4,9 +4,7 @@ public class VerticalLine {
     private HorizontalLine leftHorizontalLine;
 
     public VerticalLine(boolean hasLeftHorizontalLine) {
-        this.leftHorizontalLine = hasLeftHorizontalLine
-                ? HorizontalLine.LINE_TRUE
-                : HorizontalLine.LINE_FALSE;
+        this.leftHorizontalLine = HorizontalLine.of(hasLeftHorizontalLine);
     }
 
     public boolean hasLeftHorizontalLine() {
