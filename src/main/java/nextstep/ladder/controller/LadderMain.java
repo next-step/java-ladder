@@ -1,20 +1,20 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.model.*;
+import nextstep.ladder.model.GameResult;
+import nextstep.ladder.model.Ladder;
+import nextstep.ladder.model.Players;
 import nextstep.ladder.view.InView;
 import nextstep.ladder.view.OutView;
 
 public class LadderMain {
     public static void main(String[] args) {
-        Players players = new Players(askPlayersName());
-        GamePrize gamePrize = new GamePrize(askGameResult());
+        Players players = new Players(askPlayersName(), askGamePrize());
         Ladder ladder = new Ladder(askLadderHeight(), players.countOfPlayer());
 
-        GameResult gameResult = new GameResult(ladder, players.countOfPlayer());
-        Game game = new Game(players, gamePrize, gameResult);
+        GameResult gameResult = new GameResult(players, ladder);
 
-        printGameResult(ladder, game);
-        while (showPlayerResult(game)) ;
+        printGameResult(ladder, players);
+        while (showPlayerResult(gameResult)) ;
     }
 
     private static String askPlayersName() {
@@ -22,7 +22,7 @@ public class LadderMain {
         return InView.getString();
     }
 
-    private static String askGameResult() {
+    private static String askGamePrize() {
         OutView.setAskGameResult();
         return InView.getString();
     }
@@ -32,23 +32,23 @@ public class LadderMain {
         return InView.getInt();
     }
 
-    private static void printGameResult(Ladder ladder, Game game) {
+    private static void printGameResult(Ladder ladder, Players players) {
         OutView.printLadder();
-        OutView.println(game.getFormattedPlayersName());
+        OutView.println(players.getFormattedName());
         OutView.println(ladder.getFormattedLine());
-        OutView.println(game.getFormattedPrize());
+        OutView.println(players.getFormattedPrize());
     }
 
-    private static boolean showPlayerResult(Game game) {
+    private static boolean showPlayerResult(GameResult gameResult) {
         OutView.askWhoesResult();
         String playerName = InView.getString();
 
         if (playerName.toLowerCase().equals("all")) {
-            OutView.printResult(game.getFormattedResult());
+            OutView.printResult(gameResult.getFormattedResult());
             return false;
         }
 
-        OutView.printResult(game.getPrize(playerName));
+        OutView.printResult(gameResult.getPrize(playerName));
         return true;
     }
 }

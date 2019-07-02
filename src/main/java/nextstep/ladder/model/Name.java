@@ -2,10 +2,10 @@ package nextstep.ladder.model;
 
 import java.util.Objects;
 
-public class Player {
+public class Name {
     private String name;
 
-    public Player(String name) {
+    public Name(String name) {
         this.name = name;
     }
 
@@ -25,8 +25,8 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        Name name = (Name) o;
+        return Objects.equals(this.name, name.name);
     }
 
     @Override
