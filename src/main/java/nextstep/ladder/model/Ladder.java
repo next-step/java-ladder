@@ -8,31 +8,30 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
 
-    public Ladder(int countOfHeight, int countOfPerson) {
-        this.lines = makeLadder(countOfHeight, countOfPerson);
+    public Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
-    }
-
-    protected List<Line> makeLadder(int countOfHeight, int countOfPerson) {
-        List<Line> lines = new ArrayList<>();
+    public static Ladder init(int countOfHeight, int sizeOfPerson) {
+        List<LadderLine> ladderLines = new ArrayList<>();
         IntStream.range(0, countOfHeight)
-                .forEach(height -> lines.add(new Line(countOfPerson)));
-        return lines;
+                .forEach(n -> ladderLines.add(LadderLine.init(sizeOfPerson)));
+        return new Ladder(ladderLines);
     }
 
     public String getFormattedLine() {
         LineFormatter lineFormatter = new LineFormatter();
-        return lines.stream()
+        return ladderLines.stream()
                 .map(lineFormatter::format)
                 .collect(Collectors.joining());
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public int moveToResult(int position) {
+        for (LadderLine ladderLine : ladderLines) {
+            position = ladderLine.move(position);
+        }
+        return position;
     }
 }

@@ -9,7 +9,7 @@ import nextstep.ladder.view.OutView;
 public class LadderMain {
     public static void main(String[] args) {
         Players players = new Players(askPlayersName(), askGamePrize());
-        Ladder ladder = new Ladder(askLadderHeight(), players.countOfPlayer());
+        Ladder ladder = Ladder.init(askLadderHeight(), players.countOfPlayer());
 
         GameResult gameResult = new GameResult(players, ladder);
 

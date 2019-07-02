@@ -2,8 +2,8 @@ package nextstep.ladder.model;
 
 import java.util.Objects;
 
-import static nextstep.ladder.model.LadderPointGenerator.generatePoint;
 import static java.lang.Boolean.FALSE;
+import static nextstep.ladder.model.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean left;
@@ -16,7 +16,7 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
+        //System.out.println(this);
     }
 
     public boolean isRight() {
@@ -45,7 +45,7 @@ public class Direction {
     public static Direction first(boolean right) {
         return of(FALSE, right);
     }
-		
+
     public Direction last() {
         return of(this.right, FALSE);
     }

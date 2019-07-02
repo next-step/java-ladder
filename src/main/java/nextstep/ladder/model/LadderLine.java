@@ -49,4 +49,8 @@ public class LadderLine {
                 "points=" + points +
                 '}';
     }
+
+    public List<Point> getPoints() {
+        return points;
+    }
 }
