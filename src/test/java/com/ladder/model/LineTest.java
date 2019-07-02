@@ -72,4 +72,4 @@ public class LineTest {
     public static Line ofLine(Point... points) {
         return Line.ofPoints(Arrays.asList(points));
     }
-}3
+}
