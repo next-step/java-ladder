@@ -35,15 +35,15 @@ public class Rewards {
                 .collect(collectingAndThen(toList(), Rewards::new));
     }
 
-    List<Reward> getRewards() {
-        return Collections.unmodifiableList(rewards);
-    }
-
     int countOfRewards() {
         return rewards.size();
     }
 
-    public Reward findByPosition(Position position) {
+    Reward findByPosition(Position position) {
         return rewards.get(position.getPosition());
+    }
+
+    public List<Reward> getRewards() {
+        return Collections.unmodifiableList(rewards);
     }
 }
