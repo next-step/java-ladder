@@ -7,7 +7,10 @@ import java.util.Objects;
 public class Position {
 
     static final int MIN_NUMBER_OF_POSITION = 0;
-    private int position;
+
+    static final Position MIN_OF_POSITION = Position.of(MIN_NUMBER_OF_POSITION);
+
+    private final int position;
 
     private Position(int position) {
         this.position = position;

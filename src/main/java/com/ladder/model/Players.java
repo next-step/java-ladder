@@ -4,9 +4,9 @@ import com.ladder.exception.PlayersLessMinimumException;
 import com.ladder.utils.AssertUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -26,12 +26,13 @@ public class Players {
         AssertUtils.checkNull(inputOfNames);
 
         String[] names = inputOfNames.split(SEPARATOR_OF_NAMES);
-        if (names.length < MIN_NUMBER_OF_PLAYERS) {
+        int numberOfPlayers = names.length;
+        if (numberOfPlayers < MIN_NUMBER_OF_PLAYERS) {
             throw new PlayersLessMinimumException();
         }
 
-        return Arrays.stream(names)
-                .map(Player::of)
+        return IntStream.range(0, names.length)
+                .mapToObj(num -> Player.of(num, names[num]))
                 .collect(collectingAndThen(toList(), Players::new));
     }
 

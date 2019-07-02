@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.ladder.model.Player.LENGTH_OF_USER_NAME;
+import static com.ladder.model.Position.MIN_OF_POSITION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -17,14 +18,15 @@ public class PlayerTest {
     @Test
     void createUsername_success() {
         // given
+        Position position = MIN_OF_POSITION;
         String name = "abcde";
 
         // when
-        Player result = Player.of(name);
+        Player result = Player.of(position, name);
 
         // then
         assertThat(result).isNotNull();
-        assertThat(result).isEqualTo(Player.of(name));
+        assertThat(result).isEqualTo(Player.of(position, name));
     }
 
     @DisplayName("플레이어 이름이 " + LENGTH_OF_USER_NAME + "자리 초과할 시 실패한다")
@@ -32,7 +34,7 @@ public class PlayerTest {
     @ValueSource(strings = {"abcdef"})
     void createUsername_whenLengthMoreThanFive_exception(String wrongName) {
         assertThatExceptionOfType(NameLengthException.class)
-                .isThrownBy(() -> Player.of(wrongName));
+                .isThrownBy(() -> ofPlayer(wrongName));
     }
 
     @DisplayName("플레이어 이름 빈 문자열 또는 null 일 시 실패한다")
@@ -40,6 +42,10 @@ public class PlayerTest {
     @NullAndEmptySource
     void createUsername_whenInputEmptyOrNull_exception(String nullName) {
         assertThatExceptionOfType(AssertionError.class)
-                .isThrownBy(() -> Player.of(nullName));
+                .isThrownBy(() -> ofPlayer(nullName));
+    }
+
+    public static Player ofPlayer(String name) {
+        return Player.of(MIN_OF_POSITION, name);
     }
 }

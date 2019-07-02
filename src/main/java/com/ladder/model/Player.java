@@ -9,18 +9,24 @@ public class Player {
 
     public static final int LENGTH_OF_USER_NAME = 5;
 
+    private final Position position;
     private final String name;
 
-    private Player(String name) {
+    private Player(Position position, String name) {
+        this.position = position;
         this.name = name;
     }
 
-    public static Player of(final String name) {
+    static Player of(int position, String name) {
+        return new Player(Position.of(position), name);
+    }
+
+    static Player of(Position position, String name) {
         AssertUtils.checkNull(name);
         if (name.length() > LENGTH_OF_USER_NAME) {
             throw new NameLengthException(name);
         }
-        return new Player(name);
+        return new Player(position, name);
     }
 
     public String getName() {
@@ -45,5 +51,13 @@ public class Player {
         return "Player{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    boolean isMatch(String playerName) {
+        return this.name.equals(playerName);
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

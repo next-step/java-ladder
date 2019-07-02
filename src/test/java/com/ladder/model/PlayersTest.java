@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
+import static com.ladder.model.PlayerTest.ofPlayer;
 import static com.ladder.model.Players.MIN_NUMBER_OF_PLAYERS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -23,11 +24,11 @@ class PlayersTest {
         Players result = Players.of(names);
 
         // then
-        assertThat(result.getPlayers()).contains(Player.of("a"),
-                                                    Player.of("b"),
-                                                    Player.of("c"),
-                                                    Player.of("d"),
-                                                    Player.of("e"));
+        assertThat(result.getPlayers()).contains(ofPlayer("a"),
+                                                 ofPlayer("b"),
+                                                 ofPlayer("c"),
+                                                 ofPlayer("d"),
+                                                 ofPlayer("e"));
         assertThat(result.getPlayers()).hasSize(expectedSize);
     }
 
