@@ -30,7 +30,18 @@ public class LambdaTest {
 	public void runThread() throws Exception {
 		Lambda.runThread();
 	}
-	
+
+	@Test
+	public void sumWithConditional() {
+		int sum = Lambda.sumWithConditional(numbers, new Conditional() {
+			@Override
+			public boolean test(Integer number) {
+				return true;
+			}
+		});
+		assertThat(sum).isEqualTo(21);
+	}
+
 	@Test
 	public void sumAll() throws Exception {
 		int sum = Lambda.sumAll(numbers);
