@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<LadderLine> ladderLines;
 
-    public Ladder(List<LadderLine> ladderLines) {
+    protected Ladder(List<LadderLine> ladderLines) {
         this.ladderLines = ladderLines;
     }
 

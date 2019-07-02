@@ -12,10 +12,6 @@ public class LadderLine {
         this.points = points;
     }
 
-    public int move(int position) {
-        return points.get(position).move();
-    }
-
     public static LadderLine init(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
@@ -41,6 +37,10 @@ public class LadderLine {
     private static void initLast(List<Point> points, Point point) {
         point = point.last();
         points.add(point);
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     public List<Point> getPoints() {
