@@ -11,6 +11,8 @@ import com.jaeyeonling.ladder.view.format.Formatters;
 
 public class ResultViewer {
 
+    private static final String FINISH_CHARACTER = "all";
+
     private final Users users;
     private final LadderGame ladderGame;
     private final LadderResults ladderResults;
@@ -44,7 +46,7 @@ public class ResultViewer {
     }
 
     private boolean isShowAll(final String usernameOfWantResult) {
-        return "all".equalsIgnoreCase(usernameOfWantResult);
+        return FINISH_CHARACTER.equalsIgnoreCase(usernameOfWantResult);
     }
 
     private void showSingleResult(final String usernameOfWantResult) {
