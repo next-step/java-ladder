@@ -26,8 +26,8 @@ public class StreamStudy {
 		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 		
 		words.stream()
-				.filter(word -> word.length() > minWordSize)
 				.distinct()
+				.filter(word -> word.length() > minWordSize)
 				.sorted(comparing(String::length))
 				.limit(limitCount)
 				.map(String::toLowerCase)
