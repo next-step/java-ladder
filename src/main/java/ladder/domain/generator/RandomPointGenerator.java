@@ -8,6 +8,7 @@ public class RandomPointGenerator implements PointGenerator {
 
     @Override
     public boolean generate() {
+
         return random.nextBoolean();
     }
 }

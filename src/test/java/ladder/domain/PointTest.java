@@ -19,6 +19,7 @@ class PointTest {
     }
 
     private static Stream<Arguments> first() {
+
         return Stream.of(
                 Arguments.of(true, Direction.RIGHT),
                 Arguments.of(false, Direction.EMPTY)
@@ -34,6 +35,7 @@ class PointTest {
     }
 
     private static Stream<Arguments> middle() {
+
         return Stream.of(
                 Arguments.of(Point.of(3, Direction.EMPTY), true, Direction.RIGHT),
                 Arguments.of(Point.of(3, Direction.EMPTY), false, Direction.EMPTY),
@@ -53,6 +55,7 @@ class PointTest {
     }
 
     private static Stream<Arguments> last() {
+
         return Stream.of(
                 Arguments.of(Point.of(5, Direction.EMPTY), Direction.EMPTY),
                 Arguments.of(Point.of(5, Direction.RIGHT), Direction.LEFT)

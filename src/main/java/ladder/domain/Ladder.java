@@ -5,7 +5,6 @@ import ladder.domain.generator.RandomPointGenerator;
 
 public class Ladder {
 
-    private final PointGenerator pointGenerator;
     private final LadderInfo ladderInfo;
     private final Lines lines;
 
@@ -16,7 +15,6 @@ public class Ladder {
 
     public Ladder(LadderInfo ladderInfo, PointGenerator pointGenerator) {
 
-        this.pointGenerator = pointGenerator;
         this.ladderInfo = ladderInfo;
         this.lines = Lines.of(ladderInfo, pointGenerator);
     }

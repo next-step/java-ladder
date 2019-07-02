@@ -1,7 +1,7 @@
 package ladder.view;
 
 import java.io.PrintStream;
-import java.util.*;
+import java.util.Scanner;
 
 public class InputView {
 

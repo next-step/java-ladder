@@ -28,9 +28,9 @@ public class LadderResult {
         return new ParticipantGoals(
                 positionGoals.entrySet()
                         .stream()
-                        .collect(Collectors.toMap( o -> participants.getParticipant(o.getKey()),
-                                                   o -> goals.getGoal(o.getValue()),
-                                                   (o1, o2) -> o1
+                        .collect(Collectors.toMap(o -> participants.getParticipant(o.getKey()),
+                                                  o -> goals.getGoal(o.getValue()),
+                                                  (o1, o2) -> o1
                         )));
     }
 }

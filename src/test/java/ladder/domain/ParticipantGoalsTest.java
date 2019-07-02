@@ -24,6 +24,7 @@ class ParticipantGoalsTest {
 
         assertThat(participantGoals.findGoal(participantName)).isEqualTo(new Goal(goalResult));
     }
+
     @Test
     @DisplayName("참가자명 String으로 검색시 없다면 exception 발생")
     void findGoalException() {
