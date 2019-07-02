@@ -36,8 +36,8 @@ public class Players {
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
-    Player findByPosition(int position) {
-        return players.get(position);
+    Player findByPosition(Position position) {
+        return players.get(position.getPosition());
     }
 
     public int countOfPlayers() {

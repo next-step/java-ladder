@@ -21,7 +21,7 @@ public class Result {
         return rewards.findByPosition(position);
     }
 
-    Player findByPlayer(int position) {
+    Player findByPlayer(Position position) {
         return players.findByPosition(position);
     }
 
