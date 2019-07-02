@@ -18,4 +18,9 @@ public class Users {
                 .findAny()
                 .orElse(DEFAULT_USER);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

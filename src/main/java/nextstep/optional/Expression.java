@@ -16,6 +16,8 @@ enum Expression {
 	}
 
 	static Expression of(String expression) {
-		return Arrays.stream(Expression.values()).filter(x -> matchExpression(x,expression)).findFirst().orElseThrow(IllegalArgumentException::new);
+		return Arrays.stream(Expression.values()).
+				filter(x -> matchExpression(x,expression)).
+				findFirst().orElseThrow(IllegalArgumentException::new);
 	}
 }
