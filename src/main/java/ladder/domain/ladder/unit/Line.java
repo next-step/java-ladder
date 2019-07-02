@@ -39,7 +39,7 @@ public class Line {
     }
     
     private Line(Line beforeLine, boolean lastRow) {
-        cells = beforeLine.stream()
+        cells = beforeLine.getStream()
           .map(beforeCell -> Cell.from(beforeCell, getConnected(lastRow)))
           .collect(Collectors.toList());
     }
@@ -50,10 +50,6 @@ public class Line {
     
     public int getSize() {
         return cells.size();
-    }
-    
-    private Stream<Cell> stream() {
-        return cells.stream();
     }
     
     public Cell get(int index) {

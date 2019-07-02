@@ -7,24 +7,17 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.gamer.info.Gamer;
 import ladder.domain.gamer.Gamers;
 import ladder.core.message.Message;
-import ladder.domain.ladder.unit.Cell;
 import ladder.message.result.ResultMessage;
 import ladder.view.component.View;
+import ladder.view.model.LadderLines;
 
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ResultView implements ViewImpl {
     private final static String RESULT_MESSAGE = "실행결과";
     private final static String EMPTY_STRING = "";
     private final static String ONE_SPACE_STRING = " ";
-    private final static String LADDER_HORIZON_LINE = "----";
-    private final static String LADDER_HORIZON_EMPTY = "    ";
-    private final static String LADDER_VERTICAL = "|";
     private final static int MAX_NAME_SIZE = 5;
-    private final static int START_COUNT = 0;
     
     private View view;
     
@@ -60,25 +53,8 @@ public class ResultView implements ViewImpl {
           .orElse(EMPTY_STRING);
     }
     
-    
     private void printLadder(Ladder ladder) {
-        List<String> ladderLines = IntStream.range(START_COUNT, ladder.getCellSize())
-          .mapToObj(i -> EMPTY_STRING)
-          .collect(Collectors.toList());
-        AtomicInteger increase = new AtomicInteger(START_COUNT);
-        ladder.getStream().forEach(line -> {
-            increase.set(START_COUNT);
-            line.getStream().forEach(cell -> 
-                ladderLines.set(increase.get(), ladderLines.get(increase.getAndIncrement()) + getLine(cell))
-            );
-        });
-        ladderLines.forEach(view::print);
-    }
-    
-    private String getLine(Cell cell) {
-        if (cell.isRightConnected()) {
-            return LADDER_VERTICAL + LADDER_HORIZON_LINE;
-        }
-        return LADDER_VERTICAL + LADDER_HORIZON_EMPTY;
+        LadderLines.newLadderLines(ladder).stream()
+          .forEach(view::print);
     }
 }

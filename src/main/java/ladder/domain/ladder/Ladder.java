@@ -22,7 +22,6 @@ public class Ladder {
           .forEach(i -> ladder.add(Line.from(ladder.get(i - BEFORE_INDEX), i == gamerSize - BEFORE_INDEX)));
     }
     
-    
     public static Ladder from(final int cellSize, final int gamerSize) {
         return new Ladder(cellSize, gamerSize);
     }
