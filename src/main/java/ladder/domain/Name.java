@@ -24,7 +24,7 @@ public class Name {
     public String getViewName() {
         StringBuilder name = new StringBuilder(getName());
         while (name.length() < 5) {
-            name.append(" ");
+            name.insert(0, " ");
         }
         return name.toString();
     }
