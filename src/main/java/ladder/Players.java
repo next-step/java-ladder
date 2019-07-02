@@ -6,11 +6,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
-
     private static final String NAME_SEPARATOR = ",";
+    private static final int MINIMUM_NUMBER_OF_PLAYERS = 2;
+    private static final String ALERT_SHORTAGE_OF_NUMBER_OF_PLAYERS = "플레이어는 최소 2명이 필요합니다.";
+
     private final List<Player> players;
 
     private Players(List<Player> players) {
+        if (players.size() < MINIMUM_NUMBER_OF_PLAYERS) {
+            throw new IllegalArgumentException(ALERT_SHORTAGE_OF_NUMBER_OF_PLAYERS);
+        }
         this.players = players;
     }
 

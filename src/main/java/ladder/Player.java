@@ -1,10 +1,10 @@
 package ladder;
 
 public class Player {
-
-    static final int MAXIMUM_NAME_LENGTH = 5;
+    private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String ALERT_EXCEED_OF_NAME_LENGTH = "이름은 최대 5글자까지 가능합니다.";
     private static final String ALERT_EMPTY_NAME = "이름은 최소 1글자 이상 입력하세요.";
+
     private final String name;
 
     private Player(String name) {
