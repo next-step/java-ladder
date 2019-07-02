@@ -21,6 +21,14 @@ public class Result {
         return rewards.findByPosition(position);
     }
 
+    Player findByPlayer(int position) {
+        return players.findByPosition(position);
+    }
+
+    int countOfPlayers() {
+        return players.countOfPlayers();
+    }
+
     public Players getPlayers() {
         return players;
     }

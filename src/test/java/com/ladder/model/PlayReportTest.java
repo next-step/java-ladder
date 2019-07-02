@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.ladder.Application.ALL_SEARCH_KEYWORD;
+import static com.ladder.model.PlayerTest.ofPlayer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlayReportTest {
@@ -15,10 +16,10 @@ class PlayReportTest {
     private PlayReport playReport = PlayReport.of(playingResults);
 
     {
-        playingResults.put(Player.of(1, "a"), Reward.of("꽝"));
-        playingResults.put(Player.of(2, "b"), Reward.of("1등"));
-        playingResults.put(Player.of(3, "c"), Reward.of("2등"));
-        playingResults.put(Player.of(4, "d"), Reward.of("꽝"));
+        playingResults.put(ofPlayer("a"), Reward.of("꽝"));
+        playingResults.put(ofPlayer("b"), Reward.of("1등"));
+        playingResults.put(ofPlayer("c"), Reward.of("2등"));
+        playingResults.put(ofPlayer("d"), Reward.of("꽝"));
     }
 
     @DisplayName("사다리 탄 결과 리포트를 작성한다")
@@ -33,7 +34,7 @@ class PlayReportTest {
     void findByPlayerName_stringPlayerName_success() {
         // given
         String searchPlayerName = "a";
-        String expectedReward = playingResults.get(Player.of(1, searchPlayerName)).getReward();
+        String expectedReward = playingResults.get(ofPlayer(searchPlayerName)).getReward();
 
         // when
         String result = playReport.searchByName(searchPlayerName);
@@ -47,7 +48,7 @@ class PlayReportTest {
     void findByPlayerName_inputAll_success() {
         // given
         String playerName = "a";
-        Player player = Player.of(1, playerName);
+        Player player = ofPlayer(playerName);
         String expectedRewardName = playingResults.get(player).getReward();
 
         // when

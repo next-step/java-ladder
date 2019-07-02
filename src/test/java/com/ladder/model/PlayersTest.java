@@ -32,6 +32,8 @@ class PlayersTest {
         assertThat(result.getPlayers()).hasSize(expectedSize);
     }
 
+
+
     @DisplayName("플레이어가 " + MIN_NUMBER_OF_PLAYERS + "미만일 시 생성에 실패한다")
     @Test
     void createUsername_whenOnePlayer_exception() {

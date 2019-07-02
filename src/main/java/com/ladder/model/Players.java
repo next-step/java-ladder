@@ -4,9 +4,9 @@ import com.ladder.exception.PlayersLessMinimumException;
 import com.ladder.utils.AssertUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -31,9 +31,13 @@ public class Players {
             throw new PlayersLessMinimumException();
         }
 
-        return IntStream.range(0, names.length)
-                .mapToObj(num -> Player.of(num, names[num]))
+        return Arrays.stream(names)
+                .map(Player::of)
                 .collect(collectingAndThen(toList(), Players::new));
+    }
+
+    Player findByPosition(int position) {
+        return players.get(position);
     }
 
     public int countOfPlayers() {

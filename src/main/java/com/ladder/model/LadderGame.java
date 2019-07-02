@@ -18,12 +18,14 @@ public class LadderGame {
 
     public PlayReport play(Result result) {
         Map<Player, Reward> playingResults = new HashMap<>();
-        Players players = result.getPlayers();
-        for (Player player : players.getPlayers()) {
-            Position endPoint = ladder.playByOnePosition(player.getPosition());
-            Reward reward = result.findByReward(endPoint);
-            playingResults.put(player, reward);
 
+        for (int position = 0; position < result.countOfPlayers(); position++) {
+            Player player = result.findByPlayer(position);
+
+            Position endPoint = ladder.playByOnePosition(Position.of(position));
+            Reward reward = result.findByReward(endPoint);
+
+            playingResults.put(player, reward);
         }
         return PlayReport.of(playingResults);
     }

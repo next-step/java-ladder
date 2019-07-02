@@ -22,11 +22,11 @@ public class PlayerTest {
         String name = "abcde";
 
         // when
-        Player result = Player.of(position, name);
+        Player result = Player.of(name);
 
         // then
         assertThat(result).isNotNull();
-        assertThat(result).isEqualTo(Player.of(position, name));
+        assertThat(result).isEqualTo(Player.of(name));
     }
 
     @DisplayName("플레이어 이름이 " + LENGTH_OF_USER_NAME + "자리 초과할 시 실패한다")
@@ -34,7 +34,7 @@ public class PlayerTest {
     @ValueSource(strings = {"abcdef"})
     void createUsername_whenLengthMoreThanFive_exception(String wrongName) {
         assertThatExceptionOfType(NameLengthException.class)
-                .isThrownBy(() -> ofPlayer(wrongName));
+                .isThrownBy(() -> Player.of(wrongName));
     }
 
     @DisplayName("플레이어 이름 빈 문자열 또는 null 일 시 실패한다")
@@ -42,10 +42,10 @@ public class PlayerTest {
     @NullAndEmptySource
     void createUsername_whenInputEmptyOrNull_exception(String nullName) {
         assertThatExceptionOfType(AssertionError.class)
-                .isThrownBy(() -> ofPlayer(nullName));
+                .isThrownBy(() -> Player.of(nullName));
     }
 
     public static Player ofPlayer(String name) {
-        return Player.of(MIN_OF_POSITION, name);
+        return Player.of(name);
     }
 }
