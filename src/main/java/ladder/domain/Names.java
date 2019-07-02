@@ -24,6 +24,10 @@ public class Names {
         return new Names(names);
     }
 
+    public int size() {
+        return names.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
