@@ -6,23 +6,23 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlayerTest {
-    private Player player;
+public class PrizeTest {
+    private Prize prize;
 
     @BeforeEach
     void setUp() {
-        player = new Player("Jack");
+        prize = new Prize("꽝");
     }
 
-    @DisplayName("입력한 이름에 LPAD(6자리 공백)")
+    @DisplayName("입력한 경품에 LPAD(6자리 공백)")
     @Test
     void getNameFormattedTest() {
-        assertThat(player.getNameFormatted()).isEqualTo("  Jack");
+        assertThat(prize.getNameFormatted()).isEqualTo("     꽝");
     }
 
-    @DisplayName("단순 이름 출력")
+    @DisplayName("단순 경품명 출력")
     @Test
     void getNameTest() {
-        assertThat(player.getName()).isEqualTo("Jack");
+        assertThat(prize.getPrize()).isEqualTo("꽝");
     }
 }
