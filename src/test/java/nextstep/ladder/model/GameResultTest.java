@@ -32,9 +32,24 @@ public class GameResultTest {
         assertThat(gameResult.getOnePosition(0)).isEqualTo(3);
     }
 
-    @DisplayName("사람,경품,결과 통합테스트")
+    @DisplayName("출발 위치에 해당하는 결과 출력")
     @Test
     void getPrizeTest() {
         assertThat(gameResult.getPrize(0)).isEqualTo("메로나열개");
+    }
+
+    @DisplayName("이름에 해당하는 결과 출력")
+    @Test
+    void showPlayerResultTest() {
+        assertThat(gameResult.getPrize("Jack")).isEqualTo("메로나열개");
+    }
+
+    @DisplayName("전체 결과 출력")
+    @Test
+    void showAllResultTest() {
+        assertThat(gameResult.getFormattedResult()).isEqualTo("Jack : 메로나열개\n" +
+                "Jim : 꽝\n" +
+                "Loen : 2000\n" +
+                "Su : 1000\n");
     }
 }
