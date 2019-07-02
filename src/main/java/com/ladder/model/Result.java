@@ -1,5 +1,7 @@
 package com.ladder.model;
 
+import com.ladder.exception.NotMatchSizeException;
+
 public class Result {
 
     private final Players players;
@@ -11,9 +13,12 @@ public class Result {
     }
 
     public static Result of(Players players, Rewards rewards) {
-        if(players.countOfPlayers() != rewards.countOfRewards()){
-            throw new IllegalArgumentException("플레이어와 보상의 개수는 일치해야합니다. (플레이어 개수: %d, 보상의 개수: %d)");
+        int countOfPlayers = players.countOfPlayers();
+        int countOfRewards = rewards.countOfRewards();
+        if (countOfPlayers != countOfRewards) {
+            throw new NotMatchSizeException(players.countOfPlayers(), rewards.countOfRewards());
         }
+
         return new Result(players, rewards);
     }
 
