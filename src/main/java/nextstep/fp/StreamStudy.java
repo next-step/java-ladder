@@ -28,18 +28,31 @@ public class StreamStudy {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-        words.stream().filter(w -> w.length() > 12).sorted(Comparator.comparing(String::length).reversed()).distinct().limit(100).map(String::toLowerCase).forEach(System.out::println);
+
+        words.stream()
+             .filter(w -> w.length() > 12)
+             .sorted(Comparator.comparing(String::length).reversed())
+             .distinct()
+             .limit(100)
+             .map(String::toLowerCase)
+             .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream()
+                .map(x -> 2 * x)
+                .collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .reduce(0, (x, y) -> x + y);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return numbers.stream().filter(x -> x > 3).map(x -> 2 * x).reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .filter(x -> x > 3)
+                .map(x -> 2 * x)
+                .reduce(0, (x, y) -> x + y);
     }
 }
