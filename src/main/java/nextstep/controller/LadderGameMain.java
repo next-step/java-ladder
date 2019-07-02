@@ -11,5 +11,7 @@ public class LadderGameMain {
 
         LadderGame ladderGame = new LadderGame(userNames,maxHeight);
 
+        ResultView.printLadder(ladderGame);
+
     }
 }

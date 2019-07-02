@@ -24,6 +24,10 @@ public class LadderGame {
         this.maxHeight = maxHeight;
     }
 
+    public List<User> getUseGroup() {
+        return useGroup;
+    }
+
     public User getUser(String name) {
         return useGroup.stream().filter(user -> user.matchName(name))
                 .findAny()
