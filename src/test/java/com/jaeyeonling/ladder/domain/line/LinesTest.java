@@ -29,8 +29,8 @@ class LinesTest {
         final int indexOfLine = 0;
         final Point point = Point.of(indexOfLadder, indexOfLine);
 
-        final List<Line> rawLines = List.of(Fixture.allStraightLine, Fixture.allStraightLine, Fixture.allStraightLine);
-        final Lines lines = Lines.of(rawLines);
+        final List<Line> rawLines = Fixture.rawAllStraightLines;
+        final Lines lines = Fixture.allStraightLines;
 
         // when
         final Point movedPoint = lines.ride(point);
@@ -47,9 +47,8 @@ class LinesTest {
         final int indexOfLine = 0;
         final Point point = Point.of(indexOfLadder, indexOfLine);
 
-        final List<Line> rawLines = List.of(Fixture.rightLeftLine, Fixture.rightLeftLine,
-                Fixture.rightLeftLine, Fixture.rightLeftLine);
-        final Lines lines = Lines.of(rawLines);
+        final List<Line> rawLines = Fixture.rawAllRightLeftLines;
+        final Lines lines = Fixture.allRightLeftLines;
 
         // when
         final Point movedPoint = lines.ride(point);

@@ -1,6 +1,8 @@
 package com.jaeyeonling.ladder.domain;
 
+import com.jaeyeonling.ladder.domain.ladder.LadderResults;
 import com.jaeyeonling.ladder.domain.line.Line;
+import com.jaeyeonling.ladder.domain.line.Lines;
 import com.jaeyeonling.ladder.domain.point.Direction;
 import com.jaeyeonling.ladder.domain.user.CountOfUsers;
 import com.jaeyeonling.ladder.domain.user.User;
@@ -23,4 +25,18 @@ public interface Fixture {
 
     Line rightLeftLine = Line.ofDirections(rightLeftDirection);
     Line allStraightLine = Line.ofDirections(straightDirection);
+
+    List<Line> rawAllRightLeftLines = List.of(rightLeftLine, rightLeftLine, rightLeftLine,
+            rightLeftLine, rightLeftLine);
+    List<Line> rawAllStraightLines = List.of(allStraightLine, allStraightLine, allStraightLine,
+            allStraightLine, allStraightLine);
+
+    String rawLadderResults = "꽝,5000,꽝,5000,꽝";
+
+    LadderResults ladderResults = LadderResults.ofSeparator(rawLadderResults);
+
+    Lines allRightLeftLines = Lines.of(rawAllRightLeftLines);
+    Lines allStraightLines = Lines.of(rawAllStraightLines);
+
+    GameInfo gameInfo = GameInfo.withUsersAndLadderResults(Fixture.multiUsers, Fixture.ladderResults);
 }

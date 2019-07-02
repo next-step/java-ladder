@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class LadderResults {
 
-    static final String SEPARATOR = "\\s*,\\s*";
+    public static final String SEPARATOR = "\\s*,\\s*";
 
     private final List<String> results;
 
