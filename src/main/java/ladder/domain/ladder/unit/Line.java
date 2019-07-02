@@ -13,7 +13,7 @@ public class Line {
     private final static int START_COUNT = 0;
     private final static int MIN_CELL_SIZE = 1;
     private final static int MAX_NUMBER = 10;
-    private final static int DEFAULT_FREQUENCY = 4;
+    private final static int DEFAULT_FREQUENCY = 5;
     
     private final List<Cell> cells;
     

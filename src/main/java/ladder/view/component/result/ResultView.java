@@ -1,22 +1,22 @@
 package ladder.view.component.result;
 
 import ladder.controller.LadderController;
+import ladder.core.view.ViewImpl;
+import ladder.core.view.output.Printer;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.gamer.info.Gamer;
 import ladder.domain.gamer.Gamers;
 import ladder.core.message.Message;
 import ladder.domain.ladder.unit.Cell;
 import ladder.message.result.ResultMessage;
-import ladder.core.view.View;
-import ladder.core.view.input.Inputor;
-import ladder.core.view.output.Printer;
+import ladder.view.component.View;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ResultView extends View {
+public class ResultView implements ViewImpl {
     private final static String RESULT_MESSAGE = "실행결과";
     private final static String EMPTY_STRING = "";
     private final static String ONE_SPACE_STRING = " ";
@@ -26,8 +26,13 @@ public class ResultView extends View {
     private final static int MAX_NAME_SIZE = 5;
     private final static int START_COUNT = 0;
     
-    public ResultView(LadderController controller, Inputor inputor, Printer printer) {
-        super(controller, inputor, printer);
+    private View view;
+    
+    public ResultView(LadderController controller, Printer printer) {
+        view = new View.Builder()
+          .setController(controller)
+          .setPrinter(printer)
+          .build();
     }
     
     @Override
@@ -36,8 +41,8 @@ public class ResultView extends View {
             return;
         }
         ResultMessage resultMessage = (ResultMessage) message;
-        printer.print(RESULT_MESSAGE);
-        printer.print(getGamersExpression(resultMessage.getGamers()));
+        view.print(RESULT_MESSAGE);
+        view.print(getGamersExpression(resultMessage.getGamers()));
         printLadder(resultMessage.getLadder());
     }
     
@@ -67,7 +72,7 @@ public class ResultView extends View {
                 ladderLines.set(increase.get(), ladderLines.get(increase.getAndIncrement()) + getLine(cell))
             );
         });
-        ladderLines.forEach(printer::print);
+        ladderLines.forEach(view::print);
     }
     
     private String getLine(Cell cell) {
