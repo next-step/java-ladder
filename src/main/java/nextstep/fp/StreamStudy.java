@@ -29,12 +29,14 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
-        List<String> filterWords = words.stream().filter(w -> w.length() > 12).collect(Collectors.toList());
-        List<String> toLowerCaseWords = filterWords.stream().map(String::toLowerCase).collect(Collectors.toList());
-        List<String > distinctWords = toLowerCaseWords.stream().distinct().collect(Collectors.toList());
-        List<String> sortedWords = distinctWords.stream().sorted(Comparator.comparing(String::length)).collect(Collectors.toList());
+        List<String> streamResultWord = words.stream()
+                .filter(w -> w.length() > 12)
+                .map(String::toLowerCase)
+                .distinct()
+                .sorted(Comparator.comparing(String::length))
+                .collect(Collectors.toList());
 
-        sortedWords.stream().limit(100).forEach(System.out::println);
+        streamResultWord.stream().limit(100).forEach(System.out::println);
 
     }
 
