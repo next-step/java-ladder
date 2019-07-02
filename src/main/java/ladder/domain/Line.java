@@ -28,16 +28,21 @@ public class Line {
 
         List<Point> points = new ArrayList<>();
         points.add(Point.first(pointGenerator.generate()));
-        IntStream.range(FIRST, width - 1)
+        IntStream.range(FIRST, getLast(width))
                 .mapToObj(position -> Point.middle(position, getLastPoint(points).getDirection(), pointGenerator.generate()))
                 .forEach(points::add);
-        points.add(Point.last(width - 1, getLastPoint(points).getDirection()));
+        points.add(Point.last(getLast(width), getLastPoint(points).getDirection()));
         return points;
     }
 
     private Point getLastPoint(List<Point> points) {
 
-        return points.get(points.size() - 1);
+        return points.get(getLast(points.size()));
+    }
+
+    private int getLast(int width) {
+
+        return width - 1;
     }
 
     public List<Point> getPoints() {
