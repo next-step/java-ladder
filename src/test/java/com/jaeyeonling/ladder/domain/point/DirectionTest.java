@@ -84,31 +84,4 @@ class DirectionTest {
         // then
         assertThat(isX).isFalse();
     }
-
-
-    @DisplayName("Direction.STAY는 x가 아니다.")
-    @Test
-    void should_return_false_when_isX_of_STAY() {
-        // given
-        final Direction direction = Direction.STAY;
-
-        // when
-        final boolean isX = direction.isX();
-
-        // then
-        assertThat(isX).isFalse();
-    }
-
-    @DisplayName("Direction.STAY는 y가 아니다.")
-    @Test
-    void should_return_false_when_isY_of_STAY() {
-        // given
-        final Direction direction = Direction.STAY;
-
-        // when
-        final boolean isY = direction.isY();
-
-        // then
-        assertThat(isY).isFalse();
-    }
 }

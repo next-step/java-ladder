@@ -8,8 +8,6 @@ public class Distance {
 
     private static final Map<Integer, Distance> CACHE = new HashMap<>();
 
-    static final Distance STOP = valueOf(0);
-
     private final Integer value;
 
     private Distance(final Integer value) {

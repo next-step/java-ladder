@@ -4,8 +4,7 @@ public enum Direction {
 
     LEFT(Axis.X, Distance.valueOf(-Direction.DEFAULT_MOVING_DISTANCE_VALUE)),
     RIGHT(Axis.X, Distance.valueOf(Direction.DEFAULT_MOVING_DISTANCE_VALUE)),
-    STRAIGHT(Axis.Y, Distance.valueOf(Direction.DEFAULT_MOVING_DISTANCE_VALUE)),
-    STAY(Axis.ORIGIN, Distance.STOP);
+    STRAIGHT(Axis.Y, Distance.valueOf(Direction.DEFAULT_MOVING_DISTANCE_VALUE));
 
     public static final int DEFAULT_MOVING_DISTANCE_VALUE = 1;
 

@@ -8,8 +8,6 @@ public class Position {
 
     private static final Map<Integer, Position> CACHE = new HashMap<>();
 
-    private static final int INCREMENT = 1;
-
     private final int value;
 
     private Position(final int value) {
@@ -30,7 +28,7 @@ public class Position {
     }
 
     Position next() {
-        return valueOf(this.value + INCREMENT);
+        return valueOf(this.value + Direction.DEFAULT_MOVING_DISTANCE_VALUE);
     }
 
     @Override
