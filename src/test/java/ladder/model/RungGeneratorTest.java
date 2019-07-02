@@ -19,7 +19,7 @@ public class RungGeneratorTest {
     @Test
     void generate2() {
         int countOfPlayers = 4;
-        List<Rung> rungs = RungGenerator.generate(4);
+        List<Rung> rungs = RungGenerator.generate(countOfPlayers);
 
         assertThat(rungs.size()).isEqualTo(4);
     }
