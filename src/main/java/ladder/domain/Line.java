@@ -1,26 +1,14 @@
 package ladder.domain;
 
+import java.util.List;
+
 public class Line {
 
-    private Points points;
+    private List<Point> points;
 
-    private Line(Points points) {
+    private Line(List<Point> points) {
 
         this.points = points;
     }
 
-    public static Line of(int lineNumber, int height) {
-
-        return new Line(Points.of(height, lineNumber));
-    }
-
-    public static Line ofLastLine(int height) {
-
-        return new Line(Points.of(height, false));
-    }
-
-    public Points getPoints() {
-
-        return points;
-    }
 }
