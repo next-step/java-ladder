@@ -1,5 +1,7 @@
 package nextstep.fp;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Car {
@@ -12,6 +14,16 @@ public class Car {
     }
 
     public Car move(MoveStrategy moveStrategy) {
+//               List<String> str = new List<String>();
+//        MoveStrategy ms = new MoveStrategy() {
+//            @Override
+//            public boolean isMovable() {
+//                return false;
+//            }
+//        };
+//
+//        MoveStrategy ms1 = ()-> false;
+
         if (moveStrategy.isMovable()) {
             return new Car(name, position + 1);
         }

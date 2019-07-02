@@ -20,7 +20,12 @@ public class LambdaTest {
 	public void printAllOld() throws Exception {
 		Lambda.printAllOld(numbers);
 	}
-	
+
+	@Test
+	public void printAllwithoutLambda() throws Exception {
+		Lambda.printAllwithoutLambda(numbers);
+	}
+
 	@Test
 	public void printAllLambda() throws Exception {
 		Lambda.printAllLambda(numbers);
