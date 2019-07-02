@@ -22,8 +22,7 @@ public class ResultView implements ViewImpl {
     private View view;
     
     public ResultView(LadderController controller, Printer printer) {
-        view = new View.Builder()
-          .setController(controller)
+        view = new View.Builder(controller)
           .setPrinter(printer)
           .build();
     }

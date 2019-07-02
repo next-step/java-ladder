@@ -12,4 +12,8 @@ public abstract class Message {
     public boolean isResultStep() {
         return false;
     }
+    
+    public boolean isRewardStep() {
+        return false;
+    }
 }

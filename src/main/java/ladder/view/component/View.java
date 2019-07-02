@@ -14,11 +14,10 @@ public class View {
         private Inputor inputor;
         private Printer printer;
         
-        public Builder setController(Controller controller) {
+        public Builder(Controller controller) {
             this.controller = controller;
-            return this;
         }
-    
+        
         public Builder setInputor(Inputor inputor) {
             this.inputor = inputor;
             return this;

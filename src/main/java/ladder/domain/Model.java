@@ -6,11 +6,13 @@ import ladder.message.gamer.GamerMessage;
 import ladder.message.ladder.LadderSizeMessage;
 import ladder.core.message.Message;
 import ladder.message.result.ResultMessage;
+import ladder.message.reward.RewardMessage;
 
 public class Model {
     enum Step {
         GAMERS_STEP,
         LADDER_SIZE_STEP,
+        REWARD_INPUT_STEP,
         RESULT_STEP;
     }
     
@@ -39,6 +41,8 @@ public class Model {
                 return new GamerMessage();
             case LADDER_SIZE_STEP:
                 return new LadderSizeMessage();
+            case REWARD_INPUT_STEP:
+                return new RewardMessage();
             case RESULT_STEP:
                 return new ResultMessage(gamers, ladder);
             default:

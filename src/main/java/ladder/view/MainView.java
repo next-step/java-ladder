@@ -8,6 +8,7 @@ import ladder.core.view.output.Printer;
 import ladder.view.component.gamer.GamerView;
 import ladder.view.component.ladder.LadderView;
 import ladder.view.component.result.ResultView;
+import ladder.view.component.reward.RewardView;
 import ladder.view.input.ConsoleInputor;
 import ladder.view.output.ConsolePrinter;
 
@@ -23,6 +24,7 @@ public class MainView implements ViewImpl {
         views = Arrays.asList(
           new LadderView(controller, printer, inputor),
           new GamerView(controller, printer, inputor),
+          new RewardView(controller, printer, inputor),
           new ResultView(controller, printer)
         );
     }

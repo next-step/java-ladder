@@ -14,8 +14,7 @@ public class LadderView implements ViewImpl {
     private View view;
     
     public LadderView(Controller controller, Printer printer, Inputor inputer) {
-        view = new View.Builder()
-          .setController(controller)
+        view = new View.Builder(controller)
           .setPrinter(printer)
           .setInputor(inputer)
           .build();
@@ -26,7 +25,6 @@ public class LadderView implements ViewImpl {
         if (!message.isLadderSizeStep()) {
             return;
         }
-        
         view.print(ANSWER);
         view.pushDataToController(new LadderSizeDTO(view.inputNumber()));
     }

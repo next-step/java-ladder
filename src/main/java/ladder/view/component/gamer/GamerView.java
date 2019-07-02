@@ -14,8 +14,7 @@ public class GamerView implements ViewImpl {
     private View view;
     
     public GamerView(LadderController controller, Printer printer, Inputor inputor) {
-        view = new View.Builder()
-          .setController(controller)
+        view = new View.Builder(controller)
           .setPrinter(printer)
           .setInputor(inputor)
           .build();
