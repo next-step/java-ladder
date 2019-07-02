@@ -2,18 +2,19 @@ package ladderGame.domain;
 
 import ladderGame.util.RungsGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Layer {
     private final static int ONE_RUNG = 1;
     private List<Rung> rungs;
 
     private Layer(List<Boolean> rungs) {
-        verifyRule(rungs);
-        this.rungs = rungs.stream()
-                .map(Rung::of)
-                .collect(Collectors.toList());
+        List<Rung> verifiedRung = new ArrayList<>();
+        rungs.stream()
+                .peek(rung -> verifiedRung.add(Rung.of(rung)))
+                .reduce(false, this::verifyRepeatedTrueValue);
+        this.rungs = verifiedRung;
     }
 
     public static Layer ofGenerator(int numberOfPlayer, RungsGenerator rungsGenerator) {
@@ -24,19 +25,10 @@ public class Layer {
         return rungs;
     }
 
-    private void verifyRule(List<Boolean> inputRungs) {
-        Boolean previous = false;
-        int bound = inputRungs.size();
-        for (int index = 0; index < bound; index++) {
-            Boolean current = inputRungs.get(index);
-            verifyRepeatedTrueValue(previous, current);
-            previous = current;
-        }
-    }
-
-    private void verifyRepeatedTrueValue(Boolean current, Boolean next) {
-        if (current && next) {
+    private Boolean verifyRepeatedTrueValue(Boolean previous, Boolean current) {
+        if (previous && current) {
             throw new IllegalArgumentException("연속된 계단은 만들어 질 수 없어");
         }
+        return current;
     }
 }
