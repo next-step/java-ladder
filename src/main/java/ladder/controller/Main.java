@@ -1,5 +1,6 @@
 package ladder.controller;
 
+import ladder.domain.Ladder;
 import ladder.domain.Names;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -17,9 +18,10 @@ public class Main {
         int ladderHeight = scanner.nextInt();
 
         Names names = Names.of(nameString);
-
+        Ladder ladder = new Ladder(names.size(), ladderHeight);
 
         System.out.println(ResultView.getDefaultResultText());
         System.out.println(ResultView.getNamesView(names));
+        System.out.println(ResultView.getLadderView(ladder));
     }
 }
