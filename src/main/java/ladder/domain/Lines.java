@@ -2,8 +2,7 @@ package ladder.domain;
 
 import ladder.domain.generator.PointGenerator;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -16,14 +15,14 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(int width, int height, PointGenerator pointGenerator) {
+    public static Lines of(LadderInfo ladderInfo, PointGenerator pointGenerator) {
 
-        return new Lines(IntStream.range(0, height)
-                                 .mapToObj(currentHeight -> Line.of(width, pointGenerator))
+        return new Lines(IntStream.range(0, ladderInfo.getHeight())
+                                 .mapToObj(currentHeight -> Line.of(ladderInfo.getWidth(), pointGenerator))
                                  .collect(Collectors.toList()));
     }
 
-    public static Lines of(List<Line> lines) {
+    static Lines of(List<Line> lines) {
 
         return new Lines(lines);
     }
@@ -49,7 +48,7 @@ public class Lines {
 
     public List<Line> getLines() {
 
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     @Override

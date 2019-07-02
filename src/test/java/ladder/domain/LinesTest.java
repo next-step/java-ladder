@@ -23,7 +23,7 @@ class LinesTest {
         StubPointGenerator pointGenerator = new StubPointGenerator(true);
         int width = 4;
         int height = 5;
-        Lines lines = Lines.of(width, height, pointGenerator);
+        Lines lines = Lines.of(LadderInfo.of(width, height), pointGenerator);
 
         // when
         Lines expected = Lines.of(
@@ -47,7 +47,7 @@ class LinesTest {
         StubPointGenerator pointGenerator = new StubPointGenerator(true);
         int width = 4;
         int height = 5;
-        Lines lines = Lines.of(width, height, pointGenerator);
+        Lines lines = Lines.of(LadderInfo.of(width, height), pointGenerator);
 
         assertThat(lines.move(startPosition)).isEqualTo(finishPosition);
     }
@@ -59,7 +59,7 @@ class LinesTest {
         StubPointGenerator pointGenerator = new StubPointGenerator(true);
         int width = 4;
         int height = 5;
-        Lines lines = Lines.of(width, height, pointGenerator);
+        Lines lines = Lines.of(LadderInfo.of(width, height), pointGenerator);
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> lines.move(startPosition));

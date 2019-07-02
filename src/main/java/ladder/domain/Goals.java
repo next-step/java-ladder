@@ -30,4 +30,9 @@ public class Goals {
 
         return goals;
     }
+
+    public Goal getGoal(int index) {
+
+        return goals.get(index);
+    }
 }

@@ -16,16 +16,7 @@ public class ResultView {
     private static final String CONNECT_STRING = buildConnectString(SIZE);
     private static final String EMPTY_STRING = buildEmptyString(SIZE);
     private static final String PRINT_PARTICIPANTS_FORMAT = "%-" + SIZE + "s";
-
-    public static void print(Participants participants, Ladder ladder, Goals goals) {
-
-        printResultMessage();
-        printNewLine();
-
-        printParticipants(participants);
-        printLadder(ladder);
-        printGoals(goals);
-    }
+    private static final String PARTICIPANT_GOAL_FORMAT = "%s : %s";
 
     public static void printResultMessage() {
 
@@ -37,7 +28,6 @@ public class ResultView {
         participants.getParticipantsName()
                 .forEach(ResultView::printName);
         printNewLine();
-
     }
 
     private static void printName(String name) {
@@ -48,6 +38,7 @@ public class ResultView {
     public static void printLadder(Ladder ladder) {
 
         ladder.getLines()
+                .getLines()
                 .forEach(ResultView::printLine);
     }
 
@@ -76,12 +67,27 @@ public class ResultView {
         goals.getGoals()
                 .stream().map(Goal::getResult)
                 .forEach(result -> printStream.print(String.format(PRINT_PARTICIPANTS_FORMAT, result)));
-        printStream.println();
+        printNewLine();
+    }
+
+    public static void printPersonalResult(ParticipantGoals participantGoals, String name) {
+
+        printResultMessage();
+
+        Goal goal = participantGoals.findGoal(name);
+        printStream.println(goal.getResult());
+        printNewLine();
+    }
+
+    public static void printAllResult(ParticipantGoals participantGoals, Participants participants) {
+
+        printResultMessage();
+        participants.getParticipantsName()
+                .forEach(name -> printStream.println(String.format(PARTICIPANT_GOAL_FORMAT, name, participantGoals.findGoal(name).getResult())));
     }
 
     public static void printNewLine() {
 
         printStream.println();
     }
-
 }

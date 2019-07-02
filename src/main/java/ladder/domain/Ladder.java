@@ -8,27 +8,24 @@ import java.util.List;
 
 public class Ladder {
 
-    private final PointGenerator pointGenerator = new RandomPointGenerator();
+    private final PointGenerator pointGenerator;
+    private final LadderInfo ladderInfo;
     private final Lines lines;
-    private final int height;
 
-    public Ladder(int width, int height) {
+    public Ladder(LadderInfo ladderInfo) {
 
-        if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("라인 개수 또는 길이가 유효하지 않습니다.");
-        }
-
-        this.lines = Lines.of(width, height, pointGenerator);
-        this.height = height;
+        this.pointGenerator = new RandomPointGenerator();
+        this.ladderInfo = ladderInfo;
+        this.lines = Lines.of(ladderInfo, pointGenerator);
     }
 
-    public List<Line> getLines() {
+    public Lines getLines() {
 
-        return Collections.unmodifiableList(lines.getLines());
+        return lines;
     }
 
-    public int getHeight() {
+    public LadderInfo getLadderInfo() {
 
-        return height;
+        return ladderInfo;
     }
 }
