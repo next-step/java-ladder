@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Gamer {
     private static final String NAME_SEPARATOR = ",";
     private static final int MIN_GAMER_COUNT = 2;
-    private static final int MAX_GAMER_NAME_LENGTH = 5;
+    public static final int MAX_GAMER_NAME_LENGTH = 5;
     private List<String> names;
 
     public Gamer(String name) throws IllegalArgumentException {
