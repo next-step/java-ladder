@@ -7,15 +7,15 @@ import java.util.List;
 
 public class RungGenerator {
 
-    public static Rung generate() {
+    public Rung generate() {
         return new Rung(true);
     }
 
-    public static Rung generate(boolean isRung) {
+    public Rung generate(boolean isRung) {
         return new Rung(isRung);
     }
 
-    public static List<Rung> generate(int countOfPlayers) {
+    public List<Rung> generate(int countOfPlayers) {
         List<Rung> rungs = new ArrayList<>();
 
         for(int i = 0; i < countOfPlayers; i++) {
@@ -25,14 +25,14 @@ public class RungGenerator {
         return rungs;
     }
 
-    public static boolean getPreviousValue(List<Rung> rungs) {
+    public boolean getPreviousValue(List<Rung> rungs) {
         if (rungs.isEmpty()) {
             return false;
         }
         return rungs.get(rungs.size() - 1).isRung();
     }
 
-    public static boolean oppositeRule(boolean previousValue) {
+    public boolean oppositeRule(boolean previousValue) {
         return !previousValue;
     }
 

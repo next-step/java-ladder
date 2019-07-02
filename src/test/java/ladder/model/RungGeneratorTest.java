@@ -1,6 +1,7 @@
 package ladder.model;
 
 import ladder.util.RungGenerator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,9 +12,16 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class RungGeneratorTest {
 
+    private RungGenerator rungGenerator;
+
+    @BeforeEach
+    void setUp() {
+        this.rungGenerator = new RungGenerator();
+    }
+
     @Test
     void generate() {
-        Rung rung = RungGenerator.generate();
+        Rung rung = rungGenerator.generate();
 
         assertThat(rung.isRung()).isTrue();
     }
@@ -21,7 +29,7 @@ public class RungGeneratorTest {
     @Test
     void generate2() {
         int countOfPlayers = 4;
-        List<Rung> rungs = RungGenerator.generate(countOfPlayers);
+        List<Rung> rungs = rungGenerator.generate(countOfPlayers);
 
         assertThat(rungs.size()).isEqualTo(4);
 
@@ -34,18 +42,18 @@ public class RungGeneratorTest {
     @Test
     void getPreviousValue() {
         List<Rung> emptyRungs = new ArrayList<>();
-        assertThat(RungGenerator.getPreviousValue(emptyRungs)).isFalse();
+        assertThat(rungGenerator.getPreviousValue(emptyRungs)).isFalse();
 
         List<Rung> trueRungList = Arrays.asList(new Rung(true));
-        assertThat(RungGenerator.getPreviousValue(trueRungList)).isTrue();
+        assertThat(rungGenerator.getPreviousValue(trueRungList)).isTrue();
 
         List<Rung> falseRungList = Arrays.asList(new Rung(false));
-        assertThat(RungGenerator.getPreviousValue(falseRungList)).isFalse();
+        assertThat(rungGenerator.getPreviousValue(falseRungList)).isFalse();
     }
 
     @Test
     void oppositeRule() {
-        assertThat(RungGenerator.oppositeRule(false)).isTrue();
-        assertThat(RungGenerator.oppositeRule(true)).isFalse();
+        assertThat(rungGenerator.oppositeRule(false)).isTrue();
+        assertThat(rungGenerator.oppositeRule(true)).isFalse();
     }
 }
