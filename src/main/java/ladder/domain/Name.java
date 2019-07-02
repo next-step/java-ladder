@@ -21,6 +21,14 @@ public class Name {
         return name;
     }
 
+    public String getViewName() {
+        StringBuilder name = new StringBuilder(getName());
+        while (name.length() < 6) {
+            name.append(" ");
+        }
+        return name.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
