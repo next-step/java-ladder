@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.generator.RandomPointGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

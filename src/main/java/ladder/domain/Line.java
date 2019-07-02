@@ -1,52 +1,40 @@
 package ladder.domain;
 
 import ladder.domain.generator.PointGenerator;
-import ladder.domain.generator.RandomPointGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Objects;
 
 public class Line {
 
-    private static final int FIRST = 1;
-    private final PointGenerator pointGenerator;
-    private List<Point> points;
+    private Points points;
 
-    public Line(int width) {
+    public Line(Points points) {
 
-        this(width, new RandomPointGenerator());
+        this.points = points;
     }
 
-    public Line(int width, PointGenerator pointGenerator) {
+    public static Line of(int width, PointGenerator pointGenerator) {
 
-        this.pointGenerator = pointGenerator;
-        this.points = drawPoints(width);
+        return new Line(Points.draw(width, pointGenerator));
     }
 
-    private List<Point> drawPoints(int width) {
+    public int move(int position) {
 
-        List<Point> points = new ArrayList<>();
-        points.add(Point.first(pointGenerator.generate()));
-        IntStream.range(FIRST, getLast(width))
-                .mapToObj(position -> Point.middle(position, getLastPoint(points).getDirection(), pointGenerator.generate()))
-                .forEach(points::add);
-        points.add(Point.last(getLast(width), getLastPoint(points).getDirection()));
-        return points;
+        return points.getPoint(position).move();
     }
 
-    private Point getLastPoint(List<Point> points) {
+    @Override
+    public boolean equals(Object o) {
 
-        return points.get(getLast(points.size()));
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
     }
 
-    private int getLast(int width) {
+    @Override
+    public int hashCode() {
 
-        return width - 1;
-    }
-
-    public List<Point> getPoints() {
-
-        return points;
+        return Objects.hash(points);
     }
 }
