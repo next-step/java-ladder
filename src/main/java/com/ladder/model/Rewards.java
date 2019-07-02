@@ -38,4 +38,12 @@ public class Rewards {
     List<Reward> getRewards() {
         return Collections.unmodifiableList(rewards);
     }
+
+    int countOfRewards() {
+        return rewards.size();
+    }
+
+    public Reward findByPosition(Position position) {
+        return rewards.get(position.getPosition());
+    }
 }

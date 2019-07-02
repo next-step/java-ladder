@@ -1,26 +1,36 @@
 package com.ladder.model;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PlayReport {
 
-    private Map<Position, Position> playResult;
+    private Map<Player, Reward> playResult;
 
-    private PlayReport(Map<Position, Position> playResult) {
+    private PlayReport(Map<Player, Reward> playResult) {
         this.playResult = playResult;
     }
 
-    static PlayReport of(List<Position> results) {
-        Map<Position, Position> playResults = new HashMap<>();
-        for (int startPosition = 0; startPosition < results.size(); startPosition++) {
-            playResults.put(Position.of(startPosition), results.get(startPosition));
-        }
-        return new PlayReport(playResults);
+    static PlayReport of(Map<Player, Reward> playingResults) {
+        return new PlayReport(playingResults);
     }
 
-    Position getPlayResult(Position startPosition) {
-        return playResult.get(startPosition);
+    public String searchByName(String playerName) {
+        Player searchPlayer = playResult.keySet()
+                .stream()
+                .filter(player -> player.isMatch(playerName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 플레이어입니다."));
+
+        return playResult.get(searchPlayer).getReward();
+    }
+
+    public Map<String, String> searchByAll() {
+        return playResult.entrySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        player -> player.getKey().getName(),
+                        reward -> reward.getValue().getReward())
+                );
     }
 }

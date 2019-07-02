@@ -11,6 +11,7 @@ import static com.ladder.model.Point.POINT_DOWN;
 import static com.ladder.model.Point.POINT_LEFT;
 import static com.ladder.model.Point.POINT_RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class LadderGameTest {
 
@@ -34,7 +35,8 @@ public class LadderGameTest {
     @Test
     void play_() {
         // given
-        String seachPlayerName = "pobi";
+        Players players = Players.of("a,b,c,d");
+        Rewards rewards = Rewards.of("꽝,1등,2등,꽝");
 
         // when
         List linesList = new ArrayList();
@@ -42,10 +44,17 @@ public class LadderGameTest {
         linesList.add(Line.of(Arrays.asList(POINT_RIGHT, POINT_LEFT, POINT_DOWN, POINT_DOWN)));
         linesList.add(Line.of(Arrays.asList(POINT_DOWN, POINT_DOWN, POINT_RIGHT, POINT_LEFT)));
         Lines lines = Lines.of(linesList);
-        LadderGame ladderGame = new LadderGame(3, lines);
-        PlayReport result = ladderGame.play();
+
+        LadderGame ladderGame = new LadderGame(lines);
+        PlayReport result = ladderGame.play(Result.of(players, rewards));
 
         // then
-        assertThat(result.getPlayResult(Position.of(1))).isEqualTo(Position.of(1));
+        assertThat(result).isNotNull();
+    }
+
+    @DisplayName("사다리 게임의 결과를 반환하는데 성공한다")
+    @Test
+    void setting_playersAndRewards_success() {
+
     }
 }

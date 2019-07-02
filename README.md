@@ -90,10 +90,10 @@ a,b,c,e,d
 - [x] (operator) 보상의 개수를 대답한다 (out: int)  
 
 3-1. 실행 결과를 출력한다.
-- [ ] (input) 보상과 플레이어을 입력받는다. (in:rewards, out:players)
-- [ ] (exception) 보상과 플레이어의 수가 일치해야 한다. 
-- [ ] (operator) 플레이어 이름 입력 시 당첨?보상을 출력한다. (in:player name, out:reward)
-- [ ] (operator) 전체 결과를 출력한다 (in: all, out:name, rewards)
+- [x] (input) 보상과 플레이어을 입력받는다. (in:rewards, out:players)
+- [x] (exception) 보상과 플레이어의 수가 일치해야 한다. 
+- [x] (operator) 플레이어 이름 입력 시 당첨?보상을 출력한다. (in:player name, out:reward)
+- [x] (operator) 전체 결과를 출력한다 (in: all, out:name, rewards)
 
 
 
@@ -107,7 +107,7 @@ a,b,c,e,d
 사다리 결과
 pobi  honux crong   jk
     |-----|     |-----|
-    |     |-----|     |/
+    |     |-----|     |
     |-----|     |     |
     |     |-----|     |
     |-----|     |-----|
