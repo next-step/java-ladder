@@ -48,22 +48,20 @@ public class Lambda {
 	}
 	
 	public static int sumAllEven(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        if (number % 2 == 0) {
-	            total += number;
-	        }
-	    }
-	    return total;
+		return sumWithConditional(numbers, new Conditional() {
+			@Override
+			public boolean test(Integer number) {
+				return number % 2 == 0;
+			}
+		});
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	    	if (number > 3) {
-	    		total += number;
-	    	}
-	    }
-	    return total;
+		return sumWithConditional(numbers, new Conditional() {
+			@Override
+			public boolean test(Integer number) {
+				return number > 3;
+			}
+		});
 	}
 }
