@@ -62,10 +62,14 @@ public class LineTest {
         Position currentPosition = Position.of(1);
 
         // when
-        Line line = Line.ofPoints(Arrays.asList(POINT_LEFT, POINT_RIGHT, POINT_LEFT));
+        Line line = ofLine(POINT_LEFT, POINT_RIGHT, POINT_LEFT);
         Position movingResult = line.move(currentPosition);
 
         // then
         assertThat(movingResult).isEqualTo(currentPosition.moveForward());
     }
-}
+
+    public static Line ofLine(Point... points) {
+        return Line.ofPoints(Arrays.asList(points));
+    }
+}3

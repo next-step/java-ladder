@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.ladder.model.LineTest.ofLine;
 import static com.ladder.model.Point.POINT_DOWN;
 import static com.ladder.model.Point.POINT_LEFT;
 import static com.ladder.model.Point.POINT_RIGHT;
@@ -39,9 +40,9 @@ public class LadderGameTest {
 
         // when
         List linesList = new ArrayList();
-        linesList.add(Line.ofPoints(Arrays.asList(POINT_RIGHT, POINT_LEFT, POINT_RIGHT, POINT_LEFT)));
-        linesList.add(Line.ofPoints(Arrays.asList(POINT_RIGHT, POINT_LEFT, POINT_DOWN, POINT_DOWN)));
-        linesList.add(Line.ofPoints(Arrays.asList(POINT_DOWN, POINT_DOWN, POINT_RIGHT, POINT_LEFT)));
+        linesList.add(ofLine(POINT_RIGHT, POINT_LEFT, POINT_RIGHT, POINT_LEFT));
+        linesList.add(ofLine(POINT_RIGHT, POINT_LEFT, POINT_DOWN, POINT_DOWN));
+        linesList.add(ofLine(POINT_DOWN, POINT_DOWN, POINT_RIGHT, POINT_LEFT));
         Lines lines = Lines.of(linesList);
 
         LadderGame ladderGame = new LadderGame(lines);
@@ -50,4 +51,6 @@ public class LadderGameTest {
         // then
         assertThat(result).isNotNull();
     }
+
+
 }
