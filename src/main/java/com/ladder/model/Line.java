@@ -12,16 +12,16 @@ public class Line {
         this.points = new ArrayList<>(point);
     }
 
-    static Line of(List<Point> points) {
+    static Line ofPoints(List<Point> points) {
         return new Line(new ArrayList<>(points));
     }
 
     static Line of(int countByPlayers) {
         PointStrategy pointStrategy = new RandomPointStrategy();
-        return of(countByPlayers, pointStrategy);
+        return ofWithStrategy(countByPlayers, pointStrategy);
     }
 
-    static Line of(int countByPlayers, PointStrategy pointStrategy) {
+    static Line ofWithStrategy(int countByPlayers, PointStrategy pointStrategy) {
         PointsGenerator pointsGenerator = new PointsGenerator();
         return new Line(pointsGenerator.generate(countByPlayers, pointStrategy));
     }

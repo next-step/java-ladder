@@ -17,7 +17,7 @@ public class Result {
         return new Result(players, rewards);
     }
 
-    public Reward findByReward(Position position) {
+    Reward findByReward(Position position) {
         return rewards.findByPosition(position);
     }
 

@@ -37,12 +37,29 @@ class PointsGeneratorTest {
         assertThat(points).hasSize(countByPlayers);
     }
 
-    @DisplayName("전 위치에서 오른쪽으로 이동하는 경우, 현 위치는 왼쪽으로 이동한다")
+    @DisplayName("전 위치에서 오른쪽으로 이동하지 않는 경우, 현 위치는 아래로 이동한다")
     @ParameterizedTest
     @MethodSource("pointStrategyAndResultPointProvider")
-    void whenBeforePointTrue_Then_currentPoint_isFalse(Boolean beforePoint, Point expectedNextPoint) {
+    void whenBeforePointFalse_then_currentPoint_isDown() {
+        //given
+        Point expectedNextPoint = POINT_DOWN;
+
         // when
-        List<Point> points = this.pointsGenerator.generate(3, () -> beforePoint);
+        List<Point> points = this.pointsGenerator.generate(3, () -> false);
+        Point nextPoint = points.get(1);
+
+        // then
+        assertThat(nextPoint).isEqualTo(expectedNextPoint);
+    }
+
+    @DisplayName("전 위치에서 오른쪽으로 이동하는 경우, 현 위치는 왼쪽으로 이동한다")
+    @Test
+    void whenBeforePointTrue_then_currentPoint_isLeft() {
+        //given
+        Point expectedNextPoint = POINT_LEFT;
+
+        // when
+        List<Point> points = this.pointsGenerator.generate(3, () -> true);
         Point nextPoint = points.get(1);
 
         // then
@@ -63,7 +80,7 @@ class PointsGeneratorTest {
 
     private static Stream<Arguments> pointStrategyAndResultPointProvider() {
         return Stream.of(
-                arguments(true,  POINT_LEFT),
+                arguments(true, POINT_LEFT),
                 arguments(false, POINT_DOWN)
         );
     }

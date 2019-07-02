@@ -9,7 +9,6 @@ import java.util.List;
 import static com.ladder.model.Point.POINT_LEFT;
 import static com.ladder.model.Point.POINT_RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class LineTest {
 
@@ -34,7 +33,7 @@ public class LineTest {
         int numberOfPlayers = 2;
 
         // when
-        Line points = Line.of(numberOfPlayers, () -> true);
+        Line points = Line.ofWithStrategy(numberOfPlayers, () -> true);
 
         // then
         assertThat(points).isNotNull();
@@ -63,7 +62,7 @@ public class LineTest {
         Position currentPosition = Position.of(1);
 
         // when
-        Line line = Line.of(Arrays.asList(POINT_LEFT, POINT_RIGHT, POINT_LEFT));
+        Line line = Line.ofPoints(Arrays.asList(POINT_LEFT, POINT_RIGHT, POINT_LEFT));
         Position movingResult = line.move(currentPosition);
 
         // then

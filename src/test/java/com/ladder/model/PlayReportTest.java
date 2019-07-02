@@ -1,12 +1,12 @@
 package com.ladder.model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ladder.Application.ALL_SEARCH_KEYWORD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlayReportTest {
@@ -42,7 +42,7 @@ class PlayReportTest {
         assertThat(result).isEqualTo(expectedReward);
     }
 
-    @DisplayName("검색명이 ALL일 시 전체 결과를 반환한다")
+    @DisplayName("검색명이 " + ALL_SEARCH_KEYWORD + "일 시 전체 결과를 반환한다")
     @Test
     void findByPlayerName_inputAll_success() {
         // given
@@ -51,7 +51,7 @@ class PlayReportTest {
         String expectedRewardName = playingResults.get(player).getReward();
 
         // when
-        Map<String,String> result = playReport.searchByAll();
+        Map<String, String> result = playReport.searchByAll();
 
         // then
         assertThat(result.get(playerName)).isEqualTo(expectedRewardName);

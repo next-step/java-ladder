@@ -1,6 +1,5 @@
 package com.ladder.model;
 
-import com.ladder.exception.NameLengthException;
 import com.ladder.exception.RewardsLessMinimumException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

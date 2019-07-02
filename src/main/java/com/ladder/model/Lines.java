@@ -22,7 +22,7 @@ public class Lines {
         return new Lines(new ArrayList<>(lines));
     }
 
-    public static Lines of(int numberOfColumns, int numberOfPlayers) {
+    static Lines of(int numberOfColumns, int numberOfPlayers) {
         if (numberOfColumns < MIN_NUMBER_OF_COLUMNS) {
             throw new LadderColumnsException();
         }

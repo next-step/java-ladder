@@ -37,7 +37,7 @@ class LinesTest {
 
     @DisplayName("사다리 높이 또는 플레이어의 수가 " + MIN_NUMBER_OF_COLUMNS + "보다 작을 시 생성에 실패한다")
     @ParameterizedTest
-    @ValueSource(ints = {MIN_NUMBER_OF_COLUMNS - 1, MIN_NUMBER_OF_COLUMNS -2})
+    @ValueSource(ints = {MIN_NUMBER_OF_COLUMNS - 1, MIN_NUMBER_OF_COLUMNS - 2})
     void createLines_noPositive_exception(int numberOfColumns) {
         assertThatExceptionOfType(LadderColumnsException.class)
                 .isThrownBy(() -> Lines.of(numberOfColumns, 1));
@@ -53,9 +53,9 @@ class LinesTest {
 
         // when
         List linesList = new ArrayList();
-        linesList.add(Line.of(Arrays.asList(POINT_RIGHT, POINT_LEFT, POINT_RIGHT, POINT_LEFT)));
-        linesList.add(Line.of(Arrays.asList(POINT_RIGHT, POINT_LEFT, POINT_DOWN, POINT_DOWN)));
-        linesList.add(Line.of(Arrays.asList(POINT_DOWN, POINT_DOWN, POINT_RIGHT, POINT_LEFT)));
+        linesList.add(Line.ofPoints(Arrays.asList(POINT_RIGHT, POINT_LEFT, POINT_RIGHT, POINT_LEFT)));
+        linesList.add(Line.ofPoints(Arrays.asList(POINT_RIGHT, POINT_LEFT, POINT_DOWN, POINT_DOWN)));
+        linesList.add(Line.ofPoints(Arrays.asList(POINT_DOWN, POINT_DOWN, POINT_RIGHT, POINT_LEFT)));
         Lines lines = Lines.of(linesList);
         Position result = lines.playByOnePosition(startPosition);
 
