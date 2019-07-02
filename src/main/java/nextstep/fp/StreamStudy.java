@@ -28,7 +28,7 @@ public class StreamStudy {
 		words.stream()
 				.distinct()
 				.filter(word -> word.length() > minWordSize)
-				.sorted(comparing(String::length))
+				.sorted(comparing(String::length).reversed())
 				.limit(limitCount)
 				.map(String::toLowerCase)
 				.forEach(System.out::println);
