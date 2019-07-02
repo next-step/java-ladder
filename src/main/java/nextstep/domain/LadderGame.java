@@ -3,7 +3,6 @@ package nextstep.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class LadderGame {
     private static final String SEPARATOR = ",";
@@ -31,8 +30,6 @@ public class LadderGame {
                 .orElse(DEFAULT_USER);
     }
 
-
-
     private String[] splitName(String names) {
         return names.split(SEPARATOR);
     }
@@ -47,5 +44,4 @@ public class LadderGame {
 
         return inputStrings;
     }
-
 }
