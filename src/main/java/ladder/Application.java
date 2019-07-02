@@ -16,9 +16,10 @@ public class Application {
 
         int height = InputView.askHeight();
 
-        Layer layer = new Layer(RungGenerator.generate(players.size() - 1));
+        for(int i = 0; i < height; i++) {
+            Layer layer = new Layer(RungGenerator.generate(players.size() - 1));
 
-        OutputView.print(layer);
-
+            OutputView.print(layer);
+        }
     }
 }
