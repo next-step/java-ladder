@@ -3,6 +3,7 @@ package ladder;
 import ladder.model.Ladder;
 import ladder.model.Layer;
 import ladder.model.Player;
+import ladder.util.RandomRungGenerator;
 import ladder.util.RungGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -18,11 +19,11 @@ public class Application {
 
         int height = InputView.askHeight();
 
-        RungGenerator rungGenerator = new RungGenerator();
+        RungGenerator rungGenerator = new RandomRungGenerator();
 
         List<Layer> layers = new ArrayList<>();
         for(int i = 0; i < height; i++) {
-            layers.add(new Layer(rungGenerator.generate(players.size() - 1)));
+            layers.add(Layer.of(rungGenerator, players.size()));
         }
 
         OutputView.print(players, layers);
