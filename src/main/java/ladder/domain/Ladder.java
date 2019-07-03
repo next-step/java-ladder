@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -18,6 +19,14 @@ public class Ladder {
     }
 
     public static Ladder of(List<Lines> linesList) {
+        return new Ladder(linesList);
+    }
+
+    public static Ladder of(LineGenerator lineGenerator, int ladderHeight) {
+        List<Lines> linesList = new ArrayList<>();
+        IntStream.range(0, ladderHeight).forEach((i) ->
+                linesList.add(Lines.of(lineGenerator))
+        );
         return new Ladder(linesList);
     }
 
