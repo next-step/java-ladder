@@ -14,6 +14,7 @@ public class LadderGameTest {
     static final String INPUT_USER_NAMES = "pobi,honux,crong,jk";
     static final String INPUT_USER_NAMES_INVALID_LENGTH = "toolongname,honux,crong,jk";
     static final int INPUT_LADDER_HEIGHT = 1;
+    static final int INPUT_LADDER_HEIGHT_FOUR = 4;
 
     private LadderGame ladder;
 
@@ -23,8 +24,8 @@ public class LadderGameTest {
     }
 
     @Test
-    void generate() {
-        Line line = new Line(4, new LineEvenStrategy());
+    void generate_ladder() {
+        Line line = new Line(INPUT_LADDER_HEIGHT_FOUR, new LineEvenStrategy());
         ArrayList<Line> list = new ArrayList();
         list.add(line);
 
@@ -38,4 +39,5 @@ public class LadderGameTest {
             new LadderGame(INPUT_USER_NAMES_INVALID_LENGTH, INPUT_LADDER_HEIGHT);
         });
     }
+
 }
