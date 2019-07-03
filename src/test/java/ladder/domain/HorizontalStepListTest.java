@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
-class HorizontalStepTest {
+class HorizontalStepListTest {
 
 
 	int sampleRailCount = 5;
@@ -25,7 +25,7 @@ class HorizontalStepTest {
 	@Test
 	void createNormalRow() {
 
-		HorizontalStep row = new HorizontalStep(sampleRailCount, sampleStepProvider);
+		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
 
 		assertThat(row.hasLeftStepAt(0)).isFalse();	// 왼쪽 첫번째는 완쪽 계단을 가질 수 없다.
 		assertThat(row.hasRightStepAt(0)).isTrue();
@@ -50,7 +50,7 @@ class HorizontalStepTest {
 
 		int railCount = 3;
 
-		HorizontalStep row = new HorizontalStep(5, new PredefinedStepProvider(Arrays.asList(true, true)));
+		HorizontalStepList row = new HorizontalStepList(5, new PredefinedStepProvider(Arrays.asList(true, true)));
 
 		assertThat(row.hasLeftStepAt(1)).isTrue();
 		assertThat(row.hasRightStepAt(1)).isFalse();
@@ -61,7 +61,7 @@ class HorizontalStepTest {
 	@Test
 	void checkStepOverRails() {
 
-		HorizontalStep row = new HorizontalStep(sampleRailCount, sampleStepProvider);
+		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
 
 		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.hasLeftStepAt(-1));
 		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.hasRightStepAt(5));

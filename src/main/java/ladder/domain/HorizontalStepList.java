@@ -5,12 +5,12 @@ import ladder.exception.OutOfRailNumberException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HorizontalStep {
+public class HorizontalStepList {
 
 	private List<Boolean> steps;
 
 
-	public HorizontalStep(int railCount, StepProvider stepProvider){
+	public HorizontalStepList(int railCount, StepProvider stepProvider){
 		this.steps = new ArrayList<>();
 		this.steps.add(false); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
 
