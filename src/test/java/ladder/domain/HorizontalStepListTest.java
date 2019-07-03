@@ -27,20 +27,11 @@ class HorizontalStepListTest {
 
 		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
 
-		assertThat(row.hasLeftStepAt(0)).isFalse();	// 왼쪽 첫번째는 완쪽 계단을 가질 수 없다.
-		assertThat(row.hasRightStepAt(0)).isTrue();
-
-		assertThat(row.hasLeftStepAt(1)).isTrue();
-		assertThat(row.hasRightStepAt(1)).isFalse();
-
-		assertThat(row.hasLeftStepAt(2)).isFalse();
-		assertThat(row.hasRightStepAt(2)).isFalse();
-
-		assertThat(row.hasLeftStepAt(3)).isFalse();
-		assertThat(row.hasRightStepAt(3)).isTrue();
-
-		assertThat(row.hasLeftStepAt(4)).isTrue();
-		assertThat(row.hasRightStepAt(4)).isFalse();
+		assertThat(row.getNextRailFrom(0)).isEqualTo(1);
+		assertThat(row.getNextRailFrom(1)).isEqualTo(0);
+		assertThat(row.getNextRailFrom(2)).isEqualTo(2);
+		assertThat(row.getNextRailFrom(3)).isEqualTo(4);
+		assertThat(row.getNextRailFrom(4)).isEqualTo(3);
 
 	}
 
@@ -50,10 +41,11 @@ class HorizontalStepListTest {
 
 		int railCount = 3;
 
-		HorizontalStepList row = new HorizontalStepList(5, new PredefinedStepProvider(Arrays.asList(true, true)));
+		HorizontalStepList row = new HorizontalStepList(3, new PredefinedStepProvider(Arrays.asList(true, true))); // |-| |
 
-		assertThat(row.hasLeftStepAt(1)).isTrue();
-		assertThat(row.hasRightStepAt(1)).isFalse();
+		assertThat(row.getNextRailFrom(0)).isEqualTo(1);
+		assertThat(row.getNextRailFrom(1)).isEqualTo(0);
+		assertThat(row.getNextRailFrom(2)).isEqualTo(2);
 
 	}
 
@@ -63,8 +55,8 @@ class HorizontalStepListTest {
 
 		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
 
-		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.hasLeftStepAt(-1));
-		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.hasRightStepAt(5));
+		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.getNextRailFrom(-1));
+		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.getNextRailFrom(5));
 
 	}
 

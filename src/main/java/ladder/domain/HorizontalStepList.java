@@ -18,19 +18,11 @@ public class HorizontalStepList {
 		}while (steps.size() < railCount);
 	}
 
-	public boolean hasLeftStepAt(int railNumber){
-		if(railNumber < 0){
-			throw new OutOfRailNumberException();
-		}
-
+	private boolean hasLeftStepAt(int railNumber){
 		return (railNumber == 0) ? false : steps.get(railNumber);
 	}
 
-	public boolean hasRightStepAt(int railNumber){
-		if(railNumber >= steps.size()){
-			throw new OutOfRailNumberException();
-		}
-
+	private boolean hasRightStepAt(int railNumber){
 		return (railNumber == steps.size() - 1) ? false : steps.get(railNumber + 1);
 	}
 
@@ -43,13 +35,28 @@ public class HorizontalStepList {
 		return this.steps.size() == row.steps.size();
 	}
 
+
+	/**
+	 * 레일 번호를 입력하면 가로계단 연결 상태를 확인하고 다음 열 번호를 반환하는 메서드
+	 * @param railNumber 출발 레일번호
+	 * @return	도착 레일번호
+	 */
 	public int getNextRailFrom(int railNumber) {
-		if(this.hasLeftStepAt(railNumber)){
-			return railNumber - 1;
+
+		if(railNumber < 0){
+			throw new OutOfRailNumberException();
+		}
+
+		if(railNumber >= steps.size()){
+			throw new OutOfRailNumberException();
 		}
 
 		if(this.hasRightStepAt(railNumber)){
 			return railNumber + 1;
+		}
+
+		if(this.hasLeftStepAt(railNumber)){
+			return railNumber - 1;
 		}
 
 		return railNumber;
