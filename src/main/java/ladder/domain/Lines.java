@@ -21,8 +21,8 @@ public class Lines {
         validate();
     }
 
-    public static Lines of(LadderGenerator ladderGenerator) {
-        List<Line> lines = ladderGenerator.getLadderBase()
+    public static Lines of(LineGenerator lineGenerator) {
+        List<Line> lines = lineGenerator.getLineBase()
                 .stream()
                 .map(Line::of)
                 .collect(Collectors.toList());
