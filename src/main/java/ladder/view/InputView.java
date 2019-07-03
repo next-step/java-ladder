@@ -19,7 +19,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    private static void printEmptyLine() {
+    static void printEmptyLine() {
         System.out.println();
     }
 }
