@@ -23,5 +23,11 @@
 - [x] Player(name, position) 생성 
 - [x] Ladder Game을 생성한다. 
 - [x] 사다리를 출력한다. 
+- [x] refactor : stream
+- [x] players 내부 위임. 
+- [x] 사다리 이동에 대한 테스트 추가
+- [x] Layer 생성에 verify, map을 한번에 처리하도록 수정(using peek)
+- [x] 방향을 갖는 Direction 생성.
+
 
 

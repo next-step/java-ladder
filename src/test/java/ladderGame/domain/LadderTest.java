@@ -12,6 +12,5 @@ public class LadderTest {
     public void create() {
         Ladder ladder = Ladder.of(3, 5);
         assertThat(ladder.size()).isEqualTo(5);
-
     }
 }
