@@ -13,6 +13,7 @@ package nextstep.step3.ladder.domain;
 public class Prize {
     private static final String NULL_EMPTY_EXCEPTION_MESSAGE = "결과가 입력이 안되었습니다.";
     private static final String UNDER_WIN_NUMBER = "입력된 결과가 0보다 작습니다.";
+    private static final String UNSUITE = "꽝";
 
     private static final Prize NOT_PRIZE = new Prize("꽝");
     private final String prize;
@@ -26,7 +27,7 @@ public class Prize {
             throw new IllegalArgumentException(NULL_EMPTY_EXCEPTION_MESSAGE);
         }
 
-        if ("꽝".equals(prize)) {
+        if (UNSUITE.equals(prize)) {
             return NOT_PRIZE;
         }
         return new Prize(prize);
