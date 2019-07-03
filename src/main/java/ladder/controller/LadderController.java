@@ -20,13 +20,13 @@ public class LadderController implements Controller {
         model.newGamers(gamerNames.getGamerNames());
     }
     
-    
     private void inputReward(RewardDTO reward) {
         model.newRewards(reward.getReward());
     }
     
     private void inputLadderSize(LadderSizeDTO ladderSize) {
         model.newLadder(ladderSize.getInputNumber());
+        model.matchGamerReward();
     }
     
     @Override

@@ -1,6 +1,10 @@
 package ladder.domain.gamer;
 
 import ladder.domain.gamer.info.Gamer;
+import ladder.domain.gamer.message.ErrorMessages;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.reward.Rewards;
+import ladder.domain.reward.info.Reward;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,12 +30,22 @@ public class Gamers {
     }
     
     public int getSize() {
-        return gamers.keySet().size();
+        return gamers.size();
     }
 
     public List<String> getGamerNames() {
         return gamers.keySet().stream()
           .map(Gamer::getName)
           .collect(Collectors.toList());
+    }
+    
+    public void findReward(Ladder ladder, Rewards rewards) {
+        if (ladder == null || ladder.getSize() != gamers.size()) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_LADDER.message());
+        }
+        
+        if (rewards == null || rewards.getSize() != gamers.size()) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_REWARD.message());
+        }
     }
 }

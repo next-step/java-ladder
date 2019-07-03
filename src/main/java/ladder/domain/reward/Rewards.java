@@ -38,4 +38,8 @@ public class Rewards {
           .map(index -> rewards.get(index).getReward())
           .collect(Collectors.toList());
     }
+    
+    public int getSize() {
+        return rewards.size();
+    }
 }

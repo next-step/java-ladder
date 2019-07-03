@@ -17,7 +17,6 @@ public class Model {
         RESULT_STEP;
     }
     
-    private final static int GAMERS_STEP = 1;
     private Ladder ladder;
     private Gamers gamers;
     private Rewards rewards;
@@ -37,12 +36,15 @@ public class Model {
         step = Step.LADDER_SIZE_STEP;
     }
     
-    
     public void newLadder(int rowSize) {
         ladder = Ladder.from(rowSize, gamers.getSize());
         step = Step.RESULT_STEP;
     }
-
+    
+    public void matchGamerReward() {
+    
+    }
+    
     public Message getMessage() {
         switch (step) {
             case GAMERS_STEP:
