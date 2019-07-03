@@ -7,8 +7,9 @@ import java.util.stream.Collectors;
 public class ResultView {
 
     private static final String PLAYER_PRINT_INTERVAL = "\t";
-    private static final String EMPTY_RUNG = "     |";
-    private static final String RUNG = "-----|";
+    private static final String MARGIN = "   ";
+    private static final String EMPTY_RUNG = "|     ";
+    private static final String RUNG = "|-----";
 
 
     public static void drawLadderAndPlayer(Players players, Ladder ladder) {
@@ -25,18 +26,21 @@ public class ResultView {
     }
 
     private static void drawLadder(Ladder ladder) {
-        ladder.getLayers()
-                .forEach(layer -> System.out.println(EMPTY_RUNG + printLayer(layer)));
+        ladder.getDirectionLayers()
+                .forEach(layer -> System.out.println(MARGIN + printLayer(layer)));
     }
 
-    private static String printLayer(Layer layer) {
-        return layer.getRungs().stream()
-                .map(rung -> drawGameRung(rung))
+    private static String printLayer(DirectionLayer directionLayer) {
+        return directionLayer.getDirections().stream()
+                .map(ResultView::drawGameRung)
                 .collect(Collectors.joining());
     }
 
-    private static String drawGameRung(Rung rung) {
-        return rung.isEmpty() ? EMPTY_RUNG : RUNG;
+    private static String drawGameRung(Direction direction) {
+        if(direction == Direction.RIGHT) {
+            return RUNG;
+        }
+        return EMPTY_RUNG;
     }
 }
 
