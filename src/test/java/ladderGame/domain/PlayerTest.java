@@ -10,7 +10,7 @@ public class PlayerTest {
     @Test
     @DisplayName("게임 참가자 생성")
     public void create() {
-        Player player = Player.of("nike");
+        Player player = Player.of("nike", 0);
         assertThat(player.getName()).isEqualTo("nike");
     }
 }
