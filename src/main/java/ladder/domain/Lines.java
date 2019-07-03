@@ -16,7 +16,6 @@ public class Lines {
     }
 
     public static Lines of(LadderInfo ladderInfo, BooleanGenerator booleanGenerator) {
-
         return new Lines(IntStream.range(0, ladderInfo.getHeight())
                                  .mapToObj(currentHeight -> Line.of(ladderInfo.getWidth(), booleanGenerator))
                                  .collect(Collectors.toList()));
