@@ -1,6 +1,7 @@
 package nextstep.step3.ladder.view.impl;
 
 import nextstep.step3.ladder.domain.*;
+import nextstep.step3.ladder.dto.Result;
 import nextstep.step3.ladder.view.ResultView;
 
 /**
@@ -18,6 +19,8 @@ public class ResultViewImpl implements ResultView {
     private static final String TRUE_PRINT_FORMAT = "-----";
     private static final String FASLE_PRINT_FORMAT = "     ";
     private static final String PRINT_NAME_FIVE_LETTER_MATCH_SPACE_FORMAT = " ";
+    private static final String PRINT_NAME_SEPERATOR = " : ";
+    private static final String RESULT_ALL_KEYWORD = "all";
     private static final int PRINT_NAME_FIVE_LETTER_MATCH_SPACE = 6;
 
     @Override
@@ -40,6 +43,30 @@ public class ResultViewImpl implements ResultView {
                 .map(info -> combineLetterLength(info.getPrize()))
                 .forEach(System.out::print);
         println();
+    }
+
+    @Override
+    public void printResultInfo(Result resut, String name) {
+        if(RESULT_ALL_KEYWORD.equals(name)) {
+            printParticipantPrizeInfo(resut);
+        }
+        if(!RESULT_ALL_KEYWORD.equals(name)) {
+            printPrizeTarget(resut, name);
+        }
+    }
+
+    public void printPrizeTarget(Result result, String name) {
+        System.out.println(combineResult(name, result.getPrize(name)));
+    }
+
+    public void printParticipantPrizeInfo(Result result) {
+        result.keySet()
+                .map(key -> combineResult(key.getName(), result.getPrize(key.getName())))
+                .forEach(System.out::println);
+    }
+
+    private String combineResult(String name, Prize prize) {
+        return name + PRINT_NAME_SEPERATOR + prize.getPrize();
     }
 
     private String combineLetterLength(String name) {
