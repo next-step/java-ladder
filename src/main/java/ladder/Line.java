@@ -9,7 +9,7 @@ public class Line {
 
     private List<Boolean> bars;
 
-    public Line(List<Boolean> bars) {
+    private Line(List<Boolean> bars) {
         this.bars = new ArrayList<>(bars);
     }
 
