@@ -6,11 +6,11 @@ import java.util.stream.IntStream;
 
 public class LadderResults {
 
-    private final List<Result> results;
+    private final List<LadderResult> ladderResults;
 
     private LadderResults(List<String> results) {
-        this.results = IntStream.range(0, results.size())
-                .mapToObj(index -> Result.of(results.get(index), index))
+        this.ladderResults = IntStream.range(0, results.size())
+                .mapToObj(index -> LadderResult.of(results.get(index), index))
                 .collect(Collectors.toList());
     }
 
@@ -18,10 +18,18 @@ public class LadderResults {
         return new LadderResults(results);
     }
 
-    public Result getResult(Position position) {
-        return results.stream()
-                .filter(result -> result.isEquals(position))
+    public LadderResult getResult(Position position) {
+        return ladderResults.stream()
+                .filter(ladderResult -> ladderResult.isEquals(position))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("일치하는 Position이 없습니다. "));
+    }
+
+    public int size() {
+        return ladderResults.size();
+    }
+
+    public List<LadderResult> getLadderResults() {
+        return ladderResults;
     }
 }
