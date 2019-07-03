@@ -10,8 +10,7 @@ public class LadderGameMain {
         int maxHeight = Inputview.inputLadderMaxHeight();
 
         LadderGame ladderGame = new LadderGame(userNames,maxHeight);
-
+        ladderGame.makeLadderLine();
         ResultView.printLadder(ladderGame);
-
     }
 }

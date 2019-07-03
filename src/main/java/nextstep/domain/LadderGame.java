@@ -9,11 +9,12 @@ public class LadderGame {
     static final User DEFAULT_USER = new User("Bentley");
 
     private List<User> useGroup;
+    private List<Line> ladder;
     private int maxHeight;
 
     public LadderGame(String userNames, int maxHeight) {
         String[] namesOfUser = checkNames(splitName(userNames));
-        useGroup = new ArrayList<User>();
+        useGroup = new ArrayList<>();
         User userElement;
 
         for (String s : namesOfUser) {
@@ -28,10 +29,24 @@ public class LadderGame {
         return useGroup;
     }
 
+    public List<Line> getLadder() {
+        return ladder;
+    }
+
     public User getUser(String name) {
         return useGroup.stream().filter(user -> user.matchName(name))
                 .findAny()
                 .orElse(DEFAULT_USER);
+    }
+
+    public void makeLadderLine() {
+        ladder = new ArrayList<>();
+        Line line;
+
+        for (int i = 0; i < maxHeight; ++i) {
+            line = new Line(useGroup.size());
+            ladder.add(line);
+        }
     }
 
     private String[] splitName(String names) {
