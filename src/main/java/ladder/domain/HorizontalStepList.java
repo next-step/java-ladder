@@ -42,4 +42,8 @@ public class HorizontalStepList {
 	public boolean isAppendable(HorizontalStepList row) {
 		return this.steps.size() == row.steps.size();
 	}
+
+	public int getNextRailFrom(int railNumber) {
+		return 0;
+	}
 }

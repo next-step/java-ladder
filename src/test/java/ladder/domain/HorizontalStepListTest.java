@@ -19,7 +19,7 @@ class HorizontalStepListTest {
 
 	@BeforeEach
 	void arrangeSample(){
-		this.sampleStepProvider = new PredefinedStepProvider(Arrays.asList(true, false, false, true));
+		this.sampleStepProvider = new PredefinedStepProvider(Arrays.asList(true, false, false, true)); // |-| | |-|
 	}
 
 	@Test
@@ -67,4 +67,14 @@ class HorizontalStepListTest {
 		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.hasRightStepAt(5));
 
 	}
+
+	@DisplayName("다음열 레일번호 반환")
+	@Test
+	void checkNextRowRailNumber() {
+
+		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
+
+		assertThat(row.getNextRailFrom(0)).isEqualTo(1);
+	}
+
 }
