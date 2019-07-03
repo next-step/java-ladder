@@ -1,6 +1,7 @@
 package nextstep.step3.ladder.domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -48,7 +49,7 @@ public class Participant {
         return names.stream();
     }
 
-    public int getParticipantNumber(Name kwon) {
-        return names.indexOf(kwon);
+    public int getParticipantNumber(Name name) {
+        return names.indexOf(name);
     }
 }
