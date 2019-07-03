@@ -10,24 +10,24 @@ class LadderTest {
 
     @ParameterizedTest(name = "사다리 생성 검증")
     @CsvSource(value = {"4,5"})
-    void newLine(int lineSize, int heights) {
+    void newLine(int width, int height) {
 
-        Ladder ladder = new Ladder(lineSize, heights);
+        Ladder ladder = new Ladder(LadderInfo.of(width, height));
 
-        assertThat(ladder.getLines().size()).isEqualTo(lineSize);
-        assertThat(ladder.getHeights()).isEqualTo(heights);
+        assertThat(ladder.getLadderInfo().getWidth()).isEqualTo(width);
+        assertThat(ladder.getLadderInfo().getHeight()).isEqualTo(height);
     }
 
-    @ParameterizedTest(name = "사다리 생성 시 Exception 발생. lineSize={0}, height={1}")
+    @ParameterizedTest(name = "사다리 생성 시 Exception 발생. width={0}, height={1}")
     @CsvSource(value = {
             "0,1",
             "-0,1",
             "1,0",
             "1,-1"
     })
-    void newLineOccurredException(int lineSize, int heights) {
+    void newLineOccurredException(int width, int height) {
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Ladder(lineSize, heights));
+                .isThrownBy(() -> new Ladder(LadderInfo.of(width, height)));
     }
 }

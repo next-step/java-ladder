@@ -29,6 +29,11 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
+    public Participant getParticipant(int index) {
+
+        return participants.get(index);
+    }
+
     public int size() {
 
         return participants.size();

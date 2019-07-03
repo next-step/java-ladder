@@ -1,30 +1,45 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import ladder.domain.generator.PointGenerator;
+
+import java.util.*;
 
 public class Line {
 
-    private final List<Point> points;
+    private Points points;
 
-    public Line(int lineNumber, int heights) {
+    public Line(Points points) {
 
-        this.points = IntStream.range(0, heights)
-                .mapToObj(step -> Point.of(step, lineNumber))
-                .collect(Collectors.toList());
+        this.points = points;
     }
 
-    public Line(int heights) {
+    public static Line of(int width, PointGenerator pointGenerator) {
 
-        this.points = IntStream.range(0, heights)
-                .mapToObj(i -> Point.of(false))
-                .collect(Collectors.toList());
+        return new Line(Points.createPoints(width, pointGenerator));
     }
 
-    public boolean hasPoint(int lineNumber) {
+    public int move(int position) {
 
-        return points.get(lineNumber) != null && points.get(lineNumber).hasPoint();
+        return points.getPoint(position).move();
     }
 
+    public List<Point> getPoints() {
+
+        return Collections.unmodifiableList(points.getPoints());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(points);
+    }
 }

@@ -4,7 +4,7 @@ import ladder.exception.PrintResultException;
 
 import java.util.stream.IntStream;
 
-public class ResultString {
+public class PrintSymbol {
 
     public static final String STEP = "|";
     private static final String CONNECT = "-";

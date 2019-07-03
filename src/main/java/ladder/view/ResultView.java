@@ -1,12 +1,10 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Participants;
+import ladder.domain.*;
 
 import java.io.PrintStream;
-import java.util.stream.IntStream;
 
-import static ladder.view.ResultString.*;
+import static ladder.view.PrintSymbol.*;
 
 public class ResultView {
 
@@ -18,27 +16,18 @@ public class ResultView {
     private static final String CONNECT_STRING = buildConnectString(SIZE);
     private static final String EMPTY_STRING = buildEmptyString(SIZE);
     private static final String PRINT_PARTICIPANTS_FORMAT = "%-" + SIZE + "s";
+    private static final String PARTICIPANT_GOAL_FORMAT = "%s : %s";
 
-    public static void printResult(Participants participants, Ladder ladder) {
-
-        printResultMessage();
-        printNewLine();
-
-        printParticipants(participants);
-        printLadder(ladder);
-    }
-
-    private static void printResultMessage() {
+    public static void printResultMessage() {
 
         printStream.println(RESULT_MESSAGE);
     }
 
-    private static void printParticipants(Participants participants) {
+    public static void printParticipants(Participants participants) {
 
         participants.getParticipantsName()
                 .forEach(ResultView::printName);
         printNewLine();
-
     }
 
     private static void printName(String name) {
@@ -46,43 +35,59 @@ public class ResultView {
         printStream.print(String.format(PRINT_PARTICIPANTS_FORMAT, name));
     }
 
-    private static void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder) {
 
-        IntStream.range(0, ladder.getHeights())
-                .forEach(lineNumber -> printLine(ladder, lineNumber));
+        ladder.getLines()
+                .getLines()
+                .forEach(ResultView::printLine);
     }
 
-    private static void printLine(Ladder ladder, int lineNumber) {
+    private static void printLine(Line line) {
 
-        ladder.getLines().forEach(line -> {
-            printStep();
-            printConnect(line.hasPoint(lineNumber));
-        });
+        line.getPoints()
+                .forEach(ResultView::printPoint);
+
         printNewLine();
+
     }
 
-    private static void printStep() {
+    private static void printPoint(Point point) {
 
         printStream.print(STEP);
-    }
-
-    private static void printConnect(boolean hasPoint) {
-
-        if (hasPoint) {
+        if (Direction.RIGHT == point.getDirection()) {
             printStream.print(CONNECT_STRING);
             return;
         }
-        printEmpty();
+        printStream.print(EMPTY_STRING);
+
     }
 
-    private static void printNewLine() {
+    public static void printGoals(Goals goals) {
+
+        goals.getGoals()
+                .stream().map(Goal::getResult)
+                .forEach(result -> printStream.print(String.format(PRINT_PARTICIPANTS_FORMAT, result)));
+        printNewLine();
+    }
+
+    public static void printPersonalResult(ParticipantGoals participantGoals, String name) {
+
+        printResultMessage();
+
+        Goal goal = participantGoals.findGoal(name);
+        printStream.println(goal.getResult());
+        printNewLine();
+    }
+
+    public static void printAllResult(ParticipantGoals participantGoals, Participants participants) {
+
+        printResultMessage();
+        participants.getParticipantsName()
+                .forEach(name -> printStream.println(String.format(PARTICIPANT_GOAL_FORMAT, name, participantGoals.findGoal(name).getResult())));
+    }
+
+    public static void printNewLine() {
 
         printStream.println();
     }
-
-    private static void printEmpty() {
-
-        printStream.print(EMPTY_STRING);
-    }
-
 }
