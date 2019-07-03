@@ -5,6 +5,9 @@ import ladder.domain.Line;
 import ladder.domain.Player;
 import ladder.domain.Players;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import static ladder.view.InputView.printEmptyLine;
 
 public class OutputView {
@@ -23,14 +26,39 @@ public class OutputView {
     }
 
     private static void printPlayers(Players players) {
-        for (Player player : players.getPlayers()) {
-            System.out.print(player.getName());
-        }
+        players.getPlayers().stream()
+                .map(OutputView::adjustNameLength)
+                .forEach(System.out::print);
+        printEmptyLine();
+    }
+
+    private static String adjustNameLength(Player player) {
+        String name = player.getName();
+        int spaceForBlank = 5 - name.length();
+
+        return IntStream.rangeClosed(0, spaceForBlank)
+                .mapToObj((integer) -> " ")
+                .collect(Collectors.joining())
+                .concat(name);
     }
 
     private static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            System.out.println(line.getBars());
+        ladder.getLines().forEach(OutputView::printLine);
+    }
+
+    private static void printLine(Line line) {
+        line.getBars().stream()
+                .map(OutputView::printBars)
+                .forEach(System.out::print);
+        printEmptyLine();
+    }
+
+    private static String printBars(Boolean bar) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("|");
+        if (bar) {
+            return stringBuilder.append("-----").toString();
         }
+        return stringBuilder.append("     ").toString();
     }
 }
