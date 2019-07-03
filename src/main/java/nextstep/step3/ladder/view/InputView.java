@@ -16,4 +16,6 @@ public interface InputView {
     int inputLadderHeight();
 
     String inputExecutionResult();
+
+    String inputResultInfo();
 }
