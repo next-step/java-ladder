@@ -4,14 +4,18 @@ import ladder.domain.Gamer;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class LadderView {
     private static final String GAMER_NAME_GUIDE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String LADDER_HEIGHT_GUIDE = "최대 사다리 높이는 몇 개인가요?";
-    private static final String RUN_RESULT = "실행결과";
-    private static final String LADDER_MOVE_SYMBOL = "-";
+    private static final String LADDER_HEIGHT_GUIDE = "\n최대 사다리 높이는 몇 개인가요?";
+    private static final String RUN_RESULT = "\n실행결과\n";
+    private static final String LADDER_FOOTHOLD_SYMBOL = "-";
     private static final String EMPTY_SYMBOL = " ";
     private static final String LADDER_HEIGHT_SYMBOL = "|";
 
@@ -25,29 +29,39 @@ public class LadderView {
     }
 
     public void printLadderHeightGuide() {
-        printGuideStr(EMPTY_SYMBOL);
         printGuideStr(LADDER_HEIGHT_GUIDE);
     }
 
     public void printRunResultGuide() {
-        printGuideStr(EMPTY_SYMBOL);
         printGuideStr(RUN_RESULT);
-        printGuideStr(EMPTY_SYMBOL);
+    }
+
+    public <T, R> List<R> map(List<T> list, Function<T, R> function) {
+        List<R> result = new ArrayList<>();
+        for (T t : list) {
+            result.add(function.apply(t));
+        }
+        return result;
+    }
+
+    private <T> void forEach(List<T> list, Consumer<T> consumer) {
+        for(T t: list) {
+            consumer.accept(t);
+        }
     }
 
     public void printGamer(Gamer gamer) {
-        //FIXME
         List<String> names = gamer.getNames();
-        for (String name : names) {
-            if (name.length() < Gamer.MAX_GAMER_NAME_LENGTH) {
-                String blankString = "";
-                for (int index = 0; index < Gamer.MAX_GAMER_NAME_LENGTH - name.length(); index++) {
-                    blankString += EMPTY_SYMBOL;
-                }
-                name = blankString + name;
-            }
-            System.out.print(name+EMPTY_SYMBOL);
-        }
+        List<String> resultNames = names.stream()
+                .map(t -> {
+                    for (int i=t.length(); i < Gamer.MAX_GAMER_NAME_LENGTH; i++) {
+                        t = EMPTY_SYMBOL + t;
+                    }
+                    return t;
+                })
+                .collect(Collectors.toList());
+
+        forEach(resultNames, (String s) -> System.out.print(s+EMPTY_SYMBOL));
         printGuideStr("");
     }
 
@@ -63,7 +77,7 @@ public class LadderView {
                 System.out.print(LADDER_HEIGHT_SYMBOL);
                 if (points.get(index)) {
                     for (int j = 0; j < Gamer.MAX_GAMER_NAME_LENGTH; j++) {
-                        System.out.print(LADDER_MOVE_SYMBOL);
+                        System.out.print(LADDER_FOOTHOLD_SYMBOL);
                     }
                 }
                 if (!points.get(index)) {
@@ -75,6 +89,7 @@ public class LadderView {
             printGuideStr("");
         }
     }
+
     private void printGuideStr(String guideStr) {
         System.out.println(guideStr);
     }
