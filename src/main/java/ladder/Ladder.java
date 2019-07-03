@@ -1,8 +1,9 @@
 package ladder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
@@ -13,11 +14,10 @@ public class Ladder {
     }
 
     public static Ladder from(int height, int numberOfPlayers) {
-        List<Line> tmpLines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            tmpLines.add(Line.from(numberOfPlayers));
-        }
-        return new Ladder(tmpLines);
+        return new Ladder(IntStream
+                .range(0, height)
+                .mapToObj((integer) -> Line.from(numberOfPlayers))
+                .collect(Collectors.toList()));
     }
 
     public List<Line> getLines() {
