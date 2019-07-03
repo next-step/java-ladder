@@ -24,7 +24,7 @@ public class ParticipantTest {
     @DisplayName("사용자들 이름을 전달받아 Participant 객체 생성하여 이름 리스트 받아오기")
     @Test
     void createCustoms() {
-        List<String> customName = Arrays.asList("kwon","byeon","yun");
+        List<String> customName = Arrays.asList("kwon", "byeon", "yun");
 
         Participant participant = Participant.of(customName);
         Name kwon = Name.of("kwon");
@@ -35,7 +35,7 @@ public class ParticipantTest {
     @DisplayName("입력된 사용자의 count 가지고 오기")
     @Test
     void countCustoms() {
-        List<String> customName = Arrays.asList("kwon","byeon","yun");
+        List<String> customName = Arrays.asList("kwon", "byeon", "yun");
 
         Participant participant = Participant.of(customName);
         assertThat(participant.count()).isEqualTo(3);
@@ -64,7 +64,7 @@ public class ParticipantTest {
     @DisplayName("몇 번째 사람인지 가지고 오는 기능")
     @Test
     void getParticipantNumber() {
-        List<String> customName = Arrays.asList("kwon","byeon","yun");
+        List<String> customName = Arrays.asList("kwon", "byeon", "yun");
 
         Participant participant = Participant.of(customName);
         Name kwon = Name.of("kwon");

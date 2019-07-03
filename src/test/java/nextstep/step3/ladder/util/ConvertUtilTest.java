@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -30,10 +29,16 @@ class ConvertUtilTest {
     @Test
     void convertToMap() {
         Participant participant = Participant.of(
-                Arrays.asList("kwon", "byeon", "yun"));
+                Arrays.asList(
+                        "kwon",
+                        "byeon",
+                        "yun"));
 
         PrizeInfo prizeInfo = PrizeInfo.of(
-                Arrays.asList(Prize.of(1000), Prize.of(1000), Prize.of(1000)), participant.count());
+                Arrays.asList(
+                        Prize.of(1000),
+                        Prize.of(1000),
+                        Prize.of(1000)), participant.count());
 
         List<Name> names = participant.stream()
                 .collect(Collectors.toList());

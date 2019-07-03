@@ -39,7 +39,7 @@ public class LadderLine {
 
     public boolean isTrue(int index) {
         int lastIndex = ladderLine.size();
-        if(index >= lastIndex) {
+        if (index >= lastIndex) {
             return false;
         }
         return ladderLine.get(index).status();
@@ -53,7 +53,7 @@ public class LadderLine {
     }
 
     private int movementToRight(int lineIndex) {
-        while((lineIndex < ladderLine.size())
+        while ((lineIndex < ladderLine.size())
                 && ladderLine.get(lineIndex).status()) {
 
             lineIndex = lineIndex + INCREASE_INDEX;
@@ -62,7 +62,7 @@ public class LadderLine {
     }
 
     private int movementToLeft(int lineIndex) {
-        while((lineIndex - DECREASE_INDEX >= 0)
+        while ((lineIndex - DECREASE_INDEX >= 0)
                 && ladderLine.get(lineIndex - DECREASE_INDEX).status()) {
 
             lineIndex = lineIndex - DECREASE_INDEX;

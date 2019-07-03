@@ -47,10 +47,10 @@ public class ResultViewImpl implements ResultView {
 
     @Override
     public void printResultInfo(Result resut, String name) {
-        if(RESULT_ALL_KEYWORD.equals(name)) {
+        if (RESULT_ALL_KEYWORD.equals(name)) {
             printParticipantPrizeInfo(resut);
         }
-        if(!RESULT_ALL_KEYWORD.equals(name)) {
+        if (!RESULT_ALL_KEYWORD.equals(name)) {
             printPrizeTarget(resut, name);
         }
     }

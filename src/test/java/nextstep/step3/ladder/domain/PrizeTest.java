@@ -43,7 +43,7 @@ public class PrizeTest {
     @DisplayName("숫자로 생성")
     @Test
     void createWinInteger() {
-            Prize prize = Prize.of(1000);
-            assertThat(prize.getPrize()).isEqualTo("1000");
+        Prize prize = Prize.of(1000);
+        assertThat(prize.getPrize()).isEqualTo("1000");
     }
 }

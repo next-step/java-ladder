@@ -28,7 +28,7 @@ public class LadderLineTest {
         List<Boolean> convertLine = line.stream()
                 .map(Link::status)
                 .collect(Collectors.toList());
-        int lastIndex = convertLine.size() -1;
+        int lastIndex = convertLine.size() - 1;
         assertThat(convertLine.get(lastIndex)).isFalse();
     }
 }

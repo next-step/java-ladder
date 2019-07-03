@@ -39,7 +39,7 @@ public class ConvertUtil {
     }
 
     private static void convertTargetSizeCheck(List<Name> key, List<Prize> value) {
-        if(!(key.size() == value.size())) {
+        if (!(key.size() == value.size())) {
             throw new IllegalArgumentException("참여자와 상금정보의 개수가 다릅니다.");
         }
     }

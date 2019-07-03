@@ -46,8 +46,8 @@ public class LadderApplication {
         String executionResult = inputView.inputExecutionResult();
         int participantCount = participant.count();
         List<Prize> prizes = StringUtil.split(executionResult).stream()
-                        .map(prize -> Prize.of(prize))
-                        .collect(Collectors.toList());
+                .map(prize -> Prize.of(prize))
+                .collect(Collectors.toList());
         PrizeInfo prizeInfo = PrizeInfo.of(prizes, participantCount);
 
         // 사다리 높이 입력받기

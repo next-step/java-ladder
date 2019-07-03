@@ -26,7 +26,7 @@ public class Prize {
             throw new IllegalArgumentException(NULL_EMPTY_EXCEPTION_MESSAGE);
         }
 
-        if("꽝".equals(prize)) {
+        if ("꽝".equals(prize)) {
             return NOT_PRIZE;
         }
         return new Prize(prize);
