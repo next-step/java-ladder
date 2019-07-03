@@ -21,6 +21,21 @@ public class HorizontalLines {
         validate();
     }
 
+    public static HorizontalLines of(List<Boolean> booleans) {
+        List<HorizontalLine> horizontalLines = booleans.stream()
+                .map(HorizontalLine::of)
+                .collect(Collectors.toList());
+        return new HorizontalLines(horizontalLines);
+    }
+
+    public int size() {
+        return horizontalLines.size();
+    }
+
+    public List<HorizontalLine> getHorizontalLines() {
+        return Collections.unmodifiableList(horizontalLines);
+    }
+
     private void validate() {
         checkFirstLineFalse();
         allHorizontalLineLineHasNoNeighborLine();
@@ -48,20 +63,5 @@ public class HorizontalLines {
                 .anyMatch(aBoolean -> aBoolean)) {
             throw new IllegalArgumentException("연속으로 Line 이 있는 HorizontalLines 입니다.");
         }
-    }
-
-    public static HorizontalLines of(List<Boolean> booleans) {
-        List<HorizontalLine> horizontalLines = booleans.stream()
-                .map(HorizontalLine::of)
-                .collect(Collectors.toList());
-        return new HorizontalLines(horizontalLines);
-    }
-
-    public int size() {
-        return horizontalLines.size();
-    }
-
-    public List<HorizontalLine> getHorizontalLines() {
-        return Collections.unmodifiableList(horizontalLines);
     }
 }
