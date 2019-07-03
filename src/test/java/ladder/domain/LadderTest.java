@@ -39,15 +39,11 @@ public class LadderTest {
     void of() {
         List<HorizontalLines> horizontalLinesList = new ArrayList<>();
         horizontalLinesList.add(HorizontalLines.of(Arrays.asList(false, true, false, true)));
-        horizontalLinesList.add(HorizontalLines.of(Arrays.asList(false, false, true, false)));
-        horizontalLinesList.add(HorizontalLines.of(Arrays.asList(false, true, false, false)));
-        horizontalLinesList.add(HorizontalLines.of(Arrays.asList(false, false, true, false)));
-        horizontalLinesList.add(HorizontalLines.of(Arrays.asList(false, true, false, true)));
 
         ladder = Ladder.of(horizontalLinesList);
         HorizontalLine trueLine = HorizontalLine.of(true);
         HorizontalLine falseLine = HorizontalLine.of(false);
 
-        assertThat(ladder.horizontalLinesByLevel(4).getHorizontalLines()).containsExactly(falseLine, trueLine, falseLine, trueLine);
+        assertThat(ladder.horizontalLinesByLevel(0).getHorizontalLines()).containsExactly(falseLine, trueLine, falseLine, trueLine);
     }
 }
