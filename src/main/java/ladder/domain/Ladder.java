@@ -13,7 +13,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(Height height, Players players) {
+    public static Ladder from(Players players, Height height) {
         return new Ladder(IntStream
                 .range(0, height.getHeight())
                 .mapToObj((integer) -> Line.from(players.numberOfPlayers()))

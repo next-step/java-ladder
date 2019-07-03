@@ -11,6 +11,6 @@ public class Application {
         Players players = Players.of(InputView.askPlayers());
         Height height = Height.from(InputView.askHeight());
 
-        Ladder.from(height, players);
+        Ladder.from(players, height);
     }
 }
