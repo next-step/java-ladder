@@ -1,9 +1,7 @@
 package nextstep.step3.ladder;
 
-import nextstep.step3.ladder.domain.Ladder;
-import nextstep.step3.ladder.domain.Participant;
-import nextstep.step3.ladder.domain.Prize;
-import nextstep.step3.ladder.domain.PrizeInfo;
+import nextstep.step3.ladder.domain.*;
+import nextstep.step3.ladder.dto.Result;
 import nextstep.step3.ladder.util.StringUtil;
 import nextstep.step3.ladder.view.InputView;
 import nextstep.step3.ladder.view.ResultView;
@@ -66,5 +64,13 @@ public class LadderApplication {
 
         // 실행정보 출력
         resultView.printPrizeInfo(prizeInfo);
+
+        // 사다리 실행결과 수집
+        Game game = new Game(prizeInfo, participant);
+        Result result = game.execute(ladder);
+
+        // 이름을 통한 결과값 가지고 오기
+        String target = inputView.inputResultInfo();
+        resultView.printResultInfo(result, target);
     }
 }
