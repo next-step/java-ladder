@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final String DELIMITER_NAMES = ",";
+    private static final int MAX_INPUT_NAME_LENGTH = 5;
 
     private Players players;
     private int height;
@@ -58,6 +59,6 @@ public class LadderGame {
 
     private boolean isThereTooLong(String[] rawNames) {
         return Arrays.stream(rawNames)
-                .anyMatch(name -> name.length() > 5);
+                .anyMatch(name -> name.length() > MAX_INPUT_NAME_LENGTH);
     }
 }

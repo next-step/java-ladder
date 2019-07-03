@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -20,12 +21,19 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int getMaxNameLength() {
-        int max = Integer.MIN_VALUE;
-        for (Player player : players) {
-            max = player.max(max);
-        }
+//    public int getMaxNameLength() {
+//        int max = Integer.MIN_VALUE;
+//        for (Player player : players) {
+//            max = player.max(max);
+//        }
+//
+//        return max;
+//    }
 
-        return max;
+    public int getMaxNameLength() {
+        return players.stream()
+                .mapToInt(player -> player.getName().length())
+                .max()
+                .orElseThrow(NoSuchElementException::new);
     }
 }

@@ -16,15 +16,23 @@ public class ResultView {
 
     private static String fillSpace(List<String> names, int max) {
         StringBuilder builder = new StringBuilder();
-        for (String name : names) {
-            if (name.length() < max) {
-                int offset = max - name.length();
-                for (int i = 0; i < offset; i++) {
-                    builder.append(" ");
-                }
-            }
 
-            builder.append(name).append(" ");
+        names.stream()
+                .forEach(name -> {
+                    builder.append(addSpaces(name.length(), max));
+                    builder.append(name).append(" ");
+                });
+
+        return builder.toString();
+    }
+
+    private static String addSpaces(int nameLength, int max) {
+        if (nameLength >= max) return "";
+
+        StringBuilder builder = new StringBuilder();
+        int offset = max - nameLength;
+        for (int i = 0; i < offset; i++) {
+            builder.append(" ");
         }
 
         return builder.toString();
@@ -48,26 +56,24 @@ public class ResultView {
 
         builder.append('|');
         line.getLine().stream()
-                .forEach(isLine -> {
-                    String type = getLadderType(isLine);
-
-                    for (int i = 0 ; i < maxLength + 1 ; i++) {
-                        builder.append(type);
-                    }
-
-                    builder.append('|');
-                });
-
+                .forEach(isLine -> builder.append(getLadderBlock(isLine, maxLength)));
 
         return builder.toString();
     }
 
-    private static String getLadderType(boolean isLine) {
-        if (isLine) {
-            return "-";
+    private static String getLadderBlock(boolean isLine, int maxLength) {
+        StringBuilder builder = new StringBuilder();
+        String type = getLadderType(isLine);
+        for (int i = 0 ; i < maxLength + 1 ; i++) {
+            builder.append(type);
         }
 
-        return " ";
+        builder.append('|');
+        return builder.toString();
+    }
+
+    private static String getLadderType(boolean isLine) {
+        return isLine ? "-" : " ";
     }
 
     private static void print(String message) {
