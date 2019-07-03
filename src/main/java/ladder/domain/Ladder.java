@@ -21,6 +21,6 @@ public class Ladder {
 	}
 
 	public int size() {
-		return 0;
+		return rows.size();
 	}
 }

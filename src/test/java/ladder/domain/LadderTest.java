@@ -36,10 +36,10 @@ class LadderTest {
 		// Arrange
 		Ladder ladder = new Ladder();
 
-		HorizontalStepList fiveRailsRow = new HorizontalStepList(5, getPredefineStepProviderForFiveRails());
+		HorizontalStepList fiveRailsRow = new HorizontalStepList(5, () -> new Random().nextBoolean());
 		ladder.addRow(fiveRailsRow);
 
-		HorizontalStepList threeRailsRow = new HorizontalStepList(3, getPredefineStepProviderForFiveRails());
+		HorizontalStepList threeRailsRow = new HorizontalStepList(3, () -> new Random().nextBoolean());
 
 		// Action & Assertion
 		assertThatExceptionOfType(DifferentRailCountException.class)
