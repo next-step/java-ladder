@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 public class LadderLine {
     private static final int LINE_MIN_INDEX = 0;
     private static final int DECREASE_INDEX = 1;
+    private static final int INCREASE_INDEX = 1;
 
     private List<Link> ladderLine = new ArrayList<>();
 
@@ -36,6 +37,39 @@ public class LadderLine {
         return ladderLine.stream();
     }
 
+    public boolean isTrue(int index) {
+        int lastIndex = ladderLine.size();
+        if(index >= lastIndex) {
+            return false;
+        }
+        return ladderLine.get(index).status();
+    }
+
+    public int move(int index) {
+        if (ladderLine.get(index).status()) {
+            return movementToRight(index);
+        }
+        return movementToLeft(index);
+    }
+
+    private int movementToRight(int lineIndex) {
+        while((lineIndex < ladderLine.size())
+                && ladderLine.get(lineIndex).status()) {
+
+            lineIndex = lineIndex + INCREASE_INDEX;
+        }
+        return lineIndex;
+    }
+
+    private int movementToLeft(int lineIndex) {
+        while((lineIndex - DECREASE_INDEX >= 0)
+                && ladderLine.get(lineIndex - DECREASE_INDEX).status()) {
+
+            lineIndex = lineIndex - DECREASE_INDEX;
+        }
+        return lineIndex;
+    }
+
     private Link addStatusByIndexPosition(int index, int line) {
         int size = ladderLine.size();
         int exclusionLastIndex = line - DECREASE_INDEX;
@@ -48,12 +82,5 @@ public class LadderLine {
 
     private boolean random() {
         return new Random().nextBoolean();
-    }
-
-    @Override
-    public String toString() {
-        return "LadderLine{" +
-                "ladderLine=" + ladderLine +
-                '}';
     }
 }

@@ -1,4 +1,8 @@
-package nextstep.step3.ladder.domain;
+package nextstep.step3.ladder.util;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -8,7 +12,11 @@ package nextstep.step3.ladder.domain;
  * | blog         : sksggg123.github.io     |
  * ------------------------------------------
  * project      : java-ladder
- * create date  : 2019-07-02 00:00
+ * create date  : 2019-07-03 18:59
  */
-public interface GameExecutor {
+class ConvertUtilTest {
+
+    @Test
+    void convertToMap() {
+    }
 }
