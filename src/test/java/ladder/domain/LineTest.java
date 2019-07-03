@@ -16,7 +16,7 @@ class LineTest {
 
         Line line = Line.of(5, new StubPointGenerator(true));
 
-        Line expected = new Line(Points.of(Arrays.asList(
+        Line expected = Line.of(Points.of(Arrays.asList(
                 Point.of(0, Direction.RIGHT),
                 Point.of(1, Direction.LEFT),
                 Point.of(2, Direction.EMPTY),
@@ -33,7 +33,7 @@ class LineTest {
 
         Line line = Line.of(5, new StubPointGenerator(false));
 
-        Line expected = new Line(Points.of(Arrays.asList(
+        Line expected = Line.of(Points.of(Arrays.asList(
                 Point.of(0, Direction.EMPTY),
                 Point.of(1, Direction.EMPTY),
                 Point.of(2, Direction.EMPTY),

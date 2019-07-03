@@ -8,7 +8,7 @@ public class LadderResult {
 
     private final Map<Integer, Integer> positionGoals;
 
-    public LadderResult(Map<Integer, Integer> positionGoals) {
+    private LadderResult(Map<Integer, Integer> positionGoals) {
 
         this.positionGoals = positionGoals;
     }

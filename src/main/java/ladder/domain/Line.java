@@ -8,9 +8,13 @@ public class Line {
 
     private Points points;
 
-    public Line(Points points) {
+    private Line(Points points) {
 
         this.points = points;
+    }
+
+    static Line of(Points points) {
+        return new Line(points);
     }
 
     public static Line of(int width, PointGenerator pointGenerator) {

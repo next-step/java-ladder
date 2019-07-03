@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.utils.StringUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,7 @@ public class Goals {
 
     public List<Goal> getGoals() {
 
-        return goals;
+        return Collections.unmodifiableList(goals);
     }
 
     public Goal getGoal(int index) {

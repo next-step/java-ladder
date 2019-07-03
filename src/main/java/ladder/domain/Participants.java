@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
+    public static final String ALL = "all";
     private static final String PARTICIPANTS_DELIMITER = ",";
     private List<Participant> participants;
 

@@ -6,12 +6,10 @@ import ladder.view.ResultView;
 
 public class Main {
 
-    public static final String ALL_PARTICIPANTS = "all";
-
     public static void main(String[] args) {
 
         Participants participants = new Participants(InputView.askParticipantNames());
-        Goals goals = new Goals( InputView.askGoals(), participants.size());
+        Goals goals = new Goals(InputView.askGoals(), participants.size());
         Ladder ladder = new Ladder(LadderInfo.of(participants.size(), InputView.askHeight()));
 
         ResultView.printResultMessage();
@@ -23,7 +21,7 @@ public class Main {
         LadderResult ladderResult = LadderResult.of(ladder);
         ParticipantGoals participantGoals = ladderResult.createParticipantGoal(participants, goals);
         String name = InputView.askPersonalResult();
-        while (!name.equals(ALL_PARTICIPANTS)) {
+        while (Participants.ALL.equals(name)) {
             ResultView.printPersonalResult(participantGoals, name);
             name = InputView.askPersonalResult();
         }
