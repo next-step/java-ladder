@@ -5,35 +5,27 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<VerticalLines> levels;
+    private final List<HorizontalLines> horizontalLinesByLevel;
 
-    public Ladder(int verticalLineQuantity, int verticalLineHeight) {
-        this.levels = IntStream.range(0, verticalLineHeight)
-                .mapToObj(i -> new VerticalLines(verticalLineQuantity))
+    public Ladder(int lineQuantity, int lineHeight) {
+        this.horizontalLinesByLevel = IntStream.range(0, lineHeight)
+                .mapToObj(i -> new HorizontalLines(lineQuantity))
                 .collect(Collectors.toList());
     }
 
-    private Ladder(List<VerticalLines> levels) {
-        this.levels = levels;
+    private Ladder(List<HorizontalLines> horizontalLinesByLevel) {
+        this.horizontalLinesByLevel = horizontalLinesByLevel;
     }
 
     public static Ladder of(List<HorizontalLines> horizontalLinesList) {
-        return new Ladder(
-                horizontalLinesList.stream()
-                        .map(VerticalLines::of)
-                        .collect(Collectors.toList())
-        );
-    }
-
-    public VerticalLines verticalLinesByLevel(int level) {
-        return levels.get(level);
+        return new Ladder(horizontalLinesList);
     }
 
     public HorizontalLines horizontalLinesByLevel(int level) {
-        return HorizontalLines.of(verticalLinesByLevel(level));
+        return horizontalLinesByLevel.get(level);
     }
 
     public int height() {
-        return levels.size();
+        return horizontalLinesByLevel.size();
     }
 }

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,6 +8,13 @@ import java.util.stream.IntStream;
 
 public class HorizontalLines {
     private final List<HorizontalLine> horizontalLines;
+
+    public HorizontalLines(int lineQuantity) {
+        this.horizontalLines = new ArrayList<>();
+        IntStream.range(0, lineQuantity)
+                .mapToObj(i -> HorizontalLine.of(false))
+                .forEach(horizontalLines::add);
+    }
 
     private HorizontalLines(List<HorizontalLine> horizontalLines) {
         this.horizontalLines = horizontalLines;
@@ -40,13 +48,6 @@ public class HorizontalLines {
                 .anyMatch(aBoolean -> aBoolean)) {
             throw new IllegalArgumentException("연속으로 Line 이 있는 HorizontalLines 입니다.");
         }
-    }
-
-    public static HorizontalLines of(VerticalLines verticalLines) {
-        List<HorizontalLine> horizontalLines = verticalLines.getVerticalLines().stream()
-                .map(VerticalLine::getLeftHorizontalLine)
-                .collect(Collectors.toList());
-        return new HorizontalLines(horizontalLines);
     }
 
     public static HorizontalLines of(List<Boolean> booleans) {

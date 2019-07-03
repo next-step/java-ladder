@@ -21,12 +21,10 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("주어진 lineQuantity 만큼 level 마다 세로와 가로 라인이 생긴다")
+    @DisplayName("주어진 lineQuantity 만큼 level 마다 라인이 생긴다")
     void constructor() {
-        VerticalLines verticalLines = ladder.verticalLinesByLevel(0);
         HorizontalLines horizontalLines = ladder.horizontalLinesByLevel(0);
 
-        assertThat(verticalLines.size()).isEqualTo(lineQuantity);
         assertThat(horizontalLines.size()).isEqualTo(lineQuantity);
     }
 

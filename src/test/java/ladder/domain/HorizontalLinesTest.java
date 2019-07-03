@@ -12,14 +12,12 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class HorizontalLinesTest {
     Names names = Names.of("1,2,3");
-    VerticalLines verticalLines;
     HorizontalLines horizontalLines;
 
     @BeforeEach
     void setUp() {
         Participants participants = Participants.of(names);
-        verticalLines = new VerticalLines(participants.size());
-        horizontalLines = HorizontalLines.of(verticalLines);
+        horizontalLines = new HorizontalLines(participants.size());
     }
 
     @Test
