@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class Height {
     static final String ALERT_MINIMUM_LADDER_HEIGHT = "사다리의 최소 높이는 1입니다.";
