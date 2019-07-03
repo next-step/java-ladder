@@ -1,7 +1,5 @@
 package nextstep.step3.ladder.domain;
 
-import nextstep.step2.ladder.domain.Name;
-import nextstep.step2.ladder.domain.Participant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -61,5 +59,16 @@ public class ParticipantTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Participant participant = Participant.of(names);
         }).withMessageContaining("사람이 입력되지 않았습니다.");
+    }
+
+    @DisplayName("몇 번째 사람인지 가지고 오는 기능")
+    @Test
+    void getParticipantNumber() {
+        List<String> customName = Arrays.asList("kwon","byeon","yun");
+
+        Participant participant = Participant.of(customName);
+        Name kwon = Name.of("kwon");
+
+        assertThat(participant.getParticipantNumber(kwon)).isEqualTo(0);
     }
 }

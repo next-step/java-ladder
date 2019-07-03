@@ -47,4 +47,8 @@ public class Participant {
     public Stream<Name> stream() {
         return names.stream();
     }
+
+    public int getParticipantNumber(Name kwon) {
+        return names.indexOf(kwon);
+    }
 }
