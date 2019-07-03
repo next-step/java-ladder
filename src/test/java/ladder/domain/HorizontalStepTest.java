@@ -1,13 +1,13 @@
 package ladder.domain;
 
+import ladder.exception.OutOfRailNumberException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class HorizontalStepTest {
 
@@ -57,4 +57,14 @@ class HorizontalStepTest {
 
 	}
 
+	@DisplayName("생성한 레일개수보다 큰 레일번호의 가로계단 체크시도")
+	@Test
+	void checkStepOverRails() {
+
+		HorizontalStep row = new HorizontalStep(sampleRailCount, sampleStepProvider);
+
+		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.hasLeftStepAt(-1));
+		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.hasRightStepAt(5));
+
+	}
 }

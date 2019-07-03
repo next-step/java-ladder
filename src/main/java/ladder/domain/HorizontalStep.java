@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.OutOfRailNumberException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +20,18 @@ public class HorizontalStep {
 	}
 
 	public boolean hasLeftStepAt(int railNumber){
+		if(railNumber < 0){
+			throw new OutOfRailNumberException();
+		}
+
 		return (railNumber == 0) ? false : steps.get(railNumber);
 	}
 
 	public boolean hasRightStepAt(int railNumber){
+		if(railNumber >= steps.size()){
+			throw new OutOfRailNumberException();
+		}
+
 		return (railNumber == steps.size() - 1) ? false : steps.get(railNumber + 1);
 	}
 }
