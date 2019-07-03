@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.exception.DifferentRailCountException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,6 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -27,7 +25,7 @@ class LadderTest {
 		HorizontalStepList rowTwo = new HorizontalStepList(5, () -> new Random().nextBoolean());
 		ladder.addRow(rowTwo);
 
-		assertThat(ladder.size()).isEqualTo(2);
+		assertThat(ladder.height()).isEqualTo(2);
 	}
 
 	@DisplayName("개수가 다른 가로열 추가 시도")

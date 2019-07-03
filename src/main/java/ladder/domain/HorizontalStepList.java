@@ -10,15 +10,16 @@ public class HorizontalStepList {
 	private List<Boolean> steps;
 
 	public HorizontalStepList(int railCount, StepProvider stepProvider){
+
 		this.steps = new ArrayList<>();
 		this.steps.add(false); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
 
-		do{
+		while (steps.size() < railCount){
 			steps.add(stepProvider.isInstallStep() && !steps.get(steps.size() - 1));
-		}while (steps.size() < railCount);
+		}
 	}
 
-	private boolean hasLeftStepAt(int railNumber){
+	public boolean hasLeftStepAt(int railNumber){
 		return (railNumber == 0) ? false : steps.get(railNumber);
 	}
 
@@ -60,5 +61,9 @@ public class HorizontalStepList {
 		}
 
 		return railNumber;
+	}
+
+	public int getRailCount() {
+		return steps.size();
 	}
 }
