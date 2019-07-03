@@ -1,39 +1,28 @@
 package nextstep.ladder;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
-    private int countOfPerson;
+    private int countOfPerson = 5;
+    private Line line;
 
-    @BeforeEach
-    void setUp() {
-        countOfPerson = 5;
+    @Test
+    void testAllTruePointsWhenTrue() {
+        line = new Line(countOfPerson, a -> true);
+        assertThat(line.getPoints()).containsExactly(true, true, true, true, true);
     }
 
     @Test
-    void testLineTruePoints() {
-
-        Line n = new Line(countOfPerson, a -> true);
-        assertThat(n.getPoints()).containsExactly(true, true, true, true, true);
-
+    void testAllFalsePointsWhenTrue() {
+        line = new Line(countOfPerson, a -> false);
+        assertThat(line.getPoints()).containsExactly(false, false, false, false, false);
     }
 
     @Test
-    void testLineAllFalsePoints() {
-        Line n = new Line(countOfPerson, a -> false);
-        assertThat(n.getPoints()).containsExactly(false, false, false, false, false);
-    }
-
-    @Test
-    void testNotSequenceTruePoints() {
+    void testNotTruePointsInOrderWhenRandomBoolean() {
         Line n = new Line(countOfPerson, new RandomBooleanFunction());
         assertThat(n.getPoints()).doesNotContainSequence(true, true);
     }
-
-
 }
