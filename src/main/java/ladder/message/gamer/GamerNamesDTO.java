@@ -1,6 +1,8 @@
 package ladder.message.gamer;
 
-public class GamerNamesDTO {
+import ladder.core.message.Request;
+
+public class GamerNamesDTO implements Request {
     private final String gamerNames;
     
     public GamerNamesDTO(String gamerNames) {

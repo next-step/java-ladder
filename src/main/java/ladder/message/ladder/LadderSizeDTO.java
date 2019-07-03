@@ -1,6 +1,8 @@
 package ladder.message.ladder;
 
-public class LadderSizeDTO {
+import ladder.core.message.Request;
+
+public class LadderSizeDTO implements Request {
     private final int inputNumber;
     
     public LadderSizeDTO(int inputNumber) {

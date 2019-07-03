@@ -7,6 +7,7 @@ import ladder.domain.reward.Rewards;
 import ladder.domain.reward.info.Reward;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ public class Gamers {
     private final Map<Gamer, Integer> gamers;
     
     private Gamers(String names) {
-        gamers = new HashMap<>();
+        gamers = new LinkedHashMap<>();
         String[] gamerNames = names.split(DELIMITER);
         IntStream.range(START_NUMBER, gamerNames.length)
           .forEach(index -> gamers.put(Gamer.of(gamerNames[index]), index));
@@ -39,13 +40,13 @@ public class Gamers {
           .collect(Collectors.toList());
     }
     
-    public void findReward(Ladder ladder, Rewards rewards) {
-        if (ladder == null || ladder.getSize() != gamers.size()) {
-            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_LADDER.message());
-        }
-        
-        if (rewards == null || rewards.getSize() != gamers.size()) {
-            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_REWARD.message());
-        }
-    }
+//    public void findReward(Ladder ladder, Rewards rewards) {
+//        if (ladder == null || ladder.getSize() != gamers.size()) {
+//            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_LADDER.message());
+//        }
+//        
+//        if (rewards == null || rewards.getSize() != gamers.size()) {
+//            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_REWARD.message());
+//        }
+//    }
 }

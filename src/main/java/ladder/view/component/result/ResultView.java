@@ -4,8 +4,8 @@ import ladder.controller.LadderController;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.output.Printer;
 import ladder.domain.ladder.Ladder;
-import ladder.core.message.Message;
-import ladder.message.result.ResultMessage;
+import ladder.core.message.Response;
+import ladder.message.result.ResultResponse;
 import ladder.view.component.View;
 import ladder.view.model.LadderLines;
 
@@ -27,11 +27,11 @@ public class ResultView implements ViewImpl {
     }
     
     @Override
-    public void render(Message message) {
-        if (!message.isResultStep()) {
+    public void render(Response response) {
+        if (!response.isResultStep()) {
             return;
         }
-        ResultMessage resultMessage = (ResultMessage) message;
+        ResultResponse resultMessage = (ResultResponse) response;
         view.print(RESULT_MESSAGE);
         view.print(getItemExpression(resultMessage.getGamerNames()));
         printLadder(resultMessage.getLadder());

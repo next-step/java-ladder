@@ -1,6 +1,8 @@
 package ladder.message.reward;
 
-public class RewardDTO {
+import ladder.core.message.Request;
+
+public class RewardDTO implements Request {
     private String reward;
     
     public RewardDTO(String reward) {

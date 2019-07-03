@@ -1,7 +1,7 @@
 package ladder.view.component.gamer;
 
 import ladder.controller.LadderController;
-import ladder.core.message.Message;
+import ladder.core.message.Response;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
@@ -21,8 +21,8 @@ public class GamerView implements ViewImpl {
     }
     
     @Override
-    public void render(Message message) {
-        if (!message.isGamerStep()) {
+    public void render(Response response) {
+        if (!response.isGamerStep()) {
             return;
         }
         view.print(ANSWER);

@@ -1,6 +1,6 @@
 package ladder.core.message;
 
-public abstract class Message {
+public abstract class Response {
     public boolean isGamerStep() {
         return false;
     }

@@ -1,8 +1,8 @@
 package ladder.message.gamer;
 
-import ladder.core.message.Message;
+import ladder.core.message.Response;
 
-public class GamerMessage extends Message {
+public class GamerResponse extends Response {
     @Override
     public boolean isGamerStep() {
         return true;

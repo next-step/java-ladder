@@ -4,6 +4,7 @@ import ladder.domain.reward.info.Reward;
 import ladder.domain.reward.message.ErrorMessages;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ import java.util.stream.IntStream;
 public class Rewards {
     private final static String SPLIT_REGEX = ",";
     private final static int MIN_REWARD_SIZE = 1;
-    private final static int START_NUMBER = 1;
+    private final static int START_NUMBER = 0;
     
     private final Map<Integer, Reward> rewards;
     
@@ -24,7 +25,7 @@ public class Rewards {
         if (rewards.length != rewardSize) {
             throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_COUNT.message());
         }
-        this.rewards = new HashMap<>();
+        this.rewards = new LinkedHashMap<>();
         IntStream.range(START_NUMBER, rewards.length)
           .forEach(index -> this.rewards.put(index, Reward.from(rewards[index])));
     }

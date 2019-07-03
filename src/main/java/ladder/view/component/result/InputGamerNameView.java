@@ -1,19 +1,18 @@
-package ladder.view.component.reward;
+package ladder.view.component.result;
 
 import ladder.core.controller.Controller;
 import ladder.core.message.Response;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
-import ladder.message.reward.RewardDTO;
 import ladder.view.component.View;
 
-public class RewardView implements ViewImpl {
-    private static final String ANSWER = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+public class InputGamerNameView implements ViewImpl {
+    public final static String ANSWER = "결과를 보고 싶은 사람은?";
     
     private View view;
     
-    public RewardView(Controller controller, Printer printer, Inputor inputor) {
+    public InputGamerNameView(Controller controller, Printer printer, Inputor inputor) {
         view = new View.Builder(controller)
           .setPrinter(printer)
           .setInputor(inputor)
@@ -22,10 +21,7 @@ public class RewardView implements ViewImpl {
     
     @Override
     public void render(Response response) {
-        if (!response.isRewardStep()) {
-            return;
-        }
         view.print(ANSWER);
-        view.pushDataToController(new RewardDTO(view.inputString()));
+        view.pushDataToController(view.inputString());
     }
 }

@@ -15,7 +15,7 @@ class LineTest {
         int maxCellsSize = 5;
         
         //When
-        Line line = Line.from(maxCellsSize);
+        Line line = Line.from(maxCellsSize, 0);
         int cellsSize = line.getSize();
         
         //Then
@@ -30,7 +30,7 @@ class LineTest {
         
         //Then
         Assertions.assertThatIllegalArgumentException()
-          .isThrownBy(() -> Line.from(maxCellSize))
+          .isThrownBy(() -> Line.from(maxCellSize, 0))
           .withMessage(ErrorMessages.CANT_INPUT_LESS_THAN_ZERO.message());
     }
     
@@ -40,10 +40,10 @@ class LineTest {
     void makeCellsDuplicateTest() {
         //Given
         int cellsSize = 5;
-        Line beforeLine = Line.from(cellsSize);
+        Line beforeLine = Line.from(cellsSize, 0);
         
         //When
-        Line afterLine = Line.from(beforeLine, false);
+        Line afterLine = Line.from(beforeLine, false, 0);
         
         //Then
         boolean same = false;
@@ -66,8 +66,8 @@ class LineTest {
     void makeCellsLastTest() {
         //Given
         int cellsSize = 5;
-        Line beforeLine = Line.from(cellsSize);
-        Line afterLine = Line.from(beforeLine, true);
+        Line beforeLine = Line.from(cellsSize, 0);
+        Line afterLine = Line.from(beforeLine, true, 0);
         
         //When
         boolean noneMatchRightConnected = afterLine.getStream()
@@ -75,6 +75,21 @@ class LineTest {
         
         //Then
         Assertions.assertThat(noneMatchRightConnected).isTrue();
+    }
+    
+    @Test
+    @DisplayName("[success] 생성시 startPoint 가 맞게 들어간다.")
+    void test() {
+        //Given
+        int cellSize = 5;
+        
+        //When
+        Line lineZero = Line.from(cellSize, 0);
+        Line lineOne = Line.from(cellSize, 1);
+        
+        //Then
+        Assertions.assertThat(lineZero.isStartPointAt(0)).isTrue();
+        Assertions.assertThat(lineOne.isStartPointAt(1)).isTrue();
     }
     
 }
