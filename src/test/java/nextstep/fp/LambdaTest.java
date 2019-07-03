@@ -30,7 +30,7 @@ public class LambdaTest {
 	public void runThread() throws Exception {
 		Lambda.runThread();
 	}
-	
+
 	@Test
 	public void sumAll() throws Exception {
 		int sum = Lambda.sumAll(numbers);
