@@ -1,15 +1,15 @@
 package com.jaeyeonling.ladder;
 
 import com.jaeyeonling.ladder.domain.GameInfo;
+import com.jaeyeonling.ladder.domain.GameResult;
 import com.jaeyeonling.ladder.domain.ladder.*;
 import com.jaeyeonling.ladder.domain.line.*;
-import com.jaeyeonling.ladder.domain.user.User;
-import com.jaeyeonling.ladder.domain.user.Username;
 import com.jaeyeonling.ladder.domain.user.Users;
-import com.jaeyeonling.ladder.exception.NotFoundUserException;
 import com.jaeyeonling.ladder.view.console.ConsoleInputView;
 import com.jaeyeonling.ladder.view.console.ConsoleOutputView;
 import com.jaeyeonling.ladder.view.format.Formatters;
+
+import java.util.Objects;
 
 public class Application {
 
@@ -43,38 +43,40 @@ public class Application {
         ConsoleOutputView.print(Formatters.ladderGameFormatter.format(ladderGame));
         ConsoleOutputView.print(Formatters.ladderRewordsFormatter.format(ladderRewords));
 
+        final GameResult gameResult = ladderGame.play();
+
         while (true) {
-            try {
-                showResult(ladderGame);
-            } catch (final NotFoundUserException e) {
-                ConsoleOutputView.print(e.getMessage());
+            final String usernameOfWantReword = ConsoleInputView.readUsernameOfWantReword();
+            if (gameResult.isShowAll(usernameOfWantReword)) {
+                showAll(gameResult);
+                break;
             }
+
+            showSingle(gameResult, usernameOfWantReword);
         }
     }
 
-    private void showResult(final LadderGame ladderGame) {
-        final String usernameOfWantReword = ConsoleInputView.readUsernameOfWantReword();
-        if (ladderGame.isShowAll(usernameOfWantReword)) {
-            ConsoleOutputView.printResult();
-            showAll(ladderGame);
-
-            System.exit(0);
+    private void showSingle(final GameResult gameResult,
+                            final String usernameOfWantReword) {
+        final LadderReword matchingReword = gameResult.findMatchingReword(usernameOfWantReword);
+        if (Objects.isNull(matchingReword)) {
+            ConsoleOutputView.printUserNotFound(usernameOfWantReword);
+            return;
         }
-
-        final LadderReword matchingReword = ladderGame.findMatchingReword(usernameOfWantReword);
 
         ConsoleOutputView.printResult();
         ConsoleOutputView.print(Formatters.ladderRewordFormatter.format(matchingReword));
     }
 
-    private void showAll(final LadderGame ladderGame) {
-        ladderGame.userStream()
-                .map(User::getUsername)
-                .map(Username::getUsername)
-                .forEach(username -> {
-                    final LadderReword matchingReword = ladderGame.findMatchingReword(username);
-                    final String formattedMatchingReword = Formatters.ladderRewordFormatter.format(matchingReword);
+    private void showAll(final GameResult gameResult) {
+        ConsoleOutputView.printResult();
 
+        gameResult.stream()
+                .forEach(rewordOfUsername -> {
+                    final String username = rewordOfUsername.getKey();
+                    final LadderReword ladderReword = rewordOfUsername.getValue();
+
+                    final String formattedMatchingReword = Formatters.ladderRewordFormatter.format(ladderReword);
                     ConsoleOutputView.printMatchingReword(username, formattedMatchingReword);
                 });
     }

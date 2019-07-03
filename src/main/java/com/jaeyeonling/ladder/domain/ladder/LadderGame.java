@@ -1,16 +1,19 @@
 package com.jaeyeonling.ladder.domain.ladder;
 
 import com.jaeyeonling.ladder.domain.GameInfo;
+import com.jaeyeonling.ladder.domain.GameResult;
 import com.jaeyeonling.ladder.domain.line.Lines;
 import com.jaeyeonling.ladder.domain.point.Point;
 import com.jaeyeonling.ladder.domain.user.User;
+import com.jaeyeonling.ladder.domain.user.Username;
 
-import java.util.stream.Stream;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
     private static final int START_LINE = 0;
-    static final String FINISH_CHARACTER = "all";
 
     private final GameInfo gameInfo;
     private final Lines lines;
@@ -30,15 +33,16 @@ public class LadderGame {
         return lines;
     }
 
-    public boolean isShowAll(final String usernameOfWantReword) {
-        return FINISH_CHARACTER.equalsIgnoreCase(usernameOfWantReword);
+    public GameResult play() {
+        final Map<String, LadderReword> rewordOfUsername = gameInfo.userStream()
+                .map(User::getUsername)
+                .map(Username::getUsername)
+                .collect(Collectors.toMap(Function.identity(), this::findMatchingReword));
+
+        return GameResult.of(rewordOfUsername);
     }
 
-    public Stream<User> userStream() {
-        return gameInfo.userStream();
-    }
-
-    public LadderReword findMatchingReword(final String usernameOfMatchReword) {
+    LadderReword findMatchingReword(final String usernameOfMatchReword) {
         final int indexOfLadder = gameInfo.findUserIndexByUsername(usernameOfMatchReword);
         final int indexOfReword = ride(indexOfLadder);
 

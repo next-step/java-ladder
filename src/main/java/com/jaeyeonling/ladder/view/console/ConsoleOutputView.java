@@ -1,5 +1,7 @@
 package com.jaeyeonling.ladder.view.console;
 
+import com.jaeyeonling.ladder.exception.NotFoundUserException;
+
 import java.io.PrintStream;
 
 public final class ConsoleOutputView {
@@ -26,6 +28,10 @@ public final class ConsoleOutputView {
     public static void printMatchingReword(final String username,
                                            final String matchingReword) {
         print(String.format(MATCHING_RESULT_FORMAT, username, matchingReword));
+    }
+
+    public static void printUserNotFound(final String usernameOfWantReword) {
+        print(String.format(NotFoundUserException.ERROR_MESSAGE, usernameOfWantReword));
     }
 
     public static void print(final Object message) {
