@@ -23,9 +23,9 @@ public class LadderTest {
     @Test
     @DisplayName("주어진 lineQuantity 만큼 level 마다 라인이 생긴다")
     void constructor() {
-        HorizontalLines horizontalLines = ladder.horizontalLinesByLevel(0);
+        Lines lines = ladder.linesByLevel(0);
 
-        assertThat(horizontalLines.size()).isEqualTo(lineQuantity);
+        assertThat(lines.size()).isEqualTo(lineQuantity);
     }
 
     @Test
@@ -37,13 +37,13 @@ public class LadderTest {
     @Test
     @DisplayName("HorizontalLinesList 로부터 Ladder 를 생성한다")
     void of() {
-        List<HorizontalLines> horizontalLinesList = new ArrayList<>();
-        horizontalLinesList.add(HorizontalLines.of(() -> Arrays.asList(false, true, false, true)));
+        List<Lines> linesList = new ArrayList<>();
+        linesList.add(Lines.of(() -> Arrays.asList(false, true, false, true)));
 
-        ladder = Ladder.of(horizontalLinesList);
-        HorizontalLine trueLine = HorizontalLine.of(true);
-        HorizontalLine falseLine = HorizontalLine.of(false);
+        ladder = Ladder.of(linesList);
+        Line trueLine = Line.of(true);
+        Line falseLine = Line.of(false);
 
-        assertThat(ladder.horizontalLinesByLevel(0).getHorizontalLines()).containsExactly(falseLine, trueLine, falseLine, trueLine);
+        assertThat(ladder.linesByLevel(0).getLines()).containsExactly(falseLine, trueLine, falseLine, trueLine);
     }
 }

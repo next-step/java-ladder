@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class HorizontalLineTest {
+class LineTest {
     @Test
     @DisplayName("LINE_TRUE 와 LINE_FALSE 는 각각 맞는 값을 갖고 있다.")
     void constructor() {
-        assertThat(HorizontalLine.of(true).hasLine()).isTrue();
-        assertThat(HorizontalLine.of(false).hasLine()).isFalse();
+        assertThat(Line.of(true).hasLine()).isTrue();
+        assertThat(Line.of(false).hasLine()).isFalse();
     }
 }

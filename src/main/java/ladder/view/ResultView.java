@@ -7,8 +7,8 @@ import ladder.domain.Names;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    public static final String HORIZONTAL_LINE_EXIST_TEXT;
-    public static final String HORIZONTAL_LINE_NOT_EXIST_TEXT;
+    public static final String LINE_EXIST_TEXT;
+    public static final String LINE_NOT_EXIST_TEXT;
 
     static {
         String existText = "";
@@ -17,8 +17,8 @@ public class ResultView {
             existText += "-";
             notExistText += " ";
         }
-        HORIZONTAL_LINE_EXIST_TEXT = existText;
-        HORIZONTAL_LINE_NOT_EXIST_TEXT = notExistText;
+        LINE_EXIST_TEXT = existText;
+        LINE_NOT_EXIST_TEXT = notExistText;
     }
 
     public static String getDefaultResultText() {
@@ -34,9 +34,9 @@ public class ResultView {
 
         String result = "";
         for (int i = 0; i < ladder.height(); i++) {
-            result += ladder.horizontalLinesByLevel(i).getHorizontalLines()
+            result += ladder.linesByLevel(i).getLines()
                     .stream()
-                    .map(horizontalLine -> horizontalLine.hasLine() ? HORIZONTAL_LINE_EXIST_TEXT : HORIZONTAL_LINE_NOT_EXIST_TEXT)
+                    .map(horizontalLine -> horizontalLine.hasLine() ? LINE_EXIST_TEXT : LINE_NOT_EXIST_TEXT)
                     .collect(Collectors.joining("|"));
             result += "|\n";
         }
