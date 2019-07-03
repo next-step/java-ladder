@@ -1,0 +1,60 @@
+package ladder.domain;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+class HorizontalStepTest {
+
+
+	int sampleRailCount = 5;
+
+	StepProvider sampleStepProvider;
+
+
+	@BeforeEach
+	void arrangeSample(){
+		this.sampleStepProvider = new PredefinedStepProvider(Arrays.asList(true, false, false, true));
+	}
+
+	@Test
+	void createNormalRow() {
+
+		HorizontalStep row = new HorizontalStep(sampleRailCount, sampleStepProvider);
+
+		assertThat(row.hasLeftStepAt(0)).isFalse();	// 왼쪽 첫번째는 완쪽 계단을 가질 수 없다.
+		assertThat(row.hasRightStepAt(0)).isTrue();
+
+		assertThat(row.hasLeftStepAt(1)).isTrue();
+		assertThat(row.hasRightStepAt(1)).isFalse();
+
+		assertThat(row.hasLeftStepAt(2)).isFalse();
+		assertThat(row.hasRightStepAt(2)).isFalse();
+
+		assertThat(row.hasLeftStepAt(3)).isFalse();
+		assertThat(row.hasRightStepAt(3)).isTrue();
+
+		assertThat(row.hasLeftStepAt(4)).isTrue();
+		assertThat(row.hasRightStepAt(4)).isFalse();
+
+	}
+
+	@DisplayName("연속적으로 가로 계단을 공급하면 뒤에 추가되는 것은 무시")
+	@Test
+	void createWithContinuedStepRow() {
+
+		int railCount = 3;
+
+		HorizontalStep row = new HorizontalStep(5, new PredefinedStepProvider(Arrays.asList(true, true)));
+
+		assertThat(row.hasLeftStepAt(1)).isTrue();
+		assertThat(row.hasRightStepAt(1)).isFalse();
+
+	}
+
+}
