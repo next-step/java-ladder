@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Position {
 
     static final int MIN_NUMBER_OF_POSITION = 0;
+    static final int MOVING_DISTANCE = 1;
 
     static final Position MIN_OF_POSITION = Position.of(MIN_NUMBER_OF_POSITION);
 
@@ -28,11 +29,11 @@ public class Position {
     }
 
     Position moveForward() {
-        return Position.of(position + 1);
+        return Position.of(position + MOVING_DISTANCE);
     }
 
     Position moveBackward() {
-        return Position.of(position - 1);
+        return Position.of(position - MOVING_DISTANCE);
     }
 
     @Override

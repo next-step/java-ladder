@@ -27,7 +27,7 @@ public class Line {
     }
 
     Position move(Position position) {
-        return points.get(position.getPosition()).move(position);
+        return points.get(position.getPosition()).move();
     }
 
     public List<Point> getPoints() {

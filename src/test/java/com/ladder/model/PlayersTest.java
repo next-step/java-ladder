@@ -25,13 +25,12 @@ class PlayersTest {
 
         // then
         assertThat(result.getPlayers()).contains(ofPlayer("a"),
-                                                 ofPlayer("b"),
-                                                 ofPlayer("c"),
-                                                 ofPlayer("d"),
-                                                 ofPlayer("e"));
+                ofPlayer("b"),
+                ofPlayer("c"),
+                ofPlayer("d"),
+                ofPlayer("e"));
         assertThat(result.getPlayers()).hasSize(expectedSize);
     }
-
 
 
     @DisplayName("플레이어가 " + MIN_NUMBER_OF_PLAYERS + "미만일 시 생성에 실패한다")

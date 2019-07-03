@@ -1,8 +1,9 @@
 package com.ladder.model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toMap;
 
 public class LadderGame {
 
@@ -17,17 +18,9 @@ public class LadderGame {
     }
 
     public PlayReport play(Result result) {
-        Map<Player, Reward> playingResults = new HashMap<>();
-        for (int index = 0; index < result.countOfPlayers(); index++) {
-            Position position = Position.of(index);
-
-            Player player = result.findByPlayer(position);
-            Position endPoint = ladder.playByOnePosition(position);
-            Reward reward = result.findByReward(endPoint);
-
-            playingResults.put(player, reward);
-        }
-        return PlayReport.of(playingResults);
+        return PlayReport.of(IntStream.range(0, result.countOfPlayers())
+                .mapToObj(Position::of)
+                .collect(toMap(result::findByPlayer, result::findByReward)));
     }
 
     public List<Line> getLadder() {

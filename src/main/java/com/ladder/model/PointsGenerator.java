@@ -2,9 +2,10 @@ package com.ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
-import static com.ladder.model.Point.NO_MOVABLE;
-import static com.ladder.model.Point.POINT_LEFT;
+import static com.ladder.model.Direction.DOWN;
+import static com.ladder.model.Direction.RIGHT;
 
 public class PointsGenerator {
 
@@ -13,28 +14,31 @@ public class PointsGenerator {
     List<Point> generate(int countByPlayers, PointStrategy pointStrategy) {
         generateFirst(pointStrategy);
         generateMiddle(countByPlayers, pointStrategy);
-        generateLast(pointStrategy);
+        generateLast();
         return points;
     }
 
     private void generateFirst(PointStrategy pointStrategy) {
-        points.add(Point.ofFirst(pointStrategy.generate()));
+        Direction direction = pointStrategy.generate() ? RIGHT : DOWN;
+        points.add(Point.ofFirst(direction));
     }
 
     private void generateMiddle(int countByPlayers, PointStrategy pointStrategy) {
-        for (int i = 0; i < countByPlayers - 2; i++) {
-            points.add(generateNextPoint(points.get(i), pointStrategy));
-        }
+        IntStream.range(0, countByPlayers - 2)
+                .mapToObj(index -> generateNextPoint(points.get(index), pointStrategy))
+                .forEach(points::add);
     }
 
     private Point generateNextPoint(Point before, PointStrategy pointStrategy) {
         if (before.isRight()) {
-            return POINT_LEFT;
+            return before.next(Direction.LEFT);
         }
-        return Point.of(NO_MOVABLE, pointStrategy.generate());
+        Direction direction = pointStrategy.generate() ? RIGHT : DOWN;
+        return before.next(direction);
     }
 
-    private void generateLast(PointStrategy pointStrategy) {
-        points.add(Point.of(pointStrategy.generate(), NO_MOVABLE));
+    private void generateLast() {
+        Point lastBeforePoint = points.get(points.size() - 1);
+        points.add(lastBeforePoint.last());
     }
 }
