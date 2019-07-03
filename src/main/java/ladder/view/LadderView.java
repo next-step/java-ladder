@@ -36,6 +36,7 @@ public class LadderView {
     }
 
     public void printGamer(Gamer gamer) {
+        //FIXME
         List<String> names = gamer.getNames();
         for (String name : names) {
             if (name.length() < Gamer.MAX_GAMER_NAME_LENGTH) {
@@ -51,6 +52,7 @@ public class LadderView {
     }
 
     public void printLadder(Ladder ladder) {
+        //FIXME
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
             for (int index = 0; index < Gamer.MAX_GAMER_NAME_LENGTH; index++) {

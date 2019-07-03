@@ -10,16 +10,22 @@ public class GamerTest {
 
     @Test
     void 정상참여자_두명구하기() {
-        Gamer gamer = new Gamer(GAMER_NAMES);
+        Gamer gamer = Gamer.newGamers(GAMER_NAMES);
         assertThat(gamer.getNames().size()).isEqualTo(4);
     }
 
     @Test
     void 비정상참여자_IllegalArgumentException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Gamer gamerOverLength = new Gamer("pobi,honuxu");
-            Gamer gamerIsBlank = new Gamer("pobi, ");
-            Gamer gamerOnlyOne = new Gamer("pobo");
+            Gamer gamerOverLength = Gamer.newGamers("pobi,honuxu");
+            Gamer gamerIsBlank = Gamer.newGamers("pobi, ");
+            Gamer gamerOnlyOne = Gamer.newGamers("pobo");
         });
+    }
+
+    @Test
+    void 게이머이름출력() {
+        Gamer gamer = Gamer.newGamers("pobi,honux,crong,jk");
+        gamer.getNames().stream().forEach(System.out::println);
     }
 }

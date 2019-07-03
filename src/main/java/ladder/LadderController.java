@@ -9,7 +9,7 @@ public class LadderController {
         LadderView view = new LadderView();
         view.printGamerNameGuide();
         String names = view.getInput();
-        Gamer gamer = new Gamer(names);
+        Gamer gamer = Gamer.newGamers(names);
 
         view.printLadderHeightGuide();
         String height = view.getInput();
