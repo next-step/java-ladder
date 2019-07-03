@@ -34,9 +34,9 @@ public class Application {
         final LadderResults ladderResults = LadderResults.ofSeparator(ConsoleInputView.readLadderResults());
 
         final GameInfo gameInfo = GameInfo.withUsersAndLadderResults(users, ladderResults);
-
         final HeightOfLadder heightOfLadder = HeightOfLadder.valueOf(ConsoleInputView.readLadderHeight());
-        final LadderGame ladderGame = ladderGameGenerator.generate(users, heightOfLadder);
+
+        final LadderGame ladderGame = ladderGameGenerator.generate(gameInfo, heightOfLadder);
 
         ConsoleOutputView.printLadderResult();
         ConsoleOutputView.print(Formatters.usersFormatter.format(users));
@@ -45,36 +45,34 @@ public class Application {
 
         while (true) {
             try {
-                showResult(gameInfo, ladderGame);
+                showResult(ladderGame);
             } catch (final NotFoundUserException e) {
                 ConsoleOutputView.print(e.getMessage());
             }
         }
     }
 
-    private void showResult(final GameInfo gameInfo,
-                            final LadderGame ladderGame) {
+    private void showResult(final LadderGame ladderGame) {
         final String usernameOfWantResult = ConsoleInputView.readUsernameOfWantResult();
-        if (gameInfo.isShowAll(usernameOfWantResult)) {
+        if (ladderGame.isShowAll(usernameOfWantResult)) {
             ConsoleOutputView.printResult();
-            showAll(ladderGame, gameInfo);
+            showAll(ladderGame);
 
             System.exit(0);
         }
 
-        final LadderResult winningResult = gameInfo.findWinningResult(usernameOfWantResult, ladderGame);
+        final LadderResult winningResult = ladderGame.findWinningResult(usernameOfWantResult);
 
         ConsoleOutputView.printResult();
         ConsoleOutputView.print(Formatters.ladderResultFormatter.format(winningResult));
     }
 
-    private void showAll(final LadderGame ladderGame,
-                         final GameInfo gameInfo) {
-        gameInfo.userStream()
+    private void showAll(final LadderGame ladderGame) {
+        ladderGame.userStream()
                 .map(User::getUsername)
                 .map(Username::getUsername)
                 .forEach(username -> {
-                    final LadderResult winningResult = gameInfo.findWinningResult(username, ladderGame);
+                    final LadderResult winningResult = ladderGame.findWinningResult(username);
                     final String formattedWinningResult = Formatters.ladderResultFormatter.format(winningResult);
 
                     ConsoleOutputView.printMatchingResult(username, formattedWinningResult);

@@ -1,5 +1,6 @@
 package com.jaeyeonling.ladder.domain;
 
+import com.jaeyeonling.ladder.domain.ladder.LadderGame;
 import com.jaeyeonling.ladder.domain.ladder.LadderResults;
 import com.jaeyeonling.ladder.domain.line.Line;
 import com.jaeyeonling.ladder.domain.line.Lines;
@@ -39,4 +40,5 @@ public interface Fixture {
     Lines allStraightLines = Lines.of(rawAllStraightLines);
 
     GameInfo gameInfo = GameInfo.withUsersAndLadderResults(Fixture.multiUsers, Fixture.ladderResults);
+    LadderGame ladderGame = LadderGame.of(gameInfo, allStraightLines);
 }

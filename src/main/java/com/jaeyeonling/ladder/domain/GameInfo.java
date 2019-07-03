@@ -1,8 +1,8 @@
 package com.jaeyeonling.ladder.domain;
 
-import com.jaeyeonling.ladder.domain.ladder.LadderGame;
 import com.jaeyeonling.ladder.domain.ladder.LadderResult;
 import com.jaeyeonling.ladder.domain.ladder.LadderResults;
+import com.jaeyeonling.ladder.domain.user.CountOfUsers;
 import com.jaeyeonling.ladder.domain.user.User;
 import com.jaeyeonling.ladder.domain.user.Users;
 import com.jaeyeonling.ladder.exception.NotEqualsUserSizeAndResultSizeException;
@@ -10,8 +10,6 @@ import com.jaeyeonling.ladder.exception.NotEqualsUserSizeAndResultSizeException;
 import java.util.stream.Stream;
 
 public class GameInfo {
-
-    static final String FINISH_CHARACTER = "all";
 
     private final Users users;
     private final LadderResults ladderResults;
@@ -31,19 +29,19 @@ public class GameInfo {
         return new GameInfo(users, ladderResults);
     }
 
-    public boolean isShowAll(final String usernameOfWantResult) {
-        return FINISH_CHARACTER.equalsIgnoreCase(usernameOfWantResult);
-    }
-
-    public LadderResult findWinningResult(final String usernameOfWantResult,
-                                          final LadderGame ladderGame) {
-        final int indexOfLadder = users.findIndexByUsername(usernameOfWantResult);
-        final int indexOfResult = ladderGame.ride(indexOfLadder);
-
-        return ladderResults.findByIndex(indexOfResult);
-    }
-
     public Stream<User> userStream() {
         return users.stream();
+    }
+
+    public CountOfUsers getCountOfUsers() {
+        return users.getCountOfUsers();
+    }
+
+    public int findUserIndexByUsername(final String usernameOfWantResult) {
+        return users.findIndexByUsername(usernameOfWantResult);
+    }
+
+    public LadderResult findLadderResultByIndex(final int indexOfResult) {
+        return ladderResults.findByIndex(indexOfResult);
     }
 }

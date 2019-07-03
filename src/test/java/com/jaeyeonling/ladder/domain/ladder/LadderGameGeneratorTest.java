@@ -32,7 +32,7 @@ class LadderGameGeneratorTest {
         final HeightOfLadder heightOfLadder = HeightOfLadder.valueOf(10);
 
         // when
-        final LadderGame ladderGame = ladderGameGenerator.generate(Fixture.multiUsers, heightOfLadder);
+        final LadderGame ladderGame = ladderGameGenerator.generate(Fixture.gameInfo, heightOfLadder);
 
         // then
         assertThat(ladderGame).isNotNull();
