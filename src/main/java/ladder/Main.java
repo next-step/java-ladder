@@ -10,12 +10,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String participantsNames = InputView.askParticipantNames();
-        Participants participants = new Participants(participantsNames);
-        String goalsString = InputView.askGoals();
-        Goals goals = new Goals(goalsString, participants.size());
-        int height = InputView.askHeight();
-        Ladder ladder = new Ladder(LadderInfo.of(participants.size(), height));
+        Participants participants = new Participants(InputView.askParticipantNames());
+        Goals goals = new Goals( InputView.askGoals(), participants.size());
+        Ladder ladder = new Ladder(LadderInfo.of(participants.size(), InputView.askHeight()));
 
         ResultView.printResultMessage();
         ResultView.printNewLine();
