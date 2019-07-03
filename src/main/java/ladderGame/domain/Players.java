@@ -2,14 +2,15 @@ package ladderGame.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
     private final List<Player> players;
 
-    private Players(List<String> players) {
-        this.players = players.stream()
-                .map(Player::of)
+    private Players(List<String> playerNames) {
+        this.players = IntStream.range(0, playerNames.size())
+                .mapToObj( index -> Player.of(playerNames.get(index), index))
                 .collect(Collectors.toList());
     }
 
@@ -23,5 +24,9 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public void playGame(Ladder ladder) {
+        players.forEach(ladder::rideLadder);
     }
 }

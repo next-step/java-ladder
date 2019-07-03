@@ -1,6 +1,6 @@
 package ladderGame;
 
-import ladderGame.domain.LadderGame;
+import ladderGame.domain.Ladder;
 import ladderGame.domain.Players;
 import ladderGame.view.InputView;
 import ladderGame.view.ResultView;
@@ -11,10 +11,12 @@ public class LadderApplication {
 
         Players players = InputView.aksPlayers();
         int height = InputView.askLadderHeight();
+        Ladder ladder = Ladder.of(players.size(), height);
 
-        LadderGame ladderGame = new LadderGame(players, height);
+        players.playGame(ladder);
 
-        ResultView.drawLadderAndPlayer(players, ladderGame.getLadder());
+        ResultView.drawLadderAndPlayer(players, ladder);
 
+        System.out.println();
     }
 }
