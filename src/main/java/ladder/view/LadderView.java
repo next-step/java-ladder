@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.Gamer;
 import ladder.domain.Ladder;
-import ladder.domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class LadderView {
         printGuideStr(RUN_RESULT);
     }
 
-    public <T, R> List<R> map(List<T> list, Function<T, R> function) {
+    private <T, R> List<R> map(List<T> list, Function<T, R> function) {
         List<R> result = new ArrayList<>();
         for (T t : list) {
             result.add(function.apply(t));
@@ -51,8 +50,7 @@ public class LadderView {
     }
 
     public void printGamer(Gamer gamer) {
-        List<String> names = gamer.getNames();
-        List<String> resultNames = names.stream()
+        List<String> resultNames = gamer.getNames().stream()
                 .map(t -> {
                     for (int i=t.length(); i < Gamer.MAX_GAMER_NAME_LENGTH; i++) {
                         t = EMPTY_SYMBOL + t;
@@ -65,29 +63,27 @@ public class LadderView {
         printGuideStr("");
     }
 
-    public void printLadder(Ladder ladder) {
-        //FIXME
-        List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
-            for (int index = 0; index < Gamer.MAX_GAMER_NAME_LENGTH; index++) {
-                System.out.print(EMPTY_SYMBOL);
-            }
-            List<Boolean> points = line.getPoints();
-            for (int index = 0; index < points.size(); index++) {
-                System.out.print(LADDER_HEIGHT_SYMBOL);
-                if (points.get(index)) {
-                    for (int j = 0; j < Gamer.MAX_GAMER_NAME_LENGTH; j++) {
-                        System.out.print(LADDER_FOOTHOLD_SYMBOL);
-                    }
-                }
-                if (!points.get(index)) {
-                    for (int j = 0; j < Gamer.MAX_GAMER_NAME_LENGTH; j++) {
-                        System.out.print(EMPTY_SYMBOL);
-                    }
-                }
-            }
-            printGuideStr("");
+    private String footHoldString(FootholdStrategy footholdStrategy) {
+        String footHold = "";
+        String symbol = "";
+        if (footholdStrategy.isVisble()) {
+            symbol = LADDER_FOOTHOLD_SYMBOL;
         }
+        if (!footholdStrategy.isVisble()) {
+            symbol = EMPTY_SYMBOL;
+        }
+        for (int index = 0; index < Gamer.MAX_GAMER_NAME_LENGTH; index++) {
+            footHold += symbol;
+        }
+        return footHold;
+    }
+
+    public void printLadder(Ladder ladder) {
+        ladder.getLines().stream()
+                .map(line -> line.getPoints().stream()
+                        .map(point -> footHoldString(() -> point))
+                        .reduce(footHoldString(() -> false) , (s1, s2) -> s1 +  LADDER_HEIGHT_SYMBOL + s2))
+                .forEach(System.out::println);
     }
 
     private void printGuideStr(String guideStr) {
