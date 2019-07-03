@@ -6,12 +6,13 @@ import java.util.stream.Collectors;
 
 public class LadderMain {
     public static void main(String[] args) {
-        String inputUserNames = Input.getUsers();
-
-        String[] userNames = StringUtil.splitBySeparator(",", inputUserNames);
+        String[] userNames = Input.getUsers();
         List<User> users = Arrays.stream(userNames)
                 .map(userName -> new User(userName))
                 .collect(Collectors.toList());
+
+        String[] resultValues = Input.getResults(userNames.length);
+        List<String> results = Arrays.stream(resultValues).collect(Collectors.toList());
 
         int height = Input.getMaxHeight();
 
@@ -20,6 +21,5 @@ public class LadderMain {
         PrintResult.printUsers(users);
         PrintResult.println();
         PrintResult.printLadder(ladder);
-
     }
 }
