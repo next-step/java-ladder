@@ -21,7 +21,7 @@ public class PrizeTest {
     @Test
     void getName() {
         Prize prize = Prize.of("꽝");
-        assertThat(prize.getWin()).isEqualTo("꽝");
+        assertThat(prize.getPrize()).isEqualTo("꽝");
     }
 
     @DisplayName("결과 생성 예외상황 - null")
@@ -44,6 +44,6 @@ public class PrizeTest {
     @Test
     void createWinInteger() {
             Prize prize = Prize.of(1000);
-            assertThat(prize.getWin()).isEqualTo("1000");
+            assertThat(prize.getPrize()).isEqualTo("1000");
     }
 }
