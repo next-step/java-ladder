@@ -8,12 +8,12 @@ public class LadderController {
     public static void main(String[] args) {
         LadderView view = new LadderView();
         view.printGamerNameGuide();
-        String names = view.getInput();
-        Gamer gamer = Gamer.newGamers(names);
+        String name = view.getInput();
+        Gamer gamer = Gamer.nameOf(name);
 
         view.printLadderHeightGuide();
         String height = view.getInput();
-        Ladder ladder = new Ladder(gamer.getNames().size(), height);
+        Ladder ladder = Ladder.newLadder(gamer.getNames().size(), height);
 
         view.printRunResultGuide();
         view.printGamer(gamer);
