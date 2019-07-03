@@ -2,15 +2,14 @@ package nextstep.ladder.model;
 
 import java.util.Random;
 
-public class RandomBranchCreator implements BranchCreator {
+public class LadderPointGenerator {
     private static Random random = new Random();
 
-    RandomBranchCreator() {
+    LadderPointGenerator() {
         random = new Random();
     }
 
-    @Override
-    public boolean createBranch() {
+    public static boolean generatePoint() {
         return random.nextBoolean();
     }
 }

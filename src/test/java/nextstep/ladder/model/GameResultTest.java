@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,13 +14,28 @@ public class GameResultTest {
 
     @BeforeEach
     void setUp() {
-        Players players = new Players("Jack, Jim, Loen, Su", "1000, 꽝, 2000, 메로나열개");
+        Players players = new Players("Jack, Jim, Loen, Su", "패스, 패스, 패스, 메로나열개");
 
-        List<Line> lines = new ArrayList<>();
-        lines.add(new Line(Arrays.asList(true, false, true)));
-        lines.add(new Line(Arrays.asList(false, true, false)));
-        lines.add(new Line(Arrays.asList(true, false, true)));
-        Ladder ladder = new Ladder(lines);
+        List<Point> lines_1 = new ArrayList<>();
+        Point point_1 = Point.first(true);
+        lines_1.add(point_1);
+        lines_1.add(point_1 = point_1.next(false));
+        lines_1.add(point_1 = point_1.next(true));
+        lines_1.add(point_1.last());
+
+        List<Point> lines_2 = new ArrayList<>();
+        Point point_2 = Point.first(false);
+        lines_2.add(point_2);
+        lines_2.add(point_2 = point_2.next(true));
+        lines_2.add(point_2 = point_2.next(false));
+        lines_2.add(point_2.last());
+
+        List<LadderLine> ladderLines = new ArrayList<>();
+        ladderLines.add(new LadderLine(lines_1));
+        ladderLines.add(new LadderLine(lines_2));
+        ladderLines.add(new LadderLine(lines_1));
+
+        Ladder ladder = new Ladder(ladderLines);
 
         gameResult = new GameResult(players, ladder);
     }
@@ -48,8 +62,8 @@ public class GameResultTest {
     @Test
     void showAllResultTest() {
         assertThat(gameResult.getFormattedResult()).isEqualTo("Jack : 메로나열개\n" +
-                "Jim : 꽝\n" +
-                "Loen : 2000\n" +
-                "Su : 1000\n");
+                "Jim : 패스\n" +
+                "Loen : 패스\n" +
+                "Su : 패스\n");
     }
 }

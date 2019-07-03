@@ -15,21 +15,15 @@ public class GameResult {
         this.positions = resultLadder(ladder, players.countOfPlayer());
     }
 
-    public List<Integer> resultLadder(Ladder ladder, int countOfPerson) {
-        List<Integer> result = makeCurrentPoints(countOfPerson);
-        for (Line line : ladder.getLines()) {
-            result = line.lineResult(result);
-        }
+    private List<Integer> resultLadder(Ladder ladder, int countOfPerson) {
+        List<Integer> result = IntStream.range(0, countOfPerson)
+                .map(n -> ladder.moveToResult(n))
+                .boxed()
+                .collect(Collectors.toList());
         return result;
     }
 
-    private List<Integer> makeCurrentPoints(int countOfPerson) {
-        return IntStream.range(0, countOfPerson)
-                .boxed()
-                .collect(Collectors.toList());
-    }
-
-    public int getOnePosition(int firstPoint) {
+    protected int getOnePosition(int firstPoint) {
         return positions.get(firstPoint);
     }
 

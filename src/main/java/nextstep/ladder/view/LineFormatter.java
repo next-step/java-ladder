@@ -1,19 +1,22 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Line;
+import nextstep.ladder.model.LadderLine;
 
-public class LineFormatter implements Formatter<Line> {
+public class LineFormatter implements Formatter<LadderLine> {
+    protected static final int FIRST_ONE = 1;
     protected static final String LINE_BLANK = "     ";
     protected static final String LINE_BRANCH = "-----";
     protected static final String LINE_CONNECTOR = "|";
     protected static final String LINE_END = "\n";
 
     @Override
-    public String format(Line line) {
+    public String format(LadderLine ladderLine) {
         StringBuilder builder = new StringBuilder(LINE_BLANK + LINE_CONNECTOR);
 
-        line.getPoints().stream()
-                .map(point -> pointToString(point))
+        int last = ladderLine.getPoints().size();
+        ladderLine.getPoints().stream()
+                .skip(FIRST_ONE)
+                .map(point -> pointToString(point.showLeft()))
                 .map(string -> string + LINE_CONNECTOR)
                 .forEach(builder::append);
         builder.append(LINE_END);
@@ -21,7 +24,7 @@ public class LineFormatter implements Formatter<Line> {
         return builder.toString();
     }
 
-    private String pointToString(Boolean point) {
+    private String pointToString(boolean point) {
         if (point) {
             return LINE_BRANCH;
         }
