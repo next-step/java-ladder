@@ -14,15 +14,16 @@ public class RandomLineGenerator implements LineGenerator {
     public RandomLineGenerator(int lineQuantity) {
         this.lineQuantity = lineQuantity;
         this.lines = new ArrayList<>();
-        fillLines();
     }
 
     @Override
     public List<Boolean> getLineBase() {
+        fillLines();
         return Collections.unmodifiableList(lines);
     }
 
     private void fillLines() {
+        lines.clear();
         lines.add(false);
         IntStream.range(0, lineQuantity - 1)
                 .forEach(i -> lines.add(!hasTruePreviousIndex() && random.nextBoolean()));
