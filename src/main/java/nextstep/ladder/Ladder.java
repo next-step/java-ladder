@@ -10,7 +10,6 @@ public class Ladder {
     private List<User> users;
 
     private Ladder() {
-
     }
 
     public Ladder(int height, List<User> users, BooleanFunction booleanFunction) {
@@ -18,7 +17,6 @@ public class Ladder {
         this.lines = IntStream.range(0, height)
                 .mapToObj(i -> new Line(users.size(), booleanFunction))
                 .collect(Collectors.toList());
-
     }
 
     public List<Line> getLines() {
