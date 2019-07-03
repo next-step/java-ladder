@@ -21,8 +21,9 @@ public class HorizontalLines {
         validate();
     }
 
-    public static HorizontalLines of(List<Boolean> booleans) {
-        List<HorizontalLine> horizontalLines = booleans.stream()
+    public static HorizontalLines of(LadderGenerator ladderGenerator) {
+        List<HorizontalLine> horizontalLines = ladderGenerator.getLadderBase()
+                .stream()
                 .map(HorizontalLine::of)
                 .collect(Collectors.toList());
         return new HorizontalLines(horizontalLines);
