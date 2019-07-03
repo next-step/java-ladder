@@ -15,8 +15,11 @@ public class LadderMain {
 
         int height = Input.getMaxHeight();
 
-        Ladder ladder = new Ladder(height, users, new RandomBooleanFunction());
-        PrintLadder.print(ladder);
+        Ladder ladder = new Ladder(height, users.size(), new RandomBooleanFunction());
+
+        PrintResult.printUsers(users);
+        PrintResult.println();
+        PrintResult.printLadder(ladder);
 
     }
 }

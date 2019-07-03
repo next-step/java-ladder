@@ -1,16 +1,22 @@
 package nextstep.ladder;
 
+import java.util.List;
 import java.util.StringJoiner;
 
-public class PrintLadder {
+public class PrintResult {
     private static final int WIDTH = 5;
 
-    public static void print(Ladder ladder) {
-        ladder.getUsers()
-                .stream()
+    public static void printUsers(List<User> users) {
+        users.stream()
                 .forEach(user -> System.out.print(String.format("%5s ", user.getUserName())));
-        System.out.println();
 
+    }
+
+    public static void println() {
+        System.out.println();
+    }
+
+    public static void printLadder(Ladder ladder) {
 
         String whiteSpace = StringUtil.repeat("", WIDTH);
         String bar = "|";

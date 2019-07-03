@@ -8,23 +8,18 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private List<Line> lines = new ArrayList<>();
-    private List<User> users;
+    private int lineCount;
 
     private Ladder() {
     }
 
-    public Ladder(int height, List<User> users, BooleanFunction booleanFunction) {
-        this.users = users;
+    public Ladder(int height, int lineCount, BooleanFunction booleanFunction) {
         this.lines = IntStream.range(0, height)
-                .mapToObj(i -> new Line(users.size(), booleanFunction))
+                .mapToObj(i -> new Line(lineCount, booleanFunction))
                 .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
-    }
-
-    public List<User> getUsers() {
-        return users;
     }
 }
