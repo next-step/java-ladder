@@ -35,7 +35,7 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("HorizontalLinesList 로부터 Ladder 를 생성한다")
+    @DisplayName("List<Lines> 로부터 Ladder 를 생성한다")
     void of() {
         List<Lines> linesList = new ArrayList<>();
         linesList.add(Lines.of(() -> Arrays.asList(false, true, false, true)));
