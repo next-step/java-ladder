@@ -8,23 +8,27 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private List<Layer> layers;
+    private List<DirectionLayer> directionLayers;
 
-    private Ladder(List<Layer> layers) {
-        this.layers = layers;
+    private Ladder(List<DirectionLayer> directionLayers) {
+        this.directionLayers = directionLayers;
     }
 
     public static Ladder of(int numberOfPlayer, int height) {
         return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> Layer.ofGenerator(numberOfPlayer, new RandomRungsGenerator()))
+                .mapToObj(i -> DirectionLayer.ofGenerator(numberOfPlayer, new RandomRungsGenerator()))
                 .collect(Collectors.toList()));
     }
 
-    public List<Layer> getLayers() {
-        return layers;
+    public List<DirectionLayer> getDirectionLayers() {
+        return directionLayers;
     }
 
     public int size() {
-        return layers.size();
+        return directionLayers.size();
+    }
+
+    public void rideLadder(Player player) {
+        directionLayers.forEach(player::ride);
     }
 }
