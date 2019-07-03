@@ -24,15 +24,4 @@ class DirectionLayerTest {
             DirectionLayer.ofGenerator(5, count -> Arrays.asList(true, true, true, false));
         });
     }
-
-
-//    @Test
-//    @DisplayName("Directions")
-//    public void ditection() {
-//        DirectionLayer directionLayer = DirectionLayer.ofGenerator(5, count -> Arrays.asList(true, false, true));
-//        List<Direction> list = directionLayer.convertDirection();
-//        assertThat(list).containsExactly(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT);
-//
-//    }
-
 }

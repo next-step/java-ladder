@@ -18,15 +18,11 @@ public class Position {
         return moveDirection(directions);
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     private Position moveDirection(Direction direction) {
-        if(direction == Direction.RIGHT) {
+        if (direction == Direction.RIGHT) {
             return new Position(position + MOVE_RIGHT);
         }
-        if(direction == Direction.LEFT) {
+        if (direction == Direction.LEFT) {
             return new Position(position + MOVE_LEFT);
         }
         return new Position(position + MOVE_STRAIGHT);

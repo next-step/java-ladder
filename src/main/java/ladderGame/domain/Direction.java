@@ -2,7 +2,7 @@ package ladderGame.domain;
 
 import java.util.EnumSet;
 
-public enum  Direction {
+public enum Direction {
     RIGHT(false, true),
     LEFT(true, false),
     STRAIGHT(false, false);

@@ -10,7 +10,7 @@ public class Players {
 
     private Players(List<String> playerNames) {
         this.players = IntStream.range(0, playerNames.size())
-                .mapToObj( index -> Player.of(playerNames.get(index), index))
+                .mapToObj(index -> Player.of(playerNames.get(index), index))
                 .collect(Collectors.toList());
     }
 
