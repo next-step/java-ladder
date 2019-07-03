@@ -38,4 +38,8 @@ public class PrizeInfo {
     public Stream<Prize> stream() {
         return this.prizeInfo.stream();
     }
+
+    public Prize getPrizeByIndex(int index) {
+        return Prize.of(prizeInfo.get(index).getPrize());
+    }
 }
