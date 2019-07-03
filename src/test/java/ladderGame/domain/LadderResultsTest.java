@@ -13,7 +13,7 @@ class LadderResultsTest {
     @DisplayName("결과들과 포지션에 맞는 결과 찾기")
     void getResult() {
         LadderResults ladderResults = LadderResults.of(Arrays.asList("1000", "2000", "3000", "꽝"));
-        Result result = ladderResults.getResult(new Position(1));
-        assertThat(result.getContent()).isEqualTo("2000");
+        LadderResult ladderResult = ladderResults.getResult(new Position(1));
+        assertThat(ladderResult.getContent()).isEqualTo("2000");
     }
 }
