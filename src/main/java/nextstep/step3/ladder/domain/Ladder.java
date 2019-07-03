@@ -33,6 +33,13 @@ public class Ladder {
         return ladder.stream();
     }
 
+    public int startMove(int lineIndex) {
+        for (int i = 0; i < ladder.size(); i++) {
+            lineIndex = ladder.get(i).move(lineIndex);
+        }
+        return lineIndex;
+    }
+
     private List<LadderLine> createLadder(int line, int row) {
         List<LadderLine> ladderLines = new ArrayList<>();
         for (int i = 0; i < row; i++) {
