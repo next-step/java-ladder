@@ -4,6 +4,7 @@ import ladderGame.domain.LadderResults;
 import ladderGame.domain.Players;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class InputView {
@@ -29,10 +30,9 @@ public class InputView {
         return LadderResults.of(Arrays.asList(results.split(",")));
     }
 
-    public static int askResult() {
+    public static Optional<String> askResult() {
         System.out.println("결과를 보고 싶은 사람은?");
-        int height = scanner.nextInt();
-        scanner.nextLine();
-        return height;
+        String name = scanner.nextLine();
+        return Optional.of(name);
     }
 }
