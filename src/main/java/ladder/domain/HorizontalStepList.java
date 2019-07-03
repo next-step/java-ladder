@@ -44,6 +44,14 @@ public class HorizontalStepList {
 	}
 
 	public int getNextRailFrom(int railNumber) {
-		return 0;
+		if(this.hasLeftStepAt(railNumber)){
+			return railNumber - 1;
+		}
+
+		if(this.hasRightStepAt(railNumber)){
+			return railNumber + 1;
+		}
+
+		return railNumber;
 	}
 }
