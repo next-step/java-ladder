@@ -41,6 +41,10 @@ public class Point {
         return direction.isLeft();
     }
 
+    public boolean showRight() {
+        return direction.isRight();
+    }
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
