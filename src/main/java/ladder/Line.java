@@ -14,19 +14,27 @@ public class Line {
     }
 
     public static Line from(int numberOfPlayers) {
+        return new Line(generateBars(numberOfPlayers));
+    }
+
+    private static List<Boolean> generateBars(int numberOfPlayers) {
         Random random = new Random();
         List<Boolean> randomBars = new ArrayList<>();
 
         randomBars.add(random.nextBoolean());
         for (int i = 1; i < numberOfPlayers - 1; i++) {
             boolean previousBarExist = randomBars.get(i - 1);
-            if (previousBarExist) {
-                randomBars.add(false);
-            }else {
-                randomBars.add(random.nextBoolean());
-            }
+            addNextBar(random, randomBars, previousBarExist);
         }
-        return new Line(randomBars);
+        return randomBars;
+    }
+
+    private static void addNextBar(Random random, List<Boolean> randomBars, boolean previousBarExist) {
+        if (previousBarExist) {
+            randomBars.add(false);
+            return;
+        }
+        randomBars.add(random.nextBoolean());
     }
 
     public List<Boolean> getBars() {
