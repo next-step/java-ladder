@@ -1,32 +1,32 @@
 package com.jaeyeonling.ladder.domain;
 
-import com.jaeyeonling.ladder.domain.ladder.LadderResult;
-import com.jaeyeonling.ladder.domain.ladder.LadderResults;
+import com.jaeyeonling.ladder.domain.ladder.LadderReword;
+import com.jaeyeonling.ladder.domain.ladder.LadderRewords;
 import com.jaeyeonling.ladder.domain.user.CountOfUsers;
 import com.jaeyeonling.ladder.domain.user.User;
 import com.jaeyeonling.ladder.domain.user.Users;
-import com.jaeyeonling.ladder.exception.NotEqualsUserSizeAndResultSizeException;
+import com.jaeyeonling.ladder.exception.NotEqualsUserSizeAndRewordSizeException;
 
 import java.util.stream.Stream;
 
 public class GameInfo {
 
     private final Users users;
-    private final LadderResults ladderResults;
+    private final LadderRewords ladderRewords;
 
     private GameInfo(final Users users,
-                     final LadderResults ladderResults) {
+                     final LadderRewords ladderRewords) {
         this.users = users;
-        this.ladderResults = ladderResults;
+        this.ladderRewords = ladderRewords;
     }
 
-    public static GameInfo withUsersAndLadderResults(final Users users,
-                                                     final LadderResults ladderResults) {
-        if (users.size() != ladderResults.size()) {
-            throw new NotEqualsUserSizeAndResultSizeException(users.size(), ladderResults.size());
+    public static GameInfo withUsersAndLadderRewords(final Users users,
+                                                     final LadderRewords ladderRewords) {
+        if (users.size() != ladderRewords.size()) {
+            throw new NotEqualsUserSizeAndRewordSizeException(users.size(), ladderRewords.size());
         }
 
-        return new GameInfo(users, ladderResults);
+        return new GameInfo(users, ladderRewords);
     }
 
     public Stream<User> userStream() {
@@ -37,11 +37,11 @@ public class GameInfo {
         return users.getCountOfUsers();
     }
 
-    public int findUserIndexByUsername(final String usernameOfWantResult) {
-        return users.findIndexByUsername(usernameOfWantResult);
+    public int findUserIndexByUsername(final String usernameOfWantReword) {
+        return users.findIndexByUsername(usernameOfWantReword);
     }
 
-    public LadderResult findLadderResultByIndex(final int indexOfResult) {
-        return ladderResults.findByIndex(indexOfResult);
+    public LadderReword findLadderRewordByIndex(final int indexOfReword) {
+        return ladderRewords.findByIndex(indexOfReword);
     }
 }

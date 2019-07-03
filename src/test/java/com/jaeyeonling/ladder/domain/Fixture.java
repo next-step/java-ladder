@@ -1,7 +1,7 @@
 package com.jaeyeonling.ladder.domain;
 
 import com.jaeyeonling.ladder.domain.ladder.LadderGame;
-import com.jaeyeonling.ladder.domain.ladder.LadderResults;
+import com.jaeyeonling.ladder.domain.ladder.LadderRewords;
 import com.jaeyeonling.ladder.domain.line.Line;
 import com.jaeyeonling.ladder.domain.line.Lines;
 import com.jaeyeonling.ladder.domain.point.Direction;
@@ -32,13 +32,13 @@ public interface Fixture {
     List<Line> rawAllStraightLines = List.of(allStraightLine, allStraightLine, allStraightLine,
             allStraightLine, allStraightLine);
 
-    String rawLadderResults = "꽝,5000,꽝,5000,꽝";
+    String rawLadderRewords = "꽝,5000,꽝,5000,꽝";
 
-    LadderResults ladderResults = LadderResults.ofSeparator(rawLadderResults);
+    LadderRewords LADDER_REWORDS = LadderRewords.ofSeparator(rawLadderRewords);
 
     Lines allRightLeftLines = Lines.of(rawAllRightLeftLines);
     Lines allStraightLines = Lines.of(rawAllStraightLines);
 
-    GameInfo gameInfo = GameInfo.withUsersAndLadderResults(Fixture.multiUsers, Fixture.ladderResults);
+    GameInfo gameInfo = GameInfo.withUsersAndLadderRewords(Fixture.multiUsers, Fixture.LADDER_REWORDS);
     LadderGame ladderGame = LadderGame.of(gameInfo, allStraightLines);
 }

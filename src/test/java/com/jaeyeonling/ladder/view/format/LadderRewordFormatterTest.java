@@ -1,7 +1,6 @@
 package com.jaeyeonling.ladder.view.format;
 
-import com.jaeyeonling.ladder.domain.ladder.LadderResult;
-import com.jaeyeonling.ladder.domain.user.Username;
+import com.jaeyeonling.ladder.domain.ladder.LadderReword;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,13 +8,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderResultFormatterTest extends FormatterSupport {
+class LadderRewordFormatterTest extends FormatterSupport {
 
     @DisplayName("사다리 결과 포매터 생성에 성공한다.")
     @Test
     void should_create() {
         // then
-        assertThat(ladderResultFormatter).isNotNull();
+        assertThat(ladderRewordFormatter).isNotNull();
     }
 
     @DisplayName("포맷팅 후 입력과 같은 값이어야 한다.")
@@ -27,14 +26,14 @@ class LadderResultFormatterTest extends FormatterSupport {
             "ggg",
             "다섯글자다"
     })
-    void should_equals_formattedLadderResult_and_ladderResult(final String rawLadderResult) {
+    void should_equals_formattedLadderReword_and_ladderReword(final String rawLadderReword) {
         // given
-        final LadderResult ladderResult = LadderResult.valueOf(rawLadderResult);
+        final LadderReword ladderReword = LadderReword.valueOf(rawLadderReword);
 
         // when
-        final String formattedLadderResult = ladderResultFormatter.format(ladderResult);
+        final String formattedLadderReword = ladderRewordFormatter.format(ladderReword);
 
         // then
-        assertThat(formattedLadderResult).isEqualTo(rawLadderResult);
+        assertThat(formattedLadderReword).isEqualTo(rawLadderReword);
     }
 }

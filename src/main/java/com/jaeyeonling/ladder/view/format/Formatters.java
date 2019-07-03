@@ -1,8 +1,8 @@
 package com.jaeyeonling.ladder.view.format;
 
 import com.jaeyeonling.ladder.domain.ladder.LadderGame;
-import com.jaeyeonling.ladder.domain.ladder.LadderResult;
-import com.jaeyeonling.ladder.domain.ladder.LadderResults;
+import com.jaeyeonling.ladder.domain.ladder.LadderReword;
+import com.jaeyeonling.ladder.domain.ladder.LadderRewords;
 import com.jaeyeonling.ladder.domain.line.Line;
 import com.jaeyeonling.ladder.domain.line.Lines;
 import com.jaeyeonling.ladder.domain.point.Direction;
@@ -24,8 +24,8 @@ public final class Formatters {
     public static final Formatter<LadderGame> ladderGameFormatter =
             LadderGameFormatter.withLinesFormatter(linesFormatter);
 
-    public static final Formatter<LadderResult> ladderResultFormatter = new LadderResultFormatter();
-    public static final Formatter<LadderResults> ladderResultsFormatter =
-            LadderResultsFormatter.withLadderResultFormatter(ladderResultFormatter);
+    public static final Formatter<LadderReword> ladderRewordFormatter = new LadderRewordFormatter();
+    public static final Formatter<LadderRewords> ladderRewordsFormatter =
+            LadderRewordsFormatter.withLadderRewordFormatter(ladderRewordFormatter);
 
 }

@@ -12,7 +12,7 @@ public final class ConsoleOutputView {
 
     private ConsoleOutputView() { }
 
-    public static void printLadderResult() {
+    public static void printLadderReword() {
         newline();
         print(RESULT_LADDER_MESSAGE);
         newline();
@@ -23,9 +23,9 @@ public final class ConsoleOutputView {
         print(RESULT_MESSAGE);
     }
 
-    public static void printMatchingResult(final String username,
-                                           final String winningResult) {
-        print(String.format(MATCHING_RESULT_FORMAT, username, winningResult));
+    public static void printMatchingReword(final String username,
+                                           final String matchingReword) {
+        print(String.format(MATCHING_RESULT_FORMAT, username, matchingReword));
     }
 
     public static void print(final Object message) {

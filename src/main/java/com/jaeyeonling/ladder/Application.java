@@ -31,17 +31,17 @@ public class Application {
 
     private void start() {
         final Users users = Users.ofSeparator(ConsoleInputView.readUsers());
-        final LadderResults ladderResults = LadderResults.ofSeparator(ConsoleInputView.readLadderResults());
+        final LadderRewords ladderRewords = LadderRewords.ofSeparator(ConsoleInputView.readLadderRewords());
 
-        final GameInfo gameInfo = GameInfo.withUsersAndLadderResults(users, ladderResults);
+        final GameInfo gameInfo = GameInfo.withUsersAndLadderRewords(users, ladderRewords);
         final HeightOfLadder heightOfLadder = HeightOfLadder.valueOf(ConsoleInputView.readLadderHeight());
 
         final LadderGame ladderGame = ladderGameGenerator.generate(gameInfo, heightOfLadder);
 
-        ConsoleOutputView.printLadderResult();
+        ConsoleOutputView.printLadderReword();
         ConsoleOutputView.print(Formatters.usersFormatter.format(users));
         ConsoleOutputView.print(Formatters.ladderGameFormatter.format(ladderGame));
-        ConsoleOutputView.print(Formatters.ladderResultsFormatter.format(ladderResults));
+        ConsoleOutputView.print(Formatters.ladderRewordsFormatter.format(ladderRewords));
 
         while (true) {
             try {
@@ -53,18 +53,18 @@ public class Application {
     }
 
     private void showResult(final LadderGame ladderGame) {
-        final String usernameOfWantResult = ConsoleInputView.readUsernameOfWantResult();
-        if (ladderGame.isShowAll(usernameOfWantResult)) {
+        final String usernameOfWantReword = ConsoleInputView.readUsernameOfWantReword();
+        if (ladderGame.isShowAll(usernameOfWantReword)) {
             ConsoleOutputView.printResult();
             showAll(ladderGame);
 
             System.exit(0);
         }
 
-        final LadderResult winningResult = ladderGame.findWinningResult(usernameOfWantResult);
+        final LadderReword matchingReword = ladderGame.findMatchingReword(usernameOfWantReword);
 
         ConsoleOutputView.printResult();
-        ConsoleOutputView.print(Formatters.ladderResultFormatter.format(winningResult));
+        ConsoleOutputView.print(Formatters.ladderRewordFormatter.format(matchingReword));
     }
 
     private void showAll(final LadderGame ladderGame) {
@@ -72,10 +72,10 @@ public class Application {
                 .map(User::getUsername)
                 .map(Username::getUsername)
                 .forEach(username -> {
-                    final LadderResult winningResult = ladderGame.findWinningResult(username);
-                    final String formattedWinningResult = Formatters.ladderResultFormatter.format(winningResult);
+                    final LadderReword matchingReword = ladderGame.findMatchingReword(username);
+                    final String formattedMatchingReword = Formatters.ladderRewordFormatter.format(matchingReword);
 
-                    ConsoleOutputView.printMatchingResult(username, formattedWinningResult);
+                    ConsoleOutputView.printMatchingReword(username, formattedMatchingReword);
                 });
     }
 }

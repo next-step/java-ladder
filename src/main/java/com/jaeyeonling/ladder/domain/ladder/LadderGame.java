@@ -30,19 +30,19 @@ public class LadderGame {
         return lines;
     }
 
-    public boolean isShowAll(final String usernameOfWantResult) {
-        return FINISH_CHARACTER.equalsIgnoreCase(usernameOfWantResult);
+    public boolean isShowAll(final String usernameOfWantReword) {
+        return FINISH_CHARACTER.equalsIgnoreCase(usernameOfWantReword);
     }
 
     public Stream<User> userStream() {
         return gameInfo.userStream();
     }
 
-    public LadderResult findWinningResult(final String usernameOfWantResult) {
-        final int indexOfLadder = gameInfo.findUserIndexByUsername(usernameOfWantResult);
-        final int indexOfResult = ride(indexOfLadder);
+    public LadderReword findMatchingReword(final String usernameOfMatchReword) {
+        final int indexOfLadder = gameInfo.findUserIndexByUsername(usernameOfMatchReword);
+        final int indexOfReword = ride(indexOfLadder);
 
-        return gameInfo.findLadderResultByIndex(indexOfResult);
+        return gameInfo.findLadderRewordByIndex(indexOfReword);
     }
 
     private int ride(final int indexOfLadder) {

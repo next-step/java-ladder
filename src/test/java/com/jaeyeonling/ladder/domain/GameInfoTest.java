@@ -1,8 +1,8 @@
 package com.jaeyeonling.ladder.domain;
 
-import com.jaeyeonling.ladder.domain.ladder.LadderResults;
+import com.jaeyeonling.ladder.domain.ladder.LadderRewords;
 import com.jaeyeonling.ladder.domain.user.Users;
-import com.jaeyeonling.ladder.exception.NotEqualsUserSizeAndResultSizeException;
+import com.jaeyeonling.ladder.exception.NotEqualsUserSizeAndRewordSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,15 +20,15 @@ class GameInfoTest {
 
     @DisplayName("유저와 결과의 숫자가 같지 않다면 에러를 발생한다.")
     @Test
-    void should_throw_NotEqualsUserSizeAndResultSizeException_when_notEqualsSize() {
+    void should_throw_NotEqualsUserSizeAndRewordSizeException_when_notEqualsSize() {
         // given
         final Users users = Users.ofSeparator("a,b,c");
-        final LadderResults ladderResults = LadderResults.ofSeparator("a,b");
+        final LadderRewords ladderRewords = LadderRewords.ofSeparator("a,b");
 
         // when, then
-        assertThatExceptionOfType(NotEqualsUserSizeAndResultSizeException.class)
+        assertThatExceptionOfType(NotEqualsUserSizeAndRewordSizeException.class)
                 .isThrownBy(() -> {
-                    GameInfo.withUsersAndLadderResults(users, ladderResults);
+                    GameInfo.withUsersAndLadderRewords(users, ladderRewords);
                 });
     }
 }
