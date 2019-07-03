@@ -3,7 +3,6 @@ package ladder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
 
@@ -14,27 +13,8 @@ public class Line {
     }
 
     public static Line from(int numberOfPlayers) {
-        return new Line(generateBars(numberOfPlayers));
-    }
-
-    private static List<Boolean> generateBars(int numberOfPlayers) {
-        Random random = new Random();
-        List<Boolean> randomBars = new ArrayList<>();
-
-        randomBars.add(random.nextBoolean());
-        for (int i = 1; i < numberOfPlayers - 1; i++) {
-            boolean previousBarExist = randomBars.get(i - 1);
-            addNextBar(random, randomBars, previousBarExist);
-        }
-        return randomBars;
-    }
-
-    private static void addNextBar(Random random, List<Boolean> randomBars, boolean previousBarExist) {
-        if (previousBarExist) {
-            randomBars.add(false);
-            return;
-        }
-        randomBars.add(random.nextBoolean());
+        LineMaker lineMaker = new LineMaker();
+        return new Line(lineMaker.generateBars(numberOfPlayers));
     }
 
     public List<Boolean> getBars() {
