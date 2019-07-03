@@ -21,7 +21,7 @@ public class StreamStudyTest {
 		long result = StreamStudy.countWords();
 		System.out.println("result : " + result);
 	}
-	
+
 	@Test
 	public void printLongestWordTop100() throws Exception {
 		StreamStudy.printLongestWordTop100();
