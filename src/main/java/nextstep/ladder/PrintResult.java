@@ -1,15 +1,18 @@
 package nextstep.ladder;
 
 import java.util.List;
-import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class PrintResult {
     private static final int WIDTH = 5;
+    private static String WHITESPACE_DELIMITER = StringUtil.repeat(" ", WIDTH);
+    private static String BAR_DELIMITER = "|";
+    private static String DASH_DELIMITER = StringUtil.repeat("-", WIDTH);
+
 
     public static void printUsers(List<User> users) {
         users.stream()
                 .forEach(user -> System.out.print(String.format("%5s ", user.getUserName())));
-
     }
 
     public static void println() {
@@ -17,25 +20,20 @@ public class PrintResult {
     }
 
     public static void printLadder(Ladder ladder) {
-
-        String whiteSpace = StringUtil.repeat("", WIDTH);
-        String bar = "|";
-        String dash = StringUtil.repeat("-", WIDTH);
-
         ladder.getLines()
                 .stream()
                 .map(line -> line.getPoints())
-                .forEach(points -> {
-                    StringJoiner sj = new StringJoiner(bar, whiteSpace + "|", bar);
-                    points.stream().forEach(point -> {
-                        if (point) {
-                            sj.add(dash);
-                        } else {
-                            sj.add(whiteSpace);
-                        }
-                    });
-                    System.out.println(sj.toString());
-                });
+                .map(PrintResult::convertPointsToString)
+                .forEach(System.out::println);
+    }
 
+    public static String convertPointsToString(List<Boolean> points) {
+
+        return points.stream().map(p -> {
+            if (Boolean.TRUE == p) {
+                return DASH_DELIMITER;
+            }
+            return WHITESPACE_DELIMITER;
+        }).collect(Collectors.joining(BAR_DELIMITER, WHITESPACE_DELIMITER + BAR_DELIMITER, BAR_DELIMITER));
     }
 }
