@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.generator.StubPointGenerator;
+import ladder.domain.generator.StubBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +20,7 @@ class LinesTest {
     void of() {
 
         // given
-        StubPointGenerator pointGenerator = new StubPointGenerator(true);
+        StubBooleanGenerator pointGenerator = new StubBooleanGenerator(true);
         int width = 4;
         int height = 5;
         Lines lines = Lines.of(LadderInfo.of(width, height), pointGenerator);
@@ -44,7 +44,7 @@ class LinesTest {
     })
     void move(int startPosition, int finishPosition) {
 
-        StubPointGenerator pointGenerator = new StubPointGenerator(true);
+        StubBooleanGenerator pointGenerator = new StubBooleanGenerator(true);
         int width = 4;
         int height = 5;
         Lines lines = Lines.of(LadderInfo.of(width, height), pointGenerator);
@@ -56,7 +56,7 @@ class LinesTest {
     @ValueSource(ints = {-1, 4})
     void moveException(int startPosition) {
 
-        StubPointGenerator pointGenerator = new StubPointGenerator(true);
+        StubBooleanGenerator pointGenerator = new StubBooleanGenerator(true);
         int width = 4;
         int height = 5;
         Lines lines = Lines.of(LadderInfo.of(width, height), pointGenerator);

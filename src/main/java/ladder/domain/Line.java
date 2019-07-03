@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.generator.PointGenerator;
+import ladder.domain.generator.BooleanGenerator;
 
 import java.util.*;
 
@@ -17,9 +17,9 @@ public class Line {
         return new Line(points);
     }
 
-    public static Line of(int width, PointGenerator pointGenerator) {
+    public static Line of(int width, BooleanGenerator booleanGenerator) {
 
-        return new Line(Points.createPoints(width, pointGenerator));
+        return new Line(Points.createPoints(width, booleanGenerator));
     }
 
     public int move(int position) {

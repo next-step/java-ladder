@@ -11,7 +11,7 @@ public class Goals {
     private static final String RESULTS_DELIMITER = ",";
     private List<Goal> goals;
 
-    public Goals(String goal, int participantSize) {
+    public Goals(String goal) {
 
         if (StringUtils.isBlank(goal)) {
             throw new IllegalArgumentException("실행결과가 빈 값입니다.");
@@ -21,10 +21,10 @@ public class Goals {
                 .stream()
                 .map(Goal::new)
                 .collect(Collectors.toList());
+    }
 
-        if (this.goals.size() != participantSize) {
-            throw new IllegalArgumentException("참가자 수와 결과 수가 일치하지 않습니다. 참가자 수=" + participantSize + ", 결과 수=" + this.goals.size());
-        }
+    public int size() {
+        return goals.size();
     }
 
     public List<Goal> getGoals() {

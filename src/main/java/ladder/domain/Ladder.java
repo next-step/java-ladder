@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.domain.generator.PointGenerator;
-import ladder.domain.generator.RandomPointGenerator;
+import ladder.domain.generator.BooleanGenerator;
+import ladder.domain.generator.RandomBooleanGenerator;
 
 public class Ladder {
 
@@ -10,13 +10,13 @@ public class Ladder {
 
     public Ladder(LadderInfo ladderInfo) {
 
-        this(ladderInfo, new RandomPointGenerator());
+        this(ladderInfo, new RandomBooleanGenerator());
     }
 
-    public Ladder(LadderInfo ladderInfo, PointGenerator pointGenerator) {
+    public Ladder(LadderInfo ladderInfo, BooleanGenerator booleanGenerator) {
 
         this.ladderInfo = ladderInfo;
-        this.lines = Lines.of(ladderInfo, pointGenerator);
+        this.lines = Lines.of(ladderInfo, booleanGenerator);
     }
 
     public Lines getLines() {

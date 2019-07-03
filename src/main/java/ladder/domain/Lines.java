@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.generator.PointGenerator;
+import ladder.domain.generator.BooleanGenerator;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,10 +15,10 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(LadderInfo ladderInfo, PointGenerator pointGenerator) {
+    public static Lines of(LadderInfo ladderInfo, BooleanGenerator booleanGenerator) {
 
         return new Lines(IntStream.range(0, ladderInfo.getHeight())
-                                 .mapToObj(currentHeight -> Line.of(ladderInfo.getWidth(), pointGenerator))
+                                 .mapToObj(currentHeight -> Line.of(ladderInfo.getWidth(), booleanGenerator))
                                  .collect(Collectors.toList()));
     }
 

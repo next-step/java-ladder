@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.GameInfo;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,13 +25,13 @@ public class LadderResult {
         return new LadderResult(positionGoals);
     }
 
-    public ParticipantGoals createParticipantGoal(Participants participants, Goals goals) {
+    public ParticipantGoals createParticipantGoal(GameInfo gameInfo) {
 
         return new ParticipantGoals(
                 positionGoals.entrySet()
                         .stream()
-                        .collect(Collectors.toMap(o -> participants.getParticipant(o.getKey()),
-                                                  o -> goals.getGoal(o.getValue()),
+                        .collect(Collectors.toMap(o -> gameInfo.getParticipants().getParticipant(o.getKey()),
+                                                  o -> gameInfo.getGoals().getGoal(o.getValue()),
                                                   (o1, o2) -> o1
                         )));
     }
