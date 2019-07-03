@@ -21,7 +21,7 @@ public class Main {
         ParticipantGoals participantGoals = ladderResult.createParticipantGoal(gameInfo);
         String name = InputView.askPersonalResult();
         while (!Participants.ALL.equals(name)) {
-            ResultView.printPersonalResult(participantGoals, name);
+            ResultView.printPersonalResult(name, participantGoals.findGoal(name));
             name = InputView.askPersonalResult();
         }
 

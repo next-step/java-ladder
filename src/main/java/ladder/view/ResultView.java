@@ -70,12 +70,11 @@ public class ResultView {
         printNewLine();
     }
 
-    public static void printPersonalResult(ParticipantGoals participantGoals, String name) {
+    public static void printPersonalResult(String name, Goal goal) {
 
         printResultMessage();
 
-        Goal goal = participantGoals.findGoal(name);
-        printStream.println(goal.getResult());
+        printStream.println(String.format(PARTICIPANT_GOAL_FORMAT, name, goal.getResult()));
         printNewLine();
     }
 
