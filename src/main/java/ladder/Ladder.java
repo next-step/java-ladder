@@ -13,10 +13,10 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder from(int height, int numberOfPlayers) {
+    public static Ladder from(Height height, Players players) {
         return new Ladder(IntStream
-                .range(0, height)
-                .mapToObj((integer) -> Line.from(numberOfPlayers))
+                .range(0, height.getHeight())
+                .mapToObj((integer) -> Line.from(players.numberOfPlayers()))
                 .collect(Collectors.toList()));
     }
 

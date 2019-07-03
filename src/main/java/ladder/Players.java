@@ -19,11 +19,15 @@ public class Players {
         this.players = players;
     }
 
-    public static Players of(String testPlayers) {
-        return new Players(Arrays.stream(testPlayers.trim().split(NAME_SEPARATOR))
+    public static Players of(String inputNames) {
+        return new Players(Arrays.stream(inputNames.trim().split(NAME_SEPARATOR))
                 .map(String::trim)
                 .map(Player::from)
                 .collect(Collectors.toList()));
+    }
+
+    public int numberOfPlayers() {
+        return players.size();
     }
 
     public List<Player> getPlayers() {
