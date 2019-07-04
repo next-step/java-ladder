@@ -34,8 +34,8 @@ public class Ladder {
     }
 
     public int startMove(int lineIndex) {
-        for (int i = 0; i < ladder.size(); i++) {
-            lineIndex = ladder.get(i).move(lineIndex);
+        for (LadderLine ladderLine : ladder) {
+            lineIndex = ladderLine.move(lineIndex);
         }
         return lineIndex;
     }
