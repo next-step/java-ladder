@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.RandomGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,10 +11,9 @@ import static java.util.stream.Collectors.toList;
 public class Line {
 
   private List<Bar> bars = new ArrayList<>();
-  private Random random = new Random();
 
   private Line(Players players) {
-    Bar bar = Bar.of(random.nextBoolean());
+    Bar bar = Bar.of(RandomGenerator.nextBoolean());
 
     for (int i = 0; i < players.size() - 1; i++) {
       bars.add(bar);
@@ -28,7 +29,7 @@ public class Line {
     if (bar.isBar()) {
       return Bar.of(false);
     }
-    return Bar.of(random.nextBoolean());
+    return Bar.of(RandomGenerator.nextBoolean());
   }
 
   public int size() {
