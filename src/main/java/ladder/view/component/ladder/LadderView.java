@@ -5,18 +5,18 @@ import ladder.core.message.Response;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
-import ladder.view.component.View;
+import ladder.view.component.ViewIO;
 import ladder.message.request.ladder.LadderSize;
 
 public class LadderView implements ViewImpl {
     private static final String ANSWER = "최대 사다리 높이는 몇 개인가요?";
     
     private Controller controller;
-    private View view;
+    private ViewIO viewIO;
     
     public LadderView(Controller controller, Printer printer, Inputor inputer) {
         this.controller = controller;
-        view = new View.Builder(controller)
+        viewIO = new ViewIO.Builder()
             .setPrinter(printer)
             .setInputor(inputer)
             .build();
@@ -27,7 +27,7 @@ public class LadderView implements ViewImpl {
         if (!response.isLadderSizeStep()) {
             return;
         }
-        view.print(ANSWER);
-        controller.inputLadderSize(new LadderSize(view.inputNumber()));
+        viewIO.print(ANSWER);
+        controller.inputLadderSize(new LadderSize(viewIO.inputNumber()));
     }
 }

@@ -1,22 +1,17 @@
 package ladder.view.component;
 
-import ladder.core.controller.Controller;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
 
-public class View {
-    private final Controller controller;
+public class ViewIO {
     private final Inputor inputor;
     private final Printer printer;
     
     public static class Builder {
-        private Controller controller;
         private Inputor inputor;
         private Printer printer;
         
-        public Builder(Controller controller) {
-            this.controller = controller;
-        }
+        public Builder() {}
         
         public Builder setInputor(Inputor inputor) {
             this.inputor = inputor;
@@ -28,13 +23,12 @@ public class View {
             return this;
         }
         
-        public View build() {
-            return new View(controller, inputor, printer);
+        public ViewIO build() {
+            return new ViewIO(inputor, printer);
         }
     }
     
-    protected View(Controller controller, Inputor inputor, Printer printer) {
-        this.controller = controller;
+    protected ViewIO(Inputor inputor, Printer printer) {
         this.inputor = inputor;
         this.printer = printer;
     }

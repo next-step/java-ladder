@@ -5,15 +5,15 @@ import ladder.core.message.Response;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.output.Printer;
 import ladder.message.response.result.RewardResponse;
-import ladder.view.component.View;
+import ladder.view.component.ViewIO;
 
 public class RewardView implements ViewImpl {
     private Controller controller;
-    private View view;
+    private ViewIO viewIO;
     
     public RewardView(Controller controller, Printer printer) {
         this.controller = controller;
-        view = new View.Builder(controller)
+        viewIO = new ViewIO.Builder()
             .setPrinter(printer)
             .build();
     }
@@ -24,6 +24,6 @@ public class RewardView implements ViewImpl {
             return;
         }
         RewardResponse rewardResponse = (RewardResponse) response;
-        view.print(rewardResponse.getReward());
+        viewIO.print(rewardResponse.getReward());
     }
 }

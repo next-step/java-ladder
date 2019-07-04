@@ -6,7 +6,7 @@ import ladder.core.view.output.Printer;
 import ladder.domain.ladder.Ladder;
 import ladder.core.message.Response;
 import ladder.message.response.result.Result;
-import ladder.view.component.View;
+import ladder.view.component.ViewIO;
 import ladder.view.model.LadderLines;
 
 import java.util.List;
@@ -19,11 +19,11 @@ public class ResultView implements ViewImpl {
     private final static int MAX_NAME_SIZE = 5;
     
     private Controller controller;
-    private View view;
+    private ViewIO viewIO;
     
     public ResultView(Controller controller, Printer printer) {
         this.controller = controller;
-        view = new View.Builder(controller)
+        viewIO = new ViewIO.Builder()
             .setPrinter(printer)
             .build();
     }
@@ -34,10 +34,10 @@ public class ResultView implements ViewImpl {
             return;
         }
         Result resultMessage = (Result) response;
-        view.print(RESULT_MESSAGE);
-        view.print(getItemExpression(resultMessage.getGamerNames()));
+        viewIO.print(RESULT_MESSAGE);
+        viewIO.print(getItemExpression(resultMessage.getGamerNames()));
         printLadder(resultMessage.getLadder());
-        view.print(getItemExpression(resultMessage.getRewardNames()));
+        viewIO.print(getItemExpression(resultMessage.getRewardNames()));
     }
     
     private String getItemExpression(List<String> items) {
@@ -55,6 +55,6 @@ public class ResultView implements ViewImpl {
     
     private void printLadder(Ladder ladder) {
         LadderLines.newLadderLines(ladder).stream()
-            .forEach(view::print);
+            .forEach(viewIO::print);
     }
 }
