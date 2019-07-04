@@ -1,14 +1,12 @@
 package nextstep.step3.ladder.domain;
 
-import nextstep.step2.ladder.domain.LadderLine;
-import nextstep.step2.ladder.domain.Link;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -21,14 +19,52 @@ import static org.assertj.core.api.Assertions.assertThat;
  * create date  : 2019-06-29 03:22
  */
 public class LadderLineTest {
-    @DisplayName("사다리 Line 생성된 상태 확인 - 마지막 index는 무조건 false")
+
+    @DisplayName("LadderLine 생성 예외상황 - Empty, Null")
     @Test
-    void createLadderLineStatue() {
-        LadderLine line = new LadderLine(2);
-        List<Boolean> convertLine = line.stream()
-                .map(Link::status)
-                .collect(Collectors.toList());
-        int lastIndex = convertLine.size() - 1;
-        assertThat(convertLine.get(lastIndex)).isFalse();
+    void createListEmptyNullException() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new LadderLine(Arrays.asList());
+        }).withMessageContaining("사다리라인이 비어있습니다.");
+    }
+
+    @DisplayName("LadderLine 생성 예외상황 - Size")
+    @Test
+    void createListSizeException() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new LadderLine(Arrays.asList(new Link(0, true, false)));
+        }).withMessageContaining("사다리라인의 최소 개수는 2개 입니다.");
+    }
+
+    @DisplayName("한줄의 움직임을 확인해서 최종 index 위치 전달받기 - 증가 index")
+    @Test
+    void moveLineFromIndexIncrease() {
+        LadderLine line = new LadderLine(
+                Arrays.asList(
+                        new Link(0, true, false),
+                        new Link(1, false, true)));
+        assertThat(line.moveLine(0)).isEqualTo(1);
+    }
+
+    @DisplayName("한줄의 움직임을 확인해서 최종 index 위치 전달받기 - 감소 index")
+    @Test
+    void moveLineFromIndexDecreas() {
+        LadderLine line = new LadderLine(
+                Arrays.asList(
+                        new Link(0, true, false),
+                        new Link(1, false, true)));
+        assertThat(line.moveLine(1)).isEqualTo(0);
+    }
+
+    @DisplayName("한줄의 움직임을 확인해서 최종 index 위치 전달받기 - 감소 index")
+    @Test
+    void moveLineMismatchIndex() {
+        LadderLine line = new LadderLine(
+                Arrays.asList(
+                        new Link(0, true, false),
+                        new Link(1, false, true)));
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            line.moveLine(2);
+        }).withMessageContaining("일치하는 Index가 없습니다.");
     }
 }

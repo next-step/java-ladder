@@ -1,8 +1,6 @@
 package nextstep.step3.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Stream;
 
 /**
@@ -16,63 +14,32 @@ import java.util.stream.Stream;
  * create date  : 2019-06-29 03:27
  */
 public class LadderLine {
-    private static final int LINE_MIN_INDEX = 0;
-    private static final int DECREASE_INDEX = 1;
-    private static final int INCREASE_INDEX = 1;
+    private static final String CREATE_LIST_SIZE_EXCEPTION_MESSAGE = "사다리라인이 비어있습니다.";
+    private static final String CREATE_LIST_MIN_SIZE_EXCEPTION_MESSAGE = "사다리라인의 최소 개수는 2개 입니다.";
+    private static final String CHECK_START_INDEX = "일치하는 Index가 없습니다.";
+    public static final int MINSIZE = 1;
 
-    private List<Link> ladderLine = new ArrayList<>();
+    private final List<Link> links;
 
-    public LadderLine(int line) {
-        if (line < LINE_MIN_INDEX) {
-            throw new IllegalArgumentException("사다리 라인이 유효한 개수가 아닙니다.");
+    public LadderLine(List<Link> links) {
+        if (links.isEmpty() || links == null) {
+            throw new IllegalArgumentException(CREATE_LIST_SIZE_EXCEPTION_MESSAGE);
         }
-
-        ladderLine.add(Link.of(() -> random()));
-        for (int i = 1; i < line; i++) {
-            ladderLine.add(addStatusByIndexPosition(i, line));
+        if (links.size() <= MINSIZE) {
+            throw new IllegalArgumentException(CREATE_LIST_MIN_SIZE_EXCEPTION_MESSAGE);
         }
+        this.links = links;
+    }
+
+    public int moveLine(int startIndex) {
+        return links.stream()
+                .filter(link -> link.matchIndex(startIndex))
+                .findFirst()
+                .map(link -> link.move())
+                .orElseThrow(() -> new IllegalArgumentException(CHECK_START_INDEX));
     }
 
     public Stream<Link> stream() {
-        return ladderLine.stream();
-    }
-
-    public int move(int index) {
-        if (ladderLine.get(index).status()) {
-            return movementToRight(index);
-        }
-        return movementToLeft(index);
-    }
-
-    private int movementToRight(int lineIndex) {
-        while ((lineIndex < ladderLine.size())
-                && ladderLine.get(lineIndex).status()) {
-
-            lineIndex = lineIndex + INCREASE_INDEX;
-        }
-        return lineIndex;
-    }
-
-    private int movementToLeft(int lineIndex) {
-        while ((lineIndex - DECREASE_INDEX >= 0)
-                && ladderLine.get(lineIndex - DECREASE_INDEX).status()) {
-
-            lineIndex = lineIndex - DECREASE_INDEX;
-        }
-        return lineIndex;
-    }
-
-    private Link addStatusByIndexPosition(int index, int line) {
-        int size = ladderLine.size();
-        int exclusionLastIndex = line - DECREASE_INDEX;
-
-        if (exclusionLastIndex != size) {
-            return Link.of(() -> ladderLine.get(index - DECREASE_INDEX).status() ? false : random());
-        }
-        return Link.of(() -> false);
-    }
-
-    private boolean random() {
-        return new Random().nextBoolean();
+        return links.stream();
     }
 }
