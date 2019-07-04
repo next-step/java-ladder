@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -13,9 +14,13 @@ public class Line {
     public int size() {
         return points.size();
     }
-
+    
     public boolean isLine(int point) {
         return points.get(point);
+    }
+
+    public List<Boolean> getLine() {
+    	return Collections.unmodifiableList(points);
     }
 
     public Stream<Boolean> getStream() {

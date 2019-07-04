@@ -12,7 +12,7 @@ public class LadderGeneratorTest {
 
     @BeforeEach
     void setup() {
-        this.players = new Players("moon, jae, heon, keep, going");
+        this.players = Players.register("moon, jae, heon, keep, going");
         this.playersCount = 5;
     }
 

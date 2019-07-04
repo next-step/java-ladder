@@ -22,7 +22,6 @@ public class Direction {
 
     public static Direction of(boolean left, boolean right) {
         return new Direction(left, right);
-
     }
 
     public boolean isRight() {

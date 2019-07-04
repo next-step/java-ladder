@@ -21,7 +21,7 @@ public class PlayerTest {
     void inputNotName() {
         String name = "SoLong";
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            Player player = new Player(name);
+            new Player(name);
         });
     }
 }
