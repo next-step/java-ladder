@@ -29,6 +29,14 @@ public class Player {
     return blankBuffer.toString();
   }
 
+  public boolean isPlayerName(String name) {
+    return this.name.equals(name);
+  }
+
+  public String getName() {
+    return name;
+  }
+
   @Override
   public String toString() {
     if (isGreater(DEFAULT_PLAYERS_NAME_FORMAT_LENGTH)) {

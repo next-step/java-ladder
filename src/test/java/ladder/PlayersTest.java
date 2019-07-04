@@ -42,4 +42,13 @@ public class PlayersTest {
     assertThat(new Players(playerNames).toString()).isEqualTo(result);
   }
 
+  @Test
+  public void 플레이어의_index를_리턴한다() {
+    Players players = new Players("lee,chang,jun");
+    assertThat(players.getPlayerPosition("lee")).isEqualTo(0);
+    assertThat(players.getPlayerPosition("chang")).isEqualTo(1);
+    assertThat(players.getPlayerPosition("jun")).isEqualTo(2);
+
+  }
+
 }

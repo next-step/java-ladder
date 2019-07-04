@@ -16,4 +16,8 @@ public class Point {
     return direction.draw();
   }
 
+  public int move(int position) {
+    return direction.move(position);
+  }
+
 }

@@ -13,6 +13,10 @@ public class Ladder {
     makeLine(lineHeight, playerCount);
   }
 
+  public Ladder(List<Line> lines) {
+    this.ladder = lines;
+  }
+
   private void makeLine(int lineHeight, int playerCount) {
     for (int i = 0; i < lineHeight; i++) {
       ladder.add(new Line(playerCount));
@@ -29,4 +33,11 @@ public class Ladder {
         .collect(toList()));
   }
 
+  public int move(int index) {
+    int recentPosition = index;
+    for (Line line : ladder) {
+      recentPosition = line.move(recentPosition);
+    }
+    return recentPosition;
+  }
 }

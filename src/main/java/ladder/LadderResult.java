@@ -68,6 +68,10 @@ public class LadderResult {
     return ladderResult.size() == count;
   }
 
+  public String getLadderResult(int resultIndex) {
+    return ladderResult.get(resultIndex);
+  }
+
   @Override
   public String toString() {
     return ladderResult.stream()

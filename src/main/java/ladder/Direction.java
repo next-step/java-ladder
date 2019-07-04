@@ -21,4 +21,8 @@ public enum Direction {
   public String draw() {
     return this == RIGHT ? HORIZONTAL_LINE_SYMBOL : USER_LINE_SYMBOL;
   }
+
+  public int move(int position) {
+    return position + this.distance;
+  }
 }

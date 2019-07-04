@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.List;
+
 public class LadderGameInformation {
 
   private final Players players;
@@ -35,4 +37,20 @@ public class LadderGameInformation {
     return ladderResult.toString();
   }
 
+  public int getPlayerPosition(String playerName) {
+    return players.getPlayerPosition(playerName);
+  }
+
+  public String getLadderResult(int resultIndex) {
+    return ladderResult.getLadderResult(resultIndex);
+  }
+
+  public LadderGameResult getAllPlayerResult(Ladder ladder) {
+    LadderGameResult gameResult = new LadderGameResult();
+    List<Player> playerList = players.getPlayers();
+    for (int i = 0; i < playerList.size(); i++) {
+      gameResult.add(playerList.get(i), getLadderResult(ladder.move(i)));
+    }
+    return gameResult;
+  }
 }

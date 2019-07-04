@@ -29,4 +29,12 @@ public class PointTest {
     assertThat(straightPoint.draw()).isEqualTo("|     ");
   }
 
+  @Test
+  public void moveTest() {
+    int position = 3;
+    assertThat(new Point(Direction.STRAIGHT).move(position)).isEqualTo(3);
+    assertThat(new Point(Direction.RIGHT).move(position)).isEqualTo(4);
+    assertThat(new Point(Direction.LEFT).move(position)).isEqualTo(2);
+  }
+
 }

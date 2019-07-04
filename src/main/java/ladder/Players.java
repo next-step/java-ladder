@@ -3,8 +3,10 @@ package ladder;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -46,6 +48,17 @@ public class Players {
     return players.size();
   }
 
+  public Player getPlayer(int index) {
+    return players.get(index);
+  }
+
+  public int getPlayerPosition(String playerName) {
+    return IntStream.range(0, players.size())
+        .filter(index -> players.get(index).isPlayerName(playerName))
+        .findFirst()
+        .orElseThrow(IllegalArgumentException::new);
+  }
+
   @Override
   public String toString() {
     StringBuffer playersName = new StringBuffer();
@@ -53,5 +66,9 @@ public class Players {
       playersName.append(player.toString());
     }
     return playersName.toString();
+  }
+
+  public List<Player> getPlayers() {
+    return Collections.unmodifiableList(players);
   }
 }

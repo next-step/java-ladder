@@ -18,4 +18,12 @@ public class DirectionTest {
     assertThat(Direction.LEFT.draw()).isEqualTo("|     ");
     assertThat(Direction.RIGHT.draw()).isEqualTo("|-----");
   }
+
+  @Test
+  public void moveTest() {
+    int position = 3;
+    assertThat(Direction.STRAIGHT.move(position)).isEqualTo(3);
+    assertThat(Direction.RIGHT.move(position)).isEqualTo(4);
+    assertThat(Direction.LEFT.move(position)).isEqualTo(2);
+  }
 }
