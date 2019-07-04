@@ -1,6 +1,5 @@
 package nextstep.step3.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,36 +14,26 @@ import java.util.stream.Stream;
  * create date  : 2019-06-30 04:19
  */
 public class Ladder {
-    private static final int MIN_LADDER_HEIGHT = 3;
-    private static final int MIN_LADDER_LINE = 2;
-    private static final String EXCEPTION_MESSAGE_FORMANT = "사다리의 높이는 3, 길이는 2이상만 가능합니다. 높이:[%d] 길이:[%d]";
+    private static final String CREATE_LIST_SIZE_EXCEPTION_MESSAGE = "사다리가 비어있습니다.";
 
     private List<LadderLine> ladder;
 
-    public Ladder(int line, int row) {
-        if (row < MIN_LADDER_HEIGHT || line < MIN_LADDER_LINE) {
-            throw new IllegalArgumentException(String.format(EXCEPTION_MESSAGE_FORMANT, row, line));
+    public Ladder(List<LadderLine> ladder) {
+        if (ladder.isEmpty() || ladder == null) {
+            throw new IllegalArgumentException(CREATE_LIST_SIZE_EXCEPTION_MESSAGE);
         }
+        this.ladder = ladder;
+    }
 
-        this.ladder = createLadder(line, row);
+    public int execute(int startIndex) {
+        int endIndex = startIndex;
+        for (LadderLine ladderLine : ladder) {
+            endIndex = ladderLine.moveLine(endIndex);
+        }
+        return endIndex;
     }
 
     public Stream<LadderLine> stream() {
         return ladder.stream();
-    }
-
-    public int startMove(int lineIndex) {
-        for (LadderLine ladderLine : ladder) {
-            lineIndex = ladderLine.move(lineIndex);
-        }
-        return lineIndex;
-    }
-
-    private List<LadderLine> createLadder(int line, int row) {
-        List<LadderLine> ladderLines = new ArrayList<>();
-        for (int i = 0; i < row; i++) {
-            ladderLines.add(new LadderLine(line));
-        }
-        return ladderLines;
     }
 }

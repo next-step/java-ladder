@@ -1,11 +1,9 @@
 package nextstep.step3.ladder.domain;
 
-import nextstep.step2.ladder.domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -21,30 +19,28 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  * create date  : 2019-06-30 04:18
  */
 public class LadderTest {
-    @DisplayName("사다리 생성 상태 확인 - 사다리 높이")
+    @DisplayName("사다리 생성시 전달된 인자가 비어있을때")
     @Test
-    void createLadderStatus() {
-        Ladder ladder = new Ladder(5, 5);
-        List<String> printStatus = ladder.stream()
-                .map(ladderLine -> ladderLine.toString())
-                .collect(Collectors.toList());
-
-        assertThat(printStatus.size()).isEqualTo(5);
+    void createLadderException() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Ladder(Arrays.asList());
+        }).withMessageContaining("사다리가 비어있습니다.");
     }
 
-    @DisplayName("사다리를 생성할때 예외상황 - 높이")
+    @DisplayName("시작점으로 부터 마지막 도착 index 가지고 오기")
     @Test
-    void createLadderHeight() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            Ladder ladder = new Ladder(1, 2);
-        }).withMessageContaining("사다리의 높이는 3, 길이는 2이상만 가능합니다.");
-    }
+    void executeLadderGame() {
+        Ladder ladder = new Ladder(
+                Arrays.asList(
+                        new LadderLine(
+                                Arrays.asList(
+                                        new Link(0, true, false),
+                                        new Link(1, false, true))),
+                        new LadderLine(
+                                Arrays.asList(
+                                        new Link(0, false, false),
+                                        new Link(1, false, false)))));
 
-    @DisplayName("사다리를 생성할때 예외상황 - 길이")
-    @Test
-    void createLadderLine() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            Ladder ladder = new Ladder(5, 1);
-        }).withMessageContaining("사다리의 높이는 3, 길이는 2이상만 가능합니다.");
+        assertThat(ladder.execute(0)).isEqualTo(1);
     }
 }
