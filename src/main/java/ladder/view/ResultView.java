@@ -1,14 +1,9 @@
 package ladder.view;
 
-import java.util.stream.Collectors;
+import ladder.domain.*;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.LadderResult;
-import ladder.domain.Line;
-import ladder.domain.Players;
-import ladder.domain.Reward;
-import ladder.domain.Rewards;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private static final String FIRST_FORMAT = "    |";
@@ -41,20 +36,36 @@ public class ResultView {
             System.out.println(FIRST_FORMAT + ladderLine + POLE_FORMAT);
         }
     }
+
     private static void printRewards(Rewards rewards) {
-    	rewards.getStream()
+        rewards.getStream()
                 .forEach(reward -> System.out.print(String.format(NAME_FORMAT, reward.getReward())));
+        changeNextLine();
     }
-    
+
     public static void outputOfLadderResult(LadderResult ladderResult) {
-        while(true) {
-        	String input = InputView.ResultByInputPlayer();
-        	changeNextLine();
-        	Reward reward = ladderResult.rewardOfPlayer(input);
-        	System.out.println("실행 결과");
-        	System.out.println(reward.getReward());
-        	changeNextLine();
+        while (true) {
+            String input = InputView.ResultByInputPlayer();
+            changeNextLine();
+
+            System.out.println("실행 결과");
+            printResultByPlayerOrPlayers(ladderResult, input);
+            changeNextLine();
         }
+    }
+
+    private static void printResultByPlayerOrPlayers(LadderResult ladderResult, String input) {
+        System.out.println(input.equals(ALL) ? resultOfPlayers(ladderResult) : resultOfPlayer(ladderResult, input));
+    }
+
+    private static String resultOfPlayer(LadderResult ladderResult, String input) {
+        return ladderResult.rewardOfPlayer(input);
+    }
+
+    private static String resultOfPlayers(LadderResult ladderResult) {
+        StringJoiner result = new StringJoiner("\n");
+        ladderResult.getForEach((player, reward) -> result.add(player.getName() + " : " + reward.getReward()));
+        return result.toString();
     }
 
     private static void changeNextLine() {

@@ -19,14 +19,17 @@ public class Point {
 	}
 
 	public Point isMove(Direction direction) {
-		if (direction.isLeft()) {
-			return new Point(index - LINE_DISTANCE);
-		}
-		if (direction.isRight()) {
-			return new Point(index + LINE_DISTANCE);
-		}
-		return this;
+		return moveLeft(direction);
 	}
+
+	private Point moveLeft(Direction direction){
+		return direction.isLeft() ? new Point(index - LINE_DISTANCE) : moveRight(direction);
+	}
+
+	private Point moveRight(Direction direction){
+		return direction.isRight() ? new Point(index + LINE_DISTANCE) : this;
+	}
+
 
 	public int getIndex() {
 		return index;

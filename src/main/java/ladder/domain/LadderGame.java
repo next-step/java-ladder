@@ -17,12 +17,12 @@ public class LadderGame {
 			throw new IllegalArgumentException();
 		}
 
-		Map<Player, Reward> ladderReuslt = new HashMap<>();
+		Map<Player, Reward> ladderResult = new HashMap<>();
 		for (Player player : players.getPlayers()) {
 			Point result = resultOfPlayer(players.pointOfPlayer(player), ladder);
-			ladderReuslt.put(player, rewards.rewardByResult(result));
+			ladderResult.put(player, rewards.rewardByResult(result));
 		}
-		return new LadderResult(ladderReuslt);
+		return new LadderResult(ladderResult);
 	}
 
 	public static Point resultOfPlayer(Point playerPoint, Ladder ladder) {
