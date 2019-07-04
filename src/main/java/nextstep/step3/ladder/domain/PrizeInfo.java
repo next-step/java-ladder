@@ -1,6 +1,9 @@
 package nextstep.step3.ladder.domain;
 
+import nextstep.step3.ladder.util.StringUtil;
+
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -23,16 +26,18 @@ public class PrizeInfo {
         this.prizeInfo = prizeInfo;
     }
 
-    public static PrizeInfo of(List<Prize> info, int participantCount) {
-        if (info == null || info.isEmpty()) {
+    public static PrizeInfo of(String prizeInfo, int participantCount) {
+        if ("".equals(prizeInfo) || prizeInfo == null) {
             throw new IllegalArgumentException(NULL_EMPTY_EXCEPTION_MESSAGE);
         }
 
-        int infoCount = info.size();
-        if (infoCount != participantCount) {
+        if (StringUtil.split(prizeInfo).size() != participantCount) {
             throw new IllegalArgumentException(INFO_RESULT_SIZE_EXCEPTION_MESSAGE);
         }
-        return new PrizeInfo(info);
+
+        return new PrizeInfo(StringUtil.split(prizeInfo).stream()
+                .map(prize -> Prize.of(prize))
+                .collect(Collectors.toList()));
     }
 
     public Stream<Prize> stream() {
