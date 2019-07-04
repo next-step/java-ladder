@@ -9,6 +9,7 @@ import java.util.List;
 public class Players {
 
   public static final String PLAYERS_NAME_DELIMITER = ",";
+  public static final int MINIMUM_PLAYERS_COUNT = 2;
   List<Player> players;
 
   public Players(String playersName) {
@@ -36,7 +37,7 @@ public class Players {
   }
 
   private void checkPlayersCount(String[] splitNames) {
-    if (splitNames.length < 2) {
+    if (splitNames.length < MINIMUM_PLAYERS_COUNT) {
       throw new IllegalArgumentException("player 는 최소 2명입니다.");
     }
   }
