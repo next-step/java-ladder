@@ -12,4 +12,8 @@ public class Point {
     return direction.hasLine();
   }
 
+  public String draw() {
+    return direction.draw();
+  }
+
 }

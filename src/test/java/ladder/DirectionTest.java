@@ -11,4 +11,11 @@ public class DirectionTest {
     assertThat(Direction.LEFT.hasLine()).isEqualTo(false);
     assertThat(Direction.RIGHT.hasLine()).isEqualTo(true);
   }
+
+  @Test
+  public void drawTest() {
+    assertThat(Direction.STRAIGHT.draw()).isEqualTo("|     ");
+    assertThat(Direction.LEFT.draw()).isEqualTo("|     ");
+    assertThat(Direction.RIGHT.draw()).isEqualTo("|-----");
+  }
 }

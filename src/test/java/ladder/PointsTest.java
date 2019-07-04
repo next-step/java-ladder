@@ -10,7 +10,7 @@ class PointsTest {
   public void 생성테스트() {
     int playerCount = 5;
     Points points = new Points(playerCount);
-    assertThat(points.count()).isEqualTo(playerCount-1);
+    assertThat(points.count()).isEqualTo(playerCount);
   }
 
 }

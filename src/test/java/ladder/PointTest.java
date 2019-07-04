@@ -18,4 +18,15 @@ public class PointTest {
     assertThat(new Point(Direction.RIGHT).hasLine()).isEqualTo(true);
   }
 
+  @Test
+  public void drawTest() {
+    Point rightPoint = new Point(Direction.RIGHT);
+    Point leftPoint = new Point(Direction.LEFT);
+    Point straightPoint = new Point(Direction.STRAIGHT);
+
+    assertThat(rightPoint.draw()).isEqualTo("|-----");
+    assertThat(leftPoint.draw()).isEqualTo("|     ");
+    assertThat(straightPoint.draw()).isEqualTo("|     ");
+  }
+
 }

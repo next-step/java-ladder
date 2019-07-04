@@ -5,40 +5,41 @@ import java.util.List;
 
 public class Points {
 
-  List<Boolean> positions = new ArrayList<>();
+  List<Point> points = new ArrayList<>();
 
   public Points(int playerCount) {
     makeLine(playerCount);
   }
 
   private void makeLine(int playersCount) {
-    firstPositionMakeLine();
+    firstPositionMakeBar();
     for (int i = 1; i < playersCount - 1; i++) {
-      otherPositionMakeLine(i);
+      bodyPointMake(i);
     }
+    lastPointMake();
   }
 
-  private void firstPositionMakeLine() {
-    positions.add(RandomStrategyMaker.make(false));
+  private void firstPositionMakeBar() {
+    points.add(new Point(DirectionMaker.make()));
   }
 
-  private void otherPositionMakeLine(int index) {
-    if (hasBeforePositionLine(index)) {
-      positions.add(false);
+  private void bodyPointMake(int index) {
+    if (points.get(index - 1).hasLine()) {
+      points.add(new Point(Direction.LEFT));
       return;
     }
-    positions.add(RandomStrategyMaker.make(hasBeforePositionLine(index)));
+    points.add(new Point(DirectionMaker.make()));
   }
 
-  private boolean hasBeforePositionLine(int position) {
-    return positions.get(position - 1);
+  private void lastPointMake() {
+    points.add(new Point(Direction.STRAIGHT));
   }
 
-  public LineDisplay draw() {
-    return new LineDisplay(positions);
+ public LineDisplay draw() {
+    return new LineDisplay(points);
   }
 
   public int count() {
-    return positions.size();
+    return points.size();
   }
 }
