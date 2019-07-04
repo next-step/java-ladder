@@ -1,4 +1,4 @@
-package nextstep.domain;
+package ladder.domain;
 
 public class GameUser {
     private String name;

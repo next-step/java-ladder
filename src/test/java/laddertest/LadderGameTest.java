@@ -1,12 +1,10 @@
-package nextstep.laddergame;
+package laddertest;
 
-import nextstep.domain.LadderGame;
-import nextstep.domain.GameUser;
-import nextstep.domain.Line;
+import ladder.domain.LadderGame;
+import ladder.domain.GameUser;
+import ladder.domain.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

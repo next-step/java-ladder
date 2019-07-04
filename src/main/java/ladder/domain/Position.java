@@ -1,4 +1,4 @@
-package nextstep.domain;
+package ladder.domain;
 
 public class Position {
     private int row = 0;

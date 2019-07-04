@@ -1,4 +1,4 @@
-package nextstep.view;
+package ladder.view;
 
 import java.util.Scanner;
 

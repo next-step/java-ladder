@@ -1,6 +1,8 @@
-package nextstep.view;
+package ladder.view;
 
-import nextstep.domain.*;
+import ladder.domain.GameReward;
+import ladder.domain.GameUser;
+import ladder.domain.LadderGame;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;

@@ -1,4 +1,4 @@
-package nextstep.domain;
+package ladder.domain;
 
 import java.util.*;
 import java.util.stream.IntStream;
@@ -11,7 +11,7 @@ public class LadderGame {
     private List<Line> ladderMap;
     private List<GameReward> gameReward;
 
-    public LadderGame(String userNames, String userReward, int maxheight) {
+    public LadderGame(String userNames, String userReward, int maxHeight) {
         String[] namesOfUser = checkNames(splitName(userNames));
         userGroup = new ArrayList<>();
         GameUser userElement;
@@ -26,9 +26,11 @@ public class LadderGame {
         GameReward gameRewardElement;
 
         for (int i = 0; i < namesOfReward.length; ++i) {
-            gameRewardElement = new GameReward(namesOfReward[i], maxheight, i);
+            gameRewardElement = new GameReward(namesOfReward[i], maxHeight, i);
             gameReward.add(gameRewardElement);
         }
+
+        makeLadderMap(maxHeight);
     }
 
     public List<GameUser> getUseGroup() {
@@ -49,7 +51,7 @@ public class LadderGame {
         return gameReward;
     }
 
-    public void makeLadderMap(int maxHeight) {
+    void makeLadderMap(int maxHeight) {
         ladderMap = new ArrayList<>();
         Line line;
 

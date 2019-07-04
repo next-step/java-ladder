@@ -1,8 +1,9 @@
-package nextstep.controller;
+package ladder.controller;
 
 
-import nextstep.domain.LadderGame;
-import nextstep.view.*;
+import ladder.domain.LadderGame;
+import ladder.view.Inputview;
+import ladder.view.ResultView;
 
 public class LadderGameMain {
     public static void main(String[] args) {
@@ -11,7 +12,6 @@ public class LadderGameMain {
         int maxHeight = Inputview.inputLadderMaxHeight();
 
         LadderGame ladderGame = new LadderGame(userNames, userReward, maxHeight);
-        ladderGame.makeLadderMap(maxHeight);
         ResultView.printLadder(ladderGame);
 
         String request = Inputview.requestResult();
