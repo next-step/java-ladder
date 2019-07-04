@@ -4,14 +4,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
     public Ladder(List<Line> lines) {
-        this.ladder = lines;
+        this.lines = lines;
     }
 
-    public List<Line> getLadder() {
-        return ladder;
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    public int move(int position) {
+        int current = position;
+        for (Line line : lines) {
+            current = line.move(current);
+        }
+
+        return current;
     }
 
     @Override
@@ -19,12 +28,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder1 = (Ladder) o;
-        return Objects.equals(ladder, ladder1.ladder);
+        return Objects.equals(lines, ladder1.lines);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(ladder);
+        return Objects.hash(lines);
     }
 }

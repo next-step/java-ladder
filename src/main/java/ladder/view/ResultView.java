@@ -39,7 +39,7 @@ public class ResultView {
     }
 
     public static void printLadder(int maxLength, Ladder ladder) {
-        ladder.getLadder().stream()
+        ladder.getLines().stream()
                 .forEach(line -> printLine(maxLength, line));
     }
 
