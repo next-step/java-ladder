@@ -12,6 +12,11 @@ import static ladder.view.InputView.printEmptyLine;
 
 public class OutputView {
     private static final String MESSAGE_RESULT_TITLE = "실행결과";
+    private static final String EMPTY_SPACE = "     ";
+    private static final String BAR = "-----";
+    private static final String COLUMN = "|";
+    private static final String BLANK_TO_FILL_THE_NAME_SPACE = " ";
+    private static final int SPACE_FOR_NAME = 5;
 
     public static void printResult(Players players, Ladder ladder) {
         printResultTitle();
@@ -34,10 +39,10 @@ public class OutputView {
 
     private static String adjustNameLength(Player player) {
         String name = player.getName();
-        int spaceForBlank = 5 - name.length();
+        int spaceForBlank = SPACE_FOR_NAME - name.length();
 
         return IntStream.rangeClosed(0, spaceForBlank)
-                .mapToObj((integer) -> " ")
+                .mapToObj((integer) -> BLANK_TO_FILL_THE_NAME_SPACE)
                 .collect(Collectors.joining())
                 .concat(name);
     }
@@ -47,6 +52,7 @@ public class OutputView {
     }
 
     private static void printLine(Line line) {
+        System.out.print(EMPTY_SPACE);
         line.getBars().stream()
                 .map(OutputView::printBars)
                 .forEach(System.out::print);
@@ -55,10 +61,10 @@ public class OutputView {
 
     private static String printBars(Boolean bar) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("|");
+        stringBuilder.append(COLUMN);
         if (bar) {
-            return stringBuilder.append("-----").toString();
+            return stringBuilder.append(BAR).toString();
         }
-        return stringBuilder.append("     ").toString();
+        return stringBuilder.append(EMPTY_SPACE).toString();
     }
 }
