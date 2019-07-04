@@ -43,7 +43,7 @@ public class LinkTest {
     @Test
     void createNext() {
         Link link = Link.first(() -> true);
-        assertThat(Link.next(link, false).matchIndex(1)).isTrue();
+        assertThat(Link.next(link, () -> false).matchIndex(1)).isTrue();
     }
 
     @DisplayName("마지막 Link 생성")
