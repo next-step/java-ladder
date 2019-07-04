@@ -14,14 +14,19 @@ class LineMaker {
             boolean previousBarExist = randomBars.get(i - 1);
             addNextBar(previousBarExist);
         }
+        addBlankBar();
         return randomBars;
     }
 
     private void addNextBar(boolean previousBarExist) {
         if (previousBarExist) {
-            randomBars.add(false);
+            addBlankBar();
             return;
         }
         randomBars.add(barGenerator.generateBar());
+    }
+
+    private void addBlankBar() {
+        randomBars.add(false);
     }
 }
