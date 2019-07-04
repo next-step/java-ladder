@@ -1,8 +1,19 @@
 package ladder;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 class Position {
+    public static final int MAX_CACHE_VALUE = 20;
+    private static final Map<Integer, Position> positions = new HashMap<>();
+
+    static {
+        for (int i = 0; i < MAX_CACHE_VALUE; i++) {
+            positions.put(i, new Position(i));
+        }
+    }
+
     private final int value;
 
     private Position(int value) {
@@ -13,7 +24,14 @@ class Position {
     }
 
     static Position of(int value) {
-        return new Position(value);
+        Position position = positions.get(value);
+        if (position != null) {
+            return position;
+        }
+
+        Position newPosition = new Position(value);
+        positions.put(value, newPosition);
+        return newPosition;
     }
 
     int getValue() {
