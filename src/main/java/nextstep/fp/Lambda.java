@@ -18,22 +18,14 @@ public class Lambda {
 	}
 
 	public static void runThread() {
-		new Thread(new Runnable() {
-		    @Override
-		    public void run() {
-		        System.out.println("Hello from thread");
-		    }
-		}).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
 	}
 
 	private static int sum(List<Integer> numbers, Conditional condition) {
-		int sum = 0;
-		for (int number : numbers) {
-			if (condition.test(number)) {
-				sum += number;
-			}
-		}
-		return sum;
+        return numbers.stream()
+                .filter(condition::test)
+                .reduce((sum, number) -> sum += number)
+                .get();
 	}
 
 	public static int sumAll(List<Integer> numbers) {
