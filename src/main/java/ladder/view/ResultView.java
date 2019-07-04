@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.io.PrintStream;
+import java.util.List;
 
 import static ladder.view.PrintSymbol.*;
 
@@ -70,19 +71,22 @@ public class ResultView {
         printNewLine();
     }
 
-    public static void printPersonalResult(String name, Goal goal) {
+    public static void printParticipantGoal(ParticipantGoal participantGoal) {
 
         printResultMessage();
 
-        printStream.println(String.format(PARTICIPANT_GOAL_FORMAT, name, goal.getResult()));
+        printEachParticipantGoal(participantGoal);
         printNewLine();
     }
 
-    public static void printAllResult(ParticipantGoals participantGoals, Participants participants) {
+    public static void printAllParticipantGoal(List<ParticipantGoal> allParticipantGoal) {
 
         printResultMessage();
-        participants.getParticipantsName()
-                .forEach(name -> printStream.println(String.format(PARTICIPANT_GOAL_FORMAT, name, participantGoals.findGoal(name).getResult())));
+        allParticipantGoal.forEach(ResultView::printEachParticipantGoal);
+    }
+
+    private static void printEachParticipantGoal(ParticipantGoal participantGoal) {
+        printStream.println(String.format(PARTICIPANT_GOAL_FORMAT, participantGoal.getParticipant().getName(), participantGoal.getGoal().getResult()));
     }
 
     public static void printNewLine() {

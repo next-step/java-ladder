@@ -24,11 +24,9 @@ class ResultViewTest {
         ParticipantGoals participantGoals = ladderResult.createParticipantGoal(gameInfo);
         String name = "pobi";
         while (!Participants.ALL.equals(name)) {
-            ResultView.printPersonalResult(name, participantGoals.findGoal(name));
+            ResultView.printParticipantGoal(participantGoals.find(name));
             name = "all";
         }
-
-        ResultView.printAllResult(participantGoals, gameInfo.getParticipants());
-
+        ResultView.printAllParticipantGoal(participantGoals.findAll());
     }
 }

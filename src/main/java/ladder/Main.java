@@ -19,12 +19,12 @@ public class Main {
 
         LadderResult ladderResult = LadderResult.of(ladder);
         ParticipantGoals participantGoals = ladderResult.createParticipantGoal(gameInfo);
+
         String name = InputView.askPersonalResult();
         while (!Participants.ALL.equals(name)) {
-            ResultView.printPersonalResult(name, participantGoals.findGoal(name));
+            ResultView.printParticipantGoal(participantGoals.find(name));
             name = InputView.askPersonalResult();
         }
-
-        ResultView.printAllResult(participantGoals, gameInfo.getParticipants());
+        ResultView.printAllParticipantGoal(participantGoals.findAll());
     }
 }

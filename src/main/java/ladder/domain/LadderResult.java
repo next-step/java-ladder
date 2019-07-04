@@ -30,9 +30,7 @@ public class LadderResult {
         return new ParticipantGoals(
                 positionGoals.entrySet()
                         .stream()
-                        .collect(Collectors.toMap(o -> gameInfo.getParticipants().getParticipant(o.getKey()),
-                                                  o -> gameInfo.getGoals().getGoal(o.getValue()),
-                                                  (o1, o2) -> o1
-                        )));
+                        .map(entrySet -> new ParticipantGoal(gameInfo.getParticipants().getParticipant(entrySet.getKey()), gameInfo.getGoals().getGoal(entrySet.getValue())))
+                        .collect(Collectors.toList()));
     }
 }
