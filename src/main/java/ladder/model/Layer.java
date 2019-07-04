@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Layer {
 
+    private static final int ONE_RUNG = 1;
     private final List<Rung> rungs;
 
     public Layer(final List<Rung> rungs) {
@@ -13,7 +14,7 @@ public class Layer {
     }
 
     public static Layer of(RungGenerator rungGenerator, int countOfPlayers) {
-        return new Layer(rungGenerator.generate(countOfPlayers - 1));
+        return new Layer(rungGenerator.generate(countOfPlayers - ONE_RUNG));
     }
 
     public List<Rung> getRungs() {
