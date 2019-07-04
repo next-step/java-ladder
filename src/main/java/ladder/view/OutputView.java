@@ -13,4 +13,8 @@ public class OutputView {
         .forEach(System.out::print);
   }
 
+  public static void printLadderResults(String results) {
+    System.out.println(results);
+  }
+
 }

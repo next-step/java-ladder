@@ -10,9 +10,11 @@ public class LadderGameLauncher {
 
     Ladder ladder = new LadderGame(ladderGameInformation).makeLadder();
     String playersName = ladderGameInformation.getLengthFormatPlayersName();
+    String ladderResult = ladderGameInformation.getLadderResult();
 
     OutputView.printPlayersName(playersName);
     OutputView.printLadder(ladder.draw());
+    OutputView.printLadderResults(ladderResult);
   }
 
   public static void main(String[] args) {

@@ -17,10 +17,6 @@ public class Player {
     this.name = name;
   }
 
-  public int nameLength() {
-    return name.length();
-  }
-
   private boolean isGreater(int length) {
     return name.length() >= length;
   }
