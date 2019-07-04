@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class GameResult {
@@ -33,6 +34,13 @@ public class GameResult {
                 moveFlag += 1;
             }
         }
+    }
+
+    public static void getResult(List<GameReward> gameReward, List<GameUser> userGroup) {
+        IntStream.range(0, gameReward.size()).
+                forEach(i -> {
+                    gameReward.get(i).matchReward(userGroup);
+                });
     }
 }
 

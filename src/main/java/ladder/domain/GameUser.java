@@ -25,6 +25,12 @@ public class GameUser {
         return position;
     }
 
+    public GameUser getUser(String name) {
+        if (this.name.equals(name))
+            return this;
+         return null;
+    }
+
 
     @Override
     public boolean equals(Object obj) {

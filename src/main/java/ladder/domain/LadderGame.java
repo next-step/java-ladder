@@ -63,12 +63,7 @@ public class LadderGame {
 
     public void startLadderGame() {
         GameResult.run(this, makeLadderMapArr());
-        getResult();
-    }
-
-    private void getResult() {
-        IntStream.range(0, gameReward.size()).
-                forEach(i -> gameReward.get(i).matchReward(userGroup));
+        GameResult.getResult(gameReward,userGroup);
     }
 
     private String[] splitName(String names) {
