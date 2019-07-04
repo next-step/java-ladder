@@ -1,11 +1,11 @@
 package ladder.view.component.result;
 
-import ladder.controller.LadderController;
+import ladder.core.controller.Controller;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.output.Printer;
 import ladder.domain.ladder.Ladder;
 import ladder.core.message.Response;
-import ladder.message.result.ResultResponse;
+import ladder.message.response.result.Result;
 import ladder.view.component.View;
 import ladder.view.model.LadderLines;
 
@@ -20,7 +20,7 @@ public class ResultView implements ViewImpl {
     
     private View view;
     
-    public ResultView(LadderController controller, Printer printer) {
+    public ResultView(Controller controller, Printer printer) {
         view = new View.Builder(controller)
           .setPrinter(printer)
           .build();
@@ -31,7 +31,7 @@ public class ResultView implements ViewImpl {
         if (!response.isResultStep()) {
             return;
         }
-        ResultResponse resultMessage = (ResultResponse) response;
+        Result resultMessage = (Result) response;
         view.print(RESULT_MESSAGE);
         view.print(getItemExpression(resultMessage.getGamerNames()));
         printLadder(resultMessage.getLadder());

@@ -1,8 +1,8 @@
-package ladder.message.ladder;
+package ladder.message.response.ladder;
 
 import ladder.core.message.Response;
 
-public class LadderSizeResponse extends Response {
+public class LadderSize extends Response {
     @Override
     public boolean isLadderSizeStep() {
         return true;

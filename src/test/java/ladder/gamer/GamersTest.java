@@ -2,9 +2,6 @@ package ladder.gamer;
 
 import ladder.domain.gamer.Gamers;
 import ladder.domain.gamer.message.ErrorMessages;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.reward.Rewards;
-import ladder.domain.reward.info.Reward;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -42,42 +39,29 @@ public class GamersTest {
         //Then
         Assertions.assertThat(givenGamerNames.containsAll(resultGamerNames)).isTrue();
     }
-//    
-//    @Test
-//    @DisplayName("[fail] Ladder 와 Reward 를 받아 Reward 를 찾는다 - Ladder 가 없거나 라인 갯수가 안맞으면 exception")
-//    void findRewardNullLadderTest() {
-//        //Given
-//        Ladder nullLadder = null;
-//        Ladder notMatchLadder = Ladder.from(5, 5);
-//        Reward reward = Reward.from("꽝,5000,꽝");
-//        
-//        //Then
-//        Assertions.assertThatIllegalArgumentException()
-//            .isThrownBy(() -> gamers.findReward(nullLadder, reward))
-//            .withMessage(ErrorMessages.NOT_MATCH_LADDER.message());
-//    
-//        //Then
-//        Assertions.assertThatIllegalArgumentException()
-//            .isThrownBy(() -> gamers.findReward(notMatchLadder, reward))
-//            .withMessage(ErrorMessages.NOT_MATCH_LADDER.message());
-//    }
-//    
-//    @Test
-//    @DisplayName("[fail] Ladder 와 Reward 를 받아 Reward 를 찾는다 - Reward 가 없거나 유저와 갯수가 안맞으면 exception")
-//    void findRewardNullRewardTest() {
-//        //Given
-//        Ladder ladder = Ladder.from(3, 3);
-//        Rewards nullReward = null;
-//        Rewards notMatchReward = Rewards.of(3, "꽝");
-//        
-//        //Then
-//        Assertions.assertThatIllegalArgumentException()
-//            .isThrownBy(() -> gamers.findReward(ladder, nullReward))
-//            .withMessage(ErrorMessages.NOT_MATCH_REWARD.message());
-//    
-//        //Then
-//        Assertions.assertThatIllegalArgumentException()
-//            .isThrownBy(() -> gamers.findReward(ladder, notMatchReward))
-//            .withMessage(ErrorMessages.NOT_MATCH_REWARD.message());
-//    }
+    
+    @Test
+    @DisplayName("[success] 유저 이름으로 시작 라인 번호를 가져온다.")
+    void getLineNumberTest() {
+        //Given
+        String gamerName = "one";
+        
+        //When
+        int lineNumber = gamers.getLineNumber("one");
+        
+        //Then
+        Assertions.assertThat(lineNumber).isEqualTo(0);
+    }
+    
+    @Test
+    @DisplayName("[fail] 유저 이름으로 시작 라인 번호를 가져온다. 없는 유저 이름을 입력하였다면 exception 발생")
+    void getLineNumberFailTest() {
+        //Given
+        String gamerName = "o";
+        
+        //Then
+        Assertions.assertThatIllegalArgumentException()
+            .isThrownBy(() -> gamers.getLineNumber(gamerName))
+            .withMessage(ErrorMessages.NOT_FIND_GAMER.message());
+    }
 }

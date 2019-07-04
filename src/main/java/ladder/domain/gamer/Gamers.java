@@ -2,16 +2,13 @@ package ladder.domain.gamer;
 
 import ladder.domain.gamer.info.Gamer;
 import ladder.domain.gamer.message.ErrorMessages;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.reward.Rewards;
-import ladder.domain.reward.info.Reward;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Gamers {
     private static final String DELIMITER = ",";
@@ -40,13 +37,19 @@ public class Gamers {
           .collect(Collectors.toList());
     }
     
-//    public void findReward(Ladder ladder, Rewards rewards) {
-//        if (ladder == null || ladder.getSize() != gamers.size()) {
-//            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_LADDER.message());
-//        }
-//        
-//        if (rewards == null || rewards.getSize() != gamers.size()) {
-//            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_REWARD.message());
-//        }
-//    }
+    public int getLineNumber(String gamerName) {
+        return getLineNumber(Gamer.of(gamerName));
+    }
+    
+    private int getLineNumber(Gamer gamer) {
+        Integer lineNumber = gamers.get(gamer);
+        if (lineNumber == null) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_FIND_GAMER.message());
+        }
+        return lineNumber;
+    }
+    
+    public Stream<Gamer> keyStream() {
+        return gamers.keySet().stream();
+    }
 }

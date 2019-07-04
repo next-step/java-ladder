@@ -1,11 +1,11 @@
-package ladder.message.ladder;
+package ladder.message.request.ladder;
 
 import ladder.core.message.Request;
 
-public class LadderSizeDTO implements Request {
+public class LadderSize implements Request {
     private final int inputNumber;
     
-    public LadderSizeDTO(int inputNumber) {
+    public LadderSize(int inputNumber) {
         this.inputNumber = inputNumber;
     }
     

@@ -6,7 +6,7 @@ import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
 import ladder.view.component.View;
-import ladder.message.ladder.LadderSizeDTO;
+import ladder.message.request.ladder.LadderSize;
 
 public class LadderView implements ViewImpl {
     private static final String ANSWER = "최대 사다리 높이는 몇 개인가요?";
@@ -26,6 +26,6 @@ public class LadderView implements ViewImpl {
             return;
         }
         view.print(ANSWER);
-        view.pushDataToController(new LadderSizeDTO(view.inputNumber()));
+        view.pushDataToController(new LadderSize(view.inputNumber()));
     }
 }

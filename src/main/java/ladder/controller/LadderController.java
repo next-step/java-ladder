@@ -3,55 +3,62 @@ package ladder.controller;
 import ladder.core.controller.Controller;
 import ladder.core.message.Request;
 import ladder.domain.Model;
-import ladder.message.gamer.GamerNamesDTO;
-import ladder.message.ladder.LadderSizeDTO;
-import ladder.message.result.GamerNameDTO;
-import ladder.message.reward.RewardDTO;
+import ladder.message.request.gamer.GamerNames;
+import ladder.message.request.ladder.LadderSize;
+import ladder.message.request.result.GamerName;
+import ladder.message.request.reward.RewardRequest;
 import ladder.view.MainView;
 
 public class LadderController implements Controller {
-    private Model model;
-    private MainView mainView;
+    private final static String EXIT_PROGRAM = "exit";
+    private final Model model;
+    private final MainView mainView;
+    private boolean isExit;
     
     public LadderController() {
         model = new Model();
         mainView = new MainView(this);
+        isExit = false;
     }
     
-    private void inputGamers(GamerNamesDTO gamerNames) {
+    private void inputGamers(GamerNames gamerNames) {
         model.newGamers(gamerNames.getGamerNames());
     }
     
-    private void inputReward(RewardDTO reward) {
+    private void inputReward(RewardRequest reward) {
         model.newRewards(reward.getReward());
     }
     
-    private void inputLadderSize(LadderSizeDTO ladderSize) {
+    private void inputLadderSize(LadderSize ladderSize) {
         model.newLadder(ladderSize.getInputNumber());
-        model.matchGamerReward();
     }
     
-    private void inputGamerName(GamerNameDTO gamerName) {
+    private void inputGamerName(GamerName gamerName) {
+        String name = gamerName.getGamerName();
+        if (EXIT_PROGRAM.equals(name)) {
+            isExit = true;
+            return;
+        }
         model.findReward(gamerName.getGamerName());
     }
     
     @Override
     public void action() {
-        mainView.render(model.getMessage());
+        while (!isExit) {
+            mainView.render(model.getMessage());
+        }
     }
     
     @Override
     public void input(Request data) {
-        if (data instanceof GamerNamesDTO) {
-            inputGamers((GamerNamesDTO) data);
-        } else if (data instanceof RewardDTO) {
-            inputReward((RewardDTO) data);
-        } else if (data instanceof LadderSizeDTO) {
-            inputLadderSize((LadderSizeDTO) data);
-        } else if (data instanceof GamerNameDTO) {
-            inputGamerName((GamerNameDTO) data);
+        if (data instanceof GamerNames) {
+            inputGamers((GamerNames) data);
+        } else if (data instanceof RewardRequest) {
+            inputReward((RewardRequest) data);
+        } else if (data instanceof LadderSize) {
+            inputLadderSize((LadderSize) data);
+        } else if (data instanceof GamerName) {
+            inputGamerName((GamerName) data);
         }
-        
-        mainView.render(model.getMessage());
     }
 }

@@ -1,4 +1,4 @@
-package ladder.message.gamer;
+package ladder.message.response.gamer;
 
 import ladder.core.message.Response;
 

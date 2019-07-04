@@ -9,7 +9,15 @@ public abstract class Response {
         return false;
     }
     
+    public boolean isRewardInputStep() {
+        return false;
+    }
+    
     public boolean isResultStep() {
+        return false;
+    }
+    
+    public boolean isGamerNameInputStep() {
         return false;
     }
     

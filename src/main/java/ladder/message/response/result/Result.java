@@ -1,16 +1,16 @@
-package ladder.message.result;
+package ladder.message.response.result;
 
 import ladder.core.message.Response;
 import ladder.domain.ladder.Ladder;
 
 import java.util.List;
 
-public class ResultResponse extends Response {
+public class Result extends Response {
     private final List<String> gamerNames;
     private final Ladder ladder;
     private final List<String> rewards;
     
-    public ResultResponse(List<String> gamerNames, Ladder ladder, List<String> rewards) {
+    public Result(List<String> gamerNames, Ladder ladder, List<String> rewards) {
         this.gamerNames = gamerNames;
         this.ladder = ladder;
         this.rewards = rewards;

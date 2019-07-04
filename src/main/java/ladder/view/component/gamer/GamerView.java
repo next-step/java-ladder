@@ -6,7 +6,7 @@ import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
 import ladder.view.component.View;
-import ladder.message.gamer.GamerNamesDTO;
+import ladder.message.request.gamer.GamerNames;
 
 public class GamerView implements ViewImpl {
     private final static String ANSWER = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -26,6 +26,6 @@ public class GamerView implements ViewImpl {
             return;
         }
         view.print(ANSWER);
-        view.pushDataToController(new GamerNamesDTO(view.inputString()));
+        view.pushDataToController(new GamerNames(view.inputString()));
     }
 }

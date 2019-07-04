@@ -51,4 +51,29 @@ class RewardsTest {
         //Then
         Assertions.assertThat(givenRewardNames.containsAll(resultRewardNames)).isTrue();
     }
+    
+    @Test
+    @DisplayName("[success] 보상 번호로 실제 보상을 가져온다.")
+    void getGameRewardTest() {
+        //Given
+        Rewards rewards = Rewards.of(3, "꽝,5000,1000");
+        
+        //When
+        String reward = rewards.getReward(0);
+        
+        //Then
+        Assertions.assertThat(reward).isEqualTo("꽝");
+    }
+    
+    @Test
+    @DisplayName("[fail] 보상 번호가 보상 목록의 총 갯수를 넘어갈 수 없다.")
+    void getGameRewardFailTest() {
+        //Given
+        Rewards rewards = Rewards.of(3, "꽝,5000,1000");
+        
+        //Then
+        Assertions.assertThatIllegalArgumentException()
+            .isThrownBy(() -> rewards.getReward(4))
+            .withMessage(ErrorMessages.OVER_INPUT_REWARD.message());
+    }
 }

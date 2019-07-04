@@ -3,19 +3,16 @@ package ladder.domain.reward;
 import ladder.domain.reward.info.Reward;
 import ladder.domain.reward.message.ErrorMessages;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Rewards {
     private final static String SPLIT_REGEX = ",";
     private final static int MIN_REWARD_SIZE = 1;
-    private final static int START_NUMBER = 0;
     
-    private final Map<Integer, Reward> rewards;
+    private final List<Reward> rewards;
     
     private Rewards(int rewardSize, String rewardString) {
         if (rewardSize < MIN_REWARD_SIZE) {
@@ -25,9 +22,8 @@ public class Rewards {
         if (rewards.length != rewardSize) {
             throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_COUNT.message());
         }
-        this.rewards = new LinkedHashMap<>();
-        IntStream.range(START_NUMBER, rewards.length)
-          .forEach(index -> this.rewards.put(index, Reward.from(rewards[index])));
+        this.rewards = new ArrayList<>();
+        Arrays.stream(rewards).forEach(reward -> this.rewards.add(Reward.from(reward)));
     }
     
     public static Rewards of(int rewardSize, String rewardString) {
@@ -35,12 +31,19 @@ public class Rewards {
     }
     
     public List<String> getRewardNames() {
-        return rewards.keySet().stream()
-          .map(index -> rewards.get(index).getReward())
+        return rewards.stream()
+          .map(Reward::getReward)
           .collect(Collectors.toList());
     }
     
     public int getSize() {
         return rewards.size();
+    }
+    
+    public String getReward(int i) {
+        if (i >= getSize()) {
+            throw new IllegalArgumentException(ErrorMessages.OVER_INPUT_REWARD.message());
+        }
+        return rewards.get(i).getReward();
     }
 }

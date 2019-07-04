@@ -16,7 +16,7 @@ public class Line {
     private final static int DEFAULT_FREQUENCY = 5;
     
     private final List<Cell> cells;
-    private int startPoint;
+    private final int startPoint;
     private int endPoint;
     
     public static Line from(int cellSize, int startPoint) {
@@ -70,5 +70,9 @@ public class Line {
     
     public void setEndPoint(int endPoint) {
         this.endPoint = endPoint;
+    }
+    
+    public int getEndPoint() {
+        return endPoint;
     }
 }

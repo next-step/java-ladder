@@ -1,11 +1,11 @@
-package ladder.message.gamer;
+package ladder.message.request.gamer;
 
 import ladder.core.message.Request;
 
-public class GamerNamesDTO implements Request {
+public class GamerNames implements Request {
     private final String gamerNames;
     
-    public GamerNamesDTO(String gamerNames) {
+    public GamerNames(String gamerNames) {
         this.gamerNames = gamerNames;
     }
     
