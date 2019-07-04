@@ -3,7 +3,9 @@ package ladder.domain;
 import ladder.exception.OutOfRailNumberException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class HorizontalStepList {
 
@@ -19,7 +21,7 @@ public class HorizontalStepList {
 		}
 	}
 
-	public boolean hasLeftStepAt(int railNumber){
+	private boolean hasLeftStepAt(int railNumber){
 		return (railNumber == 0) ? false : steps.get(railNumber);
 	}
 
@@ -63,7 +65,7 @@ public class HorizontalStepList {
 		return railNumber;
 	}
 
-	public int getRailCount() {
-		return steps.size();
+	public Stream<Boolean> getStepsAsStream(){
+		return Collections.unmodifiableCollection(steps).stream();
 	}
 }

@@ -25,7 +25,7 @@ class LadderTest {
 		HorizontalStepList rowTwo = new HorizontalStepList(5, () -> new Random().nextBoolean());
 		ladder.addRow(rowTwo);
 
-		assertThat(ladder.height()).isEqualTo(2);
+		assertThat(ladder.getRows().count()).isEqualTo(2);
 	}
 
 	@DisplayName("개수가 다른 가로열 추가 시도")
@@ -41,9 +41,7 @@ class LadderTest {
 
 		// Action & Assertion
 		assertThatExceptionOfType(DifferentRailCountException.class)
-				.isThrownBy(() -> {
-					ladder.addRow(threeRailsRow);
-				});
+				.isThrownBy(() -> ladder.addRow(threeRailsRow));
 	}
 
 	private static StepProvider getPredefineStepProviderForFiveRails(){

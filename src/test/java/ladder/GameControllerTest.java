@@ -5,6 +5,7 @@ import ladder.view.out.LadderViewer;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +13,8 @@ class GameControllerTest {
 
 	@Test
 	void name() {
-		GameController controller = new GameController(Arrays.asList("A", "B", "C"), 5);
-		controller.displayLadder(new LadderViewer(new ConsolePrinter()));
+		List<String> players = Arrays.asList("A", "B", "C", "D", "E");
+		GameController controller = new GameController(players, 5);
+		controller.displayLadder(new LadderViewer(new ConsolePrinter(), 5));
 	}
 }
