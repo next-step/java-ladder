@@ -22,7 +22,14 @@ public class Positions {
 
   private void otherPositionMakeLine(int playersCount) {
     for (int i = 1; i < playersCount - 1; i++) {
+      makeFalse(i);
       positions.add(RandomStrategyMaker.make(hasBeforePositionLine(i)));
+    }
+  }
+
+  private void makeFalse(int i) {
+    if (hasBeforePositionLine(i)) {
+      positions.add(false);
     }
   }
 
