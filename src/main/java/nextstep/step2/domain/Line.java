@@ -2,8 +2,6 @@ package nextstep.step2.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 public class Line {
     private final List<Point> points;
@@ -14,31 +12,23 @@ public class Line {
 
     public static Line createByRandomPoint(final int playerCount) {
         List<Point> points = new ArrayList<>();
-        Point beforePoint = Point.create(new RandomPointCreationStrategy());
-        points.add(beforePoint);
+        points.add(Point.createFirst(new RandomPointCreationStrategy()));
 
-        for (int i = 1; i < playerCount - 1; i++) {
-            beforePoint = getPoint(beforePoint);
-            points.add(beforePoint);
+        final var lastPoint = playerCount - 2;
+        for (int i = 0; i < lastPoint; i++) {
+            points.add(points.get(i).createNext(new RandomPointCreationStrategy()));
         }
+
+        points.add(points.get(lastPoint).createLast());
         return new Line(points);
     }
 
-    private static Point getPoint(final Point point) {
-        if (point == null || !point.isPoint()) {
-            return Point.create(new RandomPointCreationStrategy());
-        }
-
-        return Point.create(false);
+    public Point getPoint(final int index) {
+        return this.points.get(index);
     }
 
     public List<Point> getPoints() {
         return points;
-    }
-
-    private Point getLastPoint() {
-        final int lastIndex = points.size() - 1;
-        return Point.create(points.get(lastIndex).isPoint());
     }
 
     @Override
