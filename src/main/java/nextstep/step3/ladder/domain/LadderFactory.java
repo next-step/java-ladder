@@ -1,8 +1,6 @@
 package nextstep.step3.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -25,6 +23,14 @@ public class LadderFactory {
             lines.add(createLine(line));
         }
         return new Ladder(lines);
+    }
+
+    public static Map<Integer, Integer> play(Ladder ladder, int participantCount) {
+        Map<Integer, Integer> executeReuslt = new HashMap<>();
+        for (int i = 0; i < participantCount; i++) {
+            executeReuslt.put(i, ladder.execute(i));
+        }
+        return executeReuslt;
     }
 
     private static LadderLine createLine(int line) {
