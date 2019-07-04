@@ -3,6 +3,7 @@ package ladder.model;
 import ladder.util.RandomRungGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -22,6 +23,6 @@ public class Ladder {
     }
 
     public List<Layer> getLayers() {
-        return layers;
+        return Collections.unmodifiableList(layers);
     }
 }

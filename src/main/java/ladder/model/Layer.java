@@ -2,6 +2,7 @@ package ladder.model;
 
 import ladder.util.RungGenerator;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Layer {
@@ -18,6 +19,6 @@ public class Layer {
     }
 
     public List<Rung> getRungs() {
-        return rungs;
+        return Collections.unmodifiableList(rungs);
     }
 }
