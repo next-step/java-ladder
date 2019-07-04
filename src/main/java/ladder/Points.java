@@ -3,34 +3,31 @@ package ladder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Positions {
+public class Points {
 
   List<Boolean> positions = new ArrayList<>();
 
-  public Positions(int playerCount) {
+  public Points(int playerCount) {
     makeLine(playerCount);
   }
 
   private void makeLine(int playersCount) {
     firstPositionMakeLine();
-    otherPositionMakeLine(playersCount);
+    for (int i = 1; i < playersCount - 1; i++) {
+      otherPositionMakeLine(i);
+    }
   }
 
   private void firstPositionMakeLine() {
     positions.add(RandomStrategyMaker.make(false));
   }
 
-  private void otherPositionMakeLine(int playersCount) {
-    for (int i = 1; i < playersCount - 1; i++) {
-      makeFalse(i);
-      positions.add(RandomStrategyMaker.make(hasBeforePositionLine(i)));
-    }
-  }
-
-  private void makeFalse(int i) {
-    if (hasBeforePositionLine(i)) {
+  private void otherPositionMakeLine(int index) {
+    if (hasBeforePositionLine(index)) {
       positions.add(false);
+      return;
     }
+    positions.add(RandomStrategyMaker.make(hasBeforePositionLine(index)));
   }
 
   private boolean hasBeforePositionLine(int position) {

@@ -2,14 +2,14 @@ package ladder;
 
 public class Line {
 
-  Positions positions;
+  Points points;
 
   public Line(int playersCount) {
-    positions = new Positions(playersCount);
+    points = new Points(playersCount);
   }
 
   public LineDisplay draw() {
-    return positions.draw();
+    return points.draw();
   }
 
 }
