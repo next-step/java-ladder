@@ -7,6 +7,8 @@ import ladder.model.Player;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.joining;
+
 public class OutputView {
 
     private static String RUNG = "-----|";
@@ -18,7 +20,9 @@ public class OutputView {
     }
 
     private static void printPlayers(List<Player> players) {
-        String line = players.stream().map(Player::getName).collect(Collectors.joining("\t"));
+        String line = players.stream()
+                .map(Player::getName)
+                .collect(joining("\t"));
 
         System.out.println(line);
     }
@@ -26,7 +30,10 @@ public class OutputView {
     private static void printLadder(Ladder ladder) {
         List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {
-            String line = layer.getRungs().stream().map(rung -> rung.isRung() ? RUNG : EMPTY_RUNG).collect(Collectors.joining());
+            String line = layer.getRungs().stream()
+                    .map(rung -> rung.isRung() ? RUNG : EMPTY_RUNG)
+                    .collect(joining());
+
             System.out.println(EMPTY_RUNG.concat(line));
         }
     }
