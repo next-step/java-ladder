@@ -1,20 +1,26 @@
 package ladder.domain.gamer;
 
 import ladder.domain.gamer.info.Gamer;
+import ladder.domain.gamer.message.ErrorMessages;
 
-import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Gamers {
     private static final String DELIMITER = ",";
-    private final List<Gamer> gamers;
+    private static final int START_NUMBER = 0;
+    
+    private final Map<Gamer, Integer> gamers;
     
     private Gamers(String names) {
-        gamers = Arrays.stream(names.split(DELIMITER))
-          .map(Gamer::of)
-          .collect(Collectors.toList());
+        gamers = new LinkedHashMap<>();
+        String[] gamerNames = names.split(DELIMITER);
+        IntStream.range(START_NUMBER, gamerNames.length)
+            .forEach(index -> gamers.put(Gamer.of(gamerNames[index]), index));
     }
     
     public static Gamers of(String names) {
@@ -24,8 +30,26 @@ public class Gamers {
     public int getSize() {
         return gamers.size();
     }
-
-    public Stream<Gamer> getStream() {
-        return gamers.stream();
+    
+    public List<String> getGamerNames() {
+        return gamers.keySet().stream()
+            .map(Gamer::getName)
+            .collect(Collectors.toList());
+    }
+    
+    public int getLineNumber(String gamerName) {
+        return getLineNumber(Gamer.of(gamerName));
+    }
+    
+    private int getLineNumber(Gamer gamer) {
+        Integer lineNumber = gamers.get(gamer);
+        if (lineNumber == null) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_FIND_GAMER.message());
+        }
+        return lineNumber;
+    }
+    
+    public Stream<Gamer> keyStream() {
+        return gamers.keySet().stream();
     }
 }
