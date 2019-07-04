@@ -1,52 +1,72 @@
 package nextstep.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     private static final String SEPARATOR = ",";
-    static final User DEFAULT_USER = new User("Bentley");
+    static final GameUser DEFAULT_USER = new GameUser("Bentley");
 
-    private List<User> useGroup;
-    private List<Line> ladder;
-    private int maxHeight;
+    private List<GameUser> userGroup;
+    private List<Line> ladderMap;
+    private List<GameReward> gameReward;
 
-    public LadderGame(String userNames, int maxHeight) {
+    public LadderGame(String userNames, String userReward, int maxheight) {
         String[] namesOfUser = checkNames(splitName(userNames));
-        useGroup = new ArrayList<>();
-        User userElement;
+        userGroup = new ArrayList<>();
+        GameUser userElement;
 
-        for (String s : namesOfUser) {
-            userElement = new User(s);
-            useGroup.add(userElement);
+        for (int i = 0; i < namesOfUser.length; ++i) {
+            userElement = new GameUser(namesOfUser[i], i);
+            userGroup.add(userElement);
         }
 
-        this.maxHeight = maxHeight;
+        String[] namesOfReward = checkReward(splitName(userReward));
+        gameReward = new ArrayList<>();
+        GameReward gameRewardElement;
+
+        for (int i = 0; i < namesOfReward.length; ++i) {
+            gameRewardElement = new GameReward(namesOfReward[i], maxheight, i);
+            gameReward.add(gameRewardElement);
+        }
     }
 
-    public List<User> getUseGroup() {
-        return useGroup;
+    public List<GameUser> getUseGroup() {
+        return userGroup;
     }
 
     public List<Line> getLadder() {
-        return ladder;
+        return ladderMap;
     }
 
-    public User getUser(String name) {
-        return useGroup.stream().filter(user -> user.matchName(name))
+    public GameUser getUser(String name) {
+        return userGroup.stream().filter(user -> user.matchName(name))
                 .findAny()
                 .orElse(DEFAULT_USER);
     }
 
-    public void makeLadderLine() {
-        ladder = new ArrayList<>();
+    public List<GameReward> getgameReward() {
+        return gameReward;
+    }
+
+    public void makeLadderMap(int maxHeight) {
+        ladderMap = new ArrayList<>();
         Line line;
 
         for (int i = 0; i < maxHeight; ++i) {
-            line = new Line(useGroup.size());
-            ladder.add(line);
+            line = new Line(userGroup.size());
+            ladderMap.add(line);
         }
+    }
+
+    public void startLadderGame() {
+        GameResult.run(this, makeLadderMapArr());
+        getResult();
+    }
+
+    private void getResult() {
+        IntStream.range(0, gameReward.size()).
+                forEach(i -> gameReward.get(i).matchReward(userGroup));
     }
 
     private String[] splitName(String names) {
@@ -62,5 +82,27 @@ public class LadderGame {
                 });
 
         return inputStrings;
+    }
+
+    private String[] checkReward(String[] inputStrings) {
+        Arrays.stream(inputStrings)
+                .filter(inputString -> inputString.isEmpty() || inputString.equals(" ")
+                        || inputString.equals("\n"))
+                .forEach(inputString -> {
+                    throw new IllegalArgumentException("입력값이 잘못되었습니다. 실행 결과를 다시 한번 입력해주세요.");
+                });
+
+        return inputStrings;
+    }
+    // listArray를 array로 변환 (게임 결과 확인을 위해서)
+    private Boolean[][] makeLadderMapArr() {
+        Line[] ladderArr = ladderMap.toArray(new Line[ladderMap.size()]);
+        Boolean[][] map = new Boolean[ladderMap.size()][userGroup.size()];
+
+        for (int i = 0; i < ladderArr.length; ++i) {
+            map[i] = ladderArr[i].getPoints().toArray(new Boolean[userGroup.size()]);
+        }
+
+        return map;
     }
 }

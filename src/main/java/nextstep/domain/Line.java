@@ -12,7 +12,7 @@ public class Line {
         points = new ArrayList<>();
     }
 
-    public Line(int countOfPerson) {
+    Line(int countOfPerson) {
 
         Random random = new Random();
         points = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Line {
         return points;
     }
 
-    private Boolean checkElement(Boolean prev, Boolean addElement) {
+    public Boolean checkElement(Boolean prev, Boolean addElement) {
         if (prev == Boolean.TRUE && prev.equals(addElement))
             return Boolean.FALSE;
         return addElement;

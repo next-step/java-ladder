@@ -1,9 +1,15 @@
 package nextstep.domain;
 
-public class User {
+public class GameUser {
     private String name;
+    private Position position;
 
-    public User(String name) {
+    public GameUser(String name, int firstPos) {
+        this.name = name;
+        position = new Position(firstPos);
+    }
+
+    public GameUser(String name) {
         this.name = name;
     }
 
@@ -15,6 +21,11 @@ public class User {
         return this.name.equals(name);
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -23,7 +34,7 @@ public class User {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        GameUser other = (GameUser) obj;
         if (name == null) {
             if (other.name != null)
                 return false;
@@ -34,6 +45,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "This User is " + getName();
+        return "This GameUser is " + getName();
     }
 }
