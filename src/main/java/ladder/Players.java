@@ -45,13 +45,6 @@ public class Players {
     return players.size();
   }
 
-  public int maxNameLength() {
-    return players.stream()
-        .map(Player::nameLength)
-        .max(Comparator.comparingInt(Integer::intValue))
-        .orElse(0);
-  }
-
   @Override
   public String toString() {
     StringBuffer playersName = new StringBuffer();
