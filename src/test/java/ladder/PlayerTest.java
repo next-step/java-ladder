@@ -24,11 +24,10 @@ class PlayerTest {
   }
 
   @Test
-  public void 이름을_자리수에_맞추어_공백을_추가해서_return한다() {
-    int length = 6;
+  public void toString이_이름을_자리수에_맞추어_공백을_추가해서_return한다() {
     Player player = new Player("lee");
-    assertThat(player.nameFormat(length)).isEqualTo("lee   ");
-    assertThat(player.nameFormat(length).length()).isEqualTo(length);
+    assertThat(player.toString()).isEqualTo("lee   ");
+    assertThat(player.toString().length()).isEqualTo(6);
   }
 
 }

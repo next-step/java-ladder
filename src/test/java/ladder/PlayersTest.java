@@ -45,7 +45,7 @@ public class PlayersTest {
   public void player이름을_포맷으로_가지고온다() {
     String playerNames = "lee,chang,junn";
     String result = "lee   chang junn  ";
-    assertThat(new Players(playerNames).getLengthFormatPlayersName(6)).isEqualTo(result);
+    assertThat(new Players(playerNames).toString()).isEqualTo(result);
   }
 
 }

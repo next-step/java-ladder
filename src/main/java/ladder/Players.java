@@ -52,10 +52,11 @@ public class Players {
         .orElse(0);
   }
 
-  public String getLengthFormatPlayersName(int length) {
+  @Override
+  public String toString() {
     StringBuffer playersName = new StringBuffer();
     for (Player player : players) {
-      playersName.append(player.nameFormat(length));
+      playersName.append(player.toString());
     }
     return playersName.toString();
   }
