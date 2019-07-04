@@ -11,21 +11,21 @@ public class CommandLineReader {
     private NumberReader numberReader = new NumberReader();
     private CsvStringReader csvStringReader = new CsvStringReader();
 
-    public Long readNumber() {
-        return numberReader.parseInput(scanner.nextLong());
+    public int readNumber() {
+        return numberReader.parseInput(scanner.nextInt());
     }
 
     public List<String> readCsv() {
         return csvStringReader.parseInput(scanner.next());
     }
 
-    public List<Long> readCsvLongValues() {
-        return readCsv().stream().map(Long::parseLong).collect(Collectors.toList());
+    public List<Integer> readCsvLongValues() {
+        return readCsv().stream().map(Integer::parseInt).collect(Collectors.toList());
     }
 
     public static class NumberReader {
-        public Long parseInput(Long num) {
-            if (num == null || num < 0) {
+        public int parseInput(int num) {
+            if (num < 0) {
                 throw new IllegalArgumentException("Invalid input");
             }
             return num;

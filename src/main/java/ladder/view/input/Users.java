@@ -27,4 +27,8 @@ public class Users {
     public List<String> getUserNames() {
         return Collections.unmodifiableList(userNames);
     }
+
+    public int getUserCount() {
+        return userNames.size();
+    }
 }
