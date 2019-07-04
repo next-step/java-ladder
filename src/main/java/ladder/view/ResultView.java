@@ -29,7 +29,7 @@ public class ResultView {
   }
 
   private static void printPlayer(Players players) {
-    players.getPlayers().stream().map(Player::getName).forEach(name -> System.out.printf("%-5s",name));
+    players.getPlayers().forEach(System.out::print);
   }
 
   private static String drawBar(Boolean bar) {

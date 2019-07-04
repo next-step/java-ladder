@@ -43,4 +43,9 @@ public class Player {
   public String getName() {
     return name;
   }
+
+  @Override
+  public String toString() {
+    return String.format("%-5s", name);
+  }
 }
