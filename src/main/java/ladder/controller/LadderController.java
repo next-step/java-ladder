@@ -1,7 +1,6 @@
 package ladder.controller;
 
 import ladder.core.controller.Controller;
-import ladder.core.message.Request;
 import ladder.domain.Model;
 import ladder.message.request.gamer.GamerNames;
 import ladder.message.request.ladder.LadderSize;
@@ -21,19 +20,23 @@ public class LadderController implements Controller {
         isExit = false;
     }
     
-    private void inputGamers(GamerNames gamerNames) {
+    @Override
+    public void inputGamers(GamerNames gamerNames) {
         model.newGamers(gamerNames.getGamerNames());
     }
     
-    private void inputReward(RewardRequest reward) {
+    @Override
+    public void inputReward(RewardRequest reward) {
         model.newRewards(reward.getReward());
     }
     
-    private void inputLadderSize(LadderSize ladderSize) {
+    @Override
+    public void inputLadderSize(LadderSize ladderSize) {
         model.newLadder(ladderSize.getInputNumber());
     }
     
-    private void inputGamerName(GamerName gamerName) {
+    @Override
+    public void inputGamerName(GamerName gamerName) {
         String name = gamerName.getGamerName();
         if (EXIT_PROGRAM.equals(name)) {
             isExit = true;
@@ -46,19 +49,6 @@ public class LadderController implements Controller {
     public void action() {
         while (!isExit) {
             mainView.render(model.getMessage());
-        }
-    }
-    
-    @Override
-    public void input(Request data) {
-        if (data instanceof GamerNames) {
-            inputGamers((GamerNames) data);
-        } else if (data instanceof RewardRequest) {
-            inputReward((RewardRequest) data);
-        } else if (data instanceof LadderSize) {
-            inputLadderSize((LadderSize) data);
-        } else if (data instanceof GamerName) {
-            inputGamerName((GamerName) data);
         }
     }
 }

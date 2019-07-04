@@ -11,9 +11,11 @@ import ladder.view.component.View;
 public class RewardInputView implements ViewImpl {
     private static final String ANSWER = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     
+    private Controller controller;
     private View view;
     
     public RewardInputView(Controller controller, Printer printer, Inputor inputor) {
+        this.controller = controller;
         view = new View.Builder(controller)
           .setPrinter(printer)
           .setInputor(inputor)
@@ -26,6 +28,6 @@ public class RewardInputView implements ViewImpl {
             return;
         }
         view.print(ANSWER);
-        view.pushDataToController(new RewardRequest(view.inputString()));
+        controller.inputReward(new RewardRequest(view.inputString()));
     }
 }

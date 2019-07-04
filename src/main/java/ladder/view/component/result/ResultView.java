@@ -18,9 +18,11 @@ public class ResultView implements ViewImpl {
     private final static String ONE_SPACE_STRING = " ";
     private final static int MAX_NAME_SIZE = 5;
     
+    private Controller controller;
     private View view;
     
     public ResultView(Controller controller, Printer printer) {
+        this.controller = controller;
         view = new View.Builder(controller)
             .setPrinter(printer)
             .build();

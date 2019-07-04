@@ -9,11 +9,13 @@ import ladder.message.request.result.GamerName;
 import ladder.view.component.View;
 
 public class InputGamerNameView implements ViewImpl {
-    public final static String ANSWER = "결과를 보고 싶은 사람은?";
+    private final static String ANSWER = "결과를 보고 싶은 사람은?";
     
+    private Controller controller;
     private View view;
     
     public InputGamerNameView(Controller controller, Printer printer, Inputor inputor) {
+        this.controller = controller;
         view = new View.Builder(controller)
           .setPrinter(printer)
           .setInputor(inputor)
@@ -26,6 +28,6 @@ public class InputGamerNameView implements ViewImpl {
             return;
         }
         view.print(ANSWER);
-        view.pushDataToController(new GamerName(view.inputString()));
+        controller.inputGamerName(new GamerName(view.inputString()));
     }
 }

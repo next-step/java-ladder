@@ -1,7 +1,6 @@
 package ladder.view.component;
 
 import ladder.core.controller.Controller;
-import ladder.core.message.Request;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
 
@@ -42,10 +41,6 @@ public class View {
     
     public void print(String content) {
         printer.print(content);
-    }
-    
-    public void pushDataToController(Request data) {
-        controller.input(data);
     }
     
     public String inputString() {

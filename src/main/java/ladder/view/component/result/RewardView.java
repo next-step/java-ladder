@@ -8,9 +8,11 @@ import ladder.message.response.result.RewardResponse;
 import ladder.view.component.View;
 
 public class RewardView implements ViewImpl {
+    private Controller controller;
     private View view;
     
     public RewardView(Controller controller, Printer printer) {
+        this.controller = controller;
         view = new View.Builder(controller)
             .setPrinter(printer)
             .build();
