@@ -37,13 +37,13 @@ public class LadderLine {
         return ladderLine.stream();
     }
 
-    public boolean isTrue(int index) {
-        int lastIndex = ladderLine.size();
-        if (index >= lastIndex) {
-            return false;
-        }
-        return ladderLine.get(index).status();
-    }
+//    public boolean isTrue(int index) {
+//        int lastIndex = ladderLine.size();
+//        if (index >= lastIndex) {
+//            return false;
+//        }
+//        return ladderLine.get(index).status();
+//    }
 
     public int move(int index) {
         if (ladderLine.get(index).status()) {
