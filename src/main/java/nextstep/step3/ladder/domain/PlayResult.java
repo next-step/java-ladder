@@ -30,6 +30,17 @@ public class PlayResult {
                 .orElseThrow(() -> new NoSuchElementException(NO_SEARCH_PRIZE));
     }
 
+    public Name findNameByIndex(int findIndex, Participant participant) {
+        return participant.stream()
+                .filter(name -> participant.matchAttribute(name, findIndex))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException(NO_SEARCH_PRIZE));
+    }
+
+    public int findEndIndexByStartIndex(int startIndex) {
+        return result.get(startIndex);
+    }
+
     public Stream<Integer> keySet() {
         return result.keySet().stream();
     }
