@@ -21,33 +21,33 @@ public class RungGeneratorTest {
 
     @Test
     void generate() {
-        Rung rung = rungGenerator.generate();
+        Boolean rung = rungGenerator.generate();
 
-        assertThat(rung.isRung()).isTrue();
+        assertThat(rung).isTrue();
     }
 
     @Test
     void generate2() {
         int countOfPlayers = 4;
-        List<Rung> rungs = rungGenerator.generate(countOfPlayers);
+        List<Boolean> rungs = rungGenerator.generate(countOfPlayers);
 
         assertThat(rungs.size()).isEqualTo(4);
 
-        assertThat(rungs.get(0).isRung()).isTrue();
-        assertThat(rungs.get(1).isRung()).isFalse();
-        assertThat(rungs.get(2).isRung()).isTrue();
-        assertThat(rungs.get(3).isRung()).isFalse();
+        assertThat(rungs.get(0)).isTrue();
+        assertThat(rungs.get(1)).isFalse();
+        assertThat(rungs.get(2)).isTrue();
+        assertThat(rungs.get(3)).isFalse();
     }
 
     @Test
     void getPreviousValue() {
-        List<Rung> emptyRungs = new ArrayList<>();
+        List<Boolean> emptyRungs = new ArrayList<>();
         assertThat(rungGenerator.getPreviousValue(emptyRungs)).isFalse();
 
-        List<Rung> trueRungList = Arrays.asList(new Rung(true));
+        List<Boolean> trueRungList = Arrays.asList(Boolean.TRUE);
         assertThat(rungGenerator.getPreviousValue(trueRungList)).isTrue();
 
-        List<Rung> falseRungList = Arrays.asList(new Rung(false));
+        List<Boolean> falseRungList = Arrays.asList(Boolean.FALSE);
         assertThat(rungGenerator.getPreviousValue(falseRungList)).isFalse();
     }
 
