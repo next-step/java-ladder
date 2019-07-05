@@ -1,9 +1,7 @@
-package nextstep.step3.ladder.dto;
-
-import nextstep.step3.ladder.domain.Name;
-import nextstep.step3.ladder.domain.Prize;
+package nextstep.step3.ladder.domain;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 /**
@@ -16,28 +14,23 @@ import java.util.stream.Stream;
  * project      : java-ladder
  * create date  : 2019-07-03 17:58
  */
-public class Result {
-    private Map<Name, Prize> resultDto;
+public class PlayResult {
+    public static final String NO_SEARCH_PRIZE = "일치하는 Prize가 없습니다.";
     private final Map<Integer, Integer> result;
 
-    public Result(Map<Integer, Integer> result) {
+    public PlayResult(Map<Integer, Integer> result) {
         this.result = result;
     }
 
-    public int findPrize(int findIndex) {
-        return result.get(findIndex);
-    }
-
-    public Prize getPrize(String name) {
-        Name searchName = resultDto.keySet().stream()
-                .filter(sourceName -> sourceName.isName(Name.of(name)))
+    public Prize findPrizeByIndex(int findIndex, PrizeInfo prizeInfo) {
+        int endIndex = result.get(findIndex);
+        return prizeInfo.stream()
+                .filter(prize -> prizeInfo.matchAttribute(prize, endIndex))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("참여자가 아닙니다."));
-
-        return resultDto.get(searchName);
+                .orElseThrow(() -> new NoSuchElementException(NO_SEARCH_PRIZE));
     }
 
-    public Stream<Name> keySet() {
-        return resultDto.keySet().stream();
+    public Stream<Integer> keySet() {
+        return result.keySet().stream();
     }
 }

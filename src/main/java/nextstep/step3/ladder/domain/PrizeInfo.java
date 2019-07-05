@@ -44,7 +44,7 @@ public class PrizeInfo {
         return this.prizeInfo.stream();
     }
 
-    public Prize getPrizeByIndex(int index) {
-        return Prize.of(prizeInfo.get(index).getPrize());
+    public boolean matchAttribute(Prize prize, int index) {
+        return prizeInfo.get(index).equals(prize);
     }
 }

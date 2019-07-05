@@ -1,5 +1,7 @@
 package nextstep.step3.ladder.domain;
 
+import java.util.Objects;
+
 /**
  * author       : gwonbyeong-yun <sksggg123>
  * ------------------------------------------
@@ -15,7 +17,7 @@ public class Prize {
     private static final String UNDER_WIN_NUMBER = "입력된 결과가 0보다 작습니다.";
     private static final String UNSUITE = "꽝";
 
-    private static final Prize NOT_PRIZE = new Prize("꽝");
+    private static final Prize NOT_PRIZE = new Prize(UNSUITE);
     private final String prize;
 
     private Prize(String prize) {
@@ -42,5 +44,18 @@ public class Prize {
 
     public String getPrize() {
         return this.prize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prize prize1 = (Prize) o;
+        return prize.equals(prize1.prize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prize);
     }
 }

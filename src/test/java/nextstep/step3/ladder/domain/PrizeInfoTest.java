@@ -5,8 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -68,5 +69,13 @@ public class PrizeInfoTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             PrizeInfo info = PrizeInfo.of("", participantCount);
         }).withMessageContaining("실행 결과 값이 없습니다.");
+    }
+
+    @DisplayName("Prize와 index 번호를 통해 일치하는 정보가 있는지 확인")
+    @Test
+    void matchAttribute() {
+        int participantCount = participant.count();
+        PrizeInfo info = PrizeInfo.of("1,2,3", participantCount);
+        assertThat(info.matchAttribute(Prize.of("1"), 0)).isTrue();
     }
 }
