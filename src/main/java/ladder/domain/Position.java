@@ -4,6 +4,7 @@ public class Position {
 
     private static final int MOVE_ONE_STEP_TO_RIGHT = 1;
     private static final int MOVE_ONE_STEP_TO_LEFT = -1;
+    static final String ALERT_UNMOVABLE_TO_LEFT = "더 이상 왼쪽으로 이동할 수 없습니다.";
     private int position;
 
     private Position(int currentPosition) {
@@ -23,6 +24,7 @@ public class Position {
     }
 
     Position moveToLeft() {
+        validationMovableToLeft();
         return from(this.position + MOVE_ONE_STEP_TO_LEFT);
     }
 
@@ -31,6 +33,17 @@ public class Position {
     }
 
     int getLeftPosition() {
+        validationMovableToLeft();
         return this.position + MOVE_ONE_STEP_TO_LEFT;
+    }
+
+    private void validationMovableToLeft() {
+        if (unmovableToLeft()) {
+            throw new IllegalArgumentException(ALERT_UNMOVABLE_TO_LEFT);
+        }
+    }
+
+    private boolean unmovableToLeft() {
+        return position <= 0;
     }
 }
