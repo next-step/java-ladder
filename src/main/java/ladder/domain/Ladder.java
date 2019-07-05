@@ -28,13 +28,17 @@ public class Ladder {
 		ladder.rows.forEach(this::addRow);
 	}
 
+	/**
+	 * 여러개의 HorizontalStep 개체를 합쳐 하나의 Ladder 개체로 반환하는 콜레터
+	 * @return
+	 */
 	public static Collector<HorizontalStepList, Ladder, Ladder> collector(){
 		return Collector.of(
 				Ladder::new,
 				Ladder::addRow,
-				(result1, result2) -> {
-					result1.concat(result2);
-					return result1;
+				(ladderA, ladderB) -> {
+					ladderA.concat(ladderB);
+					return ladderA;
 				}
 		);
 	}
