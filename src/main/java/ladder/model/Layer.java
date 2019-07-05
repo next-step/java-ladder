@@ -8,9 +8,9 @@ import java.util.List;
 public class Layer {
 
     private static final int ONE_RUNG = 1;
-    private final List<Rung> rungs;
+    private final List<Boolean> rungs;
 
-    public Layer(final List<Rung> rungs) {
+    public Layer(final List<Boolean> rungs) {
         this.rungs = rungs;
     }
 
@@ -18,7 +18,7 @@ public class Layer {
         return new Layer(rungGenerator.generate(countOfPlayers - ONE_RUNG));
     }
 
-    public List<Rung> getRungs() {
+    public List<Boolean> getRungs() {
         return Collections.unmodifiableList(rungs);
     }
 }

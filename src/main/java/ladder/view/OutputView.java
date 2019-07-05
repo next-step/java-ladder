@@ -5,7 +5,6 @@ import ladder.model.Layer;
 import ladder.model.Player;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
@@ -31,7 +30,7 @@ public class OutputView {
         List<Layer> layers = ladder.getLayers();
         for (Layer layer : layers) {
             String line = layer.getRungs().stream()
-                    .map(rung -> rung.isRung() ? RUNG : EMPTY_RUNG)
+                    .map(rung -> rung ? RUNG : EMPTY_RUNG)
                     .collect(joining());
 
             System.out.println(EMPTY_RUNG.concat(line));
