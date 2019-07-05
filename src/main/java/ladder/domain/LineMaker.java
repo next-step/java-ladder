@@ -6,10 +6,11 @@ import java.util.List;
 class LineMaker {
     private static final int NUMBER_OF_FIRST_AND_LAST_BAR = 2;
 
-    private List<Bar> randomBars = new ArrayList<>();
+    private List<Bar> randomBars;
     private RandomBarGenerator barGenerator = new RandomBarGenerator();
 
     List<Bar> generateBars(int numberOfPlayers) {
+        this.randomBars = new ArrayList<>();
         generateFirstBar();
         generateMiddleBars(numberOfPlayers);
         generateLastBar();
