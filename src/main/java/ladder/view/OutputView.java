@@ -5,8 +5,6 @@ import ladder.domain.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.view.InputView.printEmptyLine;
-
 public class OutputView {
     private static final String MESSAGE_RESULT_TITLE = "실행결과";
     private static final String EMPTY_SPACE = "     ";
@@ -26,6 +24,7 @@ public class OutputView {
         System.out.println(MESSAGE_RESULT_TITLE);
         printEmptyLine();
     }
+
 
     private static void printPlayers(Players players) {
         players.getPlayers().stream()
@@ -63,5 +62,9 @@ public class OutputView {
             return stringBuilder.append(BAR).toString();
         }
         return stringBuilder.append(EMPTY_SPACE).toString();
+    }
+
+    private static void printEmptyLine() {
+        System.out.println();
     }
 }
