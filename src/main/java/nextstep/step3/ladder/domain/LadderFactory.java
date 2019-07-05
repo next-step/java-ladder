@@ -16,6 +16,7 @@ public class LadderFactory {
 
     public static final int NEXT_INDEX = 1;
     public static final int LAST_INDEX = 1;
+    public static final int INIT_INDEX = 0;
 
     public static Ladder create(int row, int line) {
         List<LadderLine> lines = new ArrayList<>();
@@ -27,7 +28,7 @@ public class LadderFactory {
 
     public static Map<Integer, Integer> play(Ladder ladder, int participantCount) {
         Map<Integer, Integer> executeReuslt = new HashMap<>();
-        for (int i = 0; i < participantCount; i++) {
+        for (int i = INIT_INDEX; i < participantCount; i++) {
             executeReuslt.put(i, ladder.execute(i));
         }
         return executeReuslt;
