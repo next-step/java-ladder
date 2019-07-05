@@ -37,6 +37,7 @@ class PlayResultTest {
                                         new Link(1, new Point(false, false)),
                                         new Link(2, new Point(false, false))))));
     }
+
     @DisplayName("전달받은 Index를 통해 endIndex를 통해 가지고 오기")
     @Test
     void findPrize() {

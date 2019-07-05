@@ -26,12 +26,4 @@ public class Point {
     public boolean left() {
         return left;
     }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "current=" + current +
-                ", left=" + left +
-                '}';
-    }
 }
