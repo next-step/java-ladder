@@ -18,31 +18,29 @@ public class Link {
     private static final String CREATE_SAME_STATUS_EXCEPTION_MESSAGE = "현재 Link와 Left Link가 모두 true면 안됩니다.";
 
     private final int index;
-    private final boolean link;
-    private final boolean left;
+    private final Point point;
 
-    public Link(int index, boolean link, boolean left) {
-        if (index == DEFAULT_INDEX && left) {
+    public Link(int index, Point point) {
+        if (index == DEFAULT_INDEX && point.left()) {
             throw new IllegalArgumentException(CREATE_FIRST_INDEX_EXCEPTION_MESSAGE);
         }
-        if (link && left) {
+        if (point.current() && point.left()) {
             throw new IllegalArgumentException(CREATE_SAME_STATUS_EXCEPTION_MESSAGE);
         }
         this.index = index;
-        this.link = link;
-        this.left = left;
+        this.point = point;
     }
 
     public static Link first(RandomGenerator random) {
-        return new Link(DEFAULT_INDEX, random.generate(), false);
+        return new Link(DEFAULT_INDEX, new Point(random.generate(), false));
     }
 
     public static Link next(Link leftLink, RandomGenerator random) {
-        return new Link(leftLink.index + INCREASE, random.generate(), leftLink.link);
+        return new Link(leftLink.index + INCREASE, new Point(random.generate(), leftLink.point.current()));
     }
 
     public static Link last(Link leftLink) {
-        return new Link(leftLink.index + INCREASE, false, leftLink.link);
+        return new Link(leftLink.index + INCREASE, new Point(false, leftLink.point.current()));
     }
 
     public boolean matchIndex(int index) {
@@ -50,14 +48,14 @@ public class Link {
     }
 
     public boolean status() {
-        return this.link;
+        return point.current();
     }
 
     public int move() {
-        if (link) {
+        if (point.current()) {
             return index + INCREASE;
         }
-        if (left) {
+        if (point.left()) {
             return index - DECREASE;
         }
         return index;

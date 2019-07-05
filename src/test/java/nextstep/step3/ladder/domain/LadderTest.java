@@ -34,12 +34,12 @@ public class LadderTest {
                 Arrays.asList(
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, true, false),
-                                        new Link(1, false, true))),
+                                        new Link(0, new Point(true, false)),
+                                        new Link(1, new Point(false, true)))),
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, false, false),
-                                        new Link(1, false, false)))));
+                                        new Link(0, new Point(false, false)),
+                                        new Link(1, new Point(false, false))))));
 
         assertThat(ladder.execute(0)).isEqualTo(1);
     }

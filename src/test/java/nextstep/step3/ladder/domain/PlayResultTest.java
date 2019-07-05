@@ -28,14 +28,14 @@ class PlayResultTest {
                 Arrays.asList(
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, true, false),
-                                        new Link(1, false, true),
-                                        new Link(2, false, false))),
+                                        new Link(0, new Point(true, false)),
+                                        new Link(1, new Point(false, true)),
+                                        new Link(2, new Point(false, false)))),
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, false, false),
-                                        new Link(1, false, false),
-                                        new Link(2, false, false)))));
+                                        new Link(0, new Point(false, false)),
+                                        new Link(1, new Point(false, false)),
+                                        new Link(2, new Point(false, false))))));
     }
     @DisplayName("전달받은 Index를 통해 endIndex를 통해 가지고 오기")
     @Test

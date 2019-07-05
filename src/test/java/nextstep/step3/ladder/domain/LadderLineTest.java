@@ -1,5 +1,6 @@
 package nextstep.step3.ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,15 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  * create date  : 2019-06-29 03:22
  */
 public class LadderLineTest {
+    private LadderLine line;
+
+    @BeforeEach
+    void setUp() {
+        line = new LadderLine(
+                Arrays.asList(
+                        new Link(0, new Point(true, false)),
+                        new Link(1, new Point(false, true))));
+    }
 
     @DisplayName("LadderLine 생성 예외상황 - Empty, Null")
     @Test
@@ -32,37 +42,27 @@ public class LadderLineTest {
     @Test
     void createListSizeException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new LadderLine(Arrays.asList(new Link(0, true, false)));
+            new LadderLine(
+                    Arrays.asList(
+                            new Link(0, new Point(true, false))));
         }).withMessageContaining("사다리라인의 최소 개수는 2개 입니다.");
     }
 
     @DisplayName("한줄의 움직임을 확인해서 최종 index 위치 전달받기 - 증가 index")
     @Test
     void moveLineFromIndexIncrease() {
-        LadderLine line = new LadderLine(
-                Arrays.asList(
-                        new Link(0, true, false),
-                        new Link(1, false, true)));
         assertThat(line.moveLine(0)).isEqualTo(1);
     }
 
     @DisplayName("한줄의 움직임을 확인해서 최종 index 위치 전달받기 - 감소 index")
     @Test
     void moveLineFromIndexDecreas() {
-        LadderLine line = new LadderLine(
-                Arrays.asList(
-                        new Link(0, true, false),
-                        new Link(1, false, true)));
         assertThat(line.moveLine(1)).isEqualTo(0);
     }
 
     @DisplayName("한줄의 움직임을 확인해서 최종 index 위치 전달받기 - 감소 index")
     @Test
     void moveLineMismatchIndex() {
-        LadderLine line = new LadderLine(
-                Arrays.asList(
-                        new Link(0, true, false),
-                        new Link(1, false, true)));
         assertThatIllegalArgumentException().isThrownBy(() -> {
             line.moveLine(2);
         }).withMessageContaining("일치하는 Index가 없습니다.");
