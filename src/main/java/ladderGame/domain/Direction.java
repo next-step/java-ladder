@@ -3,22 +3,22 @@ package ladderGame.domain;
 import java.util.EnumSet;
 
 public enum Direction {
-    RIGHT(false, true),
-    LEFT(true, false),
-    STRAIGHT(false, false);
 
-    private final boolean left;
-    private final boolean right;
+    RIGHT(0),
+    STRAIGHT(1),
+    LEFT(2);
 
-    Direction(boolean left, boolean right) {
-        this.left = left;
-        this.right = right;
+    private int identity;
+
+    Direction(int identity) {
+        this.identity = identity;
     }
 
-    public static Direction decide(boolean left, boolean right) {
+    public static Direction of(int number) {
         return EnumSet.allOf(Direction.class).stream()
-                .filter(Direction -> Direction.left == left && Direction.right == right)
+                .filter(Direction -> Direction.identity == number)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("연속된 계단은 만들어 질 수 없어"));
+                .orElseThrow(() -> new IllegalArgumentException("방향의 종류를 넘어선 숫자 생성"));
     }
+
 }
