@@ -25,10 +25,9 @@ public class OutputView {
         printEmptyLine();
     }
 
-
     private static void printPlayers(Players players) {
         players.getPlayers().stream()
-                .map(OutputView::adjustNameLength)
+                .map(player -> String.format(adjustNameLength(player), player.getName()))
                 .forEach(System.out::print);
         printEmptyLine();
     }
