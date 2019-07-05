@@ -15,8 +15,8 @@ public class LadderGame {
     public Ladder start() {
         final var playerCount = players.getPlayerCount();
         return new Ladder(IntStream.range(0, ladderHeight)
-                                               .mapToObj(i -> Line.create(playerCount))
-                                               .collect(Collectors.toList()));
+                                   .mapToObj(i -> Line.createByRandomPoint(playerCount))
+                                   .collect(Collectors.toList()));
     }
 
 }

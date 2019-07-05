@@ -10,13 +10,21 @@ public class Line {
         this.points = points;
     }
 
-    public static Line create(final int playerCount) {
+    public static Line createByRandomPoint(final int playerCount) {
         List<Point> points = new ArrayList<>();
-        points.add(new Point());
-        for (int i = 1; i < playerCount - 1; i++) {
-            points.add(Point.create(points.get(i - 1)));
+        points.add(Point.createFirst(new RandomPointCreationStrategy()));
+
+        final var lastPoint = playerCount - 2;
+        for (int i = 0; i < lastPoint; i++) {
+            points.add(points.get(i).createNext(new RandomPointCreationStrategy()));
         }
+
+        points.add(points.get(lastPoint).createLast());
         return new Line(points);
+    }
+
+    public Point getPoint(final int index) {
+        return this.points.get(index);
     }
 
     public List<Point> getPoints() {

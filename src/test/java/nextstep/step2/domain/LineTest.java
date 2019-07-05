@@ -9,6 +9,6 @@ public class LineTest {
     @Test
     @DisplayName("한 라인 생성")
     void create() {
-        assertThat(Line.create(5).getPoints().size()).isEqualTo(4);
+        assertThat(Line.createByRandomPoint(5).getPoints().size()).isEqualTo(5);
     }
 }

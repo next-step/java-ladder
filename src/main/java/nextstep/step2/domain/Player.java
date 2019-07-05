@@ -4,15 +4,24 @@ import java.util.Objects;
 
 public class Player {
     private final static int NAME_MAX_LENGTH = 5;
+    private final Integer startPoint;
     private final String name;
 
-    public Player(String name) {
+    public Player(int startPoint, String name) {
+        validateStartPoint(startPoint);
         validateNameSize(name);
+        this.startPoint = startPoint;
         this.name = name;
     }
 
     public Player(Player player) {
-        this(player.name);
+        this(player.startPoint, player.name);
+    }
+
+    private void validateStartPoint(final int startPoint) {
+        if (startPoint < 0) {
+            throw new IllegalArgumentException("사다리 게임의 시작 지점은 0부터 입니다.");
+        }
     }
 
     private void validateNameSize(final String name) {
@@ -23,6 +32,14 @@ public class Player {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("Player 의 이름은 " + NAME_MAX_LENGTH + "자를 초과할 수 없습니다.");
         }
+    }
+
+    public Integer getStartPoint() {
+        return startPoint;
+    }
+
+    public boolean equalsName(final String name) {
+        return this.name.equals(name);
     }
 
     @Override

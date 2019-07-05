@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import nextstep.step2.dto.PlayersDTO;
+import nextstep.step2.dto.GameResultDTO;
 
 public class InputView {
 
@@ -13,10 +14,22 @@ public class InputView {
         return new PlayersDTO(List.of(scanner.next().split(",")));
     }
 
+    public static GameResultDTO inputResult() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return new GameResultDTO(List.of(scanner.next().split(",")));
+    }
+
     public static int inputLadderHeight() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         return scanner.nextInt();
+    }
+
+    public static String inputResultPlayer() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return scanner.next();
     }
 
 }
