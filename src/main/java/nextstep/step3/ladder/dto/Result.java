@@ -18,9 +18,14 @@ import java.util.stream.Stream;
  */
 public class Result {
     private Map<Name, Prize> resultDto;
+    private final Map<Integer, Integer> result;
 
-    public Result(Map<Name, Prize> resultDto) {
-        this.resultDto = resultDto;
+    public Result(Map<Integer, Integer> result) {
+        this.result = result;
+    }
+
+    public int findPrize(int findIndex) {
+        return result.get(findIndex);
     }
 
     public Prize getPrize(String name) {
@@ -34,9 +39,5 @@ public class Result {
 
     public Stream<Name> keySet() {
         return resultDto.keySet().stream();
-    }
-
-    public Stream<Prize> values() {
-        return resultDto.values().stream();
     }
 }
