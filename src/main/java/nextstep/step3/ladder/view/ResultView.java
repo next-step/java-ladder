@@ -3,7 +3,7 @@ package nextstep.step3.ladder.view;
 import nextstep.step3.ladder.domain.Ladder;
 import nextstep.step3.ladder.domain.Participant;
 import nextstep.step3.ladder.domain.PrizeInfo;
-import nextstep.step3.ladder.dto.Result;
+import nextstep.step3.ladder.domain.PlayResult;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -22,5 +22,5 @@ public interface ResultView {
 
     void printPrizeInfo(PrizeInfo prizeInfo);
 
-    void printResultInfo(Result resut, String name);
+    void printResultInfo(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo);
 }

@@ -1,8 +1,9 @@
 package nextstep.step3.ladder.view.impl;
 
 import nextstep.step3.ladder.domain.*;
-import nextstep.step3.ladder.dto.Result;
 import nextstep.step3.ladder.view.ResultView;
+
+import java.util.stream.Collectors;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -15,12 +16,13 @@ import nextstep.step3.ladder.view.ResultView;
  * create date  : 2019-06-30 02:49
  */
 public class ResultViewImpl implements ResultView {
-    private static final String PORINT_PRINT_ROMAP = "|";
+    private static final String PIPE_PRINT_FORMAT = "|";
     private static final String TRUE_PRINT_FORMAT = "-----";
     private static final String FASLE_PRINT_FORMAT = "     ";
     private static final String PRINT_NAME_FIVE_LETTER_MATCH_SPACE_FORMAT = " ";
     private static final String PRINT_NAME_SEPERATOR = " : ";
     private static final String RESULT_ALL_KEYWORD = "all";
+    private static final String DELIMITER = "\n";
     private static final int PRINT_NAME_FIVE_LETTER_MATCH_SPACE = 6;
 
     @Override
@@ -46,27 +48,41 @@ public class ResultViewImpl implements ResultView {
     }
 
     @Override
-    public void printResultInfo(Result resut, String name) {
+    public void printResultInfo(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
+
+        System.out.println(checkAllOrTarget(result, name, participant, prizeInfo));
+
+    }
+
+    private String checkAllOrTarget(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
         if (RESULT_ALL_KEYWORD.equals(name)) {
-            printParticipantPrizeInfo(resut);
+            return printAllParticipantResult(result, participant, prizeInfo);
         }
-        if (!RESULT_ALL_KEYWORD.equals(name)) {
-            printPrizeTarget(resut, name);
-        }
+        return printTargetParticipantResult(result, name, participant, prizeInfo);
     }
 
-    public void printPrizeTarget(Result result, String name) {
-        System.out.println(combineResult(name, result.getPrize(name)));
+    private String printTargetParticipantResult(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
+        int startIndex = participant.findIndexByName(name);
+        int endIndex = result.findEndIndexByStartIndex(startIndex);
+
+        Name sourceName = result.findNameByIndex(startIndex, participant);
+        Prize targetPrize = result.findPrizeByIndex(endIndex, prizeInfo);
+
+        return combineResult(sourceName, targetPrize);
     }
 
-    public void printParticipantPrizeInfo(Result result) {
-        result.keySet()
-                .map(key -> combineResult(key.getName(), result.getPrize(key.getName())))
-                .forEach(System.out::println);
+    private String printAllParticipantResult(PlayResult result, Participant participant, PrizeInfo prizeInfo) {
+        return result.keySet()
+                .map(key ->
+                        combineResult(
+                                result.findNameByIndex(key, participant),
+                                result.findPrizeByIndex(result.findEndIndexByStartIndex(key), prizeInfo)))
+                .collect(Collectors.joining(DELIMITER));
     }
 
-    private String combineResult(String name, Prize prize) {
-        return name + PRINT_NAME_SEPERATOR + prize.getPrize();
+
+    private String combineResult(Name name, Prize prize) {
+        return name.getName() + PRINT_NAME_SEPERATOR + prize.getPrize();
     }
 
     private String combineLetterLength(String name) {
@@ -87,7 +103,7 @@ public class ResultViewImpl implements ResultView {
 
     private String combine(Link link) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PORINT_PRINT_ROMAP);
+        sb.append(PIPE_PRINT_FORMAT);
         if (link.status()) {
             return sb.append(TRUE_PRINT_FORMAT).toString();
         }
