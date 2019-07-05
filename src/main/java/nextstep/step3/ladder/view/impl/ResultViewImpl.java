@@ -49,9 +49,7 @@ public class ResultViewImpl implements ResultView {
 
     @Override
     public void printResultInfo(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
-
         System.out.println(checkAllOrTarget(result, name, participant, prizeInfo));
-
     }
 
     private String checkAllOrTarget(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
@@ -63,10 +61,9 @@ public class ResultViewImpl implements ResultView {
 
     private String printTargetParticipantResult(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
         int startIndex = participant.findIndexByName(name);
-        int endIndex = result.findEndIndexByStartIndex(startIndex);
 
         Name sourceName = result.findNameByIndex(startIndex, participant);
-        Prize targetPrize = result.findPrizeByIndex(endIndex, prizeInfo);
+        Prize targetPrize = result.findPrizeByIndex(startIndex, prizeInfo);
 
         return combineResult(sourceName, targetPrize);
     }
@@ -76,7 +73,7 @@ public class ResultViewImpl implements ResultView {
                 .map(key ->
                         combineResult(
                                 result.findNameByIndex(key, participant),
-                                result.findPrizeByIndex(result.findEndIndexByStartIndex(key), prizeInfo)))
+                                result.findPrizeByIndex(key, prizeInfo)))
                 .collect(Collectors.joining(DELIMITER));
     }
 
