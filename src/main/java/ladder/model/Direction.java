@@ -8,17 +8,17 @@ public enum Direction {
     LEFT(true, false),
     PASS(false, false);
 
-    private final boolean current;
+    private final boolean left;
     private final boolean right;
 
-    Direction(boolean current, boolean right) {
-        this.current = current;
+    Direction(boolean left, boolean right) {
+        this.left = left;
         this.right = right;
     }
 
-    public static Direction of(boolean current, boolean right) {
+    public static Direction of(boolean left, boolean right) {
         return EnumSet.allOf(Direction.class).stream()
-                .filter(Direction -> Direction.current == current && Direction.right == right)
+                .filter(Direction -> Direction.left == left && Direction.right == right)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("연속된 Direction은 만들수 없습니다"));
     }
