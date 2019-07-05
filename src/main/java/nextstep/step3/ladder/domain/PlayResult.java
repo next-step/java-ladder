@@ -37,10 +37,6 @@ public class PlayResult {
                 .orElseThrow(() -> new NoSuchElementException(NO_SEARCH_PRIZE));
     }
 
-    public int findEndIndexByStartIndex(int startIndex) {
-        return result.get(startIndex);
-    }
-
     public Stream<Integer> keySet() {
         return result.keySet().stream();
     }

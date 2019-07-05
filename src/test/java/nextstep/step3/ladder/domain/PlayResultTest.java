@@ -61,12 +61,4 @@ class PlayResultTest {
 
         assertThat(result.findNameByIndex(0, participant).equals(Name.of("kwon"))).isTrue();
     }
-
-    @DisplayName("전달받은 Index를 통해 firstIndex를 통해 가지고 오기")
-    @Test
-    void findEndIndexByStartIndex() {
-        Map<Integer, Integer> playResult = LadderFactory.play(ladder, 3);
-        PlayResult result = new PlayResult(playResult);
-        assertThat(result.findEndIndexByStartIndex(0)).isEqualTo(1);
-    }
 }
