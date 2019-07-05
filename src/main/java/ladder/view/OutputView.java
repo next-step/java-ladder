@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.model.Direction;
-import ladder.model.Ladder;
-import ladder.model.Layer;
-import ladder.model.Player;
+import ladder.model.*;
 
 import java.util.List;
 
@@ -11,18 +8,29 @@ import static java.util.stream.Collectors.joining;
 
 public class OutputView {
 
-    private static String RUNG = "-----|";
-    private static String EMPTY_RUNG = "     |";
+    private static String RUNG = "|-----";
+    private static String EMPTY_RUNG = "|     ";
+    private static String MARGIN = "    ";
+    private static String DELIMITER = "\t";
 
-    public static void print(List<Player> players, Ladder ladder) {
+    public static void print(List<Player> players, Ladder ladder, List<Reward> rewards) {
         printPlayers(players);
         printLadder(ladder);
+        printRewards(rewards);
+    }
+
+    private static void printRewards(List<Reward> rewards) {
+        String line = rewards.stream()
+                .map(Reward::getValue)
+                .collect(joining(DELIMITER));
+
+        System.out.println(line);
     }
 
     private static void printPlayers(List<Player> players) {
         String line = players.stream()
                 .map(Player::getName)
-                .collect(joining("\t"));
+                .collect(joining(DELIMITER));
 
         System.out.println(line);
     }
@@ -34,7 +42,7 @@ public class OutputView {
                     .map(direction -> direction == Direction.RIGHT ? RUNG : EMPTY_RUNG)
                     .collect(joining());
 
-            System.out.println(EMPTY_RUNG.concat(line));
+            System.out.println(MARGIN.concat(line));
         }
     }
 }

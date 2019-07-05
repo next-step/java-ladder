@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.model.Ladder;
 import ladder.model.Player;
+import ladder.model.Reward;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -13,10 +14,12 @@ public class Application {
 
         List<Player> players = InputView.askPlayers();
 
+        List<Reward> rewards = InputView.askRewards();
+
         int height = InputView.askHeight();
 
         Ladder ladder = Ladder.of(players.size(), height);
 
-        OutputView.print(players, ladder);
+        OutputView.print(players, ladder, rewards);
     }
 }
