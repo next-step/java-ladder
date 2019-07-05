@@ -2,23 +2,34 @@ package ladder.model;
 
 import ladder.util.RungGenerator;
 
+import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
 
 public class Layer {
 
     private static final int ONE_RUNG = 1;
-    private final List<Boolean> rungs;
+    private static final Boolean LEFT_BOUNDARY_RUNG = Boolean.FALSE;
+    private final List<Direction> directions;
 
     public Layer(final List<Boolean> rungs) {
-        this.rungs = rungs;
+        directions = new ArrayList<>();
+        rungs.stream()
+                .reduce(LEFT_BOUNDARY_RUNG, this::makeDirection);
+    }
+
+    Boolean makeDirection(Boolean current, Boolean right) {
+        directions.add(Direction.of(current, right));
+        return right;
     }
 
     public static Layer of(RungGenerator rungGenerator, int countOfPlayers) {
-        return new Layer(rungGenerator.generate(countOfPlayers - ONE_RUNG));
+        List<Boolean> rungs = rungGenerator.generate(countOfPlayers - ONE_RUNG);
+        return new Layer(rungs);
     }
 
-    public List<Boolean> getRungs() {
-        return Collections.unmodifiableList(rungs);
+    public List<Direction> getDirections() {
+        return this.directions;
     }
 }

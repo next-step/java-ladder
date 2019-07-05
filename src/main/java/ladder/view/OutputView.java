@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.model.Direction;
 import ladder.model.Ladder;
 import ladder.model.Layer;
 import ladder.model.Player;
@@ -27,13 +28,13 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        List<Layer> layers = ladder.getLayers();
-        for (Layer layer : layers) {
-            String line = layer.getRungs().stream()
-                    .map(rung -> rung ? RUNG : EMPTY_RUNG)
-                    .collect(joining());
-
-            System.out.println(EMPTY_RUNG.concat(line));
-        }
+//        List<Layer> layers = ladder.getLayers();
+//        for (Layer layer : layers) {
+//            String line = layer.getDirections().stream()
+//                    .map(direction -> Direction.LEFT ? RUNG : EMPTY_RUNG)
+//                    .collect(joining());
+//
+//            System.out.println(EMPTY_RUNG.concat(line));
+//        }
     }
 }
