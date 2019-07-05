@@ -13,9 +13,7 @@ public class Prizes {
     private final List<Prize> prizes;
 
     private Prizes(List<Prize> prizes, int numberOfPlayers) {
-        if (prizes.size() != numberOfPlayers) {
-            throw new IllegalArgumentException(ALERT_INVALID_NUMBER_OF_PRIZES);
-        }
+        validationPrizes(prizes, numberOfPlayers);
         this.prizes = new ArrayList<>(prizes);
     }
 
@@ -27,7 +25,13 @@ public class Prizes {
                 .collect(Collectors.toList()), numberOfPlayers);
     }
 
-    public List<Prize> getPrizes() {
+    private void validationPrizes(List<Prize> prizes, int numberOfPlayers) {
+        if (prizes.size() != numberOfPlayers) {
+            throw new IllegalArgumentException(ALERT_INVALID_NUMBER_OF_PRIZES);
+        }
+    }
+
+    List<Prize> getPrizes() {
         return Collections.unmodifiableList(prizes);
     }
 }

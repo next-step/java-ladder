@@ -8,12 +8,7 @@ public class Prize {
     private final String prize;
 
     private Prize(String inputPrize) {
-        if (inputPrize.isEmpty()) {
-            throw new IllegalArgumentException(ALERT_MISSING_PRIZE);
-        }
-        if (inputPrize.length() > MAXIMUM_LENGTH_OF_PRIZE_NAME) {
-            throw new IllegalArgumentException(ALERT_EXCEED_LENGTH_OF_PRIZE_NAME);
-        }
+        validationPrize(inputPrize);
         this.prize = inputPrize;
     }
 
@@ -21,7 +16,16 @@ public class Prize {
         return new Prize(inputPrize);
     }
 
-    public String getPrize() {
+    private void validationPrize(String inputPrize) {
+        if (inputPrize.isEmpty()) {
+            throw new IllegalArgumentException(ALERT_MISSING_PRIZE);
+        }
+        if (inputPrize.length() > MAXIMUM_LENGTH_OF_PRIZE_NAME) {
+            throw new IllegalArgumentException(ALERT_EXCEED_LENGTH_OF_PRIZE_NAME);
+        }
+    }
+
+    String getPrize() {
         return prize;
     }
 
