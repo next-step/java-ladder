@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class LineMaker {
+    private static final int NUMBER_OF_FIRST_AND_LAST_BAR = 2;
 
     private List<Bar> randomBars = new ArrayList<>();
     private RandomBarGenerator barGenerator = new RandomBarGenerator();
@@ -20,9 +21,9 @@ class LineMaker {
     }
 
     private void generateMiddleBars(int numberOfPlayers) {
-        int spaceForMiddleBars = numberOfPlayers - 1;
-        for (int i = 1; i < spaceForMiddleBars; i++) {
-            Bar previousBar = randomBars.get(i - 1);
+        int spaceForMiddleBars = numberOfPlayers - NUMBER_OF_FIRST_AND_LAST_BAR;
+        for (int i = 0; i < spaceForMiddleBars; i++) {
+            Bar previousBar = randomBars.get(i);
             addNextBar(previousBar);
         }
     }
