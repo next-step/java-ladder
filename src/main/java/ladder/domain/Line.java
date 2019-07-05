@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Line {
 
-    private List<Boolean> bars;
+    private List<Bar> bars;
 
-    private Line(List<Boolean> bars) {
+    private Line(List<Bar> bars) {
         this.bars = new ArrayList<>(bars);
     }
 
@@ -17,7 +17,7 @@ public class Line {
         return new Line(lineMaker.generateBars(numberOfPlayers));
     }
 
-    public List<Boolean> getBars() {
+    public List<Bar> getBars() {
         return Collections.unmodifiableList(bars);
     }
 }

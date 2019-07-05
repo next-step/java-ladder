@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -59,10 +56,10 @@ public class OutputView {
         printEmptyLine();
     }
 
-    private static String printBars(Boolean bar) {
+    private static String printBars(Bar bar) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(COLUMN);
-        if (bar) {
+        if (bar.isExist()) {
             return stringBuilder.append(BAR).toString();
         }
         return stringBuilder.append(EMPTY_SPACE).toString();
