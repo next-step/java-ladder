@@ -21,53 +21,57 @@ public class GameResult {
         }
     }
 
-    public void run(LadderGame ladderGame) {
-        IntStream.range(0, ladderGame.getUseGroup().size()).
-                forEach(i -> runLadderGame(ladderGame, makeLadderMapArr(ladderGame), ladderGame.getUseGroup().get(i).getName()));
+    public void run(LadderFactory ladderFactory, UserGroup userGroup) {
+        IntStream.range(0, userGroup.getUserGroup().size()).
+                forEach(i -> runLadderGame(ladderFactory, userGroup, makeLadderMapArr(ladderFactory), userGroup.getUserGroup().get(i).getName()));
 
-        getResult(ladderGame.getUseGroup());
+        getResult(userGroup.getUserGroup());
     }
 
-    private void runLadderGame(LadderGame ladderGame, Boolean[][] ladderMap, String request) {
+    private void runLadderGame(LadderFactory ladderFactory, UserGroup userGroup, Boolean[][] ladderMap, String requestName) {
         int moveFlag = 0;
 
-        for (int i = 0; i < ladderGame.getLadder().size(); ++i) {
-            for (int j = 1; j < ladderGame.getUseGroup().size(); ++j) {
+        for (int i = 0; i < ladderFactory.getLadder().size(); ++i) {
+            for (int j = 1; j < userGroup.getUserGroup().size(); ++j) {
                 // 좌측으로 움직이는 조건
-                if (ladderGame.getUser(request).getPosition().getCol() == j && ladderMap[i][j].equals(Boolean.TRUE)) {
-                    ladderGame.getUser(request).getPosition().moveLeft();
+                if (userGroup.compareCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
+                    userGroup.moveLeft(requestName);
                     moveFlag += 1;
                     break;
                 }
                 // 좌측으로 움직이는 조건
-                if (ladderGame.getUser(request).getPosition().getCol() + 1 == j && ladderMap[i][j].equals(Boolean.TRUE)) {
-                    ladderGame.getUser(request).getPosition().moveRight();
+                if (userGroup.compareNextCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
+                    userGroup.moveRight(requestName);
                     moveFlag += 1;
                     break;
                 }
             }
             // 좌 우측 움직이 없을때 직진
             if (moveFlag == i) {
-                ladderGame.getUser(request).getPosition().moveStraight();
+                userGroup.moveStraight(requestName);
                 moveFlag += 1;
             }
         }
     }
 
-    public void getResult(List<GameUser> userGroup) {
+    public void getResult(List<SingleUser> userGroup) {
         IntStream.range(0, gameReward.size()).
                 forEach(i -> {
                     gameReward.get(i).matchReward(userGroup);
                 });
     }
 
+    public List<GameReward> getgameReward() {
+        return gameReward;
+    }
+
     // listArray를 array로 변환 (게임 결과 확인을 위해서)
-    private Boolean[][] makeLadderMapArr(LadderGame ladderGame) {
-        Line[] ladderArr = ladderGame.getLadder().toArray(new Line[ladderGame.getLadder().size()]);
-        Boolean[][] map = new Boolean[ladderGame.getLadder().size()][ladderGame.getLadder().size()];
+    private Boolean[][] makeLadderMapArr(LadderFactory ladderFactory) {
+        Line[] ladderArr = ladderFactory.getLadder().toArray(new Line[ladderFactory.getLadder().size()]);
+        Boolean[][] map = new Boolean[ladderFactory.getLadder().size()][ladderFactory.getLadder().size()];
 
         for (int i = 0; i < ladderArr.length; ++i) {
-            map[i] = ladderArr[i].getPoints().toArray(new Boolean[ladderGame.getLadder().size()]);
+            map[i] = ladderArr[i].getPoints().toArray(new Boolean[ladderFactory.getLadder().size()]);
         }
 
         return map;

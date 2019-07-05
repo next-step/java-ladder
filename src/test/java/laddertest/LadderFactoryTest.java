@@ -1,26 +1,26 @@
 package laddertest;
 
-import ladder.domain.LadderGame;
-import ladder.domain.GameUser;
+import ladder.domain.LadderFactory;
+import ladder.domain.SingleUser;
 import ladder.domain.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderGameTest {
-    private LadderGame ladderGame;
+public class LadderFactoryTest {
+    private LadderFactory ladderFactory;
 
     @BeforeEach
     void setup() {
-        ladderGame = new LadderGame("Ben,Joy,Tom,Sunny","1등,꽝,2등,3등",5);
-        ladderGame.makeLadderMap(5);
+        ladderFactory = new LadderFactory("Ben,Joy,Tom,Sunny","1등,꽝,2등,3등",5);
+        ladderFactory.makeLadderMap(5);
 
     }
 
     @Test
     void 사용자_생성_테스트() {
-        assertThat(ladderGame.getUser("Ben")).isEqualTo(new GameUser("Ben"));
+        assertThat(ladderFactory.getUser("Ben")).isEqualTo(new SingleUser("Ben"));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class LadderGameTest {
 //        int col = 0;
 //
 //
-//        GameUser[] user = ladderGame.getUseGroup().toArray(new GameUser[ladderGame.getUseGroup().size()]);
+//        SingleUser[] user = ladderFactory.getUseGroup().toArray(new SingleUser[ladderFactory.getUseGroup().size()]);
 //
 //        for (int i = 0; i < user.length; ++i) {
 //            if (user[i].getName().equals("Joy")) {
@@ -54,8 +54,8 @@ public class LadderGameTest {
 
     @Test
     void 경로구하기() {
-        int firstRaw = ladderGame.getUser("Ben").getPosition().getRow();
-        int firstCol = ladderGame.getUser("Ben").getPosition().getCol();
+        int firstRaw = ladderFactory.getUser("Ben").getPosition().getRow();
+        int firstCol = ladderFactory.getUser("Ben").getPosition().getCol();
         int flag = 0;
 
         Boolean[][] map = {{new Boolean(Boolean.FALSE), new Boolean(Boolean.TRUE), new Boolean(Boolean.FALSE),new Boolean(Boolean.TRUE)},
@@ -68,8 +68,8 @@ public class LadderGameTest {
         System.out.println("시작Position: " + firstRaw + firstCol);
 
 
-        for (int i = 0; i < ladderGame.getLadder().size(); ++i) {
-            for (int j = 1; j < ladderGame.getUseGroup().size(); ++j) {
+        for (int i = 0; i < ladderFactory.getLadder().size(); ++i) {
+            for (int j = 1; j < ladderFactory.getUseGroup().size(); ++j) {
                 System.out.println("Map[" + i + "][" + j + "]: " + map[i][j]);
 
                 if (firstCol == j && map[i][j].equals(Boolean.TRUE)) {

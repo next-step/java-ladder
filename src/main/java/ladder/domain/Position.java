@@ -8,14 +8,6 @@ public class Position {
         this.col = startPos;
     }
 
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
     public void moveLeft() {
         row += 1;
         col -= 1;
@@ -36,5 +28,9 @@ public class Position {
 
     public boolean matchCol(int col) {
         return this.col == col;
+    }
+
+    public boolean matchNextCol(int col) {
+        return this.col + 1 == col;
     }
 }

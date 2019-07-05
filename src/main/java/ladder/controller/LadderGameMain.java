@@ -1,7 +1,8 @@
 package ladder.controller;
 
 import ladder.domain.GameResult;
-import ladder.domain.LadderGame;
+import ladder.domain.LadderFactory;
+import ladder.domain.UserGroup;
 import ladder.view.Inputview;
 import ladder.view.ResultView;
 
@@ -11,15 +12,15 @@ public class LadderGameMain {
         String userReward = Inputview.inputUserReward();
         int maxHeight = Inputview.inputLadderMaxHeight();
 
-        LadderGame ladderGame = new LadderGame(userNames, maxHeight);
-        ResultView.printLadder(ladderGame);
-
-        String request = Inputview.requestResult();
+        UserGroup userGroup = new UserGroup(userNames);
+        LadderFactory ladderFactory = new LadderFactory(maxHeight,userGroup.getUserGroup().size());
 
         GameResult result = new GameResult(userReward, maxHeight);
-        result.run(ladderGame);
+        ResultView.printLadder(ladderFactory,userGroup,result);
 
-        ResultView.showResult(request, ladderGame);
+        String request = Inputview.requestResult();
+        result.run(ladderFactory, userGroup);
+        ResultView.showResult(request, result);
 
     }
 }

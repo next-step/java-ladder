@@ -1,15 +1,15 @@
 package ladder.domain;
 
-public class GameUser {
+public class SingleUser {
     private String name;
     private Position position;
 
-    public GameUser(String name, int firstPos) {
+    public SingleUser(String name, int firstPos) {
         this.name = name;
         position = new Position(firstPos);
     }
 
-    public GameUser(String name) {
+    public SingleUser(String name) {
         this.name = name;
     }
 
@@ -25,12 +25,6 @@ public class GameUser {
         return position;
     }
 
-    public GameUser getUser(String name) {
-        if (this.name.equals(name))
-            return this;
-         return null;
-    }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -40,7 +34,7 @@ public class GameUser {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        GameUser other = (GameUser) obj;
+        SingleUser other = (SingleUser) obj;
         if (name == null) {
             if (other.name != null)
                 return false;
@@ -51,6 +45,6 @@ public class GameUser {
 
     @Override
     public String toString() {
-        return "This GameUser is " + getName();
+        return "This SingleUser is " + getName();
     }
 }
