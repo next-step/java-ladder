@@ -13,7 +13,7 @@ public class PlayerTest {
     void inputName() {
         String name = "Going";
         Player player = new Player(name);
-        assertThat(player.isName()).isEqualTo(name);
+        assertThat(player.getName()).isEqualTo(name);
     }
 
     @Test
@@ -21,7 +21,7 @@ public class PlayerTest {
     void inputNotName() {
         String name = "SoLong";
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            Player player = new Player(name);
+            new Player(name);
         });
     }
 }

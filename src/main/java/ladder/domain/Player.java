@@ -16,11 +16,21 @@ public class Player {
                 .orElseThrow(() -> new IllegalArgumentException("Player 이름은 최대 5자 까지 입니다."));
     }
 
-    public String isName() {
-        return name;
+    public String getName() {
+        return this.name;
+    }
+    
+    public boolean isPlayerName(String name) {
+        return this.name.equals(name);
     }
 
     public int lengthOfName() {
-        return name.length();
+        return this.name.length();
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	return super.equals(obj);
+    }
+    
 }

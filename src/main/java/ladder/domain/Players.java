@@ -1,20 +1,22 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Players {
-    List<Player> players;
+    private List<Player> players;
 
-    public Players(String players) {
-        this.players = register(players);
+    private Players(List<Player> players) {
+        this.players = players;
     }
 
-    private List<Player> register(String players) {
-        return Arrays.stream(players.split(","))
+    public static Players register(String players) {
+        return new Players(Arrays.stream(players.split(","))
                 .map(player -> new Player(player.trim()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     public int size() {
@@ -26,11 +28,15 @@ public class Players {
                 .map(player -> player.lengthOfName())
                 .max(Integer::compareTo).get();
     }
-
-    public List<String> isPlayersNameList() {
-        return players.stream()
-                .map(player -> player.isName())
-                .collect(Collectors.toList());
+    
+    public Point pointOfPlayer(Player player) {
+    	return new Point(players.indexOf(player));
     }
 
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
+    public Stream<Player> getStream() {
+        return players.stream();
+    }
 }
