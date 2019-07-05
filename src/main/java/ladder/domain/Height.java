@@ -7,9 +7,7 @@ public class Height {
     private final int height;
 
     private Height(int inputHeight) {
-        if (inputHeight < MINIMUM_LADDER_HEIGHT) {
-            throw new IllegalArgumentException(ALERT_MINIMUM_LADDER_HEIGHT);
-        }
+        validationHeight(inputHeight);
         this.height = inputHeight;
     }
 
@@ -17,7 +15,13 @@ public class Height {
         return new Height(inputHeight);
     }
 
-    public int getHeight() {
+    private void validationHeight(int inputHeight) {
+        if (inputHeight < MINIMUM_LADDER_HEIGHT) {
+            throw new IllegalArgumentException(ALERT_MINIMUM_LADDER_HEIGHT);
+        }
+    }
+
+    int getHeight() {
         return height;
     }
 }
