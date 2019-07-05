@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Players;
+import ladder.domain.Point;
 
 import java.util.List;
 
@@ -38,27 +39,24 @@ public class ResultView {
         return builder.toString();
     }
 
-    public static void printLadder(int maxLength, Ladder ladder) {
+    public static void printLadder(Ladder ladder, int maxNameLength) {
         ladder.getLines().stream()
-                .forEach(line -> printLine(maxLength, line));
+                .forEach(line -> println(printLine(line, maxNameLength)));
+
     }
 
-    private static void printLine(int maxLength, Line line) {
-        println(getLineFormatted(maxLength, line));
-    }
-
-    private static String getLineFormatted(int maxLength, Line line) {
+    private static String printLine(Line line, int maxNameLength) {
         StringBuilder builder = new StringBuilder();
-
-        for (int i = 0 ; i < maxLength - 1 ; i++) {
-            builder.append(" ");
+        builder.append("|");
+        for (Point point : line.getPoints()) {
+            builder.append(printPoint(point, maxNameLength));
         }
 
-        builder.append('|');
-        line.getLine().stream()
-                .forEach(isLine -> builder.append(getLadderBlock(isLine, maxLength)));
-
         return builder.toString();
+    }
+
+    private static String printPoint(Point point, int maxNameLength) {
+        return getLadderBlock(point.current(),  maxNameLength);
     }
 
     private static String getLadderBlock(boolean isLine, int maxLength) {

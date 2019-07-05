@@ -1,60 +1,56 @@
 package ladder.domain;
 
+import ladder.domain.strategy.GeneratorInterface;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private final List<Boolean> line;
+    private final List<Point> linePoint;
 
-
-    public Line(int size, LineStrategy strategy) {
-        line = new ArrayList<>(size);
-
-        for(int i = 0 ; i < size ; i++) {
-            line.add(strategy.putPoint(i));
-        }
+    public Line(List<Point> pointList) {
+        linePoint = pointList;
     }
 
-    public Line(List<Boolean> list) {
-        if (list.get(list.size()-1)) {
-            throw new IllegalArgumentException();
-        }
-
-        line = list;
+    public int move(int point) {
+        return linePoint.get(point).move();
     }
 
-    public List<Boolean> getLine() {
-        return line;
+    public List<Point> getPoints() {
+        return linePoint;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Line line1 = (Line) o;
-        return Objects.equals(line, line1.line);
+        Line line = (Line) o;
+        return Objects.equals(linePoint, line.linePoint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(line);
+
+        return Objects.hash(linePoint);
     }
 
-    public int move(int point) {
-        if (line.get(point)) {
-            return point + 1;
+    @Override
+    public String toString() {
+        return "Line{" +
+                "linePoint=" + linePoint +
+                '}';
+    }
+
+    public static Line create(int size, GeneratorInterface strategy) {
+        List<Point> list = new ArrayList<>();
+        Point point = Point.first(strategy.generate());
+        list.add(point);
+        for (int i = 0 ; i < size ; i++) {
+            point = point.next(strategy);
+            list.add(point);
         }
 
-        if (point == 0) {
-            return point;
-        }
-
-        if (line.get(point-1)) {
-            return point - 1;
-        }
-
-        return point;
+        return new Line(list);
     }
 }

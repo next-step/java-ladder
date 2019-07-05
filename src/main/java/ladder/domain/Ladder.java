@@ -1,7 +1,12 @@
 package ladder.domain;
 
+import ladder.domain.strategy.GeneratorInterface;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static jdk.nashorn.internal.objects.Global.println;
 
 public class Ladder {
     private final List<Line> lines;
@@ -21,6 +26,16 @@ public class Ladder {
         }
 
         return current;
+    }
+
+    public static final Ladder of(int numOfHeight, int numOfUsers, GeneratorInterface strategy) {
+        ArrayList<Line> lines = new ArrayList<>();
+
+        for (int i = 0 ; i < numOfHeight ; i++) {
+            lines.add(Line.create(numOfUsers, strategy));
+        }
+
+        return new Ladder(lines);
     }
 
     @Override
