@@ -6,12 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class LineTest {
+class PointsTest {
 
   @Test
   public void 생성테스트() {
-    int playersCount = 5;
-    Line line = new Line(playersCount);
+    int playerCount = 5;
+    Points points = new Points(playerCount);
+    assertThat(points.count()).isEqualTo(playerCount);
   }
 
   @Test
@@ -23,12 +24,10 @@ public class LineTest {
     List<Point> pointsParam = Arrays.asList(straightPoint, rightPoint, leftPoint);
     Points points = new Points(pointsParam);
 
-    Line line = new Line(points);
-
     //  |     |-----|
-    assertThat(line.move(0)).isEqualTo(0);
-    assertThat(line.move(1)).isEqualTo(2);
-    assertThat(line.move(2)).isEqualTo(1);
+    assertThat(points.move(0)).isEqualTo(0);
+    assertThat(points.move(1)).isEqualTo(2);
+    assertThat(points.move(2)).isEqualTo(1);
   }
 
 }

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Player {
 
+  private static final int DEFAULT_PLAYERS_NAME_FORMAT_LENGTH = 6;
   public static final int NAME_LIMIT_LENGTH = 5;
   public static final String NAME_BLANK_SYMBOL = " ";
 
@@ -16,17 +17,6 @@ public class Player {
     this.name = name;
   }
 
-  public int nameLength() {
-    return name.length();
-  }
-
-  public String nameFormat(int length) {
-    if (isGreater(length)) {
-      return name;
-    }
-    return name + addBlank(length - name.length());
-  }
-
   private boolean isGreater(int length) {
     return name.length() >= length;
   }
@@ -37,6 +27,22 @@ public class Player {
       blankBuffer.append(NAME_BLANK_SYMBOL);
     }
     return blankBuffer.toString();
+  }
+
+  public boolean isPlayerName(String name) {
+    return this.name.equals(name);
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public String toString() {
+    if (isGreater(DEFAULT_PLAYERS_NAME_FORMAT_LENGTH)) {
+      return name;
+    }
+    return name + addBlank(DEFAULT_PLAYERS_NAME_FORMAT_LENGTH - name.length());
   }
 
   @Override

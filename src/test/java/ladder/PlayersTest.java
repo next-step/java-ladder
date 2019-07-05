@@ -36,16 +36,19 @@ public class PlayersTest {
   }
 
   @Test
-  public void 이름의_최대_길이를_구해온다() {
-    String playerNames = "lee,chang,junn";
-    assertThat(new Players(playerNames).maxNameLength()).isEqualTo(5);
-  }
-
-  @Test
   public void player이름을_포맷으로_가지고온다() {
     String playerNames = "lee,chang,junn";
     String result = "lee   chang junn  ";
-    assertThat(new Players(playerNames).getLengthFormatPlayersName(6)).isEqualTo(result);
+    assertThat(new Players(playerNames).toString()).isEqualTo(result);
+  }
+
+  @Test
+  public void 플레이어의_index를_리턴한다() {
+    Players players = new Players("lee,chang,jun");
+    assertThat(players.getPlayerPosition("lee")).isEqualTo(0);
+    assertThat(players.getPlayerPosition("chang")).isEqualTo(1);
+    assertThat(players.getPlayerPosition("jun")).isEqualTo(2);
+
   }
 
 }

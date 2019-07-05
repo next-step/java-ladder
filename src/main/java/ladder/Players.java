@@ -3,12 +3,15 @@ package ladder;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Players {
 
   public static final String PLAYERS_NAME_DELIMITER = ",";
+  public static final int MINIMUM_PLAYERS_COUNT = 2;
   List<Player> players;
 
   public Players(String playersName) {
@@ -36,7 +39,7 @@ public class Players {
   }
 
   private void checkPlayersCount(String[] splitNames) {
-    if (splitNames.length < 2) {
+    if (splitNames.length < MINIMUM_PLAYERS_COUNT) {
       throw new IllegalArgumentException("player 는 최소 2명입니다.");
     }
   }
@@ -45,18 +48,27 @@ public class Players {
     return players.size();
   }
 
-  public int maxNameLength() {
-    return players.stream()
-        .map(Player::nameLength)
-        .max(Comparator.comparingInt(Integer::intValue))
-        .orElse(0);
+  public Player getPlayer(int index) {
+    return players.get(index);
   }
 
-  public String getLengthFormatPlayersName(int length) {
+  public int getPlayerPosition(String playerName) {
+    return IntStream.range(0, players.size())
+        .filter(index -> players.get(index).isPlayerName(playerName))
+        .findFirst()
+        .orElseThrow(IllegalArgumentException::new);
+  }
+
+  @Override
+  public String toString() {
     StringBuffer playersName = new StringBuffer();
     for (Player player : players) {
-      playersName.append(player.nameFormat(length));
+      playersName.append(player.toString());
     }
     return playersName.toString();
+  }
+
+  public List<Player> getPlayers() {
+    return Collections.unmodifiableList(players);
   }
 }
