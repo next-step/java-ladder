@@ -5,11 +5,27 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PositionTest {
+
+    private final int currentPosition = 1;
+    private Position position = Position.from(currentPosition);
+
     @Test
     void 플레이어의_현재_위치를_생성한다() {
-        int currentPosition = 1;
-        Position position = Position.from(currentPosition);
-
         assertThat(position.isSameWith(1)).isTrue();
+    }
+
+    @Test
+    void 위치를_오른쪽으로_1만큼_이동한다() {
+        assertThat(position.moveToRight().getPosition()).isEqualTo(currentPosition + 1);
+    }
+
+    @Test
+    void 위치를_왼쪽으로_1만큼_이동한다() {
+        assertThat(position.moveToLeft().getPosition()).isEqualTo(currentPosition - 1);
+    }
+
+    @Test
+    void 현재_위치보다_1만큼_작은_위치를_반환한다() {
+        assertThat(position.getLeftPosition()).isEqualTo(currentPosition - 1);
     }
 }

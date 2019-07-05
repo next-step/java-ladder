@@ -25,9 +25,9 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int goThroughLines(int position) {
+    public Position goThroughLines(Position position) {
         for (Line line : lines) {
-            position = line.travel(position);
+             position = line.travel(position);
         }
         return position;
     }
