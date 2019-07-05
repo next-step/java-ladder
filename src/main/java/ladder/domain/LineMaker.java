@@ -9,24 +9,33 @@ class LineMaker {
     private RandomBarGenerator barGenerator = new RandomBarGenerator();
 
     List<Bar> generateBars(int numberOfPlayers) {
+        generateFirstBar();
+        generateMiddleBars(numberOfPlayers);
+        generateLastBar();
+        return randomBars;
+    }
+
+    private void generateFirstBar() {
         randomBars.add(Bar.from(barGenerator.generateBar()));
-        for (int i = 1; i < numberOfPlayers - 1; i++) {
+    }
+
+    private void generateMiddleBars(int numberOfPlayers) {
+        int spaceForMiddleBars = numberOfPlayers - 1;
+        for (int i = 1; i < spaceForMiddleBars; i++) {
             Bar previousBar = randomBars.get(i - 1);
             addNextBar(previousBar);
         }
-        addBlankBar();
-        return randomBars;
     }
 
     private void addNextBar(Bar previousBar) {
         if (previousBar.isExist()) {
-            addBlankBar();
+            generateLastBar();
             return;
         }
         randomBars.add(Bar.from(barGenerator.generateBar()));
     }
 
-    private void addBlankBar() {
+    private void generateLastBar() {
         randomBars.add(Bar.from(Boolean.FALSE));
     }
 }
