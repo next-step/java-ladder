@@ -24,4 +24,11 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public int goThroughLines(int position) {
+        for (Line line : lines) {
+            position = line.travel(position);
+        }
+        return position;
+    }
 }
