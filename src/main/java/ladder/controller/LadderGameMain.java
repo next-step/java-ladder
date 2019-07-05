@@ -1,6 +1,6 @@
 package ladder.controller;
 
-
+import ladder.domain.GameResult;
 import ladder.domain.LadderGame;
 import ladder.view.Inputview;
 import ladder.view.ResultView;
@@ -11,11 +11,14 @@ public class LadderGameMain {
         String userReward = Inputview.inputUserReward();
         int maxHeight = Inputview.inputLadderMaxHeight();
 
-        LadderGame ladderGame = new LadderGame(userNames, userReward, maxHeight);
+        LadderGame ladderGame = new LadderGame(userNames, maxHeight);
         ResultView.printLadder(ladderGame);
 
         String request = Inputview.requestResult();
-        ladderGame.startLadderGame();
+
+        GameResult result = new GameResult(userReward, maxHeight);
+        result.run(ladderGame);
+
         ResultView.showResult(request, ladderGame);
 
     }

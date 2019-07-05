@@ -1,16 +1,34 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class GameResult {
+    private static final String SEPARATOR = ",";
 
-    public static void run(LadderGame ladderGame, Boolean[][] ladderMap) {
-        IntStream.range(0, ladderGame.getUseGroup().size()).
-                forEach(i -> runLadderGame(ladderGame, ladderMap, ladderGame.getUseGroup().get(i).getName()));
+    private List<GameReward> gameReward;
+
+    public GameResult(String userReward, int maxHeight) {
+        String[] namesOfReward = checkReward(splitName(userReward));
+        gameReward = new ArrayList<>();
+        GameReward gameRewardElement;
+
+        for (int i = 0; i < namesOfReward.length; ++i) {
+            gameRewardElement = new GameReward(namesOfReward[i], maxHeight, i);
+            gameReward.add(gameRewardElement);
+        }
     }
 
-    private static void runLadderGame(LadderGame ladderGame, Boolean[][] ladderMap, String request) {
+    public void run(LadderGame ladderGame) {
+        IntStream.range(0, ladderGame.getUseGroup().size()).
+                forEach(i -> runLadderGame(ladderGame, makeLadderMapArr(ladderGame), ladderGame.getUseGroup().get(i).getName()));
+
+        getResult(ladderGame.getUseGroup());
+    }
+
+    private void runLadderGame(LadderGame ladderGame, Boolean[][] ladderMap, String request) {
         int moveFlag = 0;
 
         for (int i = 0; i < ladderGame.getLadder().size(); ++i) {
@@ -36,11 +54,38 @@ public class GameResult {
         }
     }
 
-    public static void getResult(List<GameReward> gameReward, List<GameUser> userGroup) {
+    public void getResult(List<GameUser> userGroup) {
         IntStream.range(0, gameReward.size()).
                 forEach(i -> {
                     gameReward.get(i).matchReward(userGroup);
                 });
+    }
+
+    // listArray를 array로 변환 (게임 결과 확인을 위해서)
+    private Boolean[][] makeLadderMapArr(LadderGame ladderGame) {
+        Line[] ladderArr = ladderGame.getLadder().toArray(new Line[ladderGame.getLadder().size()]);
+        Boolean[][] map = new Boolean[ladderGame.getLadder().size()][ladderGame.getLadder().size()];
+
+        for (int i = 0; i < ladderArr.length; ++i) {
+            map[i] = ladderArr[i].getPoints().toArray(new Boolean[ladderGame.getLadder().size()]);
+        }
+
+        return map;
+    }
+
+    private String[] splitName(String names) {
+        return names.split(SEPARATOR);
+    }
+
+    private String[] checkReward(String[] inputStrings) {
+        Arrays.stream(inputStrings)
+                .filter(inputString -> inputString.isEmpty() || inputString.equals(" ")
+                        || inputString.equals("\n"))
+                .forEach(inputString -> {
+                    throw new IllegalArgumentException("입력값이 잘못되었습니다. 실행 결과를 다시 한번 입력해주세요.");
+                });
+
+        return inputStrings;
     }
 }
 
