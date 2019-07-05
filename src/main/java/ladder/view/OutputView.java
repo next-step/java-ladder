@@ -28,13 +28,13 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-//        List<Layer> layers = ladder.getLayers();
-//        for (Layer layer : layers) {
-//            String line = layer.getDirections().stream()
-//                    .map(direction -> Direction.LEFT ? RUNG : EMPTY_RUNG)
-//                    .collect(joining());
-//
-//            System.out.println(EMPTY_RUNG.concat(line));
-//        }
+        List<Layer> layers = ladder.getLayers();
+        for (Layer layer : layers) {
+            String line = layer.getDirections().stream()
+                    .map(direction -> direction == Direction.RIGHT ? RUNG : EMPTY_RUNG)
+                    .collect(joining());
+
+            System.out.println(EMPTY_RUNG.concat(line));
+        }
     }
 }
