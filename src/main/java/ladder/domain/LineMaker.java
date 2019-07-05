@@ -6,7 +6,7 @@ import java.util.List;
 class LineMaker {
 
     private List<Boolean> randomBars = new ArrayList<>();
-    private BarGeneratorImpl barGenerator = new BarGeneratorImpl();
+    private RandomBarGenerator barGenerator = new RandomBarGenerator();
 
     List<Boolean> generateBars(int numberOfPlayers) {
         randomBars.add(barGenerator.generateBar());
