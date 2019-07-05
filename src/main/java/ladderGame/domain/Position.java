@@ -13,9 +13,19 @@ public class Position {
         this.position = position;
     }
 
-    public Position moveBy(DirectionLayer directionLayer) {
-        Direction directions = directionLayer.getDirections(position);
-        return moveDirection(directions);
+    public boolean isEquals(int index) {
+        return position == index;
+    }
+
+    public Position moveBy(Direction direction) {
+        if(canMove(direction)) {
+            throw new IllegalArgumentException("더이상 왼쪽으로 갈 수 가 없습니다.");
+        }
+        return moveDirection(direction);
+    }
+
+    private boolean canMove(Direction direction) {
+        return position == 0 && direction == Direction.LEFT;
     }
 
     private Position moveDirection(Direction direction) {
