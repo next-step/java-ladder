@@ -1,6 +1,7 @@
 package nextstep.step3.ladder.domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,15 +34,16 @@ public class Participant {
                 .collect(Collectors.toList()));
     }
 
+    public boolean matchAttribute(Name name, int index) {
+        return names.get(index).equals(name);
+    }
+
     public int count() {
         return names.size();
     }
 
-    public boolean hasCustom(Name name) {
-        return names.stream()
-                .filter(sourceName -> sourceName.isName(name))
-                .findFirst()
-                .isPresent();
+    public int findIndexByName(String name) {
+        return names.indexOf(Name.of(name));
     }
 
     public Stream<Name> stream() {

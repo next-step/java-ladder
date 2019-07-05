@@ -21,17 +21,6 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
  */
 public class ParticipantTest {
 
-    @DisplayName("사용자들 이름을 전달받아 Participant 객체 생성하여 이름 리스트 받아오기")
-    @Test
-    void createCustoms() {
-        List<String> customName = Arrays.asList("kwon", "byeon", "yun");
-
-        Participant participant = Participant.of(customName);
-        Name kwon = Name.of("kwon");
-
-        assertThat(participant.hasCustom(kwon)).isTrue();
-    }
-
     @DisplayName("입력된 사용자의 count 가지고 오기")
     @Test
     void countCustoms() {
@@ -70,5 +59,23 @@ public class ParticipantTest {
         Name kwon = Name.of("kwon");
 
         assertThat(participant.getParticipantNumber(kwon)).isEqualTo(0);
+    }
+
+    @DisplayName("index 번호를 가지고 온다")
+    @Test
+    void findIndexByName() {
+        List<String> customName = Arrays.asList("kwon", "byeon", "yun");
+        Participant participant = Participant.of(customName);
+
+        assertThat(participant.findIndexByName("kwon")).isEqualTo(0);
+    }
+
+    @DisplayName("Name과 index 번호를 통해 일치하는 정보가 있는지 확인")
+    @Test
+    void matchAttribute() {
+        List<String> customName = Arrays.asList("kwon", "byeon", "yun");
+        Participant participant = Participant.of(customName);
+
+        assertThat(participant.matchAttribute(Name.of("kwon"), 0)).isTrue();
     }
 }
