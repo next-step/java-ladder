@@ -1,6 +1,6 @@
 package ladder.view.out;
 
-public class ConsolePrinter implements MessagePrinter {
+public class ConsoleRenderer implements MessageRenderer {
 
 	@Override
 	public void print(String message) {

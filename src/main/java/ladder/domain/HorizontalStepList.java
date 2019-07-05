@@ -11,18 +11,19 @@ public class HorizontalStepList {
 
 	private List<Boolean> steps;
 
-	public HorizontalStepList(int railCount, StepProvider stepProvider){
+	public HorizontalStepList(int railCount, StepProvider provider){
 
 		this.steps = new ArrayList<>();
 		this.steps.add(false); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
 
 		while (steps.size() < railCount){
-			steps.add(stepProvider.isInstallStep() && !steps.get(steps.size() - 1));
+			// 직전에 추가된 Step 이 false 일 때 true 값이 추가 될 수 있다.
+			steps.add(provider.generate() && !steps.get(steps.size() - 1));
 		}
 	}
 
 	private boolean hasLeftStepAt(int railNumber){
-		return (railNumber == 0) ? false : steps.get(railNumber);
+		return steps.get(railNumber);
 	}
 
 	private boolean hasRightStepAt(int railNumber){
@@ -30,7 +31,7 @@ public class HorizontalStepList {
 	}
 
 	/**
-	 * 주어진 열을 추가 할 수 있는지 여부를 반환하는 메서드
+	 * 주어진 열을 추가 할 수 있는지 여부를 반환하는 메서드, 개수가 같아야 추가가능하다.
 	 * @param row 추가하려는 열
 	 * @return 추가 가능여부
 	 */
@@ -65,7 +66,7 @@ public class HorizontalStepList {
 		return railNumber;
 	}
 
-	public Stream<Boolean> getStepsAsStream(){
+	public Stream<Boolean> getSteps(){
 		return Collections.unmodifiableCollection(steps).stream();
 	}
 }
