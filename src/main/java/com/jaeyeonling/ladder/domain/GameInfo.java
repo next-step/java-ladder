@@ -29,6 +29,14 @@ public class GameInfo {
         return new GameInfo(users, ladderRewords);
     }
 
+    public Users getUsers() {
+        return users;
+    }
+
+    public LadderRewords getRewords() {
+        return ladderRewords;
+    }
+
     public Stream<User> userStream() {
         return users.stream();
     }

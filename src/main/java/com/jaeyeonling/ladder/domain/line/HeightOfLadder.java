@@ -1,4 +1,4 @@
-package com.jaeyeonling.ladder.domain.ladder;
+package com.jaeyeonling.ladder.domain.line;
 
 import com.jaeyeonling.ladder.domain.Positive;
 

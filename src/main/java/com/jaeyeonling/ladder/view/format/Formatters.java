@@ -1,5 +1,6 @@
 package com.jaeyeonling.ladder.view.format;
 
+import com.jaeyeonling.ladder.domain.GameResult;
 import com.jaeyeonling.ladder.domain.ladder.LadderGame;
 import com.jaeyeonling.ladder.domain.ladder.LadderReword;
 import com.jaeyeonling.ladder.domain.ladder.LadderRewords;
@@ -28,4 +29,6 @@ public final class Formatters {
     public static final Formatter<LadderRewords> ladderRewordsFormatter =
             LadderRewordsFormatter.withLadderRewordFormatter(ladderRewordFormatter);
 
+    public static final Formatter<GameResult> gameResultFormatter =
+            GameResultFormatter.withLadderRewordFormatter(ladderRewordFormatter);
 }

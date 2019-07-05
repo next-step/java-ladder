@@ -1,30 +1,28 @@
 package com.jaeyeonling.ladder;
 
-import com.jaeyeonling.ladder.domain.GameInfo;
 import com.jaeyeonling.ladder.domain.GameResult;
 import com.jaeyeonling.ladder.domain.ladder.*;
 import com.jaeyeonling.ladder.domain.line.*;
 import com.jaeyeonling.ladder.domain.user.Users;
 import com.jaeyeonling.ladder.view.console.ConsoleInputView;
 import com.jaeyeonling.ladder.view.console.ConsoleOutputView;
-import com.jaeyeonling.ladder.view.format.Formatters;
 
 import java.util.Objects;
 
 public class Application {
 
-    private final LadderGameGenerator ladderGameGenerator;
+    private LinesFactory linesFactory;
 
-    private Application(final LadderGameGenerator ladderGameGenerator) {
-        this.ladderGameGenerator = ladderGameGenerator;
+    private Application(final LinesFactory linesFactory) {
+        this.linesFactory = linesFactory;
     }
 
     public static void main(final String... args) {
         final PointGenerateStrategy pointGenerateStrategy = new RandomPointGenerateStrategy();
         final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(pointGenerateStrategy);
-        final LadderGameGenerator ladderGameGenerator = LadderGameGenerator.withLineGenerator(lineGenerator);
+        final LinesFactory linesFactory = GeneratorBaseLinesFactory.withLineGenerator(lineGenerator);
 
-        final Application application = new Application(ladderGameGenerator);
+        final Application application = new Application(linesFactory);
 
         application.start();
     }
@@ -32,23 +30,19 @@ public class Application {
     private void start() {
         final Users users = Users.ofSeparator(ConsoleInputView.readUsers());
         final LadderRewords ladderRewords = LadderRewords.ofSeparator(ConsoleInputView.readLadderRewords());
-
-        final GameInfo gameInfo = GameInfo.withUsersAndLadderRewords(users, ladderRewords);
         final HeightOfLadder heightOfLadder = HeightOfLadder.valueOf(ConsoleInputView.readLadderHeight());
 
-        final LadderGame ladderGame = ladderGameGenerator.generate(gameInfo, heightOfLadder);
+        final LadderGame ladderGame = LadderGameFactory.create(users, ladderRewords);
+        ladderGame.initializeLines(heightOfLadder, linesFactory);
 
-        ConsoleOutputView.printLadderReword();
-        ConsoleOutputView.print(Formatters.usersFormatter.format(users));
-        ConsoleOutputView.print(Formatters.ladderGameFormatter.format(ladderGame));
-        ConsoleOutputView.print(Formatters.ladderRewordsFormatter.format(ladderRewords));
+        ConsoleOutputView.printLadderReword(ladderGame);
 
         final GameResult gameResult = ladderGame.play();
 
         while (true) {
             final String usernameOfWantReword = ConsoleInputView.readUsernameOfWantReword();
             if (gameResult.isShowAll(usernameOfWantReword)) {
-                showAll(gameResult);
+                ConsoleOutputView.printGameResult(gameResult);
                 break;
             }
 
@@ -64,20 +58,6 @@ public class Application {
             return;
         }
 
-        ConsoleOutputView.printResult();
-        ConsoleOutputView.print(Formatters.ladderRewordFormatter.format(matchingReword));
-    }
-
-    private void showAll(final GameResult gameResult) {
-        ConsoleOutputView.printResult();
-
-        gameResult.stream()
-                .forEach(rewordOfUsername -> {
-                    final String username = rewordOfUsername.getKey();
-                    final LadderReword ladderReword = rewordOfUsername.getValue();
-
-                    final String formattedMatchingReword = Formatters.ladderRewordFormatter.format(ladderReword);
-                    ConsoleOutputView.printMatchingReword(username, formattedMatchingReword);
-                });
+        ConsoleOutputView.printSingleResult(matchingReword);
     }
 }
