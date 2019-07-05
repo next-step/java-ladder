@@ -1,15 +1,15 @@
 package nextstep.step3.ladder;
 
-import nextstep.step3.ladder.domain.*;
-import nextstep.step3.ladder.dto.Result;
+import nextstep.step3.ladder.domain.Ladder;
+import nextstep.step3.ladder.domain.LadderFactory;
+import nextstep.step3.ladder.domain.Participant;
+import nextstep.step3.ladder.domain.PrizeInfo;
+import nextstep.step3.ladder.domain.PlayResult;
 import nextstep.step3.ladder.util.StringUtil;
 import nextstep.step3.ladder.view.InputView;
 import nextstep.step3.ladder.view.ResultView;
 import nextstep.step3.ladder.view.impl.InputViewImpl;
 import nextstep.step3.ladder.view.impl.ResultViewImpl;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -44,17 +44,13 @@ public class LadderApplication {
 
         // 실행 결과를 입력
         String executionResult = inputView.inputExecutionResult();
-        int participantCount = participant.count();
-        List<Prize> prizes = StringUtil.split(executionResult).stream()
-                .map(prize -> Prize.of(prize))
-                .collect(Collectors.toList());
-        PrizeInfo prizeInfo = PrizeInfo.of(prizes, participantCount);
+        PrizeInfo prizeInfo = PrizeInfo.of(executionResult, participant.count());
 
         // 사다리 높이 입력받기
         int ladderHeight = inputView.inputLadderHeight();
 
         // 사다리 생성 (사용자 수, 사다리 높이)
-        Ladder ladder = new Ladder(participant.count(), ladderHeight);
+        Ladder ladder = LadderFactory.create(ladderHeight, participant.count());
 
         // 사용자 이름 출력
         resultView.printParticipant(participant);
@@ -66,11 +62,10 @@ public class LadderApplication {
         resultView.printPrizeInfo(prizeInfo);
 
         // 사다리 실행결과 수집
-        Game game = new Game(prizeInfo, participant);
-        Result result = game.execute(ladder);
+        PlayResult playResult = new PlayResult(LadderFactory.play(ladder, participant.count()));
 
         // 이름을 통한 결과값 가지고 오기
         String target = inputView.inputResultInfo();
-        resultView.printResultInfo(result, target);
+        resultView.printResultInfo(playResult, target, participant, prizeInfo);
     }
 }
