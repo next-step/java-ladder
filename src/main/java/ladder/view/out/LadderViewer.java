@@ -2,55 +2,41 @@ package ladder.view.out;
 
 import ladder.domain.Ladder;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class LadderViewer {
 
 
-	private static final String EMPTY_SYMBOL = " ";
+	private static final String RAIL_WITH_STEP = "-----|";
 
-	private static final String STEP_SYMBOL = "-";
+	private static final String RAIL_WITHOUT_STEP = "     |";
 
-	private static final String RAIL_SYMBOL = "|";
+	private static final String NAME_FORMAT = "%6s";	// 6 is step's width(5) + rail(1)
 
-	private final String nameFormat;
+	private static final int STEP_WIDTH = 5 ;
 
-	private final String railWithStep;
+	private final MessageRenderer printer;
 
-	private final String railWithoutStep;
-
-	private final MessagePrinter printer;
-
-	public LadderViewer(MessagePrinter printer, int stepWidth){
+	public LadderViewer(MessageRenderer printer){
 		this.printer = printer;
-
-		// 사다리 가로스텝 넓이값을 기준으로 생성
-		this.nameFormat = "%" + (stepWidth + 1) + "s"; // if stepWidth 5 then %6s, add rail width
-		this.railWithStep = this.repeatSymbol(STEP_SYMBOL, stepWidth) + RAIL_SYMBOL;
-		this.railWithoutStep = this.repeatSymbol(EMPTY_SYMBOL, stepWidth) + RAIL_SYMBOL;
 	}
 
-	private String repeatSymbol(String symbol, int count) {
-		String[] array = new String[count];
-		Arrays.fill(array, symbol);
-		return String.join("", array);
-	}
-
-	public void render(Stream<String> playerNames, Ladder ladder){
-
-		String names = playerNames.map(name -> String.format(nameFormat, name))
+	public void renderNames(List<String> playerNames){
+		String names = playerNames
+				.stream()
+				.map(name -> String.format(NAME_FORMAT, name.length() < STEP_WIDTH ? name : name.substring(0, STEP_WIDTH)))
 				.collect(Collectors.joining());
 
 		printer.print(names);
+	}
 
+	public void render(Ladder ladder){
 		ladder.getRows().forEach(row -> {
-			String rendered = row.getStepsAsStream()
-					.map(step -> step ? railWithStep : railWithoutStep)
+			String rendered = row.getSteps()
+					.map(step -> step ? RAIL_WITH_STEP : RAIL_WITHOUT_STEP)
 					.collect(Collectors.joining());
+
 			printer.print(rendered);
 		});
 	}
