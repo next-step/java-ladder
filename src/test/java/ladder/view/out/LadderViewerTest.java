@@ -14,7 +14,6 @@ class LadderViewerTest {
 
 	@Test
 	void renderNames() {
-
 		List<String> messages = new ArrayList<>();
 		LadderViewer viewer = new LadderViewer(message -> {
 			messages.add(message);
@@ -26,9 +25,5 @@ class LadderViewerTest {
 		// Assertion
 		assertThat(messages.size()).isEqualTo(1);
 		assertThat(messages.get(0)).isEqualTo("  test  user longn");
-	}
-
-	@Test
-	void render() {
 	}
 }

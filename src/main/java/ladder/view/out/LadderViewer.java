@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class LadderViewer {
 
-
 	private static final String RAIL_WITH_STEP = "-----|";
 
 	private static final String RAIL_WITHOUT_STEP = "     |";

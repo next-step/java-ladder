@@ -12,7 +12,6 @@ public class HorizontalStepList {
 	private List<Boolean> steps;
 
 	public HorizontalStepList(int railCount, StepProvider provider){
-
 		this.steps = new ArrayList<>();
 		this.steps.add(false); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
 
@@ -46,7 +45,6 @@ public class HorizontalStepList {
 	 * @return	도착 레일번호
 	 */
 	public int getNextRailFrom(int railNumber) {
-
 		if(railNumber < 0){
 			throw new OutOfRailNumberException();
 		}

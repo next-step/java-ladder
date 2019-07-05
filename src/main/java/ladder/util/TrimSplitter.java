@@ -8,7 +8,11 @@ import java.util.stream.Collectors;
 public class TrimSplitter {
 
 	public static List<String> split(String input, String separator){
-		return Arrays.stream(Optional.ofNullable(input).orElse("").split(separator))
+		String[] tokens = Optional.ofNullable(input)
+				.orElse("")
+				.split(separator);
+
+		return Arrays.stream(tokens)
 				.map(String::trim)
 				.collect(Collectors.toList());
 	}
