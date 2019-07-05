@@ -15,8 +15,16 @@ public class Layer {
 
     public Layer(final List<Boolean> rungs) {
         directions = new ArrayList<>();
-        rungs.stream()
-                .reduce(LEFT_BOUNDARY_RUNG, this::makeDirection);
+        rungs.stream().reduce(LEFT_BOUNDARY_RUNG, this::makeDirection);
+        directions.add(lastDirection(rungs));
+    }
+
+    private Direction lastDirection(List<Boolean> rungs) {
+        boolean lastRung = rungs.get(rungs.size() - 1);
+        if (lastRung) {
+            return Direction.LEFT;
+        }
+        return Direction.PASS;
     }
 
     Boolean makeDirection(Boolean current, Boolean right) {
