@@ -33,9 +33,7 @@ public enum Direction {
 
     public Position move(final Position position) {
         if (this == Direction.RIGHT) return moveRight(position);
-
         if (this == Direction.LEFT)  return moveLeft(position);
-
         return new Position(position.getValue());
     }
 }
