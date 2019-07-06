@@ -36,4 +36,8 @@ public class Point {
     public Point endOf() {
         return new Point(false);
     }
+
+    public boolean isConnectedRight() {
+        return right;
+    }
 }

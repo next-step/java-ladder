@@ -52,4 +52,14 @@ public class PointTest {
         final Point end = first.endOf();
         assertThat(end).isInstanceOf(Point.class);
     }
+
+    @Test
+    @DisplayName("Point의 오른쪽 연결 여부를 확인할 수 있다.")
+    void isConnectedRight_isTrue() {
+        Point point = Point.firstOf(true);
+        assertThat(point.isConnectedRight()).isTrue();
+
+        point = Point.firstOf(false);
+        assertThat(point.isConnectedRight()).isFalse();
+    }
 }

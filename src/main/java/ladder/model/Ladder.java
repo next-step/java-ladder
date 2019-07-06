@@ -1,6 +1,7 @@
 package ladder.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -11,5 +12,9 @@ public class Ladder {
             final Line line = new Line(numberOfParticipants);
             lines.add(line);
         }
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }
