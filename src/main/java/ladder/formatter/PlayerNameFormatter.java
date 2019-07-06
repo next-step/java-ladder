@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class PlayerNameFormatter implements NameFormatter<Player>{
-//    private static final int SPACE_FOR_NAME = 5;
-//    private static final String BLANK_TO_FILL_THE_NAME_SPACE = " ";
 
     @Override
     public String nameFormat(Player player) {

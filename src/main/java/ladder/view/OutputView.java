@@ -1,9 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
-import ladder.formatter.NameFormatter;
-import ladder.formatter.PlayerNameFormatter;
-import ladder.formatter.PrizeNameFormatter;
+import ladder.formatter.*;
 
 public class OutputView {
     private static final String MESSAGE_RESULT_TITLE = "실행결과";
@@ -11,8 +9,8 @@ public class OutputView {
     private static final String BAR = "-----";
     private static final String COLUMN = "|";
 
-    private static NameFormatter<Player> playerNameFormatter = new PlayerNameFormatter();
-    private static NameFormatter<Prize> prizeNameFormatter = new PrizeNameFormatter();
+    private static DataPrintFormatter<Players> playersPrintFormatter = new PlayersPrintFormatter();
+    private static DataPrintFormatter<Prizes> prizesPrintFormatter = new PrizesPrintFormatter();
 
     public static void drawLadder(Players players, Ladder ladder, Prizes prizes) {
         printResultTitle();
@@ -28,17 +26,11 @@ public class OutputView {
     }
 
     private static void printPlayers(Players players) {
-        players.getPlayers().stream()
-                .map(player -> String.format(playerNameFormatter.nameFormat(player), player.getName()))
-                .forEach(System.out::print);
-        printEmptyLine();
+        System.out.println(playersPrintFormatter.dataPrintFormat(players));
     }
 
     private static void printPrizes(Prizes prizes) {
-        prizes.getPrizes().stream()
-                .map(prize -> String.format(prizeNameFormatter.nameFormat(prize), prize.getPrize()))
-                .forEach(System.out::print);
-        printEmptyLine();
+        System.out.println(prizesPrintFormatter.dataPrintFormat(prizes));
     }
 
     private static void printLadder(Ladder ladder) {
