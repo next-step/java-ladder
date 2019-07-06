@@ -22,4 +22,16 @@ public enum Direction {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("연속된 Direction은 만들수 없습니다"));
     }
+
+    public int move(int position) {
+        if (this == Direction.RIGHT) {
+            return position + 1;
+        }
+
+        if (this == Direction.LEFT) {
+            return position - 1;
+        }
+
+        return position;
+    }
 }

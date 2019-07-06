@@ -17,4 +17,12 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void ride(Direction direction) {
+        this.position = direction.move(this.position);
+    }
 }
