@@ -6,16 +6,26 @@ import ladder.domain.Players;
 import ladder.domain.Point;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ResultView {
     public static void printUsers(Players players) {
         List<String> names = players.getPlayersNames();
         int max = players.getMaxNameLength();
 
-        println(fillSpace(names, max));
+        println(getItems(names, max));
     }
 
-    private static String fillSpace(List<String> names, int max) {
+    public static void printResults(List<String> results) {
+        int max = results.stream()
+                .mapToInt(result -> result.length())
+                .max()
+                .orElseThrow(NoSuchElementException::new);
+
+        println(getItems(results, max));
+    }
+
+    private static String getItems(List<String> names, int max) {
         StringBuilder builder = new StringBuilder();
 
         names.stream()
@@ -48,8 +58,10 @@ public class ResultView {
     private static String printLine(Line line, int maxNameLength) {
         StringBuilder builder = new StringBuilder();
         builder.append("|");
-        for (Point point : line.getPoints()) {
-            builder.append(printPoint(point, maxNameLength));
+
+        List<Point> points = line.getPoints();
+        for(int i = 0 ; i < line.getPoints().size() - 1 ; i++) {
+            builder.append(printPoint(points.get(i), maxNameLength));
         }
 
         return builder.toString();
@@ -68,6 +80,18 @@ public class ResultView {
 
         builder.append('|');
         return builder.toString();
+    }
+
+    public static void printPlayerResult(String result) {
+        println("실행 결과");
+        println(result);
+    }
+
+    public static void printGameResult(List<String> players, List<String> result) {
+        println("실행 결과");
+        for (int i = 0 ; i < players.size() ; i++) {
+            println(players.get(i) + " : " + result.get(i));
+        }
     }
 
     private static String getLadderType(boolean isLine) {

@@ -1,9 +1,12 @@
 package ladder;
 
+import ladder.domain.Ladder;
 import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.domain.strategy.FakeGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sun.plugin.services.PlatformService;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,12 @@ public class PlayersTest {
         playerList.add(new Player(INPUT_USER_NAME));
         playerList.add(new Player(INPUT_USER_NAME_FOR_FIVE));
         players = new Players(playerList);
+    }
+
+    @Test
+    void move() {
+        Ladder ladder = Ladder.of(2, 2, new FakeGenerator());
+        assertThat(players.move("user", ladder)).isEqualTo(0);
     }
 
     @Test

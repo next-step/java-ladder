@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
+    private static final int WIHTOUT_FIRST_AND_END = 2;
     private final List<Point> linePoint;
 
     public Line(List<Point> pointList) {
@@ -46,10 +47,11 @@ public class Line {
         List<Point> list = new ArrayList<>();
         Point point = Point.first(strategy.generate());
         list.add(point);
-        for (int i = 0 ; i < size ; i++) {
+        for (int i = 0 ; i < size - WIHTOUT_FIRST_AND_END ; i++) {
             point = point.next(strategy);
             list.add(point);
         }
+        list.add(point.last());
 
         return new Line(list);
     }

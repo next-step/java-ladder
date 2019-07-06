@@ -11,6 +11,15 @@ public class Players {
         this.players = players;
     }
 
+    public int move(String name, Ladder ladder) {
+        int index = players.indexOf(new Player(name));
+        if (index == -1) {
+            throw new IllegalArgumentException();
+        }
+
+        return ladder.move(index);
+    }
+
     public int size() {
         return this.players.size();
     }
@@ -20,15 +29,6 @@ public class Players {
                 .map(player -> player.getName())
                 .collect(Collectors.toList());
     }
-
-//    public int getMaxNameLength() {
-//        int max = Integer.MIN_VALUE;
-//        for (Player player : players) {
-//            max = player.max(max);
-//        }
-//
-//        return max;
-//    }
 
     public int getMaxNameLength() {
         return players.stream()

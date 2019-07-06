@@ -1,6 +1,5 @@
 package ladder;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import ladder.domain.LadderResult;
 import org.junit.Before;
 import org.junit.Test;
