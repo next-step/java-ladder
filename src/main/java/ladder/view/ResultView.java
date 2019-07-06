@@ -27,12 +27,17 @@ public class ResultView {
 
     private static String getItems(List<String> names, int max) {
         StringBuilder builder = new StringBuilder();
-
         names.stream()
-                .forEach(name -> {
-                    builder.append(addSpaces(name.length(), max));
-                    builder.append(name).append(" ");
-                });
+                .forEach(name -> builder.append(getRefinedName(name, max)));
+
+        return builder.toString();
+    }
+
+    private static String getRefinedName(String name, int max) {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(addSpaces(name.length(), max));
+        builder.append(name).append(" ");
 
         return builder.toString();
     }
@@ -50,9 +55,9 @@ public class ResultView {
     }
 
     public static void printLadder(Ladder ladder, int maxNameLength) {
-        ladder.getLines().stream()
+        List<Line> lines = ladder.getLines();
+        lines.stream()
                 .forEach(line -> println(printLine(line, maxNameLength)));
-
     }
 
     private static String printLine(Line line, int maxNameLength) {
