@@ -1,7 +1,5 @@
 package ladder.model;
 
-import java.util.Map;
-
 public class Player {
 
     private final String name;
