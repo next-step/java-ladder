@@ -9,11 +9,8 @@ public class PlayerTest {
   @Test
   void ride() {
     Player player = new Player("kim", 0);
-
-    player.ride(Direction.RIGHT);
-    assertThat(player.getPosition()).isEqualTo(1);
-
-    player.ride(Direction.LEFT);
-    assertThat(player.getPosition()).isEqualTo(0);
+    
+    assertThat(player.ride(Direction.RIGHT)).isEqualTo(new Position(1));
+    assertThat(player.ride(Direction.RIGHT)).isEqualTo(new Position(2));
   }
 }
