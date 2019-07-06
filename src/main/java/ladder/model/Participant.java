@@ -2,6 +2,7 @@ package ladder.model;
 
 public class Participant {
     public static final int MAX_LENGTH = 5;
+
     private final String name;
 
     public Participant(String name) {
