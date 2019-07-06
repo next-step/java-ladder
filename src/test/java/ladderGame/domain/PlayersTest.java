@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class PlayersTest {
 
@@ -27,8 +28,15 @@ class PlayersTest {
     @Test
     @DisplayName("해당 position의 사용자 이름")
     public void getName() {
-        assertThat(players.getPlayerName(new Position(1))).isEqualTo("world")
-        ;
+        assertThat(players.getPlayerName(new Position(1))).isEqualTo("world");
+    }
+
+    @Test
+    @DisplayName("없는 범위의 Position 예외처리")
+    void getResultException() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            players.getPlayerName(new Position(4));
+        });
     }
 
 
