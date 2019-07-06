@@ -21,14 +21,14 @@ public class Ladder {
                 .collect(Collectors.toList()));
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
-    }
-
-    public Position goThroughLines(Position position) {
+    Position goThroughLinesFrom(Position position) {
         for (Line line : lines) {
              position = line.travel(position);
         }
         return position;
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

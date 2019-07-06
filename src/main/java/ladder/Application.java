@@ -17,14 +17,7 @@ public class Application {
         Ladder ladder = Ladder.from(players, height);
         OutputView.drawLadder(players, ladder, prizes);
 
-        Map<Player, Prize> resultMap = new HashMap<>();
-        for (int i = 0; i < players.numberOfPlayers(); i++) {
-            Player player = players.getPlayers().get(i);
-            Position finalPosition = ladder.goThroughLines(Position.from(i));// i(position)에서 시작해서 사다리 타고 나서의 position
-//            prize = prizes.get(finalPosition); // Prizes의 position위치의 Prize
-//            resultMap.put(player, prize);
-        }
+        GameResult gameResult = GameResult.of(players, ladder, prizes);
 
-//        OutputView.printResult(players, ladder);
     }
 }

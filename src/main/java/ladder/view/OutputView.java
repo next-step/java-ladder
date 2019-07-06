@@ -4,7 +4,7 @@ import ladder.domain.*;
 import ladder.formatter.*;
 
 public class OutputView {
-    private static final String MESSAGE_RESULT_TITLE = "실행결과";
+    private static final String MESSAGE_RESULT_TITLE = "사다리 결과";
     private static final String EMPTY_SPACE = "     ";
     private static final String BAR = "-----";
     private static final String COLUMN = "|";
