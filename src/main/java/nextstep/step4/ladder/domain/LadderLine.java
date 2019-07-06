@@ -22,7 +22,7 @@ public class LadderLine {
     private final List<Link> links;
 
     public LadderLine(List<Link> links) {
-        if (links.isEmpty() || links == null) {
+        if (links == null || links.isEmpty()) {
             throw new IllegalArgumentException(CREATE_LIST_SIZE_EXCEPTION_MESSAGE);
         }
         if (links.size() <= MINSIZE) {
