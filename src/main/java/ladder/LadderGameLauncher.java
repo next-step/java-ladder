@@ -19,14 +19,13 @@ public class LadderGameLauncher {
     OutputView.printLadderResults(ladderResult);
 
     String playerName = InputView.askResultOfPlayer();
+
+    LadderGameResult gameResult = ladderGame.getAllPlayerResult(ladderResult);
     if (ALL_PLAYERS_WORD.equals(playerName)) {
-      LadderGameResult gameResult = ladderGame.getAllPlayerResult(ladderResult);
       OutputView.printAllPlayerResult(gameResult.getGameResult());
       return;
     }
-    int resultIndex = ladder.move(ladderGameInformation.getPlayerPosition(playerName));
-    String gameResult = ladderResult.getLadderResult(resultIndex);
-    OutputView.printSoloResult(gameResult);
+    OutputView.printSoloResult(gameResult.getGameResult(playerName));
   }
 
   public static void main(String[] args) {

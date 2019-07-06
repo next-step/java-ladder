@@ -16,4 +16,7 @@ public class LadderGameResult {
     return Collections.unmodifiableMap(gameResult);
   }
 
+  public String getGameResult(String playerName) {
+    return gameResult.get(new Player(playerName));
+  }
 }
