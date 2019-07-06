@@ -5,7 +5,7 @@ import ladder.domain.Player;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class PlayerNameFormatter implements NameFormatter<Player>{
+public class PlayerNameFormatter implements NameFormatter<Player> {
 
     @Override
     public String nameFormat(Player player) {

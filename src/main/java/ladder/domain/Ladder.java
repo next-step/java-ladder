@@ -23,7 +23,7 @@ public class Ladder {
 
     Position goThroughLinesFrom(Position position) {
         for (Line line : lines) {
-             position = line.travel(position);
+            position = line.travel(position);
         }
         return position;
     }
