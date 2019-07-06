@@ -15,6 +15,13 @@ public class PointTest {
     }
 
     @Test
+    @DisplayName("첫 Point를 Random으로 생성할 수 있다.")
+    void firstOfRandom_Created() {
+        final Point point = Point.firstOfRandom();
+        assertThat(point).isInstanceOf(Point.class);
+    }
+
+    @Test
     @DisplayName("다음 Point를 생성할 수 있다.")
     void nextOf_WithCurrentPositionAndRightConnection_Created() {
         final Point first = Point.firstOf(true);
@@ -28,6 +35,14 @@ public class PointTest {
         final Point first = Point.firstOf(true);
         assertThatThrownBy(() -> first.nextOf(true))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("다음 Point를 랜덤으로 생성할 수 있다.")
+    void nextOfRandom_Created() {
+        final Point first = Point.firstOfRandom();
+        final Point next = first.nextOfRandom();
+        assertThat(next).isInstanceOf(Point.class);
     }
 
     @Test
