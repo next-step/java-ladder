@@ -16,8 +16,8 @@ public class Prize {
     private static final String NULL_EMPTY_EXCEPTION_MESSAGE = "결과가 입력이 안되었습니다.";
     private static final String UNDER_WIN_NUMBER = "입력된 결과가 0보다 작습니다.";
     private static final String UNSUITE = "꽝";
-
     private static final Prize NOT_PRIZE = new Prize(UNSUITE);
+
     private final String prize;
 
     private Prize(String prize) {
