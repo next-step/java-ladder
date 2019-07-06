@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.formatter;
 
 public interface NameFormatter<T> {
     int SPACE_FOR_NAME = 5;

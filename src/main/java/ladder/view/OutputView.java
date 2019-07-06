@@ -1,6 +1,9 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.formatter.NameFormatter;
+import ladder.formatter.PlayerNameFormatter;
+import ladder.formatter.PrizeNameFormatter;
 
 public class OutputView {
     private static final String MESSAGE_RESULT_TITLE = "실행결과";
