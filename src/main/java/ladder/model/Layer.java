@@ -25,7 +25,7 @@ public class Layer {
         return Direction.PASS;
     }
 
-    Boolean makeDirection(Boolean current, Boolean right) {
+    private Boolean makeDirection(Boolean current, Boolean right) {
         directions.add(Direction.of(current, right));
         return right;
     }
