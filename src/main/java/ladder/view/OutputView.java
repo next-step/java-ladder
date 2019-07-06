@@ -2,6 +2,7 @@ package ladder.view;
 
 import java.util.Map;
 import ladder.LadderDisplay;
+import ladder.LadderResult;
 import ladder.Player;
 
 public class OutputView {
@@ -17,8 +18,8 @@ public class OutputView {
         .forEach(System.out::print);
   }
 
-  public static void printLadderResults(String results) {
-    System.out.println(results);
+  public static void printLadderResults(LadderResult results) {
+    System.out.println(results.toString());
   }
 
   public static void printAllPlayerResult(Map<Player, String> gameResult) {
@@ -30,4 +31,5 @@ public class OutputView {
     System.out.println(RESULT_INTRO_WORD);
     System.out.println(gameResult);
   }
+
 }

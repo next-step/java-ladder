@@ -12,14 +12,12 @@ public class InputView {
   public static final String QUESTION_RESULT_LADDER = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
   public static final String QUESTION_RESULT_OF_PLAYER = "결과를 보고 싶은 사람은?";
 
-
   static final Scanner scanner = new Scanner(System.in);
 
   public static LadderGameInformation askLadderGameInformation() {
     Players players = askPlayersName();
-    LadderResult ladderResult = askLadderResult();
     int height = askLadderHeight();
-    return new LadderGameInformation(players, height, ladderResult);
+    return new LadderGameInformation(players, height);
   }
 
   private static Players askPlayersName() {
@@ -28,10 +26,9 @@ public class InputView {
     return new Players(playersName);
   }
 
-  private static LadderResult askLadderResult() {
+  public static String askLadderResult() {
     System.out.println(QUESTION_RESULT_LADDER);
-    String ladderResult = scanner.next();
-    return new LadderResult(ladderResult);
+    return scanner.next();
   }
 
   private static int askLadderHeight() {

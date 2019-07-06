@@ -17,11 +17,15 @@ public class LadderResult {
 
   List<String> ladderResult;
 
-  public LadderResult(String results) {
+  public LadderResult(String results, int playerCount) {
     if (isBlank(results)) {
       throw new IllegalArgumentException("실행결과를 입력하세요");
     }
     ladderResult = initLadderResult(results);
+    if(!isSamePlayerCount(playerCount)) {
+      throw new IllegalArgumentException("참여할 사람수와 실행결과 수는 같아야 합니다.");
+    }
+
   }
 
   private boolean isBlank(String results) {

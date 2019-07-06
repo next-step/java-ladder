@@ -25,4 +25,5 @@ public enum Direction {
   public int move(int position) {
     return position + this.distance;
   }
+
 }

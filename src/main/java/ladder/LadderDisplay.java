@@ -20,7 +20,7 @@ public class LadderDisplay {
   }
 
   private String appendLineSeparator(String line) {
-    return line+LINE_SEPARATOR;
+    return line + LINE_SEPARATOR;
   }
 
 }

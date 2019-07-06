@@ -19,4 +19,5 @@ public class Line {
   public int move(int index) {
     return points.move(index);
   }
+
 }
