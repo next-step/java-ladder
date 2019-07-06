@@ -14,7 +14,7 @@ public class LadderGameTest {
 
     Rewards rewards = makeMockRewards();
     Players players = makeMockPlayers();
-    Ladder ladder = makeMockLayer();
+    Ladder ladder = makeMockLadder();
 
     LadderGame.start(ladder, players);
 
@@ -24,7 +24,7 @@ public class LadderGameTest {
     assertThat(result.get("lee")).isEqualTo("4000");
   }
 
-  private Ladder makeMockLayer() {
+  private Ladder makeMockLadder() {
     Layer layer1 = new Layer(Arrays.asList(false, true, false));
     Layer layer2 = new Layer(Arrays.asList(false, false, true));
     Layer layer3 = new Layer(Arrays.asList(false, true, false));
