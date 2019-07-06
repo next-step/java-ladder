@@ -18,6 +18,12 @@ public class Application {
         OutputView.drawLadder(players, ladder, prizes);
 
         GameResult gameResult = GameResult.of(players, ladder, prizes);
+        String wantedPlayer = InputView.askWhichResultWant();
+//        if ("all".equals(wantedPlayer)) {
+//            OutputView.printAllResult(gameResult);
+//        }
+        String resultForWantedPlayer = gameResult.findResult(wantedPlayer);
+        OutputView.printSingleResult(resultForWantedPlayer);
 
     }
 }

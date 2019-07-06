@@ -8,6 +8,7 @@ public class OutputView {
     private static final String EMPTY_SPACE = "     ";
     private static final String BAR = "-----";
     private static final String COLUMN = "|";
+    private static final String MESSAGE_FOR_SINGLE_RESULT = "실행 결과";
 
     private static DataPrintFormatter<Players> playersPrintFormatter = new PlayersPrintFormatter();
     private static DataPrintFormatter<Prizes> prizesPrintFormatter = new PrizesPrintFormatter();
@@ -58,4 +59,8 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printSingleResult(String resultForWantedPlayer) {
+        System.out.println(MESSAGE_FOR_SINGLE_RESULT);
+        System.out.println(resultForWantedPlayer);
+    }
 }
