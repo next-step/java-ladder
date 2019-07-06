@@ -17,7 +17,7 @@ public class Layer {
         directions.add(lastDirection(rungs));
     }
 
-    private Direction lastDirection(List<Boolean> rungs) {
+    static Direction lastDirection(List<Boolean> rungs) {
         boolean lastRung = rungs.get(rungs.size() - 1);
         if (lastRung) {
             return Direction.LEFT;
