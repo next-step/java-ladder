@@ -8,7 +8,7 @@ public class OutputView {
     private static final String EMPTY_SPACE = "     ";
     private static final String BAR = "-----";
     private static final String COLUMN = "|";
-    private static final String MESSAGE_FOR_SINGLE_RESULT = "실행 결과";
+    private static final String MESSAGE_FOR_RESULT = "실행 결과";
 
     private static DataPrintFormatter<Players> playersPrintFormatter = new PlayersPrintFormatter();
     private static DataPrintFormatter<Prizes> prizesPrintFormatter = new PrizesPrintFormatter();
@@ -55,12 +55,22 @@ public class OutputView {
         return stringBuilder.append(EMPTY_SPACE).toString();
     }
 
-    private static void printEmptyLine() {
-        System.out.println();
+    public static void printSingleResult(String resultForWantedPlayer) {
+        printEmptyLine();
+        System.out.println(MESSAGE_FOR_RESULT);
+        System.out.println(resultForWantedPlayer);
     }
 
-    public static void printSingleResult(String resultForWantedPlayer) {
-        System.out.println(MESSAGE_FOR_SINGLE_RESULT);
-        System.out.println(resultForWantedPlayer);
+    public static void printAllResult(GameResult gameResult) {
+        printEmptyLine();
+        System.out.println(MESSAGE_FOR_RESULT);
+        gameResult.getResultMap()
+                .entrySet()
+                .forEach(result -> System.out.println(
+                        result.getKey().getName() + " : " + result.getValue().getPrize()));
+    }
+
+    private static void printEmptyLine() {
+        System.out.println();
     }
 }

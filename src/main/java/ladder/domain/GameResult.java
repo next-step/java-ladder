@@ -33,7 +33,7 @@ public class GameResult {
 
     public String findResult(String wantedPlayer) {
         Player playerWanted = resultMap.keySet().stream()
-                .filter(player -> player.getName().equals(wantedPlayer))
+                .filter(player -> player.isSame(wantedPlayer))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ALERT_FOR_INVALID_PLAYER_NAME));
 

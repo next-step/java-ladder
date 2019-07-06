@@ -19,11 +19,11 @@ public class Application {
 
         GameResult gameResult = GameResult.of(players, ladder, prizes);
         String wantedPlayer = InputView.askWhichResultWant();
-//        if ("all".equals(wantedPlayer)) {
-//            OutputView.printAllResult(gameResult);
-//        }
-        String resultForWantedPlayer = gameResult.findResult(wantedPlayer);
-        OutputView.printSingleResult(resultForWantedPlayer);
 
+        if ("all".equals(wantedPlayer)) {
+            OutputView.printAllResult(gameResult);
+            return;
+        }
+        OutputView.printSingleResult(gameResult.findResult(wantedPlayer));
     }
 }

@@ -25,6 +25,10 @@ public class Player {
         }
     }
 
+    boolean isSame(String wantedPlayer) {
+        return wantedPlayer.equals(name);
+    }
+
     public String getName() {
         return name;
     }
