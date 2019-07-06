@@ -6,7 +6,7 @@ import java.util.Scanner;
 import ladder.util.NamesSplitter;
 
 public final class InputView {
-    public static final String MESSAGE_FOR_PARTICIPANTS_INPUT = "참여할 사람 이름을 입력하세요. (이름은 \"%s\"로 구분하세요)";
+    private static final String MESSAGE_FOR_PARTICIPANTS_INPUT = "참여할 사람 이름을 입력하세요. (이름은 \"%s\"로 구분하세요)";
     private static final String MESSAGE_FOR_LADDER_HEIGHT_INPUT = "최대 사다리 높이는 몇 인가요?";
 
     public static List<String> inputParticipants() {

@@ -2,7 +2,7 @@ package ladder.model;
 
 import java.util.Random;
 
-public class Point {
+public final class Point {
     public static Point firstOf(boolean right) {
         return new Point(right);
     }

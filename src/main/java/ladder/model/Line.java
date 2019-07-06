@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private static final String MESSAGE_OF_MINIMUM_POINTS_EXCEPTION = "Line의 Point 갯수는 최소 다음 이상이어야 합니다.: ";
     public static final int MINIMUM_NUMBER_OF_POINTS = 2;
+    private static final String MESSAGE_OF_MINIMUM_POINTS_EXCEPTION = "Line의 Point 갯수는 최소 다음 이상이어야 합니다.: ";
 
     private final List<Point> points = new ArrayList<>();
 
