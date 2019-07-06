@@ -29,6 +29,6 @@ public class Line {
             return position.moveToLeft();
         }
         return position;
-    }
+    } //TODO: 이 로직을 Bar 객체로 위임하고 싶은데, Bar 2개를 사용해서 위치를 갱신하는 방식이라 이 곳에서 처리하는 상태
 
 }
