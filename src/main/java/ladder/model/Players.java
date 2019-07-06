@@ -27,4 +27,8 @@ public class Players {
   public int size() {
     return this.players.size();
   }
+
+  public List<Player> getPlayers() {
+    return players;
+  }
 }

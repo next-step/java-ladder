@@ -13,7 +13,7 @@ public class OutputView {
     private static String MARGIN = "    ";
     private static String DELIMITER = "\t";
 
-    public static void print(List<Player> players, Ladder ladder, List<Reward> rewards) {
+    public static void print(Players players, Ladder ladder, List<Reward> rewards) {
         printPlayers(players);
         printLadder(ladder);
         printRewards(rewards);
@@ -27,8 +27,8 @@ public class OutputView {
         System.out.println(line);
     }
 
-    private static void printPlayers(List<Player> players) {
-        String line = players.stream()
+    private static void printPlayers(Players players) {
+        String line = players.getPlayers().stream()
                 .map(Player::getName)
                 .collect(joining(DELIMITER));
 
