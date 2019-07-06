@@ -2,11 +2,7 @@ package ladder.domain;
 
 import ladder.domain.strategy.GeneratorInterface;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-import static jdk.nashorn.internal.objects.Global.println;
+import java.util.*;
 
 public class Ladder {
     private final List<Line> lines;
@@ -49,5 +45,14 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    public LadderResult getResult() {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0 ; i < lines.size() ; i++) {
+            map.put(i, move(i));
+        }
+
+        return new LadderResult(map);
     }
 }
