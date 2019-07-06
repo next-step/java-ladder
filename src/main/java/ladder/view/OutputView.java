@@ -37,7 +37,7 @@ public final class OutputView {
         }
     }
 
-    public static void printPoint(Point point) {
+    private static void printPoint(Point point) {
         if (point.isConnectedRight()) {
             printConnectedPoint();
             return;
