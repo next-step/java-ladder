@@ -36,7 +36,7 @@ public class Points {
   }
 
   private void lastPointMake() {
-    if (getPoint(count()-1).hasLine()) {
+    if (getPoint(count() - 1).hasLine()) {
       points.add(new Point(Direction.LEFT));
       return;
     }

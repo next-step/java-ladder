@@ -12,7 +12,8 @@ public class LadderGameLauncher {
     LadderGame ladderGame = new LadderGame(ladderGameInformation);
 
     Ladder ladder = ladderGame.makeLadder();
-    LadderResult ladderResult = new LadderResult(InputView.askLadderResult(),ladderGameInformation.playersCount());
+    LadderResult ladderResult = new LadderResult(InputView.askLadderResult(),
+        ladderGameInformation.playersCount());
 
     OutputView.printPlayersName(ladderGameInformation.getLengthFormatPlayersName());
     OutputView.printLadder(ladder.draw());

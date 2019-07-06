@@ -17,7 +17,7 @@ public class LineDisplay {
 
   public String drawBody(List<Point> points) {
     return points.stream()
-        .limit(points.size()-1)
+        .limit(points.size() - 1)
         .map(Point::draw)
         .collect(joining(JOINING_SYMBOL));
   }
@@ -30,4 +30,5 @@ public class LineDisplay {
   private String drawEnds() {
     return ladderLine + USER_LINE_SYMBOL;
   }
+
 }

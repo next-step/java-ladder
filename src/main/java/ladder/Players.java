@@ -4,7 +4,6 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -19,7 +18,6 @@ public class Players {
       throw new IllegalArgumentException("players 이름을 입력하세요");
     }
     players = initPlayers(playersName);
-
   }
 
   private boolean isBlank(String playersName) {
@@ -71,4 +69,5 @@ public class Players {
   public List<Player> getPlayers() {
     return Collections.unmodifiableList(players);
   }
+
 }

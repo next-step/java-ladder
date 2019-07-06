@@ -31,5 +31,5 @@ public class LadderGameInformation {
   public List<Player> getPlayers() {
     return players.getPlayers();
   }
-  
+
 }

@@ -10,7 +10,8 @@ class LineDisplayTest {
 
   @Test
   public void 라인을_그린다() {
-    List<Point> positions = Arrays.asList(new Point(Direction.RIGHT),new Point(Direction.LEFT),new Point(Direction.STRAIGHT),new Point(Direction.STRAIGHT));
+    List<Point> positions = Arrays.asList(new Point(Direction.RIGHT), new Point(Direction.LEFT),
+        new Point(Direction.STRAIGHT), new Point(Direction.STRAIGHT));
     LineDisplay lineDisplay = new LineDisplay(positions);
 
     assertThat(lineDisplay.draw()).isEqualTo("|-----|     |     |");

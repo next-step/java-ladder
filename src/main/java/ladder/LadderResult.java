@@ -22,10 +22,9 @@ public class LadderResult {
       throw new IllegalArgumentException("실행결과를 입력하세요");
     }
     ladderResult = initLadderResult(results);
-    if(!isSamePlayerCount(playerCount)) {
+    if (!isSamePlayerCount(playerCount)) {
       throw new IllegalArgumentException("참여할 사람수와 실행결과 수는 같아야 합니다.");
     }
-
   }
 
   private boolean isBlank(String results) {

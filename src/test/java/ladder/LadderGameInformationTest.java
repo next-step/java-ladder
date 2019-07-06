@@ -2,7 +2,6 @@ package ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ public class LadderGameInformationTest {
   @BeforeEach
   public void setup() {
     Players players = new Players("lee,chang,jun");
-    LadderResult ladderResult = new LadderResult("꽝,꽝,성공",3);
+    LadderResult ladderResult = new LadderResult("꽝,꽝,성공", 3);
     int ladderHeight = 5;
     information = new LadderGameInformation(players, ladderHeight);
   }
@@ -31,8 +30,8 @@ public class LadderGameInformationTest {
 
   @Test
   public void 참여자수와_실행결과는_같아야한다() {
-    assertThatIllegalArgumentException().isThrownBy(() ->{
-      LadderResult ladderResult = new LadderResult("꽝,꽝",3);
+    assertThatIllegalArgumentException().isThrownBy(() -> {
+      LadderResult ladderResult = new LadderResult("꽝,꽝", 3);
     });
 
   }
