@@ -19,7 +19,7 @@ public class LayerTest {
         int players = 4;
         Layer layer = Layer.of(rungGenerator, players);
 
-        assertThat(layer.getDirections().size()).isEqualTo(3);
+        assertThat(layer.getDirections().size()).isEqualTo(4);
 
         layer.getDirections().forEach(System.out::println);
     }
