@@ -25,4 +25,8 @@ public class Rewards {
   public int getSize() {
     return this.rewards.size();
   }
+
+  public List<Reward> getRewards() {
+    return rewards;
+  }
 }

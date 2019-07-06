@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.model.Player;
 import ladder.model.Players;
 import ladder.model.Reward;
+import ladder.model.Rewards;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,11 +30,12 @@ public class InputView {
         return Players.of(names);
     }
 
-    public static List<Reward> askRewards() {
+    public static Rewards askRewards() {
         System.out.println(QUESTION_FOR_REWARDS);
 
         String input = scanner.nextLine();
-        return Arrays.stream(input.split(",")).map(Reward::new).collect(toList());
+        List<String> valuesOfRewards = Arrays.asList(input.split(","));
+        return Rewards.of(valuesOfRewards);
     }
 
     public static int askHeight() {

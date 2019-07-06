@@ -13,14 +13,14 @@ public class OutputView {
     private static String MARGIN = "    ";
     private static String DELIMITER = "\t";
 
-    public static void print(Players players, Ladder ladder, List<Reward> rewards) {
+    public static void print(Players players, Ladder ladder, Rewards rewards) {
         printPlayers(players);
         printLadder(ladder);
         printRewards(rewards);
     }
 
-    private static void printRewards(List<Reward> rewards) {
-        String line = rewards.stream()
+    private static void printRewards(Rewards rewards) {
+        String line = rewards.getRewards().stream()
                 .map(Reward::getValue)
                 .collect(joining(DELIMITER));
 
