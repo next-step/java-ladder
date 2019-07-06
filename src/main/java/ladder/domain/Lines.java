@@ -1,27 +1,17 @@
 package ladder.domain;
 
-import ladder.domain.generator.BooleanGenerator;
-
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Lines {
 
     private final List<Line> lines;
 
-    public Lines(List<Line> lines) {
+    private Lines(List<Line> lines) {
 
         this.lines = lines;
     }
 
-    public static Lines of(LadderInfo ladderInfo, BooleanGenerator booleanGenerator) {
-        return new Lines(IntStream.range(0, ladderInfo.getHeight())
-                                 .mapToObj(currentHeight -> Line.of(ladderInfo.getWidth(), booleanGenerator))
-                                 .collect(Collectors.toList()));
-    }
-
-    static Lines of(List<Line> lines) {
+    public static Lines of(List<Line> lines) {
 
         return new Lines(lines);
     }

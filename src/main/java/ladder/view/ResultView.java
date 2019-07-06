@@ -36,10 +36,9 @@ public class ResultView {
         printStream.print(String.format(PRINT_PARTICIPANTS_FORMAT, name));
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLines(Lines lines) {
 
-        ladder.getLines()
-                .getLines()
+        lines.getLines()
                 .forEach(ResultView::printLine);
     }
 

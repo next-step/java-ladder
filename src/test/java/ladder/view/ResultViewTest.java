@@ -10,18 +10,17 @@ class ResultViewTest {
     @DisplayName("출력 테스트")
     void printResult() {
 
-        Participants participants = new Participants("pobi,honux,crong,jk");
-        LadderGame ladderGame = LadderGame.of(GameInfo.of(participants, new Goals("꽝,5000,꽝,3000")),
-                                              new Ladder(LadderInfo.of(participants.size(), 5)));
+        LadderGame ladderGame = LadderGame.of(GameInfo.of(new Participants("pobi,honux,crong,jk"), new Goals("꽝,5000,꽝,3000")), 5);
 
         ResultView.printResultMessage();
         ResultView.printNewLine();
         ResultView.printParticipants(ladderGame.getGameInfo().getParticipants());
-        ResultView.printLadder(ladderGame.getLadder());
+        ResultView.printLines(ladderGame.getLines());
         ResultView.printGoals(ladderGame.getGameInfo().getGoals());
 
-        LadderResult ladderResult = LadderResult.of(ladderGame.getLadder());
+        LadderResult ladderResult = LadderResult.of(ladderGame);
         ParticipantGoals participantGoals = ladderResult.createParticipantGoal(ladderGame.getGameInfo());
+
         String name = "pobi";
         while (!Participants.ALL.equals(name)) {
             ResultView.printParticipantGoal(participantGoals.find(name));

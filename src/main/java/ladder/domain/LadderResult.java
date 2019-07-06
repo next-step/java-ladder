@@ -13,11 +13,11 @@ public class LadderResult {
         this.positionGoals = positionGoals;
     }
 
-    public static LadderResult of(Ladder ladder) {
+    public static LadderResult of(LadderGame ladderGame) {
 
         Map<Integer, Integer> positionGoals = new HashMap<>();
-        for (int i = 0; i < ladder.getLadderInfo().getWidth(); i++) {
-            positionGoals.put(i, ladder.getLines().move(i));
+        for (int i = 0; i < ladderGame.getGameInfo().getParticipants().size(); i++) {
+            positionGoals.put(i, ladderGame.getLines().move(i));
         }
 
         return new LadderResult(positionGoals);
