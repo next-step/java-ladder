@@ -25,4 +25,9 @@ public class Ladder {
     public List<Layer> getLayers() {
         return Collections.unmodifiableList(layers);
     }
+
+    public void ride(Players players) {
+        this.layers.stream()
+                .forEach(layer -> players.ride(layer));
+    }
 }

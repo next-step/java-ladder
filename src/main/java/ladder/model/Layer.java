@@ -38,4 +38,8 @@ public class Layer {
     public List<Direction> getDirections() {
         return this.directions;
     }
+
+    public Direction getDirection(int index) {
+        return this.directions.get(index);
+    }
 }

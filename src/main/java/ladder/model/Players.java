@@ -31,4 +31,12 @@ public class Players {
   public List<Player> getPlayers() {
     return players;
   }
+
+  public void ride(Layer layer) {
+    this.players.forEach(player -> player.ride(layer));
+  }
+
+  public void takeRewards(Rewards rewards, Result result) {
+    this.players.stream().forEach(player -> player.takeReward(rewards, result));
+  }
 }
