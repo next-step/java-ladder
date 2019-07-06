@@ -15,23 +15,23 @@ public class Ladder {
         return lines;
     }
 
-    private Result getPlayerReward(final Player player, final GameResults gameResults) {
-        var position = player.getStartPoint();
-        for (Line line : lines) {
-            final var point = line.getPoint(position);
-            position = point.move();
-        }
-
-        return gameResults.findByPosition(position);
-    }
-
-    public Map<Player, Result> getPlayerRewards(final Players players, final GameResults gameResults) {
-        Map<Player, Result> playerRewards = new HashMap<>();
-        for (Player player : players.getPlayers()) {
-            playerRewards.put(player, getPlayerReward(player, gameResults));
-        }
-        return playerRewards;
-    }
+//    private Result getPlayerReward(final Player player, final GameResults gameResults) {
+//        var position = player.getStartPoint();
+//        for (Line line : lines) {
+//            final var point = line.getPoint(position);
+//            position = point.move();
+//        }
+//
+//        return gameResults.findByPosition(position);
+//    }
+//
+//    public Map<Player, Result> getPlayerRewards(final Players players, final GameResults gameResults) {
+//        Map<Player, Result> playerRewards = new HashMap<>();
+//        for (Player player : players.getPlayers()) {
+//            playerRewards.put(player, getPlayerReward(player, gameResults));
+//        }
+//        return playerRewards;
+//    }
 
     @Override
     public String toString() {

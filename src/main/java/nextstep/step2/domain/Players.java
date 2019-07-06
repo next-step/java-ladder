@@ -1,6 +1,8 @@
 package nextstep.step2.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -29,6 +31,14 @@ public class Players {
                       .filter(player -> player.equalsName(name))
                       .findFirst()
                       .orElseThrow(() -> new IllegalArgumentException("등록되지 않은 플레이어입니다."));
+    }
+
+    public Map<Player, Result> getPlayerRewards(final GameResults gameResults, final Ladder ladder) {
+        Map<Player, Result> playerRewards = new HashMap<>();
+        for (Player player : players) {
+            playerRewards.put(player, player.getPlayerReward(gameResults, ladder.getLines()));
+        }
+        return playerRewards;
     }
 
     public int getPlayerCount() {
