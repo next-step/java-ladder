@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * project      : java-ladder
  * create date  : 2019-06-30 02:49
  */
-public class ResultViewImpl implements ResultView {
+public class ConsoleResultView implements ResultView {
     private static final String PIPE_PRINT_FORMAT = "|";
     private static final String TRUE_PRINT_FORMAT = "-----";
     private static final String FASLE_PRINT_FORMAT = "     ";
