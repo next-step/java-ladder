@@ -43,15 +43,15 @@ public class LadderGame {
         ResultView.printGameResult(players.getPlayersNames(), getGameResults(ladder));
     }
 
+    private List<String> getGameResults(Ladder ladder) {
+        return players.getPlayersNames().stream()
+                .map(name -> getPlayerResult(name, ladder))
+                .collect(Collectors.toList());
+    }
+
     private String getPlayerResult(String playerName, Ladder ladder) {
         int move = players.move(playerName, ladder);
         return result.get(move);
-    }
-
-    public List<String> getGameResults(Ladder ladder) {
-        return players.getPlayersNames().stream()
-                        .map(name -> getPlayerResult(name, ladder))
-                        .collect(Collectors.toList());
     }
 
     private Players generatePlayer(String names) {

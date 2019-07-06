@@ -35,7 +35,6 @@ public class LadderTest {
 
     @Test
     public void of() {
-
         assertThat(ladder.move(0)).isEqualTo(0);
     }
 
