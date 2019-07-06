@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.domain.strategy.GeneratorInterface;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +31,6 @@ public class Line {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(linePoint);
     }
 
