@@ -9,14 +9,6 @@ public class Player {
         this.name = name;
     }
 
-    public int max(int length) {
-        if (name.length() > length) {
-            return name.length();
-        }
-
-        return length;
-    }
-
     public String getName() {
         return name;
     }
