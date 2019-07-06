@@ -19,7 +19,7 @@ public class Ladder {
     private List<LadderLine> ladder;
 
     public Ladder(List<LadderLine> ladder) {
-        if (ladder.isEmpty() || ladder == null) {
+        if (ladder == null || ladder.isEmpty()) {
             throw new IllegalArgumentException(CREATE_LIST_SIZE_EXCEPTION_MESSAGE);
         }
         this.ladder = ladder;
