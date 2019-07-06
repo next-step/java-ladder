@@ -13,4 +13,11 @@ public class PlayerTest {
         Player player = Player.of("nike", 0);
         assertThat(player.getName()).isEqualTo("nike");
     }
+
+    @Test
+    @DisplayName("참가자의 position 확인")
+    public void comparePosition() {
+        Player player = Player.of("nike", 1);
+        assertThat(player.isEquals(new Position(1))).isTrue();
+    }
 }
