@@ -19,22 +19,42 @@ public class PointTest {
   }
 
   @Test
-  public void drawTest() {
+  public void 방향이_RIGHT일때_draw_테스트() {
     Point rightPoint = new Point(Direction.RIGHT);
-    Point leftPoint = new Point(Direction.LEFT);
-    Point straightPoint = new Point(Direction.STRAIGHT);
 
     assertThat(rightPoint.draw()).isEqualTo("|-----");
+  }
+
+  @Test
+  public void 방향이_LEFT일때_draw_테스트() {
+    Point leftPoint = new Point(Direction.LEFT);
+
     assertThat(leftPoint.draw()).isEqualTo("|     ");
+  }
+
+  @Test
+  public void 방향이_STRAIGHT일때_draw_테스트() {
+    Point straightPoint = new Point(Direction.STRAIGHT);
+
     assertThat(straightPoint.draw()).isEqualTo("|     ");
   }
 
   @Test
-  public void moveTest() {
+  public void moveLeftTest() {
+    int position = 3;
+    assertThat(new Point(Direction.LEFT).move(position)).isEqualTo(2);
+  }
+
+  @Test
+  public void moveRightTest() {
+    int position = 3;
+    assertThat(new Point(Direction.RIGHT).move(position)).isEqualTo(4);
+  }
+
+  @Test
+  public void moveStraightTest() {
     int position = 3;
     assertThat(new Point(Direction.STRAIGHT).move(position)).isEqualTo(3);
-    assertThat(new Point(Direction.RIGHT).move(position)).isEqualTo(4);
-    assertThat(new Point(Direction.LEFT).move(position)).isEqualTo(2);
   }
 
 }

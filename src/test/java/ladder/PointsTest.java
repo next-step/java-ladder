@@ -17,17 +17,20 @@ class PointsTest {
 
   @Test
   public void moveTest() {
-    Point straightPoint = new Point(Direction.STRAIGHT);
-    Point rightPoint = new Point(Direction.RIGHT);
-    Point leftPoint = new Point(Direction.LEFT);
+    Points points = pointsMake();
 
-    List<Point> pointsParam = Arrays.asList(straightPoint, rightPoint, leftPoint);
-    Points points = new Points(pointsParam);
-
-    //  |     |-----|
     assertThat(points.move(0)).isEqualTo(0);
     assertThat(points.move(1)).isEqualTo(2);
     assertThat(points.move(2)).isEqualTo(1);
   }
 
+  private Points pointsMake() {
+    //  |     |-----|
+    Point straightPoint = new Point(Direction.STRAIGHT);
+    Point rightPoint = new Point(Direction.RIGHT);
+    Point leftPoint = new Point(Direction.LEFT);
+
+    List<Point> pointsParam = Arrays.asList(straightPoint, rightPoint, leftPoint);
+    return new Points(pointsParam);
+  }
 }
