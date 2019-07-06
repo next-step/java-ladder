@@ -9,12 +9,13 @@ public class OutputView {
     private static final String COLUMN = "|";
 
     private static NameFormatter<Player> playerNameFormatter = new PlayerNameFormatter();
+    private static NameFormatter<Prize> prizeNameFormatter = new PrizeNameFormatter();
 
-
-    public static void printResult(Players players, Ladder ladder) {
+    public static void drawLadder(Players players, Ladder ladder, Prizes prizes) {
         printResultTitle();
         printPlayers(players);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private static void printResultTitle() {
@@ -26,6 +27,13 @@ public class OutputView {
     private static void printPlayers(Players players) {
         players.getPlayers().stream()
                 .map(player -> String.format(playerNameFormatter.nameFormat(player), player.getName()))
+                .forEach(System.out::print);
+        printEmptyLine();
+    }
+
+    private static void printPrizes(Prizes prizes) {
+        prizes.getPrizes().stream()
+                .map(prize -> String.format(prizeNameFormatter.nameFormat(prize), prize.getPrize()))
                 .forEach(System.out::print);
         printEmptyLine();
     }
@@ -54,4 +62,5 @@ public class OutputView {
     private static void printEmptyLine() {
         System.out.println();
     }
+
 }

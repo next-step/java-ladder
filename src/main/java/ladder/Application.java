@@ -15,6 +15,7 @@ public class Application {
         Height height = Height.from(InputView.askHeight());
 
         Ladder ladder = Ladder.from(players, height);
+        OutputView.drawLadder(players, ladder, prizes);
 
         Map<Player, Prize> resultMap = new HashMap<>();
         for (int i = 0; i < players.numberOfPlayers(); i++) {
@@ -24,6 +25,6 @@ public class Application {
 //            resultMap.put(player, prize);
         }
 
-        OutputView.printResult(players, ladder);
+//        OutputView.printResult(players, ladder);
     }
 }

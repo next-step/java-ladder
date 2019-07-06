@@ -31,7 +31,7 @@ public class Prizes {
         }
     }
 
-    List<Prize> getPrizes() {
+    public List<Prize> getPrizes() {
         return Collections.unmodifiableList(prizes);
     }
 }
