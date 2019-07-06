@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.GameInfo;
 import ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,17 +10,18 @@ class ResultViewTest {
     @DisplayName("출력 테스트")
     void printResult() {
 
-        GameInfo gameInfo = GameInfo.of(new Participants("pobi,honux,crong,jk"), new Goals("꽝,5000,꽝,3000"));
-        Ladder ladder = new Ladder(LadderInfo.of(gameInfo.getParticipants().size(), 5));
+        Participants participants = new Participants("pobi,honux,crong,jk");
+        LadderGame ladderGame = LadderGame.of(GameInfo.of(participants, new Goals("꽝,5000,꽝,3000")),
+                                              new Ladder(LadderInfo.of(participants.size(), 5)));
 
         ResultView.printResultMessage();
         ResultView.printNewLine();
-        ResultView.printParticipants(gameInfo.getParticipants());
-        ResultView.printLadder(ladder);
-        ResultView.printGoals(gameInfo.getGoals());
+        ResultView.printParticipants(ladderGame.getGameInfo().getParticipants());
+        ResultView.printLadder(ladderGame.getLadder());
+        ResultView.printGoals(ladderGame.getGameInfo().getGoals());
 
-        LadderResult ladderResult = LadderResult.of(ladder);
-        ParticipantGoals participantGoals = ladderResult.createParticipantGoal(gameInfo);
+        LadderResult ladderResult = LadderResult.of(ladderGame.getLadder());
+        ParticipantGoals participantGoals = ladderResult.createParticipantGoal(ladderGame.getGameInfo());
         String name = "pobi";
         while (!Participants.ALL.equals(name)) {
             ResultView.printParticipantGoal(participantGoals.find(name));

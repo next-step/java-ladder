@@ -1,7 +1,6 @@
 package ladder;
 
-import ladder.domain.Goals;
-import ladder.domain.Participants;
+import ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

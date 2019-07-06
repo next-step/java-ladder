@@ -1,7 +1,4 @@
-package ladder;
-
-import ladder.domain.Goals;
-import ladder.domain.Participants;
+package ladder.domain;
 
 public class GameInfo {
 

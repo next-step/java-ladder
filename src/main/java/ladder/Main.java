@@ -8,17 +8,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GameInfo gameInfo = GameInfo.of(new Participants(InputView.askParticipantNames()), new Goals(InputView.askGoals()));
-        Ladder ladder = new Ladder(LadderInfo.of(gameInfo.getParticipants().size(), InputView.askHeight()));
+        Participants participants = new Participants(InputView.askParticipantNames());
+        LadderGame ladderGame = LadderGame.of(GameInfo.of(participants, new Goals(InputView.askGoals())),
+                                              new Ladder(LadderInfo.of(participants.size(), InputView.askHeight())));
 
         ResultView.printResultMessage();
         ResultView.printNewLine();
-        ResultView.printParticipants(gameInfo.getParticipants());
-        ResultView.printLadder(ladder);
-        ResultView.printGoals(gameInfo.getGoals());
+        ResultView.printParticipants(ladderGame.getGameInfo().getParticipants());
+        ResultView.printLadder(ladderGame.getLadder());
+        ResultView.printGoals(ladderGame.getGameInfo().getGoals());
 
-        LadderResult ladderResult = LadderResult.of(ladder);
-        ParticipantGoals participantGoals = ladderResult.createParticipantGoal(gameInfo);
+        LadderResult ladderResult = LadderResult.of(ladderGame.getLadder());
+        ParticipantGoals participantGoals = ladderResult.createParticipantGoal(ladderGame.getGameInfo());
 
         String name = InputView.askPersonalResult();
         while (!Participants.ALL.equals(name)) {
