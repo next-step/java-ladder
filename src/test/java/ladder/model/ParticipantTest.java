@@ -20,6 +20,6 @@ public class ParticipantTest {
     void new_WithNameOver5Length_ExceptionThrown() {
         final String name = "123456";
         assertThatThrownBy(() -> new Participant(name))
-                .hasCauseExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }
