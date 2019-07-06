@@ -1,6 +1,7 @@
 package ladder.model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Result {
@@ -16,6 +17,21 @@ public class Result {
   }
 
   public String get(String name) {
+    if (!this.result.containsKey(name)) {
+      throw new IllegalArgumentException("입력하신 Player가 없습니다.");
+    }
+
     return this.result.get(name);
+  }
+
+  public Iterator<String> getAll() {
+    return result.keySet().iterator();
+  }
+
+  @Override
+  public String toString() {
+    return "Result{" +
+            "result=" + result +
+            '}';
   }
 }
