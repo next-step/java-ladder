@@ -48,8 +48,4 @@ public class Participant {
     public Stream<Name> stream() {
         return names.stream();
     }
-
-    public int getParticipantNumber(Name name) {
-        return names.indexOf(name);
-    }
 }
