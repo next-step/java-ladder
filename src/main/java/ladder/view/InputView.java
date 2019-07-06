@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.model.Player;
-import ladder.model.Players;
-import ladder.model.Reward;
-import ladder.model.Rewards;
+import ladder.model.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +39,13 @@ public class InputView {
         System.out.println(QUESTION_FOR_LADDER_HEIGHT);
 
         return scanner.nextInt();
+    }
+
+    public static String askResult() {
+        System.out.println(QUESTION_FOR_RESULT);
+
+        String input = scanner.next();
+        return input;
     }
 
 }
