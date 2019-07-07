@@ -1,20 +1,23 @@
 package ladder.model;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines = new ArrayList<>();
+    private List<Line> lines;
 
     public Ladder(int height, int numberOfParticipants) {
-        for (int i = 0; i < height; i++) {
-            final Line line = new Line(numberOfParticipants);
-            lines.add(line);
-        }
+        lines = IntStream.range(0, height)
+                         .mapToObj(i -> new Line(numberOfParticipants))
+                         .collect(Collectors.collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
     public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+        return lines;
     }
 }
