@@ -1,5 +1,7 @@
 package ladder.model;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,10 +12,10 @@ public class Participants {
     public Participants(List<String> names) {
         participants = names.stream()
                             .map(Participant::new)
-                            .collect(Collectors.toList());
+                            .collect(Collectors.collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
     public List<Participant> getParticipants() {
-        return Collections.unmodifiableList(participants);
+        return participants;
     }
 }
