@@ -14,15 +14,11 @@ public class Player {
         return new Player(name, position);
     }
 
-    public void ride(DirectionLayer directionLayer) {
-        this.position = position.moveBy(directionLayer);
-    }
-
     public String getName() {
         return name;
     }
 
-    public Position getPosition() {
-        return position;
+    public boolean isEquals(Position position) {
+        return this.position.equals(position);
     }
 }

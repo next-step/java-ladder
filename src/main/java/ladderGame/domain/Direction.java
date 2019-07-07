@@ -3,19 +3,21 @@ package ladderGame.domain;
 import java.util.EnumSet;
 
 public enum Direction {
+
     RIGHT(false, true),
     LEFT(true, false),
     STRAIGHT(false, false);
 
-    private final boolean left;
-    private final boolean right;
+
+    private boolean left;
+    private boolean right;
 
     Direction(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }
 
-    public static Direction decide(boolean left, boolean right) {
+    public static Direction of(boolean left, boolean right) {
         return EnumSet.allOf(Direction.class).stream()
                 .filter(Direction -> Direction.left == left && Direction.right == right)
                 .findFirst()

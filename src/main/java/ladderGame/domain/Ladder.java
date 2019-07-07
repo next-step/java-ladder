@@ -1,6 +1,6 @@
 package ladderGame.domain;
 
-import ladderGame.util.RandomRungsGenerator;
+import ladderGame.util.RandomDirectionGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,8 +16,12 @@ public class Ladder {
 
     public static Ladder of(int numberOfPlayer, int height) {
         return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> DirectionLayer.ofGenerator(numberOfPlayer, new RandomRungsGenerator()))
+                .mapToObj(i -> DirectionLayer.ofGenerator(numberOfPlayer, new RandomDirectionGenerator()))
                 .collect(Collectors.toList()));
+    }
+
+    public static Ladder ofDirections(List<DirectionLayer> directionLayers) {
+        return new Ladder(directionLayers);
     }
 
     public List<DirectionLayer> getDirectionLayers() {
@@ -28,7 +32,12 @@ public class Ladder {
         return directionLayers.size();
     }
 
-    public void rideLadder(Player player) {
-        directionLayers.forEach(player::ride);
+    public Position ride(Position startingPosition) {
+        Position position = startingPosition;
+        for (DirectionLayer directionLayer : directionLayers) {
+            Direction directionsByPosition = directionLayer.getDirectionsByPosition(position);
+            position = position.moveBy(directionsByPosition);
+        }
+        return position;
     }
 }

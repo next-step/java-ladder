@@ -18,9 +18,10 @@ public class LadderResults {
         return new LadderResults(results);
     }
 
-    public LadderResult getResult(Position position) {
+    public String getResult(Position position) {
         return ladderResults.stream()
                 .filter(ladderResult -> ladderResult.isEquals(position))
+                .map(LadderResult::getContent)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("일치하는 Position이 없습니다. "));
     }

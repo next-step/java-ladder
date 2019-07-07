@@ -1,6 +1,7 @@
 package ladderGame.view;
 
 import ladderGame.domain.*;
+import ladderGame.dto.GameInformation;
 import ladderGame.dto.ResultDto;
 
 import java.util.List;
@@ -17,11 +18,11 @@ public class ResultView {
     private static final String RUNG = "|-----";
 
 
-    public static void drawLadderAndPlayer(Players players, Ladder ladder, LadderResults ladderResults) {
+    public static void drawLadderAndPlayer(Ladder ladder, GameInformation gameInformation) {
         System.out.println(RESULT_MESSAGE);
-        drawPlayers(players);
+        drawPlayers(gameInformation.getPlayers());
         drawLadder(ladder);
-        drawResult(ladderResults);
+        drawResult(gameInformation.getLadderResults());
     }
 
     private static void drawResult(LadderResults ladderResults) {
@@ -44,7 +45,7 @@ public class ResultView {
     }
 
     private static String printLayer(DirectionLayer directionLayer) {
-        return directionLayer.getDirections().stream()
+        return directionLayer.getDirectionsByPosition().stream()
                 .map(ResultView::drawGameRung)
                 .collect(Collectors.joining());
     }

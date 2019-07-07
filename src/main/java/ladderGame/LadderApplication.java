@@ -1,10 +1,8 @@
 package ladderGame;
 
-import ladderGame.domain.Ladder;
-import ladderGame.domain.LadderResults;
-import ladderGame.domain.Players;
+import ladderGame.domain.*;
+import ladderGame.dto.GameInformation;
 import ladderGame.dto.LadderGameResult;
-import ladderGame.util.LadderResultMapper;
 import ladderGame.view.InputView;
 import ladderGame.view.ResultView;
 
@@ -17,12 +15,12 @@ public class LadderApplication {
         LadderResults ladderResults = InputView.askLadderResult();
 
         Ladder ladder = Ladder.of(players.size(), height);
+        GameInformation gameInformation = GameInformation.of(players, ladderResults);
 
-        ResultView.drawLadderAndPlayer(players, ladder, ladderResults);
+        ResultView.drawLadderAndPlayer(ladder, gameInformation);
 
-        players.playGame(ladder);
-
-        LadderGameResult ladderGameResult = LadderResultMapper.map(players, ladderResults);
+        LadderGame game = LadderGame.of(ladder, gameInformation);
+        LadderGameResult ladderGameResult = game.run();
 
         InputView.askResult()
                 .filter(playerName -> !playerName.equals("all"))

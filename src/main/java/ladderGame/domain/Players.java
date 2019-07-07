@@ -26,7 +26,11 @@ public class Players {
         return players;
     }
 
-    public void playGame(Ladder ladder) {
-        players.forEach(ladder::rideLadder);
+    public String getPlayerName(Position position) {
+        return players.stream()
+                .filter(player -> player.isEquals(position))
+                .map(Player::getName)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("일치하는 Position이 없습니다. "));
     }
 }
