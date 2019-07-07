@@ -32,7 +32,7 @@ public class LineTest {
         final Line line = Line.generateRandom(numberOfPoints);
         final List<Point> points = line.getPoints();
 
-        assertThatThrownBy(() -> points.add(Point.firstOfRandom()))
+        assertThatThrownBy(() -> points.add(Point.firstOf(new RandomConnector())))
                 .isExactlyInstanceOf(UnsupportedOperationException.class);
     }
 }

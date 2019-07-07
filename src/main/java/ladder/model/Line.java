@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Line {
+public final class Line {
     public static final int MINIMUM_NUMBER_OF_POINTS = 2;
     private static final String MESSAGE_OF_MINIMUM_POINTS_EXCEPTION = "Line의 Point 갯수는 최소 %d 이상이어야 합니다.";
 
@@ -39,13 +39,13 @@ public class Line {
     }
 
     private static void addFirstPoint(List<Point> points) {
-        final Point first = Point.firstOfRandom();
+        final Point first = Point.firstOf(new RandomConnector());
         points.add(first);
     }
 
     private static void addMidPoints(List<Point> points, int numberOfPoints) {
         IntStream.range(0, numberOfPoints - MINIMUM_NUMBER_OF_POINTS)
-                 .mapToObj(i -> points.get(i).nextOfRandom())
+                 .mapToObj(i -> points.get(i).nextOf(new RandomConnector()))
                  .forEach(points::add);
     }
 
