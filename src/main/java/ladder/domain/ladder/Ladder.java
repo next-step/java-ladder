@@ -76,4 +76,8 @@ public class Ladder {
     public int getCellSize() {
         return cellSize;
     }
+    
+    public List<Line> getLadder() {
+        return ladder;
+    }
 }

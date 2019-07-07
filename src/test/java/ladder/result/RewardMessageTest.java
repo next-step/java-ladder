@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RewardResponseTest {
+class RewardMessageTest {
     @Test
     @DisplayName("[fail] \"\" 나 null 이 들어오면 exception 이 발생한다.")
     void test() {

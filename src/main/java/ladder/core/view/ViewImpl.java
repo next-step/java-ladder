@@ -1,7 +1,8 @@
 package ladder.core.view;
 
-import ladder.core.message.Response;
+import ladder.core.message.Message;
 
 public interface ViewImpl {
-    void render(Response response);
+    void render(Message message);
+    
 }

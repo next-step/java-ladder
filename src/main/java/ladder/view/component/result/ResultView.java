@@ -4,9 +4,10 @@ import ladder.core.controller.Controller;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.output.Printer;
 import ladder.domain.ladder.Ladder;
-import ladder.core.message.Response;
-import ladder.message.response.result.Result;
-import ladder.view.component.ViewIO;
+import ladder.core.message.Message;
+import ladder.message.result.ResultMessage;
+import ladder.view.component.View;
+import ladder.view.constant.Step;
 import ladder.view.model.LadderLines;
 
 import java.util.List;
@@ -19,25 +20,27 @@ public class ResultView implements ViewImpl {
     private final static int MAX_NAME_SIZE = 5;
     
     private Controller controller;
-    private ViewIO viewIO;
+    private View view;
     
     public ResultView(Controller controller, Printer printer) {
         this.controller = controller;
-        viewIO = new ViewIO.Builder()
+        view = new View.Builder(Step.RESULT_STEP)
             .setPrinter(printer)
             .build();
     }
     
     @Override
-    public void render(Response response) {
-        if (!response.isResultStep()) {
+    public void render(Message message) {
+        if (!Step.isThisStep(view.getStep())) {
             return;
         }
-        Result resultMessage = (Result) response;
-        viewIO.print(RESULT_MESSAGE);
-        viewIO.print(getItemExpression(resultMessage.getGamerNames()));
-        printLadder(resultMessage.getLadder());
-        viewIO.print(getItemExpression(resultMessage.getRewardNames()));
+        ResultMessage resultResponseMessage = (ResultMessage) message;
+        view.print(RESULT_MESSAGE);
+        view.print(getItemExpression(resultResponseMessage.getGamerNames()));
+        printLadder(resultResponseMessage.getLadder());
+        view.print(getItemExpression(resultResponseMessage.getRewardNames()));
+        Step.setNextStep(Step.GAMER_NAME_INPUT_STEP);
+        controller.action();
     }
     
     private String getItemExpression(List<String> items) {
@@ -55,6 +58,6 @@ public class ResultView implements ViewImpl {
     
     private void printLadder(Ladder ladder) {
         LadderLines.newLadderLines(ladder).stream()
-            .forEach(viewIO::print);
+            .forEach(view::print);
     }
 }

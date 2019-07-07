@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.controller.LadderController;
-import ladder.core.message.Response;
+import ladder.core.message.Message;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
@@ -24,9 +24,9 @@ public class MainView implements ViewImpl {
         Printer printer = new ConsolePrinter();
         Inputor inputor = new ConsoleInputor();
         views = Arrays.asList(
-            new LadderView(controller, printer, inputor),
             new GamerView(controller, printer, inputor),
             new RewardInputView(controller, printer, inputor),
+            new LadderView(controller, printer, inputor),
             new ResultView(controller, printer),
             new InputGamerNameView(controller, printer, inputor),
             new RewardView(controller, printer)
@@ -34,7 +34,7 @@ public class MainView implements ViewImpl {
     }
     
     @Override
-    public void render(Response response) {
-        views.forEach(view -> view.render(response));
+    public void render(Message message) {
+        views.forEach(view -> view.render(message));
     }
 }

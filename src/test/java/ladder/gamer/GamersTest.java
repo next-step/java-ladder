@@ -16,7 +16,7 @@ public class GamersTest {
     @BeforeEach
     void setUp() {
         //Given
-        gamers = Gamers.of("one,two,three");
+        gamers = Gamers.from("one,two,three");
         
     }
     

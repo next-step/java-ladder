@@ -1,29 +1,31 @@
 package ladder.view.component.result;
 
 import ladder.core.controller.Controller;
-import ladder.core.message.Response;
+import ladder.core.message.Message;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.output.Printer;
-import ladder.message.response.result.RewardResponse;
-import ladder.view.component.ViewIO;
+import ladder.message.result.RewardMessage;
+import ladder.view.component.View;
+import ladder.view.constant.Step;
 
 public class RewardView implements ViewImpl {
     private Controller controller;
-    private ViewIO viewIO;
+    private View view;
     
     public RewardView(Controller controller, Printer printer) {
         this.controller = controller;
-        viewIO = new ViewIO.Builder()
+        view = new View.Builder(Step.REWARD_STEP)
             .setPrinter(printer)
             .build();
     }
     
     @Override
-    public void render(Response response) {
-        if (!response.isRewardStep()) {
+    public void render(Message message) {
+        if (!Step.isThisStep(view.getStep())) {
             return;
         }
-        RewardResponse rewardResponse = (RewardResponse) response;
-        viewIO.print(rewardResponse.getReward());
+        RewardMessage rewardResponse = (RewardMessage) message;
+        Step.setNextStep(Step.GAMER_NAME_INPUT_STEP);
+        view.print(rewardResponse.getReward());
     }
 }

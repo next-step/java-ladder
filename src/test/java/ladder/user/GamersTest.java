@@ -13,7 +13,7 @@ public class GamersTest {
         String names = "one,two,three";
         
         //When
-        Gamers gamers = Gamers.of(names);
+        Gamers gamers = Gamers.from(names);
         
         //Then
         Assertions.assertThat(gamers.getSize()).isEqualTo(3);

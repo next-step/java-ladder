@@ -4,13 +4,9 @@ import ladder.domain.gamer.info.Gamer;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.gamer.Gamers;
 import ladder.domain.reward.Rewards;
-import ladder.message.response.result.GamerNameInput;
-import ladder.message.response.gamer.GamerResponse;
-import ladder.message.response.ladder.LadderSize;
-import ladder.core.message.Response;
-import ladder.message.response.result.Result;
-import ladder.message.response.result.RewardResponse;
-import ladder.message.response.reward.RewardInput;
+import ladder.core.message.Message;
+import ladder.message.result.ResultMessage;
+import ladder.message.result.RewardMessage;
 
 public class Model {
     enum Step {
@@ -29,14 +25,14 @@ public class Model {
     private Gamers gamers;
     private Rewards rewards;
     private Step step;
-    private RewardResponse rewardResponse;
+    private RewardMessage rewardResponse;
     
     public Model() {
         step = Step.GAMERS_STEP;
     }
     
     public void newGamers(String gamerNames) {
-        gamers = Gamers.of(gamerNames);
+        gamers = Gamers.from(gamerNames);
         step = Step.REWARD_INPUT_STEP;
     }
     
@@ -53,10 +49,10 @@ public class Model {
     public void findReward(String gamerName) {
         step = Step.REWARD_STEP;
         if (FIND_ALL.equals(gamerName)) {
-            rewardResponse = new RewardResponse(getAllRewardInfo());
+            rewardResponse = new RewardMessage(getAllRewardInfo());
             return;
         }
-        rewardResponse = new RewardResponse(getReward(gamerName));
+        rewardResponse = new RewardMessage(getReward(gamerName));
     }
     
     private String getAllRewardInfo() {
@@ -71,24 +67,19 @@ public class Model {
         return rewards.getReward(ladder.getRewardNumber(gamers.getLineNumber(gamerName)));
     }
     
-    public Response getMessage() {
-        switch (step) {
-            case GAMERS_STEP:
-                return new GamerResponse();
-            case REWARD_INPUT_STEP:
-                return new RewardInput();
-            case LADDER_SIZE_STEP:
-                return new LadderSize();
-            case RESULT_STEP:
-                step = Step.GAMER_NAME_INPUT_STEP;
-                return new Result(gamers.getGamerNames(), ladder, rewards.getRewardNames());
-            case GAMER_NAME_INPUT_STEP:
-                return new GamerNameInput();
-            case REWARD_STEP:
-                step = Step.GAMER_NAME_INPUT_STEP;
-                return rewardResponse;
-            default:
-                return new GamerResponse();
-        }
+    public RewardMessage getRewardResponse() {
+        return rewardResponse;
+    }
+    
+    public Ladder getLadder() {
+        return ladder;
+    }
+    
+    public Gamers getGamers() {
+        return gamers;
+    }
+    
+    public Rewards getRewards() {
+        return rewards;
     }
 }

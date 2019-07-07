@@ -2,10 +2,8 @@ package ladder.controller;
 
 import ladder.core.controller.Controller;
 import ladder.domain.Model;
-import ladder.message.request.gamer.GamerNames;
-import ladder.message.request.ladder.LadderSize;
-import ladder.message.request.result.GamerName;
-import ladder.message.request.reward.RewardRequest;
+import ladder.message.EmptyMessage;
+import ladder.message.result.ResultMessage;
 import ladder.view.MainView;
 
 public class LadderController implements Controller {
@@ -18,37 +16,39 @@ public class LadderController implements Controller {
         model = new Model();
         mainView = new MainView(this);
         isExit = false;
+        mainView.render(new EmptyMessage());
     }
     
     @Override
-    public void inputGamers(GamerNames gamerNames) {
-        model.newGamers(gamerNames.getGamerNames());
+    public void inputGamers(String gamerNames) {
+        model.newGamers(gamerNames);
+        mainView.render(new EmptyMessage());
     }
     
     @Override
-    public void inputReward(RewardRequest reward) {
-        model.newRewards(reward.getReward());
+    public void inputReward(String reward) {
+        model.newRewards(reward);
+        mainView.render(new EmptyMessage());
     }
     
     @Override
-    public void inputLadderSize(LadderSize ladderSize) {
-        model.newLadder(ladderSize.getInputNumber());
+    public void inputLadderSize(int ladderSize) {
+        model.newLadder(ladderSize);
+        mainView.render(new ResultMessage(model.getGamers().getGamerNames(), model.getLadder(), model.getRewards().getRewardNames()));
     }
     
     @Override
-    public void inputGamerName(GamerName gamerName) {
-        String name = gamerName.getGamerName();
-        if (EXIT_PROGRAM.equals(name)) {
+    public void inputGamerName(String gamerName) {
+        if (EXIT_PROGRAM.equals(gamerName)) {
             isExit = true;
             return;
         }
-        model.findReward(gamerName.getGamerName());
+        model.findReward(gamerName);
+        mainView.render(model.getRewardResponse());
     }
     
     @Override
     public void action() {
-        while (!isExit) {
-            mainView.render(model.getMessage());
-        }
+        mainView.render(new EmptyMessage());
     }
 }
