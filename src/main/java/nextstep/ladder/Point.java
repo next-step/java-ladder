@@ -3,44 +3,39 @@ package nextstep.ladder;
 public class Point {
 
     private final int index;
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
 
-    public Point(int index, boolean left, boolean right) {
+    public Point(int index, Direction direction) {
         this.index = index;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
     public static Point first(boolean right) {
-        return new Point(0, false, right);
+        return new Point(0, Direction.first(right));
     }
 
     public static Point first(BooleanFunction booleanFunction) {
-        return new Point(0, false, booleanFunction.apply(false));
+        return new Point(0, Direction.first(booleanFunction));
     }
 
     public Point next(boolean right) {
-        if (this.right && right) {
-            throw new IllegalArgumentException();
-        }
-        return new Point(this.index + 1, this.right, right);
+        return new Point(this.index + 1, direction.next(right));
     }
 
     public Point next(BooleanFunction booleanFunction) {
-        return new Point(this.index + 1, this.right, booleanFunction.apply(this.right));
+        return new Point(this.index + 1, direction.next(booleanFunction));
     }
 
     public Point last() {
-        return new Point(this.index + 1, this.right, false);
+        return new Point(this.index + 1, direction.last());
     }
 
     public boolean isLeft() {
-        return this.left;
+        return direction.isLeft();
     }
 
     public boolean isRight() {
-        return this.right;
+        return direction.isRight();
     }
 
     public int move() {
