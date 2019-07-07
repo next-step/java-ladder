@@ -1,5 +1,6 @@
 package ladder.domain.reward;
 
+import ladder.domain.gamer.Gamers;
 import ladder.domain.reward.info.Reward;
 import ladder.domain.reward.message.ErrorMessages;
 
@@ -26,8 +27,12 @@ public class Rewards {
         Arrays.stream(rewards).forEach(reward -> this.rewards.add(Reward.from(reward)));
     }
     
-    public static Rewards of(int rewardSize, String rewardString) {
-        return new Rewards(rewardSize, rewardString);
+    private Rewards() {
+        this.rewards = new ArrayList<>();
+    }
+    
+    public static Rewards newInstance() {
+        return new Rewards();
     }
     
     public List<String> getRewardNames() {
@@ -45,5 +50,13 @@ public class Rewards {
             throw new IllegalArgumentException(ErrorMessages.OVER_INPUT_REWARD.message());
         }
         return rewards.get(i).getReward();
+    }
+    
+    public void addRewards(Gamers gamers, String rewardsString) {
+        String[] rewards = rewardsString.split(SPLIT_REGEX);
+        if (!gamers.isSameSize(rewards.length)) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_MATCH_COUNT.message());
+        }
+        Arrays.stream(rewards).forEach(reward -> this.rewards.add(Reward.from(reward)));
     }
 }

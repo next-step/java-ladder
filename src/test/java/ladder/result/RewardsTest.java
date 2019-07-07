@@ -5,6 +5,7 @@ import ladder.domain.reward.Rewards;
 import ladder.domain.reward.info.Reward;
 import ladder.domain.reward.message.ErrorMessages;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,38 +13,35 @@ import java.util.Arrays;
 import java.util.List;
 
 class RewardsTest {
+    private Rewards rewards;
+    private Gamers gamers;
+    
+    @BeforeEach
+    void setUp() {
+        rewards = Rewards.newInstance();
+        gamers = Gamers.newInstance();
+    }
+    
     @Test
     @DisplayName("[fail] 쉼표(,) 로 구분된 보상정보가 입력되어야 하는 보상정보 갯수와 일치하지 않으면 exception")
     void matchParamsTest() {
         //Given
         String result = "꽝,5000,꽝,5000";
-        int maxResultCount = 5;
+        gamers.addGamers("aa,bb,cc,dd,ee");
         
         //Then
         Assertions.assertThatIllegalArgumentException()
-          .isThrownBy(() -> Rewards.of(maxResultCount, result))
+          .isThrownBy(() -> rewards.addRewards(gamers, result))
           .withMessage(ErrorMessages.NOT_MATCH_COUNT.message());
     }
     
     @Test
-    @DisplayName("[fail] 보상 갯수정보에 0을 입력할 수 없다.")
-    void cantInputZeroTest() {
-        //Given
-        String result = "";
-        int maxResultCount = 0;
-        
-        //Then
-        Assertions.assertThatIllegalArgumentException()
-          .isThrownBy(() -> Rewards.of(maxResultCount, result))
-          .withMessage(ErrorMessages.CANT_INPUT_ZERO.message());
-    }
-    
-    @Test
-    @DisplayName("[success] 생성시 입력된 reward 목록을 정상적으로 가져온다.")
+    @DisplayName("[success] reward 목록을 정상적으로 가져온다.")
     void getGamerNamesTest() {
         //Given
         List<String> givenRewardNames = Arrays.asList("꽝", "5000", "1000");
-        Rewards rewards = Rewards.of(3, "꽝,5000,1000");
+        gamers.addGamers("aa,bb,cc");
+        rewards.addRewards(gamers, "꽝,5000,1000");
         
         //When
         List<String> resultRewardNames = rewards.getRewardNames();
@@ -56,7 +54,8 @@ class RewardsTest {
     @DisplayName("[success] 보상 번호로 실제 보상을 가져온다.")
     void getGameRewardTest() {
         //Given
-        Rewards rewards = Rewards.of(3, "꽝,5000,1000");
+        gamers.addGamers("aa,bb,cc");
+        rewards.addRewards(gamers, "꽝,5000,1000");
         
         //When
         String reward = rewards.getReward(0);
@@ -69,7 +68,8 @@ class RewardsTest {
     @DisplayName("[fail] 보상 번호가 보상 목록의 총 갯수를 넘어갈 수 없다.")
     void getGameRewardFailTest() {
         //Given
-        Rewards rewards = Rewards.of(3, "꽝,5000,1000");
+        gamers.addGamers("aa,bb,cc");
+        rewards.addRewards(gamers, "꽝,5000,1000");
         
         //Then
         Assertions.assertThatIllegalArgumentException()

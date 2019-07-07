@@ -16,15 +16,12 @@ public class Gamers {
     
     private final Map<Gamer, Integer> gamers;
     
-    public static Gamers from(String names) {
-        return new Gamers(names);
+    private Gamers() {
+        this.gamers = new LinkedHashMap<>();
     }
     
-    private Gamers(String names) {
-        gamers = new LinkedHashMap<>();
-        String[] gamerNames = names.split(DELIMITER);
-        IntStream.range(START_NUMBER, gamerNames.length)
-            .forEach(index -> gamers.put(Gamer.from(gamerNames[index]), index));
+    public static Gamers newInstance() {
+        return new Gamers();
     }
     
     public int getSize() {
@@ -51,5 +48,15 @@ public class Gamers {
     
     public Stream<Gamer> keyStream() {
         return gamers.keySet().stream();
+    }
+    
+    public void addGamers(String gamerNames) {
+        String[] names = gamerNames.split(DELIMITER);
+        IntStream.range(START_NUMBER, names.length)
+          .forEach(index -> gamers.put(Gamer.from(names[index]), index));
+    }
+    
+    public boolean isSameSize(int size) {
+        return size == gamers.size();
     }
 }

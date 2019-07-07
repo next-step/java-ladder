@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.gamer.Gamers;
 import ladder.domain.gamer.message.ErrorMessages;
 import ladder.domain.ladder.unit.Cell;
 import ladder.domain.ladder.unit.Line;
@@ -15,7 +16,12 @@ public class Ladder {
     private final static int ONE_INDEX = 1;
     
     private final List<Line> ladder;
-    private final int cellSize;
+    private int cellSize;
+    
+    private Ladder() {
+        ladder = new ArrayList<>();
+        cellSize = 0;
+    }
     
     private Ladder(final int cellSize, final int gamerSize) {
         this.cellSize = cellSize;
@@ -58,6 +64,10 @@ public class Ladder {
         return new Ladder(cellSize, gamerSize);
     }
     
+    public static Ladder newInstance() {
+        return new Ladder();
+    }
+    
     public int getRewardNumber(int lineNumber) {
         if (lineNumber >= getSize()) {
             throw new IllegalArgumentException(ErrorMessages.OVER_INPUT_LADDER_SIZE.message());
@@ -79,5 +89,14 @@ public class Ladder {
     
     public List<Line> getLadder() {
         return ladder;
+    }
+    
+    public void makeLadder(int cellSize, Gamers gamers) {
+        int size = gamers.getSize();
+        this.cellSize = cellSize;
+        ladder.add(Line.from(cellSize, ladder.size()));
+        IntStream.range(START_COUNT, size)
+          .forEach(i -> ladder.add(Line.from(ladder.get(i - BEFORE_INDEX), i == size - BEFORE_INDEX, i)));
+        setEndPoint();
     }
 }

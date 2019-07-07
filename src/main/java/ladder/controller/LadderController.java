@@ -1,50 +1,68 @@
 package ladder.controller;
 
 import ladder.core.controller.Controller;
-import ladder.domain.Model;
+import ladder.domain.gamer.Gamers;
+import ladder.domain.gamer.info.Gamer;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.reward.Rewards;
 import ladder.message.EmptyMessage;
 import ladder.message.result.ResultMessage;
+import ladder.message.result.RewardMessage;
 import ladder.view.MainView;
 
 public class LadderController implements Controller {
-    private final static String EXIT_PROGRAM = "exit";
-    private final Model model;
+    private final static String EMPTY_STRING = "";
+    private final static String RESULT_DELIMITER = ":";
+    private final static String ENTER = System.getProperty("line.separator");
+    private final static String FIND_ALL = "all";
+    
+    private final Gamers gamers;
+    private final Ladder ladder;
+    private final Rewards rewards;
+    
     private final MainView mainView;
-    private boolean isExit;
     
     public LadderController() {
-        model = new Model();
+        gamers = Gamers.newInstance();
+        rewards = Rewards.newInstance();
+        ladder = Ladder.newInstance();
         mainView = new MainView(this);
-        isExit = false;
         mainView.render(new EmptyMessage());
     }
     
     @Override
     public void inputGamers(String gamerNames) {
-        model.newGamers(gamerNames);
+        gamers.addGamers(gamerNames);
         mainView.render(new EmptyMessage());
     }
     
     @Override
     public void inputReward(String reward) {
-        model.newRewards(reward);
+        rewards.addRewards(gamers, reward);
         mainView.render(new EmptyMessage());
     }
     
     @Override
     public void inputLadderSize(int ladderSize) {
-        model.newLadder(ladderSize);
-        mainView.render(new ResultMessage(model.getGamers().getGamerNames(), model.getLadder(), model.getRewards().getRewardNames()));
+        ladder.makeLadder(ladderSize, gamers);
+        mainView.render(new ResultMessage(gamers.getGamerNames(), ladder, rewards.getRewardNames()));
     }
     
     @Override
     public void inputGamerName(String gamerName) {
-        if (EXIT_PROGRAM.equals(gamerName)) {
-            isExit = true;
+        if (FIND_ALL.equals(gamerName)) {
+            mainView.render(getAllRewards());
             return;
         }
-        model.findReward(gamerName);
-        mainView.render(model.getRewardResponse());
+        mainView.render(new RewardMessage(rewards.getReward(ladder.getRewardNumber(gamers.getLineNumber(gamerName)))));
+    }
+    
+    private RewardMessage getAllRewards() {
+        return new RewardMessage(gamers.keyStream()
+          .map(Gamer::getName)
+          .map(name -> name + RESULT_DELIMITER + rewards.getReward(ladder.getRewardNumber(gamers.getLineNumber(name))))
+          .reduce((info1, info2) -> info1 + ENTER + info2)
+          .orElse(EMPTY_STRING));
     }
     
     @Override
