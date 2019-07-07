@@ -1,4 +1,4 @@
-package ladder.enumSet;
+package ladder.enumset;
 
 import java.util.regex.Pattern;
 

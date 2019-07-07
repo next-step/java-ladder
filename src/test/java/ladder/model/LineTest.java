@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
@@ -12,14 +13,13 @@ public class LineTest {
     @Test
     @DisplayName("사다리 생성에 사용될 가로 라인 생성 테스트")
     void createLine() {
-        boolean beforLine = false;
-        Line lines = new Line(5);
-        List<Boolean> linePoints = lines.getPoints();
-        for (boolean line : linePoints) {
-            if (beforLine) {
-                assertThat(beforLine).isNotEqualTo(line);
-            }
-            beforLine = line;
+        Line lines = Line.lineSet(5);
+        List<Point> points = lines.getPoints();
+        for(Point point : points){
+            assertThat(
+            point.getStatusOfPoint().isLeft()
+                   && point.getStatusOfPoint().isRight()
+            ).isFalse();
         }
     }
 

@@ -1,23 +1,33 @@
 package ladder.model;
 
-import ladder.enumSet.Validation;
+import ladder.enumset.Validation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
     private final List<Line> ladder = new ArrayList <>();
-
+    private final int ladderHeight;
     public Ladder(int userCount, String ladderHeight) {
-        int height = numberValidation(ladderHeight);
-        for (int i = 0; i < height; i++) {
+        this.ladderHeight = numberValidation(ladderHeight);
+        for (int i = 0; i < this.ladderHeight; i++) {
             ladder.add(createLine(userCount));
         }
     }
 
     public List<Line> getLadder() {
-        return this.ladder;
+        return Collections.unmodifiableList(this.ladder);
+    }
+
+    public int ladderRiding(int userIndex) {
+        int userPosition = userIndex;
+        for(Line line : ladder){
+            Point point = line.getPoints().get(userPosition);
+            userPosition = point.move();
+        }
+        return userPosition;
     }
 
     private int numberValidation(String ladderHeight) {
@@ -28,7 +38,6 @@ public class Ladder {
     }
 
     private Line createLine(int userCount) {
-        return new Line(userCount);
+        return Line.lineSet(userCount);
     }
-
 }

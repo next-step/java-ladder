@@ -1,10 +1,13 @@
 package ladder.model;
 
-import ladder.enumSet.Validation;
+import ladder.enumset.Validation;
+
+import java.util.Objects;
 
 public class User {
 
-    private String name;
+    private static final String ALL_PRINT_SIGN = "all";
+    private final String name;
 
     public User(String name) {
         this.name = nameValidation(name);
@@ -12,6 +15,10 @@ public class User {
 
     public String getName() {
         return this.name;
+    }
+
+    public boolean isAllPrintSignUser() {
+        return this.name.equals(ALL_PRINT_SIGN);
     }
 
     public int getNameLength() {
@@ -30,6 +37,19 @@ public class User {
             throw new IllegalStateException("사다리 게임 이용자의 이름은 영문으로만 입력 할 수 있습니다.");
         }
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
 }
