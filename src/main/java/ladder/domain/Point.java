@@ -1,18 +1,19 @@
 package ladder.domain;
 
+import ladder.Position;
 import ladder.domain.strategy.GeneratorInterface;
 
 public class Point {
-    private int position;
+    private Position position;
     private Direction direction;
 
-    public Point(int position, Direction direction) {
-        this.position = position;
+    public Point(Position position, Direction direction) {
+        this.position = position.next();
         this.direction = direction;
     }
 
     public static Point first(boolean current) {
-        return new Point(0, Direction.first(current));
+        return new Point(new Position(0), Direction.first(current));
     }
 
     public Point next(boolean right) {
@@ -32,14 +33,14 @@ public class Point {
     }
 
     public int move() {
-        return direction.move(position);
+        return direction.move(position).toInt();
     }
 
     public boolean current() {
         return direction == Direction.RIGHT;
     }
 
-    private int getNextIndex() {
-        return position + 1;
+    private Position getNextIndex() {
+        return position.next();
     }
 }

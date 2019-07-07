@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import javafx.geometry.Pos;
+import ladder.Position;
+
 public enum Direction {
     RIGHT(true, false),
     LEFT(false, true),
@@ -57,13 +60,13 @@ public enum Direction {
         return of(Boolean.FALSE, this.right);
     }
 
-    public int move(int position) {
+    public Position move(Position position) {
         if (this.isRight()) {
-            return position + 1;
+            return position.next();
         }
 
         if (this.isLeft()) {
-            return position - 1;
+            return position.prev();
         }
 
         return position;
