@@ -2,6 +2,8 @@ package nextstep.step4.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,10 +43,9 @@ public class ParticipantTest {
     }
 
     @DisplayName("List가 null일 경우")
-    @Test
-    void isNullCustom() {
-        List<String> names = null;
-
+    @ParameterizedTest
+    @NullAndEmptySource
+    void isNullCustom(List<String> names) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Participant participant = Participant.of(names);
         }).withMessageContaining("사람이 입력되지 않았습니다.");

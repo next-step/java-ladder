@@ -3,8 +3,11 @@ package nextstep.step4.ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -31,10 +34,11 @@ public class LadderLineTest {
     }
 
     @DisplayName("LadderLine 생성 예외상황 - Empty, Null")
-    @Test
-    void createListEmptyNullException() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    void createListEmptyNullException(List<Link> links) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new LadderLine(Arrays.asList());
+            new LadderLine(links);
         }).withMessageContaining("사다리라인이 비어있습니다.");
     }
 

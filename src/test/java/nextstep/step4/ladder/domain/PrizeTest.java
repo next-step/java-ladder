@@ -2,6 +2,8 @@ package nextstep.step4.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -24,19 +26,12 @@ public class PrizeTest {
         assertThat(prize.getPrize()).isEqualTo("꽝");
     }
 
-    @DisplayName("결과 생성 예외상황 - null")
-    @Test
-    void createWinNull() {
+    @DisplayName("결과 생성 예외상황 - null, Empty")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void createWinNull(String prize) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Prize prize = Prize.of(null);
-        }).withMessageContaining("결과가 입력이 안되었습니다.");
-    }
-
-    @DisplayName("결과 생성 예외상황 - Empty")
-    @Test
-    void createWinEmpty() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            Prize prize = Prize.of("");
+            Prize.of(prize);
         }).withMessageContaining("결과가 입력이 안되었습니다.");
     }
 

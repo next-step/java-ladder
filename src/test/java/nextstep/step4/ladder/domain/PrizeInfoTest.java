@@ -3,6 +3,8 @@ package nextstep.step4.ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.Arrays;
 
@@ -41,23 +43,13 @@ public class PrizeInfoTest {
         }).withMessageContaining("결과값이 참여자와 다릅니다.");
     }
 
-    @DisplayName("결과정보 생성 - 예외상황(Null)")
-    @Test
-    void createWinInfoNull() {
+    @DisplayName("결과정보 생성 - 예외상황(Null, Empty)")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void createWinInfoNull(String prizeInfo) {
         int participantCount = participant.count();
-
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            PrizeInfo info = PrizeInfo.of(null, participantCount);
-        }).withMessageContaining("실행 결과 값이 없습니다.");
-    }
-
-    @DisplayName("결과정보 생성 - 예외상황(Null)")
-    @Test
-    void createWinInfoEmpty() {
-        int participantCount = participant.count();
-
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            PrizeInfo info = PrizeInfo.of("", participantCount);
+            PrizeInfo info = PrizeInfo.of(prizeInfo, participantCount);
         }).withMessageContaining("실행 결과 값이 없습니다.");
     }
 
