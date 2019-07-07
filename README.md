@@ -50,26 +50,31 @@
                 
     - `Ladder` 클래스를 제작한다. 해당 객체는 `List<LadderLine>`를 가지는 일급 객체이다.
         - `가로 칸 개수` 와 `사다리 높이`를 생성자로 받는다.
-            - 생성을 표현하기 위해 `팩토리 메서드`를 사용한다.
-- `toString()`을 오버라이딩 하여, `List<LadderLine` 컬렉션과 함께 문자열을 제작한다.
+        - 생성을 표현하기 위해 `팩토리 메서드`를 사용한다.
+
 
 ## STEP3 요구사항
 - 사다리 실행 결과를 출력해야 한다.
-    - `LadderRewards` 클래스를 제작한다. 
-        - `List<LadderRewardType>`를 가지는 일급 컬렉션으로 제작한다.
-        - `사람 수`를 받는다.
-        - `LadderRewardType`의 랜덤 값을 사람 수 만큼 배치한다.
-        - 배치된 `LadderRewardType`을 리턴한다.
+    - `LadderReward` 클래스를 제작한다.
+        - `문자열 꽝 or 금액`이 아니라면, `IllegalArgumentException`을 리턴한다.
+        - `검증 한 문자열`을 리턴한다. 
     
-    - `LadderRewardType` Enum 클래스를 제작한다.
-        - `꽝, 3000, 5000, 10000` 상수를 가진다.
-        - 랜덤 `LadderRewardType`를 리턴하는 기능을 만든다.
+    - `Ladder` 클래스를 수정한다.
+        - `사람 숫자` 와 `결과 문자열` 그리고 `사다리 높이`를 생성자로 받는다.
+        - `사람 숫자` 와 `결과 문자열 파싱 개수`가 맞지 않다면, `IllegalStateException`을 발생한다.
+    
+    - `LadderRewards` 클래스를 제작한다.
+        - `List<LadderReward>`를 가지는 일급 컬렉션으로 제작한다.
+        - `실행 결과 문자열`을 받는다.
+        - `실행 결과 문자열`을 파싱하여, `LadderReward` 객체를 생성한다.
+        - 배치된 `LadderReward`을 리턴한다.
         
     - `ResultView` 클래스를 이용한다.
         - `LadderRewards` 인스턴스를 받아, `LadderRewardType` 리스트를 받아 일렬로 출력한다.
         
 - 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
     - `InputView` 클래스를 이용한다.
+        - `결과 문자열`을 받아 리턴한다.
         - `결과를 보고 싶은 사람문자열`을 받아 리턴한다.
         
     - `LadderPlayerNames` 클래스를 이용한다.
