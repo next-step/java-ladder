@@ -28,14 +28,14 @@ class PlayResultTest {
                 Arrays.asList(
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, new Direction(true, false)),
-                                        new Link(1, new Direction(false, true)),
-                                        new Link(2, new Direction(false, false)))),
+                                        new Point(0, new Direction(true, false)),
+                                        new Point(1, new Direction(false, true)),
+                                        new Point(2, new Direction(false, false)))),
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, new Direction(false, false)),
-                                        new Link(1, new Direction(false, false)),
-                                        new Link(2, new Direction(false, false))))));
+                                        new Point(0, new Direction(false, false)),
+                                        new Point(1, new Direction(false, false)),
+                                        new Point(2, new Direction(false, false))))));
     }
 
     @DisplayName("전달받은 Name을 통해 상금을 가지고 오기")

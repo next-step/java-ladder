@@ -26,17 +26,17 @@ public class LadderFactory {
     }
 
     private static LadderLine createLine(int line) {
-        List<Link> links = new ArrayList<>();
-        links.add(Link.first(() -> random()));
+        List<Point> points = new ArrayList<>();
+        points.add(Point.first(() -> random()));
         for (int i = NEXT_INDEX; i < line - LAST_INDEX; i++) {
-            links.add(nextLink(links.get(i - NEXT_INDEX)));
+            points.add(nextLink(points.get(i - NEXT_INDEX)));
         }
-        links.add(Link.last(links.get(links.size() - LAST_INDEX)));
-        return new LadderLine(links);
+        points.add(Point.last(points.get(points.size() - LAST_INDEX)));
+        return new LadderLine(points);
     }
 
-    private static Link nextLink(Link leftLink) {
-        return leftLink.next(() -> random());
+    private static Point nextLink(Point leftPoint) {
+        return leftPoint.next(() -> random());
     }
 
     private static boolean random() {

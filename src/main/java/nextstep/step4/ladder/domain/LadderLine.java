@@ -19,27 +19,27 @@ public class LadderLine {
     private static final String CHECK_START_INDEX = "일치하는 Index가 없습니다.";
     private static final int MIN_SIZE = 1;
 
-    private final List<Link> links;
+    private final List<Point> points;
 
-    public LadderLine(List<Link> links) {
-        if (links == null || links.isEmpty()) {
+    public LadderLine(List<Point> points) {
+        if (points == null || points.isEmpty()) {
             throw new IllegalArgumentException(CREATE_LIST_SIZE_EXCEPTION_MESSAGE);
         }
-        if (links.size() <= MIN_SIZE) {
+        if (points.size() <= MIN_SIZE) {
             throw new IllegalArgumentException(CREATE_LIST_MIN_SIZE_EXCEPTION_MESSAGE);
         }
-        this.links = links;
+        this.points = points;
     }
 
     public int moveLine(int startIndex) {
-        return links.stream()
+        return points.stream()
                 .filter(link -> link.matchIndex(startIndex))
                 .findFirst()
                 .map(link -> link.move())
                 .orElseThrow(() -> new IllegalArgumentException(CHECK_START_INDEX));
     }
 
-    public Stream<Link> stream() {
-        return links.stream();
+    public Stream<Point> stream() {
+        return points.stream();
     }
 }

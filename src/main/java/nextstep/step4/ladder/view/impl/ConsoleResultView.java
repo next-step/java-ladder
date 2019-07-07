@@ -93,10 +93,10 @@ public class ConsoleResultView implements ResultView {
         println();
     }
 
-    private String combine(Link link) {
+    private String combine(Point point) {
         StringBuilder sb = new StringBuilder();
         sb.append(PIPE_PRINT_FORMAT);
-        if (link.status()) {
+        if (point.status()) {
             return sb.append(TRUE_PRINT_FORMAT).toString();
         }
         return sb.append(FASLE_PRINT_FORMAT).toString();

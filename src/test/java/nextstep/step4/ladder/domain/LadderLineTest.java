@@ -29,16 +29,16 @@ public class LadderLineTest {
     void setUp() {
         line = new LadderLine(
                 Arrays.asList(
-                        new Link(0, new Direction(true, false)),
-                        new Link(1, new Direction(false, true))));
+                        new Point(0, new Direction(true, false)),
+                        new Point(1, new Direction(false, true))));
     }
 
     @DisplayName("LadderLine 생성 예외상황 - Empty, Null")
     @ParameterizedTest
     @NullAndEmptySource
-    void createListEmptyNullException(List<Link> links) {
+    void createListEmptyNullException(List<Point> points) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new LadderLine(links);
+            new LadderLine(points);
         }).withMessageContaining("사다리라인이 비어있습니다.");
     }
 
@@ -48,7 +48,7 @@ public class LadderLineTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new LadderLine(
                     Arrays.asList(
-                            new Link(0, new Direction(true, false))));
+                            new Point(0, new Direction(true, false))));
         }).withMessageContaining("사다리라인의 최소 개수는 2개 입니다.");
     }
 
