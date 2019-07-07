@@ -27,13 +27,13 @@ public class PrintResult {
                 .forEach(System.out::println);
     }
 
-    public static String convertPointsToString(List<Boolean> points) {
+    public static String convertPointsToString(List<Point> points) {
 
         return points.stream().map(p -> {
-            if (Boolean.TRUE == p) {
+            if (p.isLeft()) {
                 return DASH_DELIMITER;
             }
             return WHITESPACE_DELIMITER;
-        }).collect(Collectors.joining(BAR_DELIMITER, WHITESPACE_DELIMITER + BAR_DELIMITER, BAR_DELIMITER));
+        }).collect(Collectors.joining(BAR_DELIMITER, "", BAR_DELIMITER));
     }
 }

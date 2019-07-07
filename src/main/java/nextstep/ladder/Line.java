@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson, BooleanFunction booleanFunction) {
-        boolean buf = false;
+        Point point = Point.first(booleanFunction);
+        points.add(point);
 
-        for (int i = 0; i < countOfPerson - 1; i++) {
-            buf = booleanFunction.apply(buf);
-            points.add(buf);
+        for (int i = 1; i < countOfPerson - 1; i++) {
+            point = point.next(booleanFunction);
+            points.add(point);
         }
+        points.add(point.last());
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 }
