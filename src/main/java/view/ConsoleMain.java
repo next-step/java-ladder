@@ -2,6 +2,7 @@ package view;
 
 import domain.LadderGame;
 import domain.bridge.BridgeRandomGenerator;
+import domain.ladder.Complexity;
 import domain.ladder.Goals;
 import domain.ladder.Ladder;
 import domain.result.Results;
@@ -14,10 +15,12 @@ public class ConsoleMain {
     public static void main(String[] args) {
         String names = InputView.inputUsers();
         String result = InputView.inputGoals();
-        int ladderHeight = InputView.inputLadderHeight();
+        String level = InputView.inputLevel();
+        int ladderHeight = Complexity.determineHeight(level);
 
         Users users = new Users(names);
-        Ladder ladder = new Ladder(ladderHeight, users.size(), new BridgeRandomGenerator());
+        Ladder ladder = new Ladder(ladderHeight, users.size()
+                , new BridgeRandomGenerator(Complexity.determineBridgeComplexity(level)));
         Goals goals = new Goals(result);
         ResultView.ladder(users, ladder, goals);
 
@@ -31,6 +34,6 @@ public class ConsoleMain {
             resultUser = InputView.inputResultUser();
             Results results = ladderGame.result(resultUser, goals);
             ResultView.result(resultUser, users, results);
-        } while(!RESULT_ALL.equals(resultUser));
+        } while (!RESULT_ALL.equals(resultUser));
     }
 }

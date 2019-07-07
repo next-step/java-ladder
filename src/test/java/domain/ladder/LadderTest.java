@@ -11,9 +11,10 @@ public class LadderTest {
 
     @Test
     public void generateLadder() {
-        int ladderHeight = 5;
+        int ladderHeight = Complexity.determineHeight("하");
+        int heightLimitValue = Complexity.determineBridgeComplexity("하");
         int userCount = 3;
-        BridgeGenerator bridgeGenerator = new BridgeRandomGenerator();
+        BridgeGenerator bridgeGenerator = new BridgeRandomGenerator(heightLimitValue);
 
         Ladder ladder = new Ladder(ladderHeight, userCount, bridgeGenerator);
         int result = ladder.size();

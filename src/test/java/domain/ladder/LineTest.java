@@ -1,23 +1,20 @@
 package domain.ladder;
 
-import domain.bridge.TestBridgeGenerator;
-import org.junit.Test;
 import domain.bridge.BridgeGenerator;
 import domain.bridge.BridgeRandomGenerator;
-
-import java.util.List;
+import domain.bridge.TestBridgeGenerator;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
-
-    private BridgeGenerator bridgeGenerator;
+    private int limitValue = 3;
 
     @Test
     public void generate_line() {
         int userCount = 3;
 
-        BridgeGenerator bridgeGenerator = new BridgeRandomGenerator();
+        BridgeGenerator bridgeGenerator = new BridgeRandomGenerator(limitValue);
 
         Line line = new Line(bridgeGenerator);
         line.generate(userCount);
@@ -26,7 +23,7 @@ public class LineTest {
 
     @Test
     public void generate_참가자1명_라인만들기() {
-        BridgeGenerator bridgeGenerator = new BridgeRandomGenerator();
+        BridgeGenerator bridgeGenerator = new BridgeRandomGenerator(limitValue);
         Line line = new Line(bridgeGenerator);
         line.generate(1);
         assertThat(line.size()).isEqualTo(1);
