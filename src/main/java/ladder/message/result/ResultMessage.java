@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ResultMessage implements Message {
     private final List<String> gamerNames;
-    private final Ladder ladder;
     private final List<String> rewards;
+    private final Ladder ladder;
     
     public ResultMessage(List<String> gamerNames, Ladder ladder, List<String> rewards) {
         this.gamerNames = gamerNames;

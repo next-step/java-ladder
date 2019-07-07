@@ -1,6 +1,6 @@
 package ladder.step;
 
-import ladder.view.constant.Step;
+import ladder.view.component.constant.Step;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -18,18 +18,13 @@ public class Ladder {
     private final List<Line> ladder;
     private int cellSize;
     
+    public static Ladder newInstance() {
+        return new Ladder();
+    }
+    
     private Ladder() {
         ladder = new ArrayList<>();
         cellSize = 0;
-    }
-    
-    private Ladder(final int cellSize, final int gamerSize) {
-        this.cellSize = cellSize;
-        ladder = new ArrayList<>();
-        ladder.add(Line.from(cellSize, ladder.size()));
-        IntStream.range(START_COUNT, gamerSize)
-            .forEach(i -> ladder.add(Line.from(ladder.get(i - BEFORE_INDEX), i == gamerSize - BEFORE_INDEX, i)));
-        setEndPoint();
     }
     
     private void setEndPoint() {
@@ -57,15 +52,6 @@ public class Ladder {
             nowCell = ladder.get(ladderIndex).get(cellIndex);
         }
         nowLine.setEndPoint(ladderIndex);
-    }
-    
-    
-    public static Ladder from(final int cellSize, final int gamerSize) {
-        return new Ladder(cellSize, gamerSize);
-    }
-    
-    public static Ladder newInstance() {
-        return new Ladder();
     }
     
     public int getRewardNumber(int lineNumber) {

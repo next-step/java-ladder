@@ -16,12 +16,12 @@ public class Gamers {
     
     private final Map<Gamer, Integer> gamers;
     
-    private Gamers() {
-        this.gamers = new LinkedHashMap<>();
-    }
-    
     public static Gamers newInstance() {
         return new Gamers();
+    }
+    
+    private Gamers() {
+        this.gamers = new LinkedHashMap<>();
     }
     
     public int getSize() {

@@ -4,11 +4,6 @@ public class Cell {
     private final boolean rightConnected;
     private final boolean leftConnected;
     
-    private Cell(final boolean rightConnected, final boolean leftConnected) {
-        this.rightConnected = rightConnected;
-        this.leftConnected = leftConnected;
-    }
-    
     public static Cell from(Cell cell, boolean connected) {
         if (cell.rightConnected) {
             return makeLeftConnectedCell();
@@ -30,6 +25,11 @@ public class Cell {
             return makeRightConnectedCell();
         }
         return new Cell(false, false);
+    }
+    
+    private Cell(final boolean rightConnected, final boolean leftConnected) {
+        this.rightConnected = rightConnected;
+        this.leftConnected = leftConnected;
     }
     
     public boolean isRightConnected() {

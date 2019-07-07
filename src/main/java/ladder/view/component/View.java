@@ -2,7 +2,7 @@ package ladder.view.component;
 
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
-import ladder.view.constant.Step;
+import ladder.view.component.constant.Step;
 
 public class View {
     private final Inputor inputor;

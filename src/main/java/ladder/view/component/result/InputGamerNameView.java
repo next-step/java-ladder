@@ -6,7 +6,7 @@ import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
 import ladder.view.component.View;
-import ladder.view.constant.Step;
+import ladder.view.component.constant.Step;
 
 public class InputGamerNameView implements ViewImpl {
     private final static String ANSWER = "결과를 보고 싶은 사람은?";

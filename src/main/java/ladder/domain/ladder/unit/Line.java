@@ -27,6 +27,10 @@ public class Line {
         return new Line(beforeLine, lastLine, startPoint);
     }
     
+    private static boolean shouldConnect() {
+        return RANDOM.nextInt(MAX_NUMBER) > DEFAULT_FREQUENCY;
+    }
+    
     private Line(int cellSize, int startPoint) {
         if (cellSize < MIN_CELL_SIZE) {
             throw new IllegalArgumentException(ErrorMessages.CANT_INPUT_LESS_THAN_ZERO.message());
@@ -42,10 +46,6 @@ public class Line {
             .map(beforeCell -> Cell.from(beforeCell, getConnected(lastRow)))
             .collect(Collectors.toList());
         this.startPoint = startPoint;
-    }
-    
-    private static boolean shouldConnect() {
-        return RANDOM.nextInt(MAX_NUMBER) > DEFAULT_FREQUENCY;
     }
     
     private boolean getConnected(boolean lastRow) {

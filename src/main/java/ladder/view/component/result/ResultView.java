@@ -7,7 +7,7 @@ import ladder.domain.ladder.Ladder;
 import ladder.core.message.Message;
 import ladder.message.result.ResultMessage;
 import ladder.view.component.View;
-import ladder.view.constant.Step;
+import ladder.view.component.constant.Step;
 import ladder.view.model.LadderLines;
 
 import java.util.List;

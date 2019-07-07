@@ -6,7 +6,7 @@ import ladder.core.view.ViewImpl;
 import ladder.core.view.output.Printer;
 import ladder.message.result.RewardMessage;
 import ladder.view.component.View;
-import ladder.view.constant.Step;
+import ladder.view.component.constant.Step;
 
 public class RewardView implements ViewImpl {
     private Controller controller;

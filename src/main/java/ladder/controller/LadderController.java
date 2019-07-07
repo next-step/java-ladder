@@ -11,6 +11,7 @@ import ladder.message.result.RewardMessage;
 import ladder.view.MainView;
 
 public class LadderController implements Controller {
+    private final static EmptyMessage EMPTY_MESSAGE = new EmptyMessage();
     private final static String EMPTY_STRING = "";
     private final static String RESULT_DELIMITER = ":";
     private final static String ENTER = System.getProperty("line.separator");
@@ -27,19 +28,24 @@ public class LadderController implements Controller {
         rewards = Rewards.newInstance();
         ladder = Ladder.newInstance();
         mainView = new MainView(this);
-        mainView.render(new EmptyMessage());
+        mainView.render(EMPTY_MESSAGE);
+    }
+    
+    @Override
+    public void action() {
+        mainView.render(EMPTY_MESSAGE);
     }
     
     @Override
     public void inputGamers(String gamerNames) {
         gamers.addGamers(gamerNames);
-        mainView.render(new EmptyMessage());
+        mainView.render(EMPTY_MESSAGE);
     }
     
     @Override
     public void inputReward(String reward) {
         rewards.addRewards(gamers, reward);
-        mainView.render(new EmptyMessage());
+        mainView.render(EMPTY_MESSAGE);
     }
     
     @Override
@@ -63,10 +69,5 @@ public class LadderController implements Controller {
           .map(name -> name + RESULT_DELIMITER + rewards.getReward(ladder.getRewardNumber(gamers.getLineNumber(name))))
           .reduce((info1, info2) -> info1 + ENTER + info2)
           .orElse(EMPTY_STRING));
-    }
-    
-    @Override
-    public void action() {
-        mainView.render(new EmptyMessage());
     }
 }
