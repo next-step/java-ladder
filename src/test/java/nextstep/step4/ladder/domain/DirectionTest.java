@@ -15,18 +15,18 @@ import static org.assertj.core.api.Assertions.assertThat;
  * project      : java-ladder
  * create date  : 2019-07-05 12:45
  */
-public class PointTest {
+public class DirectionTest {
     @DisplayName("현재 포지션의 상태(boolean)를 확인")
     @Test
     void pointStatus() {
-        Point point = new Point(true, false);
-        assertThat(point.current()).isTrue();
+        Direction direction = new Direction(true, false);
+        assertThat(direction.current()).isTrue();
     }
 
     @DisplayName("현재 포지션의 왼쪽 상태(boolean)를 확인")
     @Test
     void pointLeftStatus() {
-        Point point = new Point(true, false);
-        assertThat(point.left()).isFalse();
+        Direction direction = new Direction(true, false);
+        assertThat(direction.left()).isFalse();
     }
 }

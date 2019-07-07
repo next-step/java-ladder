@@ -1,13 +1,11 @@
 package nextstep.step4.ladder.domain;
 
-import nextstep.step3.ladder.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,14 +28,14 @@ class PlayResultTest {
                 Arrays.asList(
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, new Point(true, false)),
-                                        new Link(1, new Point(false, true)),
-                                        new Link(2, new Point(false, false)))),
+                                        new Link(0, new Direction(true, false)),
+                                        new Link(1, new Direction(false, true)),
+                                        new Link(2, new Direction(false, false)))),
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, new Point(false, false)),
-                                        new Link(1, new Point(false, false)),
-                                        new Link(2, new Point(false, false))))));
+                                        new Link(0, new Direction(false, false)),
+                                        new Link(1, new Direction(false, false)),
+                                        new Link(2, new Direction(false, false))))));
     }
 
     @DisplayName("전달받은 Name을 통해 상금을 가지고 오기")

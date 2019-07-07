@@ -33,14 +33,14 @@ public class LadderTest {
                 Arrays.asList(
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, new Point(true, false)),
-                                        new Link(1, new Point(false, true)),
-                                        new Link(2, new Point(false, false)))),
+                                        new Link(0, new Direction(true, false)),
+                                        new Link(1, new Direction(false, true)),
+                                        new Link(2, new Direction(false, false)))),
                         new LadderLine(
                                 Arrays.asList(
-                                        new Link(0, new Point(false, false)),
-                                        new Link(1, new Point(true, false)),
-                                        new Link(2, new Point(false, true))))));
+                                        new Link(0, new Direction(false, false)),
+                                        new Link(1, new Direction(true, false)),
+                                        new Link(2, new Direction(false, true))))));
     }
 
     @DisplayName("사다리 생성시 전달된 인자가 비어있을때")

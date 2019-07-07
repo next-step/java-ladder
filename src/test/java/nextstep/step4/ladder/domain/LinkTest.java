@@ -21,7 +21,7 @@ public class LinkTest {
     @Test
     void createException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Link(0, new Point(false, true));
+            new Link(0, new Direction(false, true));
         }).withMessageContaining("왼쪽노드가 유효하지 않습니다. (0번째 Link의 왼쪽노드는 flase만 허용합니다.)");
     }
 
@@ -29,7 +29,7 @@ public class LinkTest {
     @Test
     void createTrueException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Link(1, new Point(true, true));
+            new Link(1, new Direction(true, true));
         }).withMessageContaining("현재 Link와 Left Link가 모두 true면 안됩니다.");
     }
 
@@ -56,21 +56,21 @@ public class LinkTest {
     @DisplayName("이동을 확인한다 - true")
     @Test
     void moveTrue() {
-        Link link = new Link(0, new Point(true, false));
+        Link link = new Link(0, new Direction(true, false));
         assertThat(link.move()).isEqualTo(1);
     }
 
     @DisplayName("이동을 확인한다 - false")
     @Test
     void moveFalse() {
-        Link link = new Link(0, new Point(false, false));
+        Link link = new Link(0, new Direction(false, false));
         assertThat(link.move()).isEqualTo(0);
     }
 
     @DisplayName("이동을 확인한다 - 본인은 false, 왼쪽 Link는 true")
     @Test
     void moveFalseAndBeforeLinkTrue() {
-        Link link = new Link(1, new Point(false, true));
+        Link link = new Link(1, new Direction(false, true));
         assertThat(link.move()).isEqualTo(0);
     }
 
