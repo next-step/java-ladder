@@ -7,8 +7,7 @@ import java.util.stream.IntStream;
 
 public class DirectionLayer {
 
-    private final static int ONE_RUNG = 1;
-
+    private final static int EXCEPT_NUMBER = 1;
     private List<Direction> directions;
 
     private DirectionLayer(List<Direction> directions) {
@@ -18,9 +17,8 @@ public class DirectionLayer {
     }
 
     public static DirectionLayer ofGenerator(int numberOfPlayer, DirectionGenerator directionGenerator) {
-        List<Direction> directions = directionGenerator.generate(numberOfPlayer - ONE_RUNG);
+        List<Direction> directions = directionGenerator.generate(getNumberOfRungs(numberOfPlayer));
         verifyQuantity(numberOfPlayer, directions);
-
         return new DirectionLayer(directions);
     }
 
@@ -28,6 +26,10 @@ public class DirectionLayer {
         if (numberOfPlayer != directions.size()) {
             throw new IllegalArgumentException("방향의 수는 입력된 참가자와 동일해야 합니다.");
         }
+    }
+
+    private static int getNumberOfRungs(int numberOfPlayers) {
+        return numberOfPlayers - EXCEPT_NUMBER;
     }
 
     public List<Direction> getDirectionsByPosition() {
@@ -48,8 +50,10 @@ public class DirectionLayer {
     }
 
     private Direction verifyRule(Direction previous, Direction current) {
-        if (previous == Direction.RIGHT && current == Direction.LEFT) {
-            throw new IllegalArgumentException("방향이 서로 충동하고 있습니다.");
+        if ((previous == Direction.RIGHT && current != Direction.LEFT)
+                || (previous == Direction.LEFT && current == Direction.LEFT)
+                || (previous == Direction.STRAIGHT && current == Direction.LEFT)) {
+            throw new IllegalArgumentException("게임 룰에 맞지 않는 방향이 있습니다.");
         }
         return current;
     }
@@ -62,5 +66,4 @@ public class DirectionLayer {
             throw new IllegalArgumentException("사다리 범위를 넘어가는 움직임");
         }
     }
-
 }

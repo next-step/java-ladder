@@ -13,41 +13,37 @@ class DirectionLayerTest {
     @Test
     @DisplayName("현재 Position에 따른 방향 찾기")
     public void findByPosition() {
-        DirectionLayer directionLayer = DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.STRAIGHT, Direction.LEFT));
+        DirectionLayer directionLayer = DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.RIGHT, Direction.LEFT));
         Direction direction = directionLayer.getDirectionsByPosition(new Position(0));
-        assertThat(direction == Direction.STRAIGHT).isTrue();
+        assertThat(direction == Direction.RIGHT).isTrue();
     }
 
     @Test
     @DisplayName("존재하지 않는 position")
     public void findByPositionException() {
-        DirectionLayer directionLayer = DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.STRAIGHT, Direction.LEFT));
+        DirectionLayer directionLayer = DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.RIGHT, Direction.LEFT));
         assertThatIllegalArgumentException().isThrownBy(() -> {
             directionLayer.getDirectionsByPosition(new Position(2));
         });
     }
 
     @Test
-    @DisplayName("방향이 충돌되었을 경우 예외처리")
-    public void conflictException() {
+    @DisplayName("사다리 게임 룰에 맞지 않는 예외처리")
+    public void conflictException1() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            DirectionLayer.ofGenerator(4, count -> Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.LEFT, Direction.STRAIGHT));
+            DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.STRAIGHT, Direction.LEFT));
         });
-    }
 
-    @Test
-    @DisplayName("사다리 범위를 오른쪽 넘어가는 방향 예외처리")
-    public void rightSideOutOfLadderException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.STRAIGHT, Direction.RIGHT));
+            DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.RIGHT, Direction.STRAIGHT));
         });
-    }
 
-    @Test
-    @DisplayName("사다리 범위를 왼쪽 넘어가는 방향 예외처리")
-    public void leftSideOutOfLadderException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.LEFT, Direction.STRAIGHT));
+            DirectionLayer.ofGenerator(4, count -> Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.LEFT));
+        });
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            DirectionLayer.ofGenerator(2, count -> Arrays.asList(Direction.RIGHT, Direction.RIGHT));
         });
     }
 
