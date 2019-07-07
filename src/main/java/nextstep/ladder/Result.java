@@ -3,7 +3,7 @@ package nextstep.ladder;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PrintResult {
+public class Result {
     private static final int WIDTH = 5;
     private static String WHITESPACE_DELIMITER = StringUtil.repeat(" ", WIDTH);
     private static String BAR_DELIMITER = "|";
@@ -23,7 +23,7 @@ public class PrintResult {
         ladder.getLines()
                 .stream()
                 .map(line -> line.getPoints())
-                .map(PrintResult::convertPointsToString)
+                .map(Result::convertPointsToString)
                 .forEach(System.out::println);
     }
 

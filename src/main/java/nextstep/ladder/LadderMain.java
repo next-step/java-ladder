@@ -18,8 +18,8 @@ public class LadderMain {
 
         Ladder ladder = new Ladder(height, users.size(), new RandomBooleanFunction());
 
-        PrintResult.printUsers(users);
-        PrintResult.println();
-        PrintResult.printLadder(ladder);
+        Result.printUsers(users);
+        Result.println();
+        Result.printLadder(ladder);
     }
 }
