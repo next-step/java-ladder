@@ -17,7 +17,7 @@ public class LadderLine {
     private static final String CREATE_LIST_SIZE_EXCEPTION_MESSAGE = "사다리라인이 비어있습니다.";
     private static final String CREATE_LIST_MIN_SIZE_EXCEPTION_MESSAGE = "사다리라인의 최소 개수는 2개 입니다.";
     private static final String CHECK_START_INDEX = "일치하는 Index가 없습니다.";
-    public static final int MINSIZE = 1;
+    private static final int MIN_SIZE = 1;
 
     private final List<Link> links;
 
@@ -25,7 +25,7 @@ public class LadderLine {
         if (links == null || links.isEmpty()) {
             throw new IllegalArgumentException(CREATE_LIST_SIZE_EXCEPTION_MESSAGE);
         }
-        if (links.size() <= MINSIZE) {
+        if (links.size() <= MIN_SIZE) {
             throw new IllegalArgumentException(CREATE_LIST_MIN_SIZE_EXCEPTION_MESSAGE);
         }
         this.links = links;
