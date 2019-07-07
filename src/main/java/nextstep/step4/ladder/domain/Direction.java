@@ -1,5 +1,7 @@
 package nextstep.step4.ladder.domain;
 
+import nextstep.step4.ladder.domain.enums.Move;
+
 /**
  * author       : gwonbyeong-yun <sksggg123>
  * ------------------------------------------
@@ -12,9 +14,6 @@ package nextstep.step4.ladder.domain;
  */
 public class Direction {
     private static final String CREATE_SAME_STATUS_EXCEPTION_MESSAGE = "현재 Link와 Left Link가 모두 true면 안됩니다.";
-    public static final int PASS = 0;
-    public static final int INCREASE = 1;
-    public static final int DECREASE = -1;
 
     private final boolean right;
     private final boolean left;
@@ -28,13 +27,7 @@ public class Direction {
     }
 
     public int move() {
-        if (right) {
-            return INCREASE;
-        }
-        if (left) {
-            return DECREASE;
-        }
-        return PASS;
+        return Move.getDirection(left, right);
     }
 
     public boolean current() {
