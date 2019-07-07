@@ -1,28 +1,23 @@
 package ladder;
 
-import java.util.List;
+import ladder.impl.DefaultLadderGenerator;
+import ladder.impl.LadderHeight;
+import ladder.impl.Players;
 
 public class LadderGame {
 
-  LadderGameInformation ladderGameInformation;
-  Ladder ladder;
+  private LadderGenerator ladderGenerator;
 
-  public LadderGame(LadderGameInformation ladderGameInformation) {
-    this.ladderGameInformation = ladderGameInformation;
+  public LadderGame(DefaultLadderGenerator defaultLadderGenerator) {
+    ladderGenerator = defaultLadderGenerator;
   }
 
-  public Ladder makeLadder() {
-    ladder = new Ladder(ladderGameInformation.ladderHeight(), ladderGameInformation.playersCount());
-    return ladder;
+  public static LadderGame of(DefaultLadderGenerator defaultLadderGenerator) {
+    return new LadderGame(defaultLadderGenerator);
   }
 
-  public LadderGameResult getAllPlayerResult(LadderResult result) {
-    LadderGameResult gameResult = new LadderGameResult();
-    List<Player> playerList = ladderGameInformation.getPlayers();
-    for (int i = 0; i < playerList.size(); i++) {
-      gameResult.add(playerList.get(i), result.getLadderResult(ladder.move(i)));
-    }
-    return gameResult;
+  public Ladder generate(Players players, LadderHeight ladderHeight) {
+    return ladderGenerator.generate(players.count(), ladderHeight.value());
   }
 
 }

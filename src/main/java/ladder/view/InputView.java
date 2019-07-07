@@ -1,9 +1,9 @@
 package ladder.view;
 
 import java.util.Scanner;
-import ladder.LadderGameInformation;
-import ladder.LadderResult;
-import ladder.Players;
+import ladder.impl.LadderHeight;
+import ladder.impl.Players;
+import ladder.impl.Targets;
 
 public class InputView {
 
@@ -14,26 +14,19 @@ public class InputView {
 
   static final Scanner scanner = new Scanner(System.in);
 
-  public static LadderGameInformation askLadderGameInformation() {
-    Players players = askPlayersName();
-    int height = askLadderHeight();
-    return new LadderGameInformation(players, height);
-  }
-
-  private static Players askPlayersName() {
+  public static Players askPlayersName() {
     System.out.println(QUESTION_PLAYERS_NAME);
-    String playersName = scanner.next();
-    return new Players(playersName);
+    return Players.of(scanner.next());
   }
 
-  public static String askLadderResult() {
+  public static Targets askLadderTargets() {
     System.out.println(QUESTION_RESULT_LADDER);
-    return scanner.next();
+    return Targets.of(scanner.next());
   }
 
-  private static int askLadderHeight() {
+  public static LadderHeight askLadderHeight() {
     System.out.println(QUESTION_HEIGHT_LADDER);
-    return scanner.nextInt();
+    return LadderHeight.of(scanner.nextInt());
   }
 
   public static String askResultOfPlayer() {
