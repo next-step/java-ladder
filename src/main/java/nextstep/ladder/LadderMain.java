@@ -3,6 +3,7 @@ package nextstep.ladder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderMain {
     public static void main(String[] args) {
@@ -23,6 +24,21 @@ public class LadderMain {
         Result.printLadder(ladder);
         Result.printInputResult(results);
         Result.println();
+
+        String inputResult;
+        while (!(inputResult = Input.getInputResult()).equals("all")) {
+            final String userName = inputResult;
+
+            int index = IntStream.range(0, users.size())
+                    .filter(i -> users.get(i).getUserName().equals(userName))
+                    .findFirst()
+                    .orElseThrow(() -> {
+                        throw new IllegalArgumentException();
+                    });
+
+            Result.printResult(ladder.getLines(), users, results, index);
+        }
         Result.printAllResult(ladder, users, results);
+
     }
 }

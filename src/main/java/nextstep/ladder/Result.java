@@ -44,10 +44,13 @@ public class Result {
 
     public static void printAllResult(Ladder ladder, List<User> users, List<String> results) {
         for (int i = 0; i < users.size(); i++) {
-            int lastPosition = getLastIndexInLine(ladder.getLines(), i);
-            System.out.println(users.get(i).getUserName() + ": " + results.get(lastPosition));
-
+            printResult(ladder.getLines(), users, results, i);
         }
+    }
+
+    public static void printResult(List<Line> lines, List<User> users, List<String> results, int index) {
+        int lastPosition = getLastIndexInLine(lines, index);
+        System.out.println(users.get(index).getUserName() + ": " + results.get(lastPosition));
     }
 
     public static int getLastIndexInLine(List<Line> lines, int index) {
