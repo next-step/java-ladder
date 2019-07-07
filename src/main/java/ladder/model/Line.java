@@ -17,7 +17,7 @@ public final class Line {
 
     private final List<Point> points;
 
-    private Line(List<Point> points) {
+    Line(List<Point> points) {
         this.points = Collections.unmodifiableList(points);
     }
 
@@ -57,5 +57,10 @@ public final class Line {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int move(int start) {
+        final Point point = points.get(start);
+        return point.move();
     }
 }
