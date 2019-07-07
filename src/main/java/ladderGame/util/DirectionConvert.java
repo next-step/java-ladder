@@ -25,7 +25,7 @@ public class DirectionConvert {
     }
 
     private Boolean buildDirection(Boolean left, Boolean current) {
-        directions.add(Direction.decide(left, current));
+        directions.add(Direction.of(left, current));
         return current;
     }
 }

@@ -5,38 +5,37 @@ import ladderGame.domain.Direction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class RandomDirectionGenerator implements DirectionGenerator {
 
-    private final static int ALL_DIRECTION = 3;
-    private final static int EXCEPT_LEFT_DIRECTION = 2;
+    private final static Boolean FIRST_LIMITED_BOUNDARY = false;
+    private final static Boolean LAST_LIMITED_BOUNDARY = false;
 
+    private List<Boolean> rungs = new ArrayList<>();
     private Random random = new Random();
-    private List<Direction> directions = new ArrayList<>();
 
-    @Override
     public List<Direction> generate(int count) {
-        IntStream.range(0, count)
-                .forEach(index -> directions.add(randomDirection(getPreviousDirection())));
-        return null;
-    }
 
-    private Direction getPreviousDirection() {
-        if (directions.isEmpty()) {
-            return Direction.of(getRandom(ALL_DIRECTION));
+        rungs.add(FIRST_LIMITED_BOUNDARY);
+        for (int i = 0; i < count; i++) {
+            rungs.add(randomRule(getPreviousValue()));
         }
-        return directions.get(directions.size() - 1);
+        rungs.add(LAST_LIMITED_BOUNDARY);
+        return DirectionConvert.newInstance().parse(rungs);
     }
 
-    private Direction randomDirection(Direction previousDirection) {
-        if (previousDirection == Direction.RIGHT1) {
-            return Direction.of(getRandom(ALL_DIRECTION));
+    private Boolean getPreviousValue() {
+        return rungs.get(rungs.size() - 1);
+    }
+
+    private Boolean randomRule(boolean previousValue) {
+        if (previousValue) {
+            return false;
         }
-        return Direction.of(getRandom(EXCEPT_LEFT_DIRECTION));
+        return getRandom();
     }
 
-    private int getRandom(int count) {
-        return random.nextInt(count);
+    private Boolean getRandom() {
+        return random.nextBoolean();
     }
 }
