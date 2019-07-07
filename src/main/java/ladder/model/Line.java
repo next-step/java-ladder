@@ -9,11 +9,16 @@ public class Line {
     public static final int MINIMUM_NUMBER_OF_POINTS = 2;
     private static final String MESSAGE_OF_MINIMUM_POINTS_EXCEPTION = "Line의 Point 갯수는 최소 %d 이상이어야 합니다.";
 
+    public static Line generateRandom(int numberOfPoints) {
+        checkNumberOfPoints(numberOfPoints);
+        final List<Point> points = generateRandomPoints(numberOfPoints);
+        return new Line(points);
+    }
+
     private final List<Point> points;
 
-    public Line(int numberOfPoints) {
-        checkNumberOfPoints(numberOfPoints);
-        points = Collections.unmodifiableList(generatePoints(numberOfPoints));
+    private Line(List<Point> points) {
+        this.points = Collections.unmodifiableList(points);
     }
 
     private static void checkNumberOfPoints(int numberOfPoints) {
@@ -23,7 +28,7 @@ public class Line {
         }
     }
 
-    private static List<Point> generatePoints(int numberOfPoints) {
+    private static List<Point> generateRandomPoints(int numberOfPoints) {
         final List<Point> points = new ArrayList<>();
 
         addFirstPoint(points);

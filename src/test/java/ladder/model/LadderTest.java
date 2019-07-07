@@ -25,7 +25,7 @@ public class LadderTest {
         final int numberOfParticipants = 7;
         final Ladder ladder = new Ladder(height, numberOfParticipants);
         final List<Line> lines = ladder.getLines();
-        assertThatThrownBy(() -> lines.add(new Line(numberOfParticipants)))
+        assertThatThrownBy(() -> lines.add(Line.generateRandom(numberOfParticipants)))
                 .isExactlyInstanceOf(UnsupportedOperationException.class);
     }
 }

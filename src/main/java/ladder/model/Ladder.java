@@ -12,7 +12,7 @@ public class Ladder {
 
     public Ladder(int height, int numberOfParticipants) {
         lines = IntStream.range(0, height)
-                         .mapToObj(i -> new Line(numberOfParticipants))
+                         .mapToObj(i -> Line.generateRandom(numberOfParticipants))
                          .collect(Collectors.collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
