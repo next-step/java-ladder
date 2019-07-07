@@ -4,8 +4,8 @@ import nextstep.step4.ladder.domain.*;
 import nextstep.step4.ladder.util.StringUtil;
 import nextstep.step4.ladder.view.InputView;
 import nextstep.step4.ladder.view.ResultView;
-import nextstep.step4.ladder.view.impl.InputViewImpl;
-import nextstep.step4.ladder.view.impl.ResultViewImpl;
+import nextstep.step4.ladder.view.impl.ConsoleInputView;
+import nextstep.step4.ladder.view.impl.ConsoleResultView;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
@@ -22,8 +22,8 @@ public class LadderApplication {
     private final ResultView resultView;
 
     public LadderApplication() {
-        this.inputView = new InputViewImpl();
-        this.resultView = new ResultViewImpl();
+        this.inputView = new ConsoleInputView();
+        this.resultView = new ConsoleResultView();
     }
 
     public static void main(String[] args) {
@@ -58,10 +58,10 @@ public class LadderApplication {
         resultView.printPrizeInfo(prizeInfo);
 
         // 사다리 실행결과 수집
-        PlayResult playResult = new PlayResult(LadderFactory.play(ladder, participant.count()));
+        PlayResult playResult = new PlayResult(ladder.play(participant, prizeInfo));
 
         // 이름을 통한 결과값 가지고 오기
         String target = inputView.inputResultInfo();
-        resultView.printResultInfo(playResult, target, participant, prizeInfo);
+        resultView.printResultInfo(playResult, target);
     }
 }
