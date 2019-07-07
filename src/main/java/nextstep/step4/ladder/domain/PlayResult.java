@@ -1,7 +1,6 @@
 package nextstep.step4.ladder.domain;
 
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 /**
@@ -15,29 +14,22 @@ import java.util.stream.Stream;
  * create date  : 2019-07-03 17:58
  */
 public class PlayResult {
-    public static final String NO_SEARCH_PRIZE = "일치하는 Prize가 없습니다.";
-    private final Map<Integer, Integer> result;
+    private final Map<Name, Prize> result;
 
-    public PlayResult(Map<Integer, Integer> result) {
+    public PlayResult(Map<Name, Prize> result) {
         this.result = result;
     }
 
-    public Prize findPrizeByIndex(int findIndex, PrizeInfo prizeInfo) {
-        int endIndex = result.get(findIndex);
-        return prizeInfo.stream()
-                .filter(prize -> prizeInfo.matchAttribute(prize, endIndex))
+    public Prize findPrizeByName(Name sourceName) {
+        Name source = result.keySet().stream()
+                .filter(name -> name.equals(sourceName))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException(NO_SEARCH_PRIZE));
+                .orElseThrow(IllegalArgumentException::new);
+
+        return result.get(source);
     }
 
-    public Name findNameByIndex(int findIndex, Participant participant) {
-        return participant.stream()
-                .filter(name -> participant.matchAttribute(name, findIndex))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException(NO_SEARCH_PRIZE));
-    }
-
-    public Stream<Integer> keySet() {
+    public Stream<Name> keySet() {
         return result.keySet().stream();
     }
 }

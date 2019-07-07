@@ -30,6 +30,10 @@ public class Name {
         return new Name(targetName);
     }
 
+    public boolean matchName(String sourceName) {
+        return name.equals(sourceName);
+    }
+
     public String getName() {
         return this.name;
     }

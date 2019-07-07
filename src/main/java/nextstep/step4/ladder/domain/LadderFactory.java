@@ -26,14 +26,6 @@ public class LadderFactory {
         return new Ladder(lines);
     }
 
-    public static Map<Integer, Integer> play(Ladder ladder, int participantCount) {
-        Map<Integer, Integer> executeReuslt = new HashMap<>();
-        for (int i = INIT_INDEX; i < participantCount; i++) {
-            executeReuslt.put(i, ladder.execute(i));
-        }
-        return executeReuslt;
-    }
-
     private static LadderLine createLine(int line) {
         List<Link> links = new ArrayList<>();
         links.add(Link.first(() -> random()));

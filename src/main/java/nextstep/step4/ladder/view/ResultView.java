@@ -22,5 +22,5 @@ public interface ResultView {
 
     void printPrizeInfo(PrizeInfo prizeInfo);
 
-    void printResultInfo(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo);
+    void printResultInfo(PlayResult result, String name);
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,27 +40,22 @@ class PlayResultTest {
                                         new Link(2, new Point(false, false))))));
     }
 
-    @DisplayName("전달받은 Index를 통해 endIndex를 통해 가지고 오기")
+    @DisplayName("전달받은 Name을 통해 상금을 가지고 오기")
     @Test
     void findPrize() {
-        Map<Integer, Integer> playResult = LadderFactory.play(ladder, 3);
-        PlayResult result = new PlayResult(playResult);
-        PrizeInfo info = PrizeInfo.of("5000,꽝,1000", 3);
+        Name name1 = Name.of("kwon");
+        Name name2 = Name.of("be");
+        Name name3 = Name.of("why");
+        List<Name> names = Arrays.asList(name1, name2, name3);
+        Participant participant = new Participant(names);
 
-        assertThat(result.findPrizeByIndex(1, info).equals(Prize.of(5000))).isTrue();
-    }
+        Prize prize1 = Prize.of(1);
+        Prize prize2 = Prize.of(2);
+        Prize prize3 = Prize.of(3);
+        List<Prize> prizes = Arrays.asList(prize1, prize2, prize3);
+        PrizeInfo prizeInfo = new PrizeInfo(prizes);
 
-    @DisplayName("전달받은 Index를 통해 firstIndex를 통해 가지고 오기")
-    @Test
-    void findName() {
-        Map<Integer, Integer> playResult = LadderFactory.play(ladder, 3);
-        PlayResult result = new PlayResult(playResult);
-        Participant participant = Participant.of(
-                Arrays.asList(
-                        "kwon",
-                        "byeon",
-                        "yun"));
-
-        assertThat(result.findNameByIndex(0, participant).equals(Name.of("kwon"))).isTrue();
+        PlayResult result = new PlayResult(ladder.play(participant, prizeInfo));
+        assertThat(result.findPrizeByName(name1)).isEqualTo(prize2);
     }
 }

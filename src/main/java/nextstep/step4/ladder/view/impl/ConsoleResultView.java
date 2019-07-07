@@ -3,8 +3,6 @@ package nextstep.step4.ladder.view.impl;
 import nextstep.step4.ladder.domain.*;
 import nextstep.step4.ladder.view.ResultView;
 
-import java.util.stream.Collectors;
-
 /**
  * author       : gwonbyeong-yun <sksggg123>
  * ------------------------------------------
@@ -48,35 +46,32 @@ public class ConsoleResultView implements ResultView {
     }
 
     @Override
-    public void printResultInfo(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
-        System.out.println(checkAllOrTarget(result, name, participant, prizeInfo));
+    public void printResultInfo(PlayResult result, String sourceName) {
+        System.out.println(distributeAllAndTarget(result, sourceName));
     }
 
-    private String checkAllOrTarget(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
-        if (RESULT_ALL_KEYWORD.equals(name)) {
-            return printAllParticipantResult(result, participant, prizeInfo);
+    private String distributeAllAndTarget(PlayResult result, String sourceName) {
+        if (RESULT_ALL_KEYWORD.equals(sourceName)) {
+            return printAllParticipant(result);
         }
-        return printTargetParticipantResult(result, name, participant, prizeInfo);
+        return printTargetParticipant(result, sourceName);
     }
 
-    private String printTargetParticipantResult(PlayResult result, String name, Participant participant, PrizeInfo prizeInfo) {
-        int startIndex = participant.findIndexByName(name);
-
-        Name sourceName = result.findNameByIndex(startIndex, participant);
-        Prize targetPrize = result.findPrizeByIndex(startIndex, prizeInfo);
-
-        return combineResult(sourceName, targetPrize);
+    private String printAllParticipant(PlayResult result) {
+        StringBuilder sb = new StringBuilder();
+        result.keySet()
+                .map(key -> combineResult(key, result.findPrizeByName(key)))
+                .forEach(combine -> sb.append(combine + DELIMITER));
+        return sb.toString();
     }
 
-    private String printAllParticipantResult(PlayResult result, Participant participant, PrizeInfo prizeInfo) {
+    private String printTargetParticipant(PlayResult result, String sourceName) {
         return result.keySet()
-                .map(key ->
-                        combineResult(
-                                result.findNameByIndex(key, participant),
-                                result.findPrizeByIndex(key, prizeInfo)))
-                .collect(Collectors.joining(DELIMITER));
+                .filter(targetName -> targetName.matchName(sourceName))
+                .findFirst()
+                .map(key -> combineResult(key, result.findPrizeByName(key)))
+                .get();
     }
-
 
     private String combineResult(Name name, Prize prize) {
         return name.getName() + PRINT_NAME_SEPERATOR + prize.getPrize();
