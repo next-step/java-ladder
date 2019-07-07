@@ -21,5 +21,8 @@ public class LadderMain {
         Result.printUsers(users);
         Result.println();
         Result.printLadder(ladder);
+        Result.printInputResult(results);
+        Result.println();
+        Result.printAllResult(ladder, users, results);
     }
 }

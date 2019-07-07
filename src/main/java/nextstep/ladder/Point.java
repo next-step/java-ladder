@@ -21,6 +21,9 @@ public class Point {
     }
 
     public Point next(boolean right) {
+        if (this.right && right) {
+            throw new IllegalArgumentException();
+        }
         return new Point(this.index + 1, this.right, right);
     }
 

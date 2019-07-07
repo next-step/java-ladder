@@ -15,6 +15,11 @@ public class Result {
                 .forEach(user -> System.out.print(String.format("%5s ", user.getUserName())));
     }
 
+    public static void printInputResult(List<String> results) {
+        results.stream()
+                .forEach(result -> System.out.print(String.format("%5s ", result)));
+    }
+
     public static void println() {
         System.out.println();
     }
@@ -35,5 +40,26 @@ public class Result {
             }
             return WHITESPACE_DELIMITER;
         }).collect(Collectors.joining(BAR_DELIMITER, "", BAR_DELIMITER));
+    }
+
+    public static void printAllResult(Ladder ladder, List<User> users, List<String> results) {
+        for (int i = 0; i < users.size(); i++) {
+            int lastPosition = getLastIndexInLine(ladder.getLines(), i);
+            System.out.println(users.get(i).getUserName() + ": " + results.get(lastPosition));
+
+        }
+    }
+
+    public static int getLastIndexInLine(List<Line> lines, int index) {
+        int position = index;
+
+        for (Line line : lines) {
+            position = getNextIndex(line.getPoints(), position);
+        }
+        return position;
+    }
+
+    public static int getNextIndex(List<Point> points, int index) {
+        return points.get(index).move();
     }
 }
