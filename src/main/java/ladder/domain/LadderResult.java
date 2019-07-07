@@ -28,7 +28,6 @@ public class LadderResult {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(map);
     }
 

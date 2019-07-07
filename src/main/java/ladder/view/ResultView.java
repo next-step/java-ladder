@@ -1,14 +1,13 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Players;
-import ladder.domain.Point;
+import ladder.domain.*;
 
+import javax.xml.transform.Result;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class ResultView {
+
     public static void printUsers(Players players) {
         List<String> names = players.getPlayersNames();
         int max = players.getMaxNameLength();
@@ -65,7 +64,7 @@ public class ResultView {
         builder.append("|");
 
         List<Point> points = line.getPoints();
-        for(int i = 0 ; i < line.getPoints().size() - 1 ; i++) {
+        for(int i = 0 ; i < points.size() - 1 ; i++) {
             builder.append(printPoint(points.get(i), maxNameLength));
         }
 

@@ -3,12 +3,12 @@ package ladder.domain;
 import ladder.domain.strategy.GeneratorInterface;
 
 public class Point {
-    private int i;
+    private int position;
     private boolean current;
     private boolean left;
 
-    public Point(int i, boolean current, boolean left) {
-        if (i == 0 && left) {
+    public Point(int position, boolean current, boolean left) {
+        if (position == 0 && left) {
             throw new IllegalArgumentException();
         }
 
@@ -16,7 +16,7 @@ public class Point {
             throw new IllegalArgumentException();
         }
 
-        this.i = i;
+        this.position = position;
         this.current = current;
         this.left = left;
     }
@@ -27,7 +27,7 @@ public class Point {
     }
 
     public Point next(boolean current) {
-        return new Point(i+1, current, this.current);
+        return new Point(getNextIndex(), current, this.current);
     }
 
     public Point next(GeneratorInterface strategy) {
@@ -39,24 +39,28 @@ public class Point {
     }
 
     public Point last() {
-        return new Point(i+1, Boolean.FALSE, this.current);
+        return new Point(getNextIndex(), Boolean.FALSE, this.current);
     }
 
     public int move() {
         if (!left && current) {
-            return i + 1;
+            return position + 1;
         }
 
 
         if (left && !current) {
-            return i - 1;
+            return position - 1;
         }
 
-        return i;
+        return position;
     }
 
     public boolean current() {
         return current;
+    }
+
+    private int getNextIndex() {
+        return position+1;
     }
 
     @Override

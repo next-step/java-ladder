@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.LadderGame;
 import ladder.view.InputView;
+import ladder.view.ResultView;
 
 public class LadderGameRunner {
     public static void main(String[] args) {
