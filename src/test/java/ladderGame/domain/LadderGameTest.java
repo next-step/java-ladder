@@ -1,5 +1,6 @@
 package ladderGame.domain;
 
+import ladderGame.dto.GameInformation;
 import ladderGame.dto.LadderGameResult;
 import ladderGame.dto.ResultDto;
 import org.junit.jupiter.api.BeforeEach;

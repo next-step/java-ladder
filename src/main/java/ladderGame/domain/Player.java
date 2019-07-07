@@ -18,10 +18,6 @@ public class Player {
         return name;
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
     public boolean isEquals(Position position) {
         return this.position.equals(position);
     }
