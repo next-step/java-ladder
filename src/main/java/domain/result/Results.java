@@ -1,7 +1,6 @@
 package domain.result;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class Results {
@@ -17,9 +16,5 @@ public class Results {
 
     public String findOne(String name) {
         return results.get(name);
-    }
-
-    public Iterator<String> keys() {
-        return results.keySet().iterator();
     }
 }

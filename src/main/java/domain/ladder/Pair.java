@@ -1,12 +1,8 @@
 package domain.ladder;
 
 public class Pair {
-
     private boolean left;
     private boolean right;
-
-    public Pair() {
-    }
 
     public Pair(boolean left, boolean right) {
         if (left && right) {

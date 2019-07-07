@@ -18,7 +18,6 @@ public class Line {
     }
 
     public Line generate(int userCount) {
-
         if (userCount == SINGLE) {
             return generateSinglePair();
         }

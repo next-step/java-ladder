@@ -3,6 +3,7 @@ package domain.ladder;
 import util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Goals {
@@ -11,10 +12,7 @@ public class Goals {
     public Goals(String results) {
         String[] goals = StringUtils.toStringArrays(results);
         this.goals = new ArrayList<>();
-
-        for (String goal : goals) {
-            this.goals.add(goal);
-        }
+        this.goals.addAll(Arrays.asList(goals));
     }
 
     public String result(int position) {

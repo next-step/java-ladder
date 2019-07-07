@@ -9,7 +9,6 @@ import domain.result.Results;
 import domain.user.Users;
 
 public class ConsoleMain {
-
     private static final String RESULT_ALL = "all";
 
     public static void main(String[] args) {

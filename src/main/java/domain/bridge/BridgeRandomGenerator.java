@@ -3,7 +3,6 @@ package domain.bridge;
 import java.util.Random;
 
 public class BridgeRandomGenerator implements BridgeGenerator {
-
     private Random random;
     private int limitValue;
 
