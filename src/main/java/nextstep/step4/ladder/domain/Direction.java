@@ -16,19 +16,19 @@ public class Direction {
     public static final int INCREASE = 1;
     public static final int DECREASE = -1;
 
-    private final boolean current;
+    private final boolean right;
     private final boolean left;
 
-    public Direction(boolean current, boolean left) {
-        if (current && left) {
+    public Direction(boolean right, boolean left) {
+        if (right && left) {
             throw new IllegalArgumentException(CREATE_SAME_STATUS_EXCEPTION_MESSAGE);
         }
-        this.current = current;
+        this.right = right;
         this.left = left;
     }
 
     public int move() {
-        if (current) {
+        if (right) {
             return INCREASE;
         }
         if (left) {
@@ -38,7 +38,7 @@ public class Direction {
     }
 
     public boolean current() {
-        return current;
+        return right;
     }
 
     public boolean left() {
