@@ -4,20 +4,19 @@ import ladder.util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static java.util.stream.Collectors.toList;
 
 public class Line {
 
-  private List<Bar> bars = new ArrayList<>();
+  private List<Point> points = new ArrayList<>();
 
   private Line(Players players) {
-    Bar bar = Bar.of(RandomGenerator.nextBoolean());
+    Point point = Point.of(RandomGenerator.nextBoolean());
 
     for (int i = 0; i < players.size() - 1; i++) {
-      bars.add(bar);
-      bar = randomBar(bar);
+      points.add(point);
+      point = randomBar(point);
     }
   }
 
@@ -25,20 +24,20 @@ public class Line {
     return new Line(players);
   }
 
-  private Bar randomBar(Bar bar) {
-    if (bar.isBar()) {
-      return Bar.of(false);
+  private Point randomBar(Point point) {
+    if (point.isCurrent()) {
+      return Point.of(false);
     }
-    return Bar.of(RandomGenerator.nextBoolean());
+    return Point.of(RandomGenerator.nextBoolean());
   }
 
   public int size() {
-    return bars.size();
+    return points.size();
   }
 
   public List<Boolean> getLine() {
-    return bars.stream()
-        .map(Bar::isBar)
+    return points.stream()
+        .map(Point::isCurrent)
         .collect(toList());
   }
 }
