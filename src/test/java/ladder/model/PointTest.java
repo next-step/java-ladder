@@ -62,4 +62,26 @@ public class PointTest {
         point = Point.firstOf(before -> false);
         assertThat(point.isConnectedRight()).isFalse();
     }
+
+    @Test
+    @DisplayName("Point의 오른쪽 이동")
+    void move_RightConnection_Moved() {
+        final Point point = Point.firstOf(before -> true);
+        assertThat(point.move()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Point의 제자리 이동")
+    void move_NotConnection_Moved() {
+        final Point point = Point.firstOf(before -> false);
+        assertThat(point.move()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("Point의 왼쪽 이동")
+    void move_LeftConnection_Moved() {
+        final Point first = Point.firstOf(before -> true);
+        final Point point = first.nextOf(before -> false);
+        assertThat(point.move()).isEqualTo(0);
+    }
 }
