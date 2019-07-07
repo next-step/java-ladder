@@ -3,7 +3,6 @@ package ladder;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,12 +24,12 @@ public class LadderPlayerNames {
         return new LadderPlayerNames(ladderPlayerNames);
     }
 
-    public int size() {
+    public int countOfPerson() {
         return this.ladderPlayerNames.size();
     }
 
     public List<Integer> getIndexesOf(String personName) {
-        if (personName.equals("all")) {
+        if ("all".equals(personName)) {
             return Collections.unmodifiableList(getLadderIndexes());
         }
 
@@ -44,8 +43,8 @@ public class LadderPlayerNames {
     }
 
     public String getPlayerName(int index) {
-        if (index < 0 || index >= size()) {
-            throw new IllegalArgumentException("the range of index should between 0 and " + (size()-1));
+        if (index < 0 || index >= countOfPerson()) {
+            throw new IllegalArgumentException("the range of index should between 0 and " + (countOfPerson() - 1));
         }
 
         return this.ladderPlayerNames.get(index)
@@ -58,28 +57,29 @@ public class LadderPlayerNames {
                                      .collect(Collectors.toList());
     }
 
-    @Override
-    public String toString() {
-        return this.ladderPlayerNames.stream()
-                                     .map(LadderPlayerName::toString)
-                                     .collect(Collectors.joining(" "));
-    }
-
     private List<Integer> getLadderIndexes() {
-        return IntStream.range(0, size())
+        return IntStream.range(0, countOfPerson())
                         .boxed()
                         .collect(Collectors.toList());
     }
 
     private int indexOf(String personName) {
-        return IntStream.range(0, size())
-                        .filter(index -> {
-                            LadderPlayerName playerName = this.ladderPlayerNames.get(index);
-                            String sPlayerName = playerName.getName();
-                            return Objects.equals(personName, sPlayerName);
-                        })
+        return IntStream.range(0, countOfPerson())
+                        .filter(index -> isEqualsNameAt(personName, index))
                         .findFirst()
                         .orElse(-1);
 
+    }
+
+    private boolean isEqualsNameAt(String personName, int index) {
+        LadderPlayerName playerName = this.ladderPlayerNames.get(index);
+        return playerName.isEquals(personName);
+    }
+
+    @Override
+    public String toString() {
+        return this.ladderPlayerNames.stream()
+                                     .map(LadderPlayerName::toString)
+                                     .collect(Collectors.joining(" "));
     }
 }

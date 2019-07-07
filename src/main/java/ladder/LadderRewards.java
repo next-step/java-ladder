@@ -1,26 +1,38 @@
 package ladder;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderRewards {
-    private final List<LadderRewardType> ladderRewardTypes;
+    private final List<LadderReward> ladderRewards;
 
-    private LadderRewards(List<LadderRewardType> ladderRewardTypes) {
-        this.ladderRewardTypes = ladderRewardTypes;
+    private LadderRewards(List<LadderReward> ladderRewards) {
+        this.ladderRewards = ladderRewards;
     }
 
-    public static LadderRewards of(int countOfPerson) {
-        List<LadderRewardType> ladderRewardTypes = IntStream.range(0, countOfPerson)
-                                                            .mapToObj(index -> LadderRewardType.getRandomType())
-                                                            .collect(Collectors.toList());
+    public static LadderRewards of(String resultsString) {
+        String[] textOfResults = resultsString.split(",");
+        List<LadderReward> ladderRewards = Arrays.stream(textOfResults)
+                                                 .map(LadderReward::of)
+                                                 .collect(Collectors.toList());
 
-        return new LadderRewards(ladderRewardTypes);
+        return new LadderRewards(ladderRewards);
     }
 
-    public List<LadderRewardType> getLadderRewardTypes() {
-        return Collections.unmodifiableList(this.ladderRewardTypes);
+    public int size() {
+        return this.ladderRewards.size();
+    }
+
+    public LadderReward getLadderReward(int index) {
+        int lastIndex = ladderRewards.size() - 1;
+
+        if (index < 0 || index > lastIndex) {
+            throw new IndexOutOfBoundsException("the index must between 0 and " + lastIndex);
+        }
+
+        return this.ladderRewards.get(index);
     }
 }

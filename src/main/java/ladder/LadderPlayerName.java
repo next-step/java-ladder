@@ -17,12 +17,16 @@ public class LadderPlayerName {
         return new LadderPlayerName(playerName);
     }
 
-    @Override
-    public String toString() {
-        return String.format("%5s", playerName);
+    public boolean isEquals(String playerName) {
+        return this.playerName.equals(playerName);
     }
 
     public String getName() {
         return playerName;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%5s", playerName);
     }
 }

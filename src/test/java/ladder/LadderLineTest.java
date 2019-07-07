@@ -26,9 +26,9 @@ public class LadderLineTest {
     @ParameterizedTest
     @ValueSource(ints={0,1,2,3,4,5,6,7,8,9,10})
     public void testIfMadeAtCurrentIdxThenNotMadeAtNextIdx() {
-        List<Boolean> establishedResults = this.ladderLine.getEstablishResults();
+        List<LadderLine.LineState> establishedResults = this.ladderLine.getEstablishResults();
         List<Integer> establishedIndexes = IntStream.range(0, establishedResults.size())
-                                                    .filter(establishedResults::get)
+                                                    .filter(index -> establishedResults.get(index) == LadderLine.LineState.ESTABLISH)
                                                     .boxed()
                                                     .collect(Collectors.toList());
 

@@ -49,7 +49,7 @@ public class LadderPlayerNamesTest {
     public void testNumberOfParsedPlayerNames() {
         int expectedCountOfPerson = playerNamesString.split(",").length;
 
-        int resultCountOfPerson = ladderPlayerNames.size();
+        int resultCountOfPerson = ladderPlayerNames.countOfPerson();
 
         assertThat(resultCountOfPerson).isEqualTo(expectedCountOfPerson);
     }

@@ -1,15 +1,15 @@
-package view;
+package ladder.view;
 
 import ladder.Ladder;
 import ladder.LadderLine;
 import ladder.LadderPlayerName;
 import ladder.LadderPlayerNames;
 import ladder.LadderResult;
-import ladder.LadderRewardType;
-import ladder.LadderRewards;
+import ladder.LadderReward;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ResultView {
     private static final String LUNCH_RESULT_TEXT = "사다리 결과";
@@ -21,11 +21,12 @@ public class ResultView {
 
     private ResultView() {/*prevent creating instance.*/}
 
-    public static void printLunchResult(LadderPlayerNames ladderPlayerNames, Ladder ladder, LadderRewards ladderRewards) {
+    public static void printLunchResult(LadderPlayerNames ladderPlayerNames, Ladder ladder) {
         System.out.println(LUNCH_RESULT_TEXT);
         System.out.println(ladderPlayerNames);
         printLadder(ladder);
-        printLadderRewards(ladderRewards);
+        int countOfPerson = ladderPlayerNames.countOfPerson();
+        printLadderRewards(countOfPerson, ladder);
     }
 
     public static void printRewardResult(List<LadderResult> results) {
@@ -59,12 +60,12 @@ public class ResultView {
         System.out.println(ladderText);
     }
 
-    private static void printLadderRewards(LadderRewards ladderRewards) {
-        List<LadderRewardType> ladderRewardTypes = ladderRewards.getLadderRewardTypes();
-        String ladderRewardsText = ladderRewardTypes.stream()
-                                                    .map(LadderRewardType::getName)
-                                                    .map(name -> String.format("%5s", name))
-                                                    .collect(Collectors.joining(" "));
+    private static void printLadderRewards(int countOfPerson, Ladder ladder) {
+        String ladderRewardsText = IntStream.range(0, countOfPerson)
+                                            .mapToObj(ladder::getReward)
+                                            .map(LadderReward::getText)
+                                            .map(name -> String.format("%5s", name))
+                                            .collect(Collectors.joining(" "));
         System.out.println(ladderRewardsText);
     }
 
@@ -76,7 +77,7 @@ public class ResultView {
 
         ladderLine.getEstablishResults()
                   .stream()
-                  .map(bool -> bool ? ESTABLISHED_LADDER : NOT_ESTABLISHED_LADDER)
+                  .map(lineState -> lineState == LadderLine.LineState.ESTABLISH ? ESTABLISHED_LADDER : NOT_ESTABLISHED_LADDER)
                   .forEach(stringLine -> builder.append(LADDER_GUTTER).append(stringLine));
 
         builder.append(LADDER_GUTTER);
@@ -86,12 +87,20 @@ public class ResultView {
 
     private static void printLadderResults(List<LadderResult> results) {
         String resultText = results.stream()
-                                   .map(result -> result.getPlayerName() + " : " + result.getLadderRewardType().getName())
+                                   .map(ResultView::buildLadderResultText)
                                    .collect(Collectors.joining("\n"));
         System.out.println(resultText);
     }
 
+    private static String buildLadderResultText(LadderResult result) {
+        String playerName = result.getPlayerName();
+        String ladderRewardText = result.getLadderReward().getText();
+        return String.format("%s : %s", playerName, ladderRewardText);
+    }
+
     private static void printLadderResult(LadderResult result) {
-        System.out.println(result.getLadderRewardType().getName());
+        LadderReward ladderReward = result.getLadderReward();
+        String ladderRewardText = ladderReward.getText();
+        System.out.println(ladderRewardText);
     }
 }

@@ -2,18 +2,18 @@ package ladder;
 
 public class LadderResult {
     private String playerName;
-    private LadderRewardType ladderRewardType;
+    private LadderReward ladderReward;
 
-    public LadderResult(String playerName, LadderRewardType ladderRewardType) {
+    public LadderResult(String playerName, LadderReward ladderReward) {
         this.playerName = playerName;
-        this.ladderRewardType = ladderRewardType;
+        this.ladderReward = ladderReward;
     }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public LadderRewardType getLadderRewardType() {
-        return ladderRewardType;
+    public LadderReward getLadderReward() {
+        return ladderReward;
     }
 }

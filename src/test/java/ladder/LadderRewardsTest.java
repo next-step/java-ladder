@@ -9,12 +9,13 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LadderRewardsTest {
 
-    @DisplayName("입력한 사람 수 만큼 LadderRewardType 리스트 크기가 정해져야 합니다.")
+    @DisplayName("입력한 결과 문자열 만큼 크기가 정해져야 합니다.")
     @Test
     public void testCountOfPersonSameListSize() {
-        int countOfPerson = 5;
-        LadderRewards ladderRewards = LadderRewards.of(countOfPerson);
-        List<LadderRewardType> ladderRewardTypes = ladderRewards.getLadderRewardTypes();
-        assertThat(ladderRewardTypes).hasSize(countOfPerson);
+        String resultsString = "꽝, 1000, 5000, 10000";
+        LadderRewards ladderRewards = LadderRewards.of(resultsString);
+
+        int actualSize = resultsString.split(",").length;
+        assertThat(ladderRewards.size()).isEqualTo(actualSize);
     }
 }
