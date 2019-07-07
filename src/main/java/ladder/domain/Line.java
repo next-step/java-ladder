@@ -5,6 +5,7 @@ import ladder.domain.strategy.GeneratorInterface;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Line {
     private static final int WITHOUT_FIRST_AND_END = 2;
@@ -18,8 +19,17 @@ public class Line {
         return linePoint.get(point).move();
     }
 
-    public List<Point> getPoints() {
-        return linePoint;
+    public static Line create(int size, GeneratorInterface strategy) {
+        List<Point> list = new ArrayList<>();
+        Point point = Point.first(strategy.generate());
+        list.add(point);
+        for (int i = 0; i < size - WITHOUT_FIRST_AND_END; i++) {
+            point = point.next(strategy);
+            list.add(point);
+        }
+        list.add(point.last());
+
+        return new Line(list);
     }
 
     @Override
@@ -43,16 +53,7 @@ public class Line {
                 '}';
     }
 
-    public static Line create(int size, GeneratorInterface strategy) {
-        List<Point> list = new ArrayList<>();
-        Point point = Point.first(strategy.generate());
-        list.add(point);
-        for (int i = 0; i < size - WITHOUT_FIRST_AND_END; i++) {
-            point = point.next(strategy);
-            list.add(point);
-        }
-        list.add(point.last());
-
-        return new Line(list);
+    public List<Point> getPoints() {
+        return linePoint;
     }
 }

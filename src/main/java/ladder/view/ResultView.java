@@ -1,21 +1,38 @@
 package ladder.view;
 
+import ladder.domain.LadderResult;
 import ladder.domain.*;
 
-import javax.xml.transform.Result;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class ResultView {
 
-    public static void printUsers(Players players) {
+    public static void printResult(LadderResult result) {
+        ResultView.printUsers(result.getPlayers());
+
+        ResultView.printLadder(result.getLadder(), result.getPlayers().getMaxNameLength());
+
+        ResultView.printResults(result.getResults());
+
+        String answer;
+        answer = InputView.promptThenString("결과를 보고 싶은 사람은?");
+        while (!answer.equals("all")) {
+            ResultView.printPlayerResult(result.getPlayerResult(answer));
+            answer = InputView.promptThenString("결과를 보고 싶은 사람은?");
+        }
+
+        ResultView.printGameResult(result.getPlayers().getPlayersNames(), result.getTotalPlayersResult());
+    }
+
+    private static void printUsers(Players players) {
         List<String> names = players.getPlayersNames();
         int max = players.getMaxNameLength();
 
         println(getItems(names, max));
     }
 
-    public static void printResults(List<String> results) {
+    private static void printResults(List<String> results) {
         int max = results.stream()
                 .mapToInt(result -> result.length())
                 .max()
@@ -53,7 +70,7 @@ public class ResultView {
         return builder.toString();
     }
 
-    public static void printLadder(Ladder ladder, int maxNameLength) {
+    private static void printLadder(Ladder ladder, int maxNameLength) {
         List<Line> lines = ladder.getLines();
         lines.stream()
                 .forEach(line -> println(printLine(line, maxNameLength)));
@@ -86,12 +103,12 @@ public class ResultView {
         return builder.toString();
     }
 
-    public static void printPlayerResult(String result) {
+    private static void printPlayerResult(String result) {
         println("실행 결과");
         println(result);
     }
 
-    public static void printGameResult(List<String> players, List<String> result) {
+    private static void printGameResult(List<String> players, List<String> result) {
         println("실행 결과");
         for (int i = 0 ; i < players.size() ; i++) {
             println(players.get(i) + " : " + result.get(i));
@@ -100,10 +117,6 @@ public class ResultView {
 
     private static String getLadderType(boolean isLine) {
         return isLine ? "-" : " ";
-    }
-
-    private static void print(String message) {
-        System.out.print(message);
     }
 
     private static void println(String message) {

@@ -1,7 +1,4 @@
-package ladder;
-
-import ladder.domain.Ladder;
-import ladder.domain.Players;
+package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -34,14 +34,6 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public LadderResult getResult() {
-        Map<Integer, Integer> map = new HashMap<>();
-        IntStream.range(0, lines.size())
-                .forEach(i -> map.put(i, move(i)));
-
-        return new LadderResult(map);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

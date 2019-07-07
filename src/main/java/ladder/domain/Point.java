@@ -4,34 +4,23 @@ import ladder.domain.strategy.GeneratorInterface;
 
 public class Point {
     private int position;
-    private boolean current;
-    private boolean left;
+    private Direction direction;
 
-    public Point(int position, boolean current, boolean left) {
-        if (position == 0 && left) {
-            throw new IllegalArgumentException();
-        }
-
-        if (current && left) {
-            throw new IllegalArgumentException();
-        }
-
+    public Point(int position, Direction direction) {
         this.position = position;
-        this.current = current;
-        this.left = left;
+        this.direction = direction;
     }
-
 
     public static Point first(boolean current) {
-        return new Point(0, current, Boolean.FALSE);
+        return new Point(0, Direction.first(current));
     }
 
-    public Point next(boolean current) {
-        return new Point(getNextIndex(), current, this.current);
+    public Point next(boolean right) {
+        return new Point(getNextIndex(), direction.next(right));
     }
 
     public Point next(GeneratorInterface strategy) {
-        if (this.current) {
+        if (direction.isRight()) {
             return next(false);
         }
 
@@ -39,32 +28,18 @@ public class Point {
     }
 
     public Point last() {
-        return new Point(getNextIndex(), Boolean.FALSE, this.current);
+        return new Point(getNextIndex(), direction.last());
     }
 
     public int move() {
-        if (!left && current) {
-            return position + 1;
-        }
-
-
-        if (left && !current) {
-            return position - 1;
-        }
-
-        return position;
+        return direction.move(position);
     }
 
     public boolean current() {
-        return current;
+        return direction == Direction.RIGHT;
     }
 
     private int getNextIndex() {
-        return position+1;
-    }
-
-    @Override
-    public String toString() {
-        return current + " ";
+        return position + 1;
     }
 }
