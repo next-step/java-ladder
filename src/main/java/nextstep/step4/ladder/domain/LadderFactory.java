@@ -16,7 +16,6 @@ public class LadderFactory {
 
     public static final int NEXT_INDEX = 1;
     public static final int LAST_INDEX = 1;
-    public static final int INIT_INDEX = 0;
 
     public static Ladder create(int row, int line) {
         List<LadderLine> lines = new ArrayList<>();

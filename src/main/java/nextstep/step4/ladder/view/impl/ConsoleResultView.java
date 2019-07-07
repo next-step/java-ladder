@@ -70,7 +70,7 @@ public class ConsoleResultView implements ResultView {
                 .filter(targetName -> targetName.matchName(sourceName))
                 .findFirst()
                 .map(key -> combineResult(key, result.findPrizeByName(key)))
-                .get();
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     private String combineResult(Name name, Prize prize) {
