@@ -45,7 +45,7 @@ public class LadderFactory {
     }
 
     private static Link nextLink(Link leftLink) {
-        return Link.next(leftLink, () -> leftLink.status() ? false : random());
+        return leftLink.next(() -> random());
     }
 
     private static boolean random() {

@@ -1,6 +1,5 @@
 package nextstep.step4.ladder.domain;
 
-import nextstep.step3.ladder.domain.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -26,12 +26,15 @@ public class Link {
         this.point = point;
     }
 
-    public static Link first(RandomGenerator random) {
-        return new Link(DEFAULT_INDEX, new Point(random.generate(), false));
+    public Link next(RandomGenerator random) {
+        if (status()) {
+            return new Link(index + INCREASE, new Point(false, point.current()));
+        }
+        return new Link(index + INCREASE, new Point(random.generate(), point.current()));
     }
 
-    public static Link next(Link leftLink, RandomGenerator random) {
-        return new Link(leftLink.index + INCREASE, new Point(random.generate(), leftLink.point.current()));
+    public static Link first(RandomGenerator random) {
+        return new Link(DEFAULT_INDEX, new Point(random.generate(), false));
     }
 
     public static Link last(Link leftLink) {
