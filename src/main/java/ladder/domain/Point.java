@@ -8,7 +8,7 @@ public class Point {
     private Direction direction;
 
     public Point(Position position, Direction direction) {
-        this.position = position.next();
+        this.position = position;
         this.direction = direction;
     }
 
