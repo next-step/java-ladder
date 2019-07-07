@@ -17,7 +17,7 @@ public enum Direction {
         this.right = right;
     }
 
-    public static Direction decide(boolean left, boolean right) {
+    public static Direction of(boolean left, boolean right) {
         return EnumSet.allOf(Direction.class).stream()
                 .filter(Direction -> Direction.left == left && Direction.right == right)
                 .findFirst()

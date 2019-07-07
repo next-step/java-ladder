@@ -11,16 +11,16 @@ class DirectionTest {
     @Test
     @DisplayName("생성 테스트")
     public void createTest() {
-        assertThat(Direction.of(0)).isEqualTo(Direction.RIGHT);
-        assertThat(Direction.of(1)).isEqualTo(Direction.STRAIGHT);
-        assertThat(Direction.of(2)).isEqualTo(Direction.LEFT);
+        assertThat(Direction.of(false, true)).isEqualTo(Direction.RIGHT);
+        assertThat(Direction.of(false, false)).isEqualTo(Direction.STRAIGHT);
+        assertThat(Direction.of(true, false)).isEqualTo(Direction.LEFT);
     }
 
     @Test
-    @DisplayName("생성 범위 초과")
+    @DisplayName("방향 생성 예외처리")
     public void matchException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Direction.of(4);
+            Direction.of(true, true);
         });
     }
 }
