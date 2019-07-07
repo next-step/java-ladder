@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public class Participant {
     private List<Name> names;
 
-    private Participant(List<Name> names) {
+    public Participant(List<Name> names) {
         this.names = names;
     }
 
@@ -39,10 +39,6 @@ public class Participant {
 
     public int count() {
         return names.size();
-    }
-
-    public int findIndexByName(String name) {
-        return names.indexOf(Name.of(name));
     }
 
     public Stream<Name> stream() {

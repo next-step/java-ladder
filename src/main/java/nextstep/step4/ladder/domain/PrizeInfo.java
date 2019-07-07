@@ -22,7 +22,7 @@ public class PrizeInfo {
 
     private List<Prize> prizeInfo;
 
-    private PrizeInfo(List<Prize> prizeInfo) {
+    public PrizeInfo(List<Prize> prizeInfo) {
         this.prizeInfo = prizeInfo;
     }
 
