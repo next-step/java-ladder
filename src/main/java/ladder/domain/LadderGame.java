@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.domain.strategy.RandomGenerator;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

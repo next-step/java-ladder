@@ -6,8 +6,6 @@ import ladder.domain.Players;
 import ladder.domain.strategy.FakeGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sun.plugin.services.PlatformService;
-
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
