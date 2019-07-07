@@ -4,44 +4,33 @@ public final class Point {
     public static final String MESSAGE_OF_TWO_WAY_CONNECTION = "Point는 양방향으로 연결할 수 없습니다.";
 
     public static Point firstOf(ConnectorStrategy connector) {
-        final boolean firstConnection = connector.generateConnection(false);
-        return new Point(0, false, firstConnection);
+        final boolean firstConnection = connector.generateNextConnection(false);
+        return new Point(position);
     }
 
     private int position;
-    private final boolean left;
-    private final boolean right;
+    private Direction direction;
 
-    private Point(int position, boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException(MESSAGE_OF_TWO_WAY_CONNECTION);
-        }
-
+    private Point(int position, Direction direction) {
         this.position = position;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
     public Point nextOf(ConnectorStrategy connector) {
-        final boolean nextConnection = connector.generateConnection(right);
-        return new Point(position + 1, right, nextConnection);
+        final Direction nextDirection = connector.generateNextConnection(direction);
+        return new Point(position + 1, nextDirection);
     }
 
     public Point endOf() {
-        return new Point(position + 1, right, false);
+        final Direction nextDirection = (direction == Direction.RIGHT) ? Direction.LEFT : Direction.DOWN;
+        return new Point(position + 1, nextDirection);
     }
 
     public boolean isConnectedRight() {
-        return right;
+        return direction == Direction.RIGHT;
     }
 
     public int move() {
-        if (right) {
-            position++;
-        }
-        if (left) {
-            position--;
-        }
-        return position;
+        return direction.move(position);
     }
 }

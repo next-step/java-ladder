@@ -10,6 +10,6 @@ public class ConnectorStrategyTest {
     @DisplayName("ConnectorStrategy는 Point의 연결 정보를 생성한다.")
     void generateConnection() {
         final ConnectorStrategy connector = before -> false;
-        assertThat(connector.generateConnection(true)).isFalse();
+        assertThat(connector.generateNextConnection(true)).isFalse();
     }
 }

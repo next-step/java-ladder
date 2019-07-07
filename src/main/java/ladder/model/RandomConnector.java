@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class RandomConnector implements ConnectorStrategy {
     @Override
-    public boolean generateConnection(boolean before) {
-        if (before) {
-            return false;
+    public Direction generateNextConnection(Direction current) {
+        if (current == Direction.RIGHT) {
+            return Direction.LEFT;
         }
-        return new Random().nextBoolean();
+        return new Random().nextBoolean() ? Direction.DOWN : Direction.RIGHT;
     }
 }

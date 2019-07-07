@@ -10,13 +10,13 @@ public class RandomConnectorTest {
     @DisplayName("RandomConnector는 before와 연결되어 있으면 연결시키지 않는다.")
     void generateConnection_BeforeIsTrue_IsFalse() {
         final RandomConnector connector = new RandomConnector();
-        assertThat(connector.generateConnection(true)).isFalse();
+        assertThat(connector.generateNextConnection(true)).isFalse();
     }
 
     @Test
     @DisplayName("RandomConnector는 before와 연결되어 있지 않으면 이후에 랜덤으로 연결시킨다.")
     void generateConnection_BeforeIsFalse_CreatedRandom() {
         final RandomConnector connector = new RandomConnector();
-        assertThat(connector.generateConnection(true)).isInstanceOf(Boolean.class);
+        assertThat(connector.generateNextConnection(true)).isInstanceOf(Boolean.class);
     }
 }
