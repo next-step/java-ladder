@@ -1,6 +1,5 @@
 package nextstep.step4.ladder.util;
 
-import nextstep.step2.ladder.util.StringUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

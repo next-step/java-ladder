@@ -1,7 +1,5 @@
 package nextstep.step4.ladder.domain;
 
-import nextstep.step3.ladder.domain.Link;
-import nextstep.step3.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +43,7 @@ public class LinkTest {
     @Test
     void createNext() {
         Link link = Link.first(() -> true);
-        assertThat(Link.next(link, () -> false).matchIndex(1)).isTrue();
+        assertThat(link.next(() -> false).matchIndex(1)).isTrue();
     }
 
     @DisplayName("마지막 Link 생성")

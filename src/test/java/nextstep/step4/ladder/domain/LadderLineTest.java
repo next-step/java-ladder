@@ -1,8 +1,5 @@
 package nextstep.step4.ladder.domain;
 
-import nextstep.step3.ladder.domain.LadderLine;
-import nextstep.step3.ladder.domain.Link;
-import nextstep.step3.ladder.domain.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

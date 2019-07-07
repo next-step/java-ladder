@@ -1,8 +1,5 @@
 package nextstep.step4.ladder.domain;
 
-import nextstep.step3.ladder.domain.Participant;
-import nextstep.step3.ladder.domain.Prize;
-import nextstep.step3.ladder.domain.PrizeInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

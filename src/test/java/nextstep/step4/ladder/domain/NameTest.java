@@ -1,6 +1,5 @@
 package nextstep.step4.ladder.domain;
 
-import nextstep.step2.ladder.domain.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,10 +28,9 @@ public class NameTest {
 
     @DisplayName("사용자의 이름이 전달받은 Name 객체와 같은지 확인")
     @Test
-    void isName() {
+    void matchName() {
         Name sourceName = Name.of("kwon");
-        Name targetName = Name.of("kwon");
-        assertThat(targetName.isName(sourceName)).isTrue();
+        assertThat(sourceName.matchName("kwon")).isTrue();
     }
 
     @DisplayName("사용자의 이름을 반환 받는다.")
