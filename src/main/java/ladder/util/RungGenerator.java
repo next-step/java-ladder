@@ -1,22 +1,20 @@
 package ladder.util;
 
-import ladder.model.Rung;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class RungGenerator {
 
-    public Rung generate() {
-        return new Rung(true);
+    public Boolean generate() {
+        return true;
     }
 
-    public Rung generate(boolean isRung) {
-        return new Rung(isRung);
+    public Boolean generate(boolean isRung) {
+        return isRung;
     }
 
-    public List<Rung> generate(int countOfPlayers) {
-        List<Rung> rungs = new ArrayList<>();
+    public List<Boolean> generate(int countOfPlayers) {
+        List<Boolean> rungs = new ArrayList<>();
 
         for(int i = 0; i < countOfPlayers; i++) {
             boolean previousValue = getPreviousValue(rungs);
@@ -25,11 +23,11 @@ public class RungGenerator {
         return rungs;
     }
 
-    public boolean getPreviousValue(List<Rung> rungs) {
+    public boolean getPreviousValue(List<Boolean> rungs) {
         if (rungs.isEmpty()) {
             return false;
         }
-        return rungs.get(rungs.size() - 1).isRung();
+        return rungs.get(rungs.size() - 1);
     }
 
     public boolean oppositeRule(boolean previousValue) {
