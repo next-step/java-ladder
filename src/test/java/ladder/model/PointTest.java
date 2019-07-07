@@ -30,6 +30,14 @@ public class PointTest {
     }
 
     @Test
+    @DisplayName("이전 Point와 생성될 다음 Point에서 연속으로 연결되어 있으면 예외가 발생한다.")
+    void nextOf_WithTwoWayConnection_ExceptionThrown() {
+        final Point first = Point.firstOf(before -> true);
+        assertThatThrownBy(() -> first.nextOf(before -> true))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("다음 Point를 랜덤으로 생성할 수 있다.")
     void nextOfRandom_Created() {
         final Point first = Point.firstOf(new RandomConnector());
