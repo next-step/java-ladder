@@ -27,15 +27,11 @@ public class Direction {
         this.left = left;
     }
 
-    public boolean current() {
-        return right;
+    public boolean moveDirectionLeft() {
+        return left && !right ? true : false;
     }
 
-    public boolean left() {
-        return left;
-    }
-
-    public boolean moveDirection() {
+    public boolean moveDirectionRight() {
         return !left && right ? true : false;
     }
 

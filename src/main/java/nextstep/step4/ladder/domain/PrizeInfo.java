@@ -50,7 +50,7 @@ public class PrizeInfo {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException());
     }
-    
+
     private static List<String> split(String prizes) {
         return StringUtil.split(prizes);
     }

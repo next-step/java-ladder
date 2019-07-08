@@ -16,24 +16,25 @@ import static org.assertj.core.api.Assertions.assertThat;
  * create date  : 2019-07-05 12:45
  */
 public class DirectionTest {
-    @DisplayName("현재 포지션의 상태(boolean)를 확인")
+
+    @DisplayName("현재 왼쪽 방향으로 열려있는지 확인")
     @Test
-    void pointStatus() {
-        Direction direction = new Direction(false, true);
-        assertThat(direction.current()).isTrue();
+    void moveDirectionLeft() {
+        Direction direction = new Direction(true, false);
+        assertThat(direction.moveDirectionLeft()).isTrue();
     }
 
-    @DisplayName("현재 포지션의 왼쪽 상태(boolean)를 확인")
+    @DisplayName("현재 오른쪽 방향으로 열려있는지 확인")
     @Test
-    void pointLeftStatus() {
+    void moveDirectionRight() {
         Direction direction = new Direction(false, true);
-        assertThat(direction.left()).isFalse();
+        assertThat(direction.moveDirectionRight()).isTrue();
     }
 
-    @DisplayName("다음 Direction을 생성한다. - 생성을 위한 기존 Direction의 오른쪽이 true인 상태일때")
+    @DisplayName("이전 direction의 오른쪽 방향이 true일때 다음 Direction left가 flase인지 확인")
     @Test
     void next() {
         Direction direction = new Direction(false, true);
-        assertThat(direction.next(true).current()).isFalse();
+        assertThat(direction.next(true).moveDirectionRight()).isFalse();
     }
 }

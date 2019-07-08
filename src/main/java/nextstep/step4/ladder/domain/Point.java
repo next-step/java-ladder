@@ -19,7 +19,7 @@ public class Point {
     private final Direction direction;
 
     public Point(int index, Direction direction) {
-        if (index == DEFAULT_INDEX && direction.left()) {
+        if (index == DEFAULT_INDEX && direction.moveDirectionLeft()) {
             throw new IllegalArgumentException(CREATE_FIRST_INDEX_EXCEPTION_MESSAGE);
         }
         this.index = index;
@@ -39,7 +39,7 @@ public class Point {
     }
 
     public boolean isDirectionRight() {
-        return direction.moveDirection();
+        return direction.moveDirectionRight();
     }
 
     public int move() {
