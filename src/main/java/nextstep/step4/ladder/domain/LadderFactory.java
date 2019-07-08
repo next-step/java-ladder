@@ -1,6 +1,8 @@
 package nextstep.step4.ladder.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * author       : gwonbyeong-yun <sksggg123>
