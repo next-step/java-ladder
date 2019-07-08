@@ -20,10 +20,10 @@ public class LadderMain {
         Ladder ladder = new Ladder(height, users.size(), new RandomBooleanFunction());
 
         Result.printUsers(users);
-        Result.println();
+        Result.printEmptyLine();
         Result.printLadder(ladder);
         Result.printInputResult(results);
-        Result.println();
+        Result.printEmptyLine();
 
         String inputResult;
         while (!(inputResult = Input.getInputResult()).equals("all")) {

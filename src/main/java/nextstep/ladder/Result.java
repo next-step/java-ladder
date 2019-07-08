@@ -20,7 +20,7 @@ public class Result {
                 .forEach(result -> System.out.print(String.format("%5s ", result)));
     }
 
-    public static void println() {
+    public static void printEmptyLine() {
         System.out.println();
     }
 
@@ -33,7 +33,6 @@ public class Result {
     }
 
     public static String convertPointsToString(List<Point> points) {
-
         return points.stream().map(p -> {
             if (p.isLeft()) {
                 return DASH_DELIMITER;
