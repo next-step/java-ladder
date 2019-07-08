@@ -12,23 +12,49 @@ public class Line {
   private List<Point> points = new ArrayList<>();
 
   private Line(Players players) {
-    Point point = Point.of(RandomGenerator.nextBoolean());
+    Point point = Point.first(RandomGenerator.nextBoolean());
+    points.add(point);
 
     for (int i = 0; i < players.size() - 1; i++) {
-      points.add(point);
       point = randomBar(point);
+      points.add(point);
     }
+  }
+
+  private Line(int numOfPlayers) {
+    Point point = Point.first(RandomGenerator.nextBoolean());
+    points.add(point);
+
+    for (int i = 0; i < numOfPlayers - 2; i++) {
+      point = point.next(RandomGenerator.nextBoolean());
+      points.add(point);
+    }
+
+    points.add(point.last());
+  }
+
+  private Line(List<Point> points) {
+    this.points = points;
   }
 
   public static Line of(Players players) {
     return new Line(players);
   }
 
+  public static Line of(List<Point> points) {
+    return new Line(points);
+  }
+
+  public static Line of(int numOfPlayers) {
+    return new Line(numOfPlayers);
+  }
+
+  int move(int i) {
+    return points.get(i).move();
+  }
+
   private Point randomBar(Point point) {
-    if (point.isCurrent()) {
-      return Point.of(false);
-    }
-    return Point.of(RandomGenerator.nextBoolean());
+    return point.next(RandomGenerator.nextBoolean());
   }
 
   public int size() {

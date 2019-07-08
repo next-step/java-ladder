@@ -1,8 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Line;
-import ladder.domain.Lines;
-import ladder.domain.Player;
+import ladder.domain.Ladder;
 import ladder.domain.Players;
 
 public class ResultView {
@@ -11,19 +10,18 @@ public class ResultView {
   private static final String HORIZONTAL_LINE = "-----";
   private static final String EMPTY_LINE = "     ";
 
-  public static void view(Players players, Lines lines) {
+  public static void view(Players players, Ladder ladder) {
     printPlayer(players);
     System.out.println();
-    printLine(lines);
+    printLine(ladder);
   }
 
-  private static void printLine(Lines lines) {
+  private static void printLine(Ladder lines) {
     lines.getLines().stream()
         .map(Line::getLine)
         .forEach(
             bars -> {
-              bars.stream()
-                  .forEach(bar -> System.out.print(VERTICAL_LINE + drawBar(bar)));
+              bars.forEach(bar -> System.out.print(VERTICAL_LINE + drawBar(bar)));
               System.out.println(VERTICAL_LINE);
             });
   }

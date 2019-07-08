@@ -1,8 +1,8 @@
 package ladder;
 
-import ladder.domain.Lines;
+import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.util.LineGenerator;
+import ladder.util.LadderGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -12,9 +12,9 @@ public class LadderStart {
     Players players = InputView.inputPlayers();
     int height = InputView.inputHeight();
 
-    Lines lines = LineGenerator.generate(height, players);
+    Ladder ladder = LadderGenerator.generate(height, players);
 
-    ResultView.view(players, lines);
+    ResultView.view(players, ladder);
   }
 
 }

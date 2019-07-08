@@ -40,7 +40,7 @@ public class Players {
     return strings;
   }
 
-  int size() {
+  public int size() {
     return players.size();
   }
 
