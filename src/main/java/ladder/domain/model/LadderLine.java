@@ -1,52 +1,55 @@
 package ladder.domain.model;
 
+import ladder.common.PositiveNumber;
+import ladder.common.RandomStrategy;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LadderLine {
-    private List<Point> lines;
+    private List<Point> points;
 
-    private LadderLine(List<Point> lines) {
-        this.lines = lines;
+    private LadderLine(List<Point> points) {
+        this.points = points;
     }
 
-    public static LadderLine of(List<Point> lines) {
-        return new LadderLine(lines);
+    public static LadderLine of(RandomStrategy randomStrategy, PositiveNumber countOfUsers) {
+        List<Point> points = new ArrayList<>();
+        Point point = makeStartPoint(randomStrategy, points);
+        point = makeMidPoints(randomStrategy, points, countOfUsers, point);
+        makeEndPoint(points, point);
+        return new LadderLine(points);
     }
 
-    public List<Point> getLines() {
-        return Collections.unmodifiableList(lines);
+    private static Point makeStartPoint(RandomStrategy randomStrategy, List<Point> points) {
+        Point point = Point.ofStart(randomStrategy);
+        points.add(point);
+        return point;
     }
 
-    public int getSize() {
-        return lines.size();
+    private static Point makeMidPoints(RandomStrategy randomStrategy, List<Point> points, PositiveNumber countOfUsers, Point point) {
+        for (int i = 1; i < countOfUsers.get() - 1; i++) {
+            point = point.next(randomStrategy);
+            points.add(point);
+        }
+
+        return point;
     }
 
-    public Point getPoint(Index index) {
-        return lines.stream()
-                .filter(point -> point.getIndex().equals(index))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Not found point"));
+    private static void makeEndPoint(List<Point> points, Point point) {
+        point = point.ofEnd();
+        points.add(point);
     }
 
-    public Point getStartPoint() {
-        return lines.stream()
-                .filter(Point::isStartPoint)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Not found start point"));
-    }
-
-    public Point getEndPoint() {
-        return lines.stream()
-                .filter(point -> point.isSamePoint(lines.size()))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Not found end point"));
+    public List<Point> get() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override
     public String toString() {
         return "LadderLine{" +
-                "lines=" + lines +
+                "points=" + points +
                 '}';
     }
 }

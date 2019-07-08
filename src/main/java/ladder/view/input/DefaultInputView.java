@@ -1,6 +1,8 @@
 package ladder.view.input;
 
-import java.util.List;
+import ladder.common.CommandLineReader;
+import ladder.common.Csv;
+import ladder.common.PositiveNumber;
 
 public class DefaultInputView implements InputView {
     private static final String MESSAGE_USER_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -9,15 +11,14 @@ public class DefaultInputView implements InputView {
     private CommandLineReader commandLineReader = new CommandLineReader();
 
     @Override
-    public List<String> getUserNames() {
+    public Csv getUserNames() {
         System.out.println(MESSAGE_USER_NAMES);
         return commandLineReader.readCsv();
     }
 
     @Override
-    public int getLadderHeight() {
+    public PositiveNumber getLadderHeight() {
         System.out.println(MESSAGE_LADDER_HEIGHT);
         return commandLineReader.readNumber();
     }
-
 }

@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.DefaultLadderService;
-import ladder.domain.ladderline.DefaultLadderLineFactory;
+import ladder.domain.DefaultLadderLineFactory;
 import ladder.view.input.DefaultInputView;
 import ladder.view.result.DefaultResultView;
 

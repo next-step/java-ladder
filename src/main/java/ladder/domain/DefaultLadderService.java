@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.ladderline.LadderLineFactory;
+import ladder.common.PositiveNumber;
 import ladder.domain.model.LadderLines;
 
 public class DefaultLadderService implements LadderService {
@@ -12,7 +12,7 @@ public class DefaultLadderService implements LadderService {
     }
 
     @Override
-    public LadderLines createLadderLines(int size, int height) {
-        return ladderLineFactory.create(size, height);
+    public LadderLines createLadderLines(PositiveNumber countOfUsers, PositiveNumber height) {
+        return ladderLineFactory.create(countOfUsers, height);
     }
 }

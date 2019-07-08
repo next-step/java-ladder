@@ -1,7 +1,8 @@
 package ladder.domain;
 
+import ladder.common.PositiveNumber;
 import ladder.domain.model.LadderLines;
 
 public interface LadderService {
-    LadderLines createLadderLines(int size, int height);
+    LadderLines createLadderLines(PositiveNumber conuntOfUsers, PositiveNumber height);
 }

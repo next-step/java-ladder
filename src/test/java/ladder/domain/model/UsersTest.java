@@ -1,5 +1,6 @@
-package ladder.view.input;
+package ladder.domain.model;
 
+import ladder.domain.model.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

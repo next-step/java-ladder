@@ -1,4 +1,6 @@
-package ladder.view.input;
+package ladder.domain.model;
+
+import ladder.common.PositiveNumber;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +30,7 @@ public class Users {
         return Collections.unmodifiableList(userNames);
     }
 
-    public int getUserCount() {
-        return userNames.size();
+    public PositiveNumber getCountOfUsers() {
+        return PositiveNumber.of(userNames.size());
     }
 }

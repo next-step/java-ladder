@@ -4,42 +4,37 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class IndexTest {
 
     @Test
-    @DisplayName("현재 인덱스값을 확인한다")
-    void checkIndex() {
-        Index index = Index.of(1);
+    @DisplayName("인덱스 생성을 확인한다")
+    void createStartIndex() {
+        Index index = Index.ofStart();
+        assertThat(index.get()).isEqualTo(Index.START_INDEX);
+    }
+
+    @Test
+    @DisplayName("다음 인덱스 생성을 확인한다")
+    void createNextIndex() {
+        Index index = Index.ofStart().next();
         assertThat(index.get()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("시작 인덱스인지 확인한다")
-    void checkIndex2() {
-        Index index = Index.of(0);
-        assertTrue(index.isStartIndex());
+    @DisplayName("인덱스가 음수인경우 예외처리를 확인한다")
+    void checkNegativeException() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Index.ofStart().prev();
+                }).withMessageMatching("Invalid index range");
     }
 
     @Test
-    @DisplayName("이전 인덱스값을 확인한다")
-    void checkIndex3() {
-        Index index = Index.of(1);
-        assertThat(index.prev()).isEqualTo(0);
-    }
-
-    @Test
-    @DisplayName("인덱스 값비교를 확인한다")
-    void checkIndex4() {
-        Index index = Index.of(1);
-        assertTrue(index.isSameIndex(1));
-    }
-
-    @Test
-    @DisplayName("다음 인덱스값을 확인한다")
-    void checkIndex5() {
-        Index index = Index.of(1);
-        assertThat(index.next()).isEqualTo(2);
+    @DisplayName("이전 인덱스 생성을 확인한다")
+    void createPrevIndex() {
+        Index index = Index.ofStart().next().prev();
+        assertThat(index.get()).isEqualTo(0);
     }
 }

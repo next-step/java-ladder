@@ -11,8 +11,12 @@ public class Index {
         this.index = index;
     }
 
-    public static Index of(int index) {
+    private static Index of(int index) {
         return new Index(index);
+    }
+
+    public static Index ofStart() {
+        return of(START_INDEX);
     }
 
     private void validateRange(int index) {
@@ -21,24 +25,17 @@ public class Index {
         }
     }
 
-    public int prev() {
-        return index == START_INDEX ? START_INDEX : index - 1;
+    public Index next() {
+        return Index.of(index + 1);
+    }
+
+    public Index prev() {
+        validateRange(index);
+        return Index.of(index - 1);
     }
 
     public int get() {
         return index;
-    }
-
-    public int next() {
-        return index + 1;
-    }
-
-    public boolean isStartIndex() {
-        return index == START_INDEX;
-    }
-
-    public boolean isSameIndex(int index) {
-        return this.index == index;
     }
 
     @Override
@@ -56,8 +53,6 @@ public class Index {
 
     @Override
     public String toString() {
-        return "Index{" +
-                "index=" + index +
-                '}';
+        return String.valueOf(index);
     }
 }

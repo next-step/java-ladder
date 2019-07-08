@@ -1,8 +1,9 @@
 package ladder.view.input;
 
-import java.util.List;
+import ladder.common.Csv;
+import ladder.common.PositiveNumber;
 
 public interface InputView {
-    List<String> getUserNames();
-    int getLadderHeight();
+    Csv getUserNames();
+    PositiveNumber getLadderHeight();
 }
