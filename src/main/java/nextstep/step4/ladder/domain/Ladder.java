@@ -44,25 +44,11 @@ public class Ladder {
         Map<Name, Prize> playResult = new HashMap<>();
 
         for (int startIndex = INIT_INDEX; startIndex < participant.count(); startIndex++) {
-            Name sourceName = findNameByIndex(participant, startIndex);
-            Prize targetPrize = findPrizeByIndex(prizeInfo, execute(startIndex));
+            Name sourceName = participant.findNameByIndex(startIndex);
+            Prize targetPrize = prizeInfo.findPrizeByIndex(execute(startIndex));
 
             playResult.put(sourceName, targetPrize);
         }
         return playResult;
-    }
-
-    private Name findNameByIndex(Participant participant, int startIndex) {
-        return participant.stream()
-                .filter(name -> participant.matchAttribute(name, startIndex))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
-    }
-
-    private Prize findPrizeByIndex(PrizeInfo prizeInfo, int endIndex) {
-        return prizeInfo.stream()
-                .filter(prize -> prizeInfo.matchAttribute(prize, endIndex))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
     }
 }

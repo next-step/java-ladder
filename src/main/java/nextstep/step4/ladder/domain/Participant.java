@@ -33,15 +33,18 @@ public class Participant {
                 .collect(Collectors.toList()));
     }
 
-    public boolean matchAttribute(Name name, int index) {
-        return names.get(index).equals(name);
-    }
-
     public int count() {
         return names.size();
     }
 
     public Stream<Name> stream() {
         return names.stream();
+    }
+
+    public Name findNameByIndex(int findIndex) {
+        return names.stream()
+                .filter(name -> names.get(findIndex).equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

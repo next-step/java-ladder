@@ -44,7 +44,10 @@ public class PrizeInfo {
         return this.prizeInfo.stream();
     }
 
-    public boolean matchAttribute(Prize prize, int index) {
-        return prizeInfo.get(index).equals(prize);
+    public Prize findPrizeByIndex(int findIndex) {
+        return prizeInfo.stream()
+                .filter(prize -> prizeInfo.get(findIndex).equals(prize))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
     }
 }

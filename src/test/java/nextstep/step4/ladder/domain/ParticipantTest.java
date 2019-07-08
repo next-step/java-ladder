@@ -50,13 +50,4 @@ public class ParticipantTest {
             Participant participant = Participant.of(names);
         }).withMessageContaining("사람이 입력되지 않았습니다.");
     }
-
-    @DisplayName("Name과 index 번호를 통해 일치하는 정보가 있는지 확인")
-    @Test
-    void matchAttribute() {
-        List<String> customName = Arrays.asList("kwon", "byeon", "yun");
-        Participant participant = Participant.of(customName);
-
-        assertThat(participant.matchAttribute(Name.of("kwon"), 0)).isTrue();
-    }
 }
