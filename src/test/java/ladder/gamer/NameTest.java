@@ -1,4 +1,4 @@
-package ladder.user;
+package ladder.gamer;
 
 import ladder.domain.gamer.message.ErrorMessages;
 import ladder.domain.gamer.info.Name;

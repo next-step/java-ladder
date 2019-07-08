@@ -21,7 +21,7 @@ public class Lambda {
 		new Thread(new Runnable() {
 		    @Override
 		    public void run() {
-		        System.out.println("Hello from thread");
+		        System.out.println("Hello parse thread");
 		    }
 		}).start();
 	}

@@ -2,27 +2,29 @@ package ladder.message.result;
 
 import ladder.core.message.Message;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.gamer.Gamers;
 
-public class ResultMessage extends Message {
-    private final Gamers gamers;
+import java.util.List;
+
+public class ResultMessage implements Message {
+    private final List<String> gamerNames;
+    private final List<String> rewards;
     private final Ladder ladder;
     
-    public ResultMessage(Gamers gamers, Ladder ladder) {
-        this.gamers = gamers;
+    public ResultMessage(List<String> gamerNames, Ladder ladder, List<String> rewards) {
+        this.gamerNames = gamerNames;
         this.ladder = ladder;
+        this.rewards = rewards;
     }
     
-    public Gamers getGamers() {
-        return gamers;
+    public List<String> getGamerNames() {
+        return gamerNames;
+    }
+    
+    public List<String> getRewardNames() {
+        return rewards;
     }
     
     public Ladder getLadder() {
         return ladder;
-    }
-    
-    @Override
-    public boolean isResultStep() {
-        return true;
     }
 }

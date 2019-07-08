@@ -1,4 +1,4 @@
-package ladder.view.component.ladder;
+package ladder.view.component.result;
 
 import ladder.core.controller.Controller;
 import ladder.core.message.Message;
@@ -8,27 +8,27 @@ import ladder.core.view.output.Printer;
 import ladder.view.component.View;
 import ladder.view.component.constant.Step;
 
-public class LadderView implements ViewImpl {
-    private static final String ANSWER = "최대 사다리 높이는 몇 개인가요?";
+public class InputGamerNameView implements ViewImpl {
+    private final static String ANSWER = "결과를 보고 싶은 사람은?";
     
     private Controller controller;
     private View view;
     
-    public LadderView(Controller controller, Printer printer, Inputor inputer) {
+    public InputGamerNameView(Controller controller, Printer printer, Inputor inputor) {
         this.controller = controller;
-        view = new View.Builder(Step.LADDER_SIZE_STEP)
-            .setPrinter(printer)
-            .setInputor(inputer)
-            .build();
+        view = new View.Builder(Step.GAMER_NAME_INPUT_STEP)
+          .setPrinter(printer)
+          .setInputor(inputor)
+          .build();
     }
     
     @Override
     public void render(Message message) {
         if (!Step.isThisStep(view.getStep())) {
-                 return;
+            return;
         }
-        Step.setNextStep(Step.RESULT_STEP);
         view.print(ANSWER);
-        controller.inputLadderSize(view.inputNumber());
+        Step.setNextStep(Step.REWARD_STEP);
+        controller.inputGamerName(view.inputString());
     }
 }
