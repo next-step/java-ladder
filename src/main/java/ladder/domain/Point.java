@@ -1,37 +1,27 @@
 package ladder.domain;
 
+import ladder.Position;
 import ladder.domain.strategy.GeneratorInterface;
 
 public class Point {
-    private int i;
-    private boolean current;
-    private boolean left;
+    private Position position;
+    private Direction direction;
 
-    public Point(int i, boolean current, boolean left) {
-        if (i == 0 && left) {
-            throw new IllegalArgumentException();
-        }
-
-        if (current && left) {
-            throw new IllegalArgumentException();
-        }
-
-        this.i = i;
-        this.current = current;
-        this.left = left;
+    public Point(Position position, Direction direction) {
+        this.position = position;
+        this.direction = direction;
     }
-
 
     public static Point first(boolean current) {
-        return new Point(0, current, Boolean.FALSE);
+        return new Point(new Position(0), Direction.first(current));
     }
 
-    public Point next(boolean current) {
-        return new Point(i+1, current, this.current);
+    public Point next(boolean right) {
+        return new Point(getNextIndex(), direction.next(right));
     }
 
     public Point next(GeneratorInterface strategy) {
-        if (this.current) {
+        if (direction.isRight()) {
             return next(false);
         }
 
@@ -39,28 +29,18 @@ public class Point {
     }
 
     public Point last() {
-        return new Point(i+1, Boolean.FALSE, this.current);
+        return new Point(getNextIndex(), direction.last());
     }
 
     public int move() {
-        if (!left && current) {
-            return i + 1;
-        }
-
-
-        if (left && !current) {
-            return i - 1;
-        }
-
-        return i;
+        return direction.move(position).toInt();
     }
 
     public boolean current() {
-        return current;
+        return direction == Direction.RIGHT;
     }
 
-    @Override
-    public String toString() {
-        return current + " ";
+    private Position getNextIndex() {
+        return position.next();
     }
 }

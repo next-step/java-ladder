@@ -1,11 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.strategy.FakeGenerator;
 import ladder.domain.strategy.RandomGenerator;
-import ladder.view.InputView;
-import ladder.view.ResultView;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,34 +19,10 @@ public class LadderGame {
         this.height = height;
     }
 
-    public void start() {
+    public LadderResult start() {
         Ladder ladder = Ladder.of(height, players.size(), new RandomGenerator());
 
-        ResultView.printUsers(this.players);
-
-        ResultView.printLadder(ladder, players.getMaxNameLength());
-
-        ResultView.printResults(result);
-
-        String answer;
-        answer = InputView.promptThenString("결과를 보고 싶은 사람은?");
-        while (!answer.equals("all")) {
-            ResultView.printPlayerResult(getPlayerResult(answer, ladder));
-            answer = InputView.promptThenString("결과를 보고 싶은 사람은?");
-        }
-
-        ResultView.printGameResult(players.getPlayersNames(), getGameResults(ladder));
-    }
-
-    private List<String> getGameResults(Ladder ladder) {
-        return players.getPlayersNames().stream()
-                .map(name -> getPlayerResult(name, ladder))
-                .collect(Collectors.toList());
-    }
-
-    private String getPlayerResult(String playerName, Ladder ladder) {
-        int move = players.move(playerName, ladder);
-        return result.get(move);
+        return new LadderResult(ladder, players, result);
     }
 
     private Players generatePlayer(String names) {

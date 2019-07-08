@@ -37,15 +37,4 @@ public class LadderTest {
     public void of() {
         assertThat(ladder.move(0)).isEqualTo(0);
     }
-
-    @Test
-    public void result() {
-        Map<Integer, Integer> map = new HashMap();
-        map.put(0, 0);
-        map.put(1, 1);
-        map.put(2, 2);
-        map.put(3, 3);
-
-        assertThat(ladder.getResult()).isEqualTo(new LadderResult(map));
-    }
 }

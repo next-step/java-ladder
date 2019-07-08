@@ -3,6 +3,8 @@ package ladder.domain;
 import ladder.domain.strategy.GeneratorInterface;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
@@ -25,11 +27,9 @@ public class Ladder {
     }
 
     public static final Ladder of(int numOfHeight, int numOfUsers, GeneratorInterface strategy) {
-        ArrayList<Line> lines = new ArrayList<>();
-
-        for (int i = 0 ; i < numOfHeight ; i++) {
-            lines.add(Line.create(numOfUsers, strategy));
-        }
+        List<Line> lines = IntStream.range(0, numOfHeight)
+                .mapToObj(i -> Line.create(numOfUsers, strategy))
+                .collect(Collectors.toList());
 
         return new Ladder(lines);
     }
@@ -45,14 +45,5 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    public LadderResult getResult() {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0 ; i < lines.size() ; i++) {
-            map.put(i, move(i));
-        }
-
-        return new LadderResult(map);
     }
 }

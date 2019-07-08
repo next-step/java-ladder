@@ -1,41 +1,39 @@
 package ladder.domain;
 
-import java.util.Map;
-import java.util.Objects;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderResult {
-    private final Map<Integer, Integer> map;
+    private final Ladder ladder;
+    private final Players players;
+    private final List<String> results;
 
-    public LadderResult(Map<Integer, Integer> map) {
-        this.map = map;
+    public LadderResult(Ladder ladder, Players players, List<String> results) {
+        this.ladder = ladder;
+        this.players = players;
+        this.results = results;
     }
 
-    public int move(int i) {
-        if (i >= map.size()) {
-            throw new IllegalArgumentException();
-        }
-
-        return map.get(i);
+    public List<String> getTotalPlayersResult() {
+        return players.getPlayersNames().stream()
+                .map(name -> getPlayerResult(name))
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LadderResult that = (LadderResult) o;
-        return Objects.equals(map, that.map);
+    public String getPlayerResult(String name) {
+        int index = players.getPlayersNames().indexOf(name);
+        return results.get(ladder.move(index));
     }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(map);
+    public Ladder getLadder() {
+        return ladder;
     }
 
-    @Override
-    public String toString() {
-        return "LadderResult{" +
-                "map=" + map +
-                '}';
+    public Players getPlayers() {
+        return players;
+    }
+
+    public List<String> getResults() {
+        return results;
     }
 }
