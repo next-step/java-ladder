@@ -4,29 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 class LineMaker {
+    private static final int NUMBER_OF_FIRST_AND_LAST_BAR = 2;
 
-    private List<Boolean> randomBars = new ArrayList<>();
-    private BarGeneratorImpl barGenerator = new BarGeneratorImpl();
+    private List<Bar> randomBars;
+    private RandomBarGenerator barGenerator = new RandomBarGenerator();
 
-    List<Boolean> generateBars(int numberOfPlayers) {
-        randomBars.add(barGenerator.generateBar());
-        for (int i = 1; i < numberOfPlayers - 1; i++) {
-            boolean previousBarExist = randomBars.get(i - 1);
-            addNextBar(previousBarExist);
-        }
-        addBlankBar();
+    List<Bar> generateBars(int numberOfPlayers) {
+        this.randomBars = new ArrayList<>();
+        generateFirstBar();
+        generateMiddleBars(numberOfPlayers);
+        generateLastBar();
         return randomBars;
     }
 
-    private void addNextBar(boolean previousBarExist) {
-        if (previousBarExist) {
-            addBlankBar();
-            return;
-        }
-        randomBars.add(barGenerator.generateBar());
+    private void generateFirstBar() {
+        randomBars.add(Bar.from(barGenerator.generateBar()));
     }
 
-    private void addBlankBar() {
-        randomBars.add(false);
+    private void generateMiddleBars(int numberOfPlayers) {
+        int spaceForMiddleBars = numberOfPlayers - NUMBER_OF_FIRST_AND_LAST_BAR;
+        for (int i = 0; i < spaceForMiddleBars; i++) {
+            Bar previousBar = randomBars.get(i);
+            addNextBar(previousBar);
+        }
+    }
+
+    private void addNextBar(Bar previousBar) {
+        if (previousBar.isExist()) {
+            generateLastBar();
+            return;
+        }
+        randomBars.add(Bar.from(barGenerator.generateBar()));
+    }
+
+    private void generateLastBar() {
+        randomBars.add(Bar.from(Boolean.FALSE));
     }
 }

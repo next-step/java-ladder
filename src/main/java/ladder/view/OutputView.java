@@ -1,27 +1,23 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Player;
-import ladder.domain.Players;
-
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static ladder.view.InputView.printEmptyLine;
+import ladder.domain.*;
+import ladder.formatter.*;
 
 public class OutputView {
-    private static final String MESSAGE_RESULT_TITLE = "실행결과";
+    private static final String MESSAGE_RESULT_TITLE = "사다리 결과";
     private static final String EMPTY_SPACE = "     ";
     private static final String BAR = "-----";
     private static final String COLUMN = "|";
-    private static final String BLANK_TO_FILL_THE_NAME_SPACE = " ";
-    private static final int SPACE_FOR_NAME = 5;
+    private static final String MESSAGE_FOR_RESULT = "실행 결과";
 
-    public static void printResult(Players players, Ladder ladder) {
+    private static DataPrintFormatter<Players> playersPrintFormatter = new PlayersPrintFormatter();
+    private static DataPrintFormatter<Prizes> prizesPrintFormatter = new PrizesPrintFormatter();
+
+    public static void drawLadder(Players players, Ladder ladder, Prizes prizes) {
         printResultTitle();
         printPlayers(players);
         printLadder(ladder);
+        printPrizes(prizes);
     }
 
     private static void printResultTitle() {
@@ -31,20 +27,11 @@ public class OutputView {
     }
 
     private static void printPlayers(Players players) {
-        players.getPlayers().stream()
-                .map(OutputView::adjustNameLength)
-                .forEach(System.out::print);
-        printEmptyLine();
+        System.out.println(playersPrintFormatter.dataPrintFormat(players));
     }
 
-    private static String adjustNameLength(Player player) {
-        String name = player.getName();
-        int spaceForBlank = SPACE_FOR_NAME - name.length();
-
-        return IntStream.rangeClosed(0, spaceForBlank)
-                .mapToObj((integer) -> BLANK_TO_FILL_THE_NAME_SPACE)
-                .collect(Collectors.joining())
-                .concat(name);
+    private static void printPrizes(Prizes prizes) {
+        System.out.println(prizesPrintFormatter.dataPrintFormat(prizes));
     }
 
     private static void printLadder(Ladder ladder) {
@@ -59,12 +46,31 @@ public class OutputView {
         printEmptyLine();
     }
 
-    private static String printBars(Boolean bar) {
+    private static String printBars(Bar bar) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(COLUMN);
-        if (bar) {
+        if (bar.isExist()) {
             return stringBuilder.append(BAR).toString();
         }
         return stringBuilder.append(EMPTY_SPACE).toString();
+    }
+
+    public static void printSingleResult(String resultForWantedPlayer) {
+        printEmptyLine();
+        System.out.println(MESSAGE_FOR_RESULT);
+        System.out.println(resultForWantedPlayer);
+    }
+
+    public static void printAllResult(GameResult gameResult) {
+        printEmptyLine();
+        System.out.println(MESSAGE_FOR_RESULT);
+        gameResult.getResultMap()
+                .entrySet()
+                .forEach(result -> System.out.println(
+                        result.getKey().getName() + " : " + result.getValue().getPrize()));
+    }
+
+    private static void printEmptyLine() {
+        System.out.println();
     }
 }

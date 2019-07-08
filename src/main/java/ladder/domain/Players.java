@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -13,10 +14,8 @@ public class Players {
     private final List<Player> players;
 
     private Players(List<Player> players) {
-        if (players.size() < MINIMUM_NUMBER_OF_PLAYERS) {
-            throw new IllegalArgumentException(ALERT_SHORTAGE_OF_NUMBER_OF_PLAYERS);
-        }
-        this.players = players;
+        validationPlayers(players);
+        this.players = new ArrayList<>(players);
     }
 
     public static Players of(String inputNames) {
@@ -24,6 +23,12 @@ public class Players {
                 .map(String::trim)
                 .map(Player::from)
                 .collect(Collectors.toList()));
+    }
+
+    private void validationPlayers(List<Player> players) {
+        if (players.size() < MINIMUM_NUMBER_OF_PLAYERS) {
+            throw new IllegalArgumentException(ALERT_SHORTAGE_OF_NUMBER_OF_PLAYERS);
+        }
     }
 
     public int numberOfPlayers() {

@@ -1,19 +1,29 @@
 package ladder;
 
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Application {
 
     public static void main(String[] args) {
         Players players = Players.of(InputView.askPlayers());
+        Prizes prizes = Prizes.from(InputView.askPrizes(), players.numberOfPlayers());
         Height height = Height.from(InputView.askHeight());
 
         Ladder ladder = Ladder.from(players, height);
+        OutputView.drawLadder(players, ladder, prizes);
 
-        OutputView.printResult(players, ladder);
+        GameResult gameResult = GameResult.of(players, ladder, prizes);
+        String wantedPlayer = InputView.askWhichResultWant();
+
+        if ("all".equals(wantedPlayer)) {
+            OutputView.printAllResult(gameResult);
+            return;
+        }
+        OutputView.printSingleResult(gameResult.findResult(wantedPlayer));
     }
 }
