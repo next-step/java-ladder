@@ -28,17 +28,17 @@ public class Point {
 
     public Point next(RandomGenerator random) {
         if (status()) {
-            return new Point(index + INCREASE, new Direction(false, direction.current()));
+            return new Point(index + INCREASE, new Direction(direction.current(), false));
         }
-        return new Point(index + INCREASE, new Direction(random.generate(), direction.current()));
+        return new Point(index + INCREASE, new Direction(direction.current(), random.generate()));
     }
 
     public static Point first(RandomGenerator random) {
-        return new Point(DEFAULT_INDEX, new Direction(random.generate(), false));
+        return new Point(DEFAULT_INDEX, new Direction(false, random.generate()));
     }
 
     public static Point last(Point leftPoint) {
-        return new Point(leftPoint.index + INCREASE, new Direction(false, leftPoint.direction.current()));
+        return new Point(leftPoint.index + INCREASE, new Direction(leftPoint.direction.current(), false));
     }
 
     public boolean matchIndex(int index) {

@@ -21,7 +21,7 @@ public class PointTest {
     @Test
     void createException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Point(0, new Direction(false, true));
+            new Point(0, new Direction(true, false));
         }).withMessageContaining("왼쪽노드가 유효하지 않습니다. (0번째 Link의 왼쪽노드는 flase만 허용합니다.)");
     }
 
@@ -56,7 +56,7 @@ public class PointTest {
     @DisplayName("이동을 확인한다 - true")
     @Test
     void moveTrue() {
-        Point point = new Point(0, new Direction(true, false));
+        Point point = new Point(0, new Direction(false, true));
         assertThat(point.move()).isEqualTo(1);
     }
 
@@ -70,7 +70,7 @@ public class PointTest {
     @DisplayName("이동을 확인한다 - 본인은 false, 왼쪽 Link는 true")
     @Test
     void moveFalseAndBeforeLinkTrue() {
-        Point point = new Point(1, new Direction(false, true));
+        Point point = new Point(1, new Direction(true, false));
         assertThat(point.move()).isEqualTo(0);
     }
 

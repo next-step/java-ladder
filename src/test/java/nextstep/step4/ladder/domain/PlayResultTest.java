@@ -28,8 +28,8 @@ class PlayResultTest {
                 Arrays.asList(
                         new LadderLine(
                                 Arrays.asList(
-                                        new Point(0, new Direction(true, false)),
-                                        new Point(1, new Direction(false, true)),
+                                        new Point(0, new Direction(false, true)),
+                                        new Point(1, new Direction(true, false)),
                                         new Point(2, new Direction(false, false)))),
                         new LadderLine(
                                 Arrays.asList(

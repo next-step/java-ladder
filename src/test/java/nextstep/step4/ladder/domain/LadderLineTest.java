@@ -29,8 +29,8 @@ public class LadderLineTest {
     void setUp() {
         line = new LadderLine(
                 Arrays.asList(
-                        new Point(0, new Direction(true, false)),
-                        new Point(1, new Direction(false, true))));
+                        new Point(0, new Direction(false, true)),
+                        new Point(1, new Direction(true, false))));
     }
 
     @DisplayName("LadderLine 생성 예외상황 - Empty, Null")
@@ -48,7 +48,7 @@ public class LadderLineTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new LadderLine(
                     Arrays.asList(
-                            new Point(0, new Direction(true, false))));
+                            new Point(0, new Direction(false, true))));
         }).withMessageContaining("사다리라인의 최소 개수는 2개 입니다.");
     }
 

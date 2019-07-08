@@ -19,14 +19,14 @@ public class DirectionTest {
     @DisplayName("현재 포지션의 상태(boolean)를 확인")
     @Test
     void pointStatus() {
-        Direction direction = new Direction(true, false);
+        Direction direction = new Direction(false, true);
         assertThat(direction.current()).isTrue();
     }
 
     @DisplayName("현재 포지션의 왼쪽 상태(boolean)를 확인")
     @Test
     void pointLeftStatus() {
-        Direction direction = new Direction(true, false);
+        Direction direction = new Direction(false, true);
         assertThat(direction.left()).isFalse();
     }
 }
