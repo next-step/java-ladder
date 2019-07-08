@@ -37,6 +37,8 @@ public class Players {
   }
 
   public void takeRewards(Rewards rewards, Result result) {
-    this.players.stream().forEach(player -> player.takeReward(rewards, result));
+    for(Player player : this.players) {
+      player.takeReward(rewards, result);
+    }
   }
 }
