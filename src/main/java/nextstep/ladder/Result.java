@@ -27,7 +27,7 @@ public class Result {
     public static void printLadder(Ladder ladder) {
         ladder.getLines()
                 .stream()
-                .map(line -> line.getPoints())
+                .map(Line::getPoints)
                 .map(Result::convertPointsToString)
                 .forEach(System.out::println);
     }
