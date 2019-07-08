@@ -33,12 +33,16 @@ public class Result {
     }
 
     public static String convertPointsToString(List<Point> points) {
-        return points.stream().map(p -> {
-            if (p.isLeft()) {
-                return DASH_DELIMITER;
-            }
-            return WHITESPACE_DELIMITER;
-        }).collect(Collectors.joining(BAR_DELIMITER, "", BAR_DELIMITER));
+        return points.stream()
+                .map(Result::getLeftDirectionString)
+                .collect(Collectors.joining(BAR_DELIMITER, "", BAR_DELIMITER));
+    }
+
+    public static String getLeftDirectionString(Point point) {
+        if (point.isLeft()) {
+            return DASH_DELIMITER;
+        }
+        return WHITESPACE_DELIMITER;
     }
 
     public static void printAllResult(Ladder ladder, List<User> users, List<String> results) {
