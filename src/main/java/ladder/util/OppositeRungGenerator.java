@@ -2,11 +2,8 @@ package ladder.util;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class RandomRungGenerator implements RungGenerator {
-
-    private final Random random = new Random();
+public class OppositeRungGenerator implements RungGenerator {
 
     @Override
     public List<Boolean> generate(int countOfPlayers) {
@@ -14,15 +11,14 @@ public class RandomRungGenerator implements RungGenerator {
 
         for(int i = 0; i < countOfPlayers; i++) {
             boolean previousValue = getPreviousValue(rungs);
-            rungs.add(generate(randomRule(previousValue)));
+            rungs.add(generate(oppositeRule(previousValue)));
         }
         return rungs;
     }
 
-    boolean randomRule(boolean previousValue) {
-        if (previousValue) {
-            return false;
-        }
-        return random.nextBoolean();
+    public boolean oppositeRule(boolean previousValue) {
+        return !previousValue;
     }
+
+
 }
