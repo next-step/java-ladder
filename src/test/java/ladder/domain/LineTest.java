@@ -10,13 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-  @DisplayName("플레이어 수에 따른 point 생성 테스트")
-  @Test
-  void create() {
-    Line line = Line.of(Players.of("test1, test2, test3"));
-    assertThat(line.size()).isEqualTo(3);
-  }
-
   @Test
   void move() {
     Point first = Point.first(false);

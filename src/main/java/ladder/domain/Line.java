@@ -11,16 +11,6 @@ public class Line {
 
   private List<Point> points = new ArrayList<>();
 
-  private Line(Players players) {
-    Point point = Point.first(RandomGenerator.nextBoolean());
-    points.add(point);
-
-    for (int i = 0; i < players.size() - 1; i++) {
-      point = randomBar(point);
-      points.add(point);
-    }
-  }
-
   private Line(int numOfPlayers) {
     Point point = Point.first(RandomGenerator.nextBoolean());
     points.add(point);
@@ -35,10 +25,6 @@ public class Line {
 
   private Line(List<Point> points) {
     this.points = points;
-  }
-
-  public static Line of(Players players) {
-    return new Line(players);
   }
 
   public static Line of(List<Point> points) {
