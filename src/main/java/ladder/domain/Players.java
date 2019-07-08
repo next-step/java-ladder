@@ -35,6 +35,10 @@ public class Players {
         return players.size();
     }
 
+    Player findPlayerByIndex(int index) {
+        return players.get(index);
+    }
+
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }

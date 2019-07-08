@@ -31,6 +31,10 @@ public class Prizes {
         }
     }
 
+    Prize findPrizeByPosition(Position position) {
+        return prizes.get(position.getPosition());
+    }
+
     public List<Prize> getPrizes() {
         return Collections.unmodifiableList(prizes);
     }

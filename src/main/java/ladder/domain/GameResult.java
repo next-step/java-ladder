@@ -21,10 +21,10 @@ public class GameResult {
         Map<Player, Prize> resultMap = new HashMap<>();
         int numberOfPlayers = players.numberOfPlayers();
 
-        for (int i = 0; i < numberOfPlayers; i++) {
-            Player player = players.getPlayers().get(i);
-            Position finalPosition = ladder.goThroughLinesFrom(Position.from(i));
-            Prize prize = prizes.getPrizes().get(finalPosition.getPosition());
+        for (int index = 0; index < numberOfPlayers; index++) {
+            Player player = players.findPlayerByIndex(index);
+            Position finalPosition = ladder.goThroughLinesFrom(Position.from(index));
+            Prize prize = prizes.findPrizeByPosition(finalPosition);
 
             resultMap.put(player, prize);
         }
