@@ -4,9 +4,6 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Application {
     private static final String ALL_RESULTS = "all";
 
@@ -18,7 +15,7 @@ public class Application {
         Height height = Height.from(InputView.askHeight());
 
         Ladder ladder = Ladder.from(players, height);
-        OutputView.drawLadder(players, ladder, prizes);
+        OutputView.drawLadder(ladder, gameInfo);
 
         GameResult gameResult = GameResult.of(players, ladder, prizes);
         String wantedPlayer = InputView.askWhichResultWant();
