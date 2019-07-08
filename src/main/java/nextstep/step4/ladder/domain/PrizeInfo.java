@@ -31,11 +31,11 @@ public class PrizeInfo {
             throw new IllegalArgumentException(NULL_EMPTY_EXCEPTION_MESSAGE);
         }
 
-        if (StringUtil.split(prizeInfo).size() != participantCount) {
+        if (split(prizeInfo).size() != participantCount) {
             throw new IllegalArgumentException(INFO_RESULT_SIZE_EXCEPTION_MESSAGE);
         }
 
-        return new PrizeInfo(StringUtil.split(prizeInfo).stream()
+        return new PrizeInfo(split(prizeInfo).stream()
                 .map(prize -> Prize.of(prize))
                 .collect(Collectors.toList()));
     }
@@ -49,5 +49,9 @@ public class PrizeInfo {
                 .filter(prize -> prizeInfo.get(findIndex).equals(prize))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException());
+    }
+    
+    private static List<String> split(String prizes) {
+        return StringUtil.split(prizes);
     }
 }
