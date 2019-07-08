@@ -1,10 +1,12 @@
 package ladder.view;
 
-import ladder.Model.Ladder;
-import ladder.Model.Line;
-import ladder.Model.Users;
+import ladder.model.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.google.common.base.Strings.repeat;
+
 
 public class OutputView {
 
@@ -12,16 +14,14 @@ public class OutputView {
     private static String ladderDefaultWidthLine = "";
     private static String ladderTrimWidthLine = "";
     private static String ladderStartWidthLine = "";
-    private static int maxUserNameLength = 0;
 
-    public static void printLadderUser(Users users){
-        maxUserNameLength = users.getMaxUserNameLength();
-        outputSepartorInit(maxUserNameLength);
+    public static void printLadderUser(Users users, int maxTextLength){
+        outputSepartorInit(maxTextLength);
         System.out.println("\n실행 결과\n");
         System.out.println(
                 users.getUsers()
                      .stream()
-                     .map(user -> coustomUserNameLen(user.getName()))
+                     .map(user -> coustomTextLen(user.getName(), maxTextLength))
                      .collect(Collectors.joining(" "))
         );
     }
@@ -32,8 +32,36 @@ public class OutputView {
         }
     }
 
-    private static String coustomUserNameLen(String userName){
-        int scarceSpace = maxUserNameLength - userName.length();
+    public static void printResultItem(Result ladderResultItem) {
+        int maxLadderTextCount = ladderResultItem.maxLadderTextCount();
+        System.out.println(
+                ladderResultItem.getResultItem()
+                        .stream()
+                        .map(item -> coustomTextLen(item, maxLadderTextCount))
+                        .collect(Collectors.joining(" "))
+        );
+    }
+
+    public static void printAllUserReust(Result result, Users users, Ladder ladder) {
+        System.out.println("\n실행결과");
+        List<String> allUsersResult = result.getAllUserResult(users, ladder);
+        List<User> userNames = users.getUsers();
+        for(int i = 0; i< allUsersResult.size(); i++){
+            System.out.println(
+                    userNames.get(i).getName()
+                             .concat(" : ")
+                             .concat(allUsersResult.get(i))
+            );
+        }
+    }
+
+    public static void printUserResult(Result result, User targetUser, Ladder ladder) {
+        System.out.println("\n실행결과");
+        System.out.println(result.getUserResult(targetUser, ladder));
+    }
+
+    private static String coustomTextLen(String userName, int maxTextLength){
+        int scarceSpace = maxTextLength - userName.length();
         return createlineSeparator(scarceSpace, " ").concat(userName);
     }
 
@@ -44,10 +72,9 @@ public class OutputView {
         ladderLine.append(
                 line.getPoints()
                     .stream()
-                    .map(point -> lineText(point))
+                    .map(point -> lineText(point.getStatusOfPoint().isRight()))
                     .collect(Collectors.joining(LADDER_DEFAULT_HEIGHT_LINE))
         );
-        ladderLine.append(LADDER_DEFAULT_HEIGHT_LINE);
         System.out.println(ladderLine.toString());
     }
 
@@ -59,9 +86,9 @@ public class OutputView {
     }
 
     private static void outputSepartorInit(int maxNameLength){
-        ladderDefaultWidthLine = createlineSeparator(maxNameLength, "-");
-        ladderTrimWidthLine = createlineSeparator(maxNameLength, " ");
-        ladderStartWidthLine = createlineSeparator(maxNameLength-1, " ");
+        ladderDefaultWidthLine = repeat("-", maxNameLength);
+        ladderTrimWidthLine = repeat(" ", maxNameLength);
+        ladderStartWidthLine = repeat(" ", maxNameLength-1);
     }
 
     private static String createlineSeparator(int maxNameLength, String separator){
