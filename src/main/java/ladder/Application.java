@@ -12,7 +12,9 @@ public class Application {
 
     public static void main(String[] args) {
         Players players = Players.of(InputView.askPlayers());
-        Prizes prizes = Prizes.from(InputView.askPrizes(), players.numberOfPlayers());
+        Prizes prizes = Prizes.from(InputView.askPrizes());
+        GameInfo gameInfo = GameInfo.of(players, prizes);
+
         Height height = Height.from(InputView.askHeight());
 
         Ladder ladder = Ladder.from(players, height);

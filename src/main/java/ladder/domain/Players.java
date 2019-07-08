@@ -31,7 +31,7 @@ public class Players {
         }
     }
 
-    public int numberOfPlayers() {
+    int numberOfPlayers() {
         return players.size();
     }
 
