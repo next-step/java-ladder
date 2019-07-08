@@ -13,7 +13,7 @@ class LineMaker {
         this.randomBars = new ArrayList<>();
         generateFirstBar();
         generateMiddleBars(numberOfPlayers);
-        generateLastBar();
+        generateEmptyBar();
         return randomBars;
     }
 
@@ -31,13 +31,13 @@ class LineMaker {
 
     private void addNextBar(Bar previousBar) {
         if (previousBar.isExist()) {
-            generateLastBar();
+            generateEmptyBar();
             return;
         }
         randomBars.add(Bar.from(barGenerator.generateBar()));
     }
 
-    private void generateLastBar() {
+    private void generateEmptyBar() {
         randomBars.add(Bar.from(Boolean.FALSE));
     }
 }
