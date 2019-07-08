@@ -34,10 +34,6 @@ public class Point {
         return new Point(DEFAULT_INDEX, new Direction(false, random.generate()));
     }
 
-    public static Point last(Point leftPoint) {
-        return new Point(leftPoint.index + INCREASE, new Direction(leftPoint.direction.current(), false));
-    }
-
     public boolean matchIndex(int index) {
         return this.index == index;
     }

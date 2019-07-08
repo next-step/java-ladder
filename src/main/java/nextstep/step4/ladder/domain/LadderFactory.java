@@ -29,14 +29,14 @@ public class LadderFactory {
         List<Point> points = new ArrayList<>();
         points.add(Point.first(() -> random()));
         for (int i = NEXT_INDEX; i < line - LAST_INDEX; i++) {
-            points.add(nextLink(points.get(i - NEXT_INDEX)));
+            points.add(nextLink(points.get(i - NEXT_INDEX), () -> random()));
         }
-        points.add(Point.last(points.get(points.size() - LAST_INDEX)));
+        points.add(nextLink(points.get(points.size() - LAST_INDEX), () -> false));
         return new LadderLine(points);
     }
 
-    private static Point nextLink(Point leftPoint) {
-        return leftPoint.next(() -> random());
+    private static Point nextLink(Point leftPoint, RandomGenerator random) {
+        return leftPoint.next(() -> random.generate());
     }
 
     private static boolean random() {

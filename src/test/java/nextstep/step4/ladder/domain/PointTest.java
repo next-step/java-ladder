@@ -46,13 +46,6 @@ public class PointTest {
         assertThat(point.next(() -> false).matchIndex(1)).isTrue();
     }
 
-    @DisplayName("마지막 Point 생성")
-    @Test
-    void createLast() {
-        Point point = Point.first(() -> true);
-        assertThat(Point.last(point).matchIndex(1)).isTrue();
-    }
-
     @DisplayName("이동을 확인한다 - true")
     @Test
     void moveTrue() {
