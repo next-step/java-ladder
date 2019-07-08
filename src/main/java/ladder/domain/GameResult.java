@@ -13,18 +13,18 @@ public class GameResult {
         this.resultMap = new HashMap<>(resultMap);
     }
 
-    public static GameResult of(Players players, Ladder ladder, Prizes prizes) {
-        return new GameResult(playGame(players, ladder, prizes));
+    public static GameResult of(Ladder ladder, GameInfo gameInfo) {
+        return new GameResult(playGame(ladder, gameInfo));
     }
 
-    private static Map<Player, Prize> playGame(Players players, Ladder ladder, Prizes prizes) {
+    private static Map<Player, Prize> playGame(Ladder ladder, GameInfo gameInfo) {
         Map<Player, Prize> resultMap = new HashMap<>();
-        int numberOfPlayers = players.numberOfPlayers();
+        int numberOfPlayers = gameInfo.numberOfPlayers();
 
         for (int index = 0; index < numberOfPlayers; index++) {
-            Player player = players.findPlayerByIndex(index);
+            Player player = gameInfo.findPlayerByIndex(index);
             Position finalPosition = ladder.goThroughLinesFrom(Position.from(index));
-            Prize prize = prizes.findPrizeByPosition(finalPosition);
+            Prize prize = gameInfo.findPrizeByPosition(finalPosition);
 
             resultMap.put(player, prize);
         }

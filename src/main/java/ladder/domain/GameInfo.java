@@ -1,9 +1,7 @@
 package ladder.domain;
 
-import java.util.Collections;
-
 public class GameInfo {
-    static final String ALERT_INVALID_NUMBER_OF_PRIZES = "상품의 수는 참여자 수와 같아야 합니다.";
+    private static final String ALERT_INVALID_NUMBER_OF_PRIZES = "상품의 수는 참여자 수와 같아야 합니다.";
 
     private final Players players;
     private final Prizes prizes;
@@ -22,6 +20,18 @@ public class GameInfo {
         if (players.numberOfPlayers() != prizes.numberOfPrizes()) {
             throw new IllegalArgumentException(ALERT_INVALID_NUMBER_OF_PRIZES);
         }
+    }
+
+    Player findPlayerByIndex(int index) {
+        return players.findPlayerByIndex(index);
+    }
+
+    Prize findPrizeByPosition(Position finalPosition) {
+        return prizes.findPrizeByPosition(finalPosition);
+    }
+
+    int numberOfPlayers() {
+        return players.numberOfPlayers();
     }
 
     public Players getPlayers() {

@@ -17,7 +17,7 @@ public class Application {
         Ladder ladder = Ladder.from(players, height);
         OutputView.drawLadder(ladder, gameInfo);
 
-        GameResult gameResult = GameResult.of(players, ladder, prizes);
+        GameResult gameResult = GameResult.of(ladder, gameInfo);
         String wantedPlayer = InputView.askWhichResultWant();
 
         if (ALL_RESULTS.equals(wantedPlayer)) {
