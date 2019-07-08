@@ -25,7 +25,7 @@ public class Line {
         if (bars.get(position.getPosition()).isExist()) { //사용자의 현재 위치와 bar의 위치가 같으면 사용자의 현재위치가 1만큼 증가
             return position.moveToRight();
         }
-        if (position.getPosition() > 0 && bars.get(position.getLeftPosition()).isExist()) { //사용자의 현재 위치보다 bar의 위치가 1만큼 작으면 사용자의 현재위치는 1만큼 감소
+        if ( position.isMovableToLeft() && bars.get(position.getLeftPosition()).isExist()) { //사용자의 현재 위치보다 bar의 위치가 1만큼 작으면 사용자의 현재위치는 1만큼 감소
             return position.moveToLeft();
         }
         return position;
