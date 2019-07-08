@@ -22,13 +22,14 @@ public class Line {
     }
 
     Position travel(Position position) {
-        if (bars.get(position.getPosition()).isExist()) { //사용자의 현재 위치와 bar의 위치가 같으면 사용자의 현재위치가 1만큼 증가
-            return position.moveToRight();
+        if (bars.get(position.getPosition()).isExist()) {
+            return position.moveToRight(); // 사용자와 같은 위치에 bar가 있으면 사용자 위치 1 증가
         }
-        if ( position.isMovableToLeft() && bars.get(position.getLeftPosition()).isExist()) { //사용자의 현재 위치보다 bar의 위치가 1만큼 작으면 사용자의 현재위치는 1만큼 감소
-            return position.moveToLeft();
+        if (position.isMovableToLeft()
+                && bars.get(position.getLeftPosition()).isExist()) {
+            return position.moveToLeft(); // 사용자의 왼쪽에 bar가 있으면 사용자 위치 1 감소
         }
-        return position;
-    } //TODO: 이 로직을 Bar 객체로 위임하고 싶은데, Bar 2개를 사용해서 위치를 갱신하는 방식이라 이 곳에서 처리하는 상태
+        return position; // 위의 경우가 아니면 위치 유지(패스)
+    } //TODO: 이 부분에 대한 질문을 https://github.com/next-step/java-ladder/pull/207 피드백 주신 이 곳에 남겼습니다.
 
 }
