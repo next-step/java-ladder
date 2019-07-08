@@ -7,3 +7,9 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 2단계 - 사다리(생성)
+- 참가자 이름을 입력받습니다
+- 사다리의 높이를 입력받습니다
+- 사다리를 생성합니다
+- 사다리를 출력합니다
