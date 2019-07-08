@@ -75,9 +75,9 @@ public class ResultView {
 
         builder.append(leftBlank);
 
-        ladderLine.getEstablishResults()
+        ladderLine.getColumnResultsOfLadderLine()
                   .stream()
-                  .map(lineState -> lineState == LadderLine.LineState.ESTABLISH ? ESTABLISHED_LADDER : NOT_ESTABLISHED_LADDER)
+                  .map(result -> result ? ESTABLISHED_LADDER : NOT_ESTABLISHED_LADDER)
                   .forEach(stringLine -> builder.append(LADDER_GUTTER).append(stringLine));
 
         builder.append(LADDER_GUTTER);

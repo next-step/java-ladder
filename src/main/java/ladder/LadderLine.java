@@ -4,74 +4,62 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderLine {
-    private static final int FIRST_POSITION = 0;
-    private static final int VALUE_OF_ONE_POSITION = 1;
+    private final List<LadderPosition> ladderPositions;
 
-    private final List<LineState> establishedResults;
-
-    private LadderLine(List<LineState> establishedResults) {
-        this.establishedResults = establishedResults;
+    private LadderLine(List<LadderPosition> ladderPositions) {
+        this.ladderPositions = ladderPositions;
     }
 
     public static LadderLine of(int countOfPerson) {
-        List<LineState> establishedResults = doLadderEstablish(countOfPerson);
-        return new LadderLine(establishedResults);
+        List<LadderPosition> ladderPositions = createLadderPositions(countOfPerson);
+        return new LadderLine(ladderPositions);
     }
 
-    public List<LineState> getEstablishResults() {
-        return Collections.unmodifiableList(this.establishedResults);
-    }
+    private static List<LadderPosition> createLadderPositions(int countOfPerson) {
+        List<LadderPosition> results = new ArrayList<>(countOfPerson);
 
-    public int computeNextPosition(int beginPosition) {
-        if (isCanLeftGo(beginPosition)) {
-            return beginPosition - VALUE_OF_ONE_POSITION;
-        } else if (isCanRightGo(beginPosition)) {
-            return beginPosition + VALUE_OF_ONE_POSITION;
-        } else {
-            return beginPosition;
-        }
-    }
+        LadderPosition firstPosition = LadderPosition.first();
+        results.add(firstPosition);
 
-    private boolean isCanLeftGo(int beginPosition) {
-        if (beginPosition == FIRST_POSITION) {
-            return false;
-        }
-        return establishedResults.get(beginPosition - VALUE_OF_ONE_POSITION) == LineState.ESTABLISH;
-    }
+        int countOfNextPositions = countOfPerson - 2;
+        results.addAll(createNextLadderPositions(firstPosition, countOfNextPositions));
 
-    private boolean isCanRightGo(int beginPosition) {
-        if (beginPosition == this.establishedResults.size()) {
-            return false;
-        }
-        return establishedResults.get(beginPosition) == LineState.ESTABLISH;
-    }
-
-    private static List<LineState> doLadderEstablish(int countOfPerson) {
-        int countOfColumn = countOfPerson - 1;
-        List<LineState> results = new ArrayList<>(countOfColumn);
-        Random random = new Random();
-
-        for (int index = 0; index < countOfColumn; index++) {
-            boolean isCanEstablish = random.nextBoolean();
-            boolean isDoEstablish = isPreviousNotEstablished(results, index) && isCanEstablish;
-            results.add(isDoEstablish ? LineState.ESTABLISH : LineState.NONE);
-        }
+        LadderPosition lastNextPosition = results.get(results.size() -1);
+        LadderPosition lastPosition = lastNextPosition.moveToLast();
+        results.add(lastPosition);
 
         return results;
     }
 
-    private static boolean isPreviousNotEstablished(List<LineState> establishedResult, int currentIndex) {
-        if (currentIndex == 0) {
-            return true;
+    private static List<LadderPosition> createNextLadderPositions(LadderPosition firstPosition, int countOfPositions) {
+        List<LadderPosition> nextPositions = new ArrayList<>();
+        LadderPosition previousPosition = firstPosition;
+
+        while (countOfPositions -- > 0) {
+            LadderPosition nextPosition = previousPosition.moveToNext();
+            nextPositions.add(nextPosition);
+            previousPosition = nextPosition;
         }
 
-        return establishedResult.get(currentIndex - VALUE_OF_ONE_POSITION) == LineState.NONE;
+        return nextPositions;
     }
 
-    public enum LineState {
-        ESTABLISH,
-        NONE
+    public List<Boolean> getColumnResultsOfLadderLine() {
+        int sizeOfExcludesLastPosition = ladderPositions.size() - 1;
+
+        return ladderPositions.stream()
+                              .limit(sizeOfExcludesLastPosition)
+                              .map(LadderPosition::isCanMoveRight)
+                              .collect(Collectors.toList());
+    }
+
+    public int computeNextPosition(int beginPosition) {
+        return this.ladderPositions
+                        .get(beginPosition)
+                        .computeNextPosition();
     }
 }

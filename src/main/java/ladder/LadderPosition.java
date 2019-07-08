@@ -32,6 +32,10 @@ public class LadderPosition {
         }
     }
 
+    public boolean isCanMoveRight() {
+        return lineDirection.isRightGo();
+    }
+
     public LadderPosition moveToNext() {
         int nextPosition = position + VALUE_OF_POSITION_ONE;
         LadderLineDirection nextDirection = lineDirection.next();
