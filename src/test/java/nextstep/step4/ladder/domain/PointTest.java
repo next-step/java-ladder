@@ -74,9 +74,10 @@ public class PointTest {
         assertThat(point.move()).isEqualTo(0);
     }
 
-    @DisplayName("현재 Link의 상태를 확인한다.")
+    @DisplayName("진행방향이 오른쪽인지 확인한다.")
     @Test
-    void checkStatus() {
-        assertThat(Point.first(() -> true).status()).isTrue();
+    void isDirectionRight() {
+        Point point = new Point(1, new Direction(false, true));
+        assertThat(point.isDirectionRight()).isTrue();
     }
 }

@@ -37,4 +37,15 @@ public class Direction {
     public boolean left() {
         return left;
     }
+
+    public boolean moveDirection() {
+        return !left && right ? true : false;
+    }
+
+    public Direction next(boolean random) {
+        if (right) {
+            return new Direction(right, false);
+        }
+        return new Direction(right, random);
+    }
 }

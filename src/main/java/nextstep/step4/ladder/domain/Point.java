@@ -27,10 +27,7 @@ public class Point {
     }
 
     public Point next(RandomGenerator random) {
-        if (status()) {
-            return new Point(index + INCREASE, new Direction(direction.current(), false));
-        }
-        return new Point(index + INCREASE, new Direction(direction.current(), random.generate()));
+        return new Point(index + INCREASE, direction.next(random.generate()));
     }
 
     public static Point first(RandomGenerator random) {
@@ -45,8 +42,8 @@ public class Point {
         return this.index == index;
     }
 
-    public boolean status() {
-        return direction.current();
+    public boolean isDirectionRight() {
+        return direction.moveDirection();
     }
 
     public int move() {

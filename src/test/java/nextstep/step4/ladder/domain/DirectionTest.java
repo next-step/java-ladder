@@ -29,4 +29,11 @@ public class DirectionTest {
         Direction direction = new Direction(false, true);
         assertThat(direction.left()).isFalse();
     }
+
+    @DisplayName("다음 Direction을 생성한다. - 생성을 위한 기존 Direction의 오른쪽이 true인 상태일때")
+    @Test
+    void next() {
+        Direction direction = new Direction(false, true);
+        assertThat(direction.next(true).current()).isFalse();
+    }
 }

@@ -88,7 +88,7 @@ public class ConsoleResultView implements ResultView {
 
     private void printLadderLine(LadderLine ladderLine) {
         ladderLine.stream()
-                .map(link -> combine(link))
+                .map(point -> combine(point))
                 .forEach(System.out::print);
         println();
     }
@@ -96,7 +96,7 @@ public class ConsoleResultView implements ResultView {
     private String combine(Point point) {
         StringBuilder sb = new StringBuilder();
         sb.append(PIPE_PRINT_FORMAT);
-        if (point.status()) {
+        if (point.isDirectionRight()) {
             return sb.append(TRUE_PRINT_FORMAT).toString();
         }
         return sb.append(FASLE_PRINT_FORMAT).toString();
