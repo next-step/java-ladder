@@ -1,55 +1,38 @@
 package nextstep.step2.domain;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class Point {
     private final int index;
-    private final Map<Direction, Boolean> directions;
+    private final Directions directions;
 
-    private Point(int index, Map<Direction, Boolean> directions) {
+    public Point(int index, Directions directions) {
         this.index = index;
         this.directions = directions;
     }
 
     public static Point createFirst(final PointCreationStrategy strategy) {
-        return new Point(0, Map.of(Direction.LEFT, false, Direction.RIGHT, strategy.isCreation()));
+        return new Point(0, Directions.createFirst(strategy));
     }
 
     public Point createNext(final PointCreationStrategy strategy) {
-        return new Point(this.index + 1, Map.of(Direction.LEFT, this.isRightLine(), Direction.RIGHT, isMovableRight(strategy)));
+        return new Point(this.index + 1, Directions.createNext(strategy, directions.isRightLine()));
     }
 
     public Point createLast() {
-        return new Point(this.index + 1, Map.of(Direction.LEFT, this.isRightLine(), Direction.RIGHT, false));
-    }
-
-    public boolean isLeftLine() {
-        return directions.get(Direction.LEFT);
-    }
-
-    public boolean isRightLine() {
-        return directions.get(Direction.RIGHT);
+        return new Point(this.index + 1, Directions.createLast(directions.isRightLine()));
     }
 
     public int move() {
-        if (this.isLeftLine()) {
-            return Direction.moveLeft(index);
-        }
+        return directions.move(index);
+    }
 
-        if (this.isRightLine()) {
-            return Direction.moveRight(index);
-        }
-
+    public int getIndex() {
         return index;
     }
 
-    private boolean isMovableRight(final PointCreationStrategy strategy) {
-        if (this.isRightLine()) {
-            return false;
-        }
-
-        return strategy.isCreation();
+    public Directions getDirections() {
+        return directions;
     }
 
     @Override
