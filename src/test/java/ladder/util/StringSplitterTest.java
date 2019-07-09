@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class NamesSplitterTest {
+public class StringSplitterTest {
     @ParameterizedTest
     @ValueSource(strings = {
             "pobi,honux,crong,jk",
@@ -15,7 +15,7 @@ public class NamesSplitterTest {
             "pobi ,honux ,crong ,jk"
     })
     void split_Names_ToArray(String input) {
-        final List<String> names = NamesSplitter.split(input);
+        final List<String> names = StringSplitter.split(input);
         assertThat(names).containsExactly("pobi",
                                           "honux",
                                           "crong",

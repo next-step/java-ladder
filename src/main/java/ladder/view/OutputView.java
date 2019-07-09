@@ -15,7 +15,7 @@ public final class OutputView {
     private static final String FORMAT_OF_NAME = "%6s";
 
     public static void printResult(Participants participants, Ladder ladder) {
-        System.out.println("실행결과\n");
+        System.out.println("사다리 결과\n");
         printParticipants(participants);
         printReturnLine();
         printLadder(ladder);

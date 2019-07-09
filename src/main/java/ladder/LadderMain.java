@@ -10,6 +10,12 @@ import ladder.view.OutputView;
 public final class LadderMain {
     public static void main(String[] args) {
         final List<String> participantNames = InputView.inputParticipants();
+        final List<String> rewards = InputView.inputRewards();
+
+        if (participantNames.size() != rewards.size()) {
+            System.out.println("참여자와 보상 갯수가 맞지 않습니다.");
+            return;
+        }
         final Participants participants = new Participants(participantNames);
 
         final int ladderHeight = InputView.inputLadderHeight();
