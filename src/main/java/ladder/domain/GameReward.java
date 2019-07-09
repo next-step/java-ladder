@@ -14,7 +14,7 @@ public class GameReward {
         this.col = col;
     }
 
-    public void matchReward(List<SingleUser> userGroup) {
+    void matchReward(List<SingleUser> userGroup) {
         userGroup.stream().forEach(user -> {
             if (user.getPosition().matchRow(this.row) && user.getPosition().matchCol(this.col)) {
                 this.nameOfWinner = user.getName();

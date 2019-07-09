@@ -8,10 +8,6 @@ import java.util.stream.IntStream;
 public class Line {
     private List<Boolean> points;
 
-    public Line() {
-        points = new ArrayList<>();
-    }
-
     Line(int countOfPerson) {
 
         Random random = new Random();

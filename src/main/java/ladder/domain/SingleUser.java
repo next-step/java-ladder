@@ -9,15 +9,11 @@ public class SingleUser {
         position = new Position(firstPos);
     }
 
-    public SingleUser(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
     }
 
-    public boolean matchName(String name) {
+    boolean matchName(String name) {
         return this.name.equals(name);
     }
 

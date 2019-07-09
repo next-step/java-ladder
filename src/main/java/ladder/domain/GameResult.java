@@ -24,20 +24,27 @@ public class GameResult {
 
     public void run(LadderFactory ladderFactory, UserGroup userGroup) {
         IntStream.range(0, userGroup.getUserGroup().size()).
-                forEach(i -> userGroup.runLadderGame(ladderFactory, makeLadderMapArr(ladderFactory), userGroup.getUserGroup().get(i).getName()));
+                forEach(i -> userGroup.playLadderGame(ladderFactory, makeLadderMapArr(ladderFactory), userGroup.getUserGroup().get(i).getName()));
 
         getResult(userGroup.getUserGroup());
     }
 
-    public void getResult(List<SingleUser> userGroup) {
+    public List<GameReward> getgameReward() {
+        return gameReward;
+    }
+
+    public GameReward getResultofSingleUser(String user) {
+        return getgameReward().stream()
+                .filter(i -> i.getNameOfWinner().equals(user))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    private void getResult(List<SingleUser> userGroup) {
         IntStream.range(0, gameReward.size()).
                 forEach(i -> {
                     gameReward.get(i).matchReward(userGroup);
                 });
-    }
-
-    public List<GameReward> getgameReward() {
-        return gameReward;
     }
 
     // listArray를 array로 변환 (게임 결과 확인을 위해서)

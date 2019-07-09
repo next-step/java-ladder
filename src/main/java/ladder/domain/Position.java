@@ -8,6 +8,26 @@ public class Position {
         this.col = startPos;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Position other = (Position) obj;
+        if (!(row ==(((Position) obj).row)))
+            if (!(col ==(((Position) obj).col)))
+            return false;
+        return true;
+    }
+
+    public Position(int row, int col){
+        this.row = row;
+        this.col = col;
+    }
+
     public void moveLeft() {
         row += 1;
         col -= 1;
