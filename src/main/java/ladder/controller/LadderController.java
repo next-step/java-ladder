@@ -6,6 +6,10 @@ import ladder.domain.gamer.info.Gamer;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.reward.Rewards;
 import ladder.message.EmptyMessage;
+import ladder.message.result.InputGamerNameMessage;
+import ladder.message.result.InputGamersMessage;
+import ladder.message.result.InputLadderSizeMessage;
+import ladder.message.result.InputRewardMessage;
 import ladder.message.result.ResultMessage;
 import ladder.message.result.RewardMessage;
 import ladder.view.MainView;
@@ -28,30 +32,34 @@ public class LadderController implements ILadderController {
         rewards = Rewards.newInstance();
         ladder = Ladder.newInstance();
         mainView = new MainView(this);
-        mainView.render(EMPTY_MESSAGE);
     }
     
     @Override
     public void action() {
-        mainView.render(EMPTY_MESSAGE);
+        mainView.render(new InputGamersMessage());
     }
     
     @Override
     public void inputGamers(String gamerNames) {
         gamers.addGamers(gamerNames);
-        mainView.render(EMPTY_MESSAGE);
+        mainView.render(new InputRewardMessage());
     }
     
     @Override
     public void inputReward(String reward) {
         rewards.addRewards(gamers, reward);
-        mainView.render(EMPTY_MESSAGE);
+        mainView.render(new InputLadderSizeMessage());
     }
     
     @Override
     public void inputLadderSize(int ladderSize) {
         ladder.makeLadder(ladderSize, gamers);
         mainView.render(new ResultMessage(gamers.getGamerNames(), ladder, rewards.getRewardNames()));
+    }
+    
+    @Override
+    public void callAfterResult() {
+        mainView.render(new InputGamerNameMessage());
     }
     
     @Override
@@ -62,6 +70,7 @@ public class LadderController implements ILadderController {
         }
         mainView.render(new RewardMessage(rewards.getReward(ladder.getRewardNumber(gamers.getLineNumber(gamerName)))));
     }
+    
     
     private RewardMessage getAllRewards() {
         return new RewardMessage(gamers.keyStream()

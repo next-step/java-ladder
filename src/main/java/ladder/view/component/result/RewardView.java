@@ -21,7 +21,7 @@ public class RewardView implements ViewImpl {
     
     @Override
     public void render(Message message) {
-        if (!Step.isThisStep(view.getStep())) {
+        if (!message.isRewardStep()) {
             return;
         }
         RewardMessage rewardResponse = (RewardMessage) message;

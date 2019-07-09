@@ -5,7 +5,7 @@ import ladder.domain.ladder.Ladder;
 
 import java.util.List;
 
-public class ResultMessage implements Message {
+public class ResultMessage extends Message {
     private final List<String> gamerNames;
     private final List<String> rewards;
     private final Ladder ladder;

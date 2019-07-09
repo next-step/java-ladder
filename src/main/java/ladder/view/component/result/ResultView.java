@@ -1,6 +1,7 @@
 package ladder.view.component.result;
 
 import ladder.core.controller.Controller;
+import ladder.core.controller.ILadderController;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.output.Printer;
 import ladder.domain.ladder.Ladder;
@@ -19,10 +20,10 @@ public class ResultView implements ViewImpl {
     private final static String ONE_SPACE_STRING = " ";
     private final static int MAX_NAME_SIZE = 5;
     
-    private Controller controller;
+    private ILadderController controller;
     private View view;
     
-    public ResultView(Controller controller, Printer printer) {
+    public ResultView(ILadderController controller, Printer printer) {
         this.controller = controller;
         view = new View.Builder(Step.RESULT_STEP)
             .setPrinter(printer)
@@ -31,7 +32,7 @@ public class ResultView implements ViewImpl {
     
     @Override
     public void render(Message message) {
-        if (!Step.isThisStep(view.getStep())) {
+        if (!message.isResultStep()) {
             return;
         }
         ResultMessage resultResponseMessage = (ResultMessage) message;

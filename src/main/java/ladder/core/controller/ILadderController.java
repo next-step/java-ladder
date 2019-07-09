@@ -5,4 +5,5 @@ public interface ILadderController extends Controller {
     void inputReward(String reward);
     void inputLadderSize(int ladderSize);
     void inputGamerName(String gamerName);
+    void callAfterResult();
 }
