@@ -34,6 +34,7 @@ public class LadderResultTest {
     }
 
     @Test
+    @DisplayName("resultOf 메서드를 통해 특정 이름의 사다리 결과를 반환한다")
     void resultOf() {
         assertThat(ladderResult.resultOf("a")).isEqualTo(2);
         assertThat(ladderResult.resultOf("b")).isEqualTo(0);
