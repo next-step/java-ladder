@@ -47,25 +47,15 @@ public class Result {
 
     public static void printAllResult(Ladder ladder, List<User> users, List<String> results) {
         for (int i = 0; i < users.size(); i++) {
-            printResult(ladder.getLines(), users, results, i);
+            printResult(ladder, users, results, i);
         }
     }
 
-    public static void printResult(List<Line> lines, List<User> users, List<String> results, int index) {
-        int lastPosition = getLastIndexInLine(lines, index);
+    public static void printResult(Ladder ladder, List<User> users, List<String> results, int index) {
+        int lastPosition = ladder.getLastMoveIndexByStartPositionIndex(index);
         System.out.println(users.get(index).getUserName() + ": " + results.get(lastPosition));
     }
 
-    public static int getLastIndexInLine(List<Line> lines, int index) {
-        int position = index;
 
-        for (Line line : lines) {
-            position = getNextIndex(line.getPoints(), position);
-        }
-        return position;
-    }
 
-    public static int getNextIndex(List<Point> points, int index) {
-        return points.get(index).move();
-    }
 }

@@ -15,11 +15,20 @@ public class Ladder {
 
     public Ladder(int height, int lineCount, BooleanFunction booleanFunction) {
         this.lines = IntStream.range(0, height)
-                .mapToObj(i -> new Line(lineCount, booleanFunction))
+                .mapToObj(i -> Line.of(lineCount, booleanFunction))
                 .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public int getLastMoveIndexByStartPositionIndex(int startPositionIndex) {
+        int position = startPositionIndex;
+
+        for (Line line : lines) {
+            position = line.getMoveIndexByPointIndex(position);
+        }
+        return position;
     }
 }
