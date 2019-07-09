@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
 public class Point {
+    public static final Point UNKNOWN = new Point(null, Direction.UNKNOWN);
+
     private final Position position;
     private final Direction direction;
 

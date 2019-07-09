@@ -3,7 +3,8 @@ package nextstep.ladder.domain;
 public enum Direction {
     RIGHT,
     LEFT,
-    NONE;
+    NONE,
+    UNKNOWN;
 
     public static Direction first(final boolean isConnected) {
         if (isConnected) {

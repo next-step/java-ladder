@@ -10,7 +10,7 @@ public final class LineFactory {
 
     public static Line createLine(final int length) {
         final List<Point> points = new ArrayList<>();
-        Point point = null;
+        Point point = Point.UNKNOWN;
         for (int i = 0; i < length; i++) {
             point = PointFactory.create(point, i, length);
             points.add(point);
