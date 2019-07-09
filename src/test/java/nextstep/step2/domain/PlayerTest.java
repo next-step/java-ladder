@@ -1,5 +1,8 @@
 package nextstep.step2.domain;
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,5 +38,20 @@ public class PlayerTest {
     @DisplayName("name 이 5자 초과")
     void create_player_name_length_6() {
         assertThatIllegalArgumentException().isThrownBy(() -> new Player(0, "choebk"));
+    }
+
+    @Test
+    @DisplayName("player 의 reward 조회")
+    void get_player_reward() {
+        Players players = Players.create(List.of("a", "b", "c", "d"));
+        GameResults results = GameResults.create(List.of("1000", "1000", "1000", "1000"));
+        LadderGame game = new LadderGame(players, 5);
+        Ladder ladder = game.start();
+
+        Map<Player, Result> playerResultMap = players.getPlayerRewards(results, ladder);
+        assertAll(
+            () -> assertThat(playerResultMap.size()).isEqualTo(4),
+            () -> assertThat(playerResultMap.get(players.findByName("a")).getReward()).isEqualTo("1000")
+        );
     }
 }

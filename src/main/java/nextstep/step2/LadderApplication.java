@@ -23,7 +23,7 @@ public class LadderApplication {
         final var ladder = game.start();
         OutputView.printLadderModel(players, ladder);
 
-        Map<Player, Result> playerResults = ladder.getPlayerRewards(players, gameResults);
+        Map<Player, Result> playerResults = players.getPlayerRewards(gameResults, ladder);
 
         var name = "no";
         while (!ALL.equalsIgnoreCase(name = InputView.inputResultPlayer())) {

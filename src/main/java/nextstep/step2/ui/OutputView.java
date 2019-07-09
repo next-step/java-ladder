@@ -39,7 +39,7 @@ public class OutputView {
     }
 
     private static String getLadder(Point point) {
-        if (point.isRightLine()) {
+        if (point.getDirections().isRightLine()) {
             return VERTICAL_LINE + HORIZONTAL_LINE;
         }
 

@@ -1,5 +1,6 @@
 package nextstep.step2.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Player {
@@ -16,6 +17,16 @@ public class Player {
 
     public Player(Player player) {
         this(player.startPoint, player.name);
+    }
+
+    public Result getPlayerReward(final GameResults gameResults, List<Line> lines) {
+        var position = getStartPoint();
+        for (Line line : lines) {
+            final var point = line.getPoint(position);
+            position = point.move();
+        }
+
+        return gameResults.findByPosition(position);
     }
 
     private void validateStartPoint(final int startPoint) {
