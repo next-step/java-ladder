@@ -1,7 +1,5 @@
 package ladder.view.component.constant;
 
-import java.util.Arrays;
-
 public enum Step {
     GAMERS_STEP(1),
     REWARD_INPUT_STEP(2),

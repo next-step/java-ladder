@@ -1,6 +1,6 @@
 package ladder.controller;
 
-import ladder.core.controller.Controller;
+import ladder.core.controller.ILadderController;
 import ladder.domain.gamer.Gamers;
 import ladder.domain.gamer.info.Gamer;
 import ladder.domain.ladder.Ladder;
@@ -10,7 +10,7 @@ import ladder.message.result.ResultMessage;
 import ladder.message.result.RewardMessage;
 import ladder.view.MainView;
 
-public class LadderController implements Controller {
+public class LadderController implements ILadderController {
     private final static EmptyMessage EMPTY_MESSAGE = new EmptyMessage();
     private final static String EMPTY_STRING = "";
     private final static String RESULT_DELIMITER = ":";
