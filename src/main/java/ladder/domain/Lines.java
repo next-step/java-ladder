@@ -37,6 +37,16 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
+    public int move(int index) {
+        if (hasLeftLine(index)) {
+            return index - 1;
+        }
+        if (hasRightLine(index)) {
+            return index + 1;
+        }
+        return index;
+    }
+
     private void validate() {
         checkFirstLineFalse();
         allLineLineHasNoNeighborLine();
@@ -48,14 +58,22 @@ public class Lines {
         }
     }
 
-    private boolean hasLineAndHasNeighborLine(int index) {
-        if (!lines.get(index).hasLine() || index == 0) {
+    private boolean hasLeftLine(int index) {
+        if (index == 0) {
             return false;
         }
+        return lines.get(index).hasLine();
+    }
+
+    private boolean hasRightLine(int index) {
         if (index == lines.size() - 1) {
-            return lines.get(index - 1).hasLine();
+            return false;
         }
-        return lines.get(index - 1).hasLine() || lines.get(index + 1).hasLine();
+        return lines.get(index + 1).hasLine();
+    }
+
+    private boolean hasLineAndHasNeighborLine(int index) {
+        return hasLeftLine(index) && hasRightLine(index);
     }
 
     private void allLineLineHasNoNeighborLine() {
