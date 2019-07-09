@@ -24,6 +24,10 @@ public class Rewards {
         return Collections.unmodifiableList(rewards);
     }
 
+    public Reward get(int index) {
+        return rewards.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
