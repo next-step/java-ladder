@@ -22,7 +22,11 @@ public class ResultView {
     }
 
     public static String getDefaultResultText() {
-        return "\n실행결과\n";
+        return "\n사다리 결과\n";
+    }
+
+    public static String getDefaultRewardText() {
+        return "\n실행 결과";
     }
 
     public static String getNamesView(Names names) {
