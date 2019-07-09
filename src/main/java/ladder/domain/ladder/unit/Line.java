@@ -19,16 +19,11 @@ public class Line {
     private final int startPoint;
     private int endPoint;
     
-    public static Line from(int cellSize, int startPoint) {
-        return new Line(cellSize, startPoint);
-    }
-    
-    public static Line from(Line beforeLine, boolean lastLine, int startPoint) {
-        return new Line(beforeLine, lastLine, startPoint);
-    }
-    
-    private static boolean shouldConnect() {
-        return RANDOM.nextInt(MAX_NUMBER) > DEFAULT_FREQUENCY;
+    private Line(Line beforeLine, boolean lastRow, int startPoint) {
+        cells = beforeLine.getStream()
+            .map(beforeCell -> Cell.from(beforeCell, getConnected(lastRow)))
+            .collect(Collectors.toList());
+        this.startPoint = startPoint;
     }
     
     private Line(int cellSize, int startPoint) {
@@ -41,11 +36,16 @@ public class Line {
         this.startPoint = startPoint;
     }
     
-    private Line(Line beforeLine, boolean lastRow, int startPoint) {
-        cells = beforeLine.getStream()
-            .map(beforeCell -> Cell.from(beforeCell, getConnected(lastRow)))
-            .collect(Collectors.toList());
-        this.startPoint = startPoint;
+    public static Line from(int cellSize, int startPoint) {
+        return new Line(cellSize, startPoint);
+    }
+    
+    public static Line from(Line beforeLine, boolean lastLine, int startPoint) {
+        return new Line(beforeLine, lastLine, startPoint);
+    }
+    
+    private static boolean shouldConnect() {
+        return RANDOM.nextInt(MAX_NUMBER) > DEFAULT_FREQUENCY;
     }
     
     private boolean getConnected(boolean lastRow) {

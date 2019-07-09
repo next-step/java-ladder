@@ -18,13 +18,22 @@ public class Ladder {
     private final List<Line> ladder;
     private int cellSize;
     
+    private Ladder() {
+        ladder = new ArrayList<>();
+        cellSize = 0;
+    }
+    
     public static Ladder newInstance() {
         return new Ladder();
     }
     
-    private Ladder() {
-        ladder = new ArrayList<>();
-        cellSize = 0;
+    public void makeLadder(int cellSize, Gamers gamers) {
+        int size = gamers.getSize();
+        this.cellSize = cellSize;
+        ladder.add(Line.from(cellSize, ladder.size()));
+        IntStream.range(START_COUNT, size)
+          .forEach(i -> ladder.add(Line.from(ladder.get(i - BEFORE_INDEX), i == size - BEFORE_INDEX, i)));
+        setEndPoint();
     }
     
     private void setEndPoint() {
@@ -75,14 +84,5 @@ public class Ladder {
     
     public List<Line> getLadder() {
         return ladder;
-    }
-    
-    public void makeLadder(int cellSize, Gamers gamers) {
-        int size = gamers.getSize();
-        this.cellSize = cellSize;
-        ladder.add(Line.from(cellSize, ladder.size()));
-        IntStream.range(START_COUNT, size)
-          .forEach(i -> ladder.add(Line.from(ladder.get(i - BEFORE_INDEX), i == size - BEFORE_INDEX, i)));
-        setEndPoint();
     }
 }

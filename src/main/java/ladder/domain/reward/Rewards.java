@@ -14,12 +14,12 @@ public class Rewards {
     
     private final List<Reward> rewards;
     
-    public static Rewards newInstance() {
-        return new Rewards();
-    }
-    
     private Rewards() {
         this.rewards = new ArrayList<>();
+    }
+    
+    public static Rewards newInstance() {
+        return new Rewards();
     }
     
     public List<String> getRewardNames() {

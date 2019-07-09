@@ -5,14 +5,13 @@ import java.util.Objects;
 public class Gamer {
     private final Name name;
     
-    public static Gamer from(final String name) {
-        return new Gamer(name);
-    }
-
     private Gamer(final String name) {
         this.name = Name.newEnglishNumericOf(name);
     }
     
+    public static Gamer from(final String name) {
+        return new Gamer(name);
+    }
     
     public String getName() {
         return name.toString();
