@@ -36,8 +36,19 @@ public class LadderTest {
         line2.add(next2);
         line2.add(end);
 
+        final List<Point> line3 = new ArrayList<>();
+        first = Point.firstOf(c -> Direction.RIGHT);
+        next1 = first.nextOf(c -> Direction.LEFT);
+        next2 = next1.nextOf(c -> Direction.RIGHT);
+        end = next2.endOf();
+        line3.add(first);
+        line3.add(next1);
+        line3.add(next2);
+        line3.add(end);
+
         lines.add(new Line(line1));
         lines.add(new Line(line2));
+        lines.add(new Line(line3));
 
         ladder = new Ladder(lines);
     }
@@ -65,9 +76,9 @@ public class LadderTest {
     @Test
     @DisplayName("사다리의 시작점에서 도착점을 계산할 수 있다.")
     void move_StartToEnd_result() {
-        assertThat(ladder.move(0)).isEqualTo(2);
-        assertThat(ladder.move(1)).isEqualTo(0);
-        assertThat(ladder.move(2)).isEqualTo(3);
-        assertThat(ladder.move(3)).isEqualTo(1);
+        assertThat(ladder.move(0)).isEqualTo(3);
+        assertThat(ladder.move(1)).isEqualTo(1);
+        assertThat(ladder.move(2)).isEqualTo(2);
+        assertThat(ladder.move(3)).isEqualTo(0);
     }
 }

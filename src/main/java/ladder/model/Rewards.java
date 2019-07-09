@@ -26,4 +26,8 @@ public class Rewards {
     public List<Reward> getRewards() {
         return rewards;
     }
+
+    public Reward getReward(int index) {
+        return rewards.get(index);
+    }
 }

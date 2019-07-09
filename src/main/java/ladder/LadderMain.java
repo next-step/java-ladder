@@ -1,26 +1,32 @@
 package ladder;
 
 import java.util.List;
+import java.util.Map;
 
 import ladder.model.Ladder;
-import ladder.model.Participants;
+import ladder.model.LadderGame;
+import ladder.model.Participant;
+import ladder.model.Reward;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public final class LadderMain {
     public static void main(String[] args) {
         final List<String> participantNames = InputView.inputParticipants();
-        final List<String> rewards = InputView.inputRewards();
+        final List<String> rewardNames = InputView.inputRewards();
 
-        if (participantNames.size() != rewards.size()) {
-            System.out.println("참여자와 보상 갯수가 맞지 않습니다.");
-            return;
-        }
-        final Participants participants = new Participants(participantNames);
+        final LadderGame ladderGame = new LadderGame(participantNames, rewardNames);
 
         final int ladderHeight = InputView.inputLadderHeight();
-        final Ladder ladder = Ladder.generateRandom(ladderHeight, participantNames.size());
+        final Ladder ladder = ladderGame.initGame(ladderHeight);
+        final Map<Participant, Reward> result = ladderGame.run(ladder);
 
-        OutputView.printResult(participants, ladder);
+        OutputView.printLadderWithInformation(ladderGame.getParticipants(), ladderGame.getRewards(), ladder);
+
+        boolean isPrintFinished = false;
+        while (!isPrintFinished) {
+            final String nameOfResult = InputView.inputChoiceResult();
+            isPrintFinished = OutputView.printResult(result, nameOfResult);
+        }
     }
 }

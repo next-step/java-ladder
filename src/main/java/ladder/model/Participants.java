@@ -26,4 +26,12 @@ public class Participants {
     public List<Participant> getParticipants() {
         return participants;
     }
+
+    public int size() {
+        return participants.size();
+    }
+
+    public Participant getParticipant(int index) {
+        return participants.get(index);
+    }
 }
