@@ -24,35 +24,9 @@ public class GameResult {
 
     public void run(LadderFactory ladderFactory, UserGroup userGroup) {
         IntStream.range(0, userGroup.getUserGroup().size()).
-                forEach(i -> runLadderGame(ladderFactory, userGroup, makeLadderMapArr(ladderFactory), userGroup.getUserGroup().get(i).getName()));
+                forEach(i -> userGroup.runLadderGame(ladderFactory, makeLadderMapArr(ladderFactory), userGroup.getUserGroup().get(i).getName()));
 
         getResult(userGroup.getUserGroup());
-    }
-
-    private void runLadderGame(LadderFactory ladderFactory, UserGroup userGroup, Boolean[][] ladderMap, String requestName) {
-        int moveFlag = 0;
-
-        for (int i = 0; i < ladderFactory.getLadder().size(); ++i) {
-            for (int j = 1; j < userGroup.getUserGroup().size(); ++j) {
-                // 좌측으로 움직이는 조건
-                if (userGroup.compareCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
-                    userGroup.moveLeft(requestName);
-                    moveFlag += 1;
-                    break;
-                }
-                // 좌측으로 움직이는 조건
-                if (userGroup.compareNextCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
-                    userGroup.moveRight(requestName);
-                    moveFlag += 1;
-                    break;
-                }
-            }
-            // 좌 우측 움직이 없을때 직진
-            if (moveFlag == i) {
-                userGroup.moveStraight(requestName);
-                moveFlag += 1;
-            }
-        }
     }
 
     public void getResult(List<SingleUser> userGroup) {

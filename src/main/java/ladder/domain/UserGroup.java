@@ -20,7 +20,37 @@ public class UserGroup {
         }
     }
 
-    public Boolean compareCol(String name, int compareCol) {
+    public void runLadderGame(LadderFactory ladderFactory, Boolean[][] ladderMap, String requestName) {
+        int moveFlag = 0;
+
+        for (int i = 0; i < ladderFactory.getLadder().size(); ++i) {
+            for (int j = 1; j < userGroup.size(); ++j) {
+                // 좌측으로 움직이는 조건
+                if (this.compareCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
+                    this.moveLeft(requestName);
+                    moveFlag += 1;
+                    break;
+                }
+                // 좌측으로 움직이는 조건
+                if (this.compareNextCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
+                    this.moveRight(requestName);
+                    moveFlag += 1;
+                    break;
+                }
+            }
+            // 좌 우측 움직이 없을때 직진
+            if (moveFlag == i) {
+                this.moveStraight(requestName);
+                moveFlag += 1;
+            }
+        }
+    }
+
+    public List<SingleUser> getUserGroup() {
+        return userGroup;
+    }
+
+    private Boolean compareCol(String name, int compareCol) {
         return userGroup.stream()
                 .filter(user -> user.matchName(name))
                 .findAny().orElseThrow(IllegalArgumentException::new)
@@ -28,7 +58,7 @@ public class UserGroup {
                 .matchCol(compareCol);
     }
 
-    public Boolean compareNextCol(String name, int compareCol) {
+    private Boolean compareNextCol(String name, int compareCol) {
         return userGroup.stream()
                 .filter(user -> user.matchName(name))
                 .findAny().orElseThrow(IllegalArgumentException::new)
@@ -36,7 +66,7 @@ public class UserGroup {
                 .matchNextCol(compareCol);
     }
 
-    public void moveLeft(String name) {
+    private void moveLeft(String name) {
         userGroup.stream()
                 .filter(user -> user.matchName(name))
                 .findAny().orElseThrow(IllegalArgumentException::new)
@@ -44,7 +74,7 @@ public class UserGroup {
                 .moveLeft();
     }
 
-    public void moveRight(String name) {
+    private void moveRight(String name) {
         userGroup.stream()
                 .filter(user -> user.matchName(name))
                 .findAny().orElseThrow(IllegalArgumentException::new)
@@ -52,16 +82,12 @@ public class UserGroup {
                 .moveRight();
     }
 
-    public void moveStraight(String name) {
+    private void moveStraight(String name) {
         userGroup.stream()
                 .filter(user -> user.matchName(name))
                 .findAny().orElseThrow(IllegalArgumentException::new)
                 .getPosition()
                 .moveStraight();
-    }
-
-    public List<SingleUser> getUserGroup() {
-        return userGroup;
     }
 
     private String[] splitName(String names) {
