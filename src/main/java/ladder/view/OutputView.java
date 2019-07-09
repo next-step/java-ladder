@@ -13,11 +13,11 @@ public class OutputView {
     private static DataPrintFormatter<Players> playersPrintFormatter = new PlayersPrintFormatter();
     private static DataPrintFormatter<Prizes> prizesPrintFormatter = new PrizesPrintFormatter();
 
-    public static void drawLadder(Ladder ladder, GameInfo gameInfo) {
+    public static void printGame(LadderGame ladderGame) {
         printResultTitle();
-        printPlayers(gameInfo.getPlayers());
-        printLadder(ladder);
-        printPrizes(gameInfo.getPrizes());
+        printPlayers(ladderGame.getPlayers());
+        printLadder(ladderGame.getLadder());
+        printPrizes(ladderGame.getPrizes());
     }
 
     private static void printResultTitle() {
