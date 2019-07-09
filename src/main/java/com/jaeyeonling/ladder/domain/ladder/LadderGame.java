@@ -2,14 +2,17 @@ package com.jaeyeonling.ladder.domain.ladder;
 
 import com.jaeyeonling.ladder.domain.GameInfo;
 import com.jaeyeonling.ladder.domain.GameResult;
-import com.jaeyeonling.ladder.domain.line.*;
+import com.jaeyeonling.ladder.domain.line.HeightOfLadder;
+import com.jaeyeonling.ladder.domain.line.Lines;
+import com.jaeyeonling.ladder.domain.line.LinesFactory;
 import com.jaeyeonling.ladder.domain.point.Point;
 import com.jaeyeonling.ladder.domain.user.User;
 import com.jaeyeonling.ladder.domain.user.Username;
 import com.jaeyeonling.ladder.domain.user.Users;
+import com.jaeyeonling.ladder.exception.NotInitializeLineException;
 
 import java.util.Map;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -20,15 +23,12 @@ public class LadderGame {
     private final GameInfo gameInfo;
     private Lines lines;
 
-    private LadderGame(final GameInfo gameInfo,
-                       final Lines lines) {
+    private LadderGame(final GameInfo gameInfo) {
         this.gameInfo = gameInfo;
-        this.lines = lines;
     }
 
-    public static Builder builder(final Users users,
-                                  final LadderRewords ladderRewords) {
-        return new Builder(users, ladderRewords);
+    public static LadderGame of(final GameInfo gameInfo) {
+        return new LadderGame(gameInfo);
     }
 
     public Lines getLines() {
@@ -43,13 +43,26 @@ public class LadderGame {
         return gameInfo.getRewords();
     }
 
+    public void initializeLines(final HeightOfLadder heightOfLadder,
+                                final LinesFactory linesFactory) {
+        this.lines = linesFactory.create(gameInfo, heightOfLadder);
+    }
+
     public GameResult play() {
+        if (!isInitialize()) {
+            throw new NotInitializeLineException();
+        }
+
         final Map<String, LadderReword> rewordOfUsername = gameInfo.userStream()
                 .map(User::getUsername)
                 .map(Username::getUsername)
                 .collect(Collectors.toMap(Function.identity(), this::findMatchingReword));
 
         return GameResult.of(rewordOfUsername);
+    }
+
+    private boolean isInitialize() {
+        return Objects.nonNull(lines);
     }
 
     LadderReword findMatchingReword(final String usernameOfMatchReword) {
@@ -64,71 +77,5 @@ public class LadderGame {
         final Point resultPoint = lines.ride(point);
 
         return resultPoint.getIndexOfLadder();
-    }
-
-    public static class Builder {
-        private static final PointGenerateStrategy DEFAULT_POINT_GENERATE_STRATEGY = new RandomPointGenerateStrategy();
-        private static final HeightOfLadder DEFAULT_HEIGHT_OF_LADDER = HeightOfLadder.valueOf(10);
-
-        private final Users users;
-        private final LadderRewords ladderRewords;
-
-        private PointGenerateStrategy pointGenerateStrategy;
-        private LineGenerator lineGenerator;
-        private LinesFactory linesFactory;
-        private HeightOfLadder heightOfLadder;
-
-        private Builder(final Users users,
-                        final LadderRewords ladderRewords) {
-            this.users = users;
-            this.ladderRewords = ladderRewords;
-        }
-
-        public LadderGame build() {
-            final GameInfo gameInfo = GameInfo.withUsersAndLadderRewords(users, ladderRewords);
-            final Lines lines = getLinesFactory().create(gameInfo, getHeightOfLadder());
-
-            return new LadderGame(gameInfo, lines);
-        }
-
-        public Builder pointGenerateStrategy(final PointGenerateStrategy pointGenerateStrategy) {
-            this.pointGenerateStrategy = pointGenerateStrategy;
-            return this;
-        }
-
-        public Builder lineGenerator(final LineGenerator lineGenerator) {
-            this.lineGenerator = lineGenerator;
-            return this;
-        }
-
-        public Builder linesFactory(final LinesFactory linesFactory) {
-            this.linesFactory = linesFactory;
-            return this;
-        }
-
-        public Builder heightOfLadder(final HeightOfLadder heightOfLadder) {
-            this.heightOfLadder = heightOfLadder;
-            return this;
-        }
-
-        private LinesFactory getLinesFactory() {
-            return Optional.ofNullable(linesFactory)
-                    .orElseGet(() -> GeneratorBaseLinesFactory.withLineGenerator(getLineGenerator()));
-        }
-
-        private LineGenerator getLineGenerator() {
-            return Optional.ofNullable(lineGenerator)
-                    .orElseGet(() -> StrategyBaseLineGenerator.withStrategy(getPointGenerateStrategy()));
-        }
-
-        private PointGenerateStrategy getPointGenerateStrategy() {
-            return Optional.ofNullable(pointGenerateStrategy)
-                    .orElse(DEFAULT_POINT_GENERATE_STRATEGY);
-        }
-
-        private HeightOfLadder getHeightOfLadder() {
-            return Optional.ofNullable(heightOfLadder)
-                    .orElse(DEFAULT_HEIGHT_OF_LADDER);
-        }
     }
 }

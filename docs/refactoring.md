@@ -61,8 +61,8 @@ public class LadderLine {
         this.points = points;
     }
 
-    public int move(int position) {
-        return points.get(position).move();
+    public int move(int index) {
+        return points.get(index).move();
     }
 
     public static LadderLine init(int sizeOfPerson) {
@@ -114,7 +114,7 @@ public class LadderLineTest {
     @Test
     public void move() {
         LadderLine line = LadderLine.init(2);
-        System.out.println("ladder result : " + line.move(0));
+        System.out.println(ladder2 + line.move(0));
     }
 }
 

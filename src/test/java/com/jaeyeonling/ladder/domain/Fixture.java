@@ -2,6 +2,7 @@ package com.jaeyeonling.ladder.domain;
 
 import com.jaeyeonling.ladder.domain.ladder.LadderGame;
 import com.jaeyeonling.ladder.domain.ladder.LadderRewords;
+import com.jaeyeonling.ladder.domain.line.HeightOfLadder;
 import com.jaeyeonling.ladder.domain.line.Line;
 import com.jaeyeonling.ladder.domain.line.Lines;
 import com.jaeyeonling.ladder.domain.point.Direction;
@@ -18,7 +19,7 @@ public final class Fixture {
     public static String rawUsers = "test1,test2,test3,test4,test5";
 
     public static User user = User.of(rawUsername);
-    public static Users multiUsers = Users.ofSeparator(rawUsers);
+    private static Users multiUsers = Users.ofSeparator(rawUsers);
     public static CountOfUsers countOfusers = multiUsers.getCountOfUsers();
 
     public static List<Direction> rightLeftDirection = List.of(Direction.RIGHT, Direction.LEFT,
@@ -36,13 +37,14 @@ public final class Fixture {
 
     public static String rawLadderRewords = "꽝,5000,꽝,5000,꽝";
 
-    public static LadderRewords ladderRewords = LadderRewords.ofSeparator(rawLadderRewords);
+    private static LadderRewords LADDER_REWORDS = LadderRewords.ofSeparator(rawLadderRewords);
 
     public static Lines allRightLeftLines = Lines.of(rawAllRightLeftLines);
     public static Lines allStraightLines = Lines.of(rawAllStraightLines);
 
-    public static GameInfo gameInfo = GameInfo.withUsersAndLadderRewords(Fixture.multiUsers, Fixture.ladderRewords);
-    public static LadderGame ladderGame = LadderGame.builder(Fixture.multiUsers, Fixture.ladderRewords)
-            .linesFactory((ignore1, ignore2) -> allStraightLines)
-            .build();
+    public static GameInfo gameInfo = GameInfo.withUsersAndLadderRewords(Fixture.multiUsers, Fixture.LADDER_REWORDS);
+    public static LadderGame ladderGame = LadderGame.of(gameInfo);
+    static {
+        ladderGame.initializeLines(HeightOfLadder.valueOf(5), (ignore1, ignore2) -> allStraightLines);
+    }
 }
