@@ -1,8 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Name;
-import ladder.domain.Names;
+import ladder.domain.*;
 
 import java.util.stream.Collectors;
 
@@ -32,6 +30,11 @@ public class ResultView {
     public static String getNamesView(Names names) {
         return names.getNames().stream()
                 .map(Name::getViewName).collect(Collectors.joining(" "));
+    }
+
+    public static String getRewardsView(Rewards rewards) {
+        return rewards.getRewards().stream()
+                .map(Reward::getViewName).collect(Collectors.joining(" "));
     }
 
     public static String getLadderView(Ladder ladder) {

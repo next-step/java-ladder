@@ -5,6 +5,7 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,6 +30,7 @@ public class Main {
         System.out.println(ResultView.getDefaultResultText());
         System.out.println(ResultView.getNamesView(names));
         System.out.println(ResultView.getLadderView(ladder));
+        System.out.println(ResultView.getRewardsView(rewards));
 
         String nameToShow = "";
         while (!nameToShow.equals("all")) {
@@ -37,7 +39,17 @@ public class Main {
             int resultIndex = ladderResult.resultOf(nameToShow);
 
             System.out.println(ResultView.getDefaultRewardText());
-            System.out.println(rewards.get(resultIndex).getName());
+            System.out.println(rewards.get(resultIndex));
         }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        IntStream.range(0, names.size())
+                .forEach(index -> {
+                    stringBuilder.append(names.get(index).getName());
+                    stringBuilder.append(" : ");
+                    stringBuilder.append(rewards.get(ladderResult.result(index)));
+                    stringBuilder.append("\n");
+                });
+        System.out.println(stringBuilder.toString());
     }
 }
