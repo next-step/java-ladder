@@ -10,7 +10,6 @@ public class GameResult {
 
     static final String FINISH_CHARACTER = "all";
 
-
     private final Map<String, LadderReword> rewordOfUsername;
 
     private GameResult(final Map<String, LadderReword> rewordOfUsername) {

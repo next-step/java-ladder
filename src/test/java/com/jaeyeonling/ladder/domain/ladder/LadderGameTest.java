@@ -2,13 +2,11 @@ package com.jaeyeonling.ladder.domain.ladder;
 
 import com.jaeyeonling.ladder.domain.Fixture;
 import com.jaeyeonling.ladder.domain.user.Users;
-import com.jaeyeonling.ladder.exception.NotInitializeLineException;
 import com.jaeyeonling.ladder.view.format.Formatters;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class LadderGameTest {
 
@@ -32,15 +30,5 @@ class LadderGameTest {
             // then
             assertThat(formattedFoundReword).isEqualTo(expectLadderReword);
         }
-    }
-
-    @DisplayName("사다리가 초기화되지 않은 상태에서 게임 시작 시 예외처리")
-    @Test
-    void should_throw_NotInitializeLineException_when_play() {
-        // given
-        final LadderGame ladderGame = LadderGame.of(Fixture.gameInfo);
-
-        assertThatExceptionOfType(NotInitializeLineException.class)
-                .isThrownBy(ladderGame::play);
     }
 }
