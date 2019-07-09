@@ -27,4 +27,8 @@ public enum Direction {
     public Direction next() {
         return this == Direction.RIGHT ? Direction.LEFT : first();
     }
+
+    public Direction last() {
+        return this == Direction.RIGHT ? Direction.LEFT : Direction.PASS;
+    }
 }
