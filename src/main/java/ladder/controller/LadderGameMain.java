@@ -13,10 +13,10 @@ public class LadderGameMain {
         int maxHeight = Inputview.inputLadderMaxHeight();
 
         UserGroup userGroup = new UserGroup(userNames);
-        LadderFactory ladderFactory = new LadderFactory(maxHeight,userGroup.getUserGroup().size());
+        LadderFactory ladderFactory = new LadderFactory(maxHeight, userGroup.getUserGroup().size());
 
         GameResult result = new GameResult(userReward, maxHeight);
-        ResultView.printLadder(ladderFactory,userGroup,result);
+        ResultView.printLadder(ladderFactory, userGroup, result);
 
         String request = Inputview.requestResult();
         result.run(ladderFactory, userGroup);
