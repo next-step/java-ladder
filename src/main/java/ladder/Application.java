@@ -16,11 +16,11 @@ public class Application {
         Ladder ladder = Ladder.from(players, height);
 
         LadderGame ladderGame = LadderGame.of(gameInfo, ladder);
+        GameResult gameResult = ladderGame.playGame();
+
         OutputView.printGame(ladderGame);
 
-        GameResult gameResult = GameResult.of(ladder, gameInfo);
         String wantedPlayer = InputView.askWhichResultWant();
-
         if (ALL_RESULTS.equals(wantedPlayer)) {
             OutputView.printAllResult(gameResult);
             return;
