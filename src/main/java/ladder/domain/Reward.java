@@ -13,6 +13,14 @@ public class Reward {
         return name;
     }
 
+    public String getViewName() {
+        StringBuilder name = new StringBuilder(getName());
+        while (name.length() < Name.MAX_NAME_LENGTH) {
+            name.insert(0, " ");
+        }
+        return name.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
