@@ -16,14 +16,13 @@ public class Line {
     private final static int DEFAULT_FREQUENCY = 5;
     
     private final List<Cell> cells;
-    private final int startPoint;
-    private int endPoint;
+    private final Points points;
     
     private Line(Line beforeLine, boolean lastRow, int startPoint) {
         cells = beforeLine.getStream()
             .map(beforeCell -> Cell.from(beforeCell, getConnected(lastRow)))
             .collect(Collectors.toList());
-        this.startPoint = startPoint;
+        points = Points.from(startPoint);
     }
     
     private Line(int cellSize, int startPoint) {
@@ -33,7 +32,7 @@ public class Line {
         cells = IntStream.range(START_COUNT, cellSize)
             .mapToObj(i -> Cell.from(shouldConnect()))
             .collect(Collectors.toList());
-        this.startPoint = startPoint;
+        points = Points.from(startPoint);
     }
     
     public static Line from(int cellSize, int startPoint) {
@@ -65,14 +64,14 @@ public class Line {
     }
     
     public boolean isStartPointAt(int point) {
-        return startPoint == point;
+        return points.isStartPoint(point);
     }
     
     public void setEndPoint(int endPoint) {
-        this.endPoint = endPoint;
+        points.setEndPoint(endPoint);
     }
     
     public int getEndPoint() {
-        return endPoint;
+        return points.getEndPoint();
     }
 }

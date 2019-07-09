@@ -3,7 +3,6 @@ package ladder.view.component.constant;
 import java.util.Arrays;
 
 public enum Step {
-    EMPTY_STEP(0),
     GAMERS_STEP(1),
     REWARD_INPUT_STEP(2),
     LADDER_SIZE_STEP(3),
@@ -15,19 +14,15 @@ public enum Step {
     
     private int step;
     
+    Step(int step) {
+        this.step = step;
+    }
+
     public static boolean isThisStep(Step step) {
         return THIS_STEP == step;
     }
     
     public static void setNextStep(Step step) {
         THIS_STEP = step;
-    }
-    
-    Step(int step) {
-        this.step = step;
-    }
-    
-    private int getStep() {
-        return step;
     }
 }
