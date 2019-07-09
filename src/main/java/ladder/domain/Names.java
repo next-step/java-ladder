@@ -24,6 +24,10 @@ public class Names {
         return new Names(names);
     }
 
+    public Name get(int index) {
+        return names.get(index);
+    }
+
     public int size() {
         return names.size();
     }
