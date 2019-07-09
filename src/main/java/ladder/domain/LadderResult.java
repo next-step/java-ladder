@@ -12,6 +12,9 @@ public class LadderResult {
     }
 
     public int result(int index) {
+        if (index == -1) {
+            return -1;
+        }
         return IntStream.range(0, ladder.height())
                 .reduce(index, (resultIndex, current) -> resultIndex = ladder.linesByLevel(current).move(resultIndex));
     }
