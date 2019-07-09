@@ -58,7 +58,7 @@ public class GameResult {
 
     private String[] checkReward(String[] inputStrings) {
         Arrays.stream(inputStrings)
-                .filter(inputString -> inputString.isEmpty() || inputString.equals(" ")
+                .filter(inputString -> "".equals(inputString) || inputString.equals(" ")
                         || inputString.equals("\n"))
                 .forEach(inputString -> {
                     throw new IllegalArgumentException("입력값이 잘못되었습니다. 실행 결과를 다시 한번 입력해주세요.");
