@@ -24,8 +24,11 @@ public class Rewards {
         return Collections.unmodifiableList(rewards);
     }
 
-    public Reward get(int index) {
-        return rewards.get(index);
+    public String get(int index) {
+        if (index == -1) {
+            return "";
+        }
+        return rewards.get(index).getName();
     }
 
     @Override
