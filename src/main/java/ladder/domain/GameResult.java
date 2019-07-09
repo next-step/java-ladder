@@ -13,12 +13,13 @@ public class GameResult {
     public GameResult(String userReward, int maxHeight) {
         String[] namesOfReward = checkReward(splitName(userReward));
         gameReward = new ArrayList<>();
-        GameReward gameRewardElement;
 
-        for (int i = 0; i < namesOfReward.length; ++i) {
-            gameRewardElement = new GameReward(namesOfReward[i], maxHeight, i);
-            gameReward.add(gameRewardElement);
-        }
+        IntStream.range(0, namesOfReward.length)
+                .forEach(i -> {
+                    GameReward gameRewardElement = new GameReward(namesOfReward[i], maxHeight, i);
+                    gameReward.add(gameRewardElement);
+
+                });
     }
 
     public void run(LadderFactory ladderFactory, UserGroup userGroup) {
