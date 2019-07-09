@@ -15,8 +15,7 @@ public class LinesTest {
 
     @BeforeEach
     void setUp() {
-        Participants participants = Participants.of(names);
-        lines = new Lines(participants.size());
+        lines = new Lines(names.size());
     }
 
     @Test
