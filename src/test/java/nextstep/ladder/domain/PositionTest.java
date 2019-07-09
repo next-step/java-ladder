@@ -10,7 +10,6 @@ class PositionTest {
     @Test
     @DisplayName("첫번째 position 이 잘 생성되는지")
     void first() {
-        final int size = 5;
         final Position actual = Position.first(5);
         assertThat(actual).isInstanceOf(Position.class);
     }
@@ -18,7 +17,7 @@ class PositionTest {
     @Test
     @DisplayName("다음 position 을 잘 생성하는지")
     void increase() {
-        final Position position = Position.first(1);
+        final Position position = Position.first(3);
         final Position actual = position.increase();
         assertThat(actual).isInstanceOf(Position.class);
     }
