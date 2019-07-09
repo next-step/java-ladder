@@ -10,12 +10,13 @@ public class Application {
     public static void main(String[] args) {
         Players players = Players.of(InputView.askPlayers());
         Prizes prizes = Prizes.from(InputView.askPrizes());
-        GameInfo gameInfo = GameInfo.of(players, prizes);
-
         Height height = Height.from(InputView.askHeight());
 
+        GameInfo gameInfo = GameInfo.of(players, prizes);
         Ladder ladder = Ladder.from(players, height);
-        OutputView.drawLadder(ladder, gameInfo);
+
+        LadderGame ladderGame = LadderGame.of(gameInfo, ladder);
+        OutputView.drawLadder(ladderGame);
 
         GameResult gameResult = GameResult.of(ladder, gameInfo);
         String wantedPlayer = InputView.askWhichResultWant();
