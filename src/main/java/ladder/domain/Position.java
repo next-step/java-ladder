@@ -42,15 +42,15 @@ public class Position {
         col += 1;
     }
 
-    public boolean matchRow(int row) {
+    boolean matchRow(int row) {
         return this.row == row;
     }
 
-    public boolean matchCol(int col) {
+    boolean matchCol(int col) {
         return this.col == col;
     }
 
-    public boolean matchNextCol(int col) {
+    boolean matchNextCol(int col) {
         return this.col + 1 == col;
     }
 }

@@ -20,7 +20,7 @@ public class UserGroup {
         }
     }
 
-    public void playLadderGame(LadderFactory ladderFactory, Boolean[][] ladderMap, String requestName) {
+    public void playLadderGame(LadderFactory ladderFactory, Point[][] ladderMap, String requestName) {
         int moveFlag = 0;
 
         for (int i = 0; i < ladderFactory.getLadder().size(); ++i) {

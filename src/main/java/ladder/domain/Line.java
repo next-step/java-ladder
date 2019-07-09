@@ -6,32 +6,23 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
-    private List<Boolean> points;
+    private List<Point> pointList;
 
     Line(int countOfPerson) {
-
         Random random = new Random();
-        points = new ArrayList<>();
-        points.add(new Boolean(false)); //  첫번째 좌표값은 FALSE 값으로
+        pointList = new ArrayList<>();
+        pointList.add(new Point(false));
+        pointList.add(new Point(random.nextBoolean()));
 
-        IntStream.range(1, countOfPerson).forEach(i -> {
-            Boolean element = random.nextBoolean();
-            if (i > 1) {
-                element = checkElement(points.get(i - 1), element); // 세번째 값부터 인접 좌표와 중복이 되지 않도록 체크
-            }
-            points.add(element);
+        IntStream.range(2, countOfPerson).forEach(i -> {
+            Point pointElement = new Point(random.nextBoolean());
+            pointList.add(pointList.get(i - 1).checkDuplicate(pointElement)); // 세번째 요소부터 중복체크
         });
 
     }
 
-    public List<Boolean> getPoints() {
-        return points;
-    }
-
-    public Boolean checkElement(Boolean prev, Boolean addElement) {
-        if (prev == Boolean.TRUE && prev.equals(addElement))
-            return Boolean.FALSE;
-        return addElement;
+    public List<Point> getPointList() {
+        return pointList;
     }
 
     @Override
@@ -44,5 +35,4 @@ public class Line {
             return false;
         return true;
     }
-
 }

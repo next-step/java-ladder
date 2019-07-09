@@ -24,7 +24,7 @@ public class ResultView {
                             IntStream.range(0, userGroup.getUserGroup().size())
                                     .forEach(j ->
                                             {
-                                                if (ladderFactory.getLadder().get(i).getPoints().get(j) == Boolean.TRUE) {
+                                                if (ladderFactory.getLadder().get(i).getPointList().get(j).getPoint() == Boolean.TRUE) {
                                                     System.out.print(LADDER_HORIZON_LINE + LADDER_VERTICAL_LINE);
                                                 } else {
                                                     System.out.print(LADDER_BLANK + LADDER_VERTICAL_LINE);

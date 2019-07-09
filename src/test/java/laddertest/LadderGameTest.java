@@ -46,4 +46,15 @@ public class LadderGameTest {
         List<String> result= Arrays.asList("1000","2000","0","5000");
         assertThat(gameResult.getResultofSingleUser("Joy").getNameReward()).isIn(result);
     }
+
+    @Test
+    void Point_테스트(){
+        Point point = new Point(true);
+        assertThat(point.checkDuplicate(new Point(false))).isEqualTo(new Point(false));
+        assertThat(point.checkDuplicate(new Point(true))).isEqualTo(new Point(false));
+
+        Point point2 = new Point(false);
+        assertThat(point2.checkDuplicate(new Point(false))).isEqualTo(new Point(false));
+        assertThat(point2.checkDuplicate(new Point(true))).isEqualTo(new Point(true));
+    }
 }
