@@ -12,6 +12,8 @@ import static java.util.stream.Collectors.joining;
 
 public class Line implements StringVisualizable {
 
+    private static final int SIZE_TERM = 1;
+
     private final List<Direction> directions;
 
     private Line(final DirectionGenerateStrategy directionGenerateStrategy,
@@ -50,7 +52,7 @@ public class Line implements StringVisualizable {
 
     private void initMiddle(final DirectionGenerateStrategy strategy,
                             final int initSize) {
-        IntStream.range(directions.size(), initSize - 1)
+        IntStream.range(directions.size(), initSize - SIZE_TERM)
                 .mapToObj(ignore -> getLastDirection().next(strategy))
                 .forEach(directions::add);
     }
@@ -60,6 +62,6 @@ public class Line implements StringVisualizable {
     }
 
     private Direction getLastDirection() {
-        return directions.get(directions.size() - 1);
+        return directions.get(directions.size() - SIZE_TERM);
     }
 }
