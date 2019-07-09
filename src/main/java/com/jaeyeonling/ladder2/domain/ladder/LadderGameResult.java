@@ -12,8 +12,9 @@ import java.util.stream.Collectors;
 
 public class LadderGameResult implements StringVisualizable {
 
-    static final String FINISH_CHARACTER = "all";
     private static final String MATCHING_RESULT_FORMAT = "%s : %s";
+    static final String FINISH_CHARACTER = "all";
+
     private final Map<Username, LadderReword> rewordOfUsername;
 
     private LadderGameResult(final Map<Username, LadderReword> rewordOfUsername) {

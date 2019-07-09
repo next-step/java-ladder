@@ -8,9 +8,10 @@ import java.util.Objects;
 
 public class Index {
 
-    public static final int MIN = 0;
     public static final int INCREMENT_VALUE = 1;
     private static final Map<Integer, Index> POOL = new HashMap<>();
+    public static final int MIN = 0;
+
     private final int index;
 
     private Index(final int index) {

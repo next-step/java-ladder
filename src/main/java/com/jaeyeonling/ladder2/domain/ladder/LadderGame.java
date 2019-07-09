@@ -19,7 +19,7 @@ import static java.util.stream.Collectors.*;
 public class LadderGame implements StringVisualizable {
 
     private final GameInfo gameInfo;
-    private Lines lines;
+    private final Lines lines;
 
     private LadderGame(final GameInfo gameInfo,
                        final Lines lines) {

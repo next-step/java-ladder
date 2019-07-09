@@ -1,7 +1,7 @@
 package com.jaeyeonling.ladder2.domain.reword;
 
-import com.jaeyeonling.ladder2.view.StringVisualizable;
 import com.jaeyeonling.ladder2.utils.StringUtils;
+import com.jaeyeonling.ladder2.view.StringVisualizable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 public class LadderRewords implements StringVisualizable {
 
-    private static final String BLANK = " ";
-
     public static final String SEPARATOR = "\\s*,\\s*";
+
+    private static final String BLANK = " ";
 
     private final List<LadderReword> ladderRewords;
 
