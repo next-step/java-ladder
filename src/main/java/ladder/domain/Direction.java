@@ -1,35 +1,30 @@
 package ladder.domain;
 
-public class Direction {
-    private final boolean left;
-    private final boolean right;
+import java.util.Random;
 
-    private Direction(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException("정상적인 사다리가 아닙니다.");
-        }
+public enum Direction {
+    RIGHT(false, true),
+    LEFT(true, false),
+    PASS(false, false);
+
+    private static final Random random = new Random();
+    private boolean left;
+    private boolean right;
+
+    Direction(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }
 
     public static Direction first(boolean right) {
-        return of(false, right);
+        return right ? Direction.RIGHT : Direction.PASS;
     }
 
-    public static Direction last(boolean left) {
-        return of(left, false);
+    public static Direction first() {
+        return random.nextBoolean() ? Direction.RIGHT : Direction.PASS;
     }
 
-    public static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
+    public Direction next() {
+        return this == Direction.RIGHT ? Direction.LEFT : first();
     }
-
-    public boolean isRight() {
-        return this.right;
-    }
-
-    public boolean isLeft() {
-        return this.left;
-    }
-
 }

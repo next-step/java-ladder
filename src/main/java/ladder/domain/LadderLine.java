@@ -13,7 +13,7 @@ public class LadderLine {
     public static LadderLine init(Players players) {
         List<Point> pass = new ArrayList<>();
         for(int i = 0 ; i < players.size() ; i++ ){
-            pass.add(new Point());
+            pass.add(new Point(Position.first(), Direction.first()));
         }
         return new LadderLine(pass);
     }
