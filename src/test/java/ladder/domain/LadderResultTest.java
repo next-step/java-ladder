@@ -20,7 +20,7 @@ public class LadderResultTest {
 
     @Test
     @DisplayName("Ladder 를 통해 LadderResult 가 생성된다")
-    void name() {
+    void constructor() {
         Ladder ladder = Ladder.of(linesList);
         LadderResult ladderResult = new LadderResult(ladder);
     }
