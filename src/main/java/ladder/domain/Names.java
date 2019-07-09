@@ -40,4 +40,8 @@ public class Names {
     public int hashCode() {
         return Objects.hash(names);
     }
+
+    public int indexOf(String nameString) {
+        return names.indexOf(new Name(nameString));
+    }
 }
