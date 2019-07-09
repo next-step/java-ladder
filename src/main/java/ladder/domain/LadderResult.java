@@ -4,9 +4,11 @@ import java.util.stream.IntStream;
 
 public class LadderResult {
     private final Ladder ladder;
+    private final Names names;
 
-    public LadderResult(Ladder ladder) {
+    public LadderResult(Ladder ladder, Names names) {
         this.ladder = ladder;
+        this.names = names;
     }
 
     public int result(int index) {
