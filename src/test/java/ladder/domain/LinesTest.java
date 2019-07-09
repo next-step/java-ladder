@@ -50,4 +50,12 @@ public class LinesTest {
                 Lines.of(() -> Arrays.asList(false, true, true))
         );
     }
+
+    @Test
+    @DisplayName("Line 존재 여부에 따라 이동을 한다.")
+    void move() {
+        lines = Lines.of(() -> Arrays.asList(false, true, false, false));
+        assertThat(lines.move(0)).isEqualTo(1);
+        assertThat(lines.move(3)).isEqualTo(3);
+    }
 }
