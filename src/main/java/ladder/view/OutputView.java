@@ -49,7 +49,7 @@ public class OutputView {
     private static String printBars(Bar bar) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(COLUMN);
-        if (bar.isExist()) {
+        if (bar.hasRight()) {
             return stringBuilder.append(BAR).toString();
         }
         return stringBuilder.append(EMPTY_SPACE).toString();
