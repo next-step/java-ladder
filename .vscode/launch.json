@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - LadderGameMain",
+            "request": "launch",
+            "mainClass": "ladder.controller.LadderGameMain",
+            "projectName": "java-ladder"
+        }
+    ]
+}
