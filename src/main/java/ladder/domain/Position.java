@@ -10,11 +10,15 @@ public class Position {
         this.position = position;
     }
 
-    public static Position increase() {
+    public static Position first() {
+        return new Position(INIT_POSITION);
+    }
+
+    public Position increase() {
         return new Position(position + MOVE_DISTANCE);
     }
 
-    public static Position decrease() {
+    public Position decrease() {
         return new Position(position - MOVE_DISTANCE);
     }
 
@@ -22,8 +26,5 @@ public class Position {
         return position;
     }
 
-    public static Position first() {
-        return new Position(INIT_POSITION);
-    }
 
 }
