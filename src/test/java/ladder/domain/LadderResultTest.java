@@ -11,6 +11,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderResultTest {
+    Ladder ladder;
+    LadderResult ladderResult;
     List<Lines> linesList;
     Names names;
 
@@ -20,14 +22,20 @@ public class LadderResultTest {
         linesList = new ArrayList<>();
         linesList.add(Lines.of(() -> Arrays.asList(false, true, false, true)));
         linesList.add(Lines.of(() -> Arrays.asList(false, false, true, false)));
+        ladder = Ladder.of(linesList);
+        ladderResult = new LadderResult(ladder, names);
     }
 
     @Test
     @DisplayName("result 메서드를 통해 특정 인덱스의 사다리 결과를 반환한다")
     void result() {
-        Ladder ladder = Ladder.of(linesList);
-        LadderResult ladderResult = new LadderResult(ladder, names);
         assertThat(ladderResult.result(0)).isEqualTo(2);
         assertThat(ladderResult.result(1)).isEqualTo(0);
+    }
+
+    @Test
+    void resultOf() {
+        assertThat(ladderResult.resultOf("a")).isEqualTo(2);
+        assertThat(ladderResult.resultOf("b")).isEqualTo(0);
     }
 }
