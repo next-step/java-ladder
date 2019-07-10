@@ -41,4 +41,19 @@ public class Players {
       player.takeReward(rewards, result);
     }
   }
+
+  public int takeReward(Reward reward) {
+    return (int) players.stream()
+            .map(player -> player.takeReward(reward))
+            .filter(tookReward -> tookReward)
+            .count();
+
+  }
+
+  public Result makeResult(Result result) {
+    for (Player player : players) {
+      player.makeResult(result);
+    }
+    return result;
+  }
 }
