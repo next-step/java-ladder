@@ -1,8 +1,11 @@
 package ladder.view.result;
 
-import ladder.domain.model.LadderLines;
-import ladder.domain.model.Users;
+import ladder.common.Csv;
+import ladder.domain.ladderline.LadderLines;
+import ladder.domain.user.LadderResult;
+import ladder.domain.user.LadderUsers;
 
 public interface ResultView {
-    void print(Users users, LadderLines ladderLines);
+    void print(LadderUsers ladderUsers, LadderLines ladderLines, Csv ladderResults);
+    void print(LadderResult ladderResult);
 }

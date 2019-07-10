@@ -1,18 +1,23 @@
 package ladder.view.result;
 
-import ladder.domain.model.LadderLine;
-import ladder.domain.model.LadderLines;
-import ladder.domain.model.Users;
+import ladder.common.Csv;
+import ladder.domain.ladderline.LadderLine;
+import ladder.domain.ladderline.LadderLines;
+import ladder.domain.user.LadderResult;
+import ladder.domain.user.LadderUsers;
 
 public class DefaultResultView implements ResultView {
-    public void print(Users users, LadderLines ladderLines) {
-        System.out.println("\n실행결과\n");
-        printUsers(users);
+
+    @Override
+    public void print(LadderUsers ladderUsers, LadderLines ladderLines, Csv ladderResults) {
+        System.out.println("\n사다리 결과\n");
+        printUsers(ladderUsers);
         printLadder(ladderLines);
+        printResults(ladderResults);
     }
 
-    private void printUsers(Users users) {
-        users.getUserNames().stream()
+    private void printUsers(LadderUsers ladderUsers) {
+        ladderUsers.getUsernames().stream()
                 .map(user -> String.format("%6s", user))
                 .forEach(System.out::print);
         System.out.println();
@@ -21,6 +26,13 @@ public class DefaultResultView implements ResultView {
     private void printLadder(LadderLines ladderlines) {
         ladderlines.get()
                 .forEach(this::printLine);
+    }
+
+    private void printResults(Csv ladderResults) {
+        ladderResults.getCsv().stream()
+                .map(result -> String.format("%6s", result))
+                .forEach(System.out::print);
+        System.out.println();
     }
 
     private void printLine(LadderLine ladderLine) {
@@ -37,5 +49,19 @@ public class DefaultResultView implements ResultView {
             return;
         }
         System.out.print("     ");
+    }
+
+    @Override
+    public void print(LadderResult ladderResult) {
+        System.out.println("\n실행 결과");
+        if (ladderResult.isOneUser()) {
+            System.out.println(ladderResult.getResultOne());
+            return;
+        }
+        printResultAll(ladderResult);
+    }
+    private void printResultAll(LadderResult ladderResult) {
+        ladderResult.findAll().entrySet().stream()
+                .forEach(entry -> System.out.println(String.format("%s : %s", entry.getKey().getUsername(), entry.getValue())));
     }
 }
