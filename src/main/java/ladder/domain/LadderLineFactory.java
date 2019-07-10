@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.common.PositiveNumber;
-import ladder.domain.model.LadderLines;
+import ladder.domain.ladderline.LadderLines;
 
 @FunctionalInterface
 public interface LadderLineFactory {

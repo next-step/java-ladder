@@ -1,4 +1,4 @@
-package ladder.domain.model;
+package ladder.domain.ladderline;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

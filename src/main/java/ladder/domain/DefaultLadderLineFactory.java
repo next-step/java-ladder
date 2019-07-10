@@ -2,7 +2,8 @@ package ladder.domain;
 
 import ladder.common.PositiveNumber;
 import ladder.common.RandomStrategy;
-import ladder.domain.model.*;
+import ladder.domain.ladderline.LadderLines;
+import ladder.domain.ladderline.LadderProxy;
 
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
@@ -17,8 +18,8 @@ public class DefaultLadderLineFactory implements LadderLineFactory {
 
     @Override
     public LadderLines create(PositiveNumber countOfUsers, PositiveNumber height) {
-        return LadderLines.of(LongStream.range(0, height.get())
-                .mapToObj(index -> LadderLine.of(randomStrategy, countOfUsers))
+        return LadderProxy.createLadderLines(LongStream.range(0, height.get())
+                .mapToObj(index -> LadderProxy.createLadderLine(randomStrategy, countOfUsers))
                 .collect(Collectors.toList()));
     }
 }

@@ -1,4 +1,4 @@
-package ladder.domain.model;
+package ladder.domain.ladderline;
 
 import ladder.RandomTestUtils;
 import ladder.common.PositiveNumber;

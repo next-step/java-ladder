@@ -1,8 +1,11 @@
 package ladder.domain;
 
-import ladder.common.PositiveNumber;
-import ladder.domain.model.LadderLines;
+import ladder.dto.LadderCreateRequestDto;
+import ladder.dto.LadderCreateResponseDto;
+import ladder.dto.LadderResultRequestDto;
+import ladder.dto.LadderResultResponseDto;
 
 public interface LadderService {
-    LadderLines createLadderLines(PositiveNumber conuntOfUsers, PositiveNumber height);
+    LadderCreateResponseDto createLadder(LadderCreateRequestDto ladderCreateRequestDto);
+    LadderResultResponseDto startLadder(LadderResultRequestDto ladderResultRequestDto);
 }

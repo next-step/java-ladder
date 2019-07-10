@@ -1,4 +1,4 @@
-package ladder.domain.model;
+package ladder.domain.ladderline;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,12 +10,19 @@ public class LadderLines {
         this.ladderLines = ladderLines;
     }
 
-    public static LadderLines of(List<LadderLine> ladderLines) {
+    static LadderLines of(List<LadderLine> ladderLines) {
         return new LadderLines(ladderLines);
     }
 
     public List<LadderLine> get() {
         return Collections.unmodifiableList(ladderLines);
+    }
+
+    Index move(Index startIndex) {
+        for (LadderLine ladderLine : ladderLines) {
+            startIndex = ladderLine.move(startIndex);
+        }
+        return startIndex;
     }
 
     @Override

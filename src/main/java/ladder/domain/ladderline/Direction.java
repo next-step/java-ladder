@@ -1,4 +1,4 @@
-package ladder.domain.model;
+package ladder.domain.ladderline;
 
 import ladder.common.RandomStrategy;
 
@@ -26,26 +26,26 @@ public class Direction {
         return new Direction(left, right);
     }
 
-    public static Direction ofStart(RandomStrategy randomStrategy) {
+    static Direction ofStart(RandomStrategy randomStrategy) {
         return of(FALSE, randomStrategy.get());
     }
 
-    public Direction ofEnd() {
+    Direction ofEnd() {
         return of(this.right, FALSE);
     }
 
-    public Direction next(RandomStrategy randomStrategy) {
+    Direction next(RandomStrategy randomStrategy) {
         if (this.right) {
             return of(this.right, FALSE);
         }
         return of(this.right, randomStrategy.get());
     }
 
-    public boolean isLeft() {
+    boolean isLeft() {
         return left;
     }
 
-    public boolean isRight() {
+    boolean isRight() {
         return right;
     }
 

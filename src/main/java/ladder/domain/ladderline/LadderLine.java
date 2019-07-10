@@ -1,4 +1,4 @@
-package ladder.domain.model;
+package ladder.domain.ladderline;
 
 import ladder.common.PositiveNumber;
 import ladder.common.RandomStrategy;
@@ -14,7 +14,7 @@ public class LadderLine {
         this.points = points;
     }
 
-    public static LadderLine of(RandomStrategy randomStrategy, PositiveNumber countOfUsers) {
+    static LadderLine of(RandomStrategy randomStrategy, PositiveNumber countOfUsers) {
         List<Point> points = new ArrayList<>();
         Point point = makeStartPoint(randomStrategy, points);
         point = makeMidPoints(randomStrategy, points, countOfUsers, point);
@@ -44,6 +44,17 @@ public class LadderLine {
 
     public List<Point> get() {
         return Collections.unmodifiableList(points);
+    }
+
+    Index move(Index index) {
+        return findPoint(index).move();
+    }
+
+    private Point findPoint(Index index) {
+        return points.stream()
+                .filter(point -> point.current().equals(index))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Abnormal ladder line"));
     }
 
     @Override

@@ -1,9 +1,9 @@
-package ladder.domain.model;
+package ladder.domain.ladderline;
 
 import java.util.Objects;
 
 public class Index {
-    public static final int START_INDEX = 0;
+    static final int START_INDEX = 0;
     private int index;
 
     private Index(int index) {
@@ -11,11 +11,11 @@ public class Index {
         this.index = index;
     }
 
-    private static Index of(int index) {
+    static Index of(int index) {
         return new Index(index);
     }
 
-    public static Index ofStart() {
+    static Index ofStart() {
         return of(START_INDEX);
     }
 
@@ -25,11 +25,11 @@ public class Index {
         }
     }
 
-    public Index next() {
+    Index next() {
         return Index.of(index + 1);
     }
 
-    public Index prev() {
+    Index prev() {
         validateRange(index);
         return Index.of(index - 1);
     }

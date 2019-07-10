@@ -1,4 +1,4 @@
-package ladder.domain.model;
+package ladder.domain.ladderline;
 
 import ladder.common.RandomStrategy;
 
@@ -13,23 +13,27 @@ public class Point {
         this.direction = direction;
     }
 
-    private static Point of(Index index, Direction direction) {
+    static Point of(Index index, Direction direction) {
         return new Point(index, direction);
     }
 
-    public static Point ofStart(RandomStrategy randomStrategy) {
+    static Point ofStart(RandomStrategy randomStrategy) {
         return Point.of(Index.ofStart(), Direction.ofStart(randomStrategy));
     }
 
-    public Point ofEnd() {
+    Point ofEnd() {
         return Point.of(index.next(), direction.ofEnd());
     }
 
-    public Point next(RandomStrategy randomStrategy) {
+    Point next(RandomStrategy randomStrategy) {
         return of(index.next(), direction.next(randomStrategy));
     }
 
-    public boolean isLeft() {
+    Index current() {
+        return index;
+    }
+
+    boolean isLeft() {
         return direction.isLeft();
     }
 
@@ -37,6 +41,17 @@ public class Point {
         return direction.isRight();
     }
 
+    Index move() {
+        if (direction.isRight()) {
+            return index.next();
+        }
+
+        if (direction.isLeft()) {
+            return index.prev();
+        }
+
+        return index;
+    }
 
     @Override
     public boolean equals(Object o) {
