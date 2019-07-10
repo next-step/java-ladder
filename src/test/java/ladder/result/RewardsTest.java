@@ -1,6 +1,7 @@
 package ladder.result;
 
 import ladder.domain.gamer.Gamers;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.reward.Rewards;
 import ladder.domain.reward.info.Reward;
 import ladder.domain.reward.message.ErrorMessages;
@@ -75,5 +76,34 @@ class RewardsTest {
         Assertions.assertThatIllegalArgumentException()
             .isThrownBy(() -> rewards.getReward(4))
             .withMessage(ErrorMessages.OVER_INPUT_REWARD.message());
+    }
+    
+    @Test
+    @DisplayName("[success] 리워드 정보가 하나라도 있으면 false")
+    void isRewardsNeededFalseTest() {
+        //Given
+        Gamers gamers = Gamers.newInstance();
+        gamers.addGamers("a");
+        Rewards rewards = Rewards.newInstance();
+        rewards.addRewards(gamers, "1");
+        
+        //When
+        boolean rewardNeeded = rewards.isRewardsNeeded();
+        
+        //Then
+        Assertions.assertThat(rewardNeeded).isFalse();
+    }
+    
+    @Test
+    @DisplayName("[success] 리워드 정보가 하나도 없으면 true")
+    void isRewardsNeededTrueTest() {
+        //Given
+        Rewards rewards = Rewards.newInstance();
+        
+        //When
+        boolean rewardNeeded = rewards.isRewardsNeeded();
+        
+        //Then
+        Assertions.assertThat(rewardNeeded).isTrue();
     }
 }

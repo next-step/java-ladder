@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 public class Gamers {
     private static final String DELIMITER = ",";
     private static final int START_NUMBER = 0;
+    private final static String FIND_ALL = "all";
     
     private final Map<Gamer, Integer> gamers;
     
@@ -58,5 +59,13 @@ public class Gamers {
     
     public boolean isSameSize(int size) {
         return size == gamers.size();
+    }
+    
+    public boolean isGamerNamesNeeded() {
+        return gamers.isEmpty();
+    }
+    
+    public boolean isGamerNameAll(String gamerName) {
+        return FIND_ALL.equals(gamerName);
     }
 }

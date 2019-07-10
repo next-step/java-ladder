@@ -44,4 +44,34 @@ class LadderTest {
             .isThrownBy(() -> ladder.getRewardNumber(4))
             .withMessage(ErrorMessages.OVER_INPUT_LADDER_SIZE.message());
     }
+    
+    @Test
+    @DisplayName("[success] 사다리가 생성되지 않았다면 true")
+    void isLadderSizeTrueTest() {
+        //Given
+        //When
+        boolean ladderSizeNeeded = ladder.isLadderSizeNeeded();
+        boolean ladderMade = ladder.isLadderMade();
+        
+        //Then
+        Assertions.assertThat(ladderSizeNeeded).isTrue();
+        Assertions.assertThat(ladderMade).isFalse();
+    }
+    
+    @Test
+    @DisplayName("[success] 사다리가 이미 생성되었다면 false")
+    void isLadderSizeFalseTest() {
+        //Given
+        Gamers gamers = Gamers.newInstance();
+        gamers.addGamers("a,b,c");
+        ladder.makeLadder(3, gamers);
+        
+        //When
+        boolean ladderSizeNeeded = ladder.isLadderSizeNeeded();
+        boolean ladderMade = ladder.isLadderMade();
+        
+        //Then
+        Assertions.assertThat(ladderSizeNeeded).isFalse();
+        Assertions.assertThat(ladderMade).isTrue();
+    }
 }

@@ -41,7 +41,7 @@ public class ResultView implements ViewImpl {
         printLadder(resultResponseMessage.getLadder());
         view.print(getItemExpression(resultResponseMessage.getRewardNames()));
         Step.setNextStep(Step.GAMER_NAME_INPUT_STEP);
-        controller.action();
+        controller.callAfterResult();
     }
     
     private String getItemExpression(List<String> items) {

@@ -16,6 +16,11 @@ public class ResultMessage extends Message {
         this.rewards = rewards;
     }
     
+    @Override
+    public boolean isResultStep() {
+        return true;
+    }
+    
     public List<String> getGamerNames() {
         return gamerNames;
     }

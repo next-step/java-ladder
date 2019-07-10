@@ -1,6 +1,6 @@
 package ladder.view.component.result;
 
-import ladder.core.controller.Controller;
+import ladder.core.controller.ILadderController;
 import ladder.core.message.Message;
 import ladder.core.view.ViewImpl;
 import ladder.core.view.output.Printer;
@@ -9,10 +9,10 @@ import ladder.view.component.View;
 import ladder.view.component.constant.Step;
 
 public class RewardView implements ViewImpl {
-    private Controller controller;
+    private ILadderController controller;
     private View view;
     
-    public RewardView(Controller controller, Printer printer) {
+    public RewardView(ILadderController controller, Printer printer) {
         this.controller = controller;
         view = new View.Builder(Step.REWARD_STEP)
             .setPrinter(printer)
@@ -27,5 +27,6 @@ public class RewardView implements ViewImpl {
         RewardMessage rewardResponse = (RewardMessage) message;
         Step.setNextStep(Step.GAMER_NAME_INPUT_STEP);
         view.print(rewardResponse.getReward());
+        controller.callAfterResult();
     }
 }

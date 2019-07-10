@@ -65,4 +65,31 @@ class GamersTest {
             .isThrownBy(() -> gamers.getLineNumber(gamerName))
             .withMessage(ErrorMessages.NOT_FIND_GAMER.message());
     }
+    
+    @Test
+    @DisplayName("[success] gamer 가 하나라도 있으면 false")
+    void isGamerNamesNeededFalseTest() {
+        //Given
+        Gamers gamers = Gamers.newInstance();
+        gamers.addGamers("a");
+        
+        //When
+        boolean gamerNeeded = gamers.isGamerNamesNeeded();
+        
+        //Then
+        Assertions.assertThat(gamerNeeded).isFalse();
+    }
+    
+    @Test
+    @DisplayName("[success] gamer 가 하나도 없으면 true")
+    void isGamerNamesNeededTrueTest() {
+        //Given
+        Gamers gamers = Gamers.newInstance();
+        
+        //When
+        boolean gamerNeeded = gamers.isGamerNamesNeeded();
+        
+        //Then
+        Assertions.assertThat(gamerNeeded).isTrue();
+    }
 }

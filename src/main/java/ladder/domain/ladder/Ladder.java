@@ -15,13 +15,8 @@ public class Ladder {
     private final static int BEFORE_INDEX = 1;
     private final static int ONE_INDEX = 1;
     
-    private final List<Line> ladder;
-    private int cellSize;
-    
-    private Ladder() {
-        ladder = new ArrayList<>();
-        cellSize = 0;
-    }
+    private final List<Line> ladder = new ArrayList<>();
+    private int cellSize = 0;
     
     public static Ladder newInstance() {
         return new Ladder();
@@ -68,6 +63,14 @@ public class Ladder {
             throw new IllegalArgumentException(ErrorMessages.OVER_INPUT_LADDER_SIZE.message());
         }
         return ladder.get(lineNumber).getEndPoint();
+    }
+    
+    public boolean isLadderSizeNeeded() {
+        return ladder.isEmpty();
+    }
+    
+    public boolean isLadderMade() {
+        return !isLadderSizeNeeded();
     }
     
     public int getSize() {
