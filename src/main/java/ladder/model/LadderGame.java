@@ -2,14 +2,31 @@ package ladder.model;
 
 public class LadderGame {
 
-  public static void start(Ladder ladder, Players players) {
-    ladder.ride(players);
+  private final Ladder ladder;
+  private final Players players;
+  private final Rewards rewards;
+
+  public LadderGame(Ladder ladder, Players players, Rewards rewards) {
+    this.ladder = ladder;
+    this.players = players;
+    this.rewards = rewards;
   }
 
-  public static Result makeResult(Players players, Rewards rewards) {
-    Result result = new Result();
-    players.takeRewards(rewards, result);
+  public Result start() {
+    this.ladder.ride(players);
+    this.award();
 
-    return result;
+    return makeResult();
+  }
+
+
+  int award() {
+    return (int) this.rewards.getRewards().stream()
+            .map(players::takeReward)
+            .count();
+  }
+
+  Result makeResult() {
+    return this.players.makeResult(new Result());
   }
 }
