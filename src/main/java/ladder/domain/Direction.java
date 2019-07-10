@@ -28,7 +28,7 @@ public enum Direction {
     if (!this.right && right) {
       return Direction.RIGHT;
     }
-    if (!this.right && !right) {
+    if (!this.right) {
       return Direction.PASS;
     }
 
@@ -42,11 +42,18 @@ public enum Direction {
     return Direction.PASS;
   }
 
+  int move(int index) {
+    if (this.left) {
+      return index - 1;
+    }
+    if (this.right) {
+      return index + 1;
+    }
+    return index;
+  }
+
   boolean isRight() {
     return this.right;
   }
 
-  boolean isLeft() {
-    return this.left;
-  }
 }

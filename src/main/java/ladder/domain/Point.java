@@ -30,12 +30,6 @@ public class Point {
   }
 
   int move() {
-    if (direction.isLeft()) {
-      return index - 1;
-    }
-    if (direction.isRight()) {
-      return index + 1;
-    }
-    return index;
+    return direction.move(index);
   }
 }
