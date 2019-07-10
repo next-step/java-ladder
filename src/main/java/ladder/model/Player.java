@@ -30,20 +30,11 @@ public class Player {
         return ride(direction);
     }
 
-    public Result takeReward(Rewards rewards, Result result) {
-        int index = this.position.getValue();
-        Reward reward = rewards.getReward(index);
-        result.add(name, reward.getValue());
-
-        return result;
-    }
-
     public boolean takeReward(Reward reward) {
         if (this.position.equals(reward.getPosition())) {
             this.reward = reward;
             return true;
         }
-
         return false;
     }
 
