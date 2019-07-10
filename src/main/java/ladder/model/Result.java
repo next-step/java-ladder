@@ -28,6 +28,10 @@ public class Result {
     return result.keySet().iterator();
   }
 
+  public int size() {
+    return this.result.size();
+  }
+
   @Override
   public String toString() {
     return "Result{" +
