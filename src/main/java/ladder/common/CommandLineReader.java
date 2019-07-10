@@ -13,4 +13,8 @@ public class CommandLineReader {
     public Csv readCsv() {
         return Csv.ofString(scanner.next());
     }
+
+    public String readString() {
+        return scanner.next();
+    }
 }

@@ -5,5 +5,7 @@ import ladder.common.PositiveNumber;
 
 public interface InputView {
     Csv getUserNames();
+    Csv getLadderResult();
     PositiveNumber getLadderHeight();
+    String getResultUsername();
 }

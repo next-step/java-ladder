@@ -40,4 +40,8 @@ public class Csv {
     public String getString() {
         return String.join(",", csv);
     }
+
+    public String getValue(int index) {
+        return csv.get(index);
+    }
 }
