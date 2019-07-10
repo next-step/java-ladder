@@ -4,6 +4,7 @@ public class Player {
 
     private final String name;
     private Position position;
+    private Reward reward;
 
     public Player(String name, int position) {
         this.name = name;
@@ -34,6 +35,20 @@ public class Player {
         Reward reward = rewards.getReward(index);
         result.add(name, reward.getValue());
 
+        return result;
+    }
+
+    public boolean takeReward(Reward reward) {
+        if (this.position.equals(reward.getPosition())) {
+            this.reward = reward;
+            return true;
+        }
+
+        return false;
+    }
+
+    public Result makeResult(Result result) {
+        result.add(this.name, this.reward.getValue());
         return result;
     }
 }
