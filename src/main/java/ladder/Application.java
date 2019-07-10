@@ -14,8 +14,8 @@ public class Application {
 
         Ladder ladder = Ladder.of(players.size(), height);
 
-        LadderGame.start(ladder, players);
-        Result result = LadderGame.makeResult(players, rewards);
+        LadderGame ladderGame = new LadderGame(ladder, players, rewards);
+        Result result = ladderGame.start();
 
         OutputView.print(players, ladder, rewards);
 
