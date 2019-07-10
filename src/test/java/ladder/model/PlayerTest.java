@@ -30,4 +30,14 @@ public class PlayerTest {
     Reward rewardWithDifferentPosition = new Reward("4000", 2);
     assertThat(player.takeReward(rewardWithDifferentPosition)).isEqualTo(false);
   }
+
+  @Test
+  void makeResult() {
+    Reward reward = new Reward("3000", 0);
+    assertThat(player.takeReward(reward)).isTrue();
+
+    Result result = new Result();
+    player.makeResult(result);
+    assertThat(result.size()).isEqualTo(1);
+  }
 }
