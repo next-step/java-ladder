@@ -17,6 +17,13 @@ public class PlayerTest {
     assertThat(player).isEqualTo(Player.of("test"));
   }
 
+  @DisplayName("라인 생성 테스트")
+  @Test
+  void line_create() {
+    Players players = Players.of("test, test2, test3");
+    assertThat(players.size()).isEqualTo(3);
+  }
+
   @DisplayName("유효성 검증 테스트")
   @ParameterizedTest
   @ValueSource(strings = {"", "test123"})

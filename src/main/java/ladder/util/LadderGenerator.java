@@ -6,7 +6,7 @@ import ladder.domain.Players;
 public class LadderGenerator {
 
   public static Ladder generate(int height, Players players) {
-    return Ladder.of(height, players.size());
+    return Ladder.of(height, players);
   }
 
 }

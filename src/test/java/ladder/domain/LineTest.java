@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
+  @DisplayName("라인 이동 테스트")
   @Test
   void move() {
     Point first = Point.first(false);

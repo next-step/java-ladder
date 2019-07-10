@@ -5,6 +5,7 @@ public enum Direction {
   LEFT(true, false),
   PASS(false, false);
 
+  private final static int MOVE_INDEX = 1;
   private final boolean left;
   private final boolean right;
 
@@ -44,10 +45,10 @@ public enum Direction {
 
   int move(int index) {
     if (this.left) {
-      return index - 1;
+      return index - MOVE_INDEX;
     }
     if (this.right) {
-      return index + 1;
+      return index + MOVE_INDEX;
     }
     return index;
   }
