@@ -13,4 +13,8 @@ public class Reward {
     public String getValue() {
         return value;
     }
+
+    public Position getPosition() {
+        return this.position;
+    }
 }
