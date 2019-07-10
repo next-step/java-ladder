@@ -31,4 +31,12 @@ public enum Direction {
     public Direction last() {
         return this == Direction.RIGHT ? Direction.LEFT : Direction.PASS;
     }
+
+    public Position move(Position position) {
+        return this == Direction.PASS ? position : checkDirection(position);
+    }
+
+    private Position checkDirection(Position position) {
+        return this == Direction.RIGHT ? position.increase() : position.decrease();
+    }
 }
