@@ -15,8 +15,7 @@ public class LinesTest {
 
     @BeforeEach
     void setUp() {
-        Participants participants = Participants.of(names);
-        lines = new Lines(participants.size());
+        lines = new Lines(names.size());
     }
 
     @Test
@@ -49,5 +48,13 @@ public class LinesTest {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
                 Lines.of(() -> Arrays.asList(false, true, true))
         );
+    }
+
+    @Test
+    @DisplayName("Line 존재 여부에 따라 이동을 한다.")
+    void move() {
+        lines = Lines.of(() -> Arrays.asList(false, true, false, false));
+        assertThat(lines.move(0)).isEqualTo(1);
+        assertThat(lines.move(3)).isEqualTo(3);
     }
 }

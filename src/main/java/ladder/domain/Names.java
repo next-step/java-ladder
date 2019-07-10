@@ -24,6 +24,10 @@ public class Names {
         return new Names(names);
     }
 
+    public Name get(int index) {
+        return names.get(index);
+    }
+
     public int size() {
         return names.size();
     }
@@ -39,5 +43,9 @@ public class Names {
     @Override
     public int hashCode() {
         return Objects.hash(names);
+    }
+
+    public int indexOf(String nameString) {
+        return names.indexOf(new Name(nameString));
     }
 }
