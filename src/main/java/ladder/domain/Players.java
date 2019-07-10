@@ -3,13 +3,13 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 public class Players {
 
-  private static final String SEPARATOR = ",";
+  static final String SEPARATOR = ",";
   private static final int MIN_PLAYER = 2;
 
   private List<Player> players;
@@ -44,7 +44,11 @@ public class Players {
     return players.size();
   }
 
-  public List<Player> getPlayers() {
-    return players;
+  @Override
+  public String toString() {
+    return players.stream()
+        .map(Player::toString)
+        .collect(joining(" "));
   }
+
 }

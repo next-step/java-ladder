@@ -27,7 +27,7 @@ public class ResultView {
   }
 
   private static void printPlayer(Players players) {
-    players.getPlayers().forEach(System.out::print);
+    System.out.println(players.toString());
   }
 
   private static String drawBar(Boolean bar) {
