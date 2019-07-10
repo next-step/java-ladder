@@ -14,4 +14,11 @@ public class PointTest {
         assertThat(Point.first(FALSE).move()).isEqualTo(0);
         assertThat(Point.first(TRUE).move()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("Next 를 통해 다음 Point 를 생성 할 수 있다")
+    public void next() {
+        Point second = Point.first(TRUE).next();
+        assertThat(second.move()).isEqualTo(0);
+    }
 }
