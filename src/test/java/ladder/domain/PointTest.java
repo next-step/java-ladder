@@ -16,9 +16,23 @@ public class PointTest {
     }
 
     @Test
-    @DisplayName("Next 를 통해 다음 Point 를 생성 할 수 있다")
-    public void next() {
-        Point second = Point.first(TRUE).next();
+    @DisplayName("Next 를 통해 제자리에서 이동하는 Point 생성된다.")
+    public void nextStay() {
+        Point second = Point.first(FALSE).next(FALSE);
+        assertThat(second.move()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Next 를 통해 오른쪽으로 이동하는 Point 생성된다.")
+    public void nextRight() {
+        Point second = Point.first(FALSE).next(TRUE);
+        assertThat(second.move()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Next 를 통해 왼쪽으로 이동하는 Point 생성된다.")
+    public void nextLight() {
+        Point second = Point.first(TRUE).next(FALSE);
         assertThat(second.move()).isEqualTo(0);
     }
 }
