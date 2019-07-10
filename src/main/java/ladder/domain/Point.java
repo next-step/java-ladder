@@ -2,7 +2,7 @@ package ladder.domain;
 
 public class Point {
 
-  private final static int START_INDEX = 0;
+  final static int START_INDEX = 0;
   private final static int INCREMENT_INDEX = 1;
 
   private final int index;

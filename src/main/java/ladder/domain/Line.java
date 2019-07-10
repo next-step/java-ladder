@@ -6,17 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+import static ladder.domain.Point.START_INDEX;
 
 public class Line {
 
+  private static final int LAST_INDEX_LINE = 2;
   private List<Point> points = new ArrayList<>();
 
   private Line(int numOfPlayers) {
     Point point = Point.first(RandomGenerator.nextBoolean());
     points.add(point);
 
-    for (int i = 0; i < numOfPlayers - 2; i++) {
-      point = point.next(RandomGenerator.nextBoolean());
+    for (int i = START_INDEX; i < numOfPlayers - LAST_INDEX_LINE; i++) {
+      point = randomBar(point);
       points.add(point);
     }
 
@@ -41,10 +43,6 @@ public class Line {
 
   private Point randomBar(Point point) {
     return point.next(RandomGenerator.nextBoolean());
-  }
-
-  public int size() {
-    return points.size();
   }
 
   public List<Boolean> getLine() {
