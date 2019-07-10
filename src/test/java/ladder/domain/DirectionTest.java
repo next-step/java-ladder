@@ -36,4 +36,13 @@ public class DirectionTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Direction.of(TRUE, TRUE));
     }
+
+    @Test
+    @DisplayName("next 메서드를 통해 이전 방향과 이어진 다음 Direction 생성한다.")
+    void next() {
+        Direction firstDirection = Direction.of(FALSE, TRUE);
+        Direction secondDirection = firstDirection.next(false);
+
+        assertThat(secondDirection.isLeft()).isTrue();
+    }
 }
