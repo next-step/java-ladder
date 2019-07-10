@@ -1,43 +1,40 @@
 package ladder.model;
 
-import java.util.Random;
-
 public final class Point {
-    public static Point firstOf(boolean right) {
-        return new Point(right);
+    public static final String MESSAGE_OF_TWO_WAY_CONNECTION = "Point는 양방향으로 연결할 수 없습니다.";
+
+    public static Point firstOf(ConnectorStrategy connector) {
+        final Direction firstConnection = connector.generateNextConnection(Direction.DOWN);
+        return new Point(0, firstConnection);
     }
 
-    public static Point firstOfRandom() {
-        final boolean right = new Random().nextBoolean();
-        return firstOf(right);
+    private final int position;
+    private final Direction direction;
+
+    private Point(int position, Direction direction) {
+        this.position = position;
+        this.direction = direction;
     }
 
-    private final boolean right;
-
-    private Point(boolean right) {
-        this.right = right;
-    }
-
-    public Point nextOf(boolean right) {
-        if (this.right && right) {
-            throw new IllegalArgumentException("Point는 양방향으로 연결할 수 없습니다.");
+    public Point nextOf(ConnectorStrategy connector) {
+        final Direction nextDirection = connector.generateNextConnection(direction);
+        if (direction == Direction.RIGHT && nextDirection == Direction.RIGHT) {
+            throw new IllegalArgumentException(MESSAGE_OF_TWO_WAY_CONNECTION);
         }
-        return new Point(right);
-    }
 
-    public Point nextOfRandom() {
-        if (right) {
-            return new Point(false);
-        }
-        final boolean right = new Random().nextBoolean();
-        return nextOf(right);
+        return new Point(position + 1, nextDirection);
     }
 
     public Point endOf() {
-        return new Point(false);
+        final Direction nextDirection = (direction == Direction.RIGHT) ? Direction.LEFT : Direction.DOWN;
+        return new Point(position + 1, nextDirection);
     }
 
     public boolean isConnectedRight() {
-        return right;
+        return direction == Direction.RIGHT;
+    }
+
+    public int move() {
+        return direction.move(position);
     }
 }

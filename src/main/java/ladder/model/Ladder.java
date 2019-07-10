@@ -1,20 +1,34 @@
 package ladder.model;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.toList;
+
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
-public class Ladder {
-    private final List<Line> lines = new ArrayList<>();
+public final class Ladder {
+    public static Ladder generateRandom(int height, int numberOfParticipants) {
+        final List<Line> lines = IntStream.range(0, height)
+                                          .mapToObj(i -> Line.generateRandom(numberOfParticipants))
+                                          .collect(toList());
+        return new Ladder(lines);
+    }
 
-    public Ladder(int height, int numberOfParticipants) {
-        for (int i = 0; i < height; i++) {
-            final Line line = new Line(numberOfParticipants);
-            lines.add(line);
-        }
+    private final List<Line> lines;
+
+    Ladder(List<Line> lines) {
+        this.lines = Collections.unmodifiableList(lines);
     }
 
     public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+        return lines;
+    }
+
+    public int move(int start) {
+        int end = start;
+        for (Line line : lines) {
+            end = line.move(end);
+        }
+        return end;
     }
 }

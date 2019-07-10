@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class NamesSplitter {
+public final class StringSplitter {
     public static final String SEPARATOR = ",";
 
     public static List<String> split(String input) {
@@ -15,5 +15,5 @@ public final class NamesSplitter {
                      .collect(Collectors.toList());
     }
 
-    private NamesSplitter() {}
+    private StringSplitter() {}
 }
