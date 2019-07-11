@@ -22,7 +22,7 @@ public class Rewards {
 		return rewards.size();
 	}
 
-	public Reward rewardByResult(Point result) {
+	public Reward rewardByResult(Point_old result) {
 		return rewards.get(result.getIndex());
 	}
 	
