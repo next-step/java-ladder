@@ -17,13 +17,19 @@ public class PointTest {
     @Test
     @DisplayName("Direction이 right으로 생성된 Point Move ")
     void rightMove() {
-        assertThat(Point.first(true).move(position)).isEqualTo(2);
+        assertThat(Point.first(true).move(position).getPosition()).isEqualTo(2);
     }
 
     @Test
     @DisplayName("Direction이 left으로 생성된 Point Move ")
     void leftMove() {
         assertThat(Point.first(true).next().move(position).getPosition()).isEqualTo(0);
+    }
+    
+    @Test
+    @DisplayName("Direction이 Pass으로 생성된 Point Move ")
+    void PassMove() {
+        assertThat(Point.first(false).move(position).getPosition()).isEqualTo(1);
     }
 
 }

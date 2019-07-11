@@ -4,7 +4,7 @@ public class Position {
     private static final int INIT_POSITION = 0;
     private static final int MOVE_DISTANCE = 1;
 
-    private static int position;
+    private final int position;
 
     public Position(int position) {
         this.position = position;
