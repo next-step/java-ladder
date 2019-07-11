@@ -1,16 +1,17 @@
 package com.jaeyeonling.ladder.domain.user;
 
-
 import com.jaeyeonling.ladder.exception.DuplicateUsernameException;
 import com.jaeyeonling.ladder.exception.NotFoundUserException;
+import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class Users {
+public class Users implements StringVisualizable {
+
+    private static final String BLANK = " ";
 
     public static final String SEPARATOR = "\\s*,\\s*";
 
@@ -35,27 +36,27 @@ public class Users {
         return new Users(users);
     }
 
-    public Stream<User> stream() {
-        return users.stream();
-    }
-
-    public int findIndexByUsername(final String username) {
-        return this.users.stream()
-                .filter(u -> u.equalsUsername(username))
-                .findFirst()
-                .map(this::findIndexByUser)
-                .orElseThrow(() -> new NotFoundUserException(username));
-    }
-
     public int size() {
         return this.users.size();
     }
 
-    public CountOfUsers getCountOfUsers() {
-        return CountOfUsers.fromUsers(this);
+    public Username findUsernameBy(final int index) {
+        return users.get(index).getUsername();
     }
 
-    private int findIndexByUser(final User user) {
-        return this.users.indexOf(user);
+    public int findIndexBy(final Username username) {
+        final User user = users.stream()
+                .filter(u -> u.equalsUsername(username))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundUserException(username));
+
+        return users.indexOf(user);
+    }
+
+    @Override
+    public String visualize() {
+        return BLANK + users.stream()
+                .map(User::visualize)
+                .collect(Collectors.joining(BLANK));
     }
 }

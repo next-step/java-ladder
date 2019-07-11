@@ -3,14 +3,15 @@ package com.jaeyeonling.ladder.domain.user;
 import com.jaeyeonling.ladder.exception.EmptyUsernameException;
 import com.jaeyeonling.ladder.exception.LongerThanMaxLengthUsernameException;
 import com.jaeyeonling.ladder.utils.StringUtils;
+import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Username {
+public class Username implements StringVisualizable {
 
-    private static final Map<String, Username> CACHE = new HashMap<>();
+    private static final Map<String, Username> POOL = new HashMap<>();
 
     public static final int MAX_LENGTH = 5;
 
@@ -28,11 +29,16 @@ public class Username {
             throw new LongerThanMaxLengthUsernameException(username);
         }
 
-        return CACHE.computeIfAbsent(username, Username::new);
+        return POOL.computeIfAbsent(username, Username::new);
     }
 
     public String getUsername() {
-        return this.username;
+        return username;
+    }
+
+    @Override
+    public String visualize() {
+        return username;
     }
 
     @Override
@@ -45,11 +51,11 @@ public class Username {
         }
 
         final Username that = (Username) o;
-        return Objects.equals(this.username, that.username);
+        return Objects.equals(username, that.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.username);
+        return Objects.hash(username);
     }
 }

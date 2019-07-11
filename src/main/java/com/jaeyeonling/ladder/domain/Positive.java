@@ -13,26 +13,22 @@ public class Positive {
 
     public static final int MIN = 1;
 
-    private final int value;
+    private final int positive;
 
-    private Positive(final int value) {
-        this.value = value;
+    private Positive(final int positive) {
+        this.positive = positive;
     }
 
-    public static Positive valueOf(final int value) {
-        if (value < MIN) {
-            throw new ShorterThanMinPositiveException(value);
+    public static Positive valueOf(final int positive) {
+        if (positive < MIN) {
+            throw new ShorterThanMinPositiveException(positive);
         }
 
-        return CACHE.computeIfAbsent(value, Positive::new);
-    }
-
-    public int getValue() {
-        return value;
+        return CACHE.computeIfAbsent(positive, Positive::new);
     }
 
     public IntStream rangeClosed() {
-        return IntStream.rangeClosed(MIN, this.value);
+        return IntStream.rangeClosed(MIN, positive);
     }
 
     @Override
@@ -45,11 +41,11 @@ public class Positive {
         }
 
         final Positive that = (Positive) o;
-        return this.value == that.value;
+        return positive == that.positive;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.value);
+        return Objects.hash(positive);
     }
 }

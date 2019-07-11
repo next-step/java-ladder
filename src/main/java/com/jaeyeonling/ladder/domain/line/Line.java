@@ -1,32 +1,67 @@
 package com.jaeyeonling.ladder.domain.line;
 
-import com.jaeyeonling.ladder.domain.point.Direction;
-import com.jaeyeonling.ladder.domain.point.Point;
+import com.jaeyeonling.ladder.domain.Index;
+import com.jaeyeonling.ladder.domain.user.Users;
+import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
-public class Line {
+import static java.util.stream.Collectors.joining;
+
+public class Line implements StringVisualizable {
+
+    private static final int SIZE_TERM = 1;
 
     private final List<Direction> directions;
 
-    private Line(final List<Direction> directions) {
-        this.directions = new ArrayList<>(directions);
+    private Line(final DirectionGenerateStrategy directionGenerateStrategy,
+                 final int countOfUsers) {
+        directions = new ArrayList<>();
+        init(directionGenerateStrategy, countOfUsers);
     }
 
-    public static Line ofDirections(final List<Direction> directions) {
-        return new Line(directions);
+    public static Line generate(final DirectionGenerateStrategy strategy,
+                                final Users users) {
+        return new Line(strategy, users.size());
     }
 
-    public List<Direction> getDirections() {
-        return Collections.unmodifiableList(directions);
+    public Index move(final Index index) {
+        return directions.get(index.getIndex())
+                .move(index);
     }
 
-    Point ride(final Point point) {
-        final int indexOfLadder = point.getIndexOfLadder();
-        final Direction direction = directions.get(indexOfLadder);
+    @Override
+    public String visualize() {
+        return directions.stream()
+                .map(Direction::visualize)
+                .collect(joining());
+    }
 
-        return point.move(direction);
+    private void init(final DirectionGenerateStrategy strategy,
+                      final int countOfUsers) {
+        initFirst(strategy);
+        initMiddle(strategy, countOfUsers);
+        initLast();
+    }
+
+    private void initFirst(final DirectionGenerateStrategy strategy) {
+        directions.add(Direction.first(strategy));
+    }
+
+    private void initMiddle(final DirectionGenerateStrategy strategy,
+                            final int initSize) {
+        IntStream.range(directions.size(), initSize - SIZE_TERM)
+                .mapToObj(ignore -> getLastDirection().next(strategy))
+                .forEach(directions::add);
+    }
+
+    private void initLast() {
+        directions.add(getLastDirection().last());
+    }
+
+    private Direction getLastDirection() {
+        return directions.get(directions.size() - SIZE_TERM);
     }
 }

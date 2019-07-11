@@ -1,10 +1,8 @@
 package com.jaeyeonling.ladder.view.console;
 
-import com.jaeyeonling.ladder.domain.GameResult;
 import com.jaeyeonling.ladder.domain.ladder.LadderGame;
-import com.jaeyeonling.ladder.domain.ladder.LadderReword;
-import com.jaeyeonling.ladder.exception.NotFoundUserException;
-import com.jaeyeonling.ladder.view.format.Formatters;
+import com.jaeyeonling.ladder.domain.ladder.LadderGameResult;
+import com.jaeyeonling.ladder.view.Visualizable;
 
 import java.io.PrintStream;
 
@@ -20,24 +18,18 @@ public final class ConsoleOutputView {
     public static void printLadderReword(final LadderGame ladderGame) {
         newline();
         print(RESULT_LADDER_MESSAGE);
-        print(Formatters.usersFormatter.format(ladderGame.getUsers()));
-        print(Formatters.ladderGameFormatter.format(ladderGame));
-        print(Formatters.ladderRewordsFormatter.format(ladderGame.getRewords()));
+        print(ladderGame);
         newline();
     }
 
-    public static void printSingleResult(final LadderReword matchingReword) {
+    public static void printSingleResult(final String s) {
         printResult();
-        print(Formatters.ladderRewordFormatter.format(matchingReword));
+        print(s);
     }
 
-    public static void printGameResult(final GameResult gameResult) {
+    public static void printGameResult(final LadderGameResult ladderGameResult) {
         printResult();
-        print(Formatters.gameResultFormatter.format(gameResult));
-    }
-
-    public static void printUserNotFound(final String usernameOfWantReword) {
-        print(String.format(NotFoundUserException.ERROR_MESSAGE, usernameOfWantReword));
+        print(ladderGameResult);
     }
 
     static void print(final Object message) {
@@ -46,6 +38,10 @@ public final class ConsoleOutputView {
 
     static void newline() {
         CONSOLE.println();
+    }
+
+    private static void print(final Visualizable visualizer) {
+        print(visualizer.visualize());
     }
 
     private static void printResult() {

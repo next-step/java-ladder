@@ -1,87 +1,130 @@
 package com.jaeyeonling.ladder.domain.line;
 
-import com.jaeyeonling.ladder.domain.Fixture;
-import com.jaeyeonling.ladder.domain.point.Direction;
-import com.jaeyeonling.ladder.domain.point.Point;
+import com.jaeyeonling.ladder.domain.Index;
+import com.jaeyeonling.ladder.domain.user.Users;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
-    @DisplayName("라인 생성을 성공한다.")
+    @DisplayName("첫 방향이 오른쪽이면 위치가 " + Index.INCREMENT_VALUE + " 증가한다.")
     @Test
-    void should_create() {
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(() -> true);
-
-        final Line line = lineGenerator.generate(Fixture.countOfusers);
-
-        assertThat(line).isNotNull();
-    }
-
-    @DisplayName("앞 방향이 RIGHT면 지금 방향은 LEFT이다.")
-    @Test
-    void should_true_when_notFirst_and_notBeforeTrue() {
-        final LineGenerator lineGenerator = StrategyBaseLineGenerator.withStrategy(() -> true);
-
-        final Line line = lineGenerator.generate(Fixture.countOfusers);
-        final List<Direction> directions = line.getDirections();
-        for (int i = 1; i < directions.size(); i++) {
-            final Direction before = directions.get(i - Direction.DEFAULT_MOVING_DISTANCE_VALUE);
-            if (before == Direction.RIGHT) {
-                assertThat(directions.get(i)).isEqualTo(Direction.LEFT);
-            }
-        }
-    }
-
-    @DisplayName("Point가 STRAIGHT를 따라가면 indexOfLine만 1 증가한다.")
-    @Test
-    void should_increment_indexOfLine_when_ride_STRAIGHT() {
+    void firstRight() {
         // given
-        final int indexOfLadder = 0;
-        final int indexOfLine = 0;
-        final Point point = Point.of(indexOfLadder, indexOfLine);
+        final DirectionGenerateStrategy strategy = () -> true;
+        final Users users = Users.ofSeparator("a");
+
+        final Line line = Line.generate(strategy, users);
+        final Index defaultIndex = Index.valueOf(0);
 
         // when
-        final Point movedPoint = Fixture.allStraightLine.ride(point);
-        final Point expect = Point.of(indexOfLadder, indexOfLine + 1);
+        final Index movedIndex = line.move(defaultIndex);
 
         // then
-        assertThat(movedPoint).isEqualTo(expect);
+        assertThat(movedIndex).isEqualTo(defaultIndex.increment());
     }
 
-    @DisplayName("Point가 RIGHT를 따라가면 indexOfLine와 indexOfLadder가 1 증가한다.")
+    @DisplayName("첫 방향이 직진이면 이동 하지 않는다.")
     @Test
-    void should_increment_indexOfLine_and_indexOfLadder_when_ride_RIGHT() {
+    void firstStraight() {
         // given
-        final int indexOfLadder = 0;
-        final int indexOfLine = 0;
-        final Point point = Point.of(indexOfLadder, indexOfLine);
+        final DirectionGenerateStrategy strategy = () -> false;
+        final Users users = Users.ofSeparator("a");
+
+        final Line line = Line.generate(strategy, users);
+        final Index defaultIndex = Index.valueOf(0);
 
         // when
-        final Point movedPoint = Fixture.rightLeftLine.ride(point);
-        final Point expect = Point.of(indexOfLadder + 1, indexOfLine + 1);
+        final Index movedIndex = line.move(defaultIndex);
 
         // then
-        assertThat(movedPoint).isEqualTo(expect);
+        assertThat(movedIndex).isEqualTo(defaultIndex);
     }
 
-    @DisplayName("Point가 LEFT를 따라가면 indexOfLine가 1 증가하고 indexOfLadder가 1 감소한다.")
+    @DisplayName("중간 방향이 왼쪽이면 위치가 " + Index.INCREMENT_VALUE + " 감소한다.")
     @Test
-    void should_increment_indexOfLine_and_decrement_indexOfLadder_when_ride_LEFT() {
+    void middleLeft() {
         // given
-        final int indexOfLadder = 1;
-        final int indexOfLine = 1;
-        final Point point = Point.of(indexOfLadder, indexOfLine);
+        final DirectionGenerateStrategy strategy = () -> true;
+        final Users users = Users.ofSeparator("a,b,c,d");
+
+        final Line line = Line.generate(strategy, users);
+        final Index defaultIndex = Index.valueOf(1);
 
         // when
-        final Point movedPoint = Fixture.rightLeftLine.ride(point);
-        final Point expect = Point.of(indexOfLadder - 1, indexOfLine + 1);
+        final Index movedIndex = line.move(defaultIndex);
 
         // then
-        assertThat(movedPoint).isEqualTo(expect);
+        assertThat(movedIndex).isEqualTo(defaultIndex.decrement());
+    }
+
+    @DisplayName("중간 방향이 직진이면 이동 하지 않는다.")
+    @Test
+    void middleStraight() {
+        // given
+        final DirectionGenerateStrategy strategy = () -> false;
+        final Users users = Users.ofSeparator("a,b,c,d");
+
+        final Line line = Line.generate(strategy, users);
+        final Index defaultIndex = Index.valueOf(1);
+
+        // when
+        final Index movedIndex = line.move(defaultIndex);
+
+        // then
+        assertThat(movedIndex).isEqualTo(defaultIndex);
+    }
+
+    @DisplayName("중간 방향이 오른쪽이면 위치가 " + Index.INCREMENT_VALUE + " 증가한다.")
+    @Test
+    void middleRight() {
+        // given
+        final DirectionGenerateStrategy strategy = () -> true;
+        final Users users = Users.ofSeparator("a,b,c,d");
+
+        final Line line = Line.generate(strategy, users);
+        final Index defaultIndex = Index.valueOf(2);
+
+        // when
+        final Index movedIndex = line.move(defaultIndex);
+
+        // then
+        assertThat(movedIndex).isEqualTo(defaultIndex.increment());
+    }
+
+    @DisplayName("마지막 방향이 왼쪽이면 위치가 " + Index.INCREMENT_VALUE + " 감소한다.")
+    @Test
+    void lastLeft() {
+        // given
+        final DirectionGenerateStrategy strategy = () -> true;
+        final Users users = Users.ofSeparator("a,b,c,d");
+
+        final Line line = Line.generate(strategy, users);
+        final Index defaultIndex = Index.valueOf(3);
+
+        // when
+        final Index movedIndex = line.move(defaultIndex);
+
+        // then
+        assertThat(movedIndex).isEqualTo(defaultIndex.decrement());
+    }
+
+    @DisplayName("중간 방향이 직진이면 이동 하지 않는다.")
+    @Test
+    void lastStraight() {
+        // given
+        final DirectionGenerateStrategy strategy = () -> false;
+        final Users users = Users.ofSeparator("a,b,c,d");
+
+        final Line line = Line.generate(strategy, users);
+        final Index defaultIndex = Index.valueOf(3);
+
+        // when
+        final Index movedIndex = line.move(defaultIndex);
+
+        // then
+        assertThat(movedIndex).isEqualTo(defaultIndex);
     }
 }

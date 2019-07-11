@@ -9,21 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class UserTest {
-
-    @DisplayName("유저 생성에 성공한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "T",
-            "TEST!"
-    })
-    void should_return_user_when_create_by_username(final String username) {
-        // when
-        final User user = User.of(username);
-
-        // then
-        assertThat(user).isNotNull();
-    }
-
     @DisplayName("유저 이름에 길이가 " + Username.MAX_LENGTH + " 를 넘는 값이 들어가면 실패한다.")
     @ParameterizedTest
     @ValueSource(strings = {
@@ -32,12 +17,9 @@ class UserTest {
             "kjysgadasadgads",
             "gggdsa 아ㅏㅏㅏㅏㅏ sadsas "
     })
-    void should_throw_LongerThanMaxLengthUsernameException_when_create_by_longerThanMaxLengthUsername(
-            final String longerThanMaxLengthUsername) {
+    void shouldLongerThanMaxLengthUsernameException(final String longerThanMaxLengthUsername) {
         Assertions.assertThatExceptionOfType(LongerThanMaxLengthUsernameException.class)
-                .isThrownBy(() -> {
-                    User.of(longerThanMaxLengthUsername);
-                });
+                .isThrownBy(() -> User.of(longerThanMaxLengthUsername));
     }
 
     @DisplayName("유저 이름이 같다면 같은 객체여야 한다.")
@@ -48,7 +30,7 @@ class UserTest {
             "kjy",
             "ggg"
     })
-    void should_equals_object_when_create_by_same_username(final String rawUsername) {
+    void equals(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
         final User expect = User.of(rawUsername);
@@ -61,42 +43,43 @@ class UserTest {
         assertThat(user == expect).isTrue();
     }
 
-    @DisplayName("유저 이름 같으면 유저 이름은 같다.")
+    @DisplayName("시각화 시 길이는 " + Username.MAX_LENGTH + " 이어야 한다.")
     @ParameterizedTest
     @ValueSource(strings = {
             "김재연",
             "matt",
             "kjy",
-            "ggg"
+            "ggg",
+            "다섯글자다"
     })
-    void should_return_true_equalsName(final String rawUsername) {
+    void visualizeLength(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
 
         // when
-        final boolean equals = user.equalsUsername(rawUsername);
+        final String visualizedUser = user.visualize();
 
         // then
-        assertThat(equals).isTrue();
+        assertThat(visualizedUser).hasSize(Username.MAX_LENGTH);
     }
 
-    @DisplayName("유저 이름이 다르면 유저 이름은 다르다.")
+    @DisplayName("시각화 후 trim 시 입력과 같은 값이어야 한다.")
     @ParameterizedTest
     @ValueSource(strings = {
             "김재연",
             "matt",
             "kjy",
-            "ggg"
+            "ggg",
+            "다섯글자다"
     })
-    void should_return_false_otherUsername(final String rawUsername) {
+    void visualizeEquals(final String rawUsername) {
         // given
         final User user = User.of(rawUsername);
-        final String username = "XXXXX";
 
         // when
-        final boolean equals = user.equalsUsername(username);
+        final String visualizedUsername = user.visualize().trim();
 
         // then
-        assertThat(equals).isFalse();
+        assertThat(visualizedUsername).isEqualTo(rawUsername);
     }
 }

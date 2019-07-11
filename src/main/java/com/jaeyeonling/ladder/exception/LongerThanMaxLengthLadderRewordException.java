@@ -1,6 +1,6 @@
 package com.jaeyeonling.ladder.exception;
 
-import com.jaeyeonling.ladder.domain.ladder.LadderReword;
+import com.jaeyeonling.ladder.domain.reword.LadderReword;
 
 public class LongerThanMaxLengthLadderRewordException extends IllegalArgumentException {
 

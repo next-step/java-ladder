@@ -1,12 +1,15 @@
 package com.jaeyeonling.ladder.domain.line;
 
-import com.jaeyeonling.ladder.domain.point.Point;
+import com.jaeyeonling.ladder.domain.Index;
+import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
-public class Lines {
+import static java.lang.System.lineSeparator;
+import static java.util.stream.Collectors.joining;
+
+public class Lines implements StringVisualizable {
 
     private final List<Line> lines;
 
@@ -18,24 +21,18 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public Stream<Line> stream() {
-        return lines.stream();
-    }
-
-    public Point ride(Point point) {
-        while (isNotArriveEndLine(point)) {
-            point = rideOnce(point);
+    public Index ride(Index index) {
+        for (final Line line : lines) {
+            index = line.move(index);
         }
 
-        return point;
+        return index;
     }
 
-    private boolean isNotArriveEndLine(final Point point) {
-        return point.getIndexOfLine() != lines.size();
-    }
-
-    private Point rideOnce(final Point point) {
-        return lines.get(point.getIndexOfLine())
-                .ride(point);
+    @Override
+    public String visualize() {
+        return lines.stream()
+                .map(Line::visualize)
+                .collect(joining(lineSeparator()));
     }
 }

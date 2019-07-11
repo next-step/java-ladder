@@ -1,81 +1,108 @@
 package com.jaeyeonling.ladder.domain.ladder;
 
-import com.jaeyeonling.ladder.domain.GameInfo;
-import com.jaeyeonling.ladder.domain.GameResult;
-import com.jaeyeonling.ladder.domain.line.HeightOfLadder;
+import com.jaeyeonling.ladder.domain.Index;
+import com.jaeyeonling.ladder.domain.line.DirectionGenerateStrategy;
+import com.jaeyeonling.ladder.domain.line.Line;
 import com.jaeyeonling.ladder.domain.line.Lines;
-import com.jaeyeonling.ladder.domain.line.LinesFactory;
-import com.jaeyeonling.ladder.domain.point.Point;
-import com.jaeyeonling.ladder.domain.user.User;
+import com.jaeyeonling.ladder.domain.line.RandomDirectionGenerateStrategy;
+import com.jaeyeonling.ladder.domain.reword.LadderReword;
+import com.jaeyeonling.ladder.domain.reword.LadderRewords;
 import com.jaeyeonling.ladder.domain.user.Username;
 import com.jaeyeonling.ladder.domain.user.Users;
-import com.jaeyeonling.ladder.exception.NotInitializeLineException;
+import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
-public class LadderGame {
+import static java.util.stream.Collectors.*;
 
-    private static final int START_LINE = 0;
+public class LadderGame implements StringVisualizable {
 
     private final GameInfo gameInfo;
-    private Lines lines;
+    private final Lines lines;
 
-    private LadderGame(final GameInfo gameInfo) {
+    private LadderGame(final GameInfo gameInfo,
+                       final Lines lines) {
         this.gameInfo = gameInfo;
+        this.lines = lines;
     }
 
-    public static LadderGame of(final GameInfo gameInfo) {
-        return new LadderGame(gameInfo);
+    public static Builder builder(final Users users,
+                                  final LadderRewords ladderRewords) {
+        return new Builder(users, ladderRewords);
     }
 
-    public Lines getLines() {
-        return lines;
+    public LadderGameResult play() {
+        final Map<Username, LadderReword> ladderGameResult = gameInfo.range()
+                .boxed()
+                .map(Index::valueOf)
+                .collect(toMap(gameInfo::findUsernameBy, this::rideAndFindLadderRewordBy));
+
+        return LadderGameResult.of(ladderGameResult);
     }
 
-    public Users getUsers() {
-        return gameInfo.getUsers();
+    @Override
+    public String visualize() {
+        return String.format(gameInfo.visualize(), lines.visualize());
     }
 
-    public LadderRewords getRewords() {
-        return gameInfo.getRewords();
+    private LadderReword rideAndFindLadderRewordBy(final Index index) {
+        return gameInfo.findLadderRewordBy(lines.ride(index));
     }
 
-    public void initializeLines(final HeightOfLadder heightOfLadder,
-                                final LinesFactory linesFactory) {
-        this.lines = linesFactory.create(gameInfo, heightOfLadder);
-    }
+    public static class Builder {
+        private static final DirectionGenerateStrategy DEFAULT_DIRECTION_GENERATE_STRATEGY =
+                new RandomDirectionGenerateStrategy();
+        private static final HeightOfLadder DEFAULT_HEIGHT_OF_LADDER = HeightOfLadder.valueOf(10);
 
-    public GameResult play() {
-        if (!isInitialize()) {
-            throw new NotInitializeLineException();
+        private final Users users;
+        private final LadderRewords ladderRewords;
+
+        private DirectionGenerateStrategy directionGenerateStrategy;
+        private HeightOfLadder heightOfLadder;
+
+        private Builder(final Users users,
+                        final LadderRewords ladderRewords) {
+            this.users = users;
+            this.ladderRewords = ladderRewords;
         }
 
-        final Map<String, LadderReword> rewordOfUsername = gameInfo.userStream()
-                .map(User::getUsername)
-                .map(Username::getUsername)
-                .collect(Collectors.toMap(Function.identity(), this::findMatchingReword));
+        public LadderGame build() {
+            return new LadderGame(generateGameInfo(), generateLines());
+        }
 
-        return GameResult.of(rewordOfUsername);
-    }
+        public Builder directionGenerateStrategy(final DirectionGenerateStrategy directionGenerateStrategy) {
+            this.directionGenerateStrategy = directionGenerateStrategy;
+            return this;
+        }
 
-    private boolean isInitialize() {
-        return Objects.nonNull(lines);
-    }
+        public Builder heightOfLadder(final HeightOfLadder heightOfLadder) {
+            this.heightOfLadder = heightOfLadder;
+            return this;
+        }
 
-    LadderReword findMatchingReword(final String usernameOfMatchReword) {
-        final int indexOfLadder = gameInfo.findUserIndexByUsername(usernameOfMatchReword);
-        final int indexOfReword = ride(indexOfLadder);
+        private GameInfo generateGameInfo() {
+            return GameInfo.with(users, ladderRewords);
+        }
 
-        return gameInfo.findLadderRewordByIndex(indexOfReword);
-    }
+        private Lines generateLines() {
+            return getHeightOfLadder().rangeClosed()
+                    .mapToObj(ignore -> generateLine())
+                    .collect(collectingAndThen(toList(), Lines::of));
+        }
 
-    private int ride(final int indexOfLadder) {
-        final Point point = Point.of(indexOfLadder, START_LINE);
-        final Point resultPoint = lines.ride(point);
+        private Line generateLine() {
+            return Line.generate(getDirectionGenerateStrategy(), users);
+        }
 
-        return resultPoint.getIndexOfLadder();
+        private HeightOfLadder getHeightOfLadder() {
+            return Optional.ofNullable(heightOfLadder)
+                    .orElse(DEFAULT_HEIGHT_OF_LADDER);
+        }
+
+        private DirectionGenerateStrategy getDirectionGenerateStrategy() {
+            return Optional.ofNullable(directionGenerateStrategy)
+                    .orElse(DEFAULT_DIRECTION_GENERATE_STRATEGY);
+        }
     }
 }
