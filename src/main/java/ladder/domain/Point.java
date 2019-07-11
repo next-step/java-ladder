@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class Point {
-    private Position position;
-    private Direction direction;
+    private final Position position;
+    private final Direction direction;
 
     public Point(Position position, Direction direction) {
         this.position = position;
@@ -17,12 +17,16 @@ public class Point {
         return new Point(Position.first(), Direction.first());
     }
 
-
-    public Point move() {
-        return new Point(Position.increase(),direction.next());
+    public Point next() {
+        return new Point(this.position.increase(), this.direction.next());
     }
 
-    public int getPosition(){
-        return position.getPosition();
+    public Point last() {
+        return new Point(this.position.increase(), this.direction.last());
     }
+
+    public Position move(Position position) {
+        return this.direction.move(position);
+    }
+
 }
