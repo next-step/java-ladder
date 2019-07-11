@@ -25,4 +25,8 @@ public class GameInfo {
     public Goals getGoals() {
         return goals;
     }
+
+    public int getLadderWidth() {
+        return participants.size();
+    }
 }

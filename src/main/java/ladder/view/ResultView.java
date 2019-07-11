@@ -22,9 +22,17 @@ public class ResultView {
     public static void printResultMessage() {
 
         printStream.println(RESULT_MESSAGE);
+        printNewLine();
     }
 
-    public static void printParticipants(Participants participants) {
+    public static void printLadderGame(LadderGame ladderGame) {
+
+        ResultView.printParticipants(ladderGame.getGameInfo().getParticipants());
+        ResultView.printLines(ladderGame.getLines());
+        ResultView.printGoals(ladderGame.getGameInfo().getGoals());
+    }
+
+    private static void printParticipants(Participants participants) {
 
         participants.getParticipantsName()
                 .forEach(ResultView::printName);
@@ -36,7 +44,7 @@ public class ResultView {
         printStream.print(String.format(PRINT_PARTICIPANTS_FORMAT, name));
     }
 
-    public static void printLines(Lines lines) {
+    private static void printLines(Lines lines) {
 
         lines.getLines()
                 .forEach(ResultView::printLine);
@@ -62,7 +70,7 @@ public class ResultView {
 
     }
 
-    public static void printGoals(Goals goals) {
+    private static void printGoals(Goals goals) {
 
         goals.getGoals()
                 .stream().map(Goal::getResult)
@@ -70,21 +78,14 @@ public class ResultView {
         printNewLine();
     }
 
-    public static void printParticipantGoal(ParticipantGoal participantGoal) {
+    public static void printParticipantGoals(List<ParticipantGoal> participantGoals) {
 
         printResultMessage();
-
-        printEachParticipantGoal(participantGoal);
+        participantGoals.forEach(ResultView::printParticipantGoal);
         printNewLine();
     }
 
-    public static void printAllParticipantGoal(List<ParticipantGoal> allParticipantGoal) {
-
-        printResultMessage();
-        allParticipantGoal.forEach(ResultView::printEachParticipantGoal);
-    }
-
-    private static void printEachParticipantGoal(ParticipantGoal participantGoal) {
+    private static void printParticipantGoal(ParticipantGoal participantGoal) {
         printStream.println(String.format(PARTICIPANT_GOAL_FORMAT, participantGoal.getParticipant().getName(), participantGoal.getGoal().getResult()));
     }
 

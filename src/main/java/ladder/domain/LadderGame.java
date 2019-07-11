@@ -3,7 +3,7 @@ package ladder.domain;
 import ladder.domain.generator.BooleanGenerator;
 import ladder.domain.generator.RandomBooleanGenerator;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -16,8 +16,17 @@ public class LadderGame {
     public static LadderGame of(GameInfo gameInfo, int ladderHeight) {
         LadderGame ladderGame = new LadderGame();
         ladderGame.gameInfo = gameInfo;
-        ladderGame.lines = Lines.of(createLines(gameInfo.getParticipants().size(), ladderHeight));
+        ladderGame.lines = Lines.of(createLines(gameInfo.getLadderWidth(), ladderHeight));
         return ladderGame;
+    }
+
+    public LadderResult createResult() {
+        Map<Integer, Integer> positionGoals = new HashMap<>();
+        for (int i = 0; i < gameInfo.getLadderWidth(); i++) {
+            positionGoals.put(i, getLines().move(i));
+        }
+
+        return new LadderResult(positionGoals);
     }
 
     private static List<Line> createLines(int width, int height) {

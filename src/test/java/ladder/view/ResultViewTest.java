@@ -18,7 +18,7 @@ class ResultViewTest {
         ResultView.printLines(ladderGame.getLines());
         ResultView.printGoals(ladderGame.getGameInfo().getGoals());
 
-        LadderResult ladderResult = LadderResult.of(ladderGame);
+        LadderResult ladderResult = ladderGame.createResult();
         ParticipantGoals participantGoals = ladderResult.createParticipantGoal(ladderGame.getGameInfo());
 
         String name = "pobi";
@@ -26,6 +26,6 @@ class ResultViewTest {
             ResultView.printParticipantGoal(participantGoals.find(name));
             name = "all";
         }
-        ResultView.printAllParticipantGoal(participantGoals.findAll());
+        ResultView.printParticipantGoals(participantGoals.findAll());
     }
 }
