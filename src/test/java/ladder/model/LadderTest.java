@@ -12,16 +12,6 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 public class LadderTest {
 
     @Test
-    @DisplayName("Ladder 생성")
-    void generate_ladder() {
-        int countOfPlayers = 4;
-        int height = 5;
-        Ladder ladder = Ladder.of(countOfPlayers, height);
-
-        assertThat(ladder.getLayers().size()).isEqualTo(5);
-    }
-
-    @Test
     @DisplayName("ride 메소드 테스트")
     void ride() {
         Players players = MockPlayersGenerator.of("lee", "kim", "soo");

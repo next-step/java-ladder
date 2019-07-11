@@ -1,27 +1,22 @@
 package ladder.model;
 
 import java.util.EnumSet;
+import java.util.function.Function;
 
 public enum Direction {
 
-    RIGHT(false, true),
-    LEFT(true, false),
-    PASS(false, false);
+    RIGHT(false, true, position -> new Position(position.getValue() + 1)),
+    LEFT(true, false, position -> new Position(position.getValue() - 1)),
+    PASS(false, false, position -> new Position(position.getValue()));
 
     private final boolean left;
     private final boolean right;
+    private final Function<Position, Position> expression;
 
-    Direction(boolean left, boolean right) {
+    Direction(boolean left, boolean right, Function<Position, Position> expression) {
         this.left = left;
         this.right = right;
-    }
-
-    Position moveRight(Position position) {
-        return new Position(position.getValue() + 1);
-    }
-
-    Position moveLeft(Position position) {
-        return new Position(position.getValue() - 1);
+        this.expression = expression;
     }
 
     public static Direction of(boolean left, boolean right) {
@@ -32,8 +27,6 @@ public enum Direction {
     }
 
     public Position move(final Position position) {
-        if (this == Direction.RIGHT) return moveRight(position);
-        if (this == Direction.LEFT)  return moveLeft(position);
-        return new Position(position.getValue());
+        return expression.apply(position);
     }
 }

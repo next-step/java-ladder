@@ -1,6 +1,6 @@
 package ladder.model;
 
-import ladder.util.RungGenerator;
+import ladder.util.OppositeRungGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +10,13 @@ import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-public class RungGeneratorTest {
+public class OppositeRungGeneratorTest {
 
-    private RungGenerator rungGenerator;
+    private OppositeRungGenerator rungGenerator;
 
     @BeforeEach
     void setUp() {
-        this.rungGenerator = new RungGenerator();
+        this.rungGenerator = new OppositeRungGenerator();
     }
 
     @Test

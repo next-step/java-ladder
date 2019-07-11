@@ -36,7 +36,17 @@ public class Players {
     this.players.forEach(player -> player.ride(layer));
   }
 
-  public void takeRewards(Rewards rewards, Result result) {
-    this.players.stream().forEach(player -> player.takeReward(rewards, result));
+  public int takeReward(Reward reward) {
+    return (int) players.stream()
+            .map(player -> player.takeReward(reward))
+            .filter(tookReward -> tookReward)
+            .count();
+  }
+
+  public Result makeResult(Result result) {
+    for (Player player : players) {
+      player.makeResult(result);
+    }
+    return result;
   }
 }

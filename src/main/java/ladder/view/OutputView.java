@@ -15,7 +15,7 @@ public class OutputView {
     private static String DELIMITER = "\t";
     private static String RESULT = "실행 결과";
 
-    private static String RESULT_PATTERN = "%s : %s";
+    private static String RESULT_PATTERN = "%s : %s".concat(System.lineSeparator());
 
     public static void print(Players players, Ladder ladder, Rewards rewards) {
         printPlayers(players);
@@ -75,7 +75,7 @@ public class OutputView {
         Iterator<String> playerNames = result.getAll();
         while(playerNames.hasNext()) {
             String playerName = playerNames.next();
-            String reward = result.get(playerNames.next());
+            String reward = result.get(playerName);
 
             System.out.printf(RESULT_PATTERN, playerName, reward);
         }
