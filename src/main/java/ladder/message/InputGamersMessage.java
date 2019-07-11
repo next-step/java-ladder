@@ -1,4 +1,4 @@
-package ladder.message.result;
+package ladder.message;
 
 import ladder.core.message.Message;
 

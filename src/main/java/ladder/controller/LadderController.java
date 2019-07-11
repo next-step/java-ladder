@@ -3,25 +3,22 @@ package ladder.controller;
 import ladder.core.controller.ILadderController;
 import ladder.core.message.Message;
 import ladder.domain.gamer.Gamers;
-import ladder.domain.gamer.info.Gamer;
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderModel;
+import ladder.domain.result.FinalResult;
 import ladder.domain.reward.Rewards;
-import ladder.message.result.InputGamerNameMessage;
-import ladder.message.result.InputGamersMessage;
-import ladder.message.result.InputLadderSizeMessage;
-import ladder.message.result.InputRewardMessage;
-import ladder.message.result.ResultMessage;
-import ladder.message.result.RewardMessage;
+import ladder.message.InputGamerNameMessage;
+import ladder.message.InputGamersMessage;
+import ladder.message.InputLadderSizeMessage;
+import ladder.message.InputRewardMessage;
+import ladder.message.LadderResultMessage;
+import ladder.message.ResultMessage;
 import ladder.view.MainView;
 
 public class LadderController implements ILadderController {
-    private final static String EMPTY_STRING = "";
-    private final static String RESULT_DELIMITER = ":";
-    private final static String ENTER = System.getProperty("line.separator");
-    
     private final Gamers gamers = Gamers.newInstance();
     private final Rewards rewards = Rewards.newInstance();
-    private final Ladder ladder = Ladder.newInstance();
+    private final LadderModel ladderModel = LadderModel.newInstance();
+    private final FinalResult results = FinalResult.newInstance();
     private final MainView mainView = new MainView(this);
     
     @Override
@@ -37,36 +34,29 @@ public class LadderController implements ILadderController {
     
     @Override
     public void inputReward(String reward) {
-        rewards.addRewards(gamers, reward);
+        rewards.setRewards(gamers, reward);
         mainView.render(getInputStepMessage());
     }
     
     @Override
     public void inputLadderSize(int ladderSize) {
-        ladder.makeLadder(ladderSize, gamers);
+        ladderModel.makeLadder(ladderSize, gamers);
+        results.goToGoal(gamers, ladderModel, rewards);
         mainView.render(getInputStepMessage());
     }
     
     @Override
-    public void callAfterResult() {
+    public void callAfterLadderResult() {
         mainView.render(new InputGamerNameMessage());
     }
     
     @Override
     public void inputGamerName(String gamerName) {
         if (gamers.isGamerNameAll(gamerName)) {
-            mainView.render(getAllRewards());
+            mainView.render(new ResultMessage(results.getAllResults()));
             return;
         }
-        mainView.render(new RewardMessage(rewards.getReward(gamerName, gamers, ladder)));
-    }
-    
-    private RewardMessage getAllRewards() {
-        return new RewardMessage(gamers.keyStream()
-          .map(Gamer::getName)
-          .map(name -> name + RESULT_DELIMITER + rewards.getReward(name, gamers, ladder))
-          .reduce((info1, info2) -> info1 + ENTER + info2)
-          .orElse(EMPTY_STRING));
+        mainView.render(new ResultMessage(results.getResult(gamerName)));
     }
     
     private Message getInputStepMessage() {
@@ -76,9 +66,9 @@ public class LadderController implements ILadderController {
         if (rewards.isRewardsNeeded()) {
             return new InputRewardMessage();
         }
-        if (ladder.isLadderSizeNeeded()) {
+        if (ladderModel.isLadderSizeNeeded()) {
             return new InputLadderSizeMessage();
         }
-        return new ResultMessage(gamers.getGamerNames(), ladder, rewards.getRewardNames());
+        return new LadderResultMessage(gamers.getGamerNames(), ladderModel, rewards.getRewardNames());
     }
 }

@@ -1,6 +1,6 @@
 package ladder.view.model;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderModel;
 import ladder.domain.ladder.unit.Cell;
 import ladder.domain.ladder.unit.Line;
 
@@ -17,31 +17,31 @@ public class LadderLines {
     private final static int START_COUNT = 0;
     
     private final List<String> ladderLines;
-    private final Ladder ladder;
+    private final LadderModel ladderModel;
     
-    private LadderLines(Ladder ladder) {
-        this.ladder = ladder;
+    private LadderLines(LadderModel ladderModel) {
+        this.ladderModel = ladderModel;
         ladderLines = initLines();
         connectLines();
     }
     
-    public static LadderLines newLadderLines(Ladder ladder) {
-        return new LadderLines(ladder);
+    public static LadderLines newLadderLines(LadderModel ladderModel) {
+        return new LadderLines(ladderModel);
     }
     
     private List<String> initLines() {
-        return IntStream.range(START_COUNT, ladder.getCellSize())
+        return IntStream.range(START_COUNT, ladderModel.getCellSize())
           .mapToObj(i -> EMPTY_STRING)
           .collect(Collectors.toList());
     }
     
     private void connectLines() {
-        ladder.getStream().forEach(this::setLine);
+        ladderModel.getStream().forEach(this::setLine);
     }
     
     private void setLine(Line line) {
         for (int i = 0; i < line.getSize(); i++) {
-            ladderLines.set(i, ladderLines.get(i) + getLine(line.get(i)));
+            ladderLines.set(i, ladderLines.get(i) + getLine(line.getCell(i)));
         }
     }
     

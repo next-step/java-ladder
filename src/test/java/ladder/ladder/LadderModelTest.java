@@ -2,19 +2,19 @@ package ladder.ladder;
 
 import ladder.domain.gamer.Gamers;
 import ladder.domain.gamer.message.ErrorMessages;
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderModel;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderTest {
-    private Ladder ladder;
+class LadderModelTest {
+    private LadderModel ladderModel;
     private Gamers gamers;
     
     @BeforeEach
     void setUp() {
-        ladder = Ladder.newInstance();
+        ladderModel = LadderModel.newInstance();
         gamers = Gamers.newInstance();
     }
     
@@ -26,10 +26,10 @@ class LadderTest {
         gamers.addGamers("a,b,c,d,e");
         
         //When
-        ladder.makeLadder(cellSize, gamers);
+        ladderModel.makeLadder(cellSize, gamers);
         
         //Then
-        Assertions.assertThat(ladder.getSize()).isEqualTo(gamers.getSize());
+        Assertions.assertThat(ladderModel.getSize()).isEqualTo(gamers.getSize());
     }
     
     @Test
@@ -37,11 +37,11 @@ class LadderTest {
     void test() {
         //Given
         gamers.addGamers("a,b,c");
-        ladder.makeLadder(3, gamers);
+        ladderModel.makeLadder(3, gamers);
         
         //Then
         Assertions.assertThatIllegalArgumentException()
-            .isThrownBy(() -> ladder.getRewardNumber(4))
+            .isThrownBy(() -> ladderModel.getGoalNumber(4))
             .withMessage(ErrorMessages.OVER_INPUT_LADDER_SIZE.message());
     }
     
@@ -50,8 +50,8 @@ class LadderTest {
     void isLadderSizeTrueTest() {
         //Given
         //When
-        boolean ladderSizeNeeded = ladder.isLadderSizeNeeded();
-        boolean ladderMade = ladder.isLadderMade();
+        boolean ladderSizeNeeded = ladderModel.isLadderSizeNeeded();
+        boolean ladderMade = ladderModel.isLadderMade();
         
         //Then
         Assertions.assertThat(ladderSizeNeeded).isTrue();
@@ -64,11 +64,11 @@ class LadderTest {
         //Given
         Gamers gamers = Gamers.newInstance();
         gamers.addGamers("a,b,c");
-        ladder.makeLadder(3, gamers);
+        ladderModel.makeLadder(3, gamers);
         
         //When
-        boolean ladderSizeNeeded = ladder.isLadderSizeNeeded();
-        boolean ladderMade = ladder.isLadderMade();
+        boolean ladderSizeNeeded = ladderModel.isLadderSizeNeeded();
+        boolean ladderMade = ladderModel.isLadderMade();
         
         //Then
         Assertions.assertThat(ladderSizeNeeded).isFalse();

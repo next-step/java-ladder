@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 
 public class Gamers {
     private static final String DELIMITER = ",";
-    private static final int START_NUMBER = 0;
     private final static String FIND_ALL = "all";
+    private static final int START_NUMBER = 0;
     
     private final Map<Gamer, Integer> gamers;
     
@@ -25,30 +25,18 @@ public class Gamers {
         return new Gamers();
     }
     
-    public int getSize() {
-        return gamers.size();
-    }
-    
     public List<String> getGamerNames() {
         return gamers.keySet().stream()
             .map(Gamer::getName)
             .collect(Collectors.toList());
     }
     
-    public int getLineNumber(String gamerName) {
-        return getLineNumber(Gamer.from(gamerName));
-    }
-    
-    private int getLineNumber(Gamer gamer) {
+    public int getLineNumber(Gamer gamer) {
         Integer lineNumber = gamers.get(gamer);
         if (lineNumber == null) {
             throw new IllegalArgumentException(ErrorMessages.NOT_FIND_GAMER.message());
         }
         return lineNumber;
-    }
-    
-    public Stream<Gamer> keyStream() {
-        return gamers.keySet().stream();
     }
     
     public void addGamers(String gamerNames) {
@@ -67,5 +55,13 @@ public class Gamers {
     
     public boolean isGamerNameAll(String gamerName) {
         return FIND_ALL.equals(gamerName);
+    }
+    
+    public Stream<Gamer> keyStream() {
+        return gamers.keySet().stream();
+    }
+    
+    public int getSize() {
+        return gamers.size();
     }
 }

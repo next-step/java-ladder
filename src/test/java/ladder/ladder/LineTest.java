@@ -48,10 +48,10 @@ class LineTest {
         //Then
         boolean same = false;
         for (int i = 0; i < cellsSize; i++) {
-            boolean beforeCellRightConnected = beforeLine.get(i).isRightConnected();
+            boolean beforeCellRightConnected = beforeLine.getCell(i).isRightConnected();
             
             if (beforeCellRightConnected) {
-                if (beforeCellRightConnected == afterLine.get(i).isRightConnected()) {
+                if (beforeCellRightConnected == afterLine.getCell(i).isRightConnected()) {
                     same = true;
                     break;
                 }
@@ -70,7 +70,7 @@ class LineTest {
         Line afterLine = Line.from(beforeLine, true, 0);
         
         //When
-        boolean noneMatchRightConnected = afterLine.getStream()
+        boolean noneMatchRightConnected = afterLine.stream()
             .noneMatch(Cell::isRightConnected);
         
         //Then

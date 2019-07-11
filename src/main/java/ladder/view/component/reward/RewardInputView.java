@@ -6,7 +6,6 @@ import ladder.core.view.ViewImpl;
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
 import ladder.view.component.View;
-import ladder.view.component.constant.Step;
 
 public class RewardInputView implements ViewImpl {
     private static final String ANSWER = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
@@ -16,10 +15,7 @@ public class RewardInputView implements ViewImpl {
     
     public RewardInputView(ILadderController controller, Printer printer, Inputor inputor) {
         this.controller = controller;
-        view = new View.Builder(Step.REWARD_INPUT_STEP)
-          .setPrinter(printer)
-          .setInputor(inputor)
-          .build();
+        view = View.from(inputor, printer);
     }
     
     @Override
@@ -28,7 +24,6 @@ public class RewardInputView implements ViewImpl {
             return;
         }
         view.print(ANSWER);
-        Step.setNextStep(Step.LADDER_SIZE_STEP);
         controller.inputReward(view.inputString());
     }
 }

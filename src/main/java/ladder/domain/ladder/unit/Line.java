@@ -19,7 +19,7 @@ public class Line {
     private final Points points;
     
     private Line(Line beforeLine, boolean lastRow, int startPoint) {
-        cells = beforeLine.getStream()
+        cells = beforeLine.stream()
             .map(beforeCell -> Cell.from(beforeCell, getConnected(lastRow)))
             .collect(Collectors.toList());
         points = Points.from(startPoint);
@@ -55,11 +55,11 @@ public class Line {
         return cells.size();
     }
     
-    public Cell get(int index) {
+    public Cell getCell(int index) {
         return cells.get(index);
     }
     
-    public Stream<Cell> getStream() {
+    public Stream<Cell> stream() {
         return cells.stream();
     }
     

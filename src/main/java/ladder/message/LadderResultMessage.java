@@ -1,18 +1,18 @@
-package ladder.message.result;
+package ladder.message;
 
 import ladder.core.message.Message;
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderModel;
 
 import java.util.List;
 
-public class ResultMessage extends Message {
+public class LadderResultMessage extends Message {
     private final List<String> gamerNames;
     private final List<String> rewards;
-    private final Ladder ladder;
+    private final LadderModel ladderModel;
     
-    public ResultMessage(List<String> gamerNames, Ladder ladder, List<String> rewards) {
+    public LadderResultMessage(List<String> gamerNames, LadderModel ladderModel, List<String> rewards) {
         this.gamerNames = gamerNames;
-        this.ladder = ladder;
+        this.ladderModel = ladderModel;
         this.rewards = rewards;
     }
     
@@ -29,7 +29,7 @@ public class ResultMessage extends Message {
         return rewards;
     }
     
-    public Ladder getLadder() {
-        return ladder;
+    public LadderModel getLadderModel() {
+        return ladderModel;
     }
 }

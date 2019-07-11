@@ -2,41 +2,26 @@ package ladder.view.component;
 
 import ladder.core.view.input.Inputor;
 import ladder.core.view.output.Printer;
-import ladder.view.component.constant.Step;
 
 public class View {
-    private final Inputor inputor;
-    private final Printer printer;
-    private final Step step;
+    private Inputor inputor;
+    private Printer printer;
     
-    public static class Builder {
-        private Inputor inputor;
-        private Printer printer;
-        private Step step;
-        
-        public Builder(Step step) {
-            this.step = step;
-        }
-        
-        public Builder setInputor(Inputor inputor) {
-            this.inputor = inputor;
-            return this;
-        }
-    
-        public Builder setPrinter(Printer printer) {
-            this.printer = printer;
-            return this;
-        }
-        
-        public View build() {
-            return new View(step, inputor, printer);
-        }
+    private View(Printer printer) {
+        this.printer = printer;
     }
     
-    private View(Step step, Inputor inputor, Printer printer) {
-        this.step = step;
+    private View(Inputor inputor, Printer printer) {
         this.inputor = inputor;
         this.printer = printer;
+    }
+    
+    public static View from(Printer printer) {
+        return new View(printer);
+    }
+    
+    public static View from(Inputor inputor, Printer printer) {
+        return new View(inputor, printer);
     }
     
     public void print(String content) {
@@ -49,9 +34,5 @@ public class View {
     
     public int inputNumber() {
         return inputor.inputNumber();
-    }
-    
-    public Step getStep() {
-        return step;
     }
 }

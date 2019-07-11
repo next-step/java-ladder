@@ -1,6 +1,7 @@
 package ladder.gamer;
 
 import ladder.domain.gamer.Gamers;
+import ladder.domain.gamer.info.Gamer;
 import ladder.domain.gamer.message.ErrorMessages;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,10 +46,10 @@ class GamersTest {
     @DisplayName("[success] 유저 이름으로 시작 라인 번호를 가져온다.")
     void getLineNumberTest() {
         //Given
-        String gamerName = "one";
+        Gamer gamer = Gamer.from("one");
         
         //When
-        int lineNumber = gamers.getLineNumber("one");
+        int lineNumber = gamers.getLineNumber(gamer);
         
         //Then
         Assertions.assertThat(lineNumber).isEqualTo(0);
@@ -58,11 +59,11 @@ class GamersTest {
     @DisplayName("[fail] 유저 이름으로 시작 라인 번호를 가져온다. 없는 유저 이름을 입력하였다면 exception 발생")
     void getLineNumberFailTest() {
         //Given
-        String gamerName = "o";
+        Gamer gamer = Gamer.from("o");
         
         //Then
         Assertions.assertThatIllegalArgumentException()
-            .isThrownBy(() -> gamers.getLineNumber(gamerName))
+            .isThrownBy(() -> gamers.getLineNumber(gamer))
             .withMessage(ErrorMessages.NOT_FIND_GAMER.message());
     }
     
