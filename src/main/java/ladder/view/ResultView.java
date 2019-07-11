@@ -22,32 +22,13 @@ public class ResultView {
         printRewards(rewards);
         changeNextLine();
     }
-    
-    public static void outputOfLadderGame2(LadderGame ladderGame, Rewards rewards) {
-        changeNextLine();
-        System.out.println("실행 결과");
-        printPlayers(ladderGame.getPlayers());
-        changeNextLine();
-        printLadder2(ladderGame.getLadder2());
-        printRewards(rewards);
-        changeNextLine();
-    }
 
     private static void printPlayers(Players players) {
         players.getStream()
                 .forEach(player -> System.out.print(String.format(NAME_FORMAT, player.getName())));
     }
-
-    private static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLadder()) {
-            String ladderLine = line.getStream()
-                    .map(x -> x ? LINE_FORMAT : BLANK_FORMAT)
-                    .collect(Collectors.joining(POLE_FORMAT));
-            System.out.println(FIRST_FORMAT + ladderLine + POLE_FORMAT);
-        }
-    }
     
-	private static void printLadder2(Ladder2 ladder) {
+	private static void printLadder(Ladder ladder) {
 		for (LadderLine ladderLine : ladder.getLadder()) {
 			String line = ladderLine.getStream()
 					.map(point -> point.isLine())

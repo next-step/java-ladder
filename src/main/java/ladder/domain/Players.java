@@ -29,10 +29,6 @@ public class Players {
                 .max(Integer::compareTo).get();
     }
     
-    public Point_old pointOfPlayer(Player player) {
-    	return new Point_old(players.indexOf(player));
-    }
-    
     public Position getPosition(Player player) {
     	return new Position(players.indexOf(player));
     }

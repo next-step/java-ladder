@@ -19,17 +19,8 @@ public class LadderGeneratorTest {
     @Test
     @DisplayName("입력한 값 만큼 사다리 라인 생성")
     void generateLineTest() {
-        Line line = LadderGenerator.generateLine(players);
-        assertThat(line.size()).isEqualTo(playersCount - 1);
-    }
-
-    @Test
-    @DisplayName("생성된 사다리 라인 겹침 테스트 ")
-    void lineOverlapTest() {
-        Line line = LadderGenerator.generateLine(players);
-        for (int i = 1; i < playersCount - 1; i++) {
-            assertThat(line.isLine(i - 1) && line.isLine(i)).isFalse();
-        }
+        LadderLine line = LadderLine.init(players);
+        assertThat(line.size()).isEqualTo(playersCount);
     }
 
     @Test
@@ -39,7 +30,7 @@ public class LadderGeneratorTest {
         Ladder ladder = LadderGenerator.generateLadder(height, players);
 
         assertThat(ladder.height()).isEqualTo(height);
-        assertThat(ladder.getLadder().get(0)).isEqualTo(players.size() - 1);
+        assertThat(ladder.getLadder().size()).isEqualTo(players.size());
     }
 
 }

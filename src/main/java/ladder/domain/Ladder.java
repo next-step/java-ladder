@@ -4,36 +4,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> ladder;
+	private final List<LadderLine> ladder;
 
-    public Ladder(List<Line> ladder) {
-        this.ladder = ladder;
-    }
+	public Ladder(List<LadderLine> ladder) {
+		this.ladder = ladder;
+	}
 
-    public int height() {
-        return ladder.size();
-    }
+	public int height() {
+		return ladder.size();
+	}
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
-    }
+	public List<LadderLine> getLadder() {
+		return Collections.unmodifiableList(ladder);
+	}
 
-    public Point_old resultByPlayer (Point_old pointOldOfPlayer){
-        Point_old pointOld = pointOldOfPlayer;
-        for (Line line : ladder) {
-            if (pointOld.isFirst()) {
-                pointOld = pointOld.move(Direction_old.first(line.isLine(pointOld.getIndex())));
-                continue;
-            }
-            if (!pointOld.isFirst() && !pointOld.isLast(line.size())) {
-                pointOld = pointOld.move(Direction_old.of(line.isLine(pointOld.getIndex() - 1), line.isLine(pointOld.getIndex())));
-                continue;
-            }
-            if (pointOld.isLast(line.size())) {
-                pointOld = pointOld.move(Direction_old.last(line.isLine(pointOld.getIndex() - 1)));
-                continue;
-            }
-        }
-        return pointOldOfPlayer;
-    }
+	public Position resultByPlayer(Position PlayerPosition) {
+		Position position = PlayerPosition;
+		for (LadderLine ladderLine : ladder) {
+			position = ladderLine.move(position);
+		}
+		return position;
+	}
 }

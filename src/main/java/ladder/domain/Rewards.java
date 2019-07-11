@@ -22,10 +22,6 @@ public class Rewards {
 		return rewards.size();
 	}
 
-	public Reward rewardByResult(Point_old result) {
-		return rewards.get(result.getIndex());
-	}
-	
 	public Reward rewardByResult(Position resultPosition) {
 		return rewards.get(resultPosition.getPosition());
 	}

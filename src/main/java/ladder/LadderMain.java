@@ -20,11 +20,6 @@ public class LadderMain {
 
         ResultView.outputOfLadderGame(ladderGame, rewards);
         ResultView.outputOfLadderResult(ladderResult);
-        
-        // refactoring part
-//        LadderResult ladderResult2 = ladderGame.play2(rewards);
-//        ResultView.outputOfLadderGame2(ladderGame, rewards);
-//        ResultView.outputOfLadderResult(ladderResult2);
 
     }
 }
