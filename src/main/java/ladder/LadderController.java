@@ -1,9 +1,11 @@
 package ladder;
 
 import ladder.domain.LadderService;
-import ladder.domain.model.LadderLines;
+import ladder.dto.LadderCreateRequestDto;
+import ladder.dto.LadderCreateResponseDto;
+import ladder.dto.LadderResultRequestDto;
+import ladder.dto.LadderResultResponseDto;
 import ladder.view.input.InputView;
-import ladder.view.input.Users;
 import ladder.view.result.ResultView;
 
 public class LadderController {
@@ -19,8 +21,12 @@ public class LadderController {
     }
 
     public void run() {
-        Users users = Users.of(inputView.getUserNames());
-        LadderLines ladderLines = ladderService.createLadderLines(users.getUserCount(), inputView.getLadderHeight());
-        resultView.print(users, ladderLines);
+        LadderCreateRequestDto ladderCreateRequestDto = LadderCreateRequestDto.of(inputView.getUserNames(), inputView.getLadderResult(), inputView.getLadderHeight());
+        LadderCreateResponseDto ladderCreateResponseDto = ladderService.createLadder(ladderCreateRequestDto);
+        resultView.print(ladderCreateResponseDto.getLadderUsers(), ladderCreateResponseDto.getLadderLines(), ladderCreateResponseDto.getLadderResults());
+
+        LadderResultRequestDto ladderResultRequestDto = LadderResultRequestDto.of(inputView.getResultUsername());
+        LadderResultResponseDto ladderResultResponseDto = ladderService.startLadder(ladderResultRequestDto);
+        resultView.print(ladderResultResponseDto.getLadderResult());
     }
 }
