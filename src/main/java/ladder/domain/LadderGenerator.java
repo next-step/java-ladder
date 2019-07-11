@@ -14,17 +14,24 @@ public class LadderGenerator {
                 .mapToObj(x -> generateLine(players))
                 .collect(Collectors.toList()));
     }
-
-    public static Line generateLine(Players players) {
-        List<Boolean> points = new ArrayList<>();
-        points.add(random.nextBoolean());
-        for (int i = 1; i < players.size() - 1; i++) {
-            points.add(checkFrontLine(points.get(i - 1)));
-        }
-        return new Line(points);
+    
+    public static Ladder2 generateLadder2(int height, Players players) {
+        return new Ladder2(IntStream.range(0, height)
+                .mapToObj(x -> LadderLine.init(players))
+                .collect(Collectors.toList()));
     }
 
-    private static boolean checkFrontLine(boolean point) {
-        return point ? false : random.nextBoolean();
-    }
+	public static Line generateLine(Players players) {
+		List<Boolean> points = new ArrayList<>();
+		points.add(random.nextBoolean());
+		for (int i = 1; i < players.size() - 1; i++) {
+			points.add(checkFrontLine(points.get(i - 1)));
+		}
+		return new Line(points);
+	}
+
+	private static boolean checkFrontLine(boolean point) {
+		return point ? false : random.nextBoolean();
+	}
+    
 }

@@ -22,6 +22,16 @@ public class ResultView {
         printRewards(rewards);
         changeNextLine();
     }
+    
+    public static void outputOfLadderGame2(LadderGame ladderGame, Rewards rewards) {
+        changeNextLine();
+        System.out.println("실행 결과");
+        printPlayers(ladderGame.getPlayers());
+        changeNextLine();
+        printLadder2(ladderGame.getLadder2());
+        printRewards(rewards);
+        changeNextLine();
+    }
 
     private static void printPlayers(Players players) {
         players.getStream()
@@ -36,6 +46,15 @@ public class ResultView {
             System.out.println(FIRST_FORMAT + ladderLine + POLE_FORMAT);
         }
     }
+    
+	private static void printLadder2(Ladder2 ladder) {
+		for (LadderLine ladderLine : ladder.getLadder()) {
+			String line = ladderLine.getStream()
+					.map(point -> point.isLine())
+					.collect(Collectors.joining(POLE_FORMAT));
+			System.out.println(FIRST_FORMAT + line + POLE_FORMAT);
+		}
+	}
 
     private static void printRewards(Rewards rewards) {
         rewards.getStream()

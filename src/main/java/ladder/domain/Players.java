@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Players {
-    private List<Player> players;
+    private final List<Player> players;
 
     private Players(List<Player> players) {
         this.players = players;
@@ -31,6 +31,10 @@ public class Players {
     
     public Point_old pointOfPlayer(Player player) {
     	return new Point_old(players.indexOf(player));
+    }
+    
+    public Position getPosition(Player player) {
+    	return new Position(players.indexOf(player));
     }
 
     public List<Player> getPlayers() {

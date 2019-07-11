@@ -28,5 +28,9 @@ public class Point {
     public Position move(Position position) {
         return this.direction.move(position);
     }
+    
+    public String isLine() {
+    	return direction.isLine();
+    }
 
 }

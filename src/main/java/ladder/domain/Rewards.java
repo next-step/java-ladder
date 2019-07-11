@@ -26,6 +26,10 @@ public class Rewards {
 		return rewards.get(result.getIndex());
 	}
 	
+	public Reward rewardByResult(Position resultPosition) {
+		return rewards.get(resultPosition.getPosition());
+	}
+	
 	public Stream<Reward> getStream(){
 		return rewards.stream();
 	}
