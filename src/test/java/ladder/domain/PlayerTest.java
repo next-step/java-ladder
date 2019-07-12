@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class PlayerTest {
+class PlayerTest {
 
   @DisplayName("유저 생성 테스트")
   @Test
@@ -31,4 +31,5 @@ public class PlayerTest {
     assertThatIllegalArgumentException()
         .isThrownBy(() -> Player.of(name));
   }
+
 }

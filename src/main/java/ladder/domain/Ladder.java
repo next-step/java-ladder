@@ -9,27 +9,25 @@ import static ladder.domain.Point.START_INDEX;
 
 public class Ladder {
 
-  private List<Line> lines;
-  private Players players;
+  private final List<Line> lines;
 
-  private Ladder(List<Line> lines, Players players) {
+  private Ladder(List<Line> lines) {
     this.lines = Collections.unmodifiableList(lines);
-    this.players = players;
   }
 
-
-  public static Ladder of(int height, Players players) {
+  public static Ladder of(int height, int countOfPlayers) {
     List<Line> lines = IntStream.range(START_INDEX, height)
-        .mapToObj(i -> Line.of(players.size()))
+        .mapToObj(i -> Line.of(countOfPlayers))
         .collect(toList());
-    return new Ladder(lines, players);
+    return new Ladder(lines);
   }
 
-  public Players result() {
-    return lines.stream()
-        .map(players::move)
-        .reduce((first, second) -> second)
-        .orElseThrow(IllegalArgumentException::new);
+  int result(int index) {
+    int i = index;
+    for (Line line : lines) {
+      i = line.move(i);
+    }
+    return i;
   }
 
   public List<Line> getLines() {

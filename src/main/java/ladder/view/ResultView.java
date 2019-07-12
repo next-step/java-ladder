@@ -2,8 +2,7 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.Map;
-import java.util.Optional;
+import java.util.List;
 
 public class ResultView {
 
@@ -25,33 +24,28 @@ public class ResultView {
   private static void printLine(Ladder lines) {
     lines.getLines().stream()
         .map(Line::getLine)
-        .forEach(
-            bars -> {
-              bars.forEach(bar -> System.out.print(VERTICAL_LINE + drawBar(bar)));
-              System.out.println();
-            });
+        .forEach(ResultView::printBars);
+  }
+
+  private static void printBars(List<Boolean> bars) {
+    bars.forEach(bar -> System.out.print(VERTICAL_LINE + drawBar(bar)));
+    System.out.println();
   }
 
   private static void printPlayer(Players players) {
     System.out.print(players.toString());
   }
 
-  private static String drawBar(Boolean bar) {
+  private static String drawBar(boolean bar) {
     return bar ? HORIZONTAL_LINE : EMPTY_LINE;
   }
 
-  public static void resultPlayer(String resultName, Map<Player, LadderResult> ladderResult) {
-    Player player = ladderResult.keySet()
-        .stream()
-        .filter(p -> p.isPlayerName(resultName))
-        .findFirst()
-        .orElseThrow(() -> new IllegalArgumentException("잘못된 이름입니다."));
-
-    System.out.println(ladderResult.get(player).toString());
+  public static void resultPlayer(String resultName, LadderRewards ladderRewards) {
+    System.out.println(ladderRewards.searchPlayer(resultName));
   }
 
-  public static void resultAllPlayer(Map<Player, LadderResult> ladderResult) {
-    ladderResult
-        .forEach((key, value) -> System.out.println(key.toString() + ":" + value.toString()));
+  public static void resultAllPlayer(LadderRewards ladderRewards) {
+    ladderRewards.allPlayer()
+        .forEach(System.out::println);
   }
 }

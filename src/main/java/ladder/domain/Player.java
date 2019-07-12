@@ -8,17 +8,11 @@ public class Player {
   static final String NAME_PRINT_FORMAT = "%-5s";
 
   private String name;
-  private int index;
 
   private Player(String name) {
     validateNameSize(name);
 
     this.name = name;
-  }
-
-  private Player(String name, int index) {
-    this.name = name;
-    this.index = index;
   }
 
   private void validateNameSize(String name) {
@@ -32,18 +26,6 @@ public class Player {
 
   public static Player of(String name) {
     return new Player(name);
-  }
-
-  public static Player of(String name, int index) {
-    return new Player(name, index);
-  }
-
-  public Player move(Line line) {
-    return new Player(this.name, line.move(index));
-  }
-
-  public LadderResult gameResult(LadderResults ladderResults) {
-    return ladderResults.resultValue(index);
   }
 
   @Override
@@ -64,7 +46,7 @@ public class Player {
     return String.format(NAME_PRINT_FORMAT, name);
   }
 
-  public boolean isPlayerName(String name) {
+  boolean isPlayerName(String name) {
     return this.name.equalsIgnoreCase(name);
   }
 }
