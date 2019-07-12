@@ -6,23 +6,23 @@ import java.util.List;
 
 public class Line {
 
-    private List<Bar> bars;
+    private List<Point> points;
 
-    Line(List<Bar> bars) {
-        this.bars = new ArrayList<>(bars);
+    Line(List<Point> points) {
+        this.points = new ArrayList<>(points);
     }
 
     public static Line from(int numberOfPlayers) {
         LineMaker lineMaker = new LineMaker();
-        return new Line(lineMaker.generateBars(numberOfPlayers));
+        return new Line(lineMaker.generatePoints(numberOfPlayers));
     }
 
     Position travel(Position position) {
-        return bars.get(position.getPosition()).move(position);
+        return points.get(position.getPosition()).move(position);
     }
 
-    public List<Bar> getBars() {
-        return Collections.unmodifiableList(bars);
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
 }

@@ -6,39 +6,49 @@ import java.util.List;
 class LineMaker {
     private static final int NUMBER_OF_FIRST_AND_LAST_BAR = 2;
 
-    private List<Bar> randomBars;
-    private RandomBarGenerator barGenerator = new RandomBarGenerator();
+    private List<Point> randomPoints;
+    private RandomPointGenerator barGenerator = new RandomPointGenerator();
 
-    List<Bar> generateBars(int numberOfPlayers) {
-        this.randomBars = new ArrayList<>();
-        generateFirstBar();
-        generateMiddleBars(numberOfPlayers);
-        generateLastBar();
-        return randomBars;
+    List<Point> generatePoints(int numberOfPlayers) {
+        this.randomPoints = new ArrayList<>();
+        generateFirstPoint();
+        generateMiddlePoints(numberOfPlayers);
+        generateLastPoint();
+        return randomPoints;
     }
 
-    private void generateFirstBar() {
-        randomBars.add(Bar.of(Boolean.FALSE , barGenerator.generateBar()));
+    private void generateFirstPoint() {
+        Direction direction = Direction.PASS;
+        if (barGenerator.generatePoint()) {
+            direction = Direction.RIGHT;
+        }
+        randomPoints.add(Point.makeFirstPoint(direction));
     }
 
-    private void generateMiddleBars(int numberOfPlayers) {
+    private void generateMiddlePoints(int numberOfPlayers) {
         int spaceForMiddleBars = numberOfPlayers - NUMBER_OF_FIRST_AND_LAST_BAR;
         for (int i = 0; i < spaceForMiddleBars; i++) {
-            Bar previousBar = randomBars.get(i);
-            addNextBar(previousBar);
+            Point previousPoint = randomPoints.get(i);
+            addNextPoint(previousPoint);
         }
     }
 
-    private void addNextBar(Bar previousBar) {
-        if (previousBar.hasRight()) {
-            randomBars.add(Bar.of(Boolean.TRUE, Boolean.FALSE));
+    private void addNextPoint(Point previousPoint) {
+        if (previousPoint.isDirectionRight()) {
+            randomPoints.add(previousPoint.makeNextPoint(Direction.LEFT));
             return;
         }
-        randomBars.add(Bar.of(Boolean.FALSE, barGenerator.generateBar()));
+        Direction direction = Direction.PASS; //TODO: 중복 제거
+        if (barGenerator.generatePoint()) {
+            direction = Direction.RIGHT;
+        }
+        randomPoints.add(previousPoint.makeNextPoint(direction));
     }
 
-    private void generateLastBar() {
-        randomBars.add(Bar.of(barGenerator.generateBar(), Boolean.FALSE));
+    private void generateLastPoint() {
+        int currentlyLastIndex = randomPoints.size() - 1;
+        Point secondToLastPoint = randomPoints.get(currentlyLastIndex);
+        randomPoints.add(secondToLastPoint.makeLastPoint());
     }
 
 }

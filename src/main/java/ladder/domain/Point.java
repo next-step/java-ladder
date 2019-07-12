@@ -22,7 +22,7 @@ public class Point {
     }
 
     Point makeNextPoint(Direction direction) {
-        return new Point(Position.from(index.getPosition() + 1), direction);
+        return new Point(Position.from(index.getPosition() + 1), direction); //TODO: position에 위임
     }
 
     Point makeLastPoint() {
@@ -31,6 +31,10 @@ public class Point {
             lastPointDirection = Direction.LEFT;
         }
         return new Point(Position.from(index.getPosition() + 1), lastPointDirection);
+    }
+
+    boolean isDirectionRight() {
+        return direction.isRight();
     }
 
     Position getIndex() {
@@ -62,6 +66,4 @@ public class Point {
                 ", direction=" + direction +
                 '}';
     }
-
-
 }

@@ -2,12 +2,12 @@ package ladder.domain;
 
 import java.util.Random;
 
-public class RandomBarGenerator implements BarGenerator {
+public class RandomPointGenerator implements PointGenerator {
 
     private Random random = new Random();
 
     @Override
-    public boolean generateBar() {
+    public boolean generatePoint() {
         return random.nextBoolean();
     }
 }

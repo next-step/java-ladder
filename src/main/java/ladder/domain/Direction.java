@@ -13,4 +13,8 @@ public enum Direction {
         this.left = left;
         this.right = right;
     }
+
+    public boolean isRight() {
+        return right;
+    }
 }
