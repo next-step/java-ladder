@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.factory.LadderGameFactory;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -10,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LadderGame ladderGame = LadderGame.of(GameInfo.of(new Participants(InputView.askParticipantNames()), new Goals(InputView.askGoals())), InputView.askHeight());
+        LadderGame ladderGame = LadderGameFactory.createLadderGame(LadderGameInfo.readInput());
 
         ResultView.printResultMessage();
         ResultView.printLadderGame(ladderGame);

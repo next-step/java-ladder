@@ -1,23 +1,16 @@
 package ladder.domain;
 
-import ladder.domain.generator.BooleanGenerator;
-import ladder.domain.generator.RandomBooleanGenerator;
-
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGame {
 
-    private static final BooleanGenerator BOOLEAN_GENERATOR = new RandomBooleanGenerator();
     private GameInfo gameInfo;
     private Lines lines;
 
-    public static LadderGame of(GameInfo gameInfo, int ladderHeight) {
-        LadderGame ladderGame = new LadderGame();
-        ladderGame.gameInfo = gameInfo;
-        ladderGame.lines = Lines.of(createLines(gameInfo.getLadderWidth(), ladderHeight));
-        return ladderGame;
+    public LadderGame(GameInfo gameInfo, Lines lines) {
+        this.gameInfo = gameInfo;
+        this.lines = lines;
     }
 
     public LadderResult createResult() {
@@ -27,12 +20,6 @@ public class LadderGame {
         }
 
         return new LadderResult(positionGoals);
-    }
-
-    private static List<Line> createLines(int width, int height) {
-        return IntStream.range(0, height)
-                .mapToObj(currentHeight -> Line.of(width, BOOLEAN_GENERATOR))
-                .collect(Collectors.toList());
     }
 
     public GameInfo getGameInfo() {

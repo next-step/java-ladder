@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class GameInfo {
 
     private final Participants participants;
@@ -28,5 +30,19 @@ public class GameInfo {
 
     public int getLadderWidth() {
         return participants.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameInfo gameInfo = (GameInfo) o;
+        return Objects.equals(participants, gameInfo.participants) &&
+                Objects.equals(goals, gameInfo.goals);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(participants, goals);
     }
 }

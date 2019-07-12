@@ -2,8 +2,7 @@ package ladder.domain;
 
 import ladder.utils.StringUtils;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Goals {
@@ -35,5 +34,18 @@ public class Goals {
     public Goal getGoal(int index) {
 
         return goals.get(index);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Goals goals1 = (Goals) o;
+        return Objects.equals(goals, goals1.goals);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(goals);
     }
 }

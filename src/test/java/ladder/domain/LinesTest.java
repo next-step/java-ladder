@@ -22,7 +22,7 @@ class LinesTest {
 
     @BeforeEach
     void setUp() {
-        lines = Lines.of(IntStream.range(0, height)
+        lines = new Lines(IntStream.range(0, height)
                                  .mapToObj(i -> Line.of(width, pointGenerator))
                                  .collect(Collectors.toList()));
     }
