@@ -1,6 +1,5 @@
 package com.jaeyeonling.ladder.domain.user;
 
-
 import com.jaeyeonling.ladder.exception.DuplicateUsernameException;
 import com.jaeyeonling.ladder.exception.NotFoundUserException;
 
@@ -12,7 +11,7 @@ import java.util.stream.Stream;
 
 public class Users {
 
-    static final String SEPARATOR = "\\s*,\\s*";
+    public static final String SEPARATOR = "\\s*,\\s*";
 
     private final List<User> users;
 
@@ -35,27 +34,24 @@ public class Users {
         return new Users(users);
     }
 
-    public Stream<User> stream() {
-        return users.stream();
-    }
-
-    public int findIndexByUsername(final String username) {
-        return this.users.stream()
-                .filter(u -> u.equalsUsername(username))
-                .findFirst()
-                .map(this::findIndexByUser)
-                .orElseThrow(() -> new NotFoundUserException(username));
-    }
-
     public int size() {
         return this.users.size();
     }
 
-    public CountOfUsers getCountOfUsers() {
-        return CountOfUsers.fromUsers(this);
+    public Username findUsernameBy(final int index) {
+        return users.get(index).getUsername();
     }
 
-    private int findIndexByUser(final User user) {
-        return this.users.indexOf(user);
+    public int findIndexBy(final Username username) {
+        final User user = users.stream()
+                .filter(u -> u.equalsUsername(username))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundUserException(username));
+
+        return users.indexOf(user);
+    }
+
+    public Stream<User> stream() {
+        return users.stream();
     }
 }

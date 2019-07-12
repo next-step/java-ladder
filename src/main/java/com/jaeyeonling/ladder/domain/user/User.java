@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class User {
 
-    private static final Map<Username, User> CACHE = new HashMap<>();
+    private static final Map<Username, User> POOL = new HashMap<>();
 
     private final Username username;
 
@@ -15,19 +15,15 @@ public class User {
     }
 
     public static User of(final String username) {
-        return of(Username.valueOf(username));
-    }
-
-    public static User of(final Username username) {
-        return CACHE.computeIfAbsent(username, User::new);
-    }
-
-    public boolean equalsUsername(final String username) {
-        return this.username.equals(Username.valueOf(username));
+        return POOL.computeIfAbsent(Username.valueOf(username), User::new);
     }
 
     public Username getUsername() {
         return username;
+    }
+
+    boolean equalsUsername(final Username username) {
+        return this.username.equals(username);
     }
 
     @Override
@@ -40,11 +36,11 @@ public class User {
         }
 
         final User that = (User) o;
-        return Objects.equals(this.username, that.username);
+        return Objects.equals(username, that.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.username);
+        return Objects.hash(username);
     }
 }

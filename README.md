@@ -14,4 +14,6 @@
 
 ### [2단계 - 사다리(생성)](./docs/ladder-create.md) 
 
-### [3단계 - 사다리(게임 실행)](./docs/start-game.md) 
+### [3단계 - 사다리(게임 실행)](./docs/start-game.md)
+
+### [4단계 - 사다리(리팩토링)](./docs/refactoring.md) 

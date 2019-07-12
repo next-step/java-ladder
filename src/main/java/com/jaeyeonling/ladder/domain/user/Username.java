@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Username {
 
-    private static final Map<String, Username> CACHE = new HashMap<>();
+    private static final Map<String, Username> POOL = new HashMap<>();
 
     public static final int MAX_LENGTH = 5;
 
@@ -24,15 +24,15 @@ public class Username {
         if (StringUtils.isNullOrEmpty(username)) {
             throw new EmptyUsernameException();
         }
-        if (username.length() > MAX_LENGTH) {
+        if (StringUtils.isOverLength(username, MAX_LENGTH)) {
             throw new LongerThanMaxLengthUsernameException(username);
         }
 
-        return CACHE.computeIfAbsent(username, Username::new);
+        return POOL.computeIfAbsent(username, Username::new);
     }
 
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
     @Override
@@ -45,11 +45,11 @@ public class Username {
         }
 
         final Username that = (Username) o;
-        return Objects.equals(this.username, that.username);
+        return Objects.equals(username, that.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.username);
+        return Objects.hash(username);
     }
 }

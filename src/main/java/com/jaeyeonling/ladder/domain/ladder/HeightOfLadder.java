@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 public class HeightOfLadder {
 
-    private static final Map<Positive, HeightOfLadder> CACHE = new HashMap<>();
+    private static final Map<Positive, HeightOfLadder> POOL = new HashMap<>();
 
     private final Positive heightOfLadder;
 
@@ -18,11 +18,7 @@ public class HeightOfLadder {
     }
 
     public static HeightOfLadder valueOf(final int heightOfLadder) {
-        return valueOf(Positive.valueOf(heightOfLadder));
-    }
-
-    private static HeightOfLadder valueOf(final Positive countOfUsers) {
-        return CACHE.computeIfAbsent(countOfUsers, HeightOfLadder::new);
+        return POOL.computeIfAbsent(Positive.valueOf(heightOfLadder), HeightOfLadder::new);
     }
 
     IntStream rangeClosed() {
@@ -39,11 +35,11 @@ public class HeightOfLadder {
         }
 
         final HeightOfLadder that = (HeightOfLadder) o;
-        return Objects.equals(this.heightOfLadder, that.heightOfLadder);
+        return Objects.equals(heightOfLadder, that.heightOfLadder);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.heightOfLadder);
+        return Objects.hash(heightOfLadder);
     }
 }

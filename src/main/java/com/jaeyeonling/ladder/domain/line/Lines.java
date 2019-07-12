@@ -1,6 +1,6 @@
 package com.jaeyeonling.ladder.domain.line;
 
-import com.jaeyeonling.ladder.domain.point.Point;
+import com.jaeyeonling.ladder.domain.Index;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,24 +18,15 @@ public class Lines {
         return new Lines(lines);
     }
 
-    public Stream<Line> stream() {
-        return lines.stream();
-    }
-
-    public Point ride(Point point) {
-        while (isNotArriveEndLine(point)) {
-            point = rideOnce(point);
+    public Index ride(Index index) {
+        for (final Line line : lines) {
+            index = line.move(index);
         }
 
-        return point;
+        return index;
     }
 
-    private boolean isNotArriveEndLine(final Point point) {
-        return point.getIndexOfLine() != lines.size();
-    }
-
-    private Point rideOnce(final Point point) {
-        return lines.get(point.getIndexOfLine())
-                .ride(point);
+    public Stream<Line> stream() {
+        return lines.stream();
     }
 }
