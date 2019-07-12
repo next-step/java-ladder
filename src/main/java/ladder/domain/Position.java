@@ -38,12 +38,12 @@ public class Position {
         return this.position + MOVE_ONE_STEP_TO_LEFT;
     }
 
-    boolean isMovableToLeft() {
-        return position > FIRST_POSITION;
+    boolean unmovableToLeft() {
+        return position <= FIRST_POSITION;
     }
 
     private void validationMovableToLeft() {
-        if (!isMovableToLeft()) {
+        if (unmovableToLeft()) {
             throw new IllegalArgumentException(ALERT_UNMOVABLE_TO_LEFT);
         }
     }
