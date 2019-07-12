@@ -37,7 +37,7 @@ public class Point {
         return direction.move(position);
     }
 
-    boolean isDirectionRight() {
+    public boolean isDirectionRight() {
         return direction.isRight();
     }
 

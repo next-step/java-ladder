@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 class LineMaker {
-    private static final int NUMBER_OF_FIRST_AND_LAST_BAR = 2;
+    private static final int NUMBER_OF_FIRST_AND_LAST_POINT = 2;
 
     private List<Point> randomPoints;
-    private RandomPointGenerator barGenerator = new RandomPointGenerator();
+    private RandomPointGenerator pointGenerator = new RandomPointGenerator();
 
     List<Point> generatePoints(int numberOfPlayers) {
         this.randomPoints = new ArrayList<>();
@@ -22,8 +22,8 @@ class LineMaker {
     }
 
     private void generateMiddlePoints(int numberOfPlayers) {
-        int spaceForMiddleBars = numberOfPlayers - NUMBER_OF_FIRST_AND_LAST_BAR;
-        for (int i = 0; i < spaceForMiddleBars; i++) {
+        int spaceForMiddlePoints = numberOfPlayers - NUMBER_OF_FIRST_AND_LAST_POINT;
+        for (int i = 0; i < spaceForMiddlePoints; i++) {
             Point previousPoint = randomPoints.get(i);
             addNextPoint(previousPoint);
         }
@@ -45,7 +45,7 @@ class LineMaker {
 
     private Direction chooseDirection() {
         Direction direction = Direction.PASS;
-        if (barGenerator.generatePoint()) {
+        if (pointGenerator.generatePoint()) {
             direction = Direction.RIGHT;
         }
         return direction;

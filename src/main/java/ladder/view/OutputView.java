@@ -40,16 +40,16 @@ public class OutputView {
 
     private static void printLine(Line line) {
         System.out.print(EMPTY_SPACE);
-        line.getBars().stream()
-                .map(OutputView::printBars)
+        line.getPoints().stream()
+                .map(OutputView::printPoints)
                 .forEach(System.out::print);
         printEmptyLine();
     }
 
-    private static String printBars(Bar bar) {
+    private static String printPoints(Point point) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(COLUMN);
-        if (bar.hasRight()) {
+        if (point.isDirectionRight()) {
             return stringBuilder.append(BAR).toString();
         }
         return stringBuilder.append(EMPTY_SPACE).toString();
