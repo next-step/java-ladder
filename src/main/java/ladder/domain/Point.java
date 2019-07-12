@@ -33,6 +33,10 @@ public class Point {
         return new Point(Position.from(index.getPosition() + 1), lastPointDirection);
     }
 
+    Position move(Position position) {
+        return direction.move(position);
+    }
+
     boolean isDirectionRight() {
         return direction.isRight();
     }
