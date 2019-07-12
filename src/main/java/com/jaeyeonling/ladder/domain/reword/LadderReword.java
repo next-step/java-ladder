@@ -3,13 +3,12 @@ package com.jaeyeonling.ladder.domain.reword;
 import com.jaeyeonling.ladder.exception.EmptyLadderRewordException;
 import com.jaeyeonling.ladder.exception.LongerThanMaxLengthLadderRewordException;
 import com.jaeyeonling.ladder.utils.StringUtils;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class LadderReword implements StringVisualizable {
+public class LadderReword {
 
     private static final Map<String, LadderReword> POOL = new HashMap<>();
 
@@ -32,8 +31,7 @@ public class LadderReword implements StringVisualizable {
         return POOL.computeIfAbsent(ladderReword, LadderReword::new);
     }
 
-    @Override
-    public String visualize() {
+    public String getLadderReword() {
         return ladderReword;
     }
 

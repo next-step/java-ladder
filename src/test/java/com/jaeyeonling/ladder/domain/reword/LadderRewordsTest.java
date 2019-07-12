@@ -36,22 +36,7 @@ class LadderRewordsTest {
         // then
         for (int i = 0; i < expectLadderRewords.length; i++) {
             final LadderReword ladderReword = ladderRewords.findLadderRewordBy(i);
-            assertThat(ladderReword.visualize()).isEqualTo(expectLadderRewords[i]);
+            assertThat(ladderReword).isEqualTo(LadderReword.valueOf(expectLadderRewords[i]));
         }
-    }
-
-    @DisplayName("1글자인 리워드들에 시각화에 성공한다.")
-    @Test
-    void visualize1Length() {
-        // given
-        final String rawUsers = "ㅁ,ㅇ,아";
-        final LadderRewords ladderRewords = LadderRewords.ofSeparator(rawUsers);
-
-        // when
-        final String visualized = ladderRewords.visualize();
-        final String expect = "     ㅁ     ㅇ     아";
-
-        // then
-        assertThat(visualized).isEqualTo(expect);
     }
 }

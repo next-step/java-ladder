@@ -53,24 +53,4 @@ class UsernameTest {
         assertThat(equals).isTrue();
         assertThat(username == expect).isTrue();
     }
-
-    @DisplayName("시각화 시 입력과 같은 값이어야 한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "김재연",
-            "matt",
-            "kjy",
-            "ggg",
-            "다섯글자다"
-    })
-    void equalsVisualize(final String rawUsername) {
-        // given
-        final Username username = Username.valueOf(rawUsername);
-
-        // when
-        final String visualizeUsername = username.visualize();
-
-        // then
-        assertThat(visualizeUsername).isEqualTo(rawUsername);
-    }
 }

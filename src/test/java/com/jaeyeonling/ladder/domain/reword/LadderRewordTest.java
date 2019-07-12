@@ -54,24 +54,4 @@ class LadderRewordTest {
         assertThat(equals).isTrue();
         assertThat(ladderReword == expect).isTrue();
     }
-
-    @DisplayName("시각화 시 입력과 같은 값이어야 한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "김재연",
-            "matt",
-            "kjy",
-            "ggg",
-            "다섯글자다"
-    })
-    void equalsVisualize(final String rawLadderReword) {
-        // given
-        final LadderReword ladderReword = LadderReword.valueOf(rawLadderReword);
-
-        // when
-        final String visualized = ladderReword.visualize();
-
-        // then
-        assertThat(visualized).isEqualTo(rawLadderReword);
-    }
 }

@@ -143,46 +143,4 @@ class DirectionTest {
         // then
         assertThat(last).isEqualTo(Direction.STRAIGHT);
     }
-
-    @DisplayName("방향이 LEFT 인 경우 시각화에 성공한다.")
-    @Test
-    void visualizeLeft() {
-        // given
-        final Direction direction = Direction.LEFT;
-
-        // when
-        final String visualized = direction.visualize();
-        final String expected = "-----|";
-
-        // then
-        assertThat(visualized).isEqualTo(expected);
-    }
-
-    @DisplayName("방향이 RIGHT 인 경우 시각화에 성공한다.")
-    @Test
-    void visualizeRight() {
-        // given
-        final Direction direction = Direction.RIGHT;
-
-        // when
-        final String visualized = direction.visualize();
-        final String expected = "     |";
-
-        // then
-        assertThat(visualized).isEqualTo(expected);
-    }
-
-    @DisplayName("방향이 STRAIGHT 인 경우 시각화에 성공한다.")
-    @Test
-    void visualizeStraight() {
-        // given
-        final Direction direction = Direction.STRAIGHT;
-
-        // when
-        final String visualized = direction.visualize();
-        final String expected = "     |";
-
-        // then
-        assertThat(visualized).isEqualTo(expected);
-    }
 }

@@ -2,16 +2,14 @@ package com.jaeyeonling.ladder.domain.user;
 
 import com.jaeyeonling.ladder.exception.DuplicateUsernameException;
 import com.jaeyeonling.ladder.exception.NotFoundUserException;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Users implements StringVisualizable {
-
-    private static final String BLANK = " ";
+public class Users {
 
     public static final String SEPARATOR = "\\s*,\\s*";
 
@@ -53,10 +51,7 @@ public class Users implements StringVisualizable {
         return users.indexOf(user);
     }
 
-    @Override
-    public String visualize() {
-        return BLANK + users.stream()
-                .map(User::visualize)
-                .collect(Collectors.joining(BLANK));
+    public Stream<User> stream() {
+        return users.stream();
     }
 }

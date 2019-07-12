@@ -1,13 +1,10 @@
 package com.jaeyeonling.ladder.domain.user;
 
-import com.jaeyeonling.ladder.utils.StringUtils;
-import com.jaeyeonling.ladder.view.StringVisualizable;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class User implements StringVisualizable {
+public class User {
 
     private static final Map<Username, User> POOL = new HashMap<>();
 
@@ -27,11 +24,6 @@ public class User implements StringVisualizable {
 
     boolean equalsUsername(final Username username) {
         return this.username.equals(username);
-    }
-
-    @Override
-    public String visualize() {
-        return StringUtils.rightAlign(username.visualize(), Username.MAX_LENGTH);
     }
 
     @Override

@@ -3,18 +3,14 @@ package com.jaeyeonling.ladder.domain.ladder;
 import com.jaeyeonling.ladder.domain.reword.LadderReword;
 import com.jaeyeonling.ladder.domain.user.Username;
 import com.jaeyeonling.ladder.exception.NotFoundUserException;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
-import static java.lang.System.lineSeparator;
-import static java.util.stream.Collectors.joining;
+public class LadderGameResult {
 
-public class LadderGameResult implements StringVisualizable {
-
-    private static final String MATCHING_RESULT_FORMAT = "%s : %s";
     static final String FINISH_CHARACTER = "all";
 
     private final Map<Username, LadderReword> rewordOfUsername;
@@ -31,27 +27,13 @@ public class LadderGameResult implements StringVisualizable {
         return FINISH_CHARACTER.equalsIgnoreCase(usernameOfWantReword);
     }
 
-    public String visualize(final Username username) {
-        final LadderReword ladderReword = Optional.ofNullable(rewordOfUsername.get(username))
+    public LadderReword findRewordBy(final Username username) {
+        return Optional.ofNullable(rewordOfUsername.get(username))
                 .orElseThrow(() -> new NotFoundUserException(username));
-
-        return format(username, ladderReword);
     }
 
-    @Override
-    public String visualize() {
+    public Stream<Map.Entry<Username, LadderReword>> stream() {
         return rewordOfUsername.entrySet()
-                .stream()
-                .map(this::visualize)
-                .collect(joining(lineSeparator()));
-    }
-
-    private String visualize(final Map.Entry<Username, LadderReword> entry) {
-        return format(entry.getKey(), entry.getValue());
-    }
-
-    private String format(final Username username,
-                          final LadderReword ladderReword) {
-        return String.format(MATCHING_RESULT_FORMAT, username.visualize(), ladderReword.visualize());
+                .stream();
     }
 }

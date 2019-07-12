@@ -42,44 +42,4 @@ class UserTest {
         assertThat(equals).isTrue();
         assertThat(user == expect).isTrue();
     }
-
-    @DisplayName("시각화 시 길이는 " + Username.MAX_LENGTH + " 이어야 한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "김재연",
-            "matt",
-            "kjy",
-            "ggg",
-            "다섯글자다"
-    })
-    void visualizeLength(final String rawUsername) {
-        // given
-        final User user = User.of(rawUsername);
-
-        // when
-        final String visualizedUser = user.visualize();
-
-        // then
-        assertThat(visualizedUser).hasSize(Username.MAX_LENGTH);
-    }
-
-    @DisplayName("시각화 후 trim 시 입력과 같은 값이어야 한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "김재연",
-            "matt",
-            "kjy",
-            "ggg",
-            "다섯글자다"
-    })
-    void visualizeEquals(final String rawUsername) {
-        // given
-        final User user = User.of(rawUsername);
-
-        // when
-        final String visualizedUsername = user.visualize().trim();
-
-        // then
-        assertThat(visualizedUsername).isEqualTo(rawUsername);
-    }
 }

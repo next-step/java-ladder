@@ -28,14 +28,14 @@ public class Application {
         final LadderGameResult ladderGameResult = ladderGame.play();
 
         while (true) {
-            final String usernameOfWantReword = ConsoleInputView.readUsernameOfWantReword();
-            if (ladderGameResult.isShowAll(usernameOfWantReword)) {
+            final String inputWantReword = ConsoleInputView.readUsernameOfWantReword();
+            if (ladderGameResult.isShowAll(inputWantReword)) {
                 ConsoleOutputView.printGameResult(ladderGameResult);
                 break;
             }
 
-            final String visualized = ladderGameResult.visualize(Username.valueOf(usernameOfWantReword));
-            printSingleResult(visualized);
+            final Username username = Username.valueOf(inputWantReword);
+            printSingleResult(username, ladderGameResult.findRewordBy(username));
         }
     }
 }

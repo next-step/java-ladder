@@ -34,36 +34,6 @@ class UsersTest {
                 .isThrownBy(() -> Users.ofSeparator("a,b,c,d,e,a"));
     }
 
-    @DisplayName("이름이 5글자인 유저들 시각화에 성공한다.")
-    @Test
-    void visualize5Length() {
-        // given
-        final String rawUsers = "ㅁㅁㅁㅁ,ㅇㅇㅇㅇㅇ,아아아아아";
-        final Users users = Users.ofSeparator(rawUsers);
-
-        // when
-        final String visualized = users.visualize();
-        final String expect = "  ㅁㅁㅁㅁ ㅇㅇㅇㅇㅇ 아아아아아";
-
-        // then
-        assertThat(visualized).isEqualTo(expect);
-    }
-
-    @DisplayName("이름이 1글자인 유저들에 시각화에 성공한다.")
-    @Test
-    void visualize1Length() {
-        // given
-        final String rawUsers = "ㅁ,ㅇ,아";
-        final Users users = Users.ofSeparator(rawUsers);
-
-        // when
-        final String visualized = users.visualize();
-        final String expect = "     ㅁ     ㅇ     아";
-
-        // then
-        assertThat(visualized).isEqualTo(expect);
-    }
-
     @DisplayName("유저 이름으로 인덱스를 가져온다.")
     @Test
     void findIndexBy() {

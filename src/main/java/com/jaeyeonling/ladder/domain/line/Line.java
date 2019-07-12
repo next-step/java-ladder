@@ -2,15 +2,13 @@ package com.jaeyeonling.ladder.domain.line;
 
 import com.jaeyeonling.ladder.domain.Index;
 import com.jaeyeonling.ladder.domain.user.Users;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.joining;
-
-public class Line implements StringVisualizable {
+public class Line {
 
     private static final int SIZE_TERM = 1;
 
@@ -32,11 +30,8 @@ public class Line implements StringVisualizable {
                 .move(index);
     }
 
-    @Override
-    public String visualize() {
-        return directions.stream()
-                .map(Direction::visualize)
-                .collect(joining());
+    public Stream<Direction> stream() {
+        return directions.stream();
     }
 
     private void init(final DirectionGenerateStrategy strategy,

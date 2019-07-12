@@ -1,12 +1,10 @@
 package com.jaeyeonling.ladder.domain.line;
 
 import com.jaeyeonling.ladder.domain.Index;
-import com.jaeyeonling.ladder.domain.user.Username;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.function.UnaryOperator;
 
-public enum Direction implements StringVisualizable {
+public enum Direction {
 
     LEFT(Index::decrement),
     RIGHT(Index::increment),
@@ -36,11 +34,5 @@ public enum Direction implements StringVisualizable {
 
     public Index move(final Index index) {
         return moveFunction.apply(index);
-    }
-
-    @Override
-    public String visualize() {
-        final String replaceCharacter = this == LEFT ? "-" : " ";
-        return replaceCharacter.repeat(Username.MAX_LENGTH) + "|";
     }
 }

@@ -3,13 +3,12 @@ package com.jaeyeonling.ladder.domain.user;
 import com.jaeyeonling.ladder.exception.EmptyUsernameException;
 import com.jaeyeonling.ladder.exception.LongerThanMaxLengthUsernameException;
 import com.jaeyeonling.ladder.utils.StringUtils;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Username implements StringVisualizable {
+public class Username {
 
     private static final Map<String, Username> POOL = new HashMap<>();
 
@@ -33,11 +32,6 @@ public class Username implements StringVisualizable {
     }
 
     public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public String visualize() {
         return username;
     }
 

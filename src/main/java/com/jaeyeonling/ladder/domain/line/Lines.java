@@ -1,15 +1,12 @@
 package com.jaeyeonling.ladder.domain.line;
 
 import com.jaeyeonling.ladder.domain.Index;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
-import static java.lang.System.lineSeparator;
-import static java.util.stream.Collectors.joining;
-
-public class Lines implements StringVisualizable {
+public class Lines {
 
     private final List<Line> lines;
 
@@ -29,10 +26,7 @@ public class Lines implements StringVisualizable {
         return index;
     }
 
-    @Override
-    public String visualize() {
-        return lines.stream()
-                .map(Line::visualize)
-                .collect(joining(lineSeparator()));
+    public Stream<Line> stream() {
+        return lines.stream();
     }
 }
