@@ -18,11 +18,7 @@ class LineMaker {
     }
 
     private void generateFirstPoint() {
-        Direction direction = Direction.PASS;
-        if (barGenerator.generatePoint()) {
-            direction = Direction.RIGHT;
-        }
-        randomPoints.add(Point.makeFirstPoint(direction));
+        randomPoints.add(Point.makeFirstPoint(chooseDirection()));
     }
 
     private void generateMiddlePoints(int numberOfPlayers) {
@@ -38,17 +34,21 @@ class LineMaker {
             randomPoints.add(previousPoint.makeNextPoint(Direction.LEFT));
             return;
         }
-        Direction direction = Direction.PASS; //TODO: 중복 제거
-        if (barGenerator.generatePoint()) {
-            direction = Direction.RIGHT;
-        }
-        randomPoints.add(previousPoint.makeNextPoint(direction));
+        randomPoints.add(previousPoint.makeNextPoint(chooseDirection()));
     }
 
     private void generateLastPoint() {
         int currentlyLastIndex = randomPoints.size() - 1;
         Point secondToLastPoint = randomPoints.get(currentlyLastIndex);
         randomPoints.add(secondToLastPoint.makeLastPoint());
+    }
+
+    private Direction chooseDirection() {
+        Direction direction = Direction.PASS;
+        if (barGenerator.generatePoint()) {
+            direction = Direction.RIGHT;
+        }
+        return direction;
     }
 
 }
