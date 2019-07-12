@@ -18,7 +18,9 @@ public final class ConsoleOutputView {
     public static void printLadderReword(final LadderGame ladderGame) {
         newline();
         print(RESULT_LADDER_MESSAGE);
-        print(ladderGame);
+        print(ladderGame.getUsers());
+        print(ladderGame.getLines());
+        print(ladderGame.getLadderRewords());
         newline();
     }
 

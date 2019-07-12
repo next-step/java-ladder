@@ -6,11 +6,10 @@ import com.jaeyeonling.ladder.domain.reword.LadderRewords;
 import com.jaeyeonling.ladder.domain.user.Username;
 import com.jaeyeonling.ladder.domain.user.Users;
 import com.jaeyeonling.ladder.exception.NotEqualsUserSizeAndRewordSizeException;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.stream.IntStream;
 
-public class GameInfo implements StringVisualizable {
+public class GameInfo {
 
     private final Users users;
     private final LadderRewords ladderRewords;
@@ -30,9 +29,12 @@ public class GameInfo implements StringVisualizable {
         return new GameInfo(users, ladderRewords);
     }
 
-    @Override
-    public String visualize() {
-        return users.visualize() + "\n%s\n" + ladderRewords.visualize();
+    public Users getUsers() {
+        return users;
+    }
+
+    LadderRewords getLadderRewords() {
+        return ladderRewords;
     }
 
     IntStream range() {

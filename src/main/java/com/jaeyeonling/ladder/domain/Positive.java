@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 public class Positive {
 
-    private static final Map<Integer, Positive> CACHE = new HashMap<>();
+    private static final Map<Integer, Positive> POOL = new HashMap<>();
 
     public static final int MIN = 1;
 
@@ -24,7 +24,7 @@ public class Positive {
             throw new ShorterThanMinPositiveException(positive);
         }
 
-        return CACHE.computeIfAbsent(positive, Positive::new);
+        return POOL.computeIfAbsent(positive, Positive::new);
     }
 
     public IntStream rangeClosed() {

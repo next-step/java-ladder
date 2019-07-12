@@ -9,14 +9,13 @@ import com.jaeyeonling.ladder.domain.reword.LadderReword;
 import com.jaeyeonling.ladder.domain.reword.LadderRewords;
 import com.jaeyeonling.ladder.domain.user.Username;
 import com.jaeyeonling.ladder.domain.user.Users;
-import com.jaeyeonling.ladder.view.StringVisualizable;
 
 import java.util.Map;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.*;
 
-public class LadderGame implements StringVisualizable {
+public class LadderGame {
 
     private final GameInfo gameInfo;
     private final Lines lines;
@@ -41,9 +40,16 @@ public class LadderGame implements StringVisualizable {
         return LadderGameResult.of(ladderGameResult);
     }
 
-    @Override
-    public String visualize() {
-        return String.format(gameInfo.visualize(), lines.visualize());
+    public Users getUsers() {
+        return gameInfo.getUsers();
+    }
+
+    public LadderRewords getLadderRewords() {
+        return gameInfo.getLadderRewords();
+    }
+
+    public Lines getLines() {
+        return lines;
     }
 
     private LadderReword rideAndFindLadderRewordBy(final Index index) {

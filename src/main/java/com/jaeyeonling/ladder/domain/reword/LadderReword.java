@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class LadderReword implements StringVisualizable {
 
-    private static final Map<String, LadderReword> CACHE = new HashMap<>();
+    private static final Map<String, LadderReword> POOL = new HashMap<>();
 
     public static final int MAX_LENGTH = 5;
 
@@ -29,7 +29,7 @@ public class LadderReword implements StringVisualizable {
             throw new LongerThanMaxLengthLadderRewordException(ladderReword);
         }
 
-        return CACHE.computeIfAbsent(ladderReword, LadderReword::new);
+        return POOL.computeIfAbsent(ladderReword, LadderReword::new);
     }
 
     @Override
