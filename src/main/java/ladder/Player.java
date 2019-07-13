@@ -21,8 +21,8 @@ public class Player {
     }
 
     public String getNamePad() {
-        name += "     ";
-        return name.substring(0, 6);
+        String nameAddEmpty = this.name + " ".repeat(5);
+        return nameAddEmpty.substring(0, 6);
     }
 
     @Override

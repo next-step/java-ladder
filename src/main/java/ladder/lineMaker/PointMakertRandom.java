@@ -1,13 +1,13 @@
 package ladder.lineMaker;
 
-import ladder.LineMaker;
+import ladder.PointMakert;
 
 import java.util.Random;
 
-public class LineMakerRandom implements LineMaker {
+public class PointMakertRandom implements PointMakert {
     private Random random;
 
-    public LineMakerRandom() {
+    public PointMakertRandom() {
         this.random = new Random();
     }
 

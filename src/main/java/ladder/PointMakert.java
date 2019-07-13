@@ -1,5 +1,5 @@
 package ladder;
 
-public interface LineMaker {
+public interface PointMakert {
     Boolean nextBoolean();
 }

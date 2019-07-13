@@ -3,7 +3,7 @@ package ladder.io;
 import ladder.Ladder;
 import ladder.Line;
 import ladder.Players;
-import ladder.Results;
+import ladder.Prizes;
 
 public class OutputView {
     public static void printNames(Players players) {
@@ -28,15 +28,15 @@ public class OutputView {
 
     private static void printLine(Boolean point) {
         if (point){
-            System.out.print("-----");
+            System.out.print("-".repeat(5));
             return;
         }
-        System.out.print("     ");
+        System.out.print(" ".repeat(5));
     }
 
-    public static void printResults(Results playerresults) {
-        playerresults.getResults()
-                .forEach(n -> System.out.print(n.getResultPad()));
+    public static void printResults(Prizes playerresults) {
+        playerresults.getPrizes()
+                .forEach(n -> System.out.print(n.getPrizePad()));
         System.out.println();
     }
 }

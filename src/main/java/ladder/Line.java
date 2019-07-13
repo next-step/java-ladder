@@ -6,25 +6,25 @@ import java.util.List;
 public class Line {
     private List<Boolean> points;
 
-    public Line(int lineLength, LineMaker lineMaker) {
-        this.points = this.makeLines(lineLength, lineMaker);
+    public Line(int lineLength, PointMakert pointMakert) {
+        this.points = this.makePoints(lineLength, pointMakert);
     }
 
-    public List<Boolean> makeLines(int lineCount, LineMaker lineMaker) {
-        List<Boolean> lines = new ArrayList<>();
+    public List<Boolean> makePoints(int lineCount, PointMakert pointMaker) {
+        List<Boolean> points = new ArrayList<>();
         boolean pre = false;
         boolean cur;
         for (int i = 0; i < lineCount; i++) {
             if (pre){
-                lines.add(false);
+                points.add(false);
                 pre = false;
                 continue;
             }
-            cur = lineMaker.nextBoolean();
-            lines.add(cur);
+            cur = pointMaker.nextBoolean();
+            points.add(cur);
             pre = cur;
         }
-        return lines;
+        return points;
     }
 
     public List<Boolean> getPoints() {

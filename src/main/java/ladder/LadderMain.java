@@ -11,9 +11,9 @@ public class LadderMain {
         int height = InputView.inputLadderHeight();
         Ladder ladder = Ladder.of(height, players.getSize());
 
-        Results results = Results.of(InputView.inputResults());
+        Prizes prizes = Prizes.of(InputView.inputResults());
         OutputView.printNames(players);
         OutputView.printLadder(ladder);
-        OutputView.printResults(results);
+        OutputView.printResults(prizes);
     }
 }
