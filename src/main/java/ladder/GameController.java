@@ -26,11 +26,15 @@ public class GameController {
 		String nameInput = input.execute("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 		List<String> playerNames = TrimSplitter.split(nameInput, SEPARATOR);
 
+		String goalInput = input.execute("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+		List<String> goals = TrimSplitter.split(goalInput, SEPARATOR);
+
 		int height = Integer.parseInt(input.execute("최대 사다리 높이는 몇 개인가요?"));
 
 		this.ladder = new Ladder(playerNames.size(), height, provider);
 
 		view.renderNames(playerNames);
 		view.render(this.ladder);
+		view.renderGoals(goals);
 	}
 }

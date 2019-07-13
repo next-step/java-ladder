@@ -24,6 +24,21 @@ class LadderViewerTest {
 
 		// Assertion
 		assertThat(messages.size()).isEqualTo(1);
-		assertThat(messages.get(0)).isEqualTo("  test  user longn");
+		assertThat(messages.get(0)).isEqualTo("  test  user longn"); // 5글자가 넘어가는 경우 잘림
+	}
+
+	@Test
+	void renderGoals(){
+		List<String> messages = new ArrayList<>();
+		LadderViewer viewer = new LadderViewer(message -> {
+			messages.add(message);
+		});
+
+		// Action
+		viewer.renderNames(Arrays.asList("꽝", "1000", "50000"));
+
+		// Assertion
+		assertThat(messages.size()).isEqualTo(1);
+		assertThat(messages.get(0)).isEqualTo("    꽝  1000 50000");
 	}
 }

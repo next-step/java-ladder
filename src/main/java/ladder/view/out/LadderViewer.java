@@ -15,10 +15,10 @@ public class LadderViewer {
 
 	private static final int STEP_WIDTH = 5 ;
 
-	private final MessageRenderer printer;
+	private final MessageRenderer renderer;
 
-	public LadderViewer(MessageRenderer printer){
-		this.printer = printer;
+	public LadderViewer(MessageRenderer renderer){
+		this.renderer = renderer;
 	}
 
 	public void renderNames(List<String> playerNames){
@@ -27,7 +27,7 @@ public class LadderViewer {
 				.map(name -> String.format(NAME_FORMAT, name.length() < STEP_WIDTH ? name : name.substring(0, STEP_WIDTH)))
 				.collect(Collectors.joining());
 
-		printer.print(names);
+		renderer.print(names);
 	}
 
 	public void render(Ladder ladder){
@@ -36,7 +36,11 @@ public class LadderViewer {
 					.map(step -> step ? RAIL_WITH_STEP : RAIL_WITHOUT_STEP)
 					.collect(Collectors.joining());
 
-			printer.print(rendered);
+			renderer.print(rendered);
 		});
+	}
+
+	public void renderGoals(List<String> goals) {
+
 	}
 }
