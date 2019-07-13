@@ -45,5 +45,7 @@ public class LadderViewer {
 				.stream()
 				.map(name -> String.format(NAME_FORMAT, name.length() < STEP_WIDTH ? name : name.substring(0, STEP_WIDTH)))
 				.collect(Collectors.joining());
+
+		renderer.print(names);
 	}
 }

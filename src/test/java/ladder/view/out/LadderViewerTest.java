@@ -35,7 +35,7 @@ class LadderViewerTest {
 		});
 
 		// Action
-		viewer.renderNames(Arrays.asList("꽝", "1000", "50000"));
+		viewer.renderGoals(Arrays.asList("꽝", "1000", "50000"));
 
 		// Assertion
 		assertThat(messages.size()).isEqualTo(1);
