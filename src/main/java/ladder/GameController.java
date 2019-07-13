@@ -33,8 +33,8 @@ public class GameController {
 
 		this.ladder = new Ladder(playerNames.size(), height, provider);
 
-		view.renderNames(playerNames);
+		view.renderLabels(playerNames);
 		view.render(this.ladder);
-		view.renderGoals(goals);
+		view.renderLabels(goals);
 	}
 }

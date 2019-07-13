@@ -11,7 +11,7 @@ public class LadderViewer {
 
 	private static final String RAIL_WITHOUT_STEP = "     |";
 
-	private static final String NAME_FORMAT = "%6s";	// 6 is step's width(5) + rail(1)
+	private static final String LABEL_FORMAT = "%6s";	// 6 is step's width(5) + rail(1)
 
 	private static final int STEP_WIDTH = 5 ;
 
@@ -21,13 +21,13 @@ public class LadderViewer {
 		this.renderer = renderer;
 	}
 
-	public void renderNames(List<String> playerNames){
-		String names = playerNames
+	public void renderLabels(List<String> labels){
+		String renderMessage = labels
 				.stream()
-				.map(name -> String.format(NAME_FORMAT, name.length() < STEP_WIDTH ? name : name.substring(0, STEP_WIDTH)))
+				.map(label -> String.format(LABEL_FORMAT, label.length() < STEP_WIDTH ? label : label.substring(0, STEP_WIDTH)))
 				.collect(Collectors.joining());
 
-		renderer.print(names);
+		renderer.print(renderMessage);
 	}
 
 	public void render(Ladder ladder){
@@ -38,14 +38,5 @@ public class LadderViewer {
 
 			renderer.print(rendered);
 		});
-	}
-
-	public void renderGoals(List<String> goals) {
-		String names = goals
-				.stream()
-				.map(name -> String.format(NAME_FORMAT, name.length() < STEP_WIDTH ? name : name.substring(0, STEP_WIDTH)))
-				.collect(Collectors.joining());
-
-		renderer.print(names);
 	}
 }

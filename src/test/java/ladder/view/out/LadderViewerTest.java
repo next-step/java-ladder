@@ -5,10 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderViewerTest {
 
@@ -20,7 +18,7 @@ class LadderViewerTest {
 		});
 
 		// Action
-		viewer.renderNames(Arrays.asList("test", "user", "longname"));
+		viewer.renderLabels(Arrays.asList("test", "user", "longname"));
 
 		// Assertion
 		assertThat(messages.size()).isEqualTo(1);
@@ -35,7 +33,7 @@ class LadderViewerTest {
 		});
 
 		// Action
-		viewer.renderGoals(Arrays.asList("꽝", "1000", "50000"));
+		viewer.renderLabels(Arrays.asList("꽝", "1000", "50000"));
 
 		// Assertion
 		assertThat(messages.size()).isEqualTo(1);
