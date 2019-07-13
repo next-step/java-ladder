@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.common.Csv;
 import ladder.domain.ladderline.LadderLines;
 import ladder.domain.user.LadderPlayer;
-import ladder.domain.user.LadderResult;
 import ladder.domain.user.LadderUsers;
 import ladder.domain.user.Username;
 import ladder.dto.LadderCreateRequestDto;
@@ -15,9 +14,7 @@ public class DefaultLadderService implements LadderService {
 
     private final LadderLineFactory ladderLineFactory;
 
-    private LadderLines ladderLines;
-    private LadderUsers ladderUsers;
-    private Csv ladderResult;
+    private LadderPlayer ladderPlayer;
 
     public DefaultLadderService(LadderLineFactory ladderLineFactory) {
         this.ladderLineFactory = ladderLineFactory;
@@ -25,16 +22,17 @@ public class DefaultLadderService implements LadderService {
 
     @Override
     public LadderCreateResponseDto createLadder(LadderCreateRequestDto ladderCreateRequestDto) {
-        ladderUsers = LadderUsers.of(ladderCreateRequestDto.getLadderUsers().getCsv());
-        ladderResult = ladderCreateRequestDto.getLadderResults();
-        ladderLines = ladderLineFactory.create(ladderUsers.getCountOfUsers(), ladderCreateRequestDto.getLadderHeight());
+        LadderUsers ladderUsers = LadderUsers.of(ladderCreateRequestDto.getLadderUsers().getCsv());
+        Csv ladderResult = ladderCreateRequestDto.getLadderResults();
+        LadderLines ladderLines = ladderLineFactory.create(ladderUsers.getCountOfUsers(), ladderCreateRequestDto.getLadderHeight());
+        ladderPlayer = LadderPlayer.of(ladderLines, ladderUsers, ladderResult);
+
         return LadderCreateResponseDto.of(ladderUsers, ladderLines, ladderResult);
     }
 
     @Override
     public LadderResultResponseDto startLadder(LadderResultRequestDto ladderResultRequestDto) {
         Username resultUsername = Username.of(ladderResultRequestDto.getResultUsername());
-        LadderPlayer ladderPlayer = LadderPlayer.of(ladderLines, ladderUsers, ladderResult);
         return LadderResultResponseDto.of(ladderPlayer.start(resultUsername));
     }
 }

@@ -2,7 +2,6 @@ package ladder.domain.ladderline;
 
 import ladder.RandomTestUtils;
 import ladder.common.PositiveNumber;
-import ladder.view.result.DefaultResultView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

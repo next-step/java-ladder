@@ -29,8 +29,8 @@ public class Point {
         return of(index.next(), direction.next(randomStrategy));
     }
 
-    Index current() {
-        return index;
+    boolean isSamePoint(Index index) {
+        return this.index.equals(index);
     }
 
     boolean isLeft() {
