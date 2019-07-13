@@ -3,8 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
-    private static final int MOVE_ONE_STEP_TO_RIGHT = 1;
-    private static final int MOVE_ONE_STEP_TO_LEFT = -1;
+    static final int MOVE_ONE_STEP_TO_RIGHT = 1;
+    static final int MOVE_ONE_STEP_TO_LEFT = -1;
     static final String ALERT_UNMOVABLE_TO_LEFT = "더 이상 왼쪽으로 이동할 수 없습니다.";
     private static final int FIRST_POSITION = 0;
 
