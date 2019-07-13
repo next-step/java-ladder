@@ -4,10 +4,13 @@ import java.util.Optional;
 
 public class Player {
     private static final int MAX_LENGTH = 5;
-    private String name;
 
-    public Player(String name) {
+    private String name;
+    private Position position;
+
+    public Player(String name, Position position) {
         this.name = lengthValidation(name);
+        this.position = position;
     }
 
     private String lengthValidation(String name) {
@@ -19,7 +22,11 @@ public class Player {
     public String getName() {
         return this.name;
     }
-    
+
+    public Position getPosition() {
+        return this.position;
+    }
+
     public boolean isPlayerName(String name) {
         return this.name.equals(name);
     }
@@ -27,10 +34,10 @@ public class Player {
     public int lengthOfName() {
         return this.name.length();
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-    	return super.equals(obj);
+        return super.equals(obj);
     }
-    
+
 }

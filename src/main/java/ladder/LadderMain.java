@@ -13,8 +13,8 @@ public class LadderMain {
 
         Players players = Players.register(InputView.enterPlayers());
         int heightOfLadder = InputView.enterHeightOfLadder();
-
         LadderGame ladderGame = new LadderGame(players, heightOfLadder);
+        
         Rewards rewards = Rewards.of(InputView.enterResults());
         LadderResult ladderResult = ladderGame.play(rewards);
 

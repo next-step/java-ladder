@@ -27,15 +27,15 @@ public class ResultView {
         players.getStream()
                 .forEach(player -> System.out.print(String.format(NAME_FORMAT, player.getName())));
     }
-
-    private static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLadder()) {
-            String ladderLine = line.getStream()
-                    .map(x -> x ? LINE_FORMAT : BLANK_FORMAT)
-                    .collect(Collectors.joining(POLE_FORMAT));
-            System.out.println(FIRST_FORMAT + ladderLine + POLE_FORMAT);
-        }
-    }
+    
+	private static void printLadder(Ladder ladder) {
+		for (LadderLine ladderLine : ladder.getLadder()) {
+			String line = ladderLine.getStream()
+					.map(point -> point.isLine())
+					.collect(Collectors.joining(POLE_FORMAT));
+			System.out.println(FIRST_FORMAT + line + POLE_FORMAT);
+		}
+	}
 
     private static void printRewards(Rewards rewards) {
         rewards.getStream()

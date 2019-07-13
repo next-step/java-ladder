@@ -1,38 +1,36 @@
 package ladder.domain;
 
 public class Point {
-	private static final int FIRST_POINT = 0;
-	private static final int LINE_DISTANCE= 1;
+    private final Position position;
+    private final Direction direction;
 
-	private final int index;
+    public Point(Position position, Direction direction) {
+        this.position = position;
+        this.direction = direction;
+    }
 
-	public Point(int index) {
-		this.index = index;
-	}
+    public static Point first(boolean right) {
+        return new Point(Position.first(), Direction.first(right));
+    }
 
-	public boolean isFirst() {
-		return index == FIRST_POINT;
-	}
+    public static Point first() {
+        return new Point(Position.first(), Direction.first());
+    }
 
-	public boolean isLast(int lastPoint) {
-		return index == lastPoint;
-	}
+    public Point next() {
+        return new Point(this.position.increase(), this.direction.next());
+    }
 
-	public Point isMove(Direction direction) {
-		return moveLeft(direction);
-	}
+    public Point last() {
+        return new Point(this.position.increase(), this.direction.last());
+    }
 
-	private Point moveLeft(Direction direction){
-		return direction.isLeft() ? new Point(index - LINE_DISTANCE) : moveRight(direction);
-	}
-
-	private Point moveRight(Direction direction){
-		return direction.isRight() ? new Point(index + LINE_DISTANCE) : this;
-	}
-
-
-	public int getIndex() {
-		return index;
-	}
+    public Position move(Position position) {
+        return this.direction.move(position);
+    }
+    
+    public String isLine() {
+    	return direction.isLine();
+    }
 
 }

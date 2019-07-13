@@ -22,10 +22,10 @@ public class Rewards {
 		return rewards.size();
 	}
 
-	public Reward rewardByResult(Point result) {
-		return rewards.get(result.getIndex());
+	public Reward rewardByResult(int result) {
+		return rewards.get(result);
 	}
-	
+
 	public Stream<Reward> getStream(){
 		return rewards.stream();
 	}

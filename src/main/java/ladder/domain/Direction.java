@@ -1,35 +1,71 @@
 package ladder.domain;
 
-public class Direction {
-    private final boolean left;
-    private final boolean right;
+import java.util.Random;
 
-    private Direction(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException("정상적인 사다리가 아닙니다.");
-        }
-        this.left = left;
-        this.right = right;
-    }
+public enum Direction {
+	RIGHT(false, true),
+	LEFT(true, false),
+	PASS(false, false);
 
-    public static Direction first(boolean right) {
-        return of(false, right);
-    }
+	private static final Random random = new Random();
+	private static final String BLANK_FORMAT = "     ";
+	private static final String LINE_FORMAT = "-----";
 
-    public static Direction last(boolean left) {
-        return of(left, false);
-    }
+	boolean left;
+	boolean right;
 
-    public static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
-    }
+	Direction(boolean left, boolean right) {
+		this.left = left;
+		this.right = right;
+	}
 
-    public boolean isRight() {
-        return this.right;
-    }
+	public static Direction of(boolean left, boolean right) {
+		if (left && right) {
+			throw new IllegalArgumentException("정상적인 사다리가 아닙니다.");
+		}
+		if (!left && right) {
+			return Direction.RIGHT;
+		}
+		if (left && !right) {
+			return Direction.LEFT;
+		}
+		if (!left && !right) {
+			return Direction.PASS;
+		}
+		throw new IllegalArgumentException("정상적인 사다리가 아닙니다.");
+	}
 
-    public boolean isLeft() {
-        return this.left;
-    }
+	public static Direction first(boolean right) {
+		return Direction.of(false, right);
+	}
+
+	public static Direction first() {
+		return Direction.of(false, random.nextBoolean());
+	}
+
+	public Direction next() {
+		if (this.right) {
+			return Direction.of(this.right, false);
+		}
+		return Direction.of(false, random.nextBoolean());
+	}
+
+	public Direction last() {
+		return Direction.of(this.right, false);
+	}
+
+	public Position move(Position position) {
+		if (this.right) {
+			return position.increase();
+		}
+		if (this.left) {
+			return position.decrease();
+		}
+		return position;
+	}
+
+	public String isLine() {
+		return this.right ? LINE_FORMAT : BLANK_FORMAT;
+	}
 
 }

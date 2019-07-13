@@ -4,77 +4,56 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class DirectionTest {
 
     @Test
-    @DisplayName("최초 플레이어의 포지션이 생성되고 움직이지 않는다.")
-    void generateFirstPositionToStay() {
-        Boolean right = false;
-        Direction direction = Direction.first(right);
-        assertThat(direction.isRight()).isEqualTo(Direction.of(false, false).isRight());
+    @DisplayName("첫번째 Direction 생성")
+    void firstDirection() {
+        assertThat(Direction.first(true)).isEqualTo(Direction.RIGHT);
+        assertThat(Direction.first(false)).isEqualTo(Direction.PASS);
     }
 
     @Test
-    @DisplayName("최초 플레이어의 포지션이 생성되고 오른쪽으로 움직인다.")
-    void generateFirstPositionToMove() {
-        Boolean right = true;
-        Direction direction = Direction.first(right);
-        assertThat(direction.isRight()).isEqualTo(Direction.of(false, true).isRight());
+    @DisplayName("마지막 Direction 생성")
+    void lastDirection() {
+        assertThat(Direction.first(true).last()).isEqualTo(Direction.LEFT);
+        assertThat(Direction.first(false).last()).isEqualTo(Direction.PASS);
     }
 
     @Test
-    @DisplayName("중간 플레이어의 포지션이 처음 생성되고 움직이지 않는다.")
-    void generateMiddlePositionToStay() {
-        boolean left = false;
-        boolean right = false;
-        Direction direction = Direction.of(left, right);
-        assertThat(direction.isRight()).isEqualTo(false);
-        assertThat(direction.isLeft()).isEqualTo(false);
+    @DisplayName("다음 Direction 생성")
+    void nextDirection() {
+        assertThat(Direction.first(true).next()).isEqualTo(Direction.LEFT);
+        assertThat(Direction.first(false)).isNotEqualTo(Direction.LEFT);
     }
 
     @Test
-    @DisplayName("중간 플레이어의 포지션이 생성시 예외 상황")
-    void generateMiddlePositionToException() {
-        boolean left = true;
-        boolean right = true;
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            Direction.of(left, right);
-        });
+    @DisplayName("Direction 오른쪽 이동")
+    void rightMove() {
+        Position position = Position.first();
+        Direction direction = Direction.first(true);
+
+        assertThat(direction.move(position).getPosition()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("중간 플레이어의 포지션이 처음 생성되고 오른쪽으로 움직인다.")
-    void generateMiddlePositionToRight() {
-        boolean left = false;
-        boolean right = true;
-        Direction direction = Direction.of(left, right);
-        assertThat(direction.isRight()).isEqualTo(true);
+    @DisplayName("Direction 왼쪽으로 이동")
+    void leftMove() {
+        Position position = new Position(2);
+        Direction direction = Direction.first(true).next();
+
+        assertThat(direction.move(position).getPosition()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("중간 플레이어의 포지션이 처음 생성되고 왼쪽으로 움직인다.")
-    void generateMiddlePositionToLeft() {
-        boolean left = true;
-        boolean right = false;
-        Direction direction = Direction.of(left, right);
-        assertThat(direction.isLeft()).isEqualTo(true);
+    @DisplayName("Direction 이동 없음")
+    void pass() {
+        Position position = Position.first();
+        Direction direction = Direction.first(false);
+
+        assertThat(direction.move(position).getPosition()).isEqualTo(0);
     }
 
-    @Test
-    @DisplayName("마지막 플레이어의 포지션이 생성되고 움직이지 않는다.")
-    void generateLastPositionToStay() {
-        Boolean left = false;
-        Direction direction = Direction.last(left);
-        assertThat(direction.isLeft()).isEqualTo(Direction.of(false, false).isLeft());
-    }
 
-    @Test
-    @DisplayName("마지막 플레이어의 포지션이 생성되고 왼쪽으로 움직인다.")
-    void generateListPositionToMove() {
-        Boolean left = true;
-        Direction direction = Direction.last(left);
-        assertThat(direction.isLeft()).isEqualTo(Direction.of(false, true).isLeft());
-    }
 }
