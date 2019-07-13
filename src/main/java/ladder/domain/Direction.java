@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static java.lang.Boolean.FALSE;
+
 public class Direction {
     private final boolean left;
     private final boolean right;
@@ -22,6 +24,10 @@ public class Direction {
 
     public boolean isRight() {
         return right;
+    }
+
+    public Direction next() {
+        return new Direction(this.right, FALSE);
     }
 
     public Direction next(boolean right) {

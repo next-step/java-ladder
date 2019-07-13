@@ -74,4 +74,14 @@ public class DirectionTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> firstDirection.next(true));
     }
+
+    @Test
+    @DisplayName("인자가 없는 next 는 좌측방향만을 가질 수 있다.")
+    void nextEmpty() {
+        Direction firstDirection = Direction.of(FALSE, TRUE);
+        Direction secondDirection = firstDirection.next();
+
+        assertThat(secondDirection.isLeft()).isTrue();
+        assertThat(secondDirection.isRight()).isFalse();
+    }
 }
