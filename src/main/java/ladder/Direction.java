@@ -49,4 +49,13 @@ public class Direction {
         }
         return " ".repeat(5);
     }
+
+    public int move(int index) {
+        if (this.isLeft()) {
+            return index - 1;
+        }else if (this.right) {
+            return index + 1;
+        }
+        return index;
+    }
 }

@@ -14,7 +14,7 @@ public class Ladder {
         if (height > MAX_HEIGTH || height < MIN_HEIGTH){
             throw new IllegalArgumentException();
         }
-        countOfPlayer -= 1;
+
         this.ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             this.ladder.add(new Line(countOfPlayer, new PointMakerRandom()));
@@ -29,4 +29,19 @@ public class Ladder {
         return this.ladder;
     }
 
+    private int run(int column, int row) {
+        Line ladderLine = ladder.get(row);
+
+        column = ladderLine.move(column);
+        row = row + 1;
+
+        if(row < ladderLine.size() - 1) {
+            return this.run(column, row);
+        }
+        return column;
+    }
+
+    public int runLadder(int startIndex) {
+        return run(startIndex, 0);
+    }
 }

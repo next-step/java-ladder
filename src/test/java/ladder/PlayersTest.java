@@ -18,4 +18,10 @@ class PlayersTest {
         Players players = new Players("test,name,jojo,popo");
         assertThat(players.getPlayers().size()).isEqualTo(4);
     }
+
+    @Test
+    void getIndex() {
+        Players players = new Players("test,name,jojo,popo");
+        assertThat(players.getIndex("jojo")).isEqualTo(2);
+    }
 }

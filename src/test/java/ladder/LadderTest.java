@@ -10,7 +10,7 @@ public class LadderTest {
     void createLadder() {
         Ladder ladder = Ladder.of(5, 5);
         assertThat(ladder.getLadder().size()).isEqualTo(5);
-        assertThat(ladder.getLadder().get(0).size()).isEqualTo(4);
+        assertThat(ladder.getLadder().get(0).size()).isEqualTo(5);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class LadderTest {
     void createLadderString() {
         Ladder ladder = Ladder.of(5, 5);
         assertThat(ladder.getLadder().size()).isEqualTo(5);
-        assertThat(ladder.getLadder().get(0).size()).isEqualTo(4);
+        assertThat(ladder.getLadder().get(0).size()).isEqualTo(5);
     }
 
     @Test

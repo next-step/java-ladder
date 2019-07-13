@@ -25,4 +25,10 @@ public class PlayerTest {
     void playerNameSize6() {
         assertThatIllegalArgumentException().isThrownBy(()-> Player.of("name66"));
     }
+
+    @Test
+    void contain() {
+        Player player = Player.of("name");
+        assertThat(player.contain("name")).isTrue();
+    }
 }

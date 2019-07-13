@@ -31,7 +31,7 @@ public class Point {
         return of(0, Direction.first(pointMaker.nextBoolean()));
     }
 
-    public String getLine(){
+    public String getLine() {
         return this.direction.getLine();
     }
 
@@ -50,6 +50,10 @@ public class Point {
         Point point = (Point) o;
         return index == point.index &&
                 Objects.equals(direction, point.direction);
+    }
+
+    public int move() {
+        return direction.move(index);
     }
 
     @Override

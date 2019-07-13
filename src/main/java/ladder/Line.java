@@ -14,7 +14,7 @@ public class Line {
         List<Point> points = new ArrayList<>();
         Point point = Point.first(pointMaker);
         points.add(point);
-        for (int i = 0; i < lineCount - 1; i++) {
+        for (int i = 0; i < lineCount - 2; i++) {
             point = point.next(pointMaker);
             points.add(point);
         }
@@ -28,6 +28,10 @@ public class Line {
 
     public int size() {
         return this.points.size();
+    }
+
+    public int move(int column) {
+        return points.get(column).move();
     }
 
     @Override

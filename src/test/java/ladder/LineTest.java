@@ -11,4 +11,10 @@ public class LineTest {
         Line line = new Line(4, () -> true);
         assertThat(line.size()).isEqualTo(4);
     }
+
+    @Test
+    void move() {
+        Line line = new Line(4, () -> true);
+        assertThat(line.move(0)).isEqualTo(1);
+    }
 }

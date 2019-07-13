@@ -20,4 +20,12 @@ public class Players {
     public int getSize(){
         return this.players.size();
     }
+
+    public int getIndex(String player){
+        for (int i = 0; i <getSize(); i++) {
+            if (players.get(i).contain(player))
+                return i;
+        }
+        throw new IllegalArgumentException();
+    }
 }

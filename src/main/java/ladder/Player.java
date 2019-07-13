@@ -25,6 +25,10 @@ public class Player {
         return nameAddEmpty.substring(0, 6);
     }
 
+    public boolean contain(String player) {
+        return this.name.equals(player);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
