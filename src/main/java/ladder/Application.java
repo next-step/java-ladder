@@ -13,7 +13,7 @@ public class Application {
         Height height = Height.from(InputView.askHeight());
 
         GameInfo gameInfo = GameInfo.of(players, prizes);
-        Ladder ladder = Ladder.from(players, height);
+        Ladder ladder = Ladder.from(players.numberOfPlayers(), height);
 
         LadderGame ladderGame = LadderGame.of(gameInfo, ladder);
         GameResult gameResult = ladderGame.playGame();
