@@ -18,11 +18,11 @@ public class Ladder {
 		return Collections.unmodifiableList(ladder);
 	}
 
-	public Position resultByPlayer(Position PlayerPosition) {
-		Position position = PlayerPosition;
+	public int result(Player player) {
+		Position position = player.getPosition();
 		for (LadderLine ladderLine : ladder) {
 			position = ladderLine.move(position);
 		}
-		return position;
+		return position.getPosition();
 	}
 }

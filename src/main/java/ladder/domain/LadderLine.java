@@ -11,11 +11,11 @@ public class LadderLine {
 		this.points = points;
 	}
 
-	public static LadderLine init(Players players) {
+	public static LadderLine init(int sizeOfPlayers) {
 		List<Point> points = new ArrayList<>();
 		Point point = Point.first();
 		points.add(point);
-		for (int i = 1; i < players.size() - 1; i++) {
+		for (int i = 1; i < sizeOfPlayers - 1; i++) {
 			point = point.next();
 			points.add(point);
 		}
@@ -36,8 +36,12 @@ public class LadderLine {
 	}
 
 	public Position move(Position position) {
-		return points.get(position.getPosition()).move(position);
+		return getLadderLinePoint(position).move(position);
 	}
+
+	public Point getLadderLinePoint(Position position){
+	    return points.get(position.getPosition());
+    }
 
 	public int size() {
 		return points.size();

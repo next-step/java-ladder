@@ -5,9 +5,9 @@ import java.util.stream.IntStream;
 
 public class LadderGenerator {
     
-    public static Ladder generateLadder(int height, Players players) {
+    public static Ladder generateLadder(int height, int sizeOfPlayers) {
         return new Ladder(IntStream.range(0, height)
-                .mapToObj(x -> LadderLine.init(players))
+                .mapToObj(x -> LadderLine.init(sizeOfPlayers))
                 .collect(Collectors.toList()));
     }
     

@@ -12,7 +12,7 @@ public class PlayerTest {
     @DisplayName("이름 입력 5자 테스트")
     void inputName() {
         String name = "Going";
-        Player player = new Player(name);
+        Player player = new Player(name, Position.first());
         assertThat(player.getName()).isEqualTo(name);
     }
 
@@ -21,7 +21,7 @@ public class PlayerTest {
     void inputNotName() {
         String name = "SoLong";
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new Player(name);
+            new Player(name, Position.first());
         });
     }
 }

@@ -9,19 +9,17 @@ public class LadderGame {
 
 	public LadderGame(Players players, int heightOfLadder) {
 		this.players = players;
-		this.ladder = LadderGenerator.generateLadder(heightOfLadder, this.players);
+		this.ladder = LadderGenerator.generateLadder(heightOfLadder, players.size());
 	}
 
-	
 	public LadderResult play(Rewards rewards) {
-		if (!(players.size() == rewards.size())) {
+		if (players.size() != rewards.size()) {
 			throw new IllegalArgumentException();
 		}
 
 		Map<Player, Reward> ladderResult = new HashMap<>();
 		for (Player player : players.getPlayers()) {
-			Position resultPosition = ladder.resultByPlayer(players.getPosition(player));
-			ladderResult.put(player, rewards.rewardByResult(resultPosition));
+			ladderResult.put(player, rewards.rewardByResult(ladder.result(player)));
 		}
 		return new LadderResult(ladderResult);
 	}

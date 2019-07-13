@@ -17,7 +17,7 @@ public class LadderLineTest {
     @Test
     @DisplayName("사용자 수에 따른 라인을 생성한다.")
     void ladderLineInit() {
-        LadderLine ladderLine = LadderLine.init(players);
+        LadderLine ladderLine = LadderLine.init(players.size());
         assertThat(ladderLine.size()).isEqualTo(players.size());
     }
 }

@@ -19,7 +19,7 @@ public class LadderGeneratorTest {
     @Test
     @DisplayName("입력한 값 만큼 사다리 라인 생성")
     void generateLineTest() {
-        LadderLine line = LadderLine.init(players);
+        LadderLine line = LadderLine.init(players.size());
         assertThat(line.size()).isEqualTo(playersCount);
     }
 
@@ -27,7 +27,7 @@ public class LadderGeneratorTest {
     @DisplayName("입력한 값(Height/Players)으로 사다리 생성 ")
     void ladderGeneratorTest() {
         int height = 5;
-        Ladder ladder = LadderGenerator.generateLadder(height, players);
+        Ladder ladder = LadderGenerator.generateLadder(height, players.size());
 
         assertThat(ladder.height()).isEqualTo(height);
         assertThat(ladder.getLadder().size()).isEqualTo(players.size());
