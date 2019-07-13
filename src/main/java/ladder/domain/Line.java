@@ -1,43 +1,53 @@
 package ladder.domain;
 
+import ladder.util.RandomGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static java.util.stream.Collectors.toList;
+import static ladder.domain.Point.START_INDEX;
 
 public class Line {
 
-  private List<Bar> bars = new ArrayList<>();
-  private Random random = new Random();
+  private static final int LAST_INDEX_LINE = 2;
+  private List<Point> points = new ArrayList<>();
 
-  private Line(Players players) {
-    Bar bar = Bar.of(random.nextBoolean());
+  private Line(int numOfPlayers) {
+    Point point = Point.first(RandomGenerator.nextBoolean());
+    points.add(point);
 
-    for (int i = 0; i < players.size() - 1; i++) {
-      bars.add(bar);
-      bar = randomBar(bar);
+    for (int i = START_INDEX; i < numOfPlayers - LAST_INDEX_LINE; i++) {
+      point = randomBar(point);
+      points.add(point);
     }
+
+    points.add(point.last());
   }
 
-  public static Line of(Players players) {
-    return new Line(players);
+  private Line(List<Point> points) {
+    this.points = points;
   }
 
-  private Bar randomBar(Bar bar) {
-    if (bar.isBar()) {
-      return Bar.of(false);
-    }
-    return Bar.of(random.nextBoolean());
+  public static Line of(List<Point> points) {
+    return new Line(points);
   }
 
-  public int size() {
-    return bars.size();
+  public static Line of(int numOfPlayers) {
+    return new Line(numOfPlayers);
+  }
+
+  int move(int i) {
+    return points.get(i).move();
+  }
+
+  private Point randomBar(Point point) {
+    return point.next(RandomGenerator.nextBoolean());
   }
 
   public List<Boolean> getLine() {
-    return bars.stream()
-        .map(Bar::isBar)
+    return points.stream()
+        .map(Point::isCurrent)
         .collect(toList());
   }
 }

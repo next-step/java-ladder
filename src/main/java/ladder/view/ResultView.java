@@ -1,9 +1,8 @@
 package ladder.view;
 
-import ladder.domain.Line;
-import ladder.domain.Lines;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.*;
+
+import java.util.List;
 
 public class ResultView {
 
@@ -11,28 +10,42 @@ public class ResultView {
   private static final String HORIZONTAL_LINE = "-----";
   private static final String EMPTY_LINE = "     ";
 
-  public static void view(Players players, Lines lines) {
+  public static void view(Players players, Ladder ladder, LadderResults ladderResults) {
     printPlayer(players);
     System.out.println();
-    printLine(lines);
+    printLine(ladder);
+    printResult(ladderResults);
   }
 
-  private static void printLine(Lines lines) {
+  private static void printResult(LadderResults ladderResults) {
+    System.out.println(ladderResults.toString());
+  }
+
+  private static void printLine(Ladder lines) {
     lines.getLines().stream()
         .map(Line::getLine)
-        .forEach(
-            bars -> {
-              bars.stream()
-                  .forEach(bar -> System.out.print(VERTICAL_LINE + drawBar(bar)));
-              System.out.println(VERTICAL_LINE);
-            });
+        .forEach(ResultView::printBars);
+  }
+
+  private static void printBars(List<Boolean> bars) {
+    bars.forEach(bar -> System.out.print(VERTICAL_LINE + drawBar(bar)));
+    System.out.println();
   }
 
   private static void printPlayer(Players players) {
-    players.getPlayers().stream().map(Player::getName).forEach(name -> System.out.printf("%-5s",name));
+    System.out.print(players.toString());
   }
 
-  private static String drawBar(Boolean bar) {
+  private static String drawBar(boolean bar) {
     return bar ? HORIZONTAL_LINE : EMPTY_LINE;
+  }
+
+  public static void resultPlayer(String resultName, LadderRewards ladderRewards) {
+    System.out.println(ladderRewards.searchPlayer(resultName));
+  }
+
+  public static void resultAllPlayer(LadderRewards ladderRewards) {
+    ladderRewards.allPlayer()
+        .forEach(System.out::println);
   }
 }

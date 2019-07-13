@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Player {
 
   private static final int MAX_PLAYER_NAME = 5;
+  static final String NAME_PRINT_FORMAT = "%-5s";
 
   private String name;
 
@@ -40,7 +41,12 @@ public class Player {
     return Objects.hash(name);
   }
 
-  public String getName() {
-    return name;
+  @Override
+  public String toString() {
+    return String.format(NAME_PRINT_FORMAT, name);
+  }
+
+  boolean isPlayerName(String name) {
+    return this.name.equalsIgnoreCase(name);
   }
 }
