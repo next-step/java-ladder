@@ -6,23 +6,22 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> ladder;
+    private final List<LadderLine> ladder;
 
-    public Ladder(List<Line> ladder) {
+    public Ladder(List<LadderLine> ladder) {
         this.ladder = ladder;
     }
 
     public int ladderRiding(int userIndex) {
         int userPosition = userIndex;
-        for(Line line : ladder){
-            Point point = line.getPoints().get(userPosition);
-            userPosition = point.move();
+        for(LadderLine ladderLine : ladder){
+            userPosition = ladderLine.move(userPosition);
         }
         return userPosition;
     }
 
     public static Ladder of(int userCount, String ladderHeight){
-        List<Line> ladder = new ArrayList <>();
+        List<LadderLine> ladder = new ArrayList <>();
         for (int i = 0; i < validationNumberFormat(ladderHeight); i++) {
             ladder.add(createLine(userCount));
         }
@@ -37,11 +36,11 @@ public class Ladder {
         }
     }
 
-    private static Line createLine(int userCount) {
-        return Line.lineSet(userCount);
+    private static LadderLine createLine(int userCount) {
+        return LadderLine.lineSet(userCount);
     }
 
-    public List<Line> getLadder() {
+    public List<LadderLine> getLadder() {
         return Collections.unmodifiableList(this.ladder);
     }
 

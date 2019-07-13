@@ -27,8 +27,8 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder){
-        for(Line line : ladder.getLadder()){
-            printDrawLine(line);
+        for(LadderLine ladderLine : ladder.getLadder()){
+            printDrawLine(ladderLine);
         }
     }
 
@@ -63,7 +63,7 @@ public class OutputView {
         return createlineSeparator(scarceSpace, " ").concat(userName);
     }
 
-    private static void printDrawLine(Line line){
+    private static void printDrawLine(LadderLine line){
         StringBuilder ladderLine = new StringBuilder();
         ladderLine.append(ladderStartWidthLine);
         ladderLine.append(LADDER_DEFAULT_HEIGHT_LINE);

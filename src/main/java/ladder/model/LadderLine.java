@@ -5,14 +5,12 @@ import ladder.utils.StatusGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class Line {
+public class LadderLine {
 
     private final List<Point> points;
 
-    public Line(List<Point> points) {
+    public LadderLine(List<Point> points) {
         this.points = points;
     }
 
@@ -20,12 +18,16 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public static Line lineSet(int countOfPerson) {
+    public int move(int position){
+        return points.get(position).move();
+    }
+
+    public static LadderLine lineSet(int countOfPerson) {
         int lastIndex = validMinUserCount(countOfPerson);
 
         List<Point> points = createBody(lastIndex, createFirst());
         points.add(createLast(points.get(lastIndex - 1)));
-        return new Line(points);
+        return new LadderLine(points);
     }
 
     private static Point createFirst() {
@@ -53,6 +55,13 @@ public class Line {
             throw new IllegalStateException("사다리 게임 참여자는 최소 2명 이상이어야 합니다.");
         }
         return countOfPerson - 1;
+    }
+
+    @Override
+    public String toString() {
+        return "LadderLine{" +
+                "points=" + points +
+                '}';
     }
 
 }

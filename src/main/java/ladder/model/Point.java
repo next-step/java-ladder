@@ -11,6 +11,9 @@ public class Point {
     }
 
     public int move() {
+        System.out.println("is left? " + statusOfPoint.isLeft());
+        System.out.println("is right? " + statusOfPoint.isRight());
+
         if(statusOfPoint.isLeft()){
             return moveLeft();
         }
@@ -26,6 +29,10 @@ public class Point {
 
     public Point next(){
         return new Point(idx + 1, statusOfPoint.next());
+    }
+
+    public Point next(Boolean right) {
+        return new Point(idx + 1, statusOfPoint.next(right));
     }
 
     public Point last(){
@@ -46,4 +53,13 @@ public class Point {
     public StatusOfPoint getStatusOfPoint() {
         return this.statusOfPoint;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + idx +
+                ", direction=" + statusOfPoint +
+                '}';
+    }
+
 }

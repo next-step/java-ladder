@@ -38,11 +38,11 @@ public class ResultTest {
         secondRowPoints.add(new Point(1, secondRow));
         secondRowPoints.add(new Point(2, secondRow.last()));
 
-        List<Line> Lines = new ArrayList <>();
-        Lines.add(new Line(firstRowPoints));
-        Lines.add(new Line(secondRowPoints));
+        List<LadderLine> ladderLines = new ArrayList <>();
+        ladderLines.add(new LadderLine(firstRowPoints));
+        ladderLines.add(new LadderLine(secondRowPoints));
 
-        ladder = new Ladder(Lines);
+        ladder = new Ladder(ladderLines);
     }
 
     @Test

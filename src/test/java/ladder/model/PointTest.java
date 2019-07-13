@@ -59,4 +59,40 @@ public class PointTest {
                   .hasMessage("더 이상 왼쪽으로 이동 할 수 없습니다.");
     }
 
+
+    @Test
+    @DisplayName("첫번째 포인트 생성 후 이동 값 테스트")
+    public void first_move() {
+        assertThat(Point.first(TRUE).move()).isEqualTo(1);
+        assertThat(Point.first(FALSE).move()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("첫번째 false 두번째 포인트 생성 후 이동(가운데) 값 테스트")
+    public void next_stay() {
+        Point second = Point.first(FALSE).next(FALSE);
+        assertThat(second.move()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("첫번째 true 두번째 포인트 생성 후 왼쪽 이동 값 테스트")
+    public void next_left() {
+        Point second = Point.first(TRUE).next(FALSE);
+        assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("첫번째 false 이후 두번째 포인트 생성 후 오른쪽 이동 값 테스트")
+    public void next_right() {
+        Point second = Point.first(FALSE).next(TRUE);
+        assertThat(second.move()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("첫번째 true 이후 두번째 포인트 랜덤 생성 후 이동 값 테스트")
+    public void next() {
+        Point second = Point.first(TRUE).next();
+        assertThat(second.move()).isEqualTo(0);
+    }
+
 }

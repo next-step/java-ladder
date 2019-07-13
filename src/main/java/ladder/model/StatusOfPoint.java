@@ -23,7 +23,7 @@ public class StatusOfPoint {
         }
     }
 
-    private static StatusOfPoint of(boolean left, boolean right){
+    public static StatusOfPoint of(boolean left, boolean right){
         return new StatusOfPoint(left, right);
     }
 
@@ -67,4 +67,13 @@ public class StatusOfPoint {
     public int hashCode() {
         return Objects.hash(left, right);
     }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
+
 }
