@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
 
@@ -19,7 +20,7 @@ public class LadderRewards {
   public String searchPlayer(String resultName) {
     return results.keySet()
         .stream()
-        .filter(p -> p.isPlayerName(resultName))
+        .filter(player -> player.isPlayerName(resultName))
         .map(results::get)
         .map(LadderResult::toString)
         .findFirst()
@@ -29,7 +30,11 @@ public class LadderRewards {
   public List<String> allPlayer() {
     return results.entrySet()
         .stream()
-        .map(set -> set.getKey().toString() + ":" + set.getValue().toString())
+        .map(playersResult())
         .collect(toList());
+  }
+
+  private Function<Map.Entry<Player, LadderResult>, String> playersResult() {
+    return set -> set.getKey().toString() + ":" + set.getValue().toString();
   }
 }

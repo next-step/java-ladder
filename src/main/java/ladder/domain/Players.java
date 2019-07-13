@@ -8,6 +8,7 @@ import static java.util.stream.Collectors.*;
 
 public class Players {
 
+  static final String JOIN = " ";
   static final String SEPARATOR = ",";
   private static final int MIN_PLAYER = 2;
 
@@ -51,7 +52,7 @@ public class Players {
   public String toString() {
     return players.stream()
         .map(Player::toString)
-        .collect(joining(" "));
+        .collect(joining(JOIN));
   }
 
 }

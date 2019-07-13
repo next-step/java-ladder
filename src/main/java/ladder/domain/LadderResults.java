@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.*;
+import static ladder.domain.Players.JOIN;
 import static ladder.domain.Players.SEPARATOR;
 
 public class LadderResults {
@@ -45,6 +46,6 @@ public class LadderResults {
   public String toString() {
     return ladderResults.stream()
         .map(LadderResult::toString)
-        .collect(joining(" "));
+        .collect(joining(JOIN));
   }
 }

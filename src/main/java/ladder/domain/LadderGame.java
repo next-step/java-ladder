@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toMap;
+import static ladder.domain.Point.START_INDEX;
 
 public class LadderGame {
 
@@ -20,7 +21,7 @@ public class LadderGame {
 
   public LadderRewards start(Players players) {
     return LadderRewards.of(
-        IntStream.range(0, players.size())
+        IntStream.range(START_INDEX, players.size())
         .boxed()
         .collect(toMap(players::getPlayer, this::result)));
   }
