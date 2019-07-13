@@ -7,6 +7,8 @@ import ladder.model.Users;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.List;
+
 public class LadderMain {
 
     public static void main(String[] arg) {
@@ -17,7 +19,7 @@ public class LadderMain {
         Result result = new Result(users, ladderResultItem);
 
         String ladderHeight = InputView.inputLadderHeight();
-        Ladder ladder = new Ladder(users.userCount(), ladderHeight);
+        Ladder ladder = Ladder.of(users.userCount(), ladderHeight);
 
         OutputView.printLadderUser(users, result.maxLadderTextCount());
         OutputView.printLadder(ladder);
@@ -27,10 +29,15 @@ public class LadderMain {
         while (true) {
             resultViewUser = new User(InputView.inputResultUser());
             if (resultViewUser.isAllPrintSignUser()) {
-                OutputView.printAllUserReust(result, users, ladder);
+                OutputView.printAllUserReust(
+                        result.getAllUserResult(users, ladder),
+                        users.getUsers()
+                );
                 break;
             }
-            OutputView.printUserResult(result, resultViewUser, ladder);
+            OutputView.printUserResult(
+                    result.getUserResult(resultViewUser, ladder)
+            );
         }
 
     }

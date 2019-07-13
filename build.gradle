@@ -12,4 +12,5 @@ dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '23.0'
     testCompile('org.junit.jupiter:junit-jupiter:5.4.2')
     testCompile('org.assertj:assertj-core:3.11.1')
+    compile group: 'com.google.guava', name: 'guava', version: '12.0'
 }

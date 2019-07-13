@@ -5,6 +5,8 @@ import ladder.utils.StatusGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
 
@@ -19,29 +21,38 @@ public class Line {
     }
 
     public static Line lineSet(int countOfPerson) {
-        List<Point> tempPoints = new ArrayList <>();
-        Point point = createFirst(tempPoints);
-        point = createBody(countOfPerson, tempPoints, point);
-        createLast(tempPoints, point);
-        return new Line(tempPoints);
+        int lastIndex = validMinUserCount(countOfPerson);
+
+        List<Point> points = createBody(lastIndex, createFirst());
+        points.add(createLast(points.get(lastIndex - 1)));
+        return new Line(points);
     }
 
-    private static Point createFirst(List<Point> tempPoints) {
+    private static Point createFirst() {
         Point point = Point.first(StatusGenerator.get());
-        tempPoints.add(point);
         return point;
     }
 
-    private static Point createBody(int countOfPerson, List<Point> tempPoints, Point point) {
-        for (int i = 1; i < countOfPerson - 1; i++) {
-            point = point.next();
-            tempPoints.add(point);
+    private static List<Point> createBody(int lastIndex, Point firstPoint) {
+        List<Point> points = new ArrayList <>();
+        points.add(firstPoint);
+
+        for(int i = 1; i < lastIndex; i++){
+            firstPoint = firstPoint.next();
+            points.add(firstPoint);
         }
-        return point;
+        return points;
     }
 
-    private static void createLast(List<Point> tempPoints, Point point) {
-        tempPoints.add(point.last());
+    private static Point createLast(Point point) {
+        return point.last();
+    }
+
+    private static int validMinUserCount(int countOfPerson){
+        if(countOfPerson < 2){
+            throw new IllegalStateException("사다리 게임 참여자는 최소 2명 이상이어야 합니다.");
+        }
+        return countOfPerson - 1;
     }
 
 }

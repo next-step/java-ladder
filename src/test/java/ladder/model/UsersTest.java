@@ -19,7 +19,7 @@ public class UsersTest {
     }
 
     @Test
-    @DisplayName("사용자 생성")
+    @DisplayName("사용자 생성 테스트")
     void createUsers() {
         List<User> usersName = Arrays.asList(
                 new User("lee"),
@@ -31,14 +31,14 @@ public class UsersTest {
     }
 
     @Test
-    @DisplayName("사용자 이름 최대 길이")
+    @DisplayName("사용자 이름 최대 길이 테스트")
     void userMaxLength() {
         Users users = new Users(usersNameStr);
         assertThat(users.getMaxUserNameLength()).isEqualTo(5);
     }
 
     @Test
-    @DisplayName("사다리에 처음 배정된 특정 사용자 위치")
+    @DisplayName("사다리에 처음 배정된 특정 사용자 위치 테스트")
     void userFirstPosition() {
         User user = new User("jwlee");
         Users users = new Users(usersNameStr);

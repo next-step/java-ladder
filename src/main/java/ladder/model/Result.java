@@ -28,7 +28,7 @@ public class Result {
     }
 
     public String getUserResult(User targetUser, Ladder ladder) {
-        if(!users.getUsers().contains(targetUser)){
+        if(!users.isContainsUser(targetUser)){
             throw new IllegalStateException("사다리 게임에 참여한 사용자 이름이 아닙니다.");
         }
         return userRiding(targetUser, ladder);
@@ -48,11 +48,15 @@ public class Result {
     }
 
     private List<String> validation(int userCount, String reustItem){
-        String[] items = reustItem.split(",");
-        if(userCount != items.length){
+        List<String> resultItems = Arrays.asList(reustItem.split(","));
+        return validMatchResultCount(userCount, resultItems);
+    }
+
+    private List<String> validMatchResultCount(int userCount, List<String> items){
+        if(userCount != items.size()){
             throw new IllegalStateException("사다리 게임 결과 값은 게임 참여자 수와 같아야 합니다.");
         }
-        return Arrays.asList(items);
+        return items;
     }
 
     private String userRiding(User targetUser, Ladder ladder){

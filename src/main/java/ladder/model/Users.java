@@ -22,10 +22,13 @@ public class Users {
         return users.indexOf(targetUser);
     }
 
+    public boolean isContainsUser(User targetUser){
+        return users.contains(targetUser);
+    }
+
     public List<User> getUsers() {
         return Collections.unmodifiableList(this.users);
     }
-
 
     public int getMaxUserNameLength() {
         return users.stream()
@@ -35,10 +38,10 @@ public class Users {
     }
 
     private List<User> createUsers(String userNmaes) {
-        List<String> users = Arrays.asList(userNmaes.split(","));
-        return users.stream()
-                    .map(User::new)
-                    .collect(toList());
+        return Arrays.asList(userNmaes.split(","))
+                     .stream()
+                     .map(User::new)
+                     .collect(toList());
     }
 
 }

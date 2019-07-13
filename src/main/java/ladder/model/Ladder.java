@@ -1,24 +1,15 @@
 package ladder.model;
 
-import ladder.enumset.Validation;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
-    private final List<Line> ladder = new ArrayList <>();
-    private final int ladderHeight;
-    public Ladder(int userCount, String ladderHeight) {
-        this.ladderHeight = numberValidation(ladderHeight);
-        for (int i = 0; i < this.ladderHeight; i++) {
-            ladder.add(createLine(userCount));
-        }
-    }
+    private final List<Line> ladder;
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(this.ladder);
+    public Ladder(List<Line> ladder) {
+        this.ladder = ladder;
     }
 
     public int ladderRiding(int userIndex) {
@@ -30,14 +21,28 @@ public class Ladder {
         return userPosition;
     }
 
-    private int numberValidation(String ladderHeight) {
-        if (Validation.LADDER_HEIGHT_VALIDATE.isInValid(ladderHeight)) {
-            throw new NumberFormatException("최대 사다리 높이는 숫자만 입력 할 수 있습니다.");
+    public static Ladder of(int userCount, String ladderHeight){
+        List<Line> ladder = new ArrayList <>();
+        for (int i = 0; i < validationNumberFormat(ladderHeight); i++) {
+            ladder.add(createLine(userCount));
         }
-        return Integer.parseInt(ladderHeight);
+        return new Ladder(ladder);
     }
 
-    private Line createLine(int userCount) {
+    private static int validationNumberFormat(String ladderHeight) {
+        try{
+            return Integer.parseInt(ladderHeight);
+        } catch (NumberFormatException ne){
+            throw new NumberFormatException("최대 사다리 높이는 숫자만 입력 할 수 있습니다.");
+        }
+    }
+
+    private static Line createLine(int userCount) {
         return Line.lineSet(userCount);
     }
+
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(this.ladder);
+    }
+
 }

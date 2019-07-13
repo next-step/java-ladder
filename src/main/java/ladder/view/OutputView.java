@@ -42,10 +42,8 @@ public class OutputView {
         );
     }
 
-    public static void printAllUserReust(Result result, Users users, Ladder ladder) {
+    public static void printAllUserReust(List<String> allUsersResult, List<User> userNames) {
         System.out.println("\n실행결과");
-        List<String> allUsersResult = result.getAllUserResult(users, ladder);
-        List<User> userNames = users.getUsers();
         for(int i = 0; i< allUsersResult.size(); i++){
             System.out.println(
                     userNames.get(i).getName()
@@ -55,9 +53,9 @@ public class OutputView {
         }
     }
 
-    public static void printUserResult(Result result, User targetUser, Ladder ladder) {
+    public static void printUserResult(String userResult) {
         System.out.println("\n실행결과");
-        System.out.println(result.getUserResult(targetUser, ladder));
+        System.out.println(userResult);
     }
 
     private static String coustomTextLen(String userName, int maxTextLength){

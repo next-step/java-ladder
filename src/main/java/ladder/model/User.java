@@ -1,6 +1,7 @@
 package ladder.model;
 
-import ladder.enumset.Validation;
+import ladder.utils.ReferenceValue;
+import ladder.utils.Validation;
 
 import java.util.Objects;
 
@@ -10,7 +11,9 @@ public class User {
     private final String name;
 
     public User(String name) {
-        this.name = nameValidation(name);
+        validationNameLength(name);
+        nameCharactersValidation(name);
+        this.name = name;
     }
 
     public String getName() {
@@ -25,18 +28,16 @@ public class User {
         return this.name.length();
     }
 
-    private String nameValidation(String name) {
-        if (name.length() > 5) {
+    private void validationNameLength(String name) {
+        if (ReferenceValue.NAME_LENGTH.isInValidNameLength(name)) {
             throw new IllegalStateException("사다리 게임 이용자의 이름은 다섯글자를 넘을 수 없습니다.");
         }
-        return nameCharactersValidation(name);
     }
 
-    private String nameCharactersValidation(String name) {
+    private void nameCharactersValidation(String name) {
         if (Validation.NAME_VALIDATE.isInValid(name)) {
             throw new IllegalStateException("사다리 게임 이용자의 이름은 영문으로만 입력 할 수 있습니다.");
         }
-        return name;
     }
 
     @Override
