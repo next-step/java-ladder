@@ -1,9 +1,6 @@
 package ladder.io;
 
-import ladder.Ladder;
-import ladder.Line;
-import ladder.Players;
-import ladder.Prizes;
+import ladder.*;
 
 public class OutputView {
     public static void printNames(Players players) {
@@ -15,23 +12,15 @@ public class OutputView {
     public static void printLadder(Ladder ladder) {
         for (Line line : ladder.getLadder()) {
             printLadder(line);
-            System.out.println("|");
         }
     }
 
     private static void printLadder(Line line) {
-        for (Boolean point : line.getPoints()) {
+        for (Point point : line.getPoints()) {
             System.out.print("|");
-            printLine(point);
+            System.out.print(point.getLine());
         }
-    }
-
-    private static void printLine(Boolean point) {
-        if (point){
-            System.out.print("-".repeat(5));
-            return;
-        }
-        System.out.print(" ".repeat(5));
+        System.out.println();
     }
 
     public static void printResults(Prizes playerresults) {

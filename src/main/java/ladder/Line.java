@@ -4,34 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points;
+    private List<Point> points;
 
-    public Line(int lineLength, PointMakert pointMakert) {
-        this.points = this.makePoints(lineLength, pointMakert);
+    public Line(int lineLength, PointMaker pointMaker) {
+        this.points = this.makePoints(lineLength, pointMaker);
     }
 
-    public List<Boolean> makePoints(int lineCount, PointMakert pointMaker) {
-        List<Boolean> points = new ArrayList<>();
-        boolean pre = false;
-        boolean cur;
-        for (int i = 0; i < lineCount; i++) {
-            if (pre){
-                points.add(false);
-                pre = false;
-                continue;
-            }
-            cur = pointMaker.nextBoolean();
-            points.add(cur);
-            pre = cur;
+    private List<Point> makePoints(int lineCount, PointMaker pointMaker) {
+        List<Point> points = new ArrayList<>();
+        Point point = Point.first(pointMaker);
+        points.add(point);
+        for (int i = 0; i < lineCount - 1; i++) {
+            point = point.next(pointMaker);
+            points.add(point);
         }
+        points.add(point.last());
         return points;
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 
     public int size() {
         return this.points.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
 }

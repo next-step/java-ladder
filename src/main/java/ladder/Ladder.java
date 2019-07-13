@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.lineMaker.PointMakertRandom;
+import ladder.lineMaker.PointMakerRandom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Ladder {
         countOfPlayer -= 1;
         this.ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            this.ladder.add(new Line(countOfPlayer, new PointMakertRandom()));
+            this.ladder.add(new Line(countOfPlayer, new PointMakerRandom()));
         }
     }
 

@@ -18,7 +18,7 @@ public class Prize {
     }
 
     public String getPrizePad() {
-        String prizeAddEmpty = this.prize + " ".repeat(5);
+        String prizeAddEmpty = this.prize + " ".repeat(6);
         return prizeAddEmpty.substring(0, 6);
     }
 
