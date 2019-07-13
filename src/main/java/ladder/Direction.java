@@ -44,7 +44,7 @@ public class Direction {
     }
 
     public String getLine() {
-        if (right){
+        if (right) {
             return "-".repeat(5);
         }
         return " ".repeat(5);
@@ -53,7 +53,7 @@ public class Direction {
     public int move(int index) {
         if (this.isLeft()) {
             return index - 1;
-        }else if (this.right) {
+        } else if (this.right) {
             return index + 1;
         }
         return index;

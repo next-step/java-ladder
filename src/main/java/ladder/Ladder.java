@@ -11,7 +11,7 @@ public class Ladder {
     private List<Line> ladder;
 
     private Ladder(int height, int countOfPlayer) {
-        if (height > MAX_HEIGTH || height < MIN_HEIGTH){
+        if (height > MAX_HEIGTH || height < MIN_HEIGTH) {
             throw new IllegalArgumentException();
         }
 
@@ -35,7 +35,7 @@ public class Ladder {
         column = ladderLine.move(column);
         row = row + 1;
 
-        if(row < ladderLine.size() - 1) {
+        if (row < ladderLine.size() - 1) {
             return this.run(column, row);
         }
         return column;

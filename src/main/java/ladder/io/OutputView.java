@@ -33,7 +33,7 @@ public class OutputView {
 
     public static void printResult(List<ResultLadder> startGame) {
         System.out.println("실행결과");
-        startGame.forEach(x-> System.out.println(x.getPlayer().getName() + " : " + x.getPrize().getPrize()));
+        startGame.forEach(x -> System.out.println(x.getPlayer().getName() + " : " + x.getPrize().getPrize()));
     }
 
     public static void printResult(ResultLadder result) {

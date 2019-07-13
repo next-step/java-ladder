@@ -16,7 +16,7 @@ public class LadderMain {
         OutputView.printPrizes(prizes);
 
         String resultPlayer = InputView.inputStartGame();
-        if (resultPlayer.equals("all")){
+        if (resultPlayer.equals("all")) {
             OutputView.printResult(ladderGame.startGame());
             return;
         }
