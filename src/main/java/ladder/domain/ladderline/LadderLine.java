@@ -16,30 +16,31 @@ public class LadderLine {
 
     static LadderLine of(RandomStrategy randomStrategy, PositiveNumber countOfUsers) {
         List<Point> points = new ArrayList<>();
-        Point point = makeStartPoint(randomStrategy, points);
-        point = makeMidPoints(randomStrategy, points, countOfUsers, point);
-        makeEndPoint(points, point);
+        makeStartPoint(randomStrategy, points);
+        makeMidPoints(randomStrategy, countOfUsers, points);
+        makeEndPoint(points);
         return new LadderLine(points);
     }
 
-    private static Point makeStartPoint(RandomStrategy randomStrategy, List<Point> points) {
-        Point point = Point.ofStart(randomStrategy);
-        points.add(point);
-        return point;
+    private static void makeStartPoint(RandomStrategy randomStrategy, List<Point> points) {
+        points.add(Point.ofStart(randomStrategy));
     }
 
-    private static Point makeMidPoints(RandomStrategy randomStrategy, List<Point> points, PositiveNumber countOfUsers, Point point) {
-        for (int i = 1; i < countOfUsers.get() - 1; i++) {
+    private static void makeMidPoints(RandomStrategy randomStrategy, PositiveNumber countOfUsers, List<Point> points) {
+        long maxOfIndex = countOfUsers.get() - 1;
+        Point point = getLastPoint(points);
+        for (int i = 1; i < maxOfIndex; i++) {
             point = point.next(randomStrategy);
             points.add(point);
         }
-
-        return point;
     }
 
-    private static void makeEndPoint(List<Point> points, Point point) {
-        point = point.ofEnd();
-        points.add(point);
+    private static void makeEndPoint(List<Point> points) {
+        points.add(getLastPoint(points).ofEnd());
+    }
+
+    private static Point getLastPoint(List<Point> points) {
+        return points.get(points.size() - 1);
     }
 
     public List<Point> get() {
@@ -52,7 +53,7 @@ public class LadderLine {
 
     private Point findPoint(Index index) {
         return points.stream()
-                .filter(point -> point.current().equals(index))
+                .filter(point -> point.isSamePoint(index))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Abnormal ladder line"));
     }
