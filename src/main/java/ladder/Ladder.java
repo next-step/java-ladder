@@ -6,9 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    List<Line> ladder;
+    public static final int MIN_HEIGTH = 3;
+    public static final int MAX_HEIGTH = 100;
+    private List<Line> ladder;
 
     private Ladder(int height, int countOfPlayer) {
+        if (height > MAX_HEIGTH || height < MIN_HEIGTH){
+            throw new IllegalArgumentException();
+        }
         countOfPlayer -= 1;
         this.ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
@@ -20,15 +25,8 @@ public class Ladder {
         return new Ladder(height, countOfPlayer);
     }
 
-    public static Ladder of(String height, String countOfPlayer) {
-        return new Ladder(Integer.valueOf(height), Integer.valueOf(countOfPlayer));
-    }
-
     public List<Line> getLadder() {
         return this.ladder;
     }
 
-    public int getSize() {
-        return this.ladder.size();
-    }
 }

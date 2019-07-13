@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
-    List<Player> players;
+    private List<Player> players;
 
     public Players(String players) {
         this.players = Arrays.stream(players.split(","))
-                .map(Player::new)
+                .map(Player::of)
                 .collect(Collectors.toList());
     }
 

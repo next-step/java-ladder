@@ -8,8 +8,8 @@ public class LadderMain {
         String inputNames = InputView.inputNames();
         Players players = new Players(inputNames);
 
-        String height = InputView.inputLadderHeight();
-        Ladder ladder = Ladder.of(Integer.valueOf(height), players.getSize());
+        int height = InputView.inputLadderHeight();
+        Ladder ladder = Ladder.of(height, players.getSize());
 
         OutputView.printNames(players);
         OutputView.printLadder(ladder);

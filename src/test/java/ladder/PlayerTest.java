@@ -10,19 +10,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class PlayerTest {
     @Test
     void createPlayer() {
-        Player player = new Player("name");
+        Player player = Player.of("name");
         assertThat(player.getName()).isEqualTo("name");
     }
 
     @ParameterizedTest
     @NullAndEmptySource
     void palyerNameNullOrEmpty(String name) {
-        assertThatIllegalArgumentException().isThrownBy(()-> new Player(name));
+        assertThatIllegalArgumentException().isThrownBy(()-> Player.of(name));
 
     }
 
     @Test
     void playerNameSize6() {
-        assertThatIllegalArgumentException().isThrownBy(()-> new Player("name66"));
+        assertThatIllegalArgumentException().isThrownBy(()-> Player.of("name66"));
     }
 }
