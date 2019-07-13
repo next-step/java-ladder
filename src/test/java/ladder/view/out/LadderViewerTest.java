@@ -39,6 +39,6 @@ class LadderViewerTest {
 
 		// Assertion
 		assertThat(messages.size()).isEqualTo(1);
-		assertThat(messages.get(0)).isEqualTo("    꽝  1000 50000");
+		assertThat(messages.get(0)).isEqualTo("     꽝  1000 50000");
 	}
 }

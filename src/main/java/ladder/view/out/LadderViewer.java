@@ -41,6 +41,9 @@ public class LadderViewer {
 	}
 
 	public void renderGoals(List<String> goals) {
-
+		String names = goals
+				.stream()
+				.map(name -> String.format(NAME_FORMAT, name.length() < STEP_WIDTH ? name : name.substring(0, STEP_WIDTH)))
+				.collect(Collectors.joining());
 	}
 }
