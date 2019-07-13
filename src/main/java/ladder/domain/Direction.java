@@ -20,10 +20,10 @@ public enum Direction {
 
     public Position move(Position position) {
         if (left && !right) {
-            position.moveToLeft();
+            return position.moveToLeft();
         }
         if (!left && right) {
-            position.moveToRight();
+            return position.moveToRight();
         }
         return position;
     }

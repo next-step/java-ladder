@@ -8,14 +8,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
-//    @Test
-//    void 플레이어_수_만큼_바를_랜덤으로_생성한다() {
-//        int numberOfPlayers = 5;
-//        Line line = Line.from(numberOfPlayers);
-//
-//        assertThat(line.getBars().size()).isEqualTo(numberOfPlayers);
-//    }
-//
+    @Test
+    void 플레이어_수_만큼_포인트를_랜덤으로_생성한다() {
+        int numberOfPlayers = 5;
+        Line line = Line.from(numberOfPlayers);
+
+        assertThat(line.getPoints().size()).isEqualTo(numberOfPlayers);
+    }
+
 //    @Test
 //    void 플레이어의_위치와_Bar의_위치가_같으면_플레이어의_위치를_1만큼_증가시킨다() {
 //        Line line = new Line(Arrays.asList(Bar.from(false), Bar.from(true), Bar.from(false)));
