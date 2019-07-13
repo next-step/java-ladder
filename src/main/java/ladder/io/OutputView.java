@@ -3,6 +3,7 @@ package ladder.io;
 import ladder.Ladder;
 import ladder.Line;
 import ladder.Players;
+import ladder.Results;
 
 public class OutputView {
     public static void printNames(Players players) {
@@ -31,5 +32,11 @@ public class OutputView {
             return;
         }
         System.out.print("     ");
+    }
+
+    public static void printResults(Results playerresults) {
+        playerresults.getResults()
+                .forEach(n -> System.out.print(n.getResultPad()));
+        System.out.println();
     }
 }
