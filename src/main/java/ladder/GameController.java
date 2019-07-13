@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.HorizontalStepList;
 import ladder.domain.Ladder;
 import ladder.domain.StepProvider;
 import ladder.util.TrimSplitter;
@@ -8,11 +7,7 @@ import ladder.view.in.InputDialog;
 import ladder.view.out.LadderViewer;
 import ladder.view.out.MessageRenderer;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class GameController {
 
@@ -33,9 +28,7 @@ public class GameController {
 
 		int height = Integer.parseInt(input.execute("최대 사다리 높이는 몇 개인가요?"));
 
-		this.ladder = IntStream.range(0, height)
-				.mapToObj((i) -> new HorizontalStepList(playerNames.size(), provider))
-				.collect(Ladder.collector());
+		this.ladder = new Ladder(playerNames.size(), height, provider);
 
 		view.renderNames(playerNames);
 		view.render(this.ladder);
