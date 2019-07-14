@@ -27,7 +27,10 @@ public class Direction {
     }
 
     public Direction next() {
-        return new Direction(this.right, FALSE);
+        if (this.right) {
+            return new Direction(this.right, FALSE);
+        }
+        return new Direction(this.right, RandomGenerator.randomBoolean());
     }
 
     public Direction next(boolean right) {

@@ -82,15 +82,6 @@ public class DirectionTest {
     }
 
     @Test
-    @DisplayName("인자가 없는 next 는 좌측방향만을 가질 수 있다.")
-    void nextEmpty() {
-        Direction secondDirection = firstRightDirection.next();
-
-        assertThat(secondDirection.isLeft()).isTrue();
-        assertThat(secondDirection.isRight()).isFalse();
-    }
-
-    @Test
     @DisplayName("last 메서드는 항상 right 방향이 없다")
     void last() {
         Direction lastDirection = firstRightDirection.last();
