@@ -50,5 +50,4 @@ class LineMaker {
         }
         return direction;
     }
-
 }
