@@ -31,4 +31,11 @@ public class Ladder {
 		return Collections.unmodifiableList(rows).stream();
 	}
 
+	public int getResult(int startRail) {
+		int result = startRail;
+		for(int i = 0; i < rows.size(); i++){
+			result = rows.get(i).getNextRailFrom(result);
+		}
+		return result;
+	}
 }

@@ -60,6 +60,10 @@ class HorizontalStepListTest {
 		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
 
 		assertThat(row.getNextRailFrom(0)).isEqualTo(1);
+		assertThat(row.getNextRailFrom(1)).isEqualTo(0);
+		assertThat(row.getNextRailFrom(2)).isEqualTo(2);
+		assertThat(row.getNextRailFrom(3)).isEqualTo(4);
+		assertThat(row.getNextRailFrom(4)).isEqualTo(3);
 	}
 
 }

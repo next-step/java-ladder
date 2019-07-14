@@ -37,4 +37,5 @@ public class GameController {
 		view.render(this.ladder);
 		view.renderLabels(goals);
 	}
+
 }
