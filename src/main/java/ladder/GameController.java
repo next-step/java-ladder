@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderContext;
 import ladder.domain.StepProvider;
 import ladder.util.TrimSplitter;
 import ladder.view.in.InputDialog;
@@ -8,14 +9,15 @@ import ladder.view.out.LadderViewer;
 import ladder.view.out.MessageRenderer;
 
 import java.util.List;
+import java.util.Map;
 
 public class GameController {
 
 	private static final String SEPARATOR = ",";
 
-	private Ladder ladder;
-
 	private LadderViewer view;
+
+	private LadderContext context;
 
 	public GameController(MessageRenderer renderer){
 		this.view = new LadderViewer(renderer);
@@ -31,11 +33,17 @@ public class GameController {
 
 		int height = Integer.parseInt(input.execute("최대 사다리 높이는 몇 개인가요?"));
 
-		this.ladder = new Ladder(playerNames.size(), height, provider);
-
+		Ladder ladder = new Ladder(playerNames.size(), height, provider);
+		this.context = new LadderContext(playerNames, goals, ladder);
 		view.renderLabels(playerNames);
-		view.render(this.ladder);
+		view.render(ladder);
 		view.renderLabels(goals);
 	}
 
+	public void briefResult(InputDialog input, MessageRenderer renderer){
+		String playerName = input.execute("결과를 보고 싶은 사람은?").trim();
+		renderer.print("실행 결과");
+
+		renderer.print(context.getGoal(playerName));
+	}
 }

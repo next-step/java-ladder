@@ -1,10 +1,8 @@
 package ladder.domain;
 
-import ladder.exception.DifferentRailCountException;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -12,19 +10,9 @@ public class Ladder {
 	private List<HorizontalStepList> rows;
 
 	public Ladder(int railCount, int height, StepProvider provider){
-		rows = new ArrayList<>();
-
-		IntStream.range(0, height)
-			.forEach((i) -> addRow(new HorizontalStepList(railCount, provider)));
-
-	}
-
-	public void addRow(HorizontalStepList row){
-		if(rows.size() > 0 && !rows.get(0).isAppendable(row)){
-			throw new DifferentRailCountException();
-		}
-
-		rows.add(row);
+		this.rows = IntStream.range(0, height)
+			.mapToObj(index -> new HorizontalStepList(railCount, provider))
+			.collect(Collectors.toList());
 	}
 
 	public Stream<HorizontalStepList> getRows(){
