@@ -46,7 +46,7 @@ public class Main {
         IntStream.range(0, names.size())
                 .forEach(index -> {
                     stringBuilder.append(names.get(index).getName());
-                    stringBuilder.append(" : ");
+                    stringBuilder.append(StringUtils.VIEW_BETWEEN_NAME_RESULT);
                     stringBuilder.append(rewards.get(ladderResult.result(index)));
                     stringBuilder.append("\n");
                 });

@@ -20,7 +20,7 @@ public class Names {
     }
 
     public static Names of(String nameString) {
-        List<String> names = Arrays.asList(nameString.split(","));
+        List<String> names = Arrays.asList(nameString.split(StringUtils.COMMA_DELIMITER));
         return new Names(names);
     }
 

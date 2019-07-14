@@ -16,7 +16,7 @@ public class Rewards {
     }
 
     public static Rewards of(String rewardString) {
-        List<String> rewards = Arrays.asList(rewardString.split(","));
+        List<String> rewards = Arrays.asList(rewardString.split(StringUtils.COMMA_DELIMITER));
         return new Rewards(rewards);
     }
 
