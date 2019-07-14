@@ -6,12 +6,10 @@ public enum Direction {
     RIGHT(false, true),
     PASS(false, false);
 
-    private static final String ALERT_ADJACENT_LINES = "가로 라인은 겹칠 수 없습니다.";
     private boolean left;
     private boolean right;
 
     Direction(boolean left, boolean right) {
-        validationDirection(left, right);
         this.left = left;
         this.right = right;
     }
@@ -28,11 +26,5 @@ public enum Direction {
             return position.moveToRight();
         }
         return position;
-    }
-
-    private void validationDirection(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException(ALERT_ADJACENT_LINES);
-        }
     }
 }
