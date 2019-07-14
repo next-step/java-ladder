@@ -23,6 +23,10 @@ public class Point {
         return index;
     }
 
+    public Point next() {
+        return new Point(index + 1, direction.next());
+    }
+
     public Point next(boolean nextRight) {
         return new Point(index + 1, direction.next(nextRight));
     }
