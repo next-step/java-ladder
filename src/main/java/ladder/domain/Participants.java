@@ -3,10 +3,12 @@ package ladder.domain;
 import ladder.utils.StringUtils;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Participants {
 
+    public static final String ALL = "all";
     private static final String PARTICIPANTS_DELIMITER = ",";
     private List<Participant> participants;
 
@@ -37,5 +39,18 @@ public class Participants {
     public int size() {
 
         return participants.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participants that = (Participants) o;
+        return Objects.equals(participants, that.participants);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(participants);
     }
 }

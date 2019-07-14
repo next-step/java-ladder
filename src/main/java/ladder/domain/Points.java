@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.generator.PointGenerator;
+import ladder.domain.generator.BooleanGenerator;
 
 import java.util.*;
 import java.util.stream.IntStream;
@@ -20,12 +20,12 @@ public class Points {
         return new Points(points);
     }
 
-    public static Points createPoints(int width, PointGenerator pointGenerator) {
+    public static Points createPoints(int width, BooleanGenerator booleanGenerator) {
 
         List<Point> points = new ArrayList<>();
-        points.add(Point.first(pointGenerator.generate()));
+        points.add(Point.first(booleanGenerator.generate()));
         IntStream.range(FIRST, width - 1)
-                .mapToObj(position -> Point.middle(getLastPoint(points), pointGenerator.generate()))
+                .mapToObj(position -> Point.middle(getLastPoint(points), booleanGenerator.generate()))
                 .forEach(points::add);
         points.add(Point.last(getLastPoint(points)));
         return Points.of(points);

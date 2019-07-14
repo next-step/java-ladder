@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.generator.StubPointGenerator;
+import ladder.domain.generator.StubBooleanGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +14,9 @@ class LineTest {
     @DisplayName("항상 true 발생시 라인 검증")
     void trueLine() {
 
-        Line line = Line.of(5, new StubPointGenerator(true));
+        Line line = Line.of(5, new StubBooleanGenerator(true));
 
-        Line expected = new Line(Points.of(Arrays.asList(
+        Line expected = Line.of(Points.of(Arrays.asList(
                 Point.of(0, Direction.RIGHT),
                 Point.of(1, Direction.LEFT),
                 Point.of(2, Direction.EMPTY),
@@ -31,9 +31,9 @@ class LineTest {
     @DisplayName("항상 false 발생시 라인 검증")
     void falseLine() {
 
-        Line line = Line.of(5, new StubPointGenerator(false));
+        Line line = Line.of(5, new StubBooleanGenerator(false));
 
-        Line expected = new Line(Points.of(Arrays.asList(
+        Line expected = Line.of(Points.of(Arrays.asList(
                 Point.of(0, Direction.EMPTY),
                 Point.of(1, Direction.EMPTY),
                 Point.of(2, Direction.EMPTY),

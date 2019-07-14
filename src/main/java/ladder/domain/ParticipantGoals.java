@@ -1,23 +1,25 @@
 package ladder.domain;
 
-import java.util.Map;
+import java.util.Collections;
+import java.util.List;
 
 public class ParticipantGoals {
 
-    private final Map<Participant, Goal> participantGoals;
+    private final List<ParticipantGoal> participantGoals;
 
-    public ParticipantGoals(Map<Participant, Goal> participantGoals) {
-
+    public ParticipantGoals(List<ParticipantGoal> participantGoals) {
         this.participantGoals = participantGoals;
     }
 
-    public Goal findGoal(String name) {
+    public ParticipantGoal find(String name) {
 
-        return participantGoals.entrySet()
-                .stream()
-                .filter(participantGoalEntry -> name.equals(participantGoalEntry.getKey().getName()))
-                .map(Map.Entry::getValue)
+        return participantGoals.stream()
+                .filter(participantGoal -> participantGoal.getParticipant().getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("참여자명이 존재하지 않습니다."));
+    }
+
+    public List<ParticipantGoal> findAll() {
+        return Collections.unmodifiableList(participantGoals);
     }
 }

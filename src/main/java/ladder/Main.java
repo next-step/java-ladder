@@ -1,36 +1,29 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.factory.LadderGameFactory;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-public class Main {
+import java.util.Collections;
 
-    public static final String ALL_PARTICIPANTS = "all";
+public class Main {
 
     public static void main(String[] args) {
 
-        String participantsNames = InputView.askParticipantNames();
-        Participants participants = new Participants(participantsNames);
-        String goalsString = InputView.askGoals();
-        Goals goals = new Goals(goalsString, participants.size());
-        int height = InputView.askHeight();
-        Ladder ladder = new Ladder(LadderInfo.of(participants.size(), height));
+        LadderGame ladderGame = LadderGameFactory.createLadderGame(LadderGameInfo.readInput());
 
         ResultView.printResultMessage();
-        ResultView.printNewLine();
-        ResultView.printParticipants(participants);
-        ResultView.printLadder(ladder);
-        ResultView.printGoals(goals);
+        ResultView.printLadderGame(ladderGame);
 
-        LadderResult ladderResult = LadderResult.of(ladder);
-        ParticipantGoals participantGoals = ladderResult.createParticipantGoal(participants, goals);
+        LadderResult ladderResult = ladderGame.createResult();
+        ParticipantGoals participantGoals = ladderResult.createParticipantGoal(ladderGame.getGameInfo());
+
         String name = InputView.askPersonalResult();
-        while (!name.equals(ALL_PARTICIPANTS)) {
-            ResultView.printPersonalResult(participantGoals, name);
+        while (!Participants.ALL.equals(name)) {
+            ResultView.printParticipantGoals(Collections.singletonList(participantGoals.find(name)));
             name = InputView.askPersonalResult();
         }
-
-        ResultView.printAllResult(participantGoals, participants);
+        ResultView.printParticipantGoals(participantGoals.findAll());
     }
 }

@@ -2,7 +2,7 @@ package ladder.domain;
 
 import ladder.utils.StringUtils;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Goals {
@@ -10,7 +10,7 @@ public class Goals {
     private static final String RESULTS_DELIMITER = ",";
     private List<Goal> goals;
 
-    public Goals(String goal, int participantSize) {
+    public Goals(String goal) {
 
         if (StringUtils.isBlank(goal)) {
             throw new IllegalArgumentException("실행결과가 빈 값입니다.");
@@ -20,19 +20,32 @@ public class Goals {
                 .stream()
                 .map(Goal::new)
                 .collect(Collectors.toList());
+    }
 
-        if (this.goals.size() != participantSize) {
-            throw new IllegalArgumentException("참가자 수와 결과 수가 일치하지 않습니다. 참가자 수=" + participantSize + ", 결과 수=" + this.goals.size());
-        }
+    public int size() {
+        return goals.size();
     }
 
     public List<Goal> getGoals() {
 
-        return goals;
+        return Collections.unmodifiableList(goals);
     }
 
     public Goal getGoal(int index) {
 
         return goals.get(index);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Goals goals1 = (Goals) o;
+        return Objects.equals(goals, goals1.goals);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(goals);
     }
 }

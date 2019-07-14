@@ -1,10 +1,10 @@
 package ladder.domain.generator;
 
-public class StubPointGenerator implements PointGenerator {
+public class StubBooleanGenerator implements BooleanGenerator {
 
     private boolean value;
 
-    public StubPointGenerator(boolean value) {
+    public StubBooleanGenerator(boolean value) {
 
         this.value = value;
     }

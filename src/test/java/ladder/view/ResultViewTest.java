@@ -1,8 +1,11 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.domain.factory.LinesFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
 
 class ResultViewTest {
 
@@ -10,25 +13,20 @@ class ResultViewTest {
     @DisplayName("출력 테스트")
     void printResult() {
 
-        Participants participants = new Participants("pobi,honux,crong,jk");
-        Goals goals = new Goals("꽝,5000,꽝,3000", participants.size());
-        Ladder ladder = new Ladder(LadderInfo.of(participants.size(), 5));
+        LadderGame ladderGame = new LadderGame(GameInfo.of(new Participants("pobi,honux,crong,jk"), new Goals("꽝,5000,꽝,3000")), LinesFactory.createLines(4, 5));
 
         ResultView.printResultMessage();
-        ResultView.printNewLine();
-        ResultView.printParticipants(participants);
-        ResultView.printLadder(ladder);
-        ResultView.printGoals(goals);
+        ResultView.printLadderGame(ladderGame);
 
-        LadderResult ladderResult = LadderResult.of(ladder);
-        ParticipantGoals participantGoals = ladderResult.createParticipantGoal(participants, goals);
+        LadderResult ladderResult = ladderGame.createResult();
+        ParticipantGoals participantGoals = ladderResult.createParticipantGoal(ladderGame.getGameInfo());
+
         String name = "pobi";
-        while (!name.equals("all")) {
-            ResultView.printPersonalResult(participantGoals, name);
+        while (!Participants.ALL.equals(name)) {
+            ResultView.printParticipantGoals(Collections.singletonList(participantGoals.find(name)));
             name = "all";
+
+            ResultView.printParticipantGoals(participantGoals.findAll());
         }
-
-        ResultView.printAllResult(participantGoals, participants);
-
     }
 }

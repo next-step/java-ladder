@@ -15,11 +15,7 @@ public enum Direction {
         this.isRight = isRight;
     }
 
-    public static Direction of(boolean isLeft, boolean isRight) {
-
-        if (isLeft) {
-            return LEFT;
-        }
+    public static Direction of(boolean isRight) {
 
         if (isRight) {
             return RIGHT;
@@ -30,7 +26,7 @@ public enum Direction {
 
     public static Direction first(boolean isRight) {
 
-        return Direction.of(false, isRight);
+        return Direction.of(isRight);
     }
 
     public static Direction middle(Direction before, boolean isRight) {
@@ -43,7 +39,7 @@ public enum Direction {
             return EMPTY;
         }
 
-        return Direction.of(false, isRight);
+        return Direction.of(isRight);
     }
 
     public static Direction last(Direction before) {

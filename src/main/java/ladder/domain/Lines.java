@@ -1,10 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.generator.PointGenerator;
-
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Lines {
 
@@ -13,18 +9,6 @@ public class Lines {
     public Lines(List<Line> lines) {
 
         this.lines = lines;
-    }
-
-    public static Lines of(LadderInfo ladderInfo, PointGenerator pointGenerator) {
-
-        return new Lines(IntStream.range(0, ladderInfo.getHeight())
-                                 .mapToObj(currentHeight -> Line.of(ladderInfo.getWidth(), pointGenerator))
-                                 .collect(Collectors.toList()));
-    }
-
-    static Lines of(List<Line> lines) {
-
-        return new Lines(lines);
     }
 
     public int move(int startPosition) {

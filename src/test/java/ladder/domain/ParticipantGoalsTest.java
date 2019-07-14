@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import org.assertj.core.util.Maps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,22 +15,22 @@ class ParticipantGoalsTest {
     @DisplayName("참가자명 String으로 검색시 goal 객체 반환")
     void findGoal() {
 
-        String participantName = "test";
-        String goalResult = "great";
-
+        Participant participant = new Participant("test");
+        Goal goal = new Goal("great");
         ParticipantGoals participantGoals = new ParticipantGoals(
-                Maps.newHashMap(new Participant(participantName), new Goal(goalResult))
-        );
+                Arrays.asList(new ParticipantGoal(participant, goal)));
 
-        assertThat(participantGoals.findGoal(participantName)).isEqualTo(new Goal(goalResult));
+        ParticipantGoal participantGoal = participantGoals.find("test");
+        assertThat(participantGoal.getParticipant()).isEqualTo(participant);
+        assertThat(participantGoal.getGoal()).isEqualTo(goal);
     }
 
     @Test
     @DisplayName("참가자명 String으로 검색시 없다면 exception 발생")
     void findGoalException() {
 
-        ParticipantGoals participantGoals = new ParticipantGoals(Collections.emptyMap());
+        ParticipantGoals participantGoals = new ParticipantGoals(Collections.emptyList());
 
-        assertThatIllegalArgumentException().isThrownBy(() -> participantGoals.findGoal("notFound"));
+        assertThatIllegalArgumentException().isThrownBy(() -> participantGoals.find("notFound"));
     }
 }
