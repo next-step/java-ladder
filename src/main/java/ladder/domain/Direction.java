@@ -33,4 +33,8 @@ public class Direction {
     public Direction next(boolean right) {
         return new Direction(this.right, right);
     }
+
+    public Direction last() {
+        return new Direction(this.right, FALSE);
+    }
 }

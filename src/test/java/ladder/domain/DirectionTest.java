@@ -84,4 +84,13 @@ public class DirectionTest {
         assertThat(secondDirection.isLeft()).isTrue();
         assertThat(secondDirection.isRight()).isFalse();
     }
+
+    @Test
+    void last() {
+        Direction firstDirection = Direction.of(FALSE, TRUE);
+        Direction lastDirection = firstDirection.last();
+
+        assertThat(lastDirection.isLeft()).isTrue();
+        assertThat(lastDirection.isRight()).isFalse();
+    }
 }
