@@ -2,7 +2,7 @@ package ladder.domain;
 
 import java.util.Random;
 
-public class RandomPointGenerator implements PointGenerator {
+public class RandomPointIndicator implements PointIndicator {
 
     private Random random = new Random();
 

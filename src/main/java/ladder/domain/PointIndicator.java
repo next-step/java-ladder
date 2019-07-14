@@ -1,7 +1,7 @@
 package ladder.domain;
 
 @FunctionalInterface
-public interface PointGenerator {
+public interface PointIndicator {
 
     boolean generatePoint();
 }
