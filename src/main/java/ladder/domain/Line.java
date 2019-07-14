@@ -11,19 +11,8 @@ import static ladder.domain.Point.START_INDEX;
 public class Line {
 
   private static final int LAST_INDEX_LINE = 2;
-  private List<Point> points = new ArrayList<>();
+  private List<Point> points;
 
-  private Line(int numOfPlayers) {
-    Point point = Point.first(RandomGenerator.nextBoolean());
-    points.add(point);
-
-    for (int i = START_INDEX; i < numOfPlayers - LAST_INDEX_LINE; i++) {
-      point = randomBar(point);
-      points.add(point);
-    }
-
-    points.add(point.last());
-  }
 
   private Line(List<Point> points) {
     this.points = points;
@@ -34,7 +23,29 @@ public class Line {
   }
 
   public static Line of(int numOfPlayers) {
-    return new Line(numOfPlayers);
+    List<Point> points = new ArrayList<>();
+    Point point = initFirst(points);
+    point = initBody(numOfPlayers, points, point);
+    initLast(points, point.last());
+    return new Line(points);
+  }
+
+  private static void initLast(List<Point> points, Point last) {
+    points.add(last);
+  }
+
+  private static Point initBody(int numOfPlayers, List<Point> points, Point point) {
+    for (int i = START_INDEX; i < numOfPlayers - LAST_INDEX_LINE; i++) {
+      point = point.next(RandomGenerator.nextBoolean());
+      points.add(point);
+    }
+    return point;
+  }
+
+  private static Point initFirst(List<Point> points) {
+    Point point = Point.first(RandomGenerator.nextBoolean());
+    points.add(point);
+    return point;
   }
 
   int move(int i) {

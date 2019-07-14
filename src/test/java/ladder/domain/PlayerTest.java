@@ -10,13 +10,6 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class PlayerTest {
 
-  @DisplayName("유저 생성 테스트")
-  @Test
-  void create() {
-    Player player = Player.of("test");
-    assertThat(player).isEqualTo(Player.of("test"));
-  }
-
   @DisplayName("라인 생성 테스트")
   @Test
   void line_create() {
