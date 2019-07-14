@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ResultView {
     public static final String LINE_EXIST_TEXT;
@@ -23,8 +24,9 @@ public class ResultView {
         return "\n사다리 결과\n";
     }
 
-    public static String getDefaultRewardText() {
-        return "\n실행 결과";
+    public static String getRewardText(Rewards rewards, int index) {
+        return "\n실행 결과\n" +
+                rewards.get(index);
     }
 
     public static String getNamesView(Names names) {
@@ -48,5 +50,17 @@ public class ResultView {
             result += "|\n";
         }
         return result;
+    }
+
+    public static String getNameAndResultView(Names names, Rewards rewards, LadderResult ladderResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        IntStream.range(0, names.size())
+                .forEach(index -> {
+                    stringBuilder.append(names.get(index).getName());
+                    stringBuilder.append(StringUtils.VIEW_BETWEEN_NAME_RESULT);
+                    stringBuilder.append(rewards.get(ladderResult.result(index)));
+                    stringBuilder.append("\n");
+                });
+        return stringBuilder.toString();
     }
 }

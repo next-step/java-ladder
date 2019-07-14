@@ -5,7 +5,6 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -32,24 +31,18 @@ public class Main {
         System.out.println(ResultView.getLadderView(ladder));
         System.out.println(ResultView.getRewardsView(rewards));
 
-        String nameToShow = "";
+        System.out.println(InputView.getResultNameInputText());
+        String nameToShow = scanner.nextLine();
         while (!nameToShow.equals("all")) {
+            int resultIndex = ladderResult.resultOf(nameToShow);
+            System.out.println(ResultView.getRewardText(rewards, resultIndex));
+
             System.out.println(InputView.getResultNameInputText());
             nameToShow = scanner.nextLine();
-            int resultIndex = ladderResult.resultOf(nameToShow);
-
-            System.out.println(ResultView.getDefaultRewardText());
-            System.out.println(rewards.get(resultIndex));
         }
+        int resultIndex = ladderResult.resultOf(nameToShow);
+        System.out.println(ResultView.getRewardText(rewards, resultIndex));
 
-        StringBuilder stringBuilder = new StringBuilder();
-        IntStream.range(0, names.size())
-                .forEach(index -> {
-                    stringBuilder.append(names.get(index).getName());
-                    stringBuilder.append(StringUtils.VIEW_BETWEEN_NAME_RESULT);
-                    stringBuilder.append(rewards.get(ladderResult.result(index)));
-                    stringBuilder.append("\n");
-                });
-        System.out.println(stringBuilder.toString());
+        System.out.println(ResultView.getNameAndResultView(names, rewards, ladderResult));
     }
 }
