@@ -37,9 +37,16 @@ public class PointTest {
     }
 
     @Test
-    @DisplayName("Next 를 통해 왼쪽으로 이동하는 Point 생성된다.")
+    @DisplayName("인자없는 Next 를 통해 왼쪽으로 이동하는 Point 생성된다.")
     public void nextEmpty() {
         Point second = Point.first(TRUE).next();
         assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("last 를 통해 왼쪽으로 이동하는 Point 생성된다.")
+    public void last() {
+        Point last = Point.first(TRUE).last();
+        assertThat(last.move()).isEqualTo(0);
     }
 }

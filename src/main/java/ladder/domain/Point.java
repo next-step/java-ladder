@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import static java.lang.Boolean.FALSE;
+
 public class Point {
     private final int index;
     private final Direction direction;
@@ -7,10 +9,6 @@ public class Point {
     private Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;
-    }
-
-    public static Point first(boolean right) {
-        return new Point(0, Direction.of(false, right));
     }
 
     public int move() {
@@ -29,5 +27,13 @@ public class Point {
 
     public Point next(boolean nextRight) {
         return new Point(index + 1, direction.next(nextRight));
+    }
+
+    public static Point first(boolean right) {
+        return new Point(0, Direction.of(FALSE, right));
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.next(FALSE));
     }
 }
