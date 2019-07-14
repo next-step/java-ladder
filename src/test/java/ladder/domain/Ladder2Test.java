@@ -3,6 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class Ladder2Test {
     int height = 4;
     int ladderSize = 4;
