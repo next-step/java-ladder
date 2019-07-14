@@ -27,6 +27,10 @@ public class LadderLine {
         return points.size();
     }
 
+    public int move(int index) {
+        return points.get(index).move();
+    }
+
     private void initFirst() {
         Point first = Point.first(RandomGenerator.randomBoolean());
         points.add(first);
