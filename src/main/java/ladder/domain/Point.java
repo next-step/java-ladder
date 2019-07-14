@@ -36,4 +36,8 @@ public class Point {
     public Point last() {
         return new Point(index + 1, direction.next(FALSE));
     }
+
+    public boolean hasLeft() {
+        return direction.isLeft();
+    }
 }

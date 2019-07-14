@@ -52,7 +52,28 @@ public class ResultView {
         return result;
     }
 
+    public static String getLadder2View(Ladder2 ladder) {
+        return IntStream.range(0, ladder.height())
+                .mapToObj(level -> ladder.getLadderLineByLevel(level).getPoints())
+                .map(points -> points.stream().map(Point::hasLeft)
+                        .map(hasLeft -> hasLeft ? LINE_EXIST_TEXT : LINE_NOT_EXIST_TEXT)
+                        .collect(Collectors.joining("|")))
+                .collect(Collectors.joining("|\n"));
+    }
+
     public static String getNameAndResultView(Names names, Rewards rewards, LadderResult ladderResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        IntStream.range(0, names.size())
+                .forEach(index -> {
+                    stringBuilder.append(names.get(index).getName());
+                    stringBuilder.append(StringUtils.VIEW_BETWEEN_NAME_RESULT);
+                    stringBuilder.append(rewards.get(ladderResult.result(index)));
+                    stringBuilder.append("\n");
+                });
+        return stringBuilder.toString();
+    }
+
+    public static String getNameAndResultView2(Names names, Rewards rewards, Ladder2Result ladderResult) {
         StringBuilder stringBuilder = new StringBuilder();
         IntStream.range(0, names.size())
                 .forEach(index -> {

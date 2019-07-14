@@ -27,6 +27,10 @@ public class Ladder2 {
         return ladderLines.get(0).move(index);
     }
 
+    public LadderLine getLadderLineByLevel(int level) {
+        return ladderLines.get(level);
+    }
+
     private void addLadderLine(int ladderSize) {
         ladderLines.add(LadderLine.init(ladderSize));
     }
