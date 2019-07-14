@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class DirectionTest {
+    Direction firstRightDirection;
+    Direction firstNoDirection;
+
+    @BeforeEach
+    void setUp() {
+        firstRightDirection = Direction.first(TRUE);
+        firstNoDirection = Direction.first(FALSE);
+    }
+
     @Test
     @DisplayName("of 메서드를 통해 좌 방향을 가진 Direction 을 생성한다.")
     void of() {
@@ -40,8 +50,7 @@ public class DirectionTest {
     @Test
     @DisplayName("next 메서드를 통해 이전 방향과 이어진 다음 Direction 생성한다.")
     void nextLeft() {
-        Direction firstDirection = Direction.of(FALSE, TRUE);
-        Direction secondDirection = firstDirection.next(false);
+        Direction secondDirection = firstRightDirection.next(false);
 
         assertThat(secondDirection.isLeft()).isTrue();
         assertThat(secondDirection.isRight()).isFalse();
@@ -50,8 +59,7 @@ public class DirectionTest {
     @Test
     @DisplayName("next 메서드를 통해 오른쪽 방향인 다음 Direction 생성한다.")
     void nextRight() {
-        Direction firstDirection = Direction.of(FALSE, FALSE);
-        Direction secondDirection = firstDirection.next(true);
+        Direction secondDirection = firstNoDirection.next(true);
 
         assertThat(secondDirection.isLeft()).isFalse();
         assertThat(secondDirection.isRight()).isTrue();
@@ -60,8 +68,7 @@ public class DirectionTest {
     @Test
     @DisplayName("next 메서드를 통해 방향이 없는 다음 Direction 생성한다.")
     void nextStay() {
-        Direction firstDirection = Direction.of(FALSE, FALSE);
-        Direction secondDirection = firstDirection.next(false);
+        Direction secondDirection = firstNoDirection.next(false);
 
         assertThat(secondDirection.isLeft()).isFalse();
         assertThat(secondDirection.isRight()).isFalse();
@@ -70,27 +77,24 @@ public class DirectionTest {
     @Test
     @DisplayName("next 메서드를 통해 방향이 없는 다음 Direction 생성한다.")
     void nextError() {
-        Direction firstDirection = Direction.of(FALSE, TRUE);
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> firstDirection.next(true));
+                .isThrownBy(() -> firstRightDirection.next(true));
     }
 
     @Test
     @DisplayName("인자가 없는 next 는 좌측방향만을 가질 수 있다.")
     void nextEmpty() {
-        Direction firstDirection = Direction.of(FALSE, TRUE);
-        Direction secondDirection = firstDirection.next();
+        Direction secondDirection = firstRightDirection.next();
 
         assertThat(secondDirection.isLeft()).isTrue();
         assertThat(secondDirection.isRight()).isFalse();
     }
 
     @Test
+    @DisplayName("last 메서드는 항상 right 방향이 없다")
     void last() {
-        Direction firstDirection = Direction.of(FALSE, TRUE);
-        Direction lastDirection = firstDirection.last();
+        Direction lastDirection = firstRightDirection.last();
 
-        assertThat(lastDirection.isLeft()).isTrue();
         assertThat(lastDirection.isRight()).isFalse();
     }
 }

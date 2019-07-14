@@ -34,6 +34,10 @@ public class Direction {
         return new Direction(this.right, right);
     }
 
+    public static Direction first(boolean right) {
+        return new Direction(FALSE, right);
+    }
+
     public Direction last() {
         return new Direction(this.right, FALSE);
     }
