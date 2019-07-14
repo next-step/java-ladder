@@ -4,23 +4,24 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Application {
+    private static final String ALL_RESULTS = "all";
 
     public static void main(String[] args) {
         Players players = Players.of(InputView.askPlayers());
-        Prizes prizes = Prizes.from(InputView.askPrizes(), players.numberOfPlayers());
+        Prizes prizes = Prizes.from(InputView.askPrizes());
         Height height = Height.from(InputView.askHeight());
 
-        Ladder ladder = Ladder.from(players, height);
-        OutputView.drawLadder(players, ladder, prizes);
+        GameInfo gameInfo = GameInfo.of(players, prizes);
+        Ladder ladder = Ladder.from(players.numberOfPlayers(), height);
 
-        GameResult gameResult = GameResult.of(players, ladder, prizes);
+        LadderGame ladderGame = LadderGame.of(gameInfo, ladder);
+        GameResult gameResult = ladderGame.playGame();
+
+        OutputView.printGame(ladderGame);
+
         String wantedPlayer = InputView.askWhichResultWant();
-
-        if ("all".equals(wantedPlayer)) {
+        if (ALL_RESULTS.equals(wantedPlayer)) {
             OutputView.printAllResult(gameResult);
             return;
         }

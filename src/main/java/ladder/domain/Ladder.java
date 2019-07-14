@@ -14,10 +14,10 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Ladder from(Players players, Height height) {
+    public static Ladder from(int numberOfPlayers, Height height) {
         return new Ladder(IntStream
                 .range(0, height.getHeight())
-                .mapToObj((integer) -> Line.from(players.numberOfPlayers()))
+                .mapToObj((integer) -> Line.from(numberOfPlayers))
                 .collect(Collectors.toList()));
     }
 

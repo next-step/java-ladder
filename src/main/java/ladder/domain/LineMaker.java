@@ -4,40 +4,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 class LineMaker {
-    private static final int NUMBER_OF_FIRST_AND_LAST_BAR = 2;
+    private static final int NUMBER_OF_FIRST_AND_LAST_POINT = 2;
 
-    private List<Bar> randomBars;
-    private RandomBarGenerator barGenerator = new RandomBarGenerator();
+    private List<Point> randomPoints;
+    private RandomPointGenerator pointGenerator = new RandomPointGenerator();
 
-    List<Bar> generateBars(int numberOfPlayers) {
-        this.randomBars = new ArrayList<>();
-        generateFirstBar();
-        generateMiddleBars(numberOfPlayers);
-        generateLastBar();
-        return randomBars;
+    List<Point> generatePoints(int numberOfPlayers) {
+        this.randomPoints = new ArrayList<>();
+        generateFirstPoint();
+        generateMiddlePoints(numberOfPlayers);
+        generateLastPoint();
+        return randomPoints;
     }
 
-    private void generateFirstBar() {
-        randomBars.add(Bar.from(barGenerator.generateBar()));
+    private void generateFirstPoint() {
+        randomPoints.add(Point.makeFirstPoint(chooseDirection()));
     }
 
-    private void generateMiddleBars(int numberOfPlayers) {
-        int spaceForMiddleBars = numberOfPlayers - NUMBER_OF_FIRST_AND_LAST_BAR;
-        for (int i = 0; i < spaceForMiddleBars; i++) {
-            Bar previousBar = randomBars.get(i);
-            addNextBar(previousBar);
+    private void generateMiddlePoints(int numberOfPlayers) {
+        int spaceForMiddlePoints = numberOfPlayers - NUMBER_OF_FIRST_AND_LAST_POINT;
+        for (int i = 0; i < spaceForMiddlePoints; i++) {
+            Point previousPoint = randomPoints.get(i);
+            addNextPoint(previousPoint);
         }
     }
 
-    private void addNextBar(Bar previousBar) {
-        if (previousBar.isExist()) {
-            generateLastBar();
+    private void addNextPoint(Point previousPoint) {
+        if (previousPoint.isDirectionRight()) {
+            randomPoints.add(previousPoint.makeNextPoint(Direction.LEFT));
             return;
         }
-        randomBars.add(Bar.from(barGenerator.generateBar()));
+        randomPoints.add(previousPoint.makeNextPoint(chooseDirection()));
     }
 
-    private void generateLastBar() {
-        randomBars.add(Bar.from(Boolean.FALSE));
+    private void generateLastPoint() {
+        int currentlyLastIndex = randomPoints.size() - 1;
+        Point secondToLastPoint = randomPoints.get(currentlyLastIndex);
+        randomPoints.add(secondToLastPoint.makeLastPoint());
+    }
+
+    private Direction chooseDirection() {
+        Direction direction = Direction.PASS;
+        if (pointGenerator.generatePoint()) {
+            direction = Direction.RIGHT;
+        }
+        return direction;
     }
 }

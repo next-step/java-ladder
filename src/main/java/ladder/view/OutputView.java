@@ -13,11 +13,11 @@ public class OutputView {
     private static DataPrintFormatter<Players> playersPrintFormatter = new PlayersPrintFormatter();
     private static DataPrintFormatter<Prizes> prizesPrintFormatter = new PrizesPrintFormatter();
 
-    public static void drawLadder(Players players, Ladder ladder, Prizes prizes) {
+    public static void printGame(LadderGame ladderGame) {
         printResultTitle();
-        printPlayers(players);
-        printLadder(ladder);
-        printPrizes(prizes);
+        printPlayers(ladderGame.getPlayers());
+        printLadder(ladderGame.getLadder());
+        printPrizes(ladderGame.getPrizes());
     }
 
     private static void printResultTitle() {
@@ -40,16 +40,16 @@ public class OutputView {
 
     private static void printLine(Line line) {
         System.out.print(EMPTY_SPACE);
-        line.getBars().stream()
-                .map(OutputView::printBars)
+        line.getPoints().stream()
+                .map(OutputView::printPoints)
                 .forEach(System.out::print);
         printEmptyLine();
     }
 
-    private static String printBars(Bar bar) {
+    private static String printPoints(Point point) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(COLUMN);
-        if (bar.isExist()) {
+        if (point.isDirectionRight()) {
             return stringBuilder.append(BAR).toString();
         }
         return stringBuilder.append(EMPTY_SPACE).toString();

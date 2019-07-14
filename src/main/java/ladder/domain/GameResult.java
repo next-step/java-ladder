@@ -13,22 +13,8 @@ public class GameResult {
         this.resultMap = new HashMap<>(resultMap);
     }
 
-    public static GameResult of(Players players, Ladder ladder, Prizes prizes) {
-        return new GameResult(playGame(players, ladder, prizes));
-    }
-
-    private static Map<Player, Prize> playGame(Players players, Ladder ladder, Prizes prizes) {
-        Map<Player, Prize> resultMap = new HashMap<>();
-        int numberOfPlayers = players.numberOfPlayers();
-
-        for (int i = 0; i < numberOfPlayers; i++) {
-            Player player = players.getPlayers().get(i);
-            Position finalPosition = ladder.goThroughLinesFrom(Position.from(i));
-            Prize prize = prizes.getPrizes().get(finalPosition.getPosition());
-
-            resultMap.put(player, prize);
-        }
-        return resultMap;
+    public static GameResult from(Map<Player, Prize> resultMap) {
+        return new GameResult(resultMap);
     }
 
     public String findResult(String wantedPlayer) {
