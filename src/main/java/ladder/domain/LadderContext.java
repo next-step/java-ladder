@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.NotFoundPlayer;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderContext {
 
@@ -32,5 +33,11 @@ public class LadderContext {
 		}
 
 		return index;
+	}
+
+	public List<NameGoalPair> getResult() {
+		return this.playerNames.stream()
+				.map(name -> new NameGoalPair(name, this.getGoal(name)))
+				.collect(Collectors.toList());
 	}
 }

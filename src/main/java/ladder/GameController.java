@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderContext;
+import ladder.domain.NameGoalPair;
 import ladder.domain.StepProvider;
 import ladder.util.TrimSplitter;
 import ladder.view.in.InputDialog;
@@ -14,6 +15,8 @@ import java.util.Map;
 public class GameController {
 
 	private static final String SEPARATOR = ",";
+
+	private static final String BRIEF_ALL = "all";
 
 	private LadderViewer view;
 
@@ -41,9 +44,17 @@ public class GameController {
 	}
 
 	public void briefResult(InputDialog input, MessageRenderer renderer){
-		String playerName = input.execute("결과를 보고 싶은 사람은?").trim();
-		renderer.print("실행 결과");
 
-		renderer.print(context.getGoal(playerName));
+		while(true) {
+			String commandOrPlayerName = input.execute("결과를 보고 싶은 사람은?").trim();
+			renderer.print("실행 결과");
+			if(BRIEF_ALL.equals(commandOrPlayerName)){
+				break;
+			}
+			renderer.print(context.getGoal(commandOrPlayerName));
+		}
+
+		List<NameGoalPair> results = context.getResult();
+		results.forEach(nameGoalPair -> renderer.print(nameGoalPair.toStringWithDelimiter(" : ")));
 	}
 }
