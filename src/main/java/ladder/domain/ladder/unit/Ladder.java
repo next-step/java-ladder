@@ -25,12 +25,13 @@ public class Ladder {
     private void setEndPoint(int cellSize) {
         final int START_POINT = 0;
         for (int ladderIndex = START_POINT, size = ladder.size(); ladderIndex < size; ladderIndex++) {
-            setEndPoint(ladderIndex, START_POINT, cellSize);
+            setEndPoint(ladderIndex, cellSize);
         }
     }
     
-    private void setEndPoint(int ladderIndex, int cellIndex, int cellSize) {
+    private void setEndPoint(int ladderIndex, int cellSize) {
         Line nowLine = ladder.get(ladderIndex);
+        int cellIndex = START_COUNT;
         Cell nowCell = nowLine.getCell(cellIndex);
         boolean finalCell = false;
         while (!finalCell) {
@@ -55,15 +56,16 @@ public class Ladder {
         return ladder.get(index);
     }
     
-    public boolean isEmpty() {
-        return ladder.isEmpty();
-    }
-    
     public int size() {
         return ladder.size();
     }
     
     public Stream<Line> stream() {
         return ladder.stream();
+    }
+    
+    
+    public int cellSize() {
+        return ladder.get(0).cellSize();
     }
 }

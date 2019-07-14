@@ -12,19 +12,13 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderModel {
-    private final static int START_COUNT = 1;
-    private final static int BEFORE_INDEX = 1;
-    private final static int ONE_INDEX = 1;
-    
     private Ladder ladder;
-    private int cellSize = 0;
     
     public static LadderModel newInstance() {
         return new LadderModel();
     }
     
     public void makeLadder(int cellSize, Gamers gamers) {
-        this.cellSize = cellSize;
         this.ladder = Ladder.of(cellSize, gamers.getSize());
     }
     
@@ -52,6 +46,10 @@ public class LadderModel {
     }
     
     public int getCellSize() {
-        return cellSize;
+        return ladder.cellSize();
+    }
+    
+    public void setLadder(Ladder ladder) {
+        this.ladder = ladder;
     }
 }
