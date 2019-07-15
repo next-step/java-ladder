@@ -5,24 +5,24 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class Line {
-    private List<Point> pointList;
+public class LadderLine {
+    private List<Point> points;
 
-    Line(int countOfPerson) {
+    LadderLine(int countOfPerson) {
         Random random = new Random();
-        pointList = new ArrayList<>();
-        pointList.add(new Point(false));
-        pointList.add(new Point(random.nextBoolean()));
+        points = new ArrayList<>();
+        points.add(new Point(false));
+        points.add(new Point(random.nextBoolean()));
 
         IntStream.range(2, countOfPerson).forEach(i -> {
             Point pointElement = new Point(random.nextBoolean());
-            pointList.add(pointList.get(i - 1).checkDuplicate(pointElement)); // 세번째 요소부터 중복체크
+            points.add(points.get(i - 1).checkDuplicate(pointElement)); // 세번째 요소부터 중복체크
         });
 
     }
 
-    public List<Point> getPointList() {
-        return pointList;
+    public List<Point> getPoints() {
+        return points;
     }
 
     @Override

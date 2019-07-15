@@ -49,11 +49,11 @@ public class GameResult {
 
     // listArray를 array로 변환 (게임 결과 확인을 위해서)
     private Point[][] makeLadderMapArr(LadderFactory ladderFactory) {
-        Line[] ladderArr = ladderFactory.getLadder().toArray(new Line[ladderFactory.getLadder().size()]);
+        LadderLine[] ladderArr = ladderFactory.getLadder().toArray(new LadderLine[ladderFactory.getLadder().size()]);
         Point[][] map = new Point[ladderFactory.getLadder().size()][ladderFactory.getLadder().size()];
 
         for (int i = 0; i < ladderArr.length; ++i) {
-            map[i] = ladderArr[i].getPointList().toArray(new Point[ladderFactory.getLadder().size()]);
+            map[i] = ladderArr[i].getPoints().toArray(new Point[ladderFactory.getLadder().size()]);
         }
 
         return map;

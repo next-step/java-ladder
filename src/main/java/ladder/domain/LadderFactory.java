@@ -3,21 +3,20 @@ package ladder.domain;
 import java.util.*;
 
 public class LadderFactory {
-    private List<Line> ladder;
+    private List<LadderLine> ladder;
 
     public LadderFactory(int maxHeight, int sizeofusergroup) {
 
         ladder = new ArrayList<>();
-        Line line;
+        LadderLine ladderLine;
 
         for (int i = 0; i < maxHeight; ++i) {
-            line = new Line(sizeofusergroup);
-            ladder.add(line);
+            ladderLine = new LadderLine(sizeofusergroup);
+            ladder.add(ladderLine);
         }
     }
 
-    public List<Line> getLadder() {
+    public List<LadderLine> getLadder() {
         return ladder;
     }
-
 }
