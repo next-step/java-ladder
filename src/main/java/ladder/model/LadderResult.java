@@ -15,10 +15,6 @@ public class LadderResult {
         resultItems = validation(users.userCount(), reustItem);
     }
 
-    public List<String> getResultItem() {
-        return Collections.unmodifiableList(resultItems);
-    }
-
     public int maxLadderTextCount() {
         if (users.getMaxUserNameLength() - maxItemLength() > 0) {
             return users.getMaxUserNameLength();
@@ -39,6 +35,10 @@ public class LadderResult {
                                               .map(user -> userRid(user, ladder))
                                               .collect(Collectors.toList())
         );
+    }
+
+    public List<String> getResultItem() {
+        return Collections.unmodifiableList(resultItems);
     }
 
     private int maxItemLength() {

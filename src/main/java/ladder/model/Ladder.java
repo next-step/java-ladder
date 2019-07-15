@@ -17,20 +17,20 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public int ladderRid(int userIndex) {
-        int userPosition = userIndex;
-        for (LadderLine ladderLine : ladder) {
-            userPosition = ladderLine.move(userPosition);
-        }
-        return userPosition;
-    }
-
     public static Ladder of(int userCount, String ladderHeight) {
         List<LadderLine> ladder = new ArrayList <>();
         for (int i = 0; i < validationNumberFormat(ladderHeight); i++) {
             ladder.add(createLine(userCount));
         }
         return new Ladder(ladder);
+    }
+
+    public int ladderRid(int userIndex) {
+        int userPosition = userIndex;
+        for (LadderLine ladderLine : ladder) {
+            userPosition = ladderLine.move(userPosition);
+        }
+        return userPosition;
     }
 
     private static int validationNumberFormat(String ladderHeight) {

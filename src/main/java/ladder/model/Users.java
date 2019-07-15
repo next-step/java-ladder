@@ -26,15 +26,15 @@ public class Users {
         return users.contains(targetUser);
     }
 
-    public List<User> getUsers() {
-        return Collections.unmodifiableList(this.users);
-    }
-
     public int getMaxUserNameLength() {
         return users.stream()
                     .map(User::getNameLength)
                     .max(Integer::compare)
                     .get();
+    }
+
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(this.users);
     }
 
     private List <User> createUsers(String userNmaes) {

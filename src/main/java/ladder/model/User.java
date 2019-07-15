@@ -16,16 +16,16 @@ public class User {
         this.name = name;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     public boolean isAllPrintSignUser() {
         return this.name.equals(ALL_PRINT_SIGN);
     }
 
     public int getNameLength() {
         return this.name.length();
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     private void validationNameLength(String name) {

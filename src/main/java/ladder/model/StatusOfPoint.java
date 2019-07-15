@@ -17,12 +17,6 @@ public class StatusOfPoint {
         this.right = right;
     }
 
-    private void validation(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalStateException("양 옆의 사다기라 같은 높이에 있을 수 없습니다.");
-        }
-    }
-
     public static StatusOfPoint of(boolean left, boolean right) {
         return new StatusOfPoint(left, right);
     }
@@ -52,6 +46,12 @@ public class StatusOfPoint {
 
     public boolean isRight() {
         return this.right;
+    }
+
+    private void validation(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException("양 옆의 사다기라 같은 높이에 있을 수 없습니다.");
+        }
     }
 
     @Override

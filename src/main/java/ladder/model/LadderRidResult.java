@@ -24,6 +24,14 @@ public class LadderRidResult {
         return new LadderRidResult(userResult);
     }
 
+    public String getMatchResult() {
+        return this.userMatchResult.toString();
+    }
+
+    public List<String> getAllUserMatchResult() {
+        return allUserResults;
+    }
+
     private StringBuilder ladderResultMatchUsers(Users users, List<String> allUserResults) {
         StringBuilder userMatchResult = new StringBuilder();
         for (int i = 0; i < allUserResults.size(); i++) {
@@ -35,14 +43,6 @@ public class LadderRidResult {
             );
         }
         return userMatchResult;
-    }
-
-    public String getMatchResult() {
-        return this.userMatchResult.toString();
-    }
-
-    public List<String> getAllUserMatchResult() {
-        return allUserResults;
     }
 
 }
