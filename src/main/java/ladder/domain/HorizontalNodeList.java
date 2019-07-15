@@ -23,7 +23,6 @@ class HorizontalNodeList {
 		}
 	}
 
-
 	/**
 	 * 레일 번호를 입력하면 가로계단 연결 상태를 확인하고 다음 열 번호를 반환하는 메서드
 	 * @param railNumber 출발 레일번호

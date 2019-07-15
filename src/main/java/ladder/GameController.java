@@ -16,16 +16,13 @@ public class GameController {
 
 	private static final String BRIEF_ALL = "all";
 
-	private LadderViewer view;
-
 	private Ladder ladder;
 
-	public GameController(MessageRenderer renderer){
-		this.view = new LadderViewer(renderer);
+	public void ready(InputDialog input, MessageRenderer renderer){
+		this.ready(input, renderer, null);
 	}
 
-
-	public void ready(InputDialog input, StepProvider provider){
+	public void ready(InputDialog input, MessageRenderer renderer, StepProvider provider){
 		String nameInput = input.execute("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 		List<String> playerNames = TrimSplitter.split(nameInput, SEPARATOR);
 
@@ -34,16 +31,21 @@ public class GameController {
 
 		int height = Integer.parseInt(input.execute("최대 사다리 높이는 몇 개인가요?"));
 
-		this.ladder = Ladder.builder()
+		Ladder.Builder builder = Ladder.builder()
 				.setPlayerNames(playerNames)
 				.setGoals(goals)
-				.setHeight(height)
-				.setStepProvider(provider)
-				.build();
+				.setHeight(height);
 
-		view.renderLabels(playerNames);
-		view.render(ladder.getNodes());
-		view.renderLabels(goals);
+		if(provider != null) {
+			builder = builder.setStepProvider(provider);
+		}
+
+		this.ladder = builder.build();
+
+		LadderViewer viewer = new LadderViewer(renderer);
+		viewer.renderLabels(playerNames);
+		viewer.render(ladder.getNodes());
+		viewer.renderLabels(goals);
 	}
 
 	public void briefResult(InputDialog input, MessageRenderer renderer){
