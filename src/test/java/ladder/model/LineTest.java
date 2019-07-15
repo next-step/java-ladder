@@ -3,6 +3,7 @@ package ladder.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -34,5 +35,47 @@ public class LineTest {
 
         assertThatThrownBy(() -> points.add(Point.firstOf(new RandomConnector())))
                 .isExactlyInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @Test
+    @DisplayName("오른쪽으로 연결된 Line의 Point는 다음 Point의 위치를 반환한다.")
+    void move_ToRight_moved() {
+        final List<Point> points = new ArrayList<>();
+        final Point first = Point.firstOf(c -> Direction.RIGHT);
+        final Point end = first.endOf();
+        points.add(first);
+        points.add(end);
+
+        final Line line = new Line(points);
+
+        assertThat(line.move(0)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("아래로 연결된 Line의 Point는 현재 Point의 위치를 반환한다.")
+    void move_ToDown_moved() {
+        final List<Point> points = new ArrayList<>();
+        final Point first = Point.firstOf(c -> Direction.DOWN);
+        final Point end = first.endOf();
+        points.add(first);
+        points.add(end);
+
+        final Line line = new Line(points);
+
+        assertThat(line.move(0)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("왼쪽으로 연결된 Line의 Point는 앞선 Point의 위치를 반환한다.")
+    void move_ToLeft_moved() {
+        final List<Point> points = new ArrayList<>();
+        final Point first = Point.firstOf(c -> Direction.RIGHT);
+        final Point end = first.endOf();
+        points.add(first);
+        points.add(end);
+
+        final Line line = new Line(points);
+
+        assertThat(line.move(1)).isEqualTo(0);
     }
 }
