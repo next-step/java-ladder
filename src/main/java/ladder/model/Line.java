@@ -3,7 +3,6 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public final class Line {
     public static final int MINIMUM_NUMBER_OF_POINTS = 2;
@@ -31,8 +30,8 @@ public final class Line {
     private static List<Point> generateRandomPoints(int numberOfPoints) {
         final List<Point> points = new ArrayList<>();
 
-        Point first = addFirstPoint(points);
-        Point lastOfMid = addMidPoints(numberOfPoints, points, first);
+        final Point first = addFirstPoint(points);
+        final Point lastOfMid = addMidPoints(numberOfPoints, points, first);
         addEndPoint(points, lastOfMid);
 
         return points;
