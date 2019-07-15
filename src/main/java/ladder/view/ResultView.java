@@ -20,16 +20,39 @@ public class ResultView {
         LINE_NOT_EXIST_TEXT = notExistText;
     }
 
-    public static void printDefaultSummary(Names names, Ladder2 ladder, Rewards rewards, Ladder2Result ladderResult) {
+    public static void printDefaultSummary(Names names, Ladder ladder, Rewards rewards, LadderResult ladderResult) {
         printLadderResultText();
         printNamesText(names);
-        printLadder2Text(ladder);
+        printLadderText(ladder);
         printRewardsText(rewards);
 
         printSeparateResult(names, rewards, ladderResult);
     }
 
-    private static void printSeparateResult(Names names, Rewards rewards, Ladder2Result ladderResult) {
+    public static void printDefaultSummary2(Names names, Ladder2 ladder, Rewards rewards, Ladder2Result ladderResult) {
+        printLadderResultText();
+        printNamesText(names);
+        printLadder2Text(ladder);
+        printRewardsText(rewards);
+
+        printSeparateResult2(names, rewards, ladderResult);
+    }
+
+    private static void printSeparateResult(Names names, Rewards rewards, LadderResult ladderResult) {
+        String nameToShow = InputView.getResultNameInput();
+        while (!"all".equals(nameToShow)) {
+            int resultIndex = ladderResult.resultOf(nameToShow);
+            ResultView.printRewardText(rewards, resultIndex);
+
+            nameToShow = InputView.getResultNameInput();
+        }
+        int resultIndex = ladderResult.resultOf(nameToShow);
+        ResultView.printRewardText(rewards, resultIndex);
+
+        ResultView.printNameAndResultText(names, rewards, ladderResult);
+    }
+
+    private static void printSeparateResult2(Names names, Rewards rewards, Ladder2Result ladderResult) {
         String nameToShow = InputView.getResultNameInput();
         while (!"all".equals(nameToShow)) {
             int resultIndex = ladderResult.resultOf(nameToShow);
