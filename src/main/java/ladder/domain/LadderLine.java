@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class LadderLine {
+    private final static int THIRD_ELEMENT_INDEX = 2;
+
     private List<Point> points;
 
     LadderLine(int countOfPerson) {
@@ -14,7 +16,7 @@ public class LadderLine {
         points.add(new Point(false));
         points.add(new Point(random.nextBoolean()));
 
-        IntStream.range(2, countOfPerson).forEach(i -> {
+        IntStream.range(THIRD_ELEMENT_INDEX, countOfPerson).forEach(i -> {
             Point pointElement = new Point(random.nextBoolean());
             points.add(points.get(i - 1).checkDuplicate(pointElement)); // 세번째 요소부터 중복체크
         });
