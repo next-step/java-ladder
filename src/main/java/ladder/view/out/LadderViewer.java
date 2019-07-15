@@ -33,8 +33,10 @@ public class LadderViewer {
 	public void render(List<LadderNode> nodes){
 		String rendered = nodes.stream()
 				.map(node -> {
-					String value = node.isInFirstRail() ? "\n" : "";
-					value += node.hasStep() ? RAIL_WITH_STEP : RAIL_WITHOUT_STEP;
+					String value = node.hasStep() ? RAIL_WITH_STEP : RAIL_WITHOUT_STEP;
+					if(node.isRightEdge()){
+						value += "\n";
+					}
 					return value;
 				})
 				.collect(Collectors.joining());
