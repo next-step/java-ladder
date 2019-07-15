@@ -3,7 +3,6 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.Comparator;
-import java.util.stream.IntStream;
 
 public class ResultView {
     private final static String LADDER_HORIZON_LINE = "-----";
@@ -19,21 +18,21 @@ public class ResultView {
                 .forEach(name -> System.out.print(name + USER_SEPARATOR));
         System.out.println("\n");
 
-        IntStream.range(0, ladderFactory.getLadder().size())
-                .forEach(i -> {
-                            IntStream.range(0, userGroup.getUserGroup().size())
-                                    .forEach(j ->
-                                            {
-                                                if (ladderFactory.getLadder().get(i).getPoints().get(j).getPoint() == Boolean.TRUE) {
-                                                    System.out.print(LADDER_HORIZON_LINE + LADDER_VERTICAL_LINE);
-                                                } else {
-                                                    System.out.print(LADDER_BLANK + LADDER_VERTICAL_LINE);
-                                                }
-                                            }
-                                    );
-                            System.out.println("\n");
-                        }
-                );
+//        IntStream.range(0, ladderFactory.getLadder().size())
+//                .forEach(i -> {
+//                            IntStream.range(0, userGroup.getUserGroup().size())
+//                                    .forEach(j ->
+//                                            {
+//                                                if (ladderFactory.getLadder().get(i).getPoints().get(j).getPoint() == Boolean.TRUE) {
+//                                                    System.out.print(LADDER_HORIZON_LINE + LADDER_VERTICAL_LINE);
+//                                                } else {
+//                                                    System.out.print(LADDER_BLANK + LADDER_VERTICAL_LINE);
+//                                                }
+//                                            }
+//                                    );
+//                            System.out.println("\n");
+//                        }
+//                );
 
         result.getgameReward().stream()
                 .map(GameReward::getNameReward)

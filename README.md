@@ -16,4 +16,12 @@
 3. 초기화 함수: 포인트(left,right) 값을 세팅/ 단, left,right 값은 동시에 TRUE가 될 수가 없다.
 4. first 함수: 첫 번째 Point의 left 값을 FALSE로 설정
 5. last 함수: 마지막 point의 right 값을 FALSE로 설정
-6. next 함수: 마지막 right값에 따라서 TRUE -> FALSE/ FALSE -> RANDOM값 생성 
+6. next 함수: 마지막 right값에 따라서 TRUE -> FALSE/ FALSE -> RANDOM값 생성
+
+* Point 객체 
+1. LadderLine에서 위치와 각 점의 방향을 관리
+2. Point 객체 초기값 설정 
+3. 직진 기능: 첫번째 Point의 right값이 FALSE -> 다음 Point의 right값이 FALSE
+4. 왼쪽 이동: 첫번째 Point의 right값이 TRUE ->  다음 Point의 right값이 FALSE 
+5. 오른쪽 이동: 첫번째 Point의 right값이 FALSE ->  다음 Point의 right값이 TRUE
+6. 인근 Point의 right값은 동시에 TRUE값이 될 수 없음. (둘다 FALSE 가능)

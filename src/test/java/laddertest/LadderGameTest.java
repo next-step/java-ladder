@@ -49,12 +49,12 @@ public class LadderGameTest {
 
     @Test
     void Point_테스트(){
-        Point point = new Point(true);
-        assertThat(point.checkDuplicate(new Point(false))).isEqualTo(new Point(false));
-        assertThat(point.checkDuplicate(new Point(true))).isEqualTo(new Point(false));
-
-        Point point2 = new Point(false);
-        assertThat(point2.checkDuplicate(new Point(false))).isEqualTo(new Point(false));
-        assertThat(point2.checkDuplicate(new Point(true))).isEqualTo(new Point(true));
+//        Point point = new Point(true);
+//        assertThat(point.checkDuplicate(new Point(false))).isEqualTo(new Point(false));
+//        assertThat(point.checkDuplicate(new Point(true))).isEqualTo(new Point(false));
+//
+//        Point point2 = new Point(false);
+//        assertThat(point2.checkDuplicate(new Point(false))).isEqualTo(new Point(false));
+//        assertThat(point2.checkDuplicate(new Point(true))).isEqualTo(new Point(true));
     }
 }
