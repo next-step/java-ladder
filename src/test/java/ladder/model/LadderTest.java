@@ -17,9 +17,9 @@ public class LadderTest {
     void setUp() {
         final List<Line> lines = new ArrayList<>();
         final List<Point> line1 = new ArrayList<>();
-        Point first = Point.firstOf(c -> Direction.RIGHT);
-        Point next1 = first.nextOf(c -> Direction.LEFT);
-        Point next2 = next1.nextOf(c -> Direction.RIGHT);
+        Point first = Point.firstOf(() -> true);
+        Point next1 = first.nextOf(() -> false);
+        Point next2 = next1.nextOf(() -> true);
         Point end = next2.endOf();
         line1.add(first);
         line1.add(next1);
@@ -27,9 +27,9 @@ public class LadderTest {
         line1.add(end);
 
         final List<Point> line2 = new ArrayList<>();
-        first = Point.firstOf(c -> Direction.DOWN);
-        next1 = first.nextOf(b -> Direction.RIGHT);
-        next2 = next1.nextOf(b -> Direction.LEFT);
+        first = Point.firstOf(() -> false);
+        next1 = first.nextOf(() -> true);
+        next2 = next1.nextOf(() -> false);
         end = next2.endOf();
         line2.add(first);
         line2.add(next1);
@@ -37,9 +37,9 @@ public class LadderTest {
         line2.add(end);
 
         final List<Point> line3 = new ArrayList<>();
-        first = Point.firstOf(c -> Direction.RIGHT);
-        next1 = first.nextOf(c -> Direction.LEFT);
-        next2 = next1.nextOf(c -> Direction.RIGHT);
+        first = Point.firstOf(() -> true);
+        next1 = first.nextOf(() -> false);
+        next2 = next1.nextOf(() -> true);
         end = next2.endOf();
         line3.add(first);
         line3.add(next1);

@@ -15,6 +15,22 @@ public enum Direction {
         return position + step;
     }
 
+    public static Direction firstOf(ConnectorStrategy connector) {
+        return connector.isConnectedToRight() ? RIGHT : DOWN;
+    }
+
+    public Direction nextOf(ConnectorStrategy connector) {
+        if (this == RIGHT) {
+            return LEFT;
+        }
+
+        return connector.isConnectedToRight() ? RIGHT : DOWN;
+    }
+
+    public Direction endOf() {
+        return this == RIGHT ? LEFT : DOWN;
+    }
+
     private static final class Constants {
         public static final int DOWN_STEP = 0;
         public static final int RIGHT_STEP = 1;

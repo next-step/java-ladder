@@ -9,7 +9,7 @@ public class ConnectorStrategyTest {
     @Test
     @DisplayName("ConnectorStrategy는 Point의 연결 정보를 생성한다.")
     void generateConnection() {
-        final ConnectorStrategy connector = current -> Direction.DOWN;
-        assertThat(connector.generateNextConnection(Direction.LEFT)).isEqualByComparingTo(Direction.DOWN);
+        final ConnectorStrategy connector = () -> false;
+        assertThat(connector.isConnectedToRight()).isFalse();
     }
 }

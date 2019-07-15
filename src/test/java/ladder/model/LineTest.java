@@ -41,7 +41,7 @@ public class LineTest {
     @DisplayName("오른쪽으로 연결된 Line의 Point는 다음 Point의 위치를 반환한다.")
     void move_ToRight_moved() {
         final List<Point> points = new ArrayList<>();
-        final Point first = Point.firstOf(c -> Direction.RIGHT);
+        final Point first = Point.firstOf(() -> true);
         final Point end = first.endOf();
         points.add(first);
         points.add(end);
@@ -55,7 +55,7 @@ public class LineTest {
     @DisplayName("아래로 연결된 Line의 Point는 현재 Point의 위치를 반환한다.")
     void move_ToDown_moved() {
         final List<Point> points = new ArrayList<>();
-        final Point first = Point.firstOf(c -> Direction.DOWN);
+        final Point first = Point.firstOf(() -> false);
         final Point end = first.endOf();
         points.add(first);
         points.add(end);
@@ -69,7 +69,7 @@ public class LineTest {
     @DisplayName("왼쪽으로 연결된 Line의 Point는 앞선 Point의 위치를 반환한다.")
     void move_ToLeft_moved() {
         final List<Point> points = new ArrayList<>();
-        final Point first = Point.firstOf(c -> Direction.RIGHT);
+        final Point first = Point.firstOf(() -> true);
         final Point end = first.endOf();
         points.add(first);
         points.add(end);

@@ -10,7 +10,7 @@ public class PointTest {
     @Test
     @DisplayName("첫 Point를 생성할 수 있다.")
     void firstOf_WithRightConnection_Created() {
-        final Point point = Point.firstOf(c -> Direction.RIGHT);
+        final Point point = Point.firstOf(() -> true);
         assertThat(point).isInstanceOf(Point.class);
     }
 
@@ -24,17 +24,9 @@ public class PointTest {
     @Test
     @DisplayName("다음 Point를 생성할 수 있다.")
     void nextOf_WithCurrentPositionAndRightConnection_Created() {
-        final Point first = Point.firstOf(c -> Direction.RIGHT);
-        final Point next = first.nextOf(c -> Direction.LEFT);
+        final Point first = Point.firstOf(() -> true);
+        final Point next = first.nextOf(() -> false);
         assertThat(next).isInstanceOf(Point.class);
-    }
-
-    @Test
-    @DisplayName("이전 Point와 생성될 다음 Point에서 연속으로 연결되어 있으면 예외가 발생한다.")
-    void nextOf_WithTwoWayConnection_ExceptionThrown() {
-        final Point first = Point.firstOf(c -> Direction.RIGHT);
-        assertThatThrownBy(() -> first.nextOf(c -> Direction.RIGHT))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -48,7 +40,7 @@ public class PointTest {
     @Test
     @DisplayName("마지막 Point를 생성할 수 있다.")
     void endOf_WithCurrentPosition_Created() {
-        final Point first = Point.firstOf(c -> Direction.RIGHT);
+        final Point first = Point.firstOf(() -> true);
         final Point end = first.endOf();
         assertThat(end).isInstanceOf(Point.class);
     }
@@ -56,32 +48,32 @@ public class PointTest {
     @Test
     @DisplayName("Point의 오른쪽 연결 여부를 확인할 수 있다.")
     void isConnectedRight_isTrue() {
-        Point point = Point.firstOf(c -> Direction.RIGHT);
+        Point point = Point.firstOf(() -> true);
         assertThat(point.isConnectedRight()).isTrue();
 
-        point = Point.firstOf(c -> Direction.DOWN);
+        point = Point.firstOf(() -> false);
         assertThat(point.isConnectedRight()).isFalse();
     }
 
     @Test
     @DisplayName("Point의 오른쪽 이동")
     void move_RightConnection_Moved() {
-        final Point point = Point.firstOf(c -> Direction.RIGHT);
+        final Point point = Point.firstOf(() -> true);
         assertThat(point.move()).isEqualTo(1);
     }
 
     @Test
     @DisplayName("Point의 제자리 이동")
     void move_NotConnection_Moved() {
-        final Point point = Point.firstOf(c -> Direction.DOWN);
+        final Point point = Point.firstOf(() -> false);
         assertThat(point.move()).isEqualTo(0);
     }
 
     @Test
     @DisplayName("Point의 왼쪽 이동")
     void move_LeftConnection_Moved() {
-        final Point first = Point.firstOf(c -> Direction.RIGHT);
-        final Point point = first.nextOf(c -> Direction.LEFT);
+        final Point first = Point.firstOf(() -> true);
+        final Point point = first.nextOf(() -> false);
         assertThat(point.move()).isEqualTo(0);
     }
 }
