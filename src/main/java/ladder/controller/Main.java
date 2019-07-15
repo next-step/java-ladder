@@ -1,55 +1,32 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.Ladder2;
+import ladder.domain.Ladder2Result;
+import ladder.domain.Names;
+import ladder.domain.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.Scanner;
-import java.util.stream.IntStream;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println(InputView.getParticipantInputText());
-        String nameString = scanner.nextLine();
-
-        System.out.println(InputView.getRewardsInputText());
-        String rewardString = scanner.nextLine();
-
-        System.out.println(InputView.getLadderHeightInputText());
-        int ladderHeight = scanner.nextInt();
-        scanner.nextLine();
+        String nameString = InputView.getParticipantInput();
+        String rewardString = InputView.getRewardsInput();
+        int ladderHeight = InputView.getLadderHeightInput();
 
         Names names = Names.of(nameString);
-        RandomLineGenerator randomLineGenerator = new RandomLineGenerator(names.size());
         Rewards rewards = Rewards.of(rewardString);
+
+        Ladder2 ladder = Ladder2.of(ladderHeight, names.size());
+        Ladder2Result ladderResult = new Ladder2Result(ladder, names);
+
+        ResultView.printDefaultSummary2(names, ladder, rewards, ladderResult);
+
+        /* step3 까지 내가 만들었던 코드로 동작하기
+        RandomLineGenerator randomLineGenerator = new RandomLineGenerator(names.size());
         Ladder ladder = Ladder.of(randomLineGenerator, ladderHeight);
         LadderResult ladderResult = new LadderResult(ladder, names);
 
-        System.out.println(ResultView.getDefaultResultText());
-        System.out.println(ResultView.getNamesView(names));
-        System.out.println(ResultView.getLadderView(ladder));
-        System.out.println(ResultView.getRewardsView(rewards));
-
-        String nameToShow = "";
-        while (!nameToShow.equals("all")) {
-            System.out.println(InputView.getResultNameInputText());
-            nameToShow = scanner.nextLine();
-            int resultIndex = ladderResult.resultOf(nameToShow);
-
-            System.out.println(ResultView.getDefaultRewardText());
-            System.out.println(rewards.get(resultIndex));
-        }
-
-        StringBuilder stringBuilder = new StringBuilder();
-        IntStream.range(0, names.size())
-                .forEach(index -> {
-                    stringBuilder.append(names.get(index).getName());
-                    stringBuilder.append(" : ");
-                    stringBuilder.append(rewards.get(ladderResult.result(index)));
-                    stringBuilder.append("\n");
-                });
-        System.out.println(stringBuilder.toString());
+        ResultView.printDefaultSummary(names, ladder, rewards, ladderResult);
+         */
     }
 }
