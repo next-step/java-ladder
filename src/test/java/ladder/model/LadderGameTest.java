@@ -47,6 +47,6 @@ public class LadderGameTest {
     @DisplayName("run 메서드는 사다리 게임 결과를 반환한다.")
     void run_Result() {
         Ladder ladder = ladderGame.initGame(5);
-        assertThat(ladderGame.run(ladder)).isInstanceOf(Map.class);
+        assertThat(ladderGame.run(ladder)).isInstanceOf(Result.class);
     }
 }

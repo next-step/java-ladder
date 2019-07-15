@@ -8,11 +8,11 @@ import ladder.model.Line;
 import ladder.model.Participant;
 import ladder.model.Participants;
 import ladder.model.Point;
+import ladder.model.Result;
 import ladder.model.Reward;
 import ladder.model.Rewards;
 
 public final class OutputView {
-    public static final String MESSAGE_OF_NOT_PARTICIPANT_EXCEPTION = "참여하지 않아 결과를 찾을 수 없습니다.";
     private static final String MARK_OF_POINT = "|";
     private static final String MARK_OF_EMPTY_LINE = " ";
     private static final String MARK_OF_CONNECTED_LINE = "-";
@@ -30,7 +30,7 @@ public final class OutputView {
         printReturnLine();
     }
 
-    public static boolean printResult(Map<Participant, Reward> result, String nameOfParticipant) {
+    public static boolean printResult(Result result, String nameOfParticipant) {
         System.out.println(MESSAGE_OF_RESULT);
         if (nameOfParticipant.equals(EXPRESSION_OF_ALL)) {
             printAllResult(result);
@@ -40,19 +40,17 @@ public final class OutputView {
         return false;
     }
 
-    private static void printOneResult(Map<Participant, Reward> result, String nameOfParticipant) {
-        final Participant participant = result.keySet().stream()
-                                              .filter(i -> i.getName().equals(nameOfParticipant))
-                                              .findFirst()
-                                              .orElseThrow(() -> new IllegalArgumentException(
-                                                      MESSAGE_OF_NOT_PARTICIPANT_EXCEPTION));
+    private static void printOneResult(Result result, String nameOfParticipant) {
+        final Participant participant = result.getParticipant(nameOfParticipant);
+        final Reward reward = result.getReward(participant);
 
-        System.out.println(participant.getName() + " : " + result.get(participant).getReward());
+        System.out.println(participant.getName() + " : " + reward.getReward());
         printReturnLine();
     }
 
-    private static void printAllResult(Map<Participant, Reward> result) {
-        result.forEach((key, value) -> System.out.println(key.getName() + " : " + value.getReward()));
+    private static void printAllResult(Result result) {
+        final Map<Participant, Reward> allResult = result.getAllResult();
+        allResult.forEach((key, value) -> System.out.println(key.getName() + " : " + value.getReward()));
         printReturnLine();
     }
 

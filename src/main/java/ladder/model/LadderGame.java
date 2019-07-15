@@ -1,9 +1,6 @@
 package ladder.model;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,18 +24,9 @@ public class LadderGame {
         return Ladder.generateRandom(height, width);
     }
 
-    public Map<Participant, Reward> run(Ladder ladder) {
-        final List<Integer> ladderResults = ridingLadder(ladder);
-        return getResultMap(ladderResults);
-    }
-
-    private Map<Participant, Reward> getResultMap(List<Integer> ladderResults) {
-        final Map<Participant, Reward> result = new HashMap<>();
-        for (int i = 0; i < ladderResults.size(); i++) {
-            final int rewardIndex = ladderResults.get(i);
-            result.put(participants.getParticipant(i), rewards.getReward(rewardIndex));
-        }
-        return Collections.unmodifiableMap(result);
+    public Result run(Ladder ladder) {
+        final List<Integer> arrivalIndex = ridingLadder(ladder);
+        return new Result(participants, rewards, arrivalIndex);
     }
 
     private List<Integer> ridingLadder(Ladder ladder) {
