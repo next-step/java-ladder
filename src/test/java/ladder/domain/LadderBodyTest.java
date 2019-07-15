@@ -20,7 +20,7 @@ class LadderBodyTest {
 		LadderBody ladderBody = new LadderBody(5, 2, () -> new Random().nextBoolean(), null);
 
 		// Action & Assertion
-		assertThat(ladderBody.getRows().count()).isEqualTo(2);
+		assertThat(ladderBody.getNodes().size()).isEqualTo(10);
 	}
 
 	@ParameterizedTest

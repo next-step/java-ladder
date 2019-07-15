@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.model.LadderNode;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,10 +22,6 @@ class LadderBody {
 		this.footer = footer;
 	}
 
-	public Stream<HorizontalStepList> getRows(){
-		return Collections.unmodifiableList(rows).stream();
-	}
-
 	public String getResult(int startRail) {
 		int result = startRail;
 
@@ -32,5 +30,10 @@ class LadderBody {
 		}
 
 		return this.footer.getGoal(result);
+	}
+
+	public List<LadderNode> getNodes() {
+		return rows.stream().flatMap(row -> row.getSteps())
+				.collect(Collectors.toList());
 	}
 }

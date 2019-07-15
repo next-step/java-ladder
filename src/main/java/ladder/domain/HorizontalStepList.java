@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.OutOfRailNumberException;
+import ladder.model.LadderNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,11 +10,11 @@ import java.util.stream.Stream;
 
 class HorizontalStepList {
 
-	private List<Boolean> steps;
+	private List<LadderNode> nodes;
 
 	public HorizontalStepList(int railCount, StepProvider provider){
-		this.steps = new ArrayList<>();
-		this.steps.add(false); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
+		this.nodes = new ArrayList<>();
+		this.nodes.add(new LadderNode(0, false)); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
 
 		while (steps.size() < railCount){
 			// 직전에 추가된 Step 이 false 일 때 true 값이 추가 될 수 있다.
@@ -64,7 +65,7 @@ class HorizontalStepList {
 		return railNumber;
 	}
 
-	public Stream<Boolean> getSteps(){
+	public Stream<LadderNode> getSteps(){
 		return Collections.unmodifiableCollection(steps).stream();
 	}
 }

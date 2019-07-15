@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.NotFoundPlayer;
+import ladder.model.LadderNode;
 import ladder.model.NameGoalPair;
 
 import java.util.Comparator;
@@ -41,7 +42,7 @@ class LadderHeader {
 				.collect(Collectors.toList());
 	}
 
-	public LadderBody getBody() {
-		return this.ladderBody;
+	public List<LadderNode> getNodes() {
+		return this.ladderBody.getNodes();
 	}
 }

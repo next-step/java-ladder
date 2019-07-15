@@ -42,7 +42,7 @@ public class GameController {
 				.build();
 
 		view.renderLabels(playerNames);
-		view.render(ladder.getBody());
+		view.render(ladder.getNodes());
 		view.renderLabels(goals);
 	}
 
