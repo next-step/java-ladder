@@ -24,6 +24,12 @@ public class LadderLine {
         return ladderLine;
     }
 
+    public static LadderLine of(List<Point> points) {
+        LadderLine ladderLine = new LadderLine(points.size());
+        ladderLine.points = points;
+        return ladderLine;
+    }
+
     public int size() {
         return points.size();
     }
