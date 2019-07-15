@@ -38,7 +38,7 @@ class HorizontalStepList {
 			throw new OutOfRailNumberException();
 		}
 
-		return railNumber + nodes.get(railNumber).nextRailNumber();
+		return nodes.get(railNumber).nextRailNumber();
 	}
 
 	public Stream<LadderNode> getSteps(){
