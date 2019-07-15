@@ -1,15 +1,19 @@
 package ladder.model;
 
 public class LadderNode {
-	public LadderNode(int railNumber, boolean hasStep) {
+	private boolean hasStep;
+	private boolean isInFirstRail;
 
+	public LadderNode(boolean hasStep, boolean isInFirstRail) {
+		this.hasStep = hasStep;
+		this.isInFirstRail = isInFirstRail;
 	}
 
 	public boolean hasStep() {
-		return false;
+		return hasStep;
 	}
 
-	public boolean isInLastRail() {
-		return false;
+	public boolean isInFirstRail() {
+		return isInFirstRail;
 	}
 }
