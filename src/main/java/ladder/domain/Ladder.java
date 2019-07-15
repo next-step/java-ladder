@@ -1,29 +1,70 @@
 package ladder.domain;
 
-import java.util.Collections;
+import ladder.model.NameGoalPair;
+
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Ladder {
-	private List<HorizontalStepList> rows;
 
-	public Ladder(int railCount, int height, StepProvider provider){
-		this.rows = IntStream.range(0, height)
-			.mapToObj(index -> new HorizontalStepList(railCount, provider))
-			.collect(Collectors.toList());
+	private LadderHeader header;
+
+	private Ladder(Builder builder){
+
+		LadderFooter footer = new LadderFooter(builder.goals);
+		LadderBody body = new LadderBody(builder.playerNames.size(),
+				builder.height,
+				builder.provider,
+				footer);
+
+		this.header = new LadderHeader(builder.playerNames, body);
 	}
 
-	public Stream<HorizontalStepList> getRows(){
-		return Collections.unmodifiableList(rows).stream();
+	public static Builder builder(){
+		return new Builder();
 	}
 
-	public int getResult(int startRail) {
-		int result = startRail;
-		for(int i = 0; i < rows.size(); i++){
-			result = rows.get(i).getNextRailFrom(result);
+	public LadderBody getBody() {
+		return this.header.getBody();
+	}
+
+	public String getGoal(String playName) {
+		return this.header.getGoal(playName);
+	}
+
+	public List<NameGoalPair> getResult() {
+		return this.header.getResult();
+	}
+
+	public static class Builder{
+		private List<String> playerNames;
+		private List<String> goals;
+		private int height;
+		private StepProvider provider;
+
+		private Builder() {}
+
+		public Builder setPlayerNames(List<String> playerNames){
+			this.playerNames = playerNames;
+			return this;
 		}
-		return result;
+
+		public Builder setGoals(List<String>  goals){
+			this.goals = goals;
+			return this;
+		}
+
+		public Builder setHeight(int height){
+			this.height = height;
+			return this;
+		}
+
+		public Builder setStepProvider(StepProvider provider){
+			this.provider = provider;
+			return this;
+		}
+
+		public Ladder build(){
+			return new Ladder(this);
+		}
 	}
 }

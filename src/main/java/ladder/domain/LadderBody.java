@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class LadderBody {
+class LadderBody {
 
 	private List<HorizontalStepList> rows;
 

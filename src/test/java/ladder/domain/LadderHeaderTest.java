@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.model.NameGoalPair;
+import ladder.test_double.PredefinedStepProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -9,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderBodyHeaderTest {
+class LadderHeaderTest {
 
 
 	private LadderHeader header;

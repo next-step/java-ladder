@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.model;
 
 public class NameGoalPair {
 	private String name;

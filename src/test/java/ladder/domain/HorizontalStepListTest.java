@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.OutOfRailNumberException;
+import ladder.test_double.PredefinedStepProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

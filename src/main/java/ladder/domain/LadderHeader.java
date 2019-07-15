@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.NotFoundPlayer;
+import ladder.model.NameGoalPair;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LadderHeader {
+class LadderHeader {
 
 	private Map<String, Integer> playerRailMap;
 
@@ -38,5 +39,9 @@ public class LadderHeader {
 				.sorted(Comparator.comparingInt(entry -> entry.getValue()))
 				.map(entry -> new NameGoalPair(entry.getKey(), this.getGoal(entry.getKey())))
 				.collect(Collectors.toList());
+	}
+
+	public LadderBody getBody() {
+		return this.ladderBody;
 	}
 }
