@@ -8,11 +8,12 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
-# 사다리 (생성)
+# 사다리 (리펙토링)
 ## 구현 기능 
-*  User 객체 
-- 사용자 이름 유효성 체크 
-*  LadderGame/Line 객체 
-*  사용자 입력
-- 입력 문자 유효성 체크, , 파싱 유효 체크 
-* 결과 출력 
+*  Direction 객체 
+1. 각 Point의 좌/우 방향 정보를 가진다. 
+2. 현재 Point에서 다음 Point를 생성하는 역활  
+3. 초기화 함수: 포인트(left,right) 값을 세팅/ 단, left,right 값은 동시에 TRUE가 될 수가 없다.
+4. first 함수: 첫 번째 Point의 left 값을 FALSE로 설정
+5. last 함수: 마지막 point의 right 값을 FALSE로 설정
+6. next 함수: 마지막 right값에 따라서 TRUE -> FALSE/ FALSE -> RANDOM값 생성 
