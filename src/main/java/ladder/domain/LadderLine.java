@@ -5,22 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class LadderLine {
-    private final static int THIRD_ELEMENT_INDEX = 2;
-
     private List<Point> points;
-
-//    LadderLine(int countOfPerson) {
-//        Random random = new Random();
-//        points = new ArrayList<>();
-////        points.add(new Point(false));
-////        points.add(new Point(random.nextBoolean()));
-////
-////        IntStream.range(THIRD_ELEMENT_INDEX, countOfPerson).forEach(i -> {
-////            Point pointElement = new Point(random.nextBoolean());
-////            points.add(points.get(i - 1).checkDuplicate(pointElement)); // 세번째 요소부터 중복체크
-////        });
-//
-//    }
 
     public LadderLine(List<Point> points) {
         this.points = points;
@@ -76,6 +61,4 @@ public class LadderLine {
             return false;
         return true;
     }
-
-
 }
