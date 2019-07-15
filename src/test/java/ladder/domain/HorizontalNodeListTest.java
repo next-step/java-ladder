@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
-class HorizontalStepListTest {
+class HorizontalNodeListTest {
 
 	int sampleRailCount = 5;
 
@@ -23,7 +23,7 @@ class HorizontalStepListTest {
 
 	@Test
 	void createNormalRow() {
-		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
+		HorizontalNodeList row = new HorizontalNodeList(sampleRailCount, sampleStepProvider);
 
 		assertThat(row.getNextRailFrom(0)).isEqualTo(1);
 		assertThat(row.getNextRailFrom(1)).isEqualTo(0);
@@ -39,7 +39,7 @@ class HorizontalStepListTest {
 		int railCount = 3;
 
 		StepProvider provider = new PredefinedStepProvider(Arrays.asList(true, true)); // |-| |
-		HorizontalStepList row = new HorizontalStepList(railCount, provider);
+		HorizontalNodeList row = new HorizontalNodeList(railCount, provider);
 
 		assertThat(row.getNextRailFrom(0)).isEqualTo(1);
 		assertThat(row.getNextRailFrom(1)).isEqualTo(0);
@@ -49,7 +49,7 @@ class HorizontalStepListTest {
 	@DisplayName("생성한 레일개수보다 큰 레일번호의 가로계단 체크시도")
 	@Test
 	void checkStepOverRails() {
-		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
+		HorizontalNodeList row = new HorizontalNodeList(sampleRailCount, sampleStepProvider);
 
 		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.getNextRailFrom(-1));
 		assertThatExceptionOfType(OutOfRailNumberException.class).isThrownBy(() -> row.getNextRailFrom(5));
@@ -58,7 +58,7 @@ class HorizontalStepListTest {
 	@DisplayName("다음열 레일번호 반환")
 	@Test
 	void checkNextRowRailNumber() {
-		HorizontalStepList row = new HorizontalStepList(sampleRailCount, sampleStepProvider);
+		HorizontalNodeList row = new HorizontalNodeList(sampleRailCount, sampleStepProvider);
 
 		assertThat(row.getNextRailFrom(0)).isEqualTo(1);
 		assertThat(row.getNextRailFrom(1)).isEqualTo(0);

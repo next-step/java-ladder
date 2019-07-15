@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-class HorizontalStepList {
+class HorizontalNodeList {
 
 	private List<LadderNode> nodes;
 
-	public HorizontalStepList(int railCount, StepProvider provider){
+	public HorizontalNodeList(int railCount, StepProvider provider){
 		LadderNode node = LadderNode.create();
 		this.nodes = new ArrayList<>();
 		this.nodes.add(node); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가

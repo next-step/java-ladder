@@ -2,21 +2,19 @@ package ladder.domain;
 
 import ladder.model.LadderNode;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 class LadderBody {
 
-	private List<HorizontalStepList> rows;
+	private List<HorizontalNodeList> rows;
 
 	private LadderFooter footer;
 
 	public LadderBody(int railCount, int height, StepProvider provider, LadderFooter footer){
 		this.rows = IntStream.range(0, height)
-			.mapToObj(index -> new HorizontalStepList(railCount, provider))
+			.mapToObj(index -> new HorizontalNodeList(railCount, provider))
 			.collect(Collectors.toList());
 
 		this.footer = footer;
