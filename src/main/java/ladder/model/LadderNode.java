@@ -1,15 +1,17 @@
 package ladder.model;
 
 public class LadderNode {
-	private boolean hasStep;
 	private LadderNode nextNode;
+	private StepPosition stepPosition;
 
 	private LadderNode(boolean hasStep) {
-		this.hasStep = hasStep;
+		this.stepPosition = hasStep
+			? StepPosition.LEFT
+			: StepPosition.NONE;
 	}
 
 	public boolean hasStep() {
-		return hasStep;
+		return stepPosition.equals(StepPosition.LEFT);
 	}
 
 	public boolean isInLastRail() {
@@ -17,25 +19,15 @@ public class LadderNode {
 	}
 
 	public LadderNode createNextNode(boolean hasStep){
-		this.nextNode = new LadderNode( !this.hasStep && hasStep);
+		this.nextNode = new LadderNode( !this.hasStep() && hasStep);
+		if(nextNode.hasStep()){
+			this.stepPosition = StepPosition.RIGHT;
+		}
 		return nextNode;
 	}
 
-	private NodeDirection getDirection(){
-		if(this.hasStep){
-			return NodeDirection.LEFT;
-		}
-
-		if(!isInLastRail() && nextNode.hasStep()){
-			return NodeDirection.RIGHT;
-		}
-
-		return NodeDirection.STRAIGHT;
-	}
-
-
-	public int directionIncrement() {
-		return this.getDirection().getIncrement();
+	public int nextRailNumber() {
+		return this.stepPosition.getIncrement();
 	}
 
 	public static LadderNode create(){

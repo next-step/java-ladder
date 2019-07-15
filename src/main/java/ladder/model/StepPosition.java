@@ -1,13 +1,13 @@
 package ladder.model;
 
-public enum NodeDirection {
+public enum StepPosition {
 	LEFT(-1),
 	RIGHT(1),
-	STRAIGHT(0);
+	NONE(0);
 
 	int increment;
 
-	NodeDirection(int increment){
+	StepPosition(int increment){
 		this.increment = increment;
 	}
 
