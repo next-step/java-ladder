@@ -13,12 +13,14 @@ class HorizontalStepList {
 	private List<LadderNode> nodes;
 
 	public HorizontalStepList(int railCount, StepProvider provider){
+		LadderNode node = LadderNode.create();
 		this.nodes = new ArrayList<>();
-		this.nodes.add(new LadderNode(false, true)); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
+		this.nodes.add(node); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
 
 		while (nodes.size() < railCount){
 			// 직전에 추가된 Step 이 false 일 때 true 값이 추가 될 수 있다.
-			nodes.add(new LadderNode(provider.generate() && !nodes.get(nodes.size() - 1).hasStep(), false));
+			node = node.createNextNode(provider.generate());
+			nodes.add(node);
 		}
 	}
 
