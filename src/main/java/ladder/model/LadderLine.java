@@ -15,20 +15,20 @@ public class LadderLine {
         this.points = points;
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
-    public int move(int position) {
-        return points.get(position).move();
-    }
-
     public static LadderLine lineSet(int countOfPerson) {
         int lastIndex = validMinUserCount(countOfPerson);
 
         List<Point> points = createBody(lastIndex, createFirst());
         points.add(createLast(points.get(lastIndex - 1)));
         return new LadderLine(points);
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     private static Point createFirst() {
