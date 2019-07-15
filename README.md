@@ -25,3 +25,7 @@
 4. 왼쪽 이동: 첫번째 Point의 right값이 TRUE ->  다음 Point의 right값이 FALSE 
 5. 오른쪽 이동: 첫번째 Point의 right값이 FALSE ->  다음 Point의 right값이 TRUE
 6. 인근 Point의 right값은 동시에 TRUE값이 될 수 없음. (둘다 FALSE 가능)
+
+* LadderLine 객체 
+1. 사다리 Line의 모든 Point 초기화
+2. 모든 Point 이동 
