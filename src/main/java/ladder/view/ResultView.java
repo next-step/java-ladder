@@ -58,7 +58,8 @@ public class ResultView {
                 .map(points -> points.stream().map(Point::hasLeft)
                         .map(hasLeft -> hasLeft ? LINE_EXIST_TEXT : LINE_NOT_EXIST_TEXT)
                         .collect(Collectors.joining("|")))
-                .collect(Collectors.joining("|\n"));
+                .collect(Collectors.joining("|\n"))
+                + "|\n";
     }
 
     public static String getNameAndResultView(Names names, Rewards rewards, LadderResult ladderResult) {
