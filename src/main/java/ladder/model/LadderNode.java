@@ -21,6 +21,14 @@ public class LadderNode {
 		return nextNode;
 	}
 
+	public boolean hasLeftStep(){
+		return this.hasStep();
+	}
+
+	public boolean hasRightStep(){
+		return isInLastRail() ? false : nextNode.hasStep();
+	}
+
 	public static LadderNode create(){
 		return new LadderNode(false);
 	}

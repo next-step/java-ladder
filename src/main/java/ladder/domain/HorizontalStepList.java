@@ -24,13 +24,6 @@ class HorizontalStepList {
 		}
 	}
 
-	private boolean hasLeftStepAt(int railNumber){
-		return nodes.get(railNumber).hasStep();
-	}
-
-	private boolean hasRightStepAt(int railNumber){
-		return (railNumber == nodes.size() - 1) ? false : nodes.get(railNumber + 1).hasStep();
-	}
 
 	/**
 	 * 레일 번호를 입력하면 가로계단 연결 상태를 확인하고 다음 열 번호를 반환하는 메서드
@@ -46,11 +39,11 @@ class HorizontalStepList {
 			throw new OutOfRailNumberException();
 		}
 
-		if(this.hasRightStepAt(railNumber)){
+		if(nodes.get(railNumber).hasLeftStep()){
 			return railNumber + 1;
 		}
 
-		if(this.hasLeftStepAt(railNumber)){
+		if(nodes.get(railNumber).hasRightStep()){
 			return railNumber - 1;
 		}
 
