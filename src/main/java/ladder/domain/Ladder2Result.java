@@ -16,7 +16,7 @@ public class Ladder2Result {
             return -1;
         }
         return IntStream.range(0, ladder.height())
-                .reduce(index, (resultIndex, current) -> resultIndex = ladder.move(resultIndex));
+                .reduce(index, (resultIndex, current) -> resultIndex = ladder.getLadderLineByLevel(current).move(resultIndex));
     }
 
     public int resultOf(String name) {
