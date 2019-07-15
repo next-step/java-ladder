@@ -7,7 +7,7 @@ public enum StepPosition {
 
 	int increment;
 
-	StepPosition(int increment){
+	StepPosition(int increment) {
 		this.increment = increment;
 	}
 

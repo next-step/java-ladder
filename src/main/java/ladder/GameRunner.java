@@ -6,7 +6,6 @@ import ladder.view.out.ConsoleRenderer;
 import ladder.view.out.MessageRenderer;
 
 public class GameRunner {
-
 	public static void main(String args[]) {
 		InputDialog input = new ConsoleDialog();
 		MessageRenderer renderer = new ConsoleRenderer();

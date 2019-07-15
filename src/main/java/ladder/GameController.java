@@ -16,13 +16,15 @@ public class GameController {
 
 	private static final String BRIEF_ALL = "all";
 
+	private static final String NAME_GOAL_DELIMITER = " : ";
+
 	private Ladder ladder;
 
-	public void ready(InputDialog input, MessageRenderer renderer){
+	public void ready(InputDialog input, MessageRenderer renderer) {
 		this.ready(input, renderer, null);
 	}
 
-	public void ready(InputDialog input, MessageRenderer renderer, StepProvider provider){
+	public void ready(InputDialog input, MessageRenderer renderer, StepProvider provider) {
 		String nameInput = input.execute("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 		List<String> playerNames = TrimSplitter.split(nameInput, SEPARATOR);
 
@@ -36,7 +38,7 @@ public class GameController {
 				.setGoals(goals)
 				.setHeight(height);
 
-		if(provider != null) {
+		if (provider != null) {
 			builder = builder.setStepProvider(provider);
 		}
 
@@ -48,18 +50,18 @@ public class GameController {
 		viewer.renderLabels(goals);
 	}
 
-	public void briefResult(InputDialog input, MessageRenderer renderer){
+	public void briefResult(InputDialog input, MessageRenderer renderer) {
 
-		while(true) {
+		while (true) {
 			String commandOrPlayerName = input.execute("결과를 보고 싶은 사람은?").trim();
 			renderer.print("실행 결과");
-			if(BRIEF_ALL.equals(commandOrPlayerName)){
+			if (BRIEF_ALL.equals(commandOrPlayerName)) {
 				break;
 			}
 			renderer.print(ladder.getGoal(commandOrPlayerName));
 		}
 
 		List<NameGoalPair> results = ladder.getResult();
-		results.forEach(nameGoalPair -> renderer.print(nameGoalPair.toStringWithDelimiter(" : ")));
+		results.forEach(nameGoalPair -> renderer.print(nameGoalPair.toStringWithDelimiter(NAME_GOAL_DELIMITER)));
 	}
 }

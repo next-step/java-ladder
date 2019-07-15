@@ -12,10 +12,10 @@ class LadderBody {
 
 	private LadderFooter footer;
 
-	public LadderBody(int railCount, int height, StepProvider provider, LadderFooter footer){
+	public LadderBody(int railCount, int height, StepProvider provider, LadderFooter footer) {
 		this.rows = IntStream.range(0, height)
-			.mapToObj(index -> new HorizontalNodeList(railCount, provider))
-			.collect(Collectors.toList());
+				.mapToObj(index -> new HorizontalNodeList(railCount, provider))
+				.collect(Collectors.toList());
 
 		this.footer = footer;
 	}
@@ -23,7 +23,7 @@ class LadderBody {
 	public String getResult(int startRail) {
 		int result = startRail;
 
-		for(int i = 0; i < rows.size(); i++){
+		for (int i = 0; i < rows.size(); i++) {
 			result = rows.get(i).getNextRailFrom(result);
 		}
 

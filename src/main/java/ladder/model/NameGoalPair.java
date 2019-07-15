@@ -10,7 +10,7 @@ public class NameGoalPair {
 		this.goal = goal;
 	}
 
-	public String toStringWithDelimiter(String delimiter){
+	public String toStringWithDelimiter(String delimiter) {
 		return String.join(delimiter, name, goal);
 	}
 
