@@ -45,6 +45,10 @@ public class Point {
         return new Point(index + 1, direction.last());
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
     @Override
     public String toString() {
         return "Point{" +

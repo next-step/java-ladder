@@ -23,27 +23,27 @@ public class UserGroup {
     public void playLadderGame(LadderFactory ladderFactory, Point[][] ladderMap, String requestName) {
         int moveFlag = 0;
 
-        for (int i = 0; i < ladderFactory.getLadder().size(); ++i) {
-            for (int j = 1; j < userGroup.size(); ++j) {
-                // 좌측으로 움직이는 조건
-                if (this.compareCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
-                    this.moveLeft(requestName);
-                    moveFlag += 1;
-                    break;
-                }
-                // 좌측으로 움직이는 조건
-                if (this.compareNextCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
-                    this.moveRight(requestName);
-                    moveFlag += 1;
-                    break;
-                }
-            }
-            // 좌 우측 움직이 없을때 직진
-            if (moveFlag == i) {
-                this.moveStraight(requestName);
-                moveFlag += 1;
-            }
-        }
+//        for (int i = 0; i < ladderFactory.getLadder().size(); ++i) {
+//            for (int j = 1; j < userGroup.size(); ++j) {
+//                // 좌측으로 움직이는 조건
+//                if (this.compareCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
+//                    this.moveLeft(requestName);
+//                    moveFlag += 1;
+//                    break;
+//                }
+//                // 좌측으로 움직이는 조건
+//                if (this.compareNextCol(requestName, j) && ladderMap[i][j].equals(Boolean.TRUE)) {
+//                    this.moveRight(requestName);
+//                    moveFlag += 1;
+//                    break;
+//                }
+//            }
+//            // 좌 우측 움직이 없을때 직진
+//            if (moveFlag == i) {
+//                this.moveStraight(requestName);
+//                moveFlag += 1;
+//            }
+//        }
     }
 
     public List<SingleUser> getUserGroup() {

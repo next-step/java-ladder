@@ -1,18 +1,16 @@
 package ladder.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LadderFactory {
     private List<LadderLine> ladder;
 
-    public LadderFactory(int maxHeight, int sizeofusergroup) {
-
+    public LadderFactory(int maxHeight, int sizeOfUserGroup) {
         ladder = new ArrayList<>();
-        LadderLine ladderLine;
 
         for (int i = 0; i < maxHeight; ++i) {
-            ladderLine = new LadderLine(sizeofusergroup);
-            ladder.add(ladderLine);
+            ladder.add(LadderLine.init(sizeOfUserGroup));
         }
     }
 
