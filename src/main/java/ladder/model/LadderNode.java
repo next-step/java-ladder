@@ -2,24 +2,23 @@ package ladder.model;
 
 public class LadderNode {
 	private boolean hasStep;
-	private boolean isRightEdge;
+	private LadderNode nextNode;
 
 	private LadderNode(boolean hasStep) {
 		this.hasStep = hasStep;
-		this.isRightEdge = true;
 	}
 
 	public boolean hasStep() {
 		return hasStep;
 	}
 
-	public boolean isRightEdge() {
-		return isRightEdge;
+	public boolean isInLastRail() {
+		return nextNode == null;
 	}
 
 	public LadderNode createNextNode(boolean hasStep){
-		this.isRightEdge = false;
-		return new LadderNode( !this.hasStep && hasStep);
+		this.nextNode = new LadderNode( !this.hasStep && hasStep);
+		return nextNode;
 	}
 
 	public static LadderNode create(){

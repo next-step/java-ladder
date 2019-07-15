@@ -34,7 +34,7 @@ public class LadderViewer {
 		String rendered = nodes.stream()
 				.map(node -> {
 					String value = node.hasStep() ? RAIL_WITH_STEP : RAIL_WITHOUT_STEP;
-					if(node.isRightEdge()){
+					if(node.isInLastRail()){
 						value += "\n";
 					}
 					return value;
