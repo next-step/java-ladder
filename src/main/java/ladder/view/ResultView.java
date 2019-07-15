@@ -20,26 +20,26 @@ public class ResultView {
         LINE_NOT_EXIST_TEXT = notExistText;
     }
 
-    public static String getDefaultResultText() {
-        return "\n사다리 결과\n";
+    public static void printLadderResultText() {
+        System.out.println("\n사다리 결과\n");
     }
 
-    public static String getRewardText(Rewards rewards, int index) {
-        return "\n실행 결과\n" +
-                rewards.get(index);
+    public static void printRewardText(Rewards rewards, int index) {
+        System.out.println("\n실행 결과\n" +
+                rewards.get(index));
     }
 
-    public static String getNamesView(Names names) {
-        return names.getNames().stream()
-                .map(Name::getViewName).collect(Collectors.joining(" "));
+    public static void printNamesText(Names names) {
+        System.out.println(names.getNames().stream()
+                .map(Name::getViewName).collect(Collectors.joining(" ")));
     }
 
-    public static String getRewardsView(Rewards rewards) {
-        return rewards.getRewards().stream()
-                .map(Reward::getViewName).collect(Collectors.joining(" "));
+    public static void printRewardsText(Rewards rewards) {
+        System.out.println(rewards.getRewards().stream()
+                .map(Reward::getViewName).collect(Collectors.joining(" ")));
     }
 
-    public static String getLadderView(Ladder ladder) {
+    public static void printLadderText(Ladder ladder) {
 
         String result = "";
         for (int i = 0; i < ladder.height(); i++) {
@@ -49,20 +49,20 @@ public class ResultView {
                     .collect(Collectors.joining("|"));
             result += "|\n";
         }
-        return result;
+        System.out.println(result);
     }
 
-    public static String getLadder2View(Ladder2 ladder) {
-        return IntStream.range(0, ladder.height())
+    public static void printLadder2Text(Ladder2 ladder) {
+        System.out.println(IntStream.range(0, ladder.height())
                 .mapToObj(level -> ladder.getLadderLineByLevel(level).getPoints())
                 .map(points -> points.stream().map(Point::hasLeft)
                         .map(hasLeft -> hasLeft ? LINE_EXIST_TEXT : LINE_NOT_EXIST_TEXT)
                         .collect(Collectors.joining("|")))
                 .collect(Collectors.joining("|\n"))
-                + "|\n";
+                + "|\n");
     }
 
-    public static String getNameAndResultView(Names names, Rewards rewards, LadderResult ladderResult) {
+    public static void printNameAndResultText(Names names, Rewards rewards, LadderResult ladderResult) {
         StringBuilder stringBuilder = new StringBuilder();
         IntStream.range(0, names.size())
                 .forEach(index -> {
@@ -71,10 +71,10 @@ public class ResultView {
                     stringBuilder.append(rewards.get(ladderResult.result(index)));
                     stringBuilder.append("\n");
                 });
-        return stringBuilder.toString();
+        System.out.println(stringBuilder.toString());
     }
 
-    public static String getNameAndResultView2(Names names, Rewards rewards, Ladder2Result ladderResult) {
+    public static void printNameAndResultText2(Names names, Rewards rewards, Ladder2Result ladderResult) {
         StringBuilder stringBuilder = new StringBuilder();
         IntStream.range(0, names.size())
                 .forEach(index -> {
@@ -83,6 +83,6 @@ public class ResultView {
                     stringBuilder.append(rewards.get(ladderResult.result(index)));
                     stringBuilder.append("\n");
                 });
-        return stringBuilder.toString();
+        System.out.println(stringBuilder.toString());
     }
 }
