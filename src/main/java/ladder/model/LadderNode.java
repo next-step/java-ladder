@@ -21,12 +21,21 @@ public class LadderNode {
 		return nextNode;
 	}
 
-	public boolean hasLeftStep(){
-		return this.hasStep();
+	private NodeDirection getDirection(){
+		if(this.hasStep){
+			return NodeDirection.LEFT;
+		}
+
+		if(!isInLastRail() && nextNode.hasStep()){
+			return NodeDirection.RIGHT;
+		}
+
+		return NodeDirection.STRAIGHT;
 	}
 
-	public boolean hasRightStep(){
-		return isInLastRail() ? false : nextNode.hasStep();
+
+	public int directionIncrement() {
+		return this.getDirection().getIncrement();
 	}
 
 	public static LadderNode create(){

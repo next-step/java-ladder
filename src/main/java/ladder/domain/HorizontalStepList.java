@@ -4,7 +4,6 @@ import ladder.exception.OutOfRailNumberException;
 import ladder.model.LadderNode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -39,15 +38,7 @@ class HorizontalStepList {
 			throw new OutOfRailNumberException();
 		}
 
-		if(nodes.get(railNumber).hasLeftStep()){
-			return railNumber + 1;
-		}
-
-		if(nodes.get(railNumber).hasRightStep()){
-			return railNumber - 1;
-		}
-
-		return railNumber;
+		return railNumber + nodes.get(railNumber).directionIncrement();
 	}
 
 	public Stream<LadderNode> getSteps(){
