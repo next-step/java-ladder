@@ -11,31 +11,32 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderTest {
+class LadderBodyTest {
 
 	@Test
 	void generateLadder() {
 		// Arrange
-		Ladder ladder = new Ladder(5, 2, () -> new Random().nextBoolean());
+		LadderBody ladderBody = new LadderBody(5, 2, () -> new Random().nextBoolean(), null);
 
 		// Action & Assertion
-		assertThat(ladder.getRows().count()).isEqualTo(2);
+		assertThat(ladderBody.getRows().count()).isEqualTo(2);
 	}
 
 	@ParameterizedTest
 	@CsvSource(value = {"0,3", "1,1", "2,0", "3,4", "4,2"})
-	void getResult(int startRail, int expectGoal){
+	void getResult(int startRail, String expectGoal){
 		List<Boolean> steps = new ArrayList<>();
 		steps.addAll(Arrays.asList(true, false, false, true)); 	// |-| | |-|
 		steps.addAll(Arrays.asList(false, true, false, false));	// | |-| | |
 		steps.addAll(Arrays.asList(true, false, true, false));	// |-| |-| |
 		StepProvider provider = new PredefinedStepProvider(steps);
-		Ladder ladder = new Ladder(5, 3, provider);
+		LadderFooter footer = new LadderFooter(Arrays.asList("0", "1", "2", "3", "4"));
+		LadderBody ladderBody = new LadderBody(5, 3, provider, footer);
 
 		// Action
-		int goalIndex = ladder.getResult(startRail);
+		String goal = ladderBody.getResult(startRail);
 
 		// Assertion
-		assertThat(goalIndex).isEqualTo(expectGoal);
+		assertThat(goal).isEqualTo(expectGoal);
 	}
 }

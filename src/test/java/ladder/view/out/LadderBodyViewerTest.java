@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderViewerTest {
+class LadderBodyViewerTest {
 
 	@Test
 	void renderNames() {

@@ -1,16 +1,12 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderContext;
-import ladder.domain.NameGoalPair;
-import ladder.domain.StepProvider;
+import ladder.domain.*;
 import ladder.util.TrimSplitter;
 import ladder.view.in.InputDialog;
 import ladder.view.out.LadderViewer;
 import ladder.view.out.MessageRenderer;
 
 import java.util.List;
-import java.util.Map;
 
 public class GameController {
 
@@ -20,7 +16,7 @@ public class GameController {
 
 	private LadderViewer view;
 
-	private LadderContext context;
+	private LadderHeader header;
 
 	public GameController(MessageRenderer renderer){
 		this.view = new LadderViewer(renderer);
@@ -36,10 +32,12 @@ public class GameController {
 
 		int height = Integer.parseInt(input.execute("최대 사다리 높이는 몇 개인가요?"));
 
-		Ladder ladder = new Ladder(playerNames.size(), height, provider);
-		this.context = new LadderContext(playerNames, goals, ladder);
+		LadderFooter footer = new LadderFooter(goals);
+		LadderBody ladderBody = new LadderBody(playerNames.size(), height, provider, footer);
+		this.header = new LadderHeader(playerNames, ladderBody);
+
 		view.renderLabels(playerNames);
-		view.render(ladder);
+		view.render(ladderBody);
 		view.renderLabels(goals);
 	}
 
@@ -51,10 +49,10 @@ public class GameController {
 			if(BRIEF_ALL.equals(commandOrPlayerName)){
 				break;
 			}
-			renderer.print(context.getGoal(commandOrPlayerName));
+			renderer.print(header.getGoal(commandOrPlayerName));
 		}
 
-		List<NameGoalPair> results = context.getResult();
+		List<NameGoalPair> results = header.getResult();
 		results.forEach(nameGoalPair -> renderer.print(nameGoalPair.toStringWithDelimiter(" : ")));
 	}
 }

@@ -1,6 +1,6 @@
 package ladder.view.out;
 
-import ladder.domain.Ladder;
+import ladder.domain.LadderBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,8 +30,8 @@ public class LadderViewer {
 		renderer.print(renderMessage);
 	}
 
-	public void render(Ladder ladder){
-		ladder.getRows().forEach(row -> {
+	public void render(LadderBody ladderBody){
+		ladderBody.getRows().forEach(row -> {
 			String rendered = row.getSteps()
 					.map(step -> step ? RAIL_WITH_STEP : RAIL_WITHOUT_STEP)
 					.collect(Collectors.joining());
