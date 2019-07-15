@@ -19,22 +19,7 @@ public class Main {
         Ladder2 ladder = Ladder2.of(ladderHeight, names.size());
         Ladder2Result ladderResult = new Ladder2Result(ladder, names);
 
-        ResultView.printLadderResultText();
-        ResultView.printNamesText(names);
-        ResultView.printLadder2Text(ladder);
-        ResultView.printRewardsText(rewards);
-
-        String nameToShow = InputView.getResultNameInput();
-        while (!"all".equals(nameToShow)) {
-            int resultIndex = ladderResult.resultOf(nameToShow);
-            ResultView.printRewardText(rewards, resultIndex);
-
-            nameToShow = InputView.getResultNameInput();
-        }
-        int resultIndex = ladderResult.resultOf(nameToShow);
-        ResultView.printRewardText(rewards, resultIndex);
-
-        ResultView.printNameAndResultText2(names, rewards, ladderResult);
+        ResultView.printDefaultSummary(names, ladder, rewards, ladderResult);
 
         /* 내가 Step3 까지 만들었던 로직의 실행부
         RandomLineGenerator randomLineGenerator = new RandomLineGenerator(names.size());

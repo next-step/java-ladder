@@ -20,21 +20,44 @@ public class ResultView {
         LINE_NOT_EXIST_TEXT = notExistText;
     }
 
-    public static void printLadderResultText() {
+    public static void printDefaultSummary(Names names, Ladder2 ladder, Rewards rewards, Ladder2Result ladderResult) {
+        printLadderResultText();
+        printNamesText(names);
+        printLadder2Text(ladder);
+        printRewardsText(rewards);
+
+        printSeparateResult(names, rewards, ladderResult);
+    }
+
+    private static void printSeparateResult(Names names, Rewards rewards, Ladder2Result ladderResult) {
+        String nameToShow = InputView.getResultNameInput();
+        while (!"all".equals(nameToShow)) {
+            int resultIndex = ladderResult.resultOf(nameToShow);
+            ResultView.printRewardText(rewards, resultIndex);
+
+            nameToShow = InputView.getResultNameInput();
+        }
+        int resultIndex = ladderResult.resultOf(nameToShow);
+        ResultView.printRewardText(rewards, resultIndex);
+
+        ResultView.printNameAndResultText2(names, rewards, ladderResult);
+    }
+
+    private static void printLadderResultText() {
         System.out.println("\n사다리 결과\n");
     }
 
-    public static void printRewardText(Rewards rewards, int index) {
+    private static void printRewardText(Rewards rewards, int index) {
         System.out.println("\n실행 결과\n" +
                 rewards.get(index));
     }
 
-    public static void printNamesText(Names names) {
+    private static void printNamesText(Names names) {
         System.out.println(names.getNames().stream()
                 .map(Name::getViewName).collect(Collectors.joining(" ")));
     }
 
-    public static void printRewardsText(Rewards rewards) {
+    private static void printRewardsText(Rewards rewards) {
         System.out.println(rewards.getRewards().stream()
                 .map(Reward::getViewName).collect(Collectors.joining(" ")));
     }
@@ -52,7 +75,7 @@ public class ResultView {
         System.out.println(result);
     }
 
-    public static void printLadder2Text(Ladder2 ladder) {
+    private static void printLadder2Text(Ladder2 ladder) {
         System.out.println(IntStream.range(0, ladder.height())
                 .mapToObj(level -> ladder.getLadderLineByLevel(level).getPoints())
                 .map(points -> points.stream().map(Point::hasLeft)
@@ -74,7 +97,7 @@ public class ResultView {
         System.out.println(stringBuilder.toString());
     }
 
-    public static void printNameAndResultText2(Names names, Rewards rewards, Ladder2Result ladderResult) {
+    private static void printNameAndResultText2(Names names, Rewards rewards, Ladder2Result ladderResult) {
         StringBuilder stringBuilder = new StringBuilder();
         IntStream.range(0, names.size())
                 .forEach(index -> {
