@@ -7,21 +7,11 @@ import ladder.domain.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println(InputView.getParticipantInputText());
-        String nameString = scanner.nextLine();
-
-        System.out.println(InputView.getRewardsInputText());
-        String rewardString = scanner.nextLine();
-
-        System.out.println(InputView.getLadderHeightInputText());
-        int ladderHeight = scanner.nextInt();
-        scanner.nextLine();
+        String nameString = InputView.getParticipantInput();
+        String rewardString = InputView.getRewardsInput();
+        int ladderHeight = InputView.getLadderHeightInput();
 
         Names names = Names.of(nameString);
         Rewards rewards = Rewards.of(rewardString);
@@ -34,14 +24,12 @@ public class Main {
         System.out.println(ResultView.getLadder2View(ladder));
         System.out.println(ResultView.getRewardsView(rewards));
 
-        System.out.println(InputView.getResultNameInputText());
-        String nameToShow = scanner.nextLine();
-        while (!nameToShow.equals("all")) {
+        String nameToShow = InputView.getResultNameInput();
+        while (!"all".equals(nameToShow)) {
             int resultIndex = ladderResult.resultOf(nameToShow);
             System.out.println(ResultView.getRewardText(rewards, resultIndex));
 
-            System.out.println(InputView.getResultNameInputText());
-            nameToShow = scanner.nextLine();
+            nameToShow = InputView.getResultNameInput();
         }
         int resultIndex = ladderResult.resultOf(nameToShow);
         System.out.println(ResultView.getRewardText(rewards, resultIndex));
@@ -60,7 +48,7 @@ public class Main {
 
         System.out.println(InputView.getResultNameInputText());
         String nameToShow = scanner.nextLine();
-        while (!nameToShow.equals("all")) {
+        while (!"all".equals(nameToShow) {
             int resultIndex = ladderResult.resultOf(nameToShow);
             System.out.println(ResultView.getRewardText(rewards, resultIndex));
 
