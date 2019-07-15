@@ -26,7 +26,7 @@ public class UserTest {
 
     @Test
     @DisplayName("결과 보고싶은 사용자 입력 란에 all 입력 여부 테스트")
-    void allPrintUserSign(){
+    void allPrintUserSign() {
         User user = new User("all");
         assertThat(user.isAllPrintSignUser()).isTrue();
     }

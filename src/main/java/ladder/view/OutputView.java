@@ -15,7 +15,7 @@ public class OutputView {
     private static String ladderTrimWidthLine = "";
     private static String ladderStartWidthLine = "";
 
-    public static void printLadderUser(Users users, int maxTextLength){
+    public static void printLadderUser(Users users, int maxTextLength) {
         outputSepartorInit(maxTextLength);
         System.out.println("\n실행 결과\n");
         System.out.println(
@@ -26,44 +26,38 @@ public class OutputView {
         );
     }
 
-    public static void printLadder(Ladder ladder){
-        for(LadderLine ladderLine : ladder.getLadder()){
+    public static void printLadder(Ladder ladder) {
+        for (LadderLine ladderLine : ladder.getLadder()) {
             printDrawLine(ladderLine);
         }
     }
 
-    public static void printResultItem(Result ladderResultItem) {
-        int maxLadderTextCount = ladderResultItem.maxLadderTextCount();
+    public static void printResultItem(LadderResult ladderLadderResultItem) {
+        int maxLadderTextCount = ladderLadderResultItem.maxLadderTextCount();
         System.out.println(
-                ladderResultItem.getResultItem()
-                        .stream()
-                        .map(item -> coustomTextLen(item, maxLadderTextCount))
-                        .collect(Collectors.joining(" "))
+                ladderLadderResultItem.getResultItem()
+                                .stream()
+                                .map(item -> coustomTextLen(item, maxLadderTextCount))
+                                .collect(Collectors.joining(" "))
         );
     }
 
-    public static void printAllUserReust(List<String> allUsersResult, List<User> userNames) {
+    public static void printAllUserReust(LadderRidResult allUsersResult) {
         System.out.println("\n실행결과");
-        for(int i = 0; i< allUsersResult.size(); i++){
-            System.out.println(
-                    userNames.get(i).getName()
-                             .concat(" : ")
-                             .concat(allUsersResult.get(i))
-            );
-        }
+        System.out.println(allUsersResult.getMatchResult());
     }
 
-    public static void printUserResult(String userResult) {
+    public static void printUserResult(LadderRidResult userResult) {
         System.out.println("\n실행결과");
-        System.out.println(userResult);
+        System.out.println(userResult.getMatchResult());
     }
 
-    private static String coustomTextLen(String userName, int maxTextLength){
+    private static String coustomTextLen(String userName, int maxTextLength) {
         int scarceSpace = maxTextLength - userName.length();
         return createlineSeparator(scarceSpace, " ").concat(userName);
     }
 
-    private static void printDrawLine(LadderLine line){
+    private static void printDrawLine(LadderLine line) {
         StringBuilder ladderLine = new StringBuilder();
         ladderLine.append(ladderStartWidthLine);
         ladderLine.append(LADDER_DEFAULT_HEIGHT_LINE);
@@ -76,22 +70,22 @@ public class OutputView {
         System.out.println(ladderLine.toString());
     }
 
-    private static String lineText(boolean line){
-        if(line){
+    private static String lineText(boolean line) {
+        if (line) {
             return ladderDefaultWidthLine;
         }
         return ladderTrimWidthLine;
     }
 
-    private static void outputSepartorInit(int maxNameLength){
+    private static void outputSepartorInit(int maxNameLength) {
         ladderDefaultWidthLine = repeat("-", maxNameLength);
         ladderTrimWidthLine = repeat(" ", maxNameLength);
-        ladderStartWidthLine = repeat(" ", maxNameLength-1);
+        ladderStartWidthLine = repeat(" ", maxNameLength - 1);
     }
 
-    private static String createlineSeparator(int maxNameLength, String separator){
+    private static String createlineSeparator(int maxNameLength, String separator) {
         StringBuilder lineSeparator = new StringBuilder();
-        for(int i=0; i<maxNameLength; i++){
+        for (int i = 0; i < maxNameLength; i++) {
             lineSeparator.append(separator);
         }
         return lineSeparator.toString();

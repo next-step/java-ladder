@@ -2,16 +2,21 @@ package ladder.utils;
 
 public enum ReferenceValue {
 
-    NAME_LENGTH(5);
+    NAME_LENGTH(5),
+    LADDER_MINIMUM_USER(2);
 
-    private int nameLength;
+    private int referenceValue;
 
-    ReferenceValue(int nameLength) {
-        this.nameLength = nameLength;
+    ReferenceValue(int referenceValue) {
+        this.referenceValue = referenceValue;
     }
 
-    public boolean isInValidNameLength(String name){
-        return name.length() > this.nameLength;
+    public boolean isInValidLadderUserCount(int countOfPerson){
+        return countOfPerson < this.referenceValue;
+    }
+
+    public boolean isInValidNameLength(String name) {
+        return name.length() > this.referenceValue;
     }
 
 }

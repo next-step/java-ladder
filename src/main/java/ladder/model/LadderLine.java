@@ -1,5 +1,6 @@
 package ladder.model;
 
+import ladder.utils.ReferenceValue;
 import ladder.utils.StatusGenerator;
 
 import java.util.ArrayList;
@@ -14,11 +15,11 @@ public class LadderLine {
         this.points = points;
     }
 
-    public List<Point> getPoints(){
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 
-    public int move(int position){
+    public int move(int position) {
         return points.get(position).move();
     }
 
@@ -35,11 +36,11 @@ public class LadderLine {
         return point;
     }
 
-    private static List<Point> createBody(int lastIndex, Point firstPoint) {
+    private static List <Point> createBody(int lastIndex, Point firstPoint) {
         List<Point> points = new ArrayList <>();
         points.add(firstPoint);
 
-        for(int i = 1; i < lastIndex; i++){
+        for (int i = 1; i < lastIndex; i++) {
             firstPoint = firstPoint.next();
             points.add(firstPoint);
         }
@@ -50,8 +51,8 @@ public class LadderLine {
         return point.last();
     }
 
-    private static int validMinUserCount(int countOfPerson){
-        if(countOfPerson < 2){
+    private static int validMinUserCount(int countOfPerson) {
+        if (ReferenceValue.LADDER_MINIMUM_USER.isInValidLadderUserCount(countOfPerson)) {
             throw new IllegalStateException("사다리 게임 참여자는 최소 2명 이상이어야 합니다.");
         }
         return countOfPerson - 1;

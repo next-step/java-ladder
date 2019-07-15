@@ -18,11 +18,11 @@ public class Users {
         return this.users.size();
     }
 
-    public int userIndex(User targetUser){
+    public int userIndex(User targetUser) {
         return users.indexOf(targetUser);
     }
 
-    public boolean isContainsUser(User targetUser){
+    public boolean isContainsUser(User targetUser) {
         return users.contains(targetUser);
     }
 
@@ -37,7 +37,7 @@ public class Users {
                     .get();
     }
 
-    private List<User> createUsers(String userNmaes) {
+    private List <User> createUsers(String userNmaes) {
         return Arrays.asList(userNmaes.split(","))
                      .stream()
                      .map(User::new)

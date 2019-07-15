@@ -13,4 +13,5 @@ dependencies {
     testCompile('org.junit.jupiter:junit-jupiter:5.4.2')
     testCompile('org.assertj:assertj-core:3.11.1')
     compile group: 'com.google.guava', name: 'guava', version: '12.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.12.0'
 }
