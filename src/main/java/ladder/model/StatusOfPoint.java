@@ -17,32 +17,26 @@ public class StatusOfPoint {
         this.right = right;
     }
 
-    private void validation(boolean left, boolean right){
-        if(left && right){
-            throw new IllegalStateException("양 옆의 사다기라 같은 높이에 있을 수 없습니다.");
-        }
-    }
-
-    private static StatusOfPoint of(boolean left, boolean right){
+    public static StatusOfPoint of(boolean left, boolean right) {
         return new StatusOfPoint(left, right);
     }
 
-    public static StatusOfPoint first(boolean right){
+    public static StatusOfPoint first(boolean right) {
         return of(FALSE, right);
     }
 
-    public StatusOfPoint next(boolean nextRight){
+    public StatusOfPoint next(boolean nextRight) {
         return of(this.right, nextRight);
     }
 
-    public StatusOfPoint next(){
-        if(right){
+    public StatusOfPoint next() {
+        if (right) {
             return next(FALSE);
         }
         return next(StatusGenerator.get());
     }
 
-    public StatusOfPoint last(){
+    public StatusOfPoint last() {
         return of(this.right, FALSE);
     }
 
@@ -52,6 +46,12 @@ public class StatusOfPoint {
 
     public boolean isRight() {
         return this.right;
+    }
+
+    private void validation(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException("양 옆의 사다기라 같은 높이에 있을 수 없습니다.");
+        }
     }
 
     @Override
@@ -65,7 +65,15 @@ public class StatusOfPoint {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(left, right);
     }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
+
 }

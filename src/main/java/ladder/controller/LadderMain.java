@@ -1,9 +1,6 @@
 package ladder.controller;
 
-import ladder.model.Ladder;
-import ladder.model.Result;
-import ladder.model.User;
-import ladder.model.Users;
+import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -14,23 +11,26 @@ public class LadderMain {
         Users users = new Users(ladderUserNames);
 
         String ladderResultItem = InputView.inputResultItem();
-        Result result = new Result(users, ladderResultItem);
+        LadderResult ladderResult = new LadderResult(users, ladderResultItem);
 
         String ladderHeight = InputView.inputLadderHeight();
-        Ladder ladder = new Ladder(users.userCount(), ladderHeight);
+        Ladder ladder = Ladder.of(users.userCount(), ladderHeight);
 
-        OutputView.printLadderUser(users, result.maxLadderTextCount());
+        OutputView.printLadderUser(users, ladderResult.maxLadderTextCount());
         OutputView.printLadder(ladder);
-        OutputView.printResultItem(result);
+        OutputView.printResultItem(ladderResult);
 
+        LadderRidResult allUserRidResult = ladderResult.getAllUserResult(users, ladder);
+        LadderRidResult userRidResult;
         User resultViewUser;
         while (true) {
             resultViewUser = new User(InputView.inputResultUser());
             if (resultViewUser.isAllPrintSignUser()) {
-                OutputView.printAllUserReust(result, users, ladder);
+                OutputView.printAllUserReust(allUserRidResult);
                 break;
             }
-            OutputView.printUserResult(result, resultViewUser, ladder);
+            userRidResult = ladderResult.getUserResult(resultViewUser, ladder);
+            OutputView.printUserResult(userRidResult);
         }
 
     }

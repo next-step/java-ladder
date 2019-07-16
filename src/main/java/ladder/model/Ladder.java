@@ -1,43 +1,54 @@
 package ladder.model;
 
-import ladder.enumset.Validation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Ladder {
 
-    private final List<Line> ladder = new ArrayList <>();
-    private final int ladderHeight;
-    public Ladder(int userCount, String ladderHeight) {
-        this.ladderHeight = numberValidation(ladderHeight);
-        for (int i = 0; i < this.ladderHeight; i++) {
+    private static final Logger logger = LoggerFactory.getLogger(Ladder.class);
+    private final List<LadderLine> ladder;
+
+    public Ladder(List<LadderLine> ladder) {
+        this.ladder = ladder;
+    }
+
+    public static Ladder of(int userCount, String ladderHeight) {
+        List<LadderLine> ladder = new ArrayList <>();
+        for (int i = 0; i < validationNumberFormat(ladderHeight); i++) {
             ladder.add(createLine(userCount));
         }
+        return new Ladder(ladder);
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(this.ladder);
-    }
-
-    public int ladderRiding(int userIndex) {
+    public int ladderRid(int userIndex) {
         int userPosition = userIndex;
-        for(Line line : ladder){
-            Point point = line.getPoints().get(userPosition);
-            userPosition = point.move();
+        for (LadderLine ladderLine : ladder) {
+            userPosition = ladderLine.move(userPosition);
         }
         return userPosition;
     }
 
-    private int numberValidation(String ladderHeight) {
-        if (Validation.LADDER_HEIGHT_VALIDATE.isInValid(ladderHeight)) {
+    private static int validationNumberFormat(String ladderHeight) {
+
+        try {
+            return Integer.parseInt(ladderHeight);
+        } catch (NumberFormatException numberFomatException) {
+            logger.error("number format exception = {}", "validation ladderHeight");
             throw new NumberFormatException("최대 사다리 높이는 숫자만 입력 할 수 있습니다.");
         }
-        return Integer.parseInt(ladderHeight);
     }
 
-    private Line createLine(int userCount) {
-        return Line.lineSet(userCount);
+    private static LadderLine createLine(int userCount) {
+        return LadderLine.lineSet(userCount);
     }
+
+    public List<LadderLine> getLadder() {
+        return Collections.unmodifiableList(this.ladder);
+    }
+
 }
