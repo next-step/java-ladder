@@ -26,4 +26,25 @@ public class DirectionTest {
         final Direction direction = Direction.DOWN;
         assertThat(direction.move(1)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("첫 방향을 생성할 수 있다.")
+    void firstOf() {
+        final Direction direction = Direction.firstOf(() -> true);
+        assertThat(direction).isEqualByComparingTo(Direction.RIGHT);
+    }
+
+    @Test
+    @DisplayName("다음 방향을 생성할 수 있다.")
+    void nextOf() {
+        final Direction direction = Direction.firstOf(() -> true);
+        assertThat(direction.nextOf(() -> true)).isEqualByComparingTo(Direction.LEFT);
+    }
+
+    @Test
+    @DisplayName("마지막 방향을 생성할 수 있다.")
+    void endOf() {
+        final Direction direction = Direction.firstOf(() -> false);
+        assertThat(direction.endOf()).isEqualByComparingTo(Direction.DOWN);
+    }
 }

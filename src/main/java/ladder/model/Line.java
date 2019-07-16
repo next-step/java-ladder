@@ -3,7 +3,6 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public final class Line {
     public static final int MINIMUM_NUMBER_OF_POINTS = 2;
@@ -31,28 +30,30 @@ public final class Line {
     private static List<Point> generateRandomPoints(int numberOfPoints) {
         final List<Point> points = new ArrayList<>();
 
-        addFirstPoint(points);
-        addMidPoints(points, numberOfPoints);
-        addEndPoint(points);
+        final Point first = addFirstPoint(points);
+        final Point lastOfMid = addMidPoints(numberOfPoints, points, first);
+        addEndPoint(points, lastOfMid);
 
         return points;
     }
 
-    private static void addFirstPoint(List<Point> points) {
+    private static Point addFirstPoint(List<Point> points) {
         final Point first = Point.firstOf(new RandomConnector());
         points.add(first);
+        return first;
     }
 
-    private static void addMidPoints(List<Point> points, int numberOfPoints) {
-        IntStream.range(0, numberOfPoints - MINIMUM_NUMBER_OF_POINTS)
-                 .mapToObj(i -> points.get(i).nextOf(new RandomConnector()))
-                 .forEach(points::add);
+    private static Point addMidPoints(int numberOfPoints, List<Point> points, Point point) {
+        for (int i = 1; i < numberOfPoints - 1; i++) {
+            point = point.nextOf(new RandomConnector());
+            points.add(point);
+        }
+        return point;
     }
 
-    private static void addEndPoint(List<Point> points) {
-        final Point lastOfMid = points.get(points.size() - 1);
-        final Point end = lastOfMid.endOf();
-        points.add(end);
+    private static void addEndPoint(List<Point> points, Point point) {
+        point = point.endOf();
+        points.add(point);
     }
 
     public List<Point> getPoints() {

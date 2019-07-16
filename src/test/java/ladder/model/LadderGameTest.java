@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +45,7 @@ public class LadderGameTest {
     @Test
     @DisplayName("run 메서드는 사다리 게임 결과를 반환한다.")
     void run_Result() {
-        Ladder ladder = ladderGame.initGame(5);
-        assertThat(ladderGame.run(ladder)).isInstanceOf(Map.class);
+        final Ladder ladder = ladderGame.initGame(5);
+        assertThat(ladderGame.run(ladder)).isInstanceOf(Result.class);
     }
 }

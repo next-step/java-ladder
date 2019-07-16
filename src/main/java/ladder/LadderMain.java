@@ -1,12 +1,10 @@
 package ladder;
 
 import java.util.List;
-import java.util.Map;
 
 import ladder.model.Ladder;
 import ladder.model.LadderGame;
-import ladder.model.Participant;
-import ladder.model.Reward;
+import ladder.model.Result;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -19,7 +17,7 @@ public final class LadderMain {
 
         final int ladderHeight = InputView.inputLadderHeight();
         final Ladder ladder = ladderGame.initGame(ladderHeight);
-        final Map<Participant, Reward> result = ladderGame.run(ladder);
+        final Result result = ladderGame.run(ladder);
 
         OutputView.printLadderWithInformation(ladderGame.getParticipants(), ladderGame.getRewards(), ladder);
 

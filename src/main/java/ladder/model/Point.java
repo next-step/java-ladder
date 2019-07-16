@@ -4,8 +4,7 @@ public final class Point {
     public static final String MESSAGE_OF_TWO_WAY_CONNECTION = "Point는 양방향으로 연결할 수 없습니다.";
 
     public static Point firstOf(ConnectorStrategy connector) {
-        final Direction firstConnection = connector.generateNextConnection(Direction.DOWN);
-        return new Point(0, firstConnection);
+        return new Point(0, Direction.firstOf(connector));
     }
 
     private final int position;
@@ -17,17 +16,11 @@ public final class Point {
     }
 
     public Point nextOf(ConnectorStrategy connector) {
-        final Direction nextDirection = connector.generateNextConnection(direction);
-        if (direction == Direction.RIGHT && nextDirection == Direction.RIGHT) {
-            throw new IllegalArgumentException(MESSAGE_OF_TWO_WAY_CONNECTION);
-        }
-
-        return new Point(position + 1, nextDirection);
+        return new Point(position + 1, direction.nextOf(connector));
     }
 
     public Point endOf() {
-        final Direction nextDirection = (direction == Direction.RIGHT) ? Direction.LEFT : Direction.DOWN;
-        return new Point(position + 1, nextDirection);
+        return new Point(position + 1, direction.endOf());
     }
 
     public boolean isConnectedRight() {
