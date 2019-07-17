@@ -17,12 +17,12 @@ public class GameResult {
         }
     }
 
-    public void run(List<LadderLine> ladder, UserGroup userGroup) {
-        for (SingleUser user : userGroup.getUserGroup()) {
+    public void run(List<LadderLine> ladder, List<SingleUser> userGroup) {
+        for (SingleUser user : userGroup) {
             user.playLadderGame(ladder);
         }
 
-        getResult(userGroup.getUserGroup());
+        getResult(userGroup);
     }
 
     public List<GameReward> getgameReward() {

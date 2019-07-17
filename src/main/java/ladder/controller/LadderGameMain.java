@@ -20,7 +20,7 @@ public class LadderGameMain {
         ResultView.printLadder(ladderFactory.getLadder(), userGroup, result);
 
         String request = InputView.requestResult();
-        result.run(ladderFactory.getLadder(), userGroup);
+        result.run(ladderFactory.getLadder(), userGroup.getUserGroup());
         ResultView.showResult(request, result);
     }
 }
