@@ -1,7 +1,10 @@
 package ladder.domain;
 
 public enum LadderUtil {
-    SEPARATOR_REST(",");
+    SEPARATOR_REST(","),
+    SEPARATOR_BLANK(""),
+    SEPARATOR_BLANK2(" "),
+    SEPARATOR_ENTER("\n");
 
     private String value;
 
