@@ -43,7 +43,7 @@ public class LadderNode {
 	}
 
 	public int nextRailNumber() {
-		return railNumber + this.stepPosition.getIncrement();
+		return railNumber + this.stepPosition.getDirectionOffset();
 	}
 
 	public static LadderNode create() {

@@ -5,13 +5,13 @@ public enum StepPosition {
 	RIGHT(1),
 	NONE(0);
 
-	int increment;
+	private int directionOffset;
 
-	StepPosition(int increment) {
-		this.increment = increment;
+	StepPosition(int directionOffset) {
+		this.directionOffset = directionOffset;
 	}
 
-	public int getIncrement() {
-		return this.increment;
+	public int getDirectionOffset() {
+		return this.directionOffset;
 	}
 }
