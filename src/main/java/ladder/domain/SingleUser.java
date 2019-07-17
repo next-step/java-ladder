@@ -31,7 +31,7 @@ public class SingleUser {
         for (LadderLine line : ladder) {
             for (int i = 0; i < line.getPoints().size(); ++i) {
                 if (line.getPoints().get(i).compareUserPosition(getPosition())) {
-                    getPosition().updatePosition(line.move(i));
+                    updatePosition(line.move(i));
                     break;
                 }
             }
@@ -43,6 +43,10 @@ public class SingleUser {
             throw new IllegalArgumentException("이름이 잘못되었습니다. 다시 프로그램을 실행해주세요.");
         }
         return input;
+    }
+
+    private void updatePosition(int result){
+        this.position.updateIndex(result);
     }
 
     @Override

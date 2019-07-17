@@ -15,7 +15,7 @@ public class Position {
         return this.index == index;
     }
 
-    void updatePosition(int move) {
+    void updateIndex(int move) {
         this.index = move;
     }
 
