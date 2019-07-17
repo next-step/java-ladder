@@ -3,7 +3,6 @@ package ladder;
 public class Direction {
     public static final int STRING_REPEAT_COUNT = 5;
     public static final int MOVE_STEP = 1;
-
     private boolean left;
     private boolean right;
 

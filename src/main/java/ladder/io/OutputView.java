@@ -3,6 +3,7 @@ package ladder.io;
 import ladder.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public static void printNames(Players players) {
@@ -31,9 +32,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResult(List<ResultLadder> startGame) {
+    public static void printResult(Map<Player, Prize> result) {
         System.out.println("실행결과");
-        startGame.forEach(x -> System.out.println(x.getPlayer().getName() + " : " + x.getPrize().getPrize()));
+        result.forEach((player, prize) -> System.out.println(player.getName() + " : " + prize.getPrize()));
     }
 
     public static void printResult(ResultLadder result) {

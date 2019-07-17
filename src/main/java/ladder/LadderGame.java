@@ -1,7 +1,7 @@
 package ladder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGame {
     private Ladder ladder;
@@ -20,11 +20,11 @@ public class LadderGame {
         return ResultLadder.of(players.getPlayer(index), prizes.getPrize(rank));
     }
 
-    public List<ResultLadder> startGame() {
-        List<ResultLadder> resultLadders = new ArrayList<>();
+    public Map<Player, Prize> startGame() {
+        Map<Player, Prize> resultLadders = new HashMap<>();
         for (int i = 0; i < players.getSize(); i++) {
             int rank = ladder.runLadder(i);
-            resultLadders.add(ResultLadder.of(players.getPlayer(i), prizes.getPrize(rank)));
+            resultLadders.put(players.getPlayer(i), prizes.getPrize(rank));
         }
         return resultLadders;
     }

@@ -17,4 +17,17 @@ public class LineTest {
         Line line = new Line(4, () -> true);
         assertThat(line.move(0)).isEqualTo(1);
     }
+
+    @Test
+    void lastPoint() {
+        Line line = new Line(4, () -> true);
+        assertThat(line.lastPoint().getIndex()).isEqualTo(3);
+    }
+
+    @Test
+    void firstPoint() {
+        Line line = new Line(4, () -> true);
+        line.addFirstPoint(() -> true);
+        assertThat(line.lastPoint().getIndex()).isEqualTo(0);
+    }
 }
