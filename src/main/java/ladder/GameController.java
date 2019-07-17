@@ -36,11 +36,8 @@ public class GameController {
 		Ladder.Builder builder = Ladder.builder()
 				.setPlayerNames(playerNames)
 				.setGoals(goals)
-				.setHeight(height);
-
-		if (provider != null) {
-			builder = builder.setStepProvider(provider);
-		}
+				.setHeight(height)
+				.setStepProvider(provider);
 
 		this.ladder = builder.build();
 
