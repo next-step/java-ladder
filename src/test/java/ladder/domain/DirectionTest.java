@@ -8,7 +8,6 @@ import static java.lang.Boolean.TRUE;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
-
 public class DirectionTest {
     @Test
     @DisplayName("초기화_함수")

@@ -2,7 +2,7 @@ package ladder.view;
 
 import java.util.Scanner;
 
-public class Inputview {
+public class InputView {
     public static String inputUserName() {
         Scanner scanner = new Scanner(System.in);
 

@@ -43,5 +43,4 @@ public class PointTest {
         Point second = Point.first(TRUE).next();
         assertThat(second.move(), is(0));
     }
-
 }
