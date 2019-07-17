@@ -41,7 +41,7 @@ public class LadderViewer {
 					if (node.isInFirstRail()) {
 						value += NEW_LINE;
 					}
-					value += node.hasLeftStep() ? RAIL_WITH_STEP : RAIL_WITHOUT_STEP;
+					value += node.hasStep() ? RAIL_WITH_STEP : RAIL_WITHOUT_STEP;
 					return value;
 				})
 				.collect(Collectors.joining());

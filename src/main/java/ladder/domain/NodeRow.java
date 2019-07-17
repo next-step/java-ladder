@@ -12,14 +12,12 @@ class NodeRow {
 	private List<LadderNode> nodes;
 
 	public NodeRow(int railCount, StepProvider provider) {
-		LadderNode node = LadderNode.create();
 		this.nodes = new ArrayList<>();
-		this.nodes.add(node); // 좌측 첫번째 레일(엣지)에는 스텝 설치 불가
+		this.nodes.add(LadderNode.create());
 
 		while (nodes.size() < railCount) {
-			// 직전에 추가된 Step 이 false 일 때 true 값이 추가 될 수 있다.
-			node = node.createNextNode(provider.generate());
-			nodes.add(node);
+			LadderNode lastNode = nodes.get(nodes.size() - 1);
+			nodes.add(lastNode.createNextNode(provider.generate()));
 		}
 	}
 
