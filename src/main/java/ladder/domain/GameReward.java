@@ -12,6 +12,14 @@ public class GameReward {
         this.index = index;
     }
 
+    public String getNameOfWinner() {
+        return nameOfWinner;
+    }
+
+    public String getNameReward() {
+        return nameReward;
+    }
+
     void matchReward(List<SingleUser> userGroup) {
         for (SingleUser user : userGroup) {
             if (user.matchPosition(this.index)) {
@@ -21,16 +29,8 @@ public class GameReward {
         }
     }
 
-    public String getNameOfWinner() {
-        return nameOfWinner;
-    }
-
-    public String getNameReward() {
-        return nameReward;
-    }
-
     @Override
     public String toString() {
-        return getNameOfWinner() + ": " + getNameReward();
+        return nameOfWinner + ": " + nameReward;
     }
 }
