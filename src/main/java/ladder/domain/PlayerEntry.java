@@ -29,6 +29,10 @@ class PlayerEntry {
 			throw new IllegalArgumentException("참가자 이름은 5글자를 넘을 수 없습니다.");
 		}
 
+		if(playerRailMap.containsKey(playerName)){
+			throw new IllegalArgumentException("이미 추가된 참가자입니다.");
+		}
+
 		playerRailMap.put(playerName, playerRailMap.size());
 	}
 
