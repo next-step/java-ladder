@@ -14,7 +14,7 @@ public class GameReward {
 
     void matchReward(List<SingleUser> userGroup) {
         for (SingleUser user : userGroup) {
-            if (user.getPosition().matchIndex(this.index)) {
+            if (user.matchPosition(this.index)) {
                 this.nameOfWinner = user.getName();
                 break;
             }

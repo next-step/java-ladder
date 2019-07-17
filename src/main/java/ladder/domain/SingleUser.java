@@ -38,6 +38,10 @@ public class SingleUser {
         }
     }
 
+    boolean matchPosition(int index) {
+        return this.position.matchIndex(index);
+    }
+
     private static String checkName(String input) {
         if (input.equals(LadderUtil.SEPARATOR_BLANK) || input.equals(LadderUtil.SEPARATOR_BLANK2) || input.equals(LadderUtil.SEPARATOR_ENTER) || input.length() > COUNT_OF_MAXIMUM_INPUT) {
             throw new IllegalArgumentException("이름이 잘못되었습니다. 다시 프로그램을 실행해주세요.");
@@ -45,7 +49,7 @@ public class SingleUser {
         return input;
     }
 
-    private void updatePosition(int result){
+    private void updatePosition(int result) {
         this.position.updateIndex(result);
     }
 
