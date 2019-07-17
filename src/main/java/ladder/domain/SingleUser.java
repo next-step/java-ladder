@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.List;
 
 public class SingleUser {
-    private String name;
+    private final String name;
     private Position position;
 
     private SingleUser(String name, Position position) {

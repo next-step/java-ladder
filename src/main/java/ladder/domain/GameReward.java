@@ -3,9 +3,9 @@ package ladder.domain;
 import java.util.List;
 
 public class GameReward {
-    private String nameReward;
+    private final String nameReward;
     private String nameOfWinner;
-    private int index;
+    private final int index;
 
     GameReward(String name, int index) {
         this.nameReward = name;
