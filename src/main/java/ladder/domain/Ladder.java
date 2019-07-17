@@ -105,16 +105,16 @@ public class Ladder {
 				throw new IllegalStateException("사다리 목표지점 정보가 없습니다.");
 			}
 
+			if (provider == null){
+				throw new IllegalStateException("사다리 계단 공급장치가 지정되지 않았습니다.");
+			}
+
 			if (playerNames.size() != goals.size()) {
 				throw new IllegalStateException("참자가 수와 목표지점 정보 개수가 일치하지 않습니다.");
 			}
 
 			if (height < LADDER_MIN_HEIGHT) {
 				throw new IllegalStateException(String.format("최소 사다리 높이는 %d입니다.", LADDER_MIN_HEIGHT));
-			}
-
-			if (provider == null){
-				throw new IllegalStateException("사다리 계단 공급장치가 지정되지 않았습니다.");
 			}
 
 			return new Ladder(this);
