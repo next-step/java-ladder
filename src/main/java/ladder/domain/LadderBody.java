@@ -8,13 +8,13 @@ import java.util.stream.IntStream;
 
 class LadderBody {
 
-	private List<HorizontalNodeList> rows;
+	private List<NodeRow> rows;
 
 	private LadderFooter footer;
 
 	public LadderBody(int railCount, int height, StepProvider provider, LadderFooter footer) {
 		this.rows = IntStream.range(0, height)
-				.mapToObj(index -> new HorizontalNodeList(railCount, provider))
+				.mapToObj(index -> new NodeRow(railCount, provider))
 				.collect(Collectors.toList());
 
 		this.footer = footer;
