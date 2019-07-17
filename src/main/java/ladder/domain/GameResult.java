@@ -10,7 +10,7 @@ public class GameResult {
     private List<GameReward> gameReward;
 
     public GameResult(String userReward, int sizeOfUserGroup) {
-        String[] namesOfReward = checkReward(splitName(userReward), sizeOfUserGroup);
+        String[] namesOfReward = checkReward(LadderUtil.splitName(userReward), sizeOfUserGroup);
         gameReward = new ArrayList<>();
 
         for (int i = 0; i < namesOfReward.length; ++i) {
@@ -35,10 +35,6 @@ public class GameResult {
         for (int i = 0; i < userGroup.size(); ++i) {
             gameReward.get(i).matchReward(userGroup);
         }
-    }
-
-    private String[] splitName(String names) {
-        return names.split(SEPARATOR);
     }
 
     private String[] checkReward(String[] inputStrings, Integer sizeOfUserGroup) {

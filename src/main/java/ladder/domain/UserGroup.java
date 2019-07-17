@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserGroup {
-    private static final String SEPARATOR = ",";
-
     private List<SingleUser> userGroup;
 
     public UserGroup(String name) {
-        String[] namesOfUser = splitName(name);
+        String[] namesOfUser = LadderUtil.splitName(name);
         userGroup = new ArrayList<>();
 
         for (int i = 0; i < namesOfUser.length; ++i) {
@@ -19,9 +17,5 @@ public class UserGroup {
 
     public List<SingleUser> getUserGroup() {
         return userGroup;
-    }
-
-    private String[] splitName(String names) {
-        return names.split(SEPARATOR);
     }
 }
