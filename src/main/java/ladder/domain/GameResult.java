@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameResult {
-    private static final String SEPARATOR = ",";
-
     private List<GameReward> gameReward;
 
     public GameResult(String userReward, int sizeOfUserGroup) {
