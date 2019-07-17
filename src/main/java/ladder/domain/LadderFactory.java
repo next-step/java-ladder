@@ -7,6 +7,9 @@ public class LadderFactory {
     private List<LadderLine> ladder;
 
     public LadderFactory(int maxHeight, int sizeOfUserGroup) {
+        if(maxHeight < 0){
+            throw new IllegalArgumentException("최대 사다리 높이 값이 잘못 입력되었습니다. 다시 프로그램을 실행해주세요.");
+        }
         ladder = new ArrayList<>();
 
         for (int i = 0; i < maxHeight; ++i) {

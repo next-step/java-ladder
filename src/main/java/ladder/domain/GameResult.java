@@ -9,8 +9,8 @@ public class GameResult {
 
     private List<GameReward> gameReward;
 
-    public GameResult(String userReward) {
-        String[] namesOfReward = checkReward(splitName(userReward));
+    public GameResult(String userReward, int sizeOfUserGroup) {
+        String[] namesOfReward = checkReward(splitName(userReward), sizeOfUserGroup);
         gameReward = new ArrayList<>();
 
         for (int i = 0; i < namesOfReward.length; ++i) {
@@ -20,11 +20,9 @@ public class GameResult {
     }
 
     public void run(List<LadderLine> ladder, UserGroup userGroup) {
-        ladder.stream()
-                .forEach(line -> {
-                    userGroup.getUserGroup().stream()
-                            .forEach(user -> user.playLadderGame(ladder));
-                });
+        for (SingleUser user : userGroup.getUserGroup()) {
+            user.playLadderGame(ladder);
+        }
 
         getResult(userGroup.getUserGroup());
     }
@@ -33,7 +31,7 @@ public class GameResult {
         return gameReward;
     }
 
-    private void getResult(List<SingleUser> userGroup) {
+    void getResult(List<SingleUser> userGroup) {
         for (int i = 0; i < userGroup.size(); ++i) {
             gameReward.get(i).matchReward(userGroup);
         }
@@ -43,12 +41,13 @@ public class GameResult {
         return names.split(SEPARATOR);
     }
 
-    private String[] checkReward(String[] inputStrings) {
+    private String[] checkReward(String[] inputStrings, Integer sizeOfUserGroup) {
+        Integer sizeOfInput = inputStrings.length;
         Arrays.stream(inputStrings)
                 .filter(inputString -> "".equals(inputString) || inputString.equals(" ")
-                        || inputString.equals("\n"))
+                        || inputString.equals("\n") || !sizeOfInput.equals(sizeOfUserGroup))
                 .forEach(inputString -> {
-                    throw new IllegalArgumentException("입력값이 잘못되었습니다. 실행 결과를 다시 한번 입력해주세요.");
+                    throw new IllegalArgumentException("실행 결과의 입력값이 잘못되었습니다. 다시 프로그램을 실행해주세요.");
                 });
 
         return inputStrings;

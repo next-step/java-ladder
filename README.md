@@ -32,4 +32,9 @@
 
 * SingleUser 객체 
 1. 각 User의 이름과 현재 사다리 위치 정보를 가진다.
-2. 
+2. 각 유저의 LadderGame을 진행하여, 해당 결과를 반복적으로 업데이트 한다. 
+
+* GameResult 객체 
+1. GameReward 정보 및 LadderGame 진행 및 결과를 관리한다. 
+2. 게임 진행 후, User와 Reward를 매칭한다. 
+3. 유효성 체크: GameReward 숫자와 userGroup 숫자 일치 여부 
