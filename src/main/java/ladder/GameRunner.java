@@ -10,8 +10,7 @@ public class GameRunner {
 		InputDialog input = new ConsoleDialog();
 		MessageRenderer renderer = new ConsoleRenderer();
 
-		GameController controller = new GameController();
-		controller.ready(input, renderer);
+		GameController controller = new GameController(input, renderer);
 		controller.briefResult(input, renderer);
 	}
 }

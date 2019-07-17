@@ -59,10 +59,7 @@ public class Ladder {
 
 		private StepProvider provider;
 
-		private	Random random;
 		private Builder() {
-			random = new Random();
-			provider = random::nextBoolean;
 			height = LADDER_MIN_HEIGHT;
 		}
 
@@ -89,15 +86,12 @@ public class Ladder {
 
 		/**
 		 * 계단 설치여부 공급자
-		 * 지정하지 않거나 null인 경우 랜덤공급자가 기본 제공됨
 		 *
-		 * @param provider 공급자가 null 이면 기본공급자가 선택됨
+		 * @param provider
 		 * @return
 		 */
 		public Builder setStepProvider(StepProvider provider) {
-			this.provider = (provider != null)
-				? provider
-				: random::nextBoolean;
+			this.provider = provider;
 			return this;
 		}
 
@@ -117,6 +111,10 @@ public class Ladder {
 
 			if (height < LADDER_MIN_HEIGHT) {
 				throw new IllegalStateException(String.format("최소 사다리 높이는 %d입니다.", LADDER_MIN_HEIGHT));
+			}
+
+			if (provider == null){
+				throw new IllegalStateException("사다리 계단 공급장치가 지정되지 않았습니다.");
 			}
 
 			return new Ladder(this);

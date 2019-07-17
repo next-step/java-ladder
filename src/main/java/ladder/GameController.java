@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.*;
 import ladder.model.PlayerGoalPair;
 import ladder.domain.StepProvider;
+import ladder.model.StepPosition;
 import ladder.util.TrimSplitter;
 import ladder.view.in.InputDialog;
 import ladder.view.out.LadderViewer;
@@ -20,11 +21,11 @@ public class GameController {
 
 	private Ladder ladder;
 
-	public void ready(InputDialog input, MessageRenderer renderer) {
-		this.ready(input, renderer, null);
+	public GameController(InputDialog input, MessageRenderer renderer){
+		this.ready(input, renderer, new RandomStepProvider());
 	}
 
-	public void ready(InputDialog input, MessageRenderer renderer, StepProvider provider) {
+	private void ready(InputDialog input, MessageRenderer renderer, StepProvider provider) {
 		String nameInput = input.execute("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
 		List<String> playerNames = TrimSplitter.split(nameInput, SEPARATOR);
 
