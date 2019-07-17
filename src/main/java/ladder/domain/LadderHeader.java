@@ -1,44 +1,36 @@
 package ladder.domain;
 
-import ladder.exception.NotFoundPlayer;
 import ladder.model.LadderNode;
-import ladder.model.NameGoalPair;
+import ladder.model.PlayerGoalPair;
+import ladder.model.PlayerRailPair;
 
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 class LadderHeader {
 
-	private Map<String, Integer> playerRailMap;
+	private PlayerEntry playerEntry;
 
 	private LadderBody ladderBody;
 
 	public LadderHeader(List<String> playerNames, LadderBody ladderBody) {
 		this.ladderBody = ladderBody;
-		this.playerRailMap = new HashMap<>();
-		for(int i = 0; i < playerNames.size(); i++){
-			this.playerRailMap.put(playerNames.get(i), i);
-		}
+		this.playerEntry = new PlayerEntry();
+		playerNames.forEach(playerEntry::append);
 	}
 
-	public String getGoal(String playerName){
-		Integer railNumber = playerRailMap.get(playerName);
-
-		if(railNumber == null){
-			throw new NotFoundPlayer();
-		}
-
-		return ladderBody.getResult(railNumber);
+	public PlayerGoalPair getReachedGoal(String playerName) {
+		return this.getReachedGoal(playerEntry.getEntry(playerName));
 	}
 
-	public List<NameGoalPair> getResult() {
-		return this.playerRailMap.entrySet()
+	private PlayerGoalPair getReachedGoal(PlayerRailPair player){
+		return new PlayerGoalPair(player.getPlayerName(), ladderBody.getResult(player.getRailNumber()));
+	}
+
+	public List<PlayerGoalPair> getResult() {
+		return this.playerEntry.entries()
 				.stream()
-				.sorted(Comparator.comparingInt(entry -> entry.getValue()))
-				.map(entry -> new NameGoalPair(entry.getKey(), this.getGoal(entry.getKey())))
+				.map(entry -> this.getReachedGoal(entry))
 				.collect(Collectors.toList());
 	}
 

@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.model.NameGoalPair;
+import ladder.model.PlayerGoalPair;
 import ladder.domain.StepProvider;
 import ladder.util.TrimSplitter;
 import ladder.view.in.InputDialog;
@@ -58,10 +58,10 @@ public class GameController {
 			if (BRIEF_ALL.equals(commandOrPlayerName)) {
 				break;
 			}
-			renderer.print(ladder.getGoal(commandOrPlayerName));
+			renderer.print(ladder.getReachedGoal(commandOrPlayerName));
 		}
 
-		List<NameGoalPair> results = ladder.getResult();
+		List<PlayerGoalPair> results = ladder.getResult();
 		results.forEach(nameGoalPair -> renderer.print(nameGoalPair.toStringWithDelimiter(NAME_GOAL_DELIMITER)));
 	}
 }

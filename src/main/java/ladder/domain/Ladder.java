@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.model.LadderNode;
-import ladder.model.NameGoalPair;
+import ladder.model.PlayerGoalPair;
 
 import java.util.List;
 import java.util.Random;
@@ -34,11 +34,12 @@ public class Ladder {
 		return this.header.getNodes();
 	}
 
-	public String getGoal(String playName) {
-		return this.header.getGoal(playName);
+	public String getReachedGoal(String playerName) {
+		PlayerGoalPair result = this.header.getReachedGoal(playerName);
+		return result.getGoal();
 	}
 
-	public List<NameGoalPair> getResult() {
+	public List<PlayerGoalPair> getResult() {
 		return this.header.getResult();
 	}
 

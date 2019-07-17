@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.model.NameGoalPair;
+import ladder.model.PlayerGoalPair;
 import ladder.test_double.PredefinedStepProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +17,7 @@ class LadderHeaderTest {
 	private LadderHeader header;
 
 	@BeforeEach
-	void generateContext(){
+	void generateContext() {
 		LadderFooter footer = new LadderFooter(Arrays.asList("1", "2", "3"));
 
 		List<Boolean> steps = Arrays.asList(true, false, false, true); // |-| | |-|
@@ -30,14 +30,14 @@ class LadderHeaderTest {
 	@ParameterizedTest
 	@CsvSource(value = {"A,2", "B,1", "C,3"})
 	void getGoal(String player, String expectGoal) {
-		assertThat(header.getGoal(player)).isEqualTo(expectGoal);
+		assertThat(header.getReachedGoal(player).getGoal()).isEqualTo(expectGoal);
 	}
 
 	@ParameterizedTest
 	@CsvSource(value = {"A,2", "B,1", "C,3"})
-	void getResults(String player, String expectGoal){
-		List<NameGoalPair> results = header.getResult();
+	void getResults(String player, String expectGoal) {
+		List<PlayerGoalPair> results = header.getResult();
 
-		assertThat(results).contains(new NameGoalPair(player, expectGoal));
+		assertThat(results).contains(new PlayerGoalPair(player, expectGoal));
 	}
 }

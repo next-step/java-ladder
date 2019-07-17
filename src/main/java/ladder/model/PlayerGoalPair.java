@@ -1,13 +1,17 @@
 package ladder.model;
 
-public class NameGoalPair {
+public class PlayerGoalPair {
 	private String name;
 
 	private String goal;
 
-	public NameGoalPair(String name, String goal) {
+	public PlayerGoalPair(String name, String goal) {
 		this.name = name;
 		this.goal = goal;
+	}
+
+	public String getGoal() {
+		return goal;
 	}
 
 	public String toStringWithDelimiter(String delimiter) {
@@ -19,7 +23,7 @@ public class NameGoalPair {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		NameGoalPair that = (NameGoalPair) o;
+		PlayerGoalPair that = (PlayerGoalPair) o;
 
 		if (!name.equals(that.name)) return false;
 		return goal.equals(that.goal);
