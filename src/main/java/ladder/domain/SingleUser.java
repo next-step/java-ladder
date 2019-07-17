@@ -23,14 +23,10 @@ public class SingleUser {
         return name;
     }
 
-    Position getPosition() {
-        return position;
-    }
-
     void playLadderGame(List<LadderLine> ladder) {
         for (LadderLine line : ladder) {
             for (int i = 0; i < line.getPoints().size(); ++i) {
-                if (line.getPoints().get(i).compareUserPosition(getPosition())) {
+                if (line.getPoints().get(i).compareUserPosition(this.position)) {
                     updatePosition(line.move(i));
                     break;
                 }
@@ -55,6 +51,6 @@ public class SingleUser {
 
     @Override
     public String toString() {
-        return "SingleUser: " + "UserName: " + getName() + " " + getPosition();
+        return "SingleUser: " + "UserName: " + name + " " + position;
     }
 }
