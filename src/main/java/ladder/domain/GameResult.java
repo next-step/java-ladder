@@ -3,28 +3,28 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class GameResult {
     private static final String SEPARATOR = ",";
 
     private List<GameReward> gameReward;
 
-    public GameResult(String userReward, int maxHeight) {
+    public GameResult(String userReward) {
         String[] namesOfReward = checkReward(splitName(userReward));
         gameReward = new ArrayList<>();
 
-        IntStream.range(0, namesOfReward.length)
-                .forEach(i -> {
-                    GameReward gameRewardElement = new GameReward(namesOfReward[i], maxHeight, i);
-                    gameReward.add(gameRewardElement);
-
-                });
+        for (int i = 0; i < namesOfReward.length; ++i) {
+            GameReward gameRewardElement = new GameReward(namesOfReward[i], i);
+            gameReward.add(gameRewardElement);
+        }
     }
 
-    public void run(LadderFactory ladderFactory, UserGroup userGroup) {
-//        IntStream.range(0, userGroup.getUserGroup().size()).
-//                forEach(i -> userGroup.playLadderGame(ladderFactory, makeLadderMapArr(ladderFactory), userGroup.getUserGroup().get(i).getName()));
+    public void run(List<LadderLine> ladder, UserGroup userGroup) {
+        ladder.stream()
+                .forEach(line -> {
+                    userGroup.getUserGroup().stream()
+                            .forEach(user -> user.playLadderGame(ladder));
+                });
 
         getResult(userGroup.getUserGroup());
     }
@@ -33,31 +33,11 @@ public class GameResult {
         return gameReward;
     }
 
-    public GameReward getResultofSingleUser(String user) {
-        return getgameReward().stream()
-                .filter(i -> i.getNameOfWinner().equals(user))
-                .findAny()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
     private void getResult(List<SingleUser> userGroup) {
-        IntStream.range(0, gameReward.size()).
-                forEach(i -> {
-                    gameReward.get(i).matchReward(userGroup);
-                });
+        for (int i = 0; i < userGroup.size(); ++i) {
+            gameReward.get(i).matchReward(userGroup);
+        }
     }
-
-//    // listArray를 array로 변환 (게임 결과 확인을 위해서)
-//    private Point[][] makeLadderMapArr(LadderFactory ladderFactory) {
-//        LadderLine[] ladderArr = ladderFactory.getLadder().toArray(new LadderLine[ladderFactory.getLadder().size()]);
-//        Point[][] map = new Point[ladderFactory.getLadder().size()][ladderFactory.getLadder().size()];
-//
-//        for (int i = 0; i < ladderArr.length; ++i) {
-//            map[i] = ladderArr[i].getPoints().toArray(new Point[ladderFactory.getLadder().size()]);
-//        }
-//
-//        return map;
-//    }
 
     private String[] splitName(String names) {
         return names.split(SEPARATOR);

@@ -1,26 +1,19 @@
 package ladder.domain;
 
 public class Point {
-    //    private Boolean point;
     private final int index;
     private final Direction direction;
 
-    public Point(int index, Direction direction) {
+    private Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;
     }
-
-//    public Point(boolean point) {
-//        this.point = point;
-//    }
 
     public static Point first(Boolean right) {
         return new Point(0, Direction.first(right));
     }
 
     public int move() {
-//        System.out.println("is left? " + direction.isLeft());
-//        System.out.println("is right? " + direction.isRight());
 
         if (direction.isRight()) {
             return index + 1;
@@ -49,6 +42,10 @@ public class Point {
         return direction;
     }
 
+    boolean compareUserPosition(Position position) {
+        return index == position.getIndex();
+    }
+
     @Override
     public String toString() {
         return "Point{" +
@@ -56,17 +53,6 @@ public class Point {
                 ", direction=" + direction +
                 '}';
     }
-
-
-//    public Boolean getPoint() {
-//        return point;
-//    }
-//
-//    public Point checkDuplicate(Point next){
-//        if(this.point== Boolean.TRUE && this.point.equals(next.point))
-//            return new Point(false);
-//        return next;
-//    }
 
     @Override
     public boolean equals(Object obj) {

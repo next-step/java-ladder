@@ -14,7 +14,7 @@ public class LadderLineTest {
     @Test
     @DisplayName("사다리 이동")
     public void move() {
-        LadderLine line = LadderLine.init(2);
+        LadderLine line = LadderLine.init(3);
         System.out.println("ladder result : " + line.move(0));
     }
 }

@@ -15,12 +15,12 @@ public class LadderGameMain {
         UserGroup userGroup = new UserGroup(userNames);
         LadderFactory ladderFactory = new LadderFactory(maxHeight, userGroup.getUserGroup().size());
 
-        GameResult result = new GameResult(userReward, maxHeight);
+        GameResult result = new GameResult(userReward);
         ResultView.printLadder(ladderFactory.getLadder(), userGroup, result);
-//
-//        String request = Inputview.requestResult();
-//        result.run(ladderFactory, userGroup);
-//        ResultView.showResult(request, result);
+
+        String request = Inputview.requestResult();
+        result.run(ladderFactory.getLadder(), userGroup);
+        ResultView.showResult(request, result);
 
     }
 }

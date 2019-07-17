@@ -7,11 +7,11 @@ import java.util.Random;
 public class LadderLine {
     private List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public static LadderLine init(int sizeOfPerson) {
+    static LadderLine init(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
         point = initBody(sizeOfPerson, points, point);

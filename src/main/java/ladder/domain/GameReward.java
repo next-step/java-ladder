@@ -5,21 +5,20 @@ import java.util.List;
 public class GameReward {
     private String nameReward;
     private String nameOfWinner;
-    private int row = 0;
-    private int col;
+    private int index;
 
-    GameReward(String name, int row, int col) {
+    GameReward(String name, int index) {
         this.nameReward = name;
-        this.row = row;
-        this.col = col;
+        this.index = index;
     }
 
     void matchReward(List<SingleUser> userGroup) {
-        userGroup.stream().forEach(user -> {
-            if (user.getPosition().matchRow(this.row) && user.getPosition().matchCol(this.col)) {
+        for (SingleUser user : userGroup) {
+            if (user.getPosition().matchIndex(this.index)) {
                 this.nameOfWinner = user.getName();
+                break;
             }
-        });
+        }
     }
 
     public String getNameOfWinner() {
@@ -30,4 +29,8 @@ public class GameReward {
         return nameReward;
     }
 
+    @Override
+    public String toString() {
+        return getNameOfWinner() + ": " + getNameReward();
+    }
 }

@@ -29,3 +29,7 @@
 * LadderLine 객체 
 1. 사다리 Line의 모든 Point 초기화
 2. 모든 Point 이동 
+
+* SingleUser 객체 
+1. 각 User의 이름과 현재 사다리 위치 정보를 가진다.
+2. 
