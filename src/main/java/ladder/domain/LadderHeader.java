@@ -23,7 +23,7 @@ class LadderHeader {
 		return this.getReachedGoal(playerEntry.getEntry(playerName));
 	}
 
-	private PlayerGoalPair getReachedGoal(PlayerRailPair player){
+	private PlayerGoalPair getReachedGoal(PlayerRailPair player) {
 		return new PlayerGoalPair(player.getPlayerName(), ladderBody.getResult(player.getRailNumber()));
 	}
 

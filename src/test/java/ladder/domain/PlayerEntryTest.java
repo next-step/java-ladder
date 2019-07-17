@@ -27,6 +27,7 @@ class PlayerEntryTest {
 				});
 	}
 
+	@DisplayName("빈값, null 추가시도")
 	@ParameterizedTest
 	@NullAndEmptySource
 	void appendNullOrEmpty(String playerName){
@@ -34,6 +35,19 @@ class PlayerEntryTest {
 		assertThatExceptionOfType(IllegalArgumentException.class)
 				.isThrownBy(() -> {
 					entry.append(playerName);
+				});
+	}
+
+	@DisplayName("중복이름 추가 시도")
+	@Test
+	void appendDuplicateName(){
+		String someName = "name";
+		PlayerEntry entry = new PlayerEntry();
+		entry.append(someName);
+
+		assertThatExceptionOfType(IllegalArgumentException.class)
+				.isThrownBy(() -> {
+					entry.append(someName);
 				});
 	}
 

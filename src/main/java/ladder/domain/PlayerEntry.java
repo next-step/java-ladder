@@ -21,7 +21,7 @@ class PlayerEntry {
 
 	public void append(String playerName){
 
-		if(playerName == null || playerName.isEmpty()){
+		if(playerName == null || playerName.trim().isEmpty()){
 			throw new IllegalArgumentException("참가자 이름은 필수이며 1글자 이상입니다.");
 		}
 
