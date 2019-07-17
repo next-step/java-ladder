@@ -3,13 +3,18 @@ package ladder;
 import java.util.Objects;
 
 public class Player {
+    public static final int PLAYER_NAME_MAX_LENGTH = 5;
     private String name;
 
     private Player(String name) {
-        if (name == null || name.isEmpty() || name.length() > 5) {
+        if (isBlankName(name) || name.length() > PLAYER_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException();
         }
         this.name = name;
+    }
+
+    private boolean isBlankName(String name) {
+        return name == null || name.isEmpty();
     }
 
     public static Player of(String name) {
@@ -21,7 +26,7 @@ public class Player {
     }
 
     public String getNamePad() {
-        String nameAddEmpty = this.name + " ".repeat(5);
+        String nameAddEmpty = this.name + " ".repeat(PLAYER_NAME_MAX_LENGTH);
         return nameAddEmpty.substring(0, 6);
     }
 

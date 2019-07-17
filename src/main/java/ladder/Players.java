@@ -28,4 +28,8 @@ public class Players {
         }
         throw new IllegalArgumentException();
     }
+
+    public Player getPlayer(int i) {
+        return this.players.get(i);
+    }
 }

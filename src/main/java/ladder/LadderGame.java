@@ -17,14 +17,14 @@ public class LadderGame {
     public ResultLadder startGame(String name) {
         int index = players.getIndex(name);
         int rank = ladder.runLadder(index);
-        return ResultLadder.of(players.getPlayers().get(index), prizes.getPrizes().get(rank));
+        return ResultLadder.of(players.getPlayer(index), prizes.getPrize(rank));
     }
 
     public List<ResultLadder> startGame() {
         List<ResultLadder> resultLadders = new ArrayList<>();
         for (int i = 0; i < players.getSize(); i++) {
             int rank = ladder.runLadder(i);
-            resultLadders.add(ResultLadder.of(players.getPlayers().get(i), prizes.getPrizes().get(rank)));
+            resultLadders.add(ResultLadder.of(players.getPlayer(i), prizes.getPrize(rank)));
         }
         return resultLadders;
     }

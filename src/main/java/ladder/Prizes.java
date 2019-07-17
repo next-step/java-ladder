@@ -18,4 +18,8 @@ public class Prizes {
     public List<Prize> getPrizes() {
         return prizes;
     }
+
+    public Prize getPrize(int rank) {
+        return prizes.get(rank);
+    }
 }

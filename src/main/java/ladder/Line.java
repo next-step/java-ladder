@@ -7,19 +7,34 @@ public class Line {
     private List<Point> points;
 
     public Line(int lineLength, PointMaker pointMaker) {
-        this.points = this.makePoints(lineLength, pointMaker);
+        this.points = new ArrayList<>();
+        this.makePoints(lineLength, pointMaker);
     }
 
-    private List<Point> makePoints(int lineCount, PointMaker pointMaker) {
-        List<Point> points = new ArrayList<>();
+    private void makePoints(int lineCount, PointMaker pointMaker) {
+        addFirstPoint(pointMaker);
+        addMidPoint(lineCount, pointMaker);
+        addLastPoint();
+    }
+
+    private void addLastPoint() {
+        this.points.add(lastPoint().last());
+    }
+
+    private void addMidPoint(int lineCount, PointMaker pointMaker) {
+        Point point = lastPoint();
+        for (int i = 0; i < lineCount - 2; i++) {
+            this.points.add(point.next(pointMaker));
+        }
+    }
+
+    private void addFirstPoint(PointMaker pointMaker) {
         Point point = Point.first(pointMaker);
         points.add(point);
-        for (int i = 0; i < lineCount - 2; i++) {
-            point = point.next(pointMaker);
-            points.add(point);
-        }
-        points.add(point.last());
-        return points;
+    }
+
+    public Point lastPoint() {
+        return this.points.get(points.size()-1);
     }
 
     public List<Point> getPoints() {
