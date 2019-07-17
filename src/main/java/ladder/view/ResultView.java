@@ -23,11 +23,9 @@ public class ResultView {
         // 생성 사다리 출력
         ladder.forEach(ladderLine -> {
             IntStream.range(0, userGroup.getUserGroup().size())
-                    .forEach(j -> {
-                        System.out.print(
-                                ladderLine.getPoints().get(j).getDirection().isRight()
-                                        ? LADDER_VERTICAL_LINE + LADDER_HORIZON_LINE : LADDER_VERTICAL_LINE + LADDER_BLANK);
-                    });
+                    .forEach(j -> System.out.print(
+                            ladderLine.getPoints().get(j).getDirection().isRight()
+                                    ? (LADDER_VERTICAL_LINE + LADDER_HORIZON_LINE) : (LADDER_VERTICAL_LINE + LADDER_BLANK)));
             System.out.println("\n");
         });
         // 실행 결과 리스트 출력
@@ -43,7 +41,7 @@ public class ResultView {
         if (request.equals("all")) {
             result.getgameReward().stream()
                     .sorted(Comparator.comparing(GameReward::getNameOfWinner))
-                    .forEach(i -> System.out.println(i));
+                    .forEach(System.out::println);
         } else {
             result.getgameReward().stream()
                     .filter(i -> i.getNameOfWinner().equals(request))
