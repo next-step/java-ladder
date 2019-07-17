@@ -19,6 +19,6 @@ public class GameResultTest {
         GameResult gameResult = new GameResult("100,0,200,500",4);
 
         gameResult.getResult(userGroup.getUserGroup());
-        assertThat(gameResult.getgameReward().get(0).getNameOfWinner()).isEqualTo(userGroup.getUserGroup().get(0).getName());
+        assertThat(gameResult.getGameReward().get(0).getNameOfWinner()).isEqualTo(userGroup.getUserGroup().get(0).getName());
     }
 }

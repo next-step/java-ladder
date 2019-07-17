@@ -39,7 +39,7 @@ public class SingleUser {
     }
 
     private static String checkName(String input) {
-        if (input.equals(LadderUtil.SEPARATOR_BLANK) || input.equals(LadderUtil.SEPARATOR_BLANK2) || input.equals(LadderUtil.SEPARATOR_ENTER) || input.length() > COUNT_OF_MAXIMUM_INPUT) {
+        if (input.equals(LadderUtil.SEPARATOR_BLANK.getValue()) || input.equals(LadderUtil.SEPARATOR_BLANK2.getValue()) || input.equals(LadderUtil.SEPARATOR_ENTER.getValue()) || input.length() > COUNT_OF_MAXIMUM_INPUT) {
             throw new IllegalArgumentException("이름이 잘못되었습니다. 다시 프로그램을 실행해주세요.");
         }
         return input;

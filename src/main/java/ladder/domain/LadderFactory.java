@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderFactory {
-    private List<LadderLine> ladder;
+    private final List<LadderLine> ladder;
 
     public LadderFactory(int maxHeight, int sizeOfUserGroup) {
         if(maxHeight <= 0){

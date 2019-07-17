@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserGroup {
-    private List<SingleUser> userGroup;
+    private final List<SingleUser> userGroup;
 
     public UserGroup(String name) {
         String[] namesOfUser = LadderUtil.splitName(name);

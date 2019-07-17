@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class LadderLine {
-    private List<Point> points;
+    private final List<Point> points;
 
     private LadderLine(List<Point> points) {
         this.points = points;

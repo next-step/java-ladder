@@ -6,13 +6,13 @@ public enum LadderUtil {
     SEPARATOR_BLANK2(" "),
     SEPARATOR_ENTER("\n");
 
-    private String value;
+    private final String value;
 
     LadderUtil(String value) {
         this.value = value;
     }
 
-    private String getValue() {
+    public String getValue() {
         return value;
     }
 

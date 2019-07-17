@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameResult {
-    private List<GameReward> gameReward;
+    private final List<GameReward> gameReward;
 
     public GameResult(String userReward, int sizeOfUserGroup) {
         String[] namesOfReward = checkReward(LadderUtil.splitName(userReward), sizeOfUserGroup);
@@ -25,7 +25,7 @@ public class GameResult {
         getResult(userGroup);
     }
 
-    public List<GameReward> getgameReward() {
+    public List<GameReward> getGameReward() {
         return gameReward;
     }
 
