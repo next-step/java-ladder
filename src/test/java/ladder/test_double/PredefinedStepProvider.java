@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.test_double;
+
+import ladder.domain.StepProvider;
 
 import java.util.LinkedList;
 import java.util.List;

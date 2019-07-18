@@ -3,16 +3,14 @@ package ladder;
 import ladder.view.in.ConsoleDialog;
 import ladder.view.in.InputDialog;
 import ladder.view.out.ConsoleRenderer;
-
-import java.util.Random;
+import ladder.view.out.MessageRenderer;
 
 public class GameRunner {
-
 	public static void main(String args[]) {
-		GameController controller = new GameController( new ConsoleRenderer());
-
 		InputDialog input = new ConsoleDialog();
-		Random random = new Random();
-		controller.ready(input, random::nextBoolean);
+		MessageRenderer renderer = new ConsoleRenderer();
+
+		GameController controller = new GameController(input, renderer);
+		controller.briefResult(input, renderer);
 	}
 }

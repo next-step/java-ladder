@@ -1,50 +1,123 @@
 package ladder.domain;
 
-import ladder.exception.DifferentRailCountException;
+import ladder.model.LadderNode;
+import ladder.model.PlayerGoalPair;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
-import java.util.stream.Stream;
+import java.util.Random;
 
 public class Ladder {
-	private List<HorizontalStepList> rows;
 
-	public Ladder(){
-		rows = new ArrayList<>();
+	private LadderHeader header;
+
+	private Ladder(Builder builder) {
+		/**
+		 * Builder 정보를 통해 생성한 사다리의 주요 구성요소를
+		 * 참조관계에 따라 체이닝
+		 * header <- body <- footer
+		 */
+
+		// goal in footer
+		LadderFooter footer = new LadderFooter(builder.goals);
+
+		// footer to body
+		LadderBody body = new LadderBody(builder.playerNames.size(),
+				builder.height,
+				builder.provider,
+				footer);
+
+		// body to header (player in header)
+		this.header = new LadderHeader(builder.playerNames, body);
 	}
 
-	public void addRow(HorizontalStepList row){
-		if(rows.size() > 0 && !rows.get(0).isAppendable(row)){
-			throw new DifferentRailCountException();
+	public List<LadderNode> getNodes() {
+		return this.header.getNodes();
+	}
+
+	public String getReachedGoal(String playerName) {
+		PlayerGoalPair result = this.header.getReachedGoal(playerName);
+		return result.getGoal();
+	}
+
+	public List<PlayerGoalPair> getResult() {
+		return this.header.getResult();
+	}
+
+	public static Builder builder() {
+		return new Builder();
+	}
+
+	public static class Builder {
+
+		private static final int LADDER_MIN_HEIGHT = 1;
+
+		private List<String> playerNames;
+
+		private List<String> goals;
+
+		private int height;
+
+		private StepProvider provider;
+
+		private Builder() {
+			height = LADDER_MIN_HEIGHT;
 		}
 
-		rows.add(row);
-	}
+		public Builder setPlayerNames(List<String> playerNames) {
+			this.playerNames = playerNames;
+			return this;
+		}
 
-	private void concat(Ladder ladder) {
-		ladder.rows.forEach(this::addRow);
-	}
+		public Builder setGoals(List<String> goals) {
+			this.goals = goals;
+			return this;
+		}
 
-	/**
-	 * 여러개의 HorizontalStep 개체를 합쳐 하나의 Ladder 개체로 반환하는 콜레터
-	 * @return
-	 */
-	public static Collector<HorizontalStepList, Ladder, Ladder> collector(){
-		return Collector.of(
-				Ladder::new,
-				Ladder::addRow,
-				(ladderA, ladderB) -> {
-					ladderA.concat(ladderB);
-					return ladderA;
-				}
-		);
-	}
+		/**
+		 * 사다리 높이, 지정하지 않을 경우 기본값 1
+		 *
+		 * @param height
+		 * @return
+		 */
+		public Builder setHeight(int height) {
+			this.height = height;
+			return this;
+		}
 
-	public Stream<HorizontalStepList> getRows(){
-		return Collections.unmodifiableList(rows).stream();
-	}
+		/**
+		 * 계단 설치여부 공급자
+		 *
+		 * @param provider
+		 * @return
+		 */
+		public Builder setStepProvider(StepProvider provider) {
+			this.provider = provider;
+			return this;
+		}
 
+		public Ladder build() {
+
+			if (playerNames == null) {
+				throw new IllegalStateException("참가자 목록은 반드시 지정되야 합니다.");
+			}
+
+			if (goals == null) {
+				throw new IllegalStateException("사다리 목표지점 정보가 없습니다.");
+			}
+
+			if (provider == null){
+				throw new IllegalStateException("사다리 계단 공급장치가 지정되지 않았습니다.");
+			}
+
+			if (playerNames.size() != goals.size()) {
+				throw new IllegalStateException("참자가 수와 목표지점 정보 개수가 일치하지 않습니다.");
+			}
+
+			if (height < LADDER_MIN_HEIGHT) {
+				throw new IllegalStateException(String.format("최소 사다리 높이는 %d입니다.", LADDER_MIN_HEIGHT));
+			}
+
+			return new Ladder(this);
+		}
+	}
 }

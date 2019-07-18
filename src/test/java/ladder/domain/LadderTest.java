@@ -1,50 +1,47 @@
 package ladder.domain;
 
-import ladder.exception.DifferentRailCountException;
+import ladder.RandomStepProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Random;
+import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
+	private List<String> playerNames = Arrays.asList("A", "B", "C");
+	private List<String> goals = Arrays.asList("10", "20", "30");
+	private StepProvider provider = new RandomStepProvider();
 
-
+	@DisplayName("최소 높이보다 낮게 지정된 경우")
 	@Test
-	void addRow() {
-		// Arrange
-		Ladder ladder = new Ladder();
+	void builderWithZeroHeight() {
+		Ladder.Builder builder = Ladder.builder()
+				.setPlayerNames(playerNames)
+				.setGoals(goals)
+				.setStepProvider(provider)
+				.setHeight(0);
 
-		HorizontalStepList rowOne = new HorizontalStepList(5, () -> new Random().nextBoolean());
-		ladder.addRow(rowOne);
 
-		HorizontalStepList rowTwo = new HorizontalStepList(5, () -> new Random().nextBoolean());
-		ladder.addRow(rowTwo);
+		assertThatExceptionOfType(IllegalStateException.class)
+			.isThrownBy(() -> builder.build());
 
-		assertThat(ladder.getRows().count()).isEqualTo(2);
 	}
 
-	@DisplayName("개수가 다른 가로열 추가 시도")
+	@DisplayName("최소 높이보다 낮게 지정된 경우")
 	@Test
-	void addRowWithDifferentRails() {
-		// Arrange
-		Ladder ladder = new Ladder();
+	void builderWithDifferentPlayerAndGoal() {
+		Ladder.Builder builder = Ladder.builder()
+				.setPlayerNames(playerNames)
+				.setGoals(Arrays.asList("one", "two"))
+				.setStepProvider(provider);
 
-		HorizontalStepList fiveRailsRow = new HorizontalStepList(5, () -> new Random().nextBoolean());
-		ladder.addRow(fiveRailsRow);
 
-		HorizontalStepList threeRailsRow = new HorizontalStepList(3, () -> new Random().nextBoolean());
+		assertThatExceptionOfType(IllegalStateException.class)
+			.isThrownBy(() -> builder.build());
 
-		// Action & Assertion
-		assertThatExceptionOfType(DifferentRailCountException.class)
-				.isThrownBy(() -> ladder.addRow(threeRailsRow));
-	}
-
-	private static StepProvider getPredefineStepProviderForFiveRails(){
-		return new PredefinedStepProvider(Arrays.asList(true, false, false, true));
 	}
 }

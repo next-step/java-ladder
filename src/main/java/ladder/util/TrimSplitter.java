@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class TrimSplitter {
 
-	public static List<String> split(String input, String separator){
+	public static List<String> split(String input, String separator) {
 		String[] tokens = Optional.ofNullable(input)
 				.orElse("")
 				.split(separator);
