@@ -3,23 +3,13 @@ package ladder.domain;
 import java.util.List;
 
 public class GameReward {
-    private String nameReward;
+    private final String nameReward;
     private String nameOfWinner;
-    private int row = 0;
-    private int col;
+    private final int index;
 
-    GameReward(String name, int row, int col) {
+    GameReward(String name, int index) {
         this.nameReward = name;
-        this.row = row;
-        this.col = col;
-    }
-
-    void matchReward(List<SingleUser> userGroup) {
-        userGroup.stream().forEach(user -> {
-            if (user.getPosition().matchRow(this.row) && user.getPosition().matchCol(this.col)) {
-                this.nameOfWinner = user.getName();
-            }
-        });
+        this.index = index;
     }
 
     public String getNameOfWinner() {
@@ -30,4 +20,17 @@ public class GameReward {
         return nameReward;
     }
 
+    void matchReward(List<SingleUser> userGroup) {
+        for (SingleUser user : userGroup) {
+            if (user.matchPosition(this.index)) {
+                this.nameOfWinner = user.getName();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return nameOfWinner + ": " + nameReward;
+    }
 }

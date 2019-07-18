@@ -1523,7 +1523,7 @@
     <parameters xmi:id="_aZuQs6FMEem9avTHtlaGsw" elementId="preferencePageId" name="Preference Page"/>
   </commands>
   <commands xmi:id="_aZuQtKFMEem9avTHtlaGsw" elementId="org.eclipse.m2e.sourcelookup.ui.openSourceLookupInfoDialog" commandName="Source Lookup Info" category="_aZrNa6FMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZuQtaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delimiter.unix" commandName="Convert Line Delimiters to Unix (LF, \n, 0A, &#xb6;)" description="Converts the line delimiters to Unix (LF, \n, 0A, &#xb6;)" category="_aZrNWqFMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZuQtaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delimiter.unix" commandName="Convert Line Delimiters to Unix (LF, \n, 0A, &#xb6;)" description="Converts the ladderLine delimiters to Unix (LF, \n, 0A, &#xb6;)" category="_aZrNWqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZuQtqFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.search.read.access.in.working.set" commandName="Read Access in Working Set" description="Search for read references to the selected element in a working set" category="_aZrNYKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZuQt6FMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.commit.Squash" commandName="Squash Commits" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZuQuKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.history.Edit" commandName="Edit Commit" category="_aZrNa6FMEem9avTHtlaGsw"/>
@@ -1536,14 +1536,14 @@
   <commands xmi:id="_aZu3taFMEem9avTHtlaGsw" elementId="org.eclipse.ant.ui.toggleMarkOccurrences" commandName="Toggle Ant Mark Occurrences" description="Toggles mark occurrences in Ant editors" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3tqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.views.properties.NewPropertySheetCommand" commandName="Properties" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3t6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.navigate.addToWorkingSet" commandName="Add to Working Set" description="Adds the selected object to a working set." category="_aZqmQqFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZu3uKFMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.RunToLine" commandName="Run to Line" description="Resume and break when execution reaches the current line" category="_aZrNYaFMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZu3uKFMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.RunToLine" commandName="Run to Line" description="Resume and break when execution reaches the current ladderLine" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3uaFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.Revert" commandName="Revert Commit" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3uqFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.junit.junitShortcut.debug" commandName="Debug JUnit Test" description="Debug JUnit Test" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3u6FMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.wikitext.ui.editor.showCheatSheetCommand" commandName="Show Markup Cheat Sheet" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3vKFMEem9avTHtlaGsw" elementId="org.eclipse.team.ui.TeamSynchronizingPerspective" commandName="Team Synchronizing" description="Open the Team Synchronizing Perspective" category="_aZrNZaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3vaFMEem9avTHtlaGsw" elementId="org.eclipse.ant.ui.open.declaration.command" commandName="Open Declaration" description="Opens the Ant editor on the referenced element" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3vqFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.RepositoriesViewPaste" commandName="Paste Repository Path or URI" category="_aZrNZKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZu3v6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.showChangeRulerInformation" commandName="Show Quick Diff Ruler Tooltip" description="Displays quick diff or revision information for the caret line in a focused hover" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZu3v6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.showChangeRulerInformation" commandName="Show Quick Diff Ruler Tooltip" description="Displays quick diff or revision information for the caret ladderLine in a focused hover" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3wKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.upperCase" commandName="To Upper Case" description="Changes the selection to upper case" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3waFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.ConfigureFetch" commandName="Configure Upstream Fetch" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3wqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.navigate.goInto" commandName="Go Into" description="Navigate into the selected item" category="_aZrNVqFMEem9avTHtlaGsw"/>
@@ -1558,7 +1558,7 @@
   <commands xmi:id="_aZu3y6FMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.context.ui.commands.task.clearContext" commandName="Clear Context" category="_aZrNVKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3zKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.Untrack" commandName="Untrack" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZu3zaFMEem9avTHtlaGsw" elementId="org.eclipse.wst.sse.ui.add.block.comment" commandName="Add Block Comment" description="Add Block Comment" category="_aZqmQqFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZu3zqFMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.ToggleLineBreakpoint" commandName="Toggle Line Breakpoint" description="Creates or removes a line breakpoint" category="_aZrNYaFMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZu3zqFMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.ToggleLineBreakpoint" commandName="Toggle Line Breakpoint" description="Creates or removes a ladderLine breakpoint" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZvewKFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.ui.command.searchForTask" commandName="Search Repository for Task" category="_aZrNVqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZvewaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.window.showSystemMenu" commandName="Show System Menu" description="Show the system menu" category="_aZrNXKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZvewqFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.debug.ui.commands.AllInstances" commandName="All Instances" description="View all instances of the selected type loaded in the target VM" category="_aZrNYaFMEem9avTHtlaGsw"/>
@@ -1618,7 +1618,7 @@
   <commands xmi:id="_aZwF6KFMEem9avTHtlaGsw" elementId="org.eclipse.eclemma.ui.dumpExecutionData" commandName="Dump Execution Data" category="_aZrNWaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZwF6aFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.RepositoriesViewRemove" commandName="Remove Repository" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZwF6qFMEem9avTHtlaGsw" elementId="org.eclipse.ant.ui.openExternalDoc" commandName="Open External Documentation" description="Open the External documentation for the current task in the Ant editor" category="_aZrNaKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZwF66FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.cut.line.to.beginning" commandName="Cut to Beginning of Line" description="Cut to the beginning of a line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZwF66FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.cut.ladderLine.to.beginning" commandName="Cut to Beginning of Line" description="Cut to the beginning of a ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZwF7KFMEem9avTHtlaGsw" elementId="org.eclipse.buildship.ui.commands.runtasks" commandName="Run Gradle Tasks" description="Runs all the selected Gradle tasks" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZwF7aFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.toggleBreadcrumb" commandName="Toggle Java Editor Breadcrumb" description="Toggle the Java editor breadcrumb" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZws4KFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.RepositoriesViewCreateRepository" commandName="Create a Repository" category="_aZrNZKFMEem9avTHtlaGsw"/>
@@ -1670,7 +1670,7 @@
   <commands xmi:id="_aZxUAKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.navigate.backwardHistory" commandName="Backward History" description="Move backward in the editor navigation history" category="_aZrNVqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZxUAaFMEem9avTHtlaGsw" elementId="org.eclipse.eclemma.ui.workbenchShortcut.coverage" commandName="Coverage Eclipse Application" description="Coverage Eclipse Application" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZxUAqFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.Pull" commandName="Pull" category="_aZrNZKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZxUA6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.removeTrailingWhitespace" commandName="Remove Trailing Whitespace" description="Removes the trailing whitespace of each line" category="_aZrNWqFMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZxUA6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.removeTrailingWhitespace" commandName="Remove Trailing Whitespace" description="Removes the trailing whitespace of each ladderLine" category="_aZrNWqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZxUBKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.findIncremental" commandName="Incremental Find" description="Incremental find" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZxUBaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.swap.mark" commandName="Swap Mark" description="Swap the mark with the cursor position" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZxUBqFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.correction.addCast" commandName="Quick Fix - Add cast" description="Invokes quick assist and selects 'Add cast'" category="_aZrNaKFMEem9avTHtlaGsw"/>
@@ -1692,7 +1692,7 @@
   <commands xmi:id="_aZxUFqFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.RepositoriesViewNewRemote" commandName="Create Remote..." category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZxUF6FMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.Restart" commandName="Restart" description="Restart a process or debug target without terminating and re-launching" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZxUGKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.stash.drop" commandName="Delete Stashed Commit..." category="_aZrNZKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZx7AKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delete.line" commandName="Delete Line" description="Delete a line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZx7AKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delete.ladderLine" commandName="Delete Line" description="Delete a ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZx7AaFMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.DebugPerspective" commandName="Debug" description="Open the debug perspective" category="_aZrNZaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZx7AqFMEem9avTHtlaGsw" elementId="org.eclipse.tips.ide.command.open" commandName="Tip of the Day" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZx7A6FMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.specific_content_assist.command" commandName="Content Assist" description="A parameterizable command that invokes content assist with a single completion proposal category" category="_aZqmQqFMEem9avTHtlaGsw">
@@ -1712,7 +1712,7 @@
     <parameters xmi:id="_aZx7EKFMEem9avTHtlaGsw" elementId="elementRef" name="Java element reference" typeId="org.eclipse.jdt.ui.commands.javaElementReference" optional="false"/>
   </commands>
   <commands xmi:id="_aZx7EaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.file.closeOthers" commandName="Close Others" description="Close all editors except the one that is active" category="_aZrNWqFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZx7EqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.editors.quickdiff.revertLine" commandName="Revert Line" description="Revert the current line" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZx7EqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.editors.quickdiff.revertLine" commandName="Revert Line" description="Revert the current ladderLine" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZx7E6FMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.OpenDebugConfigurations" commandName="Debug..." description="Open debug launch configuration dialog" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZx7FKFMEem9avTHtlaGsw" elementId="org.eclipse.oomph.setup.editor.performDropdown" commandName="Perform Dropdown" category="_aZrNUqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZx7FaFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.SimpleFetch" commandName="Fetch from Upstream" category="_aZrNZKFMEem9avTHtlaGsw"/>
@@ -1744,7 +1744,7 @@
   <commands xmi:id="_aZyiEqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.help.helpContents" commandName="Help Contents" description="Open the help contents" category="_aZrNXqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiE6FMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.Reset" commandName="Reset..." category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiFKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.delete" commandName="Delete" description="Delete the selection" category="_aZqmQqFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZyiFaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delete.line.to.beginning" commandName="Delete to Beginning of Line" description="Delete to the beginning of a line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZyiFaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delete.ladderLine.to.beginning" commandName="Delete to Beginning of Line" description="Delete to the beginning of a ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiFqFMEem9avTHtlaGsw" elementId="org.eclipse.search.ui.performTextSearchWorkspace" commandName="Find Text in Workspace" description="Searches the files in the workspace for specific text." category="_aZrNYKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiF6FMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.RenameBranch" commandName="Rename Branch..." category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiGKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.Synchronize" commandName="Synchronize" category="_aZrNZKFMEem9avTHtlaGsw"/>
@@ -1758,7 +1758,7 @@
   <commands xmi:id="_aZyiIKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.addBookmark" commandName="Add Bookmark" description="Add a bookmark" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiIaFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.ui.command.openTask" commandName="Open Task" category="_aZrNVqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiIqFMEem9avTHtlaGsw" elementId="org.eclipse.wst.xsd.ui.refactor.rename.element" commandName="&amp;Rename XSD element" description="Rename XSD element" category="_aZqmQqFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZyiI6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.scroll.lineUp" commandName="Scroll Line Up" description="Scroll up one line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZyiI6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.scroll.lineUp" commandName="Scroll Line Up" description="Scroll up one ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiJKFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.select.last" commandName="Restore Last Selection" description="Restore last selection" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiJaFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.java.ui.editor.folding.auto" commandName="Toggle Active Folding" description="Toggle Active Folding" category="_aZrNV6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZyiJqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.set.mark" commandName="Set Mark" description="Set the mark" category="_aZrNU6FMEem9avTHtlaGsw"/>
@@ -1783,7 +1783,7 @@
   <commands xmi:id="_aZzJI6FMEem9avTHtlaGsw" elementId="org.eclipse.eclemma.ui.selectRootElements" commandName="Select Root Elements" category="_aZrNWaFMEem9avTHtlaGsw">
     <parameters xmi:id="_aZzJJKFMEem9avTHtlaGsw" elementId="type" name="type" optional="false"/>
   </commands>
-  <commands xmi:id="_aZzJJaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delimiter.windows" commandName="Convert Line Delimiters to Windows (CRLF, \r\n, 0D0A, &#xa4;&#xb6;)" description="Converts the line delimiters to Windows (CRLF, \r\n, 0D0A, &#xa4;&#xb6;)" category="_aZrNWqFMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZzJJaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delimiter.windows" commandName="Convert Line Delimiters to Windows (CRLF, \r\n, 0D0A, &#xa4;&#xb6;)" description="Converts the ladderLine delimiters to Windows (CRLF, \r\n, 0D0A, &#xa4;&#xb6;)" category="_aZrNWqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZzJJqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.findNext" commandName="Find Next" description="Find next item" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZzJJ6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.window.hidetrimbars" commandName="Toggle visibility of the window toolbars" description="Toggle the visibility of the toolbars of the current window" category="_aZrNXKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZzJKKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.project.buildAutomatically" commandName="Build Automatically" description="Toggle the workspace build automatically function" category="_aZrNX6FMEem9avTHtlaGsw"/>
@@ -1854,11 +1854,11 @@
   <commands xmi:id="_aZ0-XaFMEem9avTHtlaGsw" elementId="org.eclipse.wst.sse.ui.structure.select.last" commandName="Restore Last Selection" description="Restore last selection" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ0-XqFMEem9avTHtlaGsw" elementId="org.eclipse.search.ui.performTextSearchWorkingSet" commandName="Find Text in Working Set" description="Searches the files in the working set for specific text." category="_aZrNYKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ0-X6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.wordNext" commandName="Next Word" description="Go to the next word" category="_aZrNU6FMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ0-YKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.cut.line" commandName="Cut Line" description="Cut a line of text, or multiple lines when invoked again without interruption" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ0-YKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.cut.ladderLine" commandName="Cut Line" description="Cut a ladderLine of text, or multiple lines when invoked again without interruption" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ0-YaFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.builds.ui.command.NewTaskFromBuild" commandName="New Task From Build" category="_aZrNUKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ0-YqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.folding.expand_all" commandName="Expand All" description="Expands all folded regions" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ0-Y6FMEem9avTHtlaGsw" elementId="org.eclipse.wst.xsd.ui.refactor.makeElementGlobal" commandName="Make Local Element &amp;Global" description="Promotes local element to global level and replaces its references" category="_aZqmQqFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ0-ZKFMEem9avTHtlaGsw" elementId="org.eclipse.quickdiff.toggle" commandName="Quick Diff Toggle" description="Toggles quick diff information display on the line number ruler" category="_aZqmQqFMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ0-ZKFMEem9avTHtlaGsw" elementId="org.eclipse.quickdiff.toggle" commandName="Quick Diff Toggle" description="Toggles quick diff information display on the ladderLine number ruler" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ0-ZaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.deleteNext" commandName="Delete Next" description="Delete the next character" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ2zgKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.FetchGerritChange" commandName="Fetch From Gerrit" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ2zgaFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.correction.encapsulateField.assist" commandName="Quick Assist - Create getter/setter for field" description="Invokes quick assist and selects 'Create getter/setter for field'" category="_aZrNaKFMEem9avTHtlaGsw"/>
@@ -1929,7 +1929,7 @@
   <commands xmi:id="_aZ3aoKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.Rebase" commandName="Rebase on" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3aoaFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.ui.command.previousTask" commandName="Previous Task Command" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3aoqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.file.properties" commandName="Properties" description="Display the properties of the selected item" category="_aZrNWqFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ3ao6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.showRulerAnnotationInformation" commandName="Show Ruler Annotation Tooltip" description="Displays annotation information for the caret line in a focused hover" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ3ao6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.showRulerAnnotationInformation" commandName="Show Ruler Annotation Tooltip" description="Displays annotation information for the caret ladderLine in a focused hover" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3apKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.ReplaceWithHead" commandName="Replace with HEAD revision" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3apaFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.correction.renameInFile.assist" commandName="Quick Assist - Rename in file" description="Invokes quick assist and selects 'Rename in file'" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3apqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.browser.openBrowser" commandName="Open Browser" description="Opens the default web browser." category="_aZrNXKFMEem9avTHtlaGsw">
@@ -1973,7 +1973,7 @@
   <commands xmi:id="_aZ3ayqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.navigate.removeFromWorkingSet" commandName="Remove From Working Set" description="Removes the selected object from a working set." category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3ay6FMEem9avTHtlaGsw" elementId="sed.tabletree.expandAll" commandName="Expand All" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3azKFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.modify.method.parameters" commandName="Change Method Signature" description="Change method signature includes parameter names and parameter order" category="_aZrNXaFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ3azaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delete.line.to.end" commandName="Delete to End of Line" description="Delete to the end of a line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ3azaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.delete.ladderLine.to.end" commandName="Delete to End of Line" description="Delete to the end of a ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3azqFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.ui.command.openSelectedTask" commandName="Open Selected Task" category="_aZrNVaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3az6FMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.RepositoriesLinkWithSelection" commandName="Link with Selection" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ3a0KFMEem9avTHtlaGsw" elementId="org.eclipse.eclemma.ui.mergeSessions" commandName="Merge Sessions" category="_aZrNWaFMEem9avTHtlaGsw"/>
@@ -1996,20 +1996,20 @@
     <parameters xmi:id="_aZ4BsKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.perspectives.showPerspective.newWindow" name="In New Window"/>
   </commands>
   <commands xmi:id="_aZ4BsaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.window.openEditorDropDown" commandName="Quick Switch Editor" description="Open the editor drop down list" category="_aZrNXKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ4BsqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.line" commandName="Go to Line" description="Go to a specified line of text" category="_aZrNVqFMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ4BsqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.ladderLine" commandName="Go to Line" description="Go to a specified ladderLine of text" category="_aZrNVqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4Bs6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.editors.quickdiff.revert" commandName="Revert Lines" description="Revert the current selection, block or deleted lines" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BtKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.deleteNextWord" commandName="Delete Next Word" description="Delete the next word" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BtaFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.debug.ui.javaAppletShortcut.debug" commandName="Debug Java Applet" description="Debug Java Applet" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BtqFMEem9avTHtlaGsw" elementId="org.eclipse.wst.xml.ui.gotoMatchingTag" commandName="Matching Tag" description="Go to Matching Tag" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4Bt6FMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.toggleMarkOccurrences" commandName="Toggle Mark Occurrences" description="Toggles mark occurrences in Java editors" category="_aZrNaKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ4BuKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.lineUp" commandName="Select Line Up" description="Extend the selection to the previous line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ4BuKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.lineUp" commandName="Select Line Up" description="Extend the selection to the previous ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BuaFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.SkipRebase" commandName="Skip commit and continue" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BuqFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.replace.invocations" commandName="Replace Invocations" description="Replace invocations of the selected method" category="_aZrNXaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4Bu6FMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.search.declarations.in.hierarchy" commandName="Declaration in Hierarchy" description="Search for declarations of the selected element in its hierarchy" category="_aZrNYKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BvKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.history.SetQuickdiffBaseline" commandName="Set quickdiff baseline" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BvaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.undo" commandName="Undo" description="Undo the last operation" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BvqFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.submodule.add" commandName="Add Submodule" category="_aZrNZKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ4Bv6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.cut.line.to.end" commandName="Cut to End of Line" description="Cut to the end of a line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ4Bv6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.cut.ladderLine.to.end" commandName="Cut to End of Line" description="Cut to the end of a ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BwKFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.correction.convertAnonymousToLocal.assist" commandName="Quick Assist - Convert anonymous to local class" description="Invokes quick assist and selects 'Convert anonymous to local class'" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BwaFMEem9avTHtlaGsw" elementId="org.eclipse.compare.copyLeftToRight" commandName="Copy from Left to Right" description="Copy Current Change from Left to Right" category="_aZrNW6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4BwqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.file.newQuickMenu" commandName="New menu" description="Open the New menu" category="_aZrNWqFMEem9avTHtlaGsw"/>
@@ -2061,14 +2061,14 @@
   <commands xmi:id="_aZ4oyKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.ide.copyConfigCommand" commandName="Copy Configuration Data To Clipboard" description="Copies the configuration data (system properties, installed bundles, etc) to the clipboard." category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4oyaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.folding.collapse" commandName="Collapse" description="Collapses the folded region at the current selection" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4oyqFMEem9avTHtlaGsw" elementId="org.eclipse.epp.mpc.ui.command.showFavorites" commandName="Eclipse Marketplace Favorites" description="Open Marketplace Favorites" category="_aZrNa6FMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ4oy6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.smartEnterInverse" commandName="Insert Line Above Current Line" description="Adds a new line above the current line" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ4oy6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.smartEnterInverse" commandName="Insert Line Above Current Line" description="Adds a new ladderLine above the current ladderLine" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4ozKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.navigate.forwardHistory" commandName="Forward History" description="Move forward in the editor navigation history" category="_aZrNVqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4ozaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.window.spy" commandName="Show Contributing Plug-in" description="Shows contribution information for the currently selected element" category="_aZrNXKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4ozqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.help.helpSearch" commandName="Help Search" description="Open the help search" category="_aZrNXqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4oz6FMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.infer.type.arguments" commandName="Infer Generic Type Arguments" description="Infer type arguments for references to generic classes and remove unnecessary casts" category="_aZrNXaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4o0KFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.builds.ui.command.ShowTestResults.url" commandName="Show Test Results" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4o0aFMEem9avTHtlaGsw" elementId="org.eclipse.search.ui.performTextSearchProject" commandName="Find Text in Project" description="Searches the files in the project for specific text." category="_aZrNYKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ4o0qFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.lineDown" commandName="Line Down" description="Go down one line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ4o0qFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.lineDown" commandName="Line Down" description="Go down one ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4o06FMEem9avTHtlaGsw" elementId="org.eclipse.ui.project.rebuildAll" commandName="Rebuild All" description="Rebuild all projects" category="_aZrNX6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4o1KFMEem9avTHtlaGsw" elementId="org.eclipse.m2e.actions.LifeCycleClean.run" commandName="Run Maven Clean" description="Run Maven Clean" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4o1aFMEem9avTHtlaGsw" elementId="org.eclipse.gef.zoom_in" commandName="Zoom In" description="Zoom In" category="_aZrNZ6FMEem9avTHtlaGsw"/>
@@ -2096,7 +2096,7 @@
     <parameters xmi:id="_aZ4o66FMEem9avTHtlaGsw" elementId="cancelReturns" name="Return Value on Cancel"/>
   </commands>
   <commands xmi:id="_aZ4o7KFMEem9avTHtlaGsw" elementId="org.eclipse.ui.genericeditor.findReferences" commandName="Find References" description="Find other code items referencing the current selected item." category="_aZrNa6FMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ4o7aFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.lineEnd" commandName="Line End" description="Go to the end of the line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ4o7aFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.lineEnd" commandName="Line End" description="Go to the end of the ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4o7qFMEem9avTHtlaGsw" elementId="org.eclipse.ui.file.refresh" commandName="Refresh" description="Refresh the selected items" category="_aZrNWqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4o76FMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.RepositoriesViewChangeCredentials" commandName="Change Credentials" category="_aZrNZKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ4o8KFMEem9avTHtlaGsw" elementId="org.eclipse.wst.xml.ui.referencedFileErrors" commandName="Show Details..." description="Show Details..." category="_aZrNa6FMEem9avTHtlaGsw"/>
@@ -2108,10 +2108,10 @@
   <commands xmi:id="_aZ5PxaFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.debug.ui.command.OpenFromClipboard" commandName="Open from Clipboard" description="Opens a Java element or a Java stack trace from clipboard" category="_aZrNVqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ5PxqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.deletePrevious" commandName="Delete Previous" description="Delete the previous character" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ5Px6FMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.ui.command.disconnected" commandName="Disconnected" category="_aZrNa6FMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ5PyKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.lineStart" commandName="Select Line Start" description="Select to the beginning of the line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ5PyKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.lineStart" commandName="Select Line Start" description="Select to the beginning of the ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ5PyaFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.commit.Reword" commandName="Reword Commit" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ5PyqFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.team.CompareWithPrevious" commandName="Compare with Previous Revision" category="_aZrNZKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ5Py6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.editors.lineNumberToggle" commandName="Show Line Numbers" description="Toggle display of line numbers" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ5Py6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.editors.lineNumberToggle" commandName="Show Line Numbers" description="Toggle display of ladderLine numbers" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ5PzKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.columnNext" commandName="Select Next Column" description="Select the next column" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ5PzaFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.search.read.access.in.workspace" commandName="Read Access in Workspace" description="Search for read references to the selected element in the workspace" category="_aZrNYKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ5PzqFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.index.ui.command.ResetIndex" commandName="Refresh Search Index" category="_aZrNVaFMEem9avTHtlaGsw"/>
@@ -2126,7 +2126,7 @@
     <parameters xmi:id="_aZ7E96FMEem9avTHtlaGsw" elementId="org.eclipse.ui.ide.showInSystemExplorer.path" name="Resource System Path Parameter"/>
   </commands>
   <commands xmi:id="_aZ7E-KFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.ui.command.new.local.task" commandName="New Local Task" category="_aZrNVaFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ7E-aFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.lineDown" commandName="Select Line Down" description="Extend the selection to the next line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ7E-aFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.lineDown" commandName="Select Line Down" description="Extend the selection to the next ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ7E-qFMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.RemoveAllBreakpoints" commandName="Remove All Breakpoints" description="Removes all breakpoints" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ7E-6FMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.sort.members" commandName="Sort Members" description="Sort all members using the member order preference" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ7E_KFMEem9avTHtlaGsw" elementId="org.eclipse.ui.navigator.resources.nested.changeProjectPresentation" commandName="P&amp;rojects Presentation" category="_aZrNa6FMEem9avTHtlaGsw">
@@ -2156,12 +2156,12 @@
   <commands xmi:id="_aZ86KaFMEem9avTHtlaGsw" elementId="org.eclipse.team.ui.applyPatch" commandName="Apply Patch..." description="Apply a patch to one or more workspace projects." category="_aZqmQKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ86KqFMEem9avTHtlaGsw" elementId="org.eclipse.buildship.ui.commands.rundefaulttasks" commandName="Run Gradle Default Tasks" description="Runs the default tasks of the selected Gradle project" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ86K6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.help.tipsAndTricksAction" commandName="Tips and Tricks" description="Open the tips and tricks help page" category="_aZrNXqFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ86LKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.lineEnd" commandName="Select Line End" description="Select to the end of the line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ86LKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.lineEnd" commandName="Select Line End" description="Select to the end of the ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ86LaFMEem9avTHtlaGsw" elementId="org.eclipse.eclemma.ui.removeActiveSession" commandName="Remove Active Session" category="_aZrNWaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ86LqFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.format" commandName="Format" description="Format the selected text" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ86L6FMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.ui.command.markTaskRead" commandName="Mark Task Read" category="_aZrNVaFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ86MKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.smartEnter" commandName="Insert Line Below Current Line" description="Adds a new line below the current line" category="_aZrNU6FMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ86MaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.lineStart" commandName="Line Start" description="Go to the start of the line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ86MKFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.smartEnter" commandName="Insert Line Below Current Line" description="Adds a new ladderLine below the current ladderLine" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ86MaFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.lineStart" commandName="Line Start" description="Go to the start of the ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ86MqFMEem9avTHtlaGsw" elementId="org.eclipse.oomph.setup.editor.synchronizePreferences" commandName="Synchronize Preferences" category="_aZrNUqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ86M6FMEem9avTHtlaGsw" elementId="org.eclipse.wst.xml.ui.cmnd.contentmodel.sych" commandName="Synch" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ86NKFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.RepositoriesViewConfigureBranch" commandName="Configure Branch" category="_aZrNZKFMEem9avTHtlaGsw"/>
@@ -2227,7 +2227,7 @@
   <commands xmi:id="_aZ_9gqFMEem9avTHtlaGsw" elementId="org.eclipse.oomph.setup.editor.perform" commandName="Perform Setup Tasks" category="_aZrNUqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ_9g6FMEem9avTHtlaGsw" elementId="org.eclipse.ui.help.installationDialog" commandName="Installation Information" description="Open the installation dialog" category="_aZrNXqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ_9hKFMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.ToggleStepFilters" commandName="Use Step Filters" description="Toggles enablement of debug step filters" category="_aZrNYaFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aZ_9haFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.lineUp" commandName="Line Up" description="Go up one line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aZ_9haFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.lineUp" commandName="Line Up" description="Go up one ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ_9hqFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.goto.windowStart" commandName="Window Start" description="Go to the start of the window" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ_9h6FMEem9avTHtlaGsw" elementId="org.eclipse.buildship.ui.commands.addbuildshipnature" commandName="Add Gradle Nature" description="Adds the Gradle nature and synchronizes this project as if the Gradle Import wizard had been run on its location." category="_aZqmRaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aZ_9iKFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.correction.addBlock.assist" commandName="Quick Assist - Replace statement with block" description="Invokes quick assist and selects 'Replace statement with block'" category="_aZrNaKFMEem9avTHtlaGsw"/>
@@ -2333,14 +2333,14 @@
   <commands xmi:id="_aaDA16FMEem9avTHtlaGsw" elementId="org.eclipse.compare.copyRightToLeft" commandName="Copy from Right to Left" description="Copy Current Change from Right to Left" category="_aZrNW6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA2KFMEem9avTHtlaGsw" elementId="org.eclipse.debug.ui.commands.OpenProfileConfigurations" commandName="Profile..." description="Open profile launch configuration dialog" category="_aZrNYaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA2aFMEem9avTHtlaGsw" elementId="org.eclipse.ui.ide.markCompleted" commandName="Mark Completed" description="Mark the selected tasks as completed" category="_aZrNa6FMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aaDA2qFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.recenter" commandName="Recenter" description="Scroll cursor line to center, top and bottom" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aaDA2qFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.recenter" commandName="Recenter" description="Scroll cursor ladderLine to center, top and bottom" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA26FMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.add.unimplemented.constructors" commandName="Generate Constructors from Superclass" description="Evaluate and add constructors from superclass" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA3KFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.builds.ui.commands.OpenBuildElementWithBrowser.url" commandName="Open Build with Browser" category="_aZrNa6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA3aFMEem9avTHtlaGsw" elementId="org.eclipse.mylyn.tasks.ui.command.markTaskComplete" commandName="Mark Task Complete" category="_aZrNVaFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA3qFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.select.windowStart" commandName="Select Window Start" description="Select to the start of the window" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA36FMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.source.quickMenu" commandName="Show Source Quick Menu" description="Shows the source quick menu" category="_aZrNaKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA4KFMEem9avTHtlaGsw" elementId="org.eclipse.jdt.ui.edit.text.java.search.declarations.in.project" commandName="Declaration in Project" description="Search for declarations of the selected element in the enclosing project" category="_aZrNYKFMEem9avTHtlaGsw"/>
-  <commands xmi:id="_aaDA4aFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.scroll.lineDown" commandName="Scroll Line Down" description="Scroll down one line of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
+  <commands xmi:id="_aaDA4aFMEem9avTHtlaGsw" elementId="org.eclipse.ui.edit.text.scroll.lineDown" commandName="Scroll Line Down" description="Scroll down one ladderLine of text" category="_aZrNU6FMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA4qFMEem9avTHtlaGsw" elementId="org.eclipse.wst.sse.ui.search.find.occurrences" commandName="Occurrences in File" description="Find occurrences of the selection in the file" category="_aZqmQqFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA46FMEem9avTHtlaGsw" elementId="org.eclipse.ui.ToggleCoolbarAction" commandName="Toggle Main Toolbar Visibility" description="Toggles the visibility of the window toolbar" category="_aZrNXKFMEem9avTHtlaGsw"/>
   <commands xmi:id="_aaDA5KFMEem9avTHtlaGsw" elementId="org.eclipse.egit.ui.RepositoriesViewImportProjects" commandName="Import Projects..." description="Import or create in local Git repository" category="_aZrNZKFMEem9avTHtlaGsw"/>

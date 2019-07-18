@@ -3,24 +3,24 @@ package ladder.controller;
 import ladder.domain.GameResult;
 import ladder.domain.LadderFactory;
 import ladder.domain.UserGroup;
-import ladder.view.Inputview;
+import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderGameMain {
     public static void main(String[] args) {
-        String userNames = Inputview.inputUserName();
-        String userReward = Inputview.inputUserReward();
-        int maxHeight = Inputview.inputLadderMaxHeight();
+        String userNames = InputView.inputUserName();
+        String userReward = InputView.inputUserReward();
+        int maxHeight = InputView.inputLadderMaxHeight();
 
         UserGroup userGroup = new UserGroup(userNames);
-        LadderFactory ladderFactory = new LadderFactory(maxHeight, userGroup.getUserGroup().size());
+        int sizeOfUserGroup = userGroup.getUserGroup().size();
+        LadderFactory ladderFactory = new LadderFactory(maxHeight, sizeOfUserGroup);
 
-        GameResult result = new GameResult(userReward, maxHeight);
-        ResultView.printLadder(ladderFactory, userGroup, result);
+        GameResult result = new GameResult(userReward, sizeOfUserGroup);
+        ResultView.printLadder(ladderFactory.getLadder(), userGroup.getUserGroup(), result);
 
-        String request = Inputview.requestResult();
-        result.run(ladderFactory, userGroup);
+        String request = InputView.requestResult();
+        result.run(ladderFactory.getLadder(), userGroup.getUserGroup());
         ResultView.showResult(request, result);
-
     }
 }

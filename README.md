@@ -8,11 +8,33 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
-# 사다리 (생성)
+# 사다리 (리펙토링)
 ## 구현 기능 
-*  User 객체 
-- 사용자 이름 유효성 체크 
-*  LadderGame/Line 객체 
-*  사용자 입력
-- 입력 문자 유효성 체크, , 파싱 유효 체크 
-* 결과 출력 
+*  Direction 객체 
+1. 각 Point의 좌/우 방향 정보를 가진다. 
+2. 현재 Point에서 다음 Point를 생성하는 역활  
+3. 초기화 함수: 포인트(left,right) 값을 세팅/ 단, left,right 값은 동시에 TRUE가 될 수가 없다.
+4. first 함수: 첫 번째 Point의 left 값을 FALSE로 설정
+5. last 함수: 마지막 point의 right 값을 FALSE로 설정
+6. next 함수: 마지막 right값에 따라서 TRUE -> FALSE/ FALSE -> RANDOM값 생성
+
+* Point 객체 
+1. LadderLine에서 위치와 각 점의 방향을 관리
+2. Point 객체 초기값 설정 
+3. 직진 기능: 첫번째 Point의 right값이 FALSE -> 다음 Point의 right값이 FALSE
+4. 왼쪽 이동: 첫번째 Point의 right값이 TRUE ->  다음 Point의 right값이 FALSE 
+5. 오른쪽 이동: 첫번째 Point의 right값이 FALSE ->  다음 Point의 right값이 TRUE
+6. 인근 Point의 right값은 동시에 TRUE값이 될 수 없음. (둘다 FALSE 가능)
+
+* LadderLine 객체 
+1. 사다리 Line의 모든 Point 초기화
+2. 모든 Point 이동 
+
+* SingleUser 객체 
+1. 각 User의 이름과 현재 사다리 위치 정보를 가진다.
+2. 각 유저의 LadderGame을 진행하여, 해당 결과를 반복적으로 업데이트 한다. 
+
+* GameResult 객체 
+1. GameReward 정보 및 LadderGame 진행 및 결과를 관리한다. 
+2. 게임 진행 후, User와 Reward를 매칭한다. 
+3. 유효성 체크: GameReward 숫자와 userGroup 숫자 일치 여부 

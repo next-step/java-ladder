@@ -1,56 +1,26 @@
 package ladder.domain;
 
 public class Position {
-    private int row = 0;
-    private int col;
+    private int index;
 
     Position(int startPos) {
-        this.col = startPos;
+        index = startPos;
+    }
+
+    int getIndex() {
+        return index;
+    }
+
+    boolean matchIndex(int index) {
+        return this.index == index;
+    }
+
+    void updateIndex(int move) {
+        this.index = move;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Position other = (Position) obj;
-        if (!(row ==(((Position) obj).row)))
-            if (!(col ==(((Position) obj).col)))
-            return false;
-        return true;
-    }
-
-    public Position(int row, int col){
-        this.row = row;
-        this.col = col;
-    }
-
-    public void moveLeft() {
-        row += 1;
-        col -= 1;
-    }
-
-    public void moveStraight() {
-        row += 1;
-    }
-
-    public void moveRight() {
-        row += 1;
-        col += 1;
-    }
-
-    boolean matchRow(int row) {
-        return this.row == row;
-    }
-
-    boolean matchCol(int col) {
-        return this.col == col;
-    }
-
-    boolean matchNextCol(int col) {
-        return this.col + 1 == col;
+    public String toString() {
+        return "index: " + index;
     }
 }
