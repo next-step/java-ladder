@@ -26,24 +26,6 @@ public class LadderPlayerNamesTest {
         assertThatIllegalStateException().isThrownBy(() -> LadderPlayerNames.of(playerNamesString));
     }
 
-    @DisplayName("플레이어 들의 이름 라벨이 빈칸 기준으로 작성되어야 합니다.")
-    @Test
-    public void testLabelTextIsStandardOfBlank() {
-        String playerName1 = playerNames[0];
-        String playerName2 = playerNames[1];
-
-        LadderPlayerName ladderPlayerName1 = LadderPlayerName.of(playerName1);
-        LadderPlayerName ladderPlayerName2 = LadderPlayerName.of(playerName2);
-
-        String playerNamesString = String.join(",", playerName1, playerName2);
-        LadderPlayerNames ladderPlayerNames = LadderPlayerNames.of(playerNamesString);
-
-        String expect = String.join(" ", ladderPlayerName1.toString(), ladderPlayerName2.toString());
-        String result = ladderPlayerNames.toString();
-
-        assertThat(result).isEqualTo(expect);
-    }
-
     @DisplayName("파싱된 플레이어 들의 이름 개수가 정확해야 합니다.")
     @Test
     public void testNumberOfParsedPlayerNames() {
