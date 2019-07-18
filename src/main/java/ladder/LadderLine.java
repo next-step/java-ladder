@@ -39,7 +39,11 @@ public class LadderLine {
         List<LadderPosition> nextPositions = new ArrayList<>();
         LadderPosition previousPosition = firstPosition;
 
-        while (countOfPositions -- > 0) {
+        while (true) {
+            boolean hasNext = countOfPositions -- > 0;
+            if (!hasNext) {
+                break;
+            }
             LadderPosition nextPosition = previousPosition.moveToNext();
             nextPositions.add(nextPosition);
             previousPosition = nextPosition;
@@ -48,7 +52,7 @@ public class LadderLine {
         return nextPositions;
     }
 
-    public List<Boolean> getColumnResultsOfLadderLine() {
+    public List<Boolean> getColumnMoveResults() {
         int sizeOfExcludesLastPosition = ladderPositions.size() - 1;
 
         return ladderPositions.stream()

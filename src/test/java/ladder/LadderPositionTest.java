@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.DirectionMoveState;
+import ladder.domain.LadderLineDirection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderPlayerNames {
+    private static final String ALL_PLAYERS = "all";
     private final List<LadderPlayerName> ladderPlayerNames;
 
     private LadderPlayerNames(List<LadderPlayerName> ladderPlayerNames) {
@@ -24,12 +25,16 @@ public class LadderPlayerNames {
         return new LadderPlayerNames(ladderPlayerNames);
     }
 
+    public static boolean isAllPlayerName(String playName) {
+        return ALL_PLAYERS.equals(playName);
+    }
+
     public int countOfPerson() {
         return this.ladderPlayerNames.size();
     }
 
     public List<Integer> getIndexesOf(String personName) {
-        if ("all".equals(personName)) {
+        if (isAllPlayerName(personName)) {
             return Collections.unmodifiableList(getLadderIndexes());
         }
 
@@ -74,12 +79,5 @@ public class LadderPlayerNames {
     private boolean isEqualsNameAt(String personName, int index) {
         LadderPlayerName playerName = this.ladderPlayerNames.get(index);
         return playerName.isEquals(personName);
-    }
-
-    @Override
-    public String toString() {
-        return this.ladderPlayerNames.stream()
-                                     .map(LadderPlayerName::toString)
-                                     .collect(Collectors.joining(" "));
     }
 }

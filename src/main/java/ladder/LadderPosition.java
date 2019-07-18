@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.LadderLineDirection;
+
 import java.util.Objects;
 
 public class LadderPosition {

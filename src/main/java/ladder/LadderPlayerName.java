@@ -24,9 +24,4 @@ public class LadderPlayerName {
     public String getName() {
         return playerName;
     }
-
-    @Override
-    public String toString() {
-        return String.format("%5s", playerName);
-    }
 }

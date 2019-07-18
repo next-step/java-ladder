@@ -1,11 +1,11 @@
 package ladder.view;
 
 import ladder.Ladder;
-import ladder.LadderLine;
 import ladder.LadderPlayerName;
 import ladder.LadderPlayerNames;
 import ladder.LadderResult;
 import ladder.LadderReward;
+import ladder.domain.LadderLines;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +23,7 @@ public class ResultView {
 
     public static void printLunchResult(LadderPlayerNames ladderPlayerNames, Ladder ladder) {
         System.out.println(LUNCH_RESULT_TEXT);
-        System.out.println(ladderPlayerNames);
+        printLadderPlayerNames(ladderPlayerNames);
         printLadder(ladder);
         int countOfPerson = ladderPlayerNames.countOfPerson();
         printLadderRewards(countOfPerson, ladder);
@@ -52,10 +52,20 @@ public class ResultView {
         return builder.toString();
     }
 
+    private static void printLadderPlayerNames(LadderPlayerNames playerNames) {
+        String playerNameStrings = playerNames.getPlayerNames()
+                                              .stream()
+                                              .map(playerNameString -> String.format("%5s", playerNameString))
+                                              .collect(Collectors.joining(" "));
+        System.out.println(playerNameStrings);
+    }
+
     private static void printLadder(Ladder ladder) {
-        String ladderText = ladder.getLadderLines().stream()
-                                  .map(ResultView::buildLineString)
-                                  .collect(Collectors.joining("\n"));
+        LadderLines ladderLines = ladder.getLadderLines();
+        String ladderText = IntStream.of(0, ladderLines.size())
+                                     .mapToObj(ladderLines::moveResultsAt)
+                                     .map(ResultView::buildLineString)
+                                     .collect(Collectors.joining("\n"));
 
         System.out.println(ladderText);
     }
@@ -69,16 +79,16 @@ public class ResultView {
         System.out.println(ladderRewardsText);
     }
 
-    private static String buildLineString(LadderLine ladderLine) {
+    private static String buildLineString(List<Boolean> moveResults) {
         StringBuilder builder = new StringBuilder();
         String leftBlank = String.format("%4s", " ");
 
         builder.append(leftBlank);
 
-        ladderLine.getColumnResultsOfLadderLine()
-                  .stream()
-                  .map(result -> result ? ESTABLISHED_LADDER : NOT_ESTABLISHED_LADDER)
-                  .forEach(stringLine -> builder.append(LADDER_GUTTER).append(stringLine));
+        moveResults
+                .stream()
+                .map(result -> result ? ESTABLISHED_LADDER : NOT_ESTABLISHED_LADDER)
+                .forEach(stringLine -> builder.append(LADDER_GUTTER).append(stringLine));
 
         builder.append(LADDER_GUTTER);
 

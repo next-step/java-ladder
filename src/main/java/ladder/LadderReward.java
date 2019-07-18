@@ -16,7 +16,7 @@ public class LadderReward {
 
         textOfResult = textOfResult.trim();
 
-        if (!isMiss(textOfResult) && !isPrice(textOfResult)) {
+        if (isNotNumber(textOfResult) && isNotMiss(textOfResult)) {
             throw new IllegalArgumentException("the text of result only can be '꽝' or '${number}'");
         }
 
@@ -27,16 +27,16 @@ public class LadderReward {
         return textOfResult;
     }
 
-    private static boolean isMiss(String textOfResult) {
-        return MISS.equals(textOfResult);
+    private static boolean isNotMiss(String textOfResult) {
+        return !MISS.equals(textOfResult);
     }
 
-    private static boolean isPrice(String textOfResult) {
+    private static boolean isNotNumber(String textOfResult) {
         try {
             Integer.parseInt(textOfResult);
-            return true;
-        } catch (Exception e) {
             return false;
+        } catch (Exception e) {
+            return true;
         }
     }
 }

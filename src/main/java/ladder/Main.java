@@ -42,7 +42,7 @@ public class Main {
         while (true) {
             String playerName = InputView.getResultOfPersonName();
             playerNameConsumer.accept(playerName);
-            if (playerName.equals("all")) {
+            if (LadderPlayerNames.isAllPlayerName(playerName)) {
                 break;
             }
         }

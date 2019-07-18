@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.Objects;
 
@@ -24,12 +24,9 @@ public class LadderLineDirection {
     }
 
     public LadderLineDirection next() {
-        DirectionMoveState nextRightMoveState;
-        if (this.rightMoveState.isPossible()) {
-            nextRightMoveState = DirectionMoveState.IMPOSSIBLE;
-        } else {
-            nextRightMoveState = DirectionMoveState.getRandomMoveState();
-        }
+        boolean isRightMovePossible = this.rightMoveState.isPossible();
+        DirectionMoveState nextRightMoveState
+                = isRightMovePossible ? DirectionMoveState.IMPOSSIBLE : DirectionMoveState.getRandomMoveState();
 
         return of(this.rightMoveState, nextRightMoveState);
     }

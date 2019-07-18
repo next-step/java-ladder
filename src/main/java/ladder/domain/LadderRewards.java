@@ -1,10 +1,10 @@
-package ladder;
+package ladder.domain;
+
+import ladder.LadderReward;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderRewards {
     private final List<LadderReward> ladderRewards;

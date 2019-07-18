@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.LadderLines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,9 +19,9 @@ public class LadderTest {
     public void testIfGivenLadderHeightThanListSizeEquals(int ladderHeight) {
         int countOfPerson = 3;
         Ladder ladder = Ladder.of(countOfPerson, TEST_RESULTS_STRING, ladderHeight);
-        List<LadderLine> ladderLines = ladder.getLadderLines();
+        LadderLines ladderLines = ladder.getLadderLines();
 
-        assertThat(ladderLines).hasSize(ladderHeight);
+        assertThat(ladderLines.size()).isEqualTo(ladderHeight);
     }
 
     @DisplayName("사람 숫자와 결과 숫자가 일치하지 않으면 예외를 발생합니다.")
