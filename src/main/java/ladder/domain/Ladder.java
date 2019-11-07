@@ -76,7 +76,7 @@ public class Ladder {
 		return alignPlayerNames(lines.stream()
 				.map(Line::getPlayerName)
 				.map(playerName -> playerName.orElseThrow(() ->
-						new IllegalStateException("사다리 이름이 비어 있습니다")))
+						new IllegalStateException("사다리의 수직선에 이름이 비어 있습니다")))
 				.collect(Collectors.toList()));
 	}
 

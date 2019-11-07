@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import ladder.util.PointUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +16,7 @@ class PointTest {
 		Point point1 = Point.newInstance();
 		Point point2 = Point.newInstance();
 
-		Point point3 = Point.of(PointUtils.createNextPoints(Direction.HORIZONTAL, point2));
+		Point point3 = Point.of(createNextPoints(Direction.HORIZONTAL, point2));
 		Point point4 = Point.of(true);
 
 		// when
@@ -34,7 +34,7 @@ class PointTest {
 		Point point2 = Point.of(new HashMap<>());
 		Point point3 = Point.of(new HashMap<>());
 
-		Point point4 = Point.of(PointUtils.createNextPoints(Direction.HORIZONTAL, point2));
+		Point point4 = Point.of(createNextPoints(Direction.HORIZONTAL, point2));
 		Point point5 = Point.of(true);
 		Point point6 = Point.of(false);
 
@@ -46,6 +46,12 @@ class PointTest {
 		assertThat(point1).isEqualTo(point4);
 		assertThat(point2).isEqualTo(point5);
 		assertThat(point3).isEqualTo(point6);
+	}
+
+	private static Map<Direction, Point> createNextPoints(Direction direction, Point point) {
+		Map<Direction, Point> nextPoints = new HashMap<>();
+		nextPoints.put(direction, point);
+		return nextPoints;
 	}
 
 }

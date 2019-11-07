@@ -2,13 +2,14 @@ package ladder.domain;
 
 import ladder.domain.policy.PointConnectPolicy;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 public class Point {
 
-	// TODO: 2019-11-07 1급 컬렉션으로 뺄 수 있음!
-	private final Map<Direction, Point> nextPoints = new HashMap<>();
-	private boolean pointsMeHorizontally;
+	private PointRelation pointRelation;
 	private final String data;
 
 	private Point(boolean pointsMeHorizontally) {
@@ -20,14 +21,11 @@ public class Point {
 	}
 
 	private Point(Map<Direction, Point> nextPoints, boolean pointsMeHorizontally) {
-		this.nextPoints.putAll(nextPoints);
-		this.pointsMeHorizontally = pointsMeHorizontally;
-		this.data = null;
+		this(nextPoints, pointsMeHorizontally, null);
 	}
 
 	private Point(Map<Direction, Point> nextPoints, boolean pointsMeHorizontally, String data) {
-		this.nextPoints.putAll(nextPoints);
-		this.pointsMeHorizontally = pointsMeHorizontally;
+		this.pointRelation = PointRelation.of(nextPoints, pointsMeHorizontally);
 		this.data = data;
 	}
 
@@ -39,7 +37,6 @@ public class Point {
 		return new Point(data);
 	}
 
-	// Test Fixture
 	public static Point of(Map<Direction, Point> nextPoints) {
 		return new Point(nextPoints, false);
 	}
@@ -49,18 +46,15 @@ public class Point {
 	}
 
 	void connectPointVertically(Point nextPoint) {
-		nextPoints.put(Direction.VERTICAL, nextPoint);
+		pointRelation.addVerticalRelation(nextPoint);
 	}
 
 	void connectStepWithAdjacentPoint(Point adjacentPoint, PointConnectPolicy policy) {
-		if (canConnectStep(policy)) {
-			nextPoints.put(Direction.HORIZONTAL, adjacentPoint);
-			adjacentPoint.pointsMeHorizontally = true;
-		}
+		pointRelation.addHorizontalRelationIfPossible(adjacentPoint, policy);
 	}
 
-	private boolean canConnectStep(PointConnectPolicy policy) {
-		return policy.shouldConnect() && !pointsMeHorizontally;
+	void points() {
+		pointRelation.points();
 	}
 
 	Optional<String> getData() {
@@ -72,13 +66,13 @@ public class Point {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Point point = (Point) o;
-		return pointsMeHorizontally == point.pointsMeHorizontally &&
-				Objects.equals(nextPoints, point.nextPoints);
+		return Objects.equals(pointRelation, point.pointRelation) &&
+				Objects.equals(data, point.data);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nextPoints, pointsMeHorizontally);
+		return Objects.hash(pointRelation, data);
 	}
 
 	@Override
@@ -90,19 +84,19 @@ public class Point {
 	}
 
 	private void addVerticalLineIfHasNextPoint(StringBuilder stringBuilder) {
-		if (hasNextPoint()) {
+		if (hasNextHorizontalPoint()) {
 			stringBuilder.append("-----");
 		}
 	}
 
 	private void addEmptyLineIfHasNotNextPoint(StringBuilder stringBuilder) {
-		if (!hasNextPoint()) {
+		if (!hasNextHorizontalPoint()) {
 			stringBuilder.append("     ");
 		}
 	}
 
-	private boolean hasNextPoint() {
-		return nextPoints.containsKey(Direction.HORIZONTAL);
+	private boolean hasNextHorizontalPoint() {
+		return pointRelation.hasNextHorizontalPoint();
 	}
 
 }
