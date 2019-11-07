@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.policy;
 
 @FunctionalInterface
 public interface PointConnectPolicy {

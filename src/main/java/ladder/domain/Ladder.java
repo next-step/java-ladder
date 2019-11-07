@@ -1,13 +1,15 @@
 package ladder.domain;
 
+import ladder.domain.policy.PointConnectPolicy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
 	private static final int FIRST_LINE_INDEX = 0;
-	private static final int STEP_SIZE = 5;
 
 	private final List<Line> lines = new ArrayList<>();
 
@@ -63,6 +65,45 @@ public class Ladder {
 	@Override
 	public int hashCode() {
 		return Objects.hash(lines);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s\n%s", getPlayerNames(), drawLadder());
+	}
+
+	private StringBuilder getPlayerNames() {
+		return alignPlayerNames(lines.stream()
+				.map(Line::getPlayerName)
+				.map(playerName -> playerName.orElseThrow(() ->
+						new IllegalStateException("사다리 이름이 비어 있습니다")))
+				.collect(Collectors.toList()));
+	}
+
+	private StringBuilder alignPlayerNames(List<String> names) {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (String name : names) {
+			stringBuilder.append(String.format("%6s", name));
+		}
+		return stringBuilder;
+	}
+
+	private StringBuilder drawLadder() {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0, end = lines.get(0).getHeight(); i < end; i++) {
+			stringBuilder.append("     ");
+			stringBuilder.append(drawOneLine(lines, i));
+			stringBuilder.append("\n");
+		}
+		return stringBuilder;
+	}
+
+	private StringBuilder drawOneLine(List<Line> lines, int index) {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Line line : lines) {
+			stringBuilder.append(line.toStringOfPoint(index));
+		}
+		return stringBuilder;
 	}
 
 }

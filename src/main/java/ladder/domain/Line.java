@@ -1,20 +1,24 @@
 package ladder.domain;
 
+import ladder.domain.policy.PointConnectPolicy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 class Line {
 
 	private static final int MIN_POINT_INDEX = 0;
 	private static final int MIN_ACTIVE_POINT_INDEX = 1;
+	private static final int ADDITIONAL_POINT_INDEX = 1;
 	private static final int ADDITIONAL_POINT_COUNT = 2;
 
 	private final List<Point> points = new ArrayList<>();
 
 	private Line(String name, int lineHeight) {
 		points.add(Point.newInstance(name));
-		for (int i = 1, end = lineHeight + ADDITIONAL_POINT_COUNT; i < end; i++) {
+		for (int i = MIN_ACTIVE_POINT_INDEX, end = lineHeight + ADDITIONAL_POINT_COUNT; i < end; i++) {
 			points.add(Point.newInstance());
 		}
 		connectPointsVertically();
@@ -33,7 +37,7 @@ class Line {
 	}
 
 	private void connectPointsVertically() {
-		for (int i = MIN_POINT_INDEX, end = getLastEmptyPointIndex(); i < end; i++) {
+		for (int i = MIN_POINT_INDEX, end = getLastActivePointIndex(); i < end; i++) {
 			getPoint(i).connectPointVertically(getNextPoint(i));
 		}
 	}
@@ -53,15 +57,23 @@ class Line {
 	}
 
 	private Point getNextPoint(int index) {
-		return getPoint(index + 1);
-	}
-
-	private int getLastEmptyPointIndex() {
-		return points.size() - 1;
+		return getPoint(index + ADDITIONAL_POINT_INDEX);
 	}
 
 	private int getLastActivePointIndex() {
-		return points.size() - 2;
+		return points.size() - ADDITIONAL_POINT_INDEX;
+	}
+
+	String toStringOfPoint(int index) {
+		return getPoint(index + ADDITIONAL_POINT_INDEX).toString();
+	}
+
+	Optional<String> getPlayerName() {
+		return getPoint(MIN_POINT_INDEX).getData();
+	}
+
+	int getHeight() {
+		return points.size() - ADDITIONAL_POINT_COUNT;
 	}
 
 	@Override
@@ -75,10 +87,6 @@ class Line {
 	@Override
 	public int hashCode() {
 		return Objects.hash(points);
-	}
-
-	public List<Point> getPointsCount() {
-		return points;
 	}
 
 }

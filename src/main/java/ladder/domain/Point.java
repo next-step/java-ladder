@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.policy.PointConnectPolicy;
+
 import java.util.*;
 
 public class Point {
@@ -7,7 +9,7 @@ public class Point {
 	// TODO: 2019-11-07 1급 컬렉션으로 뺄 수 있음!
 	private final Map<Direction, Point> nextPoints = new HashMap<>();
 	private boolean pointsMeHorizontally;
-	private final Optional<String> data;
+	private final String data;
 
 	private Point(boolean pointsMeHorizontally) {
 		this(Collections.emptyMap(), pointsMeHorizontally);
@@ -20,13 +22,13 @@ public class Point {
 	private Point(Map<Direction, Point> nextPoints, boolean pointsMeHorizontally) {
 		this.nextPoints.putAll(nextPoints);
 		this.pointsMeHorizontally = pointsMeHorizontally;
-		this.data = Optional.empty();
+		this.data = null;
 	}
 
 	private Point(Map<Direction, Point> nextPoints, boolean pointsMeHorizontally, String data) {
 		this.nextPoints.putAll(nextPoints);
 		this.pointsMeHorizontally = pointsMeHorizontally;
-		this.data = Optional.of(data);
+		this.data = data;
 	}
 
 	static Point newInstance() {
@@ -61,6 +63,10 @@ public class Point {
 		return policy.shouldConnect() && !pointsMeHorizontally;
 	}
 
+	Optional<String> getData() {
+		return Optional.ofNullable(data);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -73,6 +79,30 @@ public class Point {
 	@Override
 	public int hashCode() {
 		return Objects.hash(nextPoints, pointsMeHorizontally);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder("|");
+		addVerticalLineIfHasNextPoint(stringBuilder);
+		addEmptyLineIfHasNotNextPoint(stringBuilder);
+		return stringBuilder.toString();
+	}
+
+	private void addVerticalLineIfHasNextPoint(StringBuilder stringBuilder) {
+		if (hasNextPoint()) {
+			stringBuilder.append("-----");
+		}
+	}
+
+	private void addEmptyLineIfHasNotNextPoint(StringBuilder stringBuilder) {
+		if (!hasNextPoint()) {
+			stringBuilder.append("     ");
+		}
+	}
+
+	private boolean hasNextPoint() {
+		return nextPoints.containsKey(Direction.HORIZONTAL);
 	}
 
 }
