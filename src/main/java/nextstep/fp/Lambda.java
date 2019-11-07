@@ -33,13 +33,10 @@ public class Lambda {
 	}
 
 	public static int sumAllEven(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        if (number % 2 == 0) {
-	            total += number;
-	        }
-	    }
-	    return total;
+	    int start = 0;
+		return numbers.stream()
+				.filter(number -> number % 2 == 0)
+				.reduce(start, (sum, b) -> sum += b);
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
