@@ -17,20 +17,21 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
+    public static int sumAll(List<Integer> numbers, SumCondition condition) {
         return numbers.stream()
+                .filter(condition::canSum)
                 .reduce(0, Integer::sum);
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
+    public static int sumAllEven(List<Integer> numbers, SumCondition condition) {
         return numbers.stream()
-                .filter(number -> number % 2 == 0)
+                .filter(condition::canSum)
                 .reduce(0, Integer::sum);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
+    public static int sumAllOverThree(List<Integer> numbers,SumCondition condition) {
         return numbers.stream()
-                .filter(number -> number > 3)
+                .filter(condition::canSum)
                 .reduce(0, Integer::sum);
     }
 }
