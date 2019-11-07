@@ -2,6 +2,10 @@ package nextstep.optional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BinaryOperator;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Users {
     static final User DEFAULT_USER = new User("codesquad", 100);
@@ -13,11 +17,11 @@ public class Users {
             new User("honux", 45));
     
     User getUser(String name) {
-        for (User user : users) {
-            if (user.matchName(name)) {
-                return user;
-            }
+        users = users.stream().filter(user -> user.matchName(name)).collect(Collectors.toList());
+        if (!users.isEmpty()) {
+            return Optional.ofNullable(users.get(0)).orElse(DEFAULT_USER);
         }
         return DEFAULT_USER;
     }
 }
+
