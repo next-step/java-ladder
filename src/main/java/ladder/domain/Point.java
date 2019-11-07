@@ -1,27 +1,40 @@
 package ladder.domain;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Point {
 
 	// TODO: 2019-11-07 1급 컬렉션으로 뺄 수 있음!
 	private final Map<Direction, Point> nextPoints = new HashMap<>();
 	private boolean pointsMeHorizontally;
+	private final Optional<String> data;
 
 	private Point(boolean pointsMeHorizontally) {
 		this(Collections.emptyMap(), pointsMeHorizontally);
 	}
 
+	private Point(String data) {
+		this(Collections.emptyMap(), false, data);
+	}
+
 	private Point(Map<Direction, Point> nextPoints, boolean pointsMeHorizontally) {
 		this.nextPoints.putAll(nextPoints);
 		this.pointsMeHorizontally = pointsMeHorizontally;
+		this.data = Optional.empty();
+	}
+
+	private Point(Map<Direction, Point> nextPoints, boolean pointsMeHorizontally, String data) {
+		this.nextPoints.putAll(nextPoints);
+		this.pointsMeHorizontally = pointsMeHorizontally;
+		this.data = Optional.of(data);
 	}
 
 	static Point newInstance() {
 		return new Point(false);
+	}
+
+	static Point newInstance(String data) {
+		return new Point(data);
 	}
 
 	// Test Fixture

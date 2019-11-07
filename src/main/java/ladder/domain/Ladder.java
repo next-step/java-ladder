@@ -11,8 +11,8 @@ public class Ladder {
 
 	private final List<Line> lines = new ArrayList<>();
 
-	private Ladder(PointConnectPolicy policy, int lineWidth, int lineHeight) {
-		makeLines(lineWidth, lineHeight);
+	private Ladder(PointConnectPolicy policy, String[] names, int lineHeight) {
+		makeLines(names, lineHeight);
 		makeStep(policy);
 	}
 
@@ -20,17 +20,17 @@ public class Ladder {
 		this.lines.addAll(lines);
 	}
 
-	public static Ladder of(PointConnectPolicy policy, int lineWidth, int lineHeight) {
-		return new Ladder(policy, lineWidth, lineHeight);
+	public static Ladder of(PointConnectPolicy policy, String[] names, int lineHeight) {
+		return new Ladder(policy, names, lineHeight);
 	}
 
 	public static Ladder of(List<Line> lines) {
 		return new Ladder(lines);
 	}
 
-	private void makeLines(int lineWidth, int lineHeight) {
-		for (int i = 0; i < lineWidth; i++) {
-			lines.add(Line.of(lineHeight));
+	private void makeLines(String[] names, int lineHeight) {
+		for (String name : names) {
+			lines.add(Line.of(name, lineHeight));
 		}
 	}
 

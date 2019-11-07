@@ -17,15 +17,15 @@ class LadderTest {
 		 * |-----|     |
 		 */
 		// given
-		Line line1 = Line.of(3);
-		Line line2 = Line.of(3);
-		Line line3 = Line.of(3);
+		Line line1 = Line.of("철수", 3);
+		Line line2 = Line.of("영희", 3);
+		Line line3 = Line.of("훈이", 3);
 		line1.makeStepWithAdjacentLine(line2, () -> true);
 		line2.makeStepWithAdjacentLine(line3, () -> true);
 		Ladder expectedLadder = Ladder.of(Arrays.asList(line1, line2, line3));
 
 		// when
-		Ladder createdLadder = Ladder.of(() -> true, 3, 3);
+		Ladder createdLadder = Ladder.of(() -> true, new String[]{"철수", "영희", "훈이"}, 3);
 
 		// then
 		assertThat(createdLadder).isEqualTo(expectedLadder);

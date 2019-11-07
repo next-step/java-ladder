@@ -12,8 +12,9 @@ class Line {
 
 	private final List<Point> points = new ArrayList<>();
 
-	private Line(int lineHeight) {
-		for (int i = 0, end = lineHeight + ADDITIONAL_POINT_COUNT; i < end; i++) {
+	private Line(String name, int lineHeight) {
+		points.add(Point.newInstance(name));
+		for (int i = 1, end = lineHeight + ADDITIONAL_POINT_COUNT; i < end; i++) {
 			points.add(Point.newInstance());
 		}
 		connectPointsVertically();
@@ -23,8 +24,8 @@ class Line {
 		this.points.addAll(points);
 	}
 
-	static Line of(int lineHeight) {
-		return new Line(lineHeight);
+	static Line of(String name, int lineHeight) {
+		return new Line(name, lineHeight);
 	}
 
 	static Line of(List<Point> points) {
