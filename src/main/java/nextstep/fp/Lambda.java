@@ -25,8 +25,7 @@ public class Lambda {
     public static int sumIf(List<Integer> numbers, Predicate<Integer> predicate) {
         return numbers.stream()
                 .filter(predicate)
-                .reduce(Integer::sum)
-                .orElse(0);
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAll(List<Integer> numbers) {
