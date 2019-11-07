@@ -33,16 +33,17 @@ public class Lambda {
 	}
 
 	public static int sumAllEven(List<Integer> numbers) {
-	    int start = 0;
-		return numbers.stream()
-				.filter(number -> number % 2 == 0)
-				.reduce(start, (sum, b) -> sum += b);
+	    return sumAll(numbers, number -> number % 2 == 0);
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
+		return sumAll(numbers, number -> number > 3);
+	}
+
+	private static int sumAll(List<Integer> numbers, Conditional conditional) {
 		int start = 0;
 		return numbers.stream()
-				.filter(number -> number > 3)
+				.filter(conditional::test)
 				.reduce(start, (sum, b) -> sum += b);
 	}
 }
