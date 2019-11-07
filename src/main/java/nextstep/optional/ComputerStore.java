@@ -1,6 +1,6 @@
 package nextstep.optional;
 
-import nextstep.optional.Computer.Soundcard;
+import nextstep.optional.Computer.SoundCard;
 import nextstep.optional.Computer.USB;
 
 public class ComputerStore {
@@ -9,9 +9,9 @@ public class ComputerStore {
 	public static String getVersion(Computer computer) {
 		String version = UNKNOWN_VERSION;
 		if(computer != null){
-		  Soundcard soundcard = computer.getSoundcard();
-		  if(soundcard != null){
-		    USB usb = soundcard.getUsb();
+		  SoundCard soundCard = computer.getSoundCard();
+		  if(soundCard != null){
+		    USB usb = soundCard.getUsb();
 		    if(usb != null){
 		      version = usb.getVersion();
 		    }
