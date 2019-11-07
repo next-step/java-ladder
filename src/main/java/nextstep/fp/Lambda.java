@@ -26,31 +26,26 @@ public class Lambda {
 		}).start();
 	}
 
+	// sumAll, sumAllEven, sumallOverThree 메소드의 중복 제거
 	public static int sumAll(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        total += number;
-	    }
-	    return total;
+		return sumUnderCondition(numbers, number -> true);
 	}
 	
 	public static int sumAllEven(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	        if (number % 2 == 0) {
-	            total += number;
-	        }
-	    }
-	    return total;
+		return sumUnderCondition(numbers, number -> number % 2 == 0);
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-	    	if (number > 3) {
-	    		total += number;
-	    	}
-	    }
-	    return total;
+		return sumUnderCondition(numbers, number -> number > 3);
+	}
+
+	private static int sumUnderCondition(List<Integer> numbers, Conditional conditional) {
+		int total = 0;
+		for (int number : numbers) {
+			if (conditional.doesNumberPass(number)) {
+				total += number;
+			}
+		}
+		return total;
 	}
 }
