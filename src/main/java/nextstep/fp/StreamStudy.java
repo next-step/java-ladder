@@ -27,7 +27,7 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         words.stream()
-				.filter(word -> word.length() > 12)
+                .filter(word -> word.length() > 12)
                 .sorted((s1, s2) -> s2.length() - s1.length())
                 .distinct()
                 .limit(100)
@@ -37,7 +37,7 @@ public class StreamStudy {
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
         return numbers.stream()
-                .map(x -> 2 * x)
+                .map(number -> number * 2)
                 .collect(toList());
     }
 
