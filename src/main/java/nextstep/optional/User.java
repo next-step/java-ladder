@@ -1,8 +1,6 @@
 package nextstep.optional;
 
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 public class User {
     private String name;
