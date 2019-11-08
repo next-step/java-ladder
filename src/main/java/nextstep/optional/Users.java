@@ -3,6 +3,7 @@ package nextstep.optional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -15,11 +16,10 @@ public class Users {
             new User("honux", 45));
     
     User getUser(String name) {
-        users = users.stream().filter(user -> user.matchName(name)).collect(Collectors.toList());
-        if (!users.isEmpty()) {
-            return Optional.ofNullable(users.get(0)).orElse(DEFAULT_USER);
-        }
-        return DEFAULT_USER;
+        return users.stream()
+                    .filter(user -> user.getName().equals(name))
+                    .findFirst()
+                    .orElse(DEFAULT_USER);
     }
 }
 

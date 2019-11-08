@@ -1,6 +1,8 @@
 package nextstep.optional;
 
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class User {
     private String name;
@@ -36,7 +38,8 @@ public class User {
     
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
-                       .filter(user1 -> Optional.ofNullable(user1.getAge()).isPresent() && user1.getAge() >= 30 && user1.getAge() <= 45)
+                       .map(User::getAge)
+                       .filter(age -> age >= 30 && age <= 45)
                        .isPresent();
     }
 
