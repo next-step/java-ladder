@@ -36,8 +36,12 @@ public class Lambda {
 
 	public static int sumAllLambda(List<Integer> numbers) {
 		return numbers.stream()
-				.reduce((o1, o2) -> o1 + satisfy(o2, (number -> true)))
-				.orElse(0);
+				.filter(number -> satisfy(number, condition -> true))
+				.reduce(0, (o1, o2) -> o1 + o2);
+	}
+	public static int sumAllLambda2(List<Integer> numbers) {
+		return numbers.stream()
+				.reduce(0, (o1, o2) -> o1 + satisfyNumber(o2, condition -> true));
 	}
 
 	public static int sumAllEven(List<Integer> numbers) {
@@ -51,11 +55,14 @@ public class Lambda {
 	}
 
 	public static int sumAllEvenLambda(List<Integer> numbers) {
-		int total = 0;
-		for (int number : numbers) {
-			total += satisfy(number, condition -> (number % 2 == 0));
-		}
-		return total;
+		return numbers.stream()
+				.filter(number -> satisfy(number, condition -> (condition % 2 == 0)))
+				.reduce(0, (o1, o2) -> o1 + o2);
+	}
+
+	public static int sumAllEvenLambda2(List<Integer> numbers) {
+		return numbers.stream()
+				.reduce(0, (o1, o2) -> o1 + satisfyNumber(o2, condition -> (condition % 2 == 0)));
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
@@ -68,17 +75,22 @@ public class Lambda {
 	    return total;
 	}
 
-
 	public static int sumAllOverThreeLambda(List<Integer> numbers) {
-	    int total = 0;
-	    for (int number : numbers) {
-			total += satisfy(number, condition -> (condition > 3));
-	    }
-	    return total;
+		return numbers.stream()
+				.filter(number -> satisfy(number, condition -> (condition > 3)))
+				.reduce(0, (o1, o2) -> o1 + o2);
 	}
 
+	public static int sumAllOverThreeLambda2(List<Integer> numbers) {
+		return numbers.stream()
+				.reduce(0, (o1, o2) -> o1 + satisfyNumber(o2, condition -> condition > 3));
+	}
 
-	private static int satisfy(Integer number, Conditional conditional) {
+	private static boolean satisfy(Integer number, Conditional conditional) {
+		return conditional.satisfy(number);
+	}
+
+	private static int satisfyNumber(Integer number, Conditional conditional) {
 		if (conditional.satisfy(number)) {
 			return number;
 		}
