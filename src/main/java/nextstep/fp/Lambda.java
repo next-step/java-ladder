@@ -33,7 +33,13 @@ public class Lambda {
 	    }
 	    return total;
 	}
-	
+
+	public static int sumAllLambda(List<Integer> numbers) {
+		return numbers.stream()
+				.reduce((o1, o2) -> o1 + satisfy(o2, (number -> true)))
+				.orElse(0);
+	}
+
 	public static int sumAllEven(List<Integer> numbers) {
 	    int total = 0;
 	    for (int number : numbers) {
@@ -42,6 +48,14 @@ public class Lambda {
 	        }
 	    }
 	    return total;
+	}
+
+	public static int sumAllEvenLambda(List<Integer> numbers) {
+		int total = 0;
+		for (int number : numbers) {
+			total += satisfy(number, condition -> (number % 2 == 0));
+		}
+		return total;
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
@@ -53,4 +67,22 @@ public class Lambda {
 	    }
 	    return total;
 	}
+
+
+	public static int sumAllOverThreeLambda(List<Integer> numbers) {
+	    int total = 0;
+	    for (int number : numbers) {
+			total += satisfy(number, condition -> (condition > 3));
+	    }
+	    return total;
+	}
+
+
+	private static int satisfy(Integer number, Conditional conditional) {
+		if (conditional.satisfy(number)) {
+			return number;
+		}
+		return 0;
+	}
+
 }
