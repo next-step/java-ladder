@@ -1,12 +1,13 @@
 package ladder.domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class LadderRow {
-    private final List<Link> links;
+    private final Lines lines;
+    private final Links links;
 
-    public LadderRow(final List<Link> links) {
+    public LadderRow(final Lines lines, final Links links) {
+        this.lines = lines;
         this.links = links;
     }
 
@@ -14,12 +15,13 @@ public class LadderRow {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderRow that = (LadderRow) o;
-        return links == that.links;
+        LadderRow ladderRow = (LadderRow) o;
+        return Objects.equals(lines, ladderRow.lines) &&
+                Objects.equals(links, ladderRow.links);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(links);
+        return Objects.hash(lines, links);
     }
 }
