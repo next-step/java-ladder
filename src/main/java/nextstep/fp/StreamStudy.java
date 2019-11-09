@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
+
 public class StreamStudy {
 
 	public static long countWords() throws IOException {
@@ -25,10 +27,9 @@ public class StreamStudy {
 				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
 		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 		
-		// TODO 이 부분에 구현한다.
         words.stream()
                 .filter(word -> word.length() > 12)
-				.sorted((word, word2) -> word2.length() - word.length())
+				.sorted(comparing(String::length))
 				.distinct()
 				.limit(100)
 				.map(String::toLowerCase)
