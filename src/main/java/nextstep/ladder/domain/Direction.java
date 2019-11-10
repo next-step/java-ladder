@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,16 +16,12 @@ public enum Direction {
         this.direction = direction;
     }
 
-    public int getDirection() {
-        return direction;
-    }
-
     public static Direction getRandomDirection() {
-        Random random = new Random(System.currentTimeMillis());
         List<Direction> directions = Stream.of(Direction.values())
                 .filter(value -> !Direction.LEFT.equals(value))
                 .collect(Collectors.toList());
 
-        return directions.get(random.nextInt(directions.size()));
+        Collections.shuffle(directions);
+        return directions.get(0);
     }
 }

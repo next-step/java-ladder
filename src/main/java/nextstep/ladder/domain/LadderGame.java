@@ -40,8 +40,12 @@ public class LadderGame {
             return false;
         }
 
-        Direction previousLadderDirection = ladders.ladderDirection(index - 1, height);
+        Direction previousLadderDirection = ladderDirection(index - 1, height);
         return Direction.RIGHT.equals(previousLadderDirection);
+    }
+
+    public Direction ladderDirection(int index, int height) {
+        return ladders.ladderDirection(index, height);
     }
 
     public int size() {
