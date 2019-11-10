@@ -18,8 +18,8 @@ public class Ladders {
         return ladders.size();
     }
 
-    public void initHeight(int index, Direction direction) {
-        ladders.get(index).initHeight(direction);
+    public void addHeight(int index, Direction direction) {
+        ladders.get(index).addHeight(direction);
     }
 
     public int height() {

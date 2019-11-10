@@ -23,7 +23,7 @@ public class LadderGame {
     private void initHeight(int height) {
         for (int i = 0; i < ladders.size(); i++) {
             Direction direction = randomDirection(i, height);
-            ladders.initHeight(i, direction);
+            ladders.addHeight(i, direction);
         }
     }
 

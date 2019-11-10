@@ -10,11 +10,15 @@ public class Ladder {
         points = new ArrayList<>();
     }
 
+    public Ladder(List<Point> points) {
+        this.points = points;
+    }
+
     public int height() {
         return points.size();
     }
 
-    public void initHeight(Direction direction) {
+    public void addHeight(Direction direction) {
         points.add(new Point(direction));
     }
 
