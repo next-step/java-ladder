@@ -7,5 +7,5 @@ package nextstep.fp;
  */
 @FunctionalInterface
 public interface Conditional {
-    public boolean test(Integer number);
+    boolean test(int number);
 }
