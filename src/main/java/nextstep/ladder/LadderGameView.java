@@ -63,7 +63,7 @@ public class LadderGameView {
         return text.replace(BLANK, EMPTY);
     }
 
-    private void showText(String text) {
+    public void showText(String text) {
         System.out.println(text);
     }
 }
