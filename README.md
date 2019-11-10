@@ -6,6 +6,7 @@
 * 입력 받은 수 만큼 위치(Point) 생성
 * Point 마다 방향(Direction) 생성 (LEFT, RIGHT, BOTTOM)
     * 근접 한 사다리의 Point와 방향이 겹치는지 체크   
+* 참여 인원 정보를 파싱 한다.
 
 ### View
 * 참가자 이름 입력
