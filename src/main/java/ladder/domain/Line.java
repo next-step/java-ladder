@@ -10,8 +10,7 @@ public class Line {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public boolean contains(int i) {
+        return numbers.contains(i);
     }
-
 }

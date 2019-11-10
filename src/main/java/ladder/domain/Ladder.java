@@ -2,27 +2,31 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Ladder {
 
+    private static final String LADDER_VERTICAL_CHARACTER = "|";
+    private static final String LADDER_LINE_STRING = "-----";
+    private static final String LADDER_NO_LINE_STRING = "     ";
 
     private List<String> users;
     private List<Line> lines = new ArrayList<>();
+    private int width;
     private int height;
 
     public Ladder(List<String> users, int height) {
         this.users = users;
+        this.width = users.size() - 1;
         this.height = height;
     }
 
-    public List<Line> createAllLines(List<Integer> beforeNumbers, int start, int width) {
+    public List<Line> createAllLines(List<Integer> beforeNumbers, int start) {
         List<Line> lines = new ArrayList<>();
-        for (int i = start; i <= width; i++) {
+        for (int i = start; i < width; i++) {
             createSeperateNumbers(beforeNumbers, lines, i);
             List<Integer> numbers = new ArrayList<>(beforeNumbers);
             numbers.add(i);
-            lines.addAll(createAllLines(numbers, i + 2, width));
+            lines.addAll(createAllLines(numbers, i + 2));
         }
 
         return lines;
@@ -38,10 +42,6 @@ public class Ladder {
         return users;
     }
 
-    public List<Line> getLines() {
-        return lines;
-    }
-
     public int getHeight() {
         return height;
     }
@@ -50,18 +50,32 @@ public class Ladder {
         lines.addAll(randomLine);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return height == ladder.height &&
-                Objects.equals(users, ladder.users) &&
-                Objects.equals(lines, ladder.lines);
+    public String getUserFormat() {
+        StringBuilder sb = new StringBuilder();
+        for (String user : users) {
+            sb.append(user).append("   ");
+        }
+        return sb.toString();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(users, lines, height);
+    public List<String> drawLadder() {
+        List<String> ladderFormat = new ArrayList<>();
+        for (Line line : lines) {
+            ladderFormat.add(drawLine(line));
+        }
+        return ladderFormat;
+    }
+
+    private String drawLine(Line line) {
+        StringBuilder sb = new StringBuilder(LADDER_VERTICAL_CHARACTER);
+        for (int i = 0; i < users.size() - 1; i++) {
+            sb.append(decideLine(line, i))
+                    .append(LADDER_VERTICAL_CHARACTER);
+        }
+        return sb.toString();
+    }
+
+    private String decideLine(Line line, int i) {
+        return line.contains(i) ? LADDER_LINE_STRING : LADDER_NO_LINE_STRING;
     }
 }

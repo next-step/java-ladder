@@ -24,10 +24,10 @@ class LadderTest {
     @Test
     @DisplayName("모든 경우의 수 구하기")
     void createAllLines() {
-        List<String> users = Arrays.asList("a", "b", "c");
+        List<String> users = Arrays.asList("a", "b", "c", "d");
         Ladder ladder = new Ladder(users, 5);
 
-        List<Line> lines = ladder.createAllLines(new ArrayList<>(), 1, 3);
+        List<Line> lines = ladder.createAllLines(new ArrayList<>(), 0);
 
         assertThat(lines).hasSize(4);
     }
