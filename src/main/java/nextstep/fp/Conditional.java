@@ -1,5 +1,5 @@
 package nextstep.fp;
 
-public interface Contidional {
+public interface Conditional {
     boolean test(Integer number);
 }
