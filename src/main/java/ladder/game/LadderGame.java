@@ -11,13 +11,14 @@ public class LadderGame {
     private static final String PARTICIPANT_NAME_MAX_LENGTH_EXCEPTION = "참여자의 이름은 %d글자를 넘을 수 없습니다";
     private static final int PARTICIPANT_MIN_SIZE = 2;
     private static final String PARTICIPANTS_MIN_SIZE_EXCEPTION = "참여자는 최소 %d명 입니다.";
+    private static final String LADDER_HEIGHT_EXCEPTION = "사다리게임의 높이는 0 이상입니다.";
 
     private Ladder ladder;
     private List<String> participants;
 
     public LadderGame(String participants, int ladderHeight) {
         this.participants = verifyParticipants(participants);
-        this.ladder = new Ladder(this.participants.size(), ladderHeight);
+        this.ladder = new Ladder(this.participants.size(), verityLadderHeight(ladderHeight));
     }
 
     private List<String> verifyParticipants(String inputParticipants) {
@@ -34,6 +35,13 @@ public class LadderGame {
                     (String.format(PARTICIPANTS_MIN_SIZE_EXCEPTION, PARTICIPANT_MIN_SIZE));
         }
         return participants;
+    }
+
+    private int verityLadderHeight(int ladderHeight) {
+        if (ladderHeight <= 0) {
+            throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
+        }
+        return ladderHeight;
     }
 
     public Ladder getLadder() {
