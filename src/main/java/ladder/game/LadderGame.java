@@ -1,6 +1,7 @@
 package ladder.game;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -19,6 +20,22 @@ public class LadderGame {
     public LadderGame(String participants, int ladderHeight) {
         this.participants = verifyParticipants(participants);
         this.ladder = new Ladder(this.participants.size(), verityLadderHeight(ladderHeight));
+    }
+
+    public boolean isConnected(int line, int width) {
+        return ladder.isConnected(line, width);
+    }
+
+    public int getLadderHeight() {
+        return ladder.getLadderHeight();
+    }
+
+    public int getLadderWidth() {
+        return participants.size() - 1;
+    }
+
+    public List<String> getParticipants() {
+        return Collections.unmodifiableList(participants);
     }
 
     private List<String> verifyParticipants(String inputParticipants) {
@@ -40,14 +57,6 @@ public class LadderGame {
             throwExceptions(LADDER_HEIGHT_EXCEPTION);
         }
         return ladderHeight;
-    }
-
-    public List<LineOfLadder> getLadderTable() {
-        return ladder.getLadder();
-    }
-
-    public List<String> getParticipants() {
-        return participants;
     }
 
     private void throwExceptions(String pattern, Object... elements) {

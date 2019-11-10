@@ -1,7 +1,6 @@
 package ladder.view;
 
 import ladder.game.LadderGame;
-import ladder.game.LineOfLadder;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +18,7 @@ public class ResultView {
     public static void show(LadderGame ladderGame) {
         System.out.println(RESULT);
         showParticipant(ladderGame.getParticipants());
-        drawLadder(ladderGame.getLadderTable());
+        drawLadder(ladderGame);
     }
 
     private static void showParticipant(List<String> participants) {
@@ -33,18 +32,29 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void drawLadder(List<LineOfLadder> ladderTable) {
-        for (LineOfLadder line : ladderTable) {
+    private static void drawLadder(LadderGame ladderGame) {
+        int ladderHeight = ladderGame.getLadderHeight();
+        int lineWidth = ladderGame.getLadderWidth();
+
+        for (int line = 0; line < ladderHeight; line++) {
             System.out.print(DOUBLE_SPACE + VERTICAL);
-            for (Boolean value : line.getLineConnection()) {
-                if (value) {
-                    System.out.print(HORIZON + VERTICAL);
-                } else {
-                    System.out.print(EMPTY_VERTICAL + VERTICAL);
-                }
-            }
+            drawLine(ladderGame, line, lineWidth);
             System.out.println(EMPTY);
         }
         System.out.println(EMPTY);
+    }
+
+    private static void drawLine(LadderGame ladderGame, int line, int lineWidth) {
+        for (int width = 0; width < lineWidth; width++) {
+            drawConnection(ladderGame.isConnected(line, width));
+        }
+    }
+
+    private static void drawConnection(boolean isConnected) {
+        if (isConnected) {
+            System.out.print(HORIZON + VERTICAL);
+        } else {
+            System.out.print(EMPTY_VERTICAL + VERTICAL);
+        }
     }
 }

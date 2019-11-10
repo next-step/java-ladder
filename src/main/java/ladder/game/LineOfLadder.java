@@ -10,13 +10,17 @@ public class LineOfLadder {
         drawLine(ladderWidth);
     }
 
+    public boolean isConnected(int index) {
+        return connection.get(index);
+    }
+
     private void drawLine(int ladderWidth) {
         for (int width = 0; width < ladderWidth; width++) {
-            connection.add(ladderDraw());
+            connection.add(drawConnection());
         }
     }
 
-    private boolean ladderDraw() {
+    private boolean drawConnection() {
         int connectedCount = connection.size();
         if (connectedCount != 0 && connection.get(connectedCount - 1)) {
             return false;
@@ -28,9 +32,6 @@ public class LineOfLadder {
         return drawLineStrategy.draw();
     }
 
-    public ArrayList<Boolean> getLineConnection() {
-        return this.connection;
-    }
 }
 
 

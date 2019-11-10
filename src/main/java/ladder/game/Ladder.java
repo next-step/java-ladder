@@ -13,7 +13,11 @@ public class Ladder {
         }
     }
 
-    public List<LineOfLadder> getLadder() {
-        return this.ladder;
+    public int getLadderHeight() {
+        return ladder.size();
+    }
+
+    public boolean isConnected(int line, int width) {
+        return ladder.get(line).isConnected(width);
     }
 }
