@@ -15,10 +15,11 @@ public class LadderGame {
     private static final String LADDER_HEIGHT_EXCEPTION = "사다리게임의 높이는 0 이상입니다.";
 
     private Ladder ladder;
-    private List<String> participants;
+    private List<Participant> participants;
 
-    public LadderGame(String participants, int ladderHeight, ConnectionStrategy connectionStrategy) {
-        this.participants = verifyParticipants(participants);
+    public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connectionStrategy) {
+        List<String> participants = verifyParticipants(inputParticipant);
+        this.participants = participants.stream().map(participant -> new Participant(participant)).collect(toList());
         this.ladder = new Ladder(this.participants.size(), verityLadderHeight(ladderHeight), connectionStrategy);
     }
 
@@ -35,7 +36,7 @@ public class LadderGame {
     }
 
     public List<String> getParticipants() {
-        return Collections.unmodifiableList(participants);
+        return Collections.unmodifiableList(participants.stream().map(Participant::toString).collect(toList()));
     }
 
     private List<String> verifyParticipants(String inputParticipants) {
