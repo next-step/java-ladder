@@ -1,5 +1,8 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Direction;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

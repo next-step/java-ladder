@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class LadderGame {
     private static final int FIRST_LADDER_INDEX = 0;
