@@ -3,35 +3,33 @@ package ladder.game;
 import java.util.ArrayList;
 
 public class LineOfLadder {
-    private ArrayList<Boolean> connection;
 
-    public LineOfLadder(int ladderWidth) {
-        this.connection = new ArrayList<>();
-        drawLine(ladderWidth);
+    private ArrayList<Boolean> connections;
+    private ConnectionStrategy connectionStrategy;
+
+    public LineOfLadder(int ladderWidth, ConnectionStrategy connectionStrategy) {
+        this.connections = new ArrayList<>();
+        this.connectionStrategy = connectionStrategy;
+        createLine(ladderWidth);
     }
 
     public boolean isConnected(int index) {
-        return connection.get(index);
+        return connections.get(index);
     }
 
-    private void drawLine(int ladderWidth) {
+    private void createLine(int ladderWidth) {
         for (int width = 0; width < ladderWidth; width++) {
-            connection.add(drawConnection());
+            connections.add(createConnection());
         }
     }
 
-    private boolean drawConnection() {
-        int connectedCount = connection.size();
-        if (connectedCount != 0 && connection.get(connectedCount - 1)) {
+    private boolean createConnection() {
+        int connectedCount = connections.size();
+        if (connectedCount != 0 && connections.get(connectedCount - 1)) {
             return false;
         }
-        return random(() -> Math.random() * 10 < 5);
+        return connectionStrategy.create();
     }
-
-    private boolean random(DrawLineStrategy drawLineStrategy) {
-        return drawLineStrategy.draw();
-    }
-
 }
 
 

@@ -12,7 +12,7 @@ public class ResultView {
     private static final String DOUBLE_SPACE = "  ";
     private static final String VERTICAL = "|";
     private static final String HORIZON = "-----";
-    private static final String EMPTY_VERTICAL = "     ";
+    private static final String EMPTY_HORIZON = "     ";
     private static final int NAME_SPACE_SIZE = 6;
 
     public static void show(LadderGame ladderGame) {
@@ -54,7 +54,7 @@ public class ResultView {
         if (isConnected) {
             System.out.print(HORIZON + VERTICAL);
         } else {
-            System.out.print(EMPTY_VERTICAL + VERTICAL);
+            System.out.print(EMPTY_HORIZON + VERTICAL);
         }
     }
 }

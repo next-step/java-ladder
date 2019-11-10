@@ -12,7 +12,7 @@ public class LadderTest {
     private int ladderHeight = 5;
     @BeforeEach
     void setUp() {
-        ladder = new Ladder(personCount, ladderHeight);
+        ladder = new Ladder(personCount, ladderHeight, new RandomConnection());
     }
 
     @Test

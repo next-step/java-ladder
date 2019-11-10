@@ -14,12 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LadderGameTest {
 
     private static LadderGame ladderGame;
+    private static ConnectionStrategy connectionStrategy = new RandomConnection();
 
     @BeforeEach
     void setUp() {
         String participants = "pobi, honux, crong, jk";
         int ladderHeight = 5;
-        ladderGame = new LadderGame(participants, ladderHeight);
+        ladderGame = new LadderGame(participants, ladderHeight, connectionStrategy);
     }
 
     @Test
@@ -37,7 +38,7 @@ class LadderGameTest {
     }, delimiter = ':')
     @DisplayName("입력 시 예외상황 발생")
     void participantNameException(String participantsName, int ladderHeight) {
-        assertThrows(IllegalArgumentException.class, () -> new LadderGame(participantsName, ladderHeight));
+        assertThrows(IllegalArgumentException.class, () -> new LadderGame(participantsName, ladderHeight, connectionStrategy));
     }
 
     @Test

@@ -17,9 +17,9 @@ public class LadderGame {
     private Ladder ladder;
     private List<String> participants;
 
-    public LadderGame(String participants, int ladderHeight) {
+    public LadderGame(String participants, int ladderHeight, ConnectionStrategy connectionStrategy) {
         this.participants = verifyParticipants(participants);
-        this.ladder = new Ladder(this.participants.size(), verityLadderHeight(ladderHeight));
+        this.ladder = new Ladder(this.participants.size(), verityLadderHeight(ladderHeight), connectionStrategy);
     }
 
     public boolean isConnected(int line, int width) {
