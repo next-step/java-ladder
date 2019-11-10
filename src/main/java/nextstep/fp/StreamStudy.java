@@ -10,41 +10,41 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
-	public static long countWords() throws IOException {
-		String contents = new String(Files.readAllBytes(Paths
-				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+    public static long countWords() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        String[] words = contents.split("[\\P{L}]+");
 
-		long count = 0;
-		for (String w : words) {
-		  if (w.length() > 12) count++;  
-		}
-		return count;
-	}
+        long count = 0;
+        for (String w : words) {
+            if (w.length() > 12) count++;
+        }
+        return count;
+    }
 
-	public static void printLongestWordTop100() throws IOException {
-		String contents = new String(Files.readAllBytes(Paths
-				.get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+    public static void printLongestWordTop100() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
         words.stream()
                 .distinct()
                 .sorted((o1, o2) -> Integer.compare(o2.length(), o1.length()))
                 .map(word -> word.toLowerCase())
                 .filter(word -> word.length() > 12)
                 .forEach(word -> System.out.println(word));
-	}
+    }
 
-	public static List<Integer> doubleNumbers(List<Integer> numbers) {
-		return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
-	}
+    public static List<Integer> doubleNumbers(List<Integer> numbers) {
+        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+    }
 
-	public static long sumAll(List<Integer> numbers) {
-		return numbers.stream().reduce(0, (x, y) -> x + y);
-	}
+    public static long sumAll(List<Integer> numbers) {
+        return numbers.stream().reduce(0, (x, y) -> x + y);
+    }
 
-	public static long sumOverThreeAndDouble(List<Integer> numbers) throws IOException {
-		return numbers.stream().filter(number -> number > 3)
-				.map(number -> number * 2)
-				.reduce(0, (o1, o2) -> o1 + o2);
-	}
+    public static long sumOverThreeAndDouble(List<Integer> numbers) throws IOException {
+        return numbers.stream().filter(number -> number > 3)
+                .map(number -> number * 2)
+                .reduce(0, (o1, o2) -> o1 + o2);
+    }
 }

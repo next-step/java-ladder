@@ -1,5 +1,6 @@
 package nextstep.fp;
 
+@FunctionalInterface
 public interface Conditional {
-    boolean satisfy(Integer number);
+    boolean satisfy(int number);
 }
