@@ -6,14 +6,19 @@ import java.util.List;
 public class Ladder {
     List<Point> points;
 
-    public Ladder(int height) {
+    public Ladder() {
         points = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            points.add(new Point());
-        }
     }
 
     public int height() {
         return points.size();
+    }
+
+    public void initHeight(Direction direction) {
+        points.add(new Point(direction));
+    }
+
+    public Direction direction(int height) {
+        return points.get(height).direction();
     }
 }
