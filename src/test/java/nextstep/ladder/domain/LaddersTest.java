@@ -1,9 +1,5 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Direction;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Ladders;
-import nextstep.ladder.domain.Point;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
