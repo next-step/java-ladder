@@ -22,7 +22,7 @@ public class LadderGameView {
     }
 
     public List<String> getNames() {
-        drawText(NAME_QUESTION);
+        showText(NAME_QUESTION);
 
         String[] texts = splitBy(COMMA, inputTool.readLine());
         return Arrays
@@ -31,17 +31,28 @@ public class LadderGameView {
     }
 
     public int getHeight() {
-        drawText(LADDER_HEIGHT);
+        showText(LADDER_HEIGHT);
 
         return inputTool.readLineToInt();
     }
 
-    public void showResult(List<Line> lines) {
-        drawText(LADDER_GAME_RESULT);
+    public void showResult(List<Participant> participants, List<Line> lines) {
+        showText(LADDER_GAME_RESULT);
+        showParticipants(participants);
 
         for (Line line : lines) {
-            drawText(line.toString());
+            showText(line.toString());
         }
+    }
+
+    private void showParticipants(List<Participant> participants) {
+        String participantsText = participants
+                .stream()
+                .map(Participant::getName)
+                .reduce((name1, name2) -> name1 + " " + name2)
+                .get();
+
+        showText(participantsText);
     }
 
     private String[] splitBy(String regex, String text) {
@@ -52,7 +63,7 @@ public class LadderGameView {
         return text.replace(BLANK, EMPTY);
     }
 
-    private void drawText(String text) {
+    private void showText(String text) {
         System.out.println(text);
     }
 }
