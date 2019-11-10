@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.game.Ladder;
 import ladder.game.LadderGame;
+import ladder.game.LineOfLadder;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +19,7 @@ public class ResultView {
     public static void show(LadderGame ladderGame) {
         System.out.println(RESULT);
         showParticipant(ladderGame.getParticipants());
-        drawLadder(ladderGame.getLadder());
+        drawLadder(ladderGame.getLadderTable());
     }
 
     private static void showParticipant(List<String> participants) {
@@ -33,11 +33,10 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void drawLadder(Ladder ladder) {
-        boolean[][] ladderTable = ladder.getLadder();
-        for (boolean[] line : ladderTable) {
+    private static void drawLadder(List<LineOfLadder> ladderTable) {
+        for (LineOfLadder line : ladderTable) {
             System.out.print(DOUBLE_SPACE + VERTICAL);
-            for (boolean value : line) {
+            for (Boolean value : line.getLineConnection()) {
                 if (value) {
                     System.out.print(HORIZON + VERTICAL);
                 } else {

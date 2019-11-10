@@ -42,7 +42,7 @@ class LadderGameTest {
 
     @Test
     void getLadder() {
-        assertThat(ladderGame.getLadder().getLadder().length).isEqualTo(5);
+        assertThat(ladderGame.getLadderTable().size()).isEqualTo(5);
     }
 
 }

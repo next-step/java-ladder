@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LadderTest {
@@ -19,20 +21,22 @@ public class LadderTest {
     @Test
     @DisplayName("연속된 두 칸 모두 사다리가 그려질 수 업다")
     void verifiedLadderTest() {
-        boolean[][] ladderTable = ladder.getLadder();
-        assertThat(ladderTable[0][0] ^ ladderTable[0][1] || !ladderTable[0][0])
+        List<LineOfLadder> ladderTable = ladder.getLadder();
+        assertThat(ladderTable.get(0).getLineConnection().get(0) ^ ladderTable.get(0).getLineConnection().get(1)
+                || !ladderTable.get(0).getLineConnection().get(0))
                 .isTrue();
-        assertThat(ladderTable[1][1] ^ ladderTable[1][2] || !ladderTable[1][1])
+        assertThat(ladderTable.get(1).getLineConnection().get(1) ^ ladderTable.get(1).getLineConnection().get(2)
+                || !ladderTable.get(1).getLineConnection().get(1))
                 .isTrue();
     }
 
     @Test
     @DisplayName("사다리 그리기")
     void drawLadder() {
-        boolean[][] ladderTable = ladder.getLadder();
-        for (boolean[] line : ladderTable) {
+        List<LineOfLadder> ladderTable = ladder.getLadder();
+        for (LineOfLadder line : ladderTable) {
             System.out.print("|");
-            for (boolean value : line) {
+            for (boolean value : line.getLineConnection()) {
                 if (value) {
                     System.out.print("----|");
                 } else {

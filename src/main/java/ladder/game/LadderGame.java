@@ -26,29 +26,31 @@ public class LadderGame {
                 = Arrays.stream(inputParticipants.split(DELIMITER))
                 .map(participant -> participant.trim())
                 .collect(toList());
-        if (participants.stream().anyMatch(participant -> participant.length() > 5)) {
-            throw new IllegalArgumentException
-                    (String.format(PARTICIPANT_NAME_MAX_LENGTH_EXCEPTION, PARTICIPANT_NAME_MAX_LENGTH));
+        if (participants.stream().anyMatch(participant -> participant.length() > PARTICIPANT_NAME_MAX_LENGTH)) {
+            throwExceptions(PARTICIPANT_NAME_MAX_LENGTH_EXCEPTION, PARTICIPANT_NAME_MAX_LENGTH);
         }
         if (participants.size() < PARTICIPANT_MIN_SIZE) {
-            throw new IllegalArgumentException
-                    (String.format(PARTICIPANTS_MIN_SIZE_EXCEPTION, PARTICIPANT_MIN_SIZE));
+            throwExceptions(PARTICIPANTS_MIN_SIZE_EXCEPTION, PARTICIPANT_MIN_SIZE);
         }
         return participants;
     }
 
     private int verityLadderHeight(int ladderHeight) {
         if (ladderHeight <= 0) {
-            throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
+            throwExceptions(LADDER_HEIGHT_EXCEPTION);
         }
         return ladderHeight;
     }
 
-    public Ladder getLadder() {
-        return ladder;
+    public List<LineOfLadder> getLadderTable() {
+        return ladder.getLadder();
     }
 
     public List<String> getParticipants() {
         return participants;
+    }
+
+    private void throwExceptions(String pattern, Object... elements) {
+        throw new IllegalArgumentException(String.format(pattern, elements));
     }
 }
