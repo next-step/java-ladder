@@ -1,7 +1,6 @@
 package ladder.game;
 
 public class Ladder {
-
     private boolean[][] ladder;
 
     public Ladder(int personCount, int ladderHeight) {
@@ -13,37 +12,27 @@ public class Ladder {
         return this.ladder;
     }
 
-    public int getHeight() {
-        return ladder.length;
-    }
-
-    public int getWidth() {
-        return ladder[0].length;
-    }
-
     private void createLadder() {
         for (boolean[] line : ladder) {
             drawLine(line);
-            System.out.println();
         }
     }
 
     private void drawLine(boolean[] line) {
         int ladderWidth = line.length;
-        line[0] = random();
-        for (int width = 1; width < ladderWidth; width++) {
-            line[width] = ladderDraw(line[width - 1]);
+        for (int width = 0; width < ladderWidth; width++) {
+            line[width] = ladderDraw(line, width);
         }
     }
 
-    private boolean ladderDraw(boolean left) {
-        if (left) {
+    private boolean ladderDraw(boolean[] line, int width) {
+        if (width != 0 && line[width - 1]) {
             return false;
         }
-        return random();
+        return random(() -> Math.random() * 10 < 5);
     }
 
-    private boolean random() {
-        return Math.random() * 10 > 5;
+    private boolean random(DrawLineStrategy drawLineStrategy) {
+        return drawLineStrategy.draw();
     }
 }

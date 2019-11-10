@@ -17,13 +17,6 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("2차원 배열로 사다리 생성")
-    void ladderSizeTest() {
-        assertThat(ladder.getHeight()).isEqualTo(5);
-        assertThat(ladder.getWidth()).isEqualTo(3);
-    }
-
-    @Test
     @DisplayName("연속된 두 칸 모두 사다리가 그려질 수 업다")
     void verifiedLadderTest() {
         boolean[][] ladderTable = ladder.getLadder();
