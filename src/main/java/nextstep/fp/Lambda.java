@@ -29,7 +29,7 @@ public class Lambda {
 	public static int sumAll(List<Integer> numbers) {
 		int start = 0;
 	    return numbers.stream()
-				.reduce(start, (sum, b) -> sum += b);
+				.reduce(start, Integer::sum);
 	}
 
 	public static int sumAllEven(List<Integer> numbers) {
@@ -44,6 +44,6 @@ public class Lambda {
 		int start = 0;
 		return numbers.stream()
 				.filter(conditional::test)
-				.reduce(start, (sum, b) -> sum += b);
+				.reduce(start, Integer::sum);
 	}
 }
