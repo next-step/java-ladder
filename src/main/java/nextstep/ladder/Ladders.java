@@ -10,6 +10,10 @@ public class Ladders {
         this.ladders = new ArrayList<>();
     }
 
+    public Ladders(List<Ladder> ladders) {
+        this.ladders = ladders;
+    }
+
     public void add() {
         ladders.add(new Ladder());
     }
