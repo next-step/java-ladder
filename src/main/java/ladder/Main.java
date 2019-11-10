@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
 import ladder.view.InputView;
 
 import java.util.List;
@@ -10,5 +12,8 @@ public class Main {
 
         List<String> users = InputView.createUsers();
         int ladderHeight = InputView.createLadderHeight();
+
+        LadderGame game = new LadderGame();
+        Ladder ladder = game.createLadder(users, ladderHeight);
     }
 }
