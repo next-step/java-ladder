@@ -39,14 +39,9 @@ public class Lambda {
     }
 
     private static int sumCommon(List<Integer> numbers, Conditional condition) {
-        int total = 0;
-        for (int number : numbers) {
-            total += (isPass(number, condition))? number : 0;
-        }
-        return total;
+        return numbers.stream()
+                .filter(number -> condition.test(number))
+                .reduce(0, (a, b) -> a + b);
     }
 
-    private static boolean isPass(int number, Conditional condition){
-        return condition.test(number);
-    }
 }
