@@ -9,13 +9,9 @@ import java.util.List;
 /**
  * Created by yusik on 2019/11/09.
  */
-public class Controller {
+public class LadderGame {
 
-    public static void main(String[] args) {
-        run();
-    }
-
-    public static void run() {
+    public void start() {
 
         InputView inputView = new InputView(System.in);
         ResultView resultView = new ResultView(System.out);

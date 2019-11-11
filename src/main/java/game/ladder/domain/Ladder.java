@@ -13,9 +13,9 @@ public class Ladder {
 
     public Ladder(List<String> names, int height) {
         players = names;
-        int countOfPerson = players.size();
+        int countOfPlayer = players.size();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
+            lines.add(new Line(countOfPlayer));
         }
     }
 
