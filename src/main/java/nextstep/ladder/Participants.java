@@ -23,7 +23,7 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public List<Participant> getVaule() {
+    public List<Participant> getValue() {
         return new ArrayList<>(participants);
     }
 
