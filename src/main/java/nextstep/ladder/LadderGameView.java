@@ -41,8 +41,17 @@ public class LadderGameView {
         showParticipants(participants);
 
         for (Line line : lines) {
-            showText(line.toString());
+            showLine(line);
         }
+    }
+
+    private void showLine(Line line) {
+        StringBuilder sb = new StringBuilder();
+        for (Point point : line.getPoints()) {
+            sb.append(point.toString());
+        }
+
+        showText(sb.toString());
     }
 
     private void showParticipants(List<Participant> participants) {

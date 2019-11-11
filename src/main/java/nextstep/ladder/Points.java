@@ -37,13 +37,7 @@ public class Points {
         return Point.createEmpty();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        for (Point point : points) {
-            sb.append(point.toString());
-        }
-        return sb.toString();
+    public List<Point> getValue() {
+        return new ArrayList<>(points);
     }
 }

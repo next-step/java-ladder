@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import java.util.List;
+
 public class Line {
 
     private final Points points;
@@ -8,8 +10,7 @@ public class Line {
         points = new Points(count);
     }
 
-    @Override
-    public String toString() {
-        return points.toString();
+    public List<Point> getPoints() {
+        return points.getValue();
     }
 }
