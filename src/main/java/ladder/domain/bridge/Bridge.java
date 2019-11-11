@@ -1,6 +1,6 @@
 package ladder.domain.bridge;
 
-import ladder.domain.Point;
+import ladder.domain.common.Point;
 
 public class Bridge {
     private final Point point;

@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.common;
 
 public class Point {
     private final int x;
