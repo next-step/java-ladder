@@ -1,7 +1,5 @@
 package nextstep.ladder;
 
-import java.util.Optional;
-
 import static nextstep.ladder.PointType.*;
 
 public class Point {
