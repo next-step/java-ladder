@@ -1,5 +1,6 @@
 package ladder.domain.player;
 
+import ladder.domain.common.Range;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -17,5 +18,17 @@ class NamesTest {
         Players players = names.toPlayers();
 
         assertThat(players.getPlayers()).hasSize(2);
+    }
+
+    @Test
+    void 이름_일급컬렉션과_높이로_Range_생성() {
+        String rowNameChan = "chan";
+        String rowNamePark = "park";
+        int height = 2;
+
+        Names names = new Names(Arrays.asList(new Name(rowNameChan), new Name(rowNamePark)));
+        Range range = names.makeRange(height);
+
+        assertThat(range).isEqualTo(new Range(2, 2));
     }
 }

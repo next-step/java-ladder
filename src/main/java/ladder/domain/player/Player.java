@@ -1,6 +1,6 @@
 package ladder.domain.player;
 
-import ladder.domain.Point;
+import ladder.domain.common.Point;
 
 public class Player {
     private final Name name;

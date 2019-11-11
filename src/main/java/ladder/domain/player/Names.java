@@ -1,6 +1,7 @@
 package ladder.domain.player;
 
-import ladder.domain.Point;
+import ladder.domain.common.Point;
+import ladder.domain.common.Range;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -28,5 +29,9 @@ public class Names {
 
     private Player makePlayer(int index) {
         return new Player(names.get(index), new Point(index, STARTING_HEIGHT));
+    }
+
+    public Range makeRange(int height) {
+        return new Range(names.size(), height);
     }
 }
