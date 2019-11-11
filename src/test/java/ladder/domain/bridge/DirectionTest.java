@@ -1,4 +1,4 @@
-package ladder.domain.direction;
+package ladder.domain.bridge;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
