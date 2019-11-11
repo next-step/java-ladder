@@ -1,6 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-import static nextstep.ladder.PointType.*;
+import nextstep.ladder.RandomBooleanProvider;
+
+import static nextstep.ladder.domain.PointType.*;
 
 public class Point {
 

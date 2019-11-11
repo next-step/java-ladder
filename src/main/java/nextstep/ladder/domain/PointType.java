@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public enum PointType {
     VERTICAL_LINE("|"),

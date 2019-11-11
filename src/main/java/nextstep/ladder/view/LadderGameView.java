@@ -1,6 +1,9 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
 import nextstep.InputTool;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Point;
 
 import java.util.Arrays;
 import java.util.List;

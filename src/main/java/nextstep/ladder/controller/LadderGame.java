@@ -1,4 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.controller;
+
+import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Participants;
+import nextstep.ladder.view.LadderGameView;
 
 public class LadderGame {
 
