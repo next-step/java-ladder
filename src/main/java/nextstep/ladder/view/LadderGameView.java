@@ -19,6 +19,8 @@ public class LadderGameView {
     private static final String BLANK = " ";
     private static final String EMPTY = "";
 
+    private static final String INVALID_PARTICIPANT_ERROR_MSG = "입력된 참여자의 정보가 올바르지 않습니다.";
+
     private final InputTool inputTool;
 
     public LadderGameView() {
@@ -63,7 +65,7 @@ public class LadderGameView {
                 .stream()
                 .map(Participant::getName)
                 .reduce((name1, name2) -> name1 + " " + name2)
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_PARTICIPANT_ERROR_MSG));
 
         showText(participantsText);
     }
