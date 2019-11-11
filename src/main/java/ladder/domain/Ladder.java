@@ -43,6 +43,14 @@ public class Ladder {
         return users;
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     public int getHeight() {
         return height;
     }
