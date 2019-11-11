@@ -13,4 +13,16 @@ public class Players {
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
     }
+
+    public int getMaxLength() {
+        return this.players.stream()
+                .map(Player::getName)
+                .map(String::length)
+                .max(Integer::compareTo)
+                .get();
+    }
+
+    public int getRange() {
+        return players.size();
+    }
 }

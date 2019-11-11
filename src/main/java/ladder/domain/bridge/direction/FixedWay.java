@@ -1,4 +1,4 @@
-package ladder.domain.bridge;
+package ladder.domain.bridge.direction;
 
 public class FixedWay implements WayGenerator {
 

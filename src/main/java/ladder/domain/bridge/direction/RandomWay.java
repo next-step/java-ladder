@@ -1,4 +1,4 @@
-package ladder.domain.bridge;
+package ladder.domain.bridge.direction;
 
 import java.util.Random;
 

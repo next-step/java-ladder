@@ -1,5 +1,6 @@
 package ladder.domain.player;
 
+import ladder.domain.common.Height;
 import ladder.domain.common.Point;
 import ladder.domain.common.Range;
 
@@ -31,7 +32,7 @@ public class Names {
         return new Player(names.get(index), new Point(index, STARTING_HEIGHT));
     }
 
-    public Range makeRange(int height) {
+    public Range makeRange(Height height) {
         return new Range(names.size(), height);
     }
 }

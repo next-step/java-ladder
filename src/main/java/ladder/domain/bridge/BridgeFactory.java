@@ -1,5 +1,7 @@
 package ladder.domain.bridge;
 
+import ladder.domain.bridge.direction.Direction;
+import ladder.domain.bridge.direction.WayGenerator;
 import ladder.domain.common.Point;
 import ladder.domain.common.Range;
 
@@ -15,18 +17,21 @@ public class BridgeFactory {
     }
 
     public Bridges makeLadder(Range range) {
-        Direction beforeDirection = Direction.getDirection(wayGenerator);
 
         List<Bridge> bridges = new ArrayList<>();
         for (int y = 1; y <= range.getHeight(); y++) {
             Direction direction = Direction.getDirection(wayGenerator);
 
             bridges.add(makeFirstBridge(y, direction));
-            bridges.addAll(makeMiddleBridges(Range.makeNowRange(range, y), beforeDirection));
-            bridges.add(makeLastBridge(Range.makeNowRange(range, y), beforeDirection));
+            bridges.addAll(makeMiddleBridges(Range.makeNowRange(range, y), direction));
+            bridges.add(makeLastBridge(Range.makeNowRange(range, y), getMiddleLastDirection(bridges)));
         }
 
         return new Bridges(bridges);
+    }
+
+    private Direction getMiddleLastDirection(List<Bridge> bridges) {
+        return bridges.get(bridges.size() - 1).getDirection();
     }
 
     private Bridge makeLastBridge(Range range, Direction beforeDirection) {
@@ -44,13 +49,6 @@ public class BridgeFactory {
             bridges.add(bridge);
         }
         return bridges;
-    }
-
-    private Direction makeMiddleDirection(Direction beforeDirection) {
-        if (beforeDirection.equals(Direction.RIGHT)) {
-            return Direction.LEFT;
-        }
-        return Direction.getDirection(wayGenerator);
     }
 
     private Bridge makeFirstBridge(int y, Direction direction) {

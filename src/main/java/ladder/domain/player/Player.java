@@ -10,4 +10,8 @@ public class Player {
         this.name = name;
         this.point = point;
     }
+
+    public String getName() {
+        return name.getName();
+    }
 }

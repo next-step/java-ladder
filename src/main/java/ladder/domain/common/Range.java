@@ -4,20 +4,20 @@ import java.util.Objects;
 
 public class Range {
     private final int colRange;
-    private final int height;
+    private final Height height;
 
-    public static Range makeNowRange(Range range, int height) {
-        return new Range(range, height);
-    }
-
-    public Range(int colRange, int height) {
+    public Range(int colRange, Height height) {
         this.colRange = colRange;
         this.height = height;
     }
 
-    private Range(Range range, int nowHeight) {
+    private Range(Range range, Height nowHeight) {
         this.colRange = range.getColRange();
         this.height = nowHeight;
+    }
+
+    public static Range makeNowRange(Range range, int height) {
+        return new Range(range, new Height(height));
     }
 
     public int getColRange() {
@@ -25,7 +25,7 @@ public class Range {
     }
 
     public int getHeight() {
-        return height;
+        return height.getHeight();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Range {
         if (o == null || getClass() != o.getClass()) return false;
         Range range = (Range) o;
         return colRange == range.colRange &&
-                height == range.height;
+                Objects.equals(height, range.height);
     }
 
     @Override

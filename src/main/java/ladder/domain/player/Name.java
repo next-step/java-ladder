@@ -17,6 +17,14 @@ public class Name {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getNameLength() {
+        return name.length();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

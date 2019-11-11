@@ -1,4 +1,4 @@
-package ladder.domain.bridge;
+package ladder.domain.bridge.direction;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

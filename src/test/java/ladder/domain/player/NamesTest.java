@@ -1,5 +1,6 @@
 package ladder.domain.player;
 
+import ladder.domain.common.Height;
 import ladder.domain.common.Range;
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +28,8 @@ class NamesTest {
         int height = 2;
 
         Names names = new Names(Arrays.asList(new Name(rowNameChan), new Name(rowNamePark)));
-        Range range = names.makeRange(height);
+        Range range = names.makeRange(new Height(height));
 
-        assertThat(range).isEqualTo(new Range(2, 2));
+        assertThat(range).isEqualTo(new Range(2, new Height(height)));
     }
 }

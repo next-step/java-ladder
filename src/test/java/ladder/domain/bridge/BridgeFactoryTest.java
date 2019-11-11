@@ -1,5 +1,7 @@
 package ladder.domain.bridge;
 
+import ladder.domain.bridge.direction.RandomWay;
+import ladder.domain.common.Height;
 import ladder.domain.common.Range;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -13,7 +15,7 @@ class BridgeFactoryTest {
     void makeLadder(int col, int height, int size) {
         BridgeFactory bridgeFactory = new BridgeFactory(new RandomWay());
 
-        Bridges bridges = bridgeFactory.makeLadder(new Range(col, height));
+        Bridges bridges = bridgeFactory.makeLadder(new Range(col, new Height(height)));
 
         assertThat(bridges.getBridges()).hasSize(size);
     }
