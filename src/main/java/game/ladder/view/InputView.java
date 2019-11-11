@@ -12,6 +12,7 @@ import static java.util.stream.Collectors.toList;
  */
 public class InputView {
 
+    private static final int PLAYER_NAME_MAX_LENGTH = 5;
     private static final String DELIMITER = ",";
     private final Scanner scanner;
 
@@ -24,7 +25,7 @@ public class InputView {
         String[] players = scanner.nextLine().split(DELIMITER);
         return Arrays.stream(players)
                 .map(String::trim)
-                .filter(name -> name.length() <= 5)
+                .filter(name -> name.length() <= PLAYER_NAME_MAX_LENGTH)
                 .collect(toList());
     }
 
