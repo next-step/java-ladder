@@ -38,13 +38,15 @@ public class Lambda {
         return sumCommon(numbers, (number) -> number > 3);
     }
 
-    private static int sumCommon(List<Integer> numbers, Conditional c) {
+    private static int sumCommon(List<Integer> numbers, Conditional condition) {
         int total = 0;
         for (int number : numbers) {
-            if (c.test(number)) {
-                total += number;
-            }
+            total += (isPass(number, condition))? number : 0;
         }
         return total;
+    }
+
+    private static boolean isPass(int number, Conditional condition){
+        return condition.test(number);
     }
 }
