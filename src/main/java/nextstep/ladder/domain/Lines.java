@@ -1,11 +1,11 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Lines {
+public class Lines implements ImmutableList<Line> {
 
     private static int MIN_HEIGHT = 2;
     private static final String MIN_HEIGHT_ERROR_MSG = "높이는 2 이상 이여야합니다.";
@@ -24,8 +24,9 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public List<Line> getValue() {
-        return new ArrayList<>(lines);
+    @Override
+    public List<Line> get() {
+        return Collections.unmodifiableList(lines);
     }
 
     private void assertHeight(int height) {

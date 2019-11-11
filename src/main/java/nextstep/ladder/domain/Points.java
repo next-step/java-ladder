@@ -3,9 +3,10 @@ package nextstep.ladder.domain;
 import nextstep.UniformRandomBooleanProvider;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Points {
+public class Points implements ImmutableList<Point> {
 
     private List<Point> points;
 
@@ -37,7 +38,8 @@ public class Points {
         return Point.createEmpty();
     }
 
-    public List<Point> getValue() {
-        return new ArrayList<>(points);
+    @Override
+    public List<Point> get() {
+        return Collections.unmodifiableList(points);
     }
 }

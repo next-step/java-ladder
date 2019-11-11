@@ -11,6 +11,6 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return points.getValue();
+        return points.get();
     }
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.InputTool;
+import nextstep.ladder.domain.ImmutableList;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Point;
@@ -39,11 +40,11 @@ public class LadderGameView {
         return inputTool.readLineToInt();
     }
 
-    public void showResult(List<Participant> participants, List<Line> lines) {
+    public void showResult(ImmutableList<Participant> participants, ImmutableList<Line> lines) {
         showText(LADDER_GAME_RESULT);
-        showParticipants(participants);
+        showParticipants(participants.get());
 
-        for (Line line : lines) {
+        for (Line line : lines.get()) {
             showLine(line);
         }
     }
