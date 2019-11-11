@@ -5,7 +5,7 @@ public class Line {
     private final Points points;
 
     public Line(int count) {
-         points = new Points(count);
+        points = new Points(count);
     }
 
     @Override
