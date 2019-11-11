@@ -8,6 +8,7 @@ public class Ladder {
     private static final String LADDER_VERTICAL_CHARACTER = "|";
     private static final String LADDER_LINE_STRING = "-----";
     private static final String LADDER_NO_LINE_STRING = "     ";
+    private static final int NEXT_NONADJACENT_INDEX = 2;
 
     private List<String> users;
     private List<Line> lines = new ArrayList<>();
@@ -26,7 +27,7 @@ public class Ladder {
             createSeperateNumbers(beforeNumbers, lines, i);
             List<Integer> numbers = new ArrayList<>(beforeNumbers);
             numbers.add(i);
-            lines.addAll(createAllLines(numbers, i + 2));
+            lines.addAll(createAllLines(numbers, i + NEXT_NONADJACENT_INDEX));
         }
 
         return lines;
@@ -53,9 +54,13 @@ public class Ladder {
     public String getUserFormat() {
         StringBuilder sb = new StringBuilder();
         for (String user : users) {
-            sb.append(user).append("   ");
+            sb.append(fillCharacter(user));
         }
         return sb.toString();
+    }
+
+    private String fillCharacter(String user) {
+        return String.format("%-6s", user);
     }
 
     public List<String> drawLadder() {
