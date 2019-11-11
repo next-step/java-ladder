@@ -5,7 +5,8 @@ import java.util.Objects;
 public class Participant {
 
     private static final int MAX = 5;
-    private final String name;
+
+    protected final String name;
 
     private Participant(String name) {
         validate(name);

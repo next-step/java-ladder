@@ -9,9 +9,10 @@ import java.util.List;
 
 public class Participants {
 
-    private final List<Participant> participants;
+    protected final List<Participant> participants;
 
     private Participants(List<Participant> participants) {
+        System.out.println(participants.size());
         validate(participants);
         this.participants = participants;
     }
@@ -24,6 +25,7 @@ public class Participants {
 
     public static Participants of(String names) {
         return Arrays.stream(StringUtils.split(names))
+            .map(String::trim)
             .map(Participant::of)
             .collect(collectingAndThen(toList(), Participants::new));
     }
