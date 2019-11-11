@@ -2,7 +2,7 @@ package com.seok2.ladder.structure.domain;
 
 public class Height {
 
-    private static final int MIN = 0 ;
+    private static final int MIN = 0;
     private final int height;
 
     private Height(int height) {

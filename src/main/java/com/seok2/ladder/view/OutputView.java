@@ -14,13 +14,13 @@ public class OutputView {
     public static void printParticipant(ParticipantsDTO participantsDTO) {
         List<ParticipantDTO> participants = participantsDTO.getParticipants();
         for (ParticipantDTO participant : participants) {
-            System.out.print(participant.getName()+ BLANK);
+            System.out.print(participant.getName() + BLANK);
         }
     }
 
     public static void printLadder(LadderDTO ladderDTO) {
         ladderDTO.getLayers().stream()
-            .flatMap(x-> {
+            .flatMap(x -> {
                 System.out.println();
                 return x.getLayer().stream();
             })

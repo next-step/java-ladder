@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Participants {
 
+    private static final int MIN = 2;
+
     protected final List<Participant> participants;
 
     private Participants(List<Participant> participants) {
@@ -18,7 +20,7 @@ public class Participants {
     }
 
     private void validate(List<Participant> participants) {
-        if(participants.size() < 2) {
+        if (participants.size() < MIN) {
             throw new IllegalArgumentException("최소 2명의 참가자를 입력해주세요.");
         }
     }
@@ -30,7 +32,7 @@ public class Participants {
             .collect(collectingAndThen(toList(), Participants::new));
     }
 
-    public int size () {
+    public int size() {
         return participants.size();
     }
 }

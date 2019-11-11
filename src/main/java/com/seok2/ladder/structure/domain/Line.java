@@ -9,7 +9,7 @@ public class Line {
     private Line(Line down, Line side) {
         this.down = down;
         this.link = side;
-        if(link != null) {
+        if (link != null) {
             side.rung = true;
             side.link = this;
         }
@@ -24,8 +24,9 @@ public class Line {
     }
 
     protected Line build(Line previous, BuildStrategy strategy) {
-        if(previous == null || previous.isLink())
+        if (previous == null || previous.isLink()) {
             return new Line(this, null);
+        }
         return new Line(this, strategy.apply(previous));
     }
 }

@@ -1,6 +1,5 @@
 package com.seok2.ladder.structure.dto;
 
-import com.seok2.ladder.user.dto.ParticipantDTO;
 import java.util.List;
 
 public class LadderDTO {
