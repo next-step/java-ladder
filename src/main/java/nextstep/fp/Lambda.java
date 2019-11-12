@@ -36,7 +36,8 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return sum(numbers, (Predicate<Integer>) (number) -> true);
+        Predicate<Integer> predicate = number -> true;
+        return sum(numbers, predicate);
     }
 
     public static int sumAllEven(List<Integer> numbers) {

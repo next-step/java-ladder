@@ -22,4 +22,10 @@ public class PointTest {
         Point point = Point.first();
         assertThat(point).isNotEqualTo(point.next());
     }
+
+    @Test
+    void point_to_text() {
+        Point point = Point.first();
+        assertThat(point.pointToBridge()).isEqualTo(LadderBridge.EMPTY);
+    }
 }

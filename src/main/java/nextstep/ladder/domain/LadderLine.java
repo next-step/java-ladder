@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author : 김윤호
@@ -16,14 +17,23 @@ public class LadderLine {
 
     public LadderLine(int countOfPerson) {
         this.countOfPerson = countOfPerson;
+        create();
     }
 
-    public void create() {
+    private void create() {
         Point point = Point.first();
         points.add(point);
         while (countOfPerson != points.size()) {
-            points.add(point.next());
+            point = point.next();
+            points.add(point);
         }
+    }
+
+    public List<LadderBridge> showLine() {
+        return points
+                .stream()
+                .map(Point::pointToBridge)
+                .collect(Collectors.toList());
     }
 
     @Override
