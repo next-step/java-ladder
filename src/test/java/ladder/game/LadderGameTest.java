@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 
@@ -39,7 +40,8 @@ class LadderGameTest {
     }, delimiter = ':')
     @DisplayName("입력 시 예외상황 발생")
     void participantNameException(String participantsName, int ladderHeight) {
-        assertThrows(IllegalArgumentException.class, () -> new LadderGame(participantsName, ladderHeight, connectionStrategy));
+        assertThrows(IllegalArgumentException.class,
+                () -> new LadderGame(participantsName, ladderHeight, connectionStrategy));
     }
 
     @Test
@@ -47,4 +49,13 @@ class LadderGameTest {
         assertThat(ladderGame.getLadderHeight()).isEqualTo(5);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "결과값이 긴 경우, 결과값이 긴 경우, 결과값이 긴 경우, 결과값이 긴 경우",
+            "사다리, 개수가, 맞지, 않는, 경우"
+    })
+    @DisplayName("결과 입력 시 예외 발생")
+    void inputResultException(String inputResult) {
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.setResults(inputResult));
+    }
 }

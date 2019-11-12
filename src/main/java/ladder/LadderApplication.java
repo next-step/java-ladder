@@ -10,6 +10,8 @@ public class LadderApplication {
         String participant = InputView.inputParticipant();
         int ladderHeight = InputView.inputHeight();
         LadderGame ladderGame = new LadderGame(participant, ladderHeight, new RandomConnection());
-        ResultView.show(ladderGame);
+        String inputResults = InputView.inputResults();
+        ladderGame.setResults(inputResults);
+        ResultView.showLadderResult(ladderGame);
     }
 }
