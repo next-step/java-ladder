@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import ladder.model.Height;
-import ladder.model.Participant;
 import ladder.model.Participants;
 
 public class InputView {
@@ -16,7 +15,7 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String participantsInput = scanner.nextLine();
 
-        return new Participants(Participant.ofNameList(convertInputToList(participantsInput)));
+        return Participants.of(convertInputToList(participantsInput));
     }
 
     private static List<String> convertInputToList(String participantsInput) {
