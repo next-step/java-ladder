@@ -23,14 +23,14 @@ public class LadderInputView {
 
     public static List<String> inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String inputNames = SCANNER.nextLine();
+        String inputNames = StringUtils.deleteWhitespace(SCANNER.nextLine());
         return Arrays
                 .stream(inputNames.split(","))
                 .map(name -> {
                     if (name.length() > MINIMUM_MAXIMUM_VALUE) {
                         throw new InputMismatchException("이름은 다섯글자 이하로 입력해주세요.");
                     }
-                    return paddingBlank(name);
+                    return leftPadBlank(name);
                 })
                 .collect(Collectors.toList());
     }
@@ -49,7 +49,7 @@ public class LadderInputView {
         return NUMERIC.matcher(inputHeight).matches();
     }
 
-    private static String paddingBlank(String name) {
-        return StringUtils.rightPad(name, MINIMUM_MAXIMUM_VALUE, BLANK);
+    private static String leftPadBlank(String name) {
+        return StringUtils.leftPad(name, MINIMUM_MAXIMUM_VALUE, BLANK);
     }
 }
