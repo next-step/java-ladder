@@ -13,12 +13,12 @@ class Point {
 
     private static final int INCREASE = 1;
     private static final int FIRST_POSITION = 0;
-    private final boolean footrest;
+    private final boolean point;
     private final int currentPosition;
 
-    private Point(int currentPosition, boolean footrest) {
+    private Point(int currentPosition, boolean point) {
         this.currentPosition = currentPosition;
-        this.footrest = footrest;
+        this.point = point;
     }
 
     static Point first() {
@@ -26,7 +26,21 @@ class Point {
     }
 
     Point next() {
-        return new Point(currentPosition + INCREASE, RandomGenerator.generateBoolean());
+        boolean nextPoint = RandomGenerator.generateBoolean();
+
+        if (this.point && nextPoint) {
+            return new Point(currentPosition + INCREASE, false);
+        }
+
+        return new Point(currentPosition + INCREASE, nextPoint);
+    }
+
+    LadderBridge pointToBridge() {
+        if (this.point) {
+            return LadderBridge.BRIDGE;
+        }
+
+        return LadderBridge.EMPTY;
     }
 
     @Override
@@ -34,12 +48,12 @@ class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return footrest == point.footrest &&
+        return this.point == point.point &&
                 currentPosition == point.currentPosition;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(footrest, currentPosition);
+        return Objects.hash(point, currentPosition);
     }
 }
