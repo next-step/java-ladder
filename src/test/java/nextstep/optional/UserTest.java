@@ -15,7 +15,7 @@ public class UserTest {
         assertThat(ageIsInRange1(new User("crong", 29))).isFalse();
         assertThat(ageIsInRange1(null)).isFalse();
     }
-    
+
     @Test
     public void whenFiltersWithOptional_thenCorrect() {
         assertThat(ageIsInRange2(new User("crong", 35))).isTrue();
