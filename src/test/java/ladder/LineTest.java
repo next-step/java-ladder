@@ -12,12 +12,11 @@ public class LineTest {
 
     @BeforeEach
     void setUp() {
-        line = new Line(3);
+        line = new Line(4);
     }
 
     @Test
-    void 생성자비교() {
-        Line line1 = new Line(3);
-        assertThat(line1).isEqualTo(line);
+    void 라인의포인트테스트() {
+        line.test();
     }
 }

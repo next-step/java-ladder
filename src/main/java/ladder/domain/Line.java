@@ -5,24 +5,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
-    private int countOfPerson;
+    private static final String LADDER_LINE = "|";
+    private Points points;
 
     public Line (int countOfPerson) {
-        this.countOfPerson = countOfPerson;
+        this.points = new Points(countOfPerson, new PointsShuffleGenerator());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return countOfPerson == line.countOfPerson &&
-                Objects.equals(points, line.points);
+    public void test() {
+        List<Boolean> ladderPoints = this.points.getPoints();
+        for (Boolean ladderPoint : ladderPoints) {
+            if (ladderPoint) {
+                System.out.print(LADDER_LINE +"-----");
+            } else {
+                System.out.print(LADDER_LINE +"     ");
+            }
+        }
+        System.out.print(LADDER_LINE);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(points, countOfPerson);
-    }
 }
