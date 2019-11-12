@@ -1,6 +1,8 @@
 package step2;
 
 import org.junit.jupiter.api.Test;
+import step2.domain.Line;
+import step2.domain.Participants;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,9 +14,24 @@ public class LineTest {
 
     @Test
     void 라인_생성() {
-        Line line = new Line(countOfParticipants);
+        Line line = new Line(1, countOfParticipants);
 
-        assertThat(line.getPointsLength()).isEqualTo(3);
+        assertThat(line.getPointsLength()).isEqualTo(countOfParticipants - 1);
+    }
 
+    @Test
+    void 시작포함_짝수순서_라인_생성() {
+        Line line = new Line(0, countOfParticipants);
+
+        assertThat(line.getPoints().get(0)).isTrue();
+        assertThat(line.getPoints().get(1)).isFalse();
+    }
+
+    @Test
+    void 홀수순서_라인_생성() {
+        Line line = new Line(1, countOfParticipants);
+
+        assertThat(line.getPoints().get(0)).isFalse();
+        assertThat(line.getPoints().get(1)).isTrue();
     }
 }

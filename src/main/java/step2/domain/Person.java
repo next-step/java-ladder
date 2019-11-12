@@ -1,4 +1,4 @@
-package step2;
+package step2.domain;
 
 public class Person {
     private static final int MAX_NAME_LENGTH = 5;

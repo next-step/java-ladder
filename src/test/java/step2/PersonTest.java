@@ -1,6 +1,7 @@
 package step2;
 
 import org.junit.jupiter.api.Test;
+import step2.domain.Person;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
