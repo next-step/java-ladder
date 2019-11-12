@@ -26,6 +26,9 @@ public class Destinations {
     }
 
     public Destination findDestination(Point point) {
-        return null;
+        return destinations.stream()
+                .filter(destination -> destination.isSamePoint(point))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("일치하는 결과가 없습니다."));
     }
 }

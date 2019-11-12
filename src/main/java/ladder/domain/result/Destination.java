@@ -14,6 +14,10 @@ public class Destination {
         this.point = point;
     }
 
+    public boolean isSamePoint(Point point) {
+        return this.point.equals(point);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

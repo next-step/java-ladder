@@ -48,15 +48,18 @@ public class Ladder {
         for (Player player : players.getPlayers()) {
             Point point = player.getPoint();
 
-            while (point.getY() != bridges.getHeight() + 1) {
-                Point nextPoint = findNextPoint(point);
-                point = nextPoint;
+            while (reachDestination(point)) {
+                point = findNextPoint(point);
             }
 
             Destination destination = destinations.findDestination(point);
             results.add(new Result(player, destination));
         }
         return new Results(results);
+    }
+
+    private boolean reachDestination(Point point) {
+        return point.getY() != bridges.getHeight() + 1;
     }
 
     private Point findNextPoint(Point point) {
