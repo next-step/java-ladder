@@ -1,10 +1,10 @@
 package ladder.game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LineOfLadder {
-
-    private ArrayList<Boolean> connections;
+    private List<Boolean> connections;
     private ConnectionStrategy connectionStrategy;
 
     public LineOfLadder(int ladderWidth, ConnectionStrategy connectionStrategy) {
