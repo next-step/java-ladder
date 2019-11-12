@@ -19,8 +19,8 @@ public class Point {
         return movable;
     }
 
-    public Point createNextPoint(LadderStrategy ladderStrategy) {
-        return movable() ? Point.of(false) : Point.of(ladderStrategy.movable());
+    public Point createNextPoint(LinkStrategy linkStrategy) {
+        return movable() ? Point.of(false) : Point.of(linkStrategy.isLinkable());
     }
 
     @Override
