@@ -26,7 +26,7 @@ public class Bridges {
 
     public Direction findDirection(Point targetPoint) {
         return this.bridges.stream()
-                .filter(bridge -> bridge.getPoint().equals(targetPoint))
+                .filter(bridge -> bridge.isSamePoint(targetPoint))
                 .findFirst()
                 .get()
                 .getDirection();

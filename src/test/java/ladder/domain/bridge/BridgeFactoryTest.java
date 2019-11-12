@@ -15,7 +15,7 @@ class BridgeFactoryTest {
     void makeLadder(int col, int height, int size) {
         BridgeFactory bridgeFactory = new BridgeFactory(new RandomWay());
 
-        Bridges bridges = bridgeFactory.makeLadder(new Range(col, new Height(height)));
+        Bridges bridges = bridgeFactory.makeBridges(new Range(col, new Height(height)));
 
         assertThat(bridges.getBridges()).hasSize(size);
     }

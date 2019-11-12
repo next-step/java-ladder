@@ -20,7 +20,7 @@ public enum BridgeFrontGroup {
         return Arrays.stream(values())
                 .filter(front -> isEquals(direction, front))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 방향입니다."));
     }
 
     private static boolean isEquals(Direction direction, BridgeFrontGroup front) {

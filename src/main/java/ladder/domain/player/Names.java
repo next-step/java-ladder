@@ -4,6 +4,7 @@ import ladder.domain.common.Height;
 import ladder.domain.common.Point;
 import ladder.domain.common.Range;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -16,8 +17,10 @@ public class Names {
 
     private final List<Name> names;
 
-    public Names(List<Name> names) {
-        this.names = names;
+    public Names(String[] names) {
+        this.names = Arrays.stream(names)
+                .map(Name::new)
+                .collect(toList());
     }
 
     public Players toPlayers() {
