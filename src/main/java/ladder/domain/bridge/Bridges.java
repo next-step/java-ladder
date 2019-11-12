@@ -31,4 +31,10 @@ public class Bridges {
                 .get()
                 .getDirection();
     }
+
+    public Point findNextPoint(Point point) {
+        Direction direction = findDirection(point);
+        Point nextPoint = direction.move(point);
+        return nextPoint;
+    }
 }

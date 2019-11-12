@@ -14,4 +14,8 @@ public class Player {
     public String getName() {
         return name.getName();
     }
+
+    public Point getPoint() {
+        return Point.copy(point);
+    }
 }

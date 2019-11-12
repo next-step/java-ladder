@@ -6,6 +6,22 @@ public class Point {
     private final int x;
     private final int y;
 
+    public static Point copy(Point point) {
+        return new Point(point.x, point.y);
+    }
+
+    public static Point moveDown(Point point) {
+        return new Point(point.x, point.y + 1);
+    }
+
+    public static Point moveLeft(Point point) {
+        return new Point(point.x - 1, point.y);
+    }
+
+    public static Point moveRight(Point point) {
+        return new Point(point.x + 1, point.y);
+    }
+
     public Point(int x, int y) {
         this.x = x;
         this.y = y;

@@ -1,5 +1,7 @@
 package ladder.domain.result;
 
+import ladder.domain.common.Point;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -21,5 +23,9 @@ public class Destinations {
     @Override
     public int hashCode() {
         return Objects.hash(destinations);
+    }
+
+    public Destination findDestination(Point point) {
+        return null;
     }
 }

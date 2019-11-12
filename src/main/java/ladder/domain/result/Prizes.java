@@ -11,6 +11,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Prizes {
 
+    private static final int SYNC = 1;
     private final List<Prize> prizes;
 
     public Prizes(String[] values) {
@@ -22,7 +23,7 @@ public class Prizes {
     public Destinations makeDestinations(int height) {
         List<Destination> destinations = new ArrayList<>();
         for (int i = 0; i < prizes.size(); i++) {
-            Point point = new Point(i, height + 1);
+            Point point = new Point(i, height + SYNC);
             destinations.add(new Destination(prizes.get(i), point));
         }
         return new Destinations(destinations);
