@@ -38,14 +38,12 @@ public class ResultView {
         int pointSize = countOfParticipants - 1;
 
         for (Boolean point : line.getPoints()) {
-            index++;
-
             System.out.print(VERTICAL_LINE);
 
             String movableLine = point ? MOVABLE_LINE : IMMOVABLE_LINE;
             System.out.print(movableLine);
 
-            printEndVerticalLine(index, pointSize);
+            printEndVerticalLine(++index, pointSize);
         }
         newLine();
     }

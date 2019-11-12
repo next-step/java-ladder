@@ -14,7 +14,7 @@ public class LadderTest {
     int countOfParticipants = participants.countOfParticipants();
 
     @Test
-    void 숫자_높이_입력() {
+    void 숫자타입_높이_입력() {
         int height = 5;
 
         Ladder ladder = new Ladder(height, countOfParticipants);
@@ -22,7 +22,7 @@ public class LadderTest {
     }
 
     @Test
-    void 문자_높이_입력() {
+    void 문자타입_높이_입력() {
         String height = "5";
 
         Ladder ladder = new Ladder(height, countOfParticipants);

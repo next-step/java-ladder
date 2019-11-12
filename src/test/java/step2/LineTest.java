@@ -13,10 +13,11 @@ public class LineTest {
     int countOfParticipants = participants.countOfParticipants();
 
     @Test
-    void 라인_생성() {
+    void 라인_생성_참가자보다1작음() {
         Line line = new Line(1, countOfParticipants);
+        int pointSize = countOfParticipants - 1;
 
-        assertThat(line.getPointsLength()).isEqualTo(countOfParticipants - 1);
+        assertThat(line.getPointsLength()).isEqualTo(pointSize);
     }
 
     @Test
