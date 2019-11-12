@@ -1,5 +1,8 @@
 package ladder.game;
 
+import ladder.structure.Ladder;
+import ladder.structure.connection.ConnectionStrategy;
+
 import java.util.Collections;
 import java.util.List;
 

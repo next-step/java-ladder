@@ -8,7 +8,6 @@ import static java.util.stream.Collectors.toList;
 public class Participants {
     private static final String DELIMITER = ",";
     private static final String PARTICIPANTS_MIN_SIZE_EXCEPTION = "참여자는 최소 %d명 입니다.";
-
     private static final int PARTICIPANT_MIN_SIZE = 2;
 
     private List<Participant> participants;

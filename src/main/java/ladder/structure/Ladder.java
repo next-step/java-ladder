@@ -1,4 +1,6 @@
-package ladder.game;
+package ladder.structure;
+
+import ladder.structure.connection.ConnectionStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

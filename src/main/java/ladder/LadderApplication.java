@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.game.LadderGame;
-import ladder.game.RandomConnection;
+import ladder.structure.connection.RandomConnection;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
