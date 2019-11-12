@@ -40,11 +40,9 @@ public class OutputView {
     }
 
     private static void printDirection(Direction direction) {
-        if (Direction.LEFT.equals(direction)) {
-            System.out.printf(PRINT_FORMAT, PRINT_LEFT_DIRECTION);
-            return;
-        }
+        String directionCharacter = Direction.LEFT.equals(direction) ?
+                PRINT_LEFT_DIRECTION : PRINT_DEFAULT_DIRECTION;
 
-        System.out.printf(PRINT_FORMAT, PRINT_DEFAULT_DIRECTION);
+        System.out.printf(PRINT_FORMAT, directionCharacter);
     }
 }
