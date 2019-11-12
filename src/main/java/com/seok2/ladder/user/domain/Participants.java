@@ -14,7 +14,6 @@ public class Participants {
     protected final List<Participant> participants;
 
     private Participants(List<Participant> participants) {
-        System.out.println(participants.size());
         validate(participants);
         this.participants = participants;
     }

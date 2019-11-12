@@ -14,7 +14,7 @@ public class GameMain {
 
     public static void main(String[] args) {
         Participants participants = Participants.of(InputView.getNames());
-        Height height = Height.of(InputView.getHeigth());
+        Height height = Height.of(InputView.getHeight());
 
         Ladder ladder = Ladder.of(height, participants.size());
 

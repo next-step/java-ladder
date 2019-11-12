@@ -13,8 +13,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static int getHeigth() {
-        System.out.println(NAMES_OF_PLAYER_MSG);
+    public static int getHeight() {
+        System.out.println(HEIGHT_OF_LADDER_MSG);
         return scanner.nextInt();
     }
 
