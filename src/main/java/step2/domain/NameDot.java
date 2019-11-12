@@ -1,24 +1,17 @@
-package step2;
+package step2.domain;
 
 import java.util.Objects;
 
-public class NameDot implements Dot {
-    private final String name;
+class NameDot implements Dot {
+    private final Name name;
 
-    public NameDot(final String name) {
-        validate(name);
-        this.name = name;
+    NameDot(final String name) {
+        this.name = new Name(name);
     }
 
     @Override
     public String print() {
-        return name;
-    }
-
-    private void validate(final String name) {
-        if (name == null) {
-            throw new IllegalArgumentException();
-        }
+        return name.print();
     }
 
     @Override

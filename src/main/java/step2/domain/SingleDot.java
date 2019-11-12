@@ -1,7 +1,11 @@
-package step2;
+package step2.domain;
 
 class SingleDot implements Dot {
     private final String dot;
+
+    public SingleDot() {
+        this("-");
+    }
 
     SingleDot(final String dot) {
         if (dot == null) {
