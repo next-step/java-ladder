@@ -41,11 +41,9 @@ public class Lambda {
 
 	private static int sumUnderCondition(List<Integer> numbers, Conditional conditional) {
 		int total = 0;
-		for (int number : numbers) {
-			if (conditional.doesNumberPass(number)) {
-				total += number;
-			}
-		}
-		return total;
+		return numbers.stream()
+				.filter(conditional::doesNumberPass)
+				.reduce(total, Integer::sum);
 	}
+
 }

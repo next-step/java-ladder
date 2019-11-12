@@ -1,7 +1,8 @@
 package nextstep.fp;
 
+@FunctionalInterface
 public interface Conditional {
 
-	public boolean doesNumberPass(int number);
+	boolean doesNumberPass(int number);
 
 }
