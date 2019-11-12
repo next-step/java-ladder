@@ -12,7 +12,7 @@ public class ResultView {
     private static final String MOVABLE_LINE = "-----";
     private static final String IMMOVABLE_LINE = "     ";
 
-    public static void printStartLine() {
+    public static void printStart() {
         newLine();
         System.out.println("실행결과");
         newLine();
@@ -21,16 +21,16 @@ public class ResultView {
     public static void printParticipants(Participants participantsInput) {
         List<Person> participants = participantsInput.getParticipants();
 
-        for (Person person : participants) {
-            System.out.printf("%-6s", person.getName());
-        }
+        participants.stream()
+                .map(Person::getName)
+                .forEach(name -> System.out.printf("%-6s", name));
+
         newLine();
     }
 
     public static void printLadder(Ladder ladder, int countOfParticipants) {
-        for (Line line : ladder.getLines()) {
-            printLadderLine(line, countOfParticipants);
-        }
+        ladder.getLines()
+                .forEach(line -> printLadderLine(line, countOfParticipants));
     }
 
     private static void printLadderLine(Line line, int countOfParticipants) {

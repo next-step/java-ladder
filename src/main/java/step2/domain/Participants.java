@@ -2,24 +2,22 @@ package step2.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Participants {
     private static final String COMMA_DELIMITER = ",";
 
-    private List<Person> participants;
+    private List<Person> participants = new ArrayList<>();
 
     public Participants(String participantsInput) {
         splitByDelimiter(participantsInput);
     }
 
     private void splitByDelimiter(String participantsInput) {
-        participants = new ArrayList<>();
-
-        String[] splitedParticipants = participantsInput.split(COMMA_DELIMITER);
-
-        for (String splitedParticipant : splitedParticipants) {
-            participants.add(new Person(splitedParticipant));
-        }
+        participants = Stream.of(participantsInput.split(COMMA_DELIMITER))
+                .map(Person::new)
+                .collect(Collectors.toList());
     }
 
     public int countOfParticipants() {
