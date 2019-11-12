@@ -50,7 +50,7 @@ public class Ladder implements Printable {
     }
 
     private String row() {
-        final Stream<Line> leftPadding = Stream.of(LineFactory.emptyLine(maxHeight));
+        final Stream<Line> leftPadding = Stream.of(LineFactory.emptyLine(maxWidth));
         final Stream<Line> row = IntStream.range(1, names.size()) // left padding 때문에 1부터 시작
                                           .boxed()
                                           .map(i -> makeLine());
