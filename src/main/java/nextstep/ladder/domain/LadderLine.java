@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  * @version : 1.0
  * @date : 2019-11-11 19:40
  */
-public class LadderLine {
+class LadderLine {
 
     private final List<Point> points = new ArrayList<>();
     private final int countOfPerson;
