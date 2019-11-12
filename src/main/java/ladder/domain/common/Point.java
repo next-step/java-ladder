@@ -3,20 +3,9 @@ package ladder.domain.common;
 import java.util.Objects;
 
 public class Point {
+    private static final int MOVE = 1;
     private final int x;
     private final int y;
-
-    public static Point moveDown(Point point) {
-        return new Point(point.x, point.y + 1);
-    }
-
-    public static Point moveLeft(Point point) {
-        return new Point(point.x - 1, point.y);
-    }
-
-    public static Point moveRight(Point point) {
-        return new Point(point.x + 1, point.y);
-    }
 
     public Point(int x, int y) {
         this.x = x;
@@ -26,6 +15,18 @@ public class Point {
     public Point(Point point, int y) {
         this.x = point.x;
         this.y = y;
+    }
+
+    public static Point moveDown(Point point) {
+        return new Point(point.x, point.y + MOVE);
+    }
+
+    public static Point moveLeft(Point point) {
+        return new Point(point.x - MOVE, point.y + MOVE);
+    }
+
+    public static Point moveRight(Point point) {
+        return new Point(point.x + MOVE, point.y + MOVE);
     }
 
     public int getY() {

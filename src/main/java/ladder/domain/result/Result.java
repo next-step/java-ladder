@@ -13,6 +13,18 @@ public class Result {
         this.destination = destination;
     }
 
+    public boolean isSameByName(String name) {
+        return this.player.getName().equals(name);
+    }
+
+    public String getPlayerName() {
+        return player.getName();
+    }
+
+    public String getReward() {
+        return this.destination.getReward();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

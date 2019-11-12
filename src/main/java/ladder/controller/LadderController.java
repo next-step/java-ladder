@@ -29,7 +29,7 @@ public class LadderController {
 
         Ladder ladder = new Ladder(players, bridges);
 
-        OutputView.showLadder(ladder);
+        OutputView.showLadder(ladder, destinations);
     }
 
 }

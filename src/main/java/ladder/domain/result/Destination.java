@@ -18,6 +18,10 @@ public class Destination {
         return this.point.equals(point);
     }
 
+    public String getReward() {
+        return this.prize.getPrize();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

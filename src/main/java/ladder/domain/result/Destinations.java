@@ -2,6 +2,7 @@ package ladder.domain.result;
 
 import ladder.domain.common.Point;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,6 +11,17 @@ public class Destinations {
 
     public Destinations(List<Destination> destinations) {
         this.destinations = destinations;
+    }
+
+    public List<Destination> getDestinations() {
+        return Collections.unmodifiableList(destinations);
+    }
+
+    public Destination findDestination(Point point) {
+        return destinations.stream()
+                .filter(destination -> destination.isSamePoint(point))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("일치하는 결과가 없습니다."));
     }
 
     @Override
@@ -23,12 +35,5 @@ public class Destinations {
     @Override
     public int hashCode() {
         return Objects.hash(destinations);
-    }
-
-    public Destination findDestination(Point point) {
-        return destinations.stream()
-                .filter(destination -> destination.isSamePoint(point))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("일치하는 결과가 없습니다."));
     }
 }

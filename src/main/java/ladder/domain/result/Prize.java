@@ -18,6 +18,10 @@ public class Prize {
         }
     }
 
+    public String getPrize() {
+        return this.prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

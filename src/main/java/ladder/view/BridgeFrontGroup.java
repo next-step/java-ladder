@@ -27,15 +27,15 @@ public enum BridgeFrontGroup {
         return front.name().equals(direction.name());
     }
 
-    public String getFrontValue() {
-        return frontValue;
-    }
-
     public static String getSide(int length) {
         StringBuilder sides = new StringBuilder();
         for (int i = 0; i < length; i++) {
             sides.append(SIDE.frontValue);
         }
         return sides.toString();
+    }
+
+    public String getFrontValue() {
+        return frontValue;
     }
 }
