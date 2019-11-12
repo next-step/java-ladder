@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Ladder {
     private static final int LINE_START_INDEX = 0;
+
     private int height;
+
     private ArrayList<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int countOfParticipants) {
@@ -33,5 +35,9 @@ public class Ladder {
 
     public int getLinesSize() {
         return lines.size();
+    }
+
+    public ArrayList<Line> getLines() {
+        return lines;
     }
 }

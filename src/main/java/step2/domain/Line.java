@@ -6,7 +6,7 @@ import java.util.List;
 public class Line {
     private static final int DIVIDE_STANDARD = 2;
 
-    List<Boolean> points = new ArrayList<>();
+    private List<Boolean> points = new ArrayList<>();
 
     public Line(int index, int countOfParticipants) {
         makePoints(index, countOfParticipants);
@@ -61,7 +61,7 @@ public class Line {
 
 
     public int getPointsLength() {
-        return 3;
+        return points.size();
     }
 
     public List<Boolean> getPoints() {

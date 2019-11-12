@@ -19,4 +19,9 @@ public class Person {
     public int getLength() {
         return name.length();
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
