@@ -1,29 +1,32 @@
 package game.ladder.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by yusik on 2019/11/11.
  */
 public class Ladder {
 
-    private List<Line> lines = new ArrayList<>();
-    private List<String> players;
+    private final List<Line> lines;
+    private final List<String> players;
 
     public Ladder(List<String> names, int height) {
-        players = names;
+        this.players = names;
         int countOfPlayer = players.size();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPlayer));
-        }
+        this.lines = IntStream.range(0, height)
+                .mapToObj(i -> new Line(countOfPlayer))
+                .collect(toList());
     }
 
     public List<String> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }
