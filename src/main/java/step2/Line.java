@@ -2,12 +2,10 @@ package step2;
 
 import java.util.List;
 
-public class Line {
-    private final List<Dot> dots;
+public abstract class Line implements Printable {
+    protected final List<Dot> dots;
 
-    public Line(final List<Dot> dots) {
+    Line(final List<Dot> dots) {
         this.dots = dots;
     }
-
-
 }

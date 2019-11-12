@@ -1,5 +1,4 @@
 package step2;
 
-public interface Dot {
-    String print();
+public interface Dot extends Printable {
 }
