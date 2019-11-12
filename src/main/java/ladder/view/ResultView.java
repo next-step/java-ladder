@@ -13,6 +13,7 @@ public class ResultView {
     private static final String VERTICAL = "|";
     private static final String HORIZON = "-----";
     private static final String EMPTY_HORIZON = "     ";
+    private static final String PARTICIPANT_FORMAT = "%s%s%s";
     private static final int NAME_SPACE_SIZE = 6;
 
     public static void show(LadderGame ladderGame) {
@@ -25,11 +26,13 @@ public class ResultView {
         for (String participant : participants) {
             int left = (NAME_SPACE_SIZE - participant.length()) / 2;
             int right = NAME_SPACE_SIZE - participant.length() - left;
-            System.out.print(String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)));
-            System.out.print(participant);
-            System.out.print(String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)));
+            String.format(PARTICIPANT_FORMAT,
+                    String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)),
+                    participant,
+                    String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE))
+            );
         }
-        System.out.println();
+        System.out.println(EMPTY);
     }
 
     private static void drawLadder(LadderGame ladderGame) {

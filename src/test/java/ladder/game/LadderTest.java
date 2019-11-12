@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LadderTest {
-    private static Ladder ladder;
+    private Ladder ladder;
     private int personCount = 4;
     private int ladderHeight = 5;
     @BeforeEach

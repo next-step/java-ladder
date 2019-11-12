@@ -12,9 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderGameTest {
-
-    private static LadderGame ladderGame;
-    private static ConnectionStrategy connectionStrategy = new RandomConnection();
+    private LadderGame ladderGame;
+    private ConnectionStrategy connectionStrategy = new RandomConnection();
 
     @BeforeEach
     void setUp() {
