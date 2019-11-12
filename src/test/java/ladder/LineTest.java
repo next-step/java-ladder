@@ -1,9 +1,8 @@
 package ladder;
 
+import ladder.domain.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

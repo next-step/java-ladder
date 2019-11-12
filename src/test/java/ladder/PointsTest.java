@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.Points;
+import ladder.domain.PointsShuffleGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
