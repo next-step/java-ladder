@@ -22,7 +22,7 @@ public class Ladder {
         points.add(new Point(direction));
     }
 
-    public Direction direction(int height) {
+    public Direction getDirectionOfHeight(int height) {
         return points.get(height).direction();
     }
 }

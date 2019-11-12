@@ -12,7 +12,7 @@ public class PeoplesTest {
     @BeforeEach
     void setUp() {
         String peopleString = "pobi,honux,crong,jk";
-        peoples = Peoples.parse(peopleString);
+        peoples = Peoples.of(peopleString);
     }
 
     @Test

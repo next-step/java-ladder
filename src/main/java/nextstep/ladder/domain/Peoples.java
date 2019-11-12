@@ -12,7 +12,7 @@ public class Peoples {
         this.peoples = peoples;
     }
 
-    public static Peoples parse(String string) {
+    public static Peoples of(String string) {
         String[] names = string.split(PEOPLE_STRING_SEPARATOR);
         List<People> peoples = new ArrayList<>();
 

@@ -8,8 +8,8 @@ import nextstep.ladder.view.OutputView;
 public class LadderGameMain {
 
     public static void main(String[] args) {
-        String peopleString = InputView.inputPeoples();
-        Peoples peoples = Peoples.parse(peopleString);
+        String names = InputView.inputPeoples();
+        Peoples peoples = Peoples.of(names);
         int height = InputView.inputLadderHeight();
 
         LadderGame ladderGame = new LadderGame(peoples.size(), height);

@@ -34,6 +34,6 @@ public class Ladders {
     }
 
     public Direction ladderDirection(int index, int height) {
-        return ladders.get(index).direction(height);
+        return ladders.get(index).getDirectionOfHeight(height);
     }
 }

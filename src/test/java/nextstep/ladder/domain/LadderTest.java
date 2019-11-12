@@ -31,6 +31,6 @@ public class LadderTest {
 
     @Test
     void direction() {
-        assertThat(ladder.direction(1)).isEqualTo(Direction.RIGHT);
+        assertThat(ladder.getDirectionOfHeight(1)).isEqualTo(Direction.RIGHT);
     }
 }
