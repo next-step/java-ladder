@@ -11,4 +11,8 @@ public class IOUtils {
         System.setOut(new PrintStream(out));
         return out;
     }
+
+    public static void simulate2(final String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+    }
 }

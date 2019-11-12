@@ -20,7 +20,7 @@ class LadderTest {
         final Ladder ladder = Ladder.builder()
                                     .maxHeight(5)
                                     .names(Arrays.asList("pobi", "honux", "crong", "jk"))
-                                    .booleanGenerator(booleanGenerator)
+                                    .booleanGenerator(width -> booleanGenerator)
                                     .build();
 
         String expected = "" +
@@ -42,7 +42,7 @@ class LadderTest {
         final Ladder ladder = Ladder.builder()
                                     .maxHeight(5)
                                     .names(Arrays.asList("one", "two"))
-                                    .booleanGenerator(booleanGenerator)
+                                    .booleanGenerator(width -> booleanGenerator)
                                     .build();
 
         String expected = "" +
@@ -64,7 +64,7 @@ class LadderTest {
         final Ladder ladder = Ladder.builder()
                                     .maxHeight(5)
                                     .names(Arrays.asList("longNames", "longlongNames"))
-                                    .booleanGenerator(booleanGenerator)
+                                    .booleanGenerator(width -> booleanGenerator)
                                     .build();
 
         String expected = "" +

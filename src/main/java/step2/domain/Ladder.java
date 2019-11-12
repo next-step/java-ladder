@@ -1,6 +1,7 @@
 package step2.domain;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -74,7 +75,7 @@ public class Ladder implements Printable {
         private int maxWidth = DEFAULT_WIDTH;
         private int maxHeight = DEFAULT_HEIGHT;
         private List<String> names;
-        private BooleanGenerator random = new RandomBooleanGenerator();
+        private Function<Integer, BooleanGenerator> random = WidthAwareRandomBooleanGenerator::new;
 
         private LadderBuilder() {
         }
@@ -94,13 +95,13 @@ public class Ladder implements Printable {
             return this;
         }
 
-        public LadderBuilder booleanGenerator(final BooleanGenerator random) {
+        public LadderBuilder booleanGenerator(final Function<Integer, BooleanGenerator> random) {
             this.random = random;
             return this;
         }
 
         public Ladder build() {
-            return new Ladder(maxWidth, maxHeight, names, random);
+            return new Ladder(maxWidth, maxHeight, names, random.apply(maxWidth));
         }
     }
 }
