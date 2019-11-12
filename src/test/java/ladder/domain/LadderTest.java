@@ -3,7 +3,6 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,14 +20,4 @@ class LadderTest {
         assertThat(ladder.getUsers()).containsExactly("a", "b", "c");
     }
 
-    @Test
-    @DisplayName("모든 경우의 수 구하기")
-    void createAllLines() {
-        List<String> users = Arrays.asList("a", "b", "c", "d");
-        Ladder ladder = new Ladder(users, 5);
-
-        List<Line> lines = ladder.createAllLines(new ArrayList<>(), 0);
-
-        assertThat(lines).hasSize(4);
-    }
 }
