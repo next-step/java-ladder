@@ -6,10 +6,6 @@ public class Point {
     private final int x;
     private final int y;
 
-    public static Point copy(Point point) {
-        return new Point(point.x, point.y);
-    }
-
     public static Point moveDown(Point point) {
         return new Point(point.x, point.y + 1);
     }
@@ -24,6 +20,11 @@ public class Point {
 
     public Point(int x, int y) {
         this.x = x;
+        this.y = y;
+    }
+
+    public Point(Point point, int y) {
+        this.x = point.x;
         this.y = y;
     }
 

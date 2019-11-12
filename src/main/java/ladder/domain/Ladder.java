@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private static final int SYNC = 1;
     private final Players players;
     private final Bridges bridges;
 
@@ -46,11 +47,9 @@ public class Ladder {
     public Results makeResults(Destinations destinations) {
         List<Result> results = new ArrayList<>();
         for (Player player : players.getPlayers()) {
-            Point point = player.getPoint();
+            Point point = player.getNextPoint();
 
-            while (reachDestination(point)) {
-                point = findNextPoint(point);
-            }
+            point = findDestinationPoint(point);
 
             Destination destination = destinations.findDestination(point);
             results.add(new Result(player, destination));
@@ -58,8 +57,15 @@ public class Ladder {
         return new Results(results);
     }
 
+    private Point findDestinationPoint(Point point) {
+        while (reachDestination(point)) {
+            point = findNextPoint(point);
+        }
+        return point;
+    }
+
     private boolean reachDestination(Point point) {
-        return point.getY() != bridges.getHeight() + 1;
+        return point.getY() != bridges.getHeight() + SYNC;
     }
 
     private Point findNextPoint(Point point) {

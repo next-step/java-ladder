@@ -15,7 +15,7 @@ public class Player {
         return name.getName();
     }
 
-    public Point getPoint() {
-        return Point.copy(point);
+    public Point getNextPoint() {
+        return new Point(point, 1);
     }
 }
