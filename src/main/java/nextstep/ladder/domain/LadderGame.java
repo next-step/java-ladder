@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Optional;
+
 public class LadderGame {
     private static final int FIRST_LADDER_INDEX = 0;
 
@@ -22,26 +24,17 @@ public class LadderGame {
 
     private void initHeight(int height) {
         for (int i = 0; i < ladders.size(); i++) {
-            Direction direction = randomDirection(i, height);
+            Direction direction = Direction.getRandomDirection(previousLadderDirection(i, height));
             ladders.addHeight(i, direction);
         }
     }
 
-    private Direction randomDirection(int index, int height) {
-        if (previousLadderDirectionIsRight(index, height)) {
-            return Direction.LEFT;
-        }
-
-        return Direction.getRandomDirection();
-    }
-
-    private boolean previousLadderDirectionIsRight(int index, int height) {
+    private Optional<Direction> previousLadderDirection(int index, int height) {
         if (index == FIRST_LADDER_INDEX) {
-            return false;
+            return Optional.empty();
         }
 
-        Direction previousLadderDirection = ladderDirection(index - 1, height);
-        return Direction.RIGHT.equals(previousLadderDirection);
+        return Optional.of(ladderDirection(index - 1, height));
     }
 
     public Direction ladderDirection(int index, int height) {

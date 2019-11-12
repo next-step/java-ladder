@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,6 +15,13 @@ public enum Direction {
 
     Direction(int direction) {
         this.direction = direction;
+    }
+
+    public static Direction getRandomDirection(Optional<Direction> previousDirection) {
+        return previousDirection
+                .filter(Direction.RIGHT::equals)
+                .map(direction -> Direction.LEFT)
+                .orElse(getRandomDirection());
     }
 
     public static Direction getRandomDirection() {
