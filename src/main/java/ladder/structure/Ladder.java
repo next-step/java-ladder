@@ -25,14 +25,6 @@ public class Ladder {
         }
     }
 
-    public int getLadderHeight() {
-        return ladder.size();
-    }
-
-    public boolean isConnected(int line, int width) {
-        return ladder.get(line).isConnected(width);
-    }
-
     public List<List<Boolean>> getConnectedLine() {
         return ladder.stream()
                 .map(LineOfLadder::getConnections)

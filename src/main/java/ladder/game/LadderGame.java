@@ -21,23 +21,12 @@ public class LadderGame {
         return new LadderDTO(Collections.unmodifiableList(ladder.getConnectedLine()));
     }
 
-    public boolean isConnected(int line, int width) {
-        return ladder.isConnected(line, width);
-    }
-
-    public int getLadderHeight() {
-        return ladder.getLadderHeight();
-    }
-
-    public int getLadderWidth() {
-        return participants.size() - 1;
-    }
-
     public List<String> getParticipants() {
-        return Collections.unmodifiableList(participants.getNames());
+        return participants.getNames();
     }
 
     public List<String> getResults() {
+
         return results.getResult();
     }
 }

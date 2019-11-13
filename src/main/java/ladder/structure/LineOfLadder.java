@@ -14,10 +14,6 @@ public class LineOfLadder {
         createLine(ladderWidth, connectionStrategy);
     }
 
-    public boolean isConnected(int index) {
-        return connections.get(index);
-    }
-
     public List<Boolean> getConnections() {
         return Collections.unmodifiableList(connections);
     }

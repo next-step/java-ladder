@@ -1,6 +1,7 @@
 package ladder.game;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -37,6 +38,9 @@ public class Participants {
     }
 
     public List<String> getNames() {
-        return participants.stream().map(Participant::toString).collect(toList());
+        return Collections.unmodifiableList(participants.stream()
+                .map(Participant::toString)
+                .collect(toList()));
     }
+
 }

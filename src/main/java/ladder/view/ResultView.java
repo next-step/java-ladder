@@ -27,14 +27,7 @@ public class ResultView {
 
     private static void showParticipant(List<String> participants) {
         for (String participant : participants) {
-            int left = (NAME_SPACE_SIZE - participant.length()) / 2;
-            int right = NAME_SPACE_SIZE - participant.length() - left;
-            System.out.print(
-                    String.format(
-                            PARTICIPANT_FORMAT, String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)),
-                            participant,
-                            String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)))
-            );
+            arrangeCenterOfSpace(PARTICIPANT_FORMAT, participant);
         }
         System.out.println(EMPTY);
     }
@@ -63,15 +56,19 @@ public class ResultView {
 
     private static void showResults(List<String> results) {
         for (String result : results) {
-            int left = (NAME_SPACE_SIZE - result.length()) / 2;
-            int right = NAME_SPACE_SIZE - result.length() - left;
-            System.out.print(
-                    String.format(RESULT_FORMAT,
-                            String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)),
-                            result,
-                            String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)))
-            );
+            arrangeCenterOfSpace(RESULT_FORMAT, result);
         }
         System.out.println(EMPTY);
+    }
+
+    private static void arrangeCenterOfSpace(String format, String string) {
+        int left = (NAME_SPACE_SIZE - string.length()) / 2;
+        int right = NAME_SPACE_SIZE - string.length() - left;
+        System.out.print(
+                String.format(format,
+                        String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)),
+                        string,
+                        String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)))
+        );
     }
 }
