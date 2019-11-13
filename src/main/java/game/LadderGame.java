@@ -27,6 +27,7 @@ public class LadderGame {
         String command = inputView.receiveResultCommand();
         while (!ALL_COMMAND.equalsIgnoreCase(command)) {
             resultView.renderResult(ladder.getResult(command));
+            command = inputView.receiveResultCommand();
         }
         resultView.renderAllResult(ladder);
     }
