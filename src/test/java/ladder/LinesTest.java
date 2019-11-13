@@ -15,15 +15,11 @@ public class LinesTest {
 
     @BeforeEach
     void setUp() {
-        lines = new Lines();
+        lines = new Lines(5, 4);
     }
 
     @Test
-    void apply_메서드_테스트() {
-        int lineCount = 5;
-        for (int i = 0; i < lineCount; i++) {
-            assertThat(lines.apply(new Line(4))).hasSize(i+1);
-        }
+    void Lines테스트() {
         assertThat(lines.getLadderLines()).hasSize(5);
     }
 }

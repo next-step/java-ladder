@@ -13,7 +13,7 @@ public class PointsShuffleGenerator implements PointsGenerator {
         points.add(generateShufflePoint());
         for (int i = LADDER_BOUND_INDEX; i < countOfPerson - LADDER_BOUND_INDEX; i++) {
             boolean currentPoints = points.stream()
-                    .min(Comparator.naturalOrder())
+                    .reduce((a, b) -> b)
                     .map(this::generatePoints)
                     .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_MSG));
             points.add(currentPoints);

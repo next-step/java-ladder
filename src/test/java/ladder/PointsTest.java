@@ -5,6 +5,7 @@ import ladder.domain.PointsShuffleGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,12 +17,13 @@ public class PointsTest {
         List<Boolean> points = new ArrayList<>();
         points.add(true);
         for (int i = 1; i < countOfPerson - 1; i++) {
-            boolean a = points.stream()
-                    .min(Comparator.naturalOrder())
-                    .map(this::generatePoints)
-                    .orElseThrow(() -> new IllegalArgumentException("초기값 에러"));
-            points.add(a);
+            points.add(false);
         }
+        points.add(true);
+        assertThat(points.stream()
+                .reduce((a, b) -> b)
+                .map(this::generatePoints)
+                .orElse(null)).isFalse();
     }
 
     boolean generatePoints(boolean currentBoolean) {
