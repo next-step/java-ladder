@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class LadderGame {
@@ -8,11 +10,11 @@ public class LadderGame {
     private Ladders ladders;
 
     public LadderGame(int size, int height) {
-        ladders = new Ladders();
+        List<Ladder> ladders = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            ladders.add();
+            ladders.add(new Ladder());
         }
-
+        this.ladders = new Ladders(ladders);
         init(height);
     }
 
