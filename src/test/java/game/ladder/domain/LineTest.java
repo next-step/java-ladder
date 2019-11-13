@@ -18,7 +18,7 @@ class LineTest {
         int countOfPlayer = 5;
 
         // when
-        Line line = new Line(countOfPlayer);
+        Line line = new Line(countOfPlayer, () -> false);
         System.out.println(line);
 
         // then
@@ -34,10 +34,27 @@ class LineTest {
         int countOfPlayer = 5;
 
         // when
-        Line line = new Line(countOfPlayer);
+        Line line = new Line(countOfPlayer, () -> false);
         System.out.println(line);
 
         // then
         assertThat(line.getPoints()).hasSize(countOfPlayer);
+    }
+
+    @DisplayName("라인 이동")
+    @Test
+    void getNextPosition() {
+
+        // given
+        int countOfPlayer = 5;
+        int expectedPosition = 1;
+        Line line = new Line(countOfPlayer, () -> false);
+
+        // when
+        int nextPosition = line.move(expectedPosition);
+        System.out.println(line);
+
+        // then
+        assertThat(nextPosition).isEqualTo(expectedPosition);
     }
 }
