@@ -41,6 +41,21 @@ public class Ladder {
         return ladderFormat;
     }
 
+    public List<UserRecord> run() {
+        List<UserRecord> userRecords = new ArrayList<>();
+        for (int i = 0; i < users.size(); i++) {
+            userRecords.add(goLine(i));
+        }
+
+        return userRecords;
+    }
+
+    private UserRecord goLine(int index) {
+        UserRecord userRecord = new UserRecord(users.get(index), index);
+        userRecord.recordPoints(lines);
+        return userRecord;
+    }
+
     public List<String> getUsers() {
         return users;
     }

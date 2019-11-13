@@ -59,4 +59,12 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public boolean isExist(int index) {
+        if(index < 0 || index >= points.size()) {
+            return false;
+        }
+
+        return points.get(index);
+    }
 }

@@ -10,4 +10,9 @@ public class LadderGame {
 
         return ladder;
     }
+
+    public List<UserRecord> run(Ladder ladder) {
+        return ladder.run();
+    }
+
 }

@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
+import ladder.domain.UserRecord;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -17,6 +18,7 @@ public class Main {
         LadderGame game = new LadderGame();
         Ladder ladder = game.createLadder(users, ladderHeight);
 
+        List<UserRecord> userRecords = game.run(ladder);
         ResultView.printLadder(ladder);
     }
 }
