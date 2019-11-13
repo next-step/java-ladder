@@ -12,9 +12,9 @@ public class LadderGameTest {
     void size() {
         int expectSize = 5;
         int height = 5;
-        LadderGame ladderGame = new LadderGame(expectSize, height);
+        Ladders ladders = LadderGame.newInstance(expectSize, height);
 
-        assertThat(ladderGame.size()).isEqualTo(expectSize);
-        assertThat(ladderGame.height()).isEqualTo(height);
+        assertThat(ladders.size()).isEqualTo(expectSize);
+        assertThat(ladders.height()).isEqualTo(height);
     }
 }

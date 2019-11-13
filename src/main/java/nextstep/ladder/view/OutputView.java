@@ -1,18 +1,15 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Direction;
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.People;
-import nextstep.ladder.domain.Peoples;
+import nextstep.ladder.domain.*;
 
 public class OutputView {
     private static final String PRINT_FORMAT = "%6s";
     private static final String PRINT_LEFT_DIRECTION = "-----|";
     private static final String PRINT_DEFAULT_DIRECTION = "     |";
 
-    public static void printLadder(LadderGame ladderGame, Peoples peoples) {
+    public static void printLadder(Ladders ladders, Peoples peoples) {
         printName(peoples);
-        printLadder(ladderGame);
+        printLadder(ladders);
     }
 
     private static void printName(Peoples peoples) {
@@ -24,17 +21,17 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printLadder(LadderGame ladderGame) {
-        int height = ladderGame.height();
+    private static void printLadder(Ladders ladders) {
+        int height = ladders.height();
         for (int i = 0; i < height; i++) {
-            printLaddersHeight(ladderGame, i);
+            printLaddersHeight(ladders, i);
             System.out.println();
         }
     }
 
-    private static void printLaddersHeight(LadderGame ladderGame, int height) {
-        for (int i = 0; i < ladderGame.size(); i++) {
-            Direction direction = ladderGame.ladderDirection(i, height);
+    private static void printLaddersHeight(Ladders ladders, int height) {
+        for (int i = 0; i < ladders.size(); i++) {
+            Direction direction = ladders.ladderDirection(i, height);
             printDirection(direction);
         }
     }

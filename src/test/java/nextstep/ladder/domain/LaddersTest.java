@@ -23,22 +23,13 @@ public class LaddersTest {
     }
 
     @Test
-    @DisplayName("add 메소드 호출시 ladder가 추가 되는지 확인 한다.")
-    void add() {
-        Ladders ladders = new Ladders();
-        ladders.add();
-
-        assertThat(ladders.size()).isEqualTo(1);
-    }
-
-    @Test
     @DisplayName("ladder의 height가 올라가는지 확인한다.")
     void addHeight() {
         int expectedHeight = pointList.size() + 1;
 
         assertThat(ladders.height()).isEqualTo(pointList.size());
 
-        ladders.addHeight(0, Direction.LEFT);
+        ladders.addHeight(0, 0);
 
         assertThat(ladders.height()).isEqualTo(expectedHeight);
     }
