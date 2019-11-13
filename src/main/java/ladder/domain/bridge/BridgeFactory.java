@@ -16,7 +16,7 @@ public class BridgeFactory {
         this.wayGenerator = wayGenerator;
     }
 
-    public Bridges makeLadder(Range range) {
+    public Bridges makeBridges(Range range) {
 
         List<Bridge> bridges = new ArrayList<>();
         for (int y = 1; y <= range.getHeight(); y++) {

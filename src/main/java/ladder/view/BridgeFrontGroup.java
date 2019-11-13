@@ -20,15 +20,11 @@ public enum BridgeFrontGroup {
         return Arrays.stream(values())
                 .filter(front -> isEquals(direction, front))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 방향입니다."));
     }
 
     private static boolean isEquals(Direction direction, BridgeFrontGroup front) {
         return front.name().equals(direction.name());
-    }
-
-    public String getFrontValue() {
-        return frontValue;
     }
 
     public static String getSide(int length) {
@@ -37,5 +33,9 @@ public enum BridgeFrontGroup {
             sides.append(SIDE.frontValue);
         }
         return sides.toString();
+    }
+
+    public String getFrontValue() {
+        return frontValue;
     }
 }

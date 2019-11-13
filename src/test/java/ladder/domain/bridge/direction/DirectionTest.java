@@ -1,5 +1,6 @@
 package ladder.domain.bridge.direction;
 
+import ladder.domain.common.Point;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -28,5 +29,18 @@ class DirectionTest {
         Direction lastDirection = Direction.getLastDirection(Direction.valueOf(beforeName));
 
         assertThat(lastDirection).isEqualTo(Direction.valueOf(lastName));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"LEFT,0,2", "DOWN,1,2", "RIGHT,2,2"})
+    public void 방향에따라_좌표값_움직이기(String directionName, int x, int y) {
+        Point maybeNextPoint = new Point(x, y);
+
+        Point point = new Point(1, 1);
+        Direction direction = Direction.valueOf(directionName);
+
+        Point nextPoint = direction.move(point);
+
+        assertThat(nextPoint).isEqualTo(maybeNextPoint);
     }
 }

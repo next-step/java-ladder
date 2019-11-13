@@ -14,4 +14,8 @@ public class Player {
     public String getName() {
         return name.getName();
     }
+
+    public Point getNextPoint() {
+        return new Point(point, 1);
+    }
 }

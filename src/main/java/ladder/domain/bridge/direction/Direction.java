@@ -1,13 +1,18 @@
 package ladder.domain.bridge.direction;
 
+import ladder.domain.common.MoveStrategy;
+import ladder.domain.common.Point;
+
 public enum Direction {
-    LEFT,
-    DOWN,
-    RIGHT;
+    LEFT(Point::moveLeft),
+    DOWN(Point::moveDown),
+    RIGHT(Point::moveRight);
 
-    Direction() {
+    private final MoveStrategy moveStrategy;
+
+    Direction(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
     }
-
 
     public static Direction getDirection(WayGenerator wayGenerator) {
         return wayGenerator.getWay() ? RIGHT : DOWN;
@@ -25,5 +30,9 @@ public enum Direction {
             return LEFT;
         }
         return DOWN;
+    }
+
+    public Point move(Point point) {
+        return moveStrategy.move(point);
     }
 }

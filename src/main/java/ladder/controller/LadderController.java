@@ -6,39 +6,30 @@ import ladder.domain.bridge.Bridges;
 import ladder.domain.bridge.direction.RandomWay;
 import ladder.domain.common.Height;
 import ladder.domain.common.Range;
-import ladder.domain.player.Name;
 import ladder.domain.player.Names;
 import ladder.domain.player.Players;
+import ladder.domain.result.Destinations;
+import ladder.domain.result.Prizes;
 import ladder.view.InputView;
 import ladder.view.OutputView;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public class LadderController {
 
     public static void main(String[] args) {
-        List<Name> allNames = makeNames(InputView.inputNames());
-
-        Names names = new Names(allNames);
+        Names names = new Names(InputView.inputNames());
+        Prizes prizes = new Prizes(InputView.inputReward());
         Height height = new Height(InputView.inputHeight());
 
         Players players = names.toPlayers();
         Range range = names.makeRange(height);
+        Destinations destinations = prizes.makeDestinations(range.getHeight());
 
         BridgeFactory bridgeFactory = new BridgeFactory(new RandomWay());
-        Bridges bridges = bridgeFactory.makeLadder(range);
+        Bridges bridges = bridgeFactory.makeBridges(range);
 
         Ladder ladder = new Ladder(players, bridges);
 
-        OutputView.showLadder(ladder);
+        OutputView.showLadder(ladder, destinations);
     }
 
-    private static List<Name> makeNames(String[] inputNames) {
-        return Arrays.stream(inputNames)
-                .map(Name::new)
-                .collect(toList());
-    }
 }

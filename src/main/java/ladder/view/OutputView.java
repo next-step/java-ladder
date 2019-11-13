@@ -4,6 +4,10 @@ import ladder.domain.Ladder;
 import ladder.domain.bridge.direction.Direction;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.result.Destination;
+import ladder.domain.result.Destinations;
+import ladder.domain.result.Result;
+import ladder.domain.result.Results;
 
 import java.util.stream.Collectors;
 
@@ -11,10 +15,12 @@ public class OutputView {
 
     private static final int PADDING = 1;
     private static final String BLANK = " ";
+    private static final String END_COMMAND = "all";
 
-    public static void showLadder(Ladder ladder) {
+    public static void showLadder(Ladder ladder, Destinations destinations) {
         showPlayers(ladder.getPlayers());
         showBridges(ladder);
+        showResult(ladder, destinations);
     }
 
     private static void showPlayers(Players players) {
@@ -81,5 +87,48 @@ public class OutputView {
 
     private static void showLastBridge(Direction direction) {
         System.out.println(BridgeFrontGroup.findFrontByDirection(direction).getFrontValue());
+    }
+
+    private static void showResult(Ladder ladder, Destinations destinations) {
+        Results results = ladder.makeResults(destinations);
+        Players players = ladder.getPlayers();
+
+        StringBuilder prizes = new StringBuilder();
+        int maxLength = players.getMaxLength() + PADDING;
+        for (Destination destination : destinations.getDestinations()) {
+            prizes.append(String.format(getFormat(maxLength).toString(), destination.getReward()));
+        }
+        System.out.println(prizes.toString());
+
+        showResultByCommand(results);
+    }
+
+    private static void showResultByCommand(Results results) {
+        String command = null;
+        while (!END_COMMAND.equals(command)) {
+            System.out.println("결과를 보고 싶은 사람은?");
+            command = InputView.inputResultCommand();
+            showEachResult(results, command);
+        }
+        System.out.println("실행 결과");
+        System.out.println(makeAllResult(results));
+    }
+
+    private static void showEachResult(Results results, String command) {
+        if (END_COMMAND.equals(command)) {
+            return;
+        }
+        Result result = results.findByName(command);
+        System.out.println(result.getReward());
+    }
+
+    private static String makeAllResult(Results results) {
+        return results.getResults().stream()
+                .map(OutputView::makeAllResult)
+                .collect(Collectors.joining());
+    }
+
+    private static String makeAllResult(Result result) {
+        return new StringBuilder(result.getPlayerName()).append(" : ").append(result.getReward()).append("\n").toString();
     }
 }

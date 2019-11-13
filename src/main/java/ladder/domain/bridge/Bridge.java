@@ -16,8 +16,8 @@ public class Bridge {
         return point.getY();
     }
 
-    public Point getPoint() {
-        return point;
+    public boolean isSamePoint(Point point) {
+        return this.point.equals(point);
     }
 
     public Direction getDirection() {
