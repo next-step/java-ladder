@@ -32,4 +32,8 @@ public enum Direction {
         Collections.shuffle(directions);
         return directions.get(0);
     }
+
+    public int nextIndex(int index) {
+        return this.moveIndex + index;
+    }
 }
