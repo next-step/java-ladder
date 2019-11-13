@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,24 +11,30 @@ public class Game {
     private final int USER_MIN_NUM = 2;
 
     private List<User> users;
-    private List<Line> ladder;
     private int totalStep;
 
-    public Game(List<String> names, int totalStep) {
-        if (names.size() < USER_MIN_NUM || totalStep < STEP_MIN_NUM) {
+    public Game(String nameString, int totalStep) {
+        if (totalStep < STEP_MIN_NUM) {
             throw new IllegalArgumentException();
         }
-        this.users = createUsers(names);
         this.totalStep = totalStep;
-        this.ladder = createLadder(totalStep, names.size());
+        this.users = createUsers(nameString);
     }
 
-    private List<User> createUsers(List<String> names) {
+    private List<User> createUsers(String nameString) {
         List<User> users = new ArrayList<>();
+        List<String> names = Arrays.asList(nameString.split(","));
         for (int i = 0; i < names.size(); i++) {
             users.add(new User(names.get(i), i));
         }
+        if (users.size() < USER_MIN_NUM) {
+            throw new IllegalArgumentException();
+        }
         return users;
+    }
+
+    public List<Line> doGame() {
+        return createLadder(totalStep, users.size());
     }
 
     private List<Line> createLadder(int totalStep, int totalUser) {
