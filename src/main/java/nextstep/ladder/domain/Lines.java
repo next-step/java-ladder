@@ -16,17 +16,17 @@ public class Lines {
     public Lines(int size, int height) {
         this.lines = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            List<Point> points = initPoints(i, height);
+            List<Direction> points = initPoints(i, height);
             lines.add(new Line(points));
         }
     }
 
-    private List<Point> initPoints(int index, int height) {
-        List<Point> points = new ArrayList<>();
+    private List<Direction> initPoints(int index, int height) {
+        List<Direction> points = new ArrayList<>();
         for (int j = 0; j < height; j++) {
             Optional<Direction> previousDirection = previousDirection(index - 1, j);
             Direction direction = Direction.getRandomDirection(previousDirection);
-            points.add(new Point(direction));
+            points.add(direction);
         }
         return points;
     }

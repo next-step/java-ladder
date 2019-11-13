@@ -3,17 +3,17 @@ package nextstep.ladder.domain;
 import java.util.List;
 
 public class Line {
-    private List<Point> points;
+    private List<Direction> directions;
 
-    public Line(List<Point> points) {
-        this.points = points;
+    public Line(List<Direction> directions) {
+        this.directions = directions;
     }
 
     public int height() {
-        return points.size();
+        return directions.size();
     }
 
     public Direction getDirectionOfHeight(int height) {
-        return points.get(height).direction();
+        return directions.get(height);
     }
 }

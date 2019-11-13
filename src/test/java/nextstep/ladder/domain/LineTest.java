@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
     private Line line;
-    private List<Point> list = Arrays.asList(new Point(Direction.LEFT), new Point(Direction.RIGHT), new Point(Direction.LEFT));
+    private List<Direction> list = Arrays.asList(Direction.LEFT, Direction.RIGHT, Direction.LEFT);
 
     @BeforeEach
     void setUp() {

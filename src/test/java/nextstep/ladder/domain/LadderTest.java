@@ -13,12 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     private Ladder ladder;
-    private List<Point> pointList;
+    private List<Direction> pointList;
 
     @BeforeEach
     void setUp() {
         List<Line> lineList = new ArrayList<>();
-        pointList = Lists.newArrayList(new Point(Direction.LEFT), new Point(Direction.RIGHT), new Point(Direction.LEFT));
+        pointList = Lists.newArrayList(Direction.LEFT, Direction.RIGHT, Direction.LEFT);
         lineList.add(new Line(pointList));
         ladder = new Ladder(lineList, 3);
     }
@@ -36,8 +36,8 @@ public class LadderTest {
         int startIndex = 0;
         int expectedIndex = 1;
         List<Line> exampleLines = Arrays.asList(
-                new Line(Arrays.asList(new Point(Direction.RIGHT), new Point(Direction.RIGHT), new Point(Direction.RIGHT))),
-                new Line(Arrays.asList(new Point(Direction.LEFT), new Point(Direction.LEFT), new Point(Direction.LEFT)))
+                new Line(Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT)),
+                new Line(Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.LEFT))
         );
         Ladder ladder = new Ladder(new Lines(exampleLines), height);
 
