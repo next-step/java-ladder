@@ -5,6 +5,8 @@ import ladder.structure.connection.ConnectionStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class Ladder {
     private static final String LADDER_HEIGHT_EXCEPTION = "사다리게임의 높이는 0 이상입니다.";
     private List<LineOfLadder> ladder;
@@ -12,7 +14,7 @@ public class Ladder {
     public Ladder(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
         verityLadderHeight(ladderHeight);
         this.ladder = new ArrayList<>();
-        for ( int i = 0; i < ladderHeight; i++ ) {
+        for (int i = 0; i < ladderHeight; i++) {
             this.ladder.add(new LineOfLadder(personCount - 1, connectionStrategy));
         }
     }
@@ -29,5 +31,11 @@ public class Ladder {
 
     public boolean isConnected(int line, int width) {
         return ladder.get(line).isConnected(width);
+    }
+
+    public List<List<Boolean>> getConnectedLine() {
+        return ladder.stream()
+                .map(LineOfLadder::getConnections)
+                .collect(toList());
     }
 }

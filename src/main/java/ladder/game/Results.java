@@ -12,15 +12,16 @@ public class Results {
 
     private List<Result> results;
 
-    private Results() {}
+    private Results() {
+    }
 
     public static Results of(String inputResults, int participantsSize) {
         Results results = new Results();
-        List<String> tempResults = Arrays.stream(inputResults.split(",")).map(String :: trim).collect(toList());
-        if ( tempResults.size() != participantsSize ) {
+        List<String> tempResults = Arrays.stream(inputResults.split(",")).map(String::trim).collect(toList());
+        if (tempResults.size() != participantsSize) {
             throw new IllegalArgumentException(RESULT_SIZE_EXCEPTION);
         }
-        if ( tempResults.stream().anyMatch(tempResult -> tempResult.length() > 5) ) {
+        if (tempResults.stream().anyMatch(tempResult -> tempResult.length() > 5)) {
             throw new IllegalArgumentException(RESULT_LENGTH_EXCEPTION);
         }
         results.results = tempResults.stream().map(Result::new).collect(toList());
@@ -29,6 +30,6 @@ public class Results {
     }
 
     public List<String> getResult() {
-        return Collections.unmodifiableList(results.stream().map(Result :: toString).collect(toList()));
+        return Collections.unmodifiableList(results.stream().map(Result::toString).collect(toList()));
     }
 }

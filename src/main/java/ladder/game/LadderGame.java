@@ -3,11 +3,8 @@ package ladder.game;
 import ladder.structure.Ladder;
 import ladder.structure.connection.ConnectionStrategy;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
     private Ladder ladder;
@@ -18,6 +15,10 @@ public class LadderGame {
         this.participants = Participants.of(inputParticipant);
         this.ladder = new Ladder(this.participants.size(), ladderHeight, connectionStrategy);
         this.results = Results.of(inputResults, this.participants.size());
+    }
+
+    public LadderDTO getLadder() {
+        return new LadderDTO(Collections.unmodifiableList(ladder.getConnectedLine()));
     }
 
     public boolean isConnected(int line, int width) {

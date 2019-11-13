@@ -21,7 +21,7 @@ public class ResultView {
     public static void showLadderResult(LadderGame ladderGame) {
         System.out.println(LADDER_RESULT);
         showParticipant(ladderGame.getParticipants());
-        drawLadder(ladderGame);
+        drawLadder(ladderGame.getLadder().getLadder());
         showResults(ladderGame.getResults());
     }
 
@@ -39,34 +39,17 @@ public class ResultView {
         System.out.println(EMPTY);
     }
 
-    private static void drawLadder(LadderGame ladderGame) {
-        int ladderHeight = ladderGame.getLadderHeight();
-        int lineWidth = ladderGame.getLadderWidth();
-
-        for (int line = 0; line < ladderHeight; line++) {
+    private static void drawLadder(List<List<Boolean>> ladder) {
+        for (List<Boolean> line : ladder) {
             System.out.print(DOUBLE_SPACE + VERTICAL);
-            drawLine(ladderGame, line, lineWidth);
+            drawLine(line);
             System.out.println(EMPTY);
         }
     }
 
-    private static void showResults(List<String> results) {
-        for ( String result : results ) {
-            int left = (NAME_SPACE_SIZE - result.length()) / 2;
-            int right = NAME_SPACE_SIZE - result.length() - left;
-            System.out.print(
-                    String.format(RESULT_FORMAT,
-                        String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)),
-                        result,
-                        String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)))
-            );
-        }
-        System.out.println(EMPTY);
-    }
-
-    private static void drawLine(LadderGame ladderGame, int line, int lineWidth) {
-        for (int width = 0; width < lineWidth; width++) {
-            drawConnection(ladderGame.isConnected(line, width));
+    private static void drawLine(List<Boolean> line) {
+        for (Boolean connection : line) {
+            drawConnection(connection);
         }
     }
 
@@ -76,5 +59,19 @@ public class ResultView {
         } else {
             System.out.print(EMPTY_HORIZON + VERTICAL);
         }
+    }
+
+    private static void showResults(List<String> results) {
+        for (String result : results) {
+            int left = (NAME_SPACE_SIZE - result.length()) / 2;
+            int right = NAME_SPACE_SIZE - result.length() - left;
+            System.out.print(
+                    String.format(RESULT_FORMAT,
+                            String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)),
+                            result,
+                            String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)))
+            );
+        }
+        System.out.println(EMPTY);
     }
 }

@@ -3,6 +3,7 @@ package ladder.structure;
 import ladder.structure.connection.ConnectionStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LineOfLadder {
@@ -15,6 +16,10 @@ public class LineOfLadder {
 
     public boolean isConnected(int index) {
         return connections.get(index);
+    }
+
+    public List<Boolean> getConnections() {
+        return Collections.unmodifiableList(connections);
     }
 
     private void createLine(int ladderWidth, ConnectionStrategy connectionStrategy) {
