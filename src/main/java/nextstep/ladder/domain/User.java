@@ -8,7 +8,7 @@ public class User {
     private int point;
 
     public User(String name, int point) {
-        if("".equals(name)){
+        if("".equals(name.trim())){
             throw new IllegalArgumentException();
         }
         this.name = name;

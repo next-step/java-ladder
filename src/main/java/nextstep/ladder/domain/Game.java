@@ -7,26 +7,35 @@ import java.util.Objects;
 public class Game {
 
     private final int STEP_MIN_NUM = 1;
+    private final int USER_MIN_NUM = 2;
 
     private List<User> users;
     private List<Line> ladder;
     private int totalStep;
 
     public Game(List<String> names, int totalStep) {
+        if (names.size() < USER_MIN_NUM || totalStep < STEP_MIN_NUM) {
+            throw new IllegalArgumentException();
+        }
+        this.users = createUsers(names);
+        this.totalStep = totalStep;
+        this.ladder = createLadder(totalStep, names.size());
+    }
+
+    private List<User> createUsers(List<String> names) {
         List<User> users = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
             users.add(new User(names.get(i), i));
         }
-        this.users = users;
-
-        if (totalStep < STEP_MIN_NUM) {
-            throw new IllegalArgumentException();
-        }
-        this.totalStep = totalStep;
+        return users;
     }
 
-    public void doGame() {
-
+    private List<Line> createLadder(int totalStep, int totalUser) {
+        List<Line> ladder = new ArrayList<>();
+        for (int i = 0; i < totalStep; i++) {
+            ladder.add(new Line(totalUser));
+        }
+        return ladder;
     }
 
     @Override
