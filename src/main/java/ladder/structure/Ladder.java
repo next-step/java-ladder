@@ -30,4 +30,14 @@ public class Ladder {
                 .map(LineOfLadder::getConnections)
                 .collect(toList());
     }
+
+    public List<List<Integer>> findFinalPoint() {
+        List<List<Integer>> results = new ArrayList<>();
+        List<Integer> points = null;
+        for (int line = 0; line < ladder.size(); line++) {
+            points = ladder.get(line).findNextPoints(points);
+            results.add(points);
+        }
+        return results;
+    }
 }
