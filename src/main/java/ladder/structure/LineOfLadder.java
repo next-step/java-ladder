@@ -10,6 +10,14 @@ import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toList;
 
 public class LineOfLadder {
+    private static final int MOVE_RIGHT = 1;
+    private static final int MOVE_STRAIGHT = 0;
+    private static final int MOVE_LEFT = -1;
+
+    private static final int CONNECTION_TO_RIGHT = 0;
+    private static final int CONNECTION_TO_LEFT = -1;
+
+
     private List<Boolean> connections;
 
     public LineOfLadder(int ladderWidth, ConnectionStrategy connectionStrategy) {
@@ -35,41 +43,36 @@ public class LineOfLadder {
         return connectionStrategy.create();
     }
 
-    public List<Integer> findNextPoints(List<Integer> nowPoints) {
+    public List<Integer> findPointsForNextLine(List<Integer> nowPoints) {
         if (nowPoints == null) {
             nowPoints = IntStream.rangeClosed(0, connections.size()).boxed().collect(toList());
         }
 
         List<Integer> nextPoints = new ArrayList<>();
         for (int nowPoint : nowPoints) {
-            nextPoints.add(findNextPoint(nowPoint));
+            nextPoints.add(findPointForNextLine(nowPoint));
         }
         return nextPoints;
     }
 
-    private int findNextPoint(int index) {
-        if (index == 0) {
-            if (connections.get(index)) {
-                return index + 1;
-            } else {
-                return index;
-            }
-        } else if (index == connections.size()) {
-            if (connections.get(index - 1)) {
-                return index - 1;
-            } else {
-                return index;
-            }
-        } else {
-            if (connections.get(index)) {
-                return index + 1;
-            } else if (connections.get(index - 1)) {
-                return index - 1;
-            } else {
-                return index;
-            }
+    private int findPointForNextLine(int index) {
+        if (isConnected(index + CONNECTION_TO_RIGHT)) {
+            return index + MOVE_RIGHT;
         }
+        if (isConnected(index + CONNECTION_TO_LEFT)) {
+            return index + MOVE_LEFT;
+        }
+        return index + MOVE_STRAIGHT;
     }
+
+    private boolean isConnected(int index) {
+        if (index < 0 || index >= connections.size()) {
+            return false;
+        }
+        return connections.get(index);
+    }
+
+
 }
 
 

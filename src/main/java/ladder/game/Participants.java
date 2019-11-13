@@ -43,4 +43,11 @@ public class Participants {
                 .collect(toList()));
     }
 
+    public int indexOf(String user) {
+        int index = participants.indexOf(user);
+        if (index < 0) {
+            throw new IllegalArgumentException("제대로 된 이름을 입력하세요 ");
+        }
+        return index;
+    }
 }

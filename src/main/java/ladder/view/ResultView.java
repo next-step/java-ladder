@@ -17,13 +17,28 @@ public class ResultView {
     private static final String EMPTY_HORIZON = "     ";
     private static final String PARTICIPANT_FORMAT = "%s%s%s";
     private static final String RESULT_FORMAT = "%s%s%s";
+    private static final String GAME_RESULT_FORMAT = "%s : %s";
     private static final int NAME_SPACE_SIZE = 6;
 
     public static void showLadderResult(LadderGame ladderGame) {
         System.out.println(LADDER_RESULT);
         showParticipant(ladderGame.getParticipants());
         drawLadder(ladderGame.getLadder().getLadder());
-        showResults(ladderGame.getResults());
+        showResults(ladderGame.getPrizes());
+    }
+
+    public static void showResultOfParticipant(LadderGame ladderGame, String name) {
+        System.out.println(GAME_RESULT);
+        Map<String, String> results;
+        if ("all".equals(name)) {
+            results = ladderGame.getResult(ladderGame.getParticipants().stream().toArray(String[]::new));
+        } else {
+            results = ladderGame.getResult(name);
+        }
+
+        results.forEach((user, result) -> {
+            System.out.println(String.format(GAME_RESULT_FORMAT, user, result));
+        });
     }
 
     private static void showParticipant(List<String> participants) {
@@ -71,19 +86,5 @@ public class ResultView {
                         string,
                         String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)))
         );
-    }
-
-    public static void showResultOfParticipant(LadderGame ladderGame, String inputParticipantForResult) {
-        System.out.println(GAME_RESULT);
-        Map<String, String> result;
-        if ("all".equals(inputParticipantForResult)) {
-            result = ladderGame.getGameResult(ladderGame.getParticipants().stream().toArray(String[]::new));
-        } else {
-            result = ladderGame.getGameResult(inputParticipantForResult);
-        }
-
-        result.forEach((user, gameResult) -> {
-            System.out.println(user + " : " + gameResult);
-        });
     }
 }

@@ -55,33 +55,19 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 게임의 포인트 이동 확인")
     void getLadderPoints() {
-        List<List<Integer>> emptyLadderResults =
-                new Ladder(2, 3, new NoneConnection()).findPointsByLine();
+        List<Integer> emptyLadderResults =
+                new Ladder(2, 3, new NoneConnection()).getFinalPoints();
         assertAll(
-                () -> assertThat(emptyLadderResults.get(0).get(0)).isEqualTo(0),
-                () -> assertThat(emptyLadderResults.get(0).get(1)).isEqualTo(1),
-
-                () -> assertThat(emptyLadderResults.get(1).get(0)).isEqualTo(0),
-                () -> assertThat(emptyLadderResults.get(1).get(1)).isEqualTo(1),
-
-                () -> assertThat(emptyLadderResults.get(2).get(0)).isEqualTo(0),
-                () -> assertThat(emptyLadderResults.get(2).get(1)).isEqualTo(1)
+                () -> assertThat(emptyLadderResults.get(0)).isEqualTo(0),
+                () -> assertThat(emptyLadderResults.get(1)).isEqualTo(1)
         );
 
-        List<List<Integer>> allLadderResults =
-                new Ladder(3, 3, new DefaultConnection()).findPointsByLine();
+        List<Integer> allLadderResults =
+                new Ladder(3, 3, new DefaultConnection()).getFinalPoints();
         assertAll(
-                () -> assertThat(allLadderResults.get(0).get(0)).isEqualTo(1),
-                () -> assertThat(allLadderResults.get(0).get(1)).isEqualTo(0),
-                () -> assertThat(allLadderResults.get(0).get(2)).isEqualTo(2),
-
-                () -> assertThat(allLadderResults.get(1).get(0)).isEqualTo(0),
-                () -> assertThat(allLadderResults.get(1).get(1)).isEqualTo(1),
-                () -> assertThat(allLadderResults.get(1).get(2)).isEqualTo(2),
-
-                () -> assertThat(allLadderResults.get(2).get(0)).isEqualTo(1),
-                () -> assertThat(allLadderResults.get(2).get(1)).isEqualTo(0),
-                () -> assertThat(allLadderResults.get(2).get(2)).isEqualTo(2)
+                () -> assertThat(allLadderResults.get(0)).isEqualTo(1),
+                () -> assertThat(allLadderResults.get(1)).isEqualTo(0),
+                () -> assertThat(allLadderResults.get(2)).isEqualTo(2)
         );
     }
 }

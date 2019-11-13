@@ -3,19 +3,20 @@ package ladder.game;
 import ladder.structure.Ladder;
 import ladder.structure.connection.ConnectionStrategy;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     private Ladder ladder;
     private Participants participants;
-    private Results results;
-    private Map<String, String> gameResult;
+    private Prizes prizes;
 
     public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connectionStrategy, String inputResults) {
         this.participants = Participants.of(inputParticipant);
         this.ladder = new Ladder(this.participants.size(), ladderHeight, connectionStrategy);
-        this.results = Results.of(inputResults, this.participants.size());
-        this.gameResult = getGameResult();
+        this.prizes = Prizes.of(inputResults, this.participants.size());
     }
 
     public LadderDTO getLadder() {
@@ -26,29 +27,19 @@ public class LadderGame {
         return participants.getNames();
     }
 
-    public List<String> getResults() {
-        return results.getResult();
+    public List<String> getPrizes() {
+        return prizes.getResult();
     }
 
-    private Map<String, String> getGameResult() {
-        List<Integer> finalPoints = ladder.findFinalPoints();
-        List<String> participantsNames = new ArrayList<>(participants.getNames());
-        Map<String, String> result = new HashMap<>();
-        for (int index = 0; index < participantsNames.size(); index++) {
-            result.put(participantsNames.get(index), results.getResult().get(finalPoints.get(index)));
-        }
-        return result;
-    }
 
-    public Map<String, String> getGameResult(String... users) {
-        Map<String, String> result = new HashMap<>();
+    public Map<String, String> getResult(String... users) {
+        Map<String, String> result = new LinkedHashMap<>();
+        List<Integer> finalPoints = ladder.getFinalPoints();
+        List<String> prizes = getPrizes();
 
         for (String user : users) {
-            String userResult = gameResult.get(user);
-            if (userResult == null) {
-                throw new IllegalArgumentException("제대로 된 이름을 입력하세요 ");
-            }
-            result.put(user, userResult);
+            int index = participants.indexOf(user);
+            result.put(user, prizes.get(finalPoints.get(index)));
         }
         return result;
     }

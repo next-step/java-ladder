@@ -3,6 +3,7 @@ package ladder.structure;
 import ladder.structure.connection.ConnectionStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -10,6 +11,7 @@ import static java.util.stream.Collectors.toList;
 public class Ladder {
     private static final String LADDER_HEIGHT_EXCEPTION = "사다리게임의 높이는 0 이상입니다.";
     private List<LineOfLadder> ladder;
+    private List<Integer> finalPoints;
 
     public Ladder(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
         verityLadderHeight(ladderHeight);
@@ -17,12 +19,7 @@ public class Ladder {
         for (int i = 0; i < ladderHeight; i++) {
             this.ladder.add(new LineOfLadder(personCount - 1, connectionStrategy));
         }
-    }
-
-    private void verityLadderHeight(int ladderHeight) {
-        if (ladderHeight <= 0) {
-            throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
-        }
+        this.finalPoints = findFinalPoints();
     }
 
     public List<List<Boolean>> getConnectedLine() {
@@ -31,19 +28,22 @@ public class Ladder {
                 .collect(toList());
     }
 
-    public List<List<Integer>> findPointsByLine() {
-        List<List<Integer>> results = new ArrayList<>();
-        List<Integer> points = null;
-        for (int line = 0; line < ladder.size(); line++) {
-            points = ladder.get(line).findNextPoints(points);
-            results.add(points);
-        }
-        return results;
+    public List<Integer> getFinalPoints() {
+        return Collections.unmodifiableList(finalPoints);
     }
 
-    public List<Integer> findFinalPoints() {
-        List<List<Integer>> results = findPointsByLine();
-        return results.get(results.size() - 1);
+    private void verityLadderHeight(int ladderHeight) {
+        if (ladderHeight <= 0) {
+            throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
+        }
+    }
+
+    private List<Integer> findFinalPoints() {
+        List<Integer> points = null;
+        for (LineOfLadder lineOfLadder : ladder) {
+            points = lineOfLadder.findPointsForNextLine(points);
+        }
+        return points;
     }
 
 }

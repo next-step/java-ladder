@@ -6,17 +6,17 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class Results {
+public class Prizes {
     private static final String RESULT_SIZE_EXCEPTION = "사다리게임의 결과는 사다리 참여자와 동일한 개수여야 합니다.";
-    private List<Result> results;
+    private List<Prize> prizes;
 
-    private Results() {
+    private Prizes() {
     }
 
-    public static Results of(String inputResults, int participantsSize) {
-        Results results = new Results();
-        results.results = verifiedResult(inputResults, participantsSize).stream().map(Result::new).collect(toList());
-        return results;
+    public static Prizes of(String inputResults, int participantsSize) {
+        Prizes prizes = new Prizes();
+        prizes.prizes = verifiedResult(inputResults, participantsSize).stream().map(Prize::new).collect(toList());
+        return prizes;
     }
 
     private static List<String> verifiedResult(String inputResults, int participantsSize) {
@@ -28,8 +28,8 @@ public class Results {
     }
 
     public List<String> getResult() {
-        return Collections.unmodifiableList(results.stream()
-                .map(Result::toString)
+        return Collections.unmodifiableList(prizes.stream()
+                .map(Prize::toString)
                 .collect(toList()));
     }
 }
