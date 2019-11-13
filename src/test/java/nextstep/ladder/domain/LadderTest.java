@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.view.OutputView;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -41,6 +42,28 @@ public class LadderTest {
         );
         Ladder ladder = new Ladder(new Lines(exampleLines), height);
 
+        assertThat(ladder.result(startIndex)).isEqualTo(expectedIndex);
+    }
+
+    @Test
+    @DisplayName("시작 index를 넣으면 종료 index가 정상적으로 나오는지 확인 한다.")
+    void result3() {
+        int height = 5;
+        int startIndex = 1;
+        int expectedIndex = 0;
+        List<Line> exampleLines = Arrays.asList(
+                new Line(Arrays.asList(Direction.BOTTOM, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.BOTTOM)),
+                new Line(Arrays.asList(Direction.BOTTOM, Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.BOTTOM)),
+                new Line(Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.BOTTOM, Direction.RIGHT, Direction.BOTTOM)),
+                new Line(Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.BOTTOM, Direction.LEFT, Direction.BOTTOM))
+        );
+        Ladder ladder = new Ladder(new Lines(exampleLines), height);
+
+        Peoples peoples = Peoples.of("pobi,honux,crong,jk");
+        Gifts gifts = Gifts.of("pobi,honux,crong,jk");
+        String resultName = "all";
+        OutputView.printLadder(ladder, peoples, gifts);
+        OutputView.printResult(resultName, ladder, peoples, gifts);
         assertThat(ladder.result(startIndex)).isEqualTo(expectedIndex);
     }
 }

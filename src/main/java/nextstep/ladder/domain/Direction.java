@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,11 +16,17 @@ public enum Direction {
         this.moveIndex = moveIndex;
     }
 
-    public static Direction getRandomDirection(Optional<Direction> previousDirection) {
-        return previousDirection
-                .filter(Direction.RIGHT::equals)
-                .map(direction -> Direction.LEFT)
-                .orElse(getRandomDirection());
+    //TODO isLastIndex 대신 Point 객체를 파라미터로 받을 예정입니다.
+    public static Direction getRandomDirection(Direction previousDirection, boolean isLastIndex) {
+        if (Direction.RIGHT.equals(previousDirection)) {
+            return Direction.LEFT;
+        }
+
+        if (isLastIndex) {
+            return Direction.BOTTOM;
+        }
+
+        return getRandomDirection();
     }
 
     public static Direction getRandomDirection() {

@@ -24,6 +24,6 @@ public class LineTest {
 
     @Test
     void direction() {
-        assertThat(line.getDirectionOfHeight(1)).isEqualTo(Direction.RIGHT);
+        assertThat(line.getDirectionByHeight(1)).isEqualTo(Direction.RIGHT);
     }
 }

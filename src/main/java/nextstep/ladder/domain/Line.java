@@ -13,7 +13,7 @@ public class Line {
         return directions.size();
     }
 
-    public Direction getDirectionOfHeight(int height) {
+    public Direction getDirectionByHeight(int height) {
         return directions.get(height);
     }
 }

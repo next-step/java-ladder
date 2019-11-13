@@ -30,4 +30,14 @@ public class Peoples {
     public People peopleByIndex(int index) {
         return peoples.get(index);
     }
+
+    // TODO 리펙토링 예정입니다.
+    public int indexByName(String resultName) {
+        for (int i = 0; i < peoples.size(); i++) {
+            if (peoples.get(i).toString().equalsIgnoreCase(resultName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
