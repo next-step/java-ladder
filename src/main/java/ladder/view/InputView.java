@@ -3,8 +3,9 @@ package ladder.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import ladder.model.Height;
-import ladder.model.Participants;
+import java.util.stream.Collectors;
+import ladder.domain.Height;
+import ladder.domain.Participants;
 
 public class InputView {
 
@@ -19,7 +20,10 @@ public class InputView {
     }
 
     private static List<String> convertInputToList(String participantsInput) {
-        return Arrays.asList(participantsInput.split(INPUT_DELIMITER));
+        return Arrays.asList(participantsInput.split(INPUT_DELIMITER))
+            .stream()
+            .map(String::trim)
+            .collect(Collectors.toList());
     }
 
     public static Height getHeight() {

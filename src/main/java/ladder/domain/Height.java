@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.domain;
 
 public class Height {
 
@@ -19,6 +19,10 @@ public class Height {
             throw new IllegalArgumentException(ILLEGAL_HEIGHT);
         }
         return heightInput;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     @Override

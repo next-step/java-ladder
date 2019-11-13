@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,21 +9,21 @@ public class Participants {
     private static final String ILLEGAL_NUMBER_OF_PARTICIPANTS = "참가자 수가 유효하지 않습니다.";
     private final List<Participant> participants;
 
-    private Participants(List<String> participantNameList) {
-        this.participants = getParticipants(checkNameList(participantNameList));
+    private Participants(List<Participant> participantNameList) {
+        this.participants = participantNameList;
     }
 
     public static Participants of(List<String> participantNameList) {
-        return new Participants(participantNameList);
+        return new Participants(getParticipants(checkNameList(participantNameList)));
     }
 
-    private List<Participant> getParticipants(List<String> checkedNameList) {
+    private static List<Participant> getParticipants(List<String> checkedNameList) {
         return checkedNameList.stream()
             .map(Participant::of)
             .collect(Collectors.toList());
     }
 
-    private List<String> checkNameList(List<String> participantNameList) {
+    private static List<String> checkNameList(List<String> participantNameList) {
         if (participantNameList.size() < MIN_PARTICIPANTS) {
             throw new IllegalArgumentException(ILLEGAL_NUMBER_OF_PARTICIPANTS);
         }
@@ -32,5 +32,12 @@ public class Participants {
 
     public int getNumberOfParticipants() {
         return participants.size();
+    }
+
+    @Override
+    public String toString() {
+        return participants.stream()
+            .map(Participant::toString)
+            .collect(Collectors.joining());
     }
 }

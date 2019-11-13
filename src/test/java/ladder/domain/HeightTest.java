@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Java6Assertions.assertThat;
