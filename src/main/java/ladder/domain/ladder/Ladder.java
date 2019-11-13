@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.LadderExecutionResult;
 import ladder.domain.Direction;
 import ladder.domain.LadderInput;
 import ladder.domain.Participants;
@@ -12,6 +13,7 @@ import ladder.domain.policy.PointConnectPolicy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -57,6 +59,21 @@ public class Ladder {
 				.findFirst()
 				.orElseThrow(() -> new IllegalStateException(String.format("%s의 사다리는 없습니다", name)));
 		return targetPoint.getResultFrom(Direction.VERTICAL);
+	}
+
+	public LadderExecutionResult getAllResult() {
+		List<String> names = getNames();
+		LadderExecutionResult resultMap = new LadderExecutionResult();
+		for (String name : names) {
+			resultMap.add(name, getResult(name));
+		}
+		return resultMap;
+	}
+
+	private List<String> getNames() {
+		return getFirstLine().getPoints().stream()
+				.map(Point::getName)
+				.collect(Collectors.toList());
 	}
 
 	private Line getFirstLine() {
