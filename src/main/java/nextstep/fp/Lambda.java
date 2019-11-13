@@ -28,11 +28,16 @@ public class Lambda {
     }
 
     public static int sum(List<Integer> numbers, Predicate<Integer> predicate) {
-        return numbers.stream().filter(predicate).mapToInt(Integer::intValue).sum();
+        return numbers
+                .stream()
+                .filter(predicate)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return sum(numbers, (Predicate<Integer>) (number) -> true);
+        Predicate<Integer> predicate = number -> true;
+        return sum(numbers, predicate);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
