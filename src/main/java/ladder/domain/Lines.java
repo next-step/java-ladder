@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Lines {
-    private static final String DELIMITE = ",";
+    private static final String DELIMITER = ",";
     private List<Line> lines;
     private String[] persons;
 
@@ -14,7 +14,7 @@ public class Lines {
     }
 
     public Lines(int countOfLine, String person) {
-        this.persons = person.split(DELIMITE);
+        this.persons = person.split(DELIMITER);
         lines = createLines(countOfLine, persons.length);
     }
 
