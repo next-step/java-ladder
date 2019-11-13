@@ -1,12 +1,14 @@
 package ladder.domain.ladder;
 
 import ladder.domain.Direction;
+import ladder.domain.LadderExecutionResult;
 import ladder.domain.LadderInput;
 import ladder.domain.Participants;
 import ladder.domain.line.Line;
 import ladder.domain.point.Point;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -74,6 +76,31 @@ class LadderTest {
 			ladder.getResult("사람4");
 		})
 		.isInstanceOf(IllegalStateException.class);
+	}
+
+	@Test
+	void 전체_결과를_찾을_수_있다() {
+		/* 기대하고 있는 사다리 모양
+		 * A     B     C
+		 * |-----|     |
+		 * |-----|     |
+		 * |-----|     |
+		 * 100  200    300
+		 * A = 200, B = 100, C = 300
+		 */
+		// given
+		String[] names = new String[]{"사람1", "사람2", "사람3"};
+		String[] result = new String[]{"100", "200", "300"};
+		Ladder ladder = new Ladder(() -> true, new LadderInput(names, result), 3);
+
+		// when
+		LadderExecutionResult executionResult = ladder.getAllResult();
+
+		// then
+		assertThat(executionResult.getNames()).isEqualTo(Arrays.asList("사람1", "사람2", "사람3"));
+		assertThat(executionResult.getExecutionResult("사람1")).isEqualTo("200");
+		assertThat(executionResult.getExecutionResult("사람2")).isEqualTo("100");
+		assertThat(executionResult.getExecutionResult("사람3")).isEqualTo("300");
 	}
 
 	private void assertLineHasVerticalAndHorizontalConnection(Line line) {
