@@ -13,10 +13,17 @@ public class Ladder {
     private int height;
 
     public Ladder(List<String> users, List<String> outcomes, int height) {
+        checkSize(users.size(), outcomes.size());
         this.users = users;
         this.outcomes = outcomes;
         this.width = users.size() - 1;
         this.height = height;
+    }
+
+    private void checkSize(int userSize, int outcomeSize) {
+        if (userSize != outcomeSize) {
+            throw new IllegalArgumentException("유저수와 결과수를 같게 입력해주세요ㅣ");
+        }
     }
 
     public void createLines() {
@@ -30,6 +37,7 @@ public class Ladder {
                 .map(this::fillCharacter)
                 .collect(Collectors.joining());
     }
+
     public String getOutcomeFormat() {
         return outcomes.stream()
                 .map(this::fillCharacter)

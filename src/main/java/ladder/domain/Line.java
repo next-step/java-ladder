@@ -61,7 +61,7 @@ public class Line {
     }
 
     public boolean isExist(int index) {
-        if(index < 0 || index >= points.size()) {
+        if (index < 0 || index >= points.size()) {
             return false;
         }
 

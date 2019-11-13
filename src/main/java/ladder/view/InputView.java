@@ -18,8 +18,9 @@ public class InputView {
         checkUsers(users);
         return users;
     }
+
     private static void checkUsers(List<String> users) {
-        if(isInvalid(users)) {
+        if (isInvalid(users)) {
             throw new IllegalArgumentException("이름은 5자 이내로 입력해주세요.");
         }
     }

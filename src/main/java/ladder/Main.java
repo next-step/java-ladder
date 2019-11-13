@@ -3,7 +3,6 @@ package ladder;
 import ladder.domain.GameResult;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
-import ladder.domain.UserRecord;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
