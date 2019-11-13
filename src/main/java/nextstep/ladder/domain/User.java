@@ -28,4 +28,16 @@ public class User {
     public int hashCode() {
         return Objects.hash(name, point);
     }
+
+    @Override
+    public String toString() {
+        int length = name.length();
+        int space = Math.max(0, 5-length);
+        String spaceString = "";
+        for(int i=0; i<space; i++){
+            spaceString = spaceString + " ";
+        }
+
+        return name + spaceString;
+    }
 }

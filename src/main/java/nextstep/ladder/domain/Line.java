@@ -46,4 +46,14 @@ public class Line {
     private int getTotalColumn(int totalUser) {
         return totalUser - 1;
     }
+
+    @Override
+    public String toString() {
+        String result = "|";
+        for (int i = 0; i < cols.size(); i++) {
+
+            result = result + (cols.get(i)? "----|":"    |");
+        }
+        return result;
+    }
 }

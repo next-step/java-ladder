@@ -10,6 +10,7 @@ public class Game {
     private final int STEP_MIN_NUM = 1;
     private final int USER_MIN_NUM = 2;
 
+    private List<Line> ladder;
     private List<User> users;
     private int totalStep;
 
@@ -19,6 +20,7 @@ public class Game {
         }
         this.totalStep = totalStep;
         this.users = createUsers(nameString);
+        this.ladder = createLadder(totalStep, users.size());
     }
 
     private List<User> createUsers(String nameString) {
@@ -33,16 +35,20 @@ public class Game {
         return users;
     }
 
-    public List<Line> doGame() {
-        return createLadder(totalStep, users.size());
-    }
-
     private List<Line> createLadder(int totalStep, int totalUser) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < totalStep; i++) {
             ladder.add(new Line(totalUser));
         }
         return ladder;
+    }
+
+    public List<User> getUsers() {
+        return this.users;
+    }
+
+    public List<Line> getLadder() {
+        return this.ladder;
     }
 
     @Override

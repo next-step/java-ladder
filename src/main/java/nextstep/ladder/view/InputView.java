@@ -16,5 +16,4 @@ public class InputView {
         return scanner.nextInt();
     }
 
-
 }
