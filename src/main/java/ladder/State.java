@@ -5,7 +5,7 @@ import java.util.Objects;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-public class PointState {
+public class State {
     enum Direction {
         LEFT(-1),
         RIGHT(1),
@@ -25,7 +25,7 @@ public class PointState {
     private final Boolean left;
     private final Boolean current;
 
-    public PointState(Boolean left, Boolean current) {
+    public State(Boolean left, Boolean current) {
         if (left && current) {
             throw new IllegalArgumentException();
         }
@@ -46,29 +46,29 @@ public class PointState {
         return Direction.CENTER;
     }
 
-    public PointState next(Boolean current) {
+    public State next(Boolean current) {
         if (this.current && current) {
-            return new PointState(TRUE, FALSE);
+            return new State(TRUE, FALSE);
         }
 
-        return new PointState(this.current, current);
+        return new State(this.current, current);
     }
 
-    public PointState last() {
-        return new PointState(this.current, FALSE);
+    public State last() {
+        return new State(this.current, FALSE);
     }
 
-    public static PointState first(Boolean current) {
-        return new PointState(FALSE, current);
+    public static State first(Boolean current) {
+        return new State(FALSE, current);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PointState pointState = (PointState) o;
-        return left == pointState.left &&
-                current == pointState.current;
+        State state = (State) o;
+        return left == state.left &&
+                current == state.current;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class PointState {
 
     @Override
     public String toString() {
-        return "PointState{" +
+        return "State{" +
                 "left=" + left +
                 ", current=" + current +
                 '}';

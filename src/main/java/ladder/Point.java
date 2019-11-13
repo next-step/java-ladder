@@ -1,20 +1,20 @@
 package ladder;
 
-import ladder.PointState.Direction;
+import ladder.State.Direction;
 
 import java.util.Objects;
 
 public class Point {
     private final int index;
-    private final PointState pointState;
+    private final State state;
 
-    public Point(int index, PointState pointState) {
+    public Point(int index, State state) {
         this.index = index;
-        this.pointState = pointState;
+        this.state = state;
     }
 
     public int move() {
-        Direction direction = pointState.move();
+        Direction direction = state.move();
         return direction.move(index);
     }
 
@@ -34,15 +34,15 @@ public class Point {
     }
 
     public Point next(Boolean current) {
-        return new Point(index + 1, pointState.next(current));
+        return new Point(index + 1, state.next(current));
     }
 
     public Point last() {
-        return new Point(index + 1, pointState.last());
+        return new Point(index + 1, state.last());
     }
 
     public static Point first(Boolean current) {
-        return new Point(0, PointState.first(current));
+        return new Point(0, State.first(current));
     }
 
     @Override
@@ -51,19 +51,19 @@ public class Point {
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
         return index == point.index &&
-                Objects.equals(pointState, point.pointState);
+                Objects.equals(state, point.state);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, pointState);
+        return Objects.hash(index, state);
     }
 
     @Override
     public String toString() {
         return "Point{" +
                 "index=" + index +
-                ", pointState=" + pointState +
+                ", state=" + state +
                 '}';
     }
 }

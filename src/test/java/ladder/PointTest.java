@@ -37,13 +37,13 @@ public class PointTest {
 
     @Test
     void create_first() {
-        Point first = new Point(0, PointState.first(TRUE));
+        Point first = new Point(0, State.first(TRUE));
         assertThat(first).isEqualTo(Point.first(TRUE));
     }
 
     @Test
     void create_next() {
         Point second = Point.first(TRUE).next(FALSE);
-        assertThat(second).isEqualTo(new Point(1, new PointState(TRUE, FALSE)));
+        assertThat(second).isEqualTo(new Point(1, new State(TRUE, FALSE)));
     }
 }
