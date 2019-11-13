@@ -5,17 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Lines {
-    private static final String DELIMITER = ",";
     private List<Line> lines;
-    private String[] persons;
+    private People people;
 
     public Lines(int countOfLine, int countOfPerson) {
         lines = createLines(countOfLine, countOfPerson);
     }
 
-    public Lines(int countOfLine, String person) {
-        this.persons = person.split(DELIMITER);
-        lines = createLines(countOfLine, persons.length);
+    public Lines(int countOfLine, String names) {
+        this.people = new People(names);
+        lines = createLines(countOfLine, people.getPeople().size());
     }
 
     public List<Line> createLines(int countOfLine, int countOfPerson) {
@@ -31,7 +30,7 @@ public class Lines {
         return new ArrayList<>(lines);
     }
 
-    public List<String> getPersons() {
-        return Arrays.asList(persons);
+    public List<String> getPeople() {
+        return new ArrayList<>(people.getPeople());
     }
 }

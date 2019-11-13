@@ -47,7 +47,7 @@ public class PointsTest {
 
     @Test
     void 테스트하기어려운거_테스트해보기() {
-        Points points = new Points(5, countOfPerson -> Arrays.asList(true,false,false,false,true));
-        assertThat(points.getPoints()).containsExactly(true,false,false,false,true);
+        Points points = new Points(5, countOfPerson -> Arrays.asList(true, false, false, false, true));
+        assertThat(points.getPoints()).containsExactly(true, false, false, false, true);
     }
 }
