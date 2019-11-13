@@ -6,7 +6,7 @@ public class PointConnectRandomly implements PointConnectPolicy {
 
 	@Override
 	public boolean shouldConnect() {
-		return ThreadLocalRandom.current().nextInt() % 2 == 0;
+		return ThreadLocalRandom.current().nextBoolean();
 	}
 
 }

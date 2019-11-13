@@ -7,7 +7,14 @@ import ladder.domain.policy.PointConnectPolicy;
 public class MiddleLine extends Line {
 
 	public MiddleLine(PointConnectPolicy policy, Participants participants) {
-		for (int i = 0; i < participants.count(); i++) {
+		for (int i = 0, end = participants.count(); i < end; i++) {
+			points.add(new MiddlePoint());
+		}
+		connectPointsHorizontally(policy);
+	}
+
+	public MiddleLine(PointConnectPolicy policy, String[] names) {
+		for (int i = 0, end = names.length; i < end; i++) {
 			points.add(new MiddlePoint());
 		}
 		connectPointsHorizontally(policy);

@@ -15,7 +15,7 @@ public class LastPoint extends Point {
 
 	@Override
 	public Optional<String> getName() {
-		return Optional.empty();
+		throw new IllegalStateException("마지막 점은 이름이 없습니다");
 	}
 
 }

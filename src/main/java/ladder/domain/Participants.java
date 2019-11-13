@@ -13,7 +13,7 @@ public class Participants {
 	}
 
 	public List<String> getNames() {
-		return names;
+		return new ArrayList<>(names);
 	}
 
 	public int count() {

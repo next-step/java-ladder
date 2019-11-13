@@ -1,7 +1,6 @@
 package ladder.domain.line;
 
 import ladder.domain.Direction;
-import ladder.domain.Participants;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +15,7 @@ class LineTest {
 		String[] names = new String[]{"사람1", "사람2", "사람3"};
 
 		// when
-		Line line = new MiddleLine(() -> true, new Participants(names));
+		Line line = new MiddleLine(() -> true, names);
 
 		// then
 		assertThat(line.getPoint(0).hasConnection(Direction.HORIZONTAL)).isTrue();
@@ -29,8 +28,8 @@ class LineTest {
 		// |-----|
 		// given
 		String[] names = new String[]{"사람1", "사람2"};
-		Line upperLine = new MiddleLine(() -> true, new Participants(names));
-		Line lowerLine = new MiddleLine(() -> true, new Participants(names));
+		Line upperLine = new MiddleLine(() -> true, names);
+		Line lowerLine = new MiddleLine(() -> true, names);
 
 		// when
 		upperLine.connectLinesVertically(lowerLine);

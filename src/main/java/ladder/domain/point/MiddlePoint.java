@@ -12,7 +12,7 @@ public class MiddlePoint extends Point {
 
 	@Override
 	public Optional<String> getName() {
-		return Optional.empty();
+		throw new IllegalStateException("중간 점은 이름이 없습니다");
 	}
 
 }
