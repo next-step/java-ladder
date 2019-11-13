@@ -9,9 +9,8 @@ public class LadderApplication {
     public static void main(String[] args) {
         String participant = InputView.inputParticipant();
         int ladderHeight = InputView.inputHeight();
-        LadderGame ladderGame = new LadderGame(participant, ladderHeight, new RandomConnection());
         String inputResults = InputView.inputResults();
-        ladderGame.setResults(inputResults);
+        LadderGame ladderGame = new LadderGame(participant, ladderHeight, new RandomConnection(), inputResults);
         ResultView.showLadderResult(ladderGame);
     }
 }

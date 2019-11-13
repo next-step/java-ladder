@@ -6,12 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private static final String LADDER_HEIGHT_EXCEPTION = "사다리게임의 높이는 0 이상입니다.";
     private List<LineOfLadder> ladder;
 
     public Ladder(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
+        verityLadderHeight(ladderHeight);
         this.ladder = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
+        for ( int i = 0; i < ladderHeight; i++ ) {
             this.ladder.add(new LineOfLadder(personCount - 1, connectionStrategy));
+        }
+    }
+
+    private void verityLadderHeight(int ladderHeight) {
+        if (ladderHeight <= 0) {
+            throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
         }
     }
 
