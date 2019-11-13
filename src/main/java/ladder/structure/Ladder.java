@@ -31,7 +31,7 @@ public class Ladder {
                 .collect(toList());
     }
 
-    public List<List<Integer>> findFinalPoint() {
+    public List<List<Integer>> findPointsByLine() {
         List<List<Integer>> results = new ArrayList<>();
         List<Integer> points = null;
         for (int line = 0; line < ladder.size(); line++) {
@@ -40,4 +40,10 @@ public class Ladder {
         }
         return results;
     }
+
+    public List<Integer> findFinalPoints() {
+        List<List<Integer>> results = findPointsByLine();
+        return results.get(results.size() - 1);
+    }
+
 }

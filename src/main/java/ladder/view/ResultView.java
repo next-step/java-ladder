@@ -4,6 +4,7 @@ import ladder.game.LadderGame;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
     private static final String LADDER_RESULT = "사다리 결과";
@@ -70,5 +71,19 @@ public class ResultView {
                         string,
                         String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)))
         );
+    }
+
+    public static void showResultOfParticipant(LadderGame ladderGame, String inputParticipantForResult) {
+        System.out.println(GAME_RESULT);
+        Map<String, String> result;
+        if ("all".equals(inputParticipantForResult)) {
+            result = ladderGame.getGameResult(ladderGame.getParticipants().stream().toArray(String[]::new));
+        } else {
+            result = ladderGame.getGameResult(inputParticipantForResult);
+        }
+
+        result.forEach((user, gameResult) -> {
+            System.out.println(user + " : " + gameResult);
+        });
     }
 }

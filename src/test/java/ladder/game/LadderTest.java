@@ -56,7 +56,7 @@ public class LadderTest {
     @DisplayName("사다리 게임의 포인트 이동 확인")
     void getLadderPoints() {
         List<List<Integer>> emptyLadderResults =
-                new Ladder(2, 3, new NoneConnection()).findFinalPoint();
+                new Ladder(2, 3, new NoneConnection()).findPointsByLine();
         assertAll(
                 () -> assertThat(emptyLadderResults.get(0).get(0)).isEqualTo(0),
                 () -> assertThat(emptyLadderResults.get(0).get(1)).isEqualTo(1),
@@ -69,7 +69,7 @@ public class LadderTest {
         );
 
         List<List<Integer>> allLadderResults =
-                new Ladder(3, 3, new DefaultConnection()).findFinalPoint();
+                new Ladder(3, 3, new DefaultConnection()).findPointsByLine();
         assertAll(
                 () -> assertThat(allLadderResults.get(0).get(0)).isEqualTo(1),
                 () -> assertThat(allLadderResults.get(0).get(1)).isEqualTo(0),

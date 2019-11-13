@@ -27,4 +27,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static String inputParticipantForResult() {
+        System.out.println(ASK_RESULT_PARTICIPANTS);
+        return scanner.nextLine();
+    }
 }
