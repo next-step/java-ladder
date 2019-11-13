@@ -32,6 +32,11 @@ public class InputView {
         return outcomes;
     }
 
+    public static String createResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.next();
+    }
+
     private static boolean isInvalid(List<String> users) {
         return users.stream()
                 .anyMatch(InputView::isInvalidCondition);

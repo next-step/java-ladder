@@ -11,8 +11,8 @@ public class LadderGame {
         return ladder;
     }
 
-    public List<UserRecord> run(Ladder ladder) {
-        return ladder.run();
+    public GameResult run(Ladder ladder) {
+        return new GameResult(ladder.run());
     }
 
 }

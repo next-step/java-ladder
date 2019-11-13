@@ -10,14 +10,24 @@ public class UserRecord {
 
     private String name;
     private List<Integer> points = new ArrayList<>();
+    private String outcome;
 
     public UserRecord(String name, int initPoint) {
         this.name = name;
         addPoint(initPoint);
     }
 
+    public UserRecord(String name, String outcome) {
+        this.name = name;
+        this.outcome = outcome;
+    }
+
     public void addPoint(int point) {
         points.add(point);
+    }
+
+    public void addOutcome(List<String> outcomes) {
+        this.outcome = outcomes.get(getCurrentPoint());
     }
 
     public List<Integer> getPoints() {
@@ -52,4 +62,17 @@ public class UserRecord {
     private int getPreviousPoint() {
         return getCurrentPoint() - 1;
     }
+
+    public String getOutcome() {
+        return outcome;
+    }
+
+    public boolean isUser(String name) {
+        return this.name.equals(name);
+    }
+
+    public String getResultFormat() {
+        return String.format("%s : %s", name, outcome);
+    }
+
 }

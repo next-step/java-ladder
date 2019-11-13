@@ -60,6 +60,7 @@ public class Ladder {
     private UserRecord goLine(int index) {
         UserRecord userRecord = new UserRecord(users.get(index), index);
         userRecord.recordPoints(lines);
+        userRecord.addOutcome(outcomes);
         return userRecord;
     }
 

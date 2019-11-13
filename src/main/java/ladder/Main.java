@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.GameResult;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.UserRecord;
@@ -19,7 +20,11 @@ public class Main {
         LadderGame game = new LadderGame();
         Ladder ladder = game.createLadder(users, outcomes, ladderHeight);
 
-        List<UserRecord> userRecords = game.run(ladder);
+        GameResult gameResult = game.run(ladder);
         ResultView.printLadder(ladder);
+
+        String inputValue = InputView.createResult();
+        ResultView.printResult(gameResult.findOutcome(inputValue));
+
     }
 }
