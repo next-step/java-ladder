@@ -7,9 +7,9 @@ public class OutputView {
     private static final String PRINT_LEFT_DIRECTION = "-----|";
     private static final String PRINT_DEFAULT_DIRECTION = "     |";
 
-    public static void printLadder(Ladders ladders, Peoples peoples) {
+    public static void printLadder(Ladder ladder, Peoples peoples) {
         printName(peoples);
-        printLadder(ladders);
+        printLadder(ladder);
     }
 
     private static void printName(Peoples peoples) {
@@ -21,17 +21,17 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printLadder(Ladders ladders) {
-        int height = ladders.height();
+    private static void printLadder(Ladder ladder) {
+        int height = ladder.height();
         for (int i = 0; i < height; i++) {
-            printLaddersHeight(ladders, i);
+            printLaddersHeight(ladder, i);
             System.out.println();
         }
     }
 
-    private static void printLaddersHeight(Ladders ladders, int height) {
-        for (int i = 0; i < ladders.size(); i++) {
-            Direction direction = ladders.ladderDirection(i, height);
+    private static void printLaddersHeight(Ladder ladder, int height) {
+        for (int i = 0; i < ladder.size(); i++) {
+            Direction direction = ladder.ladderDirection(i, height);
             printDirection(direction);
         }
     }

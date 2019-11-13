@@ -11,10 +11,10 @@ public enum Direction {
     RIGHT(1),
     BOTTOM(0);
 
-    private int direction;
+    private int moveIndex;
 
-    Direction(int direction) {
-        this.direction = direction;
+    Direction(int moveIndex) {
+        this.moveIndex = moveIndex;
     }
 
     public static Direction getRandomDirection(Optional<Direction> previousDirection) {
