@@ -1,8 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Line {
     private static final String LADDER_LINE = "|";
@@ -11,6 +9,7 @@ public class Line {
     public Line (int countOfPerson) {
         this.points = new Points(countOfPerson, new PointsShuffleGenerator());
     }
+
 
     public void test() {
         List<Boolean> ladderPoints = this.points.getPoints();
