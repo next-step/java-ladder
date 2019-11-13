@@ -2,8 +2,6 @@ package ladder.domain.point;
 
 import ladder.domain.Direction;
 
-import java.util.Optional;
-
 public class FirstPoint extends Point {
 
 	private final String name;
@@ -15,13 +13,14 @@ public class FirstPoint extends Point {
 	@Override
 	protected void connectWithPoint(Direction direction, Point point) {
 		if (direction.equals(Direction.HORIZONTAL)) {
-			throw new IllegalStateException("첫 번재 점들은 가로로 연결될 수 없습니다!");
+			throw new IllegalStateException("첫 번재 점들은 가로로 연결될 수 없습니다");
 		}
+		nextPoints.put(Direction.VERTICAL, point);
 	}
 
 	@Override
-	public Optional<String> getName() {
-		return Optional.of(name);
+	public String getName() {
+		return name;
 	}
 
 }

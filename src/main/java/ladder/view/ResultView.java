@@ -6,7 +6,6 @@ import ladder.domain.line.Line;
 import ladder.domain.point.Point;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -31,7 +30,6 @@ public class ResultView {
 	private static void printFirstLine(Line line) {
 		List<String> names = line.getPoints().stream()
 				.map(Point::getName)
-				.map(Optional::get)
 				.collect(Collectors.toList());
 		for (String name : names) {
 			System.out.print(String.format("%6s", name));

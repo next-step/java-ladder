@@ -1,13 +1,13 @@
 package ladder.domain.line;
 
-import ladder.domain.Participants;
+import ladder.domain.LadderInput;
 import ladder.domain.point.MiddlePoint;
 import ladder.domain.policy.PointConnectPolicy;
 
 public class MiddleLine extends Line {
 
-	public MiddleLine(PointConnectPolicy policy, Participants participants) {
-		for (int i = 0, end = participants.count(); i < end; i++) {
+	public MiddleLine(PointConnectPolicy policy, LadderInput ladderInput) {
+		for (int i = 0, end = ladderInput.count(); i < end; i++) {
 			points.add(new MiddlePoint());
 		}
 		connectPointsHorizontally(policy);

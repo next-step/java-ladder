@@ -1,12 +1,12 @@
 package ladder.domain.line;
 
-import ladder.domain.Participants;
+import ladder.domain.LadderInput;
 import ladder.domain.point.FirstPoint;
 
 public class FirstLine extends Line {
 
-	public FirstLine(Participants participants) {
-		for (String name : participants.getNames()) {
+	public FirstLine(LadderInput ladderInput) {
+		for (String name : ladderInput.getNames()) {
 			points.add(new FirstPoint(name));
 		}
 	}
