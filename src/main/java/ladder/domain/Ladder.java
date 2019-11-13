@@ -7,12 +7,14 @@ import java.util.stream.Collectors;
 public class Ladder {
 
     private List<String> users;
+    private List<String> outcomes;
     private List<Line> lines = new ArrayList<>();
     private int width;
     private int height;
 
-    public Ladder(List<String> users, int height) {
+    public Ladder(List<String> users, List<String> outcomes, int height) {
         this.users = users;
+        this.outcomes = outcomes;
         this.width = users.size() - 1;
         this.height = height;
     }
@@ -28,9 +30,14 @@ public class Ladder {
                 .map(this::fillCharacter)
                 .collect(Collectors.joining());
     }
+    public String getOutcomeFormat() {
+        return outcomes.stream()
+                .map(this::fillCharacter)
+                .collect(Collectors.joining());
+    }
 
-    private String fillCharacter(String user) {
-        return String.format("%-6s", user);
+    private String fillCharacter(String value) {
+        return String.format("%-6s", value);
     }
 
     public List<String> drawLadder() {

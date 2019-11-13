@@ -13,10 +13,11 @@ public class Main {
     public static void main(String[] args) {
 
         List<String> users = InputView.createUsers();
+        List<String> outcomes = InputView.createOutcomes();
         int ladderHeight = InputView.createLadderHeight();
 
         LadderGame game = new LadderGame();
-        Ladder ladder = game.createLadder(users, ladderHeight);
+        Ladder ladder = game.createLadder(users, outcomes, ladderHeight);
 
         List<UserRecord> userRecords = game.run(ladder);
         ResultView.printLadder(ladder);

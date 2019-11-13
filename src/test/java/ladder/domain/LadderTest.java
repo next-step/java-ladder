@@ -14,7 +14,8 @@ class LadderTest {
     @DisplayName("사다리 생성하기")
     void createLadder() {
         List<String> users = Arrays.asList("a", "b", "c");
-        Ladder ladder = new Ladder(users, 5);
+        List<String> outcomes = Arrays.asList("1", "2", "3");
+        Ladder ladder = new Ladder(users, outcomes, 5);
 
         assertThat(ladder.getHeight()).isEqualTo(5);
         assertThat(ladder.getUsers()).containsExactly("a", "b", "c");

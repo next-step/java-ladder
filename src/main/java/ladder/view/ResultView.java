@@ -13,5 +13,7 @@ public class ResultView {
 
         List<String> ladderFormat = ladder.drawLadder();
         ladderFormat.forEach(System.out::println);
+
+        System.out.println(ladder.getOutcomeFormat());
     }
 }
