@@ -9,10 +9,16 @@ import org.junit.jupiter.api.Test;
 class ParticipantTest {
 
     @Test
-    void throwException() {
+    void throwExceptionLimit() {
         assertThatIllegalArgumentException()
             .isThrownBy(() -> Participant.of("Gosling"))
             .withMessage("참가자 이름은 5글자를 초과하여 지정할 수 없습니다.");
+    }
+    @Test
+    void throwExceptionBlacklist() {
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> Participant.of("all"))
+            .withMessage("허용 되지 않은 참가자 이름입니다.");
     }
 
     @Test
