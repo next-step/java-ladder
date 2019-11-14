@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Peoples {
     private static final String PEOPLE_STRING_SEPARATOR = ",";
@@ -31,13 +32,10 @@ public class Peoples {
         return peoples.get(index);
     }
 
-    // TODO 리펙토링 예정입니다.
     public int indexByName(String resultName) {
-        for (int i = 0; i < peoples.size(); i++) {
-            if (peoples.get(i).toString().equalsIgnoreCase(resultName)) {
-                return i;
-            }
-        }
-        return -1;
+        return IntStream.range(0, peoples.size())
+                .filter(i -> peoples.get(i).toString().equalsIgnoreCase(resultName))
+                .findFirst()
+                .orElse(-1);
     }
 }
