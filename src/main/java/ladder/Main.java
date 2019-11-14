@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.GameResult;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
+import ladder.domain.LadderRecord;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -16,11 +17,13 @@ public class Main {
         List<String> outcomes = InputView.createOutcomes();
         int ladderHeight = InputView.createLadderHeight();
 
-        LadderGame game = new LadderGame();
-        Ladder ladder = game.createLadder(users, outcomes, ladderHeight);
+        LadderRecord ladderRecord = new LadderRecord(users, outcomes);
 
-        GameResult gameResult = game.run(ladder);
-        ResultView.printLadder(ladder);
+        LadderGame game = new LadderGame();
+        Ladder ladder = game.createLadder(ladderRecord, ladderHeight);
+
+        GameResult gameResult = game.run(ladderRecord, ladder);
+        ResultView.printLadder(ladderRecord, ladder);
 
         String inputValue = InputView.createResult();
         ResultView.printResult(gameResult.findOutcome(inputValue));

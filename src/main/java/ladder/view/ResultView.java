@@ -1,20 +1,21 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderRecord;
 
 import java.util.List;
 
 public class ResultView {
 
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(LadderRecord ladderRecord, Ladder ladder) {
         System.out.println("사다리결과");
-        System.out.println(ladder.getUserFormat());
+        System.out.println(ladderRecord.getUserFormat());
 
         List<String> ladderFormat = ladder.drawLadder();
         ladderFormat.forEach(System.out::println);
 
-        System.out.println(ladder.getOutcomeFormat());
+        System.out.println(ladderRecord.getOutcomeFormat());
 
     }
 

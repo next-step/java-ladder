@@ -29,8 +29,7 @@ public class InputView {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String inputValue = scanner.next();
 
-        List<String> outcomes = Parser.convertToList(inputValue);
-        return outcomes;
+        return Parser.convertToList(inputValue);
     }
 
     public static String createResult() {

@@ -15,12 +15,12 @@ class LadderGameTest {
     void createLadder() {
         List<String> users = Arrays.asList("a", "b", "c");
         List<String> outcomes = Arrays.asList("1", "2", "3");
+        LadderRecord ladderRecord = new LadderRecord(users, outcomes);
         int height = 5;
         LadderGame ladderGame = new LadderGame();
-        Ladder ladder = ladderGame.createLadder(users, outcomes, height);
+        Ladder ladder = ladderGame.createLadder(ladderRecord, height);
 
         assertThat(ladder.getHeight()).isEqualTo(height);
-        assertThat(ladder.getWidth()).isEqualTo(users.size() - 1);
         assertThat(ladder.getLines()).hasSize(height);
     }
 }

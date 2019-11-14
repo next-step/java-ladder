@@ -2,50 +2,23 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private List<String> users;
-    private List<String> outcomes;
-    private List<Line> lines = new ArrayList<>();
-    private int width;
+    private List<Line> lines;
     private int height;
 
-    public Ladder(List<String> users, List<String> outcomes, int height) {
-        checkSize(users.size(), outcomes.size());
-        this.users = users;
-        this.outcomes = outcomes;
-        this.width = users.size() - 1;
+    public Ladder(LadderRecord ladderRecord, int height) {
         this.height = height;
+        this.lines = createLines(ladderRecord.getWidth());
     }
 
-    private void checkSize(int userSize, int outcomeSize) {
-        if (userSize != outcomeSize) {
-            throw new IllegalArgumentException("유저수와 결과수를 같게 입력해주세요ㅣ");
-        }
-    }
-
-    public void createLines() {
+    public List<Line> createLines(int width) {
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             lines.add(new Line(new PointCreatingStrategy(), width));
         }
-    }
-
-    public String getUserFormat() {
-        return users.stream()
-                .map(this::fillCharacter)
-                .collect(Collectors.joining());
-    }
-
-    public String getOutcomeFormat() {
-        return outcomes.stream()
-                .map(this::fillCharacter)
-                .collect(Collectors.joining());
-    }
-
-    private String fillCharacter(String value) {
-        return String.format("%-6s", value);
+        return lines;
     }
 
     public List<String> drawLadder() {
@@ -56,32 +29,8 @@ public class Ladder {
         return ladderFormat;
     }
 
-    public List<UserRecord> run() {
-        List<UserRecord> userRecords = new ArrayList<>();
-        for (int i = 0; i < users.size(); i++) {
-            userRecords.add(goLine(i));
-        }
-
-        return userRecords;
-    }
-
-    private UserRecord goLine(int index) {
-        UserRecord userRecord = new UserRecord(users.get(index), index);
-        userRecord.recordPoints(lines);
-        userRecord.addOutcome(outcomes);
-        return userRecord;
-    }
-
-    public List<String> getUsers() {
-        return users;
-    }
-
     public List<Line> getLines() {
         return lines;
-    }
-
-    public int getWidth() {
-        return width;
     }
 
     public int getHeight() {

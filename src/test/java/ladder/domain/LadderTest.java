@@ -15,10 +15,11 @@ class LadderTest {
     void createLadder() {
         List<String> users = Arrays.asList("a", "b", "c");
         List<String> outcomes = Arrays.asList("1", "2", "3");
-        Ladder ladder = new Ladder(users, outcomes, 5);
+        LadderRecord ladderRecord = new LadderRecord(users, outcomes);
+        Ladder ladder = new Ladder(ladderRecord, 5);
 
         assertThat(ladder.getHeight()).isEqualTo(5);
-        assertThat(ladder.getUsers()).containsExactly("a", "b", "c");
+        assertThat(ladder.getLines()).hasSize(5);
     }
 
 }
