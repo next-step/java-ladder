@@ -14,14 +14,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     private Ladder ladder;
-    private List<Direction> pointList;
+    private List<Point> pointList;
 
     @BeforeEach
     void setUp() {
         List<Line> lineList = new ArrayList<>();
-        pointList = Lists.newArrayList(Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+        pointList = Lists.newArrayList(Point.firstIndex(), Point.firstIndex(), Point.firstIndex());
         lineList.add(new Line(pointList));
-        ladder = new Ladder(lineList, 3);
+        ladder = new Ladder(lineList, pointList.size());
     }
 
     @Test
@@ -37,8 +37,8 @@ public class LadderTest {
         int startIndex = 0;
         int expectedIndex = 1;
         List<Line> exampleLines = Arrays.asList(
-                new Line(Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT)),
-                new Line(Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.LEFT))
+                new Line(Arrays.asList(new Point(0, Direction.RIGHT), new Point(0, Direction.RIGHT), new Point(0, Direction.RIGHT))),
+                new Line(Arrays.asList(new Point(1, Direction.LEFT), new Point(1, Direction.LEFT), new Point(1, Direction.LEFT)))
         );
         Ladder ladder = new Ladder(new Lines(exampleLines), height);
 
@@ -48,14 +48,14 @@ public class LadderTest {
     @Test
     @DisplayName("시작 index를 넣으면 종료 index가 정상적으로 나오는지 확인 한다.")
     void result3() {
-        int height = 5;
+        int height = 3;
         int startIndex = 1;
-        int expectedIndex = 0;
+        int expectedIndex = 1;
         List<Line> exampleLines = Arrays.asList(
-                new Line(Arrays.asList(Direction.BOTTOM, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.BOTTOM)),
-                new Line(Arrays.asList(Direction.BOTTOM, Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.BOTTOM)),
-                new Line(Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.BOTTOM, Direction.RIGHT, Direction.BOTTOM)),
-                new Line(Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.BOTTOM, Direction.LEFT, Direction.BOTTOM))
+                new Line(Arrays.asList(new Point(0, Direction.BOTTOM), new Point(0, Direction.RIGHT), new Point(0, Direction.RIGHT))),
+                new Line(Arrays.asList(new Point(1, Direction.BOTTOM), new Point(1, Direction.LEFT), new Point(1, Direction.LEFT))),
+                new Line(Arrays.asList(new Point(2, Direction.RIGHT), new Point(2, Direction.RIGHT), new Point(2, Direction.BOTTOM))),
+                new Line(Arrays.asList(new Point(3, Direction.LEFT), new Point(3, Direction.LEFT), new Point(3, Direction.BOTTOM)))
         );
         Ladder ladder = new Ladder(new Lines(exampleLines), height);
 

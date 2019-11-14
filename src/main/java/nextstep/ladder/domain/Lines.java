@@ -15,37 +15,42 @@ public class Lines {
     public Lines(int size, int height) {
         this.lines = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            List<Direction> points = initPoints(i, height);
+            List<Point> points = initPoints(i, height);
             lines.add(new Line(points));
         }
     }
 
-    private List<Direction> initPoints(int index, int height) {
-        List<Direction> points = new ArrayList<>();
+    private List<Point> initPoints(int index, int height) {
+        List<Point> points = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            Direction previousDirection = previousDirection(index - 1, i);
-            boolean isLastIndex = i == height - 1; // TODO : Point를 부활시켜 그 안으로 넣을 예정입니다.
-            Direction direction = Direction.getRandomDirection(previousDirection, isLastIndex);
-            points.add(direction);
+            points.add(createPoint(index, height));
         }
 
         return points;
     }
 
-    // TODO return null 대신 다른 방법이 있는지 고려해볼 예정입니다.
-    private Direction previousDirection(int index, int height) {
-        if (index < FIRST_LINE_INDEX) {
-            return null;
+    public Point createPoint(int index, int height) {
+        if (index == FIRST_LINE_INDEX) {
+            return Point.firstIndex();
         }
 
-        return getDirection(index, height);
+        Point previousPoint = getPoint(index - 1, height);
+        return previousPoint.next(getLastIndex());
     }
 
-    public int size() {
-        return lines.size();
+    public int getLastIndex() {
+        return lines.size() - 1;
     }
 
     public Direction getDirection(int index, int height) {
         return lines.get(index).getDirectionByHeight(height);
+    }
+
+    public Point getPoint(int index, int height) {
+        return lines.get(index).getPointByHeight(height);
+    }
+
+    public int size() {
+        return lines.size();
     }
 }

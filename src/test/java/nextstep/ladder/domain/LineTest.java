@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
     private Line line;
-    private List<Direction> list = Arrays.asList(Direction.LEFT, Direction.RIGHT, Direction.LEFT);
+    private List<Point> list = Arrays.asList(new Point(0, Direction.BOTTOM), new Point(0, Direction.RIGHT), new Point(0, Direction.RIGHT));
 
     @BeforeEach
     void setUp() {
@@ -25,5 +25,10 @@ public class LineTest {
     @Test
     void direction() {
         assertThat(line.getDirectionByHeight(1)).isEqualTo(Direction.RIGHT);
+    }
+
+    @Test
+    void point() {
+        assertThat(line.getPointByHeight(1)).isEqualTo(new Point(0, Direction.RIGHT));
     }
 }

@@ -16,9 +16,8 @@ public enum Direction {
         this.moveIndex = moveIndex;
     }
 
-    //TODO isLastIndex 대신 Point 객체를 파라미터로 받을 예정입니다.
-    public static Direction getRandomDirection(Direction previousDirection, boolean isLastIndex) {
-        if (Direction.RIGHT.equals(previousDirection)) {
+    public Direction next(boolean isLastIndex) {
+        if (this.equals(Direction.RIGHT)) {
             return Direction.LEFT;
         }
 
