@@ -10,16 +10,24 @@ public class Rung {
         this.line = line;
     }
 
-    public static Rung left(Line line){
+    public static Rung left(Line line) {
         return new Rung(Direction.LEFT, line);
     }
 
-    public static Rung right(Line line){
+    public static Rung right(Line line) {
         return new Rung(Direction.RIGHT, line);
     }
 
 
     public Line move() {
         return line.down();
+    }
+
+    public boolean isLeft() {
+        return direction.equals(Direction.LEFT);
+    }
+
+    public boolean isRight() {
+        return !isLeft();
     }
 }

@@ -5,15 +5,15 @@ public class Line {
     private final Line down;
     private Rung rung;
 
-    private Line(Line down, Line side) {
+    private Line(Line down, Line previous) {
         this.down = down;
-        if (side != null) {
-            rung = Rung.right(side);
-            side.rung = Rung.left(this);
+        if (previous != null) {
+            rung = Rung.left(previous);
+            previous.rung = Rung.right(this);
         }
     }
 
-    protected static Line of() {
+    public static Line of() {
         return new Line(null, null);
     }
 
@@ -21,7 +21,7 @@ public class Line {
         return rung != null;
     }
 
-    protected Line build(Line previous, BuildStrategy strategy) {
+    public Line build(Line previous, BuildStrategy strategy) {
         if (previous == null || previous.isLung()) {
             return new Line(this, null);
         }
@@ -33,12 +33,20 @@ public class Line {
     }
 
     protected Line down() {
+        if (down == null) {
+            return this;
+        }
         return this.down;
     }
 
-    protected Line next() {
-        if(isLung())
+    public Line next() {
+        if (isLung()) {
             return rung.move();
+        }
         return down;
+    }
+
+    public boolean isNotBottom() {
+        return down != null;
     }
 }

@@ -4,13 +4,13 @@ import com.seok2.ladder.structure.domain.Rung;
 
 public class LineDTO {
 
-    private final Rung rung;
+    private final boolean rung;
 
-    public LineDTO(Rung rung) {
+    public LineDTO(boolean rung) {
         this.rung = rung;
     }
 
-    public Rung getRung() {
+    public boolean getRung() {
         return rung;
     }
 }

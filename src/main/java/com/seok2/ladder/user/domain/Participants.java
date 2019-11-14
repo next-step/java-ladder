@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import com.seok2.global.util.StringUtils;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Participants {
 
@@ -33,5 +34,9 @@ public class Participants {
 
     public int size() {
         return participants.size();
+    }
+
+    public Stream<Participant> stream() {
+        return participants.stream();
     }
 }

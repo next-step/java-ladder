@@ -22,11 +22,11 @@ public class Ladder {
         return new Ladder(deque);
     }
 
-    public Layer getLast() {
+    public Layer getBottom() {
         return layers.getLast();
     }
 
-    public Layer getFirst() {
+    public Layer getTop() {
         return layers.getFirst();
     }
 
