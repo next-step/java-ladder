@@ -16,10 +16,18 @@ public class Ladder {
         Deque<Layer> deque = new LinkedList<>();
         deque.push(Layer.bottom(width));
         for (int i = 0; i < height.intValue(); i++) {
-            deque.push(deque.peek().build());
+            deque.push(deque.peek().build(new RandomBuildStategy()));
         }
         deque.pollLast();
         return new Ladder(deque);
+    }
+
+    public Layer getLast() {
+        return layers.getLast();
+    }
+
+    public Layer getFirst() {
+        return layers.getFirst();
     }
 
 }

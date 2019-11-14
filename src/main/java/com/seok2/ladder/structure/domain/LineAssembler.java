@@ -6,6 +6,6 @@ import com.seok2.ladder.structure.dto.LineDTO;
 public class LineAssembler {
 
     static LineDTO assemble(Line line) {
-        return new LineDTO(line.rung);
+        return new LineDTO(line.getRung());
     }
 }

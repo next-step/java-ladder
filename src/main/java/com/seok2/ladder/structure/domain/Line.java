@@ -27,4 +27,18 @@ public class Line {
         }
         return new Line(this, strategy.apply(previous));
     }
+
+    public Rung getRung() {
+        return rung;
+    }
+
+    protected Line down() {
+        return this.down;
+    }
+
+    protected Line next() {
+        if(isLung())
+            return rung.move();
+        return down;
+    }
 }

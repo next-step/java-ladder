@@ -19,12 +19,12 @@ public class OutputView {
     }
 
     public static void printLadder(LadderDTO ladderDTO) {
-        ladderDTO.getLayers().stream()
-            .flatMap(x -> {
-                System.out.println();
-                return x.getLayer().stream();
-            })
-            .forEach(y -> System.out.print(y.isRung() ? HORIZONTAL_LINE : VERTICAL_LINE));
+//        ladderDTO.getLayers().stream()
+//            .flatMap(x -> {
+//                System.out.println();
+//                return x.getLayer().stream();
+//            })
+//            .forEach(y -> System.out.print( ? HORIZONTAL_LINE : VERTICAL_LINE));
     }
 
 }

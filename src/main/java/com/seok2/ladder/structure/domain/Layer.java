@@ -22,10 +22,18 @@ public class Layer {
             .collect(collectingAndThen(toList(), Layer::new));
     }
 
-    public Layer build() {
+    public Layer build(BuildStrategy strategy) {
         LinkedList<Line> deque = new LinkedList<>();
-        layer.forEach(line -> deque.add(line.build(deque.peekLast(), new RandomBuildStategy())));
+        layer.forEach(line -> deque.add(line.build(deque.peekLast(), strategy)));
         return new Layer(new ArrayList<>(deque));
+    }
+
+    public Line get(int idx) {
+        return layer.get(idx);
+    }
+
+    public int getWidth() {
+        return layer.size();
     }
 
 }

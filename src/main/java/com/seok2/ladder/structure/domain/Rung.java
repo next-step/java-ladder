@@ -19,5 +19,7 @@ public class Rung {
     }
 
 
-
+    public Line move() {
+        return line.down();
+    }
 }
