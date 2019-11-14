@@ -5,7 +5,6 @@ import ladder.domain.policy.PointConnectPolicy;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public abstract class Point {
 
@@ -23,7 +22,7 @@ public abstract class Point {
 	}
 
 	private boolean hasNotHorizontalConnection() {
-		return !nextPoints.containsKey(Direction.HORIZONTAL) && !nextPoints.containsKey(Direction.HORIZONTAL_REVERSE);
+		return !hasForwardHorizontalPoint() && !hasReverseHorizontalPoint();
 	}
 
 	public boolean hasConnection(Direction direction) {
@@ -36,6 +35,52 @@ public abstract class Point {
 
 	protected abstract void connectWithPoint(Direction direction, Point point);
 
-	public abstract Optional<String> getName();
+	public abstract String getName();
+
+	public String getResultFrom(Direction direction) {
+		// 수평으로 왔으면 무조건 수직으로 내려간다
+		if (direction.isHorizontal()) {
+			return getResultFromNextVerticalPoint();
+		}
+
+		// 수직으로 왔는데 수평한 연결점이 있으면 수평으로 간다
+		if (hasHorizontalConnection()) {
+			return getResultFromNextHorizontalPoint();
+		}
+
+		// 수직으로 왔지만 수평한 연결점이 없으므로 수직으로 간다
+		return getResultFromNextVerticalPoint();
+	}
+
+	private String getResultFromNextVerticalPoint() {
+		return getNextVerticalPoint().getResultFrom(Direction.VERTICAL);
+	}
+
+	private boolean hasHorizontalConnection() {
+		return hasForwardHorizontalPoint() || hasReverseHorizontalPoint();
+	}
+
+	private String getResultFromNextHorizontalPoint() {
+		return getNextHorizontalPoint().getResultFrom(Direction.HORIZONTAL);
+	}
+
+	private Point getNextVerticalPoint() {
+		return nextPoints.get(Direction.VERTICAL);
+	}
+
+	private Point getNextHorizontalPoint() {
+		if (hasForwardHorizontalPoint()) {
+			return nextPoints.get(Direction.HORIZONTAL);
+		}
+		return nextPoints.get(Direction.HORIZONTAL_REVERSE);
+	}
+
+	private boolean hasForwardHorizontalPoint() {
+		return nextPoints.containsKey(Direction.HORIZONTAL);
+	}
+
+	private boolean hasReverseHorizontalPoint() {
+		return nextPoints.containsKey(Direction.HORIZONTAL_REVERSE);
+	}
 
 }

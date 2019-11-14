@@ -53,8 +53,8 @@ class PointTest {
 	@Test
 	void 마지막_줄에_있는_점은_수평으로_연결되지_않는다() {
 		// given
-		Point point = new LastPoint();
-		Point nextPoint = new LastPoint();
+		Point point = new LastPoint("결과");
+		Point nextPoint = new LastPoint("결과");
 
 		// when & then
 		assertThatThrownBy(() -> point.connectWithPointHorizontally(() -> true, nextPoint))
