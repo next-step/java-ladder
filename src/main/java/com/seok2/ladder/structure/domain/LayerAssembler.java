@@ -10,7 +10,7 @@ public class LayerAssembler {
 
     static LayerDTO assemble(Layer layer) {
         return layer.getLayer().stream()
-                .map(LineAssembler::assemble)
+                .map(PillarAssembler::assemble)
                 .collect(collectingAndThen(toList(), LayerDTO::new));
     }
 }

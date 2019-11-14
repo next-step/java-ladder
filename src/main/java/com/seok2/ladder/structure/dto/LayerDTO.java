@@ -5,13 +5,13 @@ import java.util.List;
 
 public class LayerDTO {
 
-    private final List<LineDTO> layer;
+    private final List<PillarDTO> layer;
 
-    public LayerDTO(List<LineDTO> layer) {
+    public LayerDTO(List<PillarDTO> layer) {
         this.layer = Collections.unmodifiableList(layer);
     }
 
-    public List<LineDTO> getLayer() {
+    public List<PillarDTO> getLayer() {
         return layer;
     }
 }
