@@ -5,17 +5,20 @@ import java.util.List;
 public class LadderInput {
 
 	private final Participants participants;
-	private final LadderResult ladderResult;
+	private final LadderResults ladderResults;
 
 	public LadderInput(Participants participants) {
-		this.participants = participants;
-		this.ladderResult = new LadderResult(participants.getNames());
+		this(participants, new LadderResults(participants.getNames()));
 	}
 
 	public LadderInput(String[] inputNames, String[] inputResult) {
+		this(new Participants(inputNames), new LadderResults(inputResult));
 		validateInputData(inputNames, inputResult);
-		this.participants = new Participants(inputNames);
-		this.ladderResult = new LadderResult(inputResult);
+	}
+
+	private LadderInput(Participants participants, LadderResults ladderResults) {
+		this.participants = participants;
+		this.ladderResults = ladderResults;
 	}
 
 	private void validateInputData(String[] inputNames, String[] inputResult) {
@@ -33,7 +36,7 @@ public class LadderInput {
 	}
 
 	public List<String> getResult() {
-		return ladderResult.getResult();
+		return ladderResults.getResult();
 	}
 
 }

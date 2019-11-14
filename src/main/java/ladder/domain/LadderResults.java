@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class LadderResult {
+class LadderResults {
 
 	private final static int MIN_RESULT_LENGTH = 1;
 
 	private final List<String> result;
 
-	LadderResult(List<String> inputResult) {
+	LadderResults(List<String> inputResult) {
 		this.result = inputResult;
 	}
 
-	LadderResult(String[] inputResult) {
+	LadderResults(String[] inputResult) {
+		this(new ArrayList<>(Arrays.asList(inputResult)));
 		validateInputResult(inputResult);
-		this.result = new ArrayList<>(Arrays.asList(inputResult));
 	}
 
 	private void validateInputResult(String[] inputResult) {
