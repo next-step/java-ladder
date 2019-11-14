@@ -1,15 +1,18 @@
 package com.seok2.ladder.user.domain;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
-
+import com.seok2.ladder.game.domain.Result;
 import com.seok2.ladder.product.domain.Reward;
 import com.seok2.ladder.product.domain.Rewards;
 import com.seok2.ladder.structure.domain.Layer;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Players {
 
@@ -19,18 +22,22 @@ public class Players {
         this.players = Collections.unmodifiableList(players);
     }
 
-    public static Players of(Participants participants, Layer top) {
-        return participants.stream()
-            .flatMap(participant -> top.stream()
-                .map(line -> Player.of(participant, line))
-            ).collect(collectingAndThen(toList(), Players::new));
+    public static Players of(List<Player> players) {
+        return new Players(players);
     }
 
-    public Map<Player, Reward> match(Rewards rewards) {
+    public static Players of(Participants participants, Layer top) {
+        return IntStream.range(0, participants.size())
+                .boxed()
+                .map(idx -> Player.of(participants.get(idx), top.get(idx)))
+                .collect(collectingAndThen(toList(), Players::of));
+    }
+
+    public Result match(Rewards rewards) {
         validate(rewards);
         Map<Player, Reward> result = new HashMap<>();
         players.forEach(player -> result.put(player, rewards.find(player.descend())));
-        return result;
+        return Result.of(result);
     }
 
     public void validate(Rewards rewards) {

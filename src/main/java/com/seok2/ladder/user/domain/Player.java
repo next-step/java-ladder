@@ -1,26 +1,30 @@
 package com.seok2.ladder.user.domain;
 
-import com.seok2.ladder.structure.domain.Line;
+import com.seok2.ladder.structure.domain.Pillar;
 
 public class Player {
 
     private final Participant participant;
-    private final Line line;
+    private final Pillar pillar;
 
-    private Player(Participant participant, Line line) {
+    private Player(Participant participant, Pillar pillar) {
         this.participant = participant;
-        this.line = line;
+        this.pillar = pillar;
     }
 
-    public static Player of(Participant participant, Line line) {
-        return new Player(participant, line);
+    public static Player of(Participant participant, Pillar pillar) {
+        return new Player(participant, pillar);
     }
 
-    public Line descend() {
-        Line current = line;
-        while(current.isNotBottom()){
+    public Pillar descend() {
+        Pillar current = pillar;
+        while (current.isNotBottom()) {
             current = current.next();
         }
         return current;
+    }
+
+    public Participant getParticipant() {
+        return participant;
     }
 }

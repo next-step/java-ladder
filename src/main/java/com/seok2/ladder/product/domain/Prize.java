@@ -15,4 +15,5 @@ public class Prize {
     public String getName() {
         return name;
     }
+
 }

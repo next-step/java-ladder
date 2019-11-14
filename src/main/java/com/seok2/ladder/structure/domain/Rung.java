@@ -3,24 +3,24 @@ package com.seok2.ladder.structure.domain;
 public class Rung {
 
     private final Direction direction;
-    private final Line line;
+    private final Pillar pillar;
 
-    private Rung(Direction direction, Line line) {
+    private Rung(Direction direction, Pillar pillar) {
         this.direction = direction;
-        this.line = line;
+        this.pillar = pillar;
     }
 
-    public static Rung left(Line line) {
-        return new Rung(Direction.LEFT, line);
+    public static Rung left(Pillar pillar) {
+        return new Rung(Direction.LEFT, pillar);
     }
 
-    public static Rung right(Line line) {
-        return new Rung(Direction.RIGHT, line);
+    public static Rung right(Pillar pillar) {
+        return new Rung(Direction.RIGHT, pillar);
     }
 
 
-    public Line move() {
-        return line.down();
+    public Pillar move() {
+        return pillar.down();
     }
 
     public boolean isLeft() {

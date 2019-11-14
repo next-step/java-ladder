@@ -11,7 +11,7 @@ public class PrizesDTO {
         this.prizesDTO = Collections.unmodifiableList(prizesDTO);
     }
 
-    public static PrizesDTO of (List<PrizeDTO> prizesDTO) {
+    public static PrizesDTO of(List<PrizeDTO> prizesDTO) {
         return new PrizesDTO(prizesDTO);
     }
 

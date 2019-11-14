@@ -1,5 +1,8 @@
 package com.seok2.ladder;
 
+import com.seok2.ladder.game.domain.Result;
+import com.seok2.ladder.game.domain.ResultAssembler;
+import com.seok2.ladder.game.dto.ResultDTO;
 import com.seok2.ladder.product.domain.Prizes;
 import com.seok2.ladder.product.domain.PrizesAssembler;
 import com.seok2.ladder.product.domain.Rewards;
@@ -31,10 +34,11 @@ public class GameMain {
         OutputView.printLadder(ladderDTO);
         OutputView.printPrizes(prizesDTO);
 
-//        Players players = Players.of(participants, ladder.getTop());
-//        Rewards rewards = Rewards.of(prizes, ladder.getBottom());
-//
-//        players.match(rewards);
+        Players players = Players.of(participants, ladder.getTop());
+        Rewards rewards = Rewards.of(prizes, ladder.getBottom());
+        Result result = players.match(rewards);
+        ResultDTO resultDTO = ResultAssembler.assemble(result);
+        OutputView.printResult(resultDTO);
     }
 
 }

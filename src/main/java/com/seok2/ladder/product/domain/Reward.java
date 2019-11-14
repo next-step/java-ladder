@@ -1,24 +1,25 @@
 package com.seok2.ladder.product.domain;
 
-import com.seok2.ladder.structure.domain.Line;
+import com.seok2.ladder.structure.domain.Pillar;
+
 import java.util.Objects;
 
 public class Reward {
 
     private final Prize prize;
-    private final Line line;
+    private final Pillar pillar;
 
-    public Reward(Prize prize, Line line) {
+    public Reward(Prize prize, Pillar pillar) {
         this.prize = prize;
-        this.line = line;
+        this.pillar = pillar;
     }
 
-    public static Reward of(Prize prize, Line line) {
-        return new Reward(prize,line);
+    public static Reward of(Prize prize, Pillar pillar) {
+        return new Reward(prize, pillar);
     }
 
-    public boolean contain(Line line) {
-        return this.line.equals(line);
+    public boolean contain(Pillar pillar) {
+        return this.pillar.equals(pillar);
     }
 
     @Override
@@ -31,11 +32,15 @@ public class Reward {
         }
         Reward reward = (Reward) o;
         return Objects.equals(prize, reward.prize) &&
-            Objects.equals(line, reward.line);
+                Objects.equals(pillar, reward.pillar);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(prize, line);
+        return Objects.hash(prize, pillar);
+    }
+
+    public Prize getPrize() {
+        return prize;
     }
 }

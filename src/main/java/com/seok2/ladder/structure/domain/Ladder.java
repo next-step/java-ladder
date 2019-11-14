@@ -5,11 +5,10 @@ import java.util.LinkedList;
 
 public class Ladder {
 
-
-    protected final Deque<Layer> layers;
+    private final Deque<Layer> ladder;
 
     private Ladder(Deque<Layer> layers) {
-        this.layers = layers;
+        this.ladder = layers;
     }
 
     public static Ladder of(Height height, int width) {
@@ -18,16 +17,18 @@ public class Ladder {
         for (int i = 0; i < height.intValue(); i++) {
             deque.push(deque.peek().build(new RandomBuildStategy()));
         }
-        deque.pollLast();
         return new Ladder(deque);
     }
 
     public Layer getBottom() {
-        return layers.getLast();
+        return ladder.getLast();
     }
 
     public Layer getTop() {
-        return layers.getFirst();
+        return ladder.getFirst();
     }
 
+    public Deque<Layer> getLadder() {
+        return ladder;
+    }
 }

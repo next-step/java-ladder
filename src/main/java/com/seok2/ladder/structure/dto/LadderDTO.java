@@ -8,7 +8,7 @@ public class LadderDTO {
     private final List<LayerDTO> layers;
 
     public LadderDTO(List<LayerDTO> layers) {
-        this.layers = Collections.unmodifiableList(layers);;
+        this.layers = Collections.unmodifiableList(layers);
     }
 
     public List<LayerDTO> getLayers() {

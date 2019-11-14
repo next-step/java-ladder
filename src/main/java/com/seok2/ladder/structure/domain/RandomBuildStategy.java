@@ -7,7 +7,7 @@ public class RandomBuildStategy implements BuildStrategy {
     private final Random random = new Random();
 
     @Override
-    public Line apply(Line previous) {
+    public Pillar apply(Pillar previous) {
         return random.nextBoolean() ? previous : null;
     }
 }

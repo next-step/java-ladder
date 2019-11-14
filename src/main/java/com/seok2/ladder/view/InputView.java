@@ -9,6 +9,9 @@ public class InputView {
     private static final String HEIGHT_OF_LADDER_MSG = "최대 사다리 높이는 몇 개인가요?";
     private static final Scanner scanner = new Scanner(System.in);
 
+    private InputView() {
+    }
+
     public static String getNames() {
         System.out.println(NAMES_OF_PLAYER_MSG);
         return scanner.nextLine();

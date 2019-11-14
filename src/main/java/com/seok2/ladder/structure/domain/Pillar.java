@@ -1,11 +1,11 @@
 package com.seok2.ladder.structure.domain;
 
-public class Line {
+public class Pillar {
 
-    private final Line down;
+    private final Pillar down;
     private Rung rung;
 
-    private Line(Line down, Line previous) {
+    private Pillar(Pillar down, Pillar previous) {
         this.down = down;
         if (previous != null) {
             rung = Rung.left(previous);
@@ -13,33 +13,33 @@ public class Line {
         }
     }
 
-    public static Line of() {
-        return new Line(null, null);
+    public static Pillar of() {
+        return new Pillar(null, null);
     }
 
     protected boolean isLung() {
         return rung != null;
     }
 
-    public Line build(Line previous, BuildStrategy strategy) {
+    public Pillar build(Pillar previous, BuildStrategy strategy) {
         if (previous == null || previous.isLung()) {
-            return new Line(this, null);
+            return new Pillar(this, null);
         }
-        return new Line(this, strategy.apply(previous));
+        return new Pillar(this, strategy.apply(previous));
     }
 
     public Rung getRung() {
         return rung;
     }
 
-    protected Line down() {
+    protected Pillar down() {
         if (down == null) {
             return this;
         }
         return this.down;
     }
 
-    public Line next() {
+    public Pillar next() {
         if (isLung()) {
             return rung.move();
         }

@@ -1,7 +1,6 @@
 package com.seok2.ladder.structure.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +20,8 @@ class RungTest {
 
     @Test
     void move() {
-        Line bottom = Line.of();
-        Line top = bottom.build(null, (prv) -> null);
+        Pillar bottom = Pillar.of();
+        Pillar top = bottom.build(null, (prv) -> null);
         assertThat(Rung.left(top).move()).isEqualTo(bottom);
     }
 }

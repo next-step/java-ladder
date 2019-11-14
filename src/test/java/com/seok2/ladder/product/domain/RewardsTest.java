@@ -2,7 +2,7 @@ package com.seok2.ladder.product.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.seok2.ladder.structure.domain.Line;
+import com.seok2.ladder.structure.domain.Pillar;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +11,8 @@ class RewardsTest {
     @Test
     void find() {
 
-        Line bottom1 = Line.of();
-        Line bottom2 = Line.of();
+        Pillar bottom1 = Pillar.of();
+        Pillar bottom2 = Pillar.of();
         Reward reward1 = Reward.of(Prize.of("꽝"), bottom1);
         Reward reward2 = Reward.of(Prize.of("1000"), bottom2);
         Rewards rewards = Rewards.of(Arrays.asList(reward1, reward2));
