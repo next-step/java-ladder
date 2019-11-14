@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by yusik on 2019/11/11.
@@ -34,7 +33,7 @@ class PointTest {
         Point point = Point.of(input);
 
         // then
-        assertThat(point.movable()).isEqualTo(expected);
+        assertThat(point.isLinkable()).isEqualTo(expected);
     }
 
     @DisplayName("움직일 수 없는 점 다음은 움직일 수 있는 점")
@@ -48,7 +47,7 @@ class PointTest {
         Point point = prevPoint.createNextPoint(() -> true);
 
         // then
-        assertThat(point.movable()).isEqualTo(true);
+        assertThat(point.isLinkable()).isEqualTo(true);
     }
 
     @DisplayName("움직이는 점 다음은 움질일 수 없는 점")
@@ -62,6 +61,6 @@ class PointTest {
         Point point = prevPoint.createNextPoint(() -> true);
 
         // then
-        assertThat(point.movable()).isEqualTo(false);
+        assertThat(point.isLinkable()).isEqualTo(false);
     }
 }

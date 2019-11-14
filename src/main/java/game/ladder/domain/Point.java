@@ -5,26 +5,26 @@ package game.ladder.domain;
  */
 public class Point {
 
-    private boolean movable;
+    private boolean linkable;
 
-    private Point(boolean movable) {
-        this.movable = movable;
+    private Point(boolean linkable) {
+        this.linkable = linkable;
     }
 
     public static Point of(boolean movable) {
         return new Point(movable);
     }
 
-    public boolean movable() {
-        return movable;
+    public boolean isLinkable() {
+        return linkable;
     }
 
-    public Point createNextPoint(LadderStrategy ladderStrategy) {
-        return movable() ? Point.of(false) : Point.of(ladderStrategy.movable());
+    public Point createNextPoint(LinkStrategy linkStrategy) {
+        return isLinkable() ? Point.of(false) : Point.of(linkStrategy.isLinkable());
     }
 
     @Override
     public String toString() {
-        return String.valueOf(movable);
+        return String.valueOf(linkable);
     }
 }

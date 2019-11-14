@@ -19,7 +19,7 @@ class InputViewTest {
 
     @DisplayName("플레이어 입력")
     @ParameterizedTest
-    @CsvSource(value = {"jason, koh, pplenty:3", "kwun, dellife:2"}, delimiter = ':')
+    @CsvSource(value = {"jason, koh, pplen:3", "kwun, delli:2"}, delimiter = ':')
     void receiveWinningNumbers(String input, int size) {
 
         // given

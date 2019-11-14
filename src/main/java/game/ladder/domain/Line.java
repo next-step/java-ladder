@@ -3,7 +3,7 @@ package game.ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+import java.util.Optional;
 
 /**
  * Created by yusik on 2019/11/09.
@@ -11,12 +11,11 @@ import java.util.Random;
 public class Line {
 
     private List<Point> points = new ArrayList<>();
-    private Random random = new Random();
 
-    public Line(int countOfPlayer) {
+    public Line(int countOfPlayer, LinkStrategy linkStrategy) {
         Point prevPoint = Point.of(false);
         for (int i = 0; i < countOfPlayer - 1; i++) {
-            Point point = prevPoint.createNextPoint(() -> random.nextBoolean());
+            Point point = prevPoint.createNextPoint(linkStrategy);
             points.add(point);
             prevPoint = point;
         }
@@ -25,6 +24,33 @@ public class Line {
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int move(int position) {
+        Direction direction = Direction.getDirection(
+                canMoveLeft(position),
+                canMoveRight(position));
+
+        return direction.move(position);
+    }
+
+    private boolean canMoveLeft(int position) {
+        return Optional.ofNullable(getPoint(position - 1))
+                .map(Point::isLinkable)
+                .orElse(false);
+    }
+
+    private boolean canMoveRight(int position) {
+        return Optional.ofNullable(getPoint(position))
+                .map(Point::isLinkable)
+                .orElse(false);
+    }
+
+    private Point getPoint(int position) {
+        if (position < 0) {
+            return null;
+        }
+        return points.get(position);
     }
 
     @Override

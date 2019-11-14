@@ -22,8 +22,9 @@ public class ResultView {
     }
 
     public void render(Ladder ladder) {
-        renderPlayers(ladder.getPlayers());
+        renderBorder(ladder.getPlayers());
         renderLadder(ladder);
+        renderBorder(ladder.getRewards());
     }
 
     private void renderLadder(Ladder ladder) {
@@ -35,16 +36,29 @@ public class ResultView {
     private void renderLadderLine(Line line) {
         for (Point point : line.getPoints()) {
             out.print(POINT);
-            String movableLine = point.movable()? MOVABLE_LINE : IMMOVABLE_LINE;
+            String movableLine = point.isLinkable() ? MOVABLE_LINE : IMMOVABLE_LINE;
             out.print(movableLine);
         }
         out.println();
     }
 
-    private void renderPlayers(List<String> players) {
-        for (String name : players) {
-            out.printf("%-6s", name);
+    private void renderBorder(List<String> items) {
+        for (String item : items) {
+            out.printf("%-6s", item);
         }
         out.println();
+    }
+
+    public void renderResult(String result) {
+        out.println("실행 결과");
+        out.println(result);
+    }
+
+    public void renderAllResult(Ladder ladder) {
+        out.println("실행 결과");
+        for (String player : ladder.getPlayers()) {
+            ladder.getResult(player);
+            out.printf("%s : %s\n", player, ladder.getResult(player));
+        }
     }
 }
