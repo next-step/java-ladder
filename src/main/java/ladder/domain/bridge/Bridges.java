@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Bridges {
+    private static final int SYNC = 1;
+
     private final List<Bridge> bridges;
 
     public Bridges(List<Bridge> bridges) {
@@ -32,9 +34,20 @@ public class Bridges {
                 .getDirection();
     }
 
-    public Point findNextPoint(Point point) {
+    public Point findDestinationPoint(Point point) {
+        while (reachDestination(point)) {
+            point = findNextPoint(point);
+        }
+        return point;
+    }
+
+    private Point findNextPoint(Point point) {
         Direction direction = findDirection(point);
         Point nextPoint = direction.move(point);
         return nextPoint;
+    }
+
+    private boolean reachDestination(Point point) {
+        return point.getY() != getHeight() + SYNC;
     }
 }

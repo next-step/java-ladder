@@ -22,7 +22,7 @@ public class Players {
                 .get();
     }
 
-    public int getRange() {
+    public int size() {
         return players.size();
     }
 }

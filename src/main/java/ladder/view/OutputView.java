@@ -40,24 +40,24 @@ public class OutputView {
     }
 
     private static void showBridges(Ladder ladder) {
-        int maxLength = ladder.getMaxLength();
-        int range = ladder.getRange();
+        int maxNameLength = ladder.getMaxNameLength();
+        int width = ladder.getWidth();
         //높이만큼
         for (int y = 1; y <= ladder.getHeight(); y++) {
             //공백 출력
-            showBlank(maxLength);
+            showBlank(maxNameLength);
             //사람수만큼
             showBridgeWithoutLast(ladder, y);
             //마지막 브릿지 출력
-            Direction direction = ladder.getDirection(range - 1, y);
+            Direction direction = ladder.getDirection(width - 1, y);
             showLastBridge(direction);
         }
     }
 
     private static void showBridgeWithoutLast(Ladder ladder, int y) {
-        for (int x = 0; x < ladder.getRange() - 1; x++) {
+        for (int x = 0; x < ladder.getWidth() - 1; x++) {
             Direction direction = ladder.getDirection(x, y);
-            showBridgeWithoutLast(direction, ladder.getMaxLength());
+            showBridgeWithoutLast(direction, ladder.getMaxNameLength());
         }
     }
 
