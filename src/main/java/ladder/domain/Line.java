@@ -16,6 +16,10 @@ public class Line {
     }
 
     public static Line of(final boolean leftLink, final boolean righLink) {
+        if (leftLink) {
+            return new Line(leftLink, Boolean.FALSE);
+        }
+
         return new Line(leftLink, righLink);
     }
 
