@@ -1,27 +1,22 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Lines {
-    private List<Line> lines;
-    private People people;
-
-    public Lines(int countOfLine, int countOfPerson) {
-        lines = createLines(countOfLine, countOfPerson);
-    }
+    private List<Line> lines = new ArrayList<>();
+    private final People people;
 
     public Lines(int countOfLine, String names) {
         this.people = new People(names);
-        lines = createLines(countOfLine, people.getPeople().size());
+        int countOfPerson = people.getPeople()
+                .size();
+        this.lines = createLines(countOfLine, new LineShuffleGenerator(countOfPerson));
     }
 
-    public List<Line> createLines(int countOfLine, int countOfPerson) {
-        lines = new ArrayList<>();
+    private List<Line> createLines(int countOfLine, LineGenerator lineGenerator) {
         for (int i = 0; i < countOfLine; i++) {
-            Line line = new Line(countOfPerson);
-            lines.add(line);
+            this.lines.add(lineGenerator.generate());
         }
         return new ArrayList<>(lines);
     }

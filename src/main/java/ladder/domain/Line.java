@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private Points points;
+    private List<Point> points = new ArrayList<>();
 
-    public Line(int countOfPerson) {
-        this.points = new Points(countOfPerson, new PointsShuffleGenerator());
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public List<Boolean> getPoints() {
-        return new ArrayList<>(points.getPoints());
+    public List<Point> getPoints() {
+        return new ArrayList<>(points);
     }
 }

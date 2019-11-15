@@ -7,20 +7,22 @@ import java.util.stream.Collectors;
 
 public class People {
     private static final String DELIMITER = ",";
+    private static final int NAME_LENGTH = 5;
     private List<String> people;
 
     public People(String names) {
         this.people = createPeople(names);
     }
 
-    public List<String> createPeople(String names) {
+    private List<String> createPeople(String names) {
         people = Arrays.asList(names.split(DELIMITER));
+
         return validateName(people);
     }
 
     public List<String> validateName(List<String> people) {
         return people.stream()
-                .filter(p -> p.length() <= 5)
+                .filter(person -> person.length() <= NAME_LENGTH)
                 .collect(Collectors.toList());
     }
 

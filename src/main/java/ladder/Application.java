@@ -1,9 +1,13 @@
 package ladder;
 
+import ladder.view.InputView;
+
 public class Application {
 
-    public static void main(String ... args ) {
+    public static void main(String[] args) {
         LadderController ladderController = new LadderController();
-        ladderController.execute();
+        String person = InputView.inputName();
+        int height = InputView.inputLadderHeight();
+        ladderController.execute(person, height);
     }
 }
