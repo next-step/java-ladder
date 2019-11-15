@@ -3,7 +3,6 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,20 +14,12 @@ class LadderTest {
     @DisplayName("사다리 생성하기")
     void createLadder() {
         List<String> users = Arrays.asList("a", "b", "c");
-        Ladder ladder = new Ladder(users, 5);
+        List<String> outcomes = Arrays.asList("1", "2", "3");
+        LadderRecord ladderRecord = new LadderRecord(users, outcomes);
+        Ladder ladder = new Ladder(ladderRecord, 5);
 
         assertThat(ladder.getHeight()).isEqualTo(5);
-        assertThat(ladder.getUsers()).containsExactly("a", "b", "c");
+        assertThat(ladder.getLines()).hasSize(5);
     }
 
-    @Test
-    @DisplayName("모든 경우의 수 구하기")
-    void createAllLines() {
-        List<String> users = Arrays.asList("a", "b", "c", "d");
-        Ladder ladder = new Ladder(users, 5);
-
-        List<Line> lines = ladder.createAllLines(new ArrayList<>(), 0);
-
-        assertThat(lines).hasSize(4);
-    }
 }

@@ -14,12 +14,13 @@ class LadderGameTest {
     @DisplayName("사다리게임 사다리 생성")
     void createLadder() {
         List<String> users = Arrays.asList("a", "b", "c");
+        List<String> outcomes = Arrays.asList("1", "2", "3");
+        LadderRecord ladderRecord = new LadderRecord(users, outcomes);
         int height = 5;
         LadderGame ladderGame = new LadderGame();
-        Ladder ladder = ladderGame.createLadder(users, height);
+        Ladder ladder = ladderGame.createLadder(ladderRecord, height);
 
         assertThat(ladder.getHeight()).isEqualTo(height);
-        assertThat(ladder.getWidth()).isEqualTo(users.size() - 1);
         assertThat(ladder.getLines()).hasSize(height);
     }
 }

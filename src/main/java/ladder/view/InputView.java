@@ -18,10 +18,23 @@ public class InputView {
         checkUsers(users);
         return users;
     }
+
     private static void checkUsers(List<String> users) {
-        if(isInvalid(users)) {
+        if (isInvalid(users)) {
             throw new IllegalArgumentException("이름은 5자 이내로 입력해주세요.");
         }
+    }
+
+    public static List<String> createOutcomes() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String inputValue = scanner.next();
+
+        return Parser.convertToList(inputValue);
+    }
+
+    public static String createResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.next();
     }
 
     private static boolean isInvalid(List<String> users) {

@@ -1,18 +1,15 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LadderGame {
 
-    private static final int START_INDEX = 0;
-
-    public Ladder createLadder(List<String> users, int height) {
-        Ladder ladder = new Ladder(users, height);
-
-        List<Line> lines = ladder.createAllLines(new ArrayList<>(), START_INDEX);
-        ladder.createLines(RandomGenerator.createRandomLine(lines, height));
+    public Ladder createLadder(LadderRecord ladderRecord, int height) {
+        Ladder ladder = new Ladder(ladderRecord, height);
+        ladder.createLines(ladderRecord.getWidth());
 
         return ladder;
+    }
+
+    public GameResult run(LadderRecord ladderRecord, Ladder ladder) {
+        return new GameResult(ladderRecord.run(ladder.getLines()));
     }
 }
