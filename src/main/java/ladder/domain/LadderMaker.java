@@ -4,37 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderMaker {
-    private static final int LINK_MIN_COUNT = 1;
     private final LinkGenerationStrategy linkGenerationStrategy;
 
     public LadderMaker(final LinkGenerationStrategy linkGenerationStrategy) {
         this.linkGenerationStrategy = linkGenerationStrategy;
     }
 
-    public Ladder makeLadder(final int countOfLine, final int countOfRow) {
-        final List<LadderRow> ladderRows = new ArrayList<>();
+    public Ladder makeLadder(final int countOfLine, final int height) {
+        Lines lines = new Lines();
 
-        for (int i = 0; i < countOfLine; i++) {
-            final LadderRow ladderRow = makeLadderRow(countOfLine, countOfRow);
-            ladderRows.add(ladderRow);
+        for (int i = 0; i < height; i++) {
+            lines.append(makeLines(countOfLine));
         }
 
-        return new Ladder(new LadderRows(ladderRows));
+        return new Ladder(lines);
     }
 
-    private LadderRow makeLadderRow(int countOfLine, int countOfRow) {
-        final List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < countOfLine; i++) {
-            lines.add(new Line());
+    private List<Line> makeLines(final int countOfLine) {
+        List<Line> lines = new ArrayList<>();
+        Line line = Line.ofFirst(linkGenerationStrategy.isEnableToLink());
+        lines.add(line);
+        for (int i = 1; i < countOfLine - 1; i++) {
+            line = Line.of(line.isRightLink(), linkGenerationStrategy.isEnableToLink());
+            lines.add(line);
         }
-
-        final List<Link> links = new ArrayList<>();
-        boolean enableToGenerate = false;
-        for (int i = 0; i < countOfRow; i++) {
-            enableToGenerate = linkGenerationStrategy.isEnableToGenerate(enableToGenerate);
-            links.add(new Link(enableToGenerate));
-        }
-
-        return new LadderRow(new Lines(lines), new Links(links));
+        lines.add(Line.ofLast(line.isRightLink()));
+        return lines;
     }
 }

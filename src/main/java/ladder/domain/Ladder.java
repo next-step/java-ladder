@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Ladder {
-    private final LadderRows ladderRows;
+    private final Lines lines;
 
-    public Ladder(final LadderRows ladderRows) {
-        this.ladderRows = ladderRows;
+    public Ladder(final Lines lines) {
+        this.lines = lines;
     }
 
     @Override
@@ -14,11 +14,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return Objects.equals(ladderRows, ladder.ladderRows);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderRows);
+        return Objects.hash(lines);
     }
 }

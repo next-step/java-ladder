@@ -1,13 +1,18 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Lines {
-    private final List<Line> lines;
+    private List<Line> lines;
 
-    public Lines(final List<Line> lines) {
-        this.lines = lines;
+    Lines() {
+        this.lines = new ArrayList<>();
+    }
+
+    void append(final List<Line> lines) {
+        this.lines.addAll(lines);
     }
 
     @Override
