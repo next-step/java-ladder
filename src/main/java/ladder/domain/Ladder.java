@@ -1,12 +1,23 @@
 package ladder.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
     private final Lines lines;
+    private final int height;
 
-    public Ladder(final Lines lines) {
+    public Ladder(final Lines lines, final int height) {
         this.lines = lines;
+        this.height = height;
+    }
+
+    public List<Line> getLines() {
+        return lines.get();
+    }
+
+    public int height() {
+        return this.height;
     }
 
     @Override

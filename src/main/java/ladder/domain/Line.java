@@ -17,18 +17,14 @@ public class Line {
 
     public static Line of(final boolean leftLink, final boolean righLink) {
         if (leftLink) {
-            return new Line(leftLink, Boolean.FALSE);
+            return new Line(Boolean.TRUE, Boolean.FALSE);
         }
 
-        return new Line(leftLink, righLink);
+        return new Line(Boolean.FALSE, righLink);
     }
 
     public static Line ofLast(final boolean leftLink) {
         return new Line(leftLink, Boolean.FALSE);
-    }
-
-    public boolean isLeftLink() {
-        return this.leftLink;
     }
 
     public boolean isRightLink() {

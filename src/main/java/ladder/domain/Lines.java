@@ -15,6 +15,10 @@ public class Lines {
         this.lines.addAll(lines);
     }
 
+    List<Line> get() {
+        return this.lines;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

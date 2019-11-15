@@ -18,6 +18,10 @@ public class Player {
         this.name = name;
     }
 
+    String getName() {
+        return this.name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

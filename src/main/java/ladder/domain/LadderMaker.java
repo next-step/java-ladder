@@ -11,17 +11,17 @@ public class LadderMaker {
     }
 
     public Ladder makeLadder(final int countOfLine, final int height) {
-        Lines lines = new Lines();
+        final Lines lines = new Lines();
 
         for (int i = 0; i < height; i++) {
             lines.append(makeLines(countOfLine));
         }
 
-        return new Ladder(lines);
+        return new Ladder(lines, height);
     }
 
     private List<Line> makeLines(final int countOfLine) {
-        List<Line> lines = new ArrayList<>();
+        final List<Line> lines = new ArrayList<>();
         Line line = Line.ofFirst(linkGenerationStrategy.isEnableToLink());
         lines.add(line);
         for (int i = 1; i < countOfLine - 1; i++) {
