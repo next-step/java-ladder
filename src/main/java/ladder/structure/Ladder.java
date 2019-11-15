@@ -15,11 +15,19 @@ public class Ladder {
 
     public Ladder(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
         verityLadderHeight(ladderHeight);
-        this.ladder = new ArrayList<>();
+        addLine(personCount, ladderHeight, connectionStrategy);
+    }
+
+    private void addLine(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
+        List<LineOfLadder> lines = new ArrayList<>();
+        List<Integer> points = null;
         for (int i = 0; i < ladderHeight; i++) {
-            this.ladder.add(new LineOfLadder(personCount - 1, connectionStrategy));
+            LineOfLadder line = new LineOfLadder(personCount - 1, connectionStrategy, points);
+            lines.add(line);
+            points = line.getPointsAfterConnection();
         }
-        this.finalPoints = findFinalPoints();
+        this.ladder = lines;
+        this.finalPoints = points;
     }
 
     public List<List<Boolean>> getConnectedLine() {
@@ -38,12 +46,7 @@ public class Ladder {
         }
     }
 
-    private List<Integer> findFinalPoints() {
-        List<Integer> points = null;
-        for (LineOfLadder lineOfLadder : ladder) {
-            points = lineOfLadder.findPointsForNextLine(points);
-        }
-        return points;
+    public List<LineOfLadder> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
-
 }

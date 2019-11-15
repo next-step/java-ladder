@@ -17,16 +17,21 @@ public class LineOfLadder {
     private static final int CONNECTION_TO_RIGHT = 0;
     private static final int CONNECTION_TO_LEFT = -1;
 
-
     private List<Boolean> connections;
+    private List<Integer> pointsAfterConnection;
 
-    public LineOfLadder(int ladderWidth, ConnectionStrategy connectionStrategy) {
+    public LineOfLadder(int ladderWidth, ConnectionStrategy connectionStrategy, List<Integer> pointsBeforeConnection) {
         this.connections = new ArrayList<>();
         createLine(ladderWidth, connectionStrategy);
+        findPointsForNextLine(pointsBeforeConnection);
     }
 
     public List<Boolean> getConnections() {
         return Collections.unmodifiableList(connections);
+    }
+
+    public List<Integer> getPointsAfterConnection() {
+        return this.pointsAfterConnection;
     }
 
     private void createLine(int ladderWidth, ConnectionStrategy connectionStrategy) {
@@ -43,16 +48,16 @@ public class LineOfLadder {
         return connectionStrategy.create();
     }
 
-    public List<Integer> findPointsForNextLine(List<Integer> nowPoints) {
+    private void findPointsForNextLine(List<Integer> nowPoints) {
         if (nowPoints == null) {
             nowPoints = IntStream.rangeClosed(0, connections.size()).boxed().collect(toList());
         }
 
-        List<Integer> nextPoints = new ArrayList<>();
+        List<Integer> pointsAfterConnection = new ArrayList<>();
         for (int nowPoint : nowPoints) {
-            nextPoints.add(findPointForNextLine(nowPoint));
+            pointsAfterConnection.add(findPointForNextLine(nowPoint));
         }
-        return nextPoints;
+        this.pointsAfterConnection = pointsAfterConnection;
     }
 
     private int findPointForNextLine(int index) {
@@ -71,8 +76,6 @@ public class LineOfLadder {
         }
         return connections.get(index);
     }
-
-
 }
 
 

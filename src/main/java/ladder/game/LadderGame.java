@@ -1,9 +1,9 @@
 package ladder.game;
 
 import ladder.structure.Ladder;
+import ladder.structure.LineOfLadder;
 import ladder.structure.connection.ConnectionStrategy;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +19,8 @@ public class LadderGame {
         this.prizes = Prizes.of(inputResults, this.participants.size());
     }
 
-    public LadderDTO getLadder() {
-        return new LadderDTO(Collections.unmodifiableList(ladder.getConnectedLine()));
+    public List<LineOfLadder> getLadder() {
+        return ladder.getLadder();
     }
 
     public List<String> getParticipants() {
