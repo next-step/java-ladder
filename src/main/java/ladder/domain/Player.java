@@ -2,11 +2,11 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class Gamer {
+public class Player {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    public Gamer(final String name) {
+    public Player(final String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("게이머 이름이 없습니다.");
         }
@@ -22,8 +22,8 @@ public class Gamer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Gamer gamer = (Gamer) o;
-        return Objects.equals(name, gamer.name);
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
     }
 
     @Override

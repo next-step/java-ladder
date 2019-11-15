@@ -8,19 +8,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class GamerTest {
+public class PlayerTest {
 
     @Test
     void 생성() {
-        Gamer gamer = new Gamer("pobi");
-        assertThat(gamer).isEqualTo(new Gamer("pobi"));
+        Player player = new Player("pobi");
+        assertThat(player).isEqualTo(new Player("pobi"));
     }
 
     @ParameterizedTest
     @NullSource
     void 생성_게이머_이름_유효값_검증_null(final String name) {
         assertThatThrownBy(() -> {
-            new Gamer(name);
+            new Player(name);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +28,7 @@ public class GamerTest {
     @ValueSource(strings = "abcdef")
     void 생성_게이머_이름_유효값_검증_5글자(final String name) {
         assertThatThrownBy(() -> {
-            new Gamer(name);
+            new Player(name);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
