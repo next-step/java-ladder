@@ -26,6 +26,10 @@ public class People {
                 .collect(Collectors.toList());
     }
 
+    public int size() {
+        return people.size();
+    }
+
     public List<String> getPeople() {
         return new ArrayList<>(people);
     }

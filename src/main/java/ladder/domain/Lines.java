@@ -9,8 +9,7 @@ public class Lines {
 
     public Lines(int countOfLine, String names) {
         this.people = new People(names);
-        int countOfPerson = people.getPeople()
-                .size();
+        int countOfPerson = people.size();
         this.lines = createLines(countOfLine, new LineShuffleGenerator(countOfPerson));
     }
 
