@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
@@ -12,5 +13,11 @@ public class Line {
 
     public List<Point> getPoints() {
         return new ArrayList<>(points);
+    }
+
+    public List<Boolean> types() {
+        return points.stream()
+                .map(Point::getType)
+                .collect(Collectors.toList());
     }
 }
