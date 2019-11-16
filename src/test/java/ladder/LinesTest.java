@@ -1,12 +1,11 @@
 package ladder;
 
-import ladder.domain.Line;
-import ladder.domain.Lines;
-import ladder.domain.Point;
+import ladder.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,14 +16,14 @@ public class LinesTest {
 
     @BeforeEach
     void setUp() {
-        List<Point> points1 = Arrays.asList(new Point(Boolean.FALSE), new Point(Boolean.TRUE),
+        List<Point> points1 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
+                new Point(Boolean.TRUE), new Point(Boolean.FALSE));
+
+        List<Point> points2 = Arrays.asList(new Point(Boolean.FALSE), new Point(Boolean.TRUE),
                 new Point(Boolean.FALSE), new Point(Boolean.FALSE));
 
-        List<Point> points2 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
-                new Point(Boolean.TRUE), new Point(Boolean.FALSE));
-
         List<Point> points3 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
-                new Point(Boolean.TRUE), new Point(Boolean.FALSE));
+                new Point(Boolean.FALSE), new Point(Boolean.FALSE));
 
         lines = new Lines(Arrays.asList(new Line(points1), new Line(points2), new Line(points3)));
 
@@ -42,5 +41,10 @@ public class LinesTest {
         for (Line ladderLine : lines.getLadderLines()) {
             assertThat(ladderLine.types()).hasSize(4);
         }
+    }
+
+    @Test
+    void linesMovingTest() {
+        assertThat(lines.getResult(0)).isEqualTo(2);
     }
 }

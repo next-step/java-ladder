@@ -15,6 +15,10 @@ public class Line {
         return new ArrayList<>(points);
     }
 
+    public boolean isPoint(int index) {
+        return points.get(index).getType();
+    }
+
     public List<Boolean> types() {
         return points.stream()
                 .map(Point::getType)
