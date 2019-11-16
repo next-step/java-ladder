@@ -20,10 +20,10 @@ public class LadderGameMain {
 
         Ladder ladder = LadderGame.newInstance(peoples.size(), height);
 
-        System.out.println(ladder.size());
         OutputView.printLadder(ladder, peoples, gifts);
 
         String resultName = InputView.inputResultName();
-        OutputView.printResult(resultName, ladder, peoples, gifts);
+        Peoples resultPeoples = peoples.getResultPeoples(resultName);
+        OutputView.printResult(ladder, resultPeoples, gifts);
     }
 }

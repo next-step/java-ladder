@@ -16,6 +16,10 @@ public class People {
         this.name = name;
     }
 
+    public boolean isSamePeople(String name) {
+        return this.name.equalsIgnoreCase(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

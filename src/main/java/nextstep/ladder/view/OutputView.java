@@ -11,7 +11,6 @@ public class OutputView {
     private static final String PRINT_DEFAULT_DIRECTION = "     |";
     private static final String PRINT_RESULT_TITLE = "실행 결과";
     private static final String PRINT_RESULT_FORMAT = "%s : %s";
-    private static final String ALL_RESULT_KEYWORD = "all";
     private static final String ALL_RESULT_SEPARATOR = "\n";
 
     public static void printLadder(Ladder ladder, Peoples peoples, Gifts gifts) {
@@ -60,10 +59,9 @@ public class OutputView {
         System.out.printf(PRINT_FORMAT, directionCharacter);
     }
 
-    public static void printResult(String resultName, Ladder ladder, Peoples peoples, Gifts gifts) {
+    public static void printResult(Ladder ladder, Peoples peoples, Gifts gifts) {
         System.out.println(PRINT_RESULT_TITLE);
-        String result = ALL_RESULT_KEYWORD.equalsIgnoreCase(resultName) ?
-                printAllResult(ladder, peoples, gifts) : printByName(resultName, ladder, peoples, gifts);
+        String result = printAllResult(ladder, peoples, gifts);
         System.out.println(result);
     }
 
@@ -71,11 +69,6 @@ public class OutputView {
         return IntStream.range(0, peoples.size())
                 .mapToObj(i -> result(peoples.peopleByIndex(i), gifts.giftByIndex(ladder.result(i))))
                 .collect(Collectors.joining(ALL_RESULT_SEPARATOR));
-    }
-
-    private static String printByName(String resultName, Ladder ladder, Peoples peoples, Gifts gifts) {
-        int peopleIndex = peoples.indexByName(resultName);
-        return result(peoples.peopleByIndex(peopleIndex), gifts.giftByIndex(ladder.result(peopleIndex)));
     }
 
     private static String result(People people, Gift gift) {

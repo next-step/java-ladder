@@ -7,13 +7,16 @@ public class Lines {
     private static final int FIRST_LINE_INDEX = 0;
 
     private List<Line> lines;
+    private int size;
 
     public Lines(List<Line> lines) {
         this.lines = lines;
+        this.size = lines.size();
     }
 
     public Lines(int size, int height) {
         this.lines = new ArrayList<>();
+        this.size = size;
         for (int i = 0; i < size; i++) {
             List<Point> points = initPoints(i, height);
             lines.add(new Line(points));
@@ -39,7 +42,7 @@ public class Lines {
     }
 
     public int getLastIndex() {
-        return lines.size() - 1;
+        return size - 1;
     }
 
     public Direction getDirection(int index, int height) {

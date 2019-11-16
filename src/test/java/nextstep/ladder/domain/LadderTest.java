@@ -63,7 +63,10 @@ public class LadderTest {
         Gifts gifts = Gifts.of("pobi,honux,crong,jk");
         String resultName = "all";
         OutputView.printLadder(ladder, peoples, gifts);
-        OutputView.printResult(resultName, ladder, peoples, gifts);
+
+        Peoples resultPeoples = peoples.getResultPeoples(resultName);
+
+        OutputView.printResult(ladder, resultPeoples, gifts);
         assertThat(ladder.result(startIndex)).isEqualTo(expectedIndex);
     }
 }
