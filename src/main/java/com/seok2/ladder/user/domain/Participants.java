@@ -1,17 +1,18 @@
 package com.seok2.ladder.user.domain;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
-
 import com.seok2.global.util.StringUtils;
+
 import java.util.Arrays;
 import java.util.List;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Participants {
 
     private static final int MIN = 2;
 
-    protected final List<Participant> participants;
+    private final List<Participant> participants;
 
     private Participants(List<Participant> participants) {
         validate(participants);
@@ -26,12 +27,20 @@ public class Participants {
 
     public static Participants of(String names) {
         return Arrays.stream(StringUtils.split(names))
-            .map(String::trim)
-            .map(Participant::of)
-            .collect(collectingAndThen(toList(), Participants::new));
+                .map(String::trim)
+                .map(Participant::of)
+                .collect(collectingAndThen(toList(), Participants::new));
     }
 
     public int size() {
         return participants.size();
+    }
+
+    public Participant get(int idx) {
+        return participants.get(idx);
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
     }
 }

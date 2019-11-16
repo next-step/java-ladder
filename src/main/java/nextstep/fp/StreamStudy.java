@@ -5,7 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,24 +15,17 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        return words.stream()
-				.filter(word -> word.length() > 12)
-				.count();
+        long count = 0;
+        for (String w : words) {
+            if (w.length() > 12) count++;
+        }
+        return count;
     }
 
     public static void printLongestWordTop100() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-
-        words.stream()
-                .distinct()
-                .filter(word -> word.length() > 12)
-                .sorted(Comparator.comparing(String::length))
-                .limit(100)
-                .map(String::toLowerCase)
-                .forEach(System.out::println);
-
 
         // TODO 이 부분에 구현한다.
     }
@@ -50,6 +42,6 @@ public class StreamStudy {
         return numbers.stream()
                 .filter(i -> i > 3)
                 .mapToInt(i -> i * 2)
-                .reduce(0, (i1, i2) -> i1 + i2);
+                .reduce(0, Integer::sum);
     }
 }
