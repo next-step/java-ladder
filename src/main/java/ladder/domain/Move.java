@@ -12,14 +12,16 @@ public class Move {
         this.current = current;
     }
 
-    public int findLocation() {
-        if (!previous && current) {
-            return 1;
-        } else if (!previous && !current) {
-            return 0;
-        } else {
-            return -1;
-        }
+    public static Move right() {
+        return new Move(false, true);
+    }
+
+    public static Move stay() {
+        return new Move(false, false);
+    }
+
+    public static Move left() {
+        return new Move(true, false);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Move;
+import ladder.domain.Moving;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,10 +33,10 @@ public class MoveTest {
     @Test
     @DisplayName("움직일 때 인덱스 값 테스트")
     void moveTest() {
-        assertThat(move1.findLocation()).isEqualTo(1);
-        assertThat(move2.findLocation()).isEqualTo(1);
-        assertThat(move3.findLocation()).isEqualTo(0);
-        assertThat(move4.findLocation()).isEqualTo(-1);
-        assertThat(move5.findLocation()).isEqualTo(-1);
+        assertThat(Moving.getPosition(move1)).isEqualTo(1);
+        assertThat(Moving.getPosition(move2)).isEqualTo(1);
+        assertThat(Moving.getPosition(move3)).isEqualTo(0);
+        assertThat(Moving.getPosition(move4)).isEqualTo(-1);
+        assertThat(Moving.getPosition(move5)).isEqualTo(-1);
     }
 }
