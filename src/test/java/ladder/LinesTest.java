@@ -4,6 +4,7 @@ import ladder.domain.Line;
 import ladder.domain.Lines;
 import ladder.domain.Point;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -16,24 +17,30 @@ public class LinesTest {
 
     @BeforeEach
     void setUp() {
-        String input = "tom,base,yeahs";
-        lines = new Lines(5, input);
-
-        List<Point> points = Arrays.asList(new Point(Boolean.FALSE), new Point(Boolean.TRUE),
+        List<Point> points1 = Arrays.asList(new Point(Boolean.FALSE), new Point(Boolean.TRUE),
                 new Point(Boolean.FALSE), new Point(Boolean.FALSE));
-        Line line  = new Line(points);
+
+        List<Point> points2 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
+                new Point(Boolean.TRUE), new Point(Boolean.FALSE));
+
+        List<Point> points3 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
+                new Point(Boolean.TRUE), new Point(Boolean.FALSE));
+
+        lines = new Lines(Arrays.asList(new Line(points1), new Line(points2), new Line(points3)));
+
     }
 
     @Test
-    void linesTest() {
-        assertThat(lines.getLadderLines()).hasSize(5);
+    @DisplayName("사다리라인 생성 테스트")
+    void linesSizeTest() {
+        assertThat(lines.getLadderLines()).hasSize(3);
     }
 
     @Test
-    void linesWithParameterTest() {
-        String input = "a,b,c,iron_man";
-        Lines lines1 = new Lines(5, input);
-        assertThat(lines1.getLadderLines()).hasSize(5);
-        assertThat(lines1.getPeople()).contains("a", "b", "c");
+    @DisplayName("각 라인내의 포인트 사이즈 테스트")
+    void linesWithPointsOfLineTest() {
+        for (Line ladderLine : lines.getLadderLines()) {
+            assertThat(ladderLine.types()).hasSize(4);
+        }
     }
 }

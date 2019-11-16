@@ -6,8 +6,8 @@ public class Application {
 
     public static void main(String[] args) {
         LadderController ladderController = new LadderController();
-        String person = InputView.inputName();
+        String names = InputView.inputName();
         int height = InputView.inputLadderHeight();
-        ladderController.execute(person, height);
+        ladderController.execute(names, height);
     }
 }

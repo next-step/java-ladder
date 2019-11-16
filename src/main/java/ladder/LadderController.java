@@ -1,11 +1,23 @@
 package ladder;
 
-import ladder.domain.Lines;
+import ladder.domain.*;
 import ladder.view.ResultView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderController {
-    public void execute(String person, int height) {
-        Lines lines = new Lines(height, person);
-        ResultView.print(lines);
+    public void execute(String names, int height) {
+        People people = new People(names);
+        Lines lines = new Lines(createLines(height, new LineShuffleGenerator(people.size())));
+        ResultView.print(lines, people);
+    }
+
+    private List<Line> createLines(int countOfLine, LineGenerator lineGenerator) {
+        List<Line> linesWithPoint = new ArrayList<>();
+        for (int i = 0; i < countOfLine; i++) {
+            linesWithPoint.add(lineGenerator.generate());
+        }
+        return new ArrayList<>(linesWithPoint);
     }
 }

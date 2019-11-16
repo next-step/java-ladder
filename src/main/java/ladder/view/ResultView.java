@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Lines;
+import ladder.domain.People;
 import ladder.domain.Point;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public class ResultView {
 
     }
 
-    public static void print(Lines lines) {
-        printPeople(lines.getPeople());
+    public static void print(Lines lines, People people) {
+        printPeople(people.getPeople());
         printAllLines(lines.getLadderLines());
     }
 
