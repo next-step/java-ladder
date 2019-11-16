@@ -15,10 +15,6 @@ public class PeopleTest {
         people = new People("iron_man,black,pink,destroy");
     }
 
-    @Test
-    void nameTest() {
-        assertThat(people.validateName(people.getPeople())).contains("black", "pink");
-    }
 
     @Test
     void 글자수_초과시_컬렉션_사이즈_테스트() {

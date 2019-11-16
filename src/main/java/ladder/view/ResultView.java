@@ -1,14 +1,10 @@
 package ladder.view;
 
-import ladder.domain.Line;
-import ladder.domain.Lines;
-import ladder.domain.People;
-import ladder.domain.Point;
+import ladder.domain.*;
 
 import java.util.List;
 
 public class ResultView {
-    private static final int NAME_MAX_LENGTH = 6;
     private static final String LADDER_LINE = "|     ";
     private static final String LADDER_POINT = "|-----";
     private static final String INTERVAL = " ";
@@ -22,11 +18,11 @@ public class ResultView {
         printAllLines(lines.getLadderLines());
     }
 
-    private static void printPeople(List<String> people) {
+    private static void printPeople(List<Person> people) {
         people.stream()
-                .filter(person -> person.length() < NAME_MAX_LENGTH)
+                .filter(Person::isNameLength)
                 .forEach(person ->
-                        System.out.print(person + printEmptyForCorrection(NAME_MAX_LENGTH - person.length())));
+                        System.out.print(person.getName() + printEmptyForCorrection(person.getEmptyLength())));
         System.out.println();
     }
 

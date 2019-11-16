@@ -1,36 +1,35 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class People {
     private static final String DELIMITER = ",";
-    private static final int NAME_LENGTH = 5;
-    private List<String> people;
+    private List<Person> people = new ArrayList<>();
 
     public People(String names) {
         this.people = createPeople(names);
+        validate();
     }
 
-    private List<String> createPeople(String names) {
-        people = Arrays.asList(names.split(DELIMITER));
-
-        return validateName(people);
+    private List<Person> createPeople(String names) {
+        String[] peopleNames = names.split(DELIMITER);
+        for (int i = 0; i < peopleNames.length; i++) {
+            people.add(new Person(peopleNames[i], i));
+        }
+        return people;
     }
 
-    public List<String> validateName(List<String> people) {
-        return people.stream()
-                .filter(person -> person.length() <= NAME_LENGTH)
-                .collect(Collectors.toList());
+    private void validate() {
+        this.people.forEach(Person::validate);
     }
 
     public int size() {
         return people.size();
     }
 
-    public List<String> getPeople() {
+    public List<Person> getPeople() {
         return new ArrayList<>(people);
     }
 }
