@@ -27,7 +27,7 @@ public class LadderTest {
     @Test
     @DisplayName("ladder index 와 height를 전달해 Direction을 얻어 오는지 확인 한다.")
     void ladderDirection() {
-        assertThat(ladder.ladderDirection(0, 1)).isEqualTo(Direction.RIGHT);
+        assertThat(ladder.ladderDirection(0, 1)).isIn(Direction.RIGHT, Direction.BOTTOM);
     }
 
     @Test

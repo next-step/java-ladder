@@ -60,7 +60,6 @@ public class OutputView {
         System.out.printf(PRINT_FORMAT, directionCharacter);
     }
 
-    //TODO 파라미터 4개인 부분은 수정 예정 입니다.
     public static void printResult(String resultName, Ladder ladder, Peoples peoples, Gifts gifts) {
         System.out.println(PRINT_RESULT_TITLE);
         String result = ALL_RESULT_KEYWORD.equalsIgnoreCase(resultName) ?
@@ -70,17 +69,16 @@ public class OutputView {
 
     private static String printAllResult(Ladder ladder, Peoples peoples, Gifts gifts) {
         return IntStream.range(0, peoples.size())
-                .mapToObj(i -> result(ladder, peoples, gifts, i))
+                .mapToObj(i -> result(peoples.peopleByIndex(i), gifts.giftByIndex(ladder.result(i))))
                 .collect(Collectors.joining(ALL_RESULT_SEPARATOR));
     }
 
     private static String printByName(String resultName, Ladder ladder, Peoples peoples, Gifts gifts) {
         int peopleIndex = peoples.indexByName(resultName);
-        return result(ladder, peoples, gifts, peopleIndex);
+        return result(peoples.peopleByIndex(peopleIndex), gifts.giftByIndex(ladder.result(peopleIndex)));
     }
 
-    private static String result(Ladder ladder, Peoples peoples, Gifts gifts, int index) {
-        Gift gift = gifts.giftByIndex(ladder.result(index));
-        return String.format(PRINT_RESULT_FORMAT, peoples.peopleByIndex(index), gift);
+    private static String result(People people, Gift gift) {
+        return String.format(PRINT_RESULT_FORMAT, people, gift);
     }
 }

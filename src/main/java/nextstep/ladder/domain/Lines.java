@@ -23,7 +23,7 @@ public class Lines {
     private List<Point> initPoints(int index, int height) {
         List<Point> points = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            points.add(createPoint(index, height));
+            points.add(createPoint(index, i));
         }
 
         return points;
