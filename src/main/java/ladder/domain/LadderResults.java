@@ -11,15 +11,15 @@ class LadderResults {
 	private final List<String> result;
 
 	LadderResults(List<String> inputResult) {
+		validateInputResult(inputResult);
 		this.result = inputResult;
 	}
 
 	LadderResults(String[] inputResult) {
 		this(new ArrayList<>(Arrays.asList(inputResult)));
-		validateInputResult(inputResult);
 	}
 
-	private void validateInputResult(String[] inputResult) {
+	private void validateInputResult(List<String> inputResult) {
 		for (String result : inputResult) {
 			validateInputLength(result);
 		}
@@ -33,6 +33,10 @@ class LadderResults {
 
 	List<String> getResult() {
 		return new ArrayList<>(result);
+	}
+
+	int count() {
+		return result.size();
 	}
 
 }

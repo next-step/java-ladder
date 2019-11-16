@@ -27,11 +27,11 @@ public class Participants {
 		}
 	}
 
-	public List<String> getNames() {
+	List<String> getNames() {
 		return new ArrayList<>(names);
 	}
 
-	public int count() {
+	int count() {
 		return names.size();
 	}
 

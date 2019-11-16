@@ -13,16 +13,16 @@ public class LadderInput {
 
 	public LadderInput(String[] inputNames, String[] inputResult) {
 		this(new Participants(inputNames), new LadderResults(inputResult));
-		validateInputData(inputNames, inputResult);
 	}
 
 	private LadderInput(Participants participants, LadderResults ladderResults) {
+		validateInputData(participants, ladderResults);
 		this.participants = participants;
 		this.ladderResults = ladderResults;
 	}
 
-	private void validateInputData(String[] inputNames, String[] inputResult) {
-		if (inputNames.length != inputResult.length) {
+	private void validateInputData(Participants participants, LadderResults ladderResults) {
+		if (participants.count() != ladderResults.count()) {
 			throw new IllegalArgumentException("사다리에 참여하는 사람 수와 결과 수는 다를 수 없습니다");
 		}
 	}
