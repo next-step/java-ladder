@@ -2,30 +2,26 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class People {
-    private static final int MAX_NAME_LENGTH = 5;
-    private static final String MAX_NAME_LENGTH_ERROR_MESSAGE = "참여인원 이름의 최대 길이는 5 입니다.";
+public class Gift {
+    private static final int MAX_GIFT_LENGTH = 5;
+    private static final String MAX_NAME_LENGTH_ERROR_MESSAGE = "상품의 이름의 최대 길이는 5 입니다.";
 
     private String name;
 
-    public People(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
+    public Gift(String name) {
+        if (name.length() > MAX_GIFT_LENGTH) {
             throw new IllegalArgumentException(MAX_NAME_LENGTH_ERROR_MESSAGE);
         }
 
         this.name = name;
     }
 
-    public boolean isSamePeople(String name) {
-        return this.name.equalsIgnoreCase(name);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        People people = (People) o;
-        return Objects.equals(name, people.name);
+        Gift gift = (Gift) o;
+        return Objects.equals(name, gift.name);
     }
 
     @Override

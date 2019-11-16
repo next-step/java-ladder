@@ -10,10 +10,22 @@ public enum Direction {
     RIGHT(1),
     BOTTOM(0);
 
-    private int direction;
+    private int moveIndex;
 
-    Direction(int direction) {
-        this.direction = direction;
+    Direction(int moveIndex) {
+        this.moveIndex = moveIndex;
+    }
+
+    public Direction next(boolean isLastIndex) {
+        if (this.equals(Direction.RIGHT)) {
+            return Direction.LEFT;
+        }
+
+        if (isLastIndex) {
+            return Direction.BOTTOM;
+        }
+
+        return getRandomDirection();
     }
 
     public static Direction getRandomDirection() {
@@ -23,5 +35,9 @@ public enum Direction {
 
         Collections.shuffle(directions);
         return directions.get(0);
+    }
+
+    public int nextIndex(int index) {
+        return this.moveIndex + index;
     }
 }

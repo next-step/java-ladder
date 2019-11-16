@@ -1,28 +1,42 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    List<Point> points;
+    private Lines lines;
+    private int height;
 
-    public Ladder() {
-        points = new ArrayList<>();
+    public Ladder(Lines lines, int height) {
+        this.lines = lines;
+        this.height = height;
     }
 
-    public Ladder(List<Point> points) {
-        this.points = points;
+    public Ladder(List<Line> lines, int height) {
+        this(new Lines(lines), height);
+    }
+
+    public Ladder(int size, int height) {
+        this(new Lines(size, height), height);
+    }
+
+    public int size() {
+        return lines.size();
     }
 
     public int height() {
-        return points.size();
+        return height;
     }
 
-    public void addHeight(Direction direction) {
-        points.add(new Point(direction));
+    public Direction ladderDirection(int index, int height) {
+        return lines.getDirection(index, height);
     }
 
-    public Direction direction(int height) {
-        return points.get(height).direction();
+    public int result(int index) {
+        for (int i = 0; i < height; i++) {
+            Direction direction = lines.getDirection(index, i);
+            index = direction.nextIndex(index);
+        }
+
+        return index;
     }
 }
