@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -35,5 +36,9 @@ public class Line {
 
     public int move(int current) {
         return points.get(current).move();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(this.points);
     }
 }

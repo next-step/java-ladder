@@ -10,10 +10,22 @@ public class InputView {
         return scanner.next();
     }
 
+    public String inputEndings() {
+        System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
+    }
+
     public int inputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
+    }
+
+    public String inputFindName() {
+        System.out.println("결과를 보고싶은 사람은?");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
     }
 
 }

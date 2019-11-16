@@ -41,4 +41,8 @@ public class Point {
     public int hashCode() {
         return Objects.hash(order, status);
     }
+
+    public Status getStatus() {
+        return this.status;
+    }
 }

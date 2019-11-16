@@ -44,4 +44,12 @@ public class Status {
     public int hashCode() {
         return Objects.hash(left, right);
     }
+
+    public boolean getLeft() {
+        return this.left;
+    }
+
+    public boolean getRight() {
+        return this.right;
+    }
 }

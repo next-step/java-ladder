@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import com.sun.xml.internal.fastinfoset.stax.events.Util;
+
 import java.util.*;
 
 public class Game {
@@ -28,10 +30,16 @@ public class Game {
 
     private List<String> createSpots(String baseString) {
         List<String> spots = Arrays.asList(baseString.split(","));
-        if (spots.size() < SPOT_MIN_NUM) {
+        if (!isValidSpot(spots) || spots.size() < SPOT_MIN_NUM) {
             throw new IllegalArgumentException();
         }
         return spots;
+    }
+
+    private boolean isValidSpot(List<String> spots) {
+        return spots.stream()
+                .filter(string -> Util.isEmptyString(string.trim()))
+                .count() == 0;
     }
 
     private boolean isValidSpotPair(List<String> users, List<String> endings) {
@@ -50,9 +58,9 @@ public class Game {
         return ladder;
     }
 
-    public Map<String, String> doGame(){
+    public Map<String, String> doGame() {
         Map<String, String> results = new HashMap<>();
-        for(int i=0; i<users.size(); i++){
+        for (int i = 0; i < users.size(); i++) {
             int arrival = calculateArrival(i);
             results.put(users.get(i), endings.get(arrival));
         }
@@ -61,7 +69,7 @@ public class Game {
 
     private int calculateArrival(int departure) {
         int spot = departure;
-        for(int i=0; i<this.ladder.size(); i++){
+        for (int i = 0; i < this.ladder.size(); i++) {
             spot = this.ladder.get(i).move(spot);
         }
         return spot;
@@ -80,5 +88,9 @@ public class Game {
     @Override
     public int hashCode() {
         return Objects.hash(STEP_MIN_NUM, users, totalStep);
+    }
+
+    public Object getLadder() {
+        return Collections.unmodifiableList(this.ladder);
     }
 }
