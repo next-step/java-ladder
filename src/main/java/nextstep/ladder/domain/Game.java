@@ -12,15 +12,6 @@ public class Game {
     private List<Spot> endings;
     private int totalStep;
 
-    public Game(String nameString, int totalStep) {
-        if (totalStep < STEP_MIN_NUM) {
-            throw new IllegalArgumentException();
-        }
-        this.totalStep = totalStep;
-        this.users = createSpots(nameString);
-        this.ladder = createLadder(totalStep, users.size());
-    }
-
     public Game(String nameString, String endingString, int totalStep) {
         List<Spot> users = createSpots(nameString);
         List<Spot> endings = createSpots(endingString);

@@ -12,7 +12,7 @@ public class Controller {
         String nameString = inputView.inputUser();
         int ladderHeight = inputView.inputLadderHeight();
 
-        Game game = new Game(nameString, ladderHeight);
+        Game game = new Game(nameString, nameString, ladderHeight);
 
         resultView.printResultLadder(game.getUsers(), game.getLadder());
     }

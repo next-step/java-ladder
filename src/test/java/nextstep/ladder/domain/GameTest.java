@@ -35,7 +35,7 @@ class GameTest {
     @ValueSource(ints = {0, -1})
     public void 생성_실패_사다리높이_문제(int totalStep) {
         assertThatThrownBy(() -> {
-            new Game("aa,bb,cc", totalStep);
+            new Game("aa,bb,cc", "0,500,1000", totalStep);
         }).isInstanceOf(RuntimeException.class);
     }
 
