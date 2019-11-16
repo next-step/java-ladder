@@ -16,19 +16,21 @@ public class Lines {
 
     public int getResult(int index) {
         for (Line ladderLine : lines) {
-            if (index == 0) {
-                if (ladderLine.isPoint(index)) {
-//                        Moving.getPosition(Move.right());
-                    index += Moving.getPosition(Move.right());
-                } else {
-//                        Moving.getPosition(Move.stay());
-                    index += Moving.getPosition(Move.stay());
-                }
-            } else {
-                index += Moving.getPosition(new Move(ladderLine.isPoint(index - 1), ladderLine.isPoint(index)));
-                //                Moving.getPosition(new Move(ladderLine.isPoint(i-1), ladderLine.isPoint(i)));
-            }
+            index += move(ladderLine, index);
         }
         return index;
+    }
+
+    private int move(Line line, int index) {
+        if (index == 0) {
+            return moveToFirstIndex(line, index);
+        }
+        return Moving.getPosition(new Move(line.isPoint(index - 1), line.isPoint(index)));
+    }
+
+    private int moveToFirstIndex(Line line, int index) {
+        if (line.isPoint(index)) {
+             return Moving.getPosition(Move.right());
+        } return Moving.getPosition(Move.stay());
     }
 }
