@@ -15,8 +15,8 @@ public class Status {
         this.right = right;
     }
 
-    public static Status ofFisrt(boolean next) {
-        return new Status(false, next);
+    public static Status ofFisrt(boolean start) {
+        return new Status(false, start);
     }
 
     public Status createNext(boolean next) {
