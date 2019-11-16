@@ -5,10 +5,11 @@ import java.util.*;
 public class Game {
 
     private final int STEP_MIN_NUM = 1;
-    private final int USER_MIN_NUM = 2;
+    private final int SPOT_MIN_NUM = 2;
 
     private List<Line> ladder;
-    private List<User> users;
+    private List<Spot> users;
+    private List<Spot> endings;
     private int totalStep;
 
     public Game(String nameString, int totalStep) {
@@ -16,31 +17,53 @@ public class Game {
             throw new IllegalArgumentException();
         }
         this.totalStep = totalStep;
-        this.users = createUsers(nameString);
+        this.users = createSpots(nameString);
         this.ladder = createLadder(totalStep, users.size());
     }
 
-    private List<User> createUsers(String nameString) {
-        List<User> users = new ArrayList<>();
-        List<String> names = Arrays.asList(nameString.split(","));
-        for (int i = 0; i < names.size(); i++) {
-            users.add(new User(names.get(i), i));
-        }
-        if (users.size() < USER_MIN_NUM) {
+    public Game(String nameString, String endingString, int totalStep) {
+        List<Spot> users = createSpots(nameString);
+        List<Spot> endings = createSpots(endingString);
+
+        if (!isValidTotalStep(totalStep) || !isValidSpotPair(users, endings)) {
             throw new IllegalArgumentException();
         }
-        return users;
+
+        this.totalStep = totalStep;
+        this.users = users;
+        this.endings = endings;
+        this.ladder = createLadder(totalStep, users.size());
     }
 
-    private List<Line> createLadder(int totalStep, int totalUser) {
+    private List<Spot> createSpots(String spotString) {
+        List<Spot> spots = new ArrayList<>();
+        List<String> strings = Arrays.asList(spotString.split(","));
+        for (int i = 0; i < strings.size(); i++) {
+            spots.add(new Spot(strings.get(i), i));
+        }
+        if (spots.size() < SPOT_MIN_NUM) {
+            throw new IllegalArgumentException();
+        }
+        return spots;
+    }
+
+    private boolean isValidSpotPair(List<Spot> users, List<Spot> endings) {
+        return (users.size() == endings.size());
+    }
+
+    private boolean isValidTotalStep(int totalStep) {
+        return (totalStep >= STEP_MIN_NUM);
+    }
+
+    private List<Line> createLadder(int totalStep, int spotSize) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < totalStep; i++) {
-            ladder.add(new Line(totalUser));
+            ladder.add(new Line(spotSize));
         }
         return ladder;
     }
 
-    public List<User> getUsers() {
+    public List<Spot> getUsers() {
         return Collections.unmodifiableList(this.users);
     }
 

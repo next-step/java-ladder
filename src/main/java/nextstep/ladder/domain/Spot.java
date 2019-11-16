@@ -2,12 +2,12 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class User {
+public class Spot {
 
     private String name;
     private int point;
 
-    public User(String name, int point) {
+    public Spot(String name, int point) {
         if ("".equals(name.trim())) {
             throw new IllegalArgumentException();
         }
@@ -19,7 +19,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        Spot user = (Spot) o;
         return point == user.point &&
                 Objects.equals(name, user.name);
     }
