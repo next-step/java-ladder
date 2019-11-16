@@ -14,7 +14,6 @@ public class Controller {
 
         Game game = new Game(nameString, nameString, ladderHeight);
 
-        resultView.printResultLadder(game.getUsers(), game.getLadder());
     }
 
 

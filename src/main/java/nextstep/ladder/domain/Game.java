@@ -8,13 +8,13 @@ public class Game {
     private final int SPOT_MIN_NUM = 2;
 
     private List<Line> ladder;
-    private List<Spot> users;
-    private List<Spot> endings;
+    private List<String> users;
+    private List<String> endings;
     private int totalStep;
 
     public Game(String nameString, String endingString, int totalStep) {
-        List<Spot> users = createSpots(nameString);
-        List<Spot> endings = createSpots(endingString);
+        List<String> users = createSpots(nameString);
+        List<String> endings = createSpots(endingString);
 
         if (!isValidTotalStep(totalStep) || !isValidSpotPair(users, endings)) {
             throw new IllegalArgumentException();
@@ -26,19 +26,15 @@ public class Game {
         this.ladder = createLadder(totalStep, users.size());
     }
 
-    private List<Spot> createSpots(String spotString) {
-        List<Spot> spots = new ArrayList<>();
-        List<String> strings = Arrays.asList(spotString.split(","));
-        for (int i = 0; i < strings.size(); i++) {
-            spots.add(new Spot(strings.get(i), i));
-        }
+    private List<String> createSpots(String baseString) {
+        List<String> spots = Arrays.asList(baseString.split(","));
         if (spots.size() < SPOT_MIN_NUM) {
             throw new IllegalArgumentException();
         }
         return spots;
     }
 
-    private boolean isValidSpotPair(List<Spot> users, List<Spot> endings) {
+    private boolean isValidSpotPair(List<String> users, List<String> endings) {
         return (users.size() == endings.size());
     }
 
@@ -54,12 +50,21 @@ public class Game {
         return ladder;
     }
 
-    public List<Spot> getUsers() {
-        return Collections.unmodifiableList(this.users);
+    public Map<String, String> doGame(){
+        Map<String, String> results = new HashMap<>();
+        for(int i=0; i<users.size(); i++){
+            int arrival = calculateArrival(i);
+            results.put(users.get(i), endings.get(arrival));
+        }
+        return results;
     }
 
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(this.ladder);
+    private int calculateArrival(int departure) {
+        int spot = departure;
+        for(int i=0; i<this.ladder.size(); i++){
+            spot = this.ladder.get(i).move(spot);
+        }
+        return spot;
     }
 
     @Override

@@ -1,13 +1,12 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Spot;
 
 import java.util.List;
 
 public class ResultView {
 
-    public void printResultLadder(List<Spot> users, List<Line> ladder) {
+    public void printResultLadder(List<String> users, List<Line> ladder) {
         System.out.println();
         System.out.println("실행결과");
 
