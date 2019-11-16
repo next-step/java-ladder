@@ -8,7 +8,7 @@ public class User {
     private int point;
 
     public User(String name, int point) {
-        if("".equals(name.trim())){
+        if ("".equals(name.trim())) {
             throw new IllegalArgumentException();
         }
         this.name = name;
@@ -32,9 +32,9 @@ public class User {
     @Override
     public String toString() {
         int length = name.length();
-        int space = Math.max(0, 5-length);
+        int space = Math.max(0, 5 - length);
         String spaceString = "";
-        for(int i=0; i<space; i++){
+        for (int i = 0; i < space; i++) {
             spaceString = spaceString + " ";
         }
 

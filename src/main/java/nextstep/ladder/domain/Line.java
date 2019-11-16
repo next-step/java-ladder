@@ -22,13 +22,7 @@ public class Line {
     }
 
     private Boolean generateCol(List<Boolean> cols, int colNo) {
-        if (isFirstCol(colNo)) {
-            return generateRandomBoolean();
-        }
-        if (isPrevColTrue(cols, colNo)) {
-            return false;
-        }
-        return generateRandomBoolean();
+        return isPrevColTrue(cols, colNo) ? false : generateRandomBoolean();
     }
 
     private Boolean generateRandomBoolean() {
@@ -36,7 +30,7 @@ public class Line {
     }
 
     private boolean isPrevColTrue(List<Boolean> cols, int colNo) {
-        return cols.get(colNo - 1);
+        return (isFirstCol(colNo)) ? false : cols.get(colNo - 1);
     }
 
     private boolean isFirstCol(int colNo) {
@@ -52,7 +46,7 @@ public class Line {
         String result = "|";
         for (int i = 0; i < cols.size(); i++) {
 
-            result = result + (cols.get(i)? "----|":"    |");
+            result = result + (cols.get(i) ? "----|" : "    |");
         }
         return result;
     }

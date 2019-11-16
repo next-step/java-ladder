@@ -1,9 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Game {
 
@@ -44,11 +41,11 @@ public class Game {
     }
 
     public List<User> getUsers() {
-        return this.users;
+        return Collections.unmodifiableList(this.users);
     }
 
     public List<Line> getLadder() {
-        return this.ladder;
+        return Collections.unmodifiableList(this.ladder);
     }
 
     @Override
