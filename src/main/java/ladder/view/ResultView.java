@@ -13,9 +13,19 @@ public class ResultView {
 
     }
 
-    public static void print(Lines lines, People people) {
+    public static void print(Lines lines, People people, Results results) {
+        System.out.println("사다리 결과");
         printPeople(people.getPeople());
         printAllLines(lines.getLadderLines());
+        printResults(results.getResults());
+    }
+
+    private static void printResults(List<Result> results) {
+        results.stream()
+                .filter(Result::isNameLength)
+                .forEach(result ->
+                        System.out.print(result.getName() + printEmptyForCorrection(result.getEmptyLength())));
+        System.out.println();
     }
 
     private static void printPeople(List<Person> people) {

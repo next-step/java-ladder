@@ -12,10 +12,8 @@ public class LadderController {
         People people = new People(names);
         Lines lines = new Lines(createLines(height, new LineShuffleGenerator(people.size())));
         people.matchResult(lines.getLadderLines());
-
         Results results = new Results(result);
-
-        ResultView.print(lines, people);
+        ResultView.print(lines, people, results);
 
     }
 

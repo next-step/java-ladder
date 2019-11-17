@@ -4,12 +4,27 @@ import java.util.Objects;
 
 public class Result {
 
+    private static final int NAME_MAX_LENGTH = 6;
+    private static final int NAME_LENGTH = 5;
+
     private String name;
     private int position;
 
     public Result(String name, int position) {
         this.name = name;
         this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isNameLength() {
+        return this.name.length() <= NAME_LENGTH;
+    }
+
+    public int getEmptyLength() {
+        return NAME_MAX_LENGTH - name.length();
     }
 
     @Override
