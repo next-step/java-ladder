@@ -65,7 +65,7 @@ public class LinesTest {
 
         Point firstPoint = new Point(0, true, null);
         Point secondPoint = new Point(1, false, firstPoint);
-        Point thirdPoint = secondPoint.createLast();
+        Point thirdPoint = secondPoint.createNoLine();
 
         totalPoint.add(firstPoint);
         totalPoint.add(secondPoint);
@@ -82,7 +82,7 @@ public class LinesTest {
 
         Point firstPoint = new Point(0, false, null);
         Point secondPoint = new Point(1, true, firstPoint);
-        Point thirdPoint = secondPoint.createLast();
+        Point thirdPoint = secondPoint.createNoLine();
 
         totalPoint.add(firstPoint);
         totalPoint.add(secondPoint);

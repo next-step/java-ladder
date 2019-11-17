@@ -1,44 +1,44 @@
 package nextstep.ladder.domain;
 
-import nextstep.UniformRandomBooleanProvider;
-
 public class Point {
 
     private final int index;
-    private final boolean hasLine;
-    private final Point previousPoint;
+    private final PointState pointState;
 
     public Point(int index, boolean hasLine, Point previousPoint) {
+        this(index, new PointState(hasLine, previousPoint.pointState));
+    }
+
+    public Point(int index, PointState pointState) {
         this.index = index;
-        this.hasLine = hasLine;
-        this.previousPoint = previousPoint;
+        this.pointState = pointState;
     }
 
     public static Point createFirst() {
-        return new Point(0, UniformRandomBooleanProvider.getInstance().get(), null);
+        return new Point(0, PointState.createForFirst());
     }
 
     public Point createNext() {
-        if (hasLine) {
-            return new Point(index + 1, false, this);
+        if (pointState.hasLine()) {
+            return createNoLine();
         }
-        return new Point(index + 1, UniformRandomBooleanProvider.getInstance().get(), this);
+        return new Point(index + 1, pointState.createNextState());
     }
 
-    public Point createLast() {
-        return new Point(index + 1, false, this);
+    public Point createNoLine() {
+        return new Point(index + 1, pointState.createNextStateWithNoLine());
     }
 
     public boolean hasLine() {
-        return hasLine;
+        return pointState.hasLine();
     }
 
     public int move() {
-        if (previousPoint != null && previousPoint.hasLine()) {
+        if (pointState.canMovePrevious()) {
             return index - 1;
         }
 
-        if (hasLine) {
+        if (pointState.canMoveNext()) {
             return index + 1;
         }
 

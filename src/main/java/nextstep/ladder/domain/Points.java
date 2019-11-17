@@ -31,7 +31,7 @@ public class Points {
             totalPoints.add(currentPoint);
         }
 
-        totalPoints.add(currentPoint.createLast());
+        totalPoints.add(currentPoint.createNoLine());
 
         return totalPoints;
     }
