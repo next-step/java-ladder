@@ -15,7 +15,7 @@ public class Line {
         return new ArrayList<>(points);
     }
 
-    public boolean isPoint(int index) {
+    boolean isPoint(int index) {
         return points.get(index).getType();
     }
 

@@ -12,15 +12,15 @@ public class Moving {
         this.current = current;
     }
 
-    public static Moving right() {
+    static Moving right() {
         return new Moving(false, true);
     }
 
-    public static Moving stay() {
+    static Moving stay() {
         return new Moving(false, false);
     }
 
-    public static Moving left() {
+    static Moving left() {
         return new Moving(true, false);
     }
 

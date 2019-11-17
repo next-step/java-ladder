@@ -26,7 +26,7 @@ public class Person {
         return this.name.length() <= NAME_LENGTH;
     }
 
-    public void validate() {
+    void validate() {
         if (this.name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
