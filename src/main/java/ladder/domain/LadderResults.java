@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class LadderResult {
+class LadderResults {
 
 	private final static int MIN_RESULT_LENGTH = 1;
 
 	private final List<String> result;
 
-	LadderResult(List<String> inputResult) {
+	LadderResults(List<String> inputResult) {
+		validateInputResult(inputResult);
 		this.result = inputResult;
 	}
 
-	LadderResult(String[] inputResult) {
-		validateInputResult(inputResult);
-		this.result = new ArrayList<>(Arrays.asList(inputResult));
+	LadderResults(String[] inputResult) {
+		this(new ArrayList<>(Arrays.asList(inputResult)));
 	}
 
-	private void validateInputResult(String[] inputResult) {
+	private void validateInputResult(List<String> inputResult) {
 		for (String result : inputResult) {
 			validateInputLength(result);
 		}
@@ -33,6 +33,10 @@ class LadderResult {
 
 	List<String> getResult() {
 		return new ArrayList<>(result);
+	}
+
+	int count() {
+		return result.size();
 	}
 
 }
