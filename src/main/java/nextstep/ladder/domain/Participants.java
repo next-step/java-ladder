@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Participants implements ImmutableList<Participant> {
+public class Participants {
 
     private static int MIN_COUNT = 2;
     private static final String ALL_PARTICIPANT = "all";
@@ -54,8 +54,7 @@ public class Participants implements ImmutableList<Participant> {
         }
     }
 
-    @Override
-    public List<Participant> get() {
+    public List<Participant> getValue() {
         return Collections.unmodifiableList(participants);
     }
 

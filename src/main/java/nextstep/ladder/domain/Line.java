@@ -14,7 +14,7 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return points.get();
+        return points.getValue();
     }
 
     public int move(int startPosition) {

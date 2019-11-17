@@ -44,11 +44,11 @@ public class LadderGameView {
         return inputTool.readLineToInt();
     }
 
-    public void showLines(ImmutableList<Participant> participants, ImmutableList<Line> lines, List<String> results) {
+    public void showLines(List<Participant> participants, List<Line> lines, List<String> results) {
         showText(LADDER_GAME_RESULT);
-        showParticipants(participants.get());
+        showParticipants(participants);
 
-        for (Line line : lines.get()) {
+        for (Line line : lines) {
             showLine(line);
         }
 

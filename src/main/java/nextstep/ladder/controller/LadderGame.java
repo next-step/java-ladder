@@ -15,10 +15,10 @@ public class LadderGame {
 
             Lines lines = new Lines(view.getHeight(), participants.size());
             LadderGameResults results = new LadderGameResults(view.getRequireResults());
-            view.showLines(participants, lines, results.getValue());
+            view.showLines(participants.getValue(), lines.getValue(), results.getValue());
 
             List<Integer> startMovePositions = participants.getPositions(view.getTargetParticipant());
-            view.showGameResults(participants.get(), results.getValue(), lines.move(startMovePositions));
+            view.showGameResults(participants.getValue(), results.getValue(), lines.move(startMovePositions));
         } catch (Exception exception) {
             view.showText(exception.getMessage());
             start(view);

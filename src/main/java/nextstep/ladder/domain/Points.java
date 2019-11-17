@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Points implements ImmutableList<Point> {
+public class Points {
 
     private final List<Point> points;
 
@@ -36,8 +36,7 @@ public class Points implements ImmutableList<Point> {
         return totalPoints;
     }
 
-    @Override
-    public List<Point> get() {
+    public List<Point> getValue() {
         return Collections.unmodifiableList(points);
     }
 }
