@@ -1,6 +1,7 @@
 package step2.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -8,7 +9,7 @@ public class Ladder {
     private static final int LINE_START_INDEX = 0;
 
     private int height;
-    private ArrayList<Line> lines = new ArrayList<>();
+    private List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int countOfParticipants) {
         this.height = height;
@@ -16,8 +17,10 @@ public class Ladder {
     }
 
     public Ladder(String heightInput, int countOfParticipants) {
+        int heightOfLadder;
+
         try {
-            height = Integer.parseInt(heightInput);
+            heightOfLadder = Integer.parseInt(heightInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("잘못된 입력 입니다. " + e);
         }
@@ -25,7 +28,7 @@ public class Ladder {
     }
 
     private void makeLines(int countOfParticipants) {
-        this.lines = (ArrayList<Line>) IntStream.range(LINE_START_INDEX, height)
+        this.lines = IntStream.range(LINE_START_INDEX, height)
                 .mapToObj(index -> new Line(index, countOfParticipants))
                 .collect(Collectors.toList());
     }
@@ -38,7 +41,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public ArrayList<Line> getLines() {
+    public List<Line> getLines() {
         return lines;
     }
 }

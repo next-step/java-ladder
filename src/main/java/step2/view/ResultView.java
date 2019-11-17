@@ -12,13 +12,19 @@ public class ResultView {
     private static final String MOVABLE_LINE = "-----";
     private static final String IMMOVABLE_LINE = "     ";
 
-    public static void printStart() {
+    public static void printResult(Participants participants, Ladder ladder) {
+        printStart();
+        printParticipants(participants);
+        printLadder(ladder, participants.countOfParticipants());
+    }
+
+    private static void printStart() {
         newLine();
         System.out.println("실행결과");
         newLine();
     }
 
-    public static void printParticipants(Participants participantsInput) {
+    private static void printParticipants(Participants participantsInput) {
         List<Person> participants = participantsInput.getParticipants();
 
         participants.stream()
@@ -28,7 +34,7 @@ public class ResultView {
         newLine();
     }
 
-    public static void printLadder(Ladder ladder, int countOfParticipants) {
+    private static void printLadder(Ladder ladder, int countOfParticipants) {
         ladder.getLines()
                 .forEach(line -> printLadderLine(line, countOfParticipants));
     }
@@ -57,5 +63,4 @@ public class ResultView {
     private static void newLine() {
         System.out.print(System.lineSeparator());
     }
-
 }
