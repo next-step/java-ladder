@@ -14,12 +14,12 @@ public class Application {
         String result = InputView.inputResult();
         People people = ladderController.execute(names, height, result);
 
-        while (true) {
-            String wantResult = InputView.inputWantResult();
+        String wantResult = InputView.inputWantResult();
+        for (;!wantResult.equals(END_KEY);) {
             ladderController.displayResultOfAll(people, wantResult, result);
-            if (wantResult.equals(END_KEY)) {
-                break;
-            }
+            wantResult = InputView.inputWantResult();
         }
+        ladderController.displayResultAll(people, result);
+
     }
 }

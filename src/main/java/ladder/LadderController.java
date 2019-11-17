@@ -21,15 +21,13 @@ public class LadderController {
 
     public void displayResultOfAll(People people, String name, String result) {
         Results results = new Results(result);
-        if (name.equals(END_KEY)) {
-            ResultView.printResult(people, results);
-        } else {
-            int resultIndex = people.getPerson(name).getResultIndex();
-            ResultView.printResultOfAll(results.getResultValue(resultIndex));
-        }
+        int resultIndex = people.getPerson(name).getResultIndex();
+        ResultView.printResultOfAll(results.getResultValue(resultIndex));
+    }
 
-
-
+    public void displayResultAll(People people, String result) {
+        Results results = new Results(result);
+        ResultView.printResult(people, results);
     }
 
     private List<Line> createLines(int countOfLine, LineGenerator lineGenerator) {

@@ -19,7 +19,7 @@ public class Result {
         return name;
     }
 
-    public boolean isPosition(int resultIndex) {
+    boolean isPosition(int resultIndex) {
         return this.position == resultIndex;
     }
 

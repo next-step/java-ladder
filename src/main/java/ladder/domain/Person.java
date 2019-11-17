@@ -40,10 +40,11 @@ public class Person {
     private int moveToFirstIndex(Line line, int index) {
         if (line.isPoint(index)) {
             return MovingOperator.getPosition(Moving.right());
-        } return MovingOperator.getPosition(Moving.stay());
+        }
+        return MovingOperator.getPosition(Moving.stay());
     }
 
-    public boolean isName(String name) {
+    boolean isName(String name) {
         return this.name.equals(name);
     }
 
