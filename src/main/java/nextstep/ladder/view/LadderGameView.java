@@ -2,11 +2,12 @@ package nextstep.ladder.view;
 
 import javafx.util.Pair;
 import nextstep.InputTool;
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Participant;
+import nextstep.ladder.domain.Point;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameView {
