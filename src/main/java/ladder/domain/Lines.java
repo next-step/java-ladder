@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lines {
     private List<Line> lines;
@@ -25,12 +24,12 @@ public class Lines {
         if (index == 0) {
             return moveToFirstIndex(line, index);
         }
-        return Moving.getPosition(new Move(line.isPoint(index - 1), line.isPoint(index)));
+        return MovingOperator.getPosition(new Moving(line.isPoint(index - 1), line.isPoint(index)));
     }
 
     private int moveToFirstIndex(Line line, int index) {
         if (line.isPoint(index)) {
-             return Moving.getPosition(Move.right());
-        } return Moving.getPosition(Move.stay());
+             return MovingOperator.getPosition(Moving.right());
+        } return MovingOperator.getPosition(Moving.stay());
     }
 }
