@@ -18,6 +18,9 @@ public class LadderGameView {
     private static final String COMMA = ",";
     private static final String BLANK = " ";
     private static final String EMPTY = "";
+    private static final String POINT_FORMAT = "|%s";
+    private static final String POINT_LINE = "-----";
+    private static final String POINT_EMPTY = "     ";
 
     private static final String INVALID_PARTICIPANT_ERROR_MSG = "입력된 참여자의 정보가 올바르지 않습니다.";
 
@@ -54,10 +57,14 @@ public class LadderGameView {
     private void showLine(Line line) {
         StringBuilder sb = new StringBuilder();
         for (Point point : line.getPoints()) {
-            sb.append(point.toString());
+            sb.append(getPointText(point));
         }
 
         showText(sb.toString());
+    }
+
+    private String getPointText(Point point) {
+        return String.format(POINT_FORMAT, point.hasLine() ? POINT_LINE : POINT_EMPTY);
     }
 
     private void showParticipants(List<Participant> participants) {

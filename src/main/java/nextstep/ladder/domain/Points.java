@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.UniformRandomBooleanProvider;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,26 +14,18 @@ public class Points implements ImmutableList<Point> {
 
     private List<Point> createPoints(int count) {
         List<Point> totalPoints = new ArrayList<>();
-        Point currentHorizontalPoint = null;
 
-        for (int i = 0; i < count; i++) {
-            totalPoints.add(Point.createVerticalLine());
+        Point currentPoint = Point.createFirst();
+        totalPoints.add(currentPoint);
 
-            currentHorizontalPoint = createHorizontalPoint(currentHorizontalPoint);
-            totalPoints.add(currentHorizontalPoint);
+        for (int i = 0; i < count - 2; i++) {
+            currentPoint = currentPoint.createNext();
+            totalPoints.add(currentPoint);
         }
 
-        totalPoints.add(Point.createVerticalLine());
+        totalPoints.add(currentPoint.createLast());
 
         return totalPoints;
-    }
-
-    private Point createHorizontalPoint(Point previousPoint) {
-        if (previousPoint == null || !previousPoint.hasConnection()) {
-            return Point.createRandomlyHorizontalLine(new UniformRandomBooleanProvider());
-        }
-
-        return Point.createEmpty();
     }
 
     @Override

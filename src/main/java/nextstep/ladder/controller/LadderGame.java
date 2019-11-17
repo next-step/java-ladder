@@ -11,7 +11,7 @@ public class LadderGame {
             Participants participants = new Participants(view.getNames());
             int height = view.getHeight();
 
-            Lines lines = new Lines(height, participants.size() - 1);
+            Lines lines = new Lines(height, participants.size());
             view.showResult(participants, lines);
         } catch (Exception exception) {
             view.showText(exception.getMessage());
