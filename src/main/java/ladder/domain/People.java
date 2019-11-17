@@ -14,6 +14,14 @@ public class People {
         validate();
     }
 
+    public List<Person> matchResult(List<Line> lines) {
+        List<Person> peopleWithResult = new ArrayList<>();
+        for (Person person : this.people) {
+            peopleWithResult.add(person.result(lines));
+        }
+        return peopleWithResult;
+    }
+
     private List<Person> createPeople(String names) {
         String[] peopleNames = names.split(DELIMITER);
         for (int i = 0; i < peopleNames.length; i++) {

@@ -42,9 +42,4 @@ public class LinesTest {
             assertThat(ladderLine.types()).hasSize(4);
         }
     }
-
-    @Test
-    void linesMovingTest() {
-        assertThat(lines.getResult(0)).isEqualTo(2);
-    }
 }
