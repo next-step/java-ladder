@@ -26,23 +26,23 @@ public class LadderTest {
     @DisplayName("연속된 두 칸 모두 사다리가 그려질 수 업다")
     void verifiedLadderTest() {
         LineOfLadder firstLine = ladder.getLine(0);
-        assertThat(firstLine.getConnection(0) ^ firstLine.getConnection(1)
-                || !firstLine.getConnection(0))
+        assertThat(firstLine.isConnected(0) ^ firstLine.isConnected(1)
+                || !firstLine.isConnected(0))
                 .isTrue();
         LineOfLadder secondLine = ladder.getLine(1);
-        assertThat(secondLine.getConnection(1) ^ secondLine.getConnection(2)
-                || !secondLine.getConnection(1))
+        assertThat(secondLine.isConnected(1) ^ secondLine.isConnected(2)
+                || !secondLine.isConnected(1))
                 .isTrue();
     }
 
     @Test
     @DisplayName("사다리 그리기")
     void drawLadder() {
-        for (int lineIndex = 0; lineIndex < ladder.getLadderSize(); lineIndex++) {
+        for (int lineIndex = 0; lineIndex < ladder.getLadderHeight(); lineIndex++) {
             LineOfLadder line = ladder.getLine(lineIndex);
             System.out.print("|");
-            for (int i = 0; i < line.getConnectionSize(); i++) {
-                boolean connection = line.getConnection(i);
+            for (int i = 0; i < ladder.getLadderWidth(); i++) {
+                boolean connection = line.isConnected(i);
                 if (connection) {
                     System.out.print("----|");
                 } else {

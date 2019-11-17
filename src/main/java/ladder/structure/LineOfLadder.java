@@ -14,42 +14,45 @@ public class LineOfLadder {
     private static final int MOVE_LEFT = -1;
     private static final int CONNECTION_TO_RIGHT = 0;
     private static final int CONNECTION_TO_LEFT = -1;
-    private List<Boolean> connections;
+    private List<Connection> connections;
     private List<Integer> pointsAfterConnection;
 
-    public LineOfLadder(int ladderWidth, ConnectionStrategy connectionStrategy, List<Integer> pointsBeforeConnection) {
+    private LineOfLadder(int ladderWidth,
+                         ConnectionStrategy connectionStrategy,
+                         List<Integer> pointsBeforeConnection) {
         this.connections = new ArrayList<>();
-        createLine(ladderWidth, connectionStrategy);
+        addConnections(ladderWidth, connectionStrategy);
         findPointsForNextLine(pointsBeforeConnection);
     }
 
-    public boolean getConnection(int index) {
-        return connections.get(index);
+    public static LineOfLadder of(int ladderWidth, ConnectionStrategy connectionStrategy,
+                                  List<Integer> pointsBeforeConnection) {
+        if (pointsBeforeConnection == null) {
+            pointsBeforeConnection = IntStream.rangeClosed(0, ladderWidth).boxed().collect(toList());
+        }
+        return new LineOfLadder(ladderWidth, connectionStrategy, pointsBeforeConnection);
+    }
+
+    public boolean isConnected(int index) {
+        if (index < 0 || index >= connections.size()) {
+            return false;
+        }
+        return connections.get(index).isConnected();
     }
 
     public List<Integer> getPointsAfterConnection() {
         return this.pointsAfterConnection;
     }
 
-    private void createLine(int ladderWidth, ConnectionStrategy connectionStrategy) {
+    private void addConnections(int ladderWidth, ConnectionStrategy connectionStrategy) {
+        Connection before = null;
         for (int width = 0; width < ladderWidth; width++) {
-            connections.add(createConnection(connectionStrategy));
+            before = Connection.of(connectionStrategy, before);
+            connections.add(before);
         }
-    }
-
-    private boolean createConnection(ConnectionStrategy connectionStrategy) {
-        int connectedCount = connections.size();
-        if (connectedCount != 0 && connections.get(connectedCount - 1)) {
-            return false;
-        }
-        return connectionStrategy.create();
     }
 
     private void findPointsForNextLine(List<Integer> nowPoints) {
-        if (nowPoints == null) {
-            nowPoints = IntStream.rangeClosed(0, connections.size()).boxed().collect(toList());
-        }
-
         List<Integer> pointsAfterConnection = new ArrayList<>();
         for (int nowPoint : nowPoints) {
             pointsAfterConnection.add(findPointForNextLine(nowPoint));
@@ -65,17 +68,6 @@ public class LineOfLadder {
             return index + MOVE_LEFT;
         }
         return index + MOVE_STRAIGHT;
-    }
-
-    private boolean isConnected(int index) {
-        if (index < 0 || index >= connections.size()) {
-            return false;
-        }
-        return connections.get(index);
-    }
-
-    public int getConnectionSize() {
-        return connections.size();
     }
 }
 

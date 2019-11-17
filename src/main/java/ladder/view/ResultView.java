@@ -54,17 +54,16 @@ public class ResultView {
     }
 
     private static void drawLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.getLadderSize(); i++) {
-            LineOfLadder line = ladder.getLine(i);
+        for (int i = 0; i < ladder.getLadderHeight(); i++) {
             System.out.print(DOUBLE_SPACE + VERTICAL);
-            drawLine(ladder.getLine(i));
+            drawLine(ladder.getLine(i), ladder.getLadderWidth());
             System.out.println(EMPTY);
         }
     }
 
-    private static void drawLine(LineOfLadder line) {
-        for (int i = 0; i < line.getConnectionSize(); i++) {
-            boolean connection = line.getConnection(i);
+    private static void drawLine(LineOfLadder line, int width) {
+        for (int i = 0; i < width; i++) {
+            boolean connection = line.isConnected(i);
             drawConnection(connection);
         }
     }
