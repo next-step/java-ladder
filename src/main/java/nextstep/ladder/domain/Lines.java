@@ -1,7 +1,8 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
+import javafx.util.Pair;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,6 +27,15 @@ public class Lines implements ImmutableList<Line> {
                 .generate(() -> new Line(connectionLineCount))
                 .limit(height)
                 .collect(Collectors.toList());
+    }
+
+    public List<Pair<Integer, Integer>> move(List<Integer> startPositions) {
+        List<Pair<Integer, Integer>> results = new ArrayList<>();
+        for (Integer start : startPositions) {
+            results.add(new Pair<>(start, move(start)));
+        }
+
+        return results;
     }
 
     public int move(int startPosition) {

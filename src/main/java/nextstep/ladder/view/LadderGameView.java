@@ -1,13 +1,12 @@
 package nextstep.ladder.view;
 
+import javafx.util.Pair;
 import nextstep.InputTool;
-import nextstep.ladder.domain.ImmutableList;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameView {
@@ -16,12 +15,15 @@ public class LadderGameView {
     private static final String LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final String RESULT_QUESTION = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_GAME_RESULT = "실행결과";
+    private static final String PARTICIPANT_RESULT_QUESTION = "결과를 보고 싶은 사람은?";
     private static final String COMMA = ",";
     private static final String BLANK = " ";
     private static final String EMPTY = "";
     private static final String POINT_FORMAT = "|%s";
     private static final String POINT_LINE = "-----";
     private static final String POINT_EMPTY = "     ";
+    private static final String GAME_RESULT_FORMAT = "%s : %s";
+    private static final String GAME_RESULT_TITLE = "실행결과";
 
     private static final String INVALID_RESULT_ERROR_MSG = "입력된 결과 정보가 올바르지 않습니다.";
     private static final String INVALID_PARTICIPANT_ERROR_MSG = "입력된 참여자의 정보가 올바르지 않습니다.";
@@ -50,7 +52,7 @@ public class LadderGameView {
             showLine(line);
         }
 
-        showResults(results);
+        showInputResults(results);
     }
 
     private void showLine(Line line) {
@@ -76,7 +78,7 @@ public class LadderGameView {
         showText(participantsText);
     }
 
-    private void showResults(List<String> results) {
+    private void showInputResults(List<String> results) {
         String resultsText = results
                 .stream()
                 .reduce((result1, result2) -> result1 + " " + result2)
@@ -108,5 +110,21 @@ public class LadderGameView {
 
     public List<String> getRequireResults() {
         return getTexts(RESULT_QUESTION);
+    }
+
+    public String getTargetParticipant() {
+        showText(PARTICIPANT_RESULT_QUESTION);
+        return inputTool.readLine();
+    }
+
+    public void showGameResults(List<Participant> participants, List<String> resultTexts, List<Pair<Integer, Integer>> resultSets) {
+        showText(GAME_RESULT_TITLE);
+        for (Pair<Integer, Integer> resultSet : resultSets) {
+            showText(String.format(
+                    GAME_RESULT_FORMAT,
+                    participants.get(resultSet.getKey()).getName(),
+                    resultTexts.get(resultSet.getValue())
+            ));
+        }
     }
 }
