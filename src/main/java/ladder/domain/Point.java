@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
+
     private Boolean type;
 
     public Point(Boolean type) {

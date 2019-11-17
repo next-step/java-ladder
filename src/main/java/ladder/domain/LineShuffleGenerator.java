@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.*;
 
 public class LineShuffleGenerator implements LineGenerator {
+
     private static final int LADDER_BOUND_INDEX = 0;
     private static final int POINT_LAST_INDEX = 1;
     private static final List<Boolean> BOOLEANS = Arrays.asList(Boolean.TRUE, Boolean.FALSE);

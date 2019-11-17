@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
+
     private List<Point> points = new ArrayList<>();
 
     public Line(List<Point> points) {

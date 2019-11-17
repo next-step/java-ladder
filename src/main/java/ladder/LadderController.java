@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderController {
-    public void execute(String names, int height) {
+
+    public void execute(String names, int height, String result) {
         People people = new People(names);
         Lines lines = new Lines(createLines(height, new LineShuffleGenerator(people.size())));
         ResultView.print(lines, people);

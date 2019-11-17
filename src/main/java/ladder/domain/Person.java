@@ -1,6 +1,7 @@
 package ladder.domain;
 
 public class Person {
+
     private static final int NAME_MAX_LENGTH = 6;
     private static final int NAME_LENGTH = 5;
 

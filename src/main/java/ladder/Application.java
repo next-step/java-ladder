@@ -8,6 +8,8 @@ public class Application {
         LadderController ladderController = new LadderController();
         String names = InputView.inputName();
         int height = InputView.inputLadderHeight();
-        ladderController.execute(names, height);
+        String result = InputView.inputResult();
+        ladderController.execute(names, height, result);
+
     }
 }
