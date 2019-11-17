@@ -6,13 +6,21 @@ import java.util.List;
 
 public class Points implements ImmutableList<Point> {
 
-    private List<Point> points;
+    private final List<Point> points;
 
-    public Points(int count) {
-        points = createPoints(count);
+    public Points(List<Point> points) {
+        this.points = points;
     }
 
-    private List<Point> createPoints(int count) {
+    public Points(int count) {
+        this(createPoints(count));
+    }
+
+    public int move(int startPosition) {
+        return points.get(startPosition).move();
+    }
+
+    private static List<Point> createPoints(int count) {
         List<Point> totalPoints = new ArrayList<>();
 
         Point currentPoint = Point.createFirst();
