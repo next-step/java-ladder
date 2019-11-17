@@ -3,7 +3,6 @@ package ladder.structure;
 import ladder.structure.connection.ConnectionStrategy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -13,10 +12,8 @@ public class LineOfLadder {
     private static final int MOVE_RIGHT = 1;
     private static final int MOVE_STRAIGHT = 0;
     private static final int MOVE_LEFT = -1;
-
     private static final int CONNECTION_TO_RIGHT = 0;
     private static final int CONNECTION_TO_LEFT = -1;
-
     private List<Boolean> connections;
     private List<Integer> pointsAfterConnection;
 
@@ -26,8 +23,8 @@ public class LineOfLadder {
         findPointsForNextLine(pointsBeforeConnection);
     }
 
-    public List<Boolean> getConnections() {
-        return Collections.unmodifiableList(connections);
+    public boolean getConnection(int index) {
+        return connections.get(index);
     }
 
     public List<Integer> getPointsAfterConnection() {
@@ -75,6 +72,10 @@ public class LineOfLadder {
             return false;
         }
         return connections.get(index);
+    }
+
+    public int getConnectionSize() {
+        return connections.size();
     }
 }
 

@@ -1,11 +1,9 @@
 package ladder.game;
 
 import ladder.structure.Ladder;
-import ladder.structure.LineOfLadder;
 import ladder.structure.connection.ConnectionStrategy;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
@@ -19,27 +17,34 @@ public class LadderGame {
         this.prizes = Prizes.of(inputResults, this.participants.size());
     }
 
-    public List<LineOfLadder> getLadder() {
-        return ladder.getLadder();
+    public Ladder getLadder() {
+        return ladder;
     }
 
-    public List<String> getParticipants() {
-        return participants.getNames();
+    public Participants getParticipants() {
+        return participants;
     }
 
-    public List<String> getPrizes() {
-        return prizes.getResult();
+    public Prizes getPrizes() {
+        return prizes;
     }
-
 
     public Map<String, String> getResult(String... users) {
         Map<String, String> result = new LinkedHashMap<>();
-        List<Integer> finalPoints = ladder.getFinalPoints();
-        List<String> prizes = getPrizes();
-
         for (String user : users) {
             int index = participants.indexOf(user);
-            result.put(user, prizes.get(finalPoints.get(index)));
+            int finalPoint = ladder.getFinalPoint(index);
+            result.put(user, prizes.getPrize(finalPoint));
+        }
+        return result;
+    }
+
+    public Map<String, String> getResultAll() {
+        Map<String, String> result = new LinkedHashMap<>();
+        for (String user : participants.getNames()) {
+            int index = participants.indexOf(user);
+            int finalPoint = ladder.getFinalPoint(index);
+            result.put(user, prizes.getPrize(finalPoint));
         }
         return result;
     }

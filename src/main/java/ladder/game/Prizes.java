@@ -1,7 +1,6 @@
 package ladder.game;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -27,9 +26,11 @@ public class Prizes {
         return results;
     }
 
-    public List<String> getResult() {
-        return Collections.unmodifiableList(prizes.stream()
-                .map(Prize::toString)
-                .collect(toList()));
+    public String getPrize(int index) {
+        return prizes.get(index).toString();
+    }
+
+    public int getSize() {
+        return prizes.size();
     }
 }

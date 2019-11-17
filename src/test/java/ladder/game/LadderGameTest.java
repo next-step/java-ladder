@@ -27,7 +27,7 @@ class LadderGameTest {
 
     @Test
     void getParticipants() {
-        assertThat(ladderGame.getParticipants())
+        assertThat(ladderGame.getParticipants().getNames())
                 .containsExactlyInAnyOrderElementsOf
                         (Arrays.asList("pobi", "honux", "crong", "jk"));
     }
@@ -48,6 +48,6 @@ class LadderGameTest {
 
     @Test
     void getLadder() {
-        assertThat(ladderGame.getLadder().getLadder().size()).isEqualTo(5);
+        assertThat(ladderGame.getLadder().getLadderSize()).isEqualTo(5);
     }
 }

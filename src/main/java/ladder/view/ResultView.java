@@ -1,6 +1,9 @@
 package ladder.view;
 
 import ladder.game.LadderGame;
+import ladder.game.Participants;
+import ladder.game.Prizes;
+import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
 
 import java.util.Collections;
@@ -32,7 +35,7 @@ public class ResultView {
         System.out.println(GAME_RESULT);
         Map<String, String> results;
         if ("all".equals(name)) {
-            results = ladderGame.getResult(ladderGame.getParticipants().stream().toArray(String[]::new));
+            results = ladderGame.getResultAll();
         } else {
             results = ladderGame.getResult(name);
         }
@@ -42,23 +45,26 @@ public class ResultView {
         });
     }
 
-    private static void showParticipant(List<String> participants) {
-        for (String participant : participants) {
-            arrangeCenterOfSpace(PARTICIPANT_FORMAT, participant);
+    private static void showParticipant(Participants participants) {
+        List<String> names = participants.getNames();
+        for (String name : names) {
+            arrangeCenterOfSpace(PARTICIPANT_FORMAT, name);
         }
         System.out.println(EMPTY);
     }
 
-    private static void drawLadder(List<LineOfLadder> ladder) {
-        for (LineOfLadder line : ladder) {
+    private static void drawLadder(Ladder ladder) {
+        for (int i = 0; i < ladder.getLadderSize(); i++) {
+            LineOfLadder line = ladder.getLine(i);
             System.out.print(DOUBLE_SPACE + VERTICAL);
-            drawLine(line.getConnections());
+            drawLine(ladder.getLine(i));
             System.out.println(EMPTY);
         }
     }
 
-    private static void drawLine(List<Boolean> line) {
-        for (Boolean connection : line) {
+    private static void drawLine(LineOfLadder line) {
+        for (int i = 0; i < line.getConnectionSize(); i++) {
+            boolean connection = line.getConnection(i);
             drawConnection(connection);
         }
     }
@@ -71,8 +77,9 @@ public class ResultView {
         }
     }
 
-    private static void showResults(List<String> results) {
-        for (String result : results) {
+    private static void showResults(Prizes prizes) {
+        for (int i = 0; i < prizes.getSize(); i++) {
+            String result = prizes.getPrize(i);
             arrangeCenterOfSpace(RESULT_FORMAT, result);
         }
         System.out.println(EMPTY);
