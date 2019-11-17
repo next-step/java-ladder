@@ -12,16 +12,29 @@ public class Lines implements ImmutableList<Line> {
 
     private final List<Line> lines;
 
-    public Lines(int height, int connectionLineCount) {
-        assertHeight(height);
-        lines = createLines(height, connectionLineCount);
+    public Lines(List<Line> lines) {
+        assertHeight(lines.size());
+        this.lines = lines;
     }
 
-    private List<Line> createLines(int height, int connectionLineCount) {
+    public Lines(int height, int connectionLineCount) {
+        this(createLines(height, connectionLineCount));
+    }
+
+    private static List<Line> createLines(int height, int connectionLineCount) {
         return Stream
                 .generate(() -> new Line(connectionLineCount))
                 .limit(height)
                 .collect(Collectors.toList());
+    }
+
+    public int move(int startPosition) {
+        int nextPosition = startPosition;
+        for (Line line : lines) {
+            nextPosition = line.move(nextPosition);
+        }
+
+        return nextPosition;
     }
 
     @Override
