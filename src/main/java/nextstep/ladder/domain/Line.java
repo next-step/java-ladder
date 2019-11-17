@@ -9,6 +9,7 @@ public class Line {
     public Line(Points points) {
         this.points = points;
     }
+
     public Line(int count) {
         this(new Points(count));
     }
