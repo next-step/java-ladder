@@ -43,6 +43,10 @@ public class Person {
         } return MovingOperator.getPosition(Moving.stay());
     }
 
+    public boolean isName(String name) {
+        return this.name.equals(name);
+    }
+
     public int getResultIndex() {
         return resultIndex;
     }

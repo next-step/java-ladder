@@ -21,6 +21,14 @@ public class Results {
         return results;
     }
 
+    public String getResultValue(int resultIndex) {
+        return results.stream()
+                .filter(result -> result.isPosition(resultIndex))
+                .map(Result::getName)
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
     public List<Result> getResults() {
         return new ArrayList<>(results);
     }

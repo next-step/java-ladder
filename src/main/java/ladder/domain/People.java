@@ -14,6 +14,13 @@ public class People {
         validate();
     }
 
+    public Person getPerson(String name) {
+        return this.people.stream()
+                .filter(person -> person.isName(name))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
     public List<Person> matchResult(List<Line> lines) {
         List<Person> peopleWithResult = new ArrayList<>();
         for (Person person : this.people) {

@@ -19,6 +19,10 @@ public class Result {
         return name;
     }
 
+    public boolean isPosition(int resultIndex) {
+        return this.position == resultIndex;
+    }
+
     public boolean isNameLength() {
         return this.name.length() <= NAME_LENGTH;
     }

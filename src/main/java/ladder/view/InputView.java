@@ -24,4 +24,9 @@ public class InputView {
         System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요");
         return scanner.nextLine();
     }
+
+    public static String inputWantResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine();
+    }
 }

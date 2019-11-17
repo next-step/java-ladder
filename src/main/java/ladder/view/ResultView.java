@@ -63,4 +63,16 @@ public class ResultView {
         }
         return LADDER_LINE;
     }
+
+    public static void printResult(People people, Results results) {
+        System.out.println("실행결과");
+        for (Person person : people.getPeople()) {
+            System.out.println(person.getName() + " : " + results.getResultValue(person.getResultIndex()));
+        }
+    }
+
+    public static void printResultOfAll(String resultName) {
+        System.out.println("실행결과");
+        System.out.println(resultName);
+    }
 }
