@@ -1,9 +1,9 @@
-package step2.controller;
+package ladder.controller;
 
-import step2.domain.Ladder;
-import step2.domain.Participants;
-import step2.view.InputView;
-import step2.view.ResultView;
+import ladder.domain.Ladder;
+import ladder.domain.Participants;
+import ladder.view.InputView;
+import ladder.view.ResultView;
 
 public class LadderController {
 

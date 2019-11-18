@@ -1,9 +1,6 @@
-package step2.view;
+package ladder.view;
 
-import step2.domain.Ladder;
-import step2.domain.Line;
-import step2.domain.Participants;
-import step2.domain.Person;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -36,6 +33,7 @@ public class ResultView {
 
     private static void printLadder(Ladder ladder, int countOfParticipants) {
         ladder.getLines()
+                .getLineCollection()
                 .forEach(line -> printLadderLine(line, countOfParticipants));
     }
 
@@ -43,10 +41,10 @@ public class ResultView {
         int index = 0;
         int pointSize = countOfParticipants - 1;
 
-        for (Boolean point : line.getPoints()) {
+        for (Point point : line.getPoints()) {
             System.out.print(VERTICAL_LINE);
 
-            String movableLine = point ? MOVABLE_LINE : IMMOVABLE_LINE;
+            String movableLine = point.getPoint() ? MOVABLE_LINE : IMMOVABLE_LINE;
             System.out.print(movableLine);
 
             printEndVerticalLine(++index, pointSize);

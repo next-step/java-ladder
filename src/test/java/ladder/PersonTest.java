@@ -1,7 +1,7 @@
-package step2;
+package ladder;
 
 import org.junit.jupiter.api.Test;
-import step2.domain.Person;
+import ladder.domain.Person;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
