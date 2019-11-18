@@ -1,31 +1,55 @@
 package nextstep.ladder.domain;
 
+import javafx.util.Pair;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Lines implements ImmutableList<Line> {
+public class Lines {
 
     private static int MIN_HEIGHT = 2;
     private static final String MIN_HEIGHT_ERROR_MSG = "높이는 2 이상 이여야합니다.";
 
     private final List<Line> lines;
 
-    public Lines(int height, int connectionLineCount) {
-        assertHeight(height);
-        lines = createLines(height, connectionLineCount);
+    public Lines(List<Line> lines) {
+        assertHeight(lines.size());
+        this.lines = lines;
     }
 
-    private List<Line> createLines(int height, int connectionLineCount) {
+    public Lines(int height, int connectionLineCount) {
+        this(createLines(height, connectionLineCount));
+    }
+
+    private static List<Line> createLines(int height, int connectionLineCount) {
         return Stream
                 .generate(() -> new Line(connectionLineCount))
                 .limit(height)
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<Line> get() {
+    public List<Pair<Integer, Integer>> move(List<Integer> startPositions) {
+        List<Pair<Integer, Integer>> results = new ArrayList<>();
+        for (Integer start : startPositions) {
+            results.add(new Pair<>(start, move(start)));
+        }
+
+        return results;
+    }
+
+    public int move(int startPosition) {
+        int nextPosition = startPosition;
+        for (Line line : lines) {
+            nextPosition = line.move(nextPosition);
+        }
+
+        return nextPosition;
+    }
+
+    public List<Line> getValue() {
         return Collections.unmodifiableList(lines);
     }
 

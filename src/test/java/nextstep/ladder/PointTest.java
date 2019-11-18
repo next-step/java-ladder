@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Point;
-import nextstep.ladder.domain.PointType;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,20 +8,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PointTest {
 
     @Test
-    void pointCreateTest() {
-        Point emptyPoint = Point.createEmpty();
-        assertThat(emptyPoint.toString()).isEqualTo(PointType.EMPTY.getText());
+    void pointMoveTest() {
+        Point linePoint = new Point(0, true, null);
+        assertThat(linePoint.move()).isEqualTo(1);
+        assertThat(new Point(1, false, linePoint).move()).isEqualTo(0);
 
-        Point verticalLinePoint = Point.createVerticalLine();
-        assertThat(verticalLinePoint.toString()).isEqualTo(PointType.VERTICAL_LINE.getText());
-
-        Point horizontalLinePoint = Point.createHorizontalLine();
-        assertThat(horizontalLinePoint.toString()).isEqualTo(PointType.HORIZONTAL_LINE.getText());
-
-        Point randomEmptyPoint = Point.createRandomlyHorizontalLine(() -> false);
-        assertThat(randomEmptyPoint.toString()).isEqualTo(PointType.EMPTY.getText());
-
-        Point randomHorizontalLinePoint = Point.createRandomlyHorizontalLine(() -> true);
-        assertThat(randomHorizontalLinePoint.toString()).isEqualTo(PointType.HORIZONTAL_LINE.getText());
+        Point noLinePoint = new Point(0, false, null);
+        assertThat(noLinePoint.move()).isEqualTo(0);
     }
 }

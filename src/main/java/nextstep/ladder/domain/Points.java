@@ -1,45 +1,42 @@
 package nextstep.ladder.domain;
 
-import nextstep.UniformRandomBooleanProvider;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Points implements ImmutableList<Point> {
+public class Points {
 
-    private List<Point> points;
+    private final List<Point> points;
 
-    public Points(int count) {
-        points = createPoints(count);
+    public Points(List<Point> points) {
+        this.points = points;
     }
 
-    private List<Point> createPoints(int count) {
+    public Points(int count) {
+        this(createPoints(count));
+    }
+
+    public int move(int startPosition) {
+        return points.get(startPosition).move();
+    }
+
+    private static List<Point> createPoints(int count) {
         List<Point> totalPoints = new ArrayList<>();
-        Point currentHorizontalPoint = null;
 
-        for (int i = 0; i < count; i++) {
-            totalPoints.add(Point.createVerticalLine());
+        Point currentPoint = Point.createFirst();
+        totalPoints.add(currentPoint);
 
-            currentHorizontalPoint = createHorizontalPoint(currentHorizontalPoint);
-            totalPoints.add(currentHorizontalPoint);
+        for (int i = 0; i < count - 2; i++) {
+            currentPoint = currentPoint.createNext();
+            totalPoints.add(currentPoint);
         }
 
-        totalPoints.add(Point.createVerticalLine());
+        totalPoints.add(currentPoint.createNoLine());
 
         return totalPoints;
     }
 
-    private Point createHorizontalPoint(Point previousPoint) {
-        if (previousPoint == null || !previousPoint.hasConnection()) {
-            return Point.createRandomlyHorizontalLine(new UniformRandomBooleanProvider());
-        }
-
-        return Point.createEmpty();
-    }
-
-    @Override
-    public List<Point> get() {
+    public List<Point> getValue() {
         return Collections.unmodifiableList(points);
     }
 }

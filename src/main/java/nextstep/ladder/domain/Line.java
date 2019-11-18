@@ -6,11 +6,19 @@ public class Line {
 
     private final Points points;
 
+    public Line(Points points) {
+        this.points = points;
+    }
+
     public Line(int count) {
-        points = new Points(count);
+        this(new Points(count));
     }
 
     public List<Point> getPoints() {
-        return points.get();
+        return points.getValue();
+    }
+
+    public int move(int startPosition) {
+        return points.move(startPosition);
     }
 }

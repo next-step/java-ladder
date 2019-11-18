@@ -1,39 +1,47 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.RandomBooleanProvider;
-
-import static nextstep.ladder.domain.PointType.*;
-
 public class Point {
 
-    private final PointType pointType;
+    private final int index;
+    private final PointState pointState;
 
-    public Point(PointType pointType) {
-        this.pointType = pointType;
+    public Point(int index, boolean hasLine, Point previousPoint) {
+        this(index, new PointState(hasLine, previousPoint.pointState));
     }
 
-    public static Point createRandomlyHorizontalLine(RandomBooleanProvider randomBooleanProvider) {
-        return new Point(randomBooleanProvider.get() ? HORIZONTAL_LINE : EMPTY);
+    public Point(int index, PointState pointState) {
+        this.index = index;
+        this.pointState = pointState;
     }
 
-    public static Point createHorizontalLine() {
-        return new Point(HORIZONTAL_LINE);
+    public static Point createFirst() {
+        return new Point(0, PointState.createForFirst());
     }
 
-    public static Point createEmpty() {
-        return new Point(EMPTY);
+    public Point createNext() {
+        if (pointState.hasLine()) {
+            return createNoLine();
+        }
+        return new Point(index + 1, pointState.createNextState());
     }
 
-    public static Point createVerticalLine() {
-        return new Point(VERTICAL_LINE);
+    public Point createNoLine() {
+        return new Point(index + 1, pointState.createNextStateWithNoLine());
     }
 
-    public boolean hasConnection() {
-        return pointType == HORIZONTAL_LINE;
+    public boolean hasLine() {
+        return pointState.hasLine();
     }
 
-    @Override
-    public String toString() {
-        return pointType.getText();
+    public int move() {
+        if (pointState.canMovePrevious()) {
+            return index - 1;
+        }
+
+        if (pointState.canMoveNext()) {
+            return index + 1;
+        }
+
+        return index;
     }
 }
