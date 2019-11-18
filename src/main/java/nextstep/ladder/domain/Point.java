@@ -25,9 +25,7 @@ class Point {
         return new Point(FIRST_POSITION, false);
     }
 
-    Point next() {
-        boolean nextPoint = RandomGenerator.generateBoolean();
-
+    Point next(boolean nextPoint) {
         if (this.point && nextPoint) {
             return new Point(currentPosition + INCREASE, false);
         }

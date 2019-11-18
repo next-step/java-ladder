@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.RandomGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +26,7 @@ class LadderLine {
         Point point = Point.first();
         points.add(point);
         while (countOfPerson != points.size()) {
-            point = point.next();
+            point = point.next(RandomGenerator.generateBoolean());
             points.add(point);
         }
     }
