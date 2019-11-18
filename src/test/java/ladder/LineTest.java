@@ -1,14 +1,15 @@
 package ladder;
 
 import ladder.domain.Line;
+import ladder.domain.Point;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class LineTest {
 
@@ -16,12 +17,13 @@ public class LineTest {
 
     @BeforeEach
     void setUp() {
-        line = new Line(4);
+        List<Point> points = Arrays.asList(new Point(Boolean.FALSE), new Point(Boolean.TRUE));
+        line = new Line(points);
     }
 
     @Test
-    void 라인_객체_테스트() {
-        Line line2 = new Line(4);
-        assertThat(line).isNotEqualTo(line2);
+    @DisplayName("하나의 라인에 포인트 체크")
+    void checkPointOfLineTest() {
+        assertThat(line.types()).containsExactly(Boolean.FALSE, Boolean.TRUE);
     }
 }
