@@ -1,52 +1,70 @@
 package ladder.view;
 
 import ladder.game.LadderGame;
+import ladder.game.Participants;
+import ladder.game.Prizes;
+import ladder.structure.Ladder;
+import ladder.structure.LineOfLadder;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
-    private static final String RESULT = "실행결과";
+    private static final String LADDER_RESULT = "사다리 결과";
+    private static final String GAME_RESULT = "실행결과";
     private static final String EMPTY = "";
     private static final String SINGLE_SPACE = " ";
     private static final String DOUBLE_SPACE = "  ";
     private static final String VERTICAL = "|";
     private static final String HORIZON = "-----";
     private static final String EMPTY_HORIZON = "     ";
+    private static final String PARTICIPANT_FORMAT = "%s%s%s";
+    private static final String RESULT_FORMAT = "%s%s%s";
+    private static final String GAME_RESULT_FORMAT = "%s : %s";
     private static final int NAME_SPACE_SIZE = 6;
 
-    public static void show(LadderGame ladderGame) {
-        System.out.println(RESULT);
+    public static void showLadderResult(LadderGame ladderGame) {
+        System.out.println(LADDER_RESULT);
         showParticipant(ladderGame.getParticipants());
-        drawLadder(ladderGame);
+        drawLadder(ladderGame.getLadder());
+        showResults(ladderGame.getPrizes());
     }
 
-    private static void showParticipant(List<String> participants) {
-        for (String participant : participants) {
-            int left = (NAME_SPACE_SIZE - participant.length()) / 2;
-            int right = NAME_SPACE_SIZE - participant.length() - left;
-            System.out.print(String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)));
-            System.out.print(participant);
-            System.out.print(String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)));
+    public static void showResultOfParticipant(LadderGame ladderGame, String name) {
+        System.out.println(GAME_RESULT);
+        Map<String, String> results;
+        if ("all".equals(name)) {
+            results = ladderGame.getResultAll();
+        } else {
+            results = ladderGame.getResult(name);
         }
-        System.out.println();
+
+        results.forEach((user, result) -> {
+            System.out.println(String.format(GAME_RESULT_FORMAT, user, result));
+        });
     }
 
-    private static void drawLadder(LadderGame ladderGame) {
-        int ladderHeight = ladderGame.getLadderHeight();
-        int lineWidth = ladderGame.getLadderWidth();
-
-        for (int line = 0; line < ladderHeight; line++) {
-            System.out.print(DOUBLE_SPACE + VERTICAL);
-            drawLine(ladderGame, line, lineWidth);
-            System.out.println(EMPTY);
+    private static void showParticipant(Participants participants) {
+        List<String> names = participants.getNames();
+        for (String name : names) {
+            arrangeCenterOfSpace(PARTICIPANT_FORMAT, name);
         }
         System.out.println(EMPTY);
     }
 
-    private static void drawLine(LadderGame ladderGame, int line, int lineWidth) {
-        for (int width = 0; width < lineWidth; width++) {
-            drawConnection(ladderGame.isConnected(line, width));
+    private static void drawLadder(Ladder ladder) {
+        for (int i = 0; i < ladder.getLadderHeight(); i++) {
+            System.out.print(DOUBLE_SPACE + VERTICAL);
+            drawLine(ladder.getLine(i), ladder.getLadderWidth());
+            System.out.println(EMPTY);
+        }
+    }
+
+    private static void drawLine(LineOfLadder line, int width) {
+        for (int i = 0; i < width; i++) {
+            boolean connection = line.isConnected(i);
+            drawConnection(connection);
         }
     }
 
@@ -56,5 +74,24 @@ public class ResultView {
         } else {
             System.out.print(EMPTY_HORIZON + VERTICAL);
         }
+    }
+
+    private static void showResults(Prizes prizes) {
+        for (int i = 0; i < prizes.getSize(); i++) {
+            String result = prizes.getPrize(i);
+            arrangeCenterOfSpace(RESULT_FORMAT, result);
+        }
+        System.out.println(EMPTY);
+    }
+
+    private static void arrangeCenterOfSpace(String format, String string) {
+        int left = (NAME_SPACE_SIZE - string.length()) / 2;
+        int right = NAME_SPACE_SIZE - string.length() - left;
+        System.out.print(
+                String.format(format,
+                        String.join(EMPTY, Collections.nCopies(left, SINGLE_SPACE)),
+                        string,
+                        String.join(EMPTY, Collections.nCopies(right, SINGLE_SPACE)))
+        );
     }
 }

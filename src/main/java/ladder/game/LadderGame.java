@@ -1,66 +1,51 @@
 package ladder.game;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import ladder.structure.Ladder;
+import ladder.structure.connection.ConnectionStrategy;
 
-import static java.util.stream.Collectors.toList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LadderGame {
-    private static final String DELIMITER = ",";
-    private static final int PARTICIPANT_NAME_MAX_LENGTH = 5;
-    private static final String PARTICIPANT_NAME_MAX_LENGTH_EXCEPTION = "참여자의 이름은 %d글자를 넘을 수 없습니다";
-    private static final int PARTICIPANT_MIN_SIZE = 2;
-    private static final String PARTICIPANTS_MIN_SIZE_EXCEPTION = "참여자는 최소 %d명 입니다.";
-    private static final String LADDER_HEIGHT_EXCEPTION = "사다리게임의 높이는 0 이상입니다.";
-
     private Ladder ladder;
-    private List<Participant> participants;
+    private Participants participants;
+    private Prizes prizes;
 
-    public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connectionStrategy) {
-        List<String> participants = verifyParticipants(inputParticipant);
-        this.participants = participants.stream().map(participant -> new Participant(participant)).collect(toList());
-        this.ladder = new Ladder(this.participants.size(), verityLadderHeight(ladderHeight), connectionStrategy);
+    public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connectionStrategy, String inputResults) {
+        this.participants = Participants.of(inputParticipant);
+        this.ladder = new Ladder(this.participants.size(), ladderHeight, connectionStrategy);
+        this.prizes = Prizes.of(inputResults, this.participants.size());
     }
 
-    public boolean isConnected(int line, int width) {
-        return ladder.isConnected(line, width);
+    public Ladder getLadder() {
+        return ladder;
     }
 
-    public int getLadderHeight() {
-        return ladder.getLadderHeight();
-    }
-
-    public int getLadderWidth() {
-        return participants.size() - 1;
-    }
-
-    public List<String> getParticipants() {
-        return Collections.unmodifiableList(participants.stream().map(Participant::toString).collect(toList()));
-    }
-
-    private List<String> verifyParticipants(String inputParticipants) {
-        List<String> participants
-                = Arrays.stream(inputParticipants.split(DELIMITER))
-                .map(participant -> participant.trim())
-                .collect(toList());
-        if (participants.stream().anyMatch(participant -> participant.length() > PARTICIPANT_NAME_MAX_LENGTH)) {
-            throwExceptions(PARTICIPANT_NAME_MAX_LENGTH_EXCEPTION, PARTICIPANT_NAME_MAX_LENGTH);
-        }
-        if (participants.size() < PARTICIPANT_MIN_SIZE) {
-            throwExceptions(PARTICIPANTS_MIN_SIZE_EXCEPTION, PARTICIPANT_MIN_SIZE);
-        }
+    public Participants getParticipants() {
         return participants;
     }
 
-    private int verityLadderHeight(int ladderHeight) {
-        if (ladderHeight <= 0) {
-            throwExceptions(LADDER_HEIGHT_EXCEPTION);
-        }
-        return ladderHeight;
+    public Prizes getPrizes() {
+        return prizes;
     }
 
-    private void throwExceptions(String pattern, Object... elements) {
-        throw new IllegalArgumentException(String.format(pattern, elements));
+    public Map<String, String> getResult(String... users) {
+        Map<String, String> result = new LinkedHashMap<>();
+        for (String user : users) {
+            int index = participants.indexOf(user);
+            int finalPoint = ladder.getFinalPoint(index);
+            result.put(user, prizes.getPrize(finalPoint));
+        }
+        return result;
+    }
+
+    public Map<String, String> getResultAll() {
+        Map<String, String> result = new LinkedHashMap<>();
+        for (String user : participants.getNames()) {
+            int index = participants.indexOf(user);
+            int finalPoint = ladder.getFinalPoint(index);
+            result.put(user, prizes.getPrize(finalPoint));
+        }
+        return result;
     }
 }

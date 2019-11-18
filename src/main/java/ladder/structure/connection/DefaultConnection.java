@@ -1,4 +1,4 @@
-package ladder.game;
+package ladder.structure.connection;
 
 public class DefaultConnection implements ConnectionStrategy {
     @Override
