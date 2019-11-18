@@ -12,6 +12,10 @@ public class Bridge {
         this.direction = direction;
     }
 
+    public int getX() {
+        return point.getX();
+    }
+
     public int getY() {
         return point.getY();
     }

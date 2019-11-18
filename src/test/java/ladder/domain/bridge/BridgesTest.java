@@ -2,6 +2,7 @@ package ladder.domain.bridge;
 
 import ladder.domain.bridge.direction.Direction;
 import ladder.domain.common.Point;
+import ladder.domain.result.ResultPoint;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static ladder.TestHelper.getBridgeHelper;
@@ -62,10 +64,9 @@ class BridgesTest {
 
         Bridges bridges = new Bridges(Arrays.asList(leftFirst, leftSecond, leftThird, rightFirst, rightSecond, rightThird));
 
-        Point startedLeft = bridges.findDestinationPoint(new Point(0, 1));
-        Point startedRight = bridges.findDestinationPoint(new Point(1, 1));
+        List<ResultPoint> resultPoints = bridges.makeResultPoints();
 
-        assertThat(startedLeft).isEqualTo(new Point(0, 4));
-        assertThat(startedRight).isEqualTo(new Point(1, 4));
+        assertThat(resultPoints).contains(new ResultPoint(0, 0));
+        assertThat(resultPoints).contains(new ResultPoint(1, 1));
     }
 }

@@ -14,10 +14,6 @@ public class Destination {
         this.point = point;
     }
 
-    public boolean isSamePoint(Point point) {
-        return this.point.equals(point);
-    }
-
     public String getReward() {
         return this.prize.getPrize();
     }
@@ -34,5 +30,9 @@ public class Destination {
     @Override
     public int hashCode() {
         return Objects.hash(prize, point);
+    }
+
+    public boolean isEqualCol(int x) {
+        return point.getX() == x;
     }
 }

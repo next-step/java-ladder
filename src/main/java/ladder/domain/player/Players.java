@@ -19,10 +19,7 @@ public class Players {
                 .map(Player::getName)
                 .map(String::length)
                 .max(Integer::compareTo)
-                .get();
+                .orElseThrow(IllegalArgumentException::new);
     }
 
-    public int size() {
-        return players.size();
-    }
 }
