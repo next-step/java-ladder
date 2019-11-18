@@ -13,6 +13,4 @@ public class ParticipantsTest {
         Participants participants = new Participants(input);
         assertThat(participants.countOfParticipants()).isEqualTo(4);
     }
-
-
 }
