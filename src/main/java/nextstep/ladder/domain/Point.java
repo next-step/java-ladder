@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.RandomGenerator;
-
 import java.util.Objects;
 
 /**
@@ -13,28 +11,28 @@ class Point {
 
     private static final int INCREASE = 1;
     private static final int FIRST_POSITION = 0;
-    private final boolean point;
+    private final Direction direction;
     private final int currentPosition;
 
-    private Point(int currentPosition, boolean point) {
+    private Point(int currentPosition, Direction direction) {
         this.currentPosition = currentPosition;
-        this.point = point;
+        this.direction = direction;
     }
 
     static Point first() {
-        return new Point(FIRST_POSITION, false);
+        return new Point(FIRST_POSITION, Direction.first());
     }
 
     Point next(boolean nextPoint) {
-        if (this.point && nextPoint) {
-            return new Point(currentPosition + INCREASE, false);
+        if (direction.isPoint() && nextPoint) {
+            return new Point(currentPosition + INCREASE, direction.next(false));
         }
 
-        return new Point(currentPosition + INCREASE, nextPoint);
+        return new Point(currentPosition + INCREASE, direction.next(nextPoint));
     }
 
     LadderBridge pointToBridge() {
-        if (this.point) {
+        if (direction.isPoint()) {
             return LadderBridge.BRIDGE;
         }
 
@@ -46,12 +44,12 @@ class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return this.point == point.point &&
-                currentPosition == point.currentPosition;
+        return currentPosition == point.currentPosition &&
+                Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point, currentPosition);
+        return Objects.hash(direction, currentPosition);
     }
 }

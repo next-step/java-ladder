@@ -9,7 +9,7 @@ class LadderLineTest {
     @Test
     void 객체_생성() {
         LadderLine line = new LadderLine(4);
-        assertThat(line).isEqualTo(new LadderLine(4));
+        assertThat(line).isNotEqualTo(new LadderLine(4));
     }
 
     @Test
