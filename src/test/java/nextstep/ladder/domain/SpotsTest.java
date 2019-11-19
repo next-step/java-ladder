@@ -10,9 +10,16 @@ class SpotsTest {
 
     @ParameterizedTest
     @ValueSource(strings = {",,aa", " ,aa,bb"})
-    public void 생성_실패_spot명_문제(String failNames) {
+    public void 생성_실패_spot명_부분공란_문제(String failNames) {
         assertThatThrownBy(() -> {
             new Spots(failNames, "0,500,1000");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void 생성_실패_spot명_전체공란_문제() {
+        assertThatThrownBy(() -> {
+            new Spots(",", ",");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -31,6 +31,9 @@ public class Spots {
     }
 
     private boolean isValidSpot(List<String> spots) {
+        if (spots.size() == 0) {
+            return false;
+        }
         return spots.stream()
                 .filter(string -> string == null || "".equals(string.trim()))
                 .count() == 0;
