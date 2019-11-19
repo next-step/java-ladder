@@ -15,7 +15,7 @@ public class People {
 
     public Person getPerson(String name) {
         return this.people.stream()
-                .filter(person -> person.isName(name))
+                .filter(person -> person.findNameContainsExactly(name))
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);
     }

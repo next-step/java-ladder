@@ -4,10 +4,8 @@ import java.util.List;
 
 public class Person {
 
-    private static final int PREVIOUS_CORRECTION = 1;
     private static final int NAME_MAX_LENGTH = 6;
     private static final int NAME_LENGTH = 5;
-    private static final int LADDER_BOUND_START_POSITION = 0;
 
     private String name;
     private int position;
@@ -30,7 +28,7 @@ public class Person {
         return index;
     }
 
-    boolean isName(String name) {
+    boolean findNameContainsExactly(String name) {
         return this.name.equals(name);
     }
 
