@@ -8,9 +8,15 @@ import java.util.List;
 
 public class LadderController {
 
+    private LadderService ladderService;
+
+    public LadderController() {
+        ladderService = new LadderService();
+    }
+
     public People execute(String names, int height, String result) {
         People people = new People(names);
-        Lines lines = new Lines(createLines(height, people.size()));
+        Lines lines = ladderService.createLines(height, people.size());
         people.matchResult(lines.getLadderLines());
         Results results = new Results(result);
         ResultView.print(lines, people, results);
@@ -26,13 +32,5 @@ public class LadderController {
     public void displayResultAll(People people, String result) {
         Results results = new Results(result);
         ResultView.printResult(people, results);
-    }
-
-    private List<Line> createLines(int countOfLine, int countOfPerson) {
-        List<Line> linesWithPoint = new ArrayList<>();
-        for (int i = 0; i < countOfLine; i++) {
-            linesWithPoint.add(new LineShuffleGenerator().generate(countOfPerson));
-        }
-        return new ArrayList<>(linesWithPoint);
     }
 }
