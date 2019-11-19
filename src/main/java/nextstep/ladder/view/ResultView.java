@@ -48,10 +48,18 @@ public class ResultView {
         System.out.println("실행 결과");
 
         if (result.containsKey(name)) {
-            System.out.println(result.get(name));
-            return;
+            printUser(result, name);
         }
+        if ("all".equals(name)) {
+            printAll(result);
+        }
+    }
 
+    private void printUser(Map<String, String> result, String name) {
+        System.out.println(result.get(name));
+    }
+
+    private void printAll(Map<String, String> result) {
         result.keySet().stream()
                 .forEach(key -> System.out.println(key + " : " + result.get(key)));
     }
