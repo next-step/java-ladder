@@ -1,7 +1,6 @@
 package com.seok2.ladder.product.domain;
 
 import com.seok2.ladder.structure.domain.Pillar;
-
 import java.util.Objects;
 
 public class Reward {
@@ -22,6 +21,10 @@ public class Reward {
         return this.pillar.equals(pillar);
     }
 
+    public Prize getPrize() {
+        return prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -32,7 +35,7 @@ public class Reward {
         }
         Reward reward = (Reward) o;
         return Objects.equals(prize, reward.prize) &&
-                Objects.equals(pillar, reward.pillar);
+            Objects.equals(pillar, reward.pillar);
     }
 
     @Override
@@ -40,7 +43,4 @@ public class Reward {
         return Objects.hash(prize, pillar);
     }
 
-    public Prize getPrize() {
-        return prize;
-    }
 }

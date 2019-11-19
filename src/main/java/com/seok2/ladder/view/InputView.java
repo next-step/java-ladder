@@ -22,7 +22,6 @@ public class InputView {
         return scanner.nextLine();
     }
 
-
     public static int getHeight() {
         System.out.println(HEIGHT_OF_LADDER_MSG);
         return scanner.nextInt();

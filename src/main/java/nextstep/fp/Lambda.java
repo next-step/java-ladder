@@ -3,6 +3,7 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -18,12 +19,7 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
     public static int sumAll(List<Integer> numbers) {
