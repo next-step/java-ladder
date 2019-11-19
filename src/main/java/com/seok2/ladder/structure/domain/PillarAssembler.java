@@ -6,6 +6,9 @@ import java.util.Optional;
 
 public class PillarAssembler {
 
+    private PillarAssembler() {
+    }
+
     static PillarDTO assemble(Pillar pillar) {
         return new PillarDTO(Optional.ofNullable(pillar.getRung()).map(Rung::isRight).orElse(false));
     }

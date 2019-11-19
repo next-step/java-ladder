@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 public class ResultAssembler {
 
+    private ResultAssembler() {
+    }
+
     public static ResultDTO assemble(Result result) {
         return result.getResult().entrySet().stream()
             .collect(collectingAndThen(Collectors.toMap(

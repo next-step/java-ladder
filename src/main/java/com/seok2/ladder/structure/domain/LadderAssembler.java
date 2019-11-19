@@ -7,6 +7,9 @@ import com.seok2.ladder.structure.dto.LadderDTO;
 
 public class LadderAssembler {
 
+    private LadderAssembler() {
+    }
+
     public static LadderDTO assemble(Ladder ladder) {
         return ladder.getLadder().stream()
             .map(LayerAssembler::assemble)

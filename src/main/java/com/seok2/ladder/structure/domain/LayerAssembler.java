@@ -5,8 +5,10 @@ import static java.util.stream.Collectors.toList;
 
 import com.seok2.ladder.structure.dto.LayerDTO;
 
-
 public class LayerAssembler {
+
+    private LayerAssembler() {
+    }
 
     static LayerDTO assemble(Layer layer) {
         return layer.getLayer().stream()

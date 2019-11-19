@@ -7,6 +7,9 @@ import com.seok2.ladder.product.dto.PrizesDTO;
 
 public class PrizesAssembler {
 
+    private PrizesAssembler() {
+    }
+
     public static PrizesDTO assemble(Prizes prizes) {
         return prizes.stream()
             .map(PrizeAssembler::assemble)
