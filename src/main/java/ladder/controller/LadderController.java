@@ -1,6 +1,5 @@
 package ladder.controller;
 
-import ladder.domain.Ladder;
 import ladder.domain.bridge.BridgeFactory;
 import ladder.domain.bridge.Bridges;
 import ladder.domain.bridge.direction.RandomWay;
@@ -10,8 +9,13 @@ import ladder.domain.player.Names;
 import ladder.domain.player.Players;
 import ladder.domain.result.Destinations;
 import ladder.domain.result.Prizes;
+import ladder.domain.result.ResultPoint;
+import ladder.domain.result.ResultPoints;
+import ladder.domain.result.Results;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+
+import java.util.List;
 
 public class LadderController {
 
@@ -27,9 +31,15 @@ public class LadderController {
         BridgeFactory bridgeFactory = new BridgeFactory(new RandomWay());
         Bridges bridges = bridgeFactory.makeBridges(range);
 
-        Ladder ladder = new Ladder(players, bridges);
+        List<ResultPoint> allResultPoints = bridges.makeResultPoints();
+        ResultPoints resultPoints = new ResultPoints(allResultPoints);
+        Results results = resultPoints.makeResults(players.getPlayers(), destinations.getDestinations());
 
-        OutputView.showLadder(ladder, destinations);
+        OutputView.showPlayers(players);
+        OutputView.showBridges(bridges, players.getMaxLength());
+        OutputView.showPrize(destinations, players.getMaxLength());
+        OutputView.showResultByCommand(results);
+
     }
 
 }

@@ -15,7 +15,7 @@ public class Player {
         return name.getName();
     }
 
-    public Point getNextPoint() {
-        return new Point(point, 1);
+    public boolean isEqualCol(int x) {
+        return point.getX() == x;
     }
 }

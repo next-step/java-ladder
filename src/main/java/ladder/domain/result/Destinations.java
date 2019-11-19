@@ -1,7 +1,5 @@
 package ladder.domain.result;
 
-import ladder.domain.common.Point;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -15,13 +13,6 @@ public class Destinations {
 
     public List<Destination> getDestinations() {
         return Collections.unmodifiableList(destinations);
-    }
-
-    public Destination findDestination(Point point) {
-        return destinations.stream()
-                .filter(destination -> destination.isSamePoint(point))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("일치하는 결과가 없습니다."));
     }
 
     @Override

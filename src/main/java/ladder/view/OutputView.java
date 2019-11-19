@@ -1,7 +1,9 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
+import ladder.domain.bridge.BridgeInfo;
+import ladder.domain.bridge.Bridges;
 import ladder.domain.bridge.direction.Direction;
+import ladder.domain.common.Point;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.result.Destination;
@@ -17,13 +19,7 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String END_COMMAND = "all";
 
-    public static void showLadder(Ladder ladder, Destinations destinations) {
-        showPlayers(ladder.getPlayers());
-        showBridges(ladder);
-        showResult(ladder, destinations);
-    }
-
-    private static void showPlayers(Players players) {
+    public static void showPlayers(Players players) {
         int maxLength = players.getMaxLength() + PADDING;
         StringBuilder format = getFormat(maxLength);
 
@@ -39,30 +35,30 @@ public class OutputView {
         return new StringBuilder("%").append(maxLength).append("s");
     }
 
-    private static void showBridges(Ladder ladder) {
-        int maxLength = ladder.getMaxLength();
-        int range = ladder.getRange();
+    public static void showBridges(Bridges bridges, int maxNameLength) {
+        int width = bridges.getWidth();
         //높이만큼
-        for (int y = 1; y <= ladder.getHeight(); y++) {
+        for (int y = 1; y <= bridges.getHeight(); y++) {
             //공백 출력
-            showBlank(maxLength);
+            showBlank(maxNameLength);
             //사람수만큼
-            showBridgeWithoutLast(ladder, y);
+            BridgeInfo bridgeInfo = new BridgeInfo(maxNameLength, y);
+            showBridgeWithoutLast(bridges, bridgeInfo);
             //마지막 브릿지 출력
-            Direction direction = ladder.getDirection(range - 1, y);
+            Direction direction = bridges.findDirection(new Point(width - 1, y));
             showLastBridge(direction);
         }
     }
 
-    private static void showBridgeWithoutLast(Ladder ladder, int y) {
-        for (int x = 0; x < ladder.getRange() - 1; x++) {
-            Direction direction = ladder.getDirection(x, y);
-            showBridgeWithoutLast(direction, ladder.getMaxLength());
+    private static void showBridgeWithoutLast(Bridges bridges, BridgeInfo bridgeInfo) {
+        for (int x = 0; x < bridges.getWidth(); x++) {
+            Direction direction = bridges.findDirection(new Point(x, bridgeInfo.getY()));
+            showBridgeWithoutLast(direction, bridgeInfo.getMaxLength() + PADDING);
         }
     }
 
     private static void showBlank(int length) {
-        StringBuilder blank = getBlank(length);
+        StringBuilder blank = getBlank(length + PADDING);
         System.out.print(blank.toString());
     }
 
@@ -76,8 +72,10 @@ public class OutputView {
 
     private static void showBridgeWithoutLast(Direction direction, int length) {
         BridgeFrontGroup frontByDirection = BridgeFrontGroup.findFrontByDirection(direction);
+
         String frontValue = frontByDirection.getFrontValue();
         String sides = BridgeFrontGroup.getSide(length);
+
         if (direction.equals(Direction.RIGHT)) {
             System.out.print(frontValue + sides);
             return;
@@ -89,21 +87,16 @@ public class OutputView {
         System.out.println(BridgeFrontGroup.findFrontByDirection(direction).getFrontValue());
     }
 
-    private static void showResult(Ladder ladder, Destinations destinations) {
-        Results results = ladder.makeResults(destinations);
-        Players players = ladder.getPlayers();
-
+    public static void showPrize(Destinations destinations, int maxNameLength) {
         StringBuilder prizes = new StringBuilder();
-        int maxLength = players.getMaxLength() + PADDING;
+        int maxLength = maxNameLength + PADDING;
         for (Destination destination : destinations.getDestinations()) {
             prizes.append(String.format(getFormat(maxLength).toString(), destination.getReward()));
         }
         System.out.println(prizes.toString());
-
-        showResultByCommand(results);
     }
 
-    private static void showResultByCommand(Results results) {
+    public static void showResultByCommand(Results results) {
         String command = null;
         while (!END_COMMAND.equals(command)) {
             System.out.println("결과를 보고 싶은 사람은?");

@@ -12,11 +12,6 @@ public class Point {
         this.y = y;
     }
 
-    public Point(Point point, int y) {
-        this.x = point.x;
-        this.y = y;
-    }
-
     public static Point moveDown(Point point) {
         return new Point(point.x, point.y + MOVE);
     }
@@ -27,6 +22,10 @@ public class Point {
 
     public static Point moveRight(Point point) {
         return new Point(point.x + MOVE, point.y + MOVE);
+    }
+
+    public int getX() {
+        return x;
     }
 
     public int getY() {
