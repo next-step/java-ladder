@@ -8,11 +8,21 @@ public class Line {
 
     private static final int PREVIOUS_CORRECTION = 1;
     private static final int LADDER_BOUND_START_POSITION = 0;
+    private static final int LOOP_INDEX = 1;
 
     private List<Point> points;
 
     public Line(List<Point> points) {
         this.points = points;
+        validateDoubleTrueLine();
+    }
+
+    private void validateDoubleTrueLine() {
+        for (int i = LOOP_INDEX; i < this.points.size(); i++) {
+            if (points.get(i - PREVIOUS_CORRECTION).getType() && points.get(i).getType()) {
+                points.set(i, new Point(Boolean.FALSE));
+            }
+        }
     }
 
     public List<Point> getPoints() {
