@@ -11,7 +11,7 @@ public class Game {
 
     public Game(Spots spots, int totalStep) {
         if (!isValidTotalStep(totalStep)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사다리 높이는 1층 이상이어야 합니다");
         }
         this.spots = spots;
         this.ladder = new Ladder(totalStep, spots.getSpotSize());

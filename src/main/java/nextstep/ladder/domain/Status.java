@@ -9,7 +9,7 @@ public class Status {
 
     private Status(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("오른쪽 왼쪽 동시에 다리를 만들수 없습니다");
         }
         this.left = left;
         this.right = right;

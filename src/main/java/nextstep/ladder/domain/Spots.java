@@ -17,7 +17,7 @@ public class Spots {
         List<String> endings = createSpots(endingText);
 
         if (!isValidSpotPair(users, endings)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("참여자 수와 결과 수는 같아야합니다.");
         }
 
         this.users = users;
@@ -27,7 +27,7 @@ public class Spots {
     private List<String> createSpots(String baseString) {
         List<String> spots = Arrays.asList(baseString.split(","));
         if (!isValidSpot(spots) || spots.size() < SPOT_MIN_NUM) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("참가자명과 결과명에 공란이 들어갈수 없습니다.");
         }
         return spots;
     }
