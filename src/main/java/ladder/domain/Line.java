@@ -6,7 +6,10 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    private List<Point> points = new ArrayList<>();
+    private static final int PREVIOUS_CORRECTION = 1;
+    private static final int LADDER_BOUND_START_POSITION = 0;
+
+    private List<Point> points;
 
     public Line(List<Point> points) {
         this.points = points;
@@ -16,7 +19,7 @@ public class Line {
         return new ArrayList<>(points);
     }
 
-    boolean isPoint(int index) {
+    private boolean isPoint(int index) {
         return points.get(index).getType();
     }
 
@@ -24,5 +27,19 @@ public class Line {
         return points.stream()
                 .map(Point::getType)
                 .collect(Collectors.toList());
+    }
+
+    int move(int index) {
+        if (index == LADDER_BOUND_START_POSITION) {
+            return moveToFirstIndex(this, index);
+        }
+        return MovingOperator.getPosition(new Moving(this.isPoint(index - PREVIOUS_CORRECTION), this.isPoint(index)));
+    }
+
+    private int moveToFirstIndex(Line line, int index) {
+        if (line.isPoint(index)) {
+            return MovingOperator.getPosition(Moving.right());
+        }
+        return MovingOperator.getPosition(Moving.stay());
     }
 }

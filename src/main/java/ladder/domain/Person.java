@@ -25,23 +25,9 @@ public class Person {
 
     private int getResult(List<Line> lines, int index) {
         for (Line ladderLine : lines) {
-            index += move(ladderLine, index);
+            index += ladderLine.move(index);
         }
         return index;
-    }
-
-    private int move(Line line, int index) {
-        if (index == LADDER_BOUND_START_POSITION) {
-            return moveToFirstIndex(line, index);
-        }
-        return MovingOperator.getPosition(new Moving(line.isPoint(index - PREVIOUS_CORRECTION), line.isPoint(index)));
-    }
-
-    private int moveToFirstIndex(Line line, int index) {
-        if (line.isPoint(index)) {
-            return MovingOperator.getPosition(Moving.right());
-        }
-        return MovingOperator.getPosition(Moving.stay());
     }
 
     boolean isName(String name) {
