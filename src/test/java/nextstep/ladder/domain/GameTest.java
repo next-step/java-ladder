@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Map;
@@ -25,7 +24,7 @@ class GameTest {
     public void 중복없는결과() {
         Spots spots = new Spots("aa,bb,cc", "0,500,1000");
         Game game = new Game(spots, 4);
-        Map<String, String> result = game.doGame();
+        Map<String, String> result = game.execute();
         assertThat(result.containsValue("0"));
         assertThat(result.containsValue("500"));
         assertThat(result.containsValue("1000"));

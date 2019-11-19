@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.List;
 import java.util.Map;
 
 public class Controller {
@@ -24,7 +23,7 @@ public class Controller {
         resultView.printLadder(game.getLadder());
         resultView.printSpots(endings);
 
-        Map<String, String> result = game.doGame();
+        Map<String, String> result = game.execute();
         resultView.printResult(result, inputView.inputFindName());
     }
 

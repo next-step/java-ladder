@@ -21,7 +21,7 @@ public class Game {
         return (totalStep >= STEP_MIN_NUM);
     }
 
-    public Map<String, String> doGame() {
+    public Map<String, String> execute() {
         return spots.useLadder(ladder);
     }
 
