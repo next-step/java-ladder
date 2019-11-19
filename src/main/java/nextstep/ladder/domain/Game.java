@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import com.sun.xml.internal.fastinfoset.stax.events.Util;
-
 import java.util.*;
 
 public class Game {
@@ -14,9 +12,9 @@ public class Game {
     private List<String> endings;
     private int totalStep;
 
-    public Game(String nameString, String endingString, int totalStep) {
-        List<String> users = createSpots(nameString);
-        List<String> endings = createSpots(endingString);
+    public Game(String nameText, String endingText, int totalStep) {
+        List<String> users = createSpots(nameText);
+        List<String> endings = createSpots(endingText);
 
         if (!isValidTotalStep(totalStep) || !isValidSpotPair(users, endings)) {
             throw new IllegalArgumentException();
@@ -38,7 +36,7 @@ public class Game {
 
     private boolean isValidSpot(List<String> spots) {
         return spots.stream()
-                .filter(string -> Util.isEmptyString(string.trim()))
+                .filter(string -> string == null || "".equals(string.trim()))
                 .count() == 0;
     }
 
