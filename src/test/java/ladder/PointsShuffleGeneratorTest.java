@@ -13,12 +13,12 @@ public class PointsShuffleGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        this.lineShuffleGenerator = new LineShuffleGenerator(5);
+        this.lineShuffleGenerator = new LineShuffleGenerator();
     }
 
     @Test
     void pointsShuffleTest() {
-        assertThat(lineShuffleGenerator.generate()).isInstanceOf(Line.class);
-        assertThat(lineShuffleGenerator.generate().getPoints()).hasSize(5);
+        assertThat(lineShuffleGenerator.generate(5)).isInstanceOf(Line.class);
+        assertThat(lineShuffleGenerator.generate(5).getPoints()).hasSize(5);
     }
 }

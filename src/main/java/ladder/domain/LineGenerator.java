@@ -2,5 +2,5 @@ package ladder.domain;
 
 @FunctionalInterface
 public interface LineGenerator {
-    Line generate();
+    Line generate(int countOfPerson);
 }
