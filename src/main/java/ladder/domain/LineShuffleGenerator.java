@@ -6,7 +6,6 @@ public class LineShuffleGenerator implements LineGenerator {
 
     private static final int LADDER_BOUND_INDEX = 1;
     private static final int POINT_LAST_INDEX = 1;
-    private static final List<Boolean> BOOLEANS = Arrays.asList(Boolean.TRUE, Boolean.FALSE);
 
     public LineShuffleGenerator() {
     }
@@ -35,12 +34,7 @@ public class LineShuffleGenerator implements LineGenerator {
     }
 
     private Point generateShufflePoint() {
-        Collections.shuffle(BOOLEANS);
-        boolean type = BOOLEANS.stream()
-                .findAny()
-                .orElse(Boolean.FALSE);
-
-        return new Point(type);
+        return new Point(new Random().nextBoolean());
     }
 
 }
