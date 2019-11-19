@@ -29,7 +29,6 @@ class GameTest {
         assertThat(result.containsValue("0"));
         assertThat(result.containsValue("500"));
         assertThat(result.containsValue("1000"));
-
     }
 
 }

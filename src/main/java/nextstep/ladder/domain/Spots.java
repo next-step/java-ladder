@@ -42,16 +42,15 @@ public class Spots {
         return (users.size() == endings.size());
     }
 
-    public int getUserSize() {
+    public int getSpotSize() {
         return this.users.size();
     }
 
-    public Map<String, String> getSpotResult(List<Integer> arrivals) {
+    public Map<String, String> useLadder(Ladder ladder) {
         Map<String, String> result = new HashMap<>();
-        for (int i = 0; i < arrivals.size(); i++) {
-            result.put(users.get(i), endings.get(i));
+        for(int i=0; i<users.size(); i++){
+            result.put(users.get(i), endings.get(ladder.calculateArrival(i)));
         }
         return result;
     }
-
 }
