@@ -13,11 +13,11 @@ public class ResultView {
 
     }
 
-    public static void print(Lines lines, People people, Results results) {
+    public static void print(Ladder ladder) {
         System.out.println("사다리 결과");
-        printPeople(people.getPeople());
-        printAllLines(lines.getLadderLines());
-        printResults(results.getResults());
+        printPeople(ladder.getPeople());
+        printAllLines(ladder.getLadderLines());
+        printResults(ladder.getResults());
     }
 
     private static void printResults(List<Result> results) {
@@ -64,10 +64,10 @@ public class ResultView {
         return LADDER_LINE;
     }
 
-    public static void printResult(People people, Results results) {
+    public static void printResult(Ladder ladder) {
         System.out.println("실행결과");
-        for (Person person : people.getPeople()) {
-            System.out.println(person.getName() + " : " + results.getResultValue(person.getPosition()));
+        for (Person person : ladder.getPeople()) {
+            System.out.println(person.getName() + " : " + ladder.getResultValue(person.getPosition()));
         }
     }
 

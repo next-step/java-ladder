@@ -20,12 +20,16 @@ public class Results {
         return new ArrayList<>(results);
     }
 
-    public String getResultValue(int resultIndex) {
+    String getResultValue(int resultIndex) {
         return results.stream()
                 .filter(result -> result.isPosition(resultIndex))
                 .map(Result::getName)
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    int size() {
+        return this.results.size();
     }
 
     public List<Result> getResults() {

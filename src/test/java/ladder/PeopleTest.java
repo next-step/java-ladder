@@ -32,9 +32,9 @@ public class PeopleTest {
         List<Point> points3 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
                 new Point(Boolean.FALSE), new Point(Boolean.FALSE));
 
-        Lines lines = new Lines(Arrays.asList(new Line(points1), new Line(points2), new Line(points3)));
+        List<Line> lines = Arrays.asList(new Line(points1), new Line(points2), new Line(points3));
 
-        assertThat(people.matchResult(lines.getLadderLines())).hasSize(4);
+        assertThat(people.matchResult(lines)).hasSize(4);
         assertThat(people.getPeople().get(0).getPosition()).isEqualTo(2);
     }
 

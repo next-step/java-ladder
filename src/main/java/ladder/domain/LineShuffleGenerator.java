@@ -7,9 +7,6 @@ public class LineShuffleGenerator implements LineGenerator {
     private static final int LADDER_BOUND_INDEX = 1;
     private static final int POINT_LAST_INDEX = 1;
 
-    public LineShuffleGenerator() {
-    }
-
     @Override
     public Line generate(int countOfPerson) {
         List<Point> points = new ArrayList<>();

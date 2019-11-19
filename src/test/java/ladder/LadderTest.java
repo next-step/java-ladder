@@ -5,14 +5,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LinesTest {
-    private Lines lines;
+public class LadderTest {
+
+    private List<Line> lines;
 
     @BeforeEach
     void setUp() {
@@ -25,20 +25,24 @@ public class LinesTest {
         List<Point> points3 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
                 new Point(Boolean.FALSE), new Point(Boolean.FALSE));
 
-        lines = new Lines(Arrays.asList(new Line(points1), new Line(points2), new Line(points3)));
+        lines = Arrays.asList(new Line(points1), new Line(points2), new Line(points3));
 
     }
 
     @Test
     @DisplayName("사다리라인 생성 테스트")
     void linesSizeTest() {
-        assertThat(lines.getLadderLines()).hasSize(3);
+        MatchUp matchUp = new MatchUp("a,b,c,d", "1,2,3,4");
+        Ladder ladder = new Ladder(() -> lines, matchUp);
+        assertThat(ladder.getLadderLines()).hasSize(3);
     }
 
     @Test
     @DisplayName("각 라인내의 포인트 사이즈 테스트")
     void linesWithPointsOfLineTest() {
-        for (Line ladderLine : lines.getLadderLines()) {
+        MatchUp matchUp = new MatchUp("a,b,c,d", "1,2,3,4");
+        Ladder ladder = new Ladder(() -> lines, matchUp);
+        for (Line ladderLine : ladder.getLadderLines()) {
             assertThat(ladderLine.types()).hasSize(4);
         }
     }

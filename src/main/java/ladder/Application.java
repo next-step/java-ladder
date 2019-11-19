@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.Ladder;
 import ladder.domain.People;
 import ladder.view.InputView;
 
@@ -12,14 +13,13 @@ public class Application {
         String names = InputView.inputName();
         int height = InputView.inputLadderHeight();
         String result = InputView.inputResult();
-        People people = ladderController.execute(names, height, result);
+        Ladder ladder = ladderController.execute(names, height, result);
 
-        String wantResult = InputView.inputWantResult();
-        for (;!wantResult.equals(END_KEY);) {
-            ladderController.displayResultOfAll(people, wantResult, result);
-            wantResult = InputView.inputWantResult();
+        String wantResultPersonName = InputView.inputWantResult();
+        for (; !wantResultPersonName.equals(END_KEY); ) {
+            ladderController.displayResultOfAll(ladder, wantResultPersonName);
+            wantResultPersonName = InputView.inputWantResult();
         }
-        ladderController.displayResultAll(people, result);
-
+        ladderController.displayResultAll(ladder);
     }
 }
