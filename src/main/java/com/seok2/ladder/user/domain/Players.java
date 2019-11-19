@@ -1,18 +1,17 @@
 package com.seok2.ladder.user.domain;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import com.seok2.ladder.game.domain.Result;
 import com.seok2.ladder.product.domain.Reward;
 import com.seok2.ladder.product.domain.Rewards;
 import com.seok2.ladder.structure.domain.Layer;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
 
 public class Players {
 
@@ -28,9 +27,9 @@ public class Players {
 
     public static Players of(Participants participants, Layer top) {
         return IntStream.range(0, participants.size())
-                .boxed()
-                .map(idx -> Player.of(participants.get(idx), top.get(idx)))
-                .collect(collectingAndThen(toList(), Players::of));
+            .boxed()
+            .map(idx -> Player.of(participants.get(idx), top.get(idx)))
+            .collect(collectingAndThen(toList(), Players::of));
     }
 
     public Result match(Rewards rewards) {

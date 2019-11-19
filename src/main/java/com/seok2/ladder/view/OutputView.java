@@ -6,7 +6,6 @@ import com.seok2.ladder.product.dto.PrizesDTO;
 import com.seok2.ladder.structure.dto.LadderDTO;
 import com.seok2.ladder.user.dto.ParticipantDTO;
 import com.seok2.ladder.user.dto.ParticipantsDTO;
-
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
@@ -36,12 +35,12 @@ public class OutputView {
 
     public static void printLadder(LadderDTO ladderDTO) {
         ladderDTO.getLayers().stream()
-                .limit(ladderDTO.getLayers().size() - 1)
-                .flatMap(x -> {
-                    System.out.println();
-                    return x.getLayer().stream();
-                })
-                .forEach(y -> System.out.print(y.getRung() ? HORIZONTAL_LINE : VERTICAL_LINE));
+            .limit(ladderDTO.getLayers().size() - 1)
+            .flatMap(x -> {
+                System.out.println();
+                return x.getLayer().stream();
+            })
+            .forEach(y -> System.out.print(y.getRung() ? HORIZONTAL_LINE : VERTICAL_LINE));
         System.out.println();
     }
 
@@ -71,6 +70,6 @@ public class OutputView {
 
         }
         result.entrySet()
-                .forEach(e -> System.out.println(e.getKey() + DELIMITER + e.getValue()));
+            .forEach(e -> System.out.println(e.getKey() + DELIMITER + e.getValue()));
     }
 }

@@ -1,12 +1,11 @@
 package com.seok2.ladder.user.domain;
 
-import com.seok2.global.util.StringUtils;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
+
+import com.seok2.global.util.StringUtils;
+import java.util.Arrays;
+import java.util.List;
 
 public class Participants {
 
@@ -27,9 +26,9 @@ public class Participants {
 
     public static Participants of(String names) {
         return Arrays.stream(StringUtils.split(names))
-                .map(String::trim)
-                .map(Participant::of)
-                .collect(collectingAndThen(toList(), Participants::new));
+            .map(String::trim)
+            .map(Participant::of)
+            .collect(collectingAndThen(toList(), Participants::new));
     }
 
     public int size() {

@@ -2,7 +2,6 @@ package com.seok2.ladder.structure.domain;
 
 
 import com.seok2.ladder.structure.dto.PillarDTO;
-
 import java.util.Optional;
 
 public class PillarAssembler {

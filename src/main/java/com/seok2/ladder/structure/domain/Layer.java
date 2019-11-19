@@ -1,12 +1,12 @@
 package com.seok2.ladder.structure.domain;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
 
 public class Layer {
 
@@ -18,8 +18,8 @@ public class Layer {
 
     public static Layer bottom(int width) {
         return IntStream.range(0, width)
-                .mapToObj(idx -> Pillar.of())
-                .collect(collectingAndThen(toList(), Layer::new));
+            .mapToObj(idx -> Pillar.of())
+            .collect(collectingAndThen(toList(), Layer::new));
     }
 
     public Layer build(BuildStrategy strategy) {

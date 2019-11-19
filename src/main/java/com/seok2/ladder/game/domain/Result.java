@@ -2,7 +2,6 @@ package com.seok2.ladder.game.domain;
 
 import com.seok2.ladder.product.domain.Reward;
 import com.seok2.ladder.user.domain.Player;
-
 import java.util.Map;
 
 public class Result {
