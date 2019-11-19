@@ -21,7 +21,7 @@ public class Controller {
         Game game = new Game(spots, ladderHeight);
         resultView.printSummary();
         resultView.printSpots(names);
-        resultView.printLadder((List<Line>) game.getLadder());
+        resultView.printLadder(game.getLadder());
         resultView.printSpots(endings);
 
         Map<String, String> result = game.doGame();

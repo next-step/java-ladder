@@ -22,10 +22,10 @@ public class Game {
     }
 
     public Map<String, String> doGame() {
-        return  spots.useLadder(ladder);
+        return spots.useLadder(ladder);
     }
 
-    public Object getLadder() {
-        return ladder.getLadder();
+    public Ladder getLadder() {
+        return ladder;
     }
 }

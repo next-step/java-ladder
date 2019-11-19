@@ -23,8 +23,8 @@ public class Status {
         return right ? new Status(right, false) : new Status(right, next);
     }
 
-    public Status createLast() {
-        return new Status(right, false);
+    public void changeToLastStatus(){
+        right = false;
     }
 
     public int move() {

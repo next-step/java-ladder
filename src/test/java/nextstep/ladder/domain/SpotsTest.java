@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -16,11 +16,10 @@ class SpotsTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"aa;500", "aa,bb,cc;0,500,500,1000"}, delimiter = ';')
-    public void 생성_실패_spot숫자_문제(String userString, String endingString) {
+    @Test
+    public void 생성_실패_spot숫자_문제() {
         assertThatThrownBy(() -> {
-            new Spots(userString, endingString);
+            new Spots("aa,bb,cc", "0,500,500,1000");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 

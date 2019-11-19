@@ -13,19 +13,18 @@ public class Line {
         this.points = createPoints(pointSize);
     }
 
-    private List<Point> createPoints(int pointSize) {
+    private List<Point> createPoints(int spotSize) {
         List<Point> points = new ArrayList<>();
 
         Point point = Point.ofFirst(createBoolean());
         points.add(point);
 
-        for (int i = 0; i < pointSize - 2; i++) {
+        for (int i = 1; i < spotSize; i++) {
             point = point.createNext(createBoolean());
             points.add(point);
         }
 
-        point = point.createLast();
-        points.add(point);
+        points.get(points.size()-1).changeToLastPoint();
 
         return points;
     }

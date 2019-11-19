@@ -34,7 +34,8 @@ class StatusTest {
 
     @Test
     public void createLast_오른쪽은False() {
-        Status status1 = Status.ofFisrt(true).createLast();
+        Status status1 = Status.ofFisrt(true).createNext(true);
+        status1.changeToLastStatus();
         Status status2 = Status.ofFisrt(true).createNext(false);
         assertThat(status1).isEqualTo(status2);
     }

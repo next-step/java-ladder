@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Status;
@@ -19,8 +20,9 @@ public class ResultView {
         System.out.println(spotString.replace(',', ' '));
     }
 
-    public void printLadder(List<Line> ladder) {
-        for (Line line : ladder) {
+    public void printLadder(Ladder ladder) {
+        List<Line> lines = ladder.getLines();
+        for (Line line : lines) {
             printLine(line);
             System.out.println();
         }

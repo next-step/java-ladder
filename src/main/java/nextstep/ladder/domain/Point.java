@@ -20,8 +20,8 @@ public class Point {
         return new Point(order + 1, status.createNext(next));
     }
 
-    public Point createLast() {
-        return new Point(order + 1, status.createLast());
+    public void changeToLastPoint() {
+        status.changeToLastStatus();
     }
 
     public int move() {

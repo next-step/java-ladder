@@ -7,8 +7,6 @@ import java.util.Map;
 
 public class Spots {
 
-    private final int SPOT_MIN_NUM = 2;
-
     private List<String> users;
     private List<String> endings;
 
@@ -26,7 +24,7 @@ public class Spots {
 
     private List<String> createSpots(String baseString) {
         List<String> spots = Arrays.asList(baseString.split(","));
-        if (!isValidSpot(spots) || spots.size() < SPOT_MIN_NUM) {
+        if (!isValidSpot(spots)) {
             throw new IllegalArgumentException("참가자명과 결과명에 공란이 들어갈수 없습니다.");
         }
         return spots;
@@ -48,7 +46,7 @@ public class Spots {
 
     public Map<String, String> useLadder(Ladder ladder) {
         Map<String, String> result = new HashMap<>();
-        for(int i=0; i<users.size(); i++){
+        for (int i = 0; i < users.size(); i++) {
             result.put(users.get(i), endings.get(ladder.calculateArrival(i)));
         }
         return result;
