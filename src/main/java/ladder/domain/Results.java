@@ -1,32 +1,31 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class Results {
     private static final String COMMA_DELIMITER = ",";
 
-    private Map<Integer, Result> results = new HashMap<>();
+    private List<Result> results = new ArrayList<>();
 
     public Results(String resultsInput) {
         splitByDelimiter(resultsInput);
     }
 
     private void splitByDelimiter(String resultsInput) {
-        results = Stream.of(resultsInput.split(COMMA_DELIMITER))
-                .map(Result::new)
-                .collect(Collectors.toMap());
+        String[] splitedResults = resultsInput.split(COMMA_DELIMITER);
+
+        IntStream.range(0, splitedResults.length)
+                .mapToObj(index -> new Result(index, splitedResults[index]))
+                .forEach(results::add);
     }
 
     public int countOfResults() {
         return results.size();
     }
 
-    public Map<Integer, Result> getResults() {
+    public List<Result> getResults() {
         return results;
     }
 }
