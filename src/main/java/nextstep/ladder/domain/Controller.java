@@ -12,15 +12,15 @@ public class Controller {
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
 
-        String nameString = inputView.inputUser();
-        String endingString = inputView.inputEndings();
+        String names = inputView.inputUser();
+        String endings = inputView.inputEndings();
         int ladderHeight = inputView.inputLadderHeight();
 
-        Game game = new Game(nameString, endingString, ladderHeight);
+        Game game = new Game(names, endings, ladderHeight);
         resultView.printSummary();
-        resultView.printSpots(nameString);
+        resultView.printSpots(names);
         resultView.printLadder((List<Line>) game.getLadder());
-        resultView.printSpots(endingString);
+        resultView.printSpots(endings);
 
         Map<String, String> result = game.doGame();
         resultView.printResult(result, inputView.inputFindName());
