@@ -34,8 +34,9 @@ public class GameMain {
         OutputView.printLadder(ladderDTO);
         OutputView.printPrizes(prizesDTO);
 
-        Players players = Players.of(participants, ladder.getTop());
-        Rewards rewards = Rewards.of(prizes, ladder.getBottom());
+
+        Players players = ladder.grab(participants);
+        Rewards rewards = ladder.putDown(prizes);
         Result result = players.match(rewards);
         ResultDTO resultDTO = ResultAssembler.assemble(result);
         OutputView.printResult(resultDTO);

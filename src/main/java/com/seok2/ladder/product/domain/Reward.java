@@ -21,6 +21,10 @@ public class Reward {
         return this.pillar.equals(pillar);
     }
 
+    public Prize getPrize() {
+        return prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -39,7 +43,4 @@ public class Reward {
         return Objects.hash(prize, pillar);
     }
 
-    public Prize getPrize() {
-        return prize;
-    }
 }

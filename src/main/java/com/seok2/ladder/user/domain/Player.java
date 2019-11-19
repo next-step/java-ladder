@@ -1,6 +1,7 @@
 package com.seok2.ladder.user.domain;
 
 import com.seok2.ladder.structure.domain.Pillar;
+import java.util.Objects;
 
 public class Player {
 
@@ -26,5 +27,23 @@ public class Player {
 
     public Participant getParticipant() {
         return participant;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Player)) {
+            return false;
+        }
+        Player player = (Player) o;
+        return Objects.equals(getParticipant(), player.getParticipant()) &&
+            Objects.equals(pillar, player.pillar);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getParticipant(), pillar);
     }
 }
