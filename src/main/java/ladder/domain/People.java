@@ -5,8 +5,6 @@ import java.util.List;
 
 public class People {
 
-    private static final String DELIMITER = ",";
-
     private List<Person> people;
 
     public People(String names) {
@@ -30,11 +28,11 @@ public class People {
 
     private List<Person> createPeople(String names) {
         this.people = new ArrayList<>();
-        String[] peopleNames = names.split(DELIMITER);
-        for (int i = 0; i < peopleNames.length; i++) {
-            people.add(new Person(peopleNames[i], i));
+        Names peopleNames = new Names(names);
+        for (int i = 0; i < peopleNames.length(); i++) {
+            people.add(new Person(peopleNames.getName(i), i));
         }
-        return people;
+        return new ArrayList<>(people);
     }
 
     public int size() {

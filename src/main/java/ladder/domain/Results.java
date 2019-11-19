@@ -5,20 +5,19 @@ import java.util.List;
 
 public class Results {
 
-    private static final String DELIMITER = ",";
-
-    private List<Result> results = new ArrayList<>();
+    private List<Result> results;
 
     public Results(String giveawayNames) {
         this.results = createResults(giveawayNames);
     }
 
     private List<Result> createResults(String giveawayNames) {
-        String[] names = giveawayNames.split(DELIMITER);
-        for (int i = 0; i < names.length; i++) {
-            results.add(new Result(names[i], i));
+        List<Result> results = new ArrayList<>();
+        Names names = new Names(giveawayNames);
+        for (int i = 0; i < names.length(); i++) {
+            results.add(new Result(names.getName(i), i));
         }
-        return results;
+        return new ArrayList<>(results);
     }
 
     public String getResultValue(int resultIndex) {
