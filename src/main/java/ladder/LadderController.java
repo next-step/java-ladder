@@ -8,8 +8,6 @@ import java.util.List;
 
 public class LadderController {
 
-    private static final String END_KEY = "all";
-
     public People execute(String names, int height, String result) {
         People people = new People(names);
         Lines lines = new Lines(createLines(height, new LineShuffleGenerator(people.size())));
@@ -21,7 +19,7 @@ public class LadderController {
 
     public void displayResultOfAll(People people, String name, String result) {
         Results results = new Results(result);
-        int resultIndex = people.getPerson(name).getResultIndex();
+        int resultIndex = people.getPerson(name).getPosition();
         ResultView.printResultOfAll(results.getResultValue(resultIndex));
     }
 

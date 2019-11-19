@@ -7,19 +7,19 @@ public class Person {
     private static final int PREVIOUS_CORRECTION = 1;
     private static final int NAME_MAX_LENGTH = 6;
     private static final int NAME_LENGTH = 5;
+    private static final int LADDER_BOUND_START_POSITION = 0;
 
     private String name;
-    private int startIndex;
-    private int resultIndex;
+    private int position;
 
-    Person(String name, int startIndex) {
+    Person(String name, int position) {
         this.name = name;
-        this.startIndex = startIndex;
-        this.resultIndex = 0;
+        this.position = position;
+        validate();
     }
 
     public Person result(List<Line> lines) {
-        resultIndex = getResult(lines, this.startIndex);
+        this.position = getResult(lines, this.position);
         return this;
     }
 
@@ -31,7 +31,7 @@ public class Person {
     }
 
     private int move(Line line, int index) {
-        if (index == 0) {
+        if (index == LADDER_BOUND_START_POSITION) {
             return moveToFirstIndex(line, index);
         }
         return MovingOperator.getPosition(new Moving(line.isPoint(index - PREVIOUS_CORRECTION), line.isPoint(index)));
@@ -48,8 +48,8 @@ public class Person {
         return this.name.equals(name);
     }
 
-    public int getResultIndex() {
-        return resultIndex;
+    public int getPosition() {
+        return this.position;
     }
 
     public String getName() {
@@ -64,7 +64,7 @@ public class Person {
         return this.name.length() <= NAME_LENGTH;
     }
 
-    void validate() {
+    private void validate() {
         if (this.name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException();
         }

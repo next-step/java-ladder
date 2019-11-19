@@ -35,7 +35,7 @@ public class PeopleTest {
         Lines lines = new Lines(Arrays.asList(new Line(points1), new Line(points2), new Line(points3)));
 
         assertThat(people.matchResult(lines.getLadderLines())).hasSize(4);
-        assertThat(people.getPeople().get(0).getResultIndex()).isEqualTo(2);
+        assertThat(people.getPeople().get(0).getPosition()).isEqualTo(2);
     }
 
     @Test
