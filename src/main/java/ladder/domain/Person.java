@@ -52,5 +52,9 @@ public class Person {
         if (this.name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
+
+        if (this.position < 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }

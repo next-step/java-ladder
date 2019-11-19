@@ -14,7 +14,9 @@ public class LadderController {
 
     public void displayResultOfAll(Ladder ladder, String personName) {
         int resultIndex = ladder.getPersonPosition(personName);
-        ResultView.printResultOfAll(ladder.getResultValue(resultIndex));
+        if (resultIndex > 0) {
+            ResultView.printResultOfAll(ladder.getResultValue(resultIndex));
+        }
     }
 
     public void displayResultAll(Ladder ladder) {

@@ -5,12 +5,21 @@ import java.util.List;
 
 public class MatchUp {
 
+    private static final int ERROR_POSITION = -1;
+
     private People people;
     private Results results;
 
     public MatchUp(String peopleName, String resultsName) {
         this.people = new People(peopleName);
         this.results = new Results(resultsName);
+        validate();
+    }
+
+    private void validate() {
+        if (this.people.size() != results.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     void matchPeopleToResult(List<Line> lines) {
@@ -22,7 +31,11 @@ public class MatchUp {
     }
 
     int getPersonPosition(String name) {
-        return this.people.getPerson(name).getPosition();
+        try {
+            return this.people.getPerson(name).getPosition();
+        } catch (IllegalArgumentException e) {
+            return ERROR_POSITION;
+        }
     }
 
     List<Person> getPeople() {

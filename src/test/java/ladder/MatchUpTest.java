@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class MatchUpTest {
 
@@ -26,5 +27,13 @@ public class MatchUpTest {
     @DisplayName("사다리 타기 경품 수")
     void matchUpResultCountTest() {
         assertThat(matchUp.getResultCount()).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("사람 수와 경품 수 같은지 테스트")
+    void peopleSizeSameResultSize() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            MatchUp matchUp = new MatchUp("a,b,c,d", "1,2,3");
+        });
     }
 }

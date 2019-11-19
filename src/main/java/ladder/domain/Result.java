@@ -13,6 +13,7 @@ public class Result {
     public Result(String name, int position) {
         this.name = name;
         this.position = position;
+        validate();
     }
 
     public String getName() {
@@ -25,6 +26,12 @@ public class Result {
 
     public boolean isNameLength() {
         return this.name.length() <= NAME_LENGTH;
+    }
+
+    private void validate() {
+        if (this.name.length() > NAME_LENGTH) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int getEmptyLength() {
