@@ -14,9 +14,11 @@ public class Controller {
 
         String names = inputView.inputUser();
         String endings = inputView.inputEndings();
+        Spots spots = new Spots(names, endings);
+
         int ladderHeight = inputView.inputLadderHeight();
 
-        Game game = new Game(names, endings, ladderHeight);
+        Game game = new Game(spots, ladderHeight);
         resultView.printSummary();
         resultView.printSpots(names);
         resultView.printLadder((List<Line>) game.getLadder());
@@ -25,6 +27,5 @@ public class Controller {
         Map<String, String> result = game.doGame();
         resultView.printResult(result, inputView.inputFindName());
     }
-
 
 }

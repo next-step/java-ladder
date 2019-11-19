@@ -5,43 +5,21 @@ import java.util.*;
 public class Game {
 
     private final int STEP_MIN_NUM = 1;
-    private final int SPOT_MIN_NUM = 2;
 
+    private Spots spots;
     private List<Line> ladder;
-    private List<String> users;
-    private List<String> endings;
+
     private int totalStep;
+    private int totalSpots;
 
-    public Game(String nameText, String endingText, int totalStep) {
-        List<String> users = createSpots(nameText);
-        List<String> endings = createSpots(endingText);
-
-        if (!isValidTotalStep(totalStep) || !isValidSpotPair(users, endings)) {
+    public Game(Spots spots, int totalStep) {
+        if (!isValidTotalStep(totalStep)) {
             throw new IllegalArgumentException();
         }
-
         this.totalStep = totalStep;
-        this.users = users;
-        this.endings = endings;
-        this.ladder = createLadder(totalStep, users.size());
-    }
-
-    private List<String> createSpots(String baseString) {
-        List<String> spots = Arrays.asList(baseString.split(","));
-        if (!isValidSpot(spots) || spots.size() < SPOT_MIN_NUM) {
-            throw new IllegalArgumentException();
-        }
-        return spots;
-    }
-
-    private boolean isValidSpot(List<String> spots) {
-        return spots.stream()
-                .filter(string -> string == null || "".equals(string.trim()))
-                .count() == 0;
-    }
-
-    private boolean isValidSpotPair(List<String> users, List<String> endings) {
-        return (users.size() == endings.size());
+        this.totalSpots = spots.getUserSize();
+        this.spots = spots;
+        this.ladder = createLadder(totalStep, totalSpots);
     }
 
     private boolean isValidTotalStep(int totalStep) {
@@ -57,12 +35,11 @@ public class Game {
     }
 
     public Map<String, String> doGame() {
-        Map<String, String> results = new HashMap<>();
-        for (int i = 0; i < users.size(); i++) {
-            int arrival = calculateArrival(i);
-            results.put(users.get(i), endings.get(arrival));
+        List<Integer> arrivals = new ArrayList<>();
+        for (int i = 0; i < totalSpots; i++) {
+            arrivals.add(calculateArrival(i));
         }
-        return results;
+        return this.spots.getSpotResult(arrivals);
     }
 
     private int calculateArrival(int departure) {
@@ -71,21 +48,6 @@ public class Game {
             spot = this.ladder.get(i).move(spot);
         }
         return spot;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return STEP_MIN_NUM == game.STEP_MIN_NUM &&
-                totalStep == game.totalStep &&
-                Objects.equals(users, game.users);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(STEP_MIN_NUM, users, totalStep);
     }
 
     public Object getLadder() {
