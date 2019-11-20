@@ -3,17 +3,23 @@ package ladder.structure;
 import ladder.structure.connection.ConnectionStrategy;
 
 public class Connection {
+    public static final Connection NOT_CONNECTED_BRIDGE = new Connection(false);
+    public static final Connection CONNECTED_BRIDGE = new Connection(true);
     private boolean connection;
 
-    public Connection(boolean connection) {
+    private Connection(boolean connection) {
         this.connection = connection;
     }
 
     public static Connection of(ConnectionStrategy connectionStrategy, Connection before) {
         if (before != null && before.isConnected()) {
-            return new Connection(false);
+            return NOT_CONNECTED_BRIDGE;
         }
-        return new Connection(connectionStrategy.create());
+        boolean connected = connectionStrategy.create();
+        if (connected) {
+            return CONNECTED_BRIDGE;
+        }
+        return NOT_CONNECTED_BRIDGE;
     }
 
     public boolean isConnected() {

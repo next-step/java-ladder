@@ -1,6 +1,7 @@
 package ladder.structure;
 
 import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.Connections;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class LineOfLadder {
     private static final int MOVE_LEFT = -1;
     private static final int CONNECTION_TO_RIGHT = 0;
     private static final int CONNECTION_TO_LEFT = -1;
-    private List<Connection> connections;
+    private Connections connections;
     private List<Integer> pointsAfterConnection;
 
     public LineOfLadder(int ladderWidth,
@@ -23,32 +24,16 @@ public class LineOfLadder {
         if (pointsBeforeConnection == null) {
             pointsBeforeConnection = IntStream.rangeClosed(0, ladderWidth).boxed().collect(toList());
         }
-        this.connections = new ArrayList<>();
-        addConnections(ladderWidth, connectionStrategy);
+        this.connections = new Connections(ladderWidth, connectionStrategy);
         findPointsForNextLine(pointsBeforeConnection);
     }
 
     public List<Connection> getConnections() {
-        return connections;
-    }
-
-    public boolean isConnected(int index) {
-        if (index < 0 || index >= connections.size()) {
-            return false;
-        }
-        return connections.get(index).isConnected();
+        return connections.getConnections();
     }
 
     public List<Integer> getPointsAfterConnection() {
         return this.pointsAfterConnection;
-    }
-
-    private void addConnections(int ladderWidth, ConnectionStrategy connectionStrategy) {
-        Connection before = null;
-        for (int width = 0; width < ladderWidth; width++) {
-            before = Connection.of(connectionStrategy, before);
-            connections.add(before);
-        }
     }
 
     private void findPointsForNextLine(List<Integer> nowPoints) {
@@ -60,10 +45,10 @@ public class LineOfLadder {
     }
 
     private int findPointForNextLine(int index) {
-        if (isConnected(index + CONNECTION_TO_RIGHT)) {
+        if (connections.get(index + CONNECTION_TO_RIGHT).isConnected()) {
             return index + MOVE_RIGHT;
         }
-        if (isConnected(index + CONNECTION_TO_LEFT)) {
+        if (connections.get(index + CONNECTION_TO_LEFT).isConnected()) {
             return index + MOVE_LEFT;
         }
         return index + MOVE_STRAIGHT;

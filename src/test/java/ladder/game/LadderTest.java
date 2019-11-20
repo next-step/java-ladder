@@ -1,13 +1,15 @@
 package ladder.game;
 
+import ladder.structure.Connection;
 import ladder.structure.Ladder;
-import ladder.structure.LineOfLadder;
 import ladder.structure.connection.DefaultConnection;
 import ladder.structure.connection.NoneConnection;
 import ladder.structure.connection.RandomConnection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -25,13 +27,13 @@ public class LadderTest {
     @Test
     @DisplayName("연속된 두 칸 모두 사다리가 그려질 수 업다")
     void verifiedLadderTest() {
-        LineOfLadder firstLine = ladder.getLine(0);
-        assertThat(firstLine.isConnected(0) ^ firstLine.isConnected(1)
-                || !firstLine.isConnected(0))
+        List<Connection> firstLineConnections = ladder.getLine(0).getConnections();
+        assertThat(firstLineConnections.get(0).isConnected() ^ firstLineConnections.get(1).isConnected()
+                || !firstLineConnections.get(0).isConnected())
                 .isTrue();
-        LineOfLadder secondLine = ladder.getLine(1);
-        assertThat(secondLine.isConnected(1) ^ secondLine.isConnected(2)
-                || !secondLine.isConnected(1))
+        List<Connection> secondLineConnections = ladder.getLine(1).getConnections();
+        assertThat(secondLineConnections.get(1).isConnected() ^ secondLineConnections.get(2).isConnected()
+                || !secondLineConnections.get(1).isConnected())
                 .isTrue();
     }
 
@@ -39,10 +41,10 @@ public class LadderTest {
     @DisplayName("사다리 그리기")
     void drawLadder() {
         for (int lineIndex = 0; lineIndex < ladder.getLadderHeight(); lineIndex++) {
-            LineOfLadder line = ladder.getLine(lineIndex);
+            List<Connection> line = ladder.getLine(lineIndex).getConnections();
             System.out.print("|");
             for (int i = 0; i < ladder.getLadderWidth(); i++) {
-                boolean connection = line.isConnected(i);
+                boolean connection = line.get(i).isConnected();
                 if (connection) {
                     System.out.print("----|");
                 } else {
