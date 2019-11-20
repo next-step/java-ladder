@@ -46,4 +46,15 @@ public class LadderTest {
             assertThat(ladderLine.types()).hasSize(4);
         }
     }
+
+    @Test
+    @DisplayName("사다리 결과 테스트")
+    void linesMoveTest() {
+        MatchUp matchUp = new MatchUp("a,b,c,d", "1000,2000,3000,4000");
+        Ladder ladder = new Ladder(() -> lines, matchUp);
+        assertThat(ladder.getResultValue(ladder.getPeople().get(0).getPosition())).isEqualTo("3000");
+        assertThat(ladder.getResultValue(ladder.getPeople().get(1).getPosition())).isEqualTo("2000");
+        assertThat(ladder.getResultValue(ladder.getPeople().get(2).getPosition())).isEqualTo("4000");
+        assertThat(ladder.getResultValue(ladder.getPeople().get(3).getPosition())).isEqualTo("1000");
+    }
 }

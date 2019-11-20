@@ -14,14 +14,18 @@ public class Line {
 
     public Line(List<Point> points) {
         this.points = points;
-        validateDoubleTrueLine();
+        validateLine();
     }
 
-    private void validateDoubleTrueLine() {
+    private void validateLine() {
         for (int i = LOOP_INDEX; i < this.points.size(); i++) {
-            if (points.get(i - PREVIOUS_CORRECTION).getType() && points.get(i).getType()) {
-                points.set(i, new Point(Boolean.FALSE));
-            }
+            validateDoubleTrueLine(i);
+        }
+    }
+
+    private void validateDoubleTrueLine(int i) {
+        if (points.get(i - PREVIOUS_CORRECTION).getType() && points.get(i).getType()) {
+            points.set(i, new Point(Boolean.FALSE));
         }
     }
 
@@ -39,7 +43,7 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    int move(int index) {
+    public int move(int index) {
         if (index == LADDER_BOUND_START_POSITION) {
             return moveToFirstIndex(this, index);
         }

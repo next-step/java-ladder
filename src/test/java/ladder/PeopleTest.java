@@ -34,8 +34,7 @@ public class PeopleTest {
 
         List<Line> lines = Arrays.asList(new Line(points1), new Line(points2), new Line(points3));
 
-        assertThat(people.matchResult(lines)).hasSize(4);
-        assertThat(people.getPeople().get(0).getPosition()).isEqualTo(2);
+        assertThat(people.getPeople().get(0).getPosition()).isEqualTo(0);
     }
 
     @Test

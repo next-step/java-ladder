@@ -18,12 +18,12 @@ public class People {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public List<Person> matchResult(List<Line> lines) {
+    public void matchResult(List<Line> lines) {
         List<Person> peopleWithResult = new ArrayList<>();
         for (Person person : this.people) {
             peopleWithResult.add(person.result(lines));
         }
-        return peopleWithResult;
+        this.people = peopleWithResult;
     }
 
     private List<Person> createPeople(String names) {

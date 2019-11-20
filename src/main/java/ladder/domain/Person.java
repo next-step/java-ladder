@@ -17,15 +17,10 @@ public class Person {
     }
 
     public Person result(List<Line> lines) {
-        this.position = getResult(lines, this.position);
-        return this;
-    }
-
-    private int getResult(List<Line> lines, int index) {
-        for (Line ladderLine : lines) {
-            index += ladderLine.move(index);
+        for (Line line : lines) {
+            this.position += line.move(position);
         }
-        return index;
+        return this;
     }
 
     boolean findNameContainsExactly(String name) {
