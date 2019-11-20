@@ -8,6 +8,11 @@ import java.util.List;
 import static ladder.structure.Connection.NOT_CONNECTED_BRIDGE;
 
 public class Connections {
+    private static final int MOVE_RIGHT = 1;
+    private static final int MOVE_STRAIGHT = 0;
+    private static final int MOVE_LEFT = -1;
+    private static final int CONNECTION_TO_RIGHT = 0;
+    private static final int CONNECTION_TO_LEFT = -1;
     private List<Connection> connections;
 
     public Connections(int ladderWidth,
@@ -35,7 +40,4 @@ public class Connections {
         }
     }
 
-    public void add(Connection before) {
-        this.connections.add(before);
-    }
 }
