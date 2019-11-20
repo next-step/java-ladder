@@ -3,18 +3,16 @@ package ladder.game;
 import ladder.structure.Ladder;
 import ladder.structure.connection.ConnectionStrategy;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
 
 public class LadderGame {
-    private Ladder ladder;
-    private Participants participants;
-    private Prizes prizes;
+    private final Ladder ladder;
+    private final GameInfo gameInfo;
 
     public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connectionStrategy, String inputResults) {
-        this.participants = Participants.of(inputParticipant);
-        this.ladder = new Ladder(this.participants.size(), ladderHeight, connectionStrategy);
-        this.prizes = Prizes.of(inputResults, this.participants.size());
+        this.gameInfo = new GameInfo(inputParticipant, inputResults);
+        this.ladder = new Ladder(gameInfo.getParticipantsSize(), ladderHeight, connectionStrategy);
     }
 
     public Ladder getLadder() {
@@ -22,26 +20,25 @@ public class LadderGame {
     }
 
     public Participants getParticipants() {
-        return participants;
+        return gameInfo.getParticipants();
     }
 
     public Prizes getPrizes() {
-        return prizes;
+        return gameInfo.getPrizes();
     }
 
-    public Map<String, String> getResult(String... users) {
-        Map<String, String> result = new LinkedHashMap<>();
-        for (String user : users) {
-            int index = participants.indexOf(user);
-            int finalPoint = ladder.getFinalPoint(index);
-            result.put(user, prizes.getPrize(finalPoint));
+    public Result getResult(String... input) {
+        Result result = new Result();
+        Participants participants = gameInfo.getParticipants();
+        Prizes prizes = gameInfo.getPrizes();
+
+        List<String> users = Arrays.asList(input);
+
+        if (users.size() == 0) {
+            users = participants.getNames();
         }
-        return result;
-    }
 
-    public Map<String, String> getResultAll() {
-        Map<String, String> result = new LinkedHashMap<>();
-        for (String user : participants.getNames()) {
+        for (String user : users) {
             int index = participants.indexOf(user);
             int finalPoint = ladder.getFinalPoint(index);
             result.put(user, prizes.getPrize(finalPoint));

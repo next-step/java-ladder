@@ -3,12 +3,12 @@ package ladder.view;
 import ladder.game.LadderGame;
 import ladder.game.Participants;
 import ladder.game.Prizes;
+import ladder.game.Result;
 import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class ResultView {
     private static final String LADDER_RESULT = "사다리 결과";
@@ -33,14 +33,13 @@ public class ResultView {
 
     public static void showResultOfParticipant(LadderGame ladderGame, String name) {
         System.out.println(GAME_RESULT);
-        Map<String, String> results;
-        if ("all".equals(name)) {
-            results = ladderGame.getResultAll();
-        } else {
-            results = ladderGame.getResult(name);
-        }
+        Result results;
 
-        results.forEach((user, result) -> {
+        results = "all".equals(name)
+                ? ladderGame.getResult()
+                : ladderGame.getResult(name);
+
+        results.getPrizeByParticipant().forEach((user, result) -> {
             System.out.println(String.format(GAME_RESULT_FORMAT, user, result));
         });
     }
