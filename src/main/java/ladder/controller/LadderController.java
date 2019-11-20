@@ -3,8 +3,11 @@ package ladder.controller;
 import ladder.domain.Ladder;
 import ladder.domain.Participants;
 import ladder.domain.Results;
+import ladder.service.LadderService;
 import ladder.view.InputView;
 import ladder.view.ResultView;
+
+import java.util.Map;
 
 public class LadderController {
 
@@ -20,11 +23,14 @@ public class LadderController {
 
         String selectedPerson = InputView.selectParticipants();
 
-        int positionOfPerson = participants.findPosition(selectedPerson);
+        if ("all".equals(selectedPerson)) {
+            Map<String, String> allResults = LadderService.moveAllResultsPosition(participants, ladder, results);
+            ResultView.printAllResults(allResults);
+            return;
+        }
 
-        int moveResultPosition = ladder.move(positionOfPerson);
-        String result = results.getResultName(moveResultPosition);
-
+        int moveResultPosition = LadderService.moveResultPosition(participants, ladder, selectedPerson);
+        String result = LadderService.getResultName(results, moveResultPosition);
         ResultView.printResult(result);
     }
 }

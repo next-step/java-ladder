@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
     private static final String VERTICAL_LINE = "|";
@@ -47,6 +48,12 @@ public class ResultView {
                 .forEach(name -> System.out.printf("%-6s", name));
 
         newLine();
+    }
+
+    public static void printAllResults(Map<String, String> allResults) {
+        for (Map.Entry<String, String> result : allResults.entrySet()) {
+            System.out.println(result.getKey() + " : " + result.getValue());
+        }
     }
 
 

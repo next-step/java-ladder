@@ -29,6 +29,10 @@ public class Participants {
         return participants;
     }
 
+    public String getNameOfPerson(int index) {
+        return participants.get(index).getName();
+    }
+
     public int findPosition(String selectedPerson) {
         return participants.indexOf(new Person(selectedPerson));
     }
