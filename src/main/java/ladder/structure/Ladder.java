@@ -25,7 +25,7 @@ public class Ladder {
     }
 
     private List<Integer> addLine(int personCount, ConnectionStrategy connectionStrategy, List<Integer> points) {
-        LineOfLadder line = LineOfLadder.of(personCount - 1, connectionStrategy, points);
+        LineOfLadder line = new LineOfLadder(personCount - 1, connectionStrategy, points);
         ladder.add(line);
         return line.getPointsAfterConnection();
     }

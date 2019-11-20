@@ -17,20 +17,19 @@ public class LineOfLadder {
     private List<Connection> connections;
     private List<Integer> pointsAfterConnection;
 
-    private LineOfLadder(int ladderWidth,
-                         ConnectionStrategy connectionStrategy,
-                         List<Integer> pointsBeforeConnection) {
+    public LineOfLadder(int ladderWidth,
+                        ConnectionStrategy connectionStrategy,
+                        List<Integer> pointsBeforeConnection) {
+        if (pointsBeforeConnection == null) {
+            pointsBeforeConnection = IntStream.rangeClosed(0, ladderWidth).boxed().collect(toList());
+        }
         this.connections = new ArrayList<>();
         addConnections(ladderWidth, connectionStrategy);
         findPointsForNextLine(pointsBeforeConnection);
     }
 
-    public static LineOfLadder of(int ladderWidth, ConnectionStrategy connectionStrategy,
-                                  List<Integer> pointsBeforeConnection) {
-        if (pointsBeforeConnection == null) {
-            pointsBeforeConnection = IntStream.rangeClosed(0, ladderWidth).boxed().collect(toList());
-        }
-        return new LineOfLadder(ladderWidth, connectionStrategy, pointsBeforeConnection);
+    public List<Connection> getConnections() {
+        return connections;
     }
 
     public boolean isConnected(int index) {
