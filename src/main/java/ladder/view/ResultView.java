@@ -21,6 +21,7 @@ public class ResultView {
     private static final String PARTICIPANT_FORMAT = "%6s";
     private static final String RESULT_FORMAT = "%6s";
     private static final String GAME_RESULT_FORMAT = "%s : %s";
+    private static final String ALL = "all";
 
     public static void showLadderResult(LadderGame ladderGame) {
         System.out.println(LADDER_RESULT);
@@ -31,7 +32,7 @@ public class ResultView {
 
     public static void showResultOfParticipant(LadderGame ladderGame, String name) {
         System.out.println(GAME_RESULT);
-        Result results = "all".equals(name)
+        Result results = ALL.equals(name)
                 ? ladderGame.getResult()
                 : ladderGame.getResult(name);
         results.getPrizeByParticipant()
@@ -48,8 +49,8 @@ public class ResultView {
     }
 
     private static void drawLadder(Ladder ladder) {
-
-        for (int i = 0; i < ladder.getLadderHeight(); i++) {
+        int height = ladder.getLadderHeight();
+        for (int i = 0; i < height; i++) {
             System.out.print(PADDING_LADDER + VERTICAL);
             drawLine(ladder.getLine(i), ladder.getLadderWidth());
             System.out.println(EMPTY);
@@ -73,7 +74,8 @@ public class ResultView {
     }
 
     private static void showResults(Prizes prizes) {
-        for (int i = 0; i < prizes.getSize(); i++) {
+        int size = prizes.getSize();
+        for (int i = 0; i < size; i++) {
             String result = prizes.getPrize(i);
             System.out.print(String.format(RESULT_FORMAT, result));
         }

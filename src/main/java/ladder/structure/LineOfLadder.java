@@ -7,8 +7,8 @@ import ladder.structure.connection.Connections;
 import java.util.List;
 
 public class LineOfLadder {
-    private Points pointsAfterConnection;
-    private Connections connections;
+    private final Points pointsAfterConnection;
+    private final Connections connections;
 
     public LineOfLadder(int ladderWidth,
                         ConnectionStrategy connectionStrategy,

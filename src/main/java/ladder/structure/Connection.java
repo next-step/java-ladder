@@ -4,8 +4,8 @@ import ladder.structure.connection.ConnectionStrategy;
 
 public class Connection {
     public static final Connection NOT_CONNECTED_BRIDGE = new Connection(false);
-    public static final Connection CONNECTED_BRIDGE = new Connection(true);
-    private boolean connection;
+    private static final Connection CONNECTED_BRIDGE = new Connection(true);
+    private final boolean connection;
 
     private Connection(boolean connection) {
         this.connection = connection;

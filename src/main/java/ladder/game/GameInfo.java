@@ -6,7 +6,7 @@ public class GameInfo {
 
     public GameInfo(String inputParticipant, String inputResults) {
         this.participants = new Participants(inputParticipant);
-        this.prizes = Prizes.of(inputResults, this.participants.size());
+        this.prizes = new Prizes(inputResults, this.participants.size());
     }
 
     public int getParticipantsSize() {
