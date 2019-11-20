@@ -4,10 +4,9 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Point {
-
-    private static final int MOVE_RIGHT = 1;
-    private static final int MOV1E_STRAIGHT = 0;
-    private static final int MOVE_LEFT = -1;
+    public static final int MOVE_RIGHT = 1;
+    public static final int MOV1E_STRAIGHT = 0;
+    public static final int MOVE_LEFT = -1;
     private Boolean point;
 
     public Point(Boolean point) {
@@ -25,7 +24,6 @@ public class Point {
     public Boolean getPoint() {
         return point;
     }
-
 
     public int moveStartIndex() {
         return point == Boolean.TRUE ? MOVE_RIGHT : MOV1E_STRAIGHT;

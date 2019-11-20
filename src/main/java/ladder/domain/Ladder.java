@@ -32,8 +32,4 @@ public class Ladder {
     public int move(int position) {
         return lines.move(position);
     }
-
-    public List<Integer> moveAll(String all) {
-        return new ArrayList<>();
-    }
 }

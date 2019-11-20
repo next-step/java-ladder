@@ -77,14 +77,12 @@ public class Line {
         int personIndexRightPoint = position;
 
         if (points.get(personIndexRightPoint).getPoint() == Boolean.TRUE) {
-            return 1;
+            return Point.MOVE_RIGHT;
         }
 
         if (points.get(personIndexLeftPoint).getPoint() == Boolean.TRUE) {
-            return -1;
+            return Point.MOVE_LEFT;
         }
-        return 0;
+        return Point.MOV1E_STRAIGHT;
     }
-
-
 }

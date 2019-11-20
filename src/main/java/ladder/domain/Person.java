@@ -13,7 +13,7 @@ public class Person {
     }
 
     private void checkLength() {
-        if(getLength() > MAX_NAME_LENGTH) {
+        if (getLength() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("out of name range - 5글자이내로 입력하세요");
         }
     }
