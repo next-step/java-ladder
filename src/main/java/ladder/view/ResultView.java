@@ -30,7 +30,10 @@ public class ResultView {
         showResults(ladderGame.getPrizes());
     }
 
-    public static void showResultOfParticipant(LadderGame ladderGame, String name) {
+    public static boolean showResultOfParticipant(LadderGame ladderGame, String name) {
+        if (EMPTY.equals(name)) {
+            return false;
+        }
         System.out.println(GAME_RESULT);
         Result results = ALL.equals(name)
                 ? ladderGame.getResult()
@@ -38,6 +41,7 @@ public class ResultView {
         results.getPrizeByParticipant()
                 .forEach((user, result)
                         -> System.out.println(String.format(GAME_RESULT_FORMAT, user, result)));
+        return true;
     }
 
     private static void showParticipant(Participants participants) {

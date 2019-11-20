@@ -13,8 +13,9 @@ public class LadderApplication {
         LadderGame ladderGame = new LadderGame(participant, ladderHeight, new RandomConnection(), inputResults);
 
         ResultView.showLadderResult(ladderGame);
-
-        ResultView.showResultOfParticipant(ladderGame, InputView.inputParticipantForResult());
-        ResultView.showResultOfParticipant(ladderGame, InputView.inputParticipantForResult());
+        boolean repeat = true;
+        while (repeat) {
+            repeat = ResultView.showResultOfParticipant(ladderGame, InputView.inputParticipantForResult());
+        }
     }
 }
