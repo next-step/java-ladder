@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,9 +24,5 @@ public class Names {
 
     int length() {
         return this.names.size();
-    }
-
-    public List<String> getNames() {
-        return new ArrayList<>(names);
     }
 }

@@ -11,7 +11,7 @@ public class People {
         this.people = createPeople(names);
     }
 
-    public Person getPerson(String name) {
+    Person getPerson(String name) {
         return this.people.stream()
                 .filter(person -> person.findNameContainsExactly(name))
                 .findAny()
@@ -35,7 +35,7 @@ public class People {
         return new ArrayList<>(people);
     }
 
-    public int size() {
+    int size() {
         return people.size();
     }
 
