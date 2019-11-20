@@ -13,4 +13,11 @@ public class ParticipantsTest {
         Participants participants = new Participants(input);
         assertThat(participants.countOfParticipants()).isEqualTo(4);
     }
+
+    @Test
+    void 참가자_위치_찾기() {
+        String input = "pobi,honux,crong,jk";
+        Participants participants = new Participants(input);
+        assertThat(participants.findPosition("crong")).isEqualTo(2);
+    }
 }

@@ -24,4 +24,11 @@ public class LinesTest {
 
         assertThat(lines.getSize()).isEqualTo(5);
     }
+
+    @Test
+    void 라인들_이동_한명() {
+        Lines lines = new Lines(3, 3);
+
+        assertThat(lines.move(2)).isIn(0, 1, 2);
+    }
 }

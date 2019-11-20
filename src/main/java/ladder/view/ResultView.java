@@ -9,16 +9,17 @@ public class ResultView {
     private static final String MOVABLE_LINE = "-----";
     private static final String IMMOVABLE_LINE = "     ";
 
-    public static void printResult(Participants participants, Ladder ladder) {
+    private static void printStart() {
+        newLine();
+        System.out.println("사다리 결과");
+        newLine();
+    }
+
+    public static void printLadder(Participants participants, Ladder ladder, Results results) {
         printStart();
         printParticipants(participants);
         printLadder(ladder, participants.countOfParticipants());
-    }
-
-    private static void printStart() {
-        newLine();
-        System.out.println("실행결과");
-        newLine();
+        printResults(results);
     }
 
     private static void printParticipants(Participants participantsInput) {
@@ -36,6 +37,18 @@ public class ResultView {
                 .getLineCollection()
                 .forEach(line -> printLadderLine(line, countOfParticipants));
     }
+
+
+    private static void printResults(Results resultsInput) {
+        List<Result> results = resultsInput.getResults();
+
+        results.stream()
+                .map(Result::getName)
+                .forEach(name -> System.out.printf("%-6s", name));
+
+        newLine();
+    }
+
 
     private static void printLadderLine(Line line, int countOfParticipants) {
         int index = 0;
@@ -60,5 +73,11 @@ public class ResultView {
 
     private static void newLine() {
         System.out.print(System.lineSeparator());
+    }
+
+    public static void printResult(String name) {
+        newLine();
+        System.out.println("사다리 결과");
+        System.out.println(name);
     }
 }

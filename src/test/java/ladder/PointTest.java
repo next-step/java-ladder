@@ -26,4 +26,16 @@ public class PointTest {
 
         assertThat(point.checkTrue()).isTrue();
     }
+
+    @Test
+    void 포인트_이동_시작점() {
+        Point point = new Point(Boolean.TRUE);
+        assertThat(point.moveStartIndex()).isEqualTo(1);
+    }
+
+    @Test
+    void 포인트_이동_끝() {
+        Point point = new Point(Boolean.TRUE);
+        assertThat(point.moveEndIndex()).isEqualTo(-1);
+    }
 }

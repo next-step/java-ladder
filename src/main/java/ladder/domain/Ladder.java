@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ladder {
     private int height;
     private Lines lines;
@@ -24,5 +27,13 @@ public class Ladder {
 
     public Lines getLines() {
         return lines;
+    }
+
+    public int move(int position) {
+        return lines.move(position);
+    }
+
+    public List<Integer> moveAll(String all) {
+        return new ArrayList<>();
     }
 }

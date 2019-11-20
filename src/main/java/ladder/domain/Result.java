@@ -2,18 +2,14 @@ package ladder.domain;
 
 public class Result {
     int index;
-    String result;
+    String name;
 
-    public Result(int index, String result) {
+    public Result(int index, String name) {
         this.index = index;
-        this.result = result;
+        this.name = name;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public String getResult() {
-        return result;
+    public String getName() {
+        return name;
     }
 }

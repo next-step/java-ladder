@@ -20,4 +20,11 @@ public class LineTest {
         assertThat(line.getPointsLength()).isEqualTo(pointSize);
         assertThat(line.getPoints().get(0).getPoint()).isIn(Boolean.TRUE, Boolean.FALSE);
     }
+
+    @Test
+    void 라인_이동_한명() {
+        Line line = new Line(3);
+
+        assertThat(line.move(2)).isIn(0, 1, -1);
+    }
 }

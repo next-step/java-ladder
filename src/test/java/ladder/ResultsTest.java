@@ -19,6 +19,6 @@ public class ResultsTest {
         String input = "꽝,5000,꽝,3000";
 
         Results results = new Results(input);
-        assertThat(results.getResults().get(0).getResult()).isEqualTo("꽝");
+        assertThat(results.getResults().get(0).getName()).isEqualTo("꽝");
     }
 }

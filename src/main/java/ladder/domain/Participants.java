@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,5 +27,9 @@ public class Participants {
 
     public List<Person> getParticipants() {
         return participants;
+    }
+
+    public int findPosition(String selectedPerson) {
+        return participants.indexOf(new Person(selectedPerson));
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Line {
     private static final int FIRST_POINT_INDEX = 0;
+    private static final int FIRST_PERSON_INDEX = 0;
 
     private List<Point> points;
 
@@ -47,4 +48,43 @@ public class Line {
     public List<Point> getPoints() {
         return this.points;
     }
+
+    public int move(int position) {
+        int lastPersonIndex = getPointsLength();
+        int lastPointIndex = getPointsLength() - 1;
+
+        if (isStart(position)) {
+            return points.get(FIRST_POINT_INDEX).moveStartIndex();
+        }
+
+        if (isEnd(position, lastPersonIndex)) {
+            return points.get(lastPointIndex).moveEndIndex();
+        }
+
+        return moveMiddleIndex(position);
+    }
+
+    private boolean isStart(int position) {
+        return position == FIRST_PERSON_INDEX;
+    }
+
+    private boolean isEnd(int position, int lastPersonIndex) {
+        return position == lastPersonIndex;
+    }
+
+    private int moveMiddleIndex(int position) {
+        int personIndexLeftPoint = position - 1;
+        int personIndexRightPoint = position;
+
+        if (points.get(personIndexRightPoint).getPoint() == Boolean.TRUE) {
+            return 1;
+        }
+
+        if (points.get(personIndexLeftPoint).getPoint() == Boolean.TRUE) {
+            return -1;
+        }
+        return 0;
+    }
+
+
 }

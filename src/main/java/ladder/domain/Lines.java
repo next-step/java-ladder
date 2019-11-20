@@ -46,4 +46,14 @@ public class Lines {
 
         return Objects.hash(lines);
     }
+
+    public int move(int position) {
+        int positionResult = position;
+
+        for (Line line : lines) {
+            positionResult += line.move(positionResult);
+        }
+
+        return positionResult;
+    }
 }

@@ -37,8 +37,23 @@ public class LadderTest {
 
     @Test
     void 사다리_라인_생성() {
-        Ladder ladder = new Ladder(10, countOfParticipants);
+        Ladder ladder = new Ladder(5, countOfParticipants);
 
-        assertThat(ladder.getLines().getSize()).isEqualTo(10);
+        assertThat(ladder.getLines().getSize()).isEqualTo(5);
     }
+
+    @Test
+    void 사다리_이동_한명() {
+        Ladder ladder = new Ladder(5, 5);
+
+        assertThat(ladder.move(4)).isIn(0, 1, 2, 3, 4);
+    }
+
+    @Test
+    void 사다리_이동_all() {
+        Ladder ladder = new Ladder(5, 5);
+
+        //ladder.move("all");
+    }
+
 }
