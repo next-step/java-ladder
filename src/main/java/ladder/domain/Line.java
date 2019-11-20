@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
 
@@ -10,9 +9,9 @@ public class Line {
     private static final int LADDER_BOUND_START_POSITION = 0;
     private static final int LOOP_INDEX = 1;
 
-    private List<Point> points;
+    private List<Boolean> points;
 
-    public Line(List<Point> points) {
+    public Line(List<Boolean> points) {
         this.points = points;
         validateLine();
     }
@@ -24,23 +23,17 @@ public class Line {
     }
 
     private void validateDoubleTrueLine(int i) {
-        if (points.get(i - PREVIOUS_CORRECTION).getType() && points.get(i).getType()) {
-            points.set(i, new Point(Boolean.FALSE));
+        if (points.get(i - PREVIOUS_CORRECTION) && points.get(i)) {
+            points.set(i, Boolean.FALSE);
         }
     }
 
-    public List<Point> getPoints() {
+    public List<Boolean> getPoints() {
         return new ArrayList<>(points);
     }
 
     private boolean isPoint(int index) {
-        return points.get(index).getType();
-    }
-
-    public List<Boolean> types() {
-        return points.stream()
-                .map(Point::getType)
-                .collect(Collectors.toList());
+        return points.get(index);
     }
 
     public int move(int index) {

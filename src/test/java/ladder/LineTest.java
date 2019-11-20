@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.Line;
-import ladder.domain.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ public class LineTest {
     @BeforeEach
     void setUp() {
         // give
-        List<Point> points = Arrays.asList(new Point(Boolean.FALSE), new Point(Boolean.TRUE), new Point(Boolean.FALSE));
+        List<Boolean> points = Arrays.asList(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
         line = new Line(points);
     }
 
@@ -26,10 +25,9 @@ public class LineTest {
     @DisplayName("하나의 라인에 포인트 체크")
     void checkPointOfLineTest() {
         // when
-        List<Boolean> types = line.types();
-
+        List<Boolean> points = line.getPoints();
         // then
-        assertThat(types).containsExactly(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
+        assertThat(points).containsExactly(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
     }
 
     @Test

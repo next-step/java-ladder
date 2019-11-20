@@ -51,14 +51,14 @@ public class ResultView {
         }
     }
 
-    private static void printLines(List<Point> ladderPoints) {
-        for (Point ladderPoint : ladderPoints) {
+    private static void printLines(List<Boolean> ladderPoints) {
+        for (Boolean ladderPoint : ladderPoints) {
             System.out.print(printPoint(ladderPoint));
         }
     }
 
-    private static String printPoint(Point point) {
-        if (point.getType()) {
+    private static String printPoint(Boolean point) {
+        if (point) {
             return LADDER_POINT;
         }
         return LADDER_LINE;

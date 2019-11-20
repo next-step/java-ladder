@@ -9,29 +9,29 @@ public class LineShuffleGenerator implements LineGenerator {
 
     @Override
     public Line generate(int countOfPerson) {
-        List<Point> points = new ArrayList<>();
+        List<Boolean> points = new ArrayList<>();
         points.add(generateShufflePoint());
         for (int i = LADDER_BOUND_INDEX; i < countOfPerson - POINT_LAST_INDEX; i++) {
-            Point currentPoints = points.stream()
+            Boolean currentPoints = points.stream()
                     .skip(points.size() - POINT_LAST_INDEX)
                     .map(this::checkPoint)
                     .findFirst()
                     .orElse(generateShufflePoint());
             points.add(currentPoints);
         }
-        points.add(new Point(false));
+        points.add(Boolean.FALSE);
         return new Line(points);
     }
 
-    private Point checkPoint(Point point) {
-        if (point.getType()) {
-            return new Point(Boolean.FALSE);
+    private Boolean checkPoint(Boolean type) {
+        if (type) {
+            return Boolean.FALSE;
         }
         return generateShufflePoint();
     }
 
-    private Point generateShufflePoint() {
-        return new Point(new Random().nextBoolean());
+    private Boolean generateShufflePoint() {
+        return new Random().nextBoolean();
     }
 
 }

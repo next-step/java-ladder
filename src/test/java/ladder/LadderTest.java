@@ -17,14 +17,11 @@ public class LadderTest {
     @BeforeEach
     void setUp() {
         // give
-        List<Point> points1 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
-                new Point(Boolean.TRUE), new Point(Boolean.FALSE));
+        List<Boolean> points1 = Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
 
-        List<Point> points2 = Arrays.asList(new Point(Boolean.FALSE), new Point(Boolean.TRUE),
-                new Point(Boolean.FALSE), new Point(Boolean.FALSE));
+        List<Boolean> points2 = Arrays.asList(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE);
 
-        List<Point> points3 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
-                new Point(Boolean.FALSE), new Point(Boolean.FALSE));
+        List<Boolean> points3 = Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE);
 
         lines = Arrays.asList(new Line(points1), new Line(points2), new Line(points3));
 
@@ -53,7 +50,7 @@ public class LadderTest {
 
         // when then?
         for (Line ladderLine : ladder.getLadderLines()) {
-            assertThat(ladderLine.types()).hasSize(4);
+            assertThat(ladderLine.getPoints()).hasSize(4);
         }
     }
 
