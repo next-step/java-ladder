@@ -17,6 +17,7 @@ public class LineTest {
 
     @BeforeEach
     void setUp() {
+        // give
         List<Point> points = Arrays.asList(new Point(Boolean.FALSE), new Point(Boolean.TRUE), new Point(Boolean.FALSE));
         line = new Line(points);
     }
@@ -24,14 +25,24 @@ public class LineTest {
     @Test
     @DisplayName("하나의 라인에 포인트 체크")
     void checkPointOfLineTest() {
-        assertThat(line.types()).containsExactly(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
+        // when
+        List<Boolean> types = line.types();
+
+        // then
+        assertThat(types).containsExactly(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE);
     }
 
     @Test
     @DisplayName("사다리 움직임 테스트")
     void movePointInLineTest() {
-        assertThat(line.move(0)).isEqualTo(0);
-        assertThat(line.move(1)).isEqualTo(1);
-        assertThat(line.move(2)).isEqualTo(-1);
+        // when
+        int moveResultIndexZero = line.move(0);
+        int moveResultIndexOne = line.move(1);
+        int moveResultIndexTwo = line.move(2);
+
+        // then
+        assertThat(moveResultIndexZero).isEqualTo(0);
+        assertThat(moveResultIndexOne).isEqualTo(1);
+        assertThat(moveResultIndexTwo).isEqualTo(-1);
     }
 }

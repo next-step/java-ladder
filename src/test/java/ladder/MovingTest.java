@@ -17,6 +17,7 @@ public class MovingTest {
 
     @BeforeEach
     void setUp() {
+        // give
         moving1 = new Moving(false, true);
         moving2 = new Moving(false, true);
         moving3 = new Moving(false, false);

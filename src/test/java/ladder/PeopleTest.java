@@ -17,12 +17,14 @@ public class PeopleTest {
 
     @BeforeEach
     void setUp() {
+        // give
         people = new People("iron,black,pink,des");
     }
 
     @Test
     @DisplayName("결과값 도출 테스트")
     void resultValueTest() {
+        // give
         List<Point> points1 = Arrays.asList(new Point(Boolean.TRUE), new Point(Boolean.FALSE),
                 new Point(Boolean.TRUE), new Point(Boolean.FALSE));
 
@@ -34,11 +36,15 @@ public class PeopleTest {
 
         List<Line> lines = Arrays.asList(new Line(points1), new Line(points2), new Line(points3));
 
-        assertThat(people.getPeople().get(0).getPosition()).isEqualTo(0);
+        // when
+        people.matchResult(lines);
+
+        // then
+        assertThat(people.getPeople().get(0).getPosition()).isEqualTo(2);
     }
 
     @Test
-    @DisplayName("글자수_초과시_익셉션_테스트")
+    @DisplayName("글자수 초과시 익셉션 테스트")
     void overLengthExceptionTest() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             People people = new People("iron_man_mk2");
