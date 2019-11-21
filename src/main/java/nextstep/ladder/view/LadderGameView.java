@@ -109,7 +109,7 @@ public class LadderGameView {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getRequireResults() {
+    public List<String> getLineResults() {
         return getTexts(RESULT_QUESTION);
     }
 

@@ -1,6 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.LadderGameResults;
+import nextstep.ladder.domain.LineResults;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.view.LadderGameView;
@@ -12,9 +12,9 @@ public class LadderGame {
     public static void start(LadderGameView view) {
         try {
             Participants participants = new Participants(view.getNames());
-
             Lines lines = new Lines(view.getHeight(), participants.size());
-            LadderGameResults results = new LadderGameResults(view.getRequireResults());
+            
+            LineResults results = new LineResults(view.getLineResults());
             view.showLines(participants.getValue(), lines.getValue(), results.getValue());
 
             List<Integer> startMovePositions = participants.getPositions(view.getTargetParticipant());
