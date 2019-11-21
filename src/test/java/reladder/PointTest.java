@@ -25,4 +25,15 @@ public class PointTest {
         // then
         assertThat(isSame).isTrue();
     }
+
+    @Test
+    @DisplayName("방향 값에 따라 인덱스 추출 테스트")
+    void pointMoveTest() {
+        // give
+        Point point = new Point(1, Direction.first(true));
+        // when
+        int move = point.move();
+        // then
+        assertThat(move).isEqualTo(2);
+    }
 }

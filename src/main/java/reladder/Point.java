@@ -11,6 +11,18 @@ public class Point {
         this.direction = direction;
     }
 
+    public int move() {
+        if (this.direction.isLeft()) {
+            return index - 1;
+        }
+
+        if (this.direction.isRight()) {
+            return index + 1;
+        }
+
+        return this.index;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
