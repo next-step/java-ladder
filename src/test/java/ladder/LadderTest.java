@@ -1,17 +1,14 @@
-package step2;
+package ladder;
 
 import org.junit.jupiter.api.Test;
-import step2.domain.Ladder;
-import step2.domain.Participants;
+import ladder.domain.Ladder;
+import ladder.domain.Participants;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderTest {
-    String input = "pobi,honux,crong,jk";
-
-    Participants participants = new Participants(input);
-    int countOfParticipants = participants.countOfParticipants();
+    int countOfParticipants = 6;
 
     @Test
     void 숫자타입_높이_입력() {
@@ -40,8 +37,23 @@ public class LadderTest {
 
     @Test
     void 사다리_라인_생성() {
-        Ladder ladder = new Ladder(10, countOfParticipants);
+        Ladder ladder = new Ladder(5, countOfParticipants);
 
-        assertThat(ladder.getLinesSize()).isEqualTo(10);
+        assertThat(ladder.getLines().getSize()).isEqualTo(5);
     }
+
+    @Test
+    void 사다리_이동_한명() {
+        Ladder ladder = new Ladder(5, 5);
+
+        assertThat(ladder.move(4)).isIn(0, 1, 2, 3, 4);
+    }
+
+    @Test
+    void 사다리_이동_all() {
+        Ladder ladder = new Ladder(5, 5);
+
+        //ladder.move("all");
+    }
+
 }
