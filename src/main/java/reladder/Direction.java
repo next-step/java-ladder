@@ -1,6 +1,7 @@
 package reladder;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Direction {
 
@@ -13,10 +14,41 @@ public class Direction {
         this.right = right;
     }
 
+    public Direction last() {
+        return of(this.right, false);
+    }
+
+    public static Direction first(boolean right) {
+        return of(false, right);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(false);
+        }
+        return next(new Random().nextBoolean());
+    }
+
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
+    }
+
+    public static Direction of(boolean first, boolean second) {
+        return new Direction(first, second);
+    }
+
     private void validate(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("경로를 찾을 수 없습니다.");
         }
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
     }
 
     @Override
