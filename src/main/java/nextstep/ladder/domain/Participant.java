@@ -8,10 +8,12 @@ public class Participant {
     private static final String MAX_NAME_LENGTH_ERROR_MSG = "이름은 5글자를 넘길 수 없습니다. [이름] : %s";
 
     private final String name;
+    private final int order;
 
-    public Participant(String name) {
+    public Participant(String name, int order) {
         assertName(name);
         this.name = name;
+        this.order = order;
     }
 
     private void assertName(String name) {
@@ -22,6 +24,10 @@ public class Participant {
 
     public String getName() {
         return name;
+    }
+
+    public int getOrder() {
+        return order;
     }
 
     @Override

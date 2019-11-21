@@ -11,6 +11,10 @@ public class LineResults {
         this.lineResults = results;
     }
 
+    public String match(int position) {
+        return lineResults.get(position);
+    }
+
     public List<String> getValue() {
         return Collections.unmodifiableList(lineResults);
     }

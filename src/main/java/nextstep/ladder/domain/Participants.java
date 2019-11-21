@@ -38,9 +38,9 @@ public class Participants {
     }
 
     private List<Participant> createParticipants(List<String> names) {
-        return names
-                .stream()
-                .map(Participant::new)
+        return IntStream
+                .range(0, names.size())
+                .mapToObj(order -> new Participant(names.get(order), order))
                 .collect(Collectors.toList());
     }
 
@@ -58,12 +58,9 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
-    public List<Integer> getPositions(String targetName) {
+    public List<Participant> match(String targetName) {
         if (ALL_PARTICIPANT.equals(targetName)) {
-            return IntStream
-                    .range(0, participants.size())
-                    .boxed()
-                    .collect(Collectors.toList());
+            return Collections.unmodifiableList(participants);
         }
 
         Participant candidate = participants
@@ -72,6 +69,6 @@ public class Participants {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_PARTICIPANT_ERROR_MSG));
 
-        return Collections.singletonList(participants.indexOf(candidate));
+        return Collections.singletonList(candidate);
     }
 }

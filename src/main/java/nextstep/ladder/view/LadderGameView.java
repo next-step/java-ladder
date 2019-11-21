@@ -1,10 +1,7 @@
 package nextstep.ladder.view;
 
-import javafx.util.Pair;
 import nextstep.InputTool;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,15 +42,15 @@ public class LadderGameView {
         return inputTool.readLineToInt();
     }
 
-    public void showLines(List<Participant> participants, List<Line> lines, List<String> results) {
+    public void showLines(Game ladderGame) {
         showText(LADDER_GAME_RESULT);
-        showParticipants(participants);
+        showParticipants(ladderGame.getParticipants());
 
-        for (Line line : lines) {
+        for (Line line : ladderGame.getLines()) {
             showLine(line);
         }
 
-        showInputResults(results);
+        showInputResults(ladderGame.getLineResults());
     }
 
     private void showLine(Line line) {
@@ -118,14 +115,11 @@ public class LadderGameView {
         return inputTool.readLine();
     }
 
-    public void showGameResults(List<Participant> participants, List<String> resultTexts, List<Pair<Integer, Integer>> resultSets) {
+    public void showGameResults(GameResults gameResults) {
         showText(GAME_RESULT_TITLE);
-        for (Pair<Integer, Integer> resultSet : resultSets) {
-            showText(String.format(
-                    GAME_RESULT_FORMAT,
-                    participants.get(resultSet.getKey()).getName(),
-                    resultTexts.get(resultSet.getValue())
-            ));
+
+        for (GameResult result : gameResults.getValue()) {
+            showText(String.format(GAME_RESULT_FORMAT, result.getName(), result.getScore()));
         }
     }
 }
