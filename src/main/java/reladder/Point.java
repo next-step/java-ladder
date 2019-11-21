@@ -3,6 +3,9 @@ package reladder;
 import java.util.Objects;
 
 public class Point {
+
+    private static final int DISTANCE = 1;
+
     private int index;
     private Direction direction;
 
@@ -12,12 +15,13 @@ public class Point {
     }
 
     public int move() {
+//        return this.index + Director.getIndex(this.direction);
         if (this.direction.isLeft()) {
-            return index - 1;
+            return index - DISTANCE;
         }
 
         if (this.direction.isRight()) {
-            return index + 1;
+            return index + DISTANCE;
         }
 
         return this.index;
