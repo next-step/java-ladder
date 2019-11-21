@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class DirectionTest {
     private Direction direction;
@@ -25,5 +26,15 @@ public class DirectionTest {
 
         // then
         assertThat(isSame).isTrue();
+    }
+
+    @Test
+    @DisplayName("좌우 모두 참 일시 예외 처리")
+    void directionWhenBothTrue() {
+        // then
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            // give
+            Direction direction = new Direction(true, true);
+        });
     }
 }

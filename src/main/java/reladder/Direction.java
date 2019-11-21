@@ -8,11 +8,15 @@ public class Direction {
     private final boolean right;
 
     public Direction(boolean left, boolean right) {
+        validate(left, right);
+        this.left = left;
+        this.right = right;
+    }
+
+    private void validate(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("경로를 찾을 수 없습니다.");
         }
-        this.left = left;
-        this.right = right;
     }
 
     @Override
