@@ -10,7 +10,7 @@ public class ParticipantTest {
     @Test
     void exceptionTest() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Participant("name12");
+            new Participant("name12", 0);
         });
     }
 }

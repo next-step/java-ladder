@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Point;
-import nextstep.ladder.domain.Points;
+import nextstep.ladder.domain.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -63,7 +60,7 @@ public class LinesTest {
     private static Line createSingleLeftLinePoint() {
         List<Point> totalPoint = new ArrayList<>();
 
-        Point firstPoint = new Point(0, true, null);
+        Point firstPoint = new Point(0, new PointState(true, null));
         Point secondPoint = new Point(1, false, firstPoint);
         Point thirdPoint = secondPoint.createNoLine();
 
@@ -80,7 +77,7 @@ public class LinesTest {
     private static Line createSingleRightLinePoint() {
         List<Point> totalPoint = new ArrayList<>();
 
-        Point firstPoint = new Point(0, false, null);
+        Point firstPoint = new Point(0, new PointState(false, null));
         Point secondPoint = new Point(1, true, firstPoint);
         Point thirdPoint = secondPoint.createNoLine();
 

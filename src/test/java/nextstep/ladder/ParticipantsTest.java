@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +15,10 @@ public class ParticipantsTest {
     void positionTest() {
         Participants participants = new Participants(Arrays.asList("one", "two", "three"));
 
-        assertThat(participants.getPositions("one").contains(0)).isTrue();
-        assertThat(participants.getPositions("two").contains(1)).isTrue();
-        assertThat(participants.getPositions("three").contains(2)).isTrue();
-        assertThat(participants.getPositions("all").containsAll(Arrays.asList(0, 1, 2))).isTrue();
+        assertThat(participants.match("one").get(0)).isEqualTo(new Participant("one", 0));
+        assertThat(participants.match("two").get(0)).isEqualTo(new Participant("two", 1));
+        assertThat(participants.match("three").get(0)).isEqualTo(new Participant("three", 2));
+        assertThat(participants.match("all").size()).isEqualTo(3);
     }
 
     @Test
