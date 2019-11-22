@@ -68,6 +68,5 @@ public class PointTest {
         int index = nextPoint.move();
         // then
         assertThat(index).isEqualTo(0);
-
     }
 }

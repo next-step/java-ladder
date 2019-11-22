@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public class Point {
 
+    private static final int NEXT_DISTANCE = 1;
+    private static final int FIRST_DISTANCE = 0;
+
     private int index;
     private Direction direction;
 
@@ -17,19 +20,19 @@ public class Point {
     }
 
     public static Point firstNext(boolean next) {
-        return new Point(0, Direction.first(next));
+        return new Point(FIRST_DISTANCE, Direction.first(next));
     }
 
     public Point lastNext() {
-        return new Point(move(), this.direction.last());
+        return new Point(index + NEXT_DISTANCE, this.direction.last());
     }
 
     public Point next() {
-        return new Point(move(), this.direction.next());
+        return new Point(index + NEXT_DISTANCE, this.direction.next());
     }
 
     public Point next(boolean next) {
-        return new Point(move(), this.direction.next(next));
+        return new Point(index + NEXT_DISTANCE, this.direction.next(next));
     }
 
     @Override
