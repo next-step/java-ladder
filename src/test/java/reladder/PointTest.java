@@ -30,10 +30,19 @@ public class PointTest {
     @DisplayName("방향 값에 따라 인덱스 추출 테스트")
     void pointMoveTest() {
         // give
-        Point point = new Point(1, Direction.first(true));
+        Point rightPoint = new Point(1, Direction.first(true));
+        Point rightPointIndexTwo = new Point(2, Direction.first(true));
+        Point lefPoint = new Point(2, Direction.of(true, false));
+        Point stayPoint = new Point(2, Direction.of(false, false));
         // when
-        int move = point.move();
+        int rightMove = rightPoint.move();
+        int rightMoveIndexTwo = rightPointIndexTwo.move();
+        int leftMove = lefPoint.move();
+        int stayMove = stayPoint.move();
         // then
-        assertThat(move).isEqualTo(2);
+        assertThat(rightMove).isEqualTo(2);
+        assertThat(rightMoveIndexTwo).isEqualTo(3);
+        assertThat(leftMove).isEqualTo(1);
+        assertThat(stayMove).isEqualTo(2);
     }
 }
