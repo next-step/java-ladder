@@ -33,4 +33,15 @@ public class LadderLineTest {
         assertThat(moveResultFirstIndex).isEqualTo(1);
         assertThat(moveResultLastIndex).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("사다리 라인 생성자 크기 테스트")
+    void checkSizeOfLineGenerator() {
+        // give
+        LadderLine ladderLine = new LadderLineGenerator().generate(5);
+        // when
+        int size = ladderLine.getPoints().size();
+        // then
+        assertThat(size).isEqualTo(5);
+    }
 }
