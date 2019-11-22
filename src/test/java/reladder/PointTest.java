@@ -45,4 +45,15 @@ public class PointTest {
         assertThat(leftMove).isEqualTo(1);
         assertThat(stayMove).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("다음 포인트 객체 생성 테스트")
+    void nextPointObjectTest() {
+        // give
+        Point point = new Point(0, Direction.first(true));
+        // when
+        Point nextPoint = point.next(false);
+        // then
+        assertThat(nextPoint.equals(new Point(1, new Direction(true, false))));
+    }
 }

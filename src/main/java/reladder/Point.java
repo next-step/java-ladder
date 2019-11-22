@@ -16,6 +16,10 @@ public class Point {
         return this.index + Director.getIndex(this.direction);
     }
 
+    public Point next(boolean next) {
+        return new Point(move(), this.direction.next(next));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
