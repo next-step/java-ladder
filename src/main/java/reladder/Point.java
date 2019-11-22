@@ -16,6 +16,18 @@ public class Point {
         return this.index + Director.getIndex(this.direction);
     }
 
+    public static Point firstNext(boolean next) {
+        return new Point(0, Direction.first(next));
+    }
+
+    public Point lastNext() {
+        return new Point(move(), this.direction.last());
+    }
+
+    public Point next() {
+        return new Point(move(), this.direction.next());
+    }
+
     public Point next(boolean next) {
         return new Point(move(), this.direction.next(next));
     }

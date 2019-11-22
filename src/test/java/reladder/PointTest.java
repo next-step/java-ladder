@@ -51,9 +51,23 @@ public class PointTest {
     void nextPointObjectTest() {
         // give
         Point point = new Point(0, Direction.first(true));
-        // when
         Point nextPoint = point.next(false);
+        // when
+        boolean isSame = nextPoint.equals(new Point(1, new Direction(true, false)));
         // then
-        assertThat(nextPoint.equals(new Point(1, new Direction(true, false))));
+        assertThat(isSame).isTrue();
+    }
+
+    @Test
+    @DisplayName("첫 시작 객체 생성 테스트")
+    void nextPointObjectFirstTest() {
+        // give
+        Point point = Point.firstNext(true); // true true 안됨 -> true false
+        Point nextPoint = point.next();
+        // when
+        int index = nextPoint.move();
+        // then
+        assertThat(index).isEqualTo(0);
+
     }
 }
