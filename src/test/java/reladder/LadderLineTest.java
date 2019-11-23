@@ -3,6 +3,9 @@ package reladder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import reladder.domain.LadderLine;
+import reladder.domain.LadderLineGenerator;
+import reladder.domain.Point;
 
 import java.util.Arrays;
 import java.util.List;

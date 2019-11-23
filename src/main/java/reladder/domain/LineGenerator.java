@@ -1,4 +1,4 @@
-package reladder;
+package reladder.domain;
 
 public interface LineGenerator {
 

@@ -1,4 +1,4 @@
-package reladder;
+package reladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,5 +13,12 @@ public class Ladder {
 
     public List<LadderLine> getLadderLines() {
         return new ArrayList<>(ladderLines);
+    }
+
+    public int move(int index) {
+        for (LadderLine ladderLine : ladderLines) {
+            index = ladderLine.move(index);
+        }
+        return index;
     }
 }

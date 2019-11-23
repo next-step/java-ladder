@@ -3,6 +3,8 @@ package reladder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import reladder.domain.Direction;
+import reladder.domain.Point;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

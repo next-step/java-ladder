@@ -1,4 +1,4 @@
-package reladder;
+package reladder.domain;
 
 import java.util.Objects;
 import java.util.Random;

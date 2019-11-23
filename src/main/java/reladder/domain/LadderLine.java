@@ -1,4 +1,4 @@
-package reladder;
+package reladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
