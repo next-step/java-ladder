@@ -28,6 +28,10 @@ public class Results {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    public List<Result> getResults() {
+        return new ArrayList<>(this.results);
+    }
+
     public int size() {
         return this.results.size();
     }

@@ -1,5 +1,8 @@
 package reladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MatchUp {
 
     private static final int NOT_FOUND = -404;
@@ -21,6 +24,14 @@ public class MatchUp {
 
     public String getResultValue(int position) {
         return this.results.getResultValue(position);
+    }
+
+    public List<Person> getPeople() {
+        return new ArrayList<>(this.people.getPeople());
+    }
+
+    public List<Result> getResults() {
+        return new ArrayList<>(this.results.getResults());
     }
 
     public Integer getPersonPosition(String name) {
