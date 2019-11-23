@@ -18,6 +18,7 @@ public enum Director {
     }
 
     private int distance;
+
     Director(int distance) {
         this.distance = distance;
     }

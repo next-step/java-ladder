@@ -1,8 +1,5 @@
 package reladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MatchUp {
 
     private static final int NOT_FOUND = -404;

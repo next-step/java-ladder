@@ -19,7 +19,6 @@ public class ResultsTest {
         results = new Results("꽝,5000,꽝,3000");
     }
 
-
     @Test
     @DisplayName("경품 이름 포함")
     void resultContainsResultObjectTest() {

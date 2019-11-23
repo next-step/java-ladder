@@ -1,7 +1,5 @@
 package reladder.domain;
 
-import java.util.List;
-
 public class Person {
 
     private static final int NAME_MAX_LENGTH = 6;
