@@ -8,7 +8,7 @@ public class LadderLine {
     private List<Point> points;
 
     public LadderLine(List<Point> points) {
-        this.points = points;
+        this.points = new ArrayList<>(points);
     }
 
     public int move(int index) {

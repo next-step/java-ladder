@@ -8,7 +8,7 @@ public class Ladder {
     private List<LadderLine> ladderLines;
 
     public Ladder(List<LadderLine> ladderLines) {
-        this.ladderLines = ladderLines;
+        this.ladderLines = new ArrayList<>(ladderLines);
     }
 
     public List<LadderLine> getLadderLines() {
