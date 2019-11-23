@@ -1,11 +1,15 @@
 package nextstep.ladder.domain.participant;
 
+import nextstep.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static nextstep.StringUtils.COMMA;
 
 public class Participants {
 
@@ -19,7 +23,9 @@ public class Participants {
 
     private final List<Participant> participants;
 
-    public Participants(List<String> names) {
+    public Participants(String namesText) {
+        List<String> names = StringUtils.splitBy(COMMA, namesText);
+
         assertReservedName(names);
         assertNames(names);
         this.participants = createParticipants(names);
