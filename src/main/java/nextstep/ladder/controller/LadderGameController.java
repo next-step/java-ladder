@@ -2,7 +2,7 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.game.Game;
 import nextstep.ladder.domain.game.GameResults;
-import nextstep.ladder.domain.line.LineResults;
+import nextstep.ladder.domain.game.LadderResults;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.participant.Participants;
 import nextstep.ladder.view.LadderGameInputView;
@@ -14,7 +14,7 @@ public class LadderGameController {
         try {
             Participants participants = new Participants(inputView.getNames());
             Lines lines = new Lines(inputView.getHeight(), participants.size());
-            LineResults results = new LineResults(inputView.getLineResults());
+            LadderResults results = new LadderResults(inputView.getLineResults());
 
             Game ladderGame = Game.ready(participants, lines, results);
             outputView.showLines(ladderGame);

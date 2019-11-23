@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.domain.line.LineResults;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.participant.Participant;
 import nextstep.ladder.domain.participant.Participants;
@@ -12,16 +11,16 @@ public class Game {
 
     private final Participants participants;
     private final Lines lines;
-    private final LineResults lineResults;
+    private final LadderResults ladderResults;
 
-    private Game(Participants participants, Lines lines, LineResults lineResults) {
+    private Game(Participants participants, Lines lines, LadderResults ladderResults) {
         this.participants = participants;
         this.lines = lines;
-        this.lineResults = lineResults;
+        this.ladderResults = ladderResults;
     }
 
-    public static Game ready(Participants participants, Lines lines, LineResults lineResults) {
-        return new Game(participants, lines, lineResults);
+    public static Game ready(Participants participants, Lines lines, LadderResults ladderResults) {
+        return new Game(participants, lines, ladderResults);
     }
 
     public GameResults play(String targetParticipantText) {
@@ -30,7 +29,7 @@ public class Game {
 
         for (Participant each : targetParticipants) {
             int finalPosition = lines.move(each.getOrder());
-            gameResults.add(new GameResult(each, lineResults.match(finalPosition)));
+            gameResults.add(new GameResult(each, ladderResults.findBy(finalPosition)));
         }
 
         return gameResults;
@@ -44,7 +43,7 @@ public class Game {
         return lines.getValue();
     }
 
-    public List<String> getLineResults() {
-        return lineResults.getValue();
+    public List<String> getLadderResults() {
+        return ladderResults.getValue();
     }
 }

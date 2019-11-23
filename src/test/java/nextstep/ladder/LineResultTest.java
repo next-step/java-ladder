@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.line.LineResults;
+import nextstep.ladder.domain.game.LadderResults;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -11,13 +11,13 @@ public class LineResultTest {
 
     @Test
     void positionRangeTest() {
-        LineResults lineResults = new LineResults(Collections.singletonList("100, 200, 꽝"));
+        LadderResults ladderResults = new LadderResults(Collections.singletonList("100, 200, 꽝"));
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            lineResults.match(-1);
+            ladderResults.findBy(-1);
         });
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            lineResults.match(3);
+            ladderResults.findBy(3);
         });
     }
 }

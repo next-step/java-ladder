@@ -31,7 +31,7 @@ public class LadderGameOutputView {
             showLine(line);
         }
 
-        showInputResults(ladderGame.getLineResults());
+        showInputResults(ladderGame.getLadderResults());
     }
 
     private void showLine(Line line) {
