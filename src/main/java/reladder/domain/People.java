@@ -14,7 +14,7 @@ public class People {
 
     public String getPersonName(String name) {
         return this.people.stream()
-                .filter(person -> person.findNameContainsExactly(name))
+                .filter(person -> person.matchNameContainsExactly(name))
                 .map(Person::getName)
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);
@@ -22,7 +22,7 @@ public class People {
 
     public Integer getPersonPosition(String name) {
         return this.people.stream()
-                .filter(person -> person.findNameContainsExactly(name))
+                .filter(person -> person.matchNameContainsExactly(name))
                 .map(Person::getPosition)
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);

@@ -15,7 +15,7 @@ public class Person {
         validate();
     }
 
-    boolean findNameContainsExactly(String name) {
+    boolean matchNameContainsExactly(String name) {
         return this.name.equals(name);
     }
 
