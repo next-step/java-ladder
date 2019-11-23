@@ -35,6 +35,14 @@ public class Point {
         return new Point(index + NEXT_DISTANCE, this.direction.next(next));
     }
 
+    public boolean isLeft() {
+        return direction.isLeft();
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -7,6 +7,7 @@ import reladder.domain.DefaultLadderGenerator;
 import reladder.domain.Ladder;
 import reladder.domain.LadderLine;
 import reladder.domain.Point;
+import reladder.view.ResultView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,7 +58,7 @@ public class LadderTest {
 
     @Test
     @DisplayName("사다리 객체 사이즈 테스트")
-    void checkSizeOfLadder() {
+    void checkSizeOfLadderTest() {
         // give
         Ladder ladder = new DefaultLadderGenerator().generate(5, 4);
         // when
@@ -68,7 +69,18 @@ public class LadderTest {
 
     @Test
     @DisplayName("사다리 이동 테스트")
-    void moveLadder() {
-        System.out.println(ladder.move(0));
+    void moveLadderTest() {
+        // when
+        ResultView.drawLadder(ladder);
+        int first = ladder.move(0);
+        int second = ladder.move(1);
+        int third = ladder.move(2);
+        int fourth = ladder.move(3);
+
+        // then
+        assertThat(first).isEqualTo(2);
+        assertThat(second).isEqualTo(1);
+        assertThat(third).isEqualTo(0);
+        assertThat(fourth).isEqualTo(3);
     }
 }
