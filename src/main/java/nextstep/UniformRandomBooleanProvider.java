@@ -4,6 +4,7 @@ import nextstep.ladder.RandomBooleanProvider;
 
 public class UniformRandomBooleanProvider implements RandomBooleanProvider {
 
+    private static double RANDOM_RATE = 0.5;
     private static UniformRandomBooleanProvider INSTANCE;
 
     public static UniformRandomBooleanProvider getInstance() {
@@ -19,6 +20,6 @@ public class UniformRandomBooleanProvider implements RandomBooleanProvider {
 
     @Override
     public boolean get() {
-        return Math.random() < 0.5;
+        return Math.random() < RANDOM_RATE;
     }
 }
