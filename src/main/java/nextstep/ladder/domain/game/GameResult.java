@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
+
+import nextstep.ladder.domain.participant.Participant;
 
 public class GameResult {
 

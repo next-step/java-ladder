@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.LineResults;
+import nextstep.ladder.domain.line.LineResults;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

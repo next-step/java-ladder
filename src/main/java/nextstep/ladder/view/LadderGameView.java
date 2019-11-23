@@ -1,7 +1,12 @@
 package nextstep.ladder.view;
 
 import nextstep.InputTool;
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.game.Game;
+import nextstep.ladder.domain.game.GameResult;
+import nextstep.ladder.domain.game.GameResults;
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.participant.Participant;
+import nextstep.ladder.domain.point.Point;
 
 import java.util.Arrays;
 import java.util.List;

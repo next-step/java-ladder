@@ -1,4 +1,10 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
+
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.line.LineResults;
+import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.participant.Participant;
+import nextstep.ladder.domain.participant.Participants;
 
 import java.util.List;
 

@@ -1,6 +1,10 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.point.Point;
+import nextstep.ladder.domain.point.PointState;
+import nextstep.ladder.domain.point.Points;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

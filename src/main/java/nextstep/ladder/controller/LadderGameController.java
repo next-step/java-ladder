@@ -1,6 +1,10 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.game.Game;
+import nextstep.ladder.domain.game.GameResults;
+import nextstep.ladder.domain.line.LineResults;
+import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.participant.Participants;
 import nextstep.ladder.view.LadderGameView;
 
 public class LadderGameController {
