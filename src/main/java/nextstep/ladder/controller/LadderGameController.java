@@ -5,24 +5,25 @@ import nextstep.ladder.domain.game.GameResults;
 import nextstep.ladder.domain.line.LineResults;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.participant.Participants;
-import nextstep.ladder.view.LadderGameView;
+import nextstep.ladder.view.LadderGameInputView;
+import nextstep.ladder.view.LadderGameOutputView;
 
 public class LadderGameController {
 
-    public static void start(LadderGameView view) {
+    public static void start(LadderGameInputView inputView, LadderGameOutputView outputView) {
         try {
-            Participants participants = new Participants(view.getNames());
-            Lines lines = new Lines(view.getHeight(), participants.size());
-            LineResults results = new LineResults(view.getLineResults());
+            Participants participants = new Participants(inputView.getNames());
+            Lines lines = new Lines(inputView.getHeight(), participants.size());
+            LineResults results = new LineResults(inputView.getLineResults());
 
             Game ladderGame = Game.ready(participants, lines, results);
-            view.showLines(ladderGame);
+            outputView.showLines(ladderGame);
 
-            GameResults gameResults = ladderGame.play(view.getTargetParticipant());
-            view.showGameResults(gameResults);
+            GameResults gameResults = ladderGame.play(inputView.getTargetParticipant());
+            outputView.showGameResults(gameResults);
         } catch (Exception exception) {
-            view.showText(exception.getMessage());
-            start(view);
+            outputView.showErrorText(exception);
+            start(inputView, outputView);
         }
     }
 }
