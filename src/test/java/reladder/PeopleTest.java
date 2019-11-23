@@ -31,7 +31,7 @@ public class PeopleTest {
     @DisplayName("사람 이름으로 찾기")
     void findPersonWithName() {
         // when
-        String name = people.getPerson("iron");
+        String name = people.getPersonName("iron");
         // then
         assertThat(name).isEqualTo("iron");
     }

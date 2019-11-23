@@ -12,10 +12,18 @@ public class People {
         this.people = createPeople(names);
     }
 
-    public String getPerson(String name) {
+    public String getPersonName(String name) {
         return this.people.stream()
                 .filter(person -> person.findNameContainsExactly(name))
                 .map(Person::getName)
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public Integer getPersonPosition(String name) {
+        return this.people.stream()
+                .filter(person -> person.findNameContainsExactly(name))
+                .map(Person::getPosition)
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);
     }

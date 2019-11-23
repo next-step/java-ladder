@@ -35,7 +35,7 @@ public class ResultsTest {
         // when
         int size = results.size();
         // then
-        assertThat(results).isEqualTo(4);
+        assertThat(size).isEqualTo(4);
     }
 
     @Test
