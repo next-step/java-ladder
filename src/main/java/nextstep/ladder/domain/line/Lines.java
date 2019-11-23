@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.line.Line;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

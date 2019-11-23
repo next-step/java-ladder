@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.game;
 
-import nextstep.ladder.domain.game.GameResult;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

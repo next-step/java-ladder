@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.point;
 
-import nextstep.ladder.domain.point.Point;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
