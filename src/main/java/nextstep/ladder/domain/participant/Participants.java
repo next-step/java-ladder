@@ -28,15 +28,10 @@ public class Participants {
     }
 
     private void assertReservedName(List<String> names) {
-        String matchedReservedName = names
-                .stream()
+        names.stream()
                 .filter(reservedNames::contains)
                 .findFirst()
-                .orElse("");
-
-        if (!matchedReservedName.isEmpty()) {
-            throw new IllegalArgumentException(RESERVED_NAME_ERROR_MSG);
-        }
+                .orElseThrow(() -> new IllegalArgumentException(RESERVED_NAME_ERROR_MSG));
     }
 
     private List<Participant> createParticipants(List<String> names) {
