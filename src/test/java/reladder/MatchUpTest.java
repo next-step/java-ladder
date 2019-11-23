@@ -48,7 +48,7 @@ public class MatchUpTest {
     @DisplayName("경품 인덱스로 이름 가져오기")
     void getNameWithIndexResultTest() {
         // when
-        String name = matchUp.getResultValue(1);
+        String name = matchUp.getResultByPosition(1);
         // then
         assertThat(name).isEqualTo("2");
     }
@@ -57,7 +57,7 @@ public class MatchUpTest {
     @DisplayName("사람 이름으로 현재 포지션 가져오기")
     void getIndexWithPersonName() {
         // when
-        int index = matchUp.getPersonPosition("a");
+        int index = matchUp.getPositionByName("a");
         // then
         assertThat(index).isEqualTo(0);
     }

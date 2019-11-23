@@ -4,6 +4,7 @@ public class Person {
 
     private static final int NAME_MAX_LENGTH = 6;
     private static final int NAME_LENGTH = 5;
+    private static final int MIN_LENGTH = 0;
 
     private String name;
     private int position;
@@ -39,7 +40,7 @@ public class Person {
             throw new IllegalArgumentException();
         }
 
-        if (this.position < 0) {
+        if (this.position < MIN_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

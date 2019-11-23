@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class Names {
 
     private static final String DELIMITER = ",";
+
     private List<String> names;
 
     Names(String names) {

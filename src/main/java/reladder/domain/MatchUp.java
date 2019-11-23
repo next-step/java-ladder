@@ -18,11 +18,11 @@ public class MatchUp {
 
     private void validate() {
         if (this.people.size() != results.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("참여자 수 와 상품 수가 맞지 않습니다.");
         }
     }
 
-    public String getResultValue(int position) {
+    public String getResultByPosition(int position) {
         return this.results.getResultValue(position);
     }
 
@@ -34,7 +34,7 @@ public class MatchUp {
         return new ArrayList<>(this.results.getResults());
     }
 
-    public Integer getPersonPosition(String name) {
+    public Integer getPositionByName(String name) {
         try {
             return this.people.getPersonPosition(name);
         } catch (IllegalArgumentException e) {

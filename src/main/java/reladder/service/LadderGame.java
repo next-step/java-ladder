@@ -18,15 +18,15 @@ public class LadderGame {
     }
 
     public String getResult(String name) {
-        int personIndex = matchUp.getPersonPosition(name);
-        return matchUp.getResultValue(ladder.move(personIndex));
+        int personIndex = matchUp.getPositionByName(name);
+        return matchUp.getResultByPosition(ladder.move(personIndex));
     }
 
     public Map<String, Object> getResultAll() {
         Map<String, Object> result = new HashMap<>();
         for (Person person : matchUp.getPeople()) {
             int index = ladder.move(person.getPosition());
-            result.put(person.getName(), matchUp.getResultValue(index));
+            result.put(person.getName(), matchUp.getResultByPosition(index));
         }
         return result;
     }
