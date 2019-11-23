@@ -4,6 +4,8 @@ import reladder.domain.Ladder;
 import reladder.domain.LadderLine;
 import reladder.domain.Point;
 
+import java.util.List;
+
 public class ResultView {
 
     private static final String LADDER_LINE = "|     ";
@@ -12,14 +14,21 @@ public class ResultView {
 
     public static void drawLadder(Ladder ladder) {
         for (LadderLine ladderLine : ladder.getLadderLines()) {
-            for (Point point : ladderLine.getPoints()) {
-                if (!point.isLeft() && point.isRight()) {
-                    System.out.print(LADDER_POINT);
-                } else {
-                    System.out.print(LADDER_LINE);
-                }
-            }
-            System.out.println();
+            drawLadderLine(ladderLine.getPoints());
         }
+    }
+
+    private static void drawLadderLine(List<Point> points) {
+        for (Point point : points) {
+            System.out.print(drawPoint(point));
+        }
+        System.out.println();
+    }
+
+    private static String drawPoint(Point point){
+        if (!point.isLeft() && point.isRight()) {
+            return LADDER_POINT;
+        }
+        return LADDER_LINE;
     }
 }
