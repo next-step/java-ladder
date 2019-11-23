@@ -27,7 +27,7 @@ public class Participants {
 
     private void assertReservedName(List<String> names) {
         names.stream()
-                .filter(reservedNames::contains)
+                .filter(targetName -> !reservedNames.contains(targetName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(RESERVED_NAME_ERROR_MSG));
     }
