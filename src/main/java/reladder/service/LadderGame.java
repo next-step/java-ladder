@@ -2,10 +2,7 @@ package reladder.service;
 
 import reladder.domain.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LadderGame {
 
@@ -29,6 +26,10 @@ public class LadderGame {
             result.put(person.getName(), matchUp.getResultByPosition(index));
         }
         return result;
+    }
+
+    public static boolean randomGenerate() {
+        return new Random().nextBoolean();
     }
 
     public List<LadderLine> getLadder() {

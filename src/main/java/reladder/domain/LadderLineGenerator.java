@@ -1,8 +1,9 @@
 package reladder.domain;
 
+import reladder.service.LadderGame;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class LadderLineGenerator implements LineGenerator {
 
@@ -11,7 +12,7 @@ public class LadderLineGenerator implements LineGenerator {
     @Override
     public LadderLine generate(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
-        Point point = Point.firstNext(new Random().nextBoolean());
+        Point point = Point.firstNext(LadderGame.randomGenerate());
         points.add(point);
 
         for (int i = BOUNDARY_INDEX; i < sizeOfPerson - BOUNDARY_INDEX; i++) {
