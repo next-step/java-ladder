@@ -12,8 +12,8 @@ public class ResultView {
     private static final String LADDER_POINT = "|-----";
     private static final String INTERVAL = " ";
 
-    public static void drawLadder(Ladder ladder) {
-        for (LadderLine ladderLine : ladder.getLadderLines()) {
+    public static void drawLadder(List<LadderLine> ladderLines) {
+        for (LadderLine ladderLine : ladderLines) {
             drawLadderLine(ladderLine.getPoints());
         }
     }

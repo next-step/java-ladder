@@ -3,10 +3,11 @@ package reladder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import reladder.domain.DefaultLadderGenerator;
 import reladder.domain.Ladder;
 import reladder.domain.LadderLine;
+import reladder.domain.MatchUp;
 import reladder.domain.Point;
+import reladder.service.LadderGame;
 import reladder.view.ResultView;
 
 import java.util.Arrays;
@@ -14,9 +15,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderTest {
+public class LadderGameTest {
 
-    private Ladder ladder;
+    private LadderGame ladderGame;
 
     @BeforeEach
     void setUp() {
@@ -53,34 +54,20 @@ public class LadderTest {
                 point4.next(true).next(false).lastNext());
         LadderLine ladderLine4 = new LadderLine(points4);
 
-        ladder = new Ladder(Arrays.asList(ladderLine1, ladderLine2, ladderLine3, ladderLine4));
+        Ladder ladder = new Ladder(Arrays.asList(ladderLine1, ladderLine2, ladderLine3, ladderLine4));
+
+        MatchUp matchUp = new MatchUp("a,b,c,d", "1,2,3,4");
+
+        ladderGame = new LadderGame(ladder, matchUp);
     }
 
     @Test
-    @DisplayName("사다리 객체 사이즈 테스트")
-    void checkSizeOfLadderTest() {
-        // give
-        Ladder ladder = new DefaultLadderGenerator().generate(5, 4);
+    @DisplayName("상품 이름 가져오기")
+    void getValueOfLadderGame() {
         // when
-        int size = ladder.getLadderLines().size();
+        ResultView.drawLadder(ladderGame.getLadder());
+        String result = ladderGame.getResult("a");
         // then
-        assertThat(size).isEqualTo(5);
-    }
-
-    @Test
-    @DisplayName("사다리 이동 테스트")
-    void moveLadderTest() {
-        // when
-        ResultView.drawLadder(ladder.getLadderLines());
-        int first = ladder.move(0);
-        int second = ladder.move(1);
-        int third = ladder.move(2);
-        int fourth = ladder.move(3);
-
-        // then
-        assertThat(first).isEqualTo(2);
-        assertThat(second).isEqualTo(1);
-        assertThat(third).isEqualTo(0);
-        assertThat(fourth).isEqualTo(3);
+        assertThat(result).isEqualTo("3");
     }
 }
