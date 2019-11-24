@@ -12,20 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PointTest {
 
     @Test
-    void 객체_생성() {
-        Point point = Point.first();
-        assertThat(point).isEqualTo(Point.first());
-    }
-
-    @Test
     void next() {
         Point point = Point.first();
-        assertThat(point).isNotEqualTo(point.next());
+        assertThat(point).isNotEqualTo(point.next(true,5));
     }
 
     @Test
-    void point_to_text() {
+    void point_to_text_test() {
         Point point = Point.first();
+        point = point.next(Boolean.FALSE, 5);
         assertThat(point.pointToBridge()).isEqualTo(LadderBridge.EMPTY);
     }
 }
