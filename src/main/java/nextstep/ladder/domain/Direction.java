@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.RandomGenerator;
+
 import java.util.Objects;
 
 /**
@@ -21,15 +23,31 @@ public class Direction {
     }
 
     public static Direction first() {
-        return new Direction(Boolean.FALSE, Boolean.FALSE);
+        return new Direction(Boolean.FALSE, RandomGenerator.generateBoolean());
     }
 
     public Direction next(boolean next) {
         return new Direction(this.current, next);
     }
 
+    public boolean isNextFalse(boolean nextPoint) {
+        return this.current && nextPoint;
+    }
+
     public boolean isPoint() {
         return this.current;
+    }
+
+    public int move() {
+        if (this.left) {
+            return -1;
+        }
+
+        if (this.current) {
+            return 1;
+        }
+
+        return 0;
     }
 
     @Override
