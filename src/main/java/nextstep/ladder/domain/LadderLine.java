@@ -26,7 +26,7 @@ class LadderLine {
         Point point = Point.first();
         points.add(point);
         while (countOfPerson != points.size()) {
-            point = point.next(RandomGenerator.generateBoolean());
+            point = point.next(RandomGenerator.generateBoolean(), countOfPerson);
             points.add(point);
         }
     }
@@ -36,6 +36,10 @@ class LadderLine {
                 .stream()
                 .map(Point::pointToBridge)
                 .collect(Collectors.toList());
+    }
+
+    public int move(int index) {
+        return points.get(index).move();
     }
 
     @Override
