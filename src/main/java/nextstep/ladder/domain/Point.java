@@ -11,6 +11,8 @@ class Point {
 
     private static final int INCREASE = 1;
     private static final int FIRST_POSITION = 0;
+    private static final int LAST_POSITION_CHECK_INDEX = 2;
+
     private final Direction direction;
     private final int currentPosition;
 
@@ -23,8 +25,8 @@ class Point {
         return new Point(FIRST_POSITION, Direction.first());
     }
 
-    Point next(boolean nextPoint) {
-        if (direction.isPoint() && nextPoint) {
+    Point next(boolean nextPoint, int maxPosition) {
+        if (direction.isNextFalse(nextPoint) || isNextPositionLast(maxPosition)) {
             return new Point(currentPosition + INCREASE, direction.next(false));
         }
 
@@ -32,11 +34,19 @@ class Point {
     }
 
     LadderBridge pointToBridge() {
-        if (direction.isPoint()) {
-            return LadderBridge.BRIDGE;
-        }
+        return LadderBridge.findLadderBridge(direction.isPoint(), isFirst(this.currentPosition, FIRST_POSITION));
+    }
 
-        return LadderBridge.EMPTY;
+    private boolean isFirst(int currentPosition, int firstPosition) {
+        return currentPosition == firstPosition;
+    }
+
+    public int move() {
+        return this.currentPosition + direction.move();
+    }
+
+    private boolean isNextPositionLast(int maxPosition) {
+        return maxPosition == this.currentPosition + LAST_POSITION_CHECK_INDEX;
     }
 
     @Override
@@ -52,4 +62,6 @@ class Point {
     public int hashCode() {
         return Objects.hash(direction, currentPosition);
     }
+
+
 }
