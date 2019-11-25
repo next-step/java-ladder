@@ -34,5 +34,4 @@ public class Connections {
             connections.add(before);
         }
     }
-
 }

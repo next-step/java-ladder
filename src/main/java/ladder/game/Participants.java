@@ -1,7 +1,6 @@
 package ladder.game;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -18,7 +17,9 @@ public class Participants {
 
     private static List<Participant> verifyParticipants(String inputParticipants) {
         List<Participant> participants = Arrays.stream(inputParticipants.split(DELIMITER))
-                .map(String::trim).map(Participant::new).collect(toList());
+                .map(String::trim)
+                .map(Participant::new)
+                .collect(toList());
         if (participants.size() < PARTICIPANT_MIN_SIZE) {
             throw new IllegalArgumentException(
                     String.format(PARTICIPANTS_MIN_SIZE_EXCEPTION, PARTICIPANT_MIN_SIZE));
@@ -31,9 +32,8 @@ public class Participants {
     }
 
     public List<String> getNames() {
-        return Collections.unmodifiableList(participants.stream()
-                .map(Participant::toString)
-                .collect(toList()));
+        return participants.stream().map(Participant::toString)
+                .collect(toList());
     }
 
     public int indexOf(String user) {

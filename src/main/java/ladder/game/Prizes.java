@@ -11,11 +11,11 @@ public class Prizes {
 
     public Prizes(String inputResults, int participantsSize) {
         this.prizes = verifiedResult(inputResults, participantsSize).stream().map(Prize::new).collect(toList());
-
     }
 
     private static List<String> verifiedResult(String inputResults, int participantsSize) {
-        List<String> results = Arrays.stream(inputResults.split(",")).map(String::trim).collect(toList());
+        List<String> results = Arrays.stream(inputResults.split(","))
+                .map(String::trim).collect(toList());
         if (results.size() != participantsSize) {
             throw new IllegalArgumentException(RESULT_SIZE_EXCEPTION);
         }

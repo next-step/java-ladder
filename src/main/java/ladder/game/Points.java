@@ -3,6 +3,7 @@ package ladder.game;
 import ladder.structure.connection.Connections;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -18,13 +19,14 @@ public class Points {
 
     public Points(Connections connections, int ladderWidth, List<Integer> pointsBeforeConnection) {
         if (pointsBeforeConnection == null) {
-            pointsBeforeConnection = IntStream.rangeClosed(0, ladderWidth).boxed().collect(toList());
+            pointsBeforeConnection = IntStream.rangeClosed(0, ladderWidth)
+                    .boxed().collect(toList());
         }
         findPointsForNextLine(connections, pointsBeforeConnection);
     }
 
     public List<Integer> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     private void findPointsForNextLine(Connections connections, List<Integer> nowPoints) {

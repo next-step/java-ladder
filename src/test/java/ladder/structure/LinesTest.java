@@ -2,13 +2,15 @@ package ladder.structure;
 
 import ladder.structure.connection.Connections;
 import ladder.structure.connection.DefaultConnection;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LinesTest {
     @Test
+    @DisplayName("lines 생성 테스트")
     void constructorTest() {
         DefaultConnection connectionStrategy = new DefaultConnection();
         Lines lines = new Lines(5, 4, connectionStrategy);

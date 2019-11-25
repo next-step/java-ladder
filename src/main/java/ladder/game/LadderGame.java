@@ -10,9 +10,9 @@ public class LadderGame {
     private final Ladder ladder;
     private final GameInfo gameInfo;
 
-    public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connectionStrategy, String inputResults) {
+    public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connection, String inputResults) {
         this.gameInfo = new GameInfo(inputParticipant, inputResults);
-        this.ladder = new Ladder(gameInfo.getParticipantsSize(), ladderHeight, connectionStrategy);
+        this.ladder = new Ladder(gameInfo.getParticipantsSize(), ladderHeight, connection);
     }
 
     public Ladder getLadder() {

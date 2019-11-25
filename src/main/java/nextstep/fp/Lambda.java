@@ -35,8 +35,7 @@ public class Lambda {
 	}
 
 	public static int sumAllLambda(List<Integer> numbers) {
-		return numbers.stream()
-				.filter(number -> satisfy(number, condition -> true))
+        return numbers.stream().filter(number -> satisfy(number, condition -> true))
 				.reduce(0, (o1, o2) -> o1 + o2);
 	}
 

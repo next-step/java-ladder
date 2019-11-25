@@ -1,12 +1,14 @@
 package ladder.game;
 
 import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.DefaultConnection;
 import ladder.structure.connection.RandomConnection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 
@@ -49,5 +51,27 @@ class LadderGameTest {
     @Test
     void getLadder() {
         assertThat(ladderGame.getLadder().getLadderHeight()).isEqualTo(5);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "pobi,honux:꽝2,꽝1",
+            "crong,jk:만원,천원"
+    }, delimiter = ':')
+    @DisplayName("사용자별 결과 가지고오는지 확인")
+    void getResult(String participant, String result) {
+        String participants = "pobi, honux, crong, jk";
+        String inputResults = "꽝1, 꽝2, 천원, 만원";
+        int ladderHeight = 5;
+        ladderGame = new LadderGame(participants, ladderHeight, new DefaultConnection(), inputResults);
+        assertThat(ladderGame.getResult(participant.split(",")).getPrizeByParticipant().values())
+                .containsExactly(result.split(","));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = "예외, 발생, 확인")
+    @DisplayName("찾는 사용자가 없을 때 예외 발생")
+    void getResultExceptionTest(String participant) {
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.getResult(participant));
     }
 }
