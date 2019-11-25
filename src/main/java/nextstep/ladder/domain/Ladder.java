@@ -35,6 +35,15 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public int play(int personIndex) {
+        int index = personIndex;
+        for (LadderLine line : ladder) {
+            index = line.move(index);
+        }
+
+        return index;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

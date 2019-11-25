@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.RandomGenerator;
-
 import java.util.Objects;
 
 /**
@@ -13,34 +11,42 @@ class Point {
 
     private static final int INCREASE = 1;
     private static final int FIRST_POSITION = 0;
-    private final boolean point;
+    private static final int LAST_POSITION_CHECK_INDEX = 2;
+
+    private final Direction direction;
     private final int currentPosition;
 
-    private Point(int currentPosition, boolean point) {
+    private Point(int currentPosition, Direction direction) {
         this.currentPosition = currentPosition;
-        this.point = point;
+        this.direction = direction;
     }
 
     static Point first() {
-        return new Point(FIRST_POSITION, false);
+        return new Point(FIRST_POSITION, Direction.first());
     }
 
-    Point next() {
-        boolean nextPoint = RandomGenerator.generateBoolean();
-
-        if (this.point && nextPoint) {
-            return new Point(currentPosition + INCREASE, false);
+    Point next(boolean nextPoint, int maxPosition) {
+        if (direction.isNextFalse(nextPoint) || isNextPositionLast(maxPosition)) {
+            return new Point(currentPosition + INCREASE, direction.next(false));
         }
 
-        return new Point(currentPosition + INCREASE, nextPoint);
+        return new Point(currentPosition + INCREASE, direction.next(nextPoint));
     }
 
     LadderBridge pointToBridge() {
-        if (this.point) {
-            return LadderBridge.BRIDGE;
-        }
+        return LadderBridge.findLadderBridge(direction.isPoint(), isFirst(this.currentPosition, FIRST_POSITION));
+    }
 
-        return LadderBridge.EMPTY;
+    private boolean isFirst(int currentPosition, int firstPosition) {
+        return currentPosition == firstPosition;
+    }
+
+    public int move() {
+        return this.currentPosition + direction.move();
+    }
+
+    private boolean isNextPositionLast(int maxPosition) {
+        return maxPosition == this.currentPosition + LAST_POSITION_CHECK_INDEX;
     }
 
     @Override
@@ -48,12 +54,14 @@ class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return this.point == point.point &&
-                currentPosition == point.currentPosition;
+        return currentPosition == point.currentPosition &&
+                Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point, currentPosition);
+        return Objects.hash(direction, currentPosition);
     }
+
+
 }

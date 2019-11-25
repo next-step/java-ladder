@@ -10,7 +10,7 @@ class LadderTest {
     @Test
     void 객체생성() {
         Ladder ladder = new Ladder(4, 5);
-        assertThat(ladder).isEqualTo(new Ladder(4, 5));
+        assertThat(ladder).isNotEqualTo(new Ladder(4, 5));
     }
 
     @Test
