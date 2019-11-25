@@ -4,15 +4,21 @@ import reladder.service.LadderGame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class LadderLineGenerator implements LineGenerator {
 
+    private static final Random RANDOM;
     private static final int BOUNDARY_INDEX = 1;
+
+    static {
+        RANDOM = new Random();
+    }
 
     @Override
     public LadderLine generate(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
-        Point point = Point.firstNext(LadderGame.randomGenerate());
+        Point point = Point.firstNext(randomGenerate());
         points.add(point);
 
         for (int i = BOUNDARY_INDEX; i < sizeOfPerson - BOUNDARY_INDEX; i++) {
@@ -21,5 +27,9 @@ public class LadderLineGenerator implements LineGenerator {
         }
         points.add(point.lastNext());
         return new LadderLine(points);
+    }
+
+    public static boolean randomGenerate() {
+        return RANDOM.nextBoolean();
     }
 }

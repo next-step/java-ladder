@@ -1,7 +1,5 @@
 package reladder.domain;
 
-import reladder.service.LadderGame;
-
 import java.util.Objects;
 
 public class Direction {
@@ -27,7 +25,7 @@ public class Direction {
         if (this.right) {
             return next(false);
         }
-        return next(LadderGame.randomGenerate());
+        return next(LadderLineGenerator.randomGenerate());
     }
 
     public Direction next(boolean nextRight) {

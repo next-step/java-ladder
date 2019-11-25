@@ -28,10 +28,6 @@ public class LadderGame {
         return result;
     }
 
-    public static boolean randomGenerate() {
-        return new Random().nextBoolean();
-    }
-
     public List<LadderLine> getLadder() {
         return new ArrayList<>(ladder.getLadderLines());
     }
