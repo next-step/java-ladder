@@ -1,11 +1,12 @@
 package nextstep.ladder;
 
-import nextstep.ladder.controller.LadderGame;
-import nextstep.ladder.view.LadderGameView;
+import nextstep.ladder.controller.LadderGameController;
+import nextstep.ladder.view.LadderGameInputView;
+import nextstep.ladder.view.LadderGameOutputView;
 
 public class Main {
 
     public static void main(String[] args) {
-        LadderGame.start(new LadderGameView());
+        LadderGameController.start(new LadderGameInputView(), new LadderGameOutputView());
     }
 }

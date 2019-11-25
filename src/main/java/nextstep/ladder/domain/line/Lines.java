@@ -1,8 +1,5 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
-import javafx.util.Pair;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,15 +26,6 @@ public class Lines {
                 .generate(() -> new Line(connectionLineCount))
                 .limit(height)
                 .collect(Collectors.toList());
-    }
-
-    public List<Pair<Integer, Integer>> move(List<Integer> startPositions) {
-        List<Pair<Integer, Integer>> results = new ArrayList<>();
-        for (Integer start : startPositions) {
-            results.add(new Pair<>(start, move(start)));
-        }
-
-        return results;
     }
 
     public int move(int startPosition) {

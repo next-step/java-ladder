@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.participant;
+
+import nextstep.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static nextstep.StringUtils.COMMA;
 
 public class Participants {
 
@@ -19,28 +23,25 @@ public class Participants {
 
     private final List<Participant> participants;
 
-    public Participants(List<String> names) {
+    public Participants(String namesText) {
+        List<String> names = StringUtils.splitBy(COMMA, namesText);
+
         assertReservedName(names);
         assertNames(names);
         this.participants = createParticipants(names);
     }
 
     private void assertReservedName(List<String> names) {
-        String matchedReservedName = names
-                .stream()
-                .filter(reservedNames::contains)
+        names.stream()
+                .filter(targetName -> !reservedNames.contains(targetName))
                 .findFirst()
-                .orElse("");
-
-        if (!matchedReservedName.isEmpty()) {
-            throw new IllegalArgumentException(RESERVED_NAME_ERROR_MSG);
-        }
+                .orElseThrow(() -> new IllegalArgumentException(RESERVED_NAME_ERROR_MSG));
     }
 
     private List<Participant> createParticipants(List<String> names) {
-        return names
-                .stream()
-                .map(Participant::new)
+        return IntStream
+                .range(0, names.size())
+                .mapToObj(order -> new Participant(names.get(order), order))
                 .collect(Collectors.toList());
     }
 
@@ -58,12 +59,9 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
-    public List<Integer> getPositions(String targetName) {
+    public List<Participant> match(String targetName) {
         if (ALL_PARTICIPANT.equals(targetName)) {
-            return IntStream
-                    .range(0, participants.size())
-                    .boxed()
-                    .collect(Collectors.toList());
+            return Collections.unmodifiableList(participants);
         }
 
         Participant candidate = participants
@@ -72,6 +70,6 @@ public class Participants {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_PARTICIPANT_ERROR_MSG));
 
-        return Collections.singletonList(participants.indexOf(candidate));
+        return Collections.singletonList(candidate);
     }
 }
