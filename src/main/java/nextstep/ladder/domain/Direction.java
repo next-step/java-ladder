@@ -10,6 +10,10 @@ import java.util.Objects;
  * @date : 2019-11-19 03:24
  */
 public class Direction {
+    private static final int MOVE_LEFT = -1;
+    private static final int MOVE_RIGHT = 1;
+    private static final int MOVE_PASS = 0;
+
     private final boolean left;
     private final boolean current;
 
@@ -40,14 +44,14 @@ public class Direction {
 
     public int move() {
         if (this.left) {
-            return -1;
+            return MOVE_LEFT;
         }
 
         if (this.current) {
-            return 1;
+            return MOVE_RIGHT;
         }
 
-        return 0;
+        return MOVE_PASS;
     }
 
     @Override
