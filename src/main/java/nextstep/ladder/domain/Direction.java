@@ -18,6 +18,10 @@ public class Direction {
     private final boolean current;
 
     private Direction(boolean left, boolean current) {
+        if (left && current) {
+            throw new IllegalArgumentException("가로 라인은 겹치지 않습니다.");
+        }
+
         this.left = left;
         this.current = current;
     }
