@@ -3,7 +3,6 @@ package ladder.game;
 import ladder.structure.connection.Connections;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -15,11 +14,13 @@ public class Points {
     private static final int MOVE_LEFT = -1;
     private static final int CONNECTION_TO_RIGHT = 0;
     private static final int CONNECTION_TO_LEFT = -1;
-    private List<Integer> points;
+    private List<Point> points;
 
     public Points(int ladderWidth) {
         this.points = IntStream.rangeClosed(0, ladderWidth)
-                .boxed().collect(toList());
+                .boxed()
+                .map(Point::new)
+                .collect(toList());
     }
 
     public Points(Connections connections,
@@ -28,25 +29,25 @@ public class Points {
         this.points = points.getPoints();
     }
 
-    public List<Integer> getPoints() {
-        return Collections.unmodifiableList(points);
+    public List<Point> getPoints() {
+        return points;
     }
 
-    private void findPointsForNextLine(Connections connections, List<Integer> nowPoints) {
-        List<Integer> pointsAfterConnection = new ArrayList<>();
-        for (int nowPoint : nowPoints) {
-            pointsAfterConnection.add(findPointForNextLine(connections, nowPoint));
+    private void findPointsForNextLine(Connections connections, List<Point> nowPoints) {
+        List<Point> pointsAfterConnection = new ArrayList<>();
+        for (Point nowPoint : nowPoints) {
+            pointsAfterConnection.add(findPointForNextLine(connections, nowPoint.getPoint()));
         }
         this.points = pointsAfterConnection;
     }
 
-    private int findPointForNextLine(Connections connections, int index) {
+    private Point findPointForNextLine(Connections connections, int index) {
         if (connections.get(index + CONNECTION_TO_RIGHT).isConnected()) {
-            return index + MOVE_RIGHT;
+            return new Point(index + MOVE_RIGHT);
         }
         if (connections.get(index + CONNECTION_TO_LEFT).isConnected()) {
-            return index + MOVE_LEFT;
+            return new Point(index + MOVE_LEFT);
         }
-        return index + MOVE_STRAIGHT;
+        return new Point(index + MOVE_STRAIGHT);
     }
 }

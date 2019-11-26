@@ -15,10 +15,12 @@ class PointsTest {
         Connections connections = new Connections(2, new DefaultConnection());
 
         Points participantPoints = new Points(connections, points);
-        assertThat(participantPoints.getPoints()).containsExactly(1, 0, 2);
+        assertThat(participantPoints.getPoints())
+                .containsExactly(new Point(1), new Point(0), new Point(2));
 
         connections = new Connections(2, new DefaultConnection());
         participantPoints = new Points(connections, points);
-        assertThat(participantPoints.getPoints()).containsExactly(0, 1, 2);
+        assertThat(participantPoints.getPoints())
+                .containsExactly(new Point(0), new Point(1), new Point(2));
     }
 }
