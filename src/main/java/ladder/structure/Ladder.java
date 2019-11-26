@@ -17,14 +17,14 @@ public class Ladder {
     }
 
     public LineOfLadder getLine(int index) {
-        return this.lines.getLine(index);
+        return this.lines.get(index);
     }
 
-    public int getLadderHeight() {
-        return this.lines.getLadderHeight();
+    public int height() {
+        return this.lines.size();
     }
 
-    public int getLadderWidth() {
+    public int width() {
         return this.width;
     }
 }

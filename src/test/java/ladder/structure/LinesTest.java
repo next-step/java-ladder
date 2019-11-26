@@ -15,13 +15,13 @@ class LinesTest {
         DefaultConnection connectionStrategy = new DefaultConnection();
         Lines lines = new Lines(5, 4, connectionStrategy);
         assertAll(
-                () -> assertThat(lines.getLine(0).getConnections())
+                () -> assertThat(lines.get(0).getConnections())
                         .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
-                () -> assertThat(lines.getLine(1).getConnections())
+                () -> assertThat(lines.get(1).getConnections())
                         .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
-                () -> assertThat(lines.getLine(2).getConnections())
+                () -> assertThat(lines.get(2).getConnections())
                         .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
-                () -> assertThat(lines.getLine(3).getConnections())
+                () -> assertThat(lines.get(3).getConnections())
                         .isEqualTo(new Connections(4, connectionStrategy).getConnections())
         );
     }

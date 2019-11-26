@@ -12,11 +12,11 @@ public class GameInfo {
 
     public GameInfo(String inputParticipant, String inputResults) {
         this.participants = new Participants(inputParticipant);
-        List<String> results = verifiedResult(inputResults, this.participants.size());
+        List<String> results = verifyResult(inputResults, this.participants.size());
         this.prizes = new Prizes(results);
     }
 
-    private static List<String> verifiedResult(String inputResults, int participantsSize) {
+    private static List<String> verifyResult(String inputResults, int participantsSize) {
         List<String> results = Arrays.stream(inputResults.split(","))
                 .map(String::trim).collect(toList());
         if (results.size() != participantsSize) {
@@ -25,7 +25,7 @@ public class GameInfo {
         return results;
     }
 
-    public int getParticipantsSize() {
+    public int sizeOfParticipants() {
         return this.participants.size();
     }
 

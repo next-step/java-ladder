@@ -36,16 +36,16 @@ public class ResultView {
         }
         System.out.println(GAME_RESULT);
         Results results = ALL.equals(name)
-                ? ladderGame.getResult()
-                : ladderGame.getResult(name);
-        results.getPrizeByParticipant()
+                ? ladderGame.checkResults()
+                : ladderGame.checkResults(name);
+        results.values()
                 .forEach((user, result)
                         -> System.out.println(String.format(GAME_RESULT_FORMAT, user, result)));
         return true;
     }
 
     private static void showParticipant(Participants participants) {
-        List<String> names = participants.getNames();
+        List<String> names = participants.toStrings();
         for (String name : names) {
             System.out.print(String.format(PARTICIPANT_FORMAT, name));
         }
@@ -53,10 +53,10 @@ public class ResultView {
     }
 
     private static void drawLadder(Ladder ladder) {
-        int height = ladder.getLadderHeight();
+        int height = ladder.height();
         for (int i = 0; i < height; i++) {
             System.out.print(PADDING_LADDER + VERTICAL);
-            drawLine(ladder.getLine(i), ladder.getLadderWidth());
+            drawLine(ladder.getLine(i), ladder.width());
             System.out.println(EMPTY);
         }
     }
@@ -78,9 +78,9 @@ public class ResultView {
     }
 
     private static void showResults(Prizes prizes) {
-        int size = prizes.getSize();
+        int size = prizes.size();
         for (int i = 0; i < size; i++) {
-            String result = prizes.getPrize(i);
+            String result = prizes.values().get(i).toString();
             System.out.print(String.format(RESULT_FORMAT, result));
         }
         System.out.println(EMPTY);

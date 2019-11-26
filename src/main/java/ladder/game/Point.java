@@ -20,7 +20,7 @@ public class Point {
         return point;
     }
 
-    public Integer getPoint() {
+    public Integer value() {
         return point;
     }
 }

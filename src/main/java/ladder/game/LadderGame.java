@@ -11,7 +11,7 @@ public class LadderGame {
 
     public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connection, String inputResults) {
         this.gameInfo = new GameInfo(inputParticipant, inputResults);
-        this.ladder = new Ladder(gameInfo.getParticipantsSize(), ladderHeight, connection);
+        this.ladder = new Ladder(gameInfo.sizeOfParticipants(), ladderHeight, connection);
     }
 
     public Ladder getLadder() {
@@ -26,23 +26,24 @@ public class LadderGame {
         return gameInfo.getPrizes();
     }
 
-    public Results getResult(String... input) {
+    public Results checkResults(String... input) {
         Participants participants = gameInfo.getParticipants();
         Prizes prizes = gameInfo.getPrizes();
 
         List<String> users = Arrays.asList(input);
 
         if (users.size() == 0) {
-            users = participants.getNames();
+            users = participants.toStrings();
         }
 
         Map<String, String> results = new HashMap<>();
-        List<Point> finalPoints = ladder.getFinalPoints().getPoints();
+        Points finalPoints = ladder.getFinalPoints();
+        List<Prize> prizeList = prizes.values();
 
         for (String user : users) {
             int index = participants.indexOf(user);
-            int finalPoint = finalPoints.get(index).getPoint();
-            results.put(user, prizes.getPrize(finalPoint));
+            int finalPoint = finalPoints.get(index).value();
+            results.put(user, prizeList.get(finalPoint).toString());
         }
         return new Results(Collections.unmodifiableMap(results));
     }

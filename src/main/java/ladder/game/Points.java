@@ -19,13 +19,12 @@ public class Points {
     public Points(int ladderWidth) {
         this.points = IntStream.rangeClosed(0, ladderWidth)
                 .boxed()
-                .map(num -> Point.of(num))
+                .map(Point::of)
                 .collect(toList());
     }
 
-    public Points(Connections connections,
-                  Points points) {
-        points.findPointsForNextLine(connections, points.getPoints());
+    public Points(Connections connections, Points points) {
+        points.checkPointsForNextLine(connections, points.getPoints());
         this.points = points.getPoints();
     }
 
@@ -33,15 +32,20 @@ public class Points {
         return points;
     }
 
-    private void findPointsForNextLine(Connections connections, List<Point> nowPoints) {
+    public Point get(int index) {
+        return points.get(index);
+    }
+
+    private void checkPointsForNextLine(Connections connections, List<Point> nowPoints) {
         List<Point> pointsAfterConnection = new ArrayList<>();
         for (Point nowPoint : nowPoints) {
-            pointsAfterConnection.add(findPointForNextLine(connections, nowPoint.getPoint()));
+            pointsAfterConnection.add(checkPointForNextLine(connections, nowPoint));
         }
         this.points = pointsAfterConnection;
     }
 
-    private Point findPointForNextLine(Connections connections, int index) {
+    private Point checkPointForNextLine(Connections connections, Point point) {
+        int index = point.value();
         if (connections.get(index + CONNECTION_TO_RIGHT).isConnected()) {
             return Point.of(index + MOVE_RIGHT);
         }

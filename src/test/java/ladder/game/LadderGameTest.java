@@ -29,7 +29,7 @@ class LadderGameTest {
 
     @Test
     void getParticipants() {
-        assertThat(ladderGame.getParticipants().getNames())
+        assertThat(ladderGame.getParticipants().toStrings())
                 .containsExactlyInAnyOrderElementsOf
                         (Arrays.asList("pobi", "honux", "crong", "jk"));
     }
@@ -50,7 +50,7 @@ class LadderGameTest {
 
     @Test
     void getLadder() {
-        assertThat(ladderGame.getLadder().getLadderHeight()).isEqualTo(5);
+        assertThat(ladderGame.getLadder().height()).isEqualTo(5);
     }
 
     @ParameterizedTest
@@ -64,7 +64,7 @@ class LadderGameTest {
         String inputResults = "꽝1, 꽝2, 천원, 만원";
         int ladderHeight = 5;
         ladderGame = new LadderGame(participants, ladderHeight, new DefaultConnection(), inputResults);
-        assertThat(ladderGame.getResult(participant.split(",")).getPrizeByParticipant().values())
+        assertThat(ladderGame.checkResults(participant.split(",")).values().values())
                 .containsExactly(result.split(","));
     }
 
@@ -72,6 +72,6 @@ class LadderGameTest {
     @ValueSource(strings = "예외, 발생, 확인")
     @DisplayName("찾는 사용자가 없을 때 예외 발생")
     void getResultExceptionTest(String participant) {
-        assertThrows(IllegalArgumentException.class, () -> ladderGame.getResult(participant));
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.checkResults(participant));
     }
 }

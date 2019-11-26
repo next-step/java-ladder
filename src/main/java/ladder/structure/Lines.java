@@ -29,11 +29,11 @@ public class Lines {
         return line.getPointsAfterConnection();
     }
 
-    public LineOfLadder getLine(int index) {
+    public LineOfLadder get(int index) {
         return lines.get(index);
     }
 
-    public int getLadderHeight() {
+    public int size() {
         return lines.size();
     }
 

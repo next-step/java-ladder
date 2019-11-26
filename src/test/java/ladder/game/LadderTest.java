@@ -40,10 +40,10 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 그리기")
     void drawLadder() {
-        for (int lineIndex = 0; lineIndex < ladder.getLadderHeight(); lineIndex++) {
+        for (int lineIndex = 0; lineIndex < ladder.height(); lineIndex++) {
             List<Connection> line = ladder.getLine(lineIndex).getConnections();
             System.out.print("|");
-            for (int i = 0; i < ladder.getLadderWidth(); i++) {
+            for (int i = 0; i < ladder.width(); i++) {
                 boolean connection = line.get(i).isConnected();
                 if (connection) {
                     System.out.print("----|");
