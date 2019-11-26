@@ -10,17 +10,36 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @date : 2019-11-11 20:41
  */
 public class PointTest {
-
     @Test
-    void next() {
-        Point point = Point.first();
-        assertThat(point).isNotEqualTo(point.next(true,5));
+    void first() {
+        Point point = Point.first(true);
+        assertThat(point.move()).isEqualTo(1);
     }
 
     @Test
-    void point_to_text_test() {
-        Point point = Point.first();
-        point = point.next(Boolean.FALSE, 5);
-        assertThat(point.pointToBridge()).isEqualTo(LadderBridge.EMPTY);
+    void move_stay_test() {
+        Point point = Point.first(false);
+        point = point.next(false);
+        assertThat(point.move()).isEqualTo(1);
+    }
+
+    @Test
+    void move_left_test() {
+        Point point = Point.first(false);
+        point = point.next(true);
+        assertThat(point.move()).isEqualTo(2);
+    }
+
+    @Test
+    void move_right_test() {
+        Point point = Point.first(true);
+        point = point.next(false);
+        assertThat(point.move()).isEqualTo(0);
+    }
+
+    @Test
+    public void next() {
+        Point second = Point.first(true).next();
+        assertThat(second.move()).isEqualTo(0);
     }
 }
