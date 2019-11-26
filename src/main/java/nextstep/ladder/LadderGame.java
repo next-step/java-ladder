@@ -17,9 +17,8 @@ public class LadderGame {
                 LadderInputView.inputExecuteResult());
 
         Ladder ladder = new Ladder(ladderRequireElement.numberOfParticipant(), LadderInputView.inputLadderHeight());
-        LadderResultView.showList(ladderRequireElement.getParticipant());
-        LadderResultView.showLadder(ladder.showLadder());
-        LadderResultView.showList(ladderRequireElement.getExecutionResult());
+
+        LadderResultView.showLadder(ladderRequireElement, ladder);
 
         LadderResult ladderResult = new LadderResult(ladder, ladderRequireElement.getParticipant(), ladderRequireElement.getExecutionResult());
 
