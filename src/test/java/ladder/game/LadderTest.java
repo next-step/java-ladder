@@ -61,16 +61,16 @@ public class LadderTest {
         Ladder emptyLadder = new Ladder(2, 3, new NoneConnection());
         List<Point> finalPointsForEmptyLadder = emptyLadder.getFinalPoints().getPoints();
         assertAll(
-                () -> assertThat(finalPointsForEmptyLadder.get(0)).isEqualTo(new Point(0)),
-                () -> assertThat(finalPointsForEmptyLadder.get(1)).isEqualTo(new Point(1))
+                () -> assertThat(finalPointsForEmptyLadder.get(0)).isEqualTo(Point.of(0)),
+                () -> assertThat(finalPointsForEmptyLadder.get(1)).isEqualTo(Point.of(1))
         );
 
         Ladder allLadder = new Ladder(3, 3, new DefaultConnection());
         List<Point> finalPointsForAllLadder = allLadder.getFinalPoints().getPoints();
         assertAll(
-                () -> assertThat(finalPointsForAllLadder.get(0)).isEqualTo(new Point(1)),
-                () -> assertThat(finalPointsForAllLadder.get(1)).isEqualTo(new Point(0)),
-                () -> assertThat(finalPointsForAllLadder.get(2)).isEqualTo(new Point(2))
+                () -> assertThat(finalPointsForAllLadder.get(0)).isEqualTo(Point.of(1)),
+                () -> assertThat(finalPointsForAllLadder.get(1)).isEqualTo(Point.of(0)),
+                () -> assertThat(finalPointsForAllLadder.get(2)).isEqualTo(Point.of(2))
         );
     }
 }

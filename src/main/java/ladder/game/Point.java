@@ -1,28 +1,26 @@
 package ladder.game;
 
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Point {
+    private static final Map<Integer, Point> preset = new HashMap<>();
     private Integer point;
 
-    Point(int num) {
+    private Point(Integer num) {
         this.point = num;
+    }
+
+    public static Point of(Integer num) {
+        Point point = preset.get(num);
+        if (point == null) {
+            point = new Point(num);
+            preset.put(num, point);
+        }
+        return point;
     }
 
     public Integer getPoint() {
         return point;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point1 = (Point) o;
-        return Objects.equals(point, point1.point);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(point);
     }
 }

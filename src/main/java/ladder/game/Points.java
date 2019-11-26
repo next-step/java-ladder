@@ -19,7 +19,7 @@ public class Points {
     public Points(int ladderWidth) {
         this.points = IntStream.rangeClosed(0, ladderWidth)
                 .boxed()
-                .map(Point::new)
+                .map(num -> Point.of(num))
                 .collect(toList());
     }
 
@@ -43,11 +43,11 @@ public class Points {
 
     private Point findPointForNextLine(Connections connections, int index) {
         if (connections.get(index + CONNECTION_TO_RIGHT).isConnected()) {
-            return new Point(index + MOVE_RIGHT);
+            return Point.of(index + MOVE_RIGHT);
         }
         if (connections.get(index + CONNECTION_TO_LEFT).isConnected()) {
-            return new Point(index + MOVE_LEFT);
+            return Point.of(index + MOVE_LEFT);
         }
-        return new Point(index + MOVE_STRAIGHT);
+        return Point.of(index + MOVE_STRAIGHT);
     }
 }

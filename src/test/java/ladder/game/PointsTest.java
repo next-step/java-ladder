@@ -16,11 +16,11 @@ class PointsTest {
 
         Points participantPoints = new Points(connections, points);
         assertThat(participantPoints.getPoints())
-                .containsExactly(new Point(1), new Point(0), new Point(2));
+                .containsExactly(Point.of(1), Point.of(0), Point.of(2));
 
         connections = new Connections(2, new DefaultConnection());
         participantPoints = new Points(connections, points);
         assertThat(participantPoints.getPoints())
-                .containsExactly(new Point(0), new Point(1), new Point(2));
+                .containsExactly(Point.of(0), Point.of(1), Point.of(2));
     }
 }
