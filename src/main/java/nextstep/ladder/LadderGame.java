@@ -1,12 +1,10 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderRequireElement;
 import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Participant;
 import nextstep.ladder.view.LadderInputView;
 import nextstep.ladder.view.LadderResultView;
-
-import java.util.List;
 
 /**
  * @author : 김윤호
@@ -15,20 +13,21 @@ import java.util.List;
  */
 public class LadderGame {
     public static void main(String[] args) {
-        Participant participants = new Participant(LadderInputView.inputNames());
-        List<String> executeResult = LadderInputView.inputExecuteResult(participants.numberOfParticipants());
-        Ladder ladder = new Ladder(participants.numberOfParticipants(), LadderInputView.inputLadderHeight());
-        LadderResultView.showList(participants.getParticipant());
-        LadderResultView.showLadder(ladder.showLadder());
-        LadderResultView.showList(executeResult);
+        LadderRequireElement ladderRequireElement = new LadderRequireElement(LadderInputView.inputNames(),
+                LadderInputView.inputExecuteResult());
 
-        LadderResult ladderResult = new LadderResult(ladder, participants.getParticipant(), executeResult);
+        Ladder ladder = new Ladder(ladderRequireElement.numberOfParticipant(), LadderInputView.inputLadderHeight());
+        LadderResultView.showList(ladderRequireElement.getParticipant());
+        LadderResultView.showLadder(ladder.showLadder());
+        LadderResultView.showList(ladderRequireElement.getExecutionResult());
+
+        LadderResult ladderResult = new LadderResult(ladder, ladderRequireElement.getParticipant(), ladderRequireElement.getExecutionResult());
 
         while (true) {
-            String input = LadderInputView.inputSeeResult(participants.getParticipant());
+            String input = LadderInputView.inputSeeResult(ladderRequireElement.getParticipant());
             LadderResultView.showLadderResult(ladderResult.findResultByName(input));
 
-            if (input.equals("all")) {
+            if ("all".equals(input)) {
                 break;
             }
         }

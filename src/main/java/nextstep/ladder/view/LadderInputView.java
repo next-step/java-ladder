@@ -36,13 +36,9 @@ public class LadderInputView {
         return Integer.parseInt(inputHeight);
     }
 
-    public static List<String> inputExecuteResult(int personCount) {
+    public static List<String> inputExecuteResult() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String[] inputResult = StringUtils.deleteWhitespace(SCANNER.nextLine()).split(",");
-
-        if (inputResult.length != personCount) {
-            throw new InputMismatchException("참여하는 인원과 결과의 수는 같아야합니다.");
-        }
 
         return arrayToList(inputResult, "결과는 다섯글자 이하로 입력해주세요.");
     }
