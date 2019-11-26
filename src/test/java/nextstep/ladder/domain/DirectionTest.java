@@ -40,10 +40,9 @@ public class DirectionTest {
         assertThat(direction.move()).isEqualTo(0);
     }
 
-
     @Test
-    void is_next_false_test() {
-        Direction direction = Direction.of(Boolean.FALSE, Boolean.TRUE);
-        assertThat(direction.isNextFalse(Boolean.TRUE)).isTrue();
+    void last() {
+        Direction direction = Direction.of(false, true);
+        assertThat(direction.last().move()).isEqualTo(-1);
     }
 }

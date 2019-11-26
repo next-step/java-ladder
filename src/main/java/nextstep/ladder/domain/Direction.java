@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.RandomGenerator;
-
 import java.util.Objects;
+
+import static nextstep.ladder.util.RandomGenerator.generateBoolean;
 
 /**
  * @author : 김윤호
@@ -30,20 +30,24 @@ public class Direction {
         return new Direction(left, current);
     }
 
-    public static Direction first() {
-        return new Direction(Boolean.FALSE, RandomGenerator.generateBoolean());
+    public static Direction first(boolean next) {
+        return new Direction(Boolean.FALSE, next);
     }
 
     public Direction next(boolean next) {
-        return new Direction(this.current, next);
+        return of(this.current, next);
     }
 
-    public boolean isNextFalse(boolean nextPoint) {
-        return this.current && nextPoint;
+    public Direction next() {
+        if (this.current) {
+            return next(Boolean.FALSE);
+        }
+
+        return next(generateBoolean());
     }
 
-    public boolean isPoint() {
-        return this.current;
+    public Direction last() {
+        return next(Boolean.FALSE);
     }
 
     public int move() {
@@ -57,6 +61,11 @@ public class Direction {
 
         return MOVE_PASS;
     }
+
+    public boolean isPoint() {
+        return this.current;
+    }
+
 
     @Override
     public boolean equals(Object o) {
