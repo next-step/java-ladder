@@ -13,7 +13,7 @@ public class People {
     }
 
     public String getPersonName(String name) {
-        return this.people.stream()
+        return people.stream()
                 .filter(person -> person.matchNameContainsExactly(name))
                 .map(Person::getName)
                 .findAny()
@@ -21,20 +21,21 @@ public class People {
     }
 
     public Integer getPersonPosition(String name) {
-        return this.people.stream()
+        return people.stream()
                 .filter(person -> person.matchNameContainsExactly(name))
                 .map(Person::getPosition)
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(RuntimeException::new);
     }
 
     private List<Person> createPeople(String names) {
-        this.people = new ArrayList<>();
+        people = new ArrayList<>();
         Names peopleNames = new Names(names);
-        for (int i = 0; i < peopleNames.length(); i++) {
+        int length = peopleNames.length();
+        for (int i = 0; i < length; i++) {
             people.add(new Person(peopleNames.getName(i), i));
         }
-        return new ArrayList<>(people);
+        return people;
     }
 
     public int size() {

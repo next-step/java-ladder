@@ -31,16 +31,12 @@ public class Person {
         return NAME_MAX_LENGTH - name.length();
     }
 
-    public boolean isNameLength() {
-        return this.name.length() <= NAME_LENGTH;
-    }
-
     private void validate() {
-        if (this.name.length() > NAME_LENGTH) {
+        if (name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
 
-        if (this.position < MIN_LENGTH) {
+        if (position < MIN_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

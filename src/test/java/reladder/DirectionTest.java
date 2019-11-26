@@ -13,14 +13,14 @@ public class DirectionTest {
 
     @BeforeEach
     void setUp() {
-        direction = new Direction(false, true);
+        direction = Direction.of(false, true);
     }
 
     @Test
     @DisplayName("같은 값일 때 객체주소 값 비교")
     void directionEqualsWhenSameValue() {
         // give
-        Direction testDirection = new Direction(false, true);
+        Direction testDirection = Direction.of(false, true);
         // when
         boolean isSame = testDirection.equals(direction);
         // then
@@ -33,7 +33,7 @@ public class DirectionTest {
         // then
         assertThatIllegalArgumentException().isThrownBy(() -> {
             // give
-            Direction direction = new Direction(true, true);
+            Direction direction = Direction.of(true, true);
         });
     }
 
@@ -41,8 +41,8 @@ public class DirectionTest {
     @DisplayName("다음 값 비교 파라미터 포함")
     void nextTestWithParameter() {
         // give
-        Direction directionRight = new Direction(false, true);
-        Direction directionLeft = new Direction(true, false);
+        Direction directionRight = Direction.of(false, true);
+        Direction directionLeft = Direction.of(true, false);
         // when
         boolean isSameRight = directionRight.equals(Direction.of(true, false).next(true));
         boolean isSameLeft = directionLeft.equals(Direction.of(false, true).next(false));
@@ -57,7 +57,7 @@ public class DirectionTest {
         // give
         Direction direction = Direction.of(false, true);
         // when
-        Direction nextDirection = direction.next();
+        Direction nextDirection = direction.next(false);
         // then
         assertThatIllegalArgumentException().isThrownBy(() ->
                 assertThat(nextDirection).isNotEqualTo(Direction.of(true, true)));

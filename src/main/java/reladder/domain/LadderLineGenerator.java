@@ -15,6 +15,14 @@ public class LadderLineGenerator implements LineGenerator {
         RANDOM = new Random();
     }
 
+    private static LadderLineGenerator of() {
+        return new LadderLineGenerator();
+    }
+
+    public static LadderLineGenerator getInstance() {
+        return of();
+    }
+
     @Override
     public LadderLine generate(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
@@ -22,7 +30,7 @@ public class LadderLineGenerator implements LineGenerator {
         points.add(point);
 
         for (int i = BOUNDARY_INDEX; i < sizeOfPerson - BOUNDARY_INDEX; i++) {
-            point = point.next();
+            point = point.next(LadderLineGenerator.randomGenerate());
             points.add(point);
         }
         points.add(point.lastNext());

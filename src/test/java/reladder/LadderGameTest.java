@@ -8,6 +8,7 @@ import reladder.domain.LadderLine;
 import reladder.domain.MatchUp;
 import reladder.domain.Point;
 import reladder.service.LadderGame;
+import reladder.service.LadderGameResult;
 import reladder.view.ResultView;
 
 import java.util.Arrays;
@@ -65,8 +66,7 @@ public class LadderGameTest {
     @DisplayName("상품 이름 가져오기")
     void getValueOfLadderGame() {
         // when
-        ResultView.drawLadder(ladderGame.getLadder());
-        String result = ladderGame.getResult("a");
+        String result = new LadderGameResult(ladderGame).getResult("a");
         // then
         assertThat(result).isEqualTo("3");
     }

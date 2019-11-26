@@ -17,13 +17,17 @@ public enum Director {
         DIRECTOR_MAP.put(Direction.of(false, false), STAY);
     }
 
-    private int distance;
+    private final int distance;
 
     Director(int distance) {
         this.distance = distance;
     }
 
-    public static int getIndex(Direction direction) {
-        return DIRECTOR_MAP.get(direction).distance;
+    public static Director of(Direction direction) {
+        return Director.DIRECTOR_MAP.get(direction);
+    }
+
+    public int move(int index) {
+        return distance+index;
     }
 }

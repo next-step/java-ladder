@@ -5,8 +5,6 @@ import java.util.List;
 
 public class MatchUp {
 
-    private static final int NOT_FOUND = -404;
-
     private People people;
     private Results results;
 
@@ -35,11 +33,7 @@ public class MatchUp {
     }
 
     public Integer getPositionByName(String name) {
-        try {
-            return this.people.getPersonPosition(name);
-        } catch (IllegalArgumentException e) {
-            return NOT_FOUND;
-        }
+        return this.people.getPersonPosition(name);
     }
 
     public int getPeopleCount() {

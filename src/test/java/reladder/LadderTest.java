@@ -71,7 +71,6 @@ public class LadderTest {
     @DisplayName("사다리 이동 테스트")
     void moveLadderTest() {
         // when
-        ResultView.drawLadder(ladder.getLadderLines());
         int first = ladder.move(0);
         int second = ladder.move(1);
         int third = ladder.move(2);

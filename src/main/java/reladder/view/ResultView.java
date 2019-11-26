@@ -31,25 +31,21 @@ public class ResultView {
         System.out.println();
     }
 
-    private static String drawPoint(Point point){
-        if (!point.isLeft() && point.isRight()) {
+    private static String drawPoint(Point point) {
+        if (point.isPrintLadderPoint()) {
             return LADDER_POINT;
         }
         return LADDER_LINE;
     }
 
     private static void printPeople(List<Person> people) {
-        people.stream()
-                .filter(Person::isNameLength)
-                .forEach(person ->
+        people.forEach(person ->
                         System.out.print(person.getName() + printEmptyForCorrection(person.getEmptyLength())));
         System.out.println();
     }
 
     private static void printResults(List<Result> results) {
-        results.stream()
-                .filter(Result::isNameLength)
-                .forEach(result ->
+        results.forEach(result ->
                         System.out.print(result.getName() + printEmptyForCorrection(result.getEmptyLength())));
         System.out.println();
     }

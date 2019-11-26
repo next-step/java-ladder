@@ -7,29 +7,10 @@ public class Direction {
     private final boolean left;
     private final boolean right;
 
-    public Direction(boolean left, boolean right) {
+    private Direction(boolean left, boolean right) {
         validate(left, right);
         this.left = left;
         this.right = right;
-    }
-
-    public Direction last() {
-        return of(this.right, false);
-    }
-
-    public static Direction first(boolean right) {
-        return of(false, right);
-    }
-
-    public Direction next() {
-        if (this.right) {
-            return next(false);
-        }
-        return next(LadderLineGenerator.randomGenerate());
-    }
-
-    public Direction next(boolean nextRight) {
-        return of(this.right, nextRight);
     }
 
     public static Direction of(boolean first, boolean second) {
@@ -40,6 +21,21 @@ public class Direction {
         if (left && right) {
             throw new IllegalArgumentException("경로를 찾을 수 없습니다.");
         }
+    }
+
+    public Direction last() {
+        return of(this.right, false);
+    }
+
+    public static Direction first(boolean right) {
+        return of(false, right);
+    }
+
+    public Direction next(boolean nextRight) {
+        if (this.right) {
+            return of(true, false);
+        }
+        return of(false, nextRight);
     }
 
     public boolean isLeft() {

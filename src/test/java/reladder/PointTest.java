@@ -18,7 +18,7 @@ public class PointTest {
     }
 
     @Test
-    @DisplayName("같은 값일 때 객체주소 값 비교")
+    @DisplayName("같은 값일 때 객체의 내용 비교")
     void pointEqualsWhenSameValue() {
         // give
         Point newPoint = new Point(0, Direction.first(true));
@@ -55,7 +55,7 @@ public class PointTest {
         Point point = new Point(0, Direction.first(true));
         Point nextPoint = point.next(false);
         // when
-        boolean isSame = nextPoint.equals(new Point(1, new Direction(true, false)));
+        boolean isSame = nextPoint.equals(new Point(1, Direction.of(true, false)));
         // then
         assertThat(isSame).isTrue();
     }
@@ -65,7 +65,7 @@ public class PointTest {
     void nextPointObjectFirstTest() {
         // give
         Point point = Point.firstNext(true); // true true 안됨 -> true false
-        Point nextPoint = point.next();
+        Point nextPoint = point.next(false);
         // when
         int index = nextPoint.move();
         // then

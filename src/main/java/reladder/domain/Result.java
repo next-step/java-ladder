@@ -24,10 +24,6 @@ public class Result {
         return this.position == resultIndex;
     }
 
-    public boolean isNameLength() {
-        return this.name.length() <= NAME_LENGTH;
-    }
-
     private void validate() {
         if (this.name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException();

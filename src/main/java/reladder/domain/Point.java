@@ -16,7 +16,8 @@ public class Point {
     }
 
     public int move() {
-        return this.index + Director.getIndex(this.direction);
+        Director director = Director.of(direction);
+        return director.move(index);
     }
 
     public static Point firstNext(boolean next) {
@@ -24,23 +25,15 @@ public class Point {
     }
 
     public Point lastNext() {
-        return new Point(index + NEXT_DISTANCE, this.direction.last());
-    }
-
-    public Point next() {
-        return new Point(index + NEXT_DISTANCE, this.direction.next());
+        return new Point(index + NEXT_DISTANCE, direction.last());
     }
 
     public Point next(boolean next) {
-        return new Point(index + NEXT_DISTANCE, this.direction.next(next));
+        return new Point(index + NEXT_DISTANCE, direction.next(next));
     }
 
-    public boolean isLeft() {
-        return direction.isLeft();
-    }
-
-    public boolean isRight() {
-        return direction.isRight();
+    public boolean isPrintLadderPoint() {
+        return !direction.isLeft() && direction.isRight();
     }
 
     @Override

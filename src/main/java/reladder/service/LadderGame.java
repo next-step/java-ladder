@@ -14,18 +14,9 @@ public class LadderGame {
         this.matchUp = matchUp;
     }
 
-    public String getResult(String name) {
+    public String getResultByPosition(String name) {
         int personIndex = matchUp.getPositionByName(name);
         return matchUp.getResultByPosition(ladder.move(personIndex));
-    }
-
-    public Map<String, Object> getResultAll() {
-        Map<String, Object> result = new HashMap<>();
-        for (Person person : matchUp.getPeople()) {
-            int index = ladder.move(person.getPosition());
-            result.put(person.getName(), matchUp.getResultByPosition(index));
-        }
-        return result;
     }
 
     public List<LadderLine> getLadder() {
@@ -33,10 +24,10 @@ public class LadderGame {
     }
 
     public List<Person> getPeople() {
-        return new ArrayList<>(this.matchUp.getPeople());
+        return new ArrayList<>(matchUp.getPeople());
     }
 
     public List<Result> getResults() {
-        return new ArrayList<>(this.matchUp.getResults());
+        return new ArrayList<>(matchUp.getResults());
     }
 }
