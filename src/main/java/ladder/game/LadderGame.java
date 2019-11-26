@@ -3,8 +3,7 @@ package ladder.game;
 import ladder.structure.Ladder;
 import ladder.structure.connection.ConnectionStrategy;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -27,8 +26,7 @@ public class LadderGame {
         return gameInfo.getPrizes();
     }
 
-    public Result getResult(String... input) {
-        Result result = new Result();
+    public Results getResult(String... input) {
         Participants participants = gameInfo.getParticipants();
         Prizes prizes = gameInfo.getPrizes();
 
@@ -38,11 +36,12 @@ public class LadderGame {
             users = participants.getNames();
         }
 
+        Map<String, String> results = new HashMap<>();
         for (String user : users) {
             int index = participants.indexOf(user);
             int finalPoint = ladder.getFinalPoint(index);
-            result.put(user, prizes.getPrize(finalPoint));
+            results.put(user, prizes.getPrize(finalPoint));
         }
-        return result;
+        return new Results(Collections.unmodifiableMap(results));
     }
 }

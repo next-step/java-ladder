@@ -3,7 +3,7 @@ package ladder.view;
 import ladder.game.LadderGame;
 import ladder.game.Participants;
 import ladder.game.Prizes;
-import ladder.game.Result;
+import ladder.game.Results;
 import ladder.structure.Connection;
 import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
@@ -35,7 +35,7 @@ public class ResultView {
             return false;
         }
         System.out.println(GAME_RESULT);
-        Result results = ALL.equals(name)
+        Results results = ALL.equals(name)
                 ? ladderGame.getResult()
                 : ladderGame.getResult(name);
         results.getPrizeByParticipant()
