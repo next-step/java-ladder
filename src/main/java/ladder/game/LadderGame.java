@@ -37,9 +37,11 @@ public class LadderGame {
         }
 
         Map<String, String> results = new HashMap<>();
+        List<Integer> finalPoints = ladder.getFinalPoints().getPoints();
+
         for (String user : users) {
             int index = participants.indexOf(user);
-            int finalPoint = ladder.getFinalPoint(index);
+            int finalPoint = finalPoints.get(index);
             results.put(user, prizes.getPrize(finalPoint));
         }
         return new Results(Collections.unmodifiableMap(results));

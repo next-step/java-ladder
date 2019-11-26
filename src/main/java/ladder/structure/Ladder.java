@@ -1,5 +1,6 @@
 package ladder.structure;
 
+import ladder.game.Points;
 import ladder.structure.connection.ConnectionStrategy;
 
 public class Ladder {
@@ -11,8 +12,8 @@ public class Ladder {
         this.lines = new Lines(personCount, ladderHeight, connectionStrategy);
     }
 
-    public int getFinalPoint(int index) {
-        return this.lines.getFinalPoint(index);
+    public Points getFinalPoints() {
+        return this.lines.getFinalPoints();
     }
 
     public LineOfLadder getLine(int index) {

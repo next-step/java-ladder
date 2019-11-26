@@ -4,6 +4,7 @@ import ladder.game.Points;
 import ladder.structure.connection.ConnectionStrategy;
 import ladder.structure.connection.Connections;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LineOfLadder {
@@ -12,17 +13,17 @@ public class LineOfLadder {
 
     public LineOfLadder(int ladderWidth,
                         ConnectionStrategy connectionStrategy,
-                        List<Integer> pointsBeforeConnection) {
+                        Points points) {
         this.connections = new Connections(ladderWidth, connectionStrategy);
-        this.pointsAfterConnection = new Points(connections, ladderWidth, pointsBeforeConnection);
+        this.pointsAfterConnection = new Points(connections, points);
     }
 
     public List<Connection> getConnections() {
-        return connections.getConnections();
+        return Collections.unmodifiableList(connections.getConnections());
     }
 
-    public List<Integer> getPointsAfterConnection() {
-        return this.pointsAfterConnection.getPoints();
+    public Points getPointsAfterConnection() {
+        return this.pointsAfterConnection;
     }
 }
 

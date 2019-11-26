@@ -59,16 +59,18 @@ public class LadderTest {
     @DisplayName("사다리 게임의 포인트 이동 확인")
     void getLadderPoints() {
         Ladder emptyLadder = new Ladder(2, 3, new NoneConnection());
+        List<Integer> finalPointsForEmptyLadder = emptyLadder.getFinalPoints().getPoints();
         assertAll(
-                () -> assertThat(emptyLadder.getFinalPoint(0)).isEqualTo(0),
-                () -> assertThat(emptyLadder.getFinalPoint(1)).isEqualTo(1)
+                () -> assertThat(finalPointsForEmptyLadder.get(0)).isEqualTo(0),
+                () -> assertThat(finalPointsForEmptyLadder.get(1)).isEqualTo(1)
         );
 
         Ladder allLadder = new Ladder(3, 3, new DefaultConnection());
+        List<Integer> finalPointsForAllLadder = allLadder.getFinalPoints().getPoints();
         assertAll(
-                () -> assertThat(allLadder.getFinalPoint(0)).isEqualTo(1),
-                () -> assertThat(allLadder.getFinalPoint(1)).isEqualTo(0),
-                () -> assertThat(allLadder.getFinalPoint(2)).isEqualTo(2)
+                () -> assertThat(finalPointsForAllLadder.get(0)).isEqualTo(1),
+                () -> assertThat(finalPointsForAllLadder.get(1)).isEqualTo(0),
+                () -> assertThat(finalPointsForAllLadder.get(2)).isEqualTo(2)
         );
     }
 }

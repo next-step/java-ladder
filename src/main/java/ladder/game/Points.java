@@ -17,12 +17,15 @@ public class Points {
     private static final int CONNECTION_TO_LEFT = -1;
     private List<Integer> points;
 
-    public Points(Connections connections, int ladderWidth, List<Integer> pointsBeforeConnection) {
-        if (pointsBeforeConnection == null) {
-            pointsBeforeConnection = IntStream.rangeClosed(0, ladderWidth)
-                    .boxed().collect(toList());
-        }
-        findPointsForNextLine(connections, pointsBeforeConnection);
+    public Points(int ladderWidth) {
+        this.points = IntStream.rangeClosed(0, ladderWidth)
+                .boxed().collect(toList());
+    }
+
+    public Points(Connections connections,
+                  Points points) {
+        points.findPointsForNextLine(connections, points.getPoints());
+        this.points = points.getPoints();
     }
 
     public List<Integer> getPoints() {

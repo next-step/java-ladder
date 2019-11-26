@@ -5,24 +5,20 @@ import ladder.structure.connection.DefaultConnection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PointsTest {
     @Test
     @DisplayName("point이동 경로 확인")
     void getPointsTest() {
-        List<Integer> points = null;
+        Points points = new Points(2);
         Connections connections = new Connections(2, new DefaultConnection());
 
-        Points participantPoints = new Points(connections, 2, points);
-        points = participantPoints.getPoints();
-        assertThat(points).containsExactly(1, 0, 2);
+        Points participantPoints = new Points(connections, points);
+        assertThat(participantPoints.getPoints()).containsExactly(1, 0, 2);
 
         connections = new Connections(2, new DefaultConnection());
-        participantPoints = new Points(connections, 2, points);
-        points = participantPoints.getPoints();
-        assertThat(points).containsExactly(0, 1, 2);
+        participantPoints = new Points(connections, points);
+        assertThat(participantPoints.getPoints()).containsExactly(0, 1, 2);
     }
 }
