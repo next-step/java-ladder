@@ -1,9 +1,9 @@
 package reladder;
 
-import ladder.view.InputView;
 import reladder.controller.LadderController;
 import reladder.domain.MatchUp;
 import reladder.service.LadderGame;
+import reladder.view.InputView;
 
 import java.util.Map;
 

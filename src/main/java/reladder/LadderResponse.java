@@ -8,7 +8,10 @@ public class LadderResponse {
     private static final String END_KEY = "all";
 
     public static void main(String[] args) {
+        run();
+    }
 
+    private static void run() {
         LadderRequest ladderRequest = new LadderRequest();
         LadderGame ladderGame = ladderRequest.create(ladderRequest.register());
         ResultView.printLadderGame(ladderGame);
