@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineTest {
+public class LadderLineTest {
 
     @Test
     public void move() {
-        Line line = new Line(3);
+        LadderLine line = new LadderLine(3);
         assertThat(line.move(0)).isNotEqualTo(line.move(1)).isNotEqualTo(line.move(2));
     }
 }

@@ -7,20 +7,20 @@ public class Ladder {
 
     private final int STEP_MIN_NUM = 1;
 
-    private List<Line> ladder;
+    private List<LadderLine> ladder;
 
     public Ladder(int totalStep, int spotSize) {
         this.ladder = generateLadder(totalStep, spotSize);
     }
 
-    private List<Line> generateLadder(int totalStep, int spotSize) {
+    private List<LadderLine> generateLadder(int totalStep, int spotSize) {
         if (!isValidTotalStep(totalStep)) {
             throw new IllegalArgumentException("사다리 높이는 1층 이상이어야 합니다");
         }
 
-        List<Line> ladder = new ArrayList<>();
+        List<LadderLine> ladder = new ArrayList<>();
         for (int i = 0; i < totalStep; i++) {
-            ladder.add(new Line(spotSize));
+            ladder.add(new LadderLine(spotSize));
         }
         return ladder;
     }
@@ -37,7 +37,7 @@ public class Ladder {
         return arrival;
     }
 
-    public List<Line> getLines() {
+    public List<LadderLine> getLines() {
         return new ArrayList<>(ladder);
     }
 }

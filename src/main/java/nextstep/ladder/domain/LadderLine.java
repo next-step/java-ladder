@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Line {
+public class LadderLine {
 
     private List<Point> points;
 
-    public Line(int pointSize) {
+    public LadderLine(int pointSize) {
         this.points = createPoints(pointSize);
     }
 
