@@ -9,13 +9,13 @@ public class Person {
     private String name;
     private int position;
 
-    Person(String name, int position) {
+    public Person(String name, int position) {
         this.name = name;
         this.position = position;
         validate();
     }
 
-    boolean matchNameContainsExactly(String name) {
+    public boolean matchNameContainsExactly(String name) {
         return this.name.equals(name);
     }
 

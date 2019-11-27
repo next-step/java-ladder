@@ -16,14 +16,14 @@ public class ResultsTest {
     @BeforeEach
     void setUp() {
         // give
-        results = new Results("꽝,5000,꽝,3000");
+        results = new Results("꽝,5000,꽝2,3000");
     }
 
     @Test
     @DisplayName("경품 이름 포함")
     void resultContainsResultObjectTest() {
         // when
-        boolean isContains = results.contains(new Result("3000", 3));
+        boolean isContains = results.contains(new Result("3000", 2));
         // then
         assertThat(isContains).isTrue();
     }
@@ -44,6 +44,5 @@ public class ResultsTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Results results = new Results("에어팟2세대");
         });
-
     }
 }

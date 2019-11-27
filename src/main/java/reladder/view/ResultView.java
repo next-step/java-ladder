@@ -40,13 +40,13 @@ public class ResultView {
 
     private static void printPeople(List<Person> people) {
         people.forEach(person ->
-                        System.out.print(person.getName() + printEmptyForCorrection(person.getEmptyLength())));
+                System.out.print(person.getName() + printEmptyForCorrection(person.getEmptyLength())));
         System.out.println();
     }
 
     private static void printResults(List<Result> results) {
         results.forEach(result ->
-                        System.out.print(result.getName() + printEmptyForCorrection(result.getEmptyLength())));
+                System.out.print(result.getName() + printEmptyForCorrection(result.getEmptyLength())));
         System.out.println();
     }
 

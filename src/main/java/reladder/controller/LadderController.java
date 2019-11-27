@@ -3,29 +3,33 @@ package reladder.controller;
 import reladder.domain.*;
 import reladder.service.LadderGame;
 import reladder.service.LadderGameResult;
-import reladder.view.ResultView;
 
 import java.util.Map;
 
 public class LadderController {
 
-    public LadderGame execute(String names, int height, String result) {
-        MatchUp matchUp = new MatchUp(names, result);
+    private static final String ERROR_MESSAGE = "매칭되는 값이 없습니다.";
+
+    public MatchUp register(String names, String result) {
+        return new MatchUp(names, result);
+    }
+
+    public LadderGame create(MatchUp matchUp, int height) {
         Ladder ladder = DefaultLadderGenerator.getInstance().generate(height, matchUp.getPeopleCount());
-        LadderGame ladderGame = new LadderGame(ladder, matchUp);
-        ResultView.printLadderGame(ladderGame);
-        return ladderGame;
+        return new LadderGame(ladder, matchUp);
     }
 
-    public void result(LadderGame ladderGame, String personName) {
-        LadderGameResult ladderGameResult = new LadderGameResult(ladderGame);
-        String result = ladderGameResult.getResult(personName);
-        ResultView.printResultOnce(result);
+    public String result(LadderGame ladderGame, String personName) {
+        try {
+            LadderGameResult ladderGameResult = new LadderGameResult(ladderGame);
+            return ladderGameResult.getResult(personName);
+        } catch (RuntimeException e) {
+            return e.getMessage() + " " + ERROR_MESSAGE;
+        }
     }
 
-    public void allResult(LadderGame ladderGame) {
+    public Map<String, Object> allResult(LadderGame ladderGame) {
         LadderGameResult ladderGameResult = new LadderGameResult(ladderGame);
-        Map<String, Object> result = ladderGameResult.getResultAll();
-        ResultView.printResult(result);
+        return ladderGameResult.getResultAll();
     }
 }

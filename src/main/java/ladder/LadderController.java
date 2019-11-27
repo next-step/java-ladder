@@ -14,8 +14,10 @@ public class LadderController {
 
     public void displayResultOfAll(Ladder ladder, String personName) {
         int resultIndex = ladder.getPersonPosition(personName);
-        if (resultIndex > 0) {
+        try {
             ResultView.printResultOfAll(ladder.getResultValue(resultIndex));
+        } catch (RuntimeException e) {
+            System.out.println("매칭되는 결과 값이 존재하지 않습니다.");
         }
     }
 
