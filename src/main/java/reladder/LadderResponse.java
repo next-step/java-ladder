@@ -1,8 +1,6 @@
 package reladder;
 
 import reladder.controller.LadderController;
-import reladder.domain.Ladder;
-import reladder.domain.MatchUp;
 import reladder.service.LadderGame;
 import reladder.view.InputView;
 import reladder.view.ResultView;
