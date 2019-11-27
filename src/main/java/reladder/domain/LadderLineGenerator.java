@@ -6,12 +6,8 @@ import java.util.Random;
 
 public class LadderLineGenerator implements LineGenerator {
 
-    private static final Random RANDOM;
+    private static final Random RANDOM = new Random();
     private static final int BOUNDARY_INDEX = 1;
-
-    static {
-        RANDOM = new Random();
-    }
 
     private static LadderLineGenerator ladderLineGenerator = new LadderLineGenerator();
 
