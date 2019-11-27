@@ -53,6 +53,9 @@ public class ResultView {
         if ("all".equals(name)) {
             printAll(result);
         }
+        if (!(result.containsKey(name) || "all".equals(name))) {
+            System.out.println(name + "은(는) 참가자 이름이 아닙니다");
+        }
     }
 
     private void printUser(Map<String, String> result, String name) {
