@@ -7,12 +7,10 @@ public class DefaultLadderGenerator implements LadderGenerator {
 
     private static final int LOOP_INDEX = 0;
 
-    private static DefaultLadderGenerator of() {
-        return new DefaultLadderGenerator();
-    }
+    private static DefaultLadderGenerator defaultLadderGenerator = new DefaultLadderGenerator();
 
     public static DefaultLadderGenerator getInstance() {
-        return of();
+        return defaultLadderGenerator;
     }
 
     @Override

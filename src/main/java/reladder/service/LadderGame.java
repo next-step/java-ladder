@@ -14,7 +14,7 @@ public class LadderGame {
         this.matchUp = matchUp;
     }
 
-    public String getResultByPosition(String name) {
+    public String getResultByName(String name) {
         int personIndex = matchUp.getPositionByName(name);
         return matchUp.getResultByPosition(ladder.move(personIndex));
     }

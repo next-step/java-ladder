@@ -13,12 +13,10 @@ public class LadderLineGenerator implements LineGenerator {
         RANDOM = new Random();
     }
 
-    private static LadderLineGenerator of() {
-        return new LadderLineGenerator();
-    }
+    private static LadderLineGenerator ladderLineGenerator = new LadderLineGenerator();
 
     public static LadderLineGenerator getInstance() {
-        return of();
+        return ladderLineGenerator;
     }
 
     @Override

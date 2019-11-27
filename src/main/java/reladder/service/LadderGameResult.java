@@ -13,13 +13,13 @@ public class LadderGameResult {
         this.ladderGame = ladderGame;
     }
     public String getResult(String name) {
-        return ladderGame.getResultByPosition(name);
+        return ladderGame.getResultByName(name);
     }
 
     public Map<String, Object> getResultAll() {
         Map<String, Object> result = new HashMap<>();
         for (Person person : ladderGame.getPeople()) {
-            result.put(person.getName(), ladderGame.getResultByPosition(person.getName()));
+            result.put(person.getName(), ladderGame.getResultByName(person.getName()));
         }
         return result;
     }

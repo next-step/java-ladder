@@ -1,36 +1,32 @@
 package reladder;
 
-import reladder.controller.LadderController;
+import reladder.domain.Ladder;
+import reladder.domain.LadderGenerator;
 import reladder.domain.MatchUp;
 import reladder.service.LadderGame;
-import reladder.view.InputView;
+import reladder.service.LadderGameResult;
 
 import java.util.Map;
 
 public class LadderRequest {
 
-    private LadderController ladderController = new LadderController();
-
-    public MatchUp register() {
-        String names = InputView.inputName();
-        String result = InputView.inputResult();
-        return ladderController.register(names, result);
+    public MatchUp requestMatchUp(String names, String results) {
+        return new MatchUp(names, results);
     }
 
-    public LadderGame create(MatchUp matchUp) {
-        int height = InputView.inputLadderHeight();
-        return ladderController.create(matchUp, height);
+    public Ladder requestLadder(int height, MatchUp matchUp, LadderGenerator ladderGenerator) {
+        return ladderGenerator.generate(height, matchUp.getPeopleCount());
     }
 
-    public String request() {
-        return InputView.inputWantResult();
+    public LadderGame requestLadderGame(Ladder ladder, MatchUp matchUp) {
+        return new LadderGame(ladder, matchUp);
     }
 
-    public String response(LadderGame ladderGame, String name) {
-        return ladderController.result(ladderGame, name);
+    public String requestGameResult(LadderGame ladderGame, String name) {
+        return new LadderGameResult(ladderGame).getResult(name);
     }
 
-    public Map<String, Object> responseAll(LadderGame ladderGame) {
-        return ladderController.allResult(ladderGame);
+    public Map<String, Object> requestGameResultAll(LadderGame ladderGame) {
+        return new LadderGameResult(ladderGame).getResultAll();
     }
 }
