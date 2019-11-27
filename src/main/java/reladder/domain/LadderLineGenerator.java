@@ -9,9 +9,12 @@ public class LadderLineGenerator implements LineGenerator {
     private static final Random RANDOM = new Random();
     private static final int BOUNDARY_INDEX = 1;
 
-    private static LadderLineGenerator ladderLineGenerator = new LadderLineGenerator();
+    private static LadderLineGenerator ladderLineGenerator;
 
     public static LadderLineGenerator getInstance() {
+        if (ladderLineGenerator == null) {
+            ladderLineGenerator = new LadderLineGenerator();
+        }
         return ladderLineGenerator;
     }
 
