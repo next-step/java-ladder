@@ -8,7 +8,7 @@ public class Point {
     private static final int MOVE_STRAIGHT = 0;
     private static final int MOVE_LEFT = -1;
     private static final Map<Integer, Point> preset = new HashMap<>();
-    private int point;
+    private final int point;
 
     private Point(int num) {
         this.point = num;

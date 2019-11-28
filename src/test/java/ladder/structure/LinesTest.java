@@ -21,14 +21,15 @@ class LinesTest {
     @Test
     @DisplayName("lines 생성 테스트")
     void constructorTest() {
+        List<LineOfLadder> lineList = lines.getLines();
         assertAll(
-                () -> assertThat(lines.getByIndex(0).getConnections())
+                () -> assertThat(lineList.get(0).getConnections())
                         .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
-                () -> assertThat(lines.getByIndex(1).getConnections())
+                () -> assertThat(lineList.get(1).getConnections())
                         .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
-                () -> assertThat(lines.getByIndex(2).getConnections())
+                () -> assertThat(lineList.get(2).getConnections())
                         .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
-                () -> assertThat(lines.getByIndex(3).getConnections())
+                () -> assertThat(lineList.get(3).getConnections())
                         .isEqualTo(new Connections(4, connectionStrategy).getConnections())
         );
     }

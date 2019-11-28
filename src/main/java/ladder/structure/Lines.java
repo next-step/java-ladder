@@ -9,23 +9,19 @@ import java.util.List;
 
 public class Lines {
     private static final String LADDER_HEIGHT_EXCEPTION = "사다리게임의 높이는 0 이상입니다.";
-    private List<LineOfLadder> lines;
+    private final List<LineOfLadder> lines;
 
-    public Lines(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
-        verityLadderHeight(ladderHeight);
-        this.lines = new ArrayList<>();
-        addLines(personCount, ladderHeight, connectionStrategy);
+    public Lines(int participantsSize, int ladderHeight, ConnectionStrategy connectionStrategy) {
+        verifyLadderHeight(ladderHeight);
+        this.lines = addLines(participantsSize, ladderHeight, connectionStrategy);
     }
 
-    private void addLines(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
+    private List<LineOfLadder> addLines(int participantsSize, int ladderHeight, ConnectionStrategy connectionStrategy) {
+        List<LineOfLadder> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            addLine(personCount, connectionStrategy);
+            lines.add(new LineOfLadder(participantsSize, connectionStrategy));
         }
-    }
-
-    private void addLine(int personCount, ConnectionStrategy connectionStrategy) {
-        LineOfLadder line = new LineOfLadder(personCount - 1, connectionStrategy);
-        lines.add(line);
+        return Collections.unmodifiableList(lines);
     }
 
     public Points getFinalPoints() {
@@ -36,14 +32,10 @@ public class Lines {
         return points;
     }
 
-    private void verityLadderHeight(int ladderHeight) {
+    private void verifyLadderHeight(int ladderHeight) {
         if (ladderHeight <= 0) {
             throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
         }
-    }
-
-    public LineOfLadder getByIndex(int index) {
-        return lines.get(index);
     }
 
     public List<LineOfLadder> getLines() {

@@ -9,11 +9,10 @@ import java.util.List;
 import static ladder.structure.connection.Connection.NOT_CONNECTED_BRIDGE;
 
 public class Connections {
-    private List<Connection> connections;
+    private final List<Connection> connections;
 
     public Connections(int ladderWidth, ConnectionStrategy connectionStrategy) {
-        this.connections = new ArrayList<>();
-        addConnections(ladderWidth, connectionStrategy);
+        this.connections = addConnections(ladderWidth, connectionStrategy);
     }
 
     public Points movePoints(Points before) {
@@ -30,12 +29,14 @@ public class Connections {
         return connections.get(index).isConnected();
     }
 
-    private void addConnections(int ladderWidth, ConnectionStrategy connectionStrategy) {
+    private List<Connection> addConnections(int ladderWidth, ConnectionStrategy connectionStrategy) {
         Connection before = null;
+        List<Connection> connections = new ArrayList<>();
         for (int width = 0; width < ladderWidth; width++) {
             before = Connection.of(connectionStrategy, before);
             connections.add(before);
         }
+        return Collections.unmodifiableList(connections);
     }
 
     public List<Connection> getConnections() {

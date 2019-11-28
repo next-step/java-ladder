@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 public class Points {
     private static final int CONNECTION_TO_RIGHT = 0;
     private static final int CONNECTION_TO_LEFT = -1;
-    private List<Point> points;
+    private final List<Point> points;
 
     public Points(int ladderWidth) {
         this.points = IntStream.rangeClosed(0, ladderWidth)

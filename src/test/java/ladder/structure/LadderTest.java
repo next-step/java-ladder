@@ -25,10 +25,11 @@ public class LadderTest {
     @Test
     @DisplayName("연속된 두 칸 모두 사다리가 그려질 수 업다")
     void verifiedLadderTest() {
-        List<Connection> firstLineConnections = ladder.getLine(0).getConnections();
+        List<LineOfLadder> lines = ladder.getLines().getLines();
+        List<Connection> firstLineConnections = lines.get(0).getConnections();
         assertThat(firstLineConnections.get(0).isConnected() && firstLineConnections.get(1).isConnected())
                 .isFalse();
-        List<Connection> secondLineConnections = ladder.getLine(1).getConnections();
+        List<Connection> secondLineConnections = lines.get(1).getConnections();
         assertThat(secondLineConnections.get(1).isConnected() && secondLineConnections.get(2).isConnected())
                 .isFalse();
     }
@@ -36,10 +37,11 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 그리기")
     void drawLadder() {
-        for (int lineIndex = 0; lineIndex < 5; lineIndex++) {
-            List<Connection> line = ladder.getLine(lineIndex).getConnections();
+        List<LineOfLadder> lines = ladder.getLines().getLines();
+        for (LineOfLadder line : lines) {
+            List<Connection> connections = line.getConnections();
             System.out.print("|");
-            for (Connection connection : line) {
+            for (Connection connection : connections) {
                 boolean isConnected = connection.isConnected();
                 if (isConnected) {
                     System.out.print("----|");

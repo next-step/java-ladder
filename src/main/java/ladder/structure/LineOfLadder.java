@@ -9,11 +9,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class LineOfLadder {
+    private static final int DIFF_OF_PARTICIPANTS_COUNT_TO_WIDTH = 1;
     private final Connections connections;
 
-    public LineOfLadder(int ladderWidth,
+    public LineOfLadder(int participantsSize,
                         ConnectionStrategy connectionStrategy) {
-        this.connections = new Connections(ladderWidth, connectionStrategy);
+        int width = calculateWidth(participantsSize);
+        this.connections = new Connections(width, connectionStrategy);
+    }
+
+    private int calculateWidth(int participantsSize) {
+        return participantsSize - DIFF_OF_PARTICIPANTS_COUNT_TO_WIDTH;
     }
 
     public List<Connection> getConnections() {
