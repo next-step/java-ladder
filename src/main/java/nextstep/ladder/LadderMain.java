@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderRequireElement;
 import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.view.LadderInputView;
@@ -11,16 +12,17 @@ import nextstep.ladder.view.LadderResultView;
  * @version : 1.0
  * @date : 2019-11-11 19:40
  */
-public class LadderGame {
+public class LadderMain {
     public static void main(String[] args) {
         LadderRequireElement ladderRequireElement = new LadderRequireElement(LadderInputView.inputNames(),
                 LadderInputView.inputExecuteResult());
 
         Ladder ladder = new Ladder(ladderRequireElement.numberOfParticipant(), LadderInputView.inputLadderHeight());
 
-        LadderResultView.showLadder(ladderRequireElement, ladder);
+        LadderGame ladderGame = new LadderGame(ladderRequireElement, ladder);
+        LadderResultView.showLadder(ladderGame);
 
-        LadderResult ladderResult = new LadderResult(ladder, ladderRequireElement.getParticipant(), ladderRequireElement.getExecutionResult());
+        LadderResult ladderResult = ladderGame.getLadderResult();
 
         while (true) {
             String input = LadderInputView.inputSeeResult(ladderRequireElement.getParticipant());

@@ -1,8 +1,7 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderLine;
-import nextstep.ladder.domain.LadderRequireElement;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -59,13 +58,13 @@ public class LadderResultView {
         return EMPTY_PIPE;
     }
 
-    public static void showLadder(LadderRequireElement ladderRequireElement, Ladder ladder) {
-        showList(ladderRequireElement.getParticipant());
-        showLadderLines(ladder.getLadderLines());
-        showList(ladderRequireElement.getExecutionResult());
-    }
-
     public static void showLadderResult(List<String> result) {
         result.forEach(System.out::println);
+    }
+
+    public static void showLadder(LadderGame ladderGame) {
+        showList(ladderGame.getParticipant());
+        showLadderLines(ladderGame.getLadderLines());
+        showList(ladderGame.getExecutionResult());
     }
 }
