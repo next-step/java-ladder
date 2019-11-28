@@ -1,51 +1,41 @@
 package reladder.controller;
 
 import reladder.LadderRequest;
+import reladder.LadderResponse;
 import reladder.domain.*;
 import reladder.service.LadderGame;
-import reladder.view.InputView;
-
-import java.util.Map;
+import reladder.service.LadderGameResult;
 
 public class LadderController {
 
     private static final String ERROR_MESSAGE = "매칭되는 값이 없습니다.";
 
-    private String requestName;
-    private String requestResult;
-    private int height;
-
-    public LadderController() {
-        this.requestName = InputView.inputName();
-        this.requestResult = InputView.inputResult();
-        this.height = InputView.inputLadderHeight();
+    private LadderGenerator ladderGenerator;
+    public LadderController(LadderGenerator ladderGenerator) {
+        this.ladderGenerator = ladderGenerator;
     }
 
-    public LadderGame execute() {
-        LadderRequest ladderRequest = new LadderRequest();
-        MatchUp matchUp = ladderRequest.requestMatchUp(requestName, requestResult);
-        Ladder ladder = ladderRequest.requestLadder(height, matchUp, DefaultLadderGenerator.getInstance());
-        return ladderRequest.requestLadderGame(ladder, matchUp);
+    public LadderResponse execute(LadderRequest request) {
+        MatchUp matchUp = new MatchUp(request.getInputName(), request.getInputResult());
+        Ladder ladder = ladderGenerator.generate(request.getHeight(), matchUp.getPeopleCount());
+        return new LadderResponse(new LadderGame(ladder, matchUp));
     }
 
-    public String result(String requestResultName) {
+    public LadderResponse result(LadderRequest request, String name) {
         try {
-            LadderRequest ladderRequest = new LadderRequest();
-            MatchUp matchUp = ladderRequest.requestMatchUp(requestName, requestResult);
-            Ladder ladder = ladderRequest.requestLadder(height, matchUp, DefaultLadderGenerator.getInstance());
-            LadderGame ladderGame = ladderRequest.requestLadderGame(ladder, matchUp);
-            return ladderRequest.requestGameResult(ladderGame, requestResultName);
+            MatchUp matchUp = new MatchUp(request.getInputName(), request.getInputResult());
+            Ladder ladder = ladderGenerator.generate(request.getHeight(), matchUp.getPeopleCount());
+            LadderGame ladderGame = new LadderGame(ladder, matchUp);
+            return new LadderResponse(new LadderGameResult(ladderGame).getResult(name));
         } catch (RuntimeException e) {
-            return e.getMessage() + " " + ERROR_MESSAGE;
+            return new LadderResponse(e.getMessage() + " " + ERROR_MESSAGE);
         }
     }
 
-    public Map<String, Object> resultAll() {
-        LadderRequest ladderRequest = new LadderRequest();
-        MatchUp matchUp = ladderRequest.requestMatchUp(requestName, requestResult);
-        Ladder ladder = ladderRequest.requestLadder(height, matchUp, DefaultLadderGenerator.getInstance());
-        LadderGame ladderGame = ladderRequest.requestLadderGame(ladder, matchUp);
-        return ladderRequest.requestGameResultAll(ladderGame);
+    public LadderResponse resultAll(LadderRequest request) {
+        MatchUp matchUp = new MatchUp(request.getInputName(), request.getInputResult());
+        Ladder ladder = ladderGenerator.generate(request.getHeight(), matchUp.getPeopleCount());
+        LadderGame ladderGame = new LadderGame(ladder, matchUp);
+        return new LadderResponse(new LadderGameResult(ladderGame).getResultAll());
     }
-
 }

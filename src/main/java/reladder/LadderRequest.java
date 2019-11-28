@@ -1,32 +1,30 @@
 package reladder;
 
-import reladder.domain.Ladder;
-import reladder.domain.LadderGenerator;
-import reladder.domain.MatchUp;
-import reladder.service.LadderGame;
-import reladder.service.LadderGameResult;
-
-import java.util.Map;
-
 public class LadderRequest {
 
-    public MatchUp requestMatchUp(String names, String results) {
-        return new MatchUp(names, results);
+    private String inputName;
+    private String inputResult;
+    private int height;
+
+    private LadderRequest(String inputName, String inputResult, int height)  {
+        this.inputName = inputName;
+        this.inputResult = inputResult;
+        this.height = height;
     }
 
-    public Ladder requestLadder(int height, MatchUp matchUp, LadderGenerator ladderGenerator) {
-        return ladderGenerator.generate(height, matchUp.getPeopleCount());
+    public static LadderRequest of(String inputName, String inputResult, int height) {
+        return new LadderRequest(inputName, inputResult, height);
     }
 
-    public LadderGame requestLadderGame(Ladder ladder, MatchUp matchUp) {
-        return new LadderGame(ladder, matchUp);
+    public int getHeight() {
+        return height;
     }
 
-    public String requestGameResult(LadderGame ladderGame, String name) {
-        return new LadderGameResult(ladderGame).getResult(name);
+    public String getInputName() {
+        return inputName;
     }
 
-    public Map<String, Object> requestGameResultAll(LadderGame ladderGame) {
-        return new LadderGameResult(ladderGame).getResultAll();
+    public String getInputResult() {
+        return inputResult;
     }
 }
