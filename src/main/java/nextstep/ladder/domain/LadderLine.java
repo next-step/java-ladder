@@ -34,7 +34,8 @@ public class LadderLine {
     }
 
     private static Point initBody(int countOfPerson, List<Point> points, Point point) {
-        for (int person = 1; person < countOfPerson - 1; person++) {
+        int maxBodyLength = countOfPerson - 1;
+        for (int person = 1; person < maxBodyLength; person++) {
             point = point.next();
             points.add(point);
         }
