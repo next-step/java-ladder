@@ -12,29 +12,23 @@ public class Participants {
     private static final int PARTICIPANT_MIN_SIZE = 2;
     private final List<Participant> participants;
 
-    public Participants(String participants) {
-        this.participants = verifyParticipants(participants);
+    private Participants(List<Participant> participants) {
+        verifyParticipantsCount(participants);
+        this.participants = participants;
     }
 
-    private static List<Participant> verifyParticipants(String inputParticipants) {
-        List<Participant> participants = Arrays.stream(inputParticipants.split(DELIMITER))
+    public Participants(String participants) {
+        this(Arrays.stream(participants.split(DELIMITER))
                 .map(String::trim)
                 .map(Participant::new)
-                .collect(toList());
+                .collect(toList()));
+    }
+
+    private static void verifyParticipantsCount(List<Participant> participants) {
         if (participants.size() < PARTICIPANT_MIN_SIZE) {
             throw new IllegalArgumentException(
                     String.format(PARTICIPANTS_MIN_SIZE_EXCEPTION, PARTICIPANT_MIN_SIZE));
         }
-        return participants;
-    }
-
-    public int size() {
-        return participants.size();
-    }
-
-    public List<String> toStrings() {
-        return participants.stream().map(Participant::toString)
-                .collect(toList());
     }
 
     public int indexOf(String user) {
@@ -43,5 +37,14 @@ public class Participants {
             throw new IllegalArgumentException(INVALID_PARTICIPANT_EXCEPTION);
         }
         return index;
+    }
+
+    public List<String> toStrings() {
+        return participants.stream().map(Participant::toString)
+                .collect(toList());
+    }
+
+    public int size() {
+        return participants.size();
     }
 }

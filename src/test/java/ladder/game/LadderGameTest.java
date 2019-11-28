@@ -59,7 +59,7 @@ class LadderGameTest {
         String inputResults = "꽝1, 꽝2, 천원, 만원";
         int ladderHeight = 5;
         ladderGame = new LadderGame(participants, ladderHeight, new DefaultConnection(), inputResults);
-        assertThat(ladderGame.checkResults(participant.split(",")).values().values())
+        assertThat(ladderGame.checkPrizesByParticipant(participant.split(",")).values().values())
                 .containsExactly(result.split(","));
     }
 
@@ -67,6 +67,6 @@ class LadderGameTest {
     @ValueSource(strings = "예외, 발생, 확인")
     @DisplayName("찾는 사용자가 없을 때 예외 발생")
     void getResultExceptionTest(String participant) {
-        assertThrows(IllegalArgumentException.class, () -> ladderGame.checkResults(participant));
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.checkPrizesByParticipant(participant));
     }
 }

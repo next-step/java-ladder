@@ -1,8 +1,9 @@
 package ladder.structure;
 
-import ladder.game.Points;
+import ladder.structure.connection.Connection;
 import ladder.structure.connection.ConnectionStrategy;
 import ladder.structure.connection.Connections;
+import ladder.structure.connection.result.Points;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,8 +20,8 @@ public class LineOfLadder {
         return Collections.unmodifiableList(connections.getConnections());
     }
 
-    public Points getPointsAfterConnection(Points before) {
-        return connections.getAfterPoints(before);
+    public Points movePoints(Points before) {
+        return connections.movePoints(before);
     }
 }
 

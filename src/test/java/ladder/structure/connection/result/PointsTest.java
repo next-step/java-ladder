@@ -1,4 +1,4 @@
-package ladder.game;
+package ladder.structure.connection.result;
 
 import ladder.structure.connection.Connections;
 import ladder.structure.connection.DefaultConnection;
@@ -14,12 +14,12 @@ class PointsTest {
         Points first = new Points(2);
         Connections connections = new Connections(2, new DefaultConnection());
 
-        Points second = connections.getAfterPoints(first);
+        Points second = connections.movePoints(first);
         assertThat(second.getPoints())
                 .containsExactly(Point.of(1), Point.of(0), Point.of(2));
 
         connections = new Connections(2, new DefaultConnection());
-        Points third = connections.getAfterPoints(second);
+        Points third = connections.movePoints(second);
         assertThat(third.getPoints())
                 .containsExactly(Point.of(0), Point.of(1), Point.of(2));
     }

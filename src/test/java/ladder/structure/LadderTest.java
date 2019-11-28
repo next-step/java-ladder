@@ -1,10 +1,10 @@
-package ladder.game;
+package ladder.structure;
 
-import ladder.structure.Connection;
-import ladder.structure.Ladder;
+import ladder.structure.connection.Connection;
 import ladder.structure.connection.DefaultConnection;
 import ladder.structure.connection.NoneConnection;
 import ladder.structure.connection.RandomConnection;
+import ladder.structure.connection.result.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,25 +16,21 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class LadderTest {
     private Ladder ladder;
-    private int personCount = 4;
-    private int ladderHeight = 5;
 
     @BeforeEach
     void setUp() {
-        ladder = new Ladder(personCount, ladderHeight, new RandomConnection());
+        ladder = new Ladder(4, 5, new RandomConnection());
     }
 
     @Test
     @DisplayName("연속된 두 칸 모두 사다리가 그려질 수 업다")
     void verifiedLadderTest() {
         List<Connection> firstLineConnections = ladder.getLine(0).getConnections();
-        assertThat(firstLineConnections.get(0).isConnected() ^ firstLineConnections.get(1).isConnected()
-                || !firstLineConnections.get(0).isConnected())
-                .isTrue();
+        assertThat(firstLineConnections.get(0).isConnected() && firstLineConnections.get(1).isConnected())
+                .isFalse();
         List<Connection> secondLineConnections = ladder.getLine(1).getConnections();
-        assertThat(secondLineConnections.get(1).isConnected() ^ secondLineConnections.get(2).isConnected()
-                || !secondLineConnections.get(1).isConnected())
-                .isTrue();
+        assertThat(secondLineConnections.get(1).isConnected() && secondLineConnections.get(2).isConnected())
+                .isFalse();
     }
 
     @Test

@@ -2,10 +2,13 @@ package ladder.structure;
 
 import ladder.structure.connection.Connections;
 import ladder.structure.connection.DefaultConnection;
+import ladder.structure.connection.result.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -13,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class LinesTest {
     private DefaultConnection connectionStrategy = new DefaultConnection();
     private Lines lines = new Lines(5, 4, connectionStrategy);
+    private List<Point> points = lines.getFinalPoints().getPoints();
 
     @Test
     @DisplayName("lines 생성 테스트")
@@ -38,6 +42,6 @@ class LinesTest {
     }, delimiter = ':')
     @DisplayName("결과값 확인")
     void getFinalPoints(int start, int result) {
-        assertThat(lines.getFinalPoints().get(start).value()).isEqualTo(result);
+        assertThat(points.get(start).value()).isEqualTo(result);
     }
 }

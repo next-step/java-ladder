@@ -1,7 +1,7 @@
 package ladder.structure;
 
-import ladder.game.Points;
 import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.result.Points;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,14 +17,6 @@ public class Lines {
         addLines(personCount, ladderHeight, connectionStrategy);
     }
 
-    public List<LineOfLadder> getLines() {
-        return Collections.unmodifiableList(this.lines);
-    }
-
-    public LineOfLadder getByIndex(int index) {
-        return lines.get(index);
-    }
-
     private void addLines(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
         for (int i = 0; i < ladderHeight; i++) {
             addLine(personCount, connectionStrategy);
@@ -36,14 +28,10 @@ public class Lines {
         lines.add(line);
     }
 
-    public int size() {
-        return lines.size();
-    }
-
     public Points getFinalPoints() {
         Points points = null;
         for (LineOfLadder lineOfLadder : lines) {
-            points = lineOfLadder.getPointsAfterConnection(points);
+            points = lineOfLadder.movePoints(points);
         }
         return points;
     }
@@ -52,5 +40,13 @@ public class Lines {
         if (ladderHeight <= 0) {
             throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
         }
+    }
+
+    public LineOfLadder getByIndex(int index) {
+        return lines.get(index);
+    }
+
+    public List<LineOfLadder> getLines() {
+        return Collections.unmodifiableList(this.lines);
     }
 }

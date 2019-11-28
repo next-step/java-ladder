@@ -1,6 +1,4 @@
-package ladder.structure;
-
-import ladder.structure.connection.ConnectionStrategy;
+package ladder.structure.connection;
 
 public class Connection {
     public static final Connection NOT_CONNECTED_BRIDGE = new Connection(false);

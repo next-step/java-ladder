@@ -8,11 +8,15 @@ public class Participant {
     private final String name;
 
     public Participant(String participant) {
+        verifyParticipantNameLength(participant);
+        this.name = participant;
+    }
+
+    private void verifyParticipantNameLength(String participant) {
         if (participant.length() > PARTICIPANT_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(
                     String.format(PARTICIPANT_NAME_MAX_LENGTH_EXCEPTION_FORMAT, PARTICIPANT_NAME_MAX_LENGTH));
         }
-        this.name = participant;
     }
 
     @Override

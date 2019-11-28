@@ -1,7 +1,6 @@
 package ladder.game;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
@@ -10,19 +9,22 @@ public class GameInfo {
     private final Participants participants;
     private final Prizes prizes;
 
-    public GameInfo(String inputParticipant, String inputResults) {
-        this.participants = new Participants(inputParticipant);
-        List<String> results = verifyResult(inputResults, this.participants.size());
-        this.prizes = new Prizes(results);
+    private GameInfo(Participants participants, Prizes prizes) {
+        this.participants = participants;
+        verifyPrizesCount(participants.size(), prizes);
+        this.prizes = prizes;
     }
 
-    private static List<String> verifyResult(String inputResults, int participantsSize) {
-        List<String> results = Arrays.stream(inputResults.split(","))
-                .map(String::trim).collect(toList());
-        if (results.size() != participantsSize) {
+    public GameInfo(String inputParticipant, String inputResults) {
+        this(new Participants(inputParticipant),
+                new Prizes(Arrays.stream(inputResults.split(","))
+                        .map(String::trim).collect(toList())));
+    }
+
+    private static void verifyPrizesCount(int participantsSize, Prizes prizes) {
+        if (prizes.size() != participantsSize) {
             throw new IllegalArgumentException(RESULT_SIZE_EXCEPTION);
         }
-        return results;
     }
 
     public int sizeOfParticipants() {

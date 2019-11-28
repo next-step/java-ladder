@@ -2,11 +2,11 @@ package ladder.view;
 
 import ladder.game.LadderGame;
 import ladder.game.Participants;
-import ladder.game.Prizes;
+import ladder.game.Prize;
 import ladder.game.Results;
-import ladder.structure.Connection;
 import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
+import ladder.structure.connection.Connection;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class ResultView {
         System.out.println(LADDER_RESULT);
         showParticipant(ladderGame.getParticipants());
         drawLadder(ladderGame.getLadder());
-        showResults(ladderGame.getPrizes());
+        showResults(ladderGame.getPrizes().values());
     }
 
     public static boolean showResultOfParticipant(LadderGame ladderGame, String name) {
@@ -36,8 +36,8 @@ public class ResultView {
         }
         System.out.println(GAME_RESULT);
         Results results = ALL.equals(name)
-                ? ladderGame.checkResults()
-                : ladderGame.checkResults(name);
+                ? ladderGame.checkPrizesByParticipant()
+                : ladderGame.checkPrizesByParticipant(name);
         results.values()
                 .forEach((user, result)
                         -> System.out.println(String.format(GAME_RESULT_FORMAT, user, result)));
@@ -77,10 +77,9 @@ public class ResultView {
         }
     }
 
-    private static void showResults(Prizes prizes) {
-        int size = prizes.size();
-        for (int i = 0; i < size; i++) {
-            String result = prizes.values().get(i).toString();
+    private static void showResults(List<Prize> prizes) {
+        for (Prize prize : prizes) {
+            String result = prize.toString();
             System.out.print(String.format(RESULT_FORMAT, result));
         }
         System.out.println(EMPTY);
