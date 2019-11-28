@@ -17,25 +17,20 @@ public class Connections {
     private static final int CONNECTION_TO_LEFT = -1;
     private List<Connection> connections;
 
-    public Connections(int ladderWidth,
-                       ConnectionStrategy connectionStrategy) {
+    public Connections(int ladderWidth, ConnectionStrategy connectionStrategy) {
         this.connections = new ArrayList<>();
         addConnections(ladderWidth, connectionStrategy);
-    }
-
-    public Points getAfterPoints(Points before) {
-        return checkPointsForNextLine(before.getPoints());
     }
 
     public List<Connection> getConnections() {
         return connections;
     }
 
-    public Connection get(int index) {
-        if (index < 0 || index >= connections.size()) {
-            return NOT_CONNECTED_BRIDGE;
+    public Points getAfterPoints(Points before) {
+        if (before == null) {
+            before = new Points(connections.size());
         }
-        return connections.get(index);
+        return getPointsAfterConnections(before.getPoints());
     }
 
     private void addConnections(int ladderWidth, ConnectionStrategy connectionStrategy) {
@@ -46,22 +41,29 @@ public class Connections {
         }
     }
 
-    private Points checkPointsForNextLine(List<Point> nowPoints) {
+    private Points getPointsAfterConnections(List<Point> nowPoints) {
         List<Point> pointsAfterConnection = new ArrayList<>();
         for (Point nowPoint : nowPoints) {
-            pointsAfterConnection.add(checkPointForNextLine(nowPoint));
+            pointsAfterConnection.add(getPointAfterConnection(nowPoint));
         }
         return new Points(pointsAfterConnection);
     }
 
-    private Point checkPointForNextLine(Point point) {
+    private Point getPointAfterConnection(Point point) {
         int index = point.value();
-        if (get(index + CONNECTION_TO_RIGHT).isConnected()) {
+        if (isConnected(index + CONNECTION_TO_RIGHT)) {
             return Point.of(index + MOVE_RIGHT);
         }
-        if (get(index + CONNECTION_TO_LEFT).isConnected()) {
+        if (isConnected(index + CONNECTION_TO_LEFT)) {
             return Point.of(index + MOVE_LEFT);
         }
         return Point.of(index + MOVE_STRAIGHT);
+    }
+
+    private boolean isConnected(int index) {
+        if (index < 0 || index >= connections.size()) {
+            return NOT_CONNECTED_BRIDGE.isConnected();
+        }
+        return connections.get(index).isConnected();
     }
 }

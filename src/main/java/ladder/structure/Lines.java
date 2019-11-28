@@ -4,6 +4,7 @@ import ladder.game.Points;
 import ladder.structure.connection.ConnectionStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lines {
@@ -16,34 +17,40 @@ public class Lines {
         addLines(personCount, ladderHeight, connectionStrategy);
     }
 
+    public List<LineOfLadder> getLines() {
+        return Collections.unmodifiableList(this.lines);
+    }
+
+    public LineOfLadder getByIndex(int index) {
+        return lines.get(index);
+    }
+
     private void addLines(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
-        Points points = new Points(personCount - 1);
         for (int i = 0; i < ladderHeight; i++) {
-            points = addLine(personCount, connectionStrategy, points);
+            addLine(personCount, connectionStrategy);
         }
     }
 
-    private Points addLine(int personCount, ConnectionStrategy connectionStrategy, Points points) {
-        LineOfLadder line = new LineOfLadder(personCount - 1, connectionStrategy, points);
+    private void addLine(int personCount, ConnectionStrategy connectionStrategy) {
+        LineOfLadder line = new LineOfLadder(personCount - 1, connectionStrategy);
         lines.add(line);
-        return line.getPointsAfterConnection();
-    }
-
-    public LineOfLadder get(int index) {
-        return lines.get(index);
     }
 
     public int size() {
         return lines.size();
     }
 
+    public Points getFinalPoints() {
+        Points points = null;
+        for (LineOfLadder lineOfLadder : lines) {
+            points = lineOfLadder.getPointsAfterConnection(points);
+        }
+        return points;
+    }
+
     private void verityLadderHeight(int ladderHeight) {
         if (ladderHeight <= 0) {
             throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
         }
-    }
-
-    public Points getFinalPoints() {
-        return lines.get(lines.size() - 1).getPointsAfterConnection();
     }
 }

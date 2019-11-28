@@ -48,11 +48,6 @@ class LadderGameTest {
                 () -> new LadderGame(participantsName, ladderHeight, connectionStrategy, inputResult));
     }
 
-    @Test
-    void getLadder() {
-        assertThat(ladderGame.getLadder().height()).isEqualTo(5);
-    }
-
     @ParameterizedTest
     @CsvSource(value = {
             "pobi,honux:꽝2,꽝1",

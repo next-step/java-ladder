@@ -53,19 +53,19 @@ public class ResultView {
     }
 
     private static void drawLadder(Ladder ladder) {
-        int height = ladder.height();
-        for (int i = 0; i < height; i++) {
+        List<LineOfLadder> lines = ladder.getLines().getLines();
+        for (LineOfLadder line : lines) {
             System.out.print(PADDING_LADDER + VERTICAL);
-            drawLine(ladder.getLine(i), ladder.width());
+            drawLine(line);
             System.out.println(EMPTY);
         }
     }
 
-    private static void drawLine(LineOfLadder line, int width) {
+    private static void drawLine(LineOfLadder line) {
         List<Connection> connections = line.getConnections();
-        for (int i = 0; i < width; i++) {
-            boolean connection = connections.get(i).isConnected();
-            drawConnection(connection);
+        for (Connection connection : connections) {
+            boolean isConnected = connection.isConnected();
+            drawConnection(isConnected);
         }
     }
 
