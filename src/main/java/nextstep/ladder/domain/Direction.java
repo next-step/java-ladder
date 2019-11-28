@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import static nextstep.ladder.util.RandomGenerator.generateBoolean;
@@ -13,6 +16,14 @@ public class Direction {
     private static final int MOVE_LEFT = -1;
     private static final int MOVE_RIGHT = 1;
     private static final int MOVE_PASS = 0;
+
+    private static final Map<Integer, Direction> DEFINE_DIRECTION = new HashMap<>();
+
+    static {
+        DEFINE_DIRECTION.put(MOVE_LEFT, new Direction(Boolean.TRUE, Boolean.FALSE));
+        DEFINE_DIRECTION.put(MOVE_PASS, new Direction(Boolean.FALSE, Boolean.FALSE));
+        DEFINE_DIRECTION.put(MOVE_RIGHT, new Direction(Boolean.FALSE, Boolean.TRUE));
+    }
 
     private final boolean left;
     private final boolean current;
@@ -31,11 +42,19 @@ public class Direction {
     }
 
     public static Direction first(boolean next) {
-        return new Direction(Boolean.FALSE, next);
+        return getDirection(false, next);
+    }
+
+    private static Direction getDirection(boolean left, boolean current) {
+        return DEFINE_DIRECTION.values()
+                .stream()
+                .filter(direction -> direction.valueEquals(left, current))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException());
     }
 
     public Direction next(boolean next) {
-        return of(this.current, next);
+        return getDirection(this.current, next);
     }
 
     public Direction next() {
@@ -66,6 +85,9 @@ public class Direction {
         return this.current;
     }
 
+    private boolean valueEquals(boolean left, boolean current) {
+        return this.left == left && this.current == current;
+    }
 
     @Override
     public boolean equals(Object o) {
