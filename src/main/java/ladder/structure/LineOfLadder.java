@@ -15,7 +15,7 @@ public class LineOfLadder {
                         ConnectionStrategy connectionStrategy,
                         Points points) {
         this.connections = new Connections(ladderWidth, connectionStrategy);
-        this.pointsAfterConnection = new Points(connections, points);
+        this.pointsAfterConnection = connections.getAfterPoints(points);
     }
 
     public List<Connection> getConnections() {

@@ -11,16 +11,16 @@ class PointsTest {
     @Test
     @DisplayName("point이동 경로 확인")
     void getPointsTest() {
-        Points points = new Points(2);
+        Points first = new Points(2);
         Connections connections = new Connections(2, new DefaultConnection());
 
-        Points participantPoints = new Points(connections, points);
-        assertThat(participantPoints.getPoints())
+        Points second = connections.getAfterPoints(first);
+        assertThat(second.getPoints())
                 .containsExactly(Point.of(1), Point.of(0), Point.of(2));
 
         connections = new Connections(2, new DefaultConnection());
-        participantPoints = new Points(connections, points);
-        assertThat(participantPoints.getPoints())
+        Points third = connections.getAfterPoints(second);
+        assertThat(third.getPoints())
                 .containsExactly(Point.of(0), Point.of(1), Point.of(2));
     }
 }
