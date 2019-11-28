@@ -1,5 +1,6 @@
 package ladder.structure.connection;
 
+import ladder.structure.connection.result.Points;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class ConnectionsTest {
     void constructorTest() {
         DefaultConnection connectionStrategy = new DefaultConnection();
         List<Connection> connections
-                = new Connections(3, connectionStrategy).getConnections();
+                = new Points(3, connectionStrategy).getConnections();
         assertAll(
                 () -> assertThat(connections.get(0))
                         .isEqualTo(Connection.CONNECTED_BRIDGE),

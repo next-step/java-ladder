@@ -24,10 +24,17 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
+    public Points getFinalPoints(ConnectionStrategy connectionStrategy) {
+        Points points = null;
+        for (LineOfLadder lineOfLadder : lines) {
+            points = lineOfLadder.movePoints(connectionStrategy);
+        }
+        return points;
+    }
     public Points getFinalPoints() {
         Points points = null;
         for (LineOfLadder lineOfLadder : lines) {
-            points = lineOfLadder.movePoints(points);
+            points = lineOfLadder.movePoints();
         }
         return points;
     }

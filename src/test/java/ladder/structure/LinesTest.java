@@ -1,8 +1,11 @@
 package ladder.structure;
 
+import ladder.structure.connection.ConnectionStrategy;
 import ladder.structure.connection.Connections;
 import ladder.structure.connection.DefaultConnection;
+import ladder.structure.connection.NoneConnection;
 import ladder.structure.connection.result.Point;
+import ladder.structure.connection.result.Points;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,9 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LinesTest {
-    private DefaultConnection connectionStrategy = new DefaultConnection();
+    private ConnectionStrategy connectionStrategy = new NoneConnection();
     private Lines lines = new Lines(5, 4, connectionStrategy);
-    private List<Point> points = lines.getFinalPoints().getPoints();
+    private List<Point> points = lines.getFinalPoints(new NoneConnection()).getPoints();
 
     @Test
     @DisplayName("lines 생성 테스트")
@@ -24,13 +27,13 @@ class LinesTest {
         List<LineOfLadder> lineList = lines.getLines();
         assertAll(
                 () -> assertThat(lineList.get(0).getConnections())
-                        .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
+                        .isEqualTo(new Points(4, connectionStrategy).getConnections()),
                 () -> assertThat(lineList.get(1).getConnections())
-                        .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
+                        .isEqualTo(new Points(4, connectionStrategy).getConnections()),
                 () -> assertThat(lineList.get(2).getConnections())
-                        .isEqualTo(new Connections(4, connectionStrategy).getConnections()),
+                        .isEqualTo(new Points(4, connectionStrategy).getConnections()),
                 () -> assertThat(lineList.get(3).getConnections())
-                        .isEqualTo(new Connections(4, connectionStrategy).getConnections())
+                        .isEqualTo(new Points(4, connectionStrategy).getConnections())
         );
     }
 
