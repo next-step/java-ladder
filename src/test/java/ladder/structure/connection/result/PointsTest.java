@@ -1,6 +1,5 @@
 package ladder.structure.connection.result;
 
-import ladder.structure.connection.Connections;
 import ladder.structure.connection.DefaultConnection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

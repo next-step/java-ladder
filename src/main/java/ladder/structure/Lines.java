@@ -18,25 +18,17 @@ public class Lines {
 
     private List<LineOfLadder> addLines(int participantsSize, int ladderHeight, ConnectionStrategy connectionStrategy) {
         List<LineOfLadder> lines = new ArrayList<>();
-        for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new LineOfLadder(participantsSize, connectionStrategy));
+        LineOfLadder line = new LineOfLadder(participantsSize, connectionStrategy);
+        lines.add(line);
+        for (int i = 1; i < ladderHeight; i++) {
+            line = line.getNext(connectionStrategy);
+            lines.add(line);
         }
         return Collections.unmodifiableList(lines);
     }
 
     public Points getFinalPoints(ConnectionStrategy connectionStrategy) {
-        Points points = null;
-        for (LineOfLadder lineOfLadder : lines) {
-            points = lineOfLadder.movePoints(connectionStrategy);
-        }
-        return points;
-    }
-    public Points getFinalPoints() {
-        Points points = null;
-        for (LineOfLadder lineOfLadder : lines) {
-            points = lineOfLadder.movePoints();
-        }
-        return points;
+        return lines.get(lines.size() - 1).getNext(connectionStrategy).getPoints();
     }
 
     private void verifyLadderHeight(int ladderHeight) {

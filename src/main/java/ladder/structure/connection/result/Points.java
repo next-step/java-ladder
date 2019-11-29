@@ -22,24 +22,12 @@ public class Points {
         this.connections = addConnections(ladderWidth, connectionStrategy);
     }
 
-    private Points(List<Point> points) {
-        this.points = points;
-    }
-
     private Points(List<Point> points, ConnectionStrategy connectionStrategy) {
         this.points = points;
         this.connections = addConnections(points.size() - 1, connectionStrategy);
     }
 
-    public Points movePoints() {
-        return move();
-    }
-
-    public Points movePoints(ConnectionStrategy connectionStrategy) {
-        return move(connectionStrategy);
-    }
-
-    public boolean isConnectedConnection(int index) {
+    private boolean isConnectedConnection(int index) {
         if (index < 0 || index >= connections.size()) {
             return NOT_CONNECTED_BRIDGE.isConnected();
         }
@@ -60,7 +48,7 @@ public class Points {
         return Collections.unmodifiableList(connections);
     }
 
-    public Points move(ConnectionStrategy connectionStrategy) {
+    public Points movePoints(ConnectionStrategy connectionStrategy) {
         List<Point> pointsAfterConnection = new ArrayList<>();
         for (Point before : points) {
             Point after = before.move(
@@ -70,17 +58,6 @@ public class Points {
             pointsAfterConnection.add(after);
         }
         return new Points(Collections.unmodifiableList(pointsAfterConnection), connectionStrategy);
-    }
-    public Points move() {
-        List<Point> pointsAfterConnection = new ArrayList<>();
-        for (Point before : points) {
-            Point after = before.move(
-                    isConnectedConnection(before.value() + CONNECTION_TO_LEFT),
-                    isConnectedConnection(before.value() + CONNECTION_TO_RIGHT)
-            );
-            pointsAfterConnection.add(after);
-        }
-        return new Points(Collections.unmodifiableList(pointsAfterConnection));
     }
 
     public List<Point> getPoints() {
