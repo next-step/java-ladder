@@ -11,7 +11,6 @@ class Point {
 
     private static final int INCREASE = 1;
     private static final int FIRST_POSITION = 0;
-    private static final int LAST_POSITION_CHECK_INDEX = 2;
 
     private final Direction direction;
     private final int currentPosition;
@@ -21,32 +20,32 @@ class Point {
         this.direction = direction;
     }
 
-    static Point first() {
-        return new Point(FIRST_POSITION, Direction.first());
+    public static Point first(boolean next) {
+        return new Point(FIRST_POSITION, Direction.first(next));
     }
 
-    Point next(boolean nextPoint, int maxPosition) {
-        if (direction.isNextFalse(nextPoint) || isNextPositionLast(maxPosition)) {
-            return new Point(currentPosition + INCREASE, direction.next(false));
-        }
-
-        return new Point(currentPosition + INCREASE, direction.next(nextPoint));
+    public Point next() {
+        return new Point(positionIncrementAndGet(), direction.next());
     }
 
-    LadderBridge pointToBridge() {
-        return LadderBridge.findLadderBridge(direction.isPoint(), isFirst(this.currentPosition, FIRST_POSITION));
+    public Point next(boolean next) {
+        return new Point(positionIncrementAndGet(), direction.next(next));
     }
 
-    private boolean isFirst(int currentPosition, int firstPosition) {
-        return currentPosition == firstPosition;
+    public Point last() {
+        return new Point(positionIncrementAndGet(), direction.last());
     }
 
     public int move() {
         return this.currentPosition + direction.move();
     }
 
-    private boolean isNextPositionLast(int maxPosition) {
-        return maxPosition == this.currentPosition + LAST_POSITION_CHECK_INDEX;
+    private int positionIncrementAndGet() {
+        return this.currentPosition + INCREASE;
+    }
+
+    public boolean isPoint() {
+        return direction.isPoint();
     }
 
     @Override
@@ -62,6 +61,4 @@ class Point {
     public int hashCode() {
         return Objects.hash(direction, currentPosition);
     }
-
-
 }

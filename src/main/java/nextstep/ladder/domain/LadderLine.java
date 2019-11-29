@@ -1,58 +1,65 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.RandomGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static nextstep.ladder.util.RandomGenerator.generateBoolean;
 
 /**
  * @author : 김윤호
  * @version : 1.0
  * @date : 2019-11-11 19:40
  */
-class LadderLine {
+public class LadderLine {
 
-    private final List<Point> points = new ArrayList<>();
-    private final int countOfPerson;
+    private final List<Point> points;
 
-    public LadderLine(int countOfPerson) {
-        this.countOfPerson = countOfPerson;
-        create();
+    private LadderLine(List<Point> points) {
+        this.points = points;
     }
 
-    private void create() {
-        Point point = Point.first();
+    public static LadderLine init(int countOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirstPoint(points);
+        point = initBody(countOfPerson, points, point);
+        initLastPoint(points, point);
+        return new LadderLine(points);
+    }
+
+    private static Point initFirstPoint(List<Point> points) {
+        Point point = Point.first(generateBoolean());
         points.add(point);
-        while (countOfPerson != points.size()) {
-            point = point.next(RandomGenerator.generateBoolean(), countOfPerson);
+        return point;
+    }
+
+    private static Point initBody(int countOfPerson, List<Point> points, Point point) {
+        int maxBodyLength = countOfPerson - 1;
+        for (int person = 1; person < maxBodyLength; person++) {
+            point = point.next();
             points.add(point);
         }
+        return point;
     }
 
-    public List<LadderBridge> showLine() {
-        return points
-                .stream()
-                .map(Point::pointToBridge)
-                .collect(Collectors.toList());
+    private static void initLastPoint(List<Point> points, Point point) {
+        points.add(point.last());
     }
 
     public int move(int index) {
         return points.get(index).move();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LadderLine line = (LadderLine) o;
-        return countOfPerson == line.countOfPerson &&
-                Objects.equals(points, line.points);
+    public List<Boolean> getPointOfLine() {
+        return points.stream()
+                .map(Point::isPoint)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(points, countOfPerson);
+    public String toString() {
+        return "LadderLine{" +
+                "points=" + points +
+                '}';
     }
 }

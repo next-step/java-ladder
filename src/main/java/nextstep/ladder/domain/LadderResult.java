@@ -14,13 +14,16 @@ import java.util.stream.Collectors;
 public class LadderResult {
     private final Map<String, String> ladderResult = new LinkedHashMap<>();
 
-    public LadderResult(Ladder ladder, List<String> names, List<String> executeResult) {
-        createResult(ladder, names, executeResult);
+    public LadderResult(Ladder ladder, LadderRequireElement ladderRequireElement) {
+        createResult(ladder, ladderRequireElement);
     }
 
-    private void createResult(Ladder ladder, List<String> names, List<String> executeResult) {
+    private void createResult(Ladder ladder, LadderRequireElement ladderRequireElement) {
+        List<String> names = ladderRequireElement.getParticipant();
+        List<String> executionResult = ladderRequireElement.getExecutionResult();
+
         names.forEach(name -> {
-            ladderResult.put(name, executeResult.get(ladder.play(names.indexOf(name))));
+            ladderResult.put(name, executionResult.get(ladder.play(names.indexOf(name))));
         });
     }
 

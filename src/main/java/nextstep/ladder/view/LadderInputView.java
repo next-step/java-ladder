@@ -22,8 +22,8 @@ public class LadderInputView {
 
     public static List<String> inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String inputNames = StringUtils.deleteWhitespace(SCANNER.nextLine());
-        return arrayToList(inputNames.split(","), "이름은 다섯글자 이하로 입력해주세요.");
+        String[] inputNames = StringUtils.deleteWhitespace(SCANNER.nextLine()).split(",");
+        return Arrays.asList(inputNames);
     }
 
     public static int inputLadderHeight() {
@@ -36,15 +36,11 @@ public class LadderInputView {
         return Integer.parseInt(inputHeight);
     }
 
-    public static List<String> inputExecuteResult(int personCount) {
+    public static List<String> inputExecuteResult() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String[] inputResult = StringUtils.deleteWhitespace(SCANNER.nextLine()).split(",");
 
-        if (inputResult.length != personCount) {
-            throw new InputMismatchException("참여하는 인원과 결과의 수는 같아야합니다.");
-        }
-
-        return arrayToList(inputResult, "결과는 다섯글자 이하로 입력해주세요.");
+        return Arrays.asList(inputResult);
     }
 
     public static String inputSeeResult(List<String> names) {
@@ -58,18 +54,8 @@ public class LadderInputView {
     }
 
     private static List<String> removeBlankList(List<String> names) {
-        return names.stream().map(StringUtils::deleteWhitespace).collect(Collectors.toList());
-    }
-
-    private static List<String> arrayToList(String[] inputResult, String exceptionMessage) {
-        return Arrays
-                .stream(inputResult)
-                .map(input -> {
-                    if (input.length() > MINIMUM_MAXIMUM_VALUE) {
-                        throw new InputMismatchException(exceptionMessage);
-                    }
-                    return input;
-                })
+        return names.stream()
+                .map(StringUtils::deleteWhitespace)
                 .collect(Collectors.toList());
     }
 

@@ -1,9 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * @author : 김윤호
@@ -23,16 +23,9 @@ public class Ladder {
     private List<LadderLine> crateLadderLines(int countOfPerson) {
         List<LadderLine> ladderLines = new ArrayList<>();
         for (int height = 0; height < ladderHeight; height++) {
-            ladderLines.add(new LadderLine(countOfPerson));
+            ladderLines.add(LadderLine.init(countOfPerson));
         }
         return ladderLines;
-    }
-
-    public List<List<LadderBridge>> showLadder() {
-        return ladder
-                .stream()
-                .map(LadderLine::showLine)
-                .collect(Collectors.toList());
     }
 
     public int play(int personIndex) {
@@ -42,6 +35,13 @@ public class Ladder {
         }
 
         return index;
+    }
+
+    public List<LadderLine> getLadderLines() {
+        ladder.forEach(line -> {
+            line.getPointOfLine();
+        });
+        return Collections.unmodifiableList(ladder);
     }
 
     @Override

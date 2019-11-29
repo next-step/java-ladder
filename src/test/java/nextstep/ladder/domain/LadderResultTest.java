@@ -13,8 +13,10 @@ class LadderResultTest {
         Ladder ladder = new Ladder(4, 5);
         List<String> names = Arrays.asList("kimun", "leeyp", "kimyh", "abcd");
         List<String> executeResult = Arrays.asList("꽝", "5000", "3000", "꽝");
+        LadderRequireElement ladderRequireElement = new LadderRequireElement(names, executeResult);
 
-        LadderResult ladderResult = new LadderResult(ladder, names, executeResult);
+
+        LadderResult ladderResult = new LadderResult(ladder, ladderRequireElement);
         assertThat(ladderResult.findResultByName("kimun")).hasSize(1);
     }
 
@@ -23,8 +25,10 @@ class LadderResultTest {
         Ladder ladder = new Ladder(4, 5);
         List<String> names = Arrays.asList("kimun", "leeyp", "kimyh", "abcd");
         List<String> executeResult = Arrays.asList("꽝", "5000", "3000", "꽝");
+        LadderRequireElement ladderRequireElement = new LadderRequireElement(names, executeResult);
 
-        LadderResult ladderResult = new LadderResult(ladder, names, executeResult);
+
+        LadderResult ladderResult = new LadderResult(ladder, ladderRequireElement);
         assertThat(ladderResult.findResultByName("all")).hasSize(4);
     }
 }
