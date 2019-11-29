@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Status;
 
@@ -21,14 +21,14 @@ public class ResultView {
     }
 
     public void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLines();
-        for (Line line : lines) {
+        List<LadderLine> lines = ladder.getLines();
+        for (LadderLine line : lines) {
             printLine(line);
             System.out.println();
         }
     }
 
-    private void printLine(Line line) {
+    private void printLine(LadderLine line) {
         for (Point point : line.getPoints()) {
             printPoint(point);
         }
@@ -52,6 +52,9 @@ public class ResultView {
         }
         if ("all".equals(name)) {
             printAll(result);
+        }
+        if (!(result.containsKey(name) || "all".equals(name))) {
+            System.out.println(name + "은(는) 참가자 이름이 아닙니다");
         }
     }
 

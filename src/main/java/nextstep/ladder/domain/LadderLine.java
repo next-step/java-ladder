@@ -5,28 +5,39 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Line {
+public class LadderLine {
 
     private List<Point> points;
 
-    public Line(int pointSize) {
+    public LadderLine(int pointSize) {
         this.points = createPoints(pointSize);
     }
 
     private List<Point> createPoints(int spotSize) {
         List<Point> points = new ArrayList<>();
 
+        Point firstPoint = initFirst(points);
+        initNext(points, firstPoint, spotSize);
+        initLast(points);
+
+        return points;
+    }
+
+    private Point initFirst(List<Point> points) {
         Point point = Point.ofFirst(createBoolean());
         points.add(point);
+        return point;
+    }
 
+    private void initNext(List<Point> points, Point point, int spotSize) {
         for (int i = 1; i < spotSize; i++) {
             point = point.createNext(createBoolean());
             points.add(point);
         }
+    }
 
-        points.get(points.size()-1).changeToLastPoint();
-
-        return points;
+    private void initLast(List<Point> points) {
+        points.get(points.size() - 1).changeToLastPoint();
     }
 
     private boolean createBoolean() {
