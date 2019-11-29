@@ -1,6 +1,6 @@
 package ladder.structure.connection.result;
 
-import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.MoveStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,40 +14,40 @@ import static java.util.stream.Collectors.toList;
 public class Points {
     private final List<Point> points;
 
-    public Points(int ladderWidth, ConnectionStrategy connectionStrategy) {
+    public Points(int ladderWidth, MoveStrategy moveStrategy) {
         this.points = IntStream.rangeClosed(0, ladderWidth).boxed()
                 .map(Point::of)
                 .collect(toList());
-        setDirections(connectionStrategy);
+        setDirections(moveStrategy);
     }
 
-    private Points(List<Point> points, ConnectionStrategy connectionStrategy) {
+    private Points(List<Point> points, MoveStrategy moveStrategy) {
         this.points = points;
-        setDirections(connectionStrategy);
+        setDirections(moveStrategy);
     }
 
-    private void setDirections(ConnectionStrategy connectionStrategy) {
-        Map<Integer, Point> lineIndexWithPoint = this.points.stream()
-                .collect(Collectors.toMap(Point::value, point -> point));
+    private void setDirections(MoveStrategy moveStrategy) {
+        Map<Integer, Point> pointByColumn = this.points.stream()
+                .collect(Collectors.toMap(Point::getColumn, point -> point));
 
-        Point now = lineIndexWithPoint.get(0);
-        now.firstOf(connectionStrategy);
+        Point now = pointByColumn.get(0);
+        now.setDirection(moveStrategy);
         Point before = now;
         for (int i = 1; i < points.size() - 1; i++) {
-            now = lineIndexWithPoint.get(i);
-            now.of(before, connectionStrategy);
+            now = pointByColumn.get(i);
+            now.setDirection(before, moveStrategy);
             before = now;
         }
-        lineIndexWithPoint.get(points.size() - 1).lastOf(before);
+        pointByColumn.get(points.size() - 1).setDirectionOfLast(before);
     }
 
-    public Points getNext(ConnectionStrategy connectionStrategy) {
-        List<Point> pointsAfterConnection = new ArrayList<>();
+    public Points getNext(MoveStrategy moveStrategy) {
+        List<Point> pointsAfterMove = new ArrayList<>();
         for (Point before : points) {
             Point after = before.move();
-            pointsAfterConnection.add(after);
+            pointsAfterMove.add(after);
         }
-        return new Points(pointsAfterConnection, connectionStrategy);
+        return new Points(pointsAfterMove, moveStrategy);
     }
 
     public List<Point> getPoints() {

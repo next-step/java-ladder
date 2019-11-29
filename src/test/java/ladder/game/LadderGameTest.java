@@ -1,8 +1,8 @@
 package ladder.game;
 
-import ladder.structure.connection.ConnectionStrategy;
-import ladder.structure.connection.DefaultConnection;
-import ladder.structure.connection.RandomConnection;
+import ladder.structure.connection.DefaultMove;
+import ladder.structure.connection.MoveStrategy;
+import ladder.structure.connection.RandomMove;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,14 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderGameTest {
     private LadderGame ladderGame;
-    private ConnectionStrategy connectionStrategy = new RandomConnection();
+    private MoveStrategy moveStrategy = new RandomMove();
 
     @BeforeEach
     void setUp() {
         String participants = "pobi, honux, crong, jk";
         String inputResults = "꽝, 꽝, 천원, 만원";
         int ladderHeight = 5;
-        ladderGame = new LadderGame(participants, ladderHeight, connectionStrategy, inputResults);
+        ladderGame = new LadderGame(participants, ladderHeight, moveStrategy, inputResults);
     }
 
     @Test
@@ -45,7 +45,7 @@ class LadderGameTest {
     @DisplayName("입력 시 예외상황 발생")
     void participantNameException(String participantsName, int ladderHeight, String inputResult) {
         assertThrows(IllegalArgumentException.class,
-                () -> new LadderGame(participantsName, ladderHeight, connectionStrategy, inputResult));
+                () -> new LadderGame(participantsName, ladderHeight, moveStrategy, inputResult));
     }
 
     @ParameterizedTest
@@ -58,7 +58,7 @@ class LadderGameTest {
         String participants = "pobi, honux, crong, jk";
         String inputResults = "꽝1, 꽝2, 천원, 만원";
         int ladderHeight = 5;
-        ladderGame = new LadderGame(participants, ladderHeight, new DefaultConnection(), inputResults);
+        ladderGame = new LadderGame(participants, ladderHeight, new DefaultMove(), inputResults);
         assertThat(ladderGame.checkPrizesByParticipant(participant.split(",")).values().values())
                 .containsExactly(result.split(","));
     }

@@ -1,7 +1,7 @@
 package ladder.game;
 
 import ladder.structure.Ladder;
-import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.MoveStrategy;
 import ladder.structure.connection.result.Point;
 
 import java.util.*;
@@ -10,10 +10,10 @@ public class LadderGame {
     private final Ladder ladder;
     private final GameInfo gameInfo;
 
-    public LadderGame(String inputParticipant, int ladderHeight, ConnectionStrategy connection,
+    public LadderGame(String inputParticipant, int ladderHeight, MoveStrategy moveStrategy,
                       String inputResults) {
         this.gameInfo = new GameInfo(inputParticipant, inputResults);
-        this.ladder = new Ladder(gameInfo.sizeOfParticipants(), ladderHeight, connection);
+        this.ladder = new Ladder(gameInfo.sizeOfParticipants(), ladderHeight, moveStrategy);
     }
 
     public Results checkPrizesByParticipant(String... input) {
@@ -32,7 +32,7 @@ public class LadderGame {
 
         for (String user : users) {
             int index = participants.indexOf(user);
-            int finalPoint = finalPoints.get(index).value();
+            int finalPoint = finalPoints.get(index).getColumn();
             results.put(user, prizeList.get(finalPoint).toString());
         }
         return new Results(Collections.unmodifiableMap(results));

@@ -1,67 +1,59 @@
 package ladder.structure.connection.result;
 
-import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.MoveStrategy;
 
 import java.util.Objects;
 
 public class Point {
-    private final int point; // 줄번호
-    private int openToRight; // 방향
+    private final static int HEADING_RIGHT = 1;
+    private final static int HEADING_LEFT = -1;
+    private final static int HEADING_DOWN = 0;
+    private final int column; // 줄번호
+    private int direction; // 방향
 
-    private Point(int num) {
-        this.point = num;
+    private Point(int column) {
+        this.column = column;
     }
 
-    public static Point of(int num) {
-        Point point = new Point(num);
-        return point;
+    public static Point of(int column) {
+        return new Point(column);
     }
 
-    public void firstOf(ConnectionStrategy connectionStrategy) {
-        boolean connected = connectionStrategy.create();
-        if (connected) {
-            this.openToRight = 1;
+    public void setDirection(Point before, MoveStrategy moveStrategy) {
+        if (before.direction == HEADING_RIGHT) {
+            this.direction = HEADING_LEFT;
             return;
         }
-        this.openToRight = 0;
+        setDirection(moveStrategy);
     }
 
-    public void of(Point before, ConnectionStrategy connectionStrategy) {
-        if (before.openToRight == 1) {
-            this.openToRight = -1;
+    public void setDirectionOfLast(Point before) {
+        if (before.direction == HEADING_RIGHT) {
+            this.direction = HEADING_LEFT;
             return;
         }
-        boolean connected = connectionStrategy.create();
-        if (connected) {
-            this.openToRight = 1;
-            return;
-        }
-        this.openToRight = 0;
+        this.direction = HEADING_DOWN;
     }
 
-    public void lastOf(Point before) {
-        if (before.openToRight == 1) {
-            this.openToRight = -1;
-            return;
-        }
-        this.openToRight = 0;
+    public int getDirection() {
+        return direction;
     }
 
-    public int getOpenToRight() {
-        return openToRight;
+    public void setDirection(MoveStrategy moveStrategy) {
+        boolean movable = moveStrategy.isMovableToRight();
+        if (movable) {
+            this.direction = HEADING_RIGHT;
+            return;
+        }
+        this.direction = HEADING_DOWN;
     }
 
     public Point move() {
-        return Point.of(this.point + openToRight);
+        return Point.of(this.column + direction);
     }
 
-    @Override
-    public String toString() {
-        return "Point{" + "point=" + point + '}';
-    }
-
-    public int value() {
-        return point;
+    public int getColumn() {
+        return column;
     }
 
     @Override
@@ -69,11 +61,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point1 = (Point) o;
-        return point == point1.point;
+        return column == point1.column;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(column);
     }
 }

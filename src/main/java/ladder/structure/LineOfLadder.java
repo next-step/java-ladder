@@ -1,15 +1,15 @@
 package ladder.structure;
 
-import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.MoveStrategy;
 import ladder.structure.connection.result.Points;
 
 public class LineOfLadder {
     private static final int DIFF_OF_PARTICIPANTS_COUNT_TO_WIDTH = 1;
     private final Points points;
 
-    public LineOfLadder(int participantsSize, ConnectionStrategy connectionStrategy) {
+    public LineOfLadder(int participantsSize, MoveStrategy moveStrategy) {
         int width = calculateWidth(participantsSize);
-        this.points = new Points(width, connectionStrategy);
+        this.points = new Points(width, moveStrategy);
     }
 
     public LineOfLadder(Points movePoints) {
@@ -20,8 +20,8 @@ public class LineOfLadder {
         return participantsSize - DIFF_OF_PARTICIPANTS_COUNT_TO_WIDTH;
     }
 
-    public LineOfLadder getNext(ConnectionStrategy connectionStrategy) {
-        return new LineOfLadder(points.getNext(connectionStrategy));
+    public LineOfLadder getNext(MoveStrategy moveStrategy) {
+        return new LineOfLadder(points.getNext(moveStrategy));
     }
 
     public Points getPoints() {

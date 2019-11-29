@@ -65,9 +65,9 @@ public class ResultView {
 
     private static void drawLine(LineOfLadder line) {
         Map<Integer, Point> lineIndexWithPoint = line.getPoints().getPoints().stream()
-                .collect(Collectors.toMap(Point::value, point -> point));
+                .collect(Collectors.toMap(Point::getColumn, point -> point));
         for (int i = 0; i < lineIndexWithPoint.size() - 1; i++) {
-            drawConnection(lineIndexWithPoint.get(i).getOpenToRight());
+            drawConnection(lineIndexWithPoint.get(i).getDirection());
         }
     }
 

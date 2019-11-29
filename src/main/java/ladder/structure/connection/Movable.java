@@ -1,6 +1,6 @@
 package ladder.structure.connection;
 
 @FunctionalInterface
-public interface ConnectionStrategy {
-    boolean create();
+public interface Movable {
+    boolean isMovableToRight();
 }

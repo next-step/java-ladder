@@ -1,19 +1,19 @@
 package ladder.structure;
 
-import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.MoveStrategy;
 import ladder.structure.connection.result.Points;
 
 public class Ladder {
     private final Lines lines;
-    private final ConnectionStrategy connectionStrategy;
+    private final MoveStrategy moveStrategy;
 
-    public Ladder(int participantsSize, int ladderHeight, ConnectionStrategy connectionStrategy) {
-        this.lines = new Lines(participantsSize, ladderHeight, connectionStrategy);
-        this.connectionStrategy = connectionStrategy;
+    public Ladder(int participantsSize, int ladderHeight, MoveStrategy moveStrategy) {
+        this.lines = new Lines(participantsSize, ladderHeight, moveStrategy);
+        this.moveStrategy = moveStrategy;
     }
 
     public Points getFinalPoints() {
-        return this.lines.getFinalPoints(connectionStrategy);
+        return this.lines.getFinalPoints(moveStrategy);
     }
 
     public Lines getLines() {
