@@ -20,7 +20,7 @@ public class Lines {
         List<LineOfLadder> lines = new ArrayList<>();
         LineOfLadder line = new LineOfLadder(participantsSize, connectionStrategy);
         lines.add(line);
-        for (int i = 0; i < ladderHeight; i++) {
+        for (int i = 1; i < ladderHeight; i++) {
             line = line.getNext(connectionStrategy);
             lines.add(line);
         }
@@ -28,7 +28,7 @@ public class Lines {
     }
 
     public Points getFinalPoints(ConnectionStrategy connectionStrategy) {
-        return lines.get(lines.size() - 1).getPoints();
+        return lines.get(lines.size() - 1).getPoints().getNext(connectionStrategy);
     }
 
     private void verifyLadderHeight(int ladderHeight) {

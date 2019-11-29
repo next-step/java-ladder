@@ -6,9 +6,11 @@ import ladder.game.Prize;
 import ladder.game.Results;
 import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
-import ladder.structure.connection.Connection;
+import ladder.structure.connection.result.Point;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private static final String LADDER_RESULT = "사다리 결과";
@@ -54,8 +56,7 @@ public class ResultView {
 
     private static void drawLadder(Ladder ladder) {
         List<LineOfLadder> lines = ladder.getLines().getLines();
-        for (int i = 0; i < lines.size() - 1; i++) {
-            LineOfLadder line = lines.get(i);
+        for (LineOfLadder line : lines) {
             System.out.print(PADDING_LADDER + VERTICAL);
             drawLine(line);
             System.out.println(EMPTY);
@@ -63,15 +64,15 @@ public class ResultView {
     }
 
     private static void drawLine(LineOfLadder line) {
-        List<Connection> connections = line.getConnections();
-        for (Connection connection : connections) {
-            boolean isConnected = connection.isConnected();
-            drawConnection(isConnected);
+        Map<Integer, Point> lineIndexWithPoint = line.getPoints().getPoints().stream()
+                .collect(Collectors.toMap(Point::value, point -> point));
+        for (int i = 0; i < lineIndexWithPoint.size() - 1; i++) {
+            drawConnection(lineIndexWithPoint.get(i).getOpenToRight());
         }
     }
 
-    private static void drawConnection(boolean isConnected) {
-        if (isConnected) {
+    private static void drawConnection(int openToRight) {
+        if (openToRight == 1) {
             System.out.print(HORIZON + VERTICAL);
         } else {
             System.out.print(EMPTY_HORIZON + VERTICAL);

@@ -1,11 +1,7 @@
 package ladder.structure;
 
-import ladder.structure.connection.Connection;
 import ladder.structure.connection.ConnectionStrategy;
 import ladder.structure.connection.result.Points;
-
-import java.util.Collections;
-import java.util.List;
 
 public class LineOfLadder {
     private static final int DIFF_OF_PARTICIPANTS_COUNT_TO_WIDTH = 1;
@@ -22,10 +18,6 @@ public class LineOfLadder {
 
     private int calculateWidth(int participantsSize) {
         return participantsSize - DIFF_OF_PARTICIPANTS_COUNT_TO_WIDTH;
-    }
-
-    public List<Connection> getConnections() {
-        return Collections.unmodifiableList(points.getConnections());
     }
 
     public LineOfLadder getNext(ConnectionStrategy connectionStrategy) {

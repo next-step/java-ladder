@@ -1,28 +1,15 @@
 package ladder.structure.connection.result;
 
-import ladder.structure.connection.Connection;
+import ladder.structure.connection.ConnectionStrategy;
 
-import java.util.List;
 import java.util.Objects;
 
-import static ladder.structure.connection.Connection.NOT_CONNECTED_BRIDGE;
-
 public class Point {
-    public static final int MOVE_RIGHT = 1;
-    private static final int MOVE_STRAIGHT = 0;
-    private static final int MOVE_LEFT = -1;
-    private static final int CONNECTION_TO_RIGHT = 0;
-    private static final int CONNECTION_TO_LEFT = -1;
-    private final int point;
-    private int direction;
+    private final int point; // 줄번호
+    private int openToRight; // 방향
 
     private Point(int num) {
         this.point = num;
-    }
-
-    private Point(int num, int direction) {
-        this.point = num;
-        this.direction = direction;
     }
 
     public static Point of(int num) {
@@ -30,41 +17,42 @@ public class Point {
         return point;
     }
 
-    public static Point of(int num, int direction) {
-        Point point = new Point(num, direction);
-        return point;
-    }
-
-    private boolean isPossibleToGoLeft(List<Connection> connections) {
-        return isConnectedConnection(connections, point + CONNECTION_TO_LEFT);
-    }
-
-    private boolean isPossibleToGoRight(List<Connection> connections) {
-        return isConnectedConnection(connections, point + CONNECTION_TO_RIGHT);
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
-    private boolean isConnectedConnection(List<Connection> connections, int index) {
-        if (index < 0 || index >= connections.size()) {
-            return NOT_CONNECTED_BRIDGE.isConnected();
+    public void firstOf(ConnectionStrategy connectionStrategy) {
+        boolean connected = connectionStrategy.create();
+        if (connected) {
+            this.openToRight = 1;
+            return;
         }
-        return connections.get(index).isConnected();
+        this.openToRight = 0;
     }
 
-    public Point move(List<Connection> connections) {
-        if (isPossibleToGoLeft(connections)) {
-            this.direction = MOVE_LEFT;
-            return Point.of(this.point + MOVE_LEFT);
+    public void of(Point before, ConnectionStrategy connectionStrategy) {
+        if (before.openToRight == 1) {
+            this.openToRight = -1;
+            return;
         }
-        if (isPossibleToGoRight(connections)) {
-            this.direction = MOVE_RIGHT;
-            return Point.of(this.point + MOVE_RIGHT);
+        boolean connected = connectionStrategy.create();
+        if (connected) {
+            this.openToRight = 1;
+            return;
         }
-        this.direction = MOVE_STRAIGHT;
-        return Point.of(this.point + MOVE_STRAIGHT);
+        this.openToRight = 0;
+    }
+
+    public void lastOf(Point before) {
+        if (before.openToRight == 1) {
+            this.openToRight = -1;
+            return;
+        }
+        this.openToRight = 0;
+    }
+
+    public int getOpenToRight() {
+        return openToRight;
+    }
+
+    public Point move() {
+        return Point.of(this.point + openToRight);
     }
 
     @Override
