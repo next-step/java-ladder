@@ -12,11 +12,11 @@ class PointsTest {
     void getPointsTest() {
         Points first = new Points(2, new DefaultConnection());
 
-        Points second = first.movePoints(new DefaultConnection());
+        Points second = first.getNext(new DefaultConnection());
         assertThat(second.getPoints())
                 .containsExactly(Point.of(1), Point.of(0), Point.of(2));
 
-        Points third = second.movePoints(new DefaultConnection());
+        Points third = second.getNext(new DefaultConnection());
         assertThat(third.getPoints())
                 .containsExactly(Point.of(0), Point.of(1), Point.of(2));
     }

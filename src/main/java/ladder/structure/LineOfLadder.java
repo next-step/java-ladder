@@ -29,7 +29,7 @@ public class LineOfLadder {
     }
 
     public LineOfLadder getNext(ConnectionStrategy connectionStrategy) {
-        return new LineOfLadder(points.movePoints(connectionStrategy));
+        return new LineOfLadder(points.getNext(connectionStrategy));
     }
 
     public Points getPoints() {

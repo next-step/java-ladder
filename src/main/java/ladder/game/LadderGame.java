@@ -26,7 +26,7 @@ public class LadderGame {
             users = participants.toStrings();
         }
 
-        Map<String, String> results = new HashMap<>();
+        Map<String, String> results = new LinkedHashMap<>();
         List<Prize> prizeList = prizes.values();
         List<Point> finalPoints = ladder.getFinalPoints().getPoints();
 

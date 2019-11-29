@@ -9,29 +9,23 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
+import static ladder.structure.connection.Connection.CONNECTED_BRIDGE;
 import static ladder.structure.connection.Connection.NOT_CONNECTED_BRIDGE;
+import static ladder.structure.connection.result.Point.MOVE_RIGHT;
 
 public class Points {
-    private static final int CONNECTION_TO_RIGHT = 0;
-    private static final int CONNECTION_TO_LEFT = -1;
     private final List<Point> points;
-    private List<Connection> connections;
 
     public Points(int ladderWidth, ConnectionStrategy connectionStrategy) {
-        this.points = IntStream.rangeClosed(0, ladderWidth).boxed().map(Point :: of).collect(toList());
-        this.connections = addConnections(ladderWidth, connectionStrategy);
+        this.points = IntStream.rangeClosed(0, ladderWidth).boxed()
+                .map(Point::of)
+                .collect(toList());
+        movePoint(connectionStrategy);
     }
 
     private Points(List<Point> points, ConnectionStrategy connectionStrategy) {
         this.points = points;
-        this.connections = addConnections(points.size() - 1, connectionStrategy);
-    }
-
-    private boolean isConnectedConnection(int index) {
-        if (index < 0 || index >= connections.size()) {
-            return NOT_CONNECTED_BRIDGE.isConnected();
-        }
-        return connections.get(index).isConnected();
+        movePoint(connectionStrategy);
     }
 
     private List<Connection> addConnections(int ladderWidth, ConnectionStrategy connectionStrategy) {
@@ -45,19 +39,31 @@ public class Points {
     }
 
     public List<Connection> getConnections() {
+        List<Connection> connections = new ArrayList<>();
+        for (int i = 0; i < points.size() - 1; i++) {
+            connections.add(NOT_CONNECTED_BRIDGE);
+        }
+
+        for (int i = 0; i < points.size(); i++) {
+            if (points.get(i).getDirection() == MOVE_RIGHT) {
+                connections.set(points.get(i).value(), CONNECTED_BRIDGE);
+            }
+        }
         return Collections.unmodifiableList(connections);
     }
 
-    public Points movePoints(ConnectionStrategy connectionStrategy) {
+    private List<Point> movePoint(ConnectionStrategy connectionStrategy) {
+        List<Connection> connections = addConnections(points.size() - 1, connectionStrategy);
         List<Point> pointsAfterConnection = new ArrayList<>();
         for (Point before : points) {
-            Point after = before.move(
-                    isConnectedConnection(before.value() + CONNECTION_TO_LEFT),
-                    isConnectedConnection(before.value() + CONNECTION_TO_RIGHT)
-            );
+            Point after = before.move(connections);
             pointsAfterConnection.add(after);
         }
-        return new Points(Collections.unmodifiableList(pointsAfterConnection), connectionStrategy);
+        return pointsAfterConnection;
+    }
+
+    public Points getNext(ConnectionStrategy connectionStrategy) {
+        return new Points(Collections.unmodifiableList(movePoint(connectionStrategy)), connectionStrategy);
     }
 
     public List<Point> getPoints() {

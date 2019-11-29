@@ -26,11 +26,7 @@ class LinesTest {
         assertAll(
                 () -> assertThat(lineList.get(0).getConnections())
                         .isEqualTo(new Points(4, connectionStrategy).getConnections()),
-                () -> assertThat(lineList.get(1).getConnections())
-                        .isEqualTo(new Points(4, connectionStrategy).getConnections()),
                 () -> assertThat(lineList.get(2).getConnections())
-                        .isEqualTo(new Points(4, connectionStrategy).getConnections()),
-                () -> assertThat(lineList.get(3).getConnections())
                         .isEqualTo(new Points(4, connectionStrategy).getConnections()),
                 () -> assertThat(lineList.get(4).getConnections())
                         .isEqualTo(new Points(4, connectionStrategy).getConnections())

@@ -31,6 +31,10 @@ public class Participants {
         }
     }
 
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
     public int indexOf(String user) {
         int index = participants.indexOf(new Participant(user));
         if (index < 0) {
