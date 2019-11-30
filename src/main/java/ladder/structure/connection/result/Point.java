@@ -13,8 +13,8 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point of(boolean connectedRight, MoveStrategy moveStrategy) {
-        if (connectedRight) {
+    public static Point of(boolean leftOpened, MoveStrategy moveStrategy) {
+        if (leftOpened) {
             return new Point(LEFT);
         }
         boolean movable = moveStrategy.isMovableToRight();
@@ -31,11 +31,11 @@ public class Point {
         return new Point(STAY);
     }
 
-    public Direction getDirection() {
-        return direction;
+    public int diffOfNextIndex() {
+        return direction.getNum();
     }
 
-    public boolean camMoveRight() {
+    public boolean isRightOpened() {
         return direction == RIGHT;
     }
 

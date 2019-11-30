@@ -15,7 +15,7 @@ public class LineOfLadder {
     }
 
     public List<Integer> getNext(List<Integer> now) {
-        return points.getNext(now);
+        return points.moveNext(now);
     }
 
     public List<Point> getPoints() {

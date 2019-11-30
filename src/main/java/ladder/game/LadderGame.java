@@ -20,13 +20,11 @@ public class LadderGame {
 
     public Results getPrizesByParticipant() {
         Participants participants = gameInfo.getParticipants();
-        Prizes prizes = gameInfo.getPrizes();
 
         List<String> users = participants.toStrings();
+        List<Prize> prizeList = gameInfo.getPrizes().values();
 
         Map<String, String> results = new LinkedHashMap<>();
-        List<Prize> prizeList = prizes.values();
-
         List<Integer> finalPoints = ladder.getFinalPoints();
         for (String user : users) {
             int index = participants.indexOf(user);

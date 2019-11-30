@@ -11,14 +11,14 @@ class PointTest {
     @Test
     void constructorTest() {
         MoveStrategy defaultMove = new DefaultMove();
-        Point pointOpenToRight = Point.of(false, defaultMove);
-        assertThat(pointOpenToRight.getDirection()).isEqualTo(RIGHT);
+        Point rightOpenedPoint = Point.of(false, defaultMove);
+        assertThat(rightOpenedPoint.diffOfNextIndex()).isEqualTo(RIGHT.getNum());
 
-        Point pointCloseToRight = Point.of(true, defaultMove);
-        assertThat(pointCloseToRight.getDirection()).isEqualTo(LEFT);
+        Point leftOpenedPoint = Point.of(true, defaultMove);
+        assertThat(leftOpenedPoint.diffOfNextIndex()).isEqualTo(LEFT.getNum());
 
-        Point lastAndOpenToRight = Point.lastOf(false);
-        assertThat(lastAndOpenToRight.getDirection()).isEqualTo(STAY);
+        Point lastAndRightOpenedPoint = Point.lastOf(false);
+        assertThat(lastAndRightOpenedPoint.diffOfNextIndex()).isEqualTo(STAY.getNum());
     }
 }
 

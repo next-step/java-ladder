@@ -25,24 +25,24 @@ public class Points {
                 .reduce(false, (a, b) -> {
                     Point now = Point.of(a, moveStrategy);
                     points.add(now);
-                    return now.camMoveRight();
+                    return now.isRightOpened();
                 }, (a, b) -> {
                     Point now = Point.of(a, moveStrategy);
-                    return now.camMoveRight();
+                    return now.isRightOpened();
                 });
 
         Point last = Point.lastOf(lastConnection);
         points.add(last);
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
-    public List<Integer> getNext(List<Integer> now) {
+    public List<Integer> moveNext(List<Integer> now) {
         if (now == null) {
             now = IntStream.range(0, points.size()).boxed()
                     .collect(Collectors.toList());
         }
         return now.stream()
-                .map(num -> num + points.get(num).getDirection().getNum())
+                .map(num -> num + points.get(num).diffOfNextIndex())
                 .collect(Collectors.toList());
     }
 

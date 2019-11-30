@@ -10,10 +10,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static ladder.structure.connection.result.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
+    private static final String VERTICAL = "|";
+    private static final String HORIZON = "-----";
+    private static final String EMPTY_HORIZON = "     ";
     private MoveStrategy moveStrategy = new DefaultMove();
     private Ladder ladder = new Ladder(5, 5, moveStrategy);
     private List<Integer> finalPoints = ladder.getFinalPoints();
@@ -32,14 +34,10 @@ class LadderTest {
         for (LineOfLadder line : lines) {
             List<Point> points = line.getPoints();
             for (Point point : points) {
-                if (point.getDirection() == RIGHT) {
-                    System.out.print("----|");
-                } else {
-                    System.out.print("    |");
-                }
+                System.out.print((point.isRightOpened() ? HORIZON : EMPTY_HORIZON)
+                        + VERTICAL);
             }
             System.out.println();
         }
     }
-
 }

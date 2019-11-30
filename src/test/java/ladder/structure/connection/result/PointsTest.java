@@ -31,15 +31,15 @@ class PointsTest {
         Points first = new Points(4, new DefaultMove());
 
         List<Integer> order = IntStream.range(0, 4).boxed().collect(Collectors.toList());
-        order = first.getNext(order);
+        order = first.moveNext(order);
         assertThat(order).containsExactly(1, 0, 3, 2);
 
         Points second = new Points(4, new NoneMove());
-        order = second.getNext(order);
+        order = second.moveNext(order);
         assertThat(order).containsExactly(1, 0, 3, 2);
 
         Points third = new Points(4, new DefaultMove());
-        order = third.getNext(order);
+        order = third.moveNext(order);
         assertThat(order).containsExactly(0, 1, 2, 3);
     }
 }

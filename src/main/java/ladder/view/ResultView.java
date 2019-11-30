@@ -5,7 +5,7 @@ import ladder.game.Participants;
 import ladder.game.Prize;
 import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
-import ladder.structure.connection.result.Direction;
+import ladder.structure.connection.result.Point;
 
 import java.util.List;
 import java.util.Map;
@@ -77,16 +77,13 @@ public class ResultView {
 
     private static void drawLine(LineOfLadder line) {
         for (int i = 0; i < line.getPoints().size() - 1; i++) {
-            drawConnection(line.getPoints().get(i).getDirection());
+            drawConnection(line.getPoints().get(i));
         }
     }
 
-    private static void drawConnection(Direction openToRight) {
-        if (openToRight == Direction.RIGHT) {
-            System.out.print(HORIZON + VERTICAL);
-        } else {
-            System.out.print(EMPTY_HORIZON + VERTICAL);
-        }
+    private static void drawConnection(Point point) {
+        System.out.print((point.isRightOpened() ? HORIZON : EMPTY_HORIZON)
+                + VERTICAL);
     }
 
     private static void showResults(List<Prize> prizes) {
