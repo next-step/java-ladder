@@ -3,9 +3,9 @@ package ladder.view;
 import ladder.game.LadderGame;
 import ladder.game.Participants;
 import ladder.game.Prize;
-import ladder.game.Results;
 import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
+import ladder.structure.connection.result.Direction;
 import ladder.structure.connection.result.Point;
 
 import java.util.List;
@@ -37,13 +37,27 @@ public class ResultView {
             return false;
         }
         System.out.println(GAME_RESULT);
-        Results results = ALL.equals(name)
-                ? ladderGame.checkPrizesByParticipant()
-                : ladderGame.checkPrizesByParticipant(name);
-        results.values()
-                .forEach((user, result)
-                        -> System.out.println(String.format(GAME_RESULT_FORMAT, user, result)));
+        Map<String, String> prizeByParticipant = ladderGame.getPrizesByParticipant().values();
+        if (ALL.equals(name)) {
+            showResultOfAll(prizeByParticipant);
+            return true;
+        }
+        shoeResultByParticipant(prizeByParticipant, name);
         return true;
+    }
+
+    private static void showResultOfAll(Map<String, String> prizeByParticipant) {
+        prizeByParticipant.forEach((user, result)
+                -> System.out.println(String.format(GAME_RESULT_FORMAT, user, result))
+        );
+    }
+
+    private static void shoeResultByParticipant(Map<String, String> prizeByParticipant, String name) {
+        String prize = prizeByParticipant.keySet().stream()
+                .filter(participant -> participant.equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+        System.out.println(String.format(GAME_RESULT_FORMAT, name, prize));
     }
 
     private static void showParticipant(Participants participants) {
@@ -71,8 +85,8 @@ public class ResultView {
         }
     }
 
-    private static void drawConnection(int openToRight) {
-        if (openToRight == 1) {
+    private static void drawConnection(Direction openToRight) {
+        if (openToRight == Direction.RIGHT) {
             System.out.print(HORIZON + VERTICAL);
         } else {
             System.out.print(EMPTY_HORIZON + VERTICAL);

@@ -4,7 +4,10 @@ import ladder.structure.Ladder;
 import ladder.structure.connection.MoveStrategy;
 import ladder.structure.connection.result.Point;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -16,15 +19,11 @@ public class LadderGame {
         this.ladder = new Ladder(gameInfo.sizeOfParticipants(), ladderHeight, moveStrategy);
     }
 
-    public Results checkPrizesByParticipant(String... input) {
+    public Results getPrizesByParticipant() {
         Participants participants = gameInfo.getParticipants();
         Prizes prizes = gameInfo.getPrizes();
 
-        List<String> users = Arrays.asList(input);
-
-        if (users.size() == 0) {
-            users = participants.toStrings();
-        }
+        List<String> users = participants.toStrings();
 
         Map<String, String> results = new LinkedHashMap<>();
         List<Prize> prizeList = prizes.values();

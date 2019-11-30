@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 
@@ -59,14 +58,7 @@ class LadderGameTest {
         String inputResults = "꽝1, 꽝2, 천원, 만원";
         int ladderHeight = 5;
         ladderGame = new LadderGame(participants, ladderHeight, new DefaultMove(), inputResults);
-        assertThat(ladderGame.checkPrizesByParticipant(participant.split(",")).values().values())
-                .containsExactly(result.split(","));
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = "예외, 발생, 확인")
-    @DisplayName("찾는 사용자가 없을 때 예외 발생")
-    void getResultExceptionTest(String participant) {
-        assertThrows(IllegalArgumentException.class, () -> ladderGame.checkPrizesByParticipant(participant));
+        assertThat(ladderGame.getPrizesByParticipant().values().values())
+                .containsAll(Arrays.asList(result.split(",")));
     }
 }
