@@ -12,7 +12,7 @@ public class LineOfLadder {
         this.points = new Points(width, moveStrategy);
     }
 
-    public LineOfLadder(Points movePoints) {
+    private LineOfLadder(Points movePoints) {
         this.points = movePoints;
     }
 

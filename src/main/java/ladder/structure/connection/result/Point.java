@@ -5,11 +5,8 @@ import ladder.structure.connection.MoveStrategy;
 import java.util.Objects;
 
 public class Point {
-    private final static int HEADING_RIGHT = 1;
-    private final static int HEADING_LEFT = -1;
-    private final static int HEADING_DOWN = 0;
     private final int column; // 줄번호
-    private int direction; // 방향
+    private Direction direction; // 방향
 
     private Point(int column) {
         this.column = column;
@@ -19,37 +16,36 @@ public class Point {
         return new Point(column);
     }
 
-    public void setDirection(Point before, MoveStrategy moveStrategy) {
-        if (before.direction == HEADING_RIGHT) {
-            this.direction = HEADING_LEFT;
-            return;
-        }
-        setDirection(moveStrategy);
+    public static int compare(Point a, Point b) {
+        return a.column - b.column;
     }
 
-    public void setDirectionOfLast(Point before) {
-        if (before.direction == HEADING_RIGHT) {
-            this.direction = HEADING_LEFT;
-            return;
+    public Point setDirection(Point before, MoveStrategy moveStrategy) {
+        if (before != null && before.direction == Direction.RIGHT) {
+            this.direction = Direction.LEFT;
+            return this;
         }
-        this.direction = HEADING_DOWN;
+        boolean movable = moveStrategy.isMovableToRight();
+        if (movable) {
+            this.direction = Direction.RIGHT;
+            return this;
+        }
+        this.direction = Direction.STAY;
+        return this;
     }
 
-    public int getDirection() {
+    public void setDirectionOfLast() {
+        if (this.direction == Direction.RIGHT) {
+            this.direction = Direction.STAY;
+        }
+    }
+
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(MoveStrategy moveStrategy) {
-        boolean movable = moveStrategy.isMovableToRight();
-        if (movable) {
-            this.direction = HEADING_RIGHT;
-            return;
-        }
-        this.direction = HEADING_DOWN;
-    }
-
     public Point move() {
-        return Point.of(this.column + direction);
+        return Point.of(this.column + direction.getNum());
     }
 
     public int getColumn() {

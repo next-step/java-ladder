@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static ladder.structure.connection.result.Direction.RIGHT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -29,12 +30,14 @@ public class LadderTest {
         List<LineOfLadder> lines = ladder.getLines().getLines();
         Map<Integer, Point> firstLine = lines.get(0).getPoints().getPoints().stream()
                 .collect(Collectors.toMap(Point::getColumn, point -> point));
-        assertThat(firstLine.get(0).getDirection() == 1 && firstLine.get(1).getDirection() == 1)
+        assertThat(firstLine.get(0).getDirection() == RIGHT
+                && firstLine.get(1).getDirection() == RIGHT)
                 .isFalse();
 
         Map<Integer, Point> secondLine = lines.get(1).getPoints().getPoints().stream()
                 .collect(Collectors.toMap(Point::getColumn, point -> point));
-        assertThat(secondLine.get(0).getDirection() == 1 && secondLine.get(1).getDirection() == 1)
+        assertThat(secondLine.get(0).getDirection() == RIGHT &&
+                secondLine.get(1).getDirection() == RIGHT)
                 .isFalse();
     }
 
@@ -46,7 +49,7 @@ public class LadderTest {
             Map<Integer, Point> lineIndexWithPoint = line.getPoints().getPoints().stream()
                     .collect(Collectors.toMap(Point::getColumn, point -> point));
             for (int i = 0; i < lineIndexWithPoint.size() - 1; i++) {
-                if (lineIndexWithPoint.get(i).getDirection() == 1) {
+                if (lineIndexWithPoint.get(i).getDirection() == RIGHT) {
                     System.out.print("----|");
                 } else {
                     System.out.print("    |");
