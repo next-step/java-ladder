@@ -2,7 +2,6 @@ package ladder.game;
 
 import ladder.structure.Ladder;
 import ladder.structure.connection.MoveStrategy;
-import ladder.structure.connection.result.Point;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -27,12 +26,11 @@ public class LadderGame {
 
         Map<String, String> results = new LinkedHashMap<>();
         List<Prize> prizeList = prizes.values();
-        List<Point> finalPoints = ladder.getFinalPoints().getPoints();
 
+        List<Integer> finalPoints = ladder.getFinalPoints();
         for (String user : users) {
             int index = participants.indexOf(user);
-            int finalPoint = finalPoints.get(index).getColumn();
-            results.put(user, prizeList.get(finalPoint).toString());
+            results.put(user, prizeList.get(finalPoints.get(index)).toString());
         }
         return new Results(Collections.unmodifiableMap(results));
     }

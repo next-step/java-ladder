@@ -4,64 +4,51 @@ import ladder.structure.connection.MoveStrategy;
 
 import java.util.Objects;
 
+import static ladder.structure.connection.result.Direction.*;
+
 public class Point {
-    private final int column; // 줄번호
-    private Direction direction; // 방향
+    private Direction direction;
 
-    private Point(int column) {
-        this.column = column;
+    private Point(Direction direction) {
+        this.direction = direction;
     }
 
-    public static Point of(int column) {
-        return new Point(column);
-    }
-
-    public Point setDirection(Point before, MoveStrategy moveStrategy) {
-        if (before != null && before.direction == Direction.RIGHT) {
-            this.direction = Direction.LEFT;
-            return this;
+    public static Point of(boolean connectedRight, MoveStrategy moveStrategy) {
+        if (connectedRight) {
+            return new Point(LEFT);
         }
         boolean movable = moveStrategy.isMovableToRight();
         if (movable) {
-            this.direction = Direction.RIGHT;
-            return this;
+            return new Point(RIGHT);
         }
-        this.direction = Direction.STAY;
-        return this;
+        return new Point(STAY);
     }
 
-    public void setDirectionOfLast() {
-        if (this.direction == Direction.RIGHT) {
-            this.direction = Direction.STAY;
+    public static Point lastOf(boolean connectedRight) {
+        if (connectedRight) {
+            return new Point(LEFT);
         }
-    }
-
-    public Point move() {
-        return Point.of(this.column + direction.getNum());
-    }
-
-    public static int compare(Point a, Point b) {
-        return a.column - b.column;
-    }
-
-    public int getColumn() {
-        return column;
+        return new Point(STAY);
     }
 
     public Direction getDirection() {
         return direction;
     }
 
+    public boolean camMoveRight() {
+        return direction == RIGHT;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point point1 = (Point) o;
-        return column == point1.column;
+        Point point = (Point) o;
+        return direction == point.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(column);
+        return Objects.hash(direction);
     }
 }

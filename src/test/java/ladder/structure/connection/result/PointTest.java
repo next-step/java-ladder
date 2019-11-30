@@ -4,24 +4,21 @@ import ladder.structure.connection.DefaultMove;
 import ladder.structure.connection.MoveStrategy;
 import org.junit.jupiter.api.Test;
 
+import static ladder.structure.connection.result.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
     @Test
-    void setDirectionTest() {
+    void constructorTest() {
         MoveStrategy defaultMove = new DefaultMove();
-        Point before = null;
-        Point now = Point.of(0).setDirection(before, defaultMove);
-        assertThat(now.getDirection()).isEqualTo(Direction.RIGHT);
+        Point pointOpenToRight = Point.of(false, defaultMove);
+        assertThat(pointOpenToRight.getDirection()).isEqualTo(RIGHT);
 
-        before = now;
-        now = Point.of(1).setDirection(before, defaultMove);
-        assertThat(now.getDirection()).isEqualTo(Direction.LEFT);
+        Point pointCloseToRight = Point.of(true, defaultMove);
+        assertThat(pointCloseToRight.getDirection()).isEqualTo(LEFT);
 
-        before = now;
-        now = Point.of(2).setDirection(before, defaultMove);
-        now.setDirectionOfLast();
-        assertThat(now.getDirection()).isEqualTo(Direction.STAY);
+        Point lastAndOpenToRight = Point.lastOf(false);
+        assertThat(lastAndOpenToRight.getDirection()).isEqualTo(STAY);
     }
 }
 

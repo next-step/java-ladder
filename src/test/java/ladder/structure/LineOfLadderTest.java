@@ -1,25 +1,30 @@
 package ladder.structure;
 
-import ladder.structure.connection.DefaultMove;
+import ladder.structure.connection.RandomMove;
 import ladder.structure.connection.result.Point;
-import ladder.structure.connection.result.Points;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static ladder.structure.connection.result.Direction.RIGHT;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineOfLadderTest {
     @Test
-    @DisplayName("각 줄 별 점의 이동 확인")
-    void getPointsAfterMoveTest() {
-        LineOfLadder defaultMove = new LineOfLadder(5, new DefaultMove());
-        Points first = defaultMove.getPoints();
-        assertThat(first.getPoints())
-                .containsExactly(Point.of(0), Point.of(1), Point.of(2), Point.of(3), Point.of(4));
-
-        defaultMove = defaultMove.getNext(new DefaultMove());
-        Points second = defaultMove.getPoints();
-        assertThat(second.getPoints())
-                .containsExactly(Point.of(1), Point.of(0), Point.of(3), Point.of(2), Point.of(4));
+    @DisplayName("연속된 두 칸 모두 사다리가 그려질 수 업다")
+    void verifiedLadderTest() {
+        List<Point> points = new LineOfLadder(4, new RandomMove()).getPoints();
+        assertAll(
+                () -> assertThat(points.get(0).getDirection() == RIGHT
+                        && points.get(1).getDirection() == RIGHT).isFalse(),
+                () -> assertThat(points.get(1).getDirection() == RIGHT
+                        && points.get(2).getDirection() == RIGHT).isFalse(),
+                () -> assertThat(points.get(2).getDirection() == RIGHT
+                        && points.get(3).getDirection() == RIGHT).isFalse(),
+                () -> assertThat(points.get(3).getDirection() == RIGHT
+                        && points.get(4).getDirection() == RIGHT).isFalse()
+        );
     }
 }

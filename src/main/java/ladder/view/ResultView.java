@@ -6,11 +6,9 @@ import ladder.game.Prize;
 import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
 import ladder.structure.connection.result.Direction;
-import ladder.structure.connection.result.Point;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ResultView {
     private static final String LADDER_RESULT = "사다리 결과";
@@ -78,10 +76,8 @@ public class ResultView {
     }
 
     private static void drawLine(LineOfLadder line) {
-        Map<Integer, Point> lineIndexWithPoint = line.getPoints().getPoints().stream()
-                .collect(Collectors.toMap(Point::getColumn, point -> point));
-        for (int i = 0; i < lineIndexWithPoint.size() - 1; i++) {
-            drawConnection(lineIndexWithPoint.get(i).getDirection());
+        for (int i = 0; i < line.getPoints().size() - 1; i++) {
+            drawConnection(line.getPoints().get(i).getDirection());
         }
     }
 

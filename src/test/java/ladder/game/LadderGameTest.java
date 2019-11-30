@@ -1,7 +1,7 @@
 package ladder.game;
 
-import ladder.structure.connection.DefaultMove;
 import ladder.structure.connection.MoveStrategy;
+import ladder.structure.connection.NoneMove;
 import ladder.structure.connection.RandomMove;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -47,18 +47,14 @@ class LadderGameTest {
                 () -> new LadderGame(participantsName, ladderHeight, moveStrategy, inputResult));
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {
-            "pobi,honux:꽝2,꽝1",
-            "crong,jk:만원,천원"
-    }, delimiter = ':')
+    @Test
     @DisplayName("사용자별 결과 가지고오는지 확인")
-    void getResult(String participant, String result) {
-        String participants = "pobi, honux, crong, jk";
-        String inputResults = "꽝1, 꽝2, 천원, 만원";
+    void getResult() {
+        String participants = "pobi,honux,crong,jk";
+        String inputResults = "꽝1,꽝2,천원,만원";
         int ladderHeight = 5;
-        ladderGame = new LadderGame(participants, ladderHeight, new DefaultMove(), inputResults);
+        ladderGame = new LadderGame(participants, ladderHeight, new NoneMove(), inputResults);
         assertThat(ladderGame.getPrizesByParticipant().values().values())
-                .containsAll(Arrays.asList(result.split(",")));
+                .containsExactly(inputResults.split(","));
     }
 }

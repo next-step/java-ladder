@@ -1,7 +1,6 @@
 package ladder.structure;
 
 import ladder.structure.connection.MoveStrategy;
-import ladder.structure.connection.result.Points;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,22 +12,23 @@ public class Lines {
 
     public Lines(int participantsSize, int ladderHeight, MoveStrategy moveStrategy) {
         verifyLadderHeight(ladderHeight);
-        this.lines = addLines(participantsSize, ladderHeight, moveStrategy);
+        this.lines = addLine(participantsSize, ladderHeight, moveStrategy);
     }
 
-    private List<LineOfLadder> addLines(int participantsSize, int ladderHeight, MoveStrategy moveStrategy) {
+    private List<LineOfLadder> addLine(int participantsSize, int ladderHeight, MoveStrategy moveStrategy) {
         List<LineOfLadder> lines = new ArrayList<>();
-        LineOfLadder line = new LineOfLadder(participantsSize, moveStrategy);
-        lines.add(line);
-        for (int i = 1; i < ladderHeight; i++) {
-            line = line.getNext(moveStrategy);
-            lines.add(line);
+        for (int i = 0; i < ladderHeight; i++) {
+            lines.add(new LineOfLadder(participantsSize, moveStrategy));
         }
         return Collections.unmodifiableList(lines);
     }
 
-    public Points getFinalPoints(MoveStrategy moveStrategy) {
-        return lines.get(lines.size() - 1).getPoints().getNext(moveStrategy);
+    public List<Integer> getFinalPoints() {
+        List<Integer> games = null;
+        for (LineOfLadder line : lines) {
+            games = line.getNext(games);
+        }
+        return games;
     }
 
     private void verifyLadderHeight(int ladderHeight) {
