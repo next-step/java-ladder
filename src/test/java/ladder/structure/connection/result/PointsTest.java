@@ -1,6 +1,7 @@
 package ladder.structure.connection.result;
 
 import ladder.structure.connection.DefaultMove;
+import ladder.structure.connection.MoveStrategy;
 import ladder.structure.connection.NoneMove;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,18 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PointsTest {
+    @Test
+    void constructorTest() {
+        MoveStrategy defaultMove = new DefaultMove();
+        Points points = new Points(4, defaultMove);
+        assertThat(points.getPoints()).containsExactly(
+                Point.of(false, defaultMove),
+                Point.of(true, defaultMove),
+                Point.of(false, defaultMove),
+                Point.lastOf(true)
+        );
+    }
+
     @Test
     @DisplayName("point이동 경로 확인")
     void getPointsTest() {

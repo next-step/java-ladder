@@ -67,7 +67,7 @@ public class ResultView {
     }
 
     private static void drawLadder(Ladder ladder) {
-        List<LineOfLadder> lines = ladder.getLines().getLines();
+        List<LineOfLadder> lines = ladder.getLines();
         for (LineOfLadder line : lines) {
             System.out.print(PADDING_LADDER + VERTICAL);
             drawLine(line);
