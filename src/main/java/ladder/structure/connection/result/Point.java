@@ -16,10 +16,6 @@ public class Point {
         return new Point(column);
     }
 
-    public static int compare(Point a, Point b) {
-        return a.column - b.column;
-    }
-
     public Point setDirection(Point before, MoveStrategy moveStrategy) {
         if (before != null && before.direction == Direction.RIGHT) {
             this.direction = Direction.LEFT;
@@ -40,16 +36,20 @@ public class Point {
         }
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
     public Point move() {
         return Point.of(this.column + direction.getNum());
     }
 
+    public static int compare(Point a, Point b) {
+        return a.column - b.column;
+    }
+
     public int getColumn() {
         return column;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override
