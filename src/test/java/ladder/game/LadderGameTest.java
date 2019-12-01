@@ -1,7 +1,8 @@
 package ladder.game;
 
-import ladder.structure.connection.ConnectionStrategy;
-import ladder.structure.connection.RandomConnection;
+import ladder.structure.connection.MoveStrategy;
+import ladder.structure.connection.NoneMove;
+import ladder.structure.connection.RandomMove;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,19 +16,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderGameTest {
     private LadderGame ladderGame;
-    private ConnectionStrategy connectionStrategy = new RandomConnection();
+    private MoveStrategy moveStrategy = new RandomMove();
 
     @BeforeEach
     void setUp() {
         String participants = "pobi, honux, crong, jk";
         String inputResults = "꽝, 꽝, 천원, 만원";
         int ladderHeight = 5;
-        ladderGame = new LadderGame(participants, ladderHeight, connectionStrategy, inputResults);
+        ladderGame = new LadderGame(participants, ladderHeight, moveStrategy, inputResults);
     }
 
     @Test
     void getParticipants() {
-        assertThat(ladderGame.getParticipants().getNames())
+        assertThat(ladderGame.getParticipants().toStrings())
                 .containsExactlyInAnyOrderElementsOf
                         (Arrays.asList("pobi", "honux", "crong", "jk"));
     }
@@ -43,11 +44,17 @@ class LadderGameTest {
     @DisplayName("입력 시 예외상황 발생")
     void participantNameException(String participantsName, int ladderHeight, String inputResult) {
         assertThrows(IllegalArgumentException.class,
-                () -> new LadderGame(participantsName, ladderHeight, connectionStrategy, inputResult));
+                () -> new LadderGame(participantsName, ladderHeight, moveStrategy, inputResult));
     }
 
     @Test
-    void getLadder() {
-        assertThat(ladderGame.getLadder().getLadderHeight()).isEqualTo(5);
+    @DisplayName("사용자별 결과 가지고오는지 확인")
+    void getResult() {
+        String participants = "pobi,honux,crong,jk";
+        String inputResults = "꽝1,꽝2,천원,만원";
+        int ladderHeight = 5;
+        ladderGame = new LadderGame(participants, ladderHeight, new NoneMove(), inputResults);
+        assertThat(ladderGame.getPrizesByParticipant().values().values())
+                .containsExactly(inputResults.split(","));
     }
 }

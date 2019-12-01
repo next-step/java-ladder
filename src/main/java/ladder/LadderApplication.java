@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.game.LadderGame;
-import ladder.structure.connection.RandomConnection;
+import ladder.structure.connection.RandomMove;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -10,11 +10,13 @@ public class LadderApplication {
         String participant = InputView.inputParticipant();
         int ladderHeight = InputView.inputHeight();
         String inputResults = InputView.inputResults();
-        LadderGame ladderGame = new LadderGame(participant, ladderHeight, new RandomConnection(), inputResults);
+        LadderGame ladderGame = new LadderGame(participant, ladderHeight, new RandomMove(), inputResults);
 
         ResultView.showLadderResult(ladderGame);
-
-        ResultView.showResultOfParticipant(ladderGame, InputView.inputParticipantForResult());
-        ResultView.showResultOfParticipant(ladderGame, InputView.inputParticipantForResult());
+        boolean repeat = true;
+        while (repeat) {
+            repeat = ResultView.showResultOfParticipant(ladderGame.getPrizesByParticipant(),
+                    InputView.inputParticipantForResult());
+        }
     }
 }

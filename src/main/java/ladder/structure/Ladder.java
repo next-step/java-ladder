@@ -1,54 +1,43 @@
 package ladder.structure;
 
-import ladder.structure.connection.ConnectionStrategy;
+import ladder.structure.connection.MoveStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
     private static final String LADDER_HEIGHT_EXCEPTION = "사다리게임의 높이는 0 이상입니다.";
-    private List<LineOfLadder> ladder;
-    private List<Integer> finalPoints;
+    private final List<LineOfLadder> lines;
 
-    public Ladder(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
-        this.ladder = new ArrayList<>();
-        verityLadderHeight(ladderHeight);
-        addLines(personCount, ladderHeight, connectionStrategy);
+    public Ladder(int participantsSize, int ladderHeight, MoveStrategy moveStrategy) {
+        verifyLadderHeight(ladderHeight);
+        this.lines = addLine(participantsSize, ladderHeight, moveStrategy);
     }
 
-    private void addLines(int personCount, int ladderHeight, ConnectionStrategy connectionStrategy) {
-        List<Integer> points = null;
+    private List<LineOfLadder> addLine(int participantsSize, int ladderHeight, MoveStrategy moveStrategy) {
+        List<LineOfLadder> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            points = addLine(personCount, connectionStrategy, points);
+            lines.add(new LineOfLadder(participantsSize, moveStrategy));
         }
-        this.finalPoints = points;
+        return lines;
     }
 
-    private List<Integer> addLine(int personCount, ConnectionStrategy connectionStrategy, List<Integer> points) {
-        LineOfLadder line = LineOfLadder.of(personCount - 1, connectionStrategy, points);
-        ladder.add(line);
-        return line.getPointsAfterConnection();
+    public List<Integer> getFinalPoints() {
+        List<Integer> games = null;
+        for (LineOfLadder line : lines) {
+            games = line.getNext(games);
+        }
+        return games;
     }
 
-    private void verityLadderHeight(int ladderHeight) {
+    private void verifyLadderHeight(int ladderHeight) {
         if (ladderHeight <= 0) {
             throw new IllegalArgumentException(LADDER_HEIGHT_EXCEPTION);
         }
     }
 
-    public int getFinalPoint(int index) {
-        return finalPoints.get(index);
-    }
-
-    public LineOfLadder getLine(int index) {
-        return ladder.get(index);
-    }
-
-    public int getLadderHeight() {
-        return ladder.size();
-    }
-
-    public int getLadderWidth() {
-        return finalPoints.size() - 1;
+    public List<LineOfLadder> getLines() {
+        return Collections.unmodifiableList(this.lines);
     }
 }
