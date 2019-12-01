@@ -7,7 +7,7 @@ public class Results {
     private Map<String, String> prizeByParticipant;
 
     Results(Map<String, String> result) {
-        this.prizeByParticipant = result;
+        this.prizeByParticipant = Collections.unmodifiableMap(result);
     }
 
     public Map<String, String> values() {

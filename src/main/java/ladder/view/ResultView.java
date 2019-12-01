@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.game.LadderGame;
 import ladder.game.Participants;
 import ladder.game.Prize;
+import ladder.game.Results;
 import ladder.structure.Ladder;
 import ladder.structure.LineOfLadder;
 import ladder.structure.connection.result.Point;
@@ -30,12 +31,12 @@ public class ResultView {
         showResults(ladderGame.getPrizes().values());
     }
 
-    public static boolean showResultOfParticipant(LadderGame ladderGame, String name) {
+    public static boolean showResultOfParticipant(Results results, String name) {
         if (EMPTY.equals(name)) {
             return false;
         }
         System.out.println(GAME_RESULT);
-        Map<String, String> prizeByParticipant = ladderGame.getPrizesByParticipant().values();
+        Map<String, String> prizeByParticipant = results.values();
         if (ALL.equals(name)) {
             showResultOfAll(prizeByParticipant);
             return true;

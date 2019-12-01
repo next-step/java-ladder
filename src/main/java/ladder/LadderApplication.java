@@ -15,7 +15,8 @@ public class LadderApplication {
         ResultView.showLadderResult(ladderGame);
         boolean repeat = true;
         while (repeat) {
-            repeat = ResultView.showResultOfParticipant(ladderGame, InputView.inputParticipantForResult());
+            repeat = ResultView.showResultOfParticipant(ladderGame.getPrizesByParticipant(),
+                    InputView.inputParticipantForResult());
         }
     }
 }

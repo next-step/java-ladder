@@ -3,7 +3,6 @@ package ladder.game;
 import ladder.structure.Ladder;
 import ladder.structure.connection.MoveStrategy;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,7 @@ public class LadderGame {
             int index = participants.indexOf(user);
             results.put(user, prizeList.get(finalPoints.get(index)).toString());
         }
-        return new Results(Collections.unmodifiableMap(results));
+        return new Results(results);
     }
 
     public Ladder getLadder() {

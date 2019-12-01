@@ -20,7 +20,7 @@ public class Ladder {
         for (int i = 0; i < ladderHeight; i++) {
             lines.add(new LineOfLadder(participantsSize, moveStrategy));
         }
-        return Collections.unmodifiableList(lines);
+        return lines;
     }
 
     public List<Integer> getFinalPoints() {

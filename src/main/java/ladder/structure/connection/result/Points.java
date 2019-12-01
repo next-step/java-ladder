@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.toList;
-
 public class Points {
     private final List<Point> points;
 
@@ -20,20 +18,18 @@ public class Points {
     private List<Point> createPoints(int participantsSize, MoveStrategy moveStrategy) {
         List<Point> points = new ArrayList<>();
 
-        List<Integer> withoutLast = IntStream.range(0, participantsSize - 1).boxed().collect(toList());
-        boolean lastConnection = withoutLast.stream()
-                .reduce(false, (a, b) -> {
-                    Point now = Point.of(a, moveStrategy);
-                    points.add(now);
-                    return now.isRightOpened();
-                }, (a, b) -> {
-                    Point now = Point.of(a, moveStrategy);
-                    return now.isRightOpened();
-                });
+        Point now = Point.of(false, moveStrategy);
+        points.add(now);
+        Point before = now;
+        for (int i = 1; i < participantsSize - 1; i++) {
+            now = Point.of(before.isRightOpened(), moveStrategy);
+            points.add(now);
+            before = now;
+        }
+        now = Point.lastOf(before.isRightOpened());
+        points.add(now);
 
-        Point last = Point.lastOf(lastConnection);
-        points.add(last);
-        return Collections.unmodifiableList(points);
+        return points;
     }
 
     public List<Integer> moveNext(List<Integer> now) {
@@ -42,7 +38,7 @@ public class Points {
                     .collect(Collectors.toList());
         }
         return now.stream()
-                .map(num -> num + points.get(num).diffOfNextIndex())
+                .map(num -> points.get(num).getNextIndex(num))
                 .collect(Collectors.toList());
     }
 

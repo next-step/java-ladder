@@ -31,8 +31,8 @@ public class Point {
         return new Point(STAY);
     }
 
-    public int diffOfNextIndex() {
-        return direction.getNum();
+    public int getNextIndex(int index) {
+        return index + direction.getNum();
     }
 
     public boolean isRightOpened() {
