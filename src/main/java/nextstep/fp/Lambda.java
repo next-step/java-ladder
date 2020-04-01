@@ -27,11 +27,7 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return numbers.stream().mapToInt(Integer::intValue).sum();
     }
 
     public static int sumAllEven(List<Integer> numbers) {
