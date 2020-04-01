@@ -18,24 +18,19 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional conditional) {
+    public static int sumAll(List<Integer> numbers, LambdaSumCondition lambdaSumCondition) {
         int total = 0;
         for (int number : numbers) {
-            total += getAddableNumber(conditional, number);
+            total += getAddableNumber(lambdaSumCondition, number);
         }
         return total;
     }
 
-    private static int getAddableNumber(Conditional conditional, int number) {
-        if (conditional.test(number)) {
+    private static int getAddableNumber(LambdaSumCondition lambdaSumCondition, int number) {
+        if (lambdaSumCondition.test(number)) {
             return number;
         }
         return 0;

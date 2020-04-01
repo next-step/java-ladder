@@ -1,5 +1,5 @@
 package nextstep.fp;
 
-public interface Conditional {
+public interface LambdaSumCondition {
     boolean test(Integer number);
 }
