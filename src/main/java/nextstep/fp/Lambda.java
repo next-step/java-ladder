@@ -53,4 +53,21 @@ public class Lambda {
         }
         return total;
     }
+
+    // 변경되는 부분
+    private static int sum(int total, int number) {
+        if(number > 3) {
+            total += number;
+        }
+        return total;
+    }
+
+    // 변경되지 않는 부분
+    static int sumAllOverThree2(List<Integer> numbers) {
+        int total = 0;
+        for(int number : numbers) {
+            total = sum(total, number);
+        }
+        return total;
+    }
 }
