@@ -35,10 +35,14 @@ public class StreamStudy {
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, Integer::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .mapToInt(number -> 2 * number)
+                .reduce(Integer::sum)
+                .getAsInt();
     }
 }
