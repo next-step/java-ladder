@@ -21,7 +21,7 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Conditional conditional) {
+    private static int sumAll(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
                 .filter(conditional::test)
                 .reduce(0, Integer::sum);
