@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -31,15 +32,18 @@ public class Lambda {
                 .reduce(0, (x, y) -> x + y);
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
+    public static int sumAllWithLambda(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
-                .filter(x -> x % 2 == 0)
+                .filter(conditional::test)
                 .reduce(0, (x, y) -> x + y);
     }
 
+
+    public static int sumAllEven(List<Integer> numbers) {
+        return sumAllWithLambda(numbers, x -> x % 2 == 0);
+    }
+
     public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream()
-                .filter(x -> x > 3)
-                .reduce(0, (x, y) -> x + y);
+        return sumAllWithLambda(numbers, x -> x > 3);
     }
 }
