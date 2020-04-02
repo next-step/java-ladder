@@ -29,7 +29,7 @@ public class PersonTest {
     @DisplayName("이름이 5글자 초과할 경우 생성 실패")
     @ParameterizedTest
     @ValueSource(strings = {"dongch"})
-    void createPersonFailByNullAndEmpty(String name) {
+    void createPersonFailByNameLength(String name) {
         assertThatIllegalArgumentException().isThrownBy(() -> Person.of(name));
     }
 }
