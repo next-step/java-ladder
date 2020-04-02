@@ -1,6 +1,15 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
+
 public class User {
+    private static final int AGE_CONDITION = 0;
+    private static final String NULL_BALNK = "";
+    private static final int THIRTY = 30;
+    private static final int FORTY_FIVE = 45;
+
     private String name;
     private Integer age;
 
@@ -22,18 +31,47 @@ public class User {
     }
 
     public static boolean ageIsInRange1(User user) {
-        boolean isInRange = false;
-
-        if (user != null && user.getAge() != null
-                && (user.getAge() >= 30
-                && user.getAge() <= 45)) {
-            isInRange = true;
+        Optional<User> optionalUser = ofNullable(user);
+        if (optionalUser.isPresent()) {
+            return optionalUser
+                    .map(User::graterThanEqualThirty)
+                    .map(e -> User.lessThanEqualFortyFive(e.orElseGet(() -> new User(NULL_BALNK, AGE_CONDITION))))
+                    .map(e -> e.orElseGet(() -> new User(NULL_BALNK, AGE_CONDITION)).getAge())
+                    .orElseGet(() -> AGE_CONDITION) != AGE_CONDITION;
         }
-        return isInRange;
+        return false;
     }
 
     public static boolean ageIsInRange2(User user) {
-        return false;
+        return ofNullable(user)
+                .map(User::getAge)
+                .filter(User::isGraterThanEqualThirty)
+                .filter(User::isLessThanEqualFortyFive)
+                .orElse(AGE_CONDITION) != AGE_CONDITION;
+    }
+
+    private static boolean isGraterThanEqualThirty(int age) {
+        return age >= THIRTY;
+    }
+
+    private static boolean isLessThanEqualFortyFive(int age) {
+        return age <= FORTY_FIVE;
+    }
+
+    private static Optional<User> graterThanEqualThirty(User user) {
+        Optional<Integer> optionalAge = ofNullable(user.getAge());
+        if (optionalAge.orElseGet(() -> AGE_CONDITION) >= THIRTY) {
+            return Optional.of(user);
+        }
+        return Optional.empty();
+    }
+
+    private static Optional<User> lessThanEqualFortyFive(User user) {
+        Optional<Integer> optionalAge = ofNullable(user.getAge());
+        if (optionalAge.orElseGet(() -> AGE_CONDITION) <= FORTY_FIVE) {
+            return Optional.of(user);
+        }
+        return Optional.empty();
     }
 
     @Override
