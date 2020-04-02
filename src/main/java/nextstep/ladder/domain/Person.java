@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class Person {
-    private static final int NAME_MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
     private final String name;
 
     public Person(String name) {
@@ -17,7 +17,7 @@ public class Person {
             throw new IllegalArgumentException("이름이 존재하지 않습니다.");
         }
 
-        if (name.length() > NAME_MAX_LENGTH) {
+        if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.");
         }
     }
