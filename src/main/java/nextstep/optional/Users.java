@@ -18,6 +18,6 @@ public class Users {
                 return user;
             }
         }
-        return DEFAULT_USER;
+        return users.stream().filter(user -> user.matchName(name)).findAny().orElse(DEFAULT_USER);
     }
 }
