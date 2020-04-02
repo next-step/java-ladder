@@ -6,7 +6,7 @@ import static java.util.Optional.ofNullable;
 
 public class User {
     private static final int AGE_CONDITION = 0;
-    private static final String NULL_BALNK = "";
+    private static final String NULL_BLANK = "";
     private static final int THIRTY = 30;
     private static final int FORTY_FIVE = 45;
 
@@ -35,8 +35,8 @@ public class User {
         if (optionalUser.isPresent()) {
             return optionalUser
                     .map(User::graterThanEqualThirty)
-                    .map(e -> User.lessThanEqualFortyFive(e.orElseGet(() -> new User(NULL_BALNK, AGE_CONDITION))))
-                    .map(e -> e.orElseGet(() -> new User(NULL_BALNK, AGE_CONDITION)).getAge())
+                    .map(e -> User.lessThanEqualFortyFive(e.orElseGet(() -> new User(NULL_BLANK, AGE_CONDITION))))
+                    .map(e -> e.orElseGet(() -> new User(NULL_BLANK, AGE_CONDITION)).getAge())
                     .orElseGet(() -> AGE_CONDITION) != AGE_CONDITION;
         }
         return false;
