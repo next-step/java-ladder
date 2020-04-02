@@ -1,7 +1,5 @@
 package nextstep.fp;
 
-import sun.jvm.hotspot.gc.shared.ContiguousSpace;
-
 import java.util.List;
 
 public class Lambda {
