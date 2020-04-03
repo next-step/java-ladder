@@ -12,6 +12,7 @@ public class Gamer {
 
     public static Gamer of(String name) {
         return Optional.ofNullable(name)
+                .map(String::trim)
                 .filter(nameString -> nameString.length() <= 5)
                 .filter(nameString -> !nameString.isEmpty())
                 .map(Gamer::new)
