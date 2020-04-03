@@ -26,6 +26,10 @@ public class Way {
         this.right = right;
     }
 
+    public static Way nextWay(final boolean left, final boolean right) {
+        return new Way(left, right);
+    }
+
     public static Way left() {
         return cache.get("left");
     }
