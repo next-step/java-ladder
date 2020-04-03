@@ -18,4 +18,12 @@ public class Way {
             throw new LadderException("양방향 이동은 불가");
         }
     }
+
+    public boolean isMovableLeft() {
+        return this.left;
+    }
+
+    public boolean isMovableRight() {
+        return this.right;
+    }
 }

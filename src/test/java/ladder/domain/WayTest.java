@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WayTest {
 
@@ -25,5 +27,23 @@ class WayTest {
         assertThatThrownBy(
                 () -> new Way(true, true)
         ).isInstanceOf(LadderException.class);
+    }
+
+    @DisplayName("이동 방향으로 움직일수 있는지 체크")
+    @Test
+    public void left() throws Exception {
+        //given
+        Way left = new Way(true, false);
+        Way right = new Way(false, true);
+        Way none = new Way(false, false);
+
+        //then
+        assertTrue(left.isMovableLeft());
+        assertFalse(left.isMovableRight());
+        assertTrue(right.isMovableRight());
+        assertFalse(right.isMovableLeft());
+        assertFalse(none.isMovableLeft());
+        assertFalse(none.isMovableRight());
+
     }
 }
