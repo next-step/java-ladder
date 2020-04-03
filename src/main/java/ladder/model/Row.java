@@ -1,5 +1,8 @@
 package ladder.model;
 
+import ladder.booleangenerator.NextBooleanGenerator;
+
+import java.util.HashMap;
 import java.util.Map;
 
 public class Row {
@@ -10,10 +13,23 @@ public class Row {
     }
 
     public static Row create(int playerCount) {
-        return null;
+        Map<Integer, Boolean> row = new HashMap<>();
+
+        boolean prev = false;
+        for (int i = 1; i <= playerCount; i++) {
+            boolean currentBoolean = findNextBoolean(prev);
+            row.put(i, currentBoolean);
+            prev = currentBoolean;
+        }
+
+        return new Row(row);
     }
 
     public boolean getRowElement(int index) {
         return row.get(index);
+    }
+
+    private static boolean findNextBoolean(boolean prev) {
+        return NextBooleanGenerator.generate(prev);
     }
 }
