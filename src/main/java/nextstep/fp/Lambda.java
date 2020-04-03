@@ -26,14 +26,23 @@ public class Lambda {
         }).start();
     }
 
+    public static int sumAll(List<Integer> numbers, Conditional c) {
+        return numbers.stream()
+                .filter(c::test)
+                .mapToInt(number -> number)
+                .sum();
+
+//        int total = 0;
+//        for (int number : numbers) {
+//            if (all(number)) {
+//                total += number;
+//            }
+//        }
+//        return total;
+    }
+
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (all(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, Lambda::all);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
