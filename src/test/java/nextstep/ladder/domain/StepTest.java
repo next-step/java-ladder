@@ -11,7 +11,7 @@ public class StepTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
     void createStep(int position) {
-        Step step = Step.of(position);
+        Step step = Step.of(position, () -> false);
 
         assertThat(step.getPosition()).isEqualTo(position);
     }
