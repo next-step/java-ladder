@@ -45,4 +45,46 @@ class NodeTest {
         assertThat(right.move()).isEqualTo(2);
         assertThat(none.move()).isEqualTo(1);
     }
+
+    @DisplayName("현재 노드가 왼쪽으로 이동 가능 할때 다음 노드의 방향을 정해주고 생성")
+    @Test
+    public void createNextNode_success_left() throws Exception {
+        //given
+        Node current = new Node(0, Way.left());
+
+        //when
+        Node moveRightNextNode = current.createNextNode(true);
+        Node moveNoneNextNode = current.createNextNode(false);
+
+        //then
+        assertThat(moveRightNextNode.getIndex()).isEqualTo(1);
+        assertThat(moveNoneNextNode.getIndex()).isEqualTo(1);
+
+        assertFalse(moveRightNextNode.isMovableLeft());
+        assertTrue(moveRightNextNode.isMovableRight());
+
+        assertFalse(moveNoneNextNode.isMovableLeft());
+        assertFalse(moveNoneNextNode.isMovableRight());
+    }
+
+    @DisplayName("현재 노드가 오른쪽으로 이동 가능 할때 다음 노드의 방향을 정해주고 생성")
+    @Test
+    public void createNextNode_success_right() throws Exception {
+        //given
+        Node current = new Node(0, Way.right());
+
+        //when
+        Node moveRightNextNode = current.createNextNode(true);
+        Node moveNoneNextNode = current.createNextNode(false);
+
+        //then
+        assertThat(moveRightNextNode.getIndex()).isEqualTo(1);
+        assertThat(moveNoneNextNode.getIndex()).isEqualTo(1);
+
+        assertTrue(moveRightNextNode.isMovableLeft());
+        assertFalse(moveRightNextNode.isMovableRight());
+
+        assertTrue(moveNoneNextNode.isMovableLeft());
+        assertFalse(moveNoneNextNode.isMovableRight());
+    }
 }

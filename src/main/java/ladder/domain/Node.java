@@ -11,6 +11,9 @@ public class Node {
     }
 
     public Node createNextNode(final boolean isMovableRight) {
+        if (isMovableRight()) {
+            return new Node(this.index + 1, Way.nextWay(this.way.isMovableRight(), false));
+        }
         return new Node(this.index + 1, Way.nextWay(this.way.isMovableRight(), isMovableRight));
     }
 
@@ -30,5 +33,9 @@ public class Node {
 
     public boolean isMovableRight() {
         return this.way.isMovableRight();
+    }
+
+    public int getIndex() {
+        return index;
     }
 }
