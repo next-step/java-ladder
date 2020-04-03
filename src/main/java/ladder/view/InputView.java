@@ -13,12 +13,12 @@ import static ladder.Messages.MESSAGE_INPUT_PLAYERS;
 public class InputView {
     private static final String DELIMITER = ",";
 
-    public static List<Player> getPlayersFromUser() {
+    public static List<Player> getPlayers() {
         System.out.println(MESSAGE_INPUT_PLAYERS);
         return splitNames(ScannerUtil.readLine());
     }
 
-    public static int getHeightFromUser() {
+    public static int getHeight() {
         System.out.println(MESSAGE_INPUT_LADDER_HEIGHT);
         return ScannerUtil.readInt();
     }
