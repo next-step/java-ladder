@@ -16,7 +16,7 @@ public class Row {
         Map<Integer, Boolean> row = new HashMap<>();
 
         boolean prev = false;
-        for (int i = 1; i <= playerCount; i++) {
+        for (int i = 1; i <= playerCount - 1; i++) {
             boolean currentBoolean = findNextBoolean(prev);
             row.put(i, currentBoolean);
             prev = currentBoolean;

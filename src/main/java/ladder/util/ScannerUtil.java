@@ -2,8 +2,8 @@ package ladder.util;
 
 import java.util.Scanner;
 
-import static ladder.util.MessageUtil.WARNING_NOT_NUMBER_TYPE;
-import static ladder.util.MessageUtil.WARNING_NULL_OR_EMPTY;
+import static ladder.Messages.WARNING_NOT_NUMBER_TYPE;
+import static ladder.Messages.WARNING_NULL_OR_EMPTY;
 
 public class ScannerUtil {
     private static final Scanner scanner = new Scanner(System.in);

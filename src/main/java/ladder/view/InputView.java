@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.util.MessageUtil.MESSAGE_INPUT_LADDER_HEIGHT;
-import static ladder.util.MessageUtil.MESSAGE_INPUT_PLAYERS;
+import static ladder.Messages.MESSAGE_INPUT_LADDER_HEIGHT;
+import static ladder.Messages.MESSAGE_INPUT_PLAYERS;
 
 public class InputView {
     private static final String DELIMITER = ",";
