@@ -9,4 +9,12 @@ public class Node {
         this.index = index;
         this.way = way;
     }
+
+    public boolean isMovableLeft() {
+        return this.way.isMovableLeft();
+    }
+
+    public boolean isMovableRight() {
+        return this.way.isMovableRight();
+    }
 }

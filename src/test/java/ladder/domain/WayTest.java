@@ -31,7 +31,7 @@ class WayTest {
 
     @DisplayName("이동 방향으로 움직일수 있는지 체크")
     @Test
-    public void left() throws Exception {
+    public void left_right() throws Exception {
         //given
         Way left = new Way(true, false);
         Way right = new Way(false, true);
