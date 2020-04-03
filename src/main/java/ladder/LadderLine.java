@@ -1,9 +1,6 @@
 package ladder;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,15 +19,20 @@ public class LadderLine {
         }
     }
 
-    public static LadderLine newInstance(final int memberCount) {
+    public static LadderLine newInstance(int memberCount) {
+        return newInstance(new MemberCount(memberCount));
+    }
+
+    public static LadderLine newInstance(final MemberCount memberCount) {
         List<LadderBridge> bridges = Stream.iterate(
                 LadderBridge.UN_EXIST,
                 bridge -> LadderBridge.makeRandomBridge(Optional.ofNullable(bridge)))
-                .limit(memberCount - 1)
+                .limit(memberCount.toInt() - 1)
                 .collect(Collectors.toList());
 
         return new LadderLine(bridges);
     }
+
 
     public List<LadderBridge> getBridges() {
         return bridges;

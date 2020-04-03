@@ -15,14 +15,18 @@ public class Ladder {
         this.lines = Collections.unmodifiableList(lines);
     }
 
-    private void validate(List<LadderLine> lines) {
+    private void validate(final List<LadderLine> lines) {
         if(Objects.isNull(lines) || lines.isEmpty()) {
             throw new IllegalArgumentException("Ladder Line must be existed.");
         }
     }
 
-    public static Ladder newInstance(final int memberCount, final int height) {
-        List<LadderLine> ladders = IntStream.range(0, height)
+    public static Ladder newInstance(final int count, final int height) {
+        return newInstance(new MemberCount(count), new LadderHeight(height));
+    }
+
+    public static Ladder newInstance(final MemberCount memberCount, final LadderHeight height) {
+        List<LadderLine> ladders = IntStream.range(0, height.toInt())
                 .mapToObj(i -> LadderLine.newInstance(memberCount))
                 .collect(Collectors.toList());
         return new Ladder(ladders);
