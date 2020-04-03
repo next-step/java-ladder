@@ -44,6 +44,22 @@ class WayTest {
         assertFalse(right.isMovableLeft());
         assertFalse(none.isMovableLeft());
         assertFalse(none.isMovableRight());
+    }
 
+    @DisplayName("캐싱 데이터 확인")
+    @Test
+    public void cache() throws Exception {
+        //given
+        Way left = Way.left();
+        Way right = Way.right();
+        Way none = Way.none();
+
+        //then
+        assertTrue(left.isMovableLeft());
+        assertFalse(left.isMovableRight());
+        assertTrue(right.isMovableRight());
+        assertFalse(right.isMovableLeft());
+        assertFalse(none.isMovableLeft());
+        assertFalse(none.isMovableRight());
     }
 }
