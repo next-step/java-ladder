@@ -10,7 +10,7 @@ public final class RandomUtils {
         throw new IllegalArgumentException(NON_CREATE_MSG);
     }
 
-    public boolean getRandomBoolean() {
+    public static boolean getRandomBoolean() {
         Random random = new Random();
         return random.nextBoolean();
     }

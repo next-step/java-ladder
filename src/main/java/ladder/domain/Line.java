@@ -9,4 +9,8 @@ public class Line {
     public Line(final List<Node> nodes) {
         this.nodes = nodes;
     }
+
+    public int size() {
+        return this.nodes.size();
+    }
 }
