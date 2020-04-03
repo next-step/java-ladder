@@ -6,7 +6,7 @@ public class Line {
 
     private final List<Node> nodes;
 
-    public Line(List<Node> nodes) {
+    public Line(final List<Node> nodes) {
         this.nodes = nodes;
     }
 }
