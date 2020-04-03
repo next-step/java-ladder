@@ -7,7 +7,6 @@ import static ladder.Messages.WARNING_NULL_OR_EMPTY;
 
 public class ScannerUtil {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String DELIMITER = ",";
 
     public static int readInt() {
         String input = readLine();
