@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.model.Height;
 import ladder.model.Player;
 import ladder.model.Players;
 import ladder.util.*;
@@ -19,9 +20,9 @@ public class InputView {
         return Players.create(splitNames(ScannerUtil.readLine()));
     }
 
-    public static int getHeight() {
+    public static Height getHeight() {
         System.out.println(MESSAGE_INPUT_LADDER_HEIGHT);
-        return ScannerUtil.readInt();
+        return new Height(ScannerUtil.readInt());
     }
 
     private static List<Player> splitNames(String names) {

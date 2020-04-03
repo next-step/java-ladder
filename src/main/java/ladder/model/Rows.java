@@ -11,9 +11,9 @@ public class Rows {
         this.rows = Collections.unmodifiableList(rows);
     }
 
-    public static Rows create(int playerCount, int height) {
+    public static Rows create(int playerCount, Height height) {
         List<Row> rows = new ArrayList<>();
-        for(int i=0; i<height; i++){
+        for (int i = 0; i < height.getHeight(); i++) {
             rows.add(Row.create(playerCount));
         }
         return new Rows(rows);
@@ -23,11 +23,11 @@ public class Rows {
         return rows;
     }
 
-    public int getSize(){
+    public int getSize() {
         return rows.size();
     }
 
-    public Row getRowsElement(int index){
+    public Row getRowsElement(int index) {
         return rows.get(index);
     }
 }

@@ -17,4 +17,8 @@ public class Height {
             throw new IllegalArgumentException(WARNING_NOT_ALLOWED_HEIGHT_LENGTH);
         }
     }
+
+    public int getHeight(){
+        return height;
+    }
 }
