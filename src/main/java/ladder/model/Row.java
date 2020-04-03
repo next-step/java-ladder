@@ -32,4 +32,12 @@ public class Row {
     private static boolean findNextBoolean(boolean prev) {
         return NextBooleanGenerator.generate(prev);
     }
+
+    public Map<Integer, Boolean> getRow() {
+        return row;
+    }
+
+    public int getSize(){
+        return row.size();
+    }
 }

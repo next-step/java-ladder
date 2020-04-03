@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.model.Player;
-import ladder.util.ScannerUtil;
+import ladder.util.*;
 
 import java.util.Arrays;
 import java.util.List;

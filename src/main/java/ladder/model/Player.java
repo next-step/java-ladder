@@ -15,4 +15,8 @@ public class Player {
             throw new IllegalArgumentException(WARNING_NOT_ALLOWED_NAME_LENGTH);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -1,15 +1,33 @@
 package ladder.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Rows {
-    private List<Row> rows;
+    private static List<Row> rows;
 
-    public static Rows create(int i) {
-        return null;
+    private Rows(List<Row> rows) {
+        this.rows = Collections.unmodifiableList(rows);
+    }
+
+    public static Rows create(int playerCount, int height) {
+        List<Row> rows = new ArrayList<>();
+        for(int i=0; i<height; i++){
+            rows.add(Row.create(playerCount));
+        }
+        return new Rows(rows);
     }
 
     public List<Row> getRows() {
         return rows;
+    }
+
+    public int getSize(){
+        return rows.size();
+    }
+
+    public Row getRowsElement(int index){
+        return rows.get(index);
     }
 }
