@@ -29,7 +29,9 @@ public class Lambda {
     public static int sumAll(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
-            total += number;
+            if (all(number)) {
+                total += number;
+            }
         }
         return total;
     }
@@ -37,7 +39,7 @@ public class Lambda {
     public static int sumAllEven(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
-            if (number % 2 == 0) {
+            if (even(number)) {
                 total += number;
             }
         }
@@ -47,10 +49,22 @@ public class Lambda {
     public static int sumAllOverThree(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
-            if (number > 3) {
+            if (overThree(number)) {
                 total += number;
             }
         }
         return total;
+    }
+
+    private static boolean all(Integer number) {
+        return true;
+    }
+
+    private static boolean even(Integer number) {
+        return number % 2 == 0;
+    }
+
+    private static boolean overThree(Integer number) {
+        return number > 3;
     }
 }
