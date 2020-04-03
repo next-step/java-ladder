@@ -10,7 +10,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public static LadderGame newInstance(final Members members, final Ladder ladder) {
-        return new LadderGame(members, ladder);
+    public static LadderGame newInstance(final Members members, final int ladderHeight) {
+        return new LadderGame(members, Ladder.newInstance(members.size(), ladderHeight));
     }
 }
