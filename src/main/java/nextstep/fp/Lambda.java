@@ -34,26 +34,14 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return sumAll(numbers, Lambda::all);
+        return sumAll(numbers, (number) -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sumAll(numbers, Lambda::even);
+        return sumAll(numbers, (number) -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sumAll(numbers, Lambda::overThree);
-    }
-
-    private static boolean all(Integer number) {
-        return true;
-    }
-
-    private static boolean even(Integer number) {
-        return number % 2 == 0;
-    }
-
-    private static boolean overThree(Integer number) {
-        return number > 3;
+        return sumAll(numbers, (number) -> number > 3);
     }
 }
