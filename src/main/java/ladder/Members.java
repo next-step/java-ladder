@@ -6,11 +6,11 @@ public class Members {
 
     private final List<Member> members;
 
-    private Members(List<Member> members) {
+    private Members(final List<Member> members) {
         this.members = members;
     }
 
-    public static Members newInstance(List<Member> members) {
+    public static Members newInstance(final List<Member> members) {
         return new Members(members);
     }
 }

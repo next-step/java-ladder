@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("사다리 테스트")
-public class LadderTests {
+public class LadderGameTests {
 
     @DisplayName("사다리 생성 테스트")
     @ParameterizedTest
