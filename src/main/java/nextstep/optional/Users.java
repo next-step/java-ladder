@@ -1,7 +1,13 @@
 package nextstep.optional;
 
+import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Users {
     static final User DEFAULT_USER = new User("codesquad", 100);
@@ -13,11 +19,9 @@ public class Users {
             new User("honux", 45));
 
     User getUser(String name) {
-        for (User user : users) {
-            if (user.matchName(name)) {
-                return user;
-            }
-        }
-        return DEFAULT_USER;
+        return users.stream()
+                .filter(user -> user.matchName(name))
+                .findFirst()
+                .orElse(DEFAULT_USER);
     }
 }
