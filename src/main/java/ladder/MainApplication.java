@@ -12,7 +12,6 @@ public class MainApplication {
         List<Player> players = LadderGame.ready();
         Rows rows = LadderGame.start(players.size());
 
-        ResultView.printPlayers(players);
-        ResultView.printRows(rows);
+        ResultView.printLadder(players, rows);
     }
 }

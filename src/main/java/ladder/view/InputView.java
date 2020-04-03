@@ -25,6 +25,7 @@ public class InputView {
 
     private static List<Player> splitNames(String names) {
         return Arrays.stream(names.split(DELIMITER))
+                .map(it -> it.trim())
                 .map(it -> new Player(it))
                 .collect(Collectors.toList());
     }
