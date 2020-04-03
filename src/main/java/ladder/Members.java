@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ public class Members {
 
     private Members(final List<Member> members) {
         validate(members);
-        this.members = members;
+        this.members = Collections.unmodifiableList(members);
     }
 
     public static Members newInstance(final List<Member> members) {
@@ -17,7 +18,7 @@ public class Members {
     }
 
     private void validate(List<Member> members) {
-        if(Objects.isNull(members) || members.isEmpty()) {
+        if (Objects.isNull(members) || members.isEmpty()) {
             throw new IllegalArgumentException("Member must be existed.");
         }
     }

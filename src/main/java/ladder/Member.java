@@ -14,7 +14,7 @@ public class Member {
     }
 
     public static Member newInstance(final String name) {
-        return new Member(name);
+        return new Member(name.trim());
     }
 
     private void validate(final String name) {

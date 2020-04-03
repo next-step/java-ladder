@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,7 +13,7 @@ public class LadderLine {
 
     private LadderLine(final List<LadderBridge> bridges) {
         validate(bridges);
-        this.bridges = bridges;
+        this.bridges = Collections.unmodifiableList(bridges);
     }
 
     private void validate(List<LadderBridge> bridges) {
@@ -25,10 +26,13 @@ public class LadderLine {
         List<LadderBridge> bridges = Stream.iterate(
                 LadderBridge.UN_EXIST,
                 bridge -> LadderBridge.makeRandomBridge(Optional.ofNullable(bridge)))
-                .limit(memberCount)
+                .limit(memberCount - 1)
                 .collect(Collectors.toList());
 
         return new LadderLine(bridges);
     }
 
+    public List<LadderBridge> getBridges() {
+        return bridges;
+    }
 }
