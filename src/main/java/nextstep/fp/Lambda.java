@@ -27,22 +27,30 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(number -> number)
-                .sum();
+        int total = 0;
+        for (int number : numbers) {
+            total += number;
+        }
+        return total;
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(number -> number)
-                .filter(number -> number % 2 == 0)
-                .sum();
+        int total = 0;
+        for (int number : numbers) {
+            if (number % 2 == 0) {
+                total += number;
+            }
+        }
+        return total;
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(number -> number)
-                .filter(number -> number > 3)
-                .sum();
+        int total = 0;
+        for (int number : numbers) {
+            if (number > 3) {
+                total += number;
+            }
+        }
+        return total;
     }
 }
