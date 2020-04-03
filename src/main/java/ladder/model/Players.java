@@ -6,15 +6,15 @@ import java.util.List;
 public class Players {
     private List<Player> players;
 
-    public Players(List<Player> players) {
+    private Players(List<Player> players) {
         this.players = Collections.unmodifiableList(players);
     }
 
     public static Players create(List<Player> players) {
-        return null;
+        return new Players(players);
     }
 
-    public int getPlayerCount(){
+    public int getPlayerCount() {
         return players.size();
     }
 }

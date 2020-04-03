@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.model.Player;
 import ladder.model.Players;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -10,6 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayersTest {
+    @DisplayName("Players 객체 생성")
     @Test
     void createTest() {
         //given
