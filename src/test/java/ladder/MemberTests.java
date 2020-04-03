@@ -34,7 +34,7 @@ public class MemberTests {
 
     @DisplayName("참여자 복수 생성 테스트")
     @Test
-    public void generateMembersTests(final String name) {
+    public void generateMembersTests() {
         List<Member> members = Arrays.asList(Member.newInstance("abc"), Member.newInstance("bcd"));
         assertThatCode(() -> Members.newInstance(members)).doesNotThrowAnyException();
     }
