@@ -1,17 +1,15 @@
 package ladder.controller;
 
-import ladder.model.Player;
+import ladder.model.Players;
 import ladder.model.Rows;
 import ladder.view.InputView;
 
-import java.util.List;
-
 public class LadderGame {
-    public static List<Player> ready() {
+    public static Players ready() {
         return InputView.getPlayers();
     }
 
-    public static Rows start(int playerCount){
+    public static Rows start(int playerCount) {
         return Rows.create(playerCount, InputView.getHeight());
     }
 }

@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.model.Player;
+import ladder.model.Players;
 import ladder.model.Row;
 import ladder.model.Rows;
 
@@ -17,7 +18,7 @@ public class ResultView {
 
     private static List<Player> players;
 
-    public static void printLadder(List<Player> allPlayers, Rows rows) {
+    public static void printLadder(Players allPlayers, Rows rows) {
         printTitle();
         printPlayers(allPlayers);
         printRows(rows);
@@ -29,9 +30,9 @@ public class ResultView {
         printBlankLine();
     }
 
-    private static void printPlayers(List<Player> allPlayers) {
-        players = allPlayers;
-        allPlayers.stream()
+    private static void printPlayers(Players allPlayers) {
+        players = allPlayers.getPlayers();
+        players.stream()
                 .map(Player::getName)
                 .map(it -> it + createBlanks(findNeededBlankCount(it)))
                 .forEach(it -> System.out.print(it));

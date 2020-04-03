@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.model.Player;
+import ladder.model.Players;
 import ladder.util.*;
 
 import java.util.Arrays;
@@ -13,9 +14,9 @@ import static ladder.Messages.MESSAGE_INPUT_PLAYERS;
 public class InputView {
     private static final String DELIMITER = ",";
 
-    public static List<Player> getPlayers() {
+    public static Players getPlayers() {
         System.out.println(MESSAGE_INPUT_PLAYERS);
-        return splitNames(ScannerUtil.readLine());
+        return Players.create(splitNames(ScannerUtil.readLine()));
     }
 
     public static int getHeight() {
