@@ -31,14 +31,6 @@ public class Lambda {
                 .filter(c::test)
                 .mapToInt(number -> number)
                 .sum();
-
-//        int total = 0;
-//        for (int number : numbers) {
-//            if (all(number)) {
-//                total += number;
-//            }
-//        }
-//        return total;
     }
 
     public static int sumAll(List<Integer> numbers) {
@@ -46,23 +38,11 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (even(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, Lambda::even);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (overThree(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, Lambda::overThree);
     }
 
     private static boolean all(Integer number) {
