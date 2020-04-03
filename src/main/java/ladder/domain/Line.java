@@ -1,13 +1,12 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
 
-    private List points = new ArrayList<>();
+    private final List<Node> nodes;
 
-    public Line(int countOfPerson) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
+    public Line(List<Node> nodes) {
+        this.nodes = nodes;
     }
 }
