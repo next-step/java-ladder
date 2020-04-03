@@ -5,7 +5,7 @@ public class LadderHeight {
 
     public LadderHeight(final int height) {
         if (height <= 0) {
-            throw new IllegalArgumentException("Ladder Height must be greater than zero.");
+            throw new IllegalArgumentException("Ladder height must be greater than zero.");
         }
         this.height = height;
     }

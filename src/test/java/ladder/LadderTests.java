@@ -1,6 +1,7 @@
 package ladder;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -17,12 +18,19 @@ public class LadderTests {
         assertThatCode(() -> Ladder.newInstance(memberCount, ladderHeight));
     }
 
-    @DisplayName("사다리 생성 테스트 - 비정상")
-    @ParameterizedTest
-    @CsvSource(value = {"-13,0", "0,-5"})
-    public void generateLadderAbnormalTests(final int memberCount, final int ladderHeight) {
+    @DisplayName("사다리 생성 테스트 - 참가자 수 비정상")
+    @Test
+    public void generateLadderAbnormalMemberCountTests() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Ladder.newInstance(memberCount, ladderHeight))
-                .withMessageContaining("member count and ladder height must be greater than zero.");
+                .isThrownBy(() -> Ladder.newInstance(-13, 1))
+                .withMessageContaining("Member count must be greater than zero.");
+    }
+
+    @DisplayName("사다리 생성 테스트 - 사다리 높이 비정상")
+    @Test
+    public void generateLadderAbnormalLadderHeightTests() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Ladder.newInstance(1, -13))
+                .withMessageContaining("Ladder height must be greater than zero.");
     }
 }
