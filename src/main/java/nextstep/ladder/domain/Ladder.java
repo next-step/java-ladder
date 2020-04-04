@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 public class Ladder {
     public static final String LADDER_HEIGHT_ERROR = "사다리 높이는 1보다 커야합니다.";
-
     private List<Line> lines;
+
     public Ladder(List<Line> lines) {
         assertLadderHeight(lines.size());
         this.lines = lines;
