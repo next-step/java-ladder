@@ -66,4 +66,17 @@ class LineTest {
         assertFalse(line.getNode(0).isMovableLeft());
         assertTrue(line.getNode(0).isMovableRight());
     }
+
+    @DisplayName("객체 복사")
+    @Test
+    public void clone_success() throws Exception {
+        //given
+        Line line = new Line(Arrays.asList(new Node(0, new Way(false, false))));
+
+        //when
+        Line clone = line.clone();
+
+        //then
+        assertThat(clone.size()).isEqualTo(line.size());
+    }
 }

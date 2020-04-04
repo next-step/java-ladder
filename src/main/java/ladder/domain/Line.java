@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+public class Line implements Cloneable {
 
     private final List<Node> nodes;
 
@@ -46,5 +46,11 @@ public class Line {
 
     public Node getNode(int index) {
         return this.nodes.get(index);
+    }
+
+    @Override
+    protected Line clone() {
+        List<Node> nodes = new ArrayList<>(this.nodes);
+        return new Line(nodes);
     }
 }
