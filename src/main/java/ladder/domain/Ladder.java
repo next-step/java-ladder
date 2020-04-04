@@ -1,6 +1,8 @@
 package ladder.domain;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Ladder {
     private Map<Height, Line> ladder;
@@ -9,10 +11,14 @@ public class Ladder {
         this.ladder = createLines(playerCount, height);
     }
 
+    public Map<Height, Line> getLadder() {
+        return ladder;
+    }
+
     private Map<Height, Line> createLines(final int playerCount, final Height height) {
         Map<Height, Line> ladder = new HashMap<>();
-        for (int i = 0; i < height.value(); i++) {
-            ladder.put(Height.of(i + 1), new Line(playerCount));
+        for (int i = Height.MIN_HEIGHT; i < height.value(); i++) {
+            ladder.put(Height.of(i), new Line(playerCount));
         }
         return Collections.unmodifiableMap(ladder);
     }
