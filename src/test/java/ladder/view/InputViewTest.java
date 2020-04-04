@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Height;
 import ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,18 @@ class InputViewTest {
 
         assertThat(actual).isEqualTo(expect);
         assertThat(actual.size()).isEqualTo(2);
+    }
+
+    @DisplayName("높이를 입력받는다.")
+    @Test
+    void inputHeight() {
+        String height = "5";
+        inputView = new InputView(createInputStream(height));
+        Height expect = new Height(height);
+
+        Height actual = new Height(height);
+
+        assertThat(actual).isEqualTo(expect);
     }
 
     ByteArrayInputStream createInputStream(String name) {
