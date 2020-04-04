@@ -46,4 +46,17 @@ public class Members {
     public List<Member> getMembers() {
         return members;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Members)) return false;
+        Members members1 = (Members) o;
+        return Objects.equals(getMembers(), members1.getMembers());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMembers());
+    }
 }

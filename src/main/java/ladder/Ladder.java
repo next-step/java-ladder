@@ -35,4 +35,17 @@ public class Ladder {
     public List<LadderLine> getLines() {
         return lines;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ladder)) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(getLines(), ladder.getLines());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLines());
+    }
 }

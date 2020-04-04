@@ -4,6 +4,7 @@ import ladder.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LadderConsoleResult {
 
@@ -29,5 +30,19 @@ public class LadderConsoleResult {
 
     public List<LadderLine> getLadderLines() {
         return ladderLines;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LadderConsoleResult)) return false;
+        LadderConsoleResult result = (LadderConsoleResult) o;
+        return Objects.equals(getMembers(), result.getMembers()) &&
+                Objects.equals(getLadderLines(), result.getLadderLines());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMembers(), getLadderLines());
     }
 }

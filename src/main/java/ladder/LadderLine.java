@@ -33,8 +33,20 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
-
     public List<LadderBridge> getBridges() {
         return bridges;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LadderLine)) return false;
+        LadderLine that = (LadderLine) o;
+        return Objects.equals(getBridges(), that.getBridges());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBridges());
     }
 }
