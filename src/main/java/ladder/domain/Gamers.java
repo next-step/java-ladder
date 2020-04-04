@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Gamers {
     private final List<Gamer> gamerList;
@@ -13,8 +13,9 @@ public class Gamers {
     }
 
     public static Gamers ofComma(String name) {
-        return new Gamers(Arrays.stream(name.split(","))
-                .map(Gamer::of)
+        String[] names = name.split(",");
+        return new Gamers(IntStream.rangeClosed(1, name.length())
+                .mapToObj(number -> Gamer.of(names[number - 1], number))
                 .collect(Collectors.toList()));
     }
 

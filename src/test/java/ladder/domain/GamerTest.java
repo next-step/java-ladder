@@ -16,7 +16,7 @@ public class GamerTest {
     @EmptySource
     @NullSource
     void expectException(String name) {
-        assertThatThrownBy(() -> Gamer.of(name))
+        assertThatThrownBy(() -> getGamer(name))
                 .isInstanceOf(RuntimeException.class);
     }
 
@@ -25,7 +25,11 @@ public class GamerTest {
     @ValueSource(strings = {"Unit", " Unit1 ", "m   e", "Unit1 ", " m    e   "})
     void getNameTest() {
         String name = "tj";
-        assertThat(Gamer.of(name).getName())
+        assertThat(getGamer(name).getName())
                 .isEqualTo(name);
+    }
+
+    private Gamer getGamer(String name) {
+        return Gamer.of(name, 1);
     }
 }
