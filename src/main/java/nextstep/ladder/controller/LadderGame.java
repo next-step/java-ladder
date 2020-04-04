@@ -8,18 +8,19 @@ import nextstep.ladder.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LadderGame {
     public static Ladder createLadder(List<Person> persons, int height) {
-        List<Line> lines = new ArrayList<>();
+        List<Line> lines = Stream
+                .generate(() -> createLine(persons))
+                .limit(height)
+                .collect(Collectors.toList());
 
-        for(int i = 0; i < height; i++) {
-            lines.add(createLine(i, persons));
-        }
         return new Ladder(lines);
     }
 
-    private static Line createLine(int pointY, List<Person> persons) {
+    private static Line createLine(List<Person> persons) {
         List<Point> points = persons.stream()
                 .map(person -> new Point(0, true))
                 .collect(Collectors.toList());

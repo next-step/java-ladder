@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
     public static final String POINT_COUNT_ERROR = "참여자는 2명 이상이어야 합니다.";
