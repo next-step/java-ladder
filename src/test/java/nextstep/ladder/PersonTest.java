@@ -13,6 +13,6 @@ public class PersonTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Person(name);
-        }).withMessage("이름은 5자 이하로 입력해주세요.");
+        }).withMessage(Person.PERSON_NAME_LENGTH_ERROR);
     }
 }
