@@ -20,6 +20,14 @@ public class Height {
         return new Height(Integer.valueOf(value));
     }
 
+    public static Height of(final int value) {
+        return new Height(value);
+    }
+
+    int value() {
+        return value;
+    }
+
     private static void validHeight(final String height) {
         if (Objects.isNull(height) || height.trim().isEmpty()) {
             throw new InvalidHeightException(height);
