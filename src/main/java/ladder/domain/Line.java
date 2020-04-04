@@ -37,7 +37,6 @@ public class Line implements Cloneable {
         return new Line(merge);
     }
 
-
     public Line addNode(Node node) {
         List<Node> merge = new ArrayList<>();
         merge.addAll(this.nodes);
