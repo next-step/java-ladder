@@ -15,14 +15,14 @@ public class Line {
         this.points = points;
     }
 
-    public Line(int personCount) {
-        this(createLine(personCount));
+    public Line(int participantCount) {
+        this(createLine(participantCount));
     }
 
-    private static List<Point> createLine(int personCount) {
+    private static List<Point> createLine(int participantCount) {
         List<Point> points = new ArrayList<>();
 
-        for(int i = 0; i < personCount - 1; i++) {
+        for(int i = 0; i < participantCount - 1; i++) {
             points.add(new Point(i, judgeHasLine(getPreviousPoint(points, i))));
         }
 

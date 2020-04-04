@@ -3,7 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.ViewUtils;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Point;
 
 import java.util.List;
@@ -23,9 +23,9 @@ public class OutputView {
         this.viewUtils = new ViewUtils();
     }
 
-    public void showLadder(Ladder ladder, List<Person> persons) {
+    public void showLadder(Ladder ladder, List<Participant> participants) {
         viewUtils.printLine(LADDER_GAME_RESULT);
-        showPersons(persons);
+        showPersons(participants);
 
         for(Line line : ladder.getValue()) {
             showLine(line);
@@ -48,11 +48,11 @@ public class OutputView {
         return String.format(POINT_FORMAT, point.isHasLine() ? POINT_LINE : POINT_EMPTY);
     }
 
-    private void showPersons(List<Person> persons) {
+    private void showPersons(List<Participant> participants) {
         StringBuilder builder = new StringBuilder();
 
-        for(Person person : persons) {
-            String personName = person.getName();
+        for(Participant participant : participants) {
+            String personName = participant.getName();
             int length = personName.length();
             int spaceCount = SPACE_PER_POINT - length;
 

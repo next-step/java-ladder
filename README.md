@@ -53,7 +53,7 @@ __
     - 사람 수에 따라 Point 인스턴스를 생성한다.  
 3. Ladder(Lines) : ```List<Line>```. 전체 사다리  
     - 높이를 입력받아 해당 높이 개수의 Line을 생성한다.  
-4. Person : 게임 참가자. name을 받는다. 
+4. Participant : 게임 참가자. name을 받는다. 
     - name 글자가 5글자가 넘는지 여부를 검증한다.  
 4. InputView: 정보를 입력받는다. (이름 목록, 높이)
 5. OutputView: 사다리 정보를 출력한다.  
