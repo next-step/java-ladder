@@ -29,7 +29,7 @@ class LadderGameTest {
                 new Players(Arrays.asList(new Player("a"), new Player("b")));
 
         //when
-        LadderGame game = new LadderGame(players, 3);
+        LadderGame game = LadderGame.createLadder(players, 3);
 
         //then
         assertThat(game.getLines().size()).isEqualTo(3);

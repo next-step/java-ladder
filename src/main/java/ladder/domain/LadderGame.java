@@ -10,13 +10,12 @@ public class LadderGame {
         this.lines = lines;
     }
 
-    public LadderGame(Players players, int height) {
+    public static LadderGame createLadder(Players players, int height) {
         LadderGenerator ladderGenerator =
                 new LadderGenerator(players.getPlayersCount(), height);
         Lines lines = ladderGenerator.generateLines();
 
-        this.players = players;
-        this.lines = lines;
+        return new LadderGame(players, lines);
     }
 
     public Lines getLines() {
