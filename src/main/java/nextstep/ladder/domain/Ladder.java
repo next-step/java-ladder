@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -51,5 +52,9 @@ public class Ladder {
         return ladder.stream()
                 .map(horizontalLine -> horizontalLine.getPoint(index))
                 .collect(Collectors.toList());
+    }
+
+    public List<HorizontalLine> getLadder() {
+        return new ArrayList<>(ladder);
     }
 }

@@ -52,6 +52,9 @@ public class HorizontalLine implements Iterable<Point> {
     }
 
     public void reverse(int index) {
+        if(index == lastIndex()) {
+            return;
+        }
         Point point = points.get(index);
         points.set(index, point.reverse());
     }
