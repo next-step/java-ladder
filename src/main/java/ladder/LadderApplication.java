@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.LadderGame;
 import ladder.service.LadderService;
 import ladder.view.InputView;
+import ladder.view.ResultView;
 
 public class LadderApplication {
 
@@ -13,6 +14,7 @@ public class LadderApplication {
         String height = InputView.inputHeight();
 
         LadderGame ladder = ladderService.createLadder(names, height);
-        System.out.println(ladder);
+
+        ResultView.printPlayers(ladder.getPlayers());
     }
 }

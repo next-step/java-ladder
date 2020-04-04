@@ -21,4 +21,8 @@ public class LadderGame {
     public Lines getLines() {
         return lines;
     }
+
+    public Players getPlayers() {
+        return players;
+    }
 }
