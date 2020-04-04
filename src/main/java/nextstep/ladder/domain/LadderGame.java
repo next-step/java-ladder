@@ -14,8 +14,8 @@ public class LadderGame {
                       LineSelector lineSelector) {
         participants = new Participants(names);
         LadderSize ladderSize = new LadderSize(participants.size(), height);
-        ladder = new Ladder(createHorizontalLine(ladderSize),
-                lineSelector, rightDirection);
+        ladder = Ladder.of(createHorizontalLine(ladderSize), lineSelector,
+                rightDirection);
     }
 
     private List<HorizontalLine> createHorizontalLine(LadderSize ladderSize) {
