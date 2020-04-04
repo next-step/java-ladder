@@ -57,7 +57,7 @@ public class Players {
         return names.indexOf(playerName);
     }
 
-    public int getPlayersCount() {
+    public int size() {
         return this.players.size();
     }
 

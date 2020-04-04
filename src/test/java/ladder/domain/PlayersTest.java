@@ -38,7 +38,7 @@ class PlayersTest {
                 Arrays.asList(new Player("a"), new Player("B")));
 
         //then
-        assertThat(players.getPlayersCount()).isEqualTo(2);
+        assertThat(players.size()).isEqualTo(2);
     }
 
     @DisplayName("이름 List<String> 을 이용하여 Players를 생성")
@@ -54,7 +54,7 @@ class PlayersTest {
         Players players = Players.of(names);
 
         //then
-        assertThat(players.getPlayersCount()).isEqualTo(3);
+        assertThat(players.size()).isEqualTo(3);
     }
 
     @DisplayName("참가자를 찾고 index를 찾는다")

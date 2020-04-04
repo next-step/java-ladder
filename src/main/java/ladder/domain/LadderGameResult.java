@@ -9,4 +9,12 @@ public class LadderGameResult {
     public LadderGameResult(List<String> result) {
         this.result = result;
     }
+
+    public List<String> getResult() {
+        return result;
+    }
+
+    public int size() {
+        return this.result.size();
+    }
 }

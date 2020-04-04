@@ -1,11 +1,13 @@
 package ladder.domain;
 
+import ladder.exception.LadderException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderGameTest {
 
@@ -21,6 +23,20 @@ class LadderGameTest {
 
         //when
         LadderGame game = new LadderGame(players, lines, gameResult);
+    }
+
+    @DisplayName("참가자와 게임 결과의 수가 일치해야 한다.")
+    @Test
+    public void constructor_fail() throws Exception {
+        //given
+        Players players = Players.of(Arrays.asList("a", "b", "c"));
+        Lines lines = new Lines();
+        LadderGameResult gameResult = new LadderGameResult(Arrays.asList("5000", "꽝"));
+
+        //then
+        assertThatThrownBy(
+                () -> new LadderGame(players, lines, gameResult)
+        ).isInstanceOf(LadderException.class);
     }
 
     @DisplayName("사다리 게임 생성")
