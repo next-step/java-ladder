@@ -6,7 +6,7 @@ import ladder.exception.InvalidHeightException;
 import java.util.Objects;
 
 public class Height {
-    private static final int MIN_HEIGHT = 1;
+    public static final int MIN_HEIGHT = 1;
 
     private int value;
 
