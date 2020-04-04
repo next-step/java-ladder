@@ -23,22 +23,17 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, Conditional c) {
-        int total = 0;
-        for (int number : numbers) {
-            if(c.test(number)){
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(it -> c.test(it))
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
-    public static int sumAllEven(List<Integer> numbers, Conditional c) {
-        c = number -> number % 2 == 0;
-        return sumAll(numbers, c);
+    public static int sumAllEven(List<Integer> numbers) {
+        return sumAll(numbers, number -> number % 2 == 0);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, Conditional c) {
-        c = number -> number > 3;
-        return sumAll(numbers, c);
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sumAll(numbers, number -> number > 3);
     }
 }
