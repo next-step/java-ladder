@@ -21,6 +21,10 @@ public class Point {
         this.rightDirection = rightDirection;
     }
 
+    public Point reverse() {
+        return cache.get(!rightDirection);
+    }
+
     public boolean hasRightDirection() {
         return this.rightDirection;
     }

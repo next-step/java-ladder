@@ -14,6 +14,7 @@ public class Line implements Iterable<Point> {
     private void initPoints(int size, RightDirection rightDirection) {
         points = new ArrayList<>();
         int lastIndex = size - 1;
+        // todo refactor
         for (int i = 0; i < lastIndex; i++) {
             boolean randomPoint = rightDirection.isAbleToRight();
             if (i != 0 && points.get(i - 1).hasRightDirection() && randomPoint) {
@@ -36,6 +37,14 @@ public class Line implements Iterable<Point> {
         return size() - 1;
     }
 
+    public Point getPoint(int index) {
+        return points.get(index);
+    }
+
+    public void reverse(int index) {
+        Point point = points.get(index);
+        points.set(index, point.reverse());
+    }
 
     @Override public Iterator<Point> iterator() {
         return points.iterator();
