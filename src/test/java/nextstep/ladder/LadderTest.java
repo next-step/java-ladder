@@ -36,6 +36,6 @@ public class LadderTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             LadderGame.createLadder(persons, height);
-        }).withMessage("참여자는 2명 이상이어야 합니다.");
+        }).withMessage(Line.POINT_COUNT_ERROR);
     }
 }
