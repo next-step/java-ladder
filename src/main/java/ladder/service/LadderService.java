@@ -1,6 +1,7 @@
 package ladder.service;
 
 import ladder.domain.LadderGame;
+import ladder.domain.Node;
 import ladder.domain.Players;
 import ladder.utils.StringUtils;
 
@@ -17,5 +18,9 @@ public class LadderService {
 
         LadderGame game = LadderGame.of(players, height);
         return game;
+    }
+
+    public Node startGameOfPlayer(final String inputName, LadderGame ladderGame) {
+        return ladderGame.getPlayerResult(inputName);
     }
 }

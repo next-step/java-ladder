@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
+import ladder.domain.Node;
 import ladder.service.LadderService;
 import ladder.view.ResultView;
 
@@ -20,5 +21,7 @@ public class LadderApplication {
         ResultView.printLadder(game.getLines());
 
         String who = inputWhoseResult();
+        Node node = ladderService.startGameOfPlayer(who, game);
+
     }
 }
