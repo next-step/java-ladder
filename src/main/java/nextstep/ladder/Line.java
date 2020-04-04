@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Line {
     public static final String POINT_COUNT_ERROR = "참여자는 2명 이상이어야 합니다.";
@@ -12,6 +13,19 @@ public class Line {
         assertPointCount(points);
         assertPointHasLine(points);
         this.points = points;
+    }
+
+    public Line(int pointCount) {
+        this(createLine(pointCount));
+    }
+
+    private static List<Point> createLine(int pointCount) {
+        List<Point> points = Stream
+                .generate(() -> new Point(0, true))
+                .limit(pointCount)
+                .collect(Collectors.toList());
+
+        return points;
     }
 
     private void assertPointHasLine(List<Point> points) {

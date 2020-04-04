@@ -12,19 +12,7 @@ import java.util.stream.Stream;
 
 public class LadderGame {
     public static Ladder createLadder(List<Person> persons, int height) {
-        List<Line> lines = Stream
-                .generate(() -> createLine(persons))
-                .limit(height)
-                .collect(Collectors.toList());
-
-        return new Ladder(lines);
-    }
-
-    private static Line createLine(List<Person> persons) {
-        List<Point> points = persons.stream()
-                .map(person -> new Point(0, true))
-                .collect(Collectors.toList());
-
-        return new Line(points);
+        int pointCount = persons.size() - 1;
+        return new Ladder(pointCount, height);
     }
 }
