@@ -2,20 +2,23 @@ package ladder;
 
 import ladder.domain.LadderGame;
 import ladder.service.LadderService;
-import ladder.view.InputView;
 import ladder.view.ResultView;
+
+import static ladder.view.InputView.*;
 
 public class LadderApplication {
 
     public static void main(String[] args) {
         LadderService ladderService = new LadderService();
 
-        String names = InputView.inputNames();
-        String height = InputView.inputHeight();
+        String names = inputNames();
+        String height = inputHeight();
 
         LadderGame game = ladderService.createLadder(names, height);
 
         ResultView.printPlayers(game.getPlayers());
         ResultView.printLadder(game.getLines());
+
+        String who = inputWhoseResult();
     }
 }
