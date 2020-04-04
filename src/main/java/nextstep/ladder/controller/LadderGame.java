@@ -7,6 +7,7 @@ import nextstep.ladder.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
     public static Ladder createLadder(List<Person> persons, int height) {
@@ -18,13 +19,10 @@ public class LadderGame {
         return new Ladder(lines);
     }
 
-    private static Line createLine(int i, List<Person> persons) {
-        List<Point> points = new ArrayList<>();
-
-        for(int j = 0; j < persons.size(); j++) {
-            Point point = new Point(j, i, true);
-            points.add(point);
-        }
+    private static Line createLine(int y, List<Person> persons) {
+        List<Point> points = persons.stream()
+                .map(person -> new Point(persons.indexOf(person), y, true))
+                .collect(Collectors.toList());
 
         return new Line(points);
     }
