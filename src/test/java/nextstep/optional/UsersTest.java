@@ -10,6 +10,8 @@ public class UsersTest {
     public void getUser() {
         Users users = new Users();
         assertThat(users.getUser("crong")).isEqualTo(new User("crong", 35));
+        assertThat(users.getUser(null)).isEqualTo(new User("codesquad", 100));
+        assertThat(users.getUser("")).isEqualTo(new User("codesquad", 100));
     }
 
 
