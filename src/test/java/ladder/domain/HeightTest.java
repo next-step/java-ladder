@@ -1,10 +1,12 @@
 package ladder.domain;
 
+import ladder.exception.HeightOutOfBoundException;
 import ladder.exception.InvalidHeightException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -29,6 +31,15 @@ class HeightTest {
     @MethodSource("invalidHeights")
     void validHeight(String height) {
         assertThatExceptionOfType(InvalidHeightException.class).isThrownBy(
+                () ->  Height.of(height)
+        );
+    }
+
+    @DisplayName("높이가 0이하 일 경우 커스텀 예외를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-1"})
+    void isLessThanOne(String height) {
+        assertThatExceptionOfType(HeightOutOfBoundException.class).isThrownBy(
                 () ->  Height.of(height)
         );
     }
