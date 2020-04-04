@@ -29,8 +29,8 @@ public class Lambda {
     public static int sumAll(List<Integer> numbers, Conditional c) {
         return numbers.stream()
                 .filter(c::test)
-                .mapToInt(number -> number)
-                .sum();
+                .reduce((x, y) -> x + y)
+                .get();
     }
 
     public static int sumAll(List<Integer> numbers) {
