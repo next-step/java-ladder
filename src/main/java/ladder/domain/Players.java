@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class Players {
 
     private static final String PLAYER_COUNT_ERR_MSG = "2명 이상 참가 가능 합니다.";
+    private static final String PLAYER_NOT_FOUND_ERR_MSG = "참가자를 찾을수 없습니다.";
     private static final int MIN_PLAYER_COUNT = 2;
 
     private final List<Player> players;
@@ -29,6 +30,20 @@ public class Players {
         if (players.size() < MIN_PLAYER_COUNT) {
             throw new PlayerException(PLAYER_COUNT_ERR_MSG);
         }
+    }
+
+    public int findPlayer(String playerName) {
+        playerName = playerName.trim();
+
+        List<String> names = players.stream()
+                .map(player -> player.getName())
+                .collect(Collectors.toList());
+
+        if (!names.contains(playerName)) {
+            throw new PlayerException(PLAYER_NOT_FOUND_ERR_MSG);
+        }
+
+        return names.indexOf(playerName);
     }
 
     public int getPlayersCount() {

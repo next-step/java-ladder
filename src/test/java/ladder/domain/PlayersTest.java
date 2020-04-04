@@ -56,4 +56,36 @@ class PlayersTest {
         //then
         assertThat(players.getPlayersCount()).isEqualTo(3);
     }
+
+    @DisplayName("참가자를 찾고 index를 찾는다")
+    @Test
+    public void findPlayer_success() throws Exception {
+        //given
+        Players players = Players.of(Arrays.asList("a", "b", "c", "d"));
+
+        //when
+        int a = players.findPlayer("a");
+        int b = players.findPlayer("b");
+        int c = players.findPlayer("c");
+        int d = players.findPlayer("d");
+
+        //then
+        assertThat(a).isEqualTo(0);
+        assertThat(b).isEqualTo(1);
+        assertThat(c).isEqualTo(2);
+        assertThat(d).isEqualTo(3);
+    }
+
+    @DisplayName("참가자를 찾을 수 없을 경우 exception")
+    @Test
+    public void findPlayer_fail() throws Exception {
+        //given
+        Players players = Players.of(Arrays.asList("a", "b", "c", "d"));
+
+        //then
+        assertThatThrownBy(
+                () -> players.findPlayer("ABC")
+        ).isInstanceOf(PlayerException.class);
+
+    }
 }
