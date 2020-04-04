@@ -1,10 +1,10 @@
 package nextstep.ladder.domain.step;
 
-import nextstep.ladder.domain.Bridge;
+import java.util.Objects;
 
 public class Step {
-    private final boolean movable;
     private final Bridge bridge;
+    private final boolean movable;
 
     private Step(Bridge bridge, boolean movable) {
         this.bridge = bridge;
@@ -19,15 +19,21 @@ public class Step {
         return bridge.getStepPosition();
     }
 
-    public boolean isMovable() {
-        return movable;
+    public boolean isMovableLine(int linePosition) {
+        return bridge.isEqaulLinePosition(linePosition) && movable;
     }
 
-    public Bridge getBridge() {
-        return bridge;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Step step = (Step) o;
+        return movable == step.movable &&
+                Objects.equals(bridge, step.bridge);
     }
 
-    public boolean isEqualLinePosition(int linePosition) {
-        return bridge.getLinePosition() == linePosition;
+    @Override
+    public int hashCode() {
+        return Objects.hash(movable, bridge);
     }
 }

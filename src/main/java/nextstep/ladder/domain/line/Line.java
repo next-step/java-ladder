@@ -26,7 +26,7 @@ public class Line {
         Line previousLine = previousLines.lastLine();
         Steps previousLineSteps = previousLine.getSteps();
         List<Integer> moveableStepPositions = previousLineSteps.getSteps().stream()
-                .filter(step -> !(step.isMovable() && step.getBridge().getLinePosition() == previousLines.size()))
+                .filter(step -> !(step.isMovableLine(previousLines.size())))
                 .map(Step::getPosition)
                 .collect(Collectors.toList());
 

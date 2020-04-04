@@ -33,7 +33,7 @@ public class LadderApplication {
                 System.out.print("|");
 
                 Step step = steps.get(i);
-                if (step.isMovable() && step.getBridge().getLinePosition() == j+1) {
+                if (step.isMovableLine(j+1)) {
                     System.out.print("-----");
                 } else {
                     System.out.print("     ");
