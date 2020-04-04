@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
+    private static final int START_POSITION = 0;
+
     private final Person person;
     private final Steps steps;
 
@@ -17,28 +19,28 @@ public class Line {
     }
 
     public static Line first(Person person, int height) {
-        return Steps.movableNext(height, 0)
+        return Steps.movableNext(height, START_POSITION)
                 .map(steps -> new Line(steps, person))
                 .orElseThrow(() -> new IllegalArgumentException());
     }
 
-    public static Line of(Person person, Lines previousLines) {
-        Line previousLine = previousLines.lastLine();
-        Steps previousLineSteps = previousLine.getSteps();
+    public static Line of(Person person, Steps previousLineSteps) {
         List<Integer> moveableStepPositions = previousLineSteps.getSteps().stream()
-                .filter(step -> !(step.isMovableLine(previousLines.size())))
+                .filter(previousStep -> !previousStep.isMovableLine(previousLineSteps.getLinePosition() + 1))
                 .map(Step::getPosition)
                 .collect(Collectors.toList());
 
-        return Steps.movableNextByPreviousCondition(moveableStepPositions, previousLines)
+        return Steps.movableNextByPreviousCondition(moveableStepPositions, previousLineSteps)
                 .map(steps -> new Line(steps, person))
                 .orElseThrow(() -> new IllegalArgumentException());
     }
 
-    public static Line last(Person person, Lines previousLines) {
-        Line line = previousLines.lastLine();
-        line.getLineHeight();
-        return Steps.immovableNext(line.getLineHeight(), previousLines.size())
+    public static Line last(Person person, Steps previousLineSteps) {
+        List<Integer> moveableStepPositions = previousLineSteps.getSteps().stream()
+                .filter(previousStep -> previousStep.isMovableLine(previousLineSteps.getLinePosition() + 1))
+                .map(Step::getPosition)
+                .collect(Collectors.toList());
+        return Steps.immovableNext(moveableStepPositions, previousLineSteps)
                 .map(steps -> new Line(steps, person))
                 .orElseThrow(() -> new IllegalArgumentException());
     }

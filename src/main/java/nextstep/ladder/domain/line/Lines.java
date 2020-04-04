@@ -21,4 +21,9 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    public int lineHeight() {
+        //TODO get 0 check
+        return lines.get(0).getLineHeight();
+    }
 }
