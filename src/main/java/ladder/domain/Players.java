@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.PlayerException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,5 +33,10 @@ public class Players {
 
     public int getPlayersCount() {
         return this.players.size();
+    }
+
+    public List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>(this.players);
+        return players;
     }
 }
