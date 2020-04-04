@@ -1,23 +1,33 @@
 package nextstep.ladder.domain.step;
 
-public class Step {
-    private final int position;
-    private final boolean moveNextLine;
+import nextstep.ladder.domain.Bridge;
 
-    private Step(int position, boolean moveNextLine) {
-        this.position = position;
-        this.moveNextLine = moveNextLine;
+public class Step {
+    private final boolean movable;
+    private final Bridge bridge;
+
+    private Step(Bridge bridge, boolean movable) {
+        this.bridge = bridge;
+        this.movable = movable;
     }
 
-    public static Step of(int position, MovableStrategy movableStrategy) {
-        return new Step(position, movableStrategy.isMovable());
+    public static Step of(Bridge bridge, MovableStrategy movableStrategy) {
+        return new Step(bridge, movableStrategy.isMovable());
     }
 
     public int getPosition() {
-        return position;
+        return bridge.getStepPosition();
     }
 
-    public boolean isMoveNextLine() {
-        return moveNextLine;
+    public boolean isMovable() {
+        return movable;
+    }
+
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public boolean isEqualLinePosition(int linePosition) {
+        return bridge.getLinePosition() == linePosition;
     }
 }
