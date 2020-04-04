@@ -24,7 +24,11 @@ public class LadderGenerator {
         Line line = new Line();
         for (int i = 0; i < playerCount; i++) {
             boolean randomBoolean = RandomUtils.getRandomBoolean();
-            line = line.addRandomNextNode(randomBoolean);
+            if (i != playerCount - 1) {
+                line = line.addRandomNextNode(randomBoolean);
+            } else {
+                line = line.addLastNode();
+            }
         }
         return line;
     }
