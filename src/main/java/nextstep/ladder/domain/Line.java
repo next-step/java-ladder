@@ -46,15 +46,20 @@ public class Line {
     }
 
     private void assertPointHasLine(List<Point> points) {
-
-        for(int i = 0; i < points.size(); i++) {
-            if(i != 0) {
-                Point leftPoint = points.get(i - 1);
-                if(leftPoint.isHasLine() && points.get(i).isHasLine()) {
-                    throw new IllegalArgumentException(POINT_HAS_LINE_ERROR);
-                }
+        for(int i = 1; i < points.size(); i++) {
+            Point previousPoint = getPreviousPoint(i, points);
+            if(previousPoint.isHasLine() && getPoint(i, points).isHasLine()) {
+                throw new IllegalArgumentException(POINT_HAS_LINE_ERROR);
             }
         }
+    }
+
+    private Point getPreviousPoint(int currentIndex, List<Point> points) {
+        return points.get(currentIndex - 1);
+    }
+
+    private Point getPoint(int index, List<Point> points) {
+        return points.get(index);
     }
 
     private void assertPointCount(List<Point> points) {
