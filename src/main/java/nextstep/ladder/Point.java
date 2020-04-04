@@ -10,4 +10,8 @@ public class Point {
         this.y = y;
         this.hasLine = hasLine;
     }
+
+    public boolean hasLine() {
+        return hasLine;
+    }
 }
