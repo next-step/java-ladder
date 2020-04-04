@@ -17,7 +17,7 @@ public enum LadderBridge {
                 .orElse(randomBridge());
     }
 
-    private static LadderBridge randomBridge() {
+    public static LadderBridge randomBridge() {
         return VALUES.get(RANDOM.nextInt(VALUES_SIZE));
     }
 }

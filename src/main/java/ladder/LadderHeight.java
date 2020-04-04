@@ -1,7 +1,5 @@
 package ladder;
 
-import java.util.List;
-
 public class LadderHeight {
     private int height;
 
@@ -10,6 +8,10 @@ public class LadderHeight {
             throw new IllegalArgumentException("Ladder height must be greater than zero.");
         }
         this.height = height;
+    }
+
+    public static LadderHeight newInstance(final int height) {
+        return new LadderHeight(height);
     }
 
     public int toInt() {

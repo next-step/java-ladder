@@ -25,7 +25,7 @@ public class LadderLine {
 
     public static LadderLine newInstance(final MemberCount memberCount) {
         List<LadderBridge> bridges = Stream.iterate(
-                LadderBridge.UN_EXIST,
+                LadderBridge.randomBridge(),
                 LadderBridge::makeRandomBridge)
                 .limit(memberCount.toInt() - 1)
                 .collect(Collectors.toList());

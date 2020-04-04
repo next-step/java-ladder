@@ -22,4 +22,9 @@ public class Member {
             throw new IllegalArgumentException("Member name must be exist and the length must be less than 5.");
         }
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
