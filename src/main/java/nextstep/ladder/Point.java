@@ -5,6 +5,13 @@ import java.util.Objects;
 public class Point {
     private boolean nextPoint = false;
 
+    public Point() {
+    }
+
+    public Point(boolean nextPoint) {
+        this.nextPoint = nextPoint;
+    }
+
     public void moveNextPoint() {
         nextPoint = true;
     }

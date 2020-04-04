@@ -21,15 +21,10 @@ class ResultViewTest {
 
     @BeforeEach
     void setUp() {
-        Point point = new Point();
-        point.moveNextPoint();
 
-        Point point2 = new Point();
-
-        Point point3 = new Point();
-        point3.moveNextPoint();
-
-        List<Point> points = Stream.of(point, point2, point3)
+        List<Point> points = Stream.of(new Point(true),
+                                       new Point(false),
+                                       new Point(true))
                                    .collect(Collectors.toList());
 
         line = new Line(points);
@@ -64,7 +59,7 @@ class ResultViewTest {
     @DisplayName("입력 받은 사다리를 그린다.")
     @Test
     void drawLadder() {
-        String drawLadder = resultView.drawLadder(users,ladder);
+        String drawLadder = resultView.drawLadder(users, ladder);
         assertThat(drawLadder).isEqualTo(" pobi honux crong    jk\n"
                                          + "     |-----|     |-----|\n"
                                          + "     |-----|     |-----|");
