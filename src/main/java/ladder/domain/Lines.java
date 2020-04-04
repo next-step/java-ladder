@@ -27,8 +27,7 @@ public class Lines {
     }
 
     public List<Line> getLines() {
-        List<Line> lines = new ArrayList<>(this.lines);
-        return lines;
+        return new ArrayList<>(this.lines);
     }
 
     public Line getLine(int index) {
