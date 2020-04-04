@@ -10,11 +10,11 @@ public enum LadderBridge {
     private static final int VALUES_SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    public static LadderBridge makeRandomBridge(final LadderBridge preBridge) {
+    public static LadderBridge makeRandomBridgeByPreBridge(final LadderBridge preBridge) {
         return Optional.ofNullable(preBridge)
                 .filter(bridge -> bridge == EXIST)
                 .map(bridge -> UN_EXIST)
-                .orElse(randomBridge());
+                .orElseGet(LadderBridge::randomBridge);
     }
 
     public static LadderBridge randomBridge() {

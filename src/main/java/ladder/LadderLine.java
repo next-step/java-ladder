@@ -20,17 +20,17 @@ public class LadderLine {
     }
 
     public static LadderLine newInstance(int memberCount) {
-        List<LadderBridge> bridges = Stream.iterate(
-                LadderBridge.randomBridge(),
-                LadderBridge::makeRandomBridge)
-                .limit(memberCount - 1)
-                .collect(Collectors.toList());
-
-        return new LadderLine(bridges);
+        return newInstance(new MemberCount(memberCount));
     }
 
     public static LadderLine newInstance(final MemberCount memberCount) {
-        return newInstance(memberCount.toInt());
+        List<LadderBridge> bridges = Stream.iterate(
+                LadderBridge.randomBridge(),
+                LadderBridge::makeRandomBridgeByPreBridge)
+                .limit(memberCount.toInt() - 1)
+                .collect(Collectors.toList());
+
+        return new LadderLine(bridges);
     }
 
     public List<LadderBridge> getBridges() {

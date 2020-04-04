@@ -2,8 +2,6 @@ package ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -12,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class LadderTests {
 
     @DisplayName("사다리 생성 테스트")
-    @ParameterizedTest
-    @CsvSource(value = {"3,4", "4,5"})
-    public void generateLadderTests(final int memberCount, final int ladderHeight) {
-        assertThatCode(() -> Ladder.newInstance(memberCount, ladderHeight));
+    @Test
+    public void generateLadderTests() {
+        assertThatCode(() -> Ladder.newInstance(4, 5)).doesNotThrowAnyException();
+        assertThatCode(() -> Ladder.newInstance(new MemberCount(5), LadderHeight.newInstance(3))).doesNotThrowAnyException();
     }
 
     @DisplayName("사다리 생성 테스트 - 참가자 수 비정상")

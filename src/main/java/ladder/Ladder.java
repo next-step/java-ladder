@@ -22,7 +22,7 @@ public class Ladder {
     }
 
     public static Ladder newInstance(final int count, final int height) {
-        return newInstance(new MemberCount(count), new LadderHeight(height));
+        return newInstance(new MemberCount(count), LadderHeight.newInstance(height));
     }
 
     public static Ladder newInstance(final MemberCount memberCount, final LadderHeight height) {
