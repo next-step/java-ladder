@@ -1,10 +1,13 @@
 package nextstep.ladder;
 
+import nextstep.ladder.controller.LadderGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
     @Test
@@ -20,6 +23,5 @@ public class LadderGameTest {
         Ladder ladder = LadderGame.createLadder(persons, height);
         assertThat(ladder.getWidth()).isEqualTo(4);
         assertThat(ladder.getHeight()).isEqualTo(5);
-
     }
 }
