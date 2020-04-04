@@ -27,7 +27,7 @@ public class LineTest {
     void lastIsFalse() {
         int size = 3;
         Line line = new Line(size, rightDirection);
-        assertThat(line.last()).isEqualTo(false);
+        assertThat(line.last()).isEqualTo(Point.of(false));
     }
 
     @DisplayName("연속으로 포인트에 선이 있을 수 없다.")
@@ -35,9 +35,10 @@ public class LineTest {
     void notConsecutivePoint() {
         Line line = new Line(3, rightDirection);
 
-        boolean before = false;
-        for(Boolean point: line) {
-            assertThat(before && point).isFalse();
+        Point before = Point.of(false);
+        for (Point point : line) {
+            assertThat(before.hasRightDirection() && point.hasRightDirection())
+                    .isFalse();
 
             before = point;
         }
