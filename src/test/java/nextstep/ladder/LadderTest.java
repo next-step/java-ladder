@@ -9,9 +9,9 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 높이가 1보다 작을 경우 Exception 처리를 한다.")
     void assertLadderHeight() {
-        int height;
+        int height = 0;
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Ladder(height);
-        }).withMessage("사다리 높이는 1보다 커야합니다.")
+        }).withMessage(Ladder.LADDER_HEIGHT_ERROR);
     }
 }
