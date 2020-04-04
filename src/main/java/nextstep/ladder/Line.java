@@ -22,23 +22,23 @@ public class Line {
         List<Point> points = new ArrayList<>();
 
         for(int i = 0; i < personCount - 1; i++) {
-            points.add(new Point(i, judgeHasLine(getPreviousPoint(i)));
+            points.add(new Point(i, judgeHasLine(getPreviousPoint(points, i))));
         }
 
         return points;
     }
 
     private static boolean judgeHasLine(Point previousPoint) {
-        if(previousPoint.isHasLine()) { // Null Pointer Exception
+        if(previousPoint != null && previousPoint.isHasLine()) {
             return false;
         }
 
         return RandomBooleanProvider.getInstance().getRandomBoolean();
     }
 
-    private static Point getPreviousPoint(int index) {
-        if(index > 0) {
-            return getPoint(index - 1);
+    private static Point getPreviousPoint(List<Point> points, int currentIndex) {
+        if(currentIndex > 0) {
+            return points.get(currentIndex - 1);
         }
         return null;
     }
@@ -59,10 +59,6 @@ public class Line {
         if(points.size() < 2) {
             throw new IllegalArgumentException(POINT_COUNT_ERROR);
         }
-    }
-
-    public Point getPoint(int index) {
-        return points.get(index);
     }
 
     public List<Point> getValue() {
