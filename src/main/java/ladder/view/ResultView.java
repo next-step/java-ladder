@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.Line;
 import ladder.domain.Lines;
-import ladder.domain.Node;
 import ladder.domain.Players;
 
 import java.util.stream.Collectors;
@@ -22,20 +21,23 @@ public class ResultView {
         System.out.println(nameOutput);
     }
 
-    public static void pringLadder(Lines lines) {
-        StringBuffer buffer = new StringBuffer();
-
+    public static void printLadder(Lines lines) {
         for (Line line : lines.getLines()) {
-            for (Node node : line.getNodes()) {
-                if (node.isMovableRight()) {
-                    buffer.append(String.format(PRINT_HEIGHT));
-                    buffer.append(String.format(PRINT_WIDTH));
-                } else {
-                    buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
-                }
-            }
-            System.out.println(buffer.toString());
-            buffer.setLength(0);
+            makeNodeOutut(line);
         }
+    }
+
+    private static void makeNodeOutut(Line line) {
+        StringBuffer buffer = new StringBuffer();
+        line.getNodes().forEach(node -> {
+            if (node.isMovableRight()) {
+                buffer.append(String.format(PRINT_HEIGHT));
+                buffer.append(String.format(PRINT_WIDTH));
+            } else {
+                buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
+            }
+        });
+        System.out.println(buffer.toString());
+        buffer.setLength(0);
     }
 }
