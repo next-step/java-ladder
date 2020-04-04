@@ -4,25 +4,35 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Line implements Iterable<Point> {
+public class HorizontalLine implements Iterable<Point> {
     private List<Point> points;
 
-    public Line(int size, RightDirection rightDirection) {
+    public HorizontalLine(int size, RightDirection rightDirection) {
         initPoints(size, rightDirection);
     }
 
     private void initPoints(int size, RightDirection rightDirection) {
         points = new ArrayList<>();
         int lastIndex = size - 1;
-        // todo refactor
+
+        Point beforePoint = Point.of(false);
         for (int i = 0; i < lastIndex; i++) {
-            boolean randomPoint = rightDirection.isAbleToRight();
-            if (i != 0 && points.get(i - 1).hasRightDirection() && randomPoint) {
-                randomPoint = false;
-            }
-            points.add(Point.of(randomPoint));
+            Point point =
+                    createPoint(beforePoint, rightDirection.isAbleToRight());
+
+            points.add(point);
+            beforePoint = point;
         }
         points.add(Point.of(false));
+    }
+
+    private Point createPoint(Point beforePosition,
+                              boolean isAbleToRight) {
+        if (beforePosition.hasRightDirection()) {
+            return Point.of(false);
+        }
+
+        return Point.of(isAbleToRight);
     }
 
     public int size() {

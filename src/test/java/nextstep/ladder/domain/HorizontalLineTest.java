@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineTest {
+public class HorizontalLineTest {
     RightDirection rightDirection;
 
     @BeforeEach
@@ -18,25 +18,25 @@ public class LineTest {
     @Test
     void lineSize() {
         int size = 3;
-        Line line = new Line(size, rightDirection);
-        assertThat(line.size()).isEqualTo(size);
+        HorizontalLine horizontalLine = new HorizontalLine(size, rightDirection);
+        assertThat(horizontalLine.size()).isEqualTo(size);
     }
 
     @DisplayName("마지막 포인트는 무조건 선이 없다.")
     @Test
     void lastIsFalse() {
         int size = 3;
-        Line line = new Line(size, rightDirection);
-        assertThat(line.last()).isEqualTo(Point.of(false));
+        HorizontalLine horizontalLine = new HorizontalLine(size, rightDirection);
+        assertThat(horizontalLine.last()).isEqualTo(Point.of(false));
     }
 
     @DisplayName("연속으로 포인트에 선이 있을 수 없다.")
     @Test
     void notConsecutivePoint() {
-        Line line = new Line(3, rightDirection);
+        HorizontalLine horizontalLine = new HorizontalLine(3, rightDirection);
 
         Point before = Point.of(false);
-        for (Point point : line) {
+        for (Point point : horizontalLine) {
             assertThat(before.hasRightDirection() && point.hasRightDirection())
                     .isFalse();
 
