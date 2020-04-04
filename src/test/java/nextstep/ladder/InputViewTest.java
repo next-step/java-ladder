@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class InputViewTest {
 
-    private InputView inputView = new InputView();
+    private static InputView inputView = InputView.getInputView();
     String userNames = "pobi,honux,crong,jk";
 
     @DisplayName("참여할 사람 이름을 입력하지 않는 경우 예외를 발생시킨다.")
