@@ -8,6 +8,7 @@ public class InputView {
             "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String HEIGHT_INPUT_MSG =
             "최대 사다리 높이는 몇 개인가요?";
+    private static final String WHOSE_RESULT = "결과를 보고 싶은 사람은?";
 
     public static String inputNames() {
         Scanner scanner = new Scanner(System.in);
@@ -19,6 +20,13 @@ public class InputView {
     public static String inputHeight() {
         Scanner scanner = new Scanner(System.in);
         System.out.println(HEIGHT_INPUT_MSG);
+        String height = scanner.nextLine();
+        return height;
+    }
+
+    public static String inputWhoseResult() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(WHOSE_RESULT);
         String height = scanner.nextLine();
         return height;
     }
