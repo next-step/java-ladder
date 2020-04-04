@@ -1,14 +1,9 @@
 package nextstep.ladder;
 
-import nextstep.ladder.controller.LadderGame;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

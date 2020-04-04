@@ -1,10 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.ViewUtils;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 
@@ -23,7 +20,10 @@ public class OutputView {
         this.viewUtils = new ViewUtils();
     }
 
-    public void showLadder(Ladder ladder, List<Participant> participants) {
+    public void showLadder(LadderGame ladderGame) {
+        List<Participant> participants = ladderGame.getParticipants();
+        Ladder ladder = ladderGame.getLadder();
+
         viewUtils.printLine(LADDER_GAME_RESULT);
         showPersons(participants);
 

@@ -1,19 +1,20 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 import java.util.List;
 
-public class LadderGame {
+public class LadderGameController {
 
     public static void play(InputView inputView, OutputView outputView) {
         List<Participant> participants = inputView.getParticipants();
-        int height = inputView.getHeight();
+        Ladder ladder = new Ladder(participants.size(), inputView.getHeight());
 
-        Ladder ladder = new Ladder(participants.size(), height);
-        outputView.showLadder(ladder, participants);
+        LadderGame ladderGame = new LadderGame(participants, ladder);
+        outputView.showLadder(ladderGame);
     }
 }
