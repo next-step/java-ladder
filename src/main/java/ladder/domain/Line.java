@@ -44,6 +44,10 @@ public class Line implements Cloneable {
         return this.nodes.get(nodes.size() - 1);
     }
 
+    public List<Node> getNodes() {
+        return new ArrayList<>(this.nodes);
+    }
+
     public Node getNode(int index) {
         return this.nodes.get(index);
     }
