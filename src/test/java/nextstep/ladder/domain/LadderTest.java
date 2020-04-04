@@ -16,7 +16,7 @@ public class LadderTest {
     @Test
     void createLadder() {
         int heightOfLine = 10;
-        List<String> personNames = Arrays.asList("dong", "chul");
+        List<String> personNames = Arrays.asList("dong", "chul", "lee");
         List<Person> people = personNames.stream()
                 .map(Person::new)
                 .collect(Collectors.toList());

@@ -1,13 +1,11 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.step.RandomStrategy;
+import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.domain.step.Steps;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Line {
     private final Person person;
@@ -19,26 +17,28 @@ public class Line {
     }
 
     public static Line first(Person person, int height) {
-        return Steps.movableNext(height)
+        return Steps.movableNext(height, 0)
                 .map(steps -> new Line(steps, person))
                 .orElseThrow(() -> new IllegalArgumentException());
     }
 
-    public static Line of(Person person, Line previousLine) {
+    public static Line of(Person person, Lines previousLines) {
+        Line previousLine = previousLines.lastLine();
         Steps previousLineSteps = previousLine.getSteps();
-        List<Integer> moveableLinePositions = previousLineSteps.getSteps().stream()
-                .filter(step -> !step.isMoveNextLine())
+        List<Integer> moveableStepPositions = previousLineSteps.getSteps().stream()
+                .filter(step -> !(step.isMovable() && step.getBridge().getLinePosition() == previousLines.size()))
                 .map(Step::getPosition)
                 .collect(Collectors.toList());
-        int lineHeight = previousLine.getLineHeight();
 
-        return Steps.movableNextByPreviousCondition(moveableLinePositions, lineHeight)
+        return Steps.movableNextByPreviousCondition(moveableStepPositions, previousLines)
                 .map(steps -> new Line(steps, person))
                 .orElseThrow(() -> new IllegalArgumentException());
     }
 
-    public static Line last(Person person, int height) {
-        return Steps.immovableNext(height)
+    public static Line last(Person person, Lines previousLines) {
+        Line line = previousLines.lastLine();
+        line.getLineHeight();
+        return Steps.immovableNext(line.getLineHeight(), previousLines.size())
                 .map(steps -> new Line(steps, person))
                 .orElseThrow(() -> new IllegalArgumentException());
     }
