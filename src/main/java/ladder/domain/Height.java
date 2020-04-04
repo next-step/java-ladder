@@ -1,13 +1,17 @@
 package ladder.domain;
 
+import ladder.exception.HeightOutOfBoundException;
 import ladder.exception.InvalidHeightException;
 
 import java.util.Objects;
 
 public class Height {
+    private static final int MIN_HEIGHT = 1;
+
     private int value;
 
     private Height(final int value) {
+        isLessThanMinHeight(value);
         this.value = value;
     }
 
@@ -19,6 +23,12 @@ public class Height {
     private static void validHeight(final String height) {
         if (Objects.isNull(height) || height.trim().isEmpty()) {
             throw new InvalidHeightException(height);
+        }
+    }
+
+    private void isLessThanMinHeight(final int height) {
+        if (height < MIN_HEIGHT) {
+            throw new HeightOutOfBoundException(height);
         }
     }
 
