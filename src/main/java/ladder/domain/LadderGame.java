@@ -9,4 +9,17 @@ public class LadderGame {
         this.players = players;
         this.lines = lines;
     }
+
+    public LadderGame(Players players, int height) {
+        LadderGenerator ladderGenerator =
+                new LadderGenerator(players.getPlayersCount(), height);
+        Lines lines = ladderGenerator.generateLines();
+
+        this.players = players;
+        this.lines = lines;
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
 }
