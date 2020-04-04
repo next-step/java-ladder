@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +12,14 @@ class InputViewTest {
 
     private InputView inputView;
 
-    @DisplayName("참여자 한명의 이름을 입력받는다.")
+    @DisplayName("참여자 이름을 입력받는다.")
     @Test
-    void inputPlayerNames() {
-        String expect = "pobi";
-        inputView = new InputView(createInputStream(expect));
+    void inputPlayerName() {
+        String name = "pobi";
+        inputView = new InputView(createInputStream(name));
+        Player expect = new Player(name);
 
-        String actual = inputView.inputPlayerName();
+        Player actual = inputView.inputPlayerName();
 
         assertThat(actual).isEqualTo(expect);
     }
