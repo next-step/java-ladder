@@ -17,8 +17,9 @@ class LineTest {
     public void constructor_success() throws Exception {
         //given
         ArrayList<Node> nodes = new ArrayList<>(
-                Arrays.asList(new Node(0, Way.right()),
-                        new Node(1, Way.right())));
+                Arrays.asList(
+                        new Node(0, new Way(false, false)),
+                        new Node(1, new Way(false, false))));
         Line line = new Line(nodes);
     }
 
@@ -27,7 +28,7 @@ class LineTest {
     public void addNode() throws Exception {
         //given
         Line line = new Line();
-        Node node = new Node(1, Way.left());
+        Node node = new Node(1, new Way(false, false));
         //when
         line = line.addNode(node);
 

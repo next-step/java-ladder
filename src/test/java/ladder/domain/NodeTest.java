@@ -12,16 +12,16 @@ class NodeTest {
     @DisplayName("생성자 테스트")
     @Test
     public void constructor_success() throws Exception {
-        new Node(1, Way.left());
+        new Node(1, new Way(false, false));
     }
 
     @DisplayName("이동 방향으로 움직일수 있는지 체크")
     @Test
     public void left_right() throws Exception {
         //given
-        Node left = new Node(0, Way.left());
-        Node right = new Node(0, Way.right());
-        Node none = new Node(0, Way.none());
+        Node left = new Node(0, new Way(true, false));
+        Node right = new Node(0, new Way(false, true));
+        Node none = new Node(0, new Way(false, false));
 
         //then
         assertTrue(left.isMovableLeft());
@@ -36,9 +36,9 @@ class NodeTest {
     @Test
     public void move() throws Exception {
         //given
-        Node left = new Node(1, Way.left());
-        Node right = new Node(1, Way.right());
-        Node none = new Node(1, Way.none());
+        Node left = new Node(1, new Way(true, false));
+        Node right = new Node(1, new Way(false, true));
+        Node none = new Node(1, new Way(false, false));
 
         //then
         assertThat(left.move()).isEqualTo(0);
@@ -50,7 +50,7 @@ class NodeTest {
     @Test
     public void createNextNode_success_left() throws Exception {
         //given
-        Node current = new Node(0, Way.left());
+        Node current = new Node(0, new Way(true, false));
 
         //when
         Node moveRightNextNode = current.createNextNode(true);
@@ -71,7 +71,7 @@ class NodeTest {
     @Test
     public void createNextNode_success_right() throws Exception {
         //given
-        Node current = new Node(0, Way.right());
+        Node current = new Node(0, new Way(false, true));
 
         //when
         Node moveRightNextNode = current.createNextNode(true);
