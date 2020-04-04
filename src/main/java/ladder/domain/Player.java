@@ -6,6 +6,7 @@ import ladder.exception.NameLengthOutOfBoundException;
 import java.util.Objects;
 
 public class Player {
+    public static final int PLAYER_MIN_COUNT = 1;
     private static final int NAME_MAX_LENGTH = 5;
 
     private String name;
