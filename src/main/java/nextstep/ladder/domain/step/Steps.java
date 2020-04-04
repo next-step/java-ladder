@@ -9,46 +9,76 @@ import java.util.stream.IntStream;
 
 public class Steps {
     private final List<Step> steps;
-    private final int height;
+    private final int linePosition;
 
-    public Steps(List<Step> steps, int height) {
+    public Steps(List<Step> steps, int linePosition) {
         this.steps = steps;
-        this.height = height;
+        this.linePosition = linePosition;
     }
 
     public static Optional<Steps> movableNext(int height, int linePosition) {
         return Optional.ofNullable(
                 IntStream.range(0, height)
                         .mapToObj(stepPosition -> Step.of(Bridge.next(linePosition, stepPosition), new RandomStrategy()))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, height)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, linePosition)))
         );
     }
 
     public static Optional<Steps> movableNextByPreviousCondition(List<Integer> movableLinePositions, Lines previouLines) {
-        int height = previouLines.lastLine().getLineHeight();
+        int height = previouLines.lineHeight();
+        int linePosition = previouLines.size();
         return Optional.ofNullable(
                 IntStream.range(0, height)
-                        .mapToObj(stepPosition -> checkMovableStep(movableLinePositions, Bridge.current(previouLines.size(), stepPosition)))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, height)))
+                        .mapToObj(stepPosition -> checkMovable(movableLinePositions, Bridge.current(linePosition, stepPosition)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, linePosition)))
         );
     }
 
-    private static Step checkMovableStep(List<Integer> movableLinePositions, Bridge bridge) {
+    public static Optional<Steps> movableNextByPreviousCondition(List<Integer> movableLinePositions, Steps previouSteps) {
+        int height = previouSteps.getLineHeight();
+        int linePosition = previouSteps.linePosition + 1;
+
+        return Optional.ofNullable(
+                IntStream.range(0, height)
+                        .mapToObj(stepPosition -> checkMovable(movableLinePositions, Bridge.current(linePosition, stepPosition)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, linePosition)))
+        );
+    }
+
+    private static Step checkMovable(List<Integer> movableLinePositions, Bridge bridge) {
         if (movableLinePositions.contains(bridge.getStepPosition())) {
             return Step.of(Bridge.next(bridge), new RandomStrategy());
         }
         return Step.of(Bridge.previous(bridge), () -> true);
     }
 
-    public static Optional<Steps> immovableNext(int height, int linePosition) {
+    public static Optional<Steps> immovableNext(List<Integer> movableLinePositions, Steps previouSteps) {
+        int height = previouSteps.getLineHeight();
+        int linePosition = previouSteps.linePosition + 1;
+
         return Optional.ofNullable(
                 IntStream.range(0, height)
-                .mapToObj(stepPosition -> Step.of(Bridge.previous(linePosition, stepPosition), () -> false))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, height)))
+                        .mapToObj(stepPosition -> checkMovablePrevious(movableLinePositions, Bridge.current(linePosition, stepPosition)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, linePosition)))
         );
+    }
+
+    private static Step checkMovablePrevious(List<Integer> movableLinePositions, Bridge bridge) {
+        if (movableLinePositions.contains(bridge.getStepPosition())) {
+            return Step.of(Bridge.previous(bridge), () -> true);
+        }
+        return Step.of(bridge, () -> false);
     }
 
     public List<Step> getSteps() {
         return steps;
+    }
+
+    public int getLinePosition() {
+        return linePosition;
+    }
+
+    private int getLineHeight() {
+        return steps.size();
     }
 }
