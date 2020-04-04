@@ -1,9 +1,11 @@
 package nextstep.ladder;
 
 public enum ResultRadderText {
-    DEPTH("|"),
+    VERTICAL("|"),
     LINE("-----"),
-    NO_LINE("     ");
+    NO_LINE("     "),
+    BLANK(" "),
+    NEW_LINE("\n");
 
     private String text;
 
