@@ -49,16 +49,9 @@ public class Line {
             int currentIndex = points.indexOf(point);
 
             if(currentIndex > 0) {
-                point.compareWithPreviousPoint(point, getPreviousPoint(currentIndex, points));
+                point.compareWithPreviousPoint(point, getPreviousPoint(points, currentIndex));
             }
         });
-    }
-
-    private Point getPreviousPoint(int currentIndex, List<Point> points) {
-        if(currentIndex == 0) {
-            return null;
-        }
-        return points.get(currentIndex - 1);
     }
 
     private void assertPointCount(List<Point> points) {
