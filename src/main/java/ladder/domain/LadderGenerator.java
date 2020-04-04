@@ -22,14 +22,13 @@ public class LadderGenerator {
 
     private Line generateLine() {
         Line line = new Line();
-        for (int i = 0; i < playerCount; i++) {
+
+        for (int i = 0; i < playerCount - 1; i++) {
             boolean randomBoolean = RandomUtils.getRandomBoolean();
-            if (i != playerCount - 1) {
-                line = line.addRandomNextNode(randomBoolean);
-            } else {
-                line = line.addLastNode();
-            }
+            line = line.addRandomNextNode(randomBoolean);
         }
+
+        line = line.addLastNode();
         return line;
     }
 }
