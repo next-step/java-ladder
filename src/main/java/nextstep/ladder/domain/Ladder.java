@@ -34,7 +34,10 @@ public class Ladder {
     }
 
     public int getWidth() {
-        return lines.get(0).getValue().size();
+        Line firstLine = lines.get(0);
+        List<Point> points = firstLine.getValue();
+
+        return points.size();
     }
 
     public int getHeight() {

@@ -42,6 +42,7 @@ public class Line {
         if(currentIndex > 0) {
             return points.get(currentIndex - 1);
         }
+
         return null;
     }
 

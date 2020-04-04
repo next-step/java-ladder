@@ -6,7 +6,6 @@ import nextstep.ladder.domain.*;
 import java.util.List;
 
 public class OutputView {
-
     private static final String LADDER_GAME_RESULT = "실행결과";
     private static final String POINT_FORMAT = "|%s";
     private static final String POINT_LINE = "-----";
@@ -70,6 +69,4 @@ public class OutputView {
         }
         return builder;
     }
-
-
 }
