@@ -4,8 +4,6 @@ import JavaLadder.domain.Ladder;
 import JavaLadder.domain.Line;
 import JavaLadder.domain.UserList;
 
-import java.util.List;
-
 public class OutputView {
     private static final String ACTION_RESULT = "실행결과";
     private static final String LADDER = "|";
@@ -14,26 +12,37 @@ public class OutputView {
 
     public void result(UserList userList, Ladder ladder){
         System.out.println(ACTION_RESULT);
+        PrintName(userList);
+        System.out.println();
+        printLadder(ladder);
+    }
+
+    private void printLadder(Ladder ladder) {
+        for (int i = 0; i < ladder.size(); i++) {
+            Line list = (Line) ladder.getLadder(i);
+            System.out.printf("%7s", LADDER);
+            printLine(list);
+            System.out.println();
+        }
+    }
+
+    private void PrintName(UserList userList) {
         for (int i = 0; i < userList.size(); i++) {
             System.out.printf("%-7s",userList.getName(i));
         }
+    }
 
-        System.out.println();
-        for (int j = 0; j < ladder.size(); j++) {
-            Line list = (Line) ladder.getLadder(j);
-            System.out.printf("%7s", LADDER);
-            for (int k = 0; k < list.size(); k++) {
-                if (list.isLine(k)) {
-                    System.out.printf(LINE_TRUE);
-                    System.out.printf("%s", LADDER);
-                }
+    private void printLine(Line list) {
+        for (int i = 0; i < list.size(); i++) {
+            printLine(list.isLine(i), LINE_TRUE);
+            printLine(!list.isLine(i), LINE_FALSE);
+        }
+    }
 
-                if (!list.isLine(k)) {
-                    System.out.printf(LINE_FALSE);
-                    System.out.printf("%s", LADDER);
-                }
-            }
-            System.out.println();
+    private void printLine(Boolean line, String lineKind) {
+        if (line) {
+            System.out.printf(lineKind);
+            System.out.printf("%s", LADDER);
         }
     }
 }
