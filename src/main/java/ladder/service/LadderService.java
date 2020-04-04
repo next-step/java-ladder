@@ -10,16 +10,17 @@ import java.util.List;
 
 public class LadderService {
 
-    private static final String NAME_DELIMITER = ",";
+    private static final String COMMA = ",";
 
     public LadderGame createLadder(final String inputName,
                                    final String inputHeight,
                                    final String inputResult) {
-        List<String> names = StringUtils.split(inputName, NAME_DELIMITER);
-        List<String> gameResults = StringUtils.split(inputResult, NAME_DELIMITER);
+        List<String> names = StringUtils.split(inputName, COMMA);
+        List<String> gameResults = StringUtils.split(inputResult, COMMA);
         int height = StringUtils.parse(inputHeight);
         Players players = Players.of(names);
         LadderGameResult ladderGameResult = new LadderGameResult(gameResults);
+
 
         LadderGame game = LadderGame.of(players, height, ladderGameResult);
         return game;
