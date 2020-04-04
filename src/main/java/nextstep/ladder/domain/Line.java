@@ -1,5 +1,9 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.step.RandomStrategy;
+import nextstep.ladder.domain.step.Step;
+import nextstep.ladder.domain.step.Steps;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

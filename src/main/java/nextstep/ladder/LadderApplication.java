@@ -3,7 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Step;
+import nextstep.ladder.domain.step.Step;
 
 import java.util.Arrays;
 import java.util.List;
