@@ -10,7 +10,7 @@ public class OutputView {
     private static final String LINE_TRUE = "-----";
     private static final String LINE_FALSE = "     ";
 
-    public void result(UserList userList, Ladder ladder){
+    public void result(UserList userList, Ladder ladder) {
         System.out.println(ACTION_RESULT);
         PrintName(userList);
         System.out.println();
@@ -28,7 +28,7 @@ public class OutputView {
 
     private void PrintName(UserList userList) {
         for (int i = 0; i < userList.size(); i++) {
-            System.out.printf("%-7s",userList.getName(i));
+            System.out.printf("%-7s", userList.getName(i));
         }
     }
 

@@ -7,13 +7,13 @@ public class InputView {
     private static final String LADDER_QUESTION = "최대 사다리 높이는 몇 개인가요?";
     private Scanner scanner;
 
-    public String askName(){
+    public String askName() {
         System.out.println(NAME_QUESTION);
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
-    public int askLadderHeight(){
+    public int askLadderHeight() {
         System.out.println(LADDER_QUESTION);
         scanner = new Scanner(System.in);
         return scanner.nextInt();
