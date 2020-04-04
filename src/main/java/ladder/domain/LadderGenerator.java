@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.utils.RandomUtils;
+
 public class LadderGenerator {
 
     private final int playerCount;
@@ -11,8 +13,11 @@ public class LadderGenerator {
     }
 
     public Line generateLine() {
-        return null;
+        Line line = new Line();
+        for (int i = 0; i < playerCount; i++) {
+            boolean randomBoolean = RandomUtils.getRandomBoolean();
+            line = line.addRandomNextNode(randomBoolean);
+        }
+        return line;
     }
-
-
 }
