@@ -7,10 +7,19 @@ import ladder.Member;
 import ladder.dto.LadderConsoleResult;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OutputView {
+
+    private static final String BRIDGE_CONSOLE_STRING = "-";
+    private static final String EMPTY_BRIDGE_CONSOLE_STRING = " ";
+    private static final String POLE_CONSOLE_STRING_DELIMITER = "|";
+    private static final String POLE_CONSOLE_STRING_SUFFIX = "|";
+    private static final String POLE_CONSOLE_STRING_PREFIX = "     |";
+    private static final String MEMBER_NAME_CONSOLE_STRING = "%5s";
+
     private OutputView() {
     }
 
@@ -20,14 +29,13 @@ public class OutputView {
         LadderConsoleResult result = LadderConsoleResult.newInstance(ladderGame);
 
         printMemberNames(result.getMembers());
-
         printLadder(result.getLadderLines(), result.getMembers().size());
     }
 
     private static void printMemberNames(List<Member> members) {
         String names = members.stream()
-                .map(name -> String.format("%5s", name))
-                .collect(Collectors.joining(" "));
+                .map(name -> String.format(MEMBER_NAME_CONSOLE_STRING, name))
+                .collect(Collectors.joining(EMPTY_BRIDGE_CONSOLE_STRING));
         System.out.println(names);
     }
 
@@ -38,20 +46,19 @@ public class OutputView {
     private static void printLadderLine(LadderLine ladderLine, int memberSize) {
         String line = ladderLine.getBridges()
                 .stream()
-                .map(ladderBridge -> {
-                    if (ladderBridge == LadderBridge.EXIST) {
-                        return bridgeInConsole("-", memberSize);
-                    }
-                    return bridgeInConsole(" ", memberSize);
-                })
-                .collect(Collectors.joining("|"));
-
-        System.out.print("     |");
-        System.out.print(line);
-        System.out.println("|");
+                .map(ladderBridge -> getBridgeString(memberSize, ladderBridge))
+                .collect(Collectors.joining(POLE_CONSOLE_STRING_DELIMITER, POLE_CONSOLE_STRING_PREFIX, POLE_CONSOLE_STRING_SUFFIX));
+        System.out.println(line);
     }
 
-    private static String bridgeInConsole(String bridgeCharacter, int memberSize) {
+    private static String getBridgeString(int memberSize, LadderBridge ladderBridge) {
+        return Optional.ofNullable(ladderBridge)
+                .filter(bridge -> bridge == LadderBridge.EXIST)
+                .map(bridge -> getBridgeConsoleStringAsMemberSize(BRIDGE_CONSOLE_STRING, memberSize))
+                .orElseGet(() -> getBridgeConsoleStringAsMemberSize(EMPTY_BRIDGE_CONSOLE_STRING, memberSize));
+    }
+
+    private static String getBridgeConsoleStringAsMemberSize(String bridgeCharacter, int memberSize) {
         return IntStream.range(0, memberSize)
                 .mapToObj(i -> bridgeCharacter)
                 .collect(Collectors.joining());

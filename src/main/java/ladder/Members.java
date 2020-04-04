@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static ladder.utils.LadderUtil.separateLineWithComma;
+
 public class Members {
 
     private final List<Member> members;
@@ -24,7 +26,11 @@ public class Members {
                 .map(Member::newInstance)
                 .collect(Collectors.toList());
 
-        return new Members(members);
+        return newInstance(members);
+    }
+
+    public static Members newInstance(String inputMembers) {
+        return newInstance(separateLineWithComma(inputMembers));
     }
 
     private void validate(List<Member> members) {
