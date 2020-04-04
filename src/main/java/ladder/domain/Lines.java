@@ -30,12 +30,16 @@ public class Lines {
         return new Lines(merge);
     }
 
-    public int move(final int nodeNumber) {
+    public Node move(final int nodeNumber) {
         int move = nodeNumber;
         for (Line line : lines) {
             move = line.getNodes().get(move).move();
         }
-        return move;
+        return getLastLine().getNode(move);
+    }
+
+    private Line getLastLine() {
+        return this.lines.get(size() - 1);
     }
 
     public int size() {

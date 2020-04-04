@@ -36,11 +36,11 @@ class LinesTest {
                         )));
 
         //when
-        int move1 = lines.move(0);
-        int move2 = lines.move(1);
+        Node move1 = lines.move(0);
+        Node move2 = lines.move(1);
 
         //then
-        assertThat(move1).isEqualTo(0);
-        assertThat(move2).isEqualTo(1);
+        assertThat(move1.getIndex()).isEqualTo(0);
+        assertThat(move2.getIndex()).isEqualTo(1);
     }
 }
