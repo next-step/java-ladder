@@ -1,6 +1,8 @@
 package nextstep.ladder;
 
+import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class InputView {
     private static final String SPLIT_TEXT = ",";
@@ -14,5 +16,12 @@ public class InputView {
     public String[] splitUserNames(String userNames) {
         validateUserNames(userNames);
         return userNames.split(SPLIT_TEXT);
+    }
+
+    public Users createUsers(String[] splitUserNames) {
+        return new Users(Arrays
+                                 .stream(splitUserNames)
+                                 .map(User::new)
+                                 .collect(Collectors.toList()));
     }
 }

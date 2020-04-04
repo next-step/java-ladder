@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class User {
@@ -19,4 +20,20 @@ public class User {
 
     }
 
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+        if (!(o instanceof User)) { return false; }
+        final User user = (User) o;
+        return Objects.equals(name, user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
