@@ -14,4 +14,8 @@ public class Person {
             throw new IllegalArgumentException(PERSON_NAME_LENGTH_ERROR);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

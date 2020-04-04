@@ -39,4 +39,8 @@ public class Ladder {
     public int getHeight() {
         return lines.size();
     }
+
+    public List<Line> getValue() {
+        return lines;
+    }
 }
