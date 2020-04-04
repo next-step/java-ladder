@@ -11,7 +11,7 @@ public class ParticipantTest {
     @DisplayName("생성하고 이름을 얻을 수 있다.")
     @Test
     void createAndGet() {
-        String name = "김보람보람";
+        String name = "boram";
         Participant participant = new Participant(name);
         assertThat(participant.getName()).isEqualTo(name);
     }
@@ -20,7 +20,7 @@ public class ParticipantTest {
     @Test
     void maxLengthError() {
         assertThatExceptionOfType(IllegalMaxLengthValueException.class)
-                .isThrownBy(() -> new Participant("김보람보람보"));
+                .isThrownBy(() -> new Participant("borambo"));
     }
 
 }
