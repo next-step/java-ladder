@@ -28,6 +28,6 @@ public class InputView {
     public Height inputHeight() {
         System.out.println();
         System.out.println(INPUT_HEIGHT_MESSAGE);
-        return new Height(scanner.nextLine());
+        return Height.of(scanner.nextLine());
     }
 }

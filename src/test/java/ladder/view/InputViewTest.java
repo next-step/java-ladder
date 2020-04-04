@@ -31,9 +31,9 @@ class InputViewTest {
     void inputHeight() {
         String height = "5";
         inputView = new InputView(createInputStream(height));
-        Height expect = new Height(height);
+        Height expect = Height.of(height);
 
-        Height actual = new Height(height);
+        Height actual = Height.of(height);
 
         assertThat(actual).isEqualTo(expect);
     }
