@@ -25,4 +25,9 @@ public class Lines {
     public int size() {
         return this.lines.size();
     }
+
+    public Line getLine(int index) {
+        Line line = this.lines.get(index);
+        return line.clone();
+    }
 }
