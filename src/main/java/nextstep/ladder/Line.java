@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -29,7 +30,7 @@ public class Line {
             points.add(point);
         }
 
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     public boolean existBeforeLine(Point point) {
