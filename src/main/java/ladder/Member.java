@@ -13,14 +13,14 @@ public class Member {
         this.name = name;
     }
 
-    public static Member newInstance(final String name) {
-        return new Member(name);
-    }
-
     private void validate(final String name) {
         if (Objects.isNull(name) || "".equals(name.trim()) || name.length() > MEMBER_NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("Member name must be exist and the length must be less than 5.");
         }
+    }
+
+    public static Member newInstance(final String name) {
+        return new Member(name);
     }
 
     @Override
