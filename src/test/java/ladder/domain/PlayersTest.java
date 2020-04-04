@@ -88,4 +88,13 @@ class PlayersTest {
         ).isInstanceOf(PlayerException.class);
 
     }
+
+    @DisplayName("동일 이름의 참가자가 등록 될 수 없다")
+    @Test
+    public void validateDuplicatePlayer_fail() throws Exception {
+        //then
+        assertThatThrownBy(
+                () -> Players.of(Arrays.asList("a", "a", "b"))
+        ).isInstanceOf(PlayerException.class);
+    }
 }

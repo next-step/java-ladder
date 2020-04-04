@@ -10,12 +10,14 @@ public class Players {
 
     private static final String PLAYER_COUNT_ERR_MSG = "2명 이상 참가 가능 합니다.";
     private static final String PLAYER_NOT_FOUND_ERR_MSG = "참가자를 찾을수 없습니다.";
+    private static final String DUPLICATE_PLAYER_ERR_MSG = "동일한 이름의 참가자가 있습니다.";
     private static final int MIN_PLAYER_COUNT = 2;
 
     private final List<Player> players;
 
     public Players(final List<Player> players) {
         validatePlayerCount(players);
+        validateDuplicatePlayer(players);
         this.players = players;
     }
 
@@ -24,6 +26,15 @@ public class Players {
                 .map(Player::new)
                 .collect(Collectors.toList());
         return new Players(collect);
+    }
+
+    private void validateDuplicatePlayer(final List<Player> players) {
+        long duplicateCount = players.stream()
+                .distinct()
+                .count();
+        if (players.size() != duplicateCount) {
+            throw new PlayerException(DUPLICATE_PLAYER_ERR_MSG);
+        }
     }
 
     private void validatePlayerCount(final List<Player> players) {
