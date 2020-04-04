@@ -2,8 +2,6 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
 
-import java.util.List;
-
 import static nextstep.ladder.domain.Point.TRUE;
 
 public class ResultView {
@@ -50,7 +48,6 @@ public class ResultView {
         System.out.print(new String(new char[Participant.MAX_NAME_LENGTH])
                 .replace("\0", EMPTY_LINE));
     }
-
 
     private ResultView() {
     }

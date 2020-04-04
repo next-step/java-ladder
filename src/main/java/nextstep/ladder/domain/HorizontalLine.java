@@ -79,19 +79,6 @@ public class HorizontalLine implements Iterable<Point> {
         return points.get(index);
     }
 
-    public void reverse(int index) {
-        if (isLast(index)) {
-            return;
-        }
-        // todo 성공여부 리턴해야한다.
-        if (!isFirst(index) && getBefore(index).hasRightDirection() &&
-                (points.get(index) == FALSE)) {
-            return;
-        }
-        Point point = points.get(index);
-        points.set(index, point.reverse());
-    }
-
     @Override public Iterator<Point> iterator() {
         return points.iterator();
     }
