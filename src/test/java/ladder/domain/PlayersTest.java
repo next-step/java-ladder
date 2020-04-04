@@ -4,7 +4,9 @@ import ladder.exception.PlayerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -37,5 +39,21 @@ class PlayersTest {
 
         //then
         assertThat(players.getPlayersCount()).isEqualTo(2);
+    }
+
+    @DisplayName("이름 List<String> 을 이용하여 Players를 생성")
+    @Test
+    public void of_success() throws Exception {
+        //given
+        List<String> names = new ArrayList<>();
+        names.add("a");
+        names.add("b");
+        names.add("c");
+
+        //when
+        Players players = Players.of(names);
+
+        //then
+        assertThat(players.getPlayersCount()).isEqualTo(3);
     }
 }

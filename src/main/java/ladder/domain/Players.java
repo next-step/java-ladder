@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.PlayerException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -14,6 +15,13 @@ public class Players {
     public Players(final List<Player> players) {
         validatePlayerCount(players);
         this.players = players;
+    }
+
+    public static Players of(final List<String> names) {
+        List<Player> collect = names.stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
+        return new Players(collect);
     }
 
     private void validatePlayerCount(final List<Player> players) {
