@@ -1,10 +1,11 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Ladder {
+public class Ladder implements Iterable<HorizontalLine> {
     private List<HorizontalLine> ladder;
 
     static Ladder of(List<HorizontalLine> horizontalLines,
@@ -71,11 +72,11 @@ public class Ladder {
         return ladder.get(index);
     }
 
-    public List<HorizontalLine> getLadder() {
-        return new ArrayList<>(ladder);
-    }
-
     public int size() {
         return ladder.size();
+    }
+
+    @Override public Iterator<HorizontalLine> iterator() {
+        return ladder.iterator();
     }
 }

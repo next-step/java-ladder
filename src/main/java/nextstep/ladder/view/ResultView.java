@@ -25,7 +25,7 @@ public class ResultView {
     }
 
     private static void displayLadder(Ladder ladder) {
-        for (HorizontalLine horizontalLine : ladder.getLadder()) {
+        for (HorizontalLine horizontalLine : ladder) {
             displayHorizontalLine(horizontalLine);
             System.out.println();
         }
