@@ -67,6 +67,20 @@ class LineTest {
         assertTrue(line.getNode(0).isMovableRight());
     }
 
+    @DisplayName("마지막 노드를 추가해 준다")
+    @Test
+    public void addLastNode_success() throws Exception {
+        //given
+        Line line = new Line(Arrays.asList(new Node(0, new Way(false, false))));
+
+        //when
+        line = line.addLastNode();
+        final int nodesSize = line.getNodes().size();
+
+        //then
+        assertFalse(line.getNodes().get(nodesSize - 1).isMovableRight());
+    }
+
     @DisplayName("객체 복사")
     @Test
     public void clone_success() throws Exception {

@@ -29,6 +29,15 @@ public class Line implements Cloneable {
         return new Line(merge);
     }
 
+    public Line addLastNode() {
+        List<Node> merge = new ArrayList<>();
+        Node last = getLastNode().createLast();
+        merge.addAll(this.nodes);
+        merge.add(last);
+        return new Line(merge);
+    }
+
+
     public Line addNode(Node node) {
         List<Node> merge = new ArrayList<>();
         merge.addAll(this.nodes);
