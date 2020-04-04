@@ -12,6 +12,14 @@ public class LadderGenerator {
         this.ladderHeight = ladderHeight;
     }
 
+    public Lines generateLines() {
+        Lines lines = new Lines();
+        for (int i = 0; i < ladderHeight; i++) {
+            lines = lines.addLine(generateLine());
+        }
+        return lines;
+    }
+
     public Line generateLine() {
         Line line = new Line();
         for (int i = 0; i < playerCount; i++) {
