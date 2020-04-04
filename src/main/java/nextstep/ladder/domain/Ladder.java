@@ -5,22 +5,21 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    // todo 어떻게 인자수를 줄이지?
     private List<HorizontalLine> ladder;
     private RightDirection rightDirection;
     private LineSelector lineSelector;
 
-    // todo 받아야 하는 인자가 너무 많다.
-    public Ladder(int width, int height, RightDirection rightDirection,
+    public Ladder(LadderSize ladderSize, RightDirection rightDirection,
                   LineSelector lineSelector) {
         this.rightDirection = rightDirection;
         this.lineSelector = lineSelector;
-        initLadder(width, height);
+        initLadder(ladderSize);
     }
 
-    private void initLadder(int width, int height) {
-        ladder = IntStream.range(0, height)
-                .mapToObj(i -> new HorizontalLine(width, rightDirection))
+    private void initLadder(LadderSize ladderSize) {
+        ladder = IntStream.range(0, ladderSize.getHeight())
+                .mapToObj(i -> new HorizontalLine(ladderSize.getWidth(),
+                        rightDirection))
                 .collect(Collectors.toList());
 
         adjustLadder();
