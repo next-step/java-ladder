@@ -20,7 +20,7 @@ public class LadderGenerator {
         return lines;
     }
 
-    public Line generateLine() {
+    private Line generateLine() {
         Line line = new Line();
         for (int i = 0; i < playerCount; i++) {
             boolean randomBoolean = RandomUtils.getRandomBoolean();
