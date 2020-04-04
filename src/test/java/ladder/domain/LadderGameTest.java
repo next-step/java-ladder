@@ -34,4 +34,29 @@ class LadderGameTest {
         //then
         assertThat(game.getLines().getLines().size()).isEqualTo(3);
     }
+
+    @DisplayName("참가자의 이름을 전달 받고 사다리 진행 결과 Node 반환")
+    @Test
+    public void getPlayerResult_success() throws Exception {
+        //given
+        final String playerName = "a";
+        final Players players = Players.of(Arrays.asList("a", "b"));
+        final Lines lines = new Lines(
+                Arrays.asList(
+                        new Line(Arrays.asList(
+                                new Node(0, new Way(false, true)),
+                                new Node(1, new Way(true, false)))
+                        ),
+                        new Line(Arrays.asList(
+                                new Node(0, new Way(false, true)),
+                                new Node(1, new Way(true, false)))
+                        )));
+        LadderGame game = new LadderGame(players, lines);
+
+        //when
+        Node result = game.getPlayerResult(playerName);
+
+        //then
+        assertThat(result.getIndex()).isEqualTo(0);
+    }
 }

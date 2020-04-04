@@ -16,6 +16,11 @@ public class LadderGame {
         return new LadderGame(players, lines);
     }
 
+    public Node getPlayerResult(String playerName) {
+        int playerIndex = players.findPlayer(playerName);
+        return lines.move(playerIndex);
+    }
+
     public Lines getLines() {
         return lines;
     }
