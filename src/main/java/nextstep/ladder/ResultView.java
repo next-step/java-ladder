@@ -48,7 +48,11 @@ public class ResultView {
         result += appendLines(ladder);
         return result;
     }
-    
+
+    public void printLadder(Users users, Ladder ladder) {
+        System.out.println(drawLadder(users, ladder));
+    }
+
     private String appendLines(Ladder ladder) {
         return (String) ladder.getLadder()
                               .stream()
