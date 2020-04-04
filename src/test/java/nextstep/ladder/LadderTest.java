@@ -20,7 +20,7 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("사다리의 Point(참여자 수)는 2명 이상이어야 한다.")
+    @DisplayName("사다리의 Point(참여자 수 - 1)는 2명 이상이어야 한다.")
     void assertLadderWidth() {
         int participantCount = 1;
 
