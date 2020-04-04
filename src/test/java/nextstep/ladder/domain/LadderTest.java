@@ -8,9 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     private RightDirection rightDirection;
+    private LineSelector lineSelector;
     @BeforeEach
     void setUp() {
         rightDirection = () -> true;
+        lineSelector = (size) -> 1;
     }
 
     @DisplayName("입력받은 높이만큼의 사다리가 만들어진다.")
@@ -18,7 +20,7 @@ public class LadderTest {
     void height() {
         int height = 5;
         int width = 4;
-        Ladder ladder = new Ladder(width, height, rightDirection);
+        Ladder ladder = new Ladder(width, height, rightDirection, lineSelector);
         assertThat(ladder.height()).isEqualTo(height);
     }
 
@@ -28,7 +30,7 @@ public class LadderTest {
         int height = 5;
         int width = 4;
         RightDirection rightDirection = () -> false;
-        Ladder ladder = new Ladder(width, height, rightDirection);
+        Ladder ladder = new Ladder(width, height, rightDirection, lineSelector);
 
         boolean hasRightDirection = ladder.vertical(0).stream()
                 .anyMatch(Point::hasRightDirection);
