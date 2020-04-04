@@ -7,6 +7,7 @@ import nextstep.ladder.domain.step.Steps;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
     private final Person person;
@@ -17,21 +18,10 @@ public class Line {
         this.person = person;
     }
 
-    public static Line last(Person person, int height) {
-        List<Step> steps = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            steps.add(Step.of(i, () -> false));
-        }
-
-        return new Line(Steps.last(height), person);
-    }
-
-    public static Line of(Person person, int height) {
-        List<Step> steps = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            steps.add(Step.of(i, new RandomStrategy()));
-        }
-        return new Line(new Steps(steps, height), person);
+    public static Line first(Person person, int height) {
+        return Steps.movableNext(height)
+                .map(steps -> new Line(steps, person))
+                .orElseThrow(() -> new IllegalArgumentException());
     }
 
     public static Line of(Person person, Line previousLine) {
@@ -40,8 +30,17 @@ public class Line {
                 .filter(step -> !step.isMoveNextLine())
                 .map(Step::getPosition)
                 .collect(Collectors.toList());
-        Steps steps = Steps.of(moveableLinePositions, previousLine.getLineHeight());
-        return new Line(steps, person);
+        int lineHeight = previousLine.getLineHeight();
+
+        return Steps.movableNextByPreviousCondition(moveableLinePositions, lineHeight)
+                .map(steps -> new Line(steps, person))
+                .orElseThrow(() -> new IllegalArgumentException());
+    }
+
+    public static Line last(Person person, int height) {
+        return Steps.immovableNext(height)
+                .map(steps -> new Line(steps, person))
+                .orElseThrow(() -> new IllegalArgumentException());
     }
 
     public int getLineHeight() {

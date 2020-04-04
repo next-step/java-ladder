@@ -20,7 +20,7 @@ public class Ladder {
             if (lines.size() > 0 && persons.size()-1 != lines.size()) {
                 lines.add(Line.of(person, lines.get(lines.size() - 1)));
             } else if (lines.size() == 0) {
-                lines.add(Line.of(person, heightOfLine));
+                lines.add(Line.first(person, heightOfLine));
             } else if (lines.size() == persons.size() - 1) {
                 lines.add(Line.last(person, heightOfLine));
             }
