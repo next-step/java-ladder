@@ -56,12 +56,20 @@ public class OutputView {
             int length = personName.length();
             int spaceCount = SPACE_PER_POINT - length;
 
-            for(int i = 0; i < spaceCount; i++) {
-                builder.append(SPACE);
-            }
+            builder = appendSpaces(builder, spaceCount);
+
             builder.append(personName);
         }
 
         viewUtils.printLine(builder.toString());
     }
+
+    private StringBuilder appendSpaces(StringBuilder builder, int spaceCount) {
+        for(int i = 0; i < spaceCount; i++) {
+            builder.append(SPACE);
+        }
+        return builder;
+    }
+
+
 }
