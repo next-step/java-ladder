@@ -1,7 +1,7 @@
 package ladder.service;
 
 import ladder.domain.LadderGame;
-import ladder.domain.LadderGameResult;
+import ladder.domain.LadderPrize;
 import ladder.domain.Node;
 import ladder.domain.Players;
 import ladder.utils.StringUtils;
@@ -19,7 +19,8 @@ public class LadderService {
         List<String> gameResults = StringUtils.split(inputResult, COMMA);
         int height = StringUtils.parse(inputHeight);
         Players players = Players.of(names);
-        LadderGameResult ladderGameResult = new LadderGameResult(gameResults);
+        LadderPrize ladderPrize = new LadderPrize(gameResults);
+        LadderGame game = LadderGame.createLadder(players, height, ladderPrize);
 
 
         LadderGame game = LadderGame.of(players, height, ladderGameResult);

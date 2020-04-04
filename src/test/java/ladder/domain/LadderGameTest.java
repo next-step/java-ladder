@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderGameTest {
 
-    private LadderGameResult gameResult = new LadderGameResult(Arrays.asList());
+    private LadderPrize gameResult = new LadderPrize(Arrays.asList());
 
     @DisplayName("로또 게임 생성자 테스트")
     @Test
@@ -31,7 +31,7 @@ class LadderGameTest {
         //given
         Players players = Players.of(Arrays.asList("a", "b", "c"));
         Lines lines = new Lines();
-        LadderGameResult gameResult = new LadderGameResult(Arrays.asList("5000", "꽝"));
+        LadderPrize gameResult = new LadderPrize(Arrays.asList("5000", "꽝"));
 
         //then
         assertThatThrownBy(

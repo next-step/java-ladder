@@ -9,13 +9,13 @@ public class LadderGame {
 
     private final Players players;
     private final Lines lines;
-    private final LadderGameResult ladderGameResult;
+    private final LadderPrize ladderPrize;
 
-    public LadderGame(Players players, Lines lines, LadderGameResult result) {
+    public LadderGame(Players players, Lines lines, LadderPrize result) {
         validateUserAndResult(players, result);
         this.players = players;
         this.lines = lines;
-        this.ladderGameResult = result;
+        this.ladderPrize = result;
     }
 
     public static LadderGame of(final Players players,
@@ -26,7 +26,7 @@ public class LadderGame {
         return new LadderGame(players, lines, result);
     }
 
-    private void validateUserAndResult(Players players, LadderGameResult result) {
+    private void validateUserAndResult(Players players, LadderPrize result) {
         if (players.getPlayersCount() != result.size()) {
             throw new LadderException(USER_AND_RESULT_COUNT_MATCH_ERR_MST);
         }
