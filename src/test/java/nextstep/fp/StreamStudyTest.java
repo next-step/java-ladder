@@ -24,7 +24,10 @@ public class StreamStudyTest {
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        List<String> longestWords = StreamStudy.printLongestWordTop100();
+        longestWords.forEach(System.out::println);
+
+        assertThat(longestWords).hasSize(100);
     }
 
     @Test
