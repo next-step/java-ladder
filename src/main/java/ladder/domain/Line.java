@@ -17,6 +17,12 @@ public class Line {
 
     public Line addRandomNextNode(final boolean random) {
         List<Node> merge = new ArrayList<>();
+
+        if (this.nodes.isEmpty()) {
+            merge.add(Node.createFirst(random));
+            return new Line(merge);
+        }
+
         Node nextNode = getLastNode().createNextNode(random);
         merge.addAll(this.nodes);
         merge.add(nextNode);
