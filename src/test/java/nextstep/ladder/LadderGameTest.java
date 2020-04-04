@@ -21,7 +21,7 @@ public class LadderGameTest {
         persons.add(new Person("jk"));
 
         Ladder ladder = LadderGame.createLadder(persons, height);
-        assertThat(ladder.getWidth()).isEqualTo(4);
+        assertThat(ladder.getWidth()).isEqualTo(3);
         assertThat(ladder.getHeight()).isEqualTo(5);
     }
 }

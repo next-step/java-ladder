@@ -21,7 +21,7 @@ public class LadderGame {
 
     private static Line createLine(int pointY, List<Person> persons) {
         List<Point> points = persons.stream()
-                .map(person -> new Point(persons.indexOf(person), pointY, true))
+                .map(person -> new Point(0, true))
                 .collect(Collectors.toList());
 
         return new Line(points);

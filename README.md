@@ -46,8 +46,8 @@
 
 ## 객체 및 책임 설계  
 
-1. Point:  x, y, boolean(선 여부) 값을 가진다.  
-    - x-1 Point의 선 여부에 따라 선 여부를 검증한다.  
+1. Point:  index값, boolean(선 여부) 값을 가진다.  
+    - index-1 Point의 선 여부에 따라 선 여부를 검증한다.  
     - 선 여부를 판단해 선을 가지는 로직을 수행한다.  
 2. Line: ```List<Point>```. x축  
     - 사람 수에 따라 Point 인스턴스를 생성한다.  
