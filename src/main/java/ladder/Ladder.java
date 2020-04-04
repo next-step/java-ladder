@@ -16,7 +16,7 @@ public class Ladder {
     }
 
     private void validate(final List<LadderLine> lines) {
-        if(Objects.isNull(lines) || lines.isEmpty()) {
+        if (Objects.isNull(lines) || lines.isEmpty()) {
             throw new IllegalArgumentException("Ladder Line must be existed.");
         }
     }
@@ -32,4 +32,7 @@ public class Ladder {
         return new Ladder(ladders);
     }
 
+    public List<LadderLine> getLines() {
+        return lines;
+    }
 }

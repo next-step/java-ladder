@@ -13,4 +13,12 @@ public class LadderGame {
     public static LadderGame newInstance(final Members members, final LadderHeight ladderHeight) {
         return new LadderGame(members, Ladder.newInstance(new MemberCount(members.size()), ladderHeight));
     }
+
+    public Members getMembers() {
+        return members;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
+    }
 }

@@ -26,4 +26,8 @@ public class Members {
     public int size() {
         return members.size();
     }
+
+    public List<Member> getMembers() {
+        return members;
+    }
 }
