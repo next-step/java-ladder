@@ -2,6 +2,8 @@ package ladder.domain;
 
 public class Node {
 
+    private static final int ZERO = 0;
+
     private final int index;
     private final Way way;
 
@@ -11,7 +13,7 @@ public class Node {
     }
 
     public static Node createFirst(final boolean isMovableRight) {
-        return new Node(0, new Way(false, isMovableRight));
+        return new Node(ZERO, new Way(false, isMovableRight));
     }
 
     public Node createNextNode(final boolean isMovableRight) {
