@@ -26,6 +26,11 @@ public class Lines {
         return this.lines.size();
     }
 
+    public List<Line> getLines() {
+        List<Line> lines = new ArrayList<>(this.lines);
+        return lines;
+    }
+
     public Line getLine(int index) {
         Line line = this.lines.get(index);
         return line.clone();
