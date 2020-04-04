@@ -48,12 +48,16 @@ public class Line {
 
     private void assertPointHasLine(List<Point> points) {
         points.forEach(point -> {
-            int currentIndex = points.indexOf(point);
-
-            if(currentIndex > 0) {
-                point.compareWithPreviousPoint(point, getPreviousPoint(points, currentIndex));
-            }
+            comparePoints(points, point);
         });
+    }
+
+    private void comparePoints(List<Point> points, Point currentPoint) {
+        int currentIndex = points.indexOf(currentPoint);
+
+        if(currentIndex > 0) {
+            currentPoint.compareWithPreviousPoint(currentPoint, getPreviousPoint(points, currentIndex));
+        }
     }
 
     private void assertParticipantCount(List<Point> points) {
