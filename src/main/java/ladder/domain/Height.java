@@ -1,16 +1,25 @@
 package ladder.domain;
 
+import ladder.exception.InvalidHeightException;
+
 import java.util.Objects;
 
 public class Height {
     private int value;
 
-    public Height(final String value) {
-        this(Integer.valueOf(value));
+    private Height(final int value) {
+        this.value = value;
     }
 
-    public Height(final int value) {
-        this.value = value;
+    public static Height of(final String value) {
+        validHeight(value);
+        return new Height(Integer.valueOf(value));
+    }
+
+    private static void validHeight(final String height) {
+        if (Objects.isNull(height) || height.trim().isEmpty()) {
+            throw new InvalidHeightException(height);
+        }
     }
 
     @Override
