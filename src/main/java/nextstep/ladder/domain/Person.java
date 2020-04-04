@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class Person {
     public static final String PERSON_NAME_LENGTH_ERROR = "이름은 5자 이하로 입력해주세요.";

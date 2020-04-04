@@ -1,6 +1,8 @@
 package nextstep.ladder;
 
 import nextstep.ladder.controller.LadderGame;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

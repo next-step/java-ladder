@@ -1,14 +1,9 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.Ladder;
-import nextstep.ladder.Line;
-import nextstep.ladder.Person;
-import nextstep.ladder.Point;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Person;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LadderGame {
     public static Ladder createLadder(List<Person> persons, int height) {
