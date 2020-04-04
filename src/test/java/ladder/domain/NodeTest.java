@@ -87,4 +87,19 @@ class NodeTest {
         assertTrue(moveNoneNextNode.isMovableLeft());
         assertFalse(moveNoneNextNode.isMovableRight());
     }
+
+    @DisplayName("첫 노드를 만들어 준다")
+    @Test
+    public void createFirst_success() throws Exception {
+        //given
+        Node firstRight = Node.createFirst(true);
+        Node firstNone = Node.createFirst(false);
+
+        //then
+        assertFalse(firstRight.isMovableLeft());
+        assertTrue(firstRight.isMovableRight());
+
+        assertFalse(firstNone.isMovableLeft());
+        assertFalse(firstNone.isMovableRight());
+    }
 }

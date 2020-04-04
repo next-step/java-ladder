@@ -10,6 +10,10 @@ public class Node {
         this.way = way;
     }
 
+    public static Node createFirst(final boolean isMovableRight) {
+        return new Node(0, new Way(false, isMovableRight));
+    }
+
     public Node createNextNode(final boolean isMovableRight) {
         if (isMovableRight()) {
             return new Node(this.index + 1, Way.nextWay(this.way.isMovableRight(), false));
