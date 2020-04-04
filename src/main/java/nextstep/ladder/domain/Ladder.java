@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
     public static final String LADDER_HEIGHT_ERROR = "사다리 높이는 0보다 커야합니다.";
+    private static final int MIN_LADDER_HEIGHT = 1;
     private List<Line> lines;
 
     public Ladder(List<Line> lines) {
@@ -27,7 +28,7 @@ public class Ladder {
     }
 
     private void assertLadderHeight(int height) {
-        if(height < 1) {
+        if(height < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException(LADDER_HEIGHT_ERROR);
         }
     }

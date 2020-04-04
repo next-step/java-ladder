@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Line {
     public static final String POINT_COUNT_ERROR = "참여자는 2명 이상이어야 합니다.";
+    public static final int MIN_POINT_COUNT = 2;
     private final List<Point> points;
 
     public Line(List<Point> points) {
@@ -55,7 +56,7 @@ public class Line {
     }
 
     private void assertPointCount(List<Point> points) {
-        if(points.size() < 2) {
+        if(points.size() < MIN_POINT_COUNT) {
             throw new IllegalArgumentException(POINT_COUNT_ERROR);
         }
     }
