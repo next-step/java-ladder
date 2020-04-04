@@ -15,14 +15,14 @@ public class Line {
         this.points = points;
     }
 
-    public Line(int pointCount) {
-        this(createLine(pointCount));
+    public Line(int personCount) {
+        this(createLine(personCount));
     }
 
-    private static List<Point> createLine(int pointCount) {
+    private static List<Point> createLine(int personCount) {
         List<Point> points = Stream
                 .generate(() -> new Point(0, true))
-                .limit(pointCount)
+                .limit(personCount - 1)
                 .collect(Collectors.toList());
 
         return points;

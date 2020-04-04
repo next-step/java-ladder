@@ -13,13 +13,13 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder(int pointCount, int height) {
-        this(createLadder(pointCount, height));
+    public Ladder(int personCount, int height) {
+        this(createLadder(personCount, height));
     }
 
-    private static List<Line> createLadder(int pointCount, int height) {
+    private static List<Line> createLadder(int personCount, int height) {
         List<Line> lines = Stream
-                .generate(() -> new Line(pointCount))
+                .generate(() -> new Line(personCount))
                 .limit(height)
                 .collect(Collectors.toList());
 

@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 
 public class LadderGame {
     public static Ladder createLadder(List<Person> persons, int height) {
-        int pointCount = persons.size() - 1;
-        return new Ladder(pointCount, height);
+        return new Ladder(persons.size(), height);
     }
 }
