@@ -45,6 +45,7 @@
  ### 참가자들 (Players)
  * 최소 2명의 참가자가 있는지 체크
  * 사용자름 찾고 index 반환 
+ * 참가자 이름이 중복될 수 없다
  
  ### RandomUtils
  * 랜덤으로 true, false 반환
