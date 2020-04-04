@@ -13,14 +13,19 @@ public class LadderGame {
         List<Line> lines = new ArrayList<>();
 
         for(int i = 0; i < height; i++) {
-            List<Point> points = new ArrayList<>();
-            for(int j = 0; j < persons.size(); j++) {
-                Point point = new Point(j, i, true);
-                points.add(point);
-            }
-            Line line = new Line(points);
-            lines.add(line);
+            lines.add(createLine(i, persons));
         }
         return new Ladder(lines);
+    }
+
+    private static Line createLine(int i, List<Person> persons) {
+        List<Point> points = new ArrayList<>();
+
+        for(int j = 0; j < persons.size(); j++) {
+            Point point = new Point(j, i, true);
+            points.add(point);
+        }
+
+        return new Line(points);
     }
 }
