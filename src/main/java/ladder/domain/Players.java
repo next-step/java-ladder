@@ -25,6 +25,11 @@ public class Players {
         return players.size();
     }
 
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

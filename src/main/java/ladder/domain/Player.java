@@ -16,6 +16,10 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validName(final String name) {
         if (Objects.isNull(name) || name.trim().isEmpty()) {
             throw new InvalidNameException(name);
