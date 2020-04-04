@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class LineTest {
     @Test
-    @DisplayName("가로 라인이 겹치는 경우 Exception을 반환한다.")
+    @DisplayName("가로 라인이 겹치는 경우(내 왼쪽에 있는 Point와 내가 모두 hasLine이 true 이면 안된다.) Exception을 반환한다.")
     void assertPointHasLine() {
         int pointX = 1;
         int pointY = 1;
