@@ -1,12 +1,21 @@
 package ladder.domain;
 
+import ladder.exception.InvalidNameException;
+
 import java.util.Objects;
 
 public class Player {
     private String name;
 
     public Player(final String name) {
+        validNameLength(name);
         this.name = name;
+    }
+
+    private void validNameLength(final String name) {
+        if (Objects.isNull(name) || name.trim().isEmpty()) {
+            throw new InvalidNameException(name);
+        }
     }
 
     @Override
