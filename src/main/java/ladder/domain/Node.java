@@ -16,6 +16,10 @@ public class Node {
         return new Node(ZERO, new Way(false, isMovableRight));
     }
 
+    public Node createLast() {
+        return new Node(this.index + 1, new Way(this.isMovableRight(), false));
+    }
+
     public Node createNextNode(final boolean isMovableRight) {
         if (isMovableRight()) {
             return new Node(this.index + 1, Way.nextWay(this.way.isMovableRight(), false));

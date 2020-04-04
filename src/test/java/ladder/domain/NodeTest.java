@@ -102,4 +102,22 @@ class NodeTest {
         assertFalse(firstNone.isMovableLeft());
         assertFalse(firstNone.isMovableRight());
     }
+
+    @DisplayName("마짐가 노드를 만들어 준다")
+    @Test
+    public void createLast_success() throws Exception {
+        //given
+        Node nodeRight = new Node(0, new Way(false, true));
+        Node nodeNone = new Node(0, new Way(false, false));
+
+        Node lastLeft = nodeRight.createLast();
+        Node lastNone = nodeNone.createLast();
+
+        //then
+        assertTrue(lastLeft.isMovableLeft());
+        assertFalse(lastLeft.isMovableRight());
+
+        assertFalse(lastNone.isMovableLeft());
+        assertFalse(lastNone.isMovableRight());
+    }
 }
