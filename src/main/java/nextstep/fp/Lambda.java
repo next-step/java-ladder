@@ -26,6 +26,9 @@ public class Lambda {
                 .filter(conditional::isSum)
                 .reduce(0, Integer::sum);
     }
+    public static int sumAll(List<Integer> numbers) {
+        return sumAll(numbers, number -> true);
+    }
 
     public static int sumAllEven(List<Integer> numbers) {
         return sumAll(numbers, number -> number % 2 == 0);
