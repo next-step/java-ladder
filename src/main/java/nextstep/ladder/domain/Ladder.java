@@ -1,39 +1,38 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private List<HorizontalLine> ladder;
-    private RightDirection rightDirection;
     private LineSelector lineSelector;
+    private RightDirection rightDirection;
 
-    public Ladder(LadderSize ladderSize, RightDirection rightDirection,
-                  LineSelector lineSelector) {
-        this.rightDirection = rightDirection;
+    public Ladder(List<HorizontalLine> horizontalLines,
+                  LineSelector lineSelector,
+                  RightDirection rightDirection) {
+        this.ladder = new ArrayList<>(horizontalLines);
         this.lineSelector = lineSelector;
-        initLadder(ladderSize);
+        this.rightDirection = rightDirection;
+        assignLine();
     }
 
-    private void initLadder(LadderSize ladderSize) {
-        ladder = IntStream.range(0, ladderSize.getHeight())
-                .mapToObj(i -> new HorizontalLine(ladderSize.getWidth(),
-                        rightDirection))
-                .collect(Collectors.toList());
+    private void assignLine() {
+        assignVertical();
+        assignHorizontal();
 
-        adjustLadder();
     }
 
-    private void adjustLadder() {
+    private void assignVertical() {
         int width = ladder.get(0).size();
         for (int i = 0; i < width; i++) {
-            adjustLadder(i);
+            assignVertical(i);
         }
     }
 
-    private void adjustLadder(int index) {
+    private void assignVertical(int index) {
         boolean hasRightDirection = vertical(index).stream()
                 .anyMatch(Point::hasRightDirection);
         if (hasRightDirection) {
@@ -42,6 +41,19 @@ public class Ladder {
         int selectedIndex = lineSelector.select(ladder.size());
         HorizontalLine horizontalLine = ladder.get(selectedIndex);
         horizontalLine.reverse(index);
+    }
+
+    private void assignHorizontal() {
+        for(HorizontalLine horizontalLine: ladder) {
+            // todo
+            for(int i = 0; i < horizontalLine.size(); i++) {
+                boolean isAbleToRight = rightDirection.isAbleToRight();
+                if(isAbleToRight) {
+                    horizontalLine.makePointToTrue(i);
+                    break;
+                }
+            }
+        }
     }
 
     public int height() {
@@ -54,7 +66,15 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public HorizontalLine horizontal(int index) {
+        return ladder.get(index);
+    }
+
     public List<HorizontalLine> getLadder() {
         return new ArrayList<>(ladder);
+    }
+
+    public int size() {
+        return ladder.size();
     }
 }

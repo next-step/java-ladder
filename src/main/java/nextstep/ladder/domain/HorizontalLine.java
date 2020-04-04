@@ -1,46 +1,38 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class HorizontalLine implements Iterable<Point> {
     private List<Point> points;
 
-    public HorizontalLine(int size, RightDirection rightDirection) {
-        initPoints(size, rightDirection);
+    public static HorizontalLine of(int size) {
+        HorizontalLine horizontalLine = new HorizontalLine();
+        horizontalLine.points = IntStream.range(0, size)
+                .mapToObj(i -> Point.of(false))
+                .collect(Collectors.toList());
+        return horizontalLine;
     }
 
-    private void initPoints(int size, RightDirection rightDirection) {
-        points = new ArrayList<>();
-        int lastIndex = size - 1;
-
-        Point beforePoint = Point.of(false);
-        for (int i = 0; i < lastIndex; i++) {
-            Point point =
-                    createPoint(beforePoint, rightDirection.isAbleToRight());
-
-            points.add(point);
-            beforePoint = point;
-        }
-        points.add(Point.of(false));
+    private HorizontalLine() {
     }
 
-    private Point createPoint(Point beforePosition,
-                              boolean isAbleToRight) {
-        if (beforePosition.hasRightDirection()) {
-            return Point.of(false);
+    public void makePointToTrue(int index) {
+        if (index == lastIndex()) {
+            return;
         }
 
-        return Point.of(isAbleToRight);
+        if (index != 0 && points.get(index - 1).hasRightDirection()) {
+            return;
+        }
+
+        points.set(index, Point.of(true));
     }
 
     public int size() {
         return points.size();
-    }
-
-    protected Point last() {
-        return points.get(lastIndex());
     }
 
     private int lastIndex() {
@@ -52,7 +44,7 @@ public class HorizontalLine implements Iterable<Point> {
     }
 
     public void reverse(int index) {
-        if(index == lastIndex()) {
+        if (index == lastIndex()) {
             return;
         }
         Point point = points.get(index);

@@ -7,18 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HorizontalLineTest {
-    RightDirection rightDirection;
-
-    @BeforeEach
-    void setUp() {
-        rightDirection = () -> true;
-    }
-
     @DisplayName("입력한 수 만큼의 길이의 가로 라인이 만들어진다.")
     @Test
     void lineSize() {
         int size = 3;
-        HorizontalLine horizontalLine = new HorizontalLine(size, rightDirection);
+        HorizontalLine horizontalLine = HorizontalLine.of(size);
         assertThat(horizontalLine.size()).isEqualTo(size);
     }
 
@@ -26,21 +19,20 @@ public class HorizontalLineTest {
     @Test
     void lastIsFalse() {
         int size = 3;
-        HorizontalLine horizontalLine = new HorizontalLine(size, rightDirection);
-        assertThat(horizontalLine.last()).isEqualTo(Point.of(false));
+        HorizontalLine horizontalLine = HorizontalLine.of(size);
+        horizontalLine.makePointToTrue(size - 1);
+        assertThat(horizontalLine.getPoint(size - 1).hasRightDirection())
+                .isFalse();
     }
 
     @DisplayName("연속으로 포인트에 선이 있을 수 없다.")
     @Test
     void notConsecutivePoint() {
-        HorizontalLine horizontalLine = new HorizontalLine(3, rightDirection);
+        HorizontalLine horizontalLine = HorizontalLine.of(3);
+        horizontalLine.makePointToTrue(1);
+        horizontalLine.makePointToTrue(2);
 
-        Point before = Point.of(false);
-        for (Point point : horizontalLine) {
-            assertThat(before.hasRightDirection() && point.hasRightDirection())
-                    .isFalse();
-
-            before = point;
-        }
+        assertThat(horizontalLine.getPoint(1).hasRightDirection()).isTrue();
+        assertThat(horizontalLine.getPoint(2).hasRightDirection()).isFalse();
     }
 }
