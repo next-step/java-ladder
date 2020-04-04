@@ -14,12 +14,4 @@ public class Ladder {
             throw new IllegalArgumentException(LADDER_HEIGHT_ERROR);
         }
     }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
 }
