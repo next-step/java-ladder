@@ -3,37 +3,40 @@ package JavaLadder.domain;
 import java.util.*;
 
 public class Line {
-    private List points = new ArrayList<>();
-
+    private List<Boolean> line = new ArrayList<>();
 
     public Line(int countOfPerson) {
-        List points = generate(countOfPerson);
-        this.points = points;
+        List line = generate(countOfPerson);
+        this.line = line;
     }
 
     private List generate(int countOfPerson) {
         List<Boolean> points = new ArrayList();
         for (int i = 0; i < countOfPerson - 1; i++) {
-            checkSuccessTrue(points, i);
+            checkSuccessTrue(line, i);
         }
-        return points;
+        return line;
     }
 
-    private void checkSuccessTrue(List<Boolean> points, int i) {
-        if (i > 0 && points.get(i - 1)) {
-            points.add(false);
+    private void checkSuccessTrue(List<Boolean> line, int i) {
+        if (i > 0 && line.get(i - 1)) {
+            line.add(false);
             return;
         }
-        points.add(new Random().nextBoolean());
+        line.add(new Random().nextBoolean());
         return;
     }
 
     @Override
     public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
+        return line.toString();
     }
 
+    public Boolean isLine(int i) {
+        return this.line.get(i);
+    }
 
+    public int size() {
+        return this.line.size();
+    }
 }

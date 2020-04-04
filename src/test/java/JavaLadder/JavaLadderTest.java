@@ -3,15 +3,12 @@ package JavaLadder;
 import JavaLadder.domain.Ladder;
 import JavaLadder.domain.Line;
 import JavaLadder.domain.User;
-import JavaLadder.domain.UserList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -46,22 +43,16 @@ public class JavaLadderTest {
     @Test
     @DisplayName("사다리생성테스트")
     public void ladderTest() {
-
+        Ladder ladder = new Ladder(3,5);
+        System.out.println(ladder);
+        assertThat(Arrays.asList(ladder).stream().filter(n->true).count()).isLessThan(2);
     }
 
     @Test
-    @DisplayName("라인생성테스트")
-    public void lineTest() {
-        Line line = new Line(5);
-        System.out.println(line);
-        assertThat(Arrays.asList(line).stream().filter(n->true).count()).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("라인중복생성테스트")
+    @DisplayName("라인중복생성불가테스트")
     public void lineDuplicateTest() {
         Line line = new Line(3);
         System.out.println(line);
-        assertThat(Arrays.asList(line).stream().filter(n->true).count()).isEqualTo(1);
+        assertThat(Arrays.asList(line).stream().filter(n->true).count()).isLessThan(2);
     }
 }
