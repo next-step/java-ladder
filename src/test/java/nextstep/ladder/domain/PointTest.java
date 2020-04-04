@@ -9,7 +9,7 @@ public class PointTest {
     @DisplayName("포인트는 방향 데이터를 저장한다.")
     @Test
     void direction() {
-        Point point = Point.of(true);
+        Point point = Point.TRUE;
         assertThat(point.hasRightDirection()).isTrue();
     }
 }

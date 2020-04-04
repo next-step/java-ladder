@@ -21,7 +21,7 @@ public class HorizontalLineTest {
         int size = 3;
         HorizontalLine horizontalLine = HorizontalLine.of(size);
         horizontalLine.makePointToTrue(size - 1);
-        assertThat(horizontalLine.getPoint(size - 1).hasRightDirection())
+        assertThat(horizontalLine.getPoint(size - 1) == Point.TRUE)
                 .isFalse();
     }
 

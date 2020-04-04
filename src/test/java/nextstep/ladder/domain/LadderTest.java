@@ -29,24 +29,27 @@ public class LadderTest {
         );
 
         Ladder ladder =
-                new Ladder(horizontalLineList, lineSelector, rightDirection);
+                Ladder.of(horizontalLineList, lineSelector, rightDirection);
         assertThat(ladder.height()).isEqualTo(ladderSize.getHeight());
     }
 
     @DisplayName("세로 라인에는 하나 이상의 오른쪽 선이 있어야 한다.")
     @Test
     void vertical() {
-        LadderSize ladderSize = new LadderSize(4, 2);
+        LadderSize ladderSize = new LadderSize(4, 5);
         List<HorizontalLine> horizontalLineList = Arrays.asList(
+                HorizontalLine.of(ladderSize.getWidth()),
+                HorizontalLine.of(ladderSize.getWidth()),
+                HorizontalLine.of(ladderSize.getWidth()),
                 HorizontalLine.of(ladderSize.getWidth()),
                 HorizontalLine.of(ladderSize.getWidth())
         );
         Ladder ladder =
-                new Ladder(horizontalLineList, lineSelector, rightDirection);
-
-        for (int i = 0; i < ladderSize.getHeight(); i++) {
+                Ladder.of(horizontalLineList, lineSelector, rightDirection);
+        int checkSize  = ladderSize.getWidth() - 1;
+        for (int i = 0; i < checkSize; i++) {
             boolean hasRightDirection = ladder.vertical(i).stream()
-                    .anyMatch(Point::hasRightDirection);
+                    .anyMatch(point -> point == Point.TRUE);
 
             assertThat(hasRightDirection).isTrue();
         }
@@ -61,16 +64,16 @@ public class LadderTest {
                 HorizontalLine.of(ladderSize.getWidth())
         );
         Ladder ladder =
-                new Ladder(horizontalLineList, lineSelector, rightDirection);
+                Ladder.of(horizontalLineList, lineSelector, rightDirection);
 
 
         for (int i = 0; i < ladderSize.getHeight(); i++) {
-            Point before = Point.of(false);
+            Point before = Point.FALSE;
             HorizontalLine horizontalLine = ladder.horizontal(i);
             for (Point point : horizontalLine) {
-                assertThat(
-                        before.hasRightDirection() && point.hasRightDirection())
+                assertThat((before == Point.TRUE) && (point == Point.TRUE))
                         .isFalse();
+                before = point;
             }
         }
     }

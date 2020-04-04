@@ -4,6 +4,8 @@ import nextstep.ladder.domain.*;
 
 import java.util.List;
 
+import static nextstep.ladder.domain.Point.TRUE;
+
 public class ResultView {
     private static final String RESULT_MESSAGE = "실행결과";
     private static final String HORIZONTAL_LINE = "-";
@@ -40,7 +42,7 @@ public class ResultView {
     }
 
     private static void displayHorizontalLine(Point point) {
-        if (point.hasRightDirection()) {
+        if (point == TRUE) {
             System.out.print(new String(new char[Participant.MAX_NAME_LENGTH])
                     .replace("\0", HORIZONTAL_LINE));
             return;
