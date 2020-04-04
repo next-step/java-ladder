@@ -10,7 +10,6 @@ import java.util.List;
 
 public class LadderGame {
     public static Ladder createLadder(List<Person> persons, int height) {
-
         List<Line> lines = new ArrayList<>();
 
         for(int i = 0; i < height; i++) {
