@@ -11,11 +11,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OutputView {
-
     private OutputView() {
     }
 
-    public void printResult(LadderGame ladderGame) {
+    public static void printResult(LadderGame ladderGame) {
         System.out.println("실행결과\n");
 
         LadderConsoleResult result = LadderConsoleResult.newInstance(ladderGame);
@@ -25,18 +24,18 @@ public class OutputView {
         printLadder(result.getLadderLines(), result.getMembers().size());
     }
 
-    private void printMemberNames(List<Member> members) {
+    private static void printMemberNames(List<Member> members) {
         String names = members.stream()
                 .map(name -> String.format("%5s", name))
                 .collect(Collectors.joining(" "));
         System.out.println(names);
     }
 
-    private void printLadder(List<LadderLine> lines, int memberSize) {
+    private static void printLadder(List<LadderLine> lines, int memberSize) {
         lines.forEach(line -> printLadderLine(line, memberSize));
     }
 
-    private void printLadderLine(LadderLine ladderLine, int memberSize) {
+    private static void printLadderLine(LadderLine ladderLine, int memberSize) {
         String line = ladderLine.getBridges()
                 .stream()
                 .map(ladderBridge -> {
@@ -47,12 +46,12 @@ public class OutputView {
                 })
                 .collect(Collectors.joining("|"));
 
-        System.out.print("|");
+        System.out.print("     |");
         System.out.print(line);
         System.out.println("|");
     }
 
-    private String bridgeInConsole(String bridgeCharacter, int memberSize) {
+    private static String bridgeInConsole(String bridgeCharacter, int memberSize) {
         return IntStream.range(0, memberSize)
                 .mapToObj(i -> bridgeCharacter)
                 .collect(Collectors.joining());
