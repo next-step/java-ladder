@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 public class Point {
+    public static final String POINT_HAS_LINE_ERROR = "가로 라인이 겹치면 어느 방향으로 이동할 지 결정할 수 없습니다.";
     private int index;
     private boolean hasLine;
 
@@ -11,5 +12,11 @@ public class Point {
 
     public boolean isHasLine() {
         return hasLine;
+    }
+
+    public void compareWithPreviousPoint(Point point, Point previousPoint) {
+        if(previousPoint.isHasLine() && point.isHasLine()) {
+            throw new IllegalArgumentException(POINT_HAS_LINE_ERROR);
+        }
     }
 }

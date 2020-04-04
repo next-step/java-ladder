@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
-    public static final String LADDER_HEIGHT_ERROR = "사다리 높이는 1보다 커야합니다.";
+    public static final String LADDER_HEIGHT_ERROR = "사다리 높이는 0보다 커야합니다.";
     private List<Line> lines;
 
     public Ladder(List<Line> lines) {

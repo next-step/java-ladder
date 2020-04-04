@@ -23,6 +23,6 @@ public class LineTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Line(points);
-        }).withMessage(Line.POINT_HAS_LINE_ERROR);
+        }).withMessage(Point.POINT_HAS_LINE_ERROR);
     }
 }

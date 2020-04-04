@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Line {
     public static final String POINT_COUNT_ERROR = "참여자는 2명 이상이어야 합니다.";
-    public static final String POINT_HAS_LINE_ERROR = "가로 라인이 겹치면 어느 방향으로 이동할 지 결정할 수 없습니다.";
     private final List<Point> points;
 
     public Line(List<Point> points) {
@@ -46,20 +45,20 @@ public class Line {
     }
 
     private void assertPointHasLine(List<Point> points) {
-        for(int i = 1; i < points.size(); i++) {
-            Point previousPoint = getPreviousPoint(i, points);
-            if(previousPoint.isHasLine() && getPoint(i, points).isHasLine()) {
-                throw new IllegalArgumentException(POINT_HAS_LINE_ERROR);
+        points.forEach(point -> {
+            int currentIndex = points.indexOf(point);
+
+            if(currentIndex > 0) {
+                point.compareWithPreviousPoint(point, getPreviousPoint(currentIndex, points));
             }
-        }
+        });
     }
 
     private Point getPreviousPoint(int currentIndex, List<Point> points) {
+        if(currentIndex == 0) {
+            return null;
+        }
         return points.get(currentIndex - 1);
-    }
-
-    private Point getPoint(int index, List<Point> points) {
-        return points.get(index);
     }
 
     private void assertPointCount(List<Point> points) {
