@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayersTest {
@@ -25,5 +26,16 @@ class PlayersTest {
         assertThatThrownBy(
                 () -> new Players(Arrays.asList(new Player("a")))
         ).isInstanceOf(PlayerException.class);
+    }
+
+    @DisplayName("Player의 수를 반환한다")
+    @Test
+    public void getPlayersCount_success() throws Exception {
+        //given
+        Players players = new Players(
+                Arrays.asList(new Player("a"), new Player("B")));
+
+        //then
+        assertThat(players.getPlayersCount()).isEqualTo(2);
     }
 }

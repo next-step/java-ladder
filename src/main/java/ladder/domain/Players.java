@@ -21,4 +21,8 @@ public class Players {
             throw new PlayerException(PLAYER_COUNT_ERR_MSG);
         }
     }
+
+    public int getPlayersCount() {
+        return this.players.size();
+    }
 }
