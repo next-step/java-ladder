@@ -57,7 +57,6 @@ public class Ladder implements Iterable<HorizontalLine> {
         }
     }
 
-
     public int height() {
         return ladder.size();
     }

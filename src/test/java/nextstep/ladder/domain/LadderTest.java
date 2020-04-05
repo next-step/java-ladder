@@ -66,15 +66,18 @@ public class LadderTest {
         Ladder ladder =
                 Ladder.of(horizontalLineList, lineSelector, rightDirection);
 
-
         for (int i = 0; i < ladderSize.getHeight(); i++) {
-            Point before = Point.FALSE;
             HorizontalLine horizontalLine = ladder.horizontal(i);
-            for (Point point : horizontalLine) {
-                assertThat((before == Point.TRUE) && (point == Point.TRUE))
-                        .isFalse();
-                before = point;
-            }
+            horizontalDetail(horizontalLine);
+        }
+    }
+
+    void horizontalDetail(HorizontalLine horizontalLine) {
+        Point before = Point.FALSE;
+        for (Point point : horizontalLine) {
+            assertThat((before == Point.TRUE) && (point == Point.TRUE))
+                    .isFalse();
+            before = point;
         }
     }
 }
