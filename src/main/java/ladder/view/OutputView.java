@@ -7,7 +7,7 @@ public class OutputView {
     private static final String HEIGHT = "|";
     private static final String WIDTH_POINT = "-----";
     private static final String WIDTH = "     ";
-    private static final String RESULT = "최대 사다리 높이는 몇 개인가요?";
+    private static final String RESULT = "사다리 결과";
 
     public static void resultPrint(LadderGame ladderGame) {
         System.out.println(RESULT);
