@@ -14,9 +14,10 @@ public class Gamers {
 
     public static Gamers ofComma(String name) {
         String[] names = name.split(",");
-        return new Gamers(IntStream.rangeClosed(1, name.length())
-                .mapToObj(number -> Gamer.of(names[number - 1], number))
-                .collect(Collectors.toList()));
+        return new Gamers(
+                IntStream.rangeClosed(1, names.length)
+                        .mapToObj(number -> Gamer.of(names[number - 1], number))
+                        .collect(Collectors.toList()));
     }
 
     public List<Gamer> getGamerList() {

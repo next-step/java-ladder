@@ -9,8 +9,8 @@ public class GamersTest {
     @Test
     @DisplayName(",로 이름들 받아서 생성")
     void getNameTest() {
-        String name = "unit0, unit1, unit2 ,unit3,unit4";
+        String name = "unit0 , unit1, unit2";
         assertThat(Gamers.ofComma(name).getGamerList())
-                .hasSize(5);
+                .hasSize(3);
     }
 }
