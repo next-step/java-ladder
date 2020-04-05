@@ -19,8 +19,8 @@ public class LadderPrizeTest {
 
     @DisplayName("양수가 아닌 숫자를 입력하면 예외 발생")
     @ParameterizedTest
-    @ValueSource(ints = {-1, 0, -10000})
-    void throwExceptionWhenItsNameAreNotNumber(int input) {
+    @ValueSource(strings = {"-1", "0", "-10000"})
+    void throwExceptionWhenItsNameAreNotNumber(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new LadderPrize(input);
         });

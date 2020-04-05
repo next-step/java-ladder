@@ -9,11 +9,20 @@ public class LadderPrize {
 
     public LadderPrize(String prizeName) {
         validateString(prizeName);
+        validateNumber(prizeName);
         this.prizeName = prizeName;
     }
 
     private void validateString(String input) {
         if (!BLANK.equals(input)) {
+            throw new IllegalArgumentException(WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING);
+        }
+    }
+
+    private void validateNumber(String prizeName){
+        try {
+            Integer.parseInt(prizeName);
+        }catch (NumberFormatException e){
             throw new IllegalArgumentException(WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING);
         }
     }
