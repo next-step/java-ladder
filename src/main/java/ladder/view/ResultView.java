@@ -33,13 +33,12 @@ public class ResultView {
             if (node.isMovableRight()) {
                 buffer.append(String.format(PRINT_HEIGHT));
                 buffer.append(String.format(PRINT_WIDTH));
-                System.out.println(buffer.toString());
-                buffer.setLength(0);
             }
-            buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
-            System.out.println(buffer.toString());
-            buffer.setLength(0);
+            if (!node.isMovableRight()) {
+                buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
+            }
         });
-
+        System.out.println(buffer.toString());
+        buffer.setLength(0);
     }
 }
