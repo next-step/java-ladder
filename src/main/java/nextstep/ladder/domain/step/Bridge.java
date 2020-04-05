@@ -1,39 +1,22 @@
 package nextstep.ladder.domain.step;
 
+import nextstep.ladder.domain.Position;
+
 import java.util.Objects;
 
 public class Bridge {
     private static final int ONE = 1;
 
-    private final int linePosition;
-    private final int stepPosition;
+    private final Position linePosition;
+    private final Position stepPosition;
 
     private Bridge(int linePosition, int stepPosition) {
-        validateLinePosition(linePosition);
-        validateStepPosition(stepPosition);
-
-        this.linePosition = linePosition;
-        this.stepPosition = stepPosition;
-    }
-
-    private void validateStepPosition(int stepPosition) {
-        if (isNegative(stepPosition)) {
-            throw new IllegalArgumentException("스텝 위치는 음수 일수 없습니다.");
-        }
-    }
-
-    private void validateLinePosition(int linePosition) {
-        if (isNegative(linePosition)) {
-            throw new IllegalArgumentException("라인 위치는 음수 일수 없습니다.");
-        }
-    }
-
-    private boolean isNegative(int position) {
-        return position < 0;
+        this.linePosition = new Position(linePosition);
+        this.stepPosition = new Position(stepPosition);
     }
 
     public static Bridge previous(Bridge bridge) {
-        return new Bridge(decreaseOne(bridge.linePosition), bridge.stepPosition);
+        return new Bridge(decreaseOne(bridge.getLinePosition()), bridge.getStepPosition());
     }
 
     public static Bridge current(int linePosition, int stepPosition) {
@@ -45,7 +28,7 @@ public class Bridge {
     }
 
     public static Bridge next(Bridge bridge) {
-        return new Bridge(increaseOne(bridge.linePosition), bridge.stepPosition);
+        return new Bridge(increaseOne(bridge.getLinePosition()), bridge.getStepPosition());
     }
 
     private static int increaseOne(int position) {
@@ -57,11 +40,15 @@ public class Bridge {
     }
 
     public int getStepPosition() {
-        return stepPosition;
+        return stepPosition.getPosition();
+    }
+
+    public int getLinePosition() {
+        return linePosition.getPosition();
     }
 
     public boolean isEqaulLinePosition(int linePosition) {
-        return this.linePosition == linePosition;
+        return this.linePosition.isEqualPosition(linePosition);
     }
 
     @Override

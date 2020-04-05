@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.step;
 
+import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.step.strategy.RandomMovement;
 import nextstep.ladder.domain.step.strategy.StepGenerator;
 
@@ -13,11 +14,11 @@ public class Steps {
     private static final int ONE = 1;
 
     private final List<Step> steps;
-    private final int linePosition;
+    private final Position linePosition;
 
-    public Steps(List<Step> steps, int linePosition) {
+    private Steps(List<Step> steps, int linePosition) {
         this.steps = Collections.unmodifiableList(steps);
-        this.linePosition = linePosition;
+        this.linePosition = new Position(linePosition);
     }
 
     public static Optional<Steps> movableNext(int height, int linePosition) {
@@ -39,6 +40,10 @@ public class Steps {
         );
     }
 
+    private int getLineHeight() {
+        return steps.size();
+    }
+
     public List<Step> getSteps() {
         return steps;
     }
@@ -47,19 +52,11 @@ public class Steps {
         return steps.get(index);
     }
 
-    public int size() {
-        return steps.size();
-    }
-
     public int getLinePosition() {
-        return linePosition;
-    }
-
-    private int getLineHeight() {
-        return steps.size();
+        return linePosition.getPosition();
     }
 
     private int nextLinePosition() {
-        return linePosition + ONE;
+        return linePosition.getPosition() + ONE;
     }
 }
