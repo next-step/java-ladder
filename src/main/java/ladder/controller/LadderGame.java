@@ -13,6 +13,7 @@ public class LadderGame {
         LadderPrizes ladderPrizes = LadderPrizes.create(inputView.getLadderPrizes());
         ResultView.of(players, rows).printLadder();
 
+
         String input = inputView.getPlayerToKnowResult();
     }
 }
