@@ -23,7 +23,9 @@
 
 ### Ladder
 
+- 생성자로 Gamers 받기
 - 라인 리스트 일급 컬렉션
+- LadderResultDto(LadderResult candidateResult)
 
 ### LadderNo
 
@@ -32,6 +34,9 @@
   
 ### LadderResult
 
-- 사다리 결과 String 리스트
-- get(idx) 결과 String
-- size() 리스트개수
+- 사다리 결과 String 리스트 일급 컬렉션
+
+### LadderResultDto
+
+- 사다리 전체 결과 값들 map
+- key = gamerName, value = resultString
