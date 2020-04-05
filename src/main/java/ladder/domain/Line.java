@@ -20,9 +20,9 @@ public class Line {
 
     private Boolean checkExistLine(final int count) {
         if (isStart(count) || isExistPrev(count)) {
-            return false;
+            return Boolean.FALSE;
         }
-        return true;
+        return new Random().nextBoolean();
     }
 
     private boolean isStart(final int count) {
