@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.model.Height;
-import ladder.model.LadderPrize;
-import ladder.model.Player;
-import ladder.model.Players;
+import ladder.model.*;
 import ladder.util.ScannerUtil;
 
 import java.util.Arrays;
@@ -28,9 +25,9 @@ public class InputView {
         return new Height(ScannerUtil.readInt());
     }
 
-    public List<LadderPrize> getLadderPrizes(){
+    public LadderPrizes getLadderPrizes() {
         System.out.println(MESSAGE_INPUT_LADDER_RESULT);
-        return splitPrizeNames(ScannerUtil.readLine());
+        return LadderPrizes.create(splitPrizeNames(ScannerUtil.readLine()));
     }
 
     private List<Player> splitNames(String names) {
