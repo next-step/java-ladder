@@ -14,28 +14,11 @@ public class Line {
         this.bars = bars;
     }
 
-    public static Line ofCount(int barCount) {
-        List<Boolean> bars = new ArrayList<>(barCount);
-
-        if (barCount < 1) {
-            throw new IllegalArgumentException(String.format("Create Line failed. barCount must be over 0: barCount=%d", barCount));
-        }
-
-        Random random = new Random();
-        bars.add(random.nextBoolean());
-        for (int i = 1; i < barCount; i++) {
-            if (bars.get(i - 1)) {
-                bars.add(false);
-            } else {
-                bars.add(random.nextBoolean());
-            }
-        }
-
-        return new Line(bars);
+    public static Line of(Boolean... bars) {
+        return Line.of(Arrays.asList(bars));
     }
 
-    public static Line of(Boolean... bar) {
-        List<Boolean> bars = Arrays.asList(bar);
+    public static Line of(List<Boolean> bars) {
         if (bars.size() == 1) {
             return new Line(bars);
         }

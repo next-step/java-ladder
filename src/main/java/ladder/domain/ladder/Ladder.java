@@ -22,7 +22,7 @@ public class Ladder {
 
     private static Ladder makeLadder(int height, int size) {
         return new Ladder(Stream.iterate(
-                Line.ofCount(size), line -> Line.ofCount(size))
+                LineMaker.makeLine(size), line -> LineMaker.makeLine(size))
                 .limit(height)
                 .collect(Collectors.toList()));
     }

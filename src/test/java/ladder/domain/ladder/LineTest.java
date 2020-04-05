@@ -14,24 +14,9 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("음 수 일 수 없음")
-    void countOver1Test() {
-        int personCount = 0;
-        assertThatThrownBy(() -> Line.ofCount(personCount))
-                .isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    @DisplayName("count 정상 생성")
-    void createCountTest(){
-        assertThat(Line.ofCount(10).getBars())
-                .hasSize(10);
-    }
-
-    @Test
     @DisplayName("일반 정상 생성")
     void createBarsTest(){
-        assertThatCode(()->Line.of(true,false,true,false))
-                .doesNotThrowAnyException();
+        assertThat(Line.of(true,false,true,false).getBars())
+                .hasSize(4);
     }
 }
