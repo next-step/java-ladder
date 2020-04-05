@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.model.*;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +15,9 @@ public class LadderResultTest {
     void createTest() {
         //given
         List<Player> players = Arrays.asList(
-                new Player("Mark"),
-                new Player("Palm"),
-                new Player("Jyung"));
+                new Player("Mark", 0),
+                new Player("Palm", 1),
+                new Player("Jyung", 2));
         Rows rows = Rows.create(Players.create(players), new Height(5));
 
         //when
