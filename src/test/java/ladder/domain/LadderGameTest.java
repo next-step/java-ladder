@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +14,6 @@ public class LadderGameTest {
 
         assertThat(result.getUsers()).isEqualTo(Users.of("yohan,hymin,heji"));
         assertThat(result.getLadder().getLadderLines().size()).isEqualTo(10);
-        result.getLadder().getLadderLines().forEach(links ->assertThat(links.getLinkCount()).isEqualTo(3));
+        result.getLadder().getLadderLines().forEach(links -> assertThat(links.getLinkCount()).isEqualTo(3));
     }
 }
