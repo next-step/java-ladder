@@ -4,7 +4,6 @@ import static ladder.Messages.WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING;
 
 public class LadderPrize {
     private static final String BLANK = "꽝";
-    private static final String ALL = "all";
 
     private String prizeName;
 
@@ -16,7 +15,7 @@ public class LadderPrize {
     }
 
     private boolean isAllowedInputPrize(String input) {
-        return BLANK.equals(input) || ALL.equals(input.toLowerCase());
+        return BLANK.equals(input);
     }
 
     private void validateString(String input) {

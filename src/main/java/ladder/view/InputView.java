@@ -11,6 +11,7 @@ import static ladder.Messages.*;
 
 public class InputView {
     private static final String DELIMITER = ",";
+    private static final String ALL = "all";
 
     public InputView() {
     }
@@ -25,9 +26,23 @@ public class InputView {
         return new Height(ScannerUtil.readInt());
     }
 
-    public LadderPrizes getLadderPrizes() {
+    public List<LadderPrize> getLadderPrizes() {
         System.out.println(MESSAGE_INPUT_LADDER_RESULT);
-        return LadderPrizes.create(splitPrizeNames(ScannerUtil.readLine()));
+        return splitPrizeNames(ScannerUtil.readLine());
+    }
+
+    public String getPlayerToKnowResult(){
+        System.out.println(MESSAGE_INPUT_PLAYER_TO_KNOW_RESULT);
+        return ScannerUtil.readLine()
+                .trim()
+                .toLowerCase();
+    }
+
+    private boolean wantToKnowAll(String input){
+        if(ALL.equals(input.trim().toLowerCase())){
+            return true;
+        }
+        return false;
     }
 
     private List<Player> splitNames(String names) {

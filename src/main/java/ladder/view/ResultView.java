@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.model.Player;
-import ladder.model.Players;
-import ladder.model.Row;
-import ladder.model.Rows;
+import ladder.model.*;
 
 public class ResultView {
     private static final String BORDER_LINE_TOP = "=============================";
