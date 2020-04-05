@@ -40,8 +40,8 @@ public class LadderGameResultTest {
         LadderGameResult ladderGameResult = LadderGameResult.create(ladderResult, ladderPrizes);
 
         //then
-        assertThat(ladderGameResult.getLadderPrizeOfPlayer(player)).isEqualTo(new LadderPrize("꽝"));
-        assertThat(ladderGameResult.getLadderPrizeOfPlayer(player2)).isEqualTo(new LadderPrize("5000"));
-        assertThat(ladderGameResult.getLadderPrizeOfPlayer(player3)).isEqualTo(new LadderPrize("꽝"));
+        assertThat(ladderGameResult.findPrizeOfPlayer(player).getPrizeName()).isEqualTo("꽝");
+        assertThat(ladderGameResult.findPrizeOfPlayer(player2).getPrizeName()).isEqualTo("꽝");
+        assertThat(ladderGameResult.findPrizeOfPlayer(player3).getPrizeName()).isEqualTo("5000");
     }
 }

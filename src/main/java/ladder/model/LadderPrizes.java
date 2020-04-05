@@ -17,4 +17,12 @@ public class LadderPrizes {
     public List<LadderPrize> getLadderPrizes() {
         return ladderPrizes;
     }
+
+    public LadderPrize findPrizeAtIndex(int index){
+        return ladderPrizes.get(index);
+    }
+
+    public int getIndexOfLadderPrize(LadderPrize ladderPrize){
+        return ladderPrizes.indexOf(ladderPrize);
+    }
 }

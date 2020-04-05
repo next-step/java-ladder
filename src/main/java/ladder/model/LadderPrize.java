@@ -18,6 +18,9 @@ public class LadderPrize {
         }
         this.prizeName = prizeName;
     }
+    public int getLocation(LadderPrizes ladderPrizes){
+        return ladderPrizes.getLadderPrizes().indexOf(this);
+    }
 
     private boolean isAllowedInputPrize(String input) {
         return BLANK.equals(input);
@@ -35,6 +38,10 @@ public class LadderPrize {
         if (Integer.parseInt(prizeName) <= ZERO) {
             throw new IllegalArgumentException(WARNING_NOT_ALLOWED_NUMBER);
         }
+    }
+
+    public String getPrizeName() {
+        return prizeName;
     }
 
     @Override
