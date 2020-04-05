@@ -1,23 +1,30 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Line {
+    private static final int START_LINE_POSITION = 0;
+
     private List<Boolean> line;
 
-    public Line(int countOfPerson) {
-        List<Boolean> lines = new ArrayList<>(countOfPerson);
-        for (int i = Player.PLAYER_MIN_COUNT; i < countOfPerson; i++) {
-            lines.add(true);
+    public Line(int playerCount) {
+        List<Boolean> lines = new ArrayList<>(playerCount);
+        for (int i = 0; i < playerCount; i++) {
+            lines.add(checkExistLine(i));
         }
         this.line = Collections.unmodifiableList(lines);
     }
 
     public List<Boolean> getLine() {
         return line;
+    }
+
+    private Boolean checkExistLine(final int count) {
+        return !isStart(count);
+    }
+
+    private boolean isStart(final int count) {
+        return count == START_LINE_POSITION;
     }
 
     @Override
