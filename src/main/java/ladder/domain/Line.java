@@ -21,7 +21,7 @@ public class Line {
         points.add(LINE_POINT.get(POINT_INDEX));
 
         for (int i = 1; i < userCount - 1; i++) {
-            addPoints(points, i);
+            points.add(getPoint(i));
         }
 
         points.add(false);
@@ -37,15 +37,13 @@ public class Line {
         return lines;
     }
 
-    private void addPoints(List<Boolean> points, int index) {
-        if (points.get(index - 1)) {
-            points.add(false);
-
-            return;
+    private Boolean getPoint(int index) {
+        if (this.points.get(index - 1)) {
+            return false;
         }
 
         Collections.shuffle(LINE_POINT);
 
-        points.add(LINE_POINT.get(POINT_INDEX));
+        return LINE_POINT.get(POINT_INDEX);
     }
 }
