@@ -48,4 +48,18 @@ public class LambdaTest {
         int sum = Lambda.sumAllOverThree(numbers);
         assertThat(sum).isEqualTo(15);
     }
+
+    @Test
+    public void sumWithContionalTest() throws Exception {
+        int sum = Lambda.sumWithCondition(numbers, (number) -> true);
+        assertThat(sum).isEqualTo(21);
+
+        sum = Lambda.sumWithCondition(numbers, (number) -> number % 2 == 0);
+        assertThat(sum).isEqualTo(12);
+
+        sum = Lambda.sumWithCondition(numbers, (number) -> {
+            return number > 3;
+        });
+        assertThat(sum).isEqualTo(15);
+    }
 }

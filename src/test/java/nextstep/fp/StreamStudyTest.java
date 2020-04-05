@@ -23,8 +23,16 @@ public class StreamStudyTest {
     }
 
     @Test
+    public void countWordsStream() throws Exception {
+        long result = StreamStudy.countWords();
+        System.out.println("result : " + result);
+    }
+
+    @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        List<String> result = StreamStudy.printLongestWordTop100();
+
+        assertThat(result).hasSize(100);
     }
 
     @Test
