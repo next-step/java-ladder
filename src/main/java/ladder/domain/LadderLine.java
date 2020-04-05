@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,7 +15,7 @@ public class LadderLine {
     }
 
     public LadderLine(List<LadderLink> ladderLinks) {
-        this.ladderLinks = ladderLinks;
+        this.ladderLinks = Collections.unmodifiableList(ladderLinks);
     }
 
     public int getLinkCount() {

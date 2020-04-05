@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -15,7 +16,7 @@ public class Ladder {
     }
 
     private Ladder(List<LadderLine> ladderLines) {
-        this.ladderLines = ladderLines;
+        this.ladderLines = Collections.unmodifiableList(ladderLines);
     }
 
     public List<LadderLine> getLadderLines() {

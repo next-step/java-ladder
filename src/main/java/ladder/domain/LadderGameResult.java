@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LadderGameResult {
@@ -11,8 +12,8 @@ public class LadderGameResult {
     }
 
     private LadderGameResult(List<User> users, List<LadderLine> ladderLines) {
-        this.users = users;
-        this.ladderLines = ladderLines;
+        this.users = Collections.unmodifiableList(users);
+        this.ladderLines = Collections.unmodifiableList(ladderLines);
     }
 
     public List<User> getUsers() {
