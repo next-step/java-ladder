@@ -23,7 +23,7 @@ class InputViewTest {
         Players actual = inputView.inputPlayerName();
 
         assertThat(actual).isEqualTo(expect);
-        assertThat(actual.size()).isEqualTo(2);
+        assertThat(actual.count()).isEqualTo(2);
     }
 
     @DisplayName("높이를 입력받는다.")

@@ -19,7 +19,7 @@ class PlayersTest {
         Players actual = new Players(playerList);
 
         assertThat(actual).isEqualTo(expect);
-        assertThat(actual.size()).isEqualTo(2);
+        assertThat(actual.count()).isEqualTo(2);
     }
 
 }
