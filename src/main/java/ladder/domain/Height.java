@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Height {
     public static final int MIN_HEIGHT = 1;
 
-    private int value;
+    private final int value;
 
     private Height(final int value) {
         isLessThanMinHeight(value);

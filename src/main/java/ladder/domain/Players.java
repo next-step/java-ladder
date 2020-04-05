@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Players {
     private static final String SEPARATOR = ",";
 
-    private List<Player> players;
+    private final List<Player> players;
 
     public Players(final List<Player> players) {
         this.players = Collections.unmodifiableList(players);
