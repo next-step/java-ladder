@@ -41,7 +41,8 @@ public class PlayerTest {
         Row row = new Row(result);
 
         //when, then
-        assertThat(player.findNextLocation(row)).isEqualTo(2);
-
+        assertThat(player.findNextLocation(row)).isEqualTo(1);
+        assertThat(player2.findNextLocation(row)).isEqualTo(0);
+        assertThat(player3.findNextLocation(row)).isEqualTo(2);
     }
 }

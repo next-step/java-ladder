@@ -29,6 +29,10 @@ public class Row {
         return row.get(index);
     }
 
+    public int getLastLocationValue(){
+        return row.size();
+    }
+
     private static boolean findNextBoolean(boolean prev) {
         return BooleanGenerator.getNextBoolean(prev);
     }
