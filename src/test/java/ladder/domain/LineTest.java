@@ -13,7 +13,7 @@ class LineTest {
     @Test
     void createLine_OnePlayer() {
         int playerCount = 1;
-        Line line = new Line(playerCount);
+        Line line = Line.of(playerCount);
 
         List<Boolean> actual = line.getLine();
 
