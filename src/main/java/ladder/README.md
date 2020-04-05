@@ -29,3 +29,9 @@
 
 - 사다리 번호 mutable
   - int getNo()
+  
+### LadderResult
+
+- 사다리 결과 String 리스트
+- get(idx) 결과 String
+- size() 리스트개수
