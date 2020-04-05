@@ -17,7 +17,7 @@ public class LadderGameTest {
     @DisplayName("게임 생성 실패 테스트")
     void validateNamesTest() {
         assertThatThrownBy(
-                () -> new LadderGame("jojoasdfasd, haha")
+                () -> new LadderGame("jojoasdfasd", "haha")
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

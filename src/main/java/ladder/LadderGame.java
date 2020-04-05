@@ -4,26 +4,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LadderGame {
-    private static final String NAMES_DELIMITER = ",";
     private static final int NAME_MAX_LENGTH = 5;
     private static final int NAME_MIN_LENGTH = 1;
 
     private List<String> names;
 
-    public LadderGame(String input) {
-        this.names = settingNames(input);
+    public LadderGame(String... input) {
+        validateNames(input);
+        this.names = Arrays.asList(input);
     }
 
-
-    private List<String> settingNames(String input) {
-        List<String> names = Arrays.asList(input.split(NAMES_DELIMITER));
-        validateNames(names);
-
-        return names;
-    }
-
-    private void validateNames(List<String> names) {
-        names.stream()
+    private void validateNames(String[] names) {
+        Arrays.stream(names)
                 .filter(n -> n.length() > NAME_MAX_LENGTH || n.length() < NAME_MIN_LENGTH)
                 .findFirst()
                 .ifPresent(n -> {
