@@ -1,23 +1,25 @@
 package ladder.domain;
 
+import java.util.List;
+
 public class LadderGameResult {
-    private final Users users;
-    private final Ladder ladder;
+    private final List<User> users;
+    private final List<LadderLine> ladderLines;
 
-    public static LadderGameResult of(Users users, Ladder ladder) {
-        return new LadderGameResult(users, ladder);
+    public static LadderGameResult of(List<User> users, List<LadderLine> ladderLines) {
+        return new LadderGameResult(users, ladderLines);
     }
 
-    private LadderGameResult(Users users, Ladder ladder) {
+    private LadderGameResult(List<User> users, List<LadderLine> ladderLines) {
         this.users = users;
-        this.ladder = ladder;
+        this.ladderLines = ladderLines;
     }
 
-    public Users getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public Ladder getLadder() {
-        return ladder;
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 }

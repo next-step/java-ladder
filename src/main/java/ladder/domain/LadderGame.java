@@ -15,6 +15,6 @@ public class LadderGame {
     }
 
     public LadderGameResult getResult() {
-        return LadderGameResult.of(users, ladder);
+        return LadderGameResult.of(users.getUsers(), ladder.getLadderLines());
     }
 }
