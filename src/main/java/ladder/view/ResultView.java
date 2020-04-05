@@ -23,21 +23,23 @@ public class ResultView {
 
     public static void printLadder(Lines lines) {
         for (Line line : lines.getLines()) {
-            makeNodeOutut(line);
+            makeNodeOutput(line);
         }
     }
 
-    private static void makeNodeOutut(Line line) {
+    private static void makeNodeOutput(Line line) {
         StringBuffer buffer = new StringBuffer();
         line.getNodes().forEach(node -> {
             if (node.isMovableRight()) {
                 buffer.append(String.format(PRINT_HEIGHT));
                 buffer.append(String.format(PRINT_WIDTH));
-            } else {
-                buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
+                System.out.println(buffer.toString());
+                buffer.setLength(0);
             }
+            buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
+            System.out.println(buffer.toString());
+            buffer.setLength(0);
         });
-        System.out.println(buffer.toString());
-        buffer.setLength(0);
+
     }
 }
