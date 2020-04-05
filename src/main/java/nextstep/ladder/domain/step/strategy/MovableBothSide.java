@@ -10,14 +10,18 @@ import java.util.stream.Collectors;
 public class MovableBothSide implements StepGenerator {
     @Override
     public Step generate(Steps previouSteps, Bridge bridge) {
-        List<Integer> movablePositions = previouSteps.getSteps().stream()
-                .filter(previousStep -> previousStep.isMovableNext(previouSteps.getLinePosition()))
-                .map(Step::getPosition)
-                .collect(Collectors.toList());
+        List<Integer> movablePositions = findMovableNextPositions(previouSteps);
 
         if (movablePositions.contains(bridge.getStepPosition())) {
             return Step.of(Bridge.next(bridge), new RandomMovement());
         }
         return Step.of(Bridge.previous(bridge), () -> true);
+    }
+
+    private List<Integer> findMovableNextPositions(Steps previouSteps) {
+        return previouSteps.getSteps().stream()
+                .filter(previousStep -> previousStep.isMovableNext(previouSteps.getLinePosition()))
+                .map(Step::getPosition)
+                .collect(Collectors.toList());
     }
 }
