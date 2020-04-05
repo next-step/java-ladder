@@ -9,8 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.Messages.MESSAGE_INPUT_LADDER_HEIGHT;
-import static ladder.Messages.MESSAGE_INPUT_PLAYERS;
+import static ladder.Messages.*;
 
 public class InputView {
     private static final String DELIMITER = ",";
@@ -32,6 +31,12 @@ public class InputView {
         return Arrays.stream(names.split(DELIMITER))
                 .map(it -> it.trim())
                 .map(it -> new Player(it))
+                .collect(Collectors.toList());
+    }
+
+    private List<String> splitResults(String results) {
+        return Arrays.stream(results.split(DELIMITER))
+                .map(it -> it.trim())
                 .collect(Collectors.toList());
     }
 }
