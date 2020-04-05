@@ -3,7 +3,7 @@ package ladder.model;
 import java.util.Objects;
 
 public class MemberCount {
-    private int count;
+    private final int count;
 
     public MemberCount(final int count) {
         if (count <= 0) {
