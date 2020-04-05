@@ -21,6 +21,10 @@ public class VerticalLines {
         return this.verticalLines.size();
     }
 
+    public int getHeight() {
+        return this.getLine(0).getHeight();
+    }
+
     public VerticalLine getRightLine(VerticalLine verticalLine) {
         return Optional.ofNullable(getLine(verticalLine.getLineNo() + 1))
                 .orElse(null);

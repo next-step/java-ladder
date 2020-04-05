@@ -2,6 +2,7 @@ package ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class VerticalLine {
 
@@ -28,11 +29,28 @@ public class VerticalLine {
         return this.points.get(heightPosition);
     }
 
+    public int getHeight(){
+        return this.points.size();
+    }
+
     private List<Point> dotPoints(int height) {
         List<Point> points = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = 1; i <= height; i++) {
             points.add(new Point(lineNo, i));
         }
         return points;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VerticalLine that = (VerticalLine) o;
+        return lineNo == that.lineNo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lineNo);
     }
 }
