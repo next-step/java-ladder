@@ -3,8 +3,12 @@ package nextstep.ladder.domain.line;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lines {
-    private List<Line> lines = new ArrayList<>();
+public class LineList {
+    private final List<Line> lines;
+
+    public LineList(List<Line> lines) {
+        this.lines = lines;
+    }
 
     public Line lastLine() {
         return lines.get(lines.size() - 1);
@@ -20,10 +24,5 @@ public class Lines {
 
     public List<Line> getLines() {
         return lines;
-    }
-
-    public int lineHeight() {
-        //TODO get 0 check
-        return lines.get(0).getLineHeight();
     }
 }

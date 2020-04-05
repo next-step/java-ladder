@@ -25,6 +25,14 @@ public class Step {
         return bridge.isEqaulLinePosition(linePosition) && movable;
     }
 
+    public boolean isMovableNext(int linePosition) {
+        return !(bridge.isEqaulLinePosition(linePosition + 1) && movable);
+    }
+
+    public boolean isMovablePrev(int linePosition) {
+        return bridge.isEqaulLinePosition(linePosition + 1) && movable;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
