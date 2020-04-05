@@ -9,7 +9,15 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public Ladder of(final List<Line> lines) {
+    public static Ladder of(final List<Line> lines) {
         return new Ladder(lines);
+    }
+
+    public int getHeight() {
+        return this.lines.size();
+    }
+
+    public Line getLine(final int index) {
+        return this.lines.get(index);
     }
 }
