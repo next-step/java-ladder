@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGame {
+    private static final int ONE = 1;
+    private static final int FIRST_PERSON = 0;
     private static final String DELIMITER = ",";
 
     public static Ladder run(LadderRequestDto ladderRequestDto) {
@@ -20,7 +22,7 @@ public class LadderGame {
         List<Person> persons = namesToPersons(ladderRequestDto);
 
         List<Line> lines = new ArrayList<>();
-        Line previousLine = Line.first(persons.get(0), heightOfLadder);
+        Line previousLine = Line.first(persons.get(FIRST_PERSON), heightOfLadder);
         lines.add(previousLine);
         generateLines(persons, lines, previousLine);
         return new Ladder(lines, heightOfLadder);
@@ -40,10 +42,14 @@ public class LadderGame {
     }
 
     private static Line getLine(List<Person> persons, Line previousLine, int i) {
-        if (i == persons.size() - 1) {
+        if (i == lastPersonsIndex(persons)) {
             return Line.of(persons.get(i), previousLine.getSteps(), new MovablePrev());
         }
         return Line.of(persons.get(i), previousLine.getSteps(), new MovableBothSide());
+    }
+
+    private static int lastPersonsIndex(List<Person> persons) {
+        return persons.size() - ONE;
     }
 
 }

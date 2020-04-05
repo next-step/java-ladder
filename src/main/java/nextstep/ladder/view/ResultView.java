@@ -10,6 +10,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+
+    private static final String NAME_FORMAT = "%6s";
+    private static final String SPACE_FORMAT = "     ";
+    private static final String LINE = "|";
+    private static final String STEP = "-----";
+
     public static void printLadder(Ladder ladder) {
         printPersons(ladder.getLines());
         printLines(ladder);
@@ -25,7 +33,7 @@ public class ResultView {
     }
 
     private static String format(String name) {
-        return String.format("%6s", name);
+        return String.format(NAME_FORMAT, name);
     }
 
     private static void printLines(Ladder ladder) {
@@ -37,22 +45,26 @@ public class ResultView {
     }
 
     private static void printRows(List<Line> lines, int stepIndex) {
-        int lineIndex = 0;
-        System.out.print("     ");
+        int lineIndex = ZERO;
+        System.out.print(SPACE_FORMAT);
         for (Line line : lines) {
             Steps steps = line.getSteps();
             System.out.print(printStep(lineIndex, steps.get(stepIndex)));
             lineIndex++;
         }
+        printNewLine();
+    }
+
+    private static void printNewLine() {
         System.out.println();
     }
 
     private static StringBuilder printStep(int lineIndex, Step step) {
-        StringBuilder stringBuilder = new StringBuilder("|");
-        if (step.isMovableLine(lineIndex + 1)) {
-            return stringBuilder.append("-----");
+        StringBuilder stringBuilder = new StringBuilder(LINE);
+        if (step.isMovableLine(lineIndex + ONE)) {
+            return stringBuilder.append(STEP);
         }
-        return stringBuilder.append("     ");
+        return stringBuilder.append(SPACE_FORMAT);
     }
 
 
