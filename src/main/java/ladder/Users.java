@@ -23,4 +23,8 @@ public class Users {
     public List<User> getUsers() {
         return users;
     }
+
+    public int getUserCount() {
+        return users.size();
+    }
 }
