@@ -1,7 +1,6 @@
 package ladder.model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderResult {
@@ -13,16 +12,17 @@ public class LadderResult {
 
     public static LadderResult create(Players players, Rows rows) {
         Map<Integer, Player> result = new HashMap<>();
-        players.getPlayers().stream()
-                .forEach(it -> result.put(it.findFinalLocation(rows), it));
+        for(Player player:players.getPlayers()){
+            result.put(player.findFinalLocation(rows), player) ;
+        }
         return new LadderResult(result);
     }
 
-    public Player findPlayerAtIndex(int index){
+    public Player findPlayerAtIndex(int index) {
         return ladderResult.get(index);
     }
 
-    public int getSize(){
+    public int getSize() {
         return ladderResult.size();
     }
 }
