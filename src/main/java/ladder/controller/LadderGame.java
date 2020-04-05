@@ -6,10 +6,9 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderGame {
-    public static ResultView start(InputView inputView) {
+    public static void start(InputView inputView) {
         Players players = inputView.getPlayers();
         Rows rows = Rows.create(players, inputView.getHeight());
-
-        return ResultView.of(players, rows);
+        ResultView.of(players, rows).printLadder();
     }
 }
