@@ -1,5 +1,8 @@
 package ladder;
 
+import ladder.model.LadderBridge;
+import ladder.model.LadderLine;
+import ladder.model.MemberCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

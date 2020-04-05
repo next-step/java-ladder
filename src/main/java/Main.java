@@ -1,6 +1,7 @@
-import ladder.LadderGame;
-import ladder.LadderHeight;
-import ladder.Members;
+import ladder.model.LadderGame;
+import ladder.model.LadderHeight;
+import ladder.model.Members;
+import ladder.model.dto.LadderConsoleResult;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -12,6 +13,6 @@ public class Main {
 
         LadderGame ladderGame = LadderGame.newInstance(members, ladderHeight);
 
-        OutputView.printResult(ladderGame);
+        OutputView.printResult(LadderConsoleResult.newInstance(ladderGame));
     }
 }

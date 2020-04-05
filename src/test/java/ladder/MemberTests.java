@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.model.Member;
+import ladder.model.Members;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

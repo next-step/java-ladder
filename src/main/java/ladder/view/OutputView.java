@@ -1,10 +1,9 @@
 package ladder.view;
 
-import ladder.LadderBridge;
-import ladder.LadderGame;
-import ladder.LadderLine;
-import ladder.Member;
-import ladder.dto.LadderConsoleResult;
+import ladder.model.LadderBridge;
+import ladder.model.LadderLine;
+import ladder.model.Member;
+import ladder.model.dto.LadderConsoleResult;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,10 +23,9 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(final LadderGame ladderGame) {
+    public static void printResult(final LadderConsoleResult result) {
         System.out.println("실행결과\n");
 
-        LadderConsoleResult result = LadderConsoleResult.newInstance(ladderGame);
         List<Member> members = result.getMembers();
         List<LadderLine> ladders = result.getLadderLines();
 

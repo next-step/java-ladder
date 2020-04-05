@@ -1,6 +1,6 @@
-package ladder.dto;
+package ladder.model.dto;
 
-import ladder.*;
+import ladder.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
