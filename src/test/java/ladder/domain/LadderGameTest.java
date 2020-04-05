@@ -12,8 +12,8 @@ public class LadderGameTest {
         LadderGame ladderGame = LadderGame.of("yohan,hymin,heji", 10);
         LadderGameResult result = ladderGame.getResult();
 
-        assertThat(result.getUsers()).isEqualTo(Users.of("yohan,hymin,heji"));
-        assertThat(result.getLadder().getLadderLines().size()).isEqualTo(10);
-        result.getLadder().getLadderLines().forEach(links -> assertThat(links.getLinkCount()).isEqualTo(3));
+        assertThat(result.getUsers()).containsExactly(User.of("yohan"), User.of("hymin"), User.of("heji"));
+        assertThat(result.getLadderLines().size()).isEqualTo(10);
+        result.getLadderLines().forEach(links -> assertThat(links.getLinkCount()).isEqualTo(3));
     }
 }
