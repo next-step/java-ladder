@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.domain.dto.LadderResultDto;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -24,11 +26,7 @@ public class LadderResult {
         return new LadderResult(results);
     }
 
-    public String get(int idx) {
-        return results.get(idx);
-    }
-
-    public int size() {
-        return results.size();
+    public List<String> getResults() {
+        return results;
     }
 }

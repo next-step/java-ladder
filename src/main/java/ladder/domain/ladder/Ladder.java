@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.domain.dto.LadderResultDto;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,5 +33,9 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public LadderResultDto getResult(){
+        return null;
     }
 }
