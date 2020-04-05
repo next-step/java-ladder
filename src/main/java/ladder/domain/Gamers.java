@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Gamers {
+    private static final String INSTANTIATE_ERROR_FORMAT = "Create Gamers fail. gamers must be at least 2 players: name=%s";
     private final List<Gamer> gamerList;
 
     private Gamers(List<Gamer> gamerList) {
@@ -14,6 +15,9 @@ public class Gamers {
 
     public static Gamers ofComma(String name) {
         String[] names = name.split(",");
+        if (names.length < 2) {
+            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, name));
+        }
         return new Gamers(
                 IntStream.rangeClosed(1, names.length)
                         .mapToObj(number -> Gamer.of(names[number - 1], number))
