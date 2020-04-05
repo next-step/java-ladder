@@ -11,10 +11,10 @@ public class Rows {
         this.rows = Collections.unmodifiableList(rows);
     }
 
-    public static Rows create(int playerCount, Height height) {
+    public static Rows create(Players players, Height height) {
         List<Row> rows = new ArrayList<>();
         for (int i = 0; i < height.getHeight(); i++) {
-            rows.add(Row.create(playerCount));
+            rows.add(Row.create(players.getPlayerCount()));
         }
         return new Rows(rows);
     }

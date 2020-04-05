@@ -1,6 +1,6 @@
 package ladder.model;
 
-import ladder.booleangenerator.NextBooleanGenerator;
+import ladder.randomgenerator.BooleanGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +30,6 @@ public class Row {
     }
 
     private static boolean findNextBoolean(boolean prev) {
-        return NextBooleanGenerator.generate(prev);
+        return BooleanGenerator.getNextBoolean(prev);
     }
 }

@@ -15,17 +15,20 @@ import static ladder.Messages.MESSAGE_INPUT_PLAYERS;
 public class InputView {
     private static final String DELIMITER = ",";
 
-    public static Players getPlayers() {
+    public InputView() {
+    }
+
+    public Players getPlayers() {
         System.out.println(MESSAGE_INPUT_PLAYERS);
         return Players.create(splitNames(ScannerUtil.readLine()));
     }
 
-    public static Height getHeight() {
+    public Height getHeight() {
         System.out.println(MESSAGE_INPUT_LADDER_HEIGHT);
         return new Height(ScannerUtil.readInt());
     }
 
-    private static List<Player> splitNames(String names) {
+    private List<Player> splitNames(String names) {
         return Arrays.stream(names.split(DELIMITER))
                 .map(it -> it.trim())
                 .map(it -> new Player(it))
