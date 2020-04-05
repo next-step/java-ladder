@@ -17,8 +17,8 @@ public class VerticalLineTest {
     @DisplayName("세로줄에 점 생성 테스트")
     void verticalLinePointsTest(){
         VerticalLine verticalLine = new VerticalLine(1);
-        verticalLine.drawLine(1, 2);
-        verticalLine.drawLine(2, 2);
+        verticalLine.addPoint(1, 2);
+        verticalLine.addPoint(2, 2);
 
         assertThat(verticalLine.getPoints().size()).isEqualTo(2);
     }

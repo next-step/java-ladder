@@ -21,6 +21,12 @@ public class VerticalLines {
         return this.verticalLines.size();
     }
 
+    public void drawSideLine(VerticalLine verticalLine, int height){
+        VerticalLine rightVerticalLine = getRightLine(verticalLine);
+        verticalLine.addPoint(height, rightVerticalLine.getLineNo());
+        rightVerticalLine.addPoint(height, verticalLine.getLineNo());
+    }
+
     public VerticalLine getRightLine(VerticalLine verticalLine) {
         return Optional.ofNullable(getLine(verticalLine.getLineNo() + 1))
                 .orElse(null);

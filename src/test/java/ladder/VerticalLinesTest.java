@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class VerticalLinesTest {
 
@@ -52,5 +53,16 @@ public class VerticalLinesTest {
     @DisplayName("VerticalLine의 왼쪽 라인 가져오기 실패 테스트")
     void failGetLeftLineTest() {
         assertThat(testVerticalLines.getLeftLine(testVerticalLines.getLine(0))).isEqualTo(null);
+    }
+
+    @Test
+    @DisplayName("라인 그리기 테스트")
+    void drawSideLineTest() {
+        testVerticalLines.drawSideLine(testVerticalLines.getLine(0), 1);
+
+        assertAll(
+                () -> assertThat(testVerticalLines.getLine(0).getPoint(1)).isNotNull(),
+                () -> assertThat(testVerticalLines.getLine(1).getPoint(1)).isNotNull()
+        );
     }
 }

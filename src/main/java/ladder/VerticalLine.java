@@ -36,7 +36,7 @@ public class VerticalLine {
                 .isPresent();
     }
 
-    public void drawLine(int heightPosition, int endPointLineNo) {
+    public void addPoint(int heightPosition, int endPointLineNo) {
         points.add(new Point(heightPosition, endPointLineNo));
     }
 
