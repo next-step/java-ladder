@@ -1,6 +1,5 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.step.Steps;
 import nextstep.ladder.domain.step.strategy.StepGenerator;
 

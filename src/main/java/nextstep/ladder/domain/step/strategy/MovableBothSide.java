@@ -15,6 +15,7 @@ public class MovableBothSide implements StepGenerator {
                 .filter(previousStep -> previousStep.isMovableNext(previouSteps.getLinePosition()))
                 .map(Step::getPosition)
                 .collect(Collectors.toList());
+
         if (movablePositions.contains(bridge.getStepPosition())) {
             return Step.of(Bridge.next(bridge), new RandomMovement());
         }

@@ -14,6 +14,7 @@ public class MovablePrev implements StepGenerator {
                 .filter(previousStep -> previousStep.isMovablePrev(previouSteps.getLinePosition()))
                 .map(Step::getPosition)
                 .collect(Collectors.toList());
+
         if (movablePositions.contains(bridge.getStepPosition())) {
             return Step.of(Bridge.previous(bridge), () -> true);
         }
