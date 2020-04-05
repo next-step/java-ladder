@@ -22,10 +22,12 @@ public class Node {
     }
 
     public Node createNextNode(final boolean isMovableRight) {
+        int nextIndex = this.index + PLUS_NEXT_INDEX;
+
         if (isMovableRight()) {
-            return new Node(this.index + PLUS_NEXT_INDEX, Way.nextWay(this.way.isMovableRight(), false));
+            return new Node(nextIndex, Way.nextWay(this.way.isMovableRight(), false));
         }
-        return new Node(this.index + PLUS_NEXT_INDEX, Way.nextWay(this.way.isMovableRight(), isMovableRight));
+        return new Node(nextIndex, Way.nextWay(this.way.isMovableRight(), isMovableRight));
     }
 
     public int move() {
