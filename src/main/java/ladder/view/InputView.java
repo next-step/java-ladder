@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.model.Height;
+import ladder.model.LadderPrize;
 import ladder.model.Player;
 import ladder.model.Players;
 import ladder.util.ScannerUtil;
@@ -27,6 +28,11 @@ public class InputView {
         return new Height(ScannerUtil.readInt());
     }
 
+    public List<LadderPrize> getLadderPrizes(){
+        System.out.println(MESSAGE_INPUT_LADDER_RESULT);
+        return splitPrizeNames(ScannerUtil.readLine());
+    }
+
     private List<Player> splitNames(String names) {
         return Arrays.stream(names.split(DELIMITER))
                 .map(it -> it.trim())
@@ -34,9 +40,10 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    private List<String> splitResults(String results) {
-        return Arrays.stream(results.split(DELIMITER))
+    private List<LadderPrize> splitPrizeNames(String prizeNames) {
+        return Arrays.stream(prizeNames.split(DELIMITER))
                 .map(it -> it.trim())
+                .map(it -> new LadderPrize(it))
                 .collect(Collectors.toList());
     }
 }
