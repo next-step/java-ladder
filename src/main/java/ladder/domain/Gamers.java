@@ -23,8 +23,8 @@ public class Gamers {
     }
 
     private static List<Gamer> getGamerList(String[] names) {
-        return IntStream.range(0,names.length)
-                .mapToObj(idx->getNextGamer(idx,names))
+        return IntStream.range(0, names.length)
+                .mapToObj(idx -> getNextGamer(idx, names))
                 .collect(Collectors.toList());
     }
 

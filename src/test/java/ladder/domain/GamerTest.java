@@ -37,7 +37,7 @@ public class GamerTest {
     @Test
     @DisplayName("번호 확인")
     void getNumberTest() {
-        assertThat(Gamer.of("test",5).getLadderNo())
+        assertThat(Gamer.of("test", 5).getLadderNo())
                 .isEqualTo(5);
     }
 }

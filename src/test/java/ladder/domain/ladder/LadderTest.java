@@ -12,7 +12,7 @@ public class LadderTest {
     void constructorTest() {
         int height = 5;
         int size = 4;
-        assertThatCode(() -> Ladder.of(height,size))
+        assertThatCode(() -> Ladder.of(height, size))
                 .doesNotThrowAnyException();
     }
 
@@ -21,7 +21,7 @@ public class LadderTest {
     void getLinesTest() {
         int height = 5;
         int size = 4;
-        assertThat(Ladder.of(height,size).getLines())
+        assertThat(Ladder.of(height, size).getLines())
                 .hasSize(height);
     }
 }

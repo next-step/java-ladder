@@ -11,7 +11,7 @@ public class LadderGame {
 
     private void start() {
         Gamers gamers = Gamers.ofComma(inputView.getGamers());
-        Ladder ladder = Ladder.of(inputView.getheight(), gamers.getGamerList().size()-1);
+        Ladder ladder = Ladder.of(inputView.getheight(), gamers.getGamerList().size() - 1);
 
         outputView.printGamers(gamers);
         outputView.printLadder(ladder);
