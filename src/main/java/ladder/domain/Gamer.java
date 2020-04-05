@@ -5,7 +5,7 @@ import ladder.domain.ladder.LadderNo;
 import java.util.Optional;
 
 public class Gamer {
-    private static final String INSTANTIATE_ERROR_FORMAT = "Gamer of instantiate fail. name must be at least 1 character and 5 characters : name=%s";
+    private static final String INSTANTIATE_ERROR_FORMAT = "Create Gamer fail. name must be at least 1 character and 5 characters : name=%s";
     private final String name;
     private final LadderNo ladderNo;
 
@@ -25,5 +25,9 @@ public class Gamer {
 
     public String getName() {
         return name;
+    }
+
+    public int getLadderNo() {
+        return ladderNo.getLadderNo();
     }
 }

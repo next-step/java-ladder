@@ -11,7 +11,11 @@ public class GamersTest {
     @DisplayName(",로 이름들 받아서 생성")
     void ofCommaTest() {
         String name = "unit0 , unit1, unit2";
-        assertThat(Gamers.ofComma(name).getGamerList())
+        assertThat(
+                Gamers.ofComma(name)
+                        .getGamerList()
+                        .stream()
+                        .distinct())
                 .hasSize(3);
     }
 
@@ -19,7 +23,7 @@ public class GamersTest {
     @DisplayName("두명 미만 에러")
     void expectExceptionTest() {
         String name = "unit0";
-        assertThatThrownBy(()->Gamers.ofComma(name))
+        assertThatThrownBy(() -> Gamers.ofComma(name))
                 .isInstanceOf(RuntimeException.class);
     }
 }
