@@ -1,10 +1,18 @@
 package ladder;
 
 import ladder.model.Player;
+import ladder.model.Players;
+import ladder.model.Row;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayerTest {
@@ -15,5 +23,25 @@ public class PlayerTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Player(input);
         });
+    }
+
+    @DisplayName("다음 Row 를 주면, Player의 다음 Location을 준다.")
+    @Test
+    void findNextLocation(){
+        //given
+        Player player = new Player("Mark", 0);
+        Player player2 = new Player("Palm", 1);
+        Player player3 = new Player("Soo", 2);
+        Players players = Players.create(Arrays.asList(player, player2, player3));
+
+        Map<Integer, Boolean> result = new HashMap<>();
+        result.put(0, true);
+        result.put(1, false);
+        result.put(1, false);
+        Row row = new Row(result);
+
+        //when, then
+        assertThat(player.findNextLocation(row)).isEqualTo(2);
+
     }
 }
