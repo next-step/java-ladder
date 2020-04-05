@@ -15,13 +15,13 @@ public final class StringUtils {
         throw new IllegalArgumentException(NON_CREATE_MSG);
     }
 
-    public static List<String> splitStringToList(final String input, final String delimiter) {
+    public static List<String> split(final String input, final String delimiter) {
         return Arrays.stream(input.split(delimiter))
                 .map(s -> s.trim())
                 .collect(Collectors.toList());
     }
 
-    public static int stringToInt(final String input) {
+    public static int parse(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
