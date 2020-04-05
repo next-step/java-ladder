@@ -15,8 +15,8 @@ public class LineGenerator {
     public List<Boolean> generate() {
         final List<Boolean> lines = init();
         for (int i = lines.size(); i < playerCount; i++) {
-            boolean isExistPrev = lines.get(i - 1);
-            lines.add(checkExistLine(isExistPrev));
+            boolean prevLine = lines.get(i - 1);
+            lines.add(drawLine(prevLine));
         }
         return lines;
     }
@@ -27,7 +27,7 @@ public class LineGenerator {
         return lines;
     }
 
-    private Boolean checkExistLine(final boolean isExistPrev) {
+    private Boolean drawLine(final boolean isExistPrev) {
         if (isExistPrev) {
             return Boolean.FALSE;
         }
