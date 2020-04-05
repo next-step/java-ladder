@@ -1,5 +1,7 @@
 package ladder.model;
 
+import java.util.List;
+
 import static ladder.Messages.WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING;
 
 public class LadderPrize {
