@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.*;
 
 public class Line {
-    private List<Boolean> lines;
+    private final List<Boolean> lines;
 
     private Line(final List<Boolean> lines) {
         this.lines = lines;
