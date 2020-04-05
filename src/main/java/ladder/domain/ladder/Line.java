@@ -1,7 +1,9 @@
 package ladder.domain.ladder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -10,6 +12,25 @@ public class Line {
 
     private Line(List<Boolean> bars) {
         this.bars = bars;
+    }
+
+    public static Line ofCount(int barCount) {
+        List<Boolean> bars = new ArrayList<>(barCount);
+
+        if (barCount < 1) {
+            throw new IllegalArgumentException(String.format("Create Line failed. barCount must be over 0: barCount=%d", barCount));
+        }
+
+        Random random = new Random();
+        bars.add(random.nextBoolean());
+        for (int i = 1; i < bars.size(); i++) {
+            if (bars.get(i - 1)) {
+                bars.add(false);
+            }
+            bars.add(random.nextBoolean());
+        }
+
+        return new Line(bars);
     }
 
     public static Line of(Boolean... bar) {
@@ -35,7 +56,7 @@ public class Line {
     private static String toString(List<Boolean> bars) {
         return bars.stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(",","[","]"));
+                .collect(Collectors.joining(",", "[", "]"));
     }
 
     public List<Boolean> getBars() {
