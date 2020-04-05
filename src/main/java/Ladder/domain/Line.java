@@ -26,4 +26,12 @@ public class Line {
             throw new IllegalArgumentException("Not allow continuous horizontal movement Index : " + index);
         }
     }
+
+    public int getLineSize() {
+        return this.points.size();
+    }
+
+    public boolean getPoint(final int index) {
+        return this.points.get(index);
+    }
 }
