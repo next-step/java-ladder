@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line implements Cloneable {
@@ -12,21 +13,17 @@ public class Line implements Cloneable {
     }
 
     public Line(final List<Node> nodes) {
-        this.nodes = nodes;
+        this.nodes = Collections.unmodifiableList(nodes);
     }
 
     public Line addRandomNextNode(final boolean random) {
-        List<Node> merge = new ArrayList<>();
-
         if (this.nodes.isEmpty()) {
-            merge.add(Node.createFirst(random));
-            return new Line(merge);
+            Node first = Node.createFirst(random);
+            return addNode(first);
         }
 
         Node nextNode = getLastNode().createNextNode(random);
-        merge.addAll(this.nodes);
-        merge.add(nextNode);
-        return new Line(merge);
+        return addNode(nextNode);
     }
 
     public Line addLastNode() {
