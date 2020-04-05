@@ -3,7 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,8 +15,8 @@ class LadderTest {
         final Height height = Height.of("1");
         final int playerCount = 1;
 
-        Map<Height, Line> actual = new Ladder(playerCount, height).getLadder();
+        List<Line> actual = new Ladder(playerCount, height).getLines();
 
-        assertThat(actual.get(height)).isEqualTo(new Line(playerCount));
+        assertThat(actual.get(0)).isEqualTo(new Line(playerCount));
     }
 }
