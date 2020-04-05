@@ -41,7 +41,9 @@ public class Lambda {
     public static int sum(List<Integer> numbers, SumStrategy strategy) {
         int total = 0;
         for (int number : numbers) {
-            total += number;
+            if(strategy.isSummable(number)) {
+                total += number;
+            }
         }
         return total;
     }
