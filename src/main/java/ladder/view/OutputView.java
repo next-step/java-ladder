@@ -40,8 +40,7 @@ public class OutputView {
                    .collect(Collectors.joining(LADDER_STRAIGHT_LINE, EMPTY_STRING, LADDER_STRAIGHT_LINE));
     }
 
-    // TODO : 테스트를 위한 public 접근 제한자, private로 수정할 것.
-    public static String formatName(String name) {
+    static String formatName(String name) {
         return String.format(NAME_FORMAT_EXPRESSION, name) + BLANK_STRING;
     }
 }
