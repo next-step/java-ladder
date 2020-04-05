@@ -1,8 +1,11 @@
 package ladder.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Rows {
     private static List<Row> rows;
@@ -12,11 +15,9 @@ public class Rows {
     }
 
     public static Rows create(Players players, Height height) {
-        List<Row> rows = new ArrayList<>();
-        for (int i = 0; i < height.getHeight(); i++) {
-            rows.add(Row.create(players.getPlayerCount()));
-        }
-        return new Rows(rows);
+        return IntStream.range(0, height.getHeight())
+                .mapToObj(it -> Row.create(players.getPlayerCount()))
+                .collect(collectingAndThen(toList(), Rows::new));
     }
 
     public List<Row> getRows() {
