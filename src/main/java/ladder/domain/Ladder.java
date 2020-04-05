@@ -8,7 +8,7 @@ public class Ladder {
     @Getter
     private List<Line> lines;
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines;
+    public Ladder(int userCount, int height) {
+        this.lines = Line.listOf(userCount, height);
     }
 }
