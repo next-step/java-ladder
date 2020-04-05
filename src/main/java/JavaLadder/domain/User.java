@@ -10,7 +10,7 @@ public class User {
 
     private void validate(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException("5자리이하만입력가능합니다.");
+            throw new IllegalArgumentException("[" + name + "]: 5자리이하만입력가능합니다.");
         }
     }
 

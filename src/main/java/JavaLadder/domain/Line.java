@@ -39,4 +39,8 @@ public class Line {
     public int size() {
         return this.line.size();
     }
+
+    public int countLine(Line line) {
+        return (int) Arrays.asList(line).stream().filter(n -> true).count();
+    }
 }

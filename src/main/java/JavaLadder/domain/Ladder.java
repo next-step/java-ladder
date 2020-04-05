@@ -1,6 +1,7 @@
 package JavaLadder.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ladder {
@@ -19,5 +20,9 @@ public class Ladder {
 
     public Line getLadder(int index) {
         return this.ladder.get(index);
+    }
+
+    public int countLadder(Ladder ladder) {
+        return (int) Arrays.asList(ladder).stream().filter(n -> true).count();
     }
 }

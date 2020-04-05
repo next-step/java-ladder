@@ -20,7 +20,7 @@ public class OutputView {
     private void printLadder(Ladder ladder) {
         for (int i = 0; i < ladder.size(); i++) {
             Line list = (Line) ladder.getLadder(i);
-            System.out.printf("%7s", LADDER);
+            System.out.printf("%s", LADDER);
             printLine(list);
             System.out.println();
         }
@@ -28,7 +28,7 @@ public class OutputView {
 
     private void PrintName(UserList userList) {
         for (int i = 0; i < userList.size(); i++) {
-            System.out.printf("%-7s", userList.getName(i));
+            System.out.printf("%-6s", userList.getName(i));
         }
     }
 

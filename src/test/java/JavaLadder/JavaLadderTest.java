@@ -45,7 +45,7 @@ public class JavaLadderTest {
     public void ladderTest() {
         Ladder ladder = new Ladder(3,5);
         System.out.println(ladder);
-        assertThat(Arrays.asList(ladder).stream().filter(n->true).count()).isLessThan(2);
+        assertThat(ladder.countLadder(ladder)).isLessThan(2);
     }
 
     @Test
@@ -53,6 +53,6 @@ public class JavaLadderTest {
     public void lineDuplicateTest() {
         Line line = new Line(3);
         System.out.println(line);
-        assertThat(Arrays.asList(line).stream().filter(n->true).count()).isLessThan(2);
+        assertThat(line.countLine(line)).isLessThan(2);
     }
 }
