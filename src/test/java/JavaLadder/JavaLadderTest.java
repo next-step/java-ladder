@@ -55,4 +55,7 @@ public class JavaLadderTest {
         System.out.println(line);
         assertThat(line.countLine(line)).isLessThan(2);
     }
+    
+
+
 }
