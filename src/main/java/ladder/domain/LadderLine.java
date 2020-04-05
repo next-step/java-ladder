@@ -20,4 +20,8 @@ public class LadderLine {
     public int getLinkCount() {
         return ladderLinks.size();
     }
+
+    public List<LadderLink> getLadderLinks() {
+        return ladderLinks;
+    }
 }
