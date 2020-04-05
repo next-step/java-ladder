@@ -38,7 +38,6 @@ public class PlayerTest {
         Map<Integer, Boolean> result = new HashMap<>();
         result.put(0, true);
         result.put(1, false);
-        result.put(2, false);
         Row row = new Row(result);
 
         //when, then
@@ -58,13 +57,11 @@ public class PlayerTest {
         Map<Integer, Boolean> result = new HashMap<>();
         result.put(0, true);
         result.put(1, false);
-        result.put(2, false);
         Row row = new Row(result);
 
         Map<Integer, Boolean> result2 = new HashMap<>();
-        result.put(0, false);
-        result.put(1, true);
-        result.put(2, false);
+        result2.put(0, false);
+        result2.put(1, true);
         Row row2 = new Row(result2);
 
         Rows rows = new Rows(Arrays.asList(row, row2));

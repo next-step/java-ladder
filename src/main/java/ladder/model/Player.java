@@ -30,6 +30,13 @@ public class Player {
         return name;
     }
 
+    public int findFinalLocation(Rows rows) {
+        for(Row row:rows.getRows()){
+            location = findNextLocation(row);
+        }
+        return location;
+    }
+
     public int findNextLocation(Row nextRow) {
         if(isFirstNow()){
             if(nextRow.getRowElement(location)){
@@ -48,6 +55,7 @@ public class Player {
         if(!isFirstNow() && !isLastNow(nextRow)){
             if(nextRow.getRowElement(location)){
                 location = location + 1;
+                return location;
             }
             if(nextRow.getRowElement(location - 1)){
                 location = location -1;
@@ -62,9 +70,5 @@ public class Player {
 
     private boolean isLastNow(Row nextRow){
         return location == nextRow.getLastLocationValue();
-    }
-
-    public int findFinalLocation(Rows rows) {
-        return 0;
     }
 }
