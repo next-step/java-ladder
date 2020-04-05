@@ -12,7 +12,7 @@ public class OutputView {
     public static void resultPrint(LadderGame ladderGame) {
         System.out.println(RESULT);
 
-        ladderGame.getUsers().forEach(userName -> System.out.printf("%-7s", userName));
+        ladderGame.getUsers().forEach(user -> System.out.printf("%-7s", user.getName()));
 
         printLadder(ladderGame);
 
