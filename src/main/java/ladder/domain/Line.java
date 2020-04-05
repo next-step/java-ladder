@@ -5,26 +5,32 @@ import java.util.*;
 public class Line {
     private static final int START_LINE_POSITION = 0;
 
-    private List<Boolean> line;
+    private List<Boolean> lines = new ArrayList<>();
 
     public Line(int playerCount) {
-        List<Boolean> lines = new ArrayList<>(playerCount);
         for (int i = 0; i < playerCount; i++) {
             lines.add(checkExistLine(i));
         }
-        this.line = Collections.unmodifiableList(lines);
+        this.lines = Collections.unmodifiableList(lines);
     }
 
     public List<Boolean> getLine() {
-        return line;
+        return lines;
     }
 
     private Boolean checkExistLine(final int count) {
-        return !isStart(count);
+        if (isStart(count) || isExistPrev(count)) {
+            return false;
+        }
+        return true;
     }
 
     private boolean isStart(final int count) {
         return count == START_LINE_POSITION;
+    }
+
+    private Boolean isExistPrev(final int count) {
+        return lines.get(count - 1);
     }
 
     @Override
@@ -32,11 +38,11 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final Line line1 = (Line) o;
-        return Objects.equals(line, line1.line);
+        return Objects.equals(lines, line1.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(line);
+        return Objects.hash(lines);
     }
 }
