@@ -28,6 +28,34 @@ class LineTest {
 
         List<Boolean> actual = line.getLine();
 
+        assertThat(actual.get(0)).isFalse();
         assertThat(actual.get(1)).isTrue();
+    }
+
+    @DisplayName("참여자가 3명이라면 연속된 라인이 생성되면 안된다.")
+    @Test
+    void createLine_ThreePlayer() {
+        int playerCount = 3;
+        Line line = new Line(playerCount);
+
+        List<Boolean> actual = line.getLine();
+
+        assertThat(actual.get(0)).isFalse();
+        assertThat(actual.get(1)).isTrue();
+        assertThat(actual.get(2)).isFalse();
+    }
+
+    @DisplayName("참여자가 4명이라면 연속된 라인이 생성되면 안된다.")
+    @Test
+    void createLine_FourPlayer() {
+        int playerCount = 4;
+        Line line = new Line(playerCount);
+
+        List<Boolean> actual = line.getLine();
+
+        assertThat(actual.get(0)).isFalse();
+        assertThat(actual.get(1)).isTrue();
+        assertThat(actual.get(2)).isFalse();
+        assertThat(actual.get(3)).isTrue();
     }
 }
