@@ -17,13 +17,13 @@ public class ResultView {
     private Players players;
     private Rows rows;
 
-    public ResultView(Players players) {
-        this.players = players;
-    }
-
     public ResultView(Players players, Rows rows) {
         this.players = players;
         this.rows = rows;
+    }
+
+    public static ResultView of(Players players, Rows rows) {
+        return new ResultView(players, rows);
     }
 
     public void printLadder() {
@@ -89,9 +89,5 @@ public class ResultView {
 
     private void printBlankLine() {
         System.out.println();
-    }
-
-    public Players getPlayers() {
-        return Players.create(players.getPlayers());
     }
 }

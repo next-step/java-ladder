@@ -3,7 +3,7 @@ package ladder.view;
 import ladder.model.Height;
 import ladder.model.Player;
 import ladder.model.Players;
-import ladder.util.*;
+import ladder.util.ScannerUtil;
 
 import java.util.Arrays;
 import java.util.List;

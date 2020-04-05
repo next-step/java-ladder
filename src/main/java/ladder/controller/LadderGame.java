@@ -10,6 +10,6 @@ public class LadderGame {
         Players players = inputView.getPlayers();
         Rows rows = Rows.create(players, inputView.getHeight());
 
-        return new ResultView(players, rows);
+        return ResultView.of(players, rows);
     }
 }
