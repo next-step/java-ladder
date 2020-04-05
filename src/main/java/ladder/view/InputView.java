@@ -31,14 +31,16 @@ public class InputView {
         return splitPrizeNames(ScannerUtil.readLine());
     }
 
-    public String getPlayerToKnowResult(){
+    public String getStringPlayerToKnow(){
         System.out.println(MESSAGE_INPUT_PLAYER_TO_KNOW_RESULT);
         return ScannerUtil.readLine()
                 .trim()
                 .toLowerCase();
     }
 
-    private boolean wantToKnowAll(String input){
+
+
+    private boolean doesItMeanAll(String input){
         if(ALL.equals(input.trim().toLowerCase())){
             return true;
         }

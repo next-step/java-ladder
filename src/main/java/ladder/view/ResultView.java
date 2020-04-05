@@ -8,9 +8,12 @@ public class ResultView {
     private static final String BLOCK_TRUE = "-----";
     private static final String ONE_VERTICAL = "|";
     private static final String ONE_BLANK = " ";
-    private static final String TITLE = "실행 결과";
+    private static final String DELIMITER_TO_PRINT = " : ";
+    private static final String LADDER_TITLE = "사다리 게임 결과";
+    private static final String RESULT_TITLE = "실행 결과";
     private static final int ONE_BLOCK_WIDTH = 6;
     private static final double HALF_BLOCK_WIDTH = 2.5;
+    private static final String ALL = "all";
 
     private Players players;
     private Rows rows;
@@ -24,15 +27,47 @@ public class ResultView {
         return new ResultView(players, rows);
     }
 
-    public void printLadder() {
+    public void printLadder(LadderPrizes ladderPrizes) {
         printTitle();
         printPlayers();
         printRows();
+        printPrizes(ladderPrizes);
+    }
+
+    private void printPrizes(LadderPrizes ladderPrizes) {
+        ladderPrizes.getLadderPrizes().stream()
+                .forEach(it -> System.out.print(it.getPrizeName() + HALF_BLOCK_WIDTH));
+        System.out.println();
+    }
+
+    public void printGameResult(LadderGameResult ladderGameResult, String playerToKnow) {
+        if (ALL.equals(playerToKnow.toLowerCase())) {
+            printResultAll(ladderGameResult);
+        }
+        if (!ALL.equals(playerToKnow.toLowerCase())) {
+            printResultForOnePlayer(ladderGameResult, playerToKnow);
+        }
+    }
+
+    private void printResultAll(LadderGameResult ladderGameResult) {
+        printResultTitle();
+        players.getPlayers().stream()
+                .forEach(it -> System.out.println(it + DELIMITER_TO_PRINT + ladderGameResult.findPrizeOfPlayer(it).getPrizeName()));
+    }
+
+    private void printResultForOnePlayer(LadderGameResult ladderGameResult, String playerToKnow) {
+        printResultTitle();
+        Player player = players.findPlayer(playerToKnow);
+        System.out.println(player.getName() + DELIMITER_TO_PRINT + ladderGameResult.findPrizeOfPlayer(player));
+    }
+
+    private void printResultTitle() {
+        System.out.println(RESULT_TITLE);
     }
 
     private void printTitle() {
         System.out.println(BORDER_LINE_TOP);
-        System.out.println(TITLE);
+        System.out.println(LADDER_TITLE);
         printBlankLine();
     }
 

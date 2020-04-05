@@ -2,6 +2,7 @@ package ladder.model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
     private List<Player> players;
@@ -20,5 +21,11 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public Player findPlayer(String name){
+        return players.stream()
+                .filter(it -> name.equals(it.getName()))
+                .findFirst().orElseThrow(RuntimeException::new);
     }
 }
