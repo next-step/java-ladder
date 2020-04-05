@@ -13,7 +13,10 @@
 * Users
   * 생성 시 사람 이름은 쉼표(,)를 기준으로 생성
 * LadderGame
-  * Users와 높이를 입력하면 높이만큼 LadderLine을 생성
+  * Ladder와 Users를 가지고 있는 객체
+* Ladder
+  * List<LadderLine>을 가진 일급 컬렉션
+  * 유저 수와 높이를 입력하면 유저 수만큼의 Link를 가진 Line을 높이만큼 생성
 * LadderLine
   * 유저 수를 입력 받아 유저수 만큼 LadderLink를 가진 LadderLine을 생성한다.
 * LadderLink
