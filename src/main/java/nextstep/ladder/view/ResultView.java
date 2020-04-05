@@ -41,8 +41,7 @@ public class ResultView {
         System.out.print("     ");
         for (Line line : lines) {
             Steps steps = line.getSteps();
-            Step step = steps.get(stepIndex);
-            System.out.print(printStep(lineIndex, step));
+            System.out.print(printStep(lineIndex, steps.get(stepIndex)));
             lineIndex++;
         }
         System.out.println();
