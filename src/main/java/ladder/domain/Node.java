@@ -25,9 +25,9 @@ public class Node {
         int nextIndex = this.index + PLUS_NEXT_INDEX;
 
         if (isMovableRight()) {
-            return new Node(nextIndex, Way.nextWay(this.way.isMovableRight(), false));
+            return new Node(nextIndex, new Way(this.way.isMovableRight(), false));
         }
-        return new Node(nextIndex, Way.nextWay(this.way.isMovableRight(), isMovableRight));
+        return new Node(nextIndex, new Way(this.way.isMovableRight(), isMovableRight));
     }
 
     public int move() {

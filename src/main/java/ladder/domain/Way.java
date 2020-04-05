@@ -15,10 +15,6 @@ public class Way {
         this.right = right;
     }
 
-    public static Way nextWay(final boolean left, final boolean right) {
-        return new Way(left, right);
-    }
-
     private void validate(final boolean left, final boolean right) {
         if (left && right) {
             throw new LadderException(TWO_WAY_MOVE_POSSIBLE);
