@@ -11,10 +11,6 @@ public class Bridge {
         this.stepPosition = stepPosition;
     }
 
-    public static Bridge previous(int linePosition, int stepPosition) {
-        return new Bridge(linePosition - 1, stepPosition);
-    }
-
     public static Bridge previous(Bridge bridge) {
         return new Bridge(bridge.linePosition - 1, bridge.stepPosition);
     }

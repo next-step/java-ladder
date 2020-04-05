@@ -2,8 +2,6 @@ package nextstep.ladder.domain.line;
 
 import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.step.Steps;
-import nextstep.ladder.domain.step.strategy.MovableBothSide;
-import nextstep.ladder.domain.step.strategy.MovablePrev;
 import nextstep.ladder.domain.step.strategy.StepGenerator;
 
 public class Line {
