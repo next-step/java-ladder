@@ -1,5 +1,7 @@
 package ladder.model;
 
+import java.util.Objects;
+
 import static ladder.Messages.WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING;
 import static ladder.Messages.WARNING_NOT_ALLOWED_NUMBER;
 
@@ -33,5 +35,18 @@ public class LadderPrize {
         if (Integer.parseInt(prizeName) <= ZERO) {
             throw new IllegalArgumentException(WARNING_NOT_ALLOWED_NUMBER);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderPrize that = (LadderPrize) o;
+        return Objects.equals(prizeName, that.prizeName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prizeName);
     }
 }

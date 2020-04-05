@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.model.LadderPrizes;
+import ladder.model.LadderResult;
 import ladder.model.Players;
 import ladder.model.Rows;
 import ladder.view.InputView;
@@ -13,7 +14,7 @@ public class LadderGame {
         LadderPrizes ladderPrizes = LadderPrizes.create(inputView.getLadderPrizes());
         ResultView.of(players, rows).printLadder();
 
-
+        LadderResult ladderResult = LadderResult.create(players, rows);
         String input = inputView.getPlayerToKnowResult();
     }
 }
