@@ -1,7 +1,9 @@
 package nextstep.ladder.domain.step;
 
-import nextstep.ladder.domain.step.strategy.MovablePositionStrategy;
-import nextstep.ladder.domain.step.strategy.RandomStrategy;
+import nextstep.ladder.domain.step.strategy.MovableNext;
+import nextstep.ladder.domain.step.strategy.MovableSide;
+import nextstep.ladder.domain.step.strategy.MovablePrev;
+import nextstep.ladder.domain.step.strategy.MovementRandom;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,39 +22,61 @@ public class Steps {
     public static Optional<Steps> movableNext(int height, int linePosition) {
         return Optional.ofNullable(
                 IntStream.range(0, height)
-                        .mapToObj(stepPosition -> Step.of(Bridge.next(linePosition, stepPosition), new RandomStrategy()))
+                        .mapToObj(stepPosition -> Step.of(Bridge.next(linePosition, stepPosition), new MovementRandom()))
                         .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, linePosition)))
         );
     }
 
-    public static Optional<Steps> movableBothSideByPreviousCondition(List<Integer> movableStepPositions, Steps previouSteps) {
+    public static Optional<Steps> movableBothSideByPreviousCondition(Steps previouSteps) {
+        List<Integer> movableStepPositions = previouSteps.findMovablePositions(new MovableNext());
         int height = previouSteps.getLineHeight();
-        int linePosition = previouSteps.linePosition + 1;
+        int currentLinePosition = previouSteps.nextLinePosition();
 
         return Optional.ofNullable(
                 IntStream.range(0, height)
                         .mapToObj(stepPosition ->
-                                checkMovableBothSide(movableStepPositions, Bridge.current(linePosition, stepPosition)))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, linePosition)))
+                                checkMovableSide(movableStepPositions, Bridge.current(currentLinePosition, stepPosition)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, currentLinePosition)))
         );
     }
 
-    private static Step checkMovableBothSide(List<Integer> movableLinePositions, Bridge bridge) {
+    private static Step checkMovableSide(List<Integer> movableLinePositions, Bridge bridge) {
         if (movableLinePositions.contains(bridge.getStepPosition())) {
-            return Step.of(Bridge.next(bridge), new RandomStrategy());
+            return Step.of(Bridge.next(bridge), new MovementRandom());
         }
         return Step.of(Bridge.previous(bridge), () -> true);
     }
 
-    public static Optional<Steps> immovableNext(List<Integer> movableStepPositions, Steps previouSteps) {
+    public static Optional<Steps> movableBothSideByPreviousCondition2(Steps previouSteps) {
         int height = previouSteps.getLineHeight();
-        int linePosition = previouSteps.linePosition + 1;
+        int currentLinePosition = previouSteps.nextLinePosition();
 
         return Optional.ofNullable(
                 IntStream.range(0, height)
                         .mapToObj(stepPosition ->
-                                checkMovablePrevious(movableStepPositions, Bridge.current(linePosition, stepPosition)))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, linePosition)))
+                                generateMovableBoth2(previouSteps, Bridge.current(currentLinePosition, stepPosition)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, currentLinePosition)))
+        );
+    }
+
+    private static Step generateMovableBoth2(Steps previouSteps, Bridge bridge) {
+        List<Integer> movablePositions = previouSteps.findMovablePositions(new MovableNext());
+        if (movablePositions.contains(bridge.getStepPosition())) {
+            return Step.of(Bridge.next(bridge), new MovementRandom());
+        }
+        return Step.of(Bridge.previous(bridge), () -> true);
+    }
+
+    public static Optional<Steps> immovableNext(Steps previouSteps) {
+        List<Integer> movableStepPositions = previouSteps.findMovablePositions(new MovablePrev());
+        int height = previouSteps.getLineHeight();
+        int currentLinePosition = previouSteps.nextLinePosition();
+
+        return Optional.ofNullable(
+                IntStream.range(0, height)
+                        .mapToObj(stepPosition ->
+                                checkMovablePrevious(movableStepPositions, Bridge.current(currentLinePosition, stepPosition)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, currentLinePosition)))
         );
     }
 
@@ -63,10 +87,9 @@ public class Steps {
         return Step.of(bridge, () -> false);
     }
 
-    public List<Integer> findMovablePositions(MovablePositionStrategy movablePositionStrategy) {
+    public List<Integer> findMovablePositions(MovableSide movableSide) {
         return steps.stream()
-//                .filter(previousStep -> !previousStep.isMovableLine(linePosition + 1))
-                .filter(previousStep -> movablePositionStrategy.isMovable(this, previousStep))
+                .filter(previousStep -> movableSide.isMovable(this, previousStep))
                 .map(Step::getPosition)
                 .collect(Collectors.toList());
     }
@@ -85,5 +108,9 @@ public class Steps {
 
     private int getLineHeight() {
         return steps.size();
+    }
+
+    private int nextLinePosition() {
+        return linePosition + 1;
     }
 }

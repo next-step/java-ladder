@@ -4,6 +4,6 @@ import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.domain.step.Steps;
 
 @FunctionalInterface
-public interface MovablePositionStrategy {
+public interface MovableSide {
     boolean isMovable(Steps steps, Step step);
 }

@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.step;
 
-import nextstep.ladder.domain.step.strategy.MovableStrategy;
+import nextstep.ladder.domain.step.strategy.Movement;
 
 import java.util.Objects;
 
@@ -13,8 +13,8 @@ public class Step {
         this.movable = movable;
     }
 
-    public static Step of(Bridge bridge, MovableStrategy movableStrategy) {
-        return new Step(bridge, movableStrategy.isMovable());
+    public static Step of(Bridge bridge, Movement movement) {
+        return new Step(bridge, movement.isMovable());
     }
 
     public int getPosition() {
