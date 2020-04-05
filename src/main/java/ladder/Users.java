@@ -3,6 +3,7 @@ package ladder;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -26,5 +27,18 @@ public class Users {
 
     public int getUserCount() {
         return users.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Users)) return false;
+        Users users1 = (Users) o;
+        return Objects.equals(users, users1.users);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(users);
     }
 }
