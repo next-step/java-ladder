@@ -17,6 +17,6 @@ class LadderTest {
 
         List<Line> actual = new Ladder(playerCount, height).getLines();
 
-        assertThat(actual.get(0)).isEqualTo(new Line(playerCount));
+        assertThat(actual.get(0)).isEqualTo(Line.of(playerCount));
     }
 }
