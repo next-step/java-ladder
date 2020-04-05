@@ -24,8 +24,8 @@ public class LineTest {
     @Test
     @DisplayName("count 정상 생성")
     void createCountTest(){
-        assertThatCode(()->Line.ofCount(10))
-                .doesNotThrowAnyException();
+        assertThat(Line.ofCount(10).getBars())
+                .hasSize(10);
     }
 
     @Test

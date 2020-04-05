@@ -23,11 +23,12 @@ public class Line {
 
         Random random = new Random();
         bars.add(random.nextBoolean());
-        for (int i = 1; i < bars.size(); i++) {
+        for (int i = 1; i < barCount; i++) {
             if (bars.get(i - 1)) {
                 bars.add(false);
+            } else {
+                bars.add(random.nextBoolean());
             }
-            bars.add(random.nextBoolean());
         }
 
         return new Line(bars);
