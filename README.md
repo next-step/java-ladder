@@ -22,5 +22,46 @@
         * 예를 들어 참여자가 4명, 높이가 5인경우, 4 * 5 사다리가 생성된다.
     * 각 사다리 세로 사이엔 이동할 수 있는 가로 라인이 들어갈 수 있다.
     * 사다리 타기가 정상적으로 동작하려면 가로 라인이 겹치지 않아야 한다. (연속해서 라인이 나올 수 없다.)
-    * 참여자와 완성된 사다리를 출력한다. 
+    * 참여자와 완성된 사다리, 사다리 실행 결과를 출력한다. 
+* 사다리 실행 결과
+    * 실행 결과 (각 사다리의 결과 값)을 입력 받고, 쉼표(,)로 구분한다.
+    * 사다리 게임판을 출력한 후, 결과를 보고 싶은 사람을 입력받아서 결과를 출력한다.
+        * '참여자 이름' 입력 -> 해당 참여자의 결과
+        * 'all' 입력 -> 모든 참여자의 결과. 프로그램 종료
     
+## 도메인 구현목록
+* Members
+    * Member 목록을 관리한다.
+    * 입력 받은 문자열 값을 ',' 기준으로 분리하여 Member를 생성한다.
+    * Member 목록의 크기를 MemberCount로 반환한다.
+* Member
+    * 입력 받은 문자열을 참여자의 이름으로 저장하여 관리한다.
+* MemberCount
+    * 입력 받은 참여자들의 숫자를 관리한다.
+* LadderGame
+    * 사다리 게임을 관리한다.
+    * Members와 Ladder를 가진다.
+    * 게임을 실행하여 LadderGameResult를 반환한다.
+* Ladder
+    * LadderLines와 LadderPoleResults를 관리한다.
+    * LadderLines의 실행 결과를 리턴한다.
+* LadderLines
+    * LadderHeight 만큼의 가로 줄(LadderLine)을 관리한다.
+    * MemberPolePosition를 입력받아 각 LadderLine을 실행하고 LadderGameResult를 리턴한다. 
+* LadderBridge
+    * 사다리 pole 사이의 가로 줄 유무를 관리한다.
+* LadderHeight
+    * 입력 받은 Ladder의 높이를 관리한다.
+* LadderLine
+    * (MemberCount - 1) 만큼의 LadderBridge를 관리한다.
+    * 입력받은 MemberPolePosition을 LadderBridge에 맞게 변경하여 새로운 MemberPolePosition으로 리턴한다.
+* MemberPolePosition
+    * 한 LadderLine의 Members 사다리 위치를 관리한다.
+* LadderPoleResults
+    * LadderPoleResults를 관리한다.
+    * 입력 받은 문자열 값을 ',' 기준으로 분리하여 Member를 생성한다.
+* LadderPoleResult
+    * 입력 받은 문자열을 사다리 기둥의 결과로 저장하여 관리한다.    
+* LadderGameResult
+    * 게임 결과를 관리한다.
+    * 게임 결과는 Member와 LadderPoleResult를 매칭하여 관리한다.
