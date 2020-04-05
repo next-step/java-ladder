@@ -1,7 +1,5 @@
 package ladder.model;
 
-import java.util.List;
-
 import static ladder.Messages.WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING;
 
 public class LadderPrize {
@@ -11,14 +9,13 @@ public class LadderPrize {
     private String prizeName;
 
     public LadderPrize(String prizeName) {
-        validateString(prizeName);
-        if(!isAllowedInputPrize(prizeName)){
+        if (!isAllowedInputPrize(prizeName)) {
             validateNumber(prizeName);
         }
         this.prizeName = prizeName;
     }
 
-    private boolean isAllowedInputPrize(String input){
+    private boolean isAllowedInputPrize(String input) {
         return BLANK.equals(input) || ALL.equals(input.toLowerCase());
     }
 
@@ -28,10 +25,10 @@ public class LadderPrize {
         }
     }
 
-    private void validateNumber(String prizeName){
+    private void validateNumber(String prizeName) {
         try {
             Integer.parseInt(prizeName);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING);
         }
     }

@@ -13,16 +13,16 @@ public class LadderPrizesTest {
     @Test
     void createTest() {
         //given
-        List<LadderPrize> ladderPrizes = Arrays.asList(
+        List<LadderPrize> allLadderPrizes = Arrays.asList(
                 new LadderPrize("꽝"),
                 new LadderPrize("5000"),
                 new LadderPrize("꽝"),
                 new LadderPrize("3000"));
 
         //when
-        LadderPrizes ladderPrizes1 = LadderPrizes.create(ladderPrizes);
+        LadderPrizes ladderPrizes = LadderPrizes.create(allLadderPrizes);
 
         //then
-        assertThat(ladderPrizes).hasSize(4);
+        assertThat(ladderPrizes.getLadderPrizes()).hasSize(4);
     }
 }
