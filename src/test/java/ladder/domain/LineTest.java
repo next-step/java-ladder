@@ -2,16 +2,16 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
-
     @Test
-    void line() {
-        Line line = new Line(Arrays.asList(true, false, true, false));
+    void listOf() {
+        List<Line> lines = Line.listOf(3, 5);
 
-        assertThat(line.getPoints()).hasSize(4);
+        assertThat(lines).hasSize(5);
+        assertThat(lines.get(0).getPoints()).hasSize(3);
     }
 }
