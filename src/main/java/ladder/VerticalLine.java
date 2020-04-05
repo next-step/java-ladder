@@ -9,9 +9,9 @@ public class VerticalLine {
     private final int lineNo;
     private List<Point> points;
 
-    public VerticalLine(int lineNo, int height) {
+    public VerticalLine(int lineNo) {
         this.lineNo = lineNo;
-        this.points = dotPoints(height);
+        this.points = new ArrayList<>();
     }
 
     public int getLineNo() {
@@ -23,22 +23,21 @@ public class VerticalLine {
     }
 
     public Point getPoint(int heightPosition) {
-        if (heightPosition >= points.size() || heightPosition < 0) {
-            throw new IllegalArgumentException("점위치 범위를 넘어섰습니다.");
-        }
-        return this.points.get(heightPosition);
+        return points.stream()
+                .filter(p -> p.getHeightPosition() == heightPosition)
+                .findFirst()
+                .orElse(null);
     }
 
-    public int getHeight(){
-        return this.points.size();
+    public boolean isExistLine(int heightPosition) {
+        return points.stream()
+                .filter(p -> p.getHeightPosition() == heightPosition)
+                .findFirst()
+                .isPresent();
     }
 
-    private List<Point> dotPoints(int height) {
-        List<Point> points = new ArrayList<>();
-        for (int i = 1; i <= height; i++) {
-            points.add(new Point(lineNo, i));
-        }
-        return points;
+    public void drawLine(int heightPosition, int endPointLineNo) {
+        points.add(new Point(heightPosition, endPointLineNo));
     }
 
     @Override

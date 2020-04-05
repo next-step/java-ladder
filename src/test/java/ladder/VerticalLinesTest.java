@@ -18,7 +18,7 @@ public class VerticalLinesTest {
     @BeforeEach
     void setUp() {
         this.testVerticalLineList = new ArrayList<>(Arrays.asList(
-                new VerticalLine(0, 5), new VerticalLine(1, 5), new VerticalLine(2, 5))
+                new VerticalLine(0), new VerticalLine(1), new VerticalLine(2))
         );
         this.testVerticalLines = new VerticalLines(testVerticalLineList);
 
