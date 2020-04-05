@@ -1,13 +1,13 @@
 package ladder.domain.ladder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final String INSTANTIATE_ERROR_FORMAT = "Create Line failed. bars should not be adjacent: bars=%s";
+
     private final List<Boolean> bars;
 
     private Line(List<Boolean> bars) {
@@ -24,7 +24,7 @@ public class Line {
         }
 
         if (isAdjacentBars(bars)) {
-            throw new IllegalArgumentException(String.format("Create Line failed. bars should not be adjacent: bars=%s", toString(bars)));
+            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, toString(bars)));
         }
 
         return new Line(bars);

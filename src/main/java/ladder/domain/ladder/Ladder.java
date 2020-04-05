@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
+    private static final String INSTANTIATE_ERROR_FORMAT = "Create Ladder failed. height must be at least %d: height=%d";
+    private static final int MINIMUM_HEIGHT = 1;
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
@@ -14,10 +16,10 @@ public class Ladder {
 
     public static Ladder of(int height, int size) {
         return Optional.of(height)
-                .filter(h -> h > 0)
-                .map(h -> makeLadder(h,size))
+                .filter(h -> h >= MINIMUM_HEIGHT)
+                .map(h -> makeLadder(h, size))
                 .orElseThrow(() -> new IllegalArgumentException(
-                        String.format("Create Ladder failed. height must be over 0: height=%d", height)));
+                        String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_HEIGHT, height)));
     }
 
     private static Ladder makeLadder(int height, int size) {

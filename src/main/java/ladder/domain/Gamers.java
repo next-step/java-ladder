@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Gamers {
-    private static final String INSTANTIATE_ERROR_FORMAT = "Create Gamers fail. gamers must be at least $d players: name=%s";
+    private static final String INSTANTIATE_ERROR_FORMAT = "Create Gamers fail. gamers must be at least %d players: name=%s";
     private static final int MINIMUM_SIZE = 2;
     private final List<Gamer> gamerList;
 
