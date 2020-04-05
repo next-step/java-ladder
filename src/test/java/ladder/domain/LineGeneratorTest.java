@@ -1,8 +1,8 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -12,17 +12,13 @@ class LineGeneratorTest {
 
     private LineGenerator lineGenerator;
 
-    @BeforeEach
-    void setUp() {
-        lineGenerator = new LineGenerator();
-    }
-
     @DisplayName("라인을 생성할 수 있다.")
-    @Test
-    void generateLine() {
-        int playerCount = 2;
-        List<Boolean> lines = lineGenerator.generate(playerCount);
+    @ParameterizedTest
+    @ValueSource(ints = {2, 3, 4, 5})
+    void generateLine(int playerCount) {
+        lineGenerator = new LineGenerator(playerCount);
+        List<Boolean> lines = lineGenerator.generate();
 
-        assertThat(lines.size()).isEqualTo(2);
+        assertThat(lines.size()).isEqualTo(playerCount);
     }
 }
