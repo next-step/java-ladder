@@ -11,7 +11,16 @@ public class LadderPrizeTest {
     @DisplayName("꽝이 아닌 글자를 입력하면 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"글자", "이것은 글자"})
-    void throwExceptionWhenItsNameAreNotNumberOrBlank(String input) {
+    void throwExceptionWhenItsNameAreNotBlank(String input) {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new LadderPrize(input);
+        });
+    }
+
+    @DisplayName("양수가 아닌 숫자를 입력하면 예외 발생")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, -10000})
+    void throwExceptionWhenItsNameAreNotNumber(int input) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new LadderPrize(input);
         });
