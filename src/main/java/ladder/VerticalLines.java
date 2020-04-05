@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,10 @@ public class VerticalLines {
 
     public VerticalLines(List<VerticalLine> verticalLines) {
         this.verticalLines = verticalLines;
+    }
+
+    public List<VerticalLine> getVerticalLines(){
+        return new ArrayList<>(this.verticalLines);
     }
 
     public VerticalLine getLine(int index) {
