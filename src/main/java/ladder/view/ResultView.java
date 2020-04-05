@@ -13,6 +13,7 @@ public class ResultView {
     private static final String ONE_BLANK = " ";
     private static final String TITLE = "실행 결과";
     private static final int ONE_BLOCK_WIDTH = 6;
+    private static final double HALF_BLOCK_WIDTH = 2.5;
 
     private Players players;
     private Rows rows;
@@ -41,7 +42,7 @@ public class ResultView {
     private void printPlayers() {
         players.getPlayers().stream()
                 .map(Player::getName)
-                .map(it -> it + createBlanks(findNeededBlankCount(it)))
+                .map(it -> createBlanks(findBlankCountBefore(it)) + it + createBlanks(findBlankCountAfter(it)))
                 .forEach(it -> System.out.print(it));
         printBlankLine();
     }
@@ -52,8 +53,12 @@ public class ResultView {
         }
     }
 
-    private int findNeededBlankCount(String name) {
-        return (ONE_BLOCK_WIDTH - name.length());
+    private int findBlankCountBefore(String name) {
+        return (int) Math.ceil((ONE_BLOCK_WIDTH - name.length()) / HALF_BLOCK_WIDTH);
+    }
+
+    private int findBlankCountAfter(String name) {
+        return (int) Math.round((ONE_BLOCK_WIDTH - name.length()) / HALF_BLOCK_WIDTH);
     }
 
     private StringBuilder createBlanks(int count) {
