@@ -3,34 +3,18 @@ package ladder.domain;
 import java.util.*;
 
 public class Line {
-    private static final int START_LINE_POSITION = 0;
+    private List<Boolean> lines;
 
-    private List<Boolean> lines = new ArrayList<>();
+    private Line(final List<Boolean> lines) {
+        this.lines = lines;
+    }
 
-    public Line(int playerCount) {
-        for (int i = 0; i < playerCount; i++) {
-            lines.add(checkExistLine(i));
-        }
-        this.lines = Collections.unmodifiableList(lines);
+    public static Line of(int playerCount) {
+        return new Line(new LineGenerator(playerCount).generate());
     }
 
     public List<Boolean> getLine() {
         return lines;
-    }
-
-    private Boolean checkExistLine(final int count) {
-        if (isStart(count) || isExistPrev(count)) {
-            return Boolean.FALSE;
-        }
-        return new Random().nextBoolean();
-    }
-
-    private boolean isStart(final int count) {
-        return count == START_LINE_POSITION;
-    }
-
-    private Boolean isExistPrev(final int count) {
-        return lines.get(count - 1);
     }
 
     @Override
