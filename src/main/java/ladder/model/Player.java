@@ -63,4 +63,8 @@ public class Player {
     private boolean isLastNow(Row nextRow){
         return location == nextRow.getLastLocationValue();
     }
+
+    public int findFinalLocation(Rows rows) {
+        return 0;
+    }
 }

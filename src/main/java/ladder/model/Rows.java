@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.toList;
 public class Rows {
     private static List<Row> rows;
 
-    private Rows(List<Row> rows) {
+    public Rows(List<Row> rows) {
         this.rows = Collections.unmodifiableList(rows);
     }
 
