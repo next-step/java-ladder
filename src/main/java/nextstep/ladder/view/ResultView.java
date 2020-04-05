@@ -8,7 +8,6 @@ import nextstep.ladder.domain.step.Steps;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class ResultView {
     public static void printLadder(Ladder ladder) {

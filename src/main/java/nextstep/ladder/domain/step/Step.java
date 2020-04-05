@@ -5,6 +5,8 @@ import nextstep.ladder.domain.step.strategy.Movement;
 import java.util.Objects;
 
 public class Step {
+    private static final int ONE = 1;
+
     private final Bridge bridge;
     private final boolean movable;
 
@@ -26,11 +28,11 @@ public class Step {
     }
 
     public boolean isMovableNext(int linePosition) {
-        return !(bridge.isEqaulLinePosition(linePosition + 1) && movable);
+        return !(bridge.isEqaulLinePosition(linePosition + ONE) && movable);
     }
 
     public boolean isMovablePrev(int linePosition) {
-        return bridge.isEqaulLinePosition(linePosition + 1) && movable;
+        return bridge.isEqaulLinePosition(linePosition + ONE) && movable;
     }
 
     @Override

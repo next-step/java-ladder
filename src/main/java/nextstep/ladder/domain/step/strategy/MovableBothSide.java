@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MovableBothSide implements StepGenerator {
-
     @Override
     public Step generate(Steps previouSteps, Bridge bridge) {
         List<Integer> movablePositions = previouSteps.getSteps().stream()

@@ -3,17 +3,20 @@ package nextstep.ladder.domain.step;
 import nextstep.ladder.domain.step.strategy.RandomMovement;
 import nextstep.ladder.domain.step.strategy.StepGenerator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Steps {
+    private static final int ONE = 1;
+
     private final List<Step> steps;
     private final int linePosition;
 
     public Steps(List<Step> steps, int linePosition) {
-        this.steps = steps;
+        this.steps = Collections.unmodifiableList(steps);
         this.linePosition = linePosition;
     }
 
@@ -21,7 +24,7 @@ public class Steps {
         return Optional.ofNullable(
                 IntStream.range(0, height)
                         .mapToObj(stepPosition -> Step.of(Bridge.next(linePosition, stepPosition), new RandomMovement()))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, linePosition)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps -> new Steps(steps, linePosition)))
         );
     }
 
@@ -32,12 +35,16 @@ public class Steps {
         return Optional.ofNullable(
                 IntStream.range(0, height)
                         .mapToObj(stepPosition -> stepGenerator.generate(previouSteps, Bridge.current(currentLinePosition, stepPosition)))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps-> new Steps(steps, currentLinePosition)))
+                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps -> new Steps(steps, currentLinePosition)))
         );
     }
 
     public List<Step> getSteps() {
         return steps;
+    }
+
+    public Step get(int index) {
+        return steps.get(index);
     }
 
     public int size() {
@@ -53,6 +60,6 @@ public class Steps {
     }
 
     private int nextLinePosition() {
-        return linePosition + 1;
+        return linePosition + ONE;
     }
 }

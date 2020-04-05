@@ -17,17 +17,13 @@ public class Line {
     public static Line first(Person person, int height) {
         return Steps.movableNext(height, START_POSITION)
                 .map(steps -> new Line(steps, person))
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new IllegalArgumentException("라인을 만들 수 없습니다."));
     }
 
     public static Line of(Person person, Steps previousLineSteps, StepGenerator stepGenerator) {
         return Steps.movableByPreviousCondition(previousLineSteps, stepGenerator)
                 .map(steps -> new Line(steps, person))
-                .orElseThrow(() -> new IllegalArgumentException());
-    }
-
-    public int getLineHeight() {
-        return steps.size();
+                .orElseThrow(() -> new IllegalArgumentException("라인을 만들 수 없습니다."));
     }
 
     public Steps getSteps() {
