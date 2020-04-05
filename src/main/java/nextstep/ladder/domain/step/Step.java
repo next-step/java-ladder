@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.step;
 
+import nextstep.ladder.domain.step.strategy.MovableStrategy;
+
 import java.util.Objects;
 
 public class Step {

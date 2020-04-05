@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.step;
+package nextstep.ladder.domain.step.strategy;
 
 @FunctionalInterface
 public interface MovableStrategy {
