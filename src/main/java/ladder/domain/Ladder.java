@@ -18,7 +18,7 @@ public class Ladder {
 
     private List<Line> createLines(final int playerCount, final Height height) {
         final List<Line> lines = IntStream.rangeClosed(Height.MIN_HEIGHT, height.value())
-                                          .mapToObj(count -> new Line(playerCount))
+                                          .mapToObj(count -> Line.of(playerCount))
                                           .collect(Collectors.toList());
         return Collections.unmodifiableList(lines);
     }
