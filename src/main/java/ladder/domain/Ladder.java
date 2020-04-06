@@ -19,7 +19,7 @@ public class Ladder {
         int lineIndex = startIndex;
 
         for (Line line : this.lines) {
-            lineIndex += line.getActions().get(lineIndex).getMove();
+            lineIndex += line.getMovePoint(lineIndex);
         }
 
         return rewards.get(lineIndex);

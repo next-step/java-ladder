@@ -36,6 +36,10 @@ public class Line {
         return lines;
     }
 
+    public int getMovePoint(int index) {
+        return this.actions.get(index).getMove();
+    }
+
     private ActionType getPoint(int userCount, int index) {
         if (this.actions.get(index - 1) == ActionType.RIGHT) {
             return ActionType.LEFT;
