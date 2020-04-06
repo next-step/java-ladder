@@ -31,7 +31,7 @@ public class Line {
     }
 
     private static boolean judgeHasLine(Point previousPoint) {
-        if(previousPoint != null && previousPoint.isHasLine()) {
+        if(previousPoint != null && previousPoint.hasLine()) {
             return false;
         }
 

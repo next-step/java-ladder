@@ -10,12 +10,12 @@ public class Point {
         this.hasLine = hasLine;
     }
 
-    public boolean isHasLine() {
+    public boolean hasLine() {
         return hasLine;
     }
 
     public void compareWithPreviousPoint(Point point, Point previousPoint) {
-        if(previousPoint.isHasLine() && point.isHasLine()) {
+        if(previousPoint.hasLine() && point.hasLine()) {
             throw new IllegalArgumentException(POINT_HAS_LINE_ERROR);
         }
     }
