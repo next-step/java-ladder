@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.RandomBooleanProvider;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,7 @@ public class Line {
 
     public Line(List<Point> points) {
         assertParticipantCount(points);
-    assertPointHasLine(points);
+        assertPointHasLine(points);
 
         this.points = points;
 }
@@ -25,20 +23,12 @@ public class Line {
         List<Point> points = new ArrayList<>();
 
         for(int i = 0; i < participantCount - 1; i++) {
-            points.add(new Point(i, judgeHasLine(getPreviousPoint(points, i))));
+            points.add(new Point(i, getPreviousPoint(points, i)));
         }
         assertParticipantCount(points);
         assertPointHasLine(points);
 
         this.points = points;
-    }
-
-    private static boolean judgeHasLine(Point previousPoint) {
-        if(previousPoint != null && previousPoint.hasLine()) {
-            return false;
-        }
-
-        return RandomBooleanProvider.getRandomBoolean();
     }
 
     private static Point getPreviousPoint(List<Point> points, int currentIndex) {
