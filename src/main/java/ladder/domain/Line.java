@@ -26,16 +26,24 @@ public class Line {
 
     public int move(final int playerPosition) {
         // 좌측 이동이 가능한지
-        if (lines.get(playerPosition)) {
+        if (isMoveLeft(playerPosition)) {
             return playerPosition - 1;
         }
 
         // 우측 이동이 가능한지
-        if (lines.size() > playerPosition + 1 && lines.get(playerPosition + 1)) {
+        if (isMoveRight(playerPosition)) {
             return playerPosition + 1;
         }
 
         return playerPosition;
+    }
+
+    private Boolean isMoveLeft(final int playerPosition) {
+        return lines.get(playerPosition);
+    }
+
+    private boolean isMoveRight(final int playerPosition) {
+        return playerPosition + 1 < lines.size() && lines.get(playerPosition + 1);
     }
 
     @Override
