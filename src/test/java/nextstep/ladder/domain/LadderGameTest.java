@@ -32,7 +32,8 @@ public class LadderGameTest {
     void create() {
         LadderGame ladderGame = LadderGame.valueOf(names, prizes, ladder);
         assertThat(ladderGame.getLadderHeight()).isEqualTo(height);
-        assertThat(ladderGame.getParticipantNames().size()).isEqualTo(names.size());
+        assertThat(ladderGame.getParticipantNames().size())
+                .isEqualTo(names.size());
     }
 
     @DisplayName("사다리 결과를 가져온다.")

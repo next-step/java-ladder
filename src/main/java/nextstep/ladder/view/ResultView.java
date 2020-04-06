@@ -21,7 +21,7 @@ public class ResultView {
     }
 
     public static void displayResult(String command, LadderGame ladderGame) {
-        if(command.equals(PRINT_ALL_RESULT_COMMAND)) {
+        if (command.equals(PRINT_ALL_RESULT_COMMAND)) {
             ResultView.displayResult(ladderGame.prizeAll());
             return;
         }

@@ -18,7 +18,8 @@ public class LadderGame {
                                      List<String> prizes,
                                      Ladder ladder) {
         if (names.size() != prizes.size()) {
-            throw new NoEqualLengthArgumentException(NO_EQUAL_LENGTH_ERROR_MESSAGE);
+            throw new NoEqualLengthArgumentException(
+                    NO_EQUAL_LENGTH_ERROR_MESSAGE);
         }
 
         return new LadderGame(new Participants(names), new Prizes(prizes),

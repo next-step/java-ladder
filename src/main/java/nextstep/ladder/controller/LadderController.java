@@ -21,14 +21,15 @@ public class LadderController {
                 new RandomLineSelector(),
                 new RandomRightDirection()
         );
-        LadderGame ladderGame = LadderGame.valueOf(participants, prizes, ladder);
+        LadderGame ladderGame =
+                LadderGame.valueOf(participants, prizes, ladder);
         ResultView.displayLadder(ladderGame);
         selectResult(ladderGame);
     }
 
     public static void selectResult(LadderGame ladderGame) {
         String command = INIT_COMMAND;
-        while(!command.equals(FINISH_COMMAND)) {
+        while (!command.equals(FINISH_COMMAND)) {
             command = InputView.selectResult();
             ResultView.displayResult(command, ladderGame);
         }

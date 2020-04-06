@@ -52,7 +52,7 @@ public class HorizontalLineTest {
 
     @DisplayName("포인트의 방향을 설정하거나 해제할 수 있다.")
     @Test
-    void makePointTo(){
+    void makePointTo() {
         int index = 1;
         HorizontalLine horizontalLine = new HorizontalLine(3);
         horizontalLine.makeDirectionTo(index, true);

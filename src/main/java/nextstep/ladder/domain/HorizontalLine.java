@@ -9,7 +9,7 @@ public class HorizontalLine implements Iterable<Point> {
 
     public HorizontalLine(int size) {
         points = new ArrayList<>();
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             points.add(new Point());
         }
     }
@@ -59,9 +59,9 @@ public class HorizontalLine implements Iterable<Point> {
 
     public int getNextIndex(int index) {
         Point point = points.get(index);
-        if(point.hasRightDirection()) {
+        if (point.hasRightDirection()) {
             return index + 1;
-        } else if(point.hasLeftDirection()) {
+        } else if (point.hasLeftDirection()) {
             return index - 1;
         }
 
