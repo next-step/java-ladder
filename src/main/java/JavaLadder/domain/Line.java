@@ -57,8 +57,15 @@ public class Line {
             checkLeftMove(point);
             return;
         }
+        checkLeftAndRightMove(point);
+    }
+
+    private void checkLeftAndRightMove(Point point) {
+        int originalPoint = point.getPoint();
         checkLeftMove(point);
-        checkRightMove(point);
+        if(originalPoint == point.getPoint()){
+            checkRightMove(point);
+        }
     }
 
     private void checkLeftMove(Point point) {
