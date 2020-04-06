@@ -4,17 +4,25 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder implements Iterable<HorizontalLine> {
     private List<HorizontalLine> ladder;
 
-    static Ladder of(List<HorizontalLine> horizontalLines,
-                     LineSelector lineSelector,
-                     RightDirection rightDirection) {
-        Ladder ladder = new Ladder(horizontalLines);
+    public static Ladder valueOf(LadderSize ladderSize,
+                                 LineSelector lineSelector,
+                                 RightDirection rightDirection) {
+        Ladder ladder = new Ladder(generateHorizontalLines(ladderSize));
         ladder.assignVertical(lineSelector);
         ladder.assignHorizontal(rightDirection);
         return ladder;
+    }
+
+    private static List<HorizontalLine> generateHorizontalLines(
+            LadderSize ladderSize) {
+        return IntStream.range(0, ladderSize.getHeight())
+                .mapToObj(i -> new HorizontalLine(ladderSize.getWidth()))
+                .collect(Collectors.toList());
     }
 
     private Ladder(List<HorizontalLine> horizontalLines) {
@@ -78,5 +86,14 @@ public class Ladder implements Iterable<HorizontalLine> {
     @Override
     public Iterator<HorizontalLine> iterator() {
         return ladder.iterator();
+    }
+
+    public int result(int index) {
+        int nextIndex = index;
+        for (HorizontalLine horizontalLine : ladder) {
+            nextIndex = horizontalLine.nextIndex(nextIndex);
+        }
+
+        return nextIndex;
     }
 }

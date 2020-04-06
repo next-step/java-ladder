@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Participants implements Iterable<Participant> {
     private List<Participant> participantList;
@@ -15,6 +16,18 @@ public class Participants implements Iterable<Participant> {
 
     public int size() {
         return participantList.size();
+    }
+
+    public Participant get(int index) {
+        return participantList.get(index);
+    }
+
+    public int indexOf(Participant participant) {
+        return participantList.indexOf(participant);
+    }
+
+    public Stream<Participant> stream() {
+        return participantList.stream();
     }
 
     @Override

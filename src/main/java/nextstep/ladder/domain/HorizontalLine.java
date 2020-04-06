@@ -1,15 +1,10 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static nextstep.ladder.domain.Point.FALSE;
-import static nextstep.ladder.domain.Point.TRUE;
 
 public class HorizontalLine implements Iterable<Point> {
-    private static final int FIRST_INDEX = 0;
     private List<Point> points;
 
     public HorizontalLine(int size) {
@@ -36,25 +31,15 @@ public class HorizontalLine implements Iterable<Point> {
         if (hasRightDirection) {
             makeDirection(index);
         }
-
-    private boolean isFirst(int index) {
-        return index == FIRST_INDEX;
     }
 
     private boolean isLast(int index) {
         return index == lastIndex();
     }
 
-    private Point getBefore(int index) {
-        if (isFirst(index)) {
-            getPoint(FIRST_INDEX);
-        }
-        return getPoint(index - 1);
-    }
-
     private Point getAfter(int index) {
         if (isLast(index)) {
-            getPoint(lastIndex());
+            return getPoint(lastIndex());
         }
 
         return getPoint(index + 1);
@@ -70,6 +55,17 @@ public class HorizontalLine implements Iterable<Point> {
 
     public Point getPoint(int index) {
         return points.get(index);
+    }
+
+    public int nextIndex(int index) {
+        Point point = points.get(index);
+        if(point.hasRightDirection()) {
+            return index + 1;
+        } else if(point.hasLeftDirection()) {
+            return index - 1;
+        }
+
+        return index;
     }
 
     @Override

@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exception.IllegalMaxLengthValueException;
 
+import java.util.Objects;
+
 public class Participant {
     public static final int MAX_NAME_LENGTH = 5;
     private static final String MAX_NAME_LENGTH_ERROR_MESSAGE =
@@ -19,5 +21,18 @@ public class Participant {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Participant that = (Participant) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
