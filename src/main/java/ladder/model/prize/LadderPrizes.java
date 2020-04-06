@@ -18,8 +18,8 @@ public class LadderPrizes {
         return ladderPrizes;
     }
 
-    public LadderPrize findPrizeAtIndex(int index){
-        return ladderPrizes.get(index);
+    public String findPrizeNameAtIndex(int index){
+        return ladderPrizes.get(index).getPrizeName();
     }
 
     public int getIndexOfLadderPrize(LadderPrize ladderPrize){

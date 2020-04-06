@@ -3,6 +3,7 @@ package ladder.model.result;
 import ladder.model.prize.LadderPrizes;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 public class GameResult {
@@ -13,10 +14,15 @@ public class GameResult {
     }
 
     public static GameResult create(Map<String, Integer> finalLocationByName, LadderPrizes ladderPrizes) {
-        return null;
+        Map<String, String> gameResult = new HashMap<>();
+
+        finalLocationByName.keySet().stream()
+                .forEach(it -> gameResult.put(it, ladderPrizes.findPrizeNameAtIndex(finalLocationByName.get(it))));
+
+        return new GameResult(gameResult);
     }
 
-    public String findPrizeByName(String name) {
-        return null;
+    public String findPrizeByPlayerName(String name) {
+        return result.get(name);
     }
 }

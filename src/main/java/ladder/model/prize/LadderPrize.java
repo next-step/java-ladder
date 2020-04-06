@@ -17,6 +17,10 @@ public class LadderPrize {
         this.prizeName = prizeName;
     }
 
+    public String getPrizeName() {
+        return prizeName;
+    }
+
     private boolean isAllowedInputPrize(String input) {
         return BLANK.equals(input);
     }

@@ -50,6 +50,6 @@ public class GameResultTest {
         GameResult gameResult = GameResult.create(finalLocationByName, ladderPrizes);
 
         //then
-        assertThat(gameResult.findPrizeByName(name)).isEqualTo(prizeName);
+        assertThat(gameResult.findPrizeByPlayerName(name)).isEqualTo(prizeName);
     }
 }
