@@ -14,6 +14,6 @@ public class ParticipantTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Participant(name);
-        }).withMessage(Participant.PARTICIPANT_NAME_LENGTH_ERROR);
+        }).withMessage(String.format(Participant.PARTICIPANT_NAME_LENGTH_ERROR, name));
     }
 }
