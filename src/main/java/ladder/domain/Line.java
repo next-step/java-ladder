@@ -25,6 +25,16 @@ public class Line {
     }
 
     public int move(final int playerPosition) {
+        // 좌측 이동이 가능한지
+        if (lines.get(playerPosition)) {
+            return playerPosition - 1;
+        }
+
+        // 우측 이동이 가능한지
+        if (lines.size() > playerPosition + 1 && lines.get(playerPosition + 1)) {
+            return playerPosition + 1;
+        }
+
         return playerPosition;
     }
 
