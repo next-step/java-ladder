@@ -39,7 +39,7 @@ public class Ladder implements Iterable<HorizontalLine> {
             selectedIndex = (selectedIndex + 1) % height;
         }
         HorizontalLine horizontalLine = ladder.get(selectedIndex);
-        horizontalLine.makePointToTrue(index);
+        horizontalLine.makeDirection(index);
         return selectedIndex;
     }
 
@@ -53,7 +53,7 @@ public class Ladder implements Iterable<HorizontalLine> {
                                   RightDirection rightDirection) {
         for (int i = 0; i < horizontalLine.size(); i++) {
             boolean isAbleToRight = rightDirection.isAbleToRight();
-            horizontalLine.makePointTo(i, isAbleToRight);
+            horizontalLine.makeDirectionTo(i, isAbleToRight);
         }
     }
 

@@ -18,18 +18,18 @@ public class HorizontalLineTest {
     @Test
     void lastIsFalse() {
         int size = 3;
-        HorizontalLine horizontalLine = HorizontalLine.of(size);
-        horizontalLine.makePointToTrue(size - 1);
-        assertThat(horizontalLine.getPoint(size - 1) == Point.TRUE)
+        HorizontalLine horizontalLine = new HorizontalLine(size);
+        horizontalLine.makeDirection(size - 1);
+        assertThat(horizontalLine.getPoint(size - 1).hasRightDirection())
                 .isFalse();
     }
 
     @DisplayName("연속으로 포인트에 선이 있을 수 없다.")
     @Test
     void notConsecutivePoint() {
-        HorizontalLine horizontalLine = HorizontalLine.of(3);
-        horizontalLine.makePointToTrue(1);
-        horizontalLine.makePointToTrue(2);
+        HorizontalLine horizontalLine = new HorizontalLine(3);
+        horizontalLine.makeDirection(1);
+        horizontalLine.makeDirection(2);
 
         assertThat(horizontalLine.getPoint(1).hasRightDirection()).isTrue();
         assertThat(horizontalLine.getPoint(2).hasRightDirection()).isFalse();

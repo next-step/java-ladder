@@ -1,22 +1,37 @@
 package nextstep.ladder.domain;
 
-public enum Point {
-    TRUE(true),
-    FALSE(false);
+public class Point {
+    private boolean leftDirection;
+    private boolean rightDirection;
 
-    private boolean hasRightDirection;
-    Point(boolean hasRightDirection) {
-        this.hasRightDirection = hasRightDirection;
+    public Point() {
+        this.leftDirection = false;
+        this.rightDirection = false;
     }
 
-    public Point reverse() {
-        if(this == TRUE) {
-            return FALSE;
+    public boolean setRightDirection(boolean rightDirection) {
+        if (rightDirection && this.leftDirection) {
+            return false;
         }
-        return TRUE;
+
+        this.rightDirection = rightDirection;
+        return true;
+    }
+
+    public boolean setLeftDirection(boolean leftDirection) {
+        if (leftDirection && this.rightDirection) {
+            return false;
+        }
+
+        this.leftDirection = leftDirection;
+        return true;
     }
 
     public boolean hasRightDirection() {
-        return hasRightDirection;
+        return rightDirection;
+    }
+
+    public boolean hasLeftDirection() {
+        return leftDirection;
     }
 }
