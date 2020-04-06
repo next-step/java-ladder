@@ -29,4 +29,9 @@ public class Ladder {
         return lines.getPoleCount();
     }
 
+    public LadderGameResult proceed(Members members) {
+        MemberPolePosition memberPoleLastPosition = lines.proceed(members);
+
+        return LadderGameResult.newInstance(memberPoleLastPosition, ladderGameRewords);
+    }
 }

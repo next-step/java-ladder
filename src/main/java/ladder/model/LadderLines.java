@@ -42,4 +42,15 @@ public class LadderLines {
                 .map(LadderLine::getPoleCount)
                 .orElseThrow(() -> new IllegalArgumentException("Can not find ladder line pole count."));
     }
+
+    public MemberPolePosition proceed(Members members) {
+        MemberPolePosition polePosition = MemberPolePosition.newInstance(members);
+
+        for (LadderLine line : lines) {
+            polePosition = line.proceed(polePosition);
+        }
+
+        return polePosition;
+
+    }
 }

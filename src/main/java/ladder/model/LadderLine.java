@@ -34,6 +34,10 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
+    public MemberPolePosition proceed(MemberPolePosition polePosition) {
+
+    }
+
     public List<LadderBridge> getBridges() {
         return bridges;
     }
@@ -53,4 +57,5 @@ public class LadderLine {
     public int hashCode() {
         return Objects.hash(getBridges());
     }
+
 }
