@@ -2,6 +2,7 @@ package ladder.model;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderLine {
@@ -35,7 +36,8 @@ public class LadderLine {
     }
 
     public MemberPolePosition proceed(MemberPolePosition polePosition) {
-
+        IntStream.range(0, polePosition.count())
+                .boxed()
     }
 
     public List<LadderBridge> getBridges() {
