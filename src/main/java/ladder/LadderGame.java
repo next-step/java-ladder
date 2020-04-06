@@ -1,24 +1,25 @@
 package ladder;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
+    private List<String> users;
     private List<Line> ladder;
 
-    public LadderGame(List<String> asList, int i) {
-        ladder = generateLadder();
+    public LadderGame(List<String> users, int ladderMaxHeight) {
+        this.users = users;
+        ladder = generateLadder(users.size(), ladderMaxHeight);
     }
 
-    public List<Line> generateLadder() {
-        return Arrays.asList(
-                new Line(4),
-                new Line(4),
-                new Line(4),
-                new Line(4),
-                new Line(4)
-        );
+    private List<Line> generateLadder(int countOfPerson, int ladderMaxHeight) {
+        return Stream
+                .generate(() -> new Line(countOfPerson))
+                .limit(ladderMaxHeight)
+                .collect(toList());
     }
 
     public List<Line> getLadder() {
