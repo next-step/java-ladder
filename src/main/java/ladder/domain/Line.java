@@ -1,24 +1,31 @@
 package ladder.domain;
 
+import ladder.domain.generator.LineGenerator;
+import ladder.domain.generator.RandomLineGenerator;
+
 import java.util.*;
 
 public class Line {
     private final List<Boolean> lines;
 
-    private Line(final List<Boolean> lines) {
+    public Line(final List<Boolean> lines) {
         this.lines = lines;
     }
 
-    public static Line of(int playerCount) {
-        return new Line(LineGenerateHelper.generate(playerCount));
+    public static Line of(final int playerCount) {
+        return new Line(new RandomLineGenerator().generate(playerCount));
+    }
+
+    public static Line of(final int playerCount, final LineGenerator lineGenerator) {
+        return new Line(lineGenerator.generate(playerCount));
     }
 
     public List<Boolean> getLine() {
         return Collections.unmodifiableList(lines);
     }
 
-    public int move(final int playerStartPosition) {
-        return 0;
+    public int move(final int playerPosition) {
+        return playerPosition;
     }
 
     @Override
