@@ -1,9 +1,15 @@
 package ladder;
 
-/**
- * Created by wholeman on 06/04/2020
- * Github : http://github.com/wholemann
- * E-Mail : wholeman.dev@gmail.com
- */
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class LadderTest {
+    @Test
+    void generateLadderByParticipantCountAndLadderMaxHeight() {
+        Ladder ladder = new Ladder(4, 5);
+
+        assertThat(ladder.getWidth()).isEqualTo(4);
+        assertThat(ladder.getHeight()).isEqualTo(5);
+    }
 }
