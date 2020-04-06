@@ -47,16 +47,16 @@
     * LadderLines의 실행 결과를 리턴한다.
 * LadderLines
     * LadderHeight 만큼의 가로 줄(LadderLine)을 관리한다.
-    * MemberPolePosition를 입력받아 각 LadderLine을 실행하고 LadderGameResult를 리턴한다. 
+    * LadderPole을 입력 받아 해당하는 게임 결과인 LadderGameReword를 리턴한다. 
 * LadderBridge
     * 사다리 pole 사이의 가로 줄 유무를 관리한다.
 * LadderHeight
     * 입력 받은 Ladder의 높이를 관리한다.
 * LadderLine
     * (MemberCount - 1) 만큼의 LadderBridge를 관리한다.
-    * 입력받은 MemberPolePosition을 LadderBridge에 맞게 변경하여 새로운 MemberPolePosition으로 리턴한다.
-* MemberPolePosition
-    * 한 LadderLine의 Members 사다리 위치를 관리한다.
+    * 입력받은 LadderPole을 LadderBridge에 맞게 진행하여 새로운 LadderPole으로 리턴한다.
+* LadderPole
+    * 사다리의 pole (세로 라인) 을 관리한다. 
 * LadderGameRewords
     * LadderPoleResults를 관리한다.
     * 입력 받은 문자열 값을 ',' 기준으로 분리하여 LadderGameReword 목록을 생성한다.
