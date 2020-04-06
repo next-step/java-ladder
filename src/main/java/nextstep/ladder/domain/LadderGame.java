@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exception.NoEqualLengthArgumentException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,17 +42,19 @@ public class LadderGame {
         return ladder;
     }
 
-    public Prize prize(String participantName) {
-        int index = participants.indexOf(new Participant(participantName));
+    public LadderGameResult result(String participantName) {
+        Participant participant = new Participant(participantName);
+        int index = participants.indexOf(participant);
         int prizeIndex = ladder.result(index);
-        return prizes.get(prizeIndex);
+        return new LadderGameResult(participant, prizes.get(prizeIndex));
     }
 
-    public Map<Participant, Prize> prizeAll() {
-        Map<Participant, Prize> results = new HashMap<>();
+    public List<LadderGameResult> resultAll() {
+        List<LadderGameResult> results = new ArrayList<>();
         for (int i = 0, width = participants.size(); i < width; i++) {
             int prizeIndex = ladder.result(i);
-            results.put(participants.get(i), prizes.get(prizeIndex));
+            results.add(new LadderGameResult(participants.get(i),
+                    prizes.get(prizeIndex)));
         }
 
         return results;

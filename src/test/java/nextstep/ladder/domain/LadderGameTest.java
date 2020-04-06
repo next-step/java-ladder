@@ -40,6 +40,6 @@ public class LadderGameTest {
     @Test
     void getResult() {
         LadderGame ladderGame = LadderGame.valueOf(names, prizes, ladder);
-        assertThat(ladderGame.prize("boram").getName()).isEqualTo("꽝");
+        assertThat(ladderGame.result("boram").getPrizeName()).isEqualTo("꽝");
     }
 }

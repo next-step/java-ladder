@@ -3,7 +3,6 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.*;
 
 import java.util.List;
-import java.util.Map;
 
 public class ResultView {
     private static final String LADDER_MESSAGE = "사다리 결과";
@@ -22,22 +21,23 @@ public class ResultView {
 
     public static void displayResult(String command, LadderGame ladderGame) {
         if (command.equals(PRINT_ALL_RESULT_COMMAND)) {
-            ResultView.displayResult(ladderGame.prizeAll());
+            ResultView.displayResult(ladderGame.resultAll());
             return;
         }
-        ResultView.displayResult(ladderGame.prize(command));
+        ResultView.displayResult(ladderGame.result(command));
     }
 
-    public static void displayResult(Prize prize) {
+    public static void displayResult(LadderGameResult ladderGameResult) {
         System.out.println(RESULT_MESSAGE);
-        System.out.println(prize.getName());
+        System.out.println(ladderGameResult.getPrizeName());
     }
 
-    public static void displayResult(Map<Participant, Prize> result) {
+    public static void displayResult(List<LadderGameResult> result) {
         System.out.println(RESULT_MESSAGE);
-        result.forEach((participant, prize) -> {
-            System.out.println(participant.getName() + ":" + prize.getName());
-        });
+        for (LadderGameResult ladderGameResult : result) {
+            System.out.println(ladderGameResult.getParticipantName() +
+                    ":" + ladderGameResult.getPrizeName());
+        }
     }
 
     private static void displayNames(List<String> participantNames) {
