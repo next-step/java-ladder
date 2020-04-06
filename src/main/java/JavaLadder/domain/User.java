@@ -2,10 +2,20 @@ package JavaLadder.domain;
 
 public class User {
     private String name;
+    private Point point;
 
-    public User(String name) {
+    public User(String name, int point) {
         validate(name);
         this.name = name;
+        this.point = new Point(point);
+    }
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public boolean isEqualName(String name) {
+        return this.name == name;
     }
 
     private void validate(String name) {
@@ -16,5 +26,9 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public int getPoint() {
+        return this.point.getPoint();
     }
 }

@@ -22,7 +22,7 @@ public class Ladder {
         return this.ladder.get(index);
     }
 
-    public int countLadder(Ladder ladder) {
+    public int countLadder() {
         return (int) Arrays.asList(ladder).stream().filter(n -> true).count();
     }
 }

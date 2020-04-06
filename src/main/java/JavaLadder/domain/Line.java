@@ -10,6 +10,10 @@ public class Line {
         this.line = line;
     }
 
+    public Line(List<Boolean> list) {
+        this.line = list;
+    }
+
     private List generate(int countOfPerson) {
         List<Boolean> points = new ArrayList();
         for (int i = 0; i < countOfPerson - 1; i++) {
@@ -40,7 +44,33 @@ public class Line {
         return this.line.size();
     }
 
-    public int countLine(Line line) {
+    public int countLine() {
         return (int) Arrays.asList(line).stream().filter(n -> true).count();
+    }
+
+    public void moveByLine(Point point) {
+        if(point.getPoint() == 0){
+            //오른쪽체크
+            if(line.get(0)){
+                point.RightMove();
+            }
+            return;
+        }
+
+        if(point.getPoint() == line.size()){
+            if(line.get(line.size()-1)){
+                point.leftMove();
+            }
+            return;
+        }
+
+        //양쪽체크
+        if(line.get(point.getPoint()-1)){
+            point.leftMove();
+            return;
+        }else if(line.get(point.getPoint())){
+            point.RightMove();
+            return;
+        }
     }
 }
