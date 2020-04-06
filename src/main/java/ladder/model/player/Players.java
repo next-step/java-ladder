@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Players {
     private List<Player> players;
@@ -30,7 +29,7 @@ public class Players {
     public Map<String, Integer> findFinalLocationByName(Rows rows, String name) {
         Map<String, Integer> finalLocation = new HashMap<>();
 
-        if(isValidPlayerName(name)){
+        if (isValidPlayerName(name)) {
             players.stream()
                     .filter(it -> name.equals(it.getName()))
                     .forEach(it -> finalLocation.put(name, it.findFinalLocation(rows)));
@@ -42,7 +41,7 @@ public class Players {
         return finalLocation;
     }
 
-    private boolean isValidPlayerName(String name){
+    private boolean isValidPlayerName(String name) {
         return players.stream()
                 .filter(it -> name.equals(it.getName()))
                 .findAny()

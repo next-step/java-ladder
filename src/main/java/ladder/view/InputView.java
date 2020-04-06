@@ -34,22 +34,6 @@ public class InputView {
         return splitPrizeNames(ScannerUtil.readLine());
     }
 
-    public String getStringPlayerToKnow(){
-        System.out.println(MESSAGE_INPUT_PLAYER_TO_KNOW_RESULT);
-        return ScannerUtil.readLine()
-                .trim()
-                .toLowerCase();
-    }
-
-
-
-    private boolean doesItMeanAll(String input){
-        if(ALL.equals(input.trim().toLowerCase())){
-            return true;
-        }
-        return false;
-    }
-
     private List<Player> splitNames(String names) {
         return Arrays.stream(names.split(DELIMITER))
                 .map(it -> it.trim())

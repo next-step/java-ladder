@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayersTest {
     @DisplayName("Players 객체 생성")
@@ -32,6 +33,17 @@ public class PlayersTest {
 
         //then
         assertThat(players.getPlayerCount()).isEqualTo(3);
+    }
+
+    @DisplayName("플레이어의 이름은 중복되면 안 된다.")
+    @Test
+    void throwExceptionWhenDuplicationNamesTest(){
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Players players = Players.create(Arrays.asList(
+                    new Player("Mark"),
+                    new Player("Mark"),
+                    new Player("Sujin")));
+        });
     }
 
     @DisplayName("플레이어 이름을 입력하면, 최종 위치를 리턴한다.")
