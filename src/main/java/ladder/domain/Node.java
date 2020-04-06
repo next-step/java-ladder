@@ -13,8 +13,8 @@ public class Node {
         this.way = way;
     }
 
-    public static Node of(final boolean isMovableRight) {
-        return new Node(ZERO, new Way(false, isMovableRight));
+    public Node(final boolean isMovableRight) {
+        this(ZERO, new Way(false, isMovableRight));
     }
 
     public Node createLast() {

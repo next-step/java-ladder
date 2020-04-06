@@ -31,7 +31,7 @@ public class Line implements Cloneable {
 
     private Line addRandomNextNode(final boolean random) {
         if (this.nodes.isEmpty()) {
-            Node first = Node.of(random);
+            Node first = new Node(random);
             return addNode(first);
         }
 
