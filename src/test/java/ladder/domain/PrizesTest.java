@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.PrizeCountNotMatchException;
+import ladder.exception.PrizeNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,5 +48,19 @@ class PrizesTest {
         Prize prize = prizes.find(new Position(position));
 
         assertThat(prize.getPrize()).isEqualTo(expect);
+    }
+
+    @DisplayName("상품을 못찾을 경우 예외를 발생한다.")
+    @Test
+    void notFoundException() {
+        int playerCount = 4;
+        String input = "꽝,5000,꽝,3000";
+        int position = 5;
+
+        Prizes prizes = new Prizes(input, playerCount);
+
+        assertThatExceptionOfType(PrizeNotFoundException.class).isThrownBy(
+                () -> prizes.find(new Position(position))
+        );
     }
 }
