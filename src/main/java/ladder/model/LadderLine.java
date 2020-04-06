@@ -13,6 +13,7 @@ public class LadderLine {
         this.bridges = Collections.unmodifiableList(bridges);
     }
 
+    // TODO: 2020-04-06 겹치는 구간이 없는지 validation 추가
     private void validate(List<LadderBridge> bridges) {
         if (Objects.isNull(bridges) || bridges.isEmpty()) {
             throw new IllegalArgumentException("Ladder Bridge must be greater than zero.");

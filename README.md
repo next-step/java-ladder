@@ -57,10 +57,10 @@
     * 입력받은 MemberPolePosition을 LadderBridge에 맞게 변경하여 새로운 MemberPolePosition으로 리턴한다.
 * MemberPolePosition
     * 한 LadderLine의 Members 사다리 위치를 관리한다.
-* LadderPoleResults
+* LadderGameRewords
     * LadderPoleResults를 관리한다.
-    * 입력 받은 문자열 값을 ',' 기준으로 분리하여 Member를 생성한다.
-* LadderPoleResult
+    * 입력 받은 문자열 값을 ',' 기준으로 분리하여 LadderGameReword 목록을 생성한다.
+* LadderGameReword
     * 입력 받은 문자열을 사다리 기둥의 결과로 저장하여 관리한다.    
 * LadderGameResult
     * 게임 결과를 관리한다.

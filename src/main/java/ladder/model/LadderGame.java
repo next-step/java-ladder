@@ -7,6 +7,7 @@ public class LadderGame {
     private final Members members;
     private final Ladder ladder;
 
+    // TODO: 2020-04-06 validation 추가. ladder pole과 memeber 갯수가 같은지..
     private LadderGame(final Members members, final Ladder ladder) {
         this.members = members;
         this.ladder = ladder;

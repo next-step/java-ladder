@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.model.Member;
+import ladder.model.MemberCount;
 import ladder.model.Members;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("사다리 게임 참여자 테스트")
 public class MemberTests {
