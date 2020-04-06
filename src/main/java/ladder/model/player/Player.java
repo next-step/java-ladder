@@ -1,5 +1,6 @@
 package ladder.model.player;
 
+import ladder.model.row.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 
@@ -9,71 +10,71 @@ public class Player {
     private static final int INCREASE_ONE = +1;
 
     private PlayerName name;
-    private int location;
+    private Position position;
 
     public Player(String name) {
         this.name = new PlayerName(name);
     }
 
-    public Player(String name, int location) {
+    public Player(String name, int position) {
         this.name = new PlayerName(name);
-        this.location = location;
+        this.position = new Position(position);
     }
 
     public PlayerName getName() {
         return name;
     }
 
-    public int findFinalLocation(Rows rows) {
+    public Position findFinalLocation(Rows rows) {
         for (Row row : rows.getRows()) {
-            location = findNextLocation(row);
+            position = findNextLocation(row);
         }
-        return location;
+        return position;
     }
 
-    public int findNextLocation(Row nextRow) {
+    public Position findNextLocation(Row nextRow) {
         if (isNextLeftValueTrue(nextRow)) {
             return findNextLocationWhenLeft(nextRow);
         }
         if (isNextRightValueTrue(nextRow)) {
             return findNextLocationWhenRight(nextRow);
         }
-        return location;
+        return position;
     }
 
-    private int findNextLocationWhenRight(Row nextRow) {
+    private Position findNextLocationWhenRight(Row nextRow) {
         if (isNextRightValueTrue(nextRow)) {
-            return location + INCREASE_ONE;
+            return new Position(position.getPosition() + INCREASE_ONE);
         }
-        return location;
+        return position;
     }
 
-    private int findNextLocationWhenLeft(Row nextRow) {
+    private Position findNextLocationWhenLeft(Row nextRow) {
         if (isNextLeftValueTrue(nextRow)) {
-            location = location + DECREASE_ONE;
+            position = new Position(position.getPosition() + DECREASE_ONE);
         }
-        return location;
+        return position;
     }
 
     private boolean isNextLeftValueTrue(Row nextRow) {
         if (isFirstNow()) {
             return false;
         }
-        return nextRow.getRowElement(location + DECREASE_ONE);
+        return nextRow.getRowElement(position.add(DECREASE_ONE));
     }
 
     private boolean isNextRightValueTrue(Row nextRow) {
         if (isLastNow(nextRow)) {
             return false;
         }
-        return nextRow.getRowElement(location);
+        return nextRow.getRowElement(position);
     }
 
     private boolean isFirstNow() {
-        return location == ZERO_LOCATION;
+        return position.getPosition() == ZERO_LOCATION;
     }
 
     private boolean isLastNow(Row nextRow) {
-        return location == nextRow.getLastLocationValue();
+        return position.getPosition() == nextRow.getLastLocationValue();
     }
 }

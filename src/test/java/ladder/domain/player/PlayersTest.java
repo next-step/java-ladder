@@ -3,6 +3,7 @@ package ladder.domain.player;
 import ladder.model.player.Player;
 import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
+import ladder.model.row.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +50,7 @@ public class PlayersTest {
 
     @DisplayName("플레이어 이름을 입력하면, 최종 위치를 리턴한다.")
     @ParameterizedTest
-    @CsvSource(value = {"Mark:2", "Ten:0", "Sujin:1"}, delimiter = ':')
+    @CsvSource(value = {"Mark:0", "Ten:1", "Sujin:2"}, delimiter = ':')
     void findFinalLocationByNameTest(String input, int finalLocation) {
         //given
         Players players = Players.create(Arrays.asList(
@@ -57,22 +58,22 @@ public class PlayersTest {
                 new Player("Ten", 1),
                 new Player("Sujin", 2)));
 
-        Map<Integer, Boolean> result = new HashMap<>();
-        result.put(0, true);
-        result.put(1, false);
+        Map<Position, Boolean> result = new HashMap<>();
+        result.put(new Position(0), true);
+        result.put(new Position(1), false);
         Row row = new Row(result);
 
-        Map<Integer, Boolean> result2 = new HashMap<>();
-        result2.put(0, false);
-        result2.put(1, true);
+        Map<Position, Boolean> result2 = new HashMap<>();
+        result2.put(new Position(0), true);
+        result2.put(new Position(1), false);
         Row row2 = new Row(result2);
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        Map<PlayerName, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
+        Map<PlayerName, Position> finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
-        assertThat(finalLocationByName.get(new PlayerName(input))).isEqualTo(finalLocation);
+        assertThat(finalLocationByName.get(new PlayerName(input))).isEqualTo(new Position(finalLocation));
     }
 
     @DisplayName("존재하지 않는 플레이어명을 입력하면, 전체 결과를 반환한다.")
@@ -85,24 +86,24 @@ public class PlayersTest {
                 new Player("Ten", 1),
                 new Player("Sujin", 2)));
 
-        Map<Integer, Boolean> result = new HashMap<>();
-        result.put(0, true);
-        result.put(1, false);
+        Map<Position, Boolean> result = new HashMap<>();
+        result.put(new Position(0), true);
+        result.put(new Position(1), false);
         Row row = new Row(result);
 
-        Map<Integer, Boolean> result2 = new HashMap<>();
-        result2.put(0, false);
-        result2.put(1, true);
+        Map<Position, Boolean> result2 = new HashMap<>();
+        result2.put(new Position(0), true);
+        result2.put(new Position(1), false);
         Row row2 = new Row(result2);
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        Map<PlayerName, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
+        Map<PlayerName, Position> finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
         assertThat(finalLocationByName.size()).isEqualTo(3);
-        assertThat(finalLocationByName.get(new PlayerName("Mark"))).isEqualTo(2);
-        assertThat(finalLocationByName.get(new PlayerName("Ten"))).isEqualTo(0);
-        assertThat(finalLocationByName.get(new PlayerName("Sujin"))).isEqualTo(1);
+        assertThat(finalLocationByName.get(new PlayerName("Mark"))).isEqualTo(new Position(0));
+        assertThat(finalLocationByName.get(new PlayerName("Ten"))).isEqualTo(new Position(1));
+        assertThat(finalLocationByName.get(new PlayerName("Sujin"))).isEqualTo(new Position(2));
     }
 }

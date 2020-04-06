@@ -7,6 +7,7 @@ import ladder.model.prize.LadderPrize;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.prize.PrizeName;
 import ladder.model.result.GameResult;
+import ladder.model.row.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
@@ -35,18 +36,18 @@ public class GameResultTest {
                 new Player("Ten", 1),
                 new Player("Sujin", 2)));
 
-        Map<Integer, Boolean> result = new HashMap<>();
-        result.put(0, true);
-        result.put(1, false);
+        Map<Position, Boolean> result = new HashMap<>();
+        result.put(new Position(0), true);
+        result.put(new Position(1), false);
         Row row = new Row(result);
 
-        Map<Integer, Boolean> result2 = new HashMap<>();
-        result2.put(0, false);
-        result2.put(1, true);
+        Map<Position, Boolean> result2 = new HashMap<>();
+        result2.put(new Position(0), false);
+        result2.put(new Position(1), true);
         Row row2 = new Row(result2);
         Rows rows = new Rows(Arrays.asList(row, row2));
 
-        Map<PlayerName, Integer> finalLocationByName = players.findFinalLocationByName(rows, "all");
+        Map<PlayerName, Position> finalLocationByName = players.findFinalLocationByName(rows, "all");
 
         //when
         GameResult gameResult = GameResult.create(finalLocationByName, ladderPrizes);

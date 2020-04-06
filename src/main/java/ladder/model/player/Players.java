@@ -1,5 +1,6 @@
 package ladder.model.player;
 
+import ladder.model.row.Position;
 import ladder.model.row.Rows;
 
 import java.util.Collections;
@@ -30,8 +31,8 @@ public class Players {
         return players;
     }
 
-    public Map<PlayerName, Integer> findFinalLocationByName(Rows rows, String name) {
-        Map<PlayerName, Integer> finalLocation = new HashMap<>();
+    public Map<PlayerName, Position> findFinalLocationByName(Rows rows, String name) {
+        Map<PlayerName, Position> finalLocation = new HashMap<>();
 
         if (isValidPlayerName(name)) {
             players.stream()
@@ -43,8 +44,8 @@ public class Players {
         return findAllFinalLocations(rows);
     }
 
-    private Map<PlayerName, Integer> findAllFinalLocations(Rows rows) {
-        Map<PlayerName, Integer> finalLocation = new HashMap<>();
+    private Map<PlayerName, Position> findAllFinalLocations(Rows rows) {
+        Map<PlayerName, Position> finalLocation = new HashMap<>();
         players.stream()
                 .forEach(it -> finalLocation.put(it.getName(), it.findFinalLocation(rows)));
         return finalLocation;

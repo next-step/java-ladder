@@ -3,6 +3,7 @@ package ladder.model.result;
 import ladder.model.player.PlayerName;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.prize.PrizeName;
+import ladder.model.row.Position;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,11 +17,11 @@ public class GameResult {
         this.result = Collections.unmodifiableMap(result);
     }
 
-    public static GameResult create(Map<PlayerName, Integer> finalLocationByName, LadderPrizes ladderPrizes) {
+    public static GameResult create(Map<PlayerName, Position> finalLocationByName, LadderPrizes ladderPrizes) {
         Map<PlayerName, PrizeName> gameResult = new HashMap<>();
 
         finalLocationByName.keySet().stream()
-                .forEach(it -> gameResult.put(it, ladderPrizes.findPrizeNameAtIndex(finalLocationByName.get(it))));
+                .forEach(it -> gameResult.put(it, ladderPrizes.findPrizeNameAtIndex(finalLocationByName.get(it).getPosition())));
 
         return new GameResult(gameResult);
     }

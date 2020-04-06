@@ -5,6 +5,7 @@ import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
+import ladder.model.row.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 
@@ -106,7 +107,7 @@ public class ResultView {
 
         System.out.print(ONE_VERTICAL);
         for (int i = 0; i < players.getPlayers().size() - 1; i++) {
-            printValue(row.getRowElement(i));
+            printValue(row.getRowElement(new Position(i)));
         }
 
         printBlankLine();
