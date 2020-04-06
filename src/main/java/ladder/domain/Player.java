@@ -1,37 +1,18 @@
 package ladder.domain;
 
-import ladder.exception.InvalidNameException;
-import ladder.exception.NameLengthOutOfBoundException;
-
 import java.util.Objects;
 
 public class Player {
-    private static final int NAME_MAX_LENGTH = 5;
-
-    private final String name;
+    private final PlayerName name;
     private final Position position;
 
     public Player(final String name, final int startPosition) {
-        validName(name);
-        validNameLength(name);
-        this.name = name;
+        this.name = new PlayerName(name);
         this.position = new Position(startPosition);
     }
 
-    public String getName() {
+    public PlayerName name() {
         return name;
-    }
-
-    private void validName(final String name) {
-        if (Objects.isNull(name) || name.trim().isEmpty()) {
-            throw new InvalidNameException(name);
-        }
-    }
-
-    private void validNameLength(final String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
-            throw new NameLengthOutOfBoundException(name);
-        }
     }
 
     @Override
