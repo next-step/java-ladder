@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.type.ActionType;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -8,23 +9,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private static final List<Boolean> LINE_POINT = Arrays.asList(true, false);
+    private static final List<ActionType> ACTION_TYPES = Arrays.asList(ActionType.RIGHT, ActionType.DOWN);
     private static final int POINT_INDEX = 0;
 
     @Getter
-    private List<Boolean> points;
+    private List<ActionType> actions;
 
     private Line(int userCount) {
-        Collections.shuffle(LINE_POINT);
+        Collections.shuffle(ACTION_TYPES);
 
-        points = new ArrayList<>();
-        points.add(LINE_POINT.get(POINT_INDEX));
+        actions = new ArrayList<>();
+        actions.add(ACTION_TYPES.get(POINT_INDEX));
 
-        for (int i = 1; i < userCount - 1; i++) {
-            points.add(getPoint(i));
+        for (int i = 1; i < userCount; i++) {
+            actions.add(getPoint(userCount, i));
         }
-
-        points.add(false);
     }
 
     public static List<Line> listOf(int userCount, int lineHeight) {
@@ -37,13 +36,17 @@ public class Line {
         return lines;
     }
 
-    private Boolean getPoint(int index) {
-        if (this.points.get(index - 1)) {
-            return false;
+    private ActionType getPoint(int userCount, int index) {
+        if (this.actions.get(index - 1) == ActionType.RIGHT) {
+            return ActionType.LEFT;
         }
 
-        Collections.shuffle(LINE_POINT);
+        if (index == userCount - 1) {
+            return ActionType.DOWN;
+        }
 
-        return LINE_POINT.get(POINT_INDEX);
+        Collections.shuffle(ACTION_TYPES);
+
+        return ACTION_TYPES.get(POINT_INDEX);
     }
 }

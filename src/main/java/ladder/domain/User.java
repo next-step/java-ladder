@@ -14,6 +14,8 @@ public class User {
 
     @Getter
     private String name;
+    @Getter
+    private String reward;
 
     private User(String name) {
         this.name = name;
@@ -27,6 +29,10 @@ public class User {
         return Arrays.stream(userNames)
                 .map(username -> new User(username))
                 .collect(Collectors.toList());
+    }
+
+    public void setReward(int startIndex, Ladder ladder) {
+        this.reward = ladder.getRewards(startIndex);
     }
 
     private static void validNameLength(List<String> userNames) {
