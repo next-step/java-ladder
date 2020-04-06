@@ -32,10 +32,6 @@ public class LadderLines {
         return new LadderLines(ladders);
     }
 
-    public List<LadderLine> getLines() {
-        return lines;
-    }
-
     public int getPoleCount() {
         return lines.stream()
                 .findAny()
@@ -43,14 +39,18 @@ public class LadderLines {
                 .orElseThrow(() -> new IllegalArgumentException("Can not find ladder line pole count."));
     }
 
-    public MemberPolePosition proceed(Members members) {
-        MemberPolePosition polePosition = MemberPolePosition.newInstance(members);
+    public List<LadderPole> proceedAll() {
+        return IntStream.range(0, getPoleCount())
+                .mapToObj(this::proceed)
+                .collect(Collectors.toList());
+    }
 
-        for (LadderLine line : lines) {
-            polePosition = line.proceed(polePosition);
+    public LadderPole proceed(int polePosition) {
+        LadderPole prePosition = LadderPole.of(polePosition);
+
+        for (LadderLine ladderLine : lines) {
+            prePosition = ladderLine.proceed(prePosition);
         }
-
-        return polePosition;
-
+        return prePosition;
     }
 }

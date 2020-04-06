@@ -1,8 +1,10 @@
 package ladder.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderLine {
@@ -31,10 +33,28 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
-    public MemberPolePosition proceed(MemberPolePosition polePosition) {
-        IntStream.range(0, polePosition.count())
-                .boxed()
+    public LadderPole proceed(LadderPole polePosition) {
+        return getNearLadderBridgeIndex(polePosition.getPolePosition()).stream()
+                .filter(i -> bridges.get(i) == LadderBridge.EXIST)
+                .findAny()
+                .map(LadderPole::of)
+                .orElse(polePosition);
     }
+
+    public List<Integer> getNearLadderBridgeIndex(final int polePosition) {
+        List<Integer> bridgeIndexes = new ArrayList<>();
+
+        if (polePosition != 0) {
+            bridgeIndexes.add(polePosition - 1);
+        }
+
+        if (polePosition != bridges.size()) {
+            bridgeIndexes.add(polePosition);
+        }
+
+        return bridgeIndexes;
+    }
+
 
     public List<LadderBridge> getBridges() {
         return bridges;
@@ -43,6 +63,7 @@ public class LadderLine {
     public int getPoleCount() {
         return bridges.size() + 1;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

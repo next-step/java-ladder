@@ -29,7 +29,7 @@ public class LadderGame {
     }
 
     public LadderGameResult start() {
-        return ladder.proceed(members);
+        return LadderGameResult.newInstance(members, ladder.proceedAll());
     }
 
     public Members getMembers() {

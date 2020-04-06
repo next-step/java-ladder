@@ -1,5 +1,8 @@
 package ladder.model;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Ladder {
 
     private final LadderLines lines;
@@ -18,7 +21,7 @@ public class Ladder {
     }
 
     public static Ladder newInstance(final int poleCount, final int height, final String rewords) {
-        return newInstance(count, LadderHeight.newInstance(height), LadderGameRewords.newInstance(rewords));
+        return newInstance(poleCount, LadderHeight.newInstance(height), LadderGameRewords.newInstance(rewords));
     }
 
     public static Ladder newInstance(final int poleCount, final LadderHeight ladderHeight, final LadderGameRewords ladderGameRewords) {
@@ -29,9 +32,11 @@ public class Ladder {
         return lines.getPoleCount();
     }
 
-    public LadderGameResult proceed(Members members) {
-        MemberPolePosition memberPoleLastPosition = lines.proceed(members);
-
-        return LadderGameResult.newInstance(memberPoleLastPosition, ladderGameRewords);
+    public LadderGameRewords proceedAll() {
+        List<LadderGameReword> proceedResult = lines.proceedAll()
+                .stream()
+                .map(pole -> ladderGameRewords.getLadderGameReword(pole.getPolePosition()))
+                .collect(Collectors.toList());
+        return LadderGameRewords.newInstance(proceedResult);
     }
 }
