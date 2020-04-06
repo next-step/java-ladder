@@ -1,7 +1,10 @@
-package ladder;
+package ladder.domain.result;
 
-import ladder.model.*;
-import org.assertj.core.api.Assertions;
+import ladder.model.player.Player;
+import ladder.model.player.Players;
+import ladder.model.result.LadderResult;
+import ladder.model.row.Height;
+import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

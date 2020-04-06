@@ -1,9 +1,9 @@
-package ladder;
+package ladder.domain.row;
 
-import ladder.model.Height;
-import ladder.model.Player;
-import ladder.model.Players;
-import ladder.model.Rows;
+import ladder.model.row.Height;
+import ladder.model.player.Player;
+import ladder.model.player.Players;
+import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

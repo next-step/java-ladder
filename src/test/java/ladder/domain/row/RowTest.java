@@ -1,6 +1,6 @@
-package ladder;
+package ladder.domain.row;
 
-import ladder.model.Row;
+import ladder.model.row.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

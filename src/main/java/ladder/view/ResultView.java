@@ -1,6 +1,10 @@
 package ladder.view;
 
-import ladder.model.*;
+import ladder.model.player.Player;
+import ladder.model.player.Players;
+import ladder.model.prize.LadderPrizes;
+import ladder.model.row.Row;
+import ladder.model.row.Rows;
 
 public class ResultView {
     private static final String BORDER_LINE_TOP = "=============================";

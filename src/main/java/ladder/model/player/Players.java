@@ -1,8 +1,7 @@
-package ladder.model;
+package ladder.model.player;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Players {
     private List<Player> players;

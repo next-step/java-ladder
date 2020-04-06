@@ -1,4 +1,6 @@
-package ladder.model;
+package ladder.model.row;
+
+import ladder.model.player.Players;
 
 import java.util.Collections;
 import java.util.List;

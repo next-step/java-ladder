@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.prize;
 
 import java.util.Collections;
 import java.util.List;

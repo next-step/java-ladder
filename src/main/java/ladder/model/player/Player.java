@@ -1,4 +1,7 @@
-package ladder.model;
+package ladder.model.player;
+
+import ladder.model.row.Row;
+import ladder.model.row.Rows;
 
 import static ladder.Messages.WARNING_NOT_ALLOWED_NAME_LENGTH;
 

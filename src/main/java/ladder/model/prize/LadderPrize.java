@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.prize;
 
 import static ladder.Messages.WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING;
 import static ladder.Messages.WARNING_NOT_ALLOWED_NUMBER;

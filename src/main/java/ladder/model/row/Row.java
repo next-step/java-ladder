@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.row;
 
 import ladder.randomgenerator.BooleanGenerator;
 

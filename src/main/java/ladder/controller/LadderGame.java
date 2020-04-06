@@ -1,6 +1,9 @@
 package ladder.controller;
 
-import ladder.model.*;
+import ladder.model.player.Players;
+import ladder.model.prize.LadderPrizes;
+import ladder.model.result.LadderResult;
+import ladder.model.row.Rows;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

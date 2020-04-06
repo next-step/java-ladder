@@ -1,6 +1,6 @@
-package ladder;
+package ladder.domain.row;
 
-import ladder.model.Height;
+import ladder.model.row.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

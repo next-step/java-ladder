@@ -1,7 +1,7 @@
-package ladder;
+package ladder.domain.prize;
 
-import ladder.model.LadderPrize;
-import ladder.model.LadderPrizes;
+import ladder.model.prize.LadderPrize;
+import ladder.model.prize.LadderPrizes;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

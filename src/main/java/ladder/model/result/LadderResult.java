@@ -1,4 +1,8 @@
-package ladder.model;
+package ladder.model.result;
+
+import ladder.model.player.Player;
+import ladder.model.player.Players;
+import ladder.model.row.Rows;
 
 import java.util.Map;
 
