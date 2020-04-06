@@ -7,6 +7,9 @@ public class LadderGame {
     private List<Participant> participants;
     private Ladder ladder;
 
+    public LadderGame(List<Participant> participants) {
+        
+    }
     public LadderGame(List<Participant> participants, Ladder ladder) {
         this.participants = participants;
         this.ladder = ladder;

@@ -50,7 +50,6 @@
 8. 원하는 결과를 출력한다.  
     - Key : Value
      
-__
 ## 테스트 코드 목록  
 
 1. 이름 목록을 입력받아 이름 길이가 5가 넘는 경우 Exception 처리를 하는지 여부  
@@ -79,7 +78,8 @@ __
 7. LadderGame: Game의 구성 정보 객체를 감싸 관리한다.  
     - Game의 Participant 목록과 Ladder를 가지고 있다. (step2)  
     - Game의 결과(GameResult)도 가지고 있다.(추가)  
-8. GameResult: Game의 결과를 관리한다. Map<>을 감싸는 일급콜렉션?   
+8. GameResult: Game의 결과를 관리한다. Map이 아니라, 각 GameResult 객체는 하나의 결과만을 갖는다. (participant, result)  
+9. LadderResult: List<String>으로 받은 실행결과를 감싸는 일급콜렉션  
 
 ## 고민점
   
