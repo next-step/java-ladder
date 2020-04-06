@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -17,6 +18,16 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
+    public List<GameResult> play() {
+        List<GameResult> gameResults = new ArrayList<>();
+
+        for(Participant participant : participants) {
+            int finalPosition = ladder.move(participant.getPosition());
+            gameResults.add(new GameResult(participant, ladderResults.getByPosition(finalPosition)));
+        }
+
+        return gameResults;
+    }
     private void assertParticipantAndResultCount(List<Participant> participants, LadderResults ladderResults) {
         if(participants.size() != ladderResults.getSize()) {
             throw new IllegalArgumentException(PARTICIPANTS_RESULTS_COUNT_ERROR);

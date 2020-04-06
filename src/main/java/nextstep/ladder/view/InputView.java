@@ -20,10 +20,10 @@ public class InputView {
     public List<Participant> getParticipants() {
         viewUtils.printLine(PARTICIPANT_NAME_INFORMATION);
         String inputText = viewUtils.readLine();
-        String[] participantNames = inputText.split(DELIMITER_COMMA);
+        List<String> participantNames = Arrays.asList(inputText.split(DELIMITER_COMMA));
 
-        return Arrays.stream(participantNames)
-                .map(Participant::new)
+        return participantNames.stream()
+                .map(name -> new Participant(name, participantNames.indexOf(name)))
                 .collect(Collectors.toList());
     }
 

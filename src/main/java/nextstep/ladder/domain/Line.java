@@ -17,7 +17,7 @@ public class Line {
     }
 
     /**
-     * 5명의 사용자가 있지만, 5명 사용자를 연결할 수 있도록 4개의 Point를 생성한다.
+     * 5명의 사용자를 연결할 수 있는 4개의 Point를 생성한다.
      * Line은 사다리 높이만큼 생성되는 하나의 행으로써의 역할을 가진다.
      */
     public Line(int participantCount) {
@@ -40,36 +40,47 @@ public class Line {
         return null;
     }
 
-    public int move(int startIndex) {
-        int endIndex = startIndex;
+    public int move(int startPosition) {
+        int nextPosition = startPosition;
 
-        if(endIndex > 0) {
-            Point leftPoint = getPointByIndex(endIndex - 1);
-
-            if(leftPoint.hasLine()) {
-                endIndex--;
+        boolean isMoveLeft = isMove(nextPosition, (position) -> {
+            if(position <= 0) {
+                return false;
             }
+
+            Point leftPoint = getPointByIndex(position - 1);
+            return leftPoint.hasLine();
+        });
+
+        if(isMoveLeft) {
+            return nextPosition - 1;
         }
 
-        if(endIndex == startIndex) {
-            if(endIndex < points.size()) {
-                Point rightPoint = getPointByIndex(endIndex);
-
-                if(rightPoint.hasLine()) {
-                    endIndex++;
-                }
+        boolean isMoveRight = isMove(nextPosition, (position) -> {
+            if(position == points.size()) {
+                return false;
             }
+
+           Point rightPoint = getPointByIndex(position);
+           return rightPoint.hasLine();
+        });
+
+        if(isMoveRight) {
+            return nextPosition + 1;
         }
-        return endIndex;
+
+        return nextPosition;
+    }
+
+    private boolean isMove(int position, MoveCondition moveCondition) {
+        return moveCondition.isMove(position);
     }
 
     private Point getPointByIndex(int index) {
-        for(Point point : points) {
-            if(point.getIndex() == index) {
-                return point;
-            }
-        }
-        throw new IllegalArgumentException(POINT_INDEX_ERROR);
+        return points.stream()
+                .filter(point -> point.isSameIndex(index))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(POINT_INDEX_ERROR));
     }
 
     private void assertPointHasLine(List<Point> points) {

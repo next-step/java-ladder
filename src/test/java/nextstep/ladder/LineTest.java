@@ -32,7 +32,7 @@ public class LineTest {
      */
     @Test
     @DisplayName("출발점으로부터 알맞은 결과에 도착하는지 확인한다.")
-    void playTest() {
+    void moveTest() {
         List<Point> points = new ArrayList<>();
         points.add(new Point(0, true));
         points.add(new Point(1, false));
@@ -48,7 +48,7 @@ public class LineTest {
      */
     @Test
     @DisplayName("출발점으로부터 알맞은 결과에 도착하는지 확인한다.")
-    void playTest2() {
+    void moveTest2() {
         List<Point> points = new ArrayList<>();
         points.add(new Point(0, false));
         points.add(new Point(1, true));
@@ -64,7 +64,7 @@ public class LineTest {
      */
     @Test
     @DisplayName("출발점으로부터 알맞은 결과에 도착하는지 확인한다.")
-    void playTest3() {
+    void moveTest3() {
         List<Point> points = new ArrayList<>();
         points.add(new Point(0, false));
         points.add(new Point(1, false));

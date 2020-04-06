@@ -16,9 +16,9 @@ public class LadderGameTest {
     @DisplayName("사다리 게임 생성을 위해 입력받은 Participant와 실행결과의 개수가 다르면 Exception 처리를 한다.")
     void isSameCountParticipantAndResult() {
         List<Participant> participants = new ArrayList<>();
-        participants.add(new Participant("참가자1"));
-        participants.add(new Participant("참가자2"));
-        participants.add(new Participant("참가자3"));
+        participants.add(new Participant("참가자1", 0));
+        participants.add(new Participant("참가자2", 1));
+        participants.add(new Participant("참가자3", 2));
 
         List<String> results = new ArrayList<>();
         results.add("결과1");

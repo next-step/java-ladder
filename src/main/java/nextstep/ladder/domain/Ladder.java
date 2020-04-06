@@ -24,6 +24,15 @@ public class Ladder {
         this.lines = lines;
     }
 
+    public int move(int startPosition) {
+        int nextPosition = startPosition;
+
+        for(Line line : lines) {
+            nextPosition = line.move(nextPosition);
+        }
+        return nextPosition;
+    }
+
     private void assertLadderHeight(int height) {
         if(height < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException(LADDER_HEIGHT_ERROR);

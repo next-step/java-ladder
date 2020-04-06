@@ -23,4 +23,8 @@ public class LadderResults {
     public int getSize() {
         return results.size();
     }
+
+    public String getByPosition(int endPosition) {
+        return results.get(endPosition);
+    }
 }

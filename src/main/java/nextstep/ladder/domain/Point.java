@@ -28,7 +28,10 @@ public class Point {
         }
     }
 
-    public int getIndex() {
-        return index;
+    public boolean isSameIndex(int index) {
+        if(this.index == index) {
+            return true;
+        }
+        return false;
     }
 }
