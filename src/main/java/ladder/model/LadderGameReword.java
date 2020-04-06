@@ -11,7 +11,7 @@ public class LadderGameReword {
         this.reword = reword;
     }
 
-    private void validate(String reword) {
+    private void validate(final String reword) {
         if (Objects.isNull(reword) || "".equals(reword.trim())) {
             throw new IllegalArgumentException("given reword is null or empty.");
         }
@@ -20,7 +20,6 @@ public class LadderGameReword {
     public static LadderGameReword of(final String reword) {
         return new LadderGameReword(reword);
     }
-
 
     public String getReword() {
         return reword;

@@ -22,7 +22,7 @@ public class Ladder {
     }
 
     public static Ladder newInstance(final int count, final int height) {
-        return newInstance(new MemberCount(count), LadderHeight.newInstance(height));
+        return newInstance(MemberCount.of(count), LadderHeight.newInstance(height));
     }
 
     public static Ladder newInstance(final MemberCount memberCount, final LadderHeight height) {
@@ -34,6 +34,9 @@ public class Ladder {
 
     public List<LadderLine> getLines() {
         return lines;
+    }
+
+    public int getPoleSize() {
     }
 
     @Override

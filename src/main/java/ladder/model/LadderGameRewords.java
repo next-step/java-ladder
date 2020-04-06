@@ -12,22 +12,22 @@ public class LadderGameRewords {
 
     private final List<LadderGameReword> ladderGameRewords;
 
-    private LadderGameRewords(List<LadderGameReword> ladderGameRewords) {
+    private LadderGameRewords(final List<LadderGameReword> ladderGameRewords) {
         validate(ladderGameRewords);
         this.ladderGameRewords = Collections.unmodifiableList(ladderGameRewords);
     }
 
-    private void validate(List<LadderGameReword> ladderGameRewords) {
+    private void validate(final List<LadderGameReword> ladderGameRewords) {
         if (Objects.isNull(ladderGameRewords) || ladderGameRewords.isEmpty()) {
             throw new IllegalArgumentException("LadderGameRewords is empty");
         }
     }
 
-    public static LadderGameRewords newInstance(String rewords) {
+    public static LadderGameRewords newInstance(final String rewords) {
         return newInstance(separateLineWithComma(rewords));
     }
 
-    private static LadderGameRewords newInstance(String[] rewordArray) {
+    private static LadderGameRewords newInstance(final String[] rewordArray) {
         List<LadderGameReword> rewords = Arrays.stream(rewordArray)
                 .map(LadderGameReword::of)
                 .collect(Collectors.toList());
@@ -35,7 +35,7 @@ public class LadderGameRewords {
         return newInstance(rewords);
     }
 
-    public static LadderGameRewords newInstance(List<LadderGameReword> rewords) {
+    public static LadderGameRewords newInstance(final List<LadderGameReword> rewords) {
         return new LadderGameRewords(rewords);
     }
 }

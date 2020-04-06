@@ -40,7 +40,7 @@ public class Members {
     }
 
     public MemberCount count() {
-        return new MemberCount(members.size());
+        return MemberCount.of(members.size());
     }
 
     public List<Member> getMembers() {
