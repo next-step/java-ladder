@@ -40,6 +40,11 @@ public class Players {
             return finalLocation;
 
         }
+        return findAllFinalLocations(rows);
+    }
+
+    private Map<String, Integer> findAllFinalLocations(Rows rows) {
+        Map<String, Integer> finalLocation = new HashMap<>();
         players.stream()
                 .forEach(it -> finalLocation.put(it.getName(), it.findFinalLocation(rows)));
         return finalLocation;
