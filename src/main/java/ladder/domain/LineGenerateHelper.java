@@ -1,12 +1,12 @@
 package ladder.domain;
 
+import ladder.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class LineGenerateHelper {
-    private static final Random random = new Random();
 
     private LineGenerateHelper() { }
 
@@ -27,6 +27,6 @@ public class LineGenerateHelper {
         if (isExistPrev) {
             return Boolean.FALSE;
         }
-        return random.nextBoolean();
+        return RandomUtil.nextBoolean();
     }
 }
