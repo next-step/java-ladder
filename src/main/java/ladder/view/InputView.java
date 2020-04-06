@@ -38,16 +38,18 @@ public class InputView {
         return ScannerUtil.readLine();
     }
 
-    private List<Player> convertToPlayer(String[] names) {
+    private List<Player> convertToPlayer(List<String> names) {
         List<Player> players = new ArrayList<>();
-        for (int i = 0; i < names.length; i++) {
-            players.add(new Player(names[i], i));
+        for (int i = 0; i < names.size(); i++) {
+            players.add(new Player(names.get(i), i));
         }
         return players;
     }
 
-    private String[] splitNames(String names) {
-        return names.split(DELIMITER);
+    private List<String> splitNames(String names) {
+        return Arrays.stream(names.split(DELIMITER))
+                .map(it -> it.trim())
+                .collect(Collectors.toList());
     }
 
     private List<LadderPrize> splitPrizeNames(String prizeNames) {

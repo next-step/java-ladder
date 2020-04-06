@@ -41,7 +41,7 @@ public class PlayersTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Players players = Players.create(Arrays.asList(
                     new Player("Mark"),
-                    new Player("Mark"),
+                    new Player("Sujin"),
                     new Player("Sujin")));
         });
     }

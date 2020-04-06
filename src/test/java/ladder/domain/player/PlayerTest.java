@@ -17,15 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayerTest {
-    @DisplayName("게임에 참여하는 사람의 이름이 5글자를 넘으면 예외 발생")
-    @ParameterizedTest
-    @ValueSource(strings = {"abcdef", "일이삼사오육"})
-    void validateNameLengthTest(String input) {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Player(input);
-        });
-    }
-
     @DisplayName("다음 Row 를 주면, Player의 다음 Location을 준다.")
     @Test
     void findNextLocation() {

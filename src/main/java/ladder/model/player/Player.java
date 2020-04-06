@@ -11,28 +11,20 @@ public class Player {
     private static final int DECREASE_ONE = -1;
     private static final int INCREASE_ONE = +1;
 
-    private String name;
+    private PlayerName name;
     private int location;
 
     public Player(String name) {
-        validateNameLength(name);
-        this.name = name;
+        this.name = new PlayerName(name);
     }
 
     public Player(String name, int location) {
-        validateNameLength(name);
-        this.name = name;
+        this.name = new PlayerName(name);
         this.location = location;
     }
 
-    private void validateNameLength(String name) {
-        if (name.length() > NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException(WARNING_NOT_ALLOWED_NAME_LENGTH);
-        }
-    }
-
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int findFinalLocation(Rows rows) {

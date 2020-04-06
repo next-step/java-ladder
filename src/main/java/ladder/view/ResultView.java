@@ -91,12 +91,12 @@ public class ResultView {
         return (int) Math.round((ONE_BLOCK_WIDTH - name.length()) / HALF_BLOCK_WIDTH);
     }
 
-    private StringBuilder createBlanks(int count) {
+    private String createBlanks(int count) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < count; i++) {
             stringBuilder.append(ONE_BLANK);
         }
-        return stringBuilder;
+        return stringBuilder.toString();
     }
 
     private void printOneRow(Row row) {
