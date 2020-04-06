@@ -3,6 +3,8 @@ package ladder.domain;
 import ladder.exception.PrizeCountNotMatchException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -31,5 +33,19 @@ class PrizesTest {
         assertThatExceptionOfType(PrizeCountNotMatchException.class).isThrownBy(
                 () -> new Prizes(input, playerCount).getPrizes()
         );
+    }
+
+    @DisplayName("입력받은 상품순서대로 상품 위치가 정해진다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0:꽝", "1:5000", "2:꽝", "3:3000"}, delimiter = ':')
+    void orderPrizePosition(int position, String expect) {
+        int playerCount = 4;
+        String input = "꽝,5000,꽝,3000";
+
+        Prizes prizes = new Prizes(input, playerCount);
+
+        Prize prize = prizes.find(new Position(position));
+
+        assertThat(prize.getPrize()).isEqualTo(expect);
     }
 }
