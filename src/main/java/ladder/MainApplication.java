@@ -5,6 +5,9 @@ import ladder.view.InputView;
 
 public class MainApplication {
     public static void main(String[] args) {
-        LadderGame.start(new InputView());
+        InputView inputView = new InputView();
+
+        LadderGame.start(inputView);
+        LadderGame.getResult(inputView);
     }
 }
