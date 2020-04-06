@@ -92,8 +92,8 @@ class NodeTest {
     @Test
     public void createFirst_success() throws Exception {
         //given
-        Node firstRight = Node.createFirst(true);
-        Node firstNone = Node.createFirst(false);
+        Node firstRight = Node.of(true);
+        Node firstNone = Node.of(false);
 
         //then
         assertFalse(firstRight.isMovableLeft());

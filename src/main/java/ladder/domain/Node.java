@@ -13,7 +13,7 @@ public class Node {
         this.way = way;
     }
 
-    public static Node createFirst(final boolean isMovableRight) {
+    public static Node of(final boolean isMovableRight) {
         return new Node(ZERO, new Way(false, isMovableRight));
     }
 
