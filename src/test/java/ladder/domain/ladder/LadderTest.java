@@ -28,7 +28,7 @@ public class LadderTest {
     @Test
     @DisplayName("라인 수 가져오는 테스트")
     void getLinesTest() {
-        assertThat(testLadder.getBarMatrix())
+        assertThat(testLadder.getBarMatrix().getBarMatrix())
                 .hasSize(height);
     }
 

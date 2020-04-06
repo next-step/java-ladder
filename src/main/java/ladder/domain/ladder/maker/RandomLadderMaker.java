@@ -44,13 +44,12 @@ class RandomLadderMaker implements MakeLadderStrategy {
     }
 
     private List<Bar> getBarList() {
-        return Stream.iterate(random.nextBoolean(), this::getNextBar)
+        return Stream.iterate(Bar.of(random.nextBoolean()), this::getNextBar)
                 .limit(size)
-                .map(Bar::of)
                 .collect(Collectors.toList());
     }
 
-    private Boolean getNextBar(Boolean beforeBar) {
-        return !beforeBar && random.nextBoolean();
+    private Bar getNextBar(Bar beforeBar) {
+        return Bar.of(!beforeBar.isExist() && random.nextBoolean());
     }
 }
