@@ -5,6 +5,7 @@ import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrize;
 import ladder.model.prize.LadderPrizes;
+import ladder.model.prize.PrizeName;
 import ladder.model.result.GameResult;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
@@ -51,6 +52,6 @@ public class GameResultTest {
         GameResult gameResult = GameResult.create(finalLocationByName, ladderPrizes);
 
         //then
-        assertThat(gameResult.findPrizeByPlayerName(name)).isEqualTo(prizeName);
+        assertThat(gameResult.findPrizeByPlayerName(name)).isEqualTo(new PrizeName(prizeName));
     }
 }

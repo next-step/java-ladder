@@ -18,7 +18,7 @@ public class LadderPrizes {
         return ladderPrizes;
     }
 
-    public String findPrizeNameAtIndex(int index){
+    public PrizeName findPrizeNameAtIndex(int index){
         return ladderPrizes.get(index).getPrizeName();
     }
 

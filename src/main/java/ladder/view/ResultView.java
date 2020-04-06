@@ -59,7 +59,7 @@ public class ResultView {
     private void printPrizes(LadderPrizes ladderPrizes) {
         ladderPrizes.getLadderPrizes().stream()
                 .map(it -> it.getPrizeName())
-                .map(it -> createBlanks(findBlankCountBefore(it)) + it + createBlanks(findBlankCountAfter(it)))
+                .map(it -> createBlanks(findBlankCountBefore(it.getPrizeName())) + it + createBlanks(findBlankCountAfter(it.getPrizeName())))
                 .forEach(it -> System.out.print(it));
         printBlankLine();
     }
