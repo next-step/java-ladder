@@ -9,14 +9,14 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderPrizeTest {
-    @DisplayName("all, 꽝을 입력하면 정상 수행")
+    @DisplayName("꽝을 입력하면 정상 수행")
     @ParameterizedTest
-    @ValueSource(strings = {"all", "All", "ALL", "꽝"})
+    @ValueSource(strings = {"꽝"})
     void createTest(String input) {
         assertThatCode(() -> new LadderPrize(input)).doesNotThrowAnyException();
     }
 
-    @DisplayName("꽝과 all이 아닌 글자를 입력하면 예외 발생")
+    @DisplayName("꽝이 아닌 글자를 입력하면 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"글자", "이것은 글자"})
     void throwExceptionWhenItsNameAreNotBlank(String input) {
@@ -25,9 +25,9 @@ public class LadderPrizeTest {
         });
     }
 
-    @DisplayName("양수가 아닌 숫자를 입력하면 예외 발생")
+    @DisplayName("0보다 작은 숫자를 입력하면 예외 발생")
     @ParameterizedTest
-    @ValueSource(strings = {"-1", "0", "-10000"})
+    @ValueSource(strings = {"-1", "-10000"})
     void throwExceptionWhenItsNameAreNotNumber(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new LadderPrize(input);

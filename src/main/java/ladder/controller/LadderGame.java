@@ -12,7 +12,5 @@ public class LadderGame {
         ResultView.of(players, rows).printLadder(ladderPrizes);
 
         LadderResult ladderResult = LadderResult.create(players, rows);
-        LadderGameResult ladderGameResult = LadderGameResult.create(ladderResult, ladderPrizes);
-        ResultView.of(players, rows).printGameResult(ladderGameResult, inputView.getStringPlayerToKnow());
     }
 }

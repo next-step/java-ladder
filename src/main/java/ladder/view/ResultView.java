@@ -31,35 +31,6 @@ public class ResultView {
         printTitle();
         printPlayers();
         printRows();
-        printPrizes(ladderPrizes);
-    }
-
-    private void printPrizes(LadderPrizes ladderPrizes) {
-        ladderPrizes.getLadderPrizes().stream()
-                .forEach(it -> System.out.print(it.getPrizeName() + createBlanks(3)));
-        System.out.println();
-    }
-
-    public void printGameResult(LadderGameResult ladderGameResult, String playerToKnow) {
-        if (ALL.equals(playerToKnow.toLowerCase())) {
-            printResultAll(ladderGameResult);
-        }
-        if (!ALL.equals(playerToKnow.toLowerCase())) {
-            printResultForOnePlayer(ladderGameResult, playerToKnow);
-        }
-    }
-
-    private void printResultAll(LadderGameResult ladderGameResult) {
-        printResultTitle();
-        players.getPlayers().stream()
-                .forEach(it -> System.out.println(it + DELIMITER_TO_PRINT +
-                        ladderGameResult.findPrizeOfPlayer(it).getPrizeName()));
-    }
-
-    private void printResultForOnePlayer(LadderGameResult ladderGameResult, String playerToKnow) {
-        printResultTitle();
-        Player player = players.findPlayer(playerToKnow);
-        System.out.println(player.getName() + DELIMITER_TO_PRINT + ladderGameResult.findPrizeOfPlayer(player));
     }
 
     private void printResultTitle() {
