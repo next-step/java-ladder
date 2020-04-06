@@ -9,13 +9,13 @@ public class Player {
     private static final int NAME_MAX_LENGTH = 5;
 
     private final String name;
-    private final int position;
+    private final Position position;
 
     public Player(final String name, final int startPosition) {
         validName(name);
         validNameLength(name);
         this.name = name;
-        this.position = startPosition;
+        this.position = new Position(startPosition);
     }
 
     public String getName() {
@@ -39,8 +39,8 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final Player player = (Player) o;
-        return position == player.position &&
-                Objects.equals(name, player.name);
+        return Objects.equals(name, player.name) &&
+                Objects.equals(position, player.position);
     }
 
     @Override
