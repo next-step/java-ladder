@@ -1,11 +1,23 @@
 package ladder.domain;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Prizes {
-    private final String prizes;
+    private final List<Prize> prizes;
+
     public Prizes(final String prizes) {
-        this.prizes = prizes;
+        this.prizes = Arrays.stream(prizes.split(","))
+                            .map(Prize::new)
+                            .collect(Collectors.toList())
+        ;
+    }
+
+    public List<Prize> getPrizes() {
+        return Collections.unmodifiableList(prizes);
     }
 
     @Override
