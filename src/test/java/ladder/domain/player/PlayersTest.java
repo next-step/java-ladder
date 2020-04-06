@@ -35,7 +35,7 @@ public class PlayersTest {
         assertThat(players.getPlayerCount()).isEqualTo(3);
     }
 
-    @DisplayName("플레이어의 이름은 중복되면 안 된다.")
+    @DisplayName("플레이어의 이름이 중복되면 예외를 던진다.")
     @Test
     void throwExceptionWhenDuplicationNamesTest(){
         assertThatIllegalArgumentException().isThrownBy(() -> {
