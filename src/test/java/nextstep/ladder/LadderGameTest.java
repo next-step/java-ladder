@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.domain.Participant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,10 @@ public class LadderGameTest {
         results.add("2000");
         results.add("꽝");
         results.add("꽝");
-        LadderResult ladderResult = new LadderResult(results);
+        LadderResults ladderResults = new LadderResults(results);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new LadderGame(participants, ladderResult);
-        }).withMessage("실행 결과를 참가자의 수만큼 입력해주세요.");
+            new LadderGame(participants, ladderResults);
+        }).withMessage(LadderGame.PARTICIPANTS_RESULTS_COUNT_ERROR);
     }
 }
