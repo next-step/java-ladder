@@ -12,6 +12,6 @@ public class LineTest {
         List<Line> lines = Line.listOf(3, 5);
 
         assertThat(lines).hasSize(5);
-        assertThat(lines.get(0).getPoints()).hasSize(3);
+        assertThat(lines.get(0).getActions()).hasSize(3);
     }
 }
