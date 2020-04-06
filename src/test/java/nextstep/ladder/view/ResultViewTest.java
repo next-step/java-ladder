@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,6 +11,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.Users;
+
 class ResultViewTest {
 
     private static ResultView resultView = ResultView.getResultView();
@@ -18,6 +26,7 @@ class ResultViewTest {
     private Line line;
     private List<Line> lineList;
     private Ladder ladder;
+    private Results results;
 
     @BeforeEach
     void setUp() {
@@ -40,6 +49,14 @@ class ResultViewTest {
                           new User("jk")
                 )
                       .collect(Collectors.toList())));
+
+        results = new Results(new ArrayList<>(
+                Stream.of(new Result("꽝"),
+                          new Result("5000"),
+                          new Result("꽝"),
+                          new Result("3000")
+                )
+                      .collect(Collectors.toList())));
     }
 
     @DisplayName("유저 이름을 출력한다.")
@@ -56,13 +73,21 @@ class ResultViewTest {
         assertThat(line).isEqualTo("     |-----|     |-----|");
     }
 
+    @DisplayName("실행결과를 출력한다.")
+    @Test
+    void appendResults() {
+        String results = resultView.appendResults(this.results);
+        assertThat(results).isEqualTo("    꽝  5000     꽝  3000");
+    }
+
     @DisplayName("입력 받은 사다리를 그린다.")
     @Test
     void drawLadder() {
-        String drawLadder = resultView.drawLadder(users, ladder);
+        String drawLadder = resultView.drawLadder(users, ladder, results);
         assertThat(drawLadder).isEqualTo(" pobi honux crong    jk\n"
                                          + "     |-----|     |-----|\n"
-                                         + "     |-----|     |-----|");
+                                         + "     |-----|     |-----|\n"
+                                         + "    꽝  5000     꽝  3000");
 
     }
 }

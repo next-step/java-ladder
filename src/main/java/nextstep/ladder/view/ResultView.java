@@ -1,6 +1,13 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
 import java.util.stream.Collectors;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.ResultRadderText;
+import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.Users;
 
 public class ResultView {
     private static final int MAX_NAME_LENGTH = 5;
@@ -26,11 +33,10 @@ public class ResultView {
     }
 
     public String appendLine(Line line) {
-
-        String tempLine = (String) line.getPoints()
-                                       .stream()
-                                       .map(point -> drawLineByPoint((Point) point))
-                                       .collect(Collectors.joining(VERTICAL));
+        String tempLine = line.getPoints()
+                              .stream()
+                              .map(point -> drawLineByPoint(point))
+                              .collect(Collectors.joining(VERTICAL));
         return NO_LINE + VERTICAL + tempLine + VERTICAL;
     }
 
@@ -41,23 +47,26 @@ public class ResultView {
         return NO_LINE;
     }
 
-    public String drawLadder(Users users, Ladder ladder) {
+    public String drawLadder(Users users, Ladder ladder, Results results) {
         String result = "";
         result += appendUserNames(users);
         result += NEW_LINE;
         result += appendLines(ladder);
+        result += NEW_LINE;
+        result += appendResults(results);
         return result;
     }
 
-    public void printLadder(Users users, Ladder ladder) {
-        System.out.println(drawLadder(users, ladder));
+    public void printLadder(Users users, Ladder ladder, Results results) {
+        System.out.println("\n사다리 결과\n");
+        System.out.println(drawLadder(users, ladder, results));
     }
 
     private String appendLines(Ladder ladder) {
-        return (String) ladder.getLadder()
-                              .stream()
-                              .map(line -> appendLine((Line) line))
-                              .collect(Collectors.joining(NEW_LINE));
+        return ladder.getLadder()
+                     .stream()
+                     .map(line -> appendLine(line))
+                     .collect(Collectors.joining(NEW_LINE));
     }
 
     private String appendBlank(String name) {
@@ -70,4 +79,11 @@ public class ResultView {
         return name;
     }
 
+    public String appendResults(Results results) {
+        return results.getResults()
+                      .stream()
+                      .map(result -> result.getResult())
+                      .map(result -> appendBlank(result))
+                      .collect(Collectors.joining(BLANK));
+    }
 }
