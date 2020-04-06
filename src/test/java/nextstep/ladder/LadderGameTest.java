@@ -21,10 +21,10 @@ public class LadderGameTest {
         participants.add(new Participant("참가자3"));
 
         List<String> results = new ArrayList<>();
-        results.add("꽝");
-        results.add("2000");
-        results.add("꽝");
-        results.add("꽝");
+        results.add("결과1");
+        results.add("결과2");
+        results.add("결과3");
+        results.add("결과4");
         LadderResults ladderResults = new LadderResults(results);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
