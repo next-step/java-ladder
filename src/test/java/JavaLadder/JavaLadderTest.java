@@ -54,6 +54,7 @@ public class JavaLadderTest {
     public void lineDuplicateTest() {
         Line line = new Line(3);
         System.out.println(line);
+        System.out.println(line.countLine());
         assertThat(line.countLine()).isLessThan(2);
     }
 
@@ -93,7 +94,7 @@ public class JavaLadderTest {
     @DisplayName("좌표이동테스트오른쪽")
     public void pointMoveRight() {
         Point point = new Point(1);
-        point.RightMove();
+        point.rightMove();
         assertThat(point.getPoint()).isEqualTo(2);
     }
 

@@ -49,28 +49,29 @@ public class Line {
     }
 
     public void moveByLine(Point point) {
-        if(point.getPoint() == 0){
-            //오른쪽체크
-            if(line.get(0)){
-                point.RightMove();
-            }
+        if (point.getPoint() == 0) {
+            checkRightMove(point);
             return;
         }
-
-        if(point.getPoint() == line.size()){
-            if(line.get(line.size()-1)){
-                point.leftMove();
-            }
+        if (point.getPoint() == line.size()) {
+            checkLeftMove(point);
             return;
         }
+        checkLeftMove(point);
+        checkRightMove(point);
+    }
 
-        //양쪽체크
-        if(line.get(point.getPoint()-1)){
+    private void checkLeftMove(Point point) {
+        if (line.get(point.getPoint() - 1)) {
             point.leftMove();
-            return;
-        }else if(line.get(point.getPoint())){
-            point.RightMove();
-            return;
         }
+        return;
+    }
+
+    private void checkRightMove(Point point) {
+        if (line.get(point.getPoint())) {
+            point.rightMove();
+        }
+        return;
     }
 }

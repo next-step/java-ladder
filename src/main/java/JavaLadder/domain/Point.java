@@ -21,7 +21,7 @@ public class Point {
         this.point--;
     }
 
-    public void RightMove() {
+    public void rightMove() {
         this.point++;
     }
 
