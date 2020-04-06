@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.PrizeCountNotMatchException;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -7,13 +9,22 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Prizes {
+    private static final String SEPARATOR = ",";
+
     private final List<Prize> prizes;
 
-    public Prizes(final String prizes) {
-        this.prizes = Arrays.stream(prizes.split(","))
+    public Prizes(final String prizes, final int playerCount) {
+        String[] splitPrizes = prizes.split(SEPARATOR);
+        checkAvailablePrizes(splitPrizes.length, playerCount);
+        this.prizes = Arrays.stream(splitPrizes)
                             .map(Prize::new)
-                            .collect(Collectors.toList())
-        ;
+                            .collect(Collectors.toList());
+    }
+
+    private void checkAvailablePrizes(final int prizeCount, final int playerCount) {
+        if (prizeCount != playerCount) {
+            throw new PrizeCountNotMatchException(prizeCount);
+        }
     }
 
     public List<Prize> getPrizes() {
