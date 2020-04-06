@@ -1,26 +1,19 @@
 package ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 class LinesTest {
 
-    @DisplayName("Lines에 Line을 새로 추가하고 반환한다")
+    @DisplayName("팩토리 메서드 테스트")
     @Test
-    public void addLine_success() throws Exception {
+    public void of_success() throws Exception {
         //given
-        Lines lines = new Lines();
-        Line line = new Line(Arrays.asList(new Node(2, new Way(false, false))));
-
-        //when
-        lines = lines.addLine(line);
+        Lines lines = Lines.of(5, 3);
 
         //then
-        assertThat(lines.size()).isEqualTo(1);
-        assertThat(lines.getLine(0).getNode(0).getIndex()).isEqualTo(2);
+        Assertions.assertThat(lines.getLines().size()).isEqualTo(3);
+        Assertions.assertThat(lines.getLines().get(0).getNodes().size()).isEqualTo(5);
     }
 }
