@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 @DisplayName("사다리 게임 실행 결과 테스트")
@@ -15,7 +16,7 @@ public class LadderGameResultTests {
 
     private LadderGame ladderGame;
     private Members members;
-    private LadderPoleResult ladderPoleResult;
+    private LadderGameRewords ladderGameRewords;
     private MemberPolePosition expectLastMemberPolePosition;
 
     @BeforeEach
@@ -31,7 +32,7 @@ public class LadderGameResultTests {
 
         members = Members.newInstance("pobi, honux, crong, jk");
 
-        ladderPoleResult = LadderPoleResult.newInstance("꽝,5000,꽝,3000");
+        ladderGameRewords = LadderGameRewords.newInstance("꽝,5000,꽝,3000");
 
         expectLastMemberPolePosition = MemberPolePosition.newInstance("pobi, jk, crong, honux");
 
@@ -40,20 +41,20 @@ public class LadderGameResultTests {
     @DisplayName("사다리 게임 실행 결과 객체 생성 테스트")
     @Test
     public void generateLadderGameResultTests() {
-        assertThatCode(() -> LadderGameResult.newInstance(expectLastMemberPolePosition, ladderPoleResult))
+        assertThatCode(() -> LadderGameResult.newInstance(expectLastMemberPolePosition, ladderGameRewords))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("사다리 게임 실행 결과 테스트")
     @Test
     public void executeLadderGameResultTests() {
-        assertThat(ladderGame.start()).isEqualsTo(LadderGameResult.newInstance(expectLastMemberPolePosition, ladderPoleResult));
+        assertThat(ladderGame.start()).isEqualsTo(LadderGameResult.newInstance(expectLastMemberPolePosition, ladderGameRewords));
     }
 
     @DisplayName("사다리 게임 결과 확인 테스트")
     @Test
     public void checkLadderGameResultTests() {
-        LadderGameResult ladderGameResult = LadderGameResult.newInstance(expectLastMemberPolePosition, ladderPoleResult);
+        LadderGameResult ladderGameResult = LadderGameResult.newInstance(expectLastMemberPolePosition, ladderGameRewords);
         String expectAllResult = new StringBuilder()
                 .append("pobi : 꽝\n")
                 .append("honux : 5000\n")

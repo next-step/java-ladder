@@ -23,7 +23,7 @@ public class LadderGameTests {
     @DisplayName("사다리 게임 실행 테스트")
     @Test
     public void executionLadderGameTests() {
-        LadderGame ladderGame = LadderGame.newInstance(new String[]{"a", "b", "c"}, 4));
+        LadderGame ladderGame = LadderGame.newInstance(new String[]{"a", "b", "c"}, 4);
         assertThatCode(() -> ladderGame.start()).doesNotThrowAnyException();
     }
 }
