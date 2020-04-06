@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -7,6 +7,7 @@ public class User {
     private static final int MAX_NAME_LENTH = 5;
 
     private final String name;
+    private String result;
 
     public User(String name) {
         valdateName(name);
@@ -22,6 +23,14 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     @Override
