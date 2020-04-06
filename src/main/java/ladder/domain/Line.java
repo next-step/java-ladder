@@ -54,10 +54,6 @@ public class Line implements Cloneable {
         return new Line(merge);
     }
 
-    public int size() {
-        return this.nodes.size();
-    }
-
     private Node getLastNode() {
         return this.nodes.get(nodes.size() - 1);
     }
