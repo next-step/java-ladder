@@ -11,11 +11,12 @@ public class User {
     }
 
     public User(String name) {
+        validate(name);
         this.name = name;
     }
 
     public boolean isEqualName(String name) {
-        return this.name == name;
+        return this.name.equals(name);
     }
 
     private void validate(String name) {
@@ -28,7 +29,15 @@ public class User {
         return name;
     }
 
-    public int getPoint() {
-        return this.point.getPoint();
+    public Point getPoint() {
+        return this.point;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", point=" + point +
+                '}';
     }
 }

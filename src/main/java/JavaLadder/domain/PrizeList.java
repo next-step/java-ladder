@@ -19,6 +19,10 @@ public class PrizeList {
         return prizeList.get(index).getPrize();
     }
 
+    public String getPrize(Point point) {
+        return prizeList.get(point.getPoint()).getPrize();
+    }
+
     public int size() {
         return this.prizeList.size();
     }

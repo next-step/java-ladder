@@ -25,4 +25,22 @@ public class Ladder {
     public int countLadder() {
         return (int) Arrays.asList(ladder).stream().filter(n -> true).count();
     }
+
+    public void moveForResult(UserList userList) {
+        for (int i = 0; i < userList.size(); i++) {
+            Point point = userList.getUserPoint(userList.getName(i));
+            moveLadder(point);
+        }
+    }
+
+    private void moveLadder(Point point) {
+        for (int i = 0; i < ladder.size(); i++) {
+            Line line = (Line) ladder.get(i);
+            if(line.countLine() == 0){
+                continue;
+            }
+            line.moveByLine(point);
+        }
+    }
+
 }

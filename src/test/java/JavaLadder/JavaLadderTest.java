@@ -38,7 +38,7 @@ public class JavaLadderTest {
         String[] splitInputValue = inputValue.split(",");
         assertThatThrownBy(() -> {
             new User(splitInputValue[0]);
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("5자리이하만입력가능합니다.");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[" + splitInputValue[0] + "]: 5자리이하만입력가능합니다.");
     }
 
     @Test
@@ -69,7 +69,9 @@ public class JavaLadderTest {
     public void prizeValidationTest() {
         UserList userList = new UserList(("test"));
         PrizeList prizeList = new PrizeList("1000원,꽝");
-        assertThat(JavaLadder.validateSize(userList,prizeList)).isEqualTo(false);
+        assertThatThrownBy(() -> {
+            JavaLadder.validateSize(userList,prizeList);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사람입력 수(" + userList.size() + ")와 실행결과입력 수(" + prizeList.size() + ")같아야합니다.");
     }
 
     @Test

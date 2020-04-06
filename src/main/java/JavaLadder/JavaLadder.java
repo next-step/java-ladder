@@ -1,8 +1,6 @@
 package JavaLadder;
 
-import JavaLadder.domain.Ladder;
-import JavaLadder.domain.PrizeList;
-import JavaLadder.domain.UserList;
+import JavaLadder.domain.*;
 import JavaLadder.view.InputView;
 import JavaLadder.view.OutputView;
 
@@ -12,14 +10,30 @@ public class JavaLadder {
         InputView inputView = new InputView();
         String inputName = inputView.askName();
         UserList userList = new UserList(inputName);
+
+        String prize = inputView.askPrize();
+        PrizeList prizeList = new PrizeList(prize);
+
+        validateSize(userList, prizeList);
+
         int ladderHeight = inputView.askLadderHeight();
         Ladder ladder = new Ladder(ladderHeight, userList.size());
+
         OutputView outputView = new OutputView();
-        outputView.result(userList, ladder);
+        outputView.showLadder(userList, ladder, prizeList);
+
+        ladder.moveForResult(userList);
+
+        String resultBuyPerson = inputView.askResultByPerson();
+
+        ResultList resultList = new ResultList(userList, resultBuyPerson);
+
+        outputView.showResult(resultList, prizeList);
     }
 
-
-    public static boolean validateSize(UserList userList, PrizeList prizeList) {
-        return userList.size() == prizeList.size();
+    public static void validateSize(UserList userList, PrizeList prizeList) {
+        if (userList.size() != prizeList.size()){
+            throw new IllegalArgumentException("사람입력 수(" + userList.size() + ")와 실행결과입력 수(" + prizeList.size() + ")같아야합니다.");
+        }
     }
 }

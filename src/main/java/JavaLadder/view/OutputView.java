@@ -1,20 +1,30 @@
 package JavaLadder.view;
 
-import JavaLadder.domain.Ladder;
-import JavaLadder.domain.Line;
-import JavaLadder.domain.UserList;
+import JavaLadder.domain.*;
+
+import java.sql.Array;
+import java.sql.SQLOutput;
+import java.util.Arrays;
 
 public class OutputView {
-    private static final String ACTION_RESULT = "실행결과";
+    private static final String LADDER_RESULT = "사다리결과";
+    private static final String ACTION_RESULT = "실행 결과";
     private static final String LADDER = "|";
     private static final String LINE_TRUE = "-----";
     private static final String LINE_FALSE = "     ";
 
-    public void result(UserList userList, Ladder ladder) {
-        System.out.println(ACTION_RESULT);
-        PrintName(userList);
-        System.out.println();
+    public void showLadder(UserList userList, Ladder ladder, PrizeList prizeList) {
+        System.out.println(LADDER_RESULT);
+        printName(userList);
         printLadder(ladder);
+        printPrize(prizeList);
+    }
+
+    private void printPrize(PrizeList prizeList) {
+        for (int i = 0; i < prizeList.size(); i++) {
+            System.out.printf("%-6s", prizeList.getPrize(i));
+        }
+        System.out.println();
     }
 
     private void printLadder(Ladder ladder) {
@@ -24,12 +34,14 @@ public class OutputView {
             printLine(list);
             System.out.println();
         }
+        System.out.println();
     }
 
-    private void PrintName(UserList userList) {
+    private void printName(UserList userList) {
         for (int i = 0; i < userList.size(); i++) {
             System.out.printf("%-6s", userList.getName(i));
         }
+        System.out.println();
     }
 
     private void printLine(Line list) {
@@ -43,6 +55,13 @@ public class OutputView {
         if (line) {
             System.out.printf(lineKind);
             System.out.printf("%s", LADDER);
+        }
+    }
+
+    public void showResult(ResultList resultList, PrizeList prizeList) {
+        System.out.println(ACTION_RESULT);
+        for (int i = 0; i < resultList.size(); i++) {
+            System.out.println(resultList.getResultName(i) + " : " + prizeList.getPrize(resultList.getResultPoint(i)));
         }
     }
 }

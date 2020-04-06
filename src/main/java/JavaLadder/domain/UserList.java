@@ -2,7 +2,6 @@ package JavaLadder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserList {
     private static final String REGEX = ",";
@@ -24,8 +23,23 @@ public class UserList {
         return userList.get(index).getName();
     }
 
-    public int getUserPoint(String name) {
-        User user = (User) userList.stream().filter(u -> u.isEqualName(name)).collect(Collectors.toList());
+    public Point getUserPoint(String name) {
+        User user = userList.stream().filter(u -> u.isEqualName(name)).findFirst().orElse(null);
         return user.getPoint();
+    }
+
+    public User getUserByName(String name) {
+        return userList.stream().filter(u -> u.isEqualName(name)).findFirst().orElse(null);
+    }
+
+    public User getUser(int index){
+        return userList.get(index);
+    }
+
+    @Override
+    public String toString() {
+        return "UserList{" +
+                "userList=" + userList +
+                '}';
     }
 }
