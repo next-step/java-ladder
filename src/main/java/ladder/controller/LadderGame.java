@@ -17,5 +17,6 @@ public class LadderGame {
 
         Map<String, Integer> finalLocationByName
                 = players.findFinalLocationByName(rows, inputView.getPlayerToGetResult());
+
     }
 }

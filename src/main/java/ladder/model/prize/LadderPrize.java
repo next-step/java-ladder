@@ -21,12 +21,6 @@ public class LadderPrize {
         return BLANK.equals(input);
     }
 
-    private void validateString(String input) {
-        if (!isAllowedInputPrize(input)) {
-            throw new IllegalArgumentException(WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING);
-        }
-    }
-
     private void validateNumber(String prizeName) {
         try {
             Integer.parseInt(prizeName);
