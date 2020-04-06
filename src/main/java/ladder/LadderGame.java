@@ -21,7 +21,7 @@ public class LadderGame {
         outputView.printLadder(ladder);
         outputView.printResultCandidate(ladderResult);
 
-        LadderResultDto ladderResultDto = ladder.getResult();
+        LadderResultDto ladderResultDto = ladder.getResult(ladderResult);
 
         String gamer;
         while (!(gamer = inputView.getExpectResult()).equals("all")) {

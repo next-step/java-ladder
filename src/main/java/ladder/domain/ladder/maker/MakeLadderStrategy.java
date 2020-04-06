@@ -13,9 +13,8 @@ public interface MakeLadderStrategy {
         return new RandomLadderMaker(size, height);
     }
 
-    static MakeLadderStrategy getPassiveMaker(Boolean[]... barMatrix){
-        return ()-> Arrays.stream(barMatrix)
-                .map(Line::of)
+    static MakeLadderStrategy getPassiveMaker(Line... lines){
+        return ()-> Arrays.stream(lines)
                 .collect(Collectors.toList());
     }
 }

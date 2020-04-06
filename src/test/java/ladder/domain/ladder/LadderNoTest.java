@@ -8,9 +8,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderNoTest {
     @Test
-    @DisplayName("사다리 번호는 1 부터 가능 하다")
+    @DisplayName("사다리 번호는 0 부터 가능 하다")
     void validationCheckTest() {
-        assertThatThrownBy(() -> LadderNo.of(0))
+        assertThatThrownBy(() -> LadderNo.of(-1))
                 .isInstanceOf(RuntimeException.class);
     }
 
