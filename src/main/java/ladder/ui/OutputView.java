@@ -3,6 +3,7 @@ package ladder.ui;
 import ladder.domain.Gamer;
 import ladder.domain.Gamers;
 import ladder.domain.dto.LadderResultDto;
+import ladder.domain.ladder.Bar;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderResult;
 import ladder.domain.ladder.Line;
@@ -39,6 +40,7 @@ public class OutputView {
     private String toStringOneLine(Line line) {
         return line.getBars()
                 .stream()
+                .map(Bar::isExist)
                 .map(bar -> bar ? "-----" : "     ")
                 .collect(Collectors.joining("|", "  |", "|"));
     }

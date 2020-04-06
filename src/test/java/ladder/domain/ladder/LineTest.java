@@ -12,14 +12,14 @@ public class LineTest {
     @Test
     @DisplayName("인접 해서 사다리 바가 있을 수 없음")
     void adjacentTest() {
-        assertThatThrownBy(() -> Line.of(true, true, false, true))
+        assertThatThrownBy(() -> Line.of(Bar.IS_EXIST, Bar.IS_EXIST, Bar.NOT_EXIST, Bar.IS_EXIST))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
     @DisplayName("일반 정상 생성")
     void createBarsTest() {
-        assertThat(Line.of(true, false, true, false).getBars())
+        assertThat(Line.of(Bar.IS_EXIST, Bar.NOT_EXIST, Bar.IS_EXIST, Bar.NOT_EXIST).getBars())
                 .hasSize(4);
     }
 
@@ -32,7 +32,7 @@ public class LineTest {
             "3,2",
             "4,4"})
     void moveTest(int start, int end) {
-        Line testLine = Line.of(true, false, true, false);
+        Line testLine = Line.of(Bar.IS_EXIST, Bar.NOT_EXIST, Bar.IS_EXIST, Bar.NOT_EXIST);
         assertThat(testLine.move(LadderNo.of(start)))
                 .isEqualTo(LadderNo.of(end));
     }

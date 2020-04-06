@@ -9,17 +9,17 @@ import java.util.stream.IntStream;
 public class Line {
     private static final String INSTANTIATE_ERROR_FORMAT = "Create Line failed. bars should not be adjacent: bars=%s";
 
-    private final List<Boolean> bars;
+    private final List<Bar> bars;
 
-    private Line(List<Boolean> bars) {
+    private Line(List<Bar> bars) {
         this.bars = bars;
     }
 
-    public static Line of(Boolean... bars) {
+    static Line of(Bar... bars) {
         return Line.of(Arrays.asList(bars));
     }
 
-    public static Line of(List<Boolean> bars) {
+    public static Line of(List<Bar> bars) {
         if (bars.size() == 1) {
             return new Line(bars);
         }
@@ -31,20 +31,20 @@ public class Line {
         return new Line(bars);
     }
 
-    private static boolean isAdjacentBars(List<Boolean> bars) {
+    private static boolean isAdjacentBars(List<Bar> bars) {
         return IntStream.range(1, bars.size())
-                .filter(idx -> bars.get(idx - 1) && bars.get(idx))
+                .filter(idx -> bars.get(idx - 1).isExist() && bars.get(idx).isExist())
                 .findFirst()
                 .isPresent();
     }
 
-    private static String toString(List<Boolean> bars) {
+    private static String toString(List<Bar> bars) {
         return bars.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(",", "[", "]"));
     }
 
-    public List<Boolean> getBars() {
+    public List<Bar> getBars() {
         return bars;
     }
 
@@ -59,8 +59,12 @@ public class Line {
                         .orElse(no));
     }
 
+    int size(){
+        return bars.size();
+    }
+
     private boolean isExistBar(int idx) {
-        return -1 < idx && idx < bars.size() && bars.get(idx);
+        return -1 < idx && idx < bars.size() && bars.get(idx).isExist();
     }
 
     @Override

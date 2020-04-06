@@ -7,8 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static ladder.domain.ladder.Bar.IS_EXIST;
+import static ladder.domain.ladder.Bar.NOT_EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class LadderTest {
 
@@ -33,8 +34,8 @@ public class LadderTest {
     void getResultTest() {
         Gamers gamers = Gamers.ofComma("a,b,c");
         Ladder ladder = Ladder.of(gamers, MakeLadderStrategy.getPassiveMaker(
-                Line.of(false, true),
-                Line.of(true, false)));
+                Line.of(NOT_EXIST, IS_EXIST),
+                Line.of(IS_EXIST, NOT_EXIST)));
         LadderResult result = LadderResult.ofComma("1,2,3");
 
         LadderResultDto dto = ladder.getResult(result);

@@ -1,6 +1,7 @@
 package ladder.domain.ladder.maker;
 
 
+import ladder.domain.ladder.Bar;
 import ladder.domain.ladder.Line;
 
 import java.util.List;
@@ -42,9 +43,10 @@ class RandomLadderMaker implements MakeLadderStrategy {
         return Line.of(getBarList());
     }
 
-    private List<Boolean> getBarList() {
+    private List<Bar> getBarList() {
         return Stream.iterate(random.nextBoolean(), this::getNextBar)
                 .limit(size)
+                .map(Bar::of)
                 .collect(Collectors.toList());
     }
 

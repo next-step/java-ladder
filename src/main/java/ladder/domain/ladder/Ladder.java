@@ -23,7 +23,7 @@ public class Ladder {
 
     public static Ladder of(Gamers gamers, MakeLadderStrategy ladderMaker) {
         List<Line> lines = ladderMaker.makeBarLines();
-        int barsCount = lines.get(0).getBars().size();
+        int barsCount = lines.get(0).size();
         int gamerCount = gamers.getGamerList().size();
         if (barsCount != gamerCount - 1) {
             throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, gamerCount, barsCount));
