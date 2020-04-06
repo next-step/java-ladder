@@ -2,8 +2,12 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -36,5 +40,40 @@ public class LadderTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Ladder(participantCount, 5);
         }).withMessage(Line.POINT_COUNT_ERROR);
+    }
+
+    /**
+     * |-----|     |
+     * |     |-----|
+     * |     |-----|
+     */
+    @Test
+    @DisplayName("출발점으로부터 사다리를 타고 알맞은 Position에 도착해야 한다.")
+    void moveTest1() {
+        List<Line> lines = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(0, true));
+        points.add(new Point(1, false));
+        Line line1 = new Line(points);
+
+        points.clear();
+        points.add(new Point(0, false));
+        points.add(new Point(1, true));
+        Line line2 = new Line(points);
+
+        points.clear();
+        points.add(new Point(0, false));
+        points.add(new Point(1, true));
+        Line line3 = new Line(points);
+
+        lines.add(line1);
+        lines.add(line2);
+        lines.add(line3);
+
+        Ladder ladder = new Ladder(lines);
+
+        assertThat(ladder.move(0)).isEqualTo(1);
+        assertThat(ladder.move(1)).isEqualTo(0);
+        assertThat(ladder.move(2)).isEqualTo(2);
     }
 }
