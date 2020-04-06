@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.generator;
 
 import ladder.util.RandomUtil;
 
@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LineGenerateHelper {
+public class RandomLineGenerator implements LineGenerator {
 
-    private LineGenerateHelper() { }
+    public RandomLineGenerator() { }
 
-    public static List<Boolean> generate(int playerCount) {
+    @Override
+    public List<Boolean> generate(int playerCount) {
         final List<Boolean> lines = init();
         for (int i = lines.size(); i < playerCount; i++) {
             boolean prevLine = lines.get(i - 1);
@@ -19,11 +20,11 @@ public class LineGenerateHelper {
         return lines;
     }
 
-    private static List<Boolean> init() {
+    private List<Boolean> init() {
         return new ArrayList<>(Arrays.asList(Boolean.FALSE));
     }
 
-    private static Boolean drawLine(final boolean isExistPrev) {
+    private Boolean drawLine(final boolean isExistPrev) {
         if (isExistPrev) {
             return Boolean.FALSE;
         }
