@@ -10,11 +10,11 @@ public class Line {
     }
 
     public static Line of(int playerCount) {
-        return new Line(new LineGenerator(playerCount).generate());
+        return new Line(LineGenerateHelper.generate(playerCount));
     }
 
     public List<Boolean> getLine() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     @Override
