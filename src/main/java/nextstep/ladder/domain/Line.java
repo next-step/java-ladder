@@ -35,7 +35,7 @@ public class Line {
             return false;
         }
 
-        return RandomBooleanProvider.getInstance().getRandomBoolean();
+        return RandomBooleanProvider.getRandomBoolean();
     }
 
     private static Point getPreviousPoint(List<Point> points, int currentIndex) {
