@@ -6,16 +6,21 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final Height height;
     private final List<Line> lines;
 
     public Ladder(final int playerCount, final Height height) {
-        this.height = height;
         this.lines = createLines(playerCount, height.value());
     }
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public Position climbDown(Position playerPosition) {
+        for (Line line : lines) {
+            playerPosition = line.move(playerPosition);
+        }
+        return playerPosition;
     }
 
     private List<Line> createLines(final int playerCount, final int height) {
