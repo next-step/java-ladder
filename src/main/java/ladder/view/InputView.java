@@ -34,6 +34,11 @@ public class InputView {
         return splitPrizeNames(ScannerUtil.readLine());
     }
 
+    public String getPlayerToGetResult(){
+        System.out.println(MESSAGE_INPUT_PLAYER_TO_KNOW_RESULT);
+        return ScannerUtil.readLine();
+    }
+
     private List<Player> splitNames(String names) {
         return Arrays.stream(names.split(DELIMITER))
                 .map(it -> it.trim())
