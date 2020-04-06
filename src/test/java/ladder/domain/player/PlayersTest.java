@@ -56,10 +56,10 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        List<Integer> locationByName = players.findFinalLocationByName(rows, input);
+        Map<String, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
-        assertThat(locationByName.get(0)).isEqualTo(finalLocation);
+        assertThat(finalLocationByName.get(input)).isEqualTo(finalLocation);
     }
 
     @DisplayName("존재하지 않는 플레이어명을 입력하면, 전체 결과를 반환한다.")
@@ -84,9 +84,12 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        List<Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
+        Map<String, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
         assertThat(finalLocationByName.size()).isEqualTo(3);
+        assertThat(finalLocationByName.get("Mark")).isEqualTo(2);
+        assertThat(finalLocationByName.get("Ten")).isEqualTo(0);
+        assertThat(finalLocationByName.get("Sujin")).isEqualTo(1);
     }
 }

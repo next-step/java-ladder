@@ -3,10 +3,10 @@ package ladder.model.player;
 import ladder.model.row.Rows;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-
-import static ladder.Messages.WARNING_NOT_EXISTING_PLAYER;
 
 public class Players {
     private List<Player> players;
@@ -27,10 +27,25 @@ public class Players {
         return players;
     }
 
-    public List<Integer> findFinalLocationByName(Rows rows, String name) {
+    public Map<String, Integer> findFinalLocationByName(Rows rows, String name) {
+        Map<String, Integer> finalLocation = new HashMap<>();
+
+        if(isValidPlayerName(name)){
+            players.stream()
+                    .filter(it -> name.equals(it.getName()))
+                    .forEach(it -> finalLocation.put(name, it.findFinalLocation(rows)));
+            return finalLocation;
+
+        }
+        players.stream()
+                .forEach(it -> finalLocation.put(it.getName(), it.findFinalLocation(rows)));
+        return finalLocation;
+    }
+
+    private boolean isValidPlayerName(String name){
         return players.stream()
                 .filter(it -> name.equals(it.getName()))
-                .map(it -> it.findFinalLocation(rows))
-                .collect(Collectors.toList());
+                .findAny()
+                .isPresent();
     }
 }
