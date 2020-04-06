@@ -14,7 +14,6 @@ import static ladder.Messages.*;
 
 public class InputView {
     private static final String DELIMITER = ",";
-    private static final String ALL = "all";
 
     public InputView() {
     }
