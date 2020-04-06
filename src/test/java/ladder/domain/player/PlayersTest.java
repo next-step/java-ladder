@@ -24,8 +24,7 @@ public class PlayersTest {
         List<Player> allPlayers = Arrays.asList(
                 new Player("Mark"),
                 new Player("Palm"),
-                new Player("Jyung")
-        );
+                new Player("Jyung"));
 
         //when
         Players players = Players.create(allPlayers);
@@ -42,7 +41,7 @@ public class PlayersTest {
         Players players = Players.create(Arrays.asList(
                 new Player("Mark", 0),
                 new Player("Ten", 1),
-                new Player("Jaehy", 2)));
+                new Player("Sujin", 2)));
 
         Map<Integer, Boolean> result = new HashMap<>();
         result.put(0, true);
