@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.utils.RandomUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,6 +16,17 @@ public class Line implements Cloneable {
 
     public Line(final List<Node> nodes) {
         this.nodes = Collections.unmodifiableList(nodes);
+    }
+
+    public static Line of(int playerCount) {
+        Line line = new Line();
+        for (int i = 0; i < playerCount - 1; i++) {
+            boolean randomBoolean = RandomUtils.getRandomBoolean();
+            line = line.addRandomNextNode(randomBoolean);
+        }
+
+        line = line.addLastNode();
+        return line;
     }
 
     public Line addRandomNextNode(final boolean random) {

@@ -23,6 +23,19 @@ class LineTest {
         Line line = new Line(nodes);
     }
 
+    @DisplayName("팩토리 메서드 테스트")
+    @Test
+    public void of_success() throws Exception {
+        //given
+        Line line = Line.of(3);
+
+        //when
+        int size = line.getNodes().size();
+
+        //then
+        assertThat(size).isEqualTo(3);
+    }
+
     @DisplayName("지정한 새로운 노드를 추가해 준다")
     @Test
     public void addNode() throws Exception {
