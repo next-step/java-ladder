@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.drawable.RandomDraw;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -15,8 +14,8 @@ public class Ladder {
         drawSideLines(height, new RandomDraw());
     }
 
-    public List<VerticalLine> getVerticalLines() {
-        return verticalLines.getVerticalLines();
+    public VerticalLines getVerticalLines() {
+        return verticalLines;
     }
 
     public int getHeight() {
@@ -32,7 +31,7 @@ public class Ladder {
     }
 
     private void drawSideLine(VerticalLine verticalLine, int height, RandomDraw randomDraw) {
-        if (randomDraw.isDraw() && !verticalLine.isExistLine(height)) {
+        if (randomDraw.isDraw() && !verticalLine.isExistPoint(height)) {
             verticalLines.drawSideLine(verticalLine, height);
         }
     }

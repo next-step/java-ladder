@@ -13,7 +13,11 @@ public class LadderGame {
         this.ladder = new Ladder(players, ladderHeight);
     }
 
-    public void validate(Players players, int ladderHeight) {
+    public Ladder getLadder() {
+        return this.ladder;
+    }
+
+    private void validate(Players players, int ladderHeight) {
         if (players.getPlayersCount() < RULE_PLAYER_COUNT) {
             throw new IllegalArgumentException(String.format("플레이어는 %d명 이상이어야 합니다.", RULE_PLAYER_COUNT));
         }

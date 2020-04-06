@@ -19,7 +19,7 @@ public class VerticalLine {
     }
 
     public List<Point> getPoints() {
-        return new ArrayList<>(this.points);
+        return new ArrayList<Point>(this.points);
     }
 
     public Point getPoint(int heightPosition) {
@@ -29,9 +29,16 @@ public class VerticalLine {
                 .orElse(null);
     }
 
-    public boolean isExistLine(int heightPosition) {
+    public boolean isExistPoint(int heightPosition) {
         return points.stream()
                 .filter(p -> p.getHeightPosition() == heightPosition)
+                .findFirst()
+                .isPresent();
+    }
+
+    public boolean isDrawing(int heightPosition) {
+        return points.stream()
+                .filter(p -> p.getHeightPosition() == heightPosition && p.getEndPointLineNo() == lineNo + 1)
                 .findFirst()
                 .isPresent();
     }

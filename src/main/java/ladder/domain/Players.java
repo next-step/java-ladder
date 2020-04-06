@@ -1,15 +1,14 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Players {
     private List<Player> players;
 
-    public Players(String... players) {
-        this.players = Arrays.stream(players)
+    public Players(List<String> players) {
+        this.players = players.stream()
                 .map(s -> Player.of(s))
                 .collect(Collectors.toList());
     }

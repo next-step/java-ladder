@@ -16,10 +16,6 @@ public class VerticalLines {
         this.verticalLines = verticalLines;
     }
 
-    public List<VerticalLine> getVerticalLines() {
-        return new ArrayList<>(this.verticalLines);
-    }
-
     public VerticalLine getLine(int index) {
         return verticalLines.stream()
                 .filter(v -> v.getLineNo() == index)
