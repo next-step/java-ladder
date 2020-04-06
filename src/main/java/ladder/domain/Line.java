@@ -29,7 +29,7 @@ public class Line implements Cloneable {
         return line;
     }
 
-    public Line addRandomNextNode(final boolean random) {
+    private Line addRandomNextNode(final boolean random) {
         if (this.nodes.isEmpty()) {
             Node first = Node.createFirst(random);
             return addNode(first);
@@ -39,7 +39,7 @@ public class Line implements Cloneable {
         return addNode(nextNode);
     }
 
-    public Line addLastNode() {
+    private Line addLastNode() {
         List<Node> merge = new ArrayList<>();
         Node last = getLastNode().createLast();
         merge.addAll(this.nodes);
@@ -47,7 +47,7 @@ public class Line implements Cloneable {
         return new Line(merge);
     }
 
-    public Line addNode(Node node) {
+    private Line addNode(Node node) {
         List<Node> merge = new ArrayList<>();
         merge.addAll(this.nodes);
         merge.add(node);
