@@ -7,26 +7,25 @@ public class LadderGame {
     private final Members members;
     private final Ladder ladder;
 
-    // TODO: 2020-04-06 validation 추가. ladder pole과 memeber 갯수가 같은지..
     private LadderGame(final Members members, final Ladder ladder) {
         validate(members, ladder);
         this.members = members;
         this.ladder = ladder;
     }
 
-    private void validate(Members members, Ladder ladder) {
+    private void validate(final Members members, final Ladder ladder) {
         MemberCount memberCount = members.count();
-        if(memberCount.toInt() != ladder.getPoleCount()) {
+        if (memberCount.toInt() != ladder.getPoleCount()) {
             throw new IllegalArgumentException("Member count must be same as the ladder pole.");
         }
     }
 
-    public static LadderGame newInstance(final Members members, final LadderHeight ladderHeight) {
-        return new LadderGame(members, Ladder.newInstance(members.count(), ladderHeight));
+    public static LadderGame newInstance(final Members members, final Ladder ladder) {
+        return new LadderGame(members, ladder);
     }
 
-    public static LadderGame newInstance(final String[] members, final int ladderHeight) {
-        return newInstance(Members.newInstance(members), LadderHeight.newInstance(ladderHeight));
+    public static LadderGame newInstance(final String[] members, final Ladder ladder) {
+        return newInstance(Members.newInstance(members), ladder);
     }
 
     public LadderGameResult start() {
