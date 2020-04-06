@@ -2,28 +2,25 @@ package ladder.domain;
 
 import ladder.drawable.RandomDraw;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
     private final VerticalLines verticalLines;
+    private final int height;
 
     public Ladder(Players players, int height) {
-        this.verticalLines = drawVerticalLines(players.getPlayersCount());
+        this.verticalLines = new VerticalLines(players.getPlayersCount());
+        this.height = height;
         drawSideLines(height, new RandomDraw());
     }
 
-    public VerticalLines getVerticalLines() {
-        return verticalLines;
+    public List<VerticalLine> getVerticalLines() {
+        return verticalLines.getVerticalLines();
     }
 
-    private VerticalLines drawVerticalLines(int lineCount) {
-        List<VerticalLine> verticalLines = new ArrayList<>();
-        IntStream.rangeClosed(1, lineCount)
-                .forEach(c -> verticalLines.add(new VerticalLine(c)));
-
-        return new VerticalLines(verticalLines);
+    public int getHeight() {
+        return height;
     }
 
     private void drawSideLines(int height, RandomDraw randomDraw) {

@@ -34,30 +34,6 @@ public class VerticalLinesTest {
     }
 
     @Test
-    @DisplayName("VerticalLine의 오른쪽 라인 가져오기 테스트")
-    void getRightLineTest() {
-        assertThat(testVerticalLines.getRightLine(testVerticalLines.getLine(0))).isEqualTo(testVerticalLineList.get(1));
-    }
-
-    @Test
-    @DisplayName("VerticalLine의 오른쪽 라인 가져오기 실패 테스트")
-    void failGetRightLineTest() {
-        assertThat(testVerticalLines.getRightLine(testVerticalLines.getLine(2))).isEqualTo(null);
-    }
-
-    @Test
-    @DisplayName("VerticalLine의 왼쪽 라인 가져오기 테스트")
-    void getLeftLineTest() {
-        assertThat(testVerticalLines.getLeftLine(testVerticalLines.getLine(1))).isEqualTo(testVerticalLineList.get(0));
-    }
-
-    @Test
-    @DisplayName("VerticalLine의 왼쪽 라인 가져오기 실패 테스트")
-    void failGetLeftLineTest() {
-        assertThat(testVerticalLines.getLeftLine(testVerticalLines.getLine(0))).isEqualTo(null);
-    }
-
-    @Test
     @DisplayName("라인 그리기 테스트")
     void drawSideLineTest() {
         testVerticalLines.drawSideLine(testVerticalLines.getLine(0), 1);
