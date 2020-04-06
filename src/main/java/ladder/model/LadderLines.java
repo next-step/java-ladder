@@ -32,6 +32,14 @@ public class LadderLines {
         return new LadderLines(ladders);
     }
 
+    public static LadderLines newInstance(final List<LadderLine> ladderLines) {
+        return new LadderLines(ladderLines);
+    }
+
+    public List<LadderLine> getLines() {
+        return lines;
+    }
+
     public int getPoleCount() {
         return lines.stream()
                 .findAny()

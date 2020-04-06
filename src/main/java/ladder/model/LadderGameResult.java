@@ -20,4 +20,11 @@ public class LadderGameResult {
         
         return new LadderGameResult(ladderGameResult);
     }
+
+    public String get(final String target) {
+        if("all".equals(target)) {
+            return result.toString();
+        }
+        return result.get(Member.newInstance(target)).getReword();
+    }
 }

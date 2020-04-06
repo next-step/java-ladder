@@ -28,8 +28,16 @@ public class Ladder {
         return new Ladder(LadderLines.newInstance(poleCount, ladderHeight), ladderGameRewords);
     }
 
+    public static Ladder newInstance(LadderLines lines, LadderGameRewords ladderGameRewords) {
+        return new Ladder(lines, ladderGameRewords);
+    }
+
     public int getPoleCount() {
         return lines.getPoleCount();
+    }
+
+    public List<LadderLine> getLines() {
+        return lines.getLines();
     }
 
     public LadderGameRewords proceedAll() {

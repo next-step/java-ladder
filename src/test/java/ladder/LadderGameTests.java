@@ -15,7 +15,7 @@ public class LadderGameTests {
         Members members = Members.newInstance(new String[]{"a", "b", "c"});
         LadderGameRewords ladderGameRewords = LadderGameRewords.newInstance("꽝,5000,꽝,3000");
 
-        assertThatCode(() -> LadderGame.newInstance(members, Ladder.newInstance(members.count(), LadderHeight.newInstance(4), ladderGameRewords)))
+        assertThatCode(() -> LadderGame.newInstance(members, Ladder.newInstance(members.count().toInt(), LadderHeight.newInstance(4), ladderGameRewords)))
                 .doesNotThrowAnyException();
         assertThatCode(() -> LadderGame.newInstance(members, Ladder.newInstance(3, 4, "꽝,5000,꽝,3000")))
                 .doesNotThrowAnyException();

@@ -18,7 +18,6 @@ public class LadderLineTests {
     @Test
     public void generateLadderLineTests() {
         assertThatCode(() -> LadderLine.newInstance(7)).doesNotThrowAnyException();
-        assertThatCode(() -> LadderLine.newInstance(new MemberCount(3))).doesNotThrowAnyException();
     }
 
     @DisplayName("라인 생성 - 비정상 테스트")

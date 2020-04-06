@@ -1,9 +1,6 @@
 package ladder.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,6 +11,10 @@ public class LadderLine {
     private LadderLine(final List<LadderBridge> bridges) {
         validate(bridges);
         this.bridges = Collections.unmodifiableList(bridges);
+    }
+
+    public static LadderLine newInstance(LadderBridge... bridges) {
+        return new LadderLine(Arrays.asList(bridges));
     }
 
     // TODO: 2020-04-06 겹치는 구간이 없는지 validation 추가
