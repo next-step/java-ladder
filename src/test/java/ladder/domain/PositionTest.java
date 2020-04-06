@@ -16,4 +16,24 @@ class PositionTest {
 
         assertThat(actual).isEqualTo(expect);
     }
+
+    @DisplayName("왼쪽으로 움직일 수 있다.")
+    @Test
+    void left() {
+        Position expect = new Position(0);
+
+        Position actual = new Position(1).left();
+
+        assertThat(actual).isEqualTo(expect);
+    }
+
+    @DisplayName("오른쪽으로 움직일 수 있다.")
+    @Test
+    void right() {
+        Position expect = new Position(1);
+
+        Position actual = new Position(0).right();
+
+        assertThat(actual).isEqualTo(expect);
+    }
 }
