@@ -30,16 +30,7 @@ public class Lines {
         return new Lines(merge);
     }
 
-    public int size() {
-        return this.lines.size();
-    }
-
     public List<Line> getLines() {
         return new ArrayList<>(this.lines);
-    }
-
-    public Line getLine(int index) {
-        Line line = this.lines.get(index);
-        return line.clone();
     }
 }
