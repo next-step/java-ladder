@@ -62,10 +62,6 @@ public class Line implements Cloneable {
         return new ArrayList<>(this.nodes);
     }
 
-    public Node getNode(int index) {
-        return this.nodes.get(index);
-    }
-
     @Override
     protected Line clone() {
         List<Node> nodes = new ArrayList<>(this.nodes);
