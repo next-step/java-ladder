@@ -45,19 +45,28 @@ public class Line {
     }
 
     public int countLine() {
-        return (int) Arrays.asList(line).stream().filter(n -> true).count();
+        return (int) Arrays.asList(line).stream()
+                .filter(n -> true).count();
     }
 
     public void moveByLine(Point point) {
-        if (point.getPoint() == 0) {
+        if (isMostLeftPoint(point)) {
             checkRightMove(point);
             return;
         }
-        if (point.getPoint() == line.size()) {
+        if (isMostRightPoint(point)) {
             checkLeftMove(point);
             return;
         }
         checkLeftAndRightMove(point);
+    }
+
+    private boolean isMostLeftPoint(Point point) {
+        return point.getPoint() == 0;
+    }
+
+    private boolean isMostRightPoint(Point point) {
+        return point.getPoint() == line.size();
     }
 
     private void checkLeftAndRightMove(Point point) {

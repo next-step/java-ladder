@@ -7,7 +7,8 @@ import java.util.List;
 public class Ladder {
     private List<Line> ladder = new ArrayList<>();
 
-    public Ladder(int height, int listSize) {
+    public Ladder(int height, GameInformation gameInformation) {
+        int listSize = gameInformation.getUsers().size();
         for (int i = 0; i < height; i++) {
             Line line = new Line((listSize));
             this.ladder.add(line);
@@ -23,12 +24,14 @@ public class Ladder {
     }
 
     public int countLadder() {
-        return (int) Arrays.asList(ladder).stream().filter(n -> true).count();
+        return (int) Arrays.asList(ladder).stream()
+                .filter(n -> true).count();
     }
 
-    public void moveForResult(UserList userList) {
-        for (int i = 0; i < userList.size(); i++) {
-            Point point = userList.getUserPoint(userList.getName(i));
+    public void moveForResult(GameInformation gameInformation) {
+        Users users = gameInformation.getUsers();
+        for (int i = 0; i < users.size(); i++) {
+            Point point = users.getUserPoint(users.getName(i));
             moveLadder(point);
         }
     }

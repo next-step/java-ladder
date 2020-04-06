@@ -61,18 +61,18 @@ public class JavaLadderTest {
     @Test
     @DisplayName("상품입력테스트")
     public void prizeTest() {
-        PrizeList prizeList = new PrizeList("1000원,꽝");
-        assertThat(prizeList.getPrize(0)).isEqualTo("1000원");
+        Prizes prizes = new Prizes("1000원,꽝");
+        assertThat(prizes.getPrize(0)).isEqualTo("1000원");
     }
 
     @Test
     @DisplayName("상품벨리데이션테스트")
     public void prizeValidationTest() {
-        UserList userList = new UserList(("test"));
-        PrizeList prizeList = new PrizeList("1000원,꽝");
+        Users users = new Users(("test"));
+        Prizes prizes = new Prizes("1000원,꽝");
         assertThatThrownBy(() -> {
-            JavaLadder.validateSize(userList,prizeList);
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사람입력 수(" + userList.size() + ")와 실행결과입력 수(" + prizeList.size() + ")같아야합니다.");
+            JavaLadder.validateSize(users, prizes);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사람입력 수(" + users.size() + ")와 실행결과입력 수(" + prizes.size() + ")같아야합니다.");
     }
 
     @Test
@@ -101,8 +101,8 @@ public class JavaLadderTest {
     @Test
     @DisplayName("사람별 포인트가지고오는 테스트")
     public void userPointTest() {
-        UserList userList = new UserList(("test,test1,test2"));
-        assertThat(userList.getUserPoint("test1")).isEqualTo(new Point(1));
+        Users users = new Users(("test,test1,test2"));
+        assertThat(users.getUserPoint("test1")).isEqualTo(new Point(1));
     }
 
     @Test

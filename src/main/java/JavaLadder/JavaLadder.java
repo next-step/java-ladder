@@ -9,23 +9,15 @@ public class JavaLadder {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         String inputName = inputView.askName();
-        UserList userList = new UserList(inputName);
         String prize = inputView.askPrize();
-        PrizeList prizeList = new PrizeList(prize);
-        validateSize(userList, prizeList);
+        GameInformation gameInformation = new GameInformation(inputName, prize);
         int ladderHeight = inputView.askLadderHeight();
-        Ladder ladder = new Ladder(ladderHeight, userList.size());
+        Ladder ladder = new Ladder(ladderHeight, gameInformation);
         OutputView outputView = new OutputView();
-        outputView.showLadder(userList, ladder, prizeList);
-        ladder.moveForResult(userList);
+        outputView.showLadder(gameInformation, ladder);
+        ladder.moveForResult(gameInformation);
         String resultBuyPerson = inputView.askResultByPerson();
-        ResultList resultList = new ResultList(userList, resultBuyPerson);
-        outputView.showResult(resultList, prizeList);
-    }
-
-    public static void validateSize(UserList userList, PrizeList prizeList) {
-        if (userList.size() != prizeList.size()){
-            throw new IllegalArgumentException("사람입력 수(" + userList.size() + ")와 실행결과입력 수(" + prizeList.size() + ")같아야합니다.");
-        }
+        Results results = new Results(gameInformation, resultBuyPerson);
+        outputView.showResult(results, gameInformation);
     }
 }

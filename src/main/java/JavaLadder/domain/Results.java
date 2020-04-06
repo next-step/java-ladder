@@ -3,21 +3,23 @@ package JavaLadder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultList {
+public class Results {
     private static final String ALL_RESULT = "all";
     private List<User> resultList = new ArrayList<>();
 
-    public ResultList(UserList userList, String resultBuyPerson) {
+    public Results(GameInformation gameInformation, String resultBuyPerson) {
+        Users users = gameInformation.getUsers();
+
         if (ALL_RESULT.equals(resultBuyPerson)) {
-            allUserList(userList);
+            allUserList(users);
             return;
         }
-        this.resultList.add(userList.getUserByName(resultBuyPerson));
+        this.resultList.add(users.getUserByName(resultBuyPerson));
     }
 
-    private void allUserList(UserList userList) {
-        for (int i = 0; i < userList.size(); i++) {
-            this.resultList.add(userList.getUser(i));
+    private void allUserList(Users users) {
+        for (int i = 0; i < users.size(); i++) {
+            this.resultList.add(users.getUser(i));
         }
     }
 

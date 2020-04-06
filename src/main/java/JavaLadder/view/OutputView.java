@@ -9,16 +9,18 @@ public class OutputView {
     private static final String LINE_TRUE = "-----";
     private static final String LINE_FALSE = "     ";
 
-    public void showLadder(UserList userList, Ladder ladder, PrizeList prizeList) {
+    public void showLadder(GameInformation gameInformation, Ladder ladder) {
+        Users users = gameInformation.getUsers();
+        Prizes prizes = gameInformation.getPrizes();
         System.out.println(LADDER_RESULT);
-        printName(userList);
+        printName(users);
         printLadder(ladder);
-        printPrize(prizeList);
+        printPrize(prizes);
     }
 
-    private void printPrize(PrizeList prizeList) {
-        for (int i = 0; i < prizeList.size(); i++) {
-            System.out.printf("%-6s", prizeList.getPrize(i));
+    private void printPrize(Prizes prizes) {
+        for (int i = 0; i < prizes.size(); i++) {
+            System.out.printf("%-6s", prizes.getPrize(i));
         }
         System.out.println();
     }
@@ -33,9 +35,9 @@ public class OutputView {
         System.out.println();
     }
 
-    private void printName(UserList userList) {
-        for (int i = 0; i < userList.size(); i++) {
-            System.out.printf("%-6s", userList.getName(i));
+    private void printName(Users users) {
+        for (int i = 0; i < users.size(); i++) {
+            System.out.printf("%-6s", users.getName(i));
         }
         System.out.println();
     }
@@ -54,10 +56,11 @@ public class OutputView {
         }
     }
 
-    public void showResult(ResultList resultList, PrizeList prizeList) {
+    public void showResult(Results results, GameInformation gameInformation) {
+        Prizes prizes = gameInformation.getPrizes();
         System.out.println(ACTION_RESULT);
-        for (int i = 0; i < resultList.size(); i++) {
-            System.out.println(resultList.getResultName(i) + " : " + prizeList.getPrize(resultList.getResultPoint(i)));
+        for (int i = 0; i < results.size(); i++) {
+            System.out.println(results.getResultName(i) + " : " + prizes.getPrize(results.getResultPoint(i)));
         }
     }
 }

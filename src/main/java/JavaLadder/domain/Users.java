@@ -3,11 +3,11 @@ package JavaLadder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserList {
+public class Users {
     private static final String REGEX = ",";
     private List<User> userList = new ArrayList<>();
 
-    public UserList(String inputValue) {
+    public Users(String inputValue) {
         String[] splitInputValue = inputValue.split(REGEX);
         for (int i = 0; i < splitInputValue.length; i++) {
             User user = new User(splitInputValue[i], i);
@@ -24,12 +24,18 @@ public class UserList {
     }
 
     public Point getUserPoint(String name) {
-        User user = userList.stream().filter(u -> u.isEqualName(name)).findFirst().orElse(null);
+        User user = userList.stream()
+                .filter(u -> u.isEqualName(name))
+                .findFirst()
+                .orElse(null);
         return user.getPoint();
     }
 
     public User getUserByName(String name) {
-        return userList.stream().filter(u -> u.isEqualName(name)).findFirst().orElse(null);
+        return userList.stream()
+                .filter(u -> u.isEqualName(name))
+                .findFirst()
+                .orElse(null);
     }
 
     public User getUser(int index){
