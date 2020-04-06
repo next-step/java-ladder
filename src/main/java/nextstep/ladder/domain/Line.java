@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Line {
     public static final String POINT_COUNT_ERROR = "참여자는 2명 이상이어야 합니다.";
+    public static final String POINT_INDEX_ERROR = "해당 인덱스의 Point를 가져올 수 없습니다.";
     public static final int MIN_PARTICIPANT_COUNT = 2;
     private final List<Point> points;
 
@@ -39,6 +40,38 @@ public class Line {
         return null;
     }
 
+    public int move(int startIndex) {
+        int endIndex = startIndex;
+
+        if(endIndex > 0) {
+            Point leftPoint = getPointByIndex(endIndex - 1);
+
+            if(leftPoint.hasLine()) {
+                endIndex--;
+            }
+        }
+
+        if(endIndex == startIndex) {
+            if(endIndex < points.size()) {
+                Point rightPoint = getPointByIndex(endIndex);
+
+                if(rightPoint.hasLine()) {
+                    endIndex++;
+                }
+            }
+        }
+        return endIndex;
+    }
+
+    private Point getPointByIndex(int index) {
+        for(Point point : points) {
+            if(point.getIndex() == index) {
+                return point;
+            }
+        }
+        throw new IllegalArgumentException(POINT_INDEX_ERROR);
+    }
+
     private void assertPointHasLine(List<Point> points) {
         points.forEach(point -> {
             comparePoints(points, point);
@@ -62,4 +95,5 @@ public class Line {
     public List<Point> getValue() {
         return this.points;
     }
+
 }

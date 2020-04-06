@@ -27,4 +27,8 @@ public class Point {
             throw new IllegalArgumentException(POINT_HAS_LINE_ERROR);
         }
     }
+
+    public int getIndex() {
+        return index;
+    }
 }
