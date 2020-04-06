@@ -2,39 +2,31 @@ package ladder.domain.ladder;
 
 import ladder.domain.Gamers;
 import ladder.domain.dto.LadderResultDto;
+import ladder.domain.ladder.maker.MakeLadderStrategy;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
-    private static final String INSTANTIATE_ERROR_FORMAT = "Create Ladder failed. height must be at least %d: height=%d";
-    private static final int MINIMUM_HEIGHT = 1;
+    private static final String INSTANTIATE_ERROR_FORMAT = "Create Ladder failed. " +
+            "gamers and ladderMaker.makeBarLines() must have same size entries: gamers=%s, lines=%s";
 
-    private final List<Line> lines;
     private final Gamers gamers;
+    private final List<Line> lines;
 
-    private Ladder(List<Line> lines, Gamers gamers) {
-        this.lines = lines;
+    private Ladder(Gamers gamers, List<Line> lines) {
         this.gamers = gamers;
+        this.lines = lines;
     }
 
-    public static Ladder of(int height, Gamers gamers) {
-        return Optional.of(height)
-                .filter(h -> h >= MINIMUM_HEIGHT)
-                .map(h -> makeLadder(h, gamers))
-                .orElseThrow(() -> new IllegalArgumentException(
-                        String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_HEIGHT, height)));
+    public static Ladder of(Gamers gamers, MakeLadderStrategy ladderMaker) {
+        List<Line> lines = ladderMaker.makeBarLines();
+        if (lines.get(0).getBars().size() != gamers.getGamerList().size()) {
+            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, gamers, lines));
+        }
+
+        return new Ladder(gamers, lines);
     }
 
-    private static Ladder makeLadder(int height, Gamers gamers) {
-        int lineSize = gamers.getGamerList().size() - 1;
-        return new Ladder(Stream.iterate(
-                LineMaker.makeLine(lineSize), line -> LineMaker.makeLine(lineSize))
-                .limit(height)
-                .collect(Collectors.toList()), gamers);
-    }
 
     public List<Line> getLines() {
         return lines;
