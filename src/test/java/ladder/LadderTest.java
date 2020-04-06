@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     @Test
-    void generateLadderByParticipantCountAndLadderMaxHeight() {
+    void generateLadderByCountOfPersonAndLadderMaxHeight() {
         Ladder ladder = new Ladder(4, 5);
 
         assertThat(ladder.getWidth()).isEqualTo(4);

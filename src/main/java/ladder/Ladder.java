@@ -1,14 +1,32 @@
 package ladder;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Ladder {
-    public Ladder(int i, int i1) {
+    private final List<Line> ladder;
+
+    public Ladder(int countOfPerson, int ladderMaxHeight) {
+        ladder = generate();
+    }
+
+    private List<Line> generate() {
+        return Arrays.asList(
+                new Line(),
+                new Line(),
+                new Line(),
+                new Line(),
+                new Line());
     }
 
     public int getWidth() {
-        return 4;
+        return ladder.stream()
+                .findAny()
+                .get()
+                .getWidth();
     }
 
     public int getHeight() {
-        return 5;
+        return ladder.size();
     }
 }
