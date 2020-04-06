@@ -19,6 +19,6 @@ public class LadderResultsTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new LadderResults(results);
-        }).withMessage("실행 결과는 5자 이하로 입력해주세요. [실행 결과: %s]")
+        }).withMessage(String.format(LadderResults.LADDER_RESULT_LENGTH_ERROR, results.get(0)));
     }
 }
