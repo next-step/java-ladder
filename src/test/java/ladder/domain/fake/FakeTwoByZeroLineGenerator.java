@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FakeLineGenerator implements LineGenerator {
+public class FakeTwoByZeroLineGenerator implements LineGenerator {
 
     @Override
     public List<Boolean> generate(final int playerCount) {
