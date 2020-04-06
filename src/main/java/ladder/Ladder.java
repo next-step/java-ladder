@@ -12,11 +12,11 @@ public class Ladder {
 
     private List<Line> generate() {
         return Arrays.asList(
-                new Line(),
-                new Line(),
-                new Line(),
-                new Line(),
-                new Line());
+                new Line(4),
+                new Line(4),
+                new Line(4),
+                new Line(4),
+                new Line(4));
     }
 
     public int getWidth() {
