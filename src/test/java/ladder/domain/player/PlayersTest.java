@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -55,9 +56,37 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        Integer locationByName = players.findFinalLocationByName(rows, input);
+        List<Integer> locationByName = players.findFinalLocationByName(rows, input);
 
         //then
-        assertThat(locationByName).isEqualTo(finalLocation);
+        assertThat(locationByName.get(0)).isEqualTo(finalLocation);
+    }
+
+    @DisplayName("존재하지 않는 플레이어명을 입력하면, 전체 결과를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"shusu", "Idle"})
+    void findFinalLocationsByNameWhenNonValidName(String input) {
+        //given
+        Players players = Players.create(Arrays.asList(
+                new Player("Mark", 0),
+                new Player("Ten", 1),
+                new Player("Sujin", 2)));
+
+        Map<Integer, Boolean> result = new HashMap<>();
+        result.put(0, true);
+        result.put(1, false);
+        Row row = new Row(result);
+
+        Map<Integer, Boolean> result2 = new HashMap<>();
+        result2.put(0, false);
+        result2.put(1, true);
+        Row row2 = new Row(result2);
+        Rows rows = new Rows(Arrays.asList(row, row2));
+
+        //when
+        List<Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
+
+        //then
+        assertThat(finalLocationByName.size()).isEqualTo(3);
     }
 }

@@ -1,10 +1,10 @@
 package ladder.model.player;
 
-import ladder.Messages;
 import ladder.model.row.Rows;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ladder.Messages.WARNING_NOT_EXISTING_PLAYER;
 
@@ -27,11 +27,10 @@ public class Players {
         return players;
     }
 
-    public Integer findFinalLocationByName(Rows rows, String name) {
+    public List<Integer> findFinalLocationByName(Rows rows, String name) {
         return players.stream()
                 .filter(it -> name.equals(it.getName()))
                 .map(it -> it.findFinalLocation(rows))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(WARNING_NOT_EXISTING_PLAYER));
+                .collect(Collectors.toList());
     }
 }
