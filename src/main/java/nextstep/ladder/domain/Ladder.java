@@ -15,16 +15,13 @@ public class Ladder {
     }
 
     public Ladder(int participantCount, int height) {
-        this(createLadder(participantCount, height));
-    }
-
-    private static List<Line> createLadder(int participantCount, int height) {
         List<Line> lines = Stream
                 .generate(() -> new Line(participantCount))
                 .limit(height)
                 .collect(Collectors.toList());
 
-        return lines;
+        assertLadderHeight(lines.size());
+        this.lines = lines;
     }
 
     private void assertLadderHeight(int height) {

@@ -44,7 +44,7 @@ public class OutputView {
     }
 
     private String getPointText(Point point) {
-        return String.format(POINT_FORMAT, point.isHasLine() ? POINT_LINE : POINT_EMPTY);
+        return String.format(POINT_FORMAT, point.hasLine() ? POINT_LINE : POINT_EMPTY);
     }
 
     private void showPersons(List<Participant> participants) {

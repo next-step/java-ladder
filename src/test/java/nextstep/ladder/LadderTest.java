@@ -16,8 +16,8 @@ public class LadderTest {
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Ladder(4, height);
-        }).withMessage(Ladder.LADDER_HEIGHT_ERROR);
-    }
+    }).withMessage(Ladder.LADDER_HEIGHT_ERROR);
+}
 
     @Test
     @DisplayName("사다리의 Point(참여자 수 - 1)는 2명 이상이어야 한다.")

@@ -13,21 +13,20 @@ public class Line {
     public Line(List<Point> points) {
         assertParticipantCount(points);
         assertPointHasLine(points);
+
         this.points = points;
     }
 
     public Line(int participantCount) {
-        this(createLine(participantCount));
-    }
-
-    private static List<Point> createLine(int participantCount) {
         List<Point> points = new ArrayList<>();
 
         for(int i = 0; i < participantCount - 1; i++) {
             points.add(new Point(i, judgeHasLine(getPreviousPoint(points, i))));
         }
+        assertParticipantCount(points);
+        assertPointHasLine(points);
 
-        return points;
+        this.points = points;
     }
 
     private static boolean judgeHasLine(Point previousPoint) {
