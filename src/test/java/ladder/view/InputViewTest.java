@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Height;
 import ladder.domain.Players;
+import ladder.domain.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,19 @@ class InputViewTest {
 
         assertThat(actual).isEqualTo(expect);
         assertThat(actual.count()).isEqualTo(2);
+    }
+
+    @DisplayName("뽑기 결과를 입력받는다.")
+    @Test
+    void inputPrize() {
+        String prize = "꽝";
+        inputView = new InputView(createInputStream(prize));
+
+        Prize expect = new Prize(prize);
+
+        Prize actual = inputView.inputPrizes();
+
+        assertThat(actual).isEqualTo(expect);
     }
 
     @DisplayName("높이를 입력받는다.")
