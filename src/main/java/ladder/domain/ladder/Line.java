@@ -48,14 +48,14 @@ public class Line {
         return bars;
     }
 
-    LadderNo move(LadderNo no) {
+    LadderNumber move(LadderNumber no) {
         return Optional.of(no.getLadderNo())
                 .filter(this::isExistBar)
-                .map(number -> LadderNo.of(number + 1))
+                .map(number -> LadderNumber.of(number + 1))
                 .orElseGet(() -> Optional.of(no.getLadderNo())
                         .map(number -> number - 1)
                         .filter(this::isExistBar)
-                        .map(LadderNo::of)
+                        .map(LadderNumber::of)
                         .orElse(no));
     }
 

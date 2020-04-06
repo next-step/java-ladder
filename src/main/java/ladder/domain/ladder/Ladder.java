@@ -41,11 +41,11 @@ public class Ladder {
         Map<String, String> resultMap = gamers.getGamerList()
                 .stream()
                 .collect(Collectors.toMap(Gamer::getName, gamer -> {
-                    LadderNo ladderNo = gamer.getLadderNo();
+                    LadderNumber ladderNumber = gamer.getLadderNumber();
                     for (Line line : lines) {
-                        ladderNo = line.move(ladderNo);
+                        ladderNumber = line.move(ladderNumber);
                     }
-                    return ladderResult.getResults().get(ladderNo.getLadderNo());
+                    return ladderResult.getResults().get(ladderNumber.getLadderNo());
                 }));
         return new LadderResultDto(resultMap);
     }

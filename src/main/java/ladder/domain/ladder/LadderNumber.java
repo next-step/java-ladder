@@ -3,19 +3,19 @@ package ladder.domain.ladder;
 import java.util.Objects;
 import java.util.Optional;
 
-public class LadderNo {
+public class LadderNumber {
     private static final String INSTANTIATE_ERROR_FORMAT = "Create LadderNo failed. number must be at least %d : number=%d";
     private static final int MINIMUM_NUMBER = 0;
     private int ladderNo;
 
-    private LadderNo(int ladderNo) {
+    private LadderNumber(int ladderNo) {
         this.ladderNo = ladderNo;
     }
 
-    public static LadderNo of(int number) {
+    public static LadderNumber of(int number) {
         return Optional.of(number)
                 .filter(v -> v >= MINIMUM_NUMBER)
-                .map(LadderNo::new)
+                .map(LadderNumber::new)
                 .orElseThrow(() -> throwIllegalArgumentException(number));
     }
 
@@ -38,8 +38,8 @@ public class LadderNo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderNo ladderNo1 = (LadderNo) o;
-        return ladderNo == ladderNo1.ladderNo;
+        LadderNumber ladderNumber1 = (LadderNumber) o;
+        return ladderNo == ladderNumber1.ladderNo;
     }
 
     @Override

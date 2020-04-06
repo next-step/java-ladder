@@ -33,7 +33,7 @@ public class LineTest {
             "4,4"})
     void moveTest(int start, int end) {
         Line testLine = Line.of(Bar.IS_EXIST, Bar.NOT_EXIST, Bar.IS_EXIST, Bar.NOT_EXIST);
-        assertThat(testLine.move(LadderNo.of(start)))
-                .isEqualTo(LadderNo.of(end));
+        assertThat(testLine.move(LadderNumber.of(start)))
+                .isEqualTo(LadderNumber.of(end));
     }
 }

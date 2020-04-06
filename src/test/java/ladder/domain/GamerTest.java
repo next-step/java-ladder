@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.ladder.LadderNo;
+import ladder.domain.ladder.LadderNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,7 +38,7 @@ public class GamerTest {
     @Test
     @DisplayName("번호 확인")
     void getNumberTest() {
-        assertThat(Gamer.of("test", 5).getLadderNo())
-                .isEqualTo(LadderNo.of(5));
+        assertThat(Gamer.of("test", 5).getLadderNumber())
+                .isEqualTo(LadderNumber.of(5));
     }
 }
