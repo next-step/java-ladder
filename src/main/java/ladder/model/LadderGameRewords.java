@@ -42,4 +42,8 @@ public class LadderGameRewords {
     public int count() {
         return ladderGameRewords.size();
     }
+
+    public LadderGameReword getLadderGameReword(int i) {
+        return ladderGameRewords.get(i);
+    }
 }
