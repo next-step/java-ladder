@@ -23,8 +23,8 @@ public class Player {
         this.location = location;
     }
 
-    public String getName() {
-        return name.getName();
+    public PlayerName getName() {
+        return name;
     }
 
     public int findFinalLocation(Rows rows) {

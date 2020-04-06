@@ -1,6 +1,7 @@
 package ladder.domain.result;
 
 import ladder.model.player.Player;
+import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrize;
 import ladder.model.prize.LadderPrizes;
@@ -44,7 +45,7 @@ public class GameResultTest {
         Row row2 = new Row(result2);
         Rows rows = new Rows(Arrays.asList(row, row2));
 
-        Map<String, Integer> finalLocationByName = players.findFinalLocationByName(rows, "all");
+        Map<PlayerName, Integer> finalLocationByName = players.findFinalLocationByName(rows, "all");
 
         //when
         GameResult gameResult = GameResult.create(finalLocationByName, ladderPrizes);

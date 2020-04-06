@@ -1,5 +1,6 @@
 package ladder.model.result;
 
+import ladder.model.player.PlayerName;
 import ladder.model.prize.LadderPrizes;
 
 import java.util.Collections;
@@ -8,14 +9,14 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameResult {
-    private Map<String, String> result;
+    private Map<PlayerName, String> result;
 
-    public GameResult(Map<String, String> result) {
+    public GameResult(Map<PlayerName, String> result) {
         this.result = Collections.unmodifiableMap(result);
     }
 
-    public static GameResult create(Map<String, Integer> finalLocationByName, LadderPrizes ladderPrizes) {
-        Map<String, String> gameResult = new HashMap<>();
+    public static GameResult create(Map<PlayerName, Integer> finalLocationByName, LadderPrizes ladderPrizes) {
+        Map<PlayerName, String> gameResult = new HashMap<>();
 
         finalLocationByName.keySet().stream()
                 .forEach(it -> gameResult.put(it, ladderPrizes.findPrizeNameAtIndex(finalLocationByName.get(it))));
@@ -24,14 +25,14 @@ public class GameResult {
     }
 
     public String findPrizeByPlayerName(String name) {
-        return result.get(name);
+        return result.get(new PlayerName(name));
     }
 
-    public Map<String, String> getResult() {
+    public Map<PlayerName, String> getResult() {
         return result;
     }
 
-    public Set<String> getKeySet(){
+    public Set<PlayerName> getKeySet() {
         return result.keySet();
     }
 }

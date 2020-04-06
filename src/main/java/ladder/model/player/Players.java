@@ -30,21 +30,21 @@ public class Players {
         return players;
     }
 
-    public Map<String, Integer> findFinalLocationByName(Rows rows, String name) {
-        Map<String, Integer> finalLocation = new HashMap<>();
+    public Map<PlayerName, Integer> findFinalLocationByName(Rows rows, String name) {
+        Map<PlayerName, Integer> finalLocation = new HashMap<>();
 
         if (isValidPlayerName(name)) {
             players.stream()
                     .filter(it -> name.equals(it.getName()))
-                    .forEach(it -> finalLocation.put(name, it.findFinalLocation(rows)));
+                    .forEach(it -> finalLocation.put(it.getName(), it.findFinalLocation(rows)));
             return finalLocation;
 
         }
         return findAllFinalLocations(rows);
     }
 
-    private Map<String, Integer> findAllFinalLocations(Rows rows) {
-        Map<String, Integer> finalLocation = new HashMap<>();
+    private Map<PlayerName, Integer> findAllFinalLocations(Rows rows) {
+        Map<PlayerName, Integer> finalLocation = new HashMap<>();
         players.stream()
                 .forEach(it -> finalLocation.put(it.getName(), it.findFinalLocation(rows)));
         return finalLocation;
@@ -66,6 +66,7 @@ public class Players {
 
     private List<String> findNames(List<Player> players) {
         return players.stream()
+                .map(it -> it.getName())
                 .map(it -> it.getName())
                 .collect(Collectors.toList());
     }

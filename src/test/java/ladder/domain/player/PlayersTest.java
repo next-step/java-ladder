@@ -1,6 +1,7 @@
 package ladder.domain.player;
 
 import ladder.model.player.Player;
+import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
@@ -68,7 +69,7 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        Map<String, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
+        Map<PlayerName, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
         assertThat(finalLocationByName.get(input)).isEqualTo(finalLocation);
@@ -96,7 +97,7 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        Map<String, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
+        Map<PlayerName, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
         assertThat(finalLocationByName.size()).isEqualTo(3);

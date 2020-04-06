@@ -1,5 +1,7 @@
 package ladder.model.player;
 
+import java.util.Objects;
+
 import static ladder.Messages.WARNING_NOT_ALLOWED_NAME_LENGTH;
 
 public class PlayerName {
@@ -22,7 +24,16 @@ public class PlayerName {
         return name;
     }
 
-    public int getNameLength(){
-        return name.length();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlayerName that = (PlayerName) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
