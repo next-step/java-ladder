@@ -32,11 +32,12 @@ class LineTest {
     void moveOneByZero() {
         int playerCount = 1;
         int playerStartPosition = 0;
+        Position expect = new Position(playerStartPosition);
         Line line = Line.of(playerCount);
 
-        int moveResult = line.move(playerStartPosition);
+        Position position = line.move(new Position(playerStartPosition));
 
-        assertThat(moveResult).isZero();
+        assertThat(position).isEqualTo(expect);
     }
 
     @DisplayName("참여자 2명, 라인이 존재하지 않으면 참여자 시작위치를 그대로 반환한다.")
@@ -46,9 +47,9 @@ class LineTest {
         int playerCount = 2;
         Line line = Line.of(playerCount, new FakeTwoByZeroLineGenerator());
 
-        int moveResult = line.move(playerStartPosition);
+        Position position = line.move(new Position(playerStartPosition));
 
-        assertThat(moveResult).isEqualTo(playerStartPosition);
+        assertThat(position).isEqualTo(new Position(playerStartPosition));
     }
 
     @DisplayName("참여자 2명, 라인이 1개 존재하면 참여자 시작위치를 서로 교환한다.")
@@ -58,9 +59,9 @@ class LineTest {
         int playerCount = 2;
         Line line = Line.of(playerCount, new FakeTwoByOneLineGenerator());
 
-        int moveResult = line.move(playerStartPosition);
+        Position position = line.move(new Position(playerStartPosition));
 
-        assertThat(moveResult).isEqualTo(expect);
+        assertThat(position).isEqualTo(new Position(expect));
     }
 
     @DisplayName("참여자 3명, 라인이 왼쪽에 1개 존재하면 참여자 시작위치를 서로 교환한다.")
@@ -70,9 +71,9 @@ class LineTest {
         int playerCount = 3;
         Line line = Line.of(playerCount, new FakeThreeByOneLeftLineGenerator());
 
-        int moveResult = line.move(playerStartPosition);
+        Position position = line.move(new Position(playerStartPosition));
 
-        assertThat(moveResult).isEqualTo(expect);
+        assertThat(position).isEqualTo(new Position(expect));
     }
 
     @DisplayName("참여자 3명, 라인이 오른쪽에 1개 존재하면 참여자 시작위치를 서로 교환한다.")
@@ -82,8 +83,8 @@ class LineTest {
         int playerCount = 3;
         Line line = Line.of(playerCount, new FakeThreeByOneRightLineGenerator());
 
-        int moveResult = line.move(playerStartPosition);
+        Position position = line.move(new Position(playerStartPosition));
 
-        assertThat(moveResult).isEqualTo(expect);
+        assertThat(position).isEqualTo(new Position(expect));
     }
 }
