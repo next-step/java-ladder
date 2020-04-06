@@ -1,6 +1,9 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -27,13 +30,9 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, OperationConditional condition) {
-        int total = 0;
-        for (int number : numbers) {
-            if (condition.isTrue(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(number -> condition.isTrue(number))
+                .reduce(0, (x, y) -> x + y);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
