@@ -1,6 +1,6 @@
 package ladder.domain.row;
 
-import ladder.model.row.Position;
+import ladder.model.player.Position;
 import ladder.model.row.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

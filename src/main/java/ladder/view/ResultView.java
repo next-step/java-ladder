@@ -5,7 +5,7 @@ import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
-import ladder.model.row.Position;
+import ladder.model.player.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 
@@ -49,7 +49,8 @@ public class ResultView {
 
     private static void printGameResult(GameResult gameResult) {
         gameResult.getKeySet().stream()
-                .forEach(it -> System.out.println(it + DELIMITER_TO_PRINT + gameResult.findPrizeByPlayerName(it.getName())));
+                .map(it -> it.getName())
+                .forEach(it -> System.out.println(it + DELIMITER_TO_PRINT + gameResult.findPrizeByPlayerName(it)));
         printBlankLines();
     }
 
@@ -60,7 +61,8 @@ public class ResultView {
     private void printPrizes(LadderPrizes ladderPrizes) {
         ladderPrizes.getLadderPrizes().stream()
                 .map(it -> it.getPrizeName())
-                .map(it -> createBlanks(findBlankCountBefore(it.getPrizeName())) + it + createBlanks(findBlankCountAfter(it.getPrizeName())))
+                .map(it -> it.getPrizeName())
+                .map(it -> createBlanks(findBlankCountBefore(it)) + it + createBlanks(findBlankCountAfter(it)))
                 .forEach(it -> System.out.print(it));
         printBlankLine();
     }

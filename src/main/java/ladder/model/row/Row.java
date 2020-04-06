@@ -1,5 +1,6 @@
 package ladder.model.row;
 
+import ladder.model.player.Position;
 import ladder.randomgenerator.BooleanGenerator;
 
 import java.util.HashMap;

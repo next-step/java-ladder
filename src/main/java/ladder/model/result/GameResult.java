@@ -1,9 +1,9 @@
 package ladder.model.result;
 
 import ladder.model.player.PlayerName;
+import ladder.model.player.Position;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.prize.PrizeName;
-import ladder.model.row.Position;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,12 +26,8 @@ public class GameResult {
         return new GameResult(gameResult);
     }
 
-    public PrizeName findPrizeByPlayerName(String name) {
-        return result.get(new PlayerName(name));
-    }
-
-    public Map<PlayerName, PrizeName> getResult() {
-        return result;
+    public String findPrizeByPlayerName(String name) {
+        return result.get(new PlayerName(name)).getPrizeName();
     }
 
     public Set<PlayerName> getKeySet() {

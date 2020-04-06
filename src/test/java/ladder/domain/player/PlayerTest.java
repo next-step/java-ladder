@@ -2,20 +2,17 @@ package ladder.domain.player;
 
 import ladder.model.player.Player;
 import ladder.model.player.Players;
-import ladder.model.row.Position;
+import ladder.model.player.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayerTest {
     @DisplayName("다음 Row 를 주면, Player의 다음 Location을 준다.")

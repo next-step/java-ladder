@@ -1,6 +1,5 @@
 package ladder.model.player;
 
-import ladder.model.row.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 

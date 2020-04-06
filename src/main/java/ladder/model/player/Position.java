@@ -1,4 +1,4 @@
-package ladder.model.row;
+package ladder.model.player;
 
 import java.util.Objects;
 

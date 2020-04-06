@@ -4,7 +4,7 @@ import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
-import ladder.model.row.Position;
+import ladder.model.player.Position;
 import ladder.model.row.Rows;
 import ladder.view.InputView;
 import ladder.view.ResultView;

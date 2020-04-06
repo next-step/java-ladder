@@ -3,7 +3,7 @@ package ladder.domain.player;
 import ladder.model.player.Player;
 import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
-import ladder.model.row.Position;
+import ladder.model.player.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
