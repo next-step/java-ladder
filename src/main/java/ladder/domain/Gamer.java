@@ -19,7 +19,7 @@ public class Gamer {
                 .map(String::trim)
                 .filter(nameString -> nameString.length() <= 5)
                 .filter(nameString -> !nameString.isEmpty())
-                .map(name1 -> new Gamer(name1, LadderNumber.of(no)))
+                .map(nameString -> new Gamer(nameString, LadderNumber.of(no)))
                 .orElseThrow(() -> new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, name)));
     }
 

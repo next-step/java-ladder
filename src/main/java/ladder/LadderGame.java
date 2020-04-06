@@ -15,7 +15,7 @@ public class LadderGame {
     private void start() {
         Gamers gamers = Gamers.ofComma(inputView.getGamers());
         LadderResult ladderResult = LadderResult.ofComma(inputView.getLadderResults());
-        Ladder ladder = Ladder.of(gamers, MakeLadderStrategy.getRandomMaker(gamers.getGamerList().size() - 1, inputView.getHeight()));
+        Ladder ladder = Ladder.of(gamers, MakeLadderStrategy.getRandomMaker(gamers.size() - 1, inputView.getHeight()));
 
         outputView.printGamers(gamers);
         outputView.printLadder(ladder.getBarMatrix());

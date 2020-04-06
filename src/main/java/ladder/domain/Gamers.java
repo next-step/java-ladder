@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -11,7 +12,7 @@ public class Gamers {
     private final List<Gamer> gamerList;
 
     private Gamers(List<Gamer> gamerList) {
-        this.gamerList = gamerList;
+        this.gamerList = Collections.unmodifiableList(gamerList);
     }
 
     public static Gamers ofComma(String name) {
@@ -24,16 +25,20 @@ public class Gamers {
 
     private static List<Gamer> getGamerList(String[] names) {
         return IntStream.range(0, names.length)
-                .mapToObj(idx -> getNextGamer(idx, names))
+                .mapToObj(idx -> createNextGamer(idx, names))
                 .collect(Collectors.toList());
     }
 
-    private static Gamer getNextGamer(int idx, String[] names) {
+    private static Gamer createNextGamer(int idx, String[] names) {
         return Gamer.of(names[idx], idx);
     }
 
     public List<Gamer> getGamerList() {
         return gamerList;
+    }
+
+    public int size(){
+        return gamerList.size();
     }
 
     @Override
