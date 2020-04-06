@@ -14,6 +14,10 @@ public class OutputView {
     private static final String LADDER_RESULT_MSG = "사다리 결과";
     private static final String RESULT_MSG = "실행 결과";
     private static final int WORD_LIMIT = 5;
+    private static final String BAR_EXIST = "-----";
+    private static final String BAR_NOT_EXIST = "     ";
+    private static final String LADDER_STICK = "|";
+    private static final String ELLIPSIS = "|";
 
     public void printGamers(Gamers gamers) {
         System.out.println(LADDER_RESULT_MSG);
@@ -41,8 +45,8 @@ public class OutputView {
         return line.getBars()
                 .stream()
                 .map(Bar::isExist)
-                .map(bar -> bar ? "-----" : "     ")
-                .collect(Collectors.joining("|", "  |", "|"));
+                .map(bar -> bar ? BAR_EXIST : BAR_NOT_EXIST)
+                .collect(Collectors.joining(LADDER_STICK, "  " + LADDER_STICK, LADDER_STICK));
     }
 
     public void printResultCandidate(LadderResult ladderResult) {
@@ -57,7 +61,7 @@ public class OutputView {
 
     private String ellipsis5Character(String string) {
         if (string.length() > WORD_LIMIT) {
-            return string.substring(0, 3) + "..";
+            return string.substring(0, 3) + ELLIPSIS;
         }
         return string;
     }
