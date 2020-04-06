@@ -35,7 +35,7 @@ public class Players {
 
         if (isValidPlayerName(name)) {
             players.stream()
-                    .filter(it -> name.equals(it.getName()))
+                    .filter(it -> name.equals(it.getName().getName()))
                     .forEach(it -> finalLocation.put(it.getName(), it.findFinalLocation(rows)));
             return finalLocation;
 
@@ -64,16 +64,17 @@ public class Players {
                 .isPresent();
     }
 
-    private List<String> findNames(List<Player> players) {
+    private List<PlayerName> findNames(List<Player> players) {
         return players.stream()
-                .map(it -> it.getName())
                 .map(it -> it.getName())
                 .collect(Collectors.toList());
     }
 
     private boolean isValidPlayerName(String name) {
         return players.stream()
-                .filter(it -> name.equals(it.getName()))
+                .map(it -> it.getName())
+                .map(it -> it.getName())
+                .filter(it -> name.equals(it))
                 .findAny()
                 .isPresent();
     }

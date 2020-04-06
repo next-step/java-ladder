@@ -40,7 +40,7 @@ public class PlayersTest {
     @Test
     void throwExceptionWhenDuplicationNamesTest(){
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            Players players = Players.create(Arrays.asList(
+            Players.create(Arrays.asList(
                     new Player("Mark"),
                     new Player("Sujin"),
                     new Player("Sujin")));
@@ -72,7 +72,7 @@ public class PlayersTest {
         Map<PlayerName, Integer> finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
-        assertThat(finalLocationByName.get(input)).isEqualTo(finalLocation);
+        assertThat(finalLocationByName.get(new PlayerName(input))).isEqualTo(finalLocation);
     }
 
     @DisplayName("존재하지 않는 플레이어명을 입력하면, 전체 결과를 반환한다.")
@@ -101,8 +101,8 @@ public class PlayersTest {
 
         //then
         assertThat(finalLocationByName.size()).isEqualTo(3);
-        assertThat(finalLocationByName.get("Mark")).isEqualTo(2);
-        assertThat(finalLocationByName.get("Ten")).isEqualTo(0);
-        assertThat(finalLocationByName.get("Sujin")).isEqualTo(1);
+        assertThat(finalLocationByName.get(new PlayerName("Mark"))).isEqualTo(2);
+        assertThat(finalLocationByName.get(new PlayerName("Ten"))).isEqualTo(0);
+        assertThat(finalLocationByName.get(new PlayerName("Sujin"))).isEqualTo(1);
     }
 }
