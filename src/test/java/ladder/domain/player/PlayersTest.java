@@ -4,6 +4,7 @@ import ladder.model.player.Player;
 import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.player.Position;
+import ladder.model.result.PositionResult;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
@@ -70,10 +71,10 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        Map<PlayerName, Position> finalLocationByName = players.findFinalLocationByName(rows, input);
+        PositionResult finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
-        assertThat(finalLocationByName.get(new PlayerName(input))).isEqualTo(new Position(finalLocation));
+        assertThat(finalLocationByName.getPosition(new PlayerName(input))).isEqualTo(new Position(finalLocation));
     }
 
     @DisplayName("존재하지 않는 플레이어명을 입력하면, 전체 결과를 반환한다.")
@@ -98,12 +99,12 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        Map<PlayerName, Position> finalLocationByName = players.findFinalLocationByName(rows, input);
+        PositionResult finalLocationByName = players.findFinalLocationByName(rows, input);
 
         //then
-        assertThat(finalLocationByName.size()).isEqualTo(3);
-        assertThat(finalLocationByName.get(new PlayerName("Mark"))).isEqualTo(new Position(0));
-        assertThat(finalLocationByName.get(new PlayerName("Ten"))).isEqualTo(new Position(1));
-        assertThat(finalLocationByName.get(new PlayerName("Sujin"))).isEqualTo(new Position(2));
+        assertThat(finalLocationByName.getSize()).isEqualTo(3);
+        assertThat(finalLocationByName.getPosition(new PlayerName("Mark"))).isEqualTo(new Position(0));
+        assertThat(finalLocationByName.getPosition(new PlayerName("Ten"))).isEqualTo(new Position(1));
+        assertThat(finalLocationByName.getPosition(new PlayerName("Sujin"))).isEqualTo(new Position(2));
     }
 }

@@ -1,7 +1,6 @@
 package ladder.model.result;
 
 import ladder.model.player.PlayerName;
-import ladder.model.player.Position;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.prize.PrizeName;
 
@@ -17,11 +16,11 @@ public class GameResult {
         this.result = Collections.unmodifiableMap(result);
     }
 
-    public static GameResult create(Map<PlayerName, Position> finalLocationByName, LadderPrizes ladderPrizes) {
+    public static GameResult create(PositionResult finalLocationByName, LadderPrizes ladderPrizes) {
         Map<PlayerName, PrizeName> gameResult = new HashMap<>();
 
-        finalLocationByName.keySet().stream()
-                .forEach(it -> gameResult.put(it, ladderPrizes.findPrizeNameAtIndex(finalLocationByName.get(it).getPosition())));
+        finalLocationByName.getKeySet().stream()
+                .forEach(it -> gameResult.put(it, ladderPrizes.findPrizeNameAtIndex(finalLocationByName.getPosition(it).getPosition())));
 
         return new GameResult(gameResult);
     }

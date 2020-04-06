@@ -7,6 +7,7 @@ import ladder.model.player.Position;
 import ladder.model.prize.LadderPrize;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
+import ladder.model.result.PositionResult;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +47,7 @@ public class GameResultTest {
         Row row2 = new Row(result2);
         Rows rows = new Rows(Arrays.asList(row, row2));
 
-        Map<PlayerName, Position> finalLocationByName = players.findFinalLocationByName(rows, "all");
+        PositionResult finalLocationByName = players.findFinalLocationByName(rows, "all");
 
         //when
         GameResult gameResult = GameResult.create(finalLocationByName, ladderPrizes);

@@ -18,7 +18,7 @@ public class RowTest {
         Row row = Row.create(playerCount);
 
         //then
-        for (int i = 0; i < playerCount - 1; i++) {
+        for (int i = 1; i < playerCount - 1; i++) {
             if (row.getRowElement(new Position(i))) {
                 assertThat(row.getRowElement(new Position(i - 1))).isFalse();
             }
