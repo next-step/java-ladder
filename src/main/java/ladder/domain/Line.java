@@ -6,8 +6,6 @@ import ladder.domain.generator.RandomLineGenerator;
 import java.util.*;
 
 public class Line {
-    private static final int DEFAULT_MOVEMENT_POSITION = 1;
-
     private final List<Boolean> lines;
 
     public Line(final List<Boolean> lines) {
@@ -30,12 +28,12 @@ public class Line {
         int playerPosition = position.value();
         // 좌측 이동이 가능한지
         if (isMoveLeft(playerPosition)) {
-            return new Position(playerPosition - DEFAULT_MOVEMENT_POSITION);
+            return position.left();
         }
 
         // 우측 이동이 가능한지
         if (isMoveRight(playerPosition)) {
-            return new Position(playerPosition + DEFAULT_MOVEMENT_POSITION);
+            return position.right();
         }
         return position;
     }
@@ -45,8 +43,8 @@ public class Line {
     }
 
     private boolean isMoveRight(final int playerPosition) {
-        return playerPosition + DEFAULT_MOVEMENT_POSITION < lines.size()
-                && lines.get(playerPosition + DEFAULT_MOVEMENT_POSITION);
+        return playerPosition + Position.DEFAULT_MOVEMENT_POSITION < lines.size()
+                && lines.get(playerPosition + Position.DEFAULT_MOVEMENT_POSITION);
     }
 
     @Override
