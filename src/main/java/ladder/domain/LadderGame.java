@@ -11,9 +11,7 @@ public class LadderGame {
     }
 
     public static LadderGame createLadder(Players players, int height) {
-        LadderGenerator ladderGenerator =
-                new LadderGenerator(players.getPlayersCount(), height);
-        Lines lines = ladderGenerator.generateLines();
+        Lines lines = Lines.of(players.getPlayersCount(), height);
 
         return new LadderGame(players, lines);
     }

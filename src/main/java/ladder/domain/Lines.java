@@ -8,14 +8,22 @@ public class Lines {
     private final List<Line> lines;
 
     public Lines() {
-        this.lines = new ArrayList<Line>();
+        this.lines = new ArrayList<>();
     }
 
     public Lines(final List<Line> lines) {
         this.lines = lines;
     }
 
-    public Lines addLine(Line line) {
+    public static Lines of(final int playerCount, int ladderHeight) {
+        Lines lines = new Lines();
+        for (int i = 0; i < ladderHeight; i++) {
+            lines = lines.addLine(Line.of(playerCount));
+        }
+        return lines;
+    }
+
+    private Lines addLine(Line line) {
         List<Line> merge = new ArrayList<>();
         merge.addAll(this.lines);
         merge.add(line);
