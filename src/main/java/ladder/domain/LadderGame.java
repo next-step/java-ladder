@@ -28,7 +28,7 @@ public class LadderGame {
 
     public User findUser(String userName) {
         return users.stream()
-                .filter(user -> user.getName().equals(userName))
+                .filter(user -> user.equalsUserName(userName))
                 .findAny()
                 .orElseThrow(() -> new LadderException(ExceptionType.NOT_EXIST_USER));
     }

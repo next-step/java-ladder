@@ -35,6 +35,10 @@ public class User {
         this.reward = ladder.getRewards(startIndex);
     }
 
+    public boolean equalsUserName(String userName) {
+        return this.name.equals(userName);
+    }
+
     private static void validNameLength(List<String> userNames) {
         boolean invalidName = userNames.stream()
                 .anyMatch(userName -> userName.length() > NAME_LENGTH_LIMIT);
