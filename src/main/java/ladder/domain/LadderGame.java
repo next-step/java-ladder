@@ -5,10 +5,7 @@ import ladder.Exception.LadderException;
 import lombok.Getter;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final String REGEX = ",";
@@ -29,7 +26,7 @@ public class LadderGame {
         setResult();
     }
 
-    public User findUser (String userName) {
+    public User findUser(String userName) {
         return users.stream()
                 .filter(user -> user.getName().equals(userName))
                 .findAny()
