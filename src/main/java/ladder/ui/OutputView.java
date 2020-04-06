@@ -2,12 +2,13 @@ package ladder.ui;
 
 import ladder.domain.Gamer;
 import ladder.domain.Gamers;
+import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.Bar;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderResult;
-import ladder.domain.ladder.Line;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -36,13 +37,13 @@ public class OutputView {
         return String.format("%-5s", String.format("%4s", String.format("%-3s", String.format("%2s", gamer))));
     }
 
-    public void printLadder(Ladder ladder) {
-        ladder.getLines()
+    public void printLadder(BarMatrixDto ladder) {
+        ladder.getBarMatrix()
                 .forEach(line -> System.out.println(toStringOneLine(line)));
     }
 
-    private String toStringOneLine(Line line) {
-        return line.getBars()
+    private String toStringOneLine(List<Bar> line) {
+        return line
                 .stream()
                 .map(Bar::isExist)
                 .map(bar -> bar ? BAR_EXIST : BAR_NOT_EXIST)

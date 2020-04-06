@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.Gamer;
 import ladder.domain.Gamers;
+import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.maker.MakeLadderStrategy;
 
@@ -32,9 +33,10 @@ public class Ladder {
         return new Ladder(gamers, lines);
     }
 
-
-    public List<Line> getLines() {
-        return lines;
+    public BarMatrixDto getBarMatrix() {
+        return new BarMatrixDto(lines.stream()
+                .map(Line::getBars)
+                .collect(Collectors.toList()));
     }
 
     public LadderResultDto getResult(LadderResult ladderResult) {

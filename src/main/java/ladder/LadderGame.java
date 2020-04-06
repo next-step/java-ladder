@@ -18,7 +18,7 @@ public class LadderGame {
         Ladder ladder = Ladder.of(gamers, MakeLadderStrategy.getRandomMaker(gamers.getGamerList().size() - 1, inputView.getHeight()));
 
         outputView.printGamers(gamers);
-        outputView.printLadder(ladder);
+        outputView.printLadder(ladder.getBarMatrix());
         outputView.printResultCandidate(ladderResult);
 
         LadderResultDto ladderResultDto = ladder.getResult(ladderResult);

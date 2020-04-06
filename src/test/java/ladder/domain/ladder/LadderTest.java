@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static ladder.domain.ladder.Bar.IS_EXIST;
 import static ladder.domain.ladder.Bar.NOT_EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,7 +27,7 @@ public class LadderTest {
     @Test
     @DisplayName("라인 수 가져오는 테스트")
     void getLinesTest() {
-        assertThat(testLadder.getLines())
+        assertThat(testLadder.getBarMatrix())
                 .hasSize(height);
     }
 
@@ -34,8 +36,8 @@ public class LadderTest {
     void getResultTest() {
         Gamers gamers = Gamers.ofComma("a,b,c");
         Ladder ladder = Ladder.of(gamers, MakeLadderStrategy.getPassiveMaker(
-                Line.of(NOT_EXIST, IS_EXIST),
-                Line.of(IS_EXIST, NOT_EXIST)));
+                Line.of(Arrays.asList(NOT_EXIST, IS_EXIST)),
+                Line.of(Arrays.asList(IS_EXIST, NOT_EXIST))));
         LadderResult result = LadderResult.ofComma("1,2,3");
 
         LadderResultDto dto = ladder.getResult(result);

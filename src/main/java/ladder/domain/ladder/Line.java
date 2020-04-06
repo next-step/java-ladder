@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -12,18 +12,10 @@ public class Line {
     private final List<Bar> bars;
 
     private Line(List<Bar> bars) {
-        this.bars = bars;
-    }
-
-    static Line of(Bar... bars) {
-        return Line.of(Arrays.asList(bars));
+        this.bars = Collections.unmodifiableList(bars);
     }
 
     public static Line of(List<Bar> bars) {
-        if (bars.size() == 1) {
-            return new Line(bars);
-        }
-
         if (isAdjacentBars(bars)) {
             throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, toString(bars)));
         }
@@ -32,7 +24,7 @@ public class Line {
     }
 
     private static boolean isAdjacentBars(List<Bar> bars) {
-        return IntStream.range(1, bars.size())
+        return (bars.size() > 1) && IntStream.range(1, bars.size())
                 .filter(idx -> bars.get(idx - 1).isExist() && bars.get(idx).isExist())
                 .findFirst()
                 .isPresent();
@@ -44,7 +36,7 @@ public class Line {
                 .collect(Collectors.joining(",", "[", "]"));
     }
 
-    public List<Bar> getBars() {
+    List<Bar> getBars() {
         return bars;
     }
 
@@ -59,12 +51,12 @@ public class Line {
                         .orElse(no));
     }
 
-    int size(){
+    int size() {
         return bars.size();
     }
 
     private boolean isExistBar(int idx) {
-        return -1 < idx && idx < bars.size() && bars.get(idx).isExist();
+        return (-1 < idx && idx < bars.size()) && bars.get(idx).isExist();
     }
 
     @Override
