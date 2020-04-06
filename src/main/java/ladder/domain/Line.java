@@ -17,6 +17,10 @@ public class Line {
         return Collections.unmodifiableList(lines);
     }
 
+    public int move(final int playerStartPosition) {
+        return 0;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
