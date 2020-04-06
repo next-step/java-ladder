@@ -15,10 +15,11 @@ public class LadderResultsTest {
     void assertResultLength() {
 
         List<String> results = new ArrayList<>();
-        results.add("꽝꽝꽝꽝꽝꽝");
+        String result = "꽝꽝꽝꽝꽝꽝";
+        results.add(result);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new LadderResults(results);
-        }).withMessage(String.format(LadderResults.LADDER_RESULT_LENGTH_ERROR, results.get(0)));
+        }).withMessage(String.format(LadderResults.LADDER_RESULT_LENGTH_ERROR, result));
     }
 }

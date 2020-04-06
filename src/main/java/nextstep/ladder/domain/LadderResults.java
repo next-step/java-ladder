@@ -7,15 +7,16 @@ public class LadderResults {
     private final List<String> results;
 
     public LadderResults(List<String> results) {
-        assertResultName(results);
+        for(String result : results) {
+            assertResultName(result);
+        }
+
         this.results = results;
     }
 
-    private void assertResultName(List<String> results) {
-        for(String result : results) {
-            if(result.length() > 5) {
-                throw new IllegalArgumentException(String.format(LADDER_RESULT_LENGTH_ERROR, result));
-            }
+    private void assertResultName(String result) {
+        if(result.length() > 5) {
+            throw new IllegalArgumentException(String.format(LADDER_RESULT_LENGTH_ERROR, result));
         }
     }
 
