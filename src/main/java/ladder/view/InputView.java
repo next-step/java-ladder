@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Height;
 import ladder.domain.Players;
-import ladder.domain.Prize;
+import ladder.domain.Prizes;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -27,9 +27,9 @@ public class InputView {
         return new Players(scanner.nextLine());
     }
 
-    public Prize inputPrizes() {
+    public Prizes inputPrizes(int playerCount) {
         System.out.println(INPUT_EXPECT_VALUES_MESSAGE);
-        return new Prize(scanner.nextLine());
+        return new Prizes(scanner.nextLine(), playerCount);
     }
 
     public Height inputHeight() {
