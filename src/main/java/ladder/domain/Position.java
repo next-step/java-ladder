@@ -3,6 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
+    public static final int DEFAULT_MOVEMENT_POSITION = 1;
+
     private final int position;
 
     public Position(final int position) {
@@ -11,6 +13,14 @@ public class Position {
 
     public int value() {
         return position;
+    }
+
+    Position left() {
+        return new Position(position - DEFAULT_MOVEMENT_POSITION);
+    }
+
+    Position right() {
+        return new Position(position + DEFAULT_MOVEMENT_POSITION);
     }
 
     @Override
@@ -25,5 +35,4 @@ public class Position {
     public int hashCode() {
         return Objects.hash(position);
     }
-
 }
