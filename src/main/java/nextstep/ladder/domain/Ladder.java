@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder implements Iterable<HorizontalLine> {
     private List<HorizontalLine> ladder;
@@ -13,8 +12,8 @@ public class Ladder implements Iterable<HorizontalLine> {
                                  LineSelector lineSelector,
                                  RightDirection rightDirection) {
         Ladder ladder = new Ladder(generateHorizontalLines(ladderSize));
-        ladder.assignVertical(lineSelector);
-        ladder.assignHorizontal(rightDirection);
+        ladder.assignOneLineToEachVerticalLines(lineSelector);
+        ladder.assignLinesToEachHorizontalLines(rightDirection);
         return ladder;
     }
 
@@ -32,18 +31,18 @@ public class Ladder implements Iterable<HorizontalLine> {
         this.ladder = new ArrayList<>(horizontalLines);
     }
 
-    private void assignVertical(LineSelector lineSelector) {
+    private void assignOneLineToEachVerticalLines(LineSelector lineSelector) {
         int width = ladder.get(0).size();
         int beforeSelectedIndex = -1;
         for (int i = 0; i < width; i++) {
-            beforeSelectedIndex = assignVertical(i, beforeSelectedIndex,
+            beforeSelectedIndex = assignOneLineToVerticalLine(i, beforeSelectedIndex,
                     lineSelector);
         }
     }
 
-    private int assignVertical(int index,
-                               int beforeSelectedIndex,
-                               LineSelector lineSelector) {
+    private int assignOneLineToVerticalLine(int index,
+                                            int beforeSelectedIndex,
+                                            LineSelector lineSelector) {
         int height = ladder.size();
         int selectedIndex = lineSelector.select(height);
         if (beforeSelectedIndex == selectedIndex) {
@@ -54,29 +53,27 @@ public class Ladder implements Iterable<HorizontalLine> {
         return selectedIndex;
     }
 
-    private void assignHorizontal(RightDirection rightDirection) {
+    private void assignLinesToEachHorizontalLines(RightDirection rightDirection) {
         for (HorizontalLine horizontalLine : ladder) {
-            assignHorizontal(horizontalLine, rightDirection);
+            assignLinesToHorizontalLine(horizontalLine, rightDirection);
         }
     }
 
-    private void assignHorizontal(HorizontalLine horizontalLine,
-                                  RightDirection rightDirection) {
+    private void assignLinesToHorizontalLine(HorizontalLine horizontalLine,
+                                                  RightDirection rightDirection) {
         for (int i = 0; i < horizontalLine.size(); i++) {
             boolean isAbleToRight = rightDirection.isAbleToRight();
             horizontalLine.makeDirectionTo(i, isAbleToRight);
         }
     }
 
-
-
-    public List<Point> vertical(int index) {
+    public List<Point> getVerticalLine(int index) {
         return ladder.stream()
                 .map(horizontalLine -> horizontalLine.getPoint(index))
                 .collect(Collectors.toList());
     }
 
-    public HorizontalLine horizontal(int index) {
+    public HorizontalLine getHorizontalLine(int index) {
         return ladder.get(index);
     }
 
@@ -91,5 +88,10 @@ public class Ladder implements Iterable<HorizontalLine> {
         }
 
         return nextIndex;
+    }
+
+    @Override
+    public Iterator<HorizontalLine> iterator() {
+        return ladder.iterator();
     }
 }

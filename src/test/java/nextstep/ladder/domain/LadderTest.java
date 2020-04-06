@@ -33,7 +33,7 @@ public class LadderTest {
                 Ladder.valueOf(ladderSize, lineSelector, rightDirection);
         int checkSize  = ladderSize.getWidth() - 1;
         for (int i = 0; i < checkSize; i++) {
-            boolean hasRightDirection = ladder.vertical(i).stream()
+            boolean hasRightDirection = ladder.getVerticalLine(i).stream()
                     .anyMatch(Point::hasRightDirection);
 
             assertThat(hasRightDirection).isTrue();
@@ -48,7 +48,7 @@ public class LadderTest {
                 Ladder.valueOf(ladderSize, lineSelector, rightDirection);
 
         for (int i = 0; i < ladderSize.getHeight(); i++) {
-            HorizontalLine horizontalLine = ladder.horizontal(i);
+            HorizontalLine horizontalLine = ladder.getHorizontalLine(i);
             horizontalDetail(horizontalLine);
         }
     }
