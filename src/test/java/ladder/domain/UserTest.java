@@ -38,4 +38,14 @@ public class UserTest {
         User user = users.get(startIndex);
         user.setReward(startIndex, ladder);
     }
+
+    @Test
+    void equalsUserName() {
+        List<User> users = User.listOf("pobi,honux,crong,jk");
+
+        assertThat(users.get(0).equalsUserName("pobi")).isTrue();
+        assertThat(users.get(1).equalsUserName("honux")).isTrue();
+        assertThat(users.get(2).equalsUserName("crong")).isTrue();
+        assertThat(users.get(3).equalsUserName("jk")).isTrue();
+    }
 }
