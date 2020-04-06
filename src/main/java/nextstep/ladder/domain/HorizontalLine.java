@@ -34,12 +34,12 @@ public class HorizontalLine implements Iterable<Point> {
     }
 
     private boolean isLast(int index) {
-        return index == lastIndex();
+        return index == getLastIndex();
     }
 
     private Point getAfter(int index) {
         if (isLast(index)) {
-            return getPoint(lastIndex());
+            return getPoint(getLastIndex());
         }
 
         return getPoint(index + 1);
@@ -49,7 +49,7 @@ public class HorizontalLine implements Iterable<Point> {
         return points.size();
     }
 
-    private int lastIndex() {
+    private int getLastIndex() {
         return size() - 1;
     }
 
@@ -57,7 +57,7 @@ public class HorizontalLine implements Iterable<Point> {
         return points.get(index);
     }
 
-    public int nextIndex(int index) {
+    public int getNextIndex(int index) {
         Point point = points.get(index);
         if(point.hasRightDirection()) {
             return index + 1;

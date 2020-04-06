@@ -84,7 +84,7 @@ public class Ladder implements Iterable<HorizontalLine> {
     public int result(int index) {
         int nextIndex = index;
         for (HorizontalLine horizontalLine : ladder) {
-            nextIndex = horizontalLine.nextIndex(nextIndex);
+            nextIndex = horizontalLine.getNextIndex(nextIndex);
         }
 
         return nextIndex;
