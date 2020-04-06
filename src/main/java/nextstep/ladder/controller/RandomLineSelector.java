@@ -11,7 +11,8 @@ public class RandomLineSelector implements LineSelector {
         random = new Random();
     }
 
-    @Override public int select(int size) {
+    @Override
+    public int select(int size) {
         return random.nextInt(size);
     }
 }

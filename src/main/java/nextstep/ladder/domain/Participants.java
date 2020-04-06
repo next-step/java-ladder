@@ -17,7 +17,8 @@ public class Participants implements Iterable<Participant> {
         return participantList.size();
     }
 
-    @Override public Iterator<Participant> iterator() {
+    @Override
+    public Iterator<Participant> iterator() {
         return participantList.iterator();
     }
 }

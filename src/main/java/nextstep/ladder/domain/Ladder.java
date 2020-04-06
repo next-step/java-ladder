@@ -75,7 +75,8 @@ public class Ladder implements Iterable<HorizontalLine> {
         return ladder.size();
     }
 
-    @Override public Iterator<HorizontalLine> iterator() {
+    @Override
+    public Iterator<HorizontalLine> iterator() {
         return ladder.iterator();
     }
 }

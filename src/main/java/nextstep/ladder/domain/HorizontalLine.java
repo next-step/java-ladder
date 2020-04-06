@@ -79,7 +79,8 @@ public class HorizontalLine implements Iterable<Point> {
         return points.get(index);
     }
 
-    @Override public Iterator<Point> iterator() {
+    @Override
+    public Iterator<Point> iterator() {
         return points.iterator();
     }
 }
