@@ -8,7 +8,7 @@ public class ResultList {
     private List<User> resultList = new ArrayList<>();
 
     public ResultList(UserList userList, String resultBuyPerson) {
-        if(ALL_RESULT.equals(resultBuyPerson)){
+        if (ALL_RESULT.equals(resultBuyPerson)) {
             allUserList(userList);
             return;
         }
@@ -19,10 +19,6 @@ public class ResultList {
         for (int i = 0; i < userList.size(); i++) {
             this.resultList.add(userList.getUser(i));
         }
-    }
-
-    public void print() {
-        resultList.stream().forEach(result-> System.out.println(result.getName() + " : " + result.getPoint()));
     }
 
     public int size() {

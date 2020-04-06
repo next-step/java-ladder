@@ -10,24 +10,16 @@ public class JavaLadder {
         InputView inputView = new InputView();
         String inputName = inputView.askName();
         UserList userList = new UserList(inputName);
-
         String prize = inputView.askPrize();
         PrizeList prizeList = new PrizeList(prize);
-
         validateSize(userList, prizeList);
-
         int ladderHeight = inputView.askLadderHeight();
         Ladder ladder = new Ladder(ladderHeight, userList.size());
-
         OutputView outputView = new OutputView();
         outputView.showLadder(userList, ladder, prizeList);
-
         ladder.moveForResult(userList);
-
         String resultBuyPerson = inputView.askResultByPerson();
-
         ResultList resultList = new ResultList(userList, resultBuyPerson);
-
         outputView.showResult(resultList, prizeList);
     }
 

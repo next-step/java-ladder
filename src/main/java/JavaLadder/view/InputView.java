@@ -22,13 +22,13 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public String askPrize(){
+    public String askPrize() {
         System.out.println(PRIZE_QUESTION);
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
-    public String askResultByPerson(){
+    public String askResultByPerson() {
         System.out.println(RESULT_SELECT_QUESTION);
         scanner = new Scanner(System.in);
         return scanner.nextLine();

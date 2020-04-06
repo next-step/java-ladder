@@ -35,12 +35,16 @@ public class Ladder {
 
     private void moveLadder(Point point) {
         for (int i = 0; i < ladder.size(); i++) {
-            Line line = (Line) ladder.get(i);
-            if(line.countLine() == 0){
-                continue;
-            }
-            line.moveByLine(point);
+            moveLine(point, i);
         }
+    }
+
+    private void moveLine(Point point, int index) {
+        Line line = (Line) ladder.get(index);
+        if(line.countLine() == 0){
+            return;
+        }
+        line.moveByLine(point);
     }
 
 }

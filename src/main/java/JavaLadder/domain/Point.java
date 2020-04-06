@@ -1,5 +1,7 @@
 package JavaLadder.domain;
 
+import java.util.Objects;
+
 public class Point {
     private int point = 0;
 
@@ -21,5 +23,23 @@ public class Point {
 
     public void RightMove() {
         this.point++;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.getPoint());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point1 = (Point) o;
+        return point == point1.point;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(point);
     }
 }

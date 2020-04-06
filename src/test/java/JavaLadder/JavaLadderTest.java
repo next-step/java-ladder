@@ -101,7 +101,7 @@ public class JavaLadderTest {
     @DisplayName("사람별 포인트가지고오는 테스트")
     public void userPointTest() {
         UserList userList = new UserList(("test,test1,test2"));
-        assertThat(userList.getUserPoint("test1")).isEqualTo(1);
+        assertThat(userList.getUserPoint("test1")).isEqualTo(new Point(1));
     }
 
     @Test

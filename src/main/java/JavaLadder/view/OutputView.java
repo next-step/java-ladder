@@ -2,10 +2,6 @@ package JavaLadder.view;
 
 import JavaLadder.domain.*;
 
-import java.sql.Array;
-import java.sql.SQLOutput;
-import java.util.Arrays;
-
 public class OutputView {
     private static final String LADDER_RESULT = "사다리결과";
     private static final String ACTION_RESULT = "실행 결과";
