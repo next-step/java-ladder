@@ -10,7 +10,7 @@ public class LadderGame {
         this.lines = lines;
     }
 
-    public static LadderGame createLadder(Players players, int height) {
+    public static LadderGame of(Players players, int height) {
         Lines lines = Lines.of(players.getPlayersCount(), height);
 
         return new LadderGame(players, lines);

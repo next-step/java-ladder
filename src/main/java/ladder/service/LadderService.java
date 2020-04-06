@@ -15,7 +15,7 @@ public class LadderService {
         int height = StringUtils.parse(inputHeight);
         Players players = Players.of(names);
 
-        LadderGame game = LadderGame.createLadder(players, height);
+        LadderGame game = LadderGame.of(players, height);
         return game;
     }
 }
