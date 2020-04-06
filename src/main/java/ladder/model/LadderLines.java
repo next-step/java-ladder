@@ -21,13 +21,13 @@ public class LadderLines {
         }
     }
 
-    public static LadderLines newInstance(final int count, final int height) {
-        return newInstance(MemberCount.of(count), LadderHeight.newInstance(height));
+    public static LadderLines newInstance(final int poleCount, final int height) {
+        return newInstance(poleCount, LadderHeight.newInstance(height));
     }
 
-    public static LadderLines newInstance(final MemberCount memberCount, final LadderHeight height) {
+    public static LadderLines newInstance(final int poleCount, final LadderHeight height) {
         List<LadderLine> ladders = IntStream.range(0, height.toInt())
-                .mapToObj(i -> LadderLine.newInstance(memberCount))
+                .mapToObj(i -> LadderLine.newInstance(poleCount))
                 .collect(Collectors.toList());
         return new LadderLines(ladders);
     }

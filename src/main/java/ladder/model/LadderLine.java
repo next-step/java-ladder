@@ -21,15 +21,11 @@ public class LadderLine {
         }
     }
 
-    public static LadderLine newInstance(final int memberCount) {
-        return newInstance(MemberCount.of(memberCount));
-    }
-
-    public static LadderLine newInstance(final MemberCount memberCount) {
+    public static LadderLine newInstance(final int poleCount) {
         List<LadderBridge> bridges = Stream.iterate(
                 LadderBridge.randomBridge(),
                 LadderBridge::makeRandomBridgeByPreBridge)
-                .limit(memberCount.toInt() - 1)
+                .limit(poleCount - 1)
                 .collect(Collectors.toList());
 
         return new LadderLine(bridges);

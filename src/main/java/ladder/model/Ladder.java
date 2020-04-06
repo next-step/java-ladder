@@ -17,12 +17,12 @@ public class Ladder {
         }
     }
 
-    public static Ladder newInstance(final int count, final int height, final String rewords) {
-        return newInstance(MemberCount.of(count), LadderHeight.newInstance(height), LadderGameRewords.newInstance(rewords));
+    public static Ladder newInstance(final int poleCount, final int height, final String rewords) {
+        return newInstance(count, LadderHeight.newInstance(height), LadderGameRewords.newInstance(rewords));
     }
 
-    public static Ladder newInstance(final MemberCount memberCount, final LadderHeight ladderHeight, final LadderGameRewords ladderGameRewords) {
-        return new Ladder(LadderLines.newInstance(memberCount, ladderHeight), ladderGameRewords);
+    public static Ladder newInstance(final int poleCount, final LadderHeight ladderHeight, final LadderGameRewords ladderGameRewords) {
+        return new Ladder(LadderLines.newInstance(poleCount, ladderHeight), ladderGameRewords);
     }
 
     public int getPoleCount() {
