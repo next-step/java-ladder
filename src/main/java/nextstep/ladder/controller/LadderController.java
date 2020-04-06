@@ -22,7 +22,7 @@ public class LadderController {
                 new RandomRightDirection()
         );
         LadderGame ladderGame =
-                LadderGame.valueOf(participants, prizes, ladder);
+                new LadderGame(participants, prizes, ladder);
         ResultView.displayLadder(ladderGame);
         selectResult(ladderGame);
     }
