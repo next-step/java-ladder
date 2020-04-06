@@ -1,11 +1,11 @@
 package ladder.view;
 
 import ladder.model.player.Player;
-import ladder.model.player.Players;
 import ladder.model.prize.LadderPrize;
 import ladder.model.row.Height;
 import ladder.util.ScannerUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,9 +19,9 @@ public class InputView {
     public InputView() {
     }
 
-    public Players getPlayers() {
+    public List<Player> getPlayers() {
         System.out.println(MESSAGE_INPUT_PLAYERS);
-        return Players.create(splitNames(ScannerUtil.readLine()));
+        return convertToPlayer(splitNames(ScannerUtil.readLine()));
     }
 
     public Height getHeight() {
@@ -34,16 +34,21 @@ public class InputView {
         return splitPrizeNames(ScannerUtil.readLine());
     }
 
-    public String getPlayerToGetResult(){
+    public String getPlayerToGetResult() {
         System.out.println(MESSAGE_INPUT_PLAYER_TO_KNOW_RESULT);
         return ScannerUtil.readLine();
     }
 
-    private List<Player> splitNames(String names) {
-        return Arrays.stream(names.split(DELIMITER))
-                .map(it -> it.trim())
-                .map(it -> new Player(it))
-                .collect(Collectors.toList());
+    private List<Player> convertToPlayer(String[] names) {
+        List<Player> players = new ArrayList<>();
+        for (int i = 0; i < names.length; i++) {
+            players.add(new Player(names[i], i));
+        }
+        return players;
+    }
+
+    private String[] splitNames(String names) {
+        return names.split(DELIMITER);
     }
 
     private List<LadderPrize> splitPrizeNames(String prizeNames) {

@@ -103,9 +103,8 @@ public class ResultView {
         printBlankPriorToRow();
 
         System.out.print(ONE_VERTICAL);
-        for (int i = 1; i < players.getPlayers().size(); i++) {
+        for (int i = 0; i < players.getPlayers().size() - 1; i++) {
             printValue(row.getRowElement(i));
-            System.out.print(ONE_VERTICAL);
         }
 
         printBlankLine();
@@ -120,6 +119,7 @@ public class ResultView {
     private void printValue(boolean booleanValue) {
         String input = booleanValue ? BLOCK_TRUE : BLOCK_FALSE;
         System.out.print(input);
+        System.out.print(ONE_VERTICAL);
     }
 
     private void printBlankLine() {
@@ -127,7 +127,6 @@ public class ResultView {
     }
 
     private static void printBlankLines() {
-        System.out.println();
         System.out.println();
     }
 }

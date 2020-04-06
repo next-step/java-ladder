@@ -2,10 +2,7 @@ package ladder.model.player;
 
 import ladder.model.row.Rows;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static ladder.Messages.WARNING_NOT_ALLOWED_DUPLICATION_NAME;

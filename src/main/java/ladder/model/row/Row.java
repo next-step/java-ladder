@@ -16,7 +16,7 @@ public class Row {
         Map<Integer, Boolean> row = new HashMap<>();
 
         boolean prev = false;
-        for (int i = 0; i <=playerCount - 1; i++) {
+        for (int i = 0; i < playerCount - 1; i++) {
             boolean currentBoolean = findNextBoolean(prev);
             row.put(i, currentBoolean);
             prev = currentBoolean;
@@ -29,7 +29,7 @@ public class Row {
         return row.get(index);
     }
 
-    public int getLastLocationValue(){
+    public int getLastLocationValue() {
         return row.size();
     }
 
