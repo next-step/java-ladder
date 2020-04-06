@@ -30,4 +30,12 @@ public class Gamer {
     public int getLadderNo() {
         return ladderNo.getLadderNo();
     }
+
+    @Override
+    public String toString() {
+        return "Gamer{" +
+                "name='" + name + '\'' +
+                ", ladderNo=" + ladderNo +
+                '}';
+    }
 }

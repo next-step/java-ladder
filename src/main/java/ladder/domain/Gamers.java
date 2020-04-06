@@ -48,4 +48,11 @@ public class Gamers {
     public int hashCode() {
         return Objects.hash(gamerList);
     }
+
+    @Override
+    public String toString() {
+        return "Gamers{" +
+                "gamerList=" + gamerList +
+                '}';
+    }
 }

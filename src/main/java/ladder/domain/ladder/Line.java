@@ -46,4 +46,11 @@ public class Line {
     public List<Boolean> getBars() {
         return bars;
     }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "bars=" + bars +
+                '}';
+    }
 }
