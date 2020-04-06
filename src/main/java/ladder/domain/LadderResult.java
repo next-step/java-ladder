@@ -1,6 +1,4 @@
-package ladder.domain.ladder;
-
-import ladder.domain.dto.LadderResultDto;
+package ladder.domain;
 
 import java.util.Arrays;
 import java.util.Collections;

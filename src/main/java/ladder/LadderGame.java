@@ -3,7 +3,7 @@ package ladder;
 import ladder.domain.Gamers;
 import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderResult;
+import ladder.domain.LadderResult;
 import ladder.domain.ladder.maker.MakeLadderStrategy;
 import ladder.ui.InputView;
 import ladder.ui.OutputView;

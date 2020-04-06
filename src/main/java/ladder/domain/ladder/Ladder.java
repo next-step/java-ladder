@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.Gamer;
 import ladder.domain.Gamers;
+import ladder.domain.LadderResult;
 import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.maker.MakeLadderStrategy;

@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.LadderResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -5,8 +5,7 @@ import ladder.domain.Gamers;
 import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.Bar;
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderResult;
+import ladder.domain.LadderResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
