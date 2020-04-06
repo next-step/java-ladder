@@ -27,8 +27,8 @@ public class Gamer {
         return name;
     }
 
-    public int getLadderNo() {
-        return ladderNo.getLadderNo();
+    public LadderNo getLadderNo() {
+        return ladderNo;
     }
 
     @Override

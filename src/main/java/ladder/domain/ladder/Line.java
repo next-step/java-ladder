@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -45,6 +46,21 @@ public class Line {
 
     public List<Boolean> getBars() {
         return bars;
+    }
+
+    LadderNo move(LadderNo no) {
+        return Optional.of(no.getLadderNo())
+                .filter(this::isExistBar)
+                .map(number -> LadderNo.of(number + 1))
+                .orElseGet(() -> Optional.of(no.getLadderNo())
+                        .map(number -> number - 1)
+                        .filter(this::isExistBar)
+                        .map(LadderNo::of)
+                        .orElse(no));
+    }
+
+    private boolean isExistBar(int idx) {
+        return -1 < idx && idx < bars.size() && bars.get(idx);
     }
 
     @Override

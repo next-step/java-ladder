@@ -29,7 +29,7 @@ public class Gamers {
     }
 
     private static Gamer getNextGamer(int idx, String[] names) {
-        return Gamer.of(names[idx], idx + 1);
+        return Gamer.of(names[idx], idx);
     }
 
     public List<Gamer> getGamerList() {

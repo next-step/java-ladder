@@ -2,6 +2,8 @@ package ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -19,5 +21,19 @@ public class LineTest {
     void createBarsTest() {
         assertThat(Line.of(true, false, true, false).getBars())
                 .hasSize(4);
+    }
+
+    @ParameterizedTest
+    @DisplayName("움직임 테스트")
+    @CsvSource(value = {
+            "0,1",
+            "1,0",
+            "2,3",
+            "3,2",
+            "4,4"})
+    void moveTest(int start, int end) {
+        Line testLine = Line.of(true, false, true, false);
+        assertThat(testLine.move(LadderNo.of(start)))
+                .isEqualTo(LadderNo.of(end));
     }
 }
