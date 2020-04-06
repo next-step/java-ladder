@@ -22,7 +22,7 @@ class StringUtilsTest {
         String delimiter = ",";
 
         //when
-        List<String> result = StringUtils.splitStringToList(input, delimiter);
+        List<String> result = StringUtils.split(input, delimiter);
 
         //then
         assertThat(result.get(0)).isEqualTo("pobi");
@@ -36,7 +36,7 @@ class StringUtilsTest {
     @CsvSource(value = {"1:1", "2:2", "10:10"}, delimiter = ':')
     public void stringToInt_success(String input, int expect) throws Exception {
         //given
-        int num = StringUtils.stringToInt(input);
+        int num = StringUtils.parse(input);
 
         //then
         assertThat(num).isEqualTo(expect);
@@ -48,7 +48,7 @@ class StringUtilsTest {
     public void stringToInt_fail(String input) throws Exception {
         //then
         assertThatThrownBy(
-                () -> StringUtils.stringToInt(input)
+                () -> StringUtils.parse(input)
         ).isInstanceOf(LadderException.class);
     }
 }
