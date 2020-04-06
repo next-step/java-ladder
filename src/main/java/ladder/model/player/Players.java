@@ -1,5 +1,7 @@
 package ladder.model.player;
 
+import ladder.model.row.Rows;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -22,9 +24,11 @@ public class Players {
         return players;
     }
 
-    public Player findPlayer(String name){
-        return players.stream()
-                .filter(it -> name.equals(it.getName()))
-                .findFirst().orElseThrow(RuntimeException::new);
+    public Integer findFinalLocation(Rows rows, Player player) {
+        return null;
+    }
+
+    public Integer findFinalLocationByName(Rows rows, String name) {
+        return null;
     }
 }
