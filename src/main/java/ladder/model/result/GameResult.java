@@ -5,6 +5,7 @@ import ladder.model.prize.LadderPrizes;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class GameResult {
     private Map<String, String> result;
@@ -24,5 +25,13 @@ public class GameResult {
 
     public String findPrizeByPlayerName(String name) {
         return result.get(name);
+    }
+
+    public Map<String, String> getResult() {
+        return result;
+    }
+
+    public Set<String> getKeySet(){
+        return result.keySet();
     }
 }

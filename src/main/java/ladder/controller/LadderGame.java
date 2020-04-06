@@ -2,6 +2,7 @@ package ladder.controller;
 
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrizes;
+import ladder.model.result.GameResult;
 import ladder.model.row.Rows;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -18,5 +19,7 @@ public class LadderGame {
         Map<String, Integer> finalLocationByName
                 = players.findFinalLocationByName(rows, inputView.getPlayerToGetResult());
 
+        GameResult gameResult = GameResult.create(finalLocationByName, ladderPrizes);
+        ResultView.printResult(gameResult);
     }
 }

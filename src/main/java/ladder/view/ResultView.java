@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.model.player.Player;
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrizes;
+import ladder.model.result.GameResult;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 
@@ -17,7 +18,6 @@ public class ResultView {
     private static final String RESULT_TITLE = "실행 결과";
     private static final int ONE_BLOCK_WIDTH = 6;
     private static final double HALF_BLOCK_WIDTH = 2.5;
-    private static final String ALL = "all";
 
     private Players players;
     private Rows rows;
@@ -35,10 +35,32 @@ public class ResultView {
         printTitle();
         printPlayers();
         printRows();
+        printPrizes(ladderPrizes);
+        printBlankLine();
     }
 
-    private void printResultTitle() {
+    public static void printResult(GameResult gameResult) {
+        printBlankLines();
+        printResultTitle();
+        printGameResult(gameResult);
+    }
+
+    private static void printGameResult(GameResult gameResult) {
+        gameResult.getKeySet().stream()
+                .forEach(it -> System.out.println(it + DELIMITER_TO_PRINT + gameResult.findPrizeByPlayerName(it)));
+        printBlankLines();
+    }
+
+    private static void printResultTitle() {
         System.out.println(RESULT_TITLE);
+    }
+
+    private void printPrizes(LadderPrizes ladderPrizes) {
+        ladderPrizes.getLadderPrizes().stream()
+                .map(it -> it.getPrizeName())
+                .map(it -> createBlanks(findBlankCountBefore(it)) + it + createBlanks(findBlankCountAfter(it)))
+                .forEach(it -> System.out.print(it));
+        printBlankLine();
     }
 
     private void printTitle() {
@@ -101,6 +123,11 @@ public class ResultView {
     }
 
     private void printBlankLine() {
+        System.out.println();
+    }
+
+    private static void printBlankLines() {
+        System.out.println();
         System.out.println();
     }
 }
