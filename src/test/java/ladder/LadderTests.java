@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.model.Ladder;
+import ladder.model.LadderGameRewords;
 import ladder.model.LadderHeight;
 import ladder.model.MemberCount;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +17,7 @@ public class LadderTests {
     @Test
     public void generateLadderTests() {
         assertThatCode(() -> Ladder.newInstance(4, 5, "꽝,5000,꽝,3000")).doesNotThrowAnyException();
-        assertThatCode(() -> Ladder.newInstance(new MemberCount(5), LadderHeight.newInstance(3), LadderGameRewords.newInstacne("꽝,5000,꽝,3000,꽝"))).doesNotThrowAnyException();
+        assertThatCode(() -> Ladder.newInstance(MemberCount.of(5), LadderHeight.newInstance(3), LadderGameRewords.newInstance("꽝,5000,꽝,3000,꽝"))).doesNotThrowAnyException();
     }
 
     @DisplayName("사다리 생성 테스트 - 참가자 수와 LadderPoleResults의 갯수가 맞지 않을 때")

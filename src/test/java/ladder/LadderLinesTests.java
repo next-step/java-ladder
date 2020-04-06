@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.model.Ladder;
 import ladder.model.LadderHeight;
+import ladder.model.LadderLines;
 import ladder.model.MemberCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ public class LadderLinesTests {
     @Test
     public void generateLadderTests() {
         assertThatCode(() -> LadderLines.newInstance(4, 5)).doesNotThrowAnyException();
-        assertThatCode(() -> LadderLines.newInstance(new MemberCount(5), LadderHeight.newInstance(3))).doesNotThrowAnyException();
+        assertThatCode(() -> LadderLines.newInstance(MemberCount.of(5), LadderHeight.newInstance(3))).doesNotThrowAnyException();
     }
 
     @DisplayName("사다리 라인 (복수) 생성 테스트 - 참가자 수 비정상")

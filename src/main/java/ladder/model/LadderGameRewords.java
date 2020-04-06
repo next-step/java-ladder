@@ -38,4 +38,8 @@ public class LadderGameRewords {
     public static LadderGameRewords newInstance(final List<LadderGameReword> rewords) {
         return new LadderGameRewords(rewords);
     }
+
+    public int count() {
+        return ladderGameRewords.size();
+    }
 }

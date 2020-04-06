@@ -1,54 +1,32 @@
 package ladder.model;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 public class Ladder {
 
-    private final List<LadderLine> lines;
+    private final LadderLines lines;
+    private final LadderGameRewords ladderGameRewords;
 
-    private Ladder(final List<LadderLine> lines) {
-        validate(lines);
-        this.lines = Collections.unmodifiableList(lines);
+    private Ladder(final LadderLines lines, final LadderGameRewords ladderGameRewords) {
+        validate(lines, ladderGameRewords);
+        this.lines = lines;
+        this.ladderGameRewords = ladderGameRewords;
     }
 
-    private void validate(final List<LadderLine> lines) {
-        if (Objects.isNull(lines) || lines.isEmpty()) {
-            throw new IllegalArgumentException("Ladder Line must be existed.");
+    private void validate(final LadderLines lines, final LadderGameRewords ladderGameRewords) {
+        if (lines.getPoleCount() == ladderGameRewords.count()) {
+            throw new IllegalArgumentException("Ladder pole size is not same as Ladder game rewords.");
         }
     }
 
-    public static Ladder newInstance(final int count, final int height) {
-        return newInstance(MemberCount.of(count), LadderHeight.newInstance(height));
+    public static Ladder newInstance(final int count, final int height, final String rewords) {
+        return newInstance(MemberCount.of(count), LadderHeight.newInstance(height), LadderGameRewords.newInstance(rewords));
     }
 
-    public static Ladder newInstance(final MemberCount memberCount, final LadderHeight height) {
-        List<LadderLine> ladders = IntStream.range(0, height.toInt())
-                .mapToObj(i -> LadderLine.newInstance(memberCount))
-                .collect(Collectors.toList());
-        return new Ladder(ladders);
+    public static Ladder newInstance(final MemberCount memberCount, final LadderHeight ladderHeight, final LadderGameRewords ladderGameRewords) {
+        return new Ladder(LadderLines.newInstance(memberCount, ladderHeight), ladderGameRewords);
     }
 
-    public List<LadderLine> getLines() {
-        return lines;
+    public int getPoleCount() {
+        return lines.getPoleCount();
     }
 
-    public int getPoleSize() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Ladder)) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(getLines(), ladder.getLines());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getLines());
-    }
 }
