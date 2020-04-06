@@ -30,12 +30,13 @@ class InputViewTest {
     @DisplayName("뽑기 결과를 입력받는다.")
     @Test
     void inputPrizes() {
+        int playerCount = 4;
         String prizes = "꽝,5000,꽝,3000";
         inputView = new InputView(createInputStream(prizes));
 
-        Prizes expect = new Prizes(prizes);
+        Prizes expect = new Prizes(prizes, playerCount);
 
-        Prizes actual = inputView.inputPrizes();
+        Prizes actual = inputView.inputPrizes(playerCount);
 
         assertThat(actual).isEqualTo(expect);
     }
