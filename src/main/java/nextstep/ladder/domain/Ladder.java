@@ -1,11 +1,11 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private List ladder = new ArrayList<>();
+    private List<Line> ladder = new ArrayList<>();
 
     public Ladder() {
     }
@@ -18,7 +18,7 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public List getLadder() {
+    public List<Line> getLadder() {
         return ladder;
     }
 
