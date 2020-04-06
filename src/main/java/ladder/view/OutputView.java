@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Player;
 import ladder.domain.Players;
 
 import java.util.stream.Collectors;
@@ -21,7 +22,8 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
         players.getPlayers()
                .stream()
-               .map(player -> formatName(player.getName()))
+               .map(Player::name)
+               .map(playerName -> formatName(playerName.value()))
                .forEach(System.out::print);
         System.out.println();
     }
