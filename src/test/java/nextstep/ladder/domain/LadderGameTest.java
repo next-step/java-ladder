@@ -31,7 +31,7 @@ public class LadderGameTest {
     @Test
     void create() {
         LadderGame ladderGame = LadderGame.valueOf(names, prizes, ladder);
-        assertThat(ladderGame.getLadderSize()).isEqualTo(height);
+        assertThat(ladderGame.getLadderHeight()).isEqualTo(height);
         assertThat(ladderGame.getParticipantNames().size()).isEqualTo(names.size());
     }
 

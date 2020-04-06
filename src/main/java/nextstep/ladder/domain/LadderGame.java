@@ -32,8 +32,8 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public int getLadderSize() {
-        return ladder.size();
+    public int getLadderHeight() {
+        return ladder.height();
     }
 
     public Ladder getLadder() {

@@ -8,7 +8,7 @@ public class HorizontalLine implements Iterable<Point> {
     private List<Point> points;
 
     public HorizontalLine(int size) {
-        points = new ArrayList();
+        points = new ArrayList<>();
         for(int i = 0; i < size; i++) {
             points.add(new Point());
         }

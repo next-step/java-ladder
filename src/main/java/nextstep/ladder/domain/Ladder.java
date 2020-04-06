@@ -20,9 +20,12 @@ public class Ladder implements Iterable<HorizontalLine> {
 
     private static List<HorizontalLine> generateHorizontalLines(
             LadderSize ladderSize) {
-        return IntStream.range(0, ladderSize.getHeight())
-                .mapToObj(i -> new HorizontalLine(ladderSize.getWidth()))
-                .collect(Collectors.toList());
+        List<HorizontalLine> horizontalLines = new ArrayList<>();
+        for(int i = 0, size = ladderSize.getHeight(); i < size; i++ ) {
+            horizontalLines.add(new HorizontalLine(ladderSize.getWidth()));
+        }
+
+        return horizontalLines;
     }
 
     private Ladder(List<HorizontalLine> horizontalLines) {
@@ -65,9 +68,7 @@ public class Ladder implements Iterable<HorizontalLine> {
         }
     }
 
-    public int height() {
-        return ladder.size();
-    }
+
 
     public List<Point> vertical(int index) {
         return ladder.stream()
@@ -79,13 +80,8 @@ public class Ladder implements Iterable<HorizontalLine> {
         return ladder.get(index);
     }
 
-    public int size() {
+    public int height() {
         return ladder.size();
-    }
-
-    @Override
-    public Iterator<HorizontalLine> iterator() {
-        return ladder.iterator();
     }
 
     public int result(int index) {
