@@ -27,7 +27,7 @@ public class LadderTest {
 
     @DisplayName("세로 라인에는 하나 이상의 오른쪽 선이 있어야 한다.")
     @Test
-    void vertical() {
+    void hasOneOrMoreLineOnVerticalLine() {
         LadderSize ladderSize = new LadderSize(4, 5);
         Ladder ladder =
                 Ladder.valueOf(ladderSize, lineSelector, rightDirection);
@@ -42,18 +42,18 @@ public class LadderTest {
 
     @DisplayName("가로 라인의 오른쪽 선이 연속으로 그어져서는 안된다.")
     @Test
-    void horizontal() {
+    void shouldNotHaveHorizontalLineConsecutively() {
         LadderSize ladderSize = new LadderSize(4, 2);
         Ladder ladder =
                 Ladder.valueOf(ladderSize, lineSelector, rightDirection);
 
         for (int i = 0; i < ladderSize.getHeight(); i++) {
             HorizontalLine horizontalLine = ladder.getHorizontalLine(i);
-            horizontalDetail(horizontalLine);
+            checkHorizontalLineClosely(horizontalLine);
         }
     }
 
-    void horizontalDetail(HorizontalLine horizontalLine) {
+    void checkHorizontalLineClosely(HorizontalLine horizontalLine) {
         boolean before = false;
         for (Point point : horizontalLine) {
             assertThat((before) && (point.hasRightDirection()))
@@ -72,7 +72,5 @@ public class LadderTest {
         assertThat(ladder.result(1)).isEqualTo(3);
         assertThat(ladder.result(2)).isEqualTo(0);
         assertThat(ladder.result(3)).isEqualTo(2);
-
-
     }
 }
