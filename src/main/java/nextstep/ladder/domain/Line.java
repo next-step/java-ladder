@@ -13,7 +13,7 @@ public class Line {
         assertPointHasLine(points);
 
         this.points = points;
-}
+    }
 
     /**
      * 5명의 사용자가 있지만, 5명 사용자를 연결할 수 있도록 4개의 Point를 생성한다.

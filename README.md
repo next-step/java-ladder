@@ -23,7 +23,7 @@
     - 사람 수가 1 이하이면 Exception 처리 한다.  
 2. 실행 결과를 입력한다.  
     - InputText를 ","으로 split한다.  
-    - 이름의 개수와 같은 수만큼 입력받아야 한다. 다르면 Exceptionㅊ  처리 한다.  
+    - 이름의 개수와 같은 수만큼 입력받아야 한다. 다르면 Exception 처리 한다.  
     - 결과도 마찬가지로 길이가 5보다 작아야 한다.  
 3. 사다리 높이를 입력받는다. 
     - 높이가 1보다 작은 경우 Exception 처리 한다.  
@@ -58,7 +58,13 @@
 4. Line이 들어가는 조건 검증 (x-1, y)에 true인데 (x,y)에 true가 들어가지는 않는지  
 5. 입력받은 실행 결과의 개수가 입력한 이름의 개수와 같지 않으면 Exception 처리를 하는 지 여부  
 6. 입력받은 실행 결과의 길이도 5가 넘는 경우 Exception 처리를 하는지 여부  
-7. 게임 수행 결과 원하는 답이 나오는지 여부    
+7. 게임 수행 결과 원하는 답이 나오는지 여부 - 세분화 필요  
+    > - Ladder가 가지고 있는 Line을 차례대로 순환하며 진행한다.  
+    > - 현재 Participant의 index와 같은 index인 Point와 index-1 Point의 hasLine 여부를 보면 된다.  
+        > - 양쪽을 검사하여 hasLine인 경우 index를 -1 또느 +1한다.  
+        > - 양쪽 모두 hasLine이 false인 경우 다음 Line으로 넘어간다.  
+        > - 양쪽 모두 hasLine이 true일리는 Ladder 생성시 검사하므로 안전하다고 판단한다.  
+    - Line을 중심으로 테스트를 수행
 
 ## 객체 및 책임 설계  
 
@@ -77,7 +83,8 @@
     - 사람 수와 높이를 입력받아 Ladder 객체를 생성한다.  
 7. LadderGame: Game의 구성 정보 객체를 감싸 관리한다.  
     - Game의 Participant 목록과 Ladder를 가지고 있다. (step2)  
-    - Game의 결과(GameResult)도 가지고 있다.(추가)  
+    - Game의 실행 결과(LadderResult)도 가지고 있다.(추가)  
+    - GameResult도 가지고 있을까?    
 8. GameResult: Game의 결과를 관리한다. Map이 아니라, 각 GameResult 객체는 하나의 결과만을 갖는다. (participant, result)  
 9. LadderResult: List<String>으로 받은 실행결과를 감싸는 일급콜렉션  
 
@@ -87,6 +94,7 @@
 - 이름을 출력하는 옵션 (6 - 글자수)와 같은 로직은 누가 가질까? (전략?)  
 - 게임 결과를 찾아나가는 기능은 누가 가지고 있어야 하지? - Ladder    
 - Ladder에서는 결과를 찾아나가는 기능을 언제 수행할까? - 호출하면? 생성 즉시?  
+    - LadderGame.play() 호출 시 GameResult를 반환한다.  
 - 사다리의 정답을 찾아나가는 과정에서 State를 갖도록 하면 어떨까? 어떻게 할 수 있을까?  
     - Point가 State를 갖도록 한다. 여기서 hasLine을 관리한다.  
     - PreviousPoint도 여기서 관리할 수 있지 않을까? getPreviousPoint를 Line에서 가지고 있는 찝찝함도 없앨 수 있을 것 같다... 일단 해본다.    
