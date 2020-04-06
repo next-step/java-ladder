@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.fake.FakeThreeByOneLeftLineGenerator;
+import ladder.domain.fake.FakeThreeByOneRightLineGenerator;
 import ladder.domain.fake.FakeTwoByOneLineGenerator;
 import ladder.domain.fake.FakeTwoByZeroLineGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -52,9 +54,33 @@ class LineTest {
     @DisplayName("참여자 2명, 라인이 1개 존재하면 참여자 시작위치를 서로 교환한다.")
     @ParameterizedTest
     @CsvSource(value = {"0:1", "1:0"}, delimiter = ':')
-    void moveTwoByZero(int playerStartPosition, int expect) {
+    void moveTwoByOne(int playerStartPosition, int expect) {
         int playerCount = 2;
         Line line = Line.of(playerCount, new FakeTwoByOneLineGenerator());
+
+        int moveResult = line.move(playerStartPosition);
+
+        assertThat(moveResult).isEqualTo(expect);
+    }
+
+    @DisplayName("참여자 3명, 라인이 왼쪽에 1개 존재하면 참여자 시작위치를 서로 교환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0:1", "1:0", "2:2"}, delimiter = ':')
+    void moveThreeByOneLeft(int playerStartPosition, int expect) {
+        int playerCount = 3;
+        Line line = Line.of(playerCount, new FakeThreeByOneLeftLineGenerator());
+
+        int moveResult = line.move(playerStartPosition);
+
+        assertThat(moveResult).isEqualTo(expect);
+    }
+
+    @DisplayName("참여자 3명, 라인이 오른쪽에 1개 존재하면 참여자 시작위치를 서로 교환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"0:0", "1:2", "2:1"}, delimiter = ':')
+    void moveThreeByOneRight(int playerStartPosition, int expect) {
+        int playerCount = 3;
+        Line line = Line.of(playerCount, new FakeThreeByOneRightLineGenerator());
 
         int moveResult = line.move(playerStartPosition);
 
