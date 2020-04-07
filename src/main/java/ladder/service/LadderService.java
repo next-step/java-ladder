@@ -5,8 +5,11 @@ import ladder.domain.LadderPrize;
 import ladder.domain.Node;
 import ladder.domain.Players;
 import ladder.utils.StringUtils;
+import ladder.view.LadderResultDto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LadderService {
 
@@ -25,8 +28,15 @@ public class LadderService {
         return game;
     }
 
-    public String startGameOfPlayer(final String inputName, final LadderGame ladderGame) {
+    public LadderResultDto startGameOfPlayer(final String inputName, final LadderGame ladderGame) {
         Node last = ladderGame.findPlayerResult(inputName);
-        return ladderGame.findPrize(last.getIndex());
+        String prize = ladderGame.findPrize(last.getIndex());
+
+        Map<String, String> result = new HashMap<>();
+        result.put(inputName, prize);
+
+        LadderResultDto ladderResultDto = new LadderResultDto();
+        ladderResultDto.setResult(result);
+        return ladderResultDto;
     }
 }
