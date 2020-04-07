@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -12,13 +11,12 @@ public class OutputView {
     private static final String LADDER_STRAIGHT_LINE = "|";
     private static final String LADDER_LINE = "-----";
     private static final String LADDER_EMPTY_LINE = "     ";
+    private static final String RESULT_JOINER = " : ";
     private static final String BLANK_STRING = " ";
     private static final String EMPTY_STRING = "";
 
-    private static final String LADDER_RESULT_MESSAGE = "사다리 결과\n";
+    private static final String LADDER_RESULT_MESSAGE = "\n사다리 결과\n";
     private static final String RESULT_MESSAGE = "실행결과";
-    private static final String WHO_WANT_TO_SEE_RESULT = "결과를 보고 싶은 사람은?";
-    private static final String ALL = "all";
 
     private OutputView() {}
 
@@ -29,10 +27,11 @@ public class OutputView {
                .map(Player::name)
                .map(playerName -> formatName(playerName.value()))
                .forEach(System.out::print);
-        System.out.println();
+        enter();
     }
 
     public static void printLadder(final Ladder ladder) {
+        enter();
         ladder.getLines()
               .stream()
               .map(OutputView::printLine)
@@ -45,7 +44,14 @@ public class OutputView {
               .map(Prize::getPrize)
               .map(OutputView::formatPrize)
               .forEach(System.out::print);
-        System.out.println();
+        System.out.println("\n");
+    }
+
+    public static void printSingleResult(final Result result, final PlayerName playerName) {
+        enter();
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(result.findOne(playerName));
+        enter();
     }
 
     static String formatName(String name) {
@@ -63,21 +69,17 @@ public class OutputView {
                    .collect(Collectors.joining(LADDER_STRAIGHT_LINE, EMPTY_STRING, LADDER_STRAIGHT_LINE));
     }
 
-    public static void printResult(final Result result) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println(WHO_WANT_TO_SEE_RESULT);
-            String name = scanner.nextLine();
-            if (ALL.equals(name)) {
-                break;
-            }
-            System.out.println(result.findOne(name));
-            System.out.println();
-        }
-
+    public static void printAllResult(final Result result) {
+        enter();
         System.out.println(RESULT_MESSAGE);
         result.getResult()
               .keySet()
-              .forEach(player -> System.out.println(player.name().value() + " : " + result.get(player).getPrize()));
+              .forEach(player -> System.out.println(player.name()
+                                                          .value() + RESULT_JOINER + result.get(player)
+                                                                                           .getPrize()));
+    }
+
+    private static void enter() {
+        System.out.println();
     }
 }
