@@ -14,11 +14,11 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 @DisplayName("사다리 게임 실행 결과 테스트")
 public class LadderGameResultTests {
 
-    private LadderGame ladderGame;
     private Members members;
+    private Ladder ladder;
     private LadderGameRewords ladderGameRewords;
     private LadderGameRewords ladderGameRewordsResult;
-
+    private LadderGameExecutionInfo ladderGameExecutionInfo;
 
     @BeforeEach
     public void init() {
@@ -28,7 +28,7 @@ public class LadderGameResultTests {
         ladderLines.add(LadderLine.newInstance(LadderBridge.EXIST, LadderBridge.UN_EXIST, LadderBridge.UN_EXIST));
         ladderLines.add(LadderLine.newInstance(LadderBridge.UN_EXIST, LadderBridge.EXIST, LadderBridge.UN_EXIST));
         ladderLines.add(LadderLine.newInstance(LadderBridge.UN_EXIST, LadderBridge.EXIST, LadderBridge.UN_EXIST));
-        LadderLines lines = LadderLines.newInstance(ladderLines);
+        ladder = Ladder.newInstance(ladderLines);
 
         members = Members.newInstance("pobi, honux, crong, jk");
 
@@ -36,11 +36,21 @@ public class LadderGameResultTests {
 
         ladderGameRewordsResult = LadderGameRewords.newInstance("꽝,3000,꽝,5000");
 
-        Ladder ladder = Ladder.newInstance(lines, ladderGameRewords);
+        ladderGameExecutionInfo = LadderGameExecutionInfo.newInstance(members, ladderGameRewords);
+    }
 
-        ladderGame = LadderGame.newInstance(members, ladder);
+    @DisplayName("사다리 게임 생성 테스트")
+    @Test
+    public void generateLadderGameTests() {
+        assertThatCode(() -> LadderGame.newInstance(ladderGameExecutionInfo, ladder))
+                .doesNotThrowAnyException();
+    }
 
-
+    @DisplayName("사다리 게임 실행 테스트")
+    @Test
+    public void executionLadderGameTests() {
+        LadderGame ladderGame = LadderGame.newInstance(ladderGameExecutionInfo, ladder);
+        assertThatCode(ladderGame::start).doesNotThrowAnyException();
     }
 
     @DisplayName("사다리 게임 실행 결과 객체 생성 테스트")
@@ -53,6 +63,7 @@ public class LadderGameResultTests {
     @DisplayName("사다리 게임 실행 결과 테스트")
     @Test
     public void executeLadderGameResultTests() {
+        LadderGame ladderGame = LadderGame.newInstance(ladderGameExecutionInfo, ladder);
         assertThat(ladderGame.start()).isEqualTo(LadderGameResult.newInstance(members, ladderGameRewords));
     }
 
@@ -67,9 +78,9 @@ public class LadderGameResultTests {
                 .append("jk : 3000\n")
                 .toString();
 
-        assertThat(ladderGameResult.get("pobi")).isEqualTo("꽝");
-        assertThat(ladderGameResult.get("jk")).isEqualTo("5000");
-        assertThat(ladderGameResult.get("all")).isEqualTo(expectAllResult);
+        assertThat(ladderGameResult.get(Member.of("pobi"))).isEqualTo("꽝");
+        assertThat(ladderGameResult.get(Member.of("jk"))).isEqualTo("5000");
+        assertThat(ladderGameResult.get(Member.of("all"))).isEqualTo(expectAllResult);
 
     }
 }

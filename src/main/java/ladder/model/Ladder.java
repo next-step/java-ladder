@@ -21,6 +21,10 @@ public class Ladder {
         }
     }
 
+    public static Ladder newInstance(final int poleCount, final LadderHeight height) {
+        return newInstance(poleCount, height.toInt());
+    }
+
     public static Ladder newInstance(final int poleCount, final int height) {
         List<LadderLine> ladders = IntStream.range(0, height)
                 .mapToObj(i -> LadderLine.newInstance(poleCount))
