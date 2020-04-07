@@ -37,4 +37,8 @@ public class Ladder {
     public Lines getLines() {
         return lines;
     }
+
+    public LadderPrize getLadderPrize() {
+        return ladderPrize;
+    }
 }
