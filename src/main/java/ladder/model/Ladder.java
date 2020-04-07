@@ -1,50 +1,59 @@
 package ladder.model;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final LadderLines lines;
-    private final LadderGameRewords ladderGameRewords;
+    private final List<LadderLine> lines;
 
-    private Ladder(final LadderLines lines, final LadderGameRewords ladderGameRewords) {
-        validate(lines, ladderGameRewords);
+    private Ladder(final List<LadderLine> lines) {
+        validate(lines);
         this.lines = lines;
-        this.ladderGameRewords = ladderGameRewords;
     }
 
-    private void validate(final LadderLines lines, final LadderGameRewords ladderGameRewords) {
-        if (lines.getPoleCount() == ladderGameRewords.count()) {
-            throw new IllegalArgumentException("Ladder pole size is not same as Ladder game rewords.");
+    private void validate(final List<LadderLine> lines) {
+        if (Objects.isNull(lines) || lines.isEmpty()) {
+            throw new IllegalArgumentException("Ladder Lines must be existed.");
         }
     }
 
-    public static Ladder newInstance(final int poleCount, final int height, final String rewords) {
-        return newInstance(poleCount, LadderHeight.newInstance(height), LadderGameRewords.newInstance(rewords));
-    }
-
-    public static Ladder newInstance(final int poleCount, final LadderHeight ladderHeight, final LadderGameRewords ladderGameRewords) {
-        return new Ladder(LadderLines.newInstance(poleCount, ladderHeight), ladderGameRewords);
-    }
-
-    public static Ladder newInstance(LadderLines lines, LadderGameRewords ladderGameRewords) {
-        return new Ladder(lines, ladderGameRewords);
-    }
-
-    public int getPoleCount() {
-        return lines.getPoleCount();
-    }
-
-    public List<LadderLine> getLines() {
-        return lines.getLines();
-    }
-
-    public LadderGameRewords proceedAll() {
-        List<LadderGameReword> proceedResult = lines.proceedAll()
-                .stream()
-                .map(pole -> ladderGameRewords.getLadderGameReword(pole.getPolePosition()))
+    public static Ladder newInstance(final int poleCount, final int height) {
+        List<LadderLine> ladders = IntStream.range(0, height)
+                .mapToObj(i -> LadderLine.newInstance(poleCount))
                 .collect(Collectors.toList());
-        return LadderGameRewords.newInstance(proceedResult);
+        return new Ladder(ladders);
+    }
+
+    public static Ladder newInstance(final List<LadderLine> ladderLines) {
+        return new Ladder(ladderLines);
+    }
+
+/*
+    public int getPoleCount() {
+        return lines.stream()
+                .findAny()
+                .map(LadderLine::getPoleCount)
+                .orElseThrow(() -> new IllegalArgumentException("Can not find ladder line pole count."));
+    }
+*/
+
+    public LadderPoles proceedAll() {
+        LadderPoles ladderPoles = getInitLadderPoles();
+
+        for (LadderLine ladderLine : lines) {
+            ladderPoles = ladderLine.proceed(ladderPoles);
+        }
+
+        return ladderPoles;
+    }
+
+    private LadderPoles getInitLadderPoles() {
+        return lines.stream()
+                .findAny()
+                .map(LadderLine::getInitLadderPoles)
+                .orElseThrow(() -> new IllegalArgumentException("Can not find ladder line."));
     }
 }

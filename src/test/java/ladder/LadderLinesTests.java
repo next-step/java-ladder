@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.model.LadderHeight;
-import ladder.model.LadderLines;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

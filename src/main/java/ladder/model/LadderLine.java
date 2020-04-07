@@ -2,6 +2,7 @@ package ladder.model;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderLine {
@@ -34,15 +35,31 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
-    public LadderPole proceed(LadderPole polePosition) {
-        return getNearLadderBridgeIndex(polePosition.getPolePosition()).stream()
+    public LadderPoles getInitLadderPoles() {
+        List<LadderPole> poles = IntStream.rangeClosed(0, bridges.size())
+                .mapToObj(LadderPole::of)
+                .collect(Collectors.toList());
+        return LadderPoles.newInstance(poles);
+    }
+
+    public LadderPoles proceed(LadderPoles ladderPoles) {
+        List<LadderPole> nextLadderPoles = ladderPoles.getLadderPoles()
+                .stream()
+                .map(ladderPole -> nextLadderPole(ladderPole.toInt()))
+                .collect(Collectors.toList());
+
+        return LadderPoles.newInstance(nextLadderPoles);
+    }
+
+    private LadderPole nextLadderPole(final int polePosition) {
+        return getNearLadderBridgeIndex(polePosition).stream()
                 .filter(i -> bridges.get(i) == LadderBridge.EXIST)
                 .findAny()
                 .map(LadderPole::of)
-                .orElse(polePosition);
+                .orElse(LadderPole.of(polePosition));
     }
 
-    public List<Integer> getNearLadderBridgeIndex(final int polePosition) {
+    private List<Integer> getNearLadderBridgeIndex(final int polePosition) {
         List<Integer> bridgeIndexes = new ArrayList<>();
 
         if (polePosition != 0) {
@@ -56,26 +73,5 @@ public class LadderLine {
         return bridgeIndexes;
     }
 
-
-    public List<LadderBridge> getBridges() {
-        return bridges;
-    }
-
-    public int getPoleCount() {
-        return bridges.size() + 1;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LadderLine)) return false;
-        LadderLine that = (LadderLine) o;
-        return Objects.equals(getBridges(), that.getBridges());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getBridges());
-    }
 
 }

@@ -17,4 +17,7 @@ public class LadderPole {
     public int getPolePosition() {
         return polePosition;
     }
+
+    public int toInt() {
+    }
 }

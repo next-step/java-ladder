@@ -1,55 +1,25 @@
 package ladder.model;
 
-import java.util.Objects;
-
 public class LadderGame {
 
-    private final Members members;
+    private final LadderGameExecutionInfo ladderGameInfo;
     private final Ladder ladder;
 
-    private LadderGame(final Members members, final Ladder ladder) {
-        validate(members, ladder);
-        this.members = members;
+    private LadderGame(final LadderGameExecutionInfo ladderGameInfo, final Ladder ladder) {
+        validate(ladderGameInfo, ladder);
+        this.ladderGameInfo = ladderGameInfo;
         this.ladder = ladder;
     }
 
-    private void validate(final Members members, final Ladder ladder) {
-        if (members.count() != ladder.getPoleCount()) {
-            throw new IllegalArgumentException("Member count must be same as the ladder pole count.");
-        }
+    private void validate(LadderGameExecutionInfo ladderGameInfo, Ladder ladder) {
     }
 
-    public static LadderGame newInstance(final Members members, final Ladder ladder) {
-        return new LadderGame(members, ladder);
-    }
-
-    public static LadderGame newInstance(final String[] members, final Ladder ladder) {
-        return newInstance(Members.newInstance(members), ladder);
+    public static LadderGame newInstance(final LadderGameExecutionInfo ladderGameInfo, final Ladder ladder) {
+        return new LadderGame(ladderGameInfo, ladder);
     }
 
     public LadderGameResult start() {
-        return LadderGameResult.newInstance(members, ladder.proceedAll());
-    }
-
-    public Members getMembers() {
-        return members;
-    }
-
-    public Ladder getLadder() {
-        return ladder;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LadderGame)) return false;
-        LadderGame that = (LadderGame) o;
-        return Objects.equals(getMembers(), that.getMembers()) &&
-                Objects.equals(getLadder(), that.getLadder());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getMembers(), getLadder());
+        LadderPoles ladderPoles = ladder.proceedAll();
+        return ladderGameInfo.makeGameResult(ladderPoles);
     }
 }
