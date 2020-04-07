@@ -1,13 +1,11 @@
 package ladder.domain.result;
 
 import ladder.model.player.Player;
-import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.player.Position;
 import ladder.model.prize.LadderPrize;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
-import ladder.model.result.PositionResult;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 import org.junit.jupiter.api.DisplayName;
@@ -47,10 +45,10 @@ public class GameResultTest {
         Row row2 = new Row(result2);
         Rows rows = new Rows(Arrays.asList(row, row2));
 
-        PositionResult finalLocationByName = players.findFinalLocationByName(rows, "all");
+        Players playersForResult = players.findFinalLocationByName(rows, "all");
 
         //when
-        GameResult gameResult = GameResult.create(finalLocationByName, ladderPrizes);
+        GameResult gameResult = GameResult.create(playersForResult, ladderPrizes);
 
         //then
         assertThat(gameResult.findPrizeByPlayerName(name)).isEqualTo(prizeName);

@@ -71,10 +71,12 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        PositionResult finalLocationByName = players.findFinalLocationByName(rows, input);
+        Players playersForResult = players.findFinalLocationByName(rows, input);
 
         //then
-        assertThat(finalLocationByName.getPosition(new PlayerName(input))).isEqualTo(new Position(finalLocation));
+        assertThat(playersForResult.getPlayers().size()).isEqualTo(1);
+        assertThat(playersForResult.getPlayers().get(0).getName()).isEqualTo(new PlayerName(input));
+        assertThat(playersForResult.getPlayers().get(0).getPosition()).isEqualTo(new Position(finalLocation));
     }
 
     @DisplayName("존재하지 않는 플레이어명을 입력하면, 전체 결과를 반환한다.")
@@ -99,12 +101,12 @@ public class PlayersTest {
         Rows rows = new Rows(Arrays.asList(row, row2));
 
         //when
-        PositionResult finalLocationByName = players.findFinalLocationByName(rows, input);
+        Players playersForResult = players.findFinalLocationByName(rows, input);
 
         //then
-        assertThat(finalLocationByName.getSize()).isEqualTo(3);
-        assertThat(finalLocationByName.getPosition(new PlayerName("Mark"))).isEqualTo(new Position(0));
-        assertThat(finalLocationByName.getPosition(new PlayerName("Ten"))).isEqualTo(new Position(1));
-        assertThat(finalLocationByName.getPosition(new PlayerName("Sujin"))).isEqualTo(new Position(2));
+        assertThat(playersForResult.getPlayers().size()).isEqualTo(3);
+//        assertThat(playersForResult.findFinalLocationByName(rows,"Mark").).isEqualTo(new Position(0));
+//        assertThat(playersForResult.findFinalLocationByName(rows, "Ten")).isEqualTo(new Position(1));
+//        assertThat(playersForResult.findFinalLocationByName(rows, "Sujin")).isEqualTo(new Position(2));
     }
 }

@@ -14,10 +14,6 @@ public class PositionResult {
         this.positionResult = Collections.unmodifiableMap(positionResult);
     }
 
-    public Map<PlayerName, Position> getPositionResult() {
-        return positionResult;
-    }
-
     public Set<PlayerName> getKeySet(){
         return positionResult.keySet();
     }

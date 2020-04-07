@@ -24,6 +24,10 @@ public class Player {
         return name;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     public Position findFinalLocation(Rows rows) {
         for (Row row : rows.getRows()) {
             position = findNextLocation(row);

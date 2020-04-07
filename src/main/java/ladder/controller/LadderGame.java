@@ -20,9 +20,8 @@ public class LadderGame {
     public static ResultView getResult(InputView inputView) {
         Players players = inputView.getPlayers();
 
-        PositionResult finalLocationByName
-                = players.findFinalLocationByName(inputView.getRows(), inputView.getPlayerToGetResult());
+        Players playersForResult = players.findFinalLocationByName(inputView.getRows(), inputView.getPlayerToGetResult());
 
-        return ResultView.of(GameResult.create(finalLocationByName, inputView.getLadderPrizes()));
+        return ResultView.of(GameResult.create(playersForResult, inputView.getLadderPrizes()));
     }
 }
