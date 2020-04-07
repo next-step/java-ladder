@@ -5,6 +5,7 @@ import nextstep.ladder.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -18,6 +19,7 @@ public class OutputView {
     private static final int SPACE_PER_POINT = 6;
     private static final String SPACE = " ";
     private static final String GAME_RESULT_FORMAT = "%s : %s";
+    private static final String ALL_RESULT = "all";
     private ViewUtils viewUtils;
 
     public OutputView() {
@@ -94,12 +96,27 @@ public class OutputView {
     public void showGameResults(GameResults gameResults) {
         viewUtils.printLine(WHOS_RESULT);
         String inputText = viewUtils.readLine();
-        List<String> participantNames = Arrays.asList(inputText.split(InputView.DELIMITER_COMMA));
 
+        viewUtils.printLine(LADDER_GAME_RESULT);
+
+        if(ALL_RESULT.equals(inputText)) {
+            showAllResults(gameResults);
+            return ;
+        }
+
+        List<String> participantNames = Arrays.asList(inputText.split(InputView.DELIMITER_COMMA));
         List<String> resultTexts = participantNames.stream()
                 .map(name -> {return String.format(GAME_RESULT_FORMAT, name, gameResults.getResult(name));})
                 .collect(Collectors.toList());
 
-        resultTexts.forEach(text -> System.out.println(text));
+        resultTexts.forEach(text -> viewUtils.printLine(text));
+    }
+
+    public void showAllResults(GameResults gameResults) {
+        Map<String, String> results = gameResults.getValue();
+
+        for(Map.Entry<String, String> result : results.entrySet()) {
+            viewUtils.printLine(String.format(GAME_RESULT_FORMAT, result.getKey(), result.getValue()));
+        }
     }
 }

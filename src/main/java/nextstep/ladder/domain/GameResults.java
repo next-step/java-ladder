@@ -20,4 +20,8 @@ public class GameResults {
             throw new IllegalArgumentException(String.format(NO_PARTICIPANT_ERROR, name));
         }
     }
+
+    public Map<String, String> getValue() {
+        return gameResult;
+    }
 }
