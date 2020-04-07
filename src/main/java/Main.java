@@ -10,7 +10,7 @@ public class Main {
         LadderHeight ladderHeight = LadderHeight.newInstance(InputView.inputLadderHeight());
 
         // TODO: 2020-04-07 inputview 실행결과 추가
-        Ladder ladder = Ladder.newInstance(members.count().toInt(), ladderHeight, LadderGameRewords.newInstance("test"));
+        Ladder ladder = Ladder.newInstance(members.count(), ladderHeight, LadderGameRewords.newInstance("test"));
 
         LadderGame ladderGame = LadderGame.newInstance(members, ladder);
 

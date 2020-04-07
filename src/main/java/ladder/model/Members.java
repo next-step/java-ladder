@@ -17,7 +17,7 @@ public class Members {
         this.members = Collections.unmodifiableList(members);
     }
 
-    private void validate(List<Member> members) {
+    private void validate(final List<Member> members) {
         if (Objects.isNull(members) || members.isEmpty()) {
             throw new IllegalArgumentException("Member must be existed.");
         }
@@ -35,12 +35,16 @@ public class Members {
         return newInstance(members);
     }
 
-    public static Members newInstance(String inputMembers) {
-        return newInstance(separateLineWithComma(inputMembers));
+    public static Members newInstance(final String membersString) {
+        return newInstance(separateLineWithComma(membersString));
     }
 
-    public MemberCount count() {
-        return MemberCount.of(members.size());
+    public Member get(final int index) {
+        return members.get(index);
+    }
+
+    public int count() {
+        return members.size();
     }
 
     public List<Member> getMembers() {

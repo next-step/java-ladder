@@ -14,9 +14,8 @@ public class LadderGame {
     }
 
     private void validate(final Members members, final Ladder ladder) {
-        MemberCount memberCount = members.count();
-        if (memberCount.toInt() != ladder.getPoleCount()) {
-            throw new IllegalArgumentException("Member count must be same as the ladder pole.");
+        if (members.count() != ladder.getPoleCount()) {
+            throw new IllegalArgumentException("Member count must be same as the ladder pole count.");
         }
     }
 

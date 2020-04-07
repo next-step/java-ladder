@@ -1,8 +1,8 @@
 package ladder.model;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGameResult {
@@ -13,18 +13,20 @@ public class LadderGameResult {
         this.result = Collections.unmodifiableMap(result);
     }
 
-    public static LadderGameResult newInstance(Members members, LadderGameRewords proceedAll) {
-        Map<Member, LadderGameReword> ladderGameResult = new LinkedHashMap<>();
-        IntStream.range(0, members.count().toInt())
-                .forEach(i -> ladderGameResult.put(members.getMembers().get(i), proceedAll.getLadderGameReword(i)));
-        
+    public static LadderGameResult newInstance(final Members members, final LadderGameRewords ladderGameRewords) {
+        Map<Member, LadderGameReword> ladderGameResult = IntStream.range(0, members.count())
+                .boxed()
+                .collect(Collectors.toMap(members::get, ladderGameRewords::getLadderGameReword));
+
+
         return new LadderGameResult(ladderGameResult);
     }
 
-    public String get(final String target) {
-        if("all".equals(target)) {
-            return result.toString();
-        }
-        return result.get(Member.newInstance(target)).getReword();
+    public LadderGameReword get(final Member member) {
+        return result.get(member);
+    }
+
+    public Map<Member, LadderGameReword> getResult() {
+        return result;
     }
 }

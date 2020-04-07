@@ -23,6 +23,10 @@ public class Member {
         return new Member(name);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return name;
