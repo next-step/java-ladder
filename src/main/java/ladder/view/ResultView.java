@@ -14,6 +14,8 @@ public class ResultView {
     private static final String NAME_DELIMiTER = " ";
     private static final String NODE = "|";
     private static final String EMPTY = "";
+    private static final String LINK_CONNECT = "-----";
+    private static final String LINK_DIS_CONNECT = "     ";
 
     public static void print(LadderGameResult result) {
         System.out.println(RESULT_MESSAGE);
@@ -34,7 +36,7 @@ public class ResultView {
     private static void printLadderLine(LadderLine ladderLine) {
         System.out.println(ladderLine.getLadderLinks()
                 .stream()
-                .map(LadderLink::getValue)
+                .map(link -> link == LadderLink.CONNECT ? LINK_CONNECT : LINK_DIS_CONNECT)
                 .collect(Collectors.joining(NODE, EMPTY, NODE)));
     }
 }
