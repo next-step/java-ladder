@@ -12,6 +12,7 @@ import nextstep.ladder.domain.Users;
 
 public class ResultView {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String ALL = "all";
     private static final String NEW_LINE = ResultRadderText.NEW_LINE.getText();
     private static final String VERTICAL = ResultRadderText.VERTICAL.getText();
     private static final String BLANK = ResultRadderText.BLANK.getText();
@@ -71,6 +72,17 @@ public class ResultView {
         System.out.println(drawLadder(users, ladder, results));
     }
 
+    public void printPlayResult(Users paramUsers, String userName) {
+        System.out.println(playResult(paramUsers, userName));
+    }
+
+    public String playResult(Users paramUsers, String userName) {
+        if (ALL.equals(userName)) {
+            return playAllResult(paramUsers);
+        }
+        return playResultByUser(paramUsers, userName);
+    }
+
     public String playResultByUser(Users paramUsers, String userName) {
         return paramUsers.getUsers()
                          .stream()
@@ -101,7 +113,6 @@ public class ResultView {
         for (int i = 0; i < repeatCount; i++) {
             name = BLANK + name;
         }
-
         return name;
     }
 
