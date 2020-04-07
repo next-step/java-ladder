@@ -14,6 +14,7 @@ public class Users implements Line {
 
     public Users(String names) {
         this.users = Stream.of(names.split(NAME_DELIMITER))
+                .map(name -> name.trim())
                 .filter(name -> lengthValidator(name.length()))
                 .collect(Collectors.toList());
     }
