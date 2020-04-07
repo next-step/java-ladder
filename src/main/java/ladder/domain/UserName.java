@@ -18,7 +18,7 @@ class UserName {
     }
 
     private void verifyBlank(String name) {
-        if (name == null || name.isEmpty()) {
+        if (Objects.isNull(name) || name.isEmpty()) {
             throw new IllegalArgumentException("이름을 입력해 주세요.");
         }
     }
