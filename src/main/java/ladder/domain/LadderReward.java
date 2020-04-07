@@ -1,22 +1,14 @@
 package ladder.domain;
 
-import ladder.exception.ExceptionType;
-import ladder.exception.LadderException;
 import lombok.Getter;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class LadderReward {
-    private static final String REGEX = ",";
-
     @Getter
     private List<String> rewards;
 
-    public LadderReward(String resultValues, int userNumber) {
-        List<String> rewards = Arrays.asList(resultValues.split(REGEX));
-        validResultValues(rewards, userNumber);
-
+    public LadderReward(List<String> rewards) {
         this.rewards = rewards;
     }
 
@@ -24,9 +16,7 @@ public class LadderReward {
         return rewards.get(index);
     }
 
-    private void validResultValues(List<String> results, int userNumbers) {
-        if (results.size() != userNumbers) {
-            throw new LadderException(ExceptionType.INVALID_RESULT_SIZE);
-        }
+    public boolean sameSize(int size) {
+        return rewards.size() == size;
     }
 }

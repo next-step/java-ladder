@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.exception.ExceptionType;
+import ladder.exception.LadderException;
 import lombok.Getter;
 
 import java.util.List;
@@ -10,8 +12,10 @@ public class Ladder {
     @Getter
     private LadderReward ladderReward;
 
-    public Ladder(int userCount, int height, LadderReward rewards) {
-        this.lines = Line.listOf(userCount, height);
+    public Ladder(List<Line> lines, LadderReward rewards) {
+        validRewardSize(rewards, lines.get(0).getActionsSize());
+
+        this.lines = lines;
         this.ladderReward = rewards;
     }
 
@@ -23,5 +27,11 @@ public class Ladder {
         }
 
         return ladderReward.getReward(lineIndex);
+    }
+
+    private void validRewardSize(LadderReward reward, int actionsSize) {
+        if(!reward.sameSize(actionsSize)) {
+            throw new LadderException(ExceptionType.INVALID_LINE_SIZE);
+        }
     }
 }

@@ -24,6 +24,10 @@ public class Line {
         return lines;
     }
 
+    public int getActionsSize() {
+        return this.actions.size();
+    }
+
     public int getMovePoint(int index) {
         return this.actions.get(index).getMove();
     }

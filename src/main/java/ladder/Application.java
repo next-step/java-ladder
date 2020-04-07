@@ -12,7 +12,7 @@ public class Application {
         String ladderResult = inputView.getLadderResult();
         String ladderHeight = inputView.getLadderHeight();
 
-        LadderGame ladderGame = new LadderGame(userValues, ladderHeight, ladderResult);
+        LadderGame ladderGame = LadderGame.of(userValues, ladderHeight, ladderResult);
 
         OutputView.resultPrint(ladderGame);
 
