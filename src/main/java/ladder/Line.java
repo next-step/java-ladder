@@ -9,7 +9,11 @@ public class Line {
     private List<Boolean> points;
 
     public Line(int countOfPerson) {
-        points = Stream
+        points = generateLine(countOfPerson);
+    }
+
+    private List<Boolean> generateLine(int countOfPerson) {
+        return Stream
                 .generate(() -> false)
                 .limit(countOfPerson)
                 .collect(toList());
