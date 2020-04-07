@@ -25,7 +25,7 @@ class ResultTest {
 
         Result result = new Result(dump);
 
-        assertThat(result.findOne("pobi")).isEqualTo("lucky");
-        assertThat(result.findOne("crong")).isEqualTo("blank");
+        assertThat(result.findOne(new PlayerName("pobi"))).isEqualTo("lucky");
+        assertThat(result.findOne(new PlayerName("crong"))).isEqualTo("blank");
     }
 }
