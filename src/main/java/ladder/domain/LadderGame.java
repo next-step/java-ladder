@@ -13,11 +13,11 @@ public class LadderGame {
 
     public LadderGame(final Players players,
                       final Lines lines,
-                      final LadderPrize result) {
-        validateUserAndResult(players, result);
+                      final LadderPrize ladderPrize) {
+        validateUserAndResult(players, ladderPrize);
         this.players = players;
         this.lines = lines;
-        this.ladderPrize = result;
+        this.ladderPrize = ladderPrize;
     }
 
     public static LadderGame of(final Players players,
