@@ -48,4 +48,8 @@ public class Ladder {
                 .map(LadderLine::getInitLadderPoles)
                 .orElseThrow(() -> new IllegalArgumentException("Can not find ladder line."));
     }
+
+    public List<LadderLine> getLines() {
+        return lines;
+    }
 }

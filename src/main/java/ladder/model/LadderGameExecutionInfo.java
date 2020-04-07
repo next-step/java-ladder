@@ -19,6 +19,10 @@ public class LadderGameExecutionInfo {
         if (Objects.isNull(members) || Objects.isNull(originLadderGameRewords)) {
             throw new IllegalArgumentException("members and ladderGameRewords must be existed.");
         }
+
+        if (members.count() != originLadderGameRewords.count()) {
+            throw new IllegalArgumentException("members count and ladderGameRewords count must be same.");
+        }
     }
 
     public static LadderGameExecutionInfo newInstance(final Members members, final LadderGameRewords ladderGameRewords) {
@@ -32,9 +36,21 @@ public class LadderGameExecutionInfo {
     private LadderGameRewords convertGameRewordOrderAfterExecution(final LadderPoles ladderPoles) {
         List<LadderGameReword> ladderGameRewords = ladderPoles.getLadderPoles()
                 .stream()
-                .map(pole -> originLadderGameRewords.getLadderGameReword(pole.toInt()))
+                .map(pole -> originLadderGameRewords.get(pole.toInt()))
                 .collect(Collectors.toList());
 
         return LadderGameRewords.newInstance(ladderGameRewords);
+    }
+
+    public int count() {
+        return members.count();
+    }
+
+    public Member getMember(final int index) {
+        return members.get(index);
+    }
+
+    public LadderGameReword getOriginLadderGameReword(final int index) {
+        return originLadderGameRewords.get(index);
     }
 }

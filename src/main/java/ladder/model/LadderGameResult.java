@@ -16,7 +16,7 @@ public class LadderGameResult {
     public static LadderGameResult newInstance(final Members members, final LadderGameRewords ladderGameRewords) {
         Map<Member, LadderGameReword> ladderGameResult = IntStream.range(0, members.count())
                 .boxed()
-                .collect(Collectors.toMap(members::get, ladderGameRewords::getLadderGameReword));
+                .collect(Collectors.toMap(members::get, ladderGameRewords::get));
 
         return new LadderGameResult(ladderGameResult);
     }

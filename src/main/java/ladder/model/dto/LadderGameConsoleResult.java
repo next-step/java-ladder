@@ -1,50 +1,39 @@
 package ladder.model.dto;
 
-import ladder.model.*;
+import ladder.model.Ladder;
+import ladder.model.LadderGameExecutionInfo;
+import ladder.model.LadderLine;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGameConsoleResult {
 
-    private final List<Member> members;
+    private final List<LadderPoleInfo> ladderPoleInfos;
     private final List<LadderLine> ladderLines;
 
     //Q1. unmodifiableList를 생성자에서 아예 쓰고 getter에서는 deepcopy만..?
-    private LadderGameConsoleResult(final List<Member> members, final List<LadderLine> ladderLines) {
-        this.members = Collections.unmodifiableList(members);
+    private LadderGameConsoleResult(final List<LadderPoleInfo> ladderPoleInfos, final List<LadderLine> ladderLines) {
+        this.ladderPoleInfos = Collections.unmodifiableList(ladderPoleInfos);
         this.ladderLines = Collections.unmodifiableList(ladderLines);
     }
 
-    public static LadderGameConsoleResult newInstance(final LadderGame ladderGame) {
-        return newInstance(ladderGame.getMembers(), ladderGame.getLadder());
+    public static LadderGameConsoleResult newInstance(final LadderGameExecutionInfo ladderGameInfo, final Ladder ladder) {
+        List<LadderPoleInfo> ladderPoleInfos = IntStream.range(0, ladderGameInfo.count())
+                .mapToObj(i -> LadderPoleInfo.newInstance(ladderGameInfo.getMember(i), ladderGameInfo.getOriginLadderGameReword(i)))
+                .collect(Collectors.toList());
+
+        return new LadderGameConsoleResult(ladderPoleInfos, ladder.getLines());
     }
 
-    public static LadderGameConsoleResult newInstance(final Members members, final Ladder ladder) {
-        return new LadderGameConsoleResult(members.getMembers(), ladder.getLines());
-    }
-
-    public List<Member> getMembers() {
-        return new ArrayList<>(members);
+    public List<LadderPoleInfo> getLadderPoleInfos() {
+        return new ArrayList<>(ladderPoleInfos);
     }
 
     public List<LadderLine> getLadderLines() {
         return new ArrayList<>(ladderLines);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LadderGameConsoleResult)) return false;
-        LadderGameConsoleResult that = (LadderGameConsoleResult) o;
-        return Objects.equals(getMembers(), that.getMembers()) &&
-                Objects.equals(getLadderLines(), that.getLadderLines());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getMembers(), getLadderLines());
     }
 }
