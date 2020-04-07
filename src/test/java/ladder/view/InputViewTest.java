@@ -21,7 +21,7 @@ class InputViewTest {
         inputView = new InputView(createInputStream(name));
         Players expect = new Players(name);
 
-        Players actual = inputView.inputPlayerName();
+        Players actual = inputView.inputPlayers();
 
         assertThat(actual).isEqualTo(expect);
         assertThat(actual.count()).isEqualTo(2);
