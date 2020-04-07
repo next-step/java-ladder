@@ -28,7 +28,7 @@ public class LadderGameMemberResult {
         Map<Member, LadderGameReword> allResult = result.keySet()
                 .stream()
                 .collect(Collectors.toMap(Function.identity(), result::get));
-        result.put(Member.of(LADDER_GAME_ALL_MEMBER_RESULT_KEYWORD), LadderGameReword.of(allResultString));
+        allResult.put(Member.of(LADDER_GAME_ALL_MEMBER_RESULT_KEYWORD), LadderGameReword.of(allResultString));
 
         return new LadderGameMemberResult(allResult);
     }

@@ -1,14 +1,12 @@
 package ladder;
 
 import ladder.model.Ladder;
-import ladder.model.LadderGameRewords;
 import ladder.model.LadderHeight;
-import ladder.model.MemberCount;
+import ladder.model.PoleCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("사다리 테스트")
 public class LadderTests {
@@ -17,6 +15,6 @@ public class LadderTests {
     @Test
     public void generateLadderTests() {
         assertThatCode(() -> Ladder.newInstance(4, 5)).doesNotThrowAnyException();
-        assertThatCode(() -> Ladder.newInstance(5, LadderHeight.newInstance(3))).doesNotThrowAnyException();
+        assertThatCode(() -> Ladder.newInstance(PoleCount.of(5), LadderHeight.newInstance(3))).doesNotThrowAnyException();
     }
 }

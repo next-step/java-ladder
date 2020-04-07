@@ -21,11 +21,11 @@ public class LadderGameRewordTests {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderGameReword.of(null))
-                .withMessageContaining("LadderGameReword is empty");
+                .withMessageContaining("given reword is null or empty.");
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderGameReword.of(""))
-                .withMessageContaining("LadderGameReword is empty");
+                .withMessageContaining("given reword is null or empty.");
     }
 
     @DisplayName("사다리 게임 보상 (복수) 테스트")

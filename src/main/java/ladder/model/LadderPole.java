@@ -6,13 +6,20 @@ public class LadderPole {
 
     private LadderPole(int polePosition) {
         if (polePosition < 0) {
-            throw new RuntimeException("Ladder pole must be greater than zero.");
+            throw new IllegalArgumentException("Ladder pole must be greater than zero.");
         }
         this.polePosition = polePosition;
     }
 
     public static LadderPole of(int polePosition) {
         return new LadderPole(polePosition);
+    }
+
+    public LadderPole move(int moveBridgePosition) {
+        if (polePosition == moveBridgePosition) {
+            return LadderPole.of(polePosition + 1);
+        }
+        return LadderPole.of(polePosition - 1);
     }
 
     public int toInt() {

@@ -26,10 +26,14 @@ public class LadderLine {
     }
 
     public static LadderLine newInstance(final int poleCount) {
+        return newInstance(PoleCount.of(poleCount));
+    }
+
+    public static LadderLine newInstance(final PoleCount poleCount) {
         List<LadderBridge> bridges = Stream.iterate(
                 LadderBridge.randomBridge(),
                 LadderBridge::makeRandomBridgeByPreBridge)
-                .limit(poleCount - 1)
+                .limit(poleCount.toInt() - 1)
                 .collect(Collectors.toList());
 
         return new LadderLine(bridges);
@@ -45,18 +49,18 @@ public class LadderLine {
     public LadderPoles proceed(LadderPoles ladderPoles) {
         List<LadderPole> nextLadderPoles = ladderPoles.getLadderPoles()
                 .stream()
-                .map(ladderPole -> nextLadderPole(ladderPole.toInt()))
+                .map(ladderPole -> nextLadderPole(ladderPole))
                 .collect(Collectors.toList());
 
         return LadderPoles.newInstance(nextLadderPoles);
     }
 
-    private LadderPole nextLadderPole(final int polePosition) {
-        return getNearLadderBridgeIndex(polePosition).stream()
+    private LadderPole nextLadderPole(final LadderPole ladderPole) {
+        return getNearLadderBridgeIndex(ladderPole.toInt()).stream()
                 .filter(i -> bridges.get(i) == LadderBridge.EXIST)
                 .findAny()
-                .map(LadderPole::of)
-                .orElse(LadderPole.of(polePosition));
+                .map(ladderPole::move)
+                .orElse(ladderPole);
     }
 
     private List<Integer> getNearLadderBridgeIndex(final int polePosition) {

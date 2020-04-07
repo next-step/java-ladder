@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.model.*;
+import ladder.model.dto.LadderGameMemberResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ public class LadderGameResultTests {
     private Members members;
     private Ladder ladder;
     private LadderGameRewords ladderGameRewords;
-    private LadderGameRewords ladderGameRewordsResult;
+    private LadderGameRewords expectedLadderGameRewordsResult;
     private LadderGameExecutionInfo ladderGameExecutionInfo;
 
     @BeforeEach
@@ -34,7 +35,7 @@ public class LadderGameResultTests {
 
         ladderGameRewords = LadderGameRewords.newInstance("꽝,5000,꽝,3000");
 
-        ladderGameRewordsResult = LadderGameRewords.newInstance("꽝,3000,꽝,5000");
+        expectedLadderGameRewordsResult = LadderGameRewords.newInstance("꽝,5000,3000,꽝");
 
         ladderGameExecutionInfo = LadderGameExecutionInfo.newInstance(members, ladderGameRewords);
     }
@@ -64,23 +65,25 @@ public class LadderGameResultTests {
     @Test
     public void executeLadderGameResultTests() {
         LadderGame ladderGame = LadderGame.newInstance(ladderGameExecutionInfo, ladder);
-        assertThat(ladderGame.start()).isEqualTo(LadderGameResult.newInstance(members, ladderGameRewords));
+        LadderGameResult result = ladderGame.start();
+        LadderGameResult expectedResult = LadderGameResult.newInstance(members, expectedLadderGameRewordsResult);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     @DisplayName("사다리 게임 결과 확인 테스트")
     @Test
     public void checkLadderGameResultTests() {
-        LadderGameResult ladderGameResult = LadderGameResult.newInstance(members, ladderGameRewordsResult);
+        LadderGameResult ladderGameResult = LadderGameResult.newInstance(members, expectedLadderGameRewordsResult);
+        LadderGameMemberResult ladderGameMemberResult = LadderGameMemberResult.newInstance(ladderGameResult);
         String expectAllResult = new StringBuilder()
                 .append("pobi : 꽝\n")
                 .append("honux : 5000\n")
-                .append("crong : 꽝\n")
-                .append("jk : 3000\n")
+                .append("crong : 3000\n")
+                .append("jk : 꽝\n")
                 .toString();
 
-        assertThat(ladderGameResult.get(Member.of("pobi"))).isEqualTo("꽝");
-        assertThat(ladderGameResult.get(Member.of("jk"))).isEqualTo("5000");
-        assertThat(ladderGameResult.get(Member.of("all"))).isEqualTo(expectAllResult);
-
+        assertThat(ladderGameMemberResult.get("pobi")).isEqualTo(LadderGameReword.of("꽝"));
+        assertThat(ladderGameMemberResult.get("crong")).isEqualTo(LadderGameReword.of("3000"));
+        assertThat(ladderGameMemberResult.get("all")).isEqualTo(LadderGameReword.of(expectAllResult));
     }
 }

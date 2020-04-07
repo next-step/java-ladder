@@ -2,7 +2,6 @@ package ladder;
 
 import ladder.model.LadderBridge;
 import ladder.model.LadderLine;
-import ladder.model.MemberCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,11 +24,11 @@ public class LadderLineTests {
     public void generateLadderLineAbnormalTests() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderLine.newInstance(-13))
-                .withMessageContaining("Member count must be greater than zero.");
+                .withMessageContaining("Ladder Pole count must be greater than zero.");
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderLine.newInstance(0))
-                .withMessageContaining("Member count must be greater than zero.");
+                .withMessageContaining("Ladder Pole count must be greater than zero.");
     }
 
     @DisplayName("라인 생성 - 사이즈 테스트")

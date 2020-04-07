@@ -21,8 +21,8 @@ public class Ladder {
         }
     }
 
-    public static Ladder newInstance(final int poleCount, final LadderHeight height) {
-        return newInstance(poleCount, height.toInt());
+    public static Ladder newInstance(final PoleCount poleCount, final LadderHeight height) {
+        return newInstance(poleCount.toInt(), height.toInt());
     }
 
     public static Ladder newInstance(final int poleCount, final int height) {
