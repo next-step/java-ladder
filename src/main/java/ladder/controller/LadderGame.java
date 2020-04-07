@@ -9,22 +9,20 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderGame {
-    private static Players players;
-    private static Rows rows;
-    private static LadderPrizes ladderPrizes;
+    public static ResultView start(InputView inputView) {
+        Players players = Players.create(inputView.getPlayersInput());
+        Rows rows = Rows.create(players, inputView.getHeight());
+        LadderPrizes ladderPrizes = LadderPrizes.create(inputView.getLadderPrizesInput());
 
-    public static void start(InputView inputView) {
-        players = Players.create(inputView.getPlayers());
-        rows = Rows.create(players, inputView.getHeight());
-        ladderPrizes = LadderPrizes.create(inputView.getLadderPrizes());
-
-        ResultView.of(players, rows).printLadder(ladderPrizes);
+        return ResultView.of(players, rows, ladderPrizes);
     }
 
-    public static void getResult(InputView inputView) {
-        PositionResult finalLocationByName = players.findFinalLocationByName(rows, inputView.getPlayerToGetResult());
-        GameResult gameResult = GameResult.create(finalLocationByName, ladderPrizes);
+    public static ResultView getResult(InputView inputView) {
+        Players players = inputView.getPlayers();
 
-        ResultView.printResult(gameResult);
+        PositionResult finalLocationByName
+                = players.findFinalLocationByName(inputView.getRows(), inputView.getPlayerToGetResult());
+
+        return ResultView.of(GameResult.create(finalLocationByName, inputView.getLadderPrizes()));
     }
 }

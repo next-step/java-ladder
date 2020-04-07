@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.model.player.Player;
 import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
+import ladder.model.prize.LadderPrize;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
 import ladder.model.player.Position;
@@ -23,42 +24,65 @@ public class ResultView {
 
     private Players players;
     private Rows rows;
+    private LadderPrizes ladderPrizes;
+    private GameResult gameResult;
 
-    public ResultView(Players players, Rows rows) {
+    public ResultView(Players players, Rows rows, LadderPrizes ladderPrizes) {
         this.players = players;
         this.rows = rows;
+        this.ladderPrizes = ladderPrizes;
     }
 
-    public static ResultView of(Players players, Rows rows) {
-        return new ResultView(players, rows);
+    public ResultView(GameResult gameResult) {
+        this.gameResult = gameResult;
     }
 
-    public void printLadder(LadderPrizes ladderPrizes) {
+    public static ResultView of(GameResult gameResult) {
+        return new ResultView(gameResult);
+    }
+
+    public static ResultView of(Players players, Rows rows, LadderPrizes ladderPrizes) {
+        return new ResultView(players, rows, ladderPrizes);
+    }
+
+    public void printLadder() {
         printTitle();
         printPlayers();
         printRows();
-        printPrizes(ladderPrizes);
+        printPrizes();
         printBlankLine();
     }
 
-    public static void printResult(GameResult gameResult) {
-        printBlankLines();
+    public void printResult() {
+        printBlankLine();
         printResultTitle();
-        printGameResult(gameResult);
+        printGameResult();
     }
 
-    private static void printGameResult(GameResult gameResult) {
+    public Players getPlayers() {
+        return players;
+    }
+
+    public Rows getRows() {
+        return rows;
+    }
+
+    public LadderPrizes getLadderPrizes() {
+        return ladderPrizes;
+    }
+
+    private void printGameResult() {
         gameResult.getKeySet().stream()
                 .map(it -> it.getName())
                 .forEach(it -> System.out.println(it + DELIMITER_TO_PRINT + gameResult.findPrizeByPlayerName(it)));
-        printBlankLines();
+        printBlankLine();
     }
 
-    private static void printResultTitle() {
+    private void printResultTitle() {
         System.out.println(RESULT_TITLE);
     }
 
-    private void printPrizes(LadderPrizes ladderPrizes) {
+    private void printPrizes() {
         ladderPrizes.getLadderPrizes().stream()
                 .map(it -> it.getPrizeName())
                 .map(it -> it.getPrizeName())
@@ -128,10 +152,6 @@ public class ResultView {
     }
 
     private void printBlankLine() {
-        System.out.println();
-    }
-
-    private static void printBlankLines() {
         System.out.println();
     }
 }
