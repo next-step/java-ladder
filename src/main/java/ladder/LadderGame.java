@@ -7,12 +7,14 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
-    private List<String> users;
     private List<Line> ladder;
 
     public LadderGame(List<String> users, int ladderMaxHeight) {
-        this.users = users;
         ladder = generateLadder(users.size(), ladderMaxHeight);
+    }
+
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
     }
 
     private List<Line> generateLadder(int countOfPerson, int ladderMaxHeight) {
@@ -20,9 +22,5 @@ public class LadderGame {
                 .generate(() -> new Line(countOfPerson))
                 .limit(ladderMaxHeight)
                 .collect(toList());
-    }
-
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
     }
 }
