@@ -35,7 +35,7 @@ public class Line {
 
     private boolean isExistLine(boolean existLine, Point point) {
         if (!existLine) {
-            existLine = moveNextPoint(point);
+            existLine = drawLine(point);
             return existLine;
         }
 
@@ -43,13 +43,13 @@ public class Line {
         return existLine;
     }
 
-    private boolean moveNextPoint(Point point) {
+    private boolean drawLine(Point point) {
         boolean existLine = false;
         boolean randomBoolean = getRandomBoolean();
 
         if (randomBoolean) {
             existLine = true;
-            point.moveNextPoint();
+            point.drawLine();
         }
         return existLine;
     }

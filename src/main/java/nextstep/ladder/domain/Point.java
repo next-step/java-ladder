@@ -12,7 +12,7 @@ public class Point {
         this.nextPoint = nextPoint;
     }
 
-    public void moveNextPoint() {
+    public void drawLine() {
         nextPoint = true;
     }
 

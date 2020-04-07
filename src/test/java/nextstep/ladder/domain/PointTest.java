@@ -19,7 +19,7 @@ class PointTest {
     @Test
     void movePoint() {
         Point point = new Point();
-        point.moveNextPoint();
+        point.drawLine();
         assertThat(point.isNextPoint()).isTrue();
     }
 }
