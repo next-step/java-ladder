@@ -1,10 +1,8 @@
-package ladder;
+package ladder.domain;
 
 import Utils.StringUtils;
 
 import java.util.Objects;
-
-import static Utils.StringUtils.isBlank;
 
 public class User {
     private static final String NAME_REQUIRED = "이름은 빈값이면 안됩니다.";
