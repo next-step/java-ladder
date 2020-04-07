@@ -12,10 +12,10 @@ public class Result {
         this.result = result;
     }
 
-    public String findOne(String name) {
+    public String findOne(PlayerName name) {
         return result.entrySet()
                      .stream()
-                     .filter(player -> player.getKey().same(new PlayerName(name)))
+                     .filter(player -> player.getKey().same(name))
                      .map(Map.Entry::getValue)
                      .findFirst()
                      .map(Prize::getPrize)
