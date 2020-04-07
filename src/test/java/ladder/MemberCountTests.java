@@ -30,7 +30,7 @@ public class MemberCountTests {
     @DisplayName("Members 카운트 비교 테스트")
     @Test
     public void comapreMembersCountTests() {
-        Members members = Members.newInstance(Arrays.asList(Member.newInstance("abc"), Member.newInstance("bcd")));
+        Members members = Members.newInstance(Arrays.asList(Member.of("abc"), Member.of("bcd")));
 
         assertThat(members.count()).isEqualTo(MemberCount.of(2));
     }

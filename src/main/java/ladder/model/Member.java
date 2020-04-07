@@ -19,7 +19,7 @@ public class Member {
         }
     }
 
-    public static Member newInstance(final String name) {
+    public static Member of(final String name) {
         return new Member(name);
     }
 

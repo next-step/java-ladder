@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.model.Member;
-import ladder.model.MemberCount;
 import ladder.model.Members;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,7 @@ public class MemberTests {
     @ParameterizedTest
     @ValueSource(strings = {"paul", "abc", "x"})
     public void generateMemberTests(final String name) {
-        assertThatCode(() -> Member.newInstance(name)).doesNotThrowAnyException();
+        assertThatCode(() -> Member.of(name)).doesNotThrowAnyException();
     }
 
     @DisplayName("참여자 생성 테스트 - 비정상")
@@ -30,14 +29,14 @@ public class MemberTests {
     @ValueSource(strings = {"paulabc", "   "})
     public void generateMemberAbnormalTests(final String name) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Member.newInstance(name))
+                .isThrownBy(() -> Member.of(name))
                 .withMessageContaining("Member name must be exist and the length must be less than 5.");
     }
 
     @DisplayName("참여자 복수 생성 테스트")
     @Test
     public void generateMembersTests() {
-        List<Member> members = Arrays.asList(Member.newInstance("abc"), Member.newInstance("bcd"));
+        List<Member> members = Arrays.asList(Member.of("abc"), Member.of("bcd"));
         assertThatCode(() -> Members.newInstance(members)).doesNotThrowAnyException();
     }
 }

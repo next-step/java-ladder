@@ -72,4 +72,8 @@ public class LadderLine {
 
         return bridgeIndexes;
     }
+
+    public List<LadderBridge> getBridges() {
+        return bridges;
+    }
 }

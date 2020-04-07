@@ -29,7 +29,7 @@ public class Members {
 
     public static Members newInstance(final String[] memberNames) {
         List<Member> members = Arrays.stream(memberNames)
-                .map(Member::newInstance)
+                .map(Member::of)
                 .collect(Collectors.toList());
 
         return newInstance(members);

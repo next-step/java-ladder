@@ -1,6 +1,7 @@
 package ladder.model.dto;
 
 import ladder.model.Ladder;
+import ladder.model.LadderGame;
 import ladder.model.LadderGameExecutionInfo;
 import ladder.model.LadderLine;
 
@@ -19,6 +20,10 @@ public class LadderGameConsoleResult {
     private LadderGameConsoleResult(final List<LadderPoleInfo> ladderPoleInfos, final List<LadderLine> ladderLines) {
         this.ladderPoleInfos = Collections.unmodifiableList(ladderPoleInfos);
         this.ladderLines = Collections.unmodifiableList(ladderLines);
+    }
+
+    public static LadderGameConsoleResult newInstance(final LadderGame ladderGame) {
+        return newInstance(ladderGame.getLadderGameInfo(), ladderGame.getLadder());
     }
 
     public static LadderGameConsoleResult newInstance(final LadderGameExecutionInfo ladderGameInfo, final Ladder ladder) {

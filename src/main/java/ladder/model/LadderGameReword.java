@@ -37,4 +37,9 @@ public class LadderGameReword {
     public int hashCode() {
         return Objects.hash(getReword());
     }
+
+    @Override
+    public String toString() {
+        return reword;
+    }
 }

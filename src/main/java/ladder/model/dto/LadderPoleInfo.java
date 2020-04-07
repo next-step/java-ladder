@@ -17,11 +17,11 @@ public class LadderPoleInfo {
         return new LadderPoleInfo(member, ladderGameReword);
     }
 
-    public Member getMember() {
-        return member;
+    public String getMemberName() {
+        return member.getName();
     }
 
-    public LadderGameReword getLadderGameReword() {
-        return ladderGameReword;
+    public String getLadderGameReword() {
+        return ladderGameReword.getReword();
     }
 }
