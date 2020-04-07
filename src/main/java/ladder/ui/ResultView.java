@@ -1,4 +1,7 @@
-package ladder;
+package ladder.ui;
+
+import ladder.domain.User;
+import ladder.domain.Line;
 
 import java.util.List;
 

@@ -1,4 +1,6 @@
-package ladder;
+package ladder.ui;
+
+import ladder.domain.User;
 
 import java.util.*;
 import java.util.stream.Collectors;
