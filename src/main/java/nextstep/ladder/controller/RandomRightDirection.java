@@ -11,7 +11,8 @@ public class RandomRightDirection implements RightDirection {
         this.random = new Random();
     }
 
-    @Override public boolean isAbleToRight() {
+    @Override
+    public boolean isAbleToRight() {
         return random.nextBoolean();
     }
 }

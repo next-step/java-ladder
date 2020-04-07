@@ -10,7 +10,7 @@ public class HorizontalLineTest {
     @Test
     void lineSize() {
         int size = 3;
-        HorizontalLine horizontalLine = HorizontalLine.of(size);
+        HorizontalLine horizontalLine = new HorizontalLine(size);
         assertThat(horizontalLine.size()).isEqualTo(size);
     }
 
@@ -18,20 +18,50 @@ public class HorizontalLineTest {
     @Test
     void lastIsFalse() {
         int size = 3;
-        HorizontalLine horizontalLine = HorizontalLine.of(size);
-        horizontalLine.makePointToTrue(size - 1);
-        assertThat(horizontalLine.getPoint(size - 1) == Point.TRUE)
+        HorizontalLine horizontalLine = new HorizontalLine(size);
+        horizontalLine.makeDirection(size - 1);
+        assertThat(horizontalLine.getPoint(size - 1).hasRightDirection())
                 .isFalse();
     }
 
     @DisplayName("연속으로 포인트에 선이 있을 수 없다.")
     @Test
     void notConsecutivePoint() {
-        HorizontalLine horizontalLine = HorizontalLine.of(3);
-        horizontalLine.makePointToTrue(1);
-        horizontalLine.makePointToTrue(2);
+        HorizontalLine horizontalLine = new HorizontalLine(3);
+        horizontalLine.makeDirection(1);
+        horizontalLine.makeDirection(2);
 
         assertThat(horizontalLine.getPoint(1).hasRightDirection()).isTrue();
         assertThat(horizontalLine.getPoint(2).hasRightDirection()).isFalse();
+    }
+
+    @DisplayName("포인트 방향 변경시 다음 포인트에도 영향이 있어야 한다.")
+    @Test
+    void makeDirection() {
+        int index = 1;
+        HorizontalLine horizontalLine = new HorizontalLine(3);
+        horizontalLine.makeDirection(index);
+
+        assertThat(horizontalLine.getPoint(index).hasRightDirection()).isTrue();
+        assertThat(horizontalLine.getPoint(index).hasLeftDirection()).isFalse();
+        assertThat(horizontalLine.getPoint(index + 1).hasRightDirection())
+                .isFalse();
+        assertThat(horizontalLine.getPoint(index + 1).hasLeftDirection())
+                .isTrue();
+    }
+
+    @DisplayName("포인트의 방향을 설정하거나 해제할 수 있다.")
+    @Test
+    void makePointTo() {
+        int index = 1;
+        HorizontalLine horizontalLine = new HorizontalLine(3);
+        horizontalLine.makeDirectionTo(index, true);
+
+        assertThat(horizontalLine.getPoint(index).hasRightDirection()).isTrue();
+        assertThat(horizontalLine.getPoint(index).hasLeftDirection()).isFalse();
+        assertThat(horizontalLine.getPoint(index + 1).hasRightDirection())
+                .isFalse();
+        assertThat(horizontalLine.getPoint(index + 1).hasLeftDirection())
+                .isTrue();
     }
 }

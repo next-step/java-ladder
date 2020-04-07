@@ -1,67 +1,45 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static nextstep.ladder.domain.Point.FALSE;
-import static nextstep.ladder.domain.Point.TRUE;
 
 public class HorizontalLine implements Iterable<Point> {
-    private static final int FIRST_INDEX = 0;
     private List<Point> points;
 
-    public static HorizontalLine of(int size) {
-        HorizontalLine horizontalLine = new HorizontalLine();
-        horizontalLine.points = IntStream.range(0, size)
-                .mapToObj(i -> FALSE)
-                .collect(Collectors.toList());
-        return horizontalLine;
+    public HorizontalLine(int size) {
+        points = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            points.add(new Point());
+        }
     }
 
-    private HorizontalLine() {
-    }
-
-    public void makePointToTrue(int index) {
+    public void makeDirection(int index) {
         if (isLast(index)) {
             return;
-        } else if (!isFirst(index) && getBefore(index) == TRUE) {
-            return;
-        } else if (!isLast(index) && getAfter(index) == TRUE) {
+        }
+        Point point = getPoint(index);
+        Point afterPoint = getAfter(index);
+        if (afterPoint.hasRightDirection() || point.hasLeftDirection()) {
             return;
         }
-
-        points.set(index, TRUE);
+        point.setRightDirection(true);
+        afterPoint.setLeftDirection(true);
     }
 
-    public void makePointTo(int index, boolean hasRightDirection) {
+    public void makeDirectionTo(int index, boolean hasRightDirection) {
         if (hasRightDirection) {
-            makePointToTrue(index);
-            return;
+            makeDirection(index);
         }
-
-        points.set(index, FALSE);
-    }
-
-    private boolean isFirst(int index) {
-        return index == FIRST_INDEX;
     }
 
     private boolean isLast(int index) {
-        return index == lastIndex();
-    }
-
-    private Point getBefore(int index) {
-        if (isFirst(index)) {
-            getPoint(FIRST_INDEX);
-        }
-        return getPoint(index - 1);
+        return index == getLastIndex();
     }
 
     private Point getAfter(int index) {
         if (isLast(index)) {
-            getPoint(lastIndex());
+            return getPoint(getLastIndex());
         }
 
         return getPoint(index + 1);
@@ -71,7 +49,7 @@ public class HorizontalLine implements Iterable<Point> {
         return points.size();
     }
 
-    private int lastIndex() {
+    private int getLastIndex() {
         return size() - 1;
     }
 
@@ -79,7 +57,19 @@ public class HorizontalLine implements Iterable<Point> {
         return points.get(index);
     }
 
-    @Override public Iterator<Point> iterator() {
+    public int getNextIndex(int index) {
+        Point point = points.get(index);
+        if (point.hasRightDirection()) {
+            return index + 1;
+        } else if (point.hasLeftDirection()) {
+            return index - 1;
+        }
+
+        return index;
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
         return points.iterator();
     }
 }
