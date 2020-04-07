@@ -82,7 +82,6 @@ class PlayLadderGameTest {
                 )
                       .collect(Collectors.toList())));
 
-        resultUsers = playLadderGame.generateResultsForAllPlayers(users, ladder, results);
 
     }
 
@@ -143,10 +142,4 @@ class PlayLadderGameTest {
         assertThat(userList.get(3).getResult()).isEqualTo("5000");
     }
 
-    @DisplayName("특정 유저의 실행결과 값을 가져온다.")
-    @Test
-    void playResultByUser() {
-        String resultByUser = playLadderGame.playResultByUser(resultUsers, "honux");
-        assertThat(resultByUser).isEqualTo("3000");
-    }
 }

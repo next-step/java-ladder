@@ -5,14 +5,6 @@ import java.util.List;
 public class PlayLadderGame {
     private static PlayLadderGame playLadderGame = new PlayLadderGame();
 
-    public String playResultByUser(Users paramUsers, String userName) {
-        String result = paramUsers.getUsers()
-                                  .stream()
-                                  .filter(user -> user.getName().equals(userName))
-                                  .findFirst()
-                                  .get().getResult();
-        return result;
-    }
 
     public Users generateResultsForAllPlayers(Users paramUsers, Ladder paramLadder, Results paramResults) {
         List<User> users = paramUsers.getUsers();
