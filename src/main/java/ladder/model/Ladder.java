@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -11,7 +12,7 @@ public class Ladder {
 
     private Ladder(final List<LadderLine> lines) {
         validate(lines);
-        this.lines = lines;
+        this.lines = Collections.unmodifiableList(lines);
     }
 
     private void validate(final List<LadderLine> lines) {
@@ -30,15 +31,6 @@ public class Ladder {
     public static Ladder newInstance(final List<LadderLine> ladderLines) {
         return new Ladder(ladderLines);
     }
-
-/*
-    public int getPoleCount() {
-        return lines.stream()
-                .findAny()
-                .map(LadderLine::getPoleCount)
-                .orElseThrow(() -> new IllegalArgumentException("Can not find ladder line pole count."));
-    }
-*/
 
     public LadderPoles proceedAll() {
         LadderPoles ladderPoles = getInitLadderPoles();

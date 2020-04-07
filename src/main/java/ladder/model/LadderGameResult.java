@@ -18,7 +18,6 @@ public class LadderGameResult {
                 .boxed()
                 .collect(Collectors.toMap(members::get, ladderGameRewords::getLadderGameReword));
 
-
         return new LadderGameResult(ladderGameResult);
     }
 

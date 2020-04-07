@@ -3,7 +3,7 @@ package ladder.view;
 import ladder.model.LadderBridge;
 import ladder.model.LadderLine;
 import ladder.model.Member;
-import ladder.model.dto.LadderConsoleResult;
+import ladder.model.dto.LadderGameConsoleResult;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +23,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(final LadderConsoleResult result) {
+    public static void printResult(final LadderGameConsoleResult result) {
         System.out.println("실행결과\n");
 
         List<Member> members = result.getMembers();

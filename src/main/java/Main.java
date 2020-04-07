@@ -1,5 +1,5 @@
 import ladder.model.*;
-import ladder.model.dto.LadderConsoleResult;
+import ladder.model.dto.LadderGameConsoleResult;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -14,6 +14,6 @@ public class Main {
 
         LadderGame ladderGame = LadderGame.newInstance(members, ladder);
 
-        OutputView.printResult(LadderConsoleResult.newInstance(ladderGame));
+        OutputView.printResult(LadderGameConsoleResult.newInstance(ladderGame));
     }
 }

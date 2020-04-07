@@ -1,6 +1,7 @@
 package ladder.model;
 
 public class LadderPole {
+
     private final int polePosition;
 
     private LadderPole(int polePosition) {
@@ -14,10 +15,7 @@ public class LadderPole {
         return new LadderPole(polePosition);
     }
 
-    public int getPolePosition() {
-        return polePosition;
-    }
-
     public int toInt() {
+        return polePosition;
     }
 }

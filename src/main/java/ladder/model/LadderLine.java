@@ -72,6 +72,4 @@ public class LadderLine {
 
         return bridgeIndexes;
     }
-
-
 }
