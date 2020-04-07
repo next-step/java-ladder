@@ -1,59 +1,42 @@
 package nextstep.ladder.domain.step;
 
 import nextstep.ladder.domain.step.strategy.Movement;
-
-import java.util.Objects;
+import nextstep.ladder.vo.Position;
 
 public class Step {
-    private final Row row;
-    private final boolean movable;
+    private final Position line;
+    private final Position step;
 
-    private Step(boolean movable) {
-        this(null, movable);
-    }
-
-    private Step(Row row, boolean movable) {
-        this.row = row;
-        this.movable = movable;
-    }
-
-    public static Step imMovable() {
-        return new Step(false);
-    }
-
-    public static Step movablePrev(int linePosition, int stepPosition, Movement movement) {
+    public Step(int line, int step, Movement movement) {
         if (movement.isMovable()) {
-            return new Step(Row.of(linePosition - 1, stepPosition), true);
+            line++;
         }
-        return new Step(false);
+        this.line = new Position(line);
+        this.step = new Position(step);
     }
 
-    public static Step movableNext(int linePosition, int stepPosition, Movement movement) {
-        if (movement.isMovable()) {
-            return new Step(Row.of(linePosition + 1, stepPosition), true);
-        }
-        return new Step(false);
+    public Step(int line, int step) {
+        this(line, step, () -> false);
     }
 
-    public int getStepPosition() {
-        return row.getCurrentStep();
+    public Step move() {
+        return new Step(line.getPosition(), step.getPosition() + 1);
     }
 
-    public boolean isMovableLine(int linePosition) {
-        return movable && row.isEqualLinePosition(linePosition);
+    public int getLine() {
+        return line.getPosition();
+    }
+
+    public int getStep() {
+        return step.getPosition();
+    }
+
+    public boolean isMovable(int i) {
+        return line.equals(new Position(i));
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Step step = (Step) o;
-        return movable == step.movable &&
-                Objects.equals(row, step.row);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(movable, row);
+    public String toString() {
+        return line.getPosition() + " " + step.getPosition();
     }
 }

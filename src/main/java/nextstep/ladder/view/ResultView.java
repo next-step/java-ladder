@@ -5,7 +5,9 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.domain.step.Steps;
+import nextstep.ladder.dto.LadderRequestDto;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,9 +20,18 @@ public class ResultView {
     private static final String LINE = "|";
     private static final String STEP = "-----";
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadderGame(Ladder ladder, LadderRequestDto ladderRequestDto) {
         printPersons(ladder.getLines());
         printLines(ladder);
+        printResults(ladderRequestDto);
+        System.out.println();
+    }
+
+    private static void printResults(LadderRequestDto ladderRequestDto) {
+        String results = Arrays.asList(ladderRequestDto.getResults().split(",")).stream()
+                .map(result -> format(result))
+                .collect(Collectors.joining());
+        System.out.println(results);
     }
 
     private static void printPersons(List<Line> lines) {
@@ -37,7 +48,7 @@ public class ResultView {
     }
 
     private static void printLines(Ladder ladder) {
-        int heightOfLadder = ladder.getHeightOfLadder();
+        int heightOfLadder = ladder.getLines().get(0).getSteps().size();
         List<Line> lines = ladder.getLines();
         for (int i = 0; i < heightOfLadder; i++) {
             printRows(lines, i);
@@ -61,7 +72,7 @@ public class ResultView {
 
     private static StringBuilder printStep(int lineIndex, Step step) {
         StringBuilder stringBuilder = new StringBuilder(LINE);
-        if (step.isMovableLine(lineIndex + ONE)) {
+        if (step.isMovable(lineIndex + ONE)) {
             return stringBuilder.append(STEP);
         }
         return stringBuilder.append(SPACE_FORMAT);

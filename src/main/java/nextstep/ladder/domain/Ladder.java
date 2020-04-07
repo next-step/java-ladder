@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.vo.Height;
 
 import java.util.ArrayList;
@@ -21,18 +22,25 @@ public class Ladder {
         this.heightOfLadder = new Height(heightOfLadder);
     }
 
+    private void validateLine(List<Line> lines) {
+        if (lines.size() < MINIMUM_LINE_SIZE) {
+            throw new IllegalArgumentException("라인은 두개 이상이여야 합니다.");
+        }
+    }
+
     public static Ladder of(List<Person> persons, int heightOfLadder) {
         List<Line> lines = new ArrayList<>();
         Line previousLine = Line.firstLine(persons.get(FIRST_PERSON), heightOfLadder);
         lines.add(previousLine);
+
         for (int lineIndex = 1; lineIndex < persons.size(); lineIndex++) {
-            previousLine = getLine(persons, previousLine, lineIndex);
+            previousLine = newLine(persons, previousLine, lineIndex);
             lines.add(previousLine);
         }
         return new Ladder(lines, heightOfLadder);
     }
 
-    private static Line getLine(List<Person> persons, Line previousLine, int lineIndex) {
+    private static Line newLine(List<Person> persons, Line previousLine, int lineIndex) {
         if (isLastLine(persons, lineIndex)) {
             return Line.lastLine(persons.get(lineIndex), previousLine.getSteps());
         }
@@ -47,17 +55,29 @@ public class Ladder {
         return persons.size() - ONE;
     }
 
-    private void validateLine(List<Line> lines) {
-        if (lines.size() < MINIMUM_LINE_SIZE) {
-            throw new IllegalArgumentException("라인은 두개 이상이여야 합니다.");
-        }
-    }
-
     public int getHeightOfLadder() {
         return heightOfLadder.getHeight();
     }
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public Step start(String name) {
+        Line startLine = findLine(name);
+        Step step = startLine.move(0);
+
+        for (int i = 1; i < lines.get(0).getSteps().getSteps().size(); i++) {
+            Line line = lines.get(step.getLine());
+            step = line.move(step.getStep());
+        }
+        return step;
+    }
+
+    private Line findLine(String name) {
+        return lines.stream()
+                .filter(line -> line.getPerson().equals(new Person(name)))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("유저를 찾을수 없습니다."));
     }
 }
