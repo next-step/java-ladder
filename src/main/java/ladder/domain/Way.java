@@ -22,10 +22,10 @@ public class Way {
     }
 
     public boolean isMovableLeft() {
-        return this.left;
+        return left;
     }
 
     public boolean isMovableRight() {
-        return this.right;
+        return right;
     }
 }

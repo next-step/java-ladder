@@ -46,7 +46,7 @@ public class Players {
     public int findPlayer(String playerName) {
         playerName = playerName.trim();
 
-        List<String> names = players.stream()
+        List<String> names = this.players.stream()
                 .map(player -> player.getName())
                 .collect(Collectors.toList());
 
@@ -62,7 +62,6 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        List<Player> players = new ArrayList<>(this.players);
-        return players;
+        return new ArrayList<>(this.players);
     }
 }

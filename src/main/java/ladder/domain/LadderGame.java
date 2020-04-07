@@ -11,7 +11,9 @@ public class LadderGame {
     private final Lines lines;
     private final LadderPrize ladderPrize;
 
-    public LadderGame(Players players, Lines lines, LadderPrize result) {
+    public LadderGame(final Players players,
+                      final Lines lines,
+                      final LadderPrize result) {
         validateUserAndResult(players, result);
         this.players = players;
         this.lines = lines;
@@ -26,13 +28,13 @@ public class LadderGame {
         return new LadderGame(players, lines, result);
     }
 
-    private void validateUserAndResult(Players players, LadderPrize result) {
+    private void validateUserAndResult(final Players players, final LadderPrize result) {
         if (players.size() != result.size()) {
             throw new LadderException(USER_AND_RESULT_COUNT_MATCH_ERR_MST);
         }
     }
 
-    public Node getPlayerResult(String playerName) {
+    public Node getPlayerResult(final String playerName) {
         int playerIndex = players.findPlayer(playerName);
         return lines.move(playerIndex);
     }

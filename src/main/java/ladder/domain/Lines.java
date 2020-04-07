@@ -12,10 +12,10 @@ public class Lines {
     }
 
     public Lines(final List<Line> lines) {
-        this.lines = lines;
+        this.lines = new ArrayList<>(lines);
     }
 
-    public static Lines of(final int playerCount, int ladderHeight) {
+    public static Lines of(final int playerCount, final int ladderHeight) {
         Lines lines = new Lines();
         for (int i = 0; i < ladderHeight; i++) {
             lines = lines.addLine(Line.of(playerCount));
@@ -23,26 +23,25 @@ public class Lines {
         return lines;
     }
 
-    private Lines addLine(Line line) {
+    private Lines addLine(final Line line) {
         List<Line> merge = new ArrayList<>();
         merge.addAll(this.lines);
         merge.add(line);
         return new Lines(merge);
     }
 
-    public Node move(final int nodeNumber) {
-        int move = nodeNumber;
+    public Node move(int nodeNumber) {
         for (Line line : lines) {
-            move = line.getNodes().get(move).move();
+            nodeNumber = line.getNodes().get(nodeNumber).move();
         }
-        return getLastLine().getNodes().get(move);
+        return getLastLine().getNodes().get(nodeNumber);
     }
 
     private Line getLastLine() {
         return this.lines.get(size() - 1);
     }
 
-    public int size() {
+    private int size() {
         return this.lines.size();
     }
 
