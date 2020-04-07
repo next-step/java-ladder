@@ -43,37 +43,40 @@ public class Line {
     public int move(int startPosition) {
         int nextPosition = startPosition;
 
-        boolean isMoveLeft = isMove(nextPosition, (position) -> {
+        if(canMoveRight(nextPosition)) {
+            return nextPosition - 1;
+        }
+
+        if(canMoveLeft(nextPosition)) {
+            return nextPosition + 1;
+        }
+        return nextPosition;
+    }
+
+    private boolean isMove(int position, MoveCondition moveCondition) {
+        return moveCondition.isMove(position);
+    }
+
+    private boolean canMoveRight(int currentPosition) {
+        return isMove(currentPosition, (position -> {
             if(position <= 0) {
                 return false;
             }
 
             Point leftPoint = getPointByIndex(position - 1);
             return leftPoint.hasLine();
-        });
+        }));
+    }
 
-        if(isMoveLeft) {
-            return nextPosition - 1;
-        }
-
-        boolean isMoveRight = isMove(nextPosition, (position) -> {
+    private boolean canMoveLeft(int currentPosition) {
+        return isMove(currentPosition, (position -> {
             if(position == points.size()) {
                 return false;
             }
 
-           Point rightPoint = getPointByIndex(position);
-           return rightPoint.hasLine();
-        });
-
-        if(isMoveRight) {
-            return nextPosition + 1;
-        }
-
-        return nextPosition;
-    }
-
-    private boolean isMove(int position, MoveCondition moveCondition) {
-        return moveCondition.isMove(position);
+            Point rightPoint = getPointByIndex(position);
+            return rightPoint.hasLine();
+        }));
     }
 
     private Point getPointByIndex(int index) {
