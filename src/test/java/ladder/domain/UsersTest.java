@@ -15,4 +15,6 @@ class UsersTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Users(new ArrayList<>()));
     }
+
+
 }
