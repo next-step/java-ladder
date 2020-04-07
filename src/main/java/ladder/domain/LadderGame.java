@@ -34,7 +34,7 @@ public class LadderGame {
         }
     }
 
-    public Node getPlayerResult(final String playerName) {
+    public Node findPlayerResult(final String playerName) {
         int playerIndex = players.findPlayer(playerName);
         return lines.move(playerIndex);
     }

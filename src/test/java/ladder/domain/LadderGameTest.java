@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderGameTest {
 
-    private LadderPrize gameResult = new LadderPrize(Arrays.asList());
+    private LadderPrize gameResult = new LadderPrize(Arrays.asList("꽝", "100"));
 
     @DisplayName("로또 게임 생성자 테스트")
     @Test
@@ -72,7 +72,7 @@ class LadderGameTest {
         LadderGame game = new LadderGame(players, lines, gameResult);
 
         //when
-        Node result = game.getPlayerResult(playerName);
+        Node result = game.findPlayerResult(playerName);
 
         //then
         assertThat(result.getIndex()).isEqualTo(0);
