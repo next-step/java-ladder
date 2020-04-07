@@ -19,7 +19,9 @@ public class OutputView {
     public static void resultPrint(LadderGame ladderGame) {
         System.out.println(RESULT);
 
-        ladderGame.getUsers().forEach(user -> System.out.printf("%-7s", user.getName()));
+        ladderGame.getUsers()
+                .getUsers()
+                .forEach(user -> System.out.printf("%-7s", user.getName()));
 
         printLadder(ladderGame);
 
@@ -36,13 +38,16 @@ public class OutputView {
         System.out.println(GAME_RESULT);
 
         if (name.equals(ALL_RESULT)) {
-            List<User> users = ladderGame.getUsers();
+            List<User> users = ladderGame.getUsers().getUsers();
+
             users.forEach(user -> System.out.println(user.getName() + " : " + user.getReward()));
 
             return;
         }
 
-        User user = ladderGame.findUser(name);
+        User user = ladderGame.getUsers()
+                .findUser(name);
+
         System.out.println(user.getName() + " : " + user.getReward());
     }
 

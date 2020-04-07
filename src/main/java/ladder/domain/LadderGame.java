@@ -12,7 +12,7 @@ public class LadderGame {
     @Getter
     private Ladder ladder;
     @Getter
-    private List<User> users;
+    private Users users;
 
     public LadderGame(String userNameValues, String heightValue, String resultValues) {
         String[] userNames = userNameValues.split(REGEX);
@@ -21,14 +21,7 @@ public class LadderGame {
         validResultValues(results, userNames.length);
 
         this.ladder = new Ladder(userNames.length, Integer.parseInt(heightValue), results);
-        this.users = User.listOf(Arrays.asList(userNames), ladder);
-    }
-
-    public User findUser(String userName) {
-        return users.stream()
-                .filter(user -> user.equalsUserName(userName))
-                .findAny()
-                .orElseThrow(() -> new LadderException(ExceptionType.NOT_EXIST_USER));
+        this.users = new Users(Arrays.asList(userNames), ladder);
     }
 
     private void validResultValues(List<String> results, int userNumbers) {
