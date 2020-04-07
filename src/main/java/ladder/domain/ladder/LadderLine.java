@@ -9,13 +9,14 @@ import java.util.Objects;
 public class LadderLine implements Line {
     private static final int LADDER_MARK_NUMBER = 0;
     private static final int LADDER_MARK_WITH_DASH_NUMBER = 1;
+    private static final int MARK_RANGE = 2;
 
     private final List<String> line = new ArrayList<>();
 
     public LadderLine(int personOfCount) {
         line.add(Mark.ofLadder(LADDER_MARK_NUMBER));
-        for (int i = 1; i < personOfCount; i++) {
-            drawLadder(i);
+        for (int position = 1; position < personOfCount; position++) {
+            drawLadder(position);
         }
     }
 
@@ -24,8 +25,8 @@ public class LadderLine implements Line {
         return line;
     }
 
-    private boolean drawLadder(int i) {
-        if (line.get(i - 1).equals(Mark.ofLadder(LADDER_MARK_WITH_DASH_NUMBER))) {
+    private boolean drawLadder(int position) {
+        if (line.get(position - 1).equals(Mark.ofLadder(LADDER_MARK_WITH_DASH_NUMBER))) {
             line.add(Mark.ofLadder(LADDER_MARK_NUMBER));
             return false;
         }
@@ -34,8 +35,8 @@ public class LadderLine implements Line {
     }
 
     private int random() {
-        if ((Math.random() * 2) < LADDER_MARK_WITH_DASH_NUMBER) {
-            return 0;
+        if ((Math.random() * MARK_RANGE) < LADDER_MARK_WITH_DASH_NUMBER) {
+            return LADDER_MARK_NUMBER;
         }
         return LADDER_MARK_WITH_DASH_NUMBER;
     }
