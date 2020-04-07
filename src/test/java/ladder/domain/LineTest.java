@@ -28,7 +28,16 @@ public class LineTest {
         List<Line> lines = Line.listOf(3, 5);
 
         assertThat(lines).hasSize(5);
-        assertThat(lines.get(0).getActions()).hasSize(3);
+        assertThat(lines.get(0).getActionsSize()).isEqualTo(3);
+    }
+
+    @Test
+    void getActionsSize() {
+        Line line = new Line(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN));
+
+        int actual = line.getActionsSize();
+
+        assertThat(actual).isEqualTo(3);
     }
 
     @ParameterizedTest

@@ -1,31 +1,30 @@
 package ladder.domain;
 
-import ladder.exception.ExceptionType;
-import ladder.exception.LadderException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderRewardTest {
-    @Test
-    void ladderReward() {
-        new LadderReward("100,꽝,10억", 3 );
-    }
+    private LadderReward reward;
 
-    @Test
-    void ladderReward_exception() {
-        assertThatThrownBy(() -> new LadderReward("100,꽝,10억", 4 ))
-                .isInstanceOfAny(LadderException.class)
-                .hasMessageContaining(ExceptionType.INVALID_RESULT_SIZE.getErrorMessage());
+    @BeforeEach
+    void setUp() {
+        reward = new LadderReward(Arrays.asList("100", "꽝", "10억"));
     }
 
     @Test
     void getReward() {
-        LadderReward reward = new LadderReward("100,꽝,10억", 3 );
-
         String actual = reward.getReward(2);
 
         assertThat(actual).isEqualTo("10억");
+    }
+
+    @Test
+    void sameSize() {
+        assertThat(reward.sameSize(3)).isTrue();
+        assertThat(reward.sameSize(4)).isFalse();
     }
 }
