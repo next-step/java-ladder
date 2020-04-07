@@ -15,7 +15,7 @@ public class Ladder {
         this.rewards = rewards;
     }
 
-    public String getRewards(int startIndex) {
+    public String getReward(int startIndex) {
         int lineIndex = startIndex;
 
         for (Line line : this.lines) {

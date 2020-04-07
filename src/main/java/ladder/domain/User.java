@@ -4,35 +4,35 @@ import ladder.exception.ExceptionType;
 import ladder.exception.LadderException;
 import lombok.Getter;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class User {
     private static final int NAME_LENGTH_LIMIT = 5;
-    private static final String REGEX = ",";
 
     @Getter
     private String name;
     @Getter
     private String reward;
 
-    private User(String name) {
+    public User(String name, String reward) {
         this.name = name;
+        this.reward = reward;
     }
 
-    public static List<User> listOf(String userNameValues) {
-        String[] userNames = userNameValues.split(REGEX);
+    public static List<User> listOf(List<String> userNames, Ladder ladder) {
+        List<User> users = new ArrayList<>();
 
-        validNameLength(Arrays.asList(userNames));
+        validNameLength(userNames);
 
-        return Arrays.stream(userNames)
-                .map(username -> new User(username))
-                .collect(Collectors.toList());
-    }
+        int index = 0;
+        for (String userName : userNames) {
+            users.add(new User(userName, ladder.getReward(index)));
 
-    public void setReward(int startIndex, Ladder ladder) {
-        this.reward = ladder.getRewards(startIndex);
+            index++;
+        }
+
+        return users;
     }
 
     public boolean equalsUserName(String userName) {

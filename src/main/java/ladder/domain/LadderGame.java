@@ -15,15 +15,13 @@ public class LadderGame {
     private List<User> users;
 
     public LadderGame(String userNameValues, String heightValue, String resultValues) {
-        this.users = User.listOf(userNameValues);
+        String[] userNames = userNameValues.split(REGEX);
 
         List<String> results = Arrays.asList(resultValues.split(REGEX));
+        validResultValues(results, userNames.length);
 
-        validResultValues(results);
-
-        this.ladder = new Ladder(this.users.size(), Integer.parseInt(heightValue), results);
-
-        setResult();
+        this.ladder = new Ladder(userNames.length, Integer.parseInt(heightValue), results);
+        this.users = User.listOf(Arrays.asList(userNames), ladder);
     }
 
     public User findUser(String userName) {
@@ -33,19 +31,9 @@ public class LadderGame {
                 .orElseThrow(() -> new LadderException(ExceptionType.NOT_EXIST_USER));
     }
 
-    private void validResultValues(List<String> results) {
-        if (results.size() != this.users.size()) {
+    private void validResultValues(List<String> results, int userNumbers) {
+        if (results.size() != userNumbers) {
             throw new LadderException(ExceptionType.INVALID_RESULT_SIZE);
-        }
-    }
-
-    private void setResult() {
-        int userIndex = 0;
-
-        for (User user : users) {
-            user.setReward(userIndex, ladder);
-
-            userIndex++;
         }
     }
 }
