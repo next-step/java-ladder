@@ -27,12 +27,8 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, Sumable sumable) {
-        int total = 0;
-        for (int number : numbers) {
-            if (sumable.isSumable(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(n -> sumable.isSumable(n) == true)
+                .reduce(0, (x, y) -> x + y);
     }
 }
