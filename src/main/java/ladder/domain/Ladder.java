@@ -9,7 +9,7 @@ public class Ladder {
     private final List<Line> lines;
 
     public Ladder(final int playerCount, final Height height) {
-        this.lines = createLines(playerCount, height.value());
+        this.lines = createLines(playerCount, height);
     }
 
     public List<Line> getLines() {
@@ -23,8 +23,8 @@ public class Ladder {
         return playerPosition;
     }
 
-    private List<Line> createLines(final int playerCount, final int height) {
-        final List<Line> lines = IntStream.rangeClosed(Height.MIN_HEIGHT, height)
+    private List<Line> createLines(final int playerCount, final Height height) {
+        final List<Line> lines = IntStream.rangeClosed(Height.MIN_HEIGHT, height.value())
                                           .mapToObj(count -> Line.of(playerCount))
                                           .collect(Collectors.toList());
         return Collections.unmodifiableList(lines);
