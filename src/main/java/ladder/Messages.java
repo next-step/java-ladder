@@ -9,9 +9,8 @@ public class Messages {
     public static final String WARNING_NULL_OR_EMPTY = "공백 또는 빈 문자열은 입력할 수 없습니다.";
     public static final String WARNING_NOT_NUMBER_TYPE = "숫자만 입력 가능합니다.";
     public static final String WARNING_NOT_ALLOWED_NAME_LENGTH = "플레이어의 이름은 다섯 글자를 넘을 수 없습니다.";
-    public static final String WARNING_NOT_ALLOWED_HEIGHT_LENGTH= "사다리의 높이는 0보다 커야 합니다.";
+    public static final String WARNING_NOT_ALLOWED_HEIGHT_LENGTH = "사다리의 높이는 0보다 커야 합니다.";
     public static final String WARNING_LADDER_PRIZE_NOT_ALLOWED_STRING = "실행 결과는 숫자 또는 '꽝'만 입력 가능합니다.";
     public static final String WARNING_NOT_ALLOWED_NUMBER = "실행 결과는 0 이상의 숫자만 입력할 수 있습니다.";
-    public static final String WARNING_NOT_EXISTING_PLAYER = "존재하지 않는 플레이어입니다.";
     public static final String WARNING_NOT_ALLOWED_DUPLICATION_NAME = "중복된 플레이어명은 사용할 수 없습니다.";
 }
