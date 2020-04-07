@@ -8,11 +8,11 @@ public class Ladder {
     @Getter
     private List<Line> lines;
     @Getter
-    private List<String> rewards;
+    private LadderReward ladderReward;
 
-    public Ladder(int userCount, int height, List<String> rewards) {
+    public Ladder(int userCount, int height, LadderReward rewards) {
         this.lines = Line.listOf(userCount, height);
-        this.rewards = rewards;
+        this.ladderReward = rewards;
     }
 
     public String getReward(int startIndex) {
@@ -22,6 +22,6 @@ public class Ladder {
             lineIndex += line.getMovePoint(lineIndex);
         }
 
-        return rewards.get(lineIndex);
+        return ladderReward.getReward(lineIndex);
     }
 }

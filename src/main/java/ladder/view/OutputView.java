@@ -28,6 +28,7 @@ public class OutputView {
         System.out.printf("\n");
 
         ladderGame.getLadder()
+                .getLadderReward()
                 .getRewards()
                 .forEach(result -> System.out.printf("%-7s", result));
 
