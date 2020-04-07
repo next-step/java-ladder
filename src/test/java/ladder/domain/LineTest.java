@@ -9,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 
 class LineTest {
 
-    @DisplayName("가로줄이 존재하는지 테스")
+    @DisplayName("가로줄이 존재하는지 테스트")
     @Test
     void testLineEmpty() {
         assertThatExceptionOfType(IllegalArgumentException.class)
