@@ -59,3 +59,6 @@
  
  ### ResultView
  * 컨트롤러에게 전달 받은 정보를 출력 한다.
+ 
+ ### LadderGameResult
+ * 게임 결과를 저장
