@@ -9,9 +9,12 @@ import nextstep.ladder.dto.LadderRequestDto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ResultView {
+    private static final Scanner scanner = new Scanner(System.in);
+
     private static final int ZERO = 0;
     private static final int ONE = 1;
 
@@ -24,6 +27,7 @@ public class ResultView {
         printPersons(ladder.getLines());
         printLines(ladder);
         printResults(ladderRequestDto);
+        printResults(ladder, ladderRequestDto);
         System.out.println();
     }
 
@@ -32,6 +36,21 @@ public class ResultView {
                 .map(result -> format(result))
                 .collect(Collectors.joining());
         System.out.println(results);
+    }
+
+    private static void printResults(Ladder ladder, LadderRequestDto ladderRequestDto) {
+        System.out.println("결과를 보고 싶은 사람은 ?");
+        while (scanner.hasNext()) {
+            String name = scanner.next();
+            if (name.equals("all")) {
+                ladder.all(ladderRequestDto.getResults());
+                break;
+            }
+
+            Step result = ladder.start(name);
+            String[] split = ladderRequestDto.getResults().split(",");
+            System.out.println(name + " : " +split[result.getLine()]);
+        }
     }
 
     private static void printPersons(List<Line> lines) {

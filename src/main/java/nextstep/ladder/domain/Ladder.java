@@ -67,7 +67,7 @@ public class Ladder {
         Line startLine = findLine(name);
         Step step = startLine.move(0);
 
-        for (int i = 1; i < lines.get(0).getSteps().getSteps().size(); i++) {
+        for (int i = 1; i < heightOfLadder.getHeight(); i++) {
             Line line = lines.get(step.getLine());
             step = line.move(step.getStep());
         }
@@ -79,5 +79,18 @@ public class Ladder {
                 .filter(line -> line.getPerson().equals(new Person(name)))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("유저를 찾을수 없습니다."));
+    }
+
+    public void all(String results) {
+        lines.stream()
+                .forEach(line -> {
+                    Step step = line.move(0);
+                    for (int i = 1; i < heightOfLadder.getHeight(); i++) {
+                        Line findline = lines.get(step.getLine());
+                        step = findline.move(step.getStep());
+                    }
+                    String[] split = results.split(",");
+                    System.out.println(line.getPerson().getName() + " : " +split[step.getLine()]);
+                });
     }
 }
