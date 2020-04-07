@@ -2,20 +2,12 @@ package ladder.domain;
 
 import ladder.exception.ExceptionType;
 import ladder.exception.LadderException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
-    private LadderGame ladderGame;
-
-    @BeforeEach
-    void setUp() {
-        ladderGame = new LadderGame("pobi,honux,crong,jk", "5", "꽝,5000,꽝,3000");
-    }
-
     @Test
     void ladderGame() {
         LadderGame ladderGame = new LadderGame("pobi,honux,crong,jk", "5", "꽝,5000,꽝,3000");
@@ -39,14 +31,5 @@ public class LadderGameTest {
         assertThatThrownBy(() -> new LadderGame("pobi,honux,crong,jk", "5", "꽝,5000,꽝"))
                 .isInstanceOf(LadderException.class)
                 .hasMessageContaining(ExceptionType.INVALID_RESULT_SIZE.getErrorMessage());
-    }
-
-    @Test
-    void findUser() {
-        String userName = "pobi";
-
-        User user = ladderGame.findUser(userName);
-
-        assertThat(user.getName()).isEqualTo(userName);
     }
 }
