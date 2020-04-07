@@ -22,14 +22,14 @@ public class LadderGame {
 
     public static LadderGame of(final Players players,
                                 final int height,
-                                final LadderPrize result) {
+                                final LadderPrize ladderPrize) {
         Lines lines = Lines.of(players.size(), height);
 
-        return new LadderGame(players, lines, result);
+        return new LadderGame(players, lines, ladderPrize);
     }
 
-    private void validateUserAndResult(final Players players, final LadderPrize result) {
-        if (players.size() != result.size()) {
+    private void validateUserAndResult(final Players players, final LadderPrize ladderPrize) {
+        if (players.size() != ladderPrize.size()) {
             throw new LadderException(USER_AND_RESULT_COUNT_MATCH_ERR_MST);
         }
     }
@@ -40,7 +40,7 @@ public class LadderGame {
     }
 
     public String findPrize(final int prizeIndex) {
-        return ladderPrize.getResult().get(prizeIndex);
+        return ladderPrize.getPrize().get(prizeIndex);
     }
 
     public Lines getLines() {

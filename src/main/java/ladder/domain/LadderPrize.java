@@ -6,17 +6,17 @@ import java.util.List;
 
 public class LadderPrize {
 
-    private final List<String> result;
+    private final List<String> prize;
 
-    public LadderPrize(final List<String> result) {
-        this.result = new ArrayList<>(result);
+    public LadderPrize(final List<String> prize) {
+        this.prize = new ArrayList<>(prize);
     }
 
     public int size() {
-        return result.size();
+        return prize.size();
     }
 
-    public List<String> getResult() {
-        return Collections.unmodifiableList(result);
+    public List<String> getPrize() {
+        return Collections.unmodifiableList(prize);
     }
 }
