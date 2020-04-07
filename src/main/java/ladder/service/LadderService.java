@@ -25,7 +25,8 @@ public class LadderService {
         return game;
     }
 
-    public Node startGameOfPlayer(final String inputName, LadderGame ladderGame) {
-        return ladderGame.getPlayerResult(inputName);
+    public String startGameOfPlayer(final String inputName, final LadderGame ladderGame) {
+        Node last = ladderGame.findPlayerResult(inputName);
+        return ladderGame.findPrize(last.getIndex());
     }
 }
