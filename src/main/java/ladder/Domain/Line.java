@@ -8,15 +8,15 @@ public class Line {
 
     private final List<Boolean> row;
 
-    private Line(List<Boolean> row) {
-        this.row = row;
+    private Line(int userCount, MoveStrategy moveStrategy) {
+        this.row = createCrossLine(userCount, moveStrategy);
     }
 
     public static Line of(int userCount, MoveStrategy moveStrategy) {
-        return new Line(createCrossLine(userCount, moveStrategy));
+        return new Line(userCount, moveStrategy);
     }
 
-    private static List<Boolean> createCrossLine(int userCount, MoveStrategy moveStrategy) {
+    private List<Boolean> createCrossLine(int userCount, MoveStrategy moveStrategy) {
         List<Boolean> crossable = new ArrayList<>();
         
         for (int i = 0; i < userCount; i++) {
@@ -26,7 +26,7 @@ public class Line {
         return crossable;
     }
     
-    private static boolean isCreateCrossable(List<Boolean> crossable, MoveStrategy moveStrategy) {
+    private boolean isCreateCrossable(List<Boolean> crossable, MoveStrategy moveStrategy) {
         int position = crossable.size();
         if(position >= 1 && crossable.get(position - 1)) {
             return false;

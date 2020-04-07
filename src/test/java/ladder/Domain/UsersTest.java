@@ -23,16 +23,15 @@ public class UsersTest {
 
     @Test
     void userTest() {
+        Position position = Position.of(0);
         User user = User.of("pobi", position);
 
         assertThat(user).isEqualTo(User.of("pobi", position));
     }
 
-    @ParameterizedTest
-    @CsvSource(value = {"pobi,honux,crong,jk"}, delimiter = ':')
-    void usersTest(String input, String expected) {
-        MoveStrategy moveStrategy = () -> true;
-        Users users = Users.of(input, moveStrategy);
+    @Test
+    void usersTest() {
+        Users users = Users.of("pobi,honux,crong,jk");
 
         Position position = Position.of(0);
 
