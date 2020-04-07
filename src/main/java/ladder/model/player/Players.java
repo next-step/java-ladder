@@ -3,12 +3,9 @@ package ladder.model.player;
 import ladder.model.result.PositionResult;
 import ladder.model.row.Rows;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
+import static java.util.stream.Collectors.toList;
 import static ladder.Messages.WARNING_NOT_ALLOWED_DUPLICATION_NAME;
 
 public class Players {
@@ -32,21 +29,23 @@ public class Players {
     }
 
     public PositionResult findFinalLocationByName(Rows rows, String name) {
-        Map<PlayerName, Position> finalLocation = new HashMap<>();
+        Optional<Player> optionalPlayer = players.stream()
+                .filter(player -> name.equals(player.getName().getName()))
+                .findFirst();
 
-        if (isValidPlayerName(name)) {
-            players.stream()
-                    .filter(it -> name.equals(it.getName().getName()))
-                    .forEach(it -> finalLocation.put(it.getName(), it.findFinalLocation(rows)));
+        if (optionalPlayer.isPresent()) {
+            Map<PlayerName, Position> finalLocation = new HashMap<>();
+            optionalPlayer.map(player -> finalLocation.put(player.getName(), player.findFinalLocation(rows)));
             return new PositionResult(finalLocation);
         }
+
         return new PositionResult(findAllFinalLocations(rows));
     }
 
     private Map<PlayerName, Position> findAllFinalLocations(Rows rows) {
         Map<PlayerName, Position> finalLocation = new HashMap<>();
         players.stream()
-                .forEach(it -> finalLocation.put(it.getName(), it.findFinalLocation(rows)));
+                .forEach(player -> finalLocation.put(player.getName(), player.findFinalLocation(rows)));
         return finalLocation;
     }
 
@@ -58,24 +57,15 @@ public class Players {
 
     private boolean hasDuplicationName(List<Player> players) {
         return players.stream()
-                .map(it -> it.getName())
-                .filter(it -> Collections.frequency(findNames(players), it) > 1)
+                .map(player -> player.getName())
+                .filter(playerName -> Collections.frequency(findNames(players), playerName) > 1)
                 .findAny()
                 .isPresent();
     }
 
     private List<PlayerName> findNames(List<Player> players) {
         return players.stream()
-                .map(it -> it.getName())
-                .collect(Collectors.toList());
-    }
-
-    private boolean isValidPlayerName(String name) {
-        return players.stream()
-                .map(it -> it.getName())
-                .map(it -> it.getName())
-                .filter(it -> name.equals(it))
-                .findAny()
-                .isPresent();
+                .map(player -> player.getName())
+                .collect(toList());
     }
 }
