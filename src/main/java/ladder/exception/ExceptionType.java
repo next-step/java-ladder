@@ -1,4 +1,4 @@
-package ladder.Exception;
+package ladder.exception;
 
 import lombok.Getter;
 

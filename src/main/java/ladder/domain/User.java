@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import ladder.Exception.ExceptionType;
-import ladder.Exception.LadderException;
+import ladder.exception.ExceptionType;
+import ladder.exception.LadderException;
 import lombok.Getter;
 
 import java.util.Arrays;
