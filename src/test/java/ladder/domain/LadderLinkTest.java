@@ -11,7 +11,7 @@ public class LadderLinkTest {
     @Test
     void nonDuplicateConnect() {
         LadderLink connectLink = LadderLink.CONNECT;
-        LadderLink newLink = LadderLink.of(connectLink);
+        LadderLink newLink = LadderLink.of(connectLink, () -> true);
 
         assertThat(newLink).isEqualTo(LadderLink.DIS_CONNECT);
     }

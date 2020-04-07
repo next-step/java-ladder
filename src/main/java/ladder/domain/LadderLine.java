@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.RandomUtil;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +11,8 @@ public class LadderLine {
     private final List<LadderLink> ladderLinks;
 
     public static LadderLine of(int userCount) {
-        return new LadderLine(Stream.iterate(LadderLink.DIS_CONNECT, LadderLink::of)
+        return new LadderLine(Stream.iterate(LadderLink.DIS_CONNECT,
+                ladderLink -> LadderLink.of(ladderLink, RandomUtil::nextBoolean))
                 .limit(userCount)
                 .collect(Collectors.toList()));
     }
