@@ -9,6 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderGameTest {
 
+    private LadderGameResult gameResult = new LadderGameResult(Arrays.asList());
+
     @DisplayName("로또 게임 생성자 테스트")
     @Test
     public void constructor_success() throws Exception {
@@ -18,7 +20,7 @@ class LadderGameTest {
         Lines lines = new Lines(Arrays.asList(new Line(), new Line(), new Line()));
 
         //when
-        LadderGame game = new LadderGame(players, lines);
+        LadderGame game = new LadderGame(players, lines, gameResult);
     }
 
     @DisplayName("사다리 게임 생성")
@@ -29,7 +31,7 @@ class LadderGameTest {
                 new Players(Arrays.asList(new Player("a"), new Player("b")));
 
         //when
-        LadderGame game = LadderGame.of(players, 3);
+        LadderGame game = LadderGame.of(players, 3, gameResult);
 
         //then
         assertThat(game.getLines().getLines().size()).isEqualTo(3);
@@ -51,7 +53,7 @@ class LadderGameTest {
                                 new Node(0, new Way(false, true)),
                                 new Node(1, new Way(true, false)))
                         )));
-        LadderGame game = new LadderGame(players, lines);
+        LadderGame game = new LadderGame(players, lines, gameResult);
 
         //when
         Node result = game.getPlayerResult(playerName);
