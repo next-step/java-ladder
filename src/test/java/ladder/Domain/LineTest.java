@@ -1,6 +1,7 @@
-package ladder;
+package ladder.Domain;
 
 
+import ladder.Domain.MoveStrategy;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
