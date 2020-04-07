@@ -11,7 +11,7 @@ public class InputView {
 
     public static Entry inputEntry() {
         System.out.printf("참여할 사람 이름을 입력하세요. (이름은 쉼표(%s)로 구분하세요)%n", DELIMITER);
-        return Entry.of(scanner.nextLine().split(DELIMITER));
+        return Entry.valueOf(scanner.nextLine().split(DELIMITER));
     }
 
     public static int inputHeight() {

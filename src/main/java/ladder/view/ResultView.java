@@ -7,6 +7,8 @@ import ladder.domain.Line;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static ladder.domain.Direction.RIGHT;
+
 public class ResultView {
 
     private static final String LINE = "-----";
@@ -17,7 +19,7 @@ public class ResultView {
     private static final int NAME_SPACE_SIZE = 6;
 
     public static void print(Entry entry) {
-        entry.getParticipantNames()
+        entry.getPlayerNames()
                 .forEach(ResultView::printName);
         System.out.println();
     }
@@ -40,11 +42,14 @@ public class ResultView {
     private static void printLine(Line line) {
         IntStream.range(0, TAP_SPACE_SIZE)
                 .forEach(i -> System.out.print(SPACE));
+
         System.out.print(SEPARATOR);
-        System.out.print(line.getPoints()
+
+        System.out.print(line.getPoints().subList(0, line.width() - 1)
                 .stream()
-                .map(p -> p.isConnected() ? LINE : EMPTY)
+                .map(p -> p.isConnectedTo(RIGHT) ? LINE : EMPTY)
                 .collect(Collectors.joining(SEPARATOR)));
+
         System.out.print(SEPARATOR);
     }
 

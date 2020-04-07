@@ -1,45 +1,41 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static ladder.domain.Direction.LEFT;
+import static ladder.domain.Direction.RIGHT;
 
 public class Line {
 
     private final List<Point> points;
 
     private Line(List<Point> points) {
-        Point current = points.get(0);
-
-        for (Point point : points.subList(1, points.size())) {
-            if (!point.canBeNext(current)) {
-                throw new IllegalArgumentException("연결된 Point 가 2개 연달아 있을 수 없습니다.");
-            }
-            current = point;
+        for (int i = 0 ; i < points.size() - 1 ; i++) {
+            checkValidation(points.get(i), points.get(i + 1));
         }
-
         this.points = Collections.unmodifiableList(points);
     }
 
-    public static Line ofCandidateCount(int candidatesCount) {
-        List<Point> points = new ArrayList<>();
-        Point current = Point.point();
-
-        for (int i = 0; i < candidatesCount - 1; i++) {
-            Point point = Point.nextOf(current);
-            points.add(point);
-            current = point;
+    private void checkValidation(Point point, Point nextPoint) {
+        if (point.isConnectedTo(LEFT) && nextPoint.isConnectedTo(LEFT)) {
+            throw new IllegalArgumentException("바로 옆에 있는 점들은 같은 방향으로 연결될 수 없다");
         }
 
-        return new Line(points);
+        if (point.isConnectedTo(RIGHT) && nextPoint.isConnectedTo(RIGHT)) {
+            throw new IllegalArgumentException("바로 옆에 있는 점들은 같은 방향으로 연결될 수 없다");
+        }
     }
 
-    public static Line of(Point... points) {
-        return new Line(Arrays.asList(points));
+    public static Line of(List<Point> points) {
+        return new Line(points);
     }
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int width() {
+        return points.size();
     }
 }

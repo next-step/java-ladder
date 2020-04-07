@@ -2,11 +2,11 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class Participant {
+public class Player {
     private final String name;
     private static final int NAME_LEN_LIMIT = 5;
 
-    private Participant(String name) {
+    private Player(String name) {
         if (name == null) {
             throw new IllegalArgumentException("이름은 5자 이하이어야 합니다.");
         }
@@ -19,8 +19,8 @@ public class Participant {
         this.name = name;
     }
 
-    public static Participant name(String name) {
-        return new Participant(name);
+    public static Player name(String name) {
+        return new Player(name);
     }
 
 
@@ -32,7 +32,7 @@ public class Participant {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Participant that = (Participant) o;
+        Player that = (Player) o;
         return Objects.equals(name, that.name);
     }
 
