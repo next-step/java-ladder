@@ -1,35 +1,45 @@
 package JavaLadder.view;
 
-import JavaLadder.domain.Ladder;
-import JavaLadder.domain.Line;
-import JavaLadder.domain.UserList;
+import JavaLadder.domain.*;
 
 public class OutputView {
-    private static final String ACTION_RESULT = "실행결과";
+    private static final String LADDER_RESULT = "사다리결과";
+    private static final String ACTION_RESULT = "실행 결과";
     private static final String LADDER = "|";
     private static final String LINE_TRUE = "-----";
     private static final String LINE_FALSE = "     ";
 
-    public void result(UserList userList, Ladder ladder) {
-        System.out.println(ACTION_RESULT);
-        PrintName(userList);
-        System.out.println();
+    public void showLadder(GameInformation gameInformation, Ladder ladder) {
+        Users users = gameInformation.getUsers();
+        Prizes prizes = gameInformation.getPrizes();
+        System.out.println(LADDER_RESULT);
+        printName(users);
         printLadder(ladder);
+        printPrize(prizes);
+    }
+
+    private void printPrize(Prizes prizes) {
+        for (int i = 0; i < prizes.size(); i++) {
+            System.out.printf("%-6s", prizes.getPrize(i));
+        }
+        System.out.println();
     }
 
     private void printLadder(Ladder ladder) {
         for (int i = 0; i < ladder.size(); i++) {
             Line list = (Line) ladder.getLadder(i);
-            System.out.printf("%7s", LADDER);
+            System.out.printf("%s", LADDER);
             printLine(list);
             System.out.println();
         }
+        System.out.println();
     }
 
-    private void PrintName(UserList userList) {
-        for (int i = 0; i < userList.size(); i++) {
-            System.out.printf("%-7s", userList.getName(i));
+    private void printName(Users users) {
+        for (int i = 0; i < users.size(); i++) {
+            System.out.printf("%-6s", users.getName(i));
         }
+        System.out.println();
     }
 
     private void printLine(Line list) {
@@ -43,6 +53,14 @@ public class OutputView {
         if (line) {
             System.out.printf(lineKind);
             System.out.printf("%s", LADDER);
+        }
+    }
+
+    public void showResult(Results results, GameInformation gameInformation) {
+        Prizes prizes = gameInformation.getPrizes();
+        System.out.println(ACTION_RESULT);
+        for (int i = 0; i < results.size(); i++) {
+            System.out.println(results.getResultName(i) + " : " + prizes.getPrize(results.getResultPoint(i)));
         }
     }
 }

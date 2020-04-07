@@ -10,6 +10,10 @@ public class Line {
         this.line = line;
     }
 
+    public Line(List<Boolean> list) {
+        this.line = list;
+    }
+
     private List generate(int countOfPerson) {
         List<Boolean> points = new ArrayList();
         for (int i = 0; i < countOfPerson - 1; i++) {
@@ -38,5 +42,52 @@ public class Line {
 
     public int size() {
         return this.line.size();
+    }
+
+    public int countLine() {
+        return (int) Arrays.asList(line).stream()
+                .filter(n -> true).count();
+    }
+
+    public void moveByLine(Point point) {
+        if (isMostLeftPoint(point)) {
+            checkRightMove(point);
+            return;
+        }
+        if (isMostRightPoint(point)) {
+            checkLeftMove(point);
+            return;
+        }
+        checkLeftAndRightMove(point);
+    }
+
+    private boolean isMostLeftPoint(Point point) {
+        return point.getPoint() == 0;
+    }
+
+    private boolean isMostRightPoint(Point point) {
+        return point.getPoint() == line.size();
+    }
+
+    private void checkLeftAndRightMove(Point point) {
+        int originalPoint = point.getPoint();
+        checkLeftMove(point);
+        if(originalPoint == point.getPoint()){
+            checkRightMove(point);
+        }
+    }
+
+    private void checkLeftMove(Point point) {
+        if (line.get(point.getPoint() - 1)) {
+            point.leftMove();
+        }
+        return;
+    }
+
+    private void checkRightMove(Point point) {
+        if (line.get(point.getPoint())) {
+            point.rightMove();
+        }
+        return;
     }
 }
