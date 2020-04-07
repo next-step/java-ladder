@@ -18,13 +18,11 @@ public class LadderGameTest {
         List<Participant> participants = new ArrayList<>();
         participants.add(new Participant("참가자1", 0));
         participants.add(new Participant("참가자2", 1));
-        participants.add(new Participant("참가자3", 2));
 
         List<String> results = new ArrayList<>();
         results.add("결과1");
         results.add("결과2");
         results.add("결과3");
-        results.add("결과4");
         LadderResults ladderResults = new LadderResults(results);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {

@@ -51,29 +51,39 @@ public class LadderTest {
     @DisplayName("출발점으로부터 사다리를 타고 알맞은 Position에 도착해야 한다.")
     void moveTest1() {
         List<Line> lines = new ArrayList<>();
-        List<Point> points1 = new ArrayList<>();
-        points1.add(new Point(0, true));
-        points1.add(new Point(1, false));
-        Line line1 = new Line(points1);
 
-        List<Point> points2 = new ArrayList<>();
-        points2.add(new Point(0, false));
-        points2.add(new Point(1, true));
-        Line line2 = new Line(points2);
-
-        List<Point> points3 = new ArrayList<>();
-        points3.add(new Point(0, false));
-        points3.add(new Point(1, true));
-        Line line3 = new Line(points3);
-
-        lines.add(line1);
-        lines.add(line2);
-        lines.add(line3);
+        lines.add(createHasLineLeft());
+        lines.add(createHasLineRight());
+        lines.add(createHasLineRight());
 
         Ladder ladder = new Ladder(lines);
 
         assertThat(ladder.move(0)).isEqualTo(1);
         assertThat(ladder.move(1)).isEqualTo(0);
         assertThat(ladder.move(2)).isEqualTo(2);
+    }
+
+    /**
+     * |-----|     |
+     */
+    private static Line createHasLineLeft() {
+        List<Point> points = new ArrayList<>();
+
+        points.add(new Point(0, true));
+        points.add(new Point(1, false));
+
+        return new Line(points);
+    }
+
+    /**
+     * |     |-----|
+     */
+    private static Line createHasLineRight() {
+        List<Point> points = new ArrayList<>();
+
+        points.add(new Point(0, false));
+        points.add(new Point(1, true));
+
+        return new Line(points);
     }
 }
