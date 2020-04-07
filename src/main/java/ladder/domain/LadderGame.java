@@ -20,14 +20,14 @@ public class LadderGame {
 
     public static LadderGame of(final Players players,
                                 final int height,
-                                final LadderGameResult result) {
-        Lines lines = Lines.of(players.getPlayersCount(), height);
+                                final LadderPrize result) {
+        Lines lines = Lines.of(players.size(), height);
 
         return new LadderGame(players, lines, result);
     }
 
     private void validateUserAndResult(Players players, LadderPrize result) {
-        if (players.getPlayersCount() != result.size()) {
+        if (players.size() != result.size()) {
             throw new LadderException(USER_AND_RESULT_COUNT_MATCH_ERR_MST);
         }
     }

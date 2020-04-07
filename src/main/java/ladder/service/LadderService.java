@@ -20,10 +20,8 @@ public class LadderService {
         int height = StringUtils.parse(inputHeight);
         Players players = Players.of(names);
         LadderPrize ladderPrize = new LadderPrize(gameResults);
-        LadderGame game = LadderGame.createLadder(players, height, ladderPrize);
+        LadderGame game = LadderGame.of(players, height, ladderPrize);
 
-
-        LadderGame game = LadderGame.of(players, height, ladderGameResult);
         return game;
     }
 

@@ -35,7 +35,7 @@ public class Lines {
         for (Line line : lines) {
             move = line.getNodes().get(move).move();
         }
-        return getLastLine().getNode(move);
+        return getLastLine().getNodes().get(move);
     }
 
     private Line getLastLine() {
