@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Users {
+public class Users implements Line {
     private static final String NAME_DELIMITER = ",";
     private static final int MAX_NAME_LENGTH = 5;
 
@@ -23,7 +23,8 @@ public class Users {
         return true;
     }
 
-    public List<String> users() {
+    @Override
+    public List<String> getLine() {
         return users;
     }
 }
