@@ -1,38 +1,46 @@
 package ladder;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 public class ResultView {
+
+    public static final String LINE = "-----|";
+    public static final String EMPTY_LINE = "     |";
+    public static final String DEFAULT_EMPTY_SPACE = "    |";
+    public static final String USER_INTERVAL = "%5s ";
+
     public static void printResult(List<String> users, List<Line> ladder) {
         printMessage("실행결과");
 
         renderUsers(users);
-        renderLadder(ladder, generateLadderLine(ladder));
+        renderLadderLine(ladder);
     }
 
     private static void renderUsers(List<String> users) {
-        printMessage(
-                users
-                        .stream()
-                        .collect(joining(" ")));
+        for (String user : users) {
+            System.out.print(String.format(USER_INTERVAL, user));
+        }
+        printMessage("");
     }
 
-    private static void renderLadder(List<Line> ladder, String line) {
-        Stream
-                .generate(() -> line)
-                .limit(ladder.size())
-                .collect(toList())
-                .forEach(ResultView::printMessage);
+    private static void renderLadderLine(List<Line> ladder) {
+        ladder.forEach(ResultView::renderOneLine);
     }
 
-    private static String generateLadderLine(List<Line> ladder) {
-        return Stream
-                .generate(() -> "    |")
-                .limit(ladder.get(0).getWidth())
+    private static void renderOneLine(Line line) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(DEFAULT_EMPTY_SPACE);
+        stringBuilder.append(buildOneLine(line.getPoints()));
+
+        printMessage(stringBuilder.toString());
+    }
+
+    private static String buildOneLine(List<Boolean> points) {
+        return points.stream()
+                .map(p -> p ? LINE : EMPTY_LINE)
+                .limit(points.size() - 1)
                 .collect(joining(""));
     }
 

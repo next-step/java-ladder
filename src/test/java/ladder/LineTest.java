@@ -10,6 +10,6 @@ public class LineTest {
         int countOfPerson = 4;
         Line line = new Line(countOfPerson);
 
-        assertThat(line.getWidth()).isEqualTo((countOfPerson - 1) * Line.ONE_LINE_LENGTH);
+        assertThat(line.getWidth()).isEqualTo(countOfPerson);
     }
 }
