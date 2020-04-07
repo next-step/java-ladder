@@ -1,8 +1,8 @@
 package nextstep.ladder.domain.step;
 
-import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.step.strategy.RandomMovement;
 import nextstep.ladder.domain.step.strategy.StepGenerator;
+import nextstep.ladder.vo.Position;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class Steps {
     public static Steps movableNext(int height, int linePosition) {
         List<Step> steps = new ArrayList<>();
         for (int stepPosition = 0; stepPosition < height; stepPosition++) {
-            steps.add(Step.of(Row.next(linePosition, stepPosition), new RandomMovement()));
+            steps.add(Step.movableNext(linePosition, stepPosition, new RandomMovement()));
         }
         return new Steps(steps, linePosition);
     }
@@ -30,9 +30,10 @@ public class Steps {
     public static Steps movableByPreviousCondition(Steps previousSteps, StepGenerator stepGenerator) {
         int height = previousSteps.getLineHeight();
         int currentLinePosition = previousSteps.nextLinePosition();
+
         List<Step> steps = new ArrayList<>();
         for (int stepPosition = 0; stepPosition < height; stepPosition++) {
-            steps.add(stepGenerator.generate(previousSteps, Row.current(currentLinePosition, stepPosition)));
+            steps.add(stepGenerator.generate(previousSteps, currentLinePosition, stepPosition));
         }
         return new Steps(steps, currentLinePosition);
     }

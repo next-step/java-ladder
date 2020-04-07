@@ -7,7 +7,7 @@ import nextstep.ladder.domain.step.Steps;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MovablePrev implements StepGenerator {
+public class MovablePrevAndNext implements StepGenerator {
     @Override
     public Step generate(Steps previouSteps, int linePosition, int stepPosition) {
         List<Integer> movablePositions = findMovablePositions(previouSteps, linePosition);
@@ -15,7 +15,7 @@ public class MovablePrev implements StepGenerator {
         if (movablePositions.contains(stepPosition)) {
             return Step.movablePrev(linePosition, stepPosition, () -> true);
         }
-        return Step.imMovable();
+        return Step.movableNext(linePosition, stepPosition, new RandomMovement());
     }
 
     private List<Integer> findMovablePositions(Steps previouSteps, int currentLinePosition) {

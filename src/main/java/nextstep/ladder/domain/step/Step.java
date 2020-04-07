@@ -5,34 +5,42 @@ import nextstep.ladder.domain.step.strategy.Movement;
 import java.util.Objects;
 
 public class Step {
-    private static final int ONE = 1;
-
     private final Row row;
     private final boolean movable;
+
+    private Step(boolean movable) {
+        this(null, movable);
+    }
 
     private Step(Row row, boolean movable) {
         this.row = row;
         this.movable = movable;
     }
 
-    public static Step of(Row row, Movement movement) {
-        return new Step(row, movement.isMovable());
+    public static Step imMovable() {
+        return new Step(false);
     }
 
-    public int getPosition() {
-        return row.getStepPosition();
+    public static Step movablePrev(int linePosition, int stepPosition, Movement movement) {
+        if (movement.isMovable()) {
+            return new Step(Row.of(linePosition - 1, stepPosition), true);
+        }
+        return new Step(false);
+    }
+
+    public static Step movableNext(int linePosition, int stepPosition, Movement movement) {
+        if (movement.isMovable()) {
+            return new Step(Row.of(linePosition + 1, stepPosition), true);
+        }
+        return new Step(false);
+    }
+
+    public int getStepPosition() {
+        return row.getCurrentStep();
     }
 
     public boolean isMovableLine(int linePosition) {
-        return row.isEqaulLinePosition(linePosition) && movable;
-    }
-
-    public boolean isMovableNext(int linePosition) {
-        return !(row.isEqaulLinePosition(linePosition + ONE) && movable);
-    }
-
-    public boolean isMovablePrev(int linePosition) {
-        return row.isEqaulLinePosition(linePosition + ONE) && movable;
+        return movable && row.isEqualLinePosition(linePosition);
     }
 
     @Override

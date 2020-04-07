@@ -12,7 +12,7 @@ class RowTest {
     @ParameterizedTest
     @CsvSource(value = {"1,2", "3,2"})
     void create(int linePosition, int stepPosition) {
-        assertThatCode(() -> Row.current(linePosition, stepPosition))
+        assertThatCode(() -> Row.of(linePosition, stepPosition))
                 .doesNotThrowAnyException();
     }
 
@@ -20,26 +20,6 @@ class RowTest {
     @ParameterizedTest
     @CsvSource(value = {"-1,2", "2,-1"})
     void createFailByNegative(int linePosition, int stepPosition) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Row.current(linePosition, stepPosition));
-    }
-
-    @DisplayName("이전 라인 다리 생성")
-    @ParameterizedTest
-    @CsvSource(value = {"1,2", "3,2"})
-    void createPreviousBridge(int linePosition, int stepPosition) {
-        Row current = Row.current(linePosition, stepPosition);
-        Row previous = Row.previous(current);
-
-        assertThat(previous.getLinePosition()).isEqualTo(current.getLinePosition() - 1);
-    }
-
-    @DisplayName("다음 라인 다리 생성")
-    @ParameterizedTest
-    @CsvSource(value = {"1,2", "3,2"})
-    void createNextBridge(int linePosition, int stepPosition) {
-        Row current = Row.current(linePosition, stepPosition);
-        Row next = Row.next(current);
-
-        assertThat(next.getLinePosition()).isEqualTo(current.getLinePosition() + 1);
+        assertThatIllegalArgumentException().isThrownBy(() -> Row.of(linePosition, stepPosition));
     }
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.step;
 
+import nextstep.ladder.domain.step.strategy.RandomMovement;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,7 @@ class StepsTest {
     @ParameterizedTest
     @CsvSource(value = {"5,2", "10,3", "7,5"})
     void create(int height, int linePosition) {
-        Steps steps = Steps.movableNext(height, linePosition).get();
+        Steps steps = Steps.movableNext(height, linePosition);
 
         assertThat(steps.getLinePosition()).isEqualTo(linePosition);
     }
@@ -24,12 +25,13 @@ class StepsTest {
     @ParameterizedTest
     @CsvSource(value = {"5,2", "10,3", "7,5"})
     void createByPreviousStep(int height, int linePosition) {
-        Steps createdSteps = Steps.movableNext(height, linePosition).get();
-        Steps steps = Steps.movableByPreviousCondition(createdSteps, ((previouSteps, bridge) -> Step.of(bridge, () -> true))).get();
+        Steps createdSteps = Steps.movableNext(height, linePosition);
+        Steps steps = Steps.movableByPreviousCondition(createdSteps,
+                ((previouSteps, linPosition, stepPosition) -> Step.movableNext(linePosition, stepPosition, () -> true)));
 
         assertAll(
                 () -> steps.getSteps()
-                        .forEach(step -> assertThat(step.isMovableNext(linePosition)))
+                        .forEach(step -> assertThat(step.isMovableLine(linePosition)))
         );
     }
 
@@ -37,6 +39,6 @@ class StepsTest {
     @ParameterizedTest
     @CsvSource(value = {"5,-2", "10,-3", "7,-5"})
     void createFailByNegativePosition(int height, int linePosition) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Steps.movableNext(height, linePosition).get());
+        assertThatIllegalArgumentException().isThrownBy(() -> Steps.movableNext(height, linePosition));
     }
 }

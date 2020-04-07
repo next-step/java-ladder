@@ -1,54 +1,32 @@
 package nextstep.ladder.domain.step;
 
-import nextstep.ladder.domain.Position;
+import nextstep.ladder.vo.Position;
 
 import java.util.Objects;
 
 public class Row {
-    private static final int ONE = 1;
+    private final Position movableLine;
+    private final Position currentStep;
 
-    private final Position linePosition;
-    private final Position stepPosition;
-
-    private Row(int linePosition, int stepPosition) {
-        this.linePosition = new Position(linePosition);
-        this.stepPosition = new Position(stepPosition);
+    private Row(int movableLine, int currentStep) {
+        this.movableLine = new Position(movableLine);
+        this.currentStep = new Position(currentStep);
     }
 
-    public static Row previous(Row row) {
-        return new Row(decreaseOne(row.getLinePosition()), row.getStepPosition());
+    public static Row of(int movableLine, int stepPosition) {
+        return new Row(movableLine, stepPosition);
     }
 
-    public static Row current(int linePosition, int stepPosition) {
-        return new Row(linePosition, stepPosition);
+    public int getCurrentStep() {
+        return currentStep.getPosition();
     }
 
-    public static Row next(int linePosition, int stepPosition) {
-        return new Row(increaseOne(linePosition), stepPosition);
+    public int getMovableLine() {
+        return movableLine.getPosition();
     }
 
-    public static Row next(Row row) {
-        return new Row(increaseOne(row.getLinePosition()), row.getStepPosition());
-    }
-
-    private static int increaseOne(int position) {
-        return position + ONE;
-    }
-
-    private static int decreaseOne(int position) {
-        return position - ONE;
-    }
-
-    public int getStepPosition() {
-        return stepPosition.getPosition();
-    }
-
-    public int getLinePosition() {
-        return linePosition.getPosition();
-    }
-
-    public boolean isEqaulLinePosition(int linePosition) {
-        return this.linePosition.isEqualPosition(linePosition);
+    public boolean isEqualLinePosition(int linePosition) {
+        return this.movableLine.isEqualPosition(linePosition);
     }
 
     @Override
@@ -56,12 +34,12 @@ public class Row {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Row row = (Row) o;
-        return linePosition == row.linePosition &&
-                stepPosition == row.stepPosition;
+        return movableLine == row.movableLine &&
+                currentStep == row.currentStep;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(linePosition, stepPosition);
+        return Objects.hash(movableLine, currentStep);
     }
 }
