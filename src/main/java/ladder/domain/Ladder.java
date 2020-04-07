@@ -13,7 +13,7 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     public Position climbDown(Position playerPosition) {
