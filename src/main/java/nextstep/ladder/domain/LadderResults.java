@@ -27,4 +27,9 @@ public class LadderResults {
     public String getByPosition(int endPosition) {
         return results.get(endPosition);
     }
+
+    public List<String> getValue() {
+        return results;
+    }
+
 }
