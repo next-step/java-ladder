@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 
 public class PlayLadderGame {
+    private static PlayLadderGame playLadderGame = new PlayLadderGame();
 
     public String playResultByUser(Users paramUsers, String userName) {
         String result = paramUsers.getUsers()
@@ -95,5 +96,9 @@ public class PlayLadderGame {
             return points.get(index);
         }
         return points.get(index - 1);
+    }
+
+    public static PlayLadderGame getPlayLadderGame() {
+        return playLadderGame;
     }
 }

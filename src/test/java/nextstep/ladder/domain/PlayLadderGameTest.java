@@ -15,7 +15,7 @@ import nextstep.ladder.view.ResultView;
 
 class PlayLadderGameTest {
     private static ResultView resultView = ResultView.getResultView();
-    PlayLadderGame playLadderGame = new PlayLadderGame();
+    private static PlayLadderGame playLadderGame = PlayLadderGame.getPlayLadderGame();
     private Users users;
     private Line line;
     private List<Line> lineList;
