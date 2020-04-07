@@ -1,18 +1,20 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private final List<LadderLine> ladderLines;
 
     public static Ladder of(Users users, Height height) {
-        List<LadderLine> newLadderLines = new ArrayList<>();
-        for (int i = 0; i < height.getHeight(); i++) {
-            newLadderLines.add(LadderLine.of(users.getUserCount()));
-        }
-        return new Ladder(newLadderLines);
+        int heightCount = height.getHeight();
+        int userCount = users.getUserCount();
+        return new Ladder(Stream.iterate(LadderLine.of(userCount),
+                i -> LadderLine.of(userCount))
+                .limit(heightCount)
+                .collect(Collectors.toList()));
     }
 
     private Ladder(List<LadderLine> ladderLines) {
