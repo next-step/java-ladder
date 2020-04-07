@@ -14,7 +14,8 @@ public class UsersTest {
 
     @BeforeEach
     void setUp() {
-        ladder = new Ladder(4, 5, Arrays.asList("100", "꽝", "200", "300"));
+        int userCount = 4;
+        ladder = new Ladder(userCount, 5, new LadderReward("100,꽝,200,300", userCount));
     }
 
     @Test
