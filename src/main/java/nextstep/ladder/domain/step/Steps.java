@@ -4,11 +4,9 @@ import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.step.strategy.RandomMovement;
 import nextstep.ladder.domain.step.strategy.StepGenerator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Steps {
     private static final int ONE = 1;
@@ -21,23 +19,22 @@ public class Steps {
         this.linePosition = new Position(linePosition);
     }
 
-    public static Optional<Steps> movableNext(int height, int linePosition) {
-        return Optional.ofNullable(
-                IntStream.range(0, height)
-                        .mapToObj(stepPosition -> Step.of(Bridge.next(linePosition, stepPosition), new RandomMovement()))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps -> new Steps(steps, linePosition)))
-        );
+    public static Steps movableNext(int height, int linePosition) {
+        List<Step> steps = new ArrayList<>();
+        for (int stepPosition = 0; stepPosition < height; stepPosition++) {
+            steps.add(Step.of(Row.next(linePosition, stepPosition), new RandomMovement()));
+        }
+        return new Steps(steps, linePosition);
     }
 
-    public static Optional<Steps> movableByPreviousCondition(Steps previouSteps, StepGenerator stepGenerator) {
-        int height = previouSteps.getLineHeight();
-        int currentLinePosition = previouSteps.nextLinePosition();
-
-        return Optional.ofNullable(
-                IntStream.range(0, height)
-                        .mapToObj(stepPosition -> stepGenerator.generate(previouSteps, Bridge.current(currentLinePosition, stepPosition)))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps -> new Steps(steps, currentLinePosition)))
-        );
+    public static Steps movableByPreviousCondition(Steps previousSteps, StepGenerator stepGenerator) {
+        int height = previousSteps.getLineHeight();
+        int currentLinePosition = previousSteps.nextLinePosition();
+        List<Step> steps = new ArrayList<>();
+        for (int stepPosition = 0; stepPosition < height; stepPosition++) {
+            steps.add(stepGenerator.generate(previousSteps, Row.current(currentLinePosition, stepPosition)));
+        }
+        return new Steps(steps, currentLinePosition);
     }
 
     private int getLineHeight() {
