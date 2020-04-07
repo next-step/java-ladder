@@ -3,54 +3,56 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+    public static void printByCondition(List<Integer> numbers, Conditional conditional) {
+        numbers.stream()
+                .filter(conditional::isCondition)
+                .forEach(System.out::println);
+    }
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
-        for (int number : numbers) {
-            System.out.println(number);
-        }
+        printByCondition(numbers, Lambda::isOdd);
     }
 
     public static void printAllLambda(List<Integer> numbers) {
         System.out.println("printAllLambda");
 
-        numbers.forEach(System.out::println);
+        printByCondition(numbers, number -> true);
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
+    }
+
+    public static int sumByCondition(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::isCondition)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumByCondition(numbers, number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sumByCondition(numbers, Lambda::isEven);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sumByCondition(numbers, Lambda::isOverThree);
+    }
+
+    private static boolean isOdd(int number) {
+        return number % 2 == 1;
+    }
+
+    private static boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+
+    private static boolean isOverThree(int number) {
+        return number > 3;
     }
 }
