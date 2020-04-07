@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.PlayLadderGame;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.Results;
@@ -20,13 +21,15 @@ import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
 
 class ResultViewTest {
-
     private static ResultView resultView = ResultView.getResultView();
+    private static PlayLadderGame playLadderGame = PlayLadderGame.getPlayLadderGame();
+
     private Users users;
     private Line line;
     private List<Line> lineList;
     private Ladder ladder;
     private Results results;
+    private Users resultUsers;
 
     @BeforeEach
     void setUp() {
@@ -57,6 +60,8 @@ class ResultViewTest {
                           new Result("3000")
                 )
                       .collect(Collectors.toList())));
+
+        resultUsers = playLadderGame.generateResultsForAllPlayers(users, ladder, results);
     }
 
     @DisplayName("유저 이름을 출력한다.")
@@ -89,5 +94,21 @@ class ResultViewTest {
                                          + "     |-----|     |-----|\n"
                                          + "    꽝  5000     꽝  3000");
 
+    }
+
+    @DisplayName("유저별 실행결과를 출력한다")
+    @Test
+    void playResult() {
+        String resultByUser = resultView.playResultByUser(resultUsers, "honux");
+        assertThat(resultByUser).isEqualTo("5000");
+    }
+
+    @Test
+    void playAllResult() {
+        String playAllResult = resultView.playAllResult(resultUsers);
+        assertThat(playAllResult).isEqualTo("pobi : 꽝\n"
+                                            + "honux : 5000\n"
+                                            + "crong : 꽝\n"
+                                            + "jk : 3000");
     }
 }

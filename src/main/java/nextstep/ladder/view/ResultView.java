@@ -7,6 +7,7 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.ResultRadderText;
 import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
 
 public class ResultView {
@@ -57,9 +58,34 @@ public class ResultView {
         return result;
     }
 
+    public String appendResults(Results results) {
+        return results.getResults()
+                      .stream()
+                      .map(result -> result.getResult())
+                      .map(result -> appendBlank(result))
+                      .collect(Collectors.joining(BLANK));
+    }
+
     public void printLadder(Users users, Ladder ladder, Results results) {
         System.out.println("\n사다리 결과\n");
         System.out.println(drawLadder(users, ladder, results));
+    }
+
+    public String playResultByUser(Users paramUsers, String userName) {
+        return paramUsers.getUsers()
+                         .stream()
+                         .filter(user -> user.getName().equals(userName))
+                         .findFirst()
+                         .get()
+                         .getResult();
+
+    }
+
+    public String playAllResult(Users paramUsers) {
+        return paramUsers.getUsers()
+                         .stream()
+                         .map(user -> appendUserResult(user))
+                         .collect(Collectors.joining(NEW_LINE));
     }
 
     private String appendLines(Ladder ladder) {
@@ -79,11 +105,8 @@ public class ResultView {
         return name;
     }
 
-    public String appendResults(Results results) {
-        return results.getResults()
-                      .stream()
-                      .map(result -> result.getResult())
-                      .map(result -> appendBlank(result))
-                      .collect(Collectors.joining(BLANK));
+    private String appendUserResult(User user) {
+        return user.getName() + " : " + user.getResult();
     }
+
 }
