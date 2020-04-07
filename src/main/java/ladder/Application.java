@@ -6,10 +6,12 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class Application {
+    private static final String ALL = "all";
+
     public static void main(String[] args) {
         InputView inputView = new InputView();
 
-        Players players = inputView.inputPlayerName();
+        Players players = inputView.inputPlayers();
         Prizes prizes = inputView.inputPrizes(players.count());
         Height height = inputView.inputHeight();
 
@@ -19,6 +21,15 @@ public class Application {
         OutputView.printPlayerName(players);
         OutputView.printLadder(ladder);
         OutputView.printPrize(prizes);
-        OutputView.printResult(result);
+
+        PlayerName playerName;
+        while (true) {
+            playerName = inputView.inputPlayerName();
+            if (new PlayerName(ALL).equals(playerName)) {
+                break;
+            }
+            OutputView.printSingleResult(result, playerName);
+        }
+        OutputView.printAllResult(result);
     }
 }
