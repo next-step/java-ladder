@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LadderGameResult;
+import ladder.domain.LadderGame;
 import ladder.domain.LadderLine;
 import ladder.domain.LadderLink;
 import ladder.domain.User;
@@ -17,10 +17,10 @@ public class ResultView {
     private static final String LINK_CONNECT = "-----";
     private static final String LINK_DIS_CONNECT = "     ";
 
-    public static void print(LadderGameResult result) {
+    public static void print(LadderGame result) {
         System.out.println(RESULT_MESSAGE);
         printUser(result.getUsers());
-        printLadderLines(result.getLadderLines());
+        printLadderLines(result.getLadder());
     }
 
     private static void printUser(List<User> users) {
