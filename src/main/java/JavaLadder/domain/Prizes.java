@@ -4,26 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Prizes {
-    private static final String REGEX = ",";
-    private List<Prize> prizeList = new ArrayList<>();
+    private static final String REGEX =",";
+    private List<Prize> prizes = new ArrayList<>();
 
-    public Prizes(String inputValue) {
-        String[] splitInputValue = inputValue.split(REGEX);
+    public Prizes(String input) {
+        String[] splitInputValue = input.split(REGEX);
         for (int i = 0; i < splitInputValue.length; i++) {
             Prize prize = new Prize(splitInputValue[i]);
-            this.prizeList.add(prize);
+            this.prizes.add(prize);
         }
     }
 
     public String getPrize(int index) {
-        return prizeList.get(index).getPrize();
-    }
-
-    public String getPrize(Point point) {
-        return prizeList.get(point.getPoint()).getPrize();
+        return prizes.get(index).getPrize();
     }
 
     public int size() {
-        return this.prizeList.size();
+        return prizes.size();
     }
 }

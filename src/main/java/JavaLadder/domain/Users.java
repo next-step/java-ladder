@@ -4,48 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Users {
-    private static final String REGEX = ",";
-    private List<User> userList = new ArrayList<>();
+    private static final String REGEX =",";
+    private List<User> users = new ArrayList<>();
 
-    public Users(String inputValue) {
-        String[] splitInputValue = inputValue.split(REGEX);
+    public Users(String input) {
+        String[] splitInputValue = input.split(REGEX);
         for (int i = 0; i < splitInputValue.length; i++) {
-            User user = new User(splitInputValue[i], i);
-            this.userList.add(user);
+            User user = new User(splitInputValue[i]);
+            this.users.add(user);
         }
     }
 
-    public int size() {
-        return this.userList.size();
-    }
-
     public String getName(int index) {
-        return userList.get(index).getName();
+        return users.get(index).getName();
     }
 
-    public Point getUserPoint(String name) {
-        User user = userList.stream()
-                .filter(u -> u.isEqualName(name))
-                .findFirst()
-                .orElse(null);
-        return user.getPoint();
-    }
-
-    public User getUserByName(String name) {
-        return userList.stream()
-                .filter(u -> u.isEqualName(name))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public User getUser(int index){
-        return userList.get(index);
-    }
-
-    @Override
-    public String toString() {
-        return "UserList{" +
-                "userList=" + userList +
-                '}';
+    public int size() {
+        return users.size();
     }
 }
