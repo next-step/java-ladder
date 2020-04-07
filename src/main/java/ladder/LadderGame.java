@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.toList;
 public class LadderGame {
     private List<Line> ladder;
 
-    public LadderGame(List<String> users, int ladderMaxHeight) {
+    public LadderGame(List<User> users, int ladderMaxHeight) {
         ladder = generateLadder(users.size(), ladderMaxHeight);
     }
 

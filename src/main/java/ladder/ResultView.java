@@ -11,15 +11,15 @@ public class ResultView {
     public static final String DEFAULT_EMPTY_SPACE = "    |";
     public static final String USER_INTERVAL = "%5s ";
 
-    public static void printResult(List<String> users, List<Line> ladder) {
+    public static void printResult(List<User> users, List<Line> ladder) {
         printMessage("실행결과");
 
         renderUsers(users);
         renderLadderLine(ladder);
     }
 
-    private static void renderUsers(List<String> users) {
-        for (String user : users) {
+    private static void renderUsers(List<User> users) {
+        for (User user : users) {
             System.out.print(String.format(USER_INTERVAL, user));
         }
         printMessage("");
