@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LadderPrize {
@@ -13,5 +14,9 @@ public class LadderPrize {
 
     public int size() {
         return result.size();
+    }
+
+    public List<String> getResult() {
+        return Collections.unmodifiableList(result);
     }
 }

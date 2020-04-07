@@ -39,6 +39,10 @@ public class LadderGame {
         return lines.move(playerIndex);
     }
 
+    public String findPrize(final int prizeIndex) {
+        return ladderPrize.getResult().get(prizeIndex);
+    }
+
     public Lines getLines() {
         return lines;
     }

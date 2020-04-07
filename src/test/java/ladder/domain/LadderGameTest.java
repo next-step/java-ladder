@@ -77,4 +77,28 @@ class LadderGameTest {
         //then
         assertThat(result.getIndex()).isEqualTo(0);
     }
+
+    @DisplayName("상품 이름을 찾고 반환한다.")
+    @Test
+    public void findPrice_success() throws Exception {
+        //given
+        final Players players = Players.of(Arrays.asList("a", "b"));
+        final Lines lines = new Lines(
+                Arrays.asList(
+                        new Line(Arrays.asList(
+                                new Node(0, new Way(false, true)),
+                                new Node(1, new Way(true, false)))
+                        ),
+                        new Line(Arrays.asList(
+                                new Node(0, new Way(false, true)),
+                                new Node(1, new Way(true, false)))
+                        )));
+        LadderGame game = new LadderGame(players, lines, gameResult);
+
+        //when
+        String prize = game.findPrize(0);
+
+        //then
+        assertThat(prize).isEqualTo("꽝");
+    }
 }

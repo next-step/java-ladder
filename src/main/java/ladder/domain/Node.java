@@ -47,4 +47,8 @@ public class Node {
     public boolean isMovableRight() {
         return this.way.isMovableRight();
     }
+
+    public int getIndex() {
+        return index;
+    }
 }
