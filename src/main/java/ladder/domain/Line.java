@@ -8,7 +8,7 @@ import java.util.*;
 public class Line {
     private final List<Boolean> lines;
 
-    public Line(final List<Boolean> lines) {
+    private Line(final List<Boolean> lines) {
         this.lines = lines;
     }
 
