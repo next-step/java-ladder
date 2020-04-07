@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.step.strategy;
 
-import nextstep.ladder.domain.step.Bridge;
+import nextstep.ladder.domain.step.Row;
 import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.domain.step.Steps;
 
@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 
 public class MovableBothSide implements StepGenerator {
     @Override
-    public Step generate(Steps previouSteps, Bridge bridge) {
+    public Step generate(Steps previouSteps, Row row) {
         List<Integer> movablePositions = findMovableNextPositions(previouSteps);
 
-        if (movablePositions.contains(bridge.getStepPosition())) {
-            return Step.of(Bridge.next(bridge), new RandomMovement());
+        if (movablePositions.contains(row.getStepPosition())) {
+            return Step.of(Row.next(row), new RandomMovement());
         }
-        return Step.of(Bridge.previous(bridge), () -> true);
+        return Step.of(Row.previous(row), () -> true);
     }
 
     private List<Integer> findMovableNextPositions(Steps previouSteps) {

@@ -7,32 +7,32 @@ import java.util.Objects;
 public class Step {
     private static final int ONE = 1;
 
-    private final Bridge bridge;
+    private final Row row;
     private final boolean movable;
 
-    private Step(Bridge bridge, boolean movable) {
-        this.bridge = bridge;
+    private Step(Row row, boolean movable) {
+        this.row = row;
         this.movable = movable;
     }
 
-    public static Step of(Bridge bridge, Movement movement) {
-        return new Step(bridge, movement.isMovable());
+    public static Step of(Row row, Movement movement) {
+        return new Step(row, movement.isMovable());
     }
 
     public int getPosition() {
-        return bridge.getStepPosition();
+        return row.getStepPosition();
     }
 
     public boolean isMovableLine(int linePosition) {
-        return bridge.isEqaulLinePosition(linePosition) && movable;
+        return row.isEqaulLinePosition(linePosition) && movable;
     }
 
     public boolean isMovableNext(int linePosition) {
-        return !(bridge.isEqaulLinePosition(linePosition + ONE) && movable);
+        return !(row.isEqaulLinePosition(linePosition + ONE) && movable);
     }
 
     public boolean isMovablePrev(int linePosition) {
-        return bridge.isEqaulLinePosition(linePosition + ONE) && movable;
+        return row.isEqaulLinePosition(linePosition + ONE) && movable;
     }
 
     @Override
@@ -41,11 +41,11 @@ public class Step {
         if (o == null || getClass() != o.getClass()) return false;
         Step step = (Step) o;
         return movable == step.movable &&
-                Objects.equals(bridge, step.bridge);
+                Objects.equals(row, step.row);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(movable, bridge);
+        return Objects.hash(movable, row);
     }
 }

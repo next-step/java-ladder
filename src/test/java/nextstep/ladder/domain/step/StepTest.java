@@ -12,7 +12,7 @@ class StepTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
     void createStep(int stepPosition) {
-        Step step = Step.of(Bridge.current(1, stepPosition), () -> false);
+        Step step = Step.of(Row.current(1, stepPosition), () -> false);
 
         assertThat(step.getPosition()).isEqualTo(stepPosition);
     }
@@ -21,7 +21,7 @@ class StepTest {
     @ParameterizedTest
     @CsvSource(value = {"1,2", "1,1", "2,2"})
     void mavableNextLine(int stepPosition, int linePosition) {
-        Step step = Step.of(Bridge.current(linePosition, stepPosition), () -> true);
+        Step step = Step.of(Row.current(linePosition, stepPosition), () -> true);
 
         assertThat(step.isMovableNext(linePosition)).isTrue();
     }
@@ -30,7 +30,7 @@ class StepTest {
     @ParameterizedTest
     @CsvSource(value = {"1,2", "1,1", "2,2"})
     void mavablePrevLine(int stepPosition, int linePosition) {
-        Step step = Step.of(Bridge.current(linePosition, stepPosition), () -> true);
+        Step step = Step.of(Row.current(linePosition, stepPosition), () -> true);
 
         assertThat(step.isMovablePrev(linePosition - 1)).isTrue();
     }

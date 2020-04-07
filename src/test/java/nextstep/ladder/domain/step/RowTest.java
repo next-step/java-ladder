@@ -1,20 +1,18 @@
 package nextstep.ladder.domain.step;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-class BridgeTest {
+class RowTest {
 
     @DisplayName("사다리 다리 정상 생성")
     @ParameterizedTest
     @CsvSource(value = {"1,2", "3,2"})
     void create(int linePosition, int stepPosition) {
-        assertThatCode(() -> Bridge.current(linePosition, stepPosition))
+        assertThatCode(() -> Row.current(linePosition, stepPosition))
                 .doesNotThrowAnyException();
     }
 
@@ -22,15 +20,15 @@ class BridgeTest {
     @ParameterizedTest
     @CsvSource(value = {"-1,2", "2,-1"})
     void createFailByNegative(int linePosition, int stepPosition) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Bridge.current(linePosition, stepPosition));
+        assertThatIllegalArgumentException().isThrownBy(() -> Row.current(linePosition, stepPosition));
     }
 
     @DisplayName("이전 라인 다리 생성")
     @ParameterizedTest
     @CsvSource(value = {"1,2", "3,2"})
     void createPreviousBridge(int linePosition, int stepPosition) {
-        Bridge current = Bridge.current(linePosition, stepPosition);
-        Bridge previous = Bridge.previous(current);
+        Row current = Row.current(linePosition, stepPosition);
+        Row previous = Row.previous(current);
 
         assertThat(previous.getLinePosition()).isEqualTo(current.getLinePosition() - 1);
     }
@@ -39,8 +37,8 @@ class BridgeTest {
     @ParameterizedTest
     @CsvSource(value = {"1,2", "3,2"})
     void createNextBridge(int linePosition, int stepPosition) {
-        Bridge current = Bridge.current(linePosition, stepPosition);
-        Bridge next = Bridge.next(current);
+        Row current = Row.current(linePosition, stepPosition);
+        Row next = Row.next(current);
 
         assertThat(next.getLinePosition()).isEqualTo(current.getLinePosition() + 1);
     }
