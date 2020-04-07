@@ -11,7 +11,7 @@ public class LadderController {
         Users users = new Users(LadderInput.userAdd());
         int height = LadderInput.ladderHeight();
 
-        Ladder ladder = new Ladder(height, users.countOfUser());
+        Ladder ladder = Ladder.of(height, users.countOfUser());
         LadderOutput.drawLadder(ladder.getLadder());
     }
 }
