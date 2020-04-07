@@ -12,17 +12,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LadderPrizesTest {
     @Test
     void createTest() {
-        //given
-        List<LadderPrize> allLadderPrizes = Arrays.asList(
+        //when
+        LadderPrizes ladderPrizes = LadderPrizes.create(createFourLadderPrizes());
+
+        //then
+        assertThat(ladderPrizes.getLadderPrizes()).hasSize(4);
+    }
+
+    private List<LadderPrize> createFourLadderPrizes() {
+        return Arrays.asList(
                 new LadderPrize("꽝"),
                 new LadderPrize("5000"),
                 new LadderPrize("꽝"),
                 new LadderPrize("3000"));
-
-        //when
-        LadderPrizes ladderPrizes = LadderPrizes.create(allLadderPrizes);
-
-        //then
-        assertThat(ladderPrizes.getLadderPrizes()).hasSize(4);
     }
 }
