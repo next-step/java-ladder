@@ -3,7 +3,6 @@ package ladder.controller;
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
-import ladder.model.result.PositionResult;
 import ladder.model.row.Rows;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -19,8 +18,8 @@ public class LadderGame {
 
     public static ResultView getResult(InputView inputView) {
         Players players = inputView.getPlayers();
-
-        Players playersForResult = players.findFinalLocationByName(inputView.getRows(), inputView.getPlayerToGetResult());
+        Players playersForResult
+                = players.findFinalLocationByName(inputView.getRows(), inputView.getPlayerToGetResult());
 
         return ResultView.of(GameResult.create(playersForResult, inputView.getLadderPrizes()));
     }

@@ -3,10 +3,9 @@ package ladder.view;
 import ladder.model.player.Player;
 import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
-import ladder.model.prize.LadderPrize;
+import ladder.model.player.Position;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
-import ladder.model.player.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 

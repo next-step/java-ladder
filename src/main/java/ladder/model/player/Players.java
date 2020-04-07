@@ -1,10 +1,11 @@
 package ladder.model.player;
 
-import ladder.model.result.PositionResult;
-import ladder.model.row.Row;
 import ladder.model.row.Rows;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 import static ladder.Messages.WARNING_NOT_ALLOWED_DUPLICATION_NAME;
@@ -32,27 +33,18 @@ public class Players {
     public Players findFinalLocationByName(Rows rows, String name) {
         moveAllPlayers(rows);
 
-        List<Player> collect = players.stream()
+        Optional<Player> optionalPlayer = players.stream()
                 .filter(player -> name.equals(player.getName().getName()))
-                .collect(toList());
+                .findFirst();
 
-        if (collect.isEmpty()) {
-            return Players.create(players);
-        }
-
-        return Players.create(collect);
+        return optionalPlayer
+                .map(player -> Players.create(Arrays.asList(player)))
+                .orElse(Players.create(players));
     }
 
-    private void moveAllPlayers(Rows rows){
+    private void moveAllPlayers(Rows rows) {
         players.stream()
                 .forEach(player -> player.findFinalLocation(rows));
-    }
-
-    private Map<PlayerName, Position> findAllFinalLocations(Rows rows) {
-        Map<PlayerName, Position> finalLocation = new HashMap<>();
-        players.stream()
-                .forEach(player -> finalLocation.put(player.getName(), player.findFinalLocation(rows)));
-        return finalLocation;
     }
 
     private void validateDuplicationName(List<Player> players) {
