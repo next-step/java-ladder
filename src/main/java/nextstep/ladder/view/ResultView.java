@@ -73,6 +73,7 @@ public class ResultView {
     }
 
     public void printPlayResult(Users paramUsers, String userName) {
+        System.out.println("\n실행 결과");
         System.out.println(playResult(paramUsers, userName));
     }
 

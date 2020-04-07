@@ -37,6 +37,9 @@ public class InputView {
     public String enterResultUser(Users users) {
         System.out.println("\n결과를 보고 싶은 사람은? ");
         String userName = scanner.next();
+        if (ALL.equals(userName)) {
+            return userName;
+        }
 
         validateResultUser(users, userName);
         return userName;
