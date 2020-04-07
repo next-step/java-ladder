@@ -29,7 +29,7 @@ public class LadderService {
     public LadderResultDto startGameOfPlayer(final String inputName, final LadderGame ladderGame) {
         LadderResultDto ladderResultDto = new LadderResultDto();
 
-        if (inputName.equals("all")) {
+        if (inputName.equals(ALL)) {
             Map<String, String> allPlayer = findAllPlayer(ladderGame);
             ladderResultDto.setResult(allPlayer);
             return ladderResultDto;
