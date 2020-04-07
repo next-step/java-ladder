@@ -18,6 +18,6 @@ public class LadderTest {
     @Test
     void getResult() {
         Ladder ladder = new Ladder(3, 5, Arrays.asList("꽝","5000","꽝","3000"));
-        ladder.getRewards(1);
+        ladder.getReward(1);
     }
 }

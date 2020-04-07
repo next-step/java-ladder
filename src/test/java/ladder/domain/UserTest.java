@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.ExceptionType;
 import ladder.exception.LadderException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,41 +12,38 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UserTest {
+    private Ladder ladder;
+    private List<User> users;
+    private List<String> userNames;
+
+    @BeforeEach
+    void setUp() {
+        ladder = new Ladder(4, 5, Arrays.asList("1000", "꽝", "2000", "꽝"));
+        userNames = Arrays.asList("pobi","honux","crong","jk");
+        users = User.listOf(userNames, ladder);
+    }
+
     @Test
     void listOf() {
-        List<User> users = User.listOf("pobi,honux,crong,jk");
-
         assertThat(users).hasSize(4);
-        assertThat(users.get(0).getName()).isEqualTo("pobi");
-        assertThat(users.get(1).getName()).isEqualTo("honux");
-        assertThat(users.get(2).getName()).isEqualTo("crong");
-        assertThat(users.get(3).getName()).isEqualTo("jk");
+        assertThat(users.get(0).getName()).isEqualTo(userNames.get(0));
+        assertThat(users.get(1).getName()).isEqualTo(userNames.get(1));
+        assertThat(users.get(2).getName()).isEqualTo(userNames.get(2));
+        assertThat(users.get(3).getName()).isEqualTo(userNames.get(3));
     }
 
     @Test
     void listOf_EXCEPTION() {
-        assertThatThrownBy(() -> User.listOf("crong12"))
+        assertThatThrownBy(() -> User.listOf(Arrays.asList("pobi","honux", "crong12", "jk"), ladder))
                 .isInstanceOf(LadderException.class)
                 .hasMessageContaining(ExceptionType.INVALID_NAME_SIZE.getErrorMessage());
     }
 
     @Test
-    void setReward() {
-        int startIndex = 0;
-        List<User> users = User.listOf("pobi,honux,crong,jk");
-        Ladder ladder = new Ladder(users.size(), 5, Arrays.asList("1", "2", "3", "4"));
-
-        User user = users.get(startIndex);
-        user.setReward(startIndex, ladder);
-    }
-
-    @Test
     void equalsUserName() {
-        List<User> users = User.listOf("pobi,honux,crong,jk");
-
-        assertThat(users.get(0).equalsUserName("pobi")).isTrue();
-        assertThat(users.get(1).equalsUserName("honux")).isTrue();
-        assertThat(users.get(2).equalsUserName("crong")).isTrue();
-        assertThat(users.get(3).equalsUserName("jk")).isTrue();
+        assertThat(users.get(0).equalsUserName(userNames.get(0))).isTrue();
+        assertThat(users.get(1).equalsUserName(userNames.get(1))).isTrue();
+        assertThat(users.get(2).equalsUserName(userNames.get(2))).isTrue();
+        assertThat(users.get(3).equalsUserName(userNames.get(3))).isTrue();
     }
 }
