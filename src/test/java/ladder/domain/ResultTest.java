@@ -1,15 +1,16 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ResultTest {
 
+    @DisplayName("입력한 이름으로 실행결과를 찾을수 있다.")
     @Test
     void findOne() {
         Player pobi = new Player("pobi", 0);
