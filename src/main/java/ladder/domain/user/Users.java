@@ -1,4 +1,6 @@
-package ladder.user;
+package ladder.domain.user;
+
+import ladder.domain.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +23,9 @@ public class Users implements Line {
             throw new RuntimeException("이름이 길어요");
         }
         return true;
+    }
+    public int countOfUser(){
+        return users.size();
     }
 
     @Override

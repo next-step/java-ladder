@@ -1,13 +1,14 @@
 package ladder;
 
-import ladder.ladder.Line;
+import ladder.domain.Line;
+import ladder.domain.ladder.LadderLine;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
     @Test
     void createLineTest() {
-        int person = 10;
-        Line line = new Line(person);
+        int person = 5;
+        Line line = new LadderLine(person);
         line.getLine().stream().forEach((l)-> System.out.print(l));
     }
 }
