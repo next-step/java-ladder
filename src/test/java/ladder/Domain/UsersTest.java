@@ -10,22 +10,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UsersTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"0 true:1", "1 true:2", "2 true:3", "3 true:2", "1 false:1"}, delimiter = ':')
+    @CsvSource(value = {"0 1:1", "1 1:2", "2 1:3", "3 -1:2", "1 0:1"}, delimiter = ':')
     void positionMoveTest(String input, String expected) {
         String[] inputs = input.split(" ");
-        int userCount = 4;
-        Position position = Position.of(Integer.parseInt(inputs[0]), userCount);
-        position = position.crossWay(Boolean.parseBoolean(inputs[1]));
+        Position position = Position.of(Integer.parseInt(inputs[0]));
+        SteerRule steerRule = SteerRule.direction(Integer.parseInt(inputs[1]));
 
-        assertThat(position).isEqualTo(Position.of(Integer.parseInt(expected), userCount));
+        position = position.crossWay(steerRule);
+
+        assertThat(position).isEqualTo(Position.of(Integer.parseInt(expected)));
     }
 
     @Test
     void userTest() {
-        int userCount = 4;
-        User user = User.of("pobi", position, userCount);
+        User user = User.of("pobi", position);
 
-        assertThat(user).isEqualTo(User.of("pobi", position, userCount));
+        assertThat(user).isEqualTo(User.of("pobi", position));
     }
 
     @ParameterizedTest
@@ -34,11 +34,10 @@ public class UsersTest {
         MoveStrategy moveStrategy = () -> true;
         Users users = Users.of(input, moveStrategy);
 
-        Position position = Position(0);
-        int userCount = 4;
+        Position position = Position.of(0);
 
         assertThat(users.toList())
                 .hasSize(4)
-                .contains(User.of("pobi", position, userCount));
+                .contains(User.of("pobi", position));
     }
 }
