@@ -29,4 +29,12 @@ public class Ladder {
             throw new LadderException(USER_AND_RESULT_COUNT_MATCH_ERR_MST);
         }
     }
+
+    public Node findLastNode(final int startNodeNumber) {
+        return lines.move(startNodeNumber);
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
 }

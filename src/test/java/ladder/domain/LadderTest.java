@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
@@ -34,5 +35,29 @@ class LadderTest {
         assertThatThrownBy(
                 () -> new Ladder(lines, gameResult)
         ).isInstanceOf(LadderException.class);
+    }
+
+    @DisplayName("사다리 타기를 진행하여 마지막 도드를 반환")
+    @Test
+    public void findLastNode_success() throws Exception {
+        //given
+        final Lines lines = new Lines(
+                Arrays.asList(
+                        new Line(Arrays.asList(
+                                new Node(0, new Way(false, true)),
+                                new Node(1, new Way(true, false)))
+                        ),
+                        new Line(Arrays.asList(
+                                new Node(0, new Way(false, true)),
+                                new Node(1, new Way(true, false)))
+                        )));
+        final LadderPrize ladderPrize = new LadderPrize(Arrays.asList("100", "200"));
+        Ladder ladder = new Ladder(lines, ladderPrize);
+
+        //when
+        Node lastNode = ladder.findLastNode(0);
+
+        //then
+        assertThat(lastNode.getIndex()).isEqualTo(0);
     }
 }
