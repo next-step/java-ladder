@@ -17,4 +17,12 @@ public class GameInformation {
             throw new IllegalArgumentException("사용자수[" +users.size() + "]와 상품수[" +prizes.size() +"]가 동일해야합니다.");
         }
     }
+
+    public Users getUser() {
+        return users;
+    }
+
+    public Prizes getPrizes() {
+        return prizes;
+    }
 }
