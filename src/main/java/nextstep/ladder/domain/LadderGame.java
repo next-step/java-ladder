@@ -20,6 +20,7 @@ public class LadderGame {
 
         this.participants = participants;
         this.ladder = ladder;
+        this.ladderResults = ladderResults;
     }
 
     public GameResults play() {
