@@ -4,10 +4,11 @@ import ladder.domain.Line;
 import ladder.domain.Lines;
 import ladder.domain.Players;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private static final String LADDER_RESULT = "실행결과";
+    private static final String LADDER_RESULT = "사다리결과";
     private static final String PRINT_FORMAT = "%-6s";
     private static final String PRINT_HEIGHT = "I";
     private static final String PRINT_WIDTH = "-----";
@@ -40,5 +41,13 @@ public class ResultView {
         });
         System.out.println(buffer.toString());
         buffer.setLength(0);
+    }
+
+    public static void printLadderResult(LadderResultDto ladderResultDto) {
+        Map<String, String> result = ladderResultDto.getResult();
+
+        result.forEach((name, priz) -> {
+            System.out.println(name + ":" + priz);
+        });
     }
 }
