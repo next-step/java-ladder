@@ -6,15 +6,12 @@ import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.domain.step.Steps;
-import nextstep.ladder.dto.LadderRequestDto;
 import nextstep.ladder.dto.LadderResponseDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private static final String DELIMITER = ",";
-
     private static final int ZERO = 0;
     private static final int ONE = 1;
 
@@ -80,17 +77,20 @@ public class ResultView {
         return stringBuilder.append(SPACE_FORMAT);
     }
 
-    public static void printOutput(Step result, LadderRequestDto ladderRequestDto) {
-        String[] results = ladderRequestDto.getResults().split(DELIMITER);
+    public static void printOutput(Step result, LadderResponseDto ladderResponseDto) {
         System.out.println("실행결과");
-        System.out.println(results[result.getLinePosition()]);
+        System.out.println(ladderResponseDto.getResults().get(result.getLinePosition()));
     }
 
-    public static void printAllOutput(List<Step> steps, LadderRequestDto ladderRequestDto) {
-        String[] names = ladderRequestDto.getNames().split(DELIMITER);
-        String[] results = ladderRequestDto.getResults().split(DELIMITER);
-        for (int i = 0; i < names.length; i++) {
-            System.out.println(names[i] + " : " + results[steps.get(i).getLinePosition()]);
+    public static void printAllOutput(List<Step> steps, LadderResponseDto ladderResponseDto) {
+        List<String> names = ladderResponseDto.getPersons().stream()
+                .map(Person::getName)
+                .collect(Collectors.toList());
+        List<String> results = ladderResponseDto.getResults().stream()
+                .map(Result::getResult)
+                .collect(Collectors.toList());
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println(names.get(i) + " : " + results.get(steps.get(i).getLinePosition()));
         }
     }
 }

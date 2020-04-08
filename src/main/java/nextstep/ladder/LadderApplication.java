@@ -17,10 +17,10 @@ public class LadderApplication {
         while (!name.equals(PRINT_ALL)) {
             name = InputView.inputResultName();
             if (name.equals(PRINT_ALL)) {
-                ResultView.printAllOutput(LadderGame.findAll(ladderResponseDto.getLadder()), ladderRequestDto);
+                ResultView.printAllOutput(LadderGame.findAll(ladderResponseDto.getLadder()), ladderResponseDto);
                 break;
             }
-            ResultView.printOutput(LadderGame.findResult(ladderResponseDto.getLadder(), name), ladderRequestDto);
+            ResultView.printOutput(LadderGame.findResult(ladderResponseDto.getLadder(), name), ladderResponseDto);
         }
     }
 }
