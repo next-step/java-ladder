@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -15,12 +16,11 @@ public class Gamers {
         this.gamers = Collections.unmodifiableList(gamers);
     }
 
-    public static Gamers ofComma(String name) {
-        String[] names = name.split(",");
-        if (names.length < MINIMUM_SIZE) {
-            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_SIZE, name));
+    public static Gamers of(String... gamers) {
+        if (gamers.length < MINIMUM_SIZE) {
+            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_SIZE, Arrays.toString(gamers)));
         }
-        return new Gamers(getGamerList(names));
+        return new Gamers(getGamerList(gamers));
     }
 
     private static List<Gamer> getGamerList(String[] names) {

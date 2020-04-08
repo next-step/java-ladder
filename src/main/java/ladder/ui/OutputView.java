@@ -2,9 +2,9 @@ package ladder.ui;
 
 import ladder.domain.Gamer;
 import ladder.domain.Gamers;
+import ladder.domain.LadderResult;
 import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
-import ladder.domain.LadderResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +16,10 @@ public class OutputView {
     private static final String BAR_EXIST = "-----";
     private static final String BAR_NOT_EXIST = "     ";
     private static final String LADDER_STICK = "|";
-    private static final String ELLIPSIS = "|";
+    private static final String ELLIPSIS = "..";
+    private static final String LADDER_STICK_START = "  |";
+    private static final String SPACE = " ";
+    private static final String LADDER_RESULT_MAP_FORMAT = "%s : %s";
 
     public void printGamers(Gamers gamers) {
         System.out.println(LADDER_RESULT_MSG);
@@ -28,7 +31,7 @@ public class OutputView {
                 .stream()
                 .map(Gamer::getName)
                 .map(this::spacePadding5Center)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(SPACE));
     }
 
     private String spacePadding5Center(String gamer) {
@@ -44,7 +47,7 @@ public class OutputView {
         return line
                 .stream()
                 .map(bar -> bar ? BAR_EXIST : BAR_NOT_EXIST)
-                .collect(Collectors.joining(LADDER_STICK, "  " + LADDER_STICK, LADDER_STICK));
+                .collect(Collectors.joining(LADDER_STICK, LADDER_STICK_START, LADDER_STICK));
     }
 
     public void printResultCandidate(LadderResult ladderResult) {
@@ -52,14 +55,14 @@ public class OutputView {
                 .stream()
                 .map(this::spacePadding5Center)
                 .map(this::ellipsis5Character)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(SPACE));
 
         System.out.println(resultString);
     }
 
     private String ellipsis5Character(String string) {
         if (string.length() > WORD_LIMIT) {
-            return string.substring(0, 3) + ELLIPSIS;
+            return string.substring(0, WORD_LIMIT-2) + ELLIPSIS;
         }
         return string;
     }
@@ -74,6 +77,7 @@ public class OutputView {
         gamers.getGamers()
                 .stream()
                 .map(Gamer::getName)
-                .forEach(gamer -> System.out.println(gamer + " : " + ladderResult.getResult(gamer)));
+                .forEach(gamer -> System.out.println(
+                        String.format(LADDER_RESULT_MAP_FORMAT, gamer, ladderResult.getResult(gamer))));
     }
 }
