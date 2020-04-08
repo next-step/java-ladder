@@ -17,7 +17,7 @@ class OutputViewTest {
     void formatName(String name, String expect) {
         String actual = OutputView.formatName(name);
 
-        assertThat(actual).isEqualTo(expect);
+        assertThat(actual).isEqualTo(expect + " ");
     }
 
     static Stream<Arguments> provideNames() {

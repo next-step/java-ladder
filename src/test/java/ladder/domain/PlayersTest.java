@@ -13,7 +13,7 @@ class PlayersTest {
     @DisplayName("여러명의 참여자를 생성한다.")
     @Test
     void create() {
-        List<Player> playerList = Arrays.asList(new Player("pobi"), new Player("honux"));
+        List<Player> playerList = Arrays.asList(new Player("pobi", 0), new Player("honux", 1));
         Players expect = new Players(playerList);
 
         Players actual = new Players(playerList);

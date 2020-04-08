@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.generator.LineGenerator;
+import ladder.domain.generator.RandomLineGenerator;
+
 import java.util.*;
 
 public class Line {
@@ -9,12 +12,39 @@ public class Line {
         this.lines = lines;
     }
 
-    public static Line of(int playerCount) {
-        return new Line(new LineGenerator(playerCount).generate());
+    public static Line of(final int playerCount) {
+        return new Line(new RandomLineGenerator().generate(playerCount));
+    }
+
+    public static Line of(final int playerCount, final LineGenerator lineGenerator) {
+        return new Line(lineGenerator.generate(playerCount));
     }
 
     public List<Boolean> getLine() {
-        return lines;
+        return Collections.unmodifiableList(lines);
+    }
+
+    public Position move(final Position position) {
+        int playerPosition = position.value();
+        // 좌측 이동이 가능한지
+        if (isMoveLeft(playerPosition)) {
+            return position.left();
+        }
+
+        // 우측 이동이 가능한지
+        if (isMoveRight(playerPosition)) {
+            return position.right();
+        }
+        return position;
+    }
+
+    private Boolean isMoveLeft(final int playerPosition) {
+        return lines.get(playerPosition);
+    }
+
+    private boolean isMoveRight(final int playerPosition) {
+        return playerPosition + Position.DEFAULT_MOVEMENT_POSITION < lines.size()
+                && lines.get(playerPosition + Position.DEFAULT_MOVEMENT_POSITION);
     }
 
     @Override
