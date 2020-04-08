@@ -3,14 +3,15 @@ package nextstep.ladder.domain.step;
 import nextstep.ladder.domain.step.strategy.RandomMovement;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Steps {
-    private List<Step> steps;
-    private int linePosition;
+    private final List<Step> steps;
+    private final int linePosition;
 
-    public Steps(List<Step> steps, int linePosition) {
-        this.steps = steps;
+    private Steps(List<Step> steps, int linePosition) {
+        this.steps = Collections.unmodifiableList(steps);
         this.linePosition = linePosition;
     }
 
@@ -27,16 +28,16 @@ public class Steps {
         int linePosition = previousSteps.linePosition + 1;
 
         for (Step previousStep : previousSteps.steps) {
-            steps.add(createByCondition(linePosition, previousStep));
+            steps.add(createMiddleLineStep(linePosition, previousStep));
         }
         return new Steps(steps, linePosition);
     }
 
-    private static Step createByCondition(int linePosition, Step previousStep) {
-        if (previousStep.getLine() == linePosition) {
-            return new Step(linePosition - 1, previousStep.getStep(), () -> false);
+    private static Step createMiddleLineStep(int linePosition, Step previousStep) {
+        if (previousStep.isMovable(linePosition)) {
+            return new Step(linePosition - 1, previousStep.getStepPosition(), () -> false);
         }
-        return new Step(linePosition, previousStep.getStep(), new RandomMovement());
+        return new Step(linePosition, previousStep.getStepPosition(), new RandomMovement());
     }
 
     public static Steps lastLineSteps(Steps previousLineSteps) {
@@ -44,16 +45,16 @@ public class Steps {
         int linePosition = previousLineSteps.linePosition + 1;
 
         for (Step previousLineStep : previousLineSteps.steps) {
-            steps.add(createPrevStep(linePosition, previousLineStep));
+            steps.add(createLastLineStep(linePosition, previousLineStep));
         }
         return new Steps(steps, linePosition);
     }
 
-    private static Step createPrevStep(int linePosition, Step previousLineStep) {
-        if (previousLineStep.getLine() == linePosition) {
-            return new Step(linePosition - 1, previousLineStep.getStep(), () -> false);
+    private static Step createLastLineStep(int linePosition, Step previousStep) {
+        if (previousStep.isMovable(linePosition)) {
+            return new Step(linePosition - 1, previousStep.getStepPosition(), () -> false);
         }
-        return new Step(linePosition, previousLineStep.getStep(), () -> false);
+        return new Step(linePosition, previousStep.getStepPosition(), () -> false);
     }
 
     public List<Step> getSteps() {
