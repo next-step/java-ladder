@@ -11,7 +11,7 @@ public class Ladder {
     private final LadderPrize ladderPrize;
 
     public Ladder(Lines lines, LadderPrize ladderPrize) {
-        validateUserAndResult(lines.getLines().size(), ladderPrize);
+        validateUserAndResult(lines.getLines().get(0).getNodes().size(), ladderPrize);
         this.lines = lines;
         this.ladderPrize = ladderPrize;
     }
