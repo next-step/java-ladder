@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private static final String HORIZONTAL_LINE_REQUIRE = "가로줄이 존재해야합니다.";
-    private final List<Boolean> horizontalLines;
+    private static final String WIDTH_REQUIRED = "가로줄이 존재해야합니다.";
+    private final List<Boolean> widthLines;
 
-    public Line(List<Boolean> horizontalLines) {
-        this.horizontalLines = validate(horizontalLines);
+    public Line(List<Boolean> width) {
+        this.widthLines = validate(width);
     }
     private List<Boolean> validate(List<Boolean> horizontalLines) {
         if (horizontalLines.isEmpty()) {
-            throw new IllegalArgumentException(HORIZONTAL_LINE_REQUIRE);
+            throw new IllegalArgumentException(WIDTH_REQUIRED);
         }
         return new ArrayList<>(horizontalLines);
     }
@@ -23,11 +23,11 @@ public class Line {
         if (this == o) return true;
         if (!(o instanceof Line)) return false;
         Line line = (Line) o;
-        return Objects.equals(horizontalLines, line.horizontalLines);
+        return Objects.equals(widthLines, line.widthLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(horizontalLines);
+        return Objects.hash(widthLines);
     }
 }
