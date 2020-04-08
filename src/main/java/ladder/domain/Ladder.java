@@ -29,9 +29,9 @@ public class Ladder {
 
     private List<Line> generateLines(int height, int personCount) {
         List<Line> generatedLines = new ArrayList<>();
-        LineGenerator lineGenerator = new LineGenerator(personCount);
+        WidthGenerator widthGenerator = new WidthGenerator(personCount);
         for (int i = 0; i < height; i++) {
-            generatedLines.add(new Line(lineGenerator.generate()));
+            generatedLines.add(new Line(widthGenerator.generate()));
         }
         return new ArrayList<>(generatedLines);
     }

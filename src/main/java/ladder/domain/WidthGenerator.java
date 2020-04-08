@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LineGenerator {
+public class WidthGenerator {
     private final int personCount;
 
-    public LineGenerator(int personCount) {
+    public WidthGenerator(int personCount) {
         this.personCount = personCount;
     }
 

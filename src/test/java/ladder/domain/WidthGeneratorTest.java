@@ -6,13 +6,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LineGeneratorTest {
+class WidthGeneratorTest {
     @DisplayName("라인 생성 테스트")
     @ParameterizedTest
     @ValueSource(ints = {5})
     void testCreateLine(final int personCount) {
-        LineGenerator lineGenerator = new LineGenerator(personCount);
+        WidthGenerator widthGenerator = new WidthGenerator(personCount);
 
-        assertThat(lineGenerator.generate()).hasSize(4);
+        assertThat(widthGenerator.generate()).hasSize(4);
     }
 }
