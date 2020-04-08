@@ -1,5 +1,7 @@
 package ladder.model.prize;
 
+import ladder.model.player.Player;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -20,5 +22,10 @@ public class LadderPrizes {
 
     public PrizeName findPrizeNameAtIndex(int index) {
         return ladderPrizes.get(index).getPrizeName();
+    }
+
+    public PrizeName findPrizeNameByPlayer(Player player){
+        int index = player.getPosition().getPosition();
+        return findPrizeNameAtIndex(index);
     }
 }

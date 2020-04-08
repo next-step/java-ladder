@@ -48,17 +48,12 @@ public class Players {
     }
 
     private void validateDuplicationName(List<Player> players) {
-        if (hasDuplicationName(players)) {
-            throw new IllegalArgumentException(WARNING_NOT_ALLOWED_DUPLICATION_NAME);
-        }
-    }
-
-    private boolean hasDuplicationName(List<Player> players) {
-        return players.stream()
-                .map(player -> player.getName())
-                .filter(playerName -> Collections.frequency(findNames(players), playerName) > 1)
+        players.stream()
+                .filter(player -> Collections.frequency(findNames(players), player.getName()) > 1)
                 .findAny()
-                .isPresent();
+                .ifPresent(player -> {
+                    throw new IllegalArgumentException(WARNING_NOT_ALLOWED_DUPLICATION_NAME);
+                });
     }
 
     private List<PlayerName> findNames(List<Player> players) {

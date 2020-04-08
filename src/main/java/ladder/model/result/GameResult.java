@@ -21,7 +21,7 @@ public class GameResult {
         Map<PlayerName, PrizeName> gameResult = new HashMap<>();
 
         players.getPlayers().stream()
-                .forEach(it -> gameResult.put(it.getName(), ladderPrizes.findPrizeNameAtIndex(it.getPosition().getPosition())));
+                .forEach(player -> gameResult.put(player.getName(), ladderPrizes.findPrizeNameByPlayer(player)));
 
         return new GameResult(gameResult);
     }
