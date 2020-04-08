@@ -16,7 +16,7 @@ public class LadderApplication {
         String result = inputGameResult();
         String height = inputHeight();
 
-        LadderGame game = ladderService.createLadder(names, height, result);
+        LadderGame game = ladderService.createLadderGame(names, height, result);
 
         ResultView.printPlayers(game.getPlayers());
         ResultView.printLadder(game.getLadder().getLines());

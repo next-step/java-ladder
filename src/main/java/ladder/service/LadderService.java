@@ -13,15 +13,16 @@ public class LadderService {
     private static final String COMMA = ",";
     private static final String ALL = "all";
 
-    public LadderGame createLadder(final String inputName,
-                                   final String inputHeight,
-                                   final String inputResult) {
+    public LadderGame createLadderGame(final String inputName,
+                                       final String inputHeight,
+                                       final String inputResult) {
         List<String> names = StringUtils.split(inputName, COMMA);
         List<String> gameResults = StringUtils.split(inputResult, COMMA);
         int height = StringUtils.parse(inputHeight);
+
         Players players = Players.of(names);
         LadderPrize ladderPrize = new LadderPrize(gameResults);
-        Ladder ladder = Ladder.of(names.size(), height, ladderPrize);
+        Ladder ladder = Ladder.of(players.size(), height, ladderPrize);
 
         return new LadderGame(players, ladder);
     }
