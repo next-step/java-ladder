@@ -1,6 +1,7 @@
-package ladder;
+package ladder.domain.row;
 
-import ladder.model.Row;
+import ladder.model.player.Position;
+import ladder.model.row.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,9 +18,9 @@ public class RowTest {
         Row row = Row.create(playerCount);
 
         //then
-        for (int i = 1; i <= playerCount - 2; i++) {
-            if (row.getRowElement(i)) {
-                assertThat(row.getRowElement(i + 1)).isFalse();
+        for (int i = 1; i < playerCount - 1; i++) {
+            if (row.getRowElement(new Position(i))) {
+                assertThat(row.getRowElement(new Position(i - 1))).isFalse();
             }
         }
     }

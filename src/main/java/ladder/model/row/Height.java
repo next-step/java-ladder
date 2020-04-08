@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.model.row;
 
 import static ladder.Messages.WARNING_NOT_ALLOWED_HEIGHT_LENGTH;
 

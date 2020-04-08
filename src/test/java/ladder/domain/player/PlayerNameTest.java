@@ -1,19 +1,19 @@
-package ladder;
+package ladder.domain.player;
 
-import ladder.model.Player;
+import ladder.model.player.PlayerName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class PlayerTest {
-    @DisplayName("게임에 참여하는 사람의 이름이 5글자를 넘으면 예외 발생")
+public class PlayerNameTest {
+    @DisplayName("플레이어 이름으로 다섯 글자 이상으로 작성하면 예외 발생")
     @ParameterizedTest
-    @ValueSource(strings = {"abcdef", "일이삼사오육"})
-    void validateNameLengthTest(String input) {
+    @ValueSource(strings = {"Shuhua", "Soyeon", "Miyeon"})
+    void createTest(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Player(input);
+            new PlayerName(input);
         });
     }
 }

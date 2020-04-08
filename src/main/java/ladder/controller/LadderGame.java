@@ -1,15 +1,28 @@
 package ladder.controller;
 
-import ladder.model.Players;
-import ladder.model.Rows;
+import ladder.model.player.Players;
+import ladder.model.prize.LadderPrizes;
+import ladder.model.result.GameResult;
+import ladder.model.row.Rows;
 import ladder.view.InputView;
+import ladder.view.ResultView;
 
 public class LadderGame {
-    public static Players ready() {
-        return InputView.getPlayers();
+    public static void start() {
+        Players players = Players.create(InputView.getPlayersInput());
+        Rows rows = Rows.create(players, InputView.getHeight());
+        LadderPrizes ladderPrizes = LadderPrizes.create(InputView.getLadderPrizesInput());
+
+        ResultView.of(players, rows, ladderPrizes)
+                .printLadder();
     }
 
-    public static Rows start(int playerCount) {
-        return Rows.create(playerCount, InputView.getHeight());
+    public static void getResult() {
+        Players players = Players.getAllPlayers();
+        Players playersForResult
+                = players.findFinalLocationByName(Rows.getAllRows(), InputView.getPlayerToGetResult());
+
+        ResultView.of(GameResult.create(playersForResult, LadderPrizes.getAllLadderPrizes()))
+                .printResult();
     }
 }

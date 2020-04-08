@@ -1,11 +1,11 @@
-package ladder.booleangenerator;
+package ladder.randomgenerator;
 
 import java.util.Random;
 
-public class NextBooleanGenerator {
+public class BooleanGenerator {
     private static final Random random = new Random();
 
-    public static boolean generate(boolean prev) {
+    public static boolean getNextBoolean(boolean prev) {
         return prev ? false : random.nextBoolean();
     }
 }
