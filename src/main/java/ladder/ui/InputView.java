@@ -1,6 +1,9 @@
 package ladder.ui;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
     public static String ALL_GAMERS = "all";
@@ -16,9 +19,9 @@ public class InputView {
         this.scanner = new Scanner(System.in);
     }
 
-    public String[] getGamers() {
+    public List<String> getGamers() {
         System.out.println(GET_GAMER_MSG);
-        return scanner.nextLine().split(COMMA);
+        return arrayToTrimmedList(scanner.nextLine().split(COMMA));
     }
 
     public int getHeight() {
@@ -26,13 +29,19 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public String getLadderResults() {
+    public List<String> getLadderResults() {
         System.out.println(GET_RESULT_MSG);
-        return scanner.nextLine();
+        return arrayToTrimmedList(scanner.nextLine().split(COMMA));
     }
 
     public String getExpectResult() {
         System.out.println(GET_EXPECT_RESULT_MSG);
         return scanner.nextLine();
+    }
+
+    private List<String> arrayToTrimmedList(String[] array) {
+        return Arrays.stream(array)
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 }

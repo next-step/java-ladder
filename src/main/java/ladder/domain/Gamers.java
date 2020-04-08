@@ -16,11 +16,11 @@ public class Gamers {
         this.gamers = Collections.unmodifiableList(gamers);
     }
 
-    public static Gamers of(String... gamers) {
-        if (gamers.length < MINIMUM_SIZE) {
-            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_SIZE, Arrays.toString(gamers)));
+    public static Gamers of(List<String> gamers) {
+        if (gamers.size() < MINIMUM_SIZE) {
+            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_SIZE, Arrays.toString(gamers.toArray())));
         }
-        return new Gamers(getGamerList(gamers));
+        return new Gamers(getGamerList(gamers.toArray(new String[0])));
     }
 
     private static List<Gamer> getGamerList(String[] names) {

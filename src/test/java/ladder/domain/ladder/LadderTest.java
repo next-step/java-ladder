@@ -22,7 +22,7 @@ public class LadderTest {
     @BeforeEach
     void setTestLadder() {
         height = 5;
-        testLadder = Ladder.of(Gamers.of("a","b","c"), RandomLadderMaker.of(2, height));
+        testLadder = Ladder.of(Gamers.of(Arrays.asList("a","b","c")), RandomLadderMaker.of(2, height));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 결과 뽑는 테스트")
     void getResultTest() {
-        Gamers gamers = Gamers.of("a","b","c");
+        Gamers gamers = Gamers.of(Arrays.asList("a","b","c"));
         Ladder ladder = Ladder.of(gamers, () ->
                 Arrays.asList(
                         Line.of(Arrays.asList(NOT_EXIST, IS_EXIST)),

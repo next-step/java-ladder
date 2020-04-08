@@ -14,14 +14,20 @@ public class LadderResult {
         this.results = Collections.unmodifiableList(results);
     }
 
+    public static LadderResult of(List<String> results){
+        if (results.size() < MINIMUM_SIZE) {
+            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_SIZE, Arrays.toString(results.toArray())));
+        }
+        return new LadderResult(results);
+    }
+
     public static LadderResult ofComma(String result) {
         List<String> results = Arrays.stream(result.split(","))
                 .map(String::trim)
                 .collect(Collectors.toList());
-        if (results.size() < MINIMUM_SIZE) {
-            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_SIZE, result));
-        }
-        return new LadderResult(results);
+
+        return of(results);
+
     }
 
     public List<String> getResults() {

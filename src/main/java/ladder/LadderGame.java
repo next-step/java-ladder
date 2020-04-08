@@ -13,7 +13,7 @@ public class LadderGame {
 
     private void start() {
         Gamers gamers = Gamers.of(inputView.getGamers());
-        LadderResult ladderResult = LadderResult.ofComma(inputView.getLadderResults());
+        LadderResult ladderResult = LadderResult.of(inputView.getLadderResults());
         Ladder ladder = Ladder.ofRandom(gamers, inputView.getHeight());
 
         outputView.printGamers(gamers);
