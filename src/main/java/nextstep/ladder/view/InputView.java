@@ -12,15 +12,12 @@ public class InputView {
     private static final String LADDER_RESULTS_INFORMATION = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_INFORMATION = "최대 사다리 높이는 몇 개인가요?";
     public static final String DELIMITER_COMMA = ",";
-    private ViewUtils viewUtils;
 
-    public InputView() {
-        viewUtils = new ViewUtils();
-    }
+    public InputView() { }
 
     public List<Participant> getParticipants() {
-        viewUtils.printLine(PARTICIPANT_NAME_INFORMATION);
-        String inputText = viewUtils.readLine();
+        ViewUtils.printLine(PARTICIPANT_NAME_INFORMATION);
+        String inputText = ViewUtils.readLine();
         List<String> participantNames = Arrays.asList(inputText.split(DELIMITER_COMMA));
 
         return participantNames.stream()
@@ -29,13 +26,13 @@ public class InputView {
     }
 
     public int getHeight() {
-        viewUtils.printLine(LADDER_HEIGHT_INFORMATION);
-        return viewUtils.readLineToInt();
+        ViewUtils.printLine(LADDER_HEIGHT_INFORMATION);
+        return ViewUtils.readLineToInt();
     }
 
     public List<String> getRadderResults() {
-        viewUtils.printLine(LADDER_RESULTS_INFORMATION);
-        String inputText = viewUtils.readLine();
+        ViewUtils.printLine(LADDER_RESULTS_INFORMATION);
+        String inputText = ViewUtils.readLine();
 
         return Arrays.asList(inputText.split(DELIMITER_COMMA));
     }

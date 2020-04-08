@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ViewUtils {
     private static final String INPUT_NULL_EMPTY_EXCEPTION = "내용을 입력해주세요.";
     private static final String NUMBER_FORMAT_EXCEPTION = "입력된 내용이 숫자가 아닙니다.";
-    private Scanner scanner;
+    private static Scanner scanner;
 
     public ViewUtils() {
         this.scanner = new Scanner(System.in);
@@ -15,7 +15,7 @@ public class ViewUtils {
         System.out.println(line);
     }
 
-    public String readLine() {
+    public static String readLine() {
         String input = scanner.nextLine();
 
         if(input == null || input.isEmpty()) {
@@ -25,7 +25,7 @@ public class ViewUtils {
         return input;
     }
 
-    public int readLineToInt() {
+    public static int readLineToInt() {
         try {
             return Integer.parseInt(readLine());
         } catch(NumberFormatException e) {

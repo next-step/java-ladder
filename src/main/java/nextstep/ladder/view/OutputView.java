@@ -20,17 +20,15 @@ public class OutputView {
     private static final String SPACE = " ";
     private static final String GAME_RESULT_FORMAT = "%s : %s";
     private static final String ALL_RESULT = "all";
-    private ViewUtils viewUtils;
 
     public OutputView() {
-        this.viewUtils = new ViewUtils();
     }
 
     public void showLadder(LadderGame ladderGame) {
         List<Participant> participants = ladderGame.getParticipants();
         Ladder ladder = ladderGame.getLadder();
 
-        viewUtils.printLine(LADDER_RESULT);
+        ViewUtils.printLine(LADDER_RESULT);
         showPersons(participants);
 
         for(Line line : ladder.getValue()) {
@@ -49,7 +47,7 @@ public class OutputView {
         }
         builder.append(LADDER_END);
 
-        viewUtils.printLine(builder.toString());
+        ViewUtils.printLine(builder.toString());
     }
 
     private String getPointText(Point point) {
@@ -63,7 +61,7 @@ public class OutputView {
             builder = appendLadderSources(participant.getName(), builder);
         }
 
-        viewUtils.printLine(builder.toString());
+        ViewUtils.printLine(builder.toString());
     }
 
     private void showLadderResults(LadderResults ladderResults) {
@@ -73,7 +71,7 @@ public class OutputView {
             builder = appendLadderSources(ladderResult, builder);
         }
 
-        viewUtils.printLine(builder.toString());
+        ViewUtils.printLine(builder.toString());
     }
 
     private StringBuilder appendLadderSources(String name, StringBuilder builder) {
@@ -94,10 +92,10 @@ public class OutputView {
     }
 
     public void showGameResults(GameResults gameResults) {
-        viewUtils.printLine(WHOS_RESULT);
-        String inputText = viewUtils.readLine();
+        ViewUtils.printLine(WHOS_RESULT);
+        String inputText = ViewUtils.readLine();
 
-        viewUtils.printLine(LADDER_GAME_RESULT);
+        ViewUtils.printLine(LADDER_GAME_RESULT);
 
         if(ALL_RESULT.equals(inputText)) {
             showAllResults(gameResults);
@@ -109,14 +107,14 @@ public class OutputView {
                 .map(name -> {return String.format(GAME_RESULT_FORMAT, name, gameResults.getResult(name));})
                 .collect(Collectors.toList());
 
-        resultTexts.forEach(text -> viewUtils.printLine(text));
+        resultTexts.forEach(text -> ViewUtils.printLine(text));
     }
 
     public void showAllResults(GameResults gameResults) {
         Map<String, String> results = gameResults.getValue();
 
         for(Map.Entry<String, String> result : results.entrySet()) {
-            viewUtils.printLine(String.format(GAME_RESULT_FORMAT, result.getKey(), result.getValue()));
+            ViewUtils.printLine(String.format(GAME_RESULT_FORMAT, result.getKey(), result.getValue()));
         }
     }
 }
