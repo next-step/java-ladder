@@ -1,10 +1,10 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.step.Step;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,10 +23,6 @@ public class LadderTest {
     @ParameterizedTest
     @ValueSource(ints = 5)
     void createFailByLineCount(int heightOfLadder) {
-        List<Line> lines = Arrays.asList(
-                Line.firstLine(new Person("dong"), heightOfLadder)
-        );
-
         assertThatIllegalArgumentException().isThrownBy(() ->  Ladder.of(Arrays.asList(new Person("dong")), heightOfLadder));
     }
 
@@ -34,10 +30,16 @@ public class LadderTest {
     @ParameterizedTest
     @ValueSource(ints = {-5, -3, 0, 1})
     void createFailByHeight(int heightOfLadder) {
-        List<Line> lines = Arrays.asList(
-                Line.firstLine(new Person("dong"), heightOfLadder)
-        );
-
         assertThatIllegalArgumentException().isThrownBy(() ->  Ladder.of(Arrays.asList(new Person("dong")), heightOfLadder));
+    }
+
+    @DisplayName("사다리 타기 게임 실행")
+    @ParameterizedTest
+    @ValueSource(ints = 5)
+    void ladderGame(int heightOfLadder) {
+        Ladder ladder = Ladder.of(Arrays.asList(new Person("dong"), new Person("chul")), heightOfLadder);
+        Step result = ladder.findResult("dong");
+
+        assertThat(result.getLinePosition()).isBetween(0, 1);
     }
 }
