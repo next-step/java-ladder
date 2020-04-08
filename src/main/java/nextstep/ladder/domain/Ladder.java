@@ -24,13 +24,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public int move(int startPosition) {
-        int nextPosition = startPosition;
-
+    public int move(int currentPosition) {
         for(Line line : lines) {
-            nextPosition = line.move(nextPosition);
+            currentPosition = line.move(currentPosition);
         }
-        return nextPosition;
+        return currentPosition;
     }
 
     private void assertLadderHeight(int height) {

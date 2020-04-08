@@ -40,17 +40,15 @@ public class Line {
         return null;
     }
 
-    public int move(int startPosition) {
-        int nextPosition = startPosition;
-
-        if(canMoveRight(nextPosition)) {
-            return nextPosition - 1;
+    public int move(int currentPosition) {
+        if(canMoveRight(currentPosition)) {
+            return currentPosition - 1;
         }
 
-        if(canMoveLeft(nextPosition)) {
-            return nextPosition + 1;
+        if(canMoveLeft(currentPosition)) {
+            return currentPosition + 1;
         }
-        return nextPosition;
+        return currentPosition;
     }
 
     private boolean isMove(int position, MoveCondition moveCondition) {
