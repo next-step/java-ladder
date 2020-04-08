@@ -4,7 +4,6 @@ import ladder.domain.Gamer;
 import ladder.domain.Gamers;
 import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
-import ladder.domain.ladder.Bar;
 import ladder.domain.LadderResult;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class OutputView {
     }
 
     private String toStringGamers(Gamers gamers) {
-        return gamers.getGamerList()
+        return gamers.getGamers()
                 .stream()
                 .map(Gamer::getName)
                 .map(this::spacePadding5Center)
@@ -72,7 +71,7 @@ public class OutputView {
 
     public void printResultAll(Gamers gamers, LadderResultDto ladderResult) {
         System.out.println(RESULT_MSG);
-        gamers.getGamerList()
+        gamers.getGamers()
                 .stream()
                 .map(Gamer::getName)
                 .forEach(gamer -> System.out.println(gamer + " : " + ladderResult.getResult(gamer)));

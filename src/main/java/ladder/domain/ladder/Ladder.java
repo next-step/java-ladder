@@ -46,7 +46,7 @@ public class Ladder {
     }
 
     public LadderResultDto getResult(LadderResult ladderResult) {
-        Map<String, String> resultMap = gamers.getGamerList()
+        Map<String, String> resultMap = gamers.getGamers()
                 .stream()
                 .collect(Collectors.toMap(Gamer::getName, gamer -> {
                     LadderNumber ladderNumber = gamer.getLadderNumber();

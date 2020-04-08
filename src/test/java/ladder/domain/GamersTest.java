@@ -13,7 +13,7 @@ public class GamersTest {
         String name = "unit0 , unit1, unit2";
         assertThat(
                 Gamers.ofComma(name)
-                        .getGamerList()
+                        .getGamers()
                         .stream()
                         .distinct())
                 .hasSize(3);

@@ -9,10 +9,10 @@ import java.util.stream.IntStream;
 public class Gamers {
     private static final String INSTANTIATE_ERROR_FORMAT = "Create Gamers fail. gamers must be at least %d players: name=%s";
     private static final int MINIMUM_SIZE = 2;
-    private final List<Gamer> gamerList;
+    private final List<Gamer> gamers;
 
-    private Gamers(List<Gamer> gamerList) {
-        this.gamerList = Collections.unmodifiableList(gamerList);
+    private Gamers(List<Gamer> gamers) {
+        this.gamers = Collections.unmodifiableList(gamers);
     }
 
     public static Gamers ofComma(String name) {
@@ -33,12 +33,12 @@ public class Gamers {
         return Gamer.of(names[idx], idx);
     }
 
-    public List<Gamer> getGamerList() {
-        return gamerList;
+    public List<Gamer> getGamers() {
+        return gamers;
     }
 
     public int size(){
-        return gamerList.size();
+        return gamers.size();
     }
 
     @Override
@@ -46,18 +46,18 @@ public class Gamers {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Gamers gamers = (Gamers) o;
-        return Objects.equals(gamerList, gamers.gamerList);
+        return Objects.equals(this.gamers, gamers.gamers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(gamerList);
+        return Objects.hash(gamers);
     }
 
     @Override
     public String toString() {
         return "Gamers{" +
-                "gamerList=" + gamerList +
+                "gamerList=" + gamers +
                 '}';
     }
 }
