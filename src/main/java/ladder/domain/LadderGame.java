@@ -1,8 +1,7 @@
 package ladder.domain;
 
-import ladder.Exception.ExceptionType;
-import ladder.Exception.LadderException;
-import ladder.utils.LadderGenerator;
+import ladder.exception.ExceptionType;
+import ladder.exception.LadderException;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -10,29 +9,29 @@ import java.util.List;
 
 public class LadderGame {
     private static final String REGEX = ",";
-    private static final int NAME_LENGTH_LIMIT = 5;
 
     @Getter
     private Ladder ladder;
-
     @Getter
-    private List<String> users;
+    private Users users;
 
-    public LadderGame(String userNameValues, String heightValue) {
-        String[] userNames = userNameValues.split(REGEX);
+    public LadderGame(List<Line> lines, List<String> userNames, List<String> rewards) {
+        validResultValues(rewards.size(), userNames.size());
 
-        validNameLength(Arrays.asList(userNames));
-
-        this.ladder = LadderGenerator.createLadder(userNames.length, Integer.parseInt(heightValue));
-        this.users = Arrays.asList(userNames);
+        this.ladder = new Ladder(lines, new LadderReward(rewards));
+        this.users = new Users(userNames, ladder);
     }
 
-    private void validNameLength(List<String> userNames) {
-        boolean invalidName = userNames.stream()
-                .anyMatch(userName -> userName.length() > NAME_LENGTH_LIMIT);
+    public static LadderGame of(String userNameValues, String heightValue, String resultValues) {
+        String[] userNames = userNameValues.split(REGEX);
+        List<String> rewards = Arrays.asList(resultValues.split(REGEX));
 
-        if (invalidName) {
-            throw new LadderException(ExceptionType.INVALID_NAME_SIZE);
+        return new LadderGame(Line.listOf(userNames.length, Integer.parseInt(heightValue)), Arrays.asList(userNames), rewards);
+    }
+
+    private void validResultValues(int rewardNumber, int userNumber) {
+        if (rewardNumber != userNumber) {
+            throw new LadderException(ExceptionType.INVALID_RESULT_SIZE);
         }
     }
 }

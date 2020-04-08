@@ -1,4 +1,4 @@
-package ladder.Exception;
+package ladder.exception;
 
 public class LadderException extends RuntimeException {
     private ExceptionType type;

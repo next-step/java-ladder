@@ -9,10 +9,15 @@ public class Application {
         InputView inputView = new InputView();
 
         String userValues = inputView.getUsers();
+        String ladderResult = inputView.getLadderResult();
         String ladderHeight = inputView.getLadderHeight();
 
-        LadderGame ladderGame = new LadderGame(userValues, ladderHeight);
+        LadderGame ladderGame = LadderGame.of(userValues, ladderHeight, ladderResult);
 
         OutputView.resultPrint(ladderGame);
+
+        String userName = inputView.getResultUserName();
+
+        OutputView.gameResultPrint(ladderGame, userName);
     }
 }
