@@ -2,7 +2,6 @@ package JavaLadder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Results {
     private static final String ALL_RESULT = "all";
@@ -15,7 +14,11 @@ public class Results {
             allUserList(users);
             return;
         }
-        resultList.add(users.getUserByName(resultBuyPerson));
+        User user = users.getUserByName(resultBuyPerson);
+        if (user == null){
+            throw new IllegalArgumentException("사용자에 없는 이름입니다.[" + resultBuyPerson + "]");
+        }
+        resultList.add(user);
     }
 
     private void allUserList(Users users) {
