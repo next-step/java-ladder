@@ -7,6 +7,8 @@ import ladder.model.row.Rows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,6 +52,13 @@ public class PlayerTest {
         assertThat(player.findFinalLocation(rows)).isEqualTo(new Position(2));
         assertThat(player2.findFinalLocation(rows)).isEqualTo(new Position(0));
         assertThat(player3.findFinalLocation(rows)).isEqualTo(new Position(1));
+    }
+
+    @DisplayName("플레이어의 이름이 인자로 받은 이름과 같으면 true 반환, 아니면 false반환")
+    @ParameterizedTest
+    @CsvSource(value = {"Sujin:true","Shuha:false"}, delimiter = ':')
+    void hasEqualNameTest(String name, boolean expected){
+        assertThat(player2.hasEqualName(name)).isEqualTo(expected);
     }
 
     private Row createFirstRow() {
