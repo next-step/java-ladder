@@ -12,22 +12,30 @@ public class Line {
     private final List<Bar> bars;
 
     private Line(List<Bar> bars) {
+        validationCheck(bars);
+
         this.bars = Collections.unmodifiableList(bars);
     }
 
-    public static Line of(List<Bar> bars) {
-        if (isAdjacentBars(bars)) {
+    private void validationCheck(List<Bar> bars) {
+        if(isSizeOverZero(bars) && isAdjacentBars(bars)){
             throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, toString(bars)));
         }
-
-        return new Line(bars);
     }
 
-    private static boolean isAdjacentBars(List<Bar> bars) {
-        return (bars.size() > 1) && IntStream.range(1, bars.size())
+    private boolean isAdjacentBars(List<Bar> bars) {
+        return IntStream.range(1, bars.size())
                 .filter(idx -> bars.get(idx - 1).isExist() && bars.get(idx).isExist())
                 .findFirst()
                 .isPresent();
+    }
+
+    private boolean isSizeOverZero(List<Bar> bars) {
+        return bars.size() > 1;
+    }
+
+    public static Line of(List<Bar> bars) {
+        return new Line(bars);
     }
 
     private static String toString(List<Bar> bars) {
