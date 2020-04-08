@@ -45,25 +45,44 @@ public class Line {
     }
 
     public void isMove(Point point) {
-        if (point.getPoint() == 0){
-            if(line.get(point.getPoint())){
-                point.moveRight();
-            }
+        if (isMostLeftPoint(point)) {
+            checkRightMove(point);
             return;
         }
+        if (isMostRightPoint(point)) {
+            checkLeftMove(point);
+            return;
+        }
+        checkLeftAndRightMove(point);
+    }
 
+    private boolean isMostLeftPoint(Point point) {
+        return point.getPoint() == 0;
+    }
+
+    private boolean isMostRightPoint(Point point) {
+        return point.getPoint() == line.size();
+    }
+
+    private void checkLeftAndRightMove(Point point) {
         int originalPoint = point.getPoint();
+        checkLeftMove(point);
+        if(originalPoint == point.getPoint()){
+            checkRightMove(point);
+        }
+    }
+
+    private void checkLeftMove(Point point) {
         if (line.get(point.getPoint() - 1)) {
             point.moveLeft();
-            return;
         }
-        if (originalPoint == point.getPoint()){
-            if (line.get(point.getPoint())){
-                point.moveRight();
-                return;
-            }
+        return;
+    }
+
+    private void checkRightMove(Point point) {
+        if (line.get(point.getPoint())) {
+            point.moveRight();
         }
-
-
+        return;
     }
 }

@@ -34,4 +34,11 @@ public class Point {
     public void moveLeft() {
         this.point--;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "point=" + point +
+                '}';
+    }
 }

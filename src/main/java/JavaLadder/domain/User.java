@@ -42,4 +42,16 @@ public class User {
     public Point getPoint() {
         return this.point;
     }
+
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", point=" + point +
+                '}';
+    }
 }

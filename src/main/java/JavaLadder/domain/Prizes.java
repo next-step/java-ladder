@@ -36,4 +36,8 @@ public class Prizes {
     public int hashCode() {
         return Objects.hash(prizes);
     }
+
+    public String getPrize(Point resultPoint) {
+        return prizes.get(resultPoint.getPoint()).getPrize();
+    }
 }

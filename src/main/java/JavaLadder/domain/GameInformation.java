@@ -1,7 +1,5 @@
 package JavaLadder.domain;
 
-import java.util.ArrayList;
-
 public class GameInformation {
     private Users users;
     private Prizes prizes;
