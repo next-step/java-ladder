@@ -50,15 +50,15 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    LadderNumber move(LadderNumber no) {
-        return Optional.of(no.getLadderNo())
+    LadderNumber move(LadderNumber ladderNumber) {
+        return Optional.of(ladderNumber.getNumber())
                 .filter(this::isExistBar)
                 .map(number -> LadderNumber.of(number + 1))
-                .orElseGet(() -> Optional.of(no.getLadderNo())
+                .orElseGet(() -> Optional.of(ladderNumber.getNumber())
                         .map(number -> number - 1)
                         .filter(this::isExistBar)
                         .map(LadderNumber::of)
-                        .orElse(no));
+                        .orElse(ladderNumber));
     }
 
     int size() {

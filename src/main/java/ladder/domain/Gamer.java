@@ -14,12 +14,12 @@ public class Gamer {
         this.ladderNumber = ladderNumber;
     }
 
-    public static Gamer of(String name, int no) {
+    public static Gamer of(String name, int ladderNumber) {
         return Optional.ofNullable(name)
                 .map(String::trim)
                 .filter(nameString -> nameString.length() <= 5)
                 .filter(nameString -> !nameString.isEmpty())
-                .map(nameString -> new Gamer(nameString, LadderNumber.of(no)))
+                .map(nameString -> new Gamer(nameString, LadderNumber.of(ladderNumber)))
                 .orElseThrow(() -> new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, name)));
     }
 
@@ -35,7 +35,7 @@ public class Gamer {
     public String toString() {
         return "Gamer{" +
                 "name='" + name + '\'' +
-                ", ladderNo=" + ladderNumber +
+                ", ladderNumber=" + ladderNumber +
                 '}';
     }
 }

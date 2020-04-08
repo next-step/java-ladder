@@ -17,7 +17,7 @@ public class LadderNumberTest {
     @Test
     @DisplayName("사다리 번호 겟")
     void getDefaultNumberGetter() {
-        assertThat(LadderNumber.of(1).getLadderNo())
+        assertThat(LadderNumber.of(1).getNumber())
                 .isEqualTo(1);
     }
 }

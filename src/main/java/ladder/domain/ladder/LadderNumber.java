@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 public class LadderNumber {
     private static final String INSTANTIATE_ERROR_FORMAT = "Create LadderNo failed. number must be at least %d : number=%d";
     private static final int MINIMUM_NUMBER = 0;
-    private int ladderNo;
+    private int number;
 
     private static final Map<Integer, LadderNumber> numberMap;
 
@@ -20,8 +20,8 @@ public class LadderNumber {
                 .collect(Collectors.toMap(Function.identity(), LadderNumber::new));
     }
 
-    private LadderNumber(int ladderNo) {
-        this.ladderNo = ladderNo;
+    private LadderNumber(int number) {
+        this.number = number;
     }
 
     public static LadderNumber of(int number) {
@@ -39,14 +39,14 @@ public class LadderNumber {
         return new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_NUMBER, number));
     }
 
-    int getLadderNo() {
-        return ladderNo;
+    int getNumber() {
+        return number;
     }
 
     @Override
     public String toString() {
-        return "LadderNo{" +
-                "ladderNo=" + ladderNo +
+        return "LadderNumber{" +
+                "number=" + number +
                 '}';
     }
 
@@ -55,11 +55,11 @@ public class LadderNumber {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderNumber ladderNumber1 = (LadderNumber) o;
-        return ladderNo == ladderNumber1.ladderNo;
+        return number == ladderNumber1.number;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderNo);
+        return Objects.hash(number);
     }
 }

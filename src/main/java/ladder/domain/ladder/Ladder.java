@@ -53,7 +53,7 @@ public class Ladder {
                     for (Line line : lines) {
                         ladderNumber = line.move(ladderNumber);
                     }
-                    return ladderResult.getResults().get(ladderNumber.getLadderNo());
+                    return ladderResult.getResults().get(ladderNumber.getNumber());
                 }));
         return new LadderResultDto(resultMap);
     }
