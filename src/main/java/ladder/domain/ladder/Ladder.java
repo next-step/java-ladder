@@ -6,6 +6,7 @@ import ladder.domain.LadderResult;
 import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.maker.MakeLadderStrategy;
+import ladder.domain.ladder.maker.RandomLadderMaker;
 
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,10 @@ public class Ladder {
         }
 
         return new Ladder(gamers, lines);
+    }
+
+    public static Ladder ofRandom(Gamers gamers, int height) {
+        return of(gamers, RandomLadderMaker.of(gamers.size() - 1, height));
     }
 
     public BarMatrixDto getBarMatrix() {

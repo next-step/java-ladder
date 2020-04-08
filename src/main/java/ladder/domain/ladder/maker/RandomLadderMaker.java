@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class RandomLadderMaker implements MakeLadderStrategy {
+public class RandomLadderMaker implements MakeLadderStrategy {
     private static final String INSTANTIATE_ERROR_FORMAT = "Create Line failed. " +
             "size and height must be at least %d: size=%d, height=%d";
     private static final int MINIMUM_COUNT = 1;
@@ -25,6 +25,10 @@ class RandomLadderMaker implements MakeLadderStrategy {
 
         this.size = size;
         this.height = height;
+    }
+
+    public static MakeLadderStrategy of(int size, int height) {
+        return new RandomLadderMaker(size, height);
     }
 
     private boolean isGreaterThenEqualsMinimum(int size, int height) {
