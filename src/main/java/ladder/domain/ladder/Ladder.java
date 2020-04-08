@@ -36,7 +36,7 @@ public class Ladder {
 
     public BarMatrixDto getBarMatrix() {
         return new BarMatrixDto(lines.stream()
-                .map(Line::getBars)
+                .map(Line::getBarExists)
                 .collect(Collectors.toList()));
     }
 

@@ -36,8 +36,10 @@ public class Line {
                 .collect(Collectors.joining(",", "[", "]"));
     }
 
-    List<Bar> getBars() {
-        return bars;
+    List<Boolean> getBarExists() {
+        return bars.stream()
+                .map(Bar::isExist)
+                .collect(Collectors.toList());
     }
 
     LadderNumber move(LadderNumber no) {

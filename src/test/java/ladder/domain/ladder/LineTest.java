@@ -21,7 +21,7 @@ public class LineTest {
     @Test
     @DisplayName("일반 정상 생성")
     void createBarsTest() {
-        assertThat(valueOfLine(Bar.IS_EXIST, Bar.NOT_EXIST, Bar.IS_EXIST, Bar.NOT_EXIST).getBars())
+        assertThat(valueOfLine(Bar.IS_EXIST, Bar.NOT_EXIST, Bar.IS_EXIST, Bar.NOT_EXIST).getBarExists())
                 .hasSize(4);
     }
 

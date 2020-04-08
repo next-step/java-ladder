@@ -41,10 +41,9 @@ public class OutputView {
                 .forEach(line -> System.out.println(toStringOneLine(line)));
     }
 
-    private String toStringOneLine(List<Bar> line) {
+    private String toStringOneLine(List<Boolean> line) {
         return line
                 .stream()
-                .map(Bar::isExist)
                 .map(bar -> bar ? BAR_EXIST : BAR_NOT_EXIST)
                 .collect(Collectors.joining(LADDER_STICK, "  " + LADDER_STICK, LADDER_STICK));
     }

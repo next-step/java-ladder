@@ -5,13 +5,13 @@ import ladder.domain.ladder.Bar;
 import java.util.List;
 
 public class BarMatrixDto {
-    private final List<List<Bar>> barMatrix;
+    private final List<List<Boolean>> barMatrix;
 
-    public BarMatrixDto(List<List<Bar>> barMatrix) {
+    public BarMatrixDto(List<List<Boolean>> barMatrix) {
         this.barMatrix = barMatrix;
     }
 
-    public List<List<Bar>> getBarMatrix() {
+    public List<List<Boolean>> getBarMatrix() {
         return barMatrix;
     }
 }
