@@ -18,4 +18,10 @@ public class UserTest {
         assertThatThrownBy(() -> {new User (name);}).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[" + name + "]: 5자리 이하만 입력가능합니다.");
     }
+
+    @Test
+    public void userPointTest() {
+        User user = new User("test", 0);
+        assertThat(user.getPoint()).isEqualTo(new Point(0));
+    }
 }

@@ -4,10 +4,16 @@ import java.util.Objects;
 
 public class User {
     private String name = "";
+    private Point point;
 
     public User(String name) {
+        this(name,0);
+    }
+
+    public User(String name, int point) {
         validateSize(name);
         this.name = name;
+        this.point = new Point(point);
     }
 
     private void validateSize(String name) {
@@ -31,5 +37,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public Point getPoint() {
+        return this.point;
     }
 }
