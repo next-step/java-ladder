@@ -34,7 +34,7 @@ public class Line {
         return person;
     }
 
-    public Step move(int stepPosition) {
+    public Step findNextStep(int stepPosition) {
         return steps.get(stepPosition).move();
     }
 }
