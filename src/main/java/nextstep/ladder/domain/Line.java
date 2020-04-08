@@ -1,41 +1,35 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.RandomBooleanProvider;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
     public static final String POINT_COUNT_ERROR = "참여자는 2명 이상이어야 합니다.";
+    public static final String POINT_INDEX_ERROR = "해당 인덱스의 Point를 가져올 수 없습니다.";
     public static final int MIN_PARTICIPANT_COUNT = 2;
     private final List<Point> points;
 
     public Line(List<Point> points) {
         assertParticipantCount(points);
         assertPointHasLine(points);
+
         this.points = points;
     }
 
+    /**
+     * 5명의 사용자를 연결할 수 있는 4개의 Point를 생성한다.
+     * Line은 사다리 높이만큼 생성되는 하나의 행으로써의 역할을 가진다.
+     */
     public Line(int participantCount) {
-        this(createLine(participantCount));
-    }
-
-    private static List<Point> createLine(int participantCount) {
         List<Point> points = new ArrayList<>();
 
         for(int i = 0; i < participantCount - 1; i++) {
-            points.add(new Point(i, judgeHasLine(getPreviousPoint(points, i))));
+            points.add(new Point(i, getPreviousPoint(points, i)));
         }
+        assertParticipantCount(points);
+        assertPointHasLine(points);
 
-        return points;
-    }
-
-    private static boolean judgeHasLine(Point previousPoint) {
-        if(previousPoint != null && previousPoint.isHasLine()) {
-            return false;
-        }
-
-        return RandomBooleanProvider.getInstance().getRandomBoolean();
+        this.points = points;
     }
 
     private static Point getPreviousPoint(List<Point> points, int currentIndex) {
@@ -44,6 +38,52 @@ public class Line {
         }
 
         return null;
+    }
+
+    public int move(int startPosition) {
+        int nextPosition = startPosition;
+
+        if(canMoveRight(nextPosition)) {
+            return nextPosition - 1;
+        }
+
+        if(canMoveLeft(nextPosition)) {
+            return nextPosition + 1;
+        }
+        return nextPosition;
+    }
+
+    private boolean isMove(int position, MoveCondition moveCondition) {
+        return moveCondition.isMove(position);
+    }
+
+    private boolean canMoveRight(int currentPosition) {
+        return isMove(currentPosition, (position -> {
+            if(position <= 0) {
+                return false;
+            }
+
+            Point leftPoint = getPointByIndex(position - 1);
+            return leftPoint.hasLine();
+        }));
+    }
+
+    private boolean canMoveLeft(int currentPosition) {
+        return isMove(currentPosition, (position -> {
+            if(position == points.size()) {
+                return false;
+            }
+
+            Point rightPoint = getPointByIndex(position);
+            return rightPoint.hasLine();
+        }));
+    }
+
+    private Point getPointByIndex(int index) {
+        return points.stream()
+                .filter(point -> point.isSameIndex(index))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(POINT_INDEX_ERROR));
     }
 
     private void assertPointHasLine(List<Point> points) {
@@ -69,4 +109,5 @@ public class Line {
     public List<Point> getValue() {
         return this.points;
     }
+
 }
