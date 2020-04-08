@@ -19,7 +19,7 @@ public class LadderApplication {
         LadderGame game = ladderService.createLadder(names, height, result);
 
         ResultView.printPlayers(game.getPlayers());
-        ResultView.printLadder(game.getLines());
+        ResultView.printLadder(game.getLadder().getLines());
 
         while (true) {
             String who = inputWhoseResult();
