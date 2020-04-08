@@ -2,6 +2,9 @@ package JavaLadder.view;
 
 import JavaLadder.domain.*;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 public class OutputView {
     private static final String LADDER_RESULT = "사다리결과";
     private static final String ACTION_RESULT = "실행 결과";
@@ -10,7 +13,7 @@ public class OutputView {
     private static final String LINE_FALSE = "     ";
 
     public void showLadder(GameInformation gameInformation, Ladder ladder) {
-        Users users = gameInformation.getUser();
+        Users users = gameInformation.getUsers();
         Prizes prizes = gameInformation.getPrizes();
         System.out.println(LADDER_RESULT);
         printName(users);

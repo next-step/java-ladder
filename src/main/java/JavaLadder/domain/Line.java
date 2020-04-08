@@ -16,6 +16,10 @@ public class Line {
         this.line = list;
     }
 
+    public Line(GameInformation gameInformation) {
+        this(gameInformation.getUsers().size());
+    }
+
     private List generate(int countOfPerson) {
         for (int i = 0; i < countOfPerson - 1; i++) {
             checkSuccessTrue(line, i);
@@ -37,11 +41,13 @@ public class Line {
     }
 
     public boolean isTrue(int index) {
-        return this.line.get(index);
+        return line.get(index);
     }
 
     public int numberOfTrue() {
-        return (int) line.stream().filter(n -> n.equals(true)).count();
+        return (int) line.stream()
+                .filter(n -> n.equals(true))
+                .count();
     }
 
     public void isMove(Point point) {
@@ -57,32 +63,44 @@ public class Line {
     }
 
     private boolean isMostLeftPoint(Point point) {
-        return point.getPoint() == 0;
+        return point.isEqualToPoint(0);
     }
 
     private boolean isMostRightPoint(Point point) {
-        return point.getPoint() == line.size();
+        return point.isEqualToPoint(line.size());
     }
 
     private void checkLeftAndRightMove(Point point) {
         int originalPoint = point.getPoint();
         checkLeftMove(point);
-        if(originalPoint == point.getPoint()){
+        if (point.isEqualToPoint(originalPoint)) {
             checkRightMove(point);
         }
     }
 
     private void checkLeftMove(Point point) {
-        if (line.get(point.getPoint() - 1)) {
+        if (isLeftTrue(point)) {
             point.moveLeft();
         }
         return;
     }
 
+    private Boolean isLeftTrue(Point point) {
+        return line.get(point.getPoint() - 1);
+    }
+
     private void checkRightMove(Point point) {
-        if (line.get(point.getPoint())) {
+        if (isRightTrue(point)) {
             point.moveRight();
         }
         return;
+    }
+
+    private Boolean isRightTrue(Point point) {
+        return line.get(point.getPoint());
+    }
+
+    public boolean onlyFalse() {
+        return numberOfTrue() == 0;
     }
 }

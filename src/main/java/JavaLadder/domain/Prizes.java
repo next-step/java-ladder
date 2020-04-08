@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Prizes {
-    private static final String REGEX =",";
+    private static final String REGEX = ",";
     private List<Prize> prizes = new ArrayList<>();
 
     public Prizes(String input) {
@@ -37,7 +37,7 @@ public class Prizes {
         return Objects.hash(prizes);
     }
 
-    public String getPrize(Point resultPoint) {
-        return prizes.get(resultPoint.getPoint()).getPrize();
+    public String getPrize(Point point) {
+        return prizes.get(point.getPoint()).getPrize();
     }
 }

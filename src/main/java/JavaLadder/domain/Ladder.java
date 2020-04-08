@@ -7,11 +7,9 @@ public class Ladder {
     private List<Line> ladder = new ArrayList<>();
 
     public Ladder(int height, GameInformation gameInformation) {
-        Users users = gameInformation.getUser();
-        int listSize = users.size();
         for (int i = 0; i < height; i++) {
-            Line line = new Line((listSize));
-            this.ladder.add(line);
+            Line line = new Line(gameInformation);
+            ladder.add(line);
         }
     }
 
@@ -20,7 +18,7 @@ public class Ladder {
     }
 
     public void moveForResult(GameInformation gameInformation) {
-        Users users = gameInformation.getUser();
+        Users users = gameInformation.getUsers();
         for (int i = 0; i < users.size(); i++) {
             Point point = users.getUserPoint(users.getName(i));
             moveLadder(point);
@@ -29,20 +27,18 @@ public class Ladder {
 
     private void moveLadder(Point point) {
         for (int i = 0; i < ladder.size(); i++) {
-            moveLine(point, i);
+            moveLine(point, getLineByLadder(i));
         }
     }
 
-    private void moveLine(Point point, int index) {
-        Line line = (Line) ladder.get(index);
-        if(line.numberOfTrue() == 0){
+    private void moveLine(Point point, Line line) {
+        if (line.onlyFalse()) {
             return;
         }
         line.isMove(point);
     }
 
-
     public Line getLineByLadder(int index) {
-        return this.ladder.get(index);
+        return ladder.get(index);
     }
 }

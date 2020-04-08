@@ -38,11 +38,10 @@ public class Users {
     }
 
     public Point getUserPoint(String name) {
-        User user = users.stream()
-                .filter(u -> u.isEqualName(name))
-                .findFirst()
+        return users.stream()
+                .filter(user->user.isEqualName(name))
+                .map(User::getPoint).findFirst()
                 .orElse(null);
-        return user.getPoint();
     }
 
     public User getUserByName(String name) {

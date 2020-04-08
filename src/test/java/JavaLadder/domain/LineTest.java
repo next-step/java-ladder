@@ -3,7 +3,6 @@ package JavaLadder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class LineTest {
     @Test
     @DisplayName("값확인")
     public void checkTrueTest() {
-        List<Boolean> list = Arrays.asList(true,false,true);
+        List<Boolean> list = Arrays.asList(true, false, true);
         Line line = new Line(list);
         assertThat(line.isTrue(0)).isEqualTo(true);
     }
@@ -29,7 +28,7 @@ public class LineTest {
     @Test
     @DisplayName("한라인에 true갯수확인")
     public void numberOfLineTest() {
-        List<Boolean> list = Arrays.asList(true,false,true);
+        List<Boolean> list = Arrays.asList(true, false, true);
         Line line = new Line(list);
         assertThat(line.numberOfTrue()).isEqualTo(2);
     }
@@ -37,7 +36,7 @@ public class LineTest {
     @Test
     @DisplayName("가장왼쪽포인트이동")
     public void moveTheMostLeftTest() {
-        List<Boolean> list = Arrays.asList(true,false,true);
+        List<Boolean> list = Arrays.asList(true, false, true);
         Line line = new Line(list);
         Point point = new Point(0);
         line.isMove(point);
@@ -47,7 +46,7 @@ public class LineTest {
     @Test
     @DisplayName("라인상의 중간위치 포인트이동")
     public void moveLeftAndRightTest() {
-        List<Boolean> list = Arrays.asList(false,true,false);
+        List<Boolean> list = Arrays.asList(false, true, false);
         Line line = new Line(list);
         Point point = new Point(1);
         line.isMove(point);
@@ -57,7 +56,7 @@ public class LineTest {
     @Test
     @DisplayName("라인상의 중간위치 포인트이동")
     public void moveTheMostIrhgtTest() {
-        List<Boolean> list = Arrays.asList(false,false,true);
+        List<Boolean> list = Arrays.asList(false, false, true);
         Line line = new Line(list);
         Point point = new Point(3);
         line.isMove(point);

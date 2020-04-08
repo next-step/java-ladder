@@ -15,7 +15,6 @@ public class JavaLadder {
         Ladder ladder = new Ladder(ladderHeight, gameInformation);
         OutputView outputView = new OutputView();
         outputView.showLadder(gameInformation, ladder);
-        System.out.println(gameInformation.getUser());
         ladder.moveForResult(gameInformation);
         String resultBuyPerson = inputView.askResultByPerson();
         Results results = new Results(gameInformation, resultBuyPerson);

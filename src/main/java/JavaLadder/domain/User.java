@@ -3,11 +3,12 @@ package JavaLadder.domain;
 import java.util.Objects;
 
 public class User {
+    private static final int LIMIT_NUMBER = 5;
     private String name = "";
     private Point point;
 
     public User(String name) {
-        this(name,0);
+        this(name, 0);
     }
 
     public User(String name, int point) {
@@ -17,8 +18,8 @@ public class User {
     }
 
     private void validateSize(String name) {
-        if(name.length() > 5){
-            throw new IllegalArgumentException("[" + name + "]: 5자리 이하만 입력가능합니다.");
+        if (name.length() > LIMIT_NUMBER) {
+            throw new IllegalArgumentException("[" + name + "]: " + LIMIT_NUMBER + "자리 이하만 입력가능합니다.");
         }
     }
 

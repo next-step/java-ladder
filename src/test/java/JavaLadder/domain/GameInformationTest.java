@@ -10,8 +10,9 @@ public class GameInformationTest {
     public void userAndPrizeValueTest() {
         String name = "test1,test2";
         String prize = "test1";
-        assertThatThrownBy(() -> { new GameInformation(name, prize);}).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("사용자수[2]와 상품수[1]가 동일해야합니다.");
+        assertThatThrownBy(() -> {
+            new GameInformation(name, prize);
+        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("사용자수[2]와 상품수[1]가 동일해야합니다.");
     }
 
     @Test
@@ -19,7 +20,7 @@ public class GameInformationTest {
         String name = "test1,test2";
         String prize = "prize1,prize2";
         GameInformation gameInformation = new GameInformation(name, prize);
-        assertThat(gameInformation.getUser()).isEqualTo(new Users(name));
+        assertThat(gameInformation.getUsers()).isEqualTo(new Users(name));
         assertThat(gameInformation.getPrizes()).isEqualTo(new Prizes(prize));
     }
 }

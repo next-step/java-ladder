@@ -24,15 +24,15 @@ public class Point {
     }
 
     public int getPoint() {
-        return this.point;
+        return point;
     }
 
     public void moveRight() {
-        this.point++;
+        point++;
     }
 
     public void moveLeft() {
-        this.point--;
+        point--;
     }
 
     @Override
@@ -40,5 +40,9 @@ public class Point {
         return "Point{" +
                 "point=" + point +
                 '}';
+    }
+
+    public boolean isEqualToPoint(int number) {
+        return point == number;
     }
 }
