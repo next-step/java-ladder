@@ -3,9 +3,6 @@ package ladder.model.player;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 
-import java.util.Collections;
-import java.util.List;
-
 public class Player {
     private static final int ZERO_LOCATION = 0;
     private static final int DECREASE_ONE = -1;
@@ -29,6 +26,14 @@ public class Player {
 
     public Position getPosition() {
         return position;
+    }
+
+    public int getIndex() {
+        return position.getPosition();
+    }
+
+    public boolean hasEqualName(String name) {
+        return name.equals(this.name.getName());
     }
 
     public Position findFinalLocation(Rows rows) {

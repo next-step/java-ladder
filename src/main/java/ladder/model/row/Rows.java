@@ -26,6 +26,10 @@ public class Rows {
         return rows;
     }
 
+    public static Rows getAllRows(){
+        return new Rows(rows);
+    }
+
     public int getSize() {
         return rows.size();
     }

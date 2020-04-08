@@ -8,19 +8,21 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderGame {
-    public static ResultView start(InputView inputView) {
-        Players players = Players.create(inputView.getPlayersInput());
-        Rows rows = Rows.create(players, inputView.getHeight());
-        LadderPrizes ladderPrizes = LadderPrizes.create(inputView.getLadderPrizesInput());
+    public static void start() {
+        Players players = Players.create(InputView.getPlayersInput());
+        Rows rows = Rows.create(players, InputView.getHeight());
+        LadderPrizes ladderPrizes = LadderPrizes.create(InputView.getLadderPrizesInput());
 
-        return ResultView.of(players, rows, ladderPrizes);
+        ResultView.of(players, rows, ladderPrizes)
+                .printLadder();
     }
 
-    public static ResultView getResult(InputView inputView) {
-        Players players = inputView.getPlayers();
+    public static void getResult() {
+        Players players = Players.getAllPlayers();
         Players playersForResult
-                = players.findFinalLocationByName(inputView.getRows(), inputView.getPlayerToGetResult());
+                = players.findFinalLocationByName(Rows.getAllRows(), InputView.getPlayerToGetResult());
 
-        return ResultView.of(GameResult.create(playersForResult, inputView.getLadderPrizes()));
+        ResultView.of(GameResult.create(playersForResult, LadderPrizes.getAllLadderPrizes()))
+                .printResult();
     }
 }
