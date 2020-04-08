@@ -23,7 +23,7 @@ public class LadderGame {
         LadderResultDto ladderResultDto = ladder.getResult(ladderResult);
 
         String gamer;
-        while (!(gamer = inputView.getExpectResult()).equals("all")) {
+        while (!(gamer = inputView.getExpectResult()).equals(InputView.ALL_GAMERS)) {
             outputView.printResult(ladderResultDto.getResult(gamer));
         }
         outputView.printResultAll(gamers, ladderResultDto);
