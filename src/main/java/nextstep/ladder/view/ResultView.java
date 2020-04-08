@@ -3,17 +3,17 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.domain.step.Steps;
 import nextstep.ladder.dto.LadderRequestDto;
+import nextstep.ladder.dto.LadderResponseDto;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final String DELIMITER = ",";
 
     private static final int ZERO = 0;
     private static final int ONE = 1;
@@ -23,39 +23,22 @@ public class ResultView {
     private static final String LINE = "|";
     private static final String STEP = "-----";
 
-    public static void printLadderGame(Ladder ladder, LadderRequestDto ladderRequestDto) {
-        printPersons(ladder.getLines());
-        printLines(ladder);
-        printResults(ladderRequestDto);
-        printResults(ladder, ladderRequestDto);
+    public static void printLadder(LadderResponseDto ladderResponseDto) {
+        printPersons(ladderResponseDto.getPersons());
+        printLines(ladderResponseDto.getLadder());
+        printResult(ladderResponseDto.getResults());
         System.out.println();
     }
 
-    private static void printResults(LadderRequestDto ladderRequestDto) {
-        String results = Arrays.asList(ladderRequestDto.getResults().split(",")).stream()
-                .map(result -> format(result))
+    private static void printResult(List<Result> results) {
+        String formatString = results.stream()
+                .map(result -> format(result.getResult()))
                 .collect(Collectors.joining());
-        System.out.println(results);
+        System.out.println(formatString);
     }
 
-    private static void printResults(Ladder ladder, LadderRequestDto ladderRequestDto) {
-        System.out.println("결과를 보고 싶은 사람은 ?");
-        while (scanner.hasNext()) {
-            String name = scanner.next();
-            if (name.equals("all")) {
-                ladder.all(ladderRequestDto.getResults());
-                break;
-            }
-
-            Step result = ladder.start(name);
-            String[] split = ladderRequestDto.getResults().split(",");
-            System.out.println(name + " : " +split[result.getLine()]);
-        }
-    }
-
-    private static void printPersons(List<Line> lines) {
-        String names = lines.stream()
-                .map(Line::getPerson)
+    private static void printPersons(List<Person> persons) {
+        String names = persons.stream()
                 .map(Person::getName)
                 .map(name -> format(name))
                 .collect(Collectors.joining());
@@ -97,5 +80,17 @@ public class ResultView {
         return stringBuilder.append(SPACE_FORMAT);
     }
 
+    public static void printOutput(Step result, LadderRequestDto ladderRequestDto) {
+        String[] results = ladderRequestDto.getResults().split(DELIMITER);
+        System.out.println("실행결과");
+        System.out.println(results[result.getLinePosition()]);
+    }
 
+    public static void printAllOutput(List<Step> steps, LadderRequestDto ladderRequestDto) {
+        String[] names = ladderRequestDto.getNames().split(DELIMITER);
+        String[] results = ladderRequestDto.getResults().split(DELIMITER);
+        for (int i = 0; i < names.length; i++) {
+            System.out.println(names[i] + " : " + results[steps.get(i).getLinePosition()]);
+        }
+    }
 }
