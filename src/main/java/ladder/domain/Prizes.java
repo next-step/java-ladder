@@ -3,12 +3,10 @@ package ladder.domain;
 import ladder.exception.PrizeCountNotMatchException;
 import ladder.exception.PrizeNotFoundException;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class Prizes {
     private static final String SEPARATOR = ",";
@@ -18,7 +16,7 @@ public class Prizes {
     public Prizes(final String prizes, final int playerCount) {
         String[] splitPrizes = prizes.split(SEPARATOR);
         checkAvailablePrizes(splitPrizes.length, playerCount);
-        this.prizes = createPrize(splitPrizes);
+        this.prizes = Collections.unmodifiableList(createPrize(splitPrizes));
     }
 
     public Prize find(Position position) {
@@ -33,10 +31,11 @@ public class Prizes {
     }
 
     private List<Prize> createPrize(final String[] splitPrizes) {
-        AtomicInteger index = new AtomicInteger();
-        return Arrays.stream(splitPrizes)
-                     .map(prizeName -> new Prize(index.getAndIncrement(), prizeName))
-                     .collect(Collectors.toList());
+        List<Prize> prizes = new ArrayList<>();
+        for (int index = 0; index < splitPrizes.length; index++) {
+            prizes.add(new Prize(index, splitPrizes[index]));
+        }
+        return prizes;
     }
 
     private void checkAvailablePrizes(final int prizeCount, final int playerCount) {
