@@ -13,13 +13,13 @@ public class LadderMap {
         this.ladderMap = createMap(uesrs.toList().size(), highest, crossRoadStrategy);
     }
 
-    public static LadderMap of(Users uesrs, int highest, CrossRoadStrategy crossRoadStrategy) {
-        return new LadderMap(uesrs, highest, crossRoadStrategy);
+    public static LadderMap of(Users uesrs, int height, CrossRoadStrategy crossRoadStrategy) {
+        return new LadderMap(uesrs, height, crossRoadStrategy);
     }
 
-    private List<Line> createMap(int usersCount, int highest, CrossRoadStrategy crossRoadStrategy) {
+    private List<Line> createMap(int usersCount, int height, CrossRoadStrategy crossRoadStrategy) {
         List<Line> newMap = new ArrayList<>();
-        for (int i = 0; i < highest; i++) {
+        for (int i = 0; i < height; i++) {
             newMap.add(Line.of(usersCount, crossRoadStrategy));
         }
         return newMap;
