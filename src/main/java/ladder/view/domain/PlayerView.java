@@ -10,10 +10,10 @@ public class PlayerView implements DomainPrintable<Players> {
     @Override
     public void print(Players players) {
         players.getPlayers()
-                .stream()
-                .map(Player::name)
-                .map(playerName -> formatName(playerName.value()))
-                .forEach(System.out::print);
+               .stream()
+               .map(Player::name)
+               .map(playerName -> formatName(playerName.value()))
+               .forEach(System.out::print);
     }
 
     private static String formatName(String name) {

@@ -14,9 +14,9 @@ public class LadderView implements DomainPrintable<Ladder> {
     @Override
     public void print(final Ladder ladder) {
         ladder.getLines()
-                .stream()
-                .map(LadderView::lineUp)
-                .forEach(System.out::println);
+              .stream()
+              .map(LadderView::lineUp)
+              .forEach(System.out::println);
     }
 
     private static String lineUp(final Line line) {

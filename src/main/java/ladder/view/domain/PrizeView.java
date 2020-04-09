@@ -10,10 +10,10 @@ public class PrizeView implements DomainPrintable<Prizes> {
     @Override
     public void print(final Prizes prizes) {
         prizes.getPrizes()
-                .stream()
-                .map(Prize::getPrize)
-                .map(PrizeView::formatPrize)
-                .forEach(System.out::print);
+              .stream()
+              .map(Prize::getPrize)
+              .map(PrizeView::formatPrize)
+              .forEach(System.out::print);
     }
 
     private static String formatPrize(String name) {

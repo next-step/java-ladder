@@ -28,10 +28,8 @@ public class ResultView implements DomainPrintable<Result> {
     @Override
     public void print(final Result result) {
         result.getResult()
-                .keySet()
-                .forEach(player -> System.out.println(player.name()
-                        .value() + RESULT_JOINER + result.get(player)
-                        .getPrize()));
+              .keySet()
+              .forEach(player -> System.out.println(player.name().value() + RESULT_JOINER + result.get(player).getPrize()));
     }
 
     private void printSingleResult(PlayerName playerName) {
