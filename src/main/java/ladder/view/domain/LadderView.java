@@ -22,7 +22,7 @@ public class LadderView implements DomainPrintable<Ladder> {
     private static String lineUp(final Line line) {
         return line.getLine()
                    .stream()
-                   .map(isLine -> isLine ? LADDER_LINE : LADDER_EMPTY_LINE)
+                   .map(stair -> stair.isExist() ? LADDER_LINE : LADDER_EMPTY_LINE)
                    .collect(Collectors.joining(LADDER_STRAIGHT_LINE, EMPTY_STRING, LADDER_STRAIGHT_LINE));
     }
 }
