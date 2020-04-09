@@ -73,14 +73,14 @@ public class OutputView {
     }
 
     public static void printLadderGameResult(final LadderGameMemberResult ladderGameMemberResult) {
-        System.out.println("\n결과를 보고 싶은 사람은?");
-        String member = scanner.nextLine();
+        String member = "";
 
-        while(LADDER_GAME_ALL_RESULT_KEYWORD.equals(member)) {
+        while(!LADDER_GAME_ALL_RESULT_KEYWORD.equals(member)) {
+            System.out.println("\n결과를 보고 싶은 사람은?");
+            member = scanner.nextLine();
+
             System.out.println("\n실행 결과");
             System.out.println(ladderGameMemberResult.get(member));
-
-            member = scanner.nextLine();
         }
     }
 }
