@@ -15,6 +15,10 @@ public class Stair {
         return new Stair(false);
     }
 
+    public boolean isExist() {
+        return stair;
+    }
+
     public boolean getStair() {
         return stair;
     }
