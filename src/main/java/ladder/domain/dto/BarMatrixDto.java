@@ -1,7 +1,5 @@
 package ladder.domain.dto;
 
-import ladder.domain.ladder.Bar;
-
 import java.util.List;
 
 public class BarMatrixDto {

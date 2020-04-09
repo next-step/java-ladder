@@ -8,7 +8,6 @@ import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.maker.MakeLadderStrategy;
 import ladder.domain.ladder.maker.RandomLadderMaker;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -17,16 +16,16 @@ public class Ladder {
             "bars count must be gamers.size() - 1: gamerCount=%d, barsCount=%d";
 
     private final Gamers gamers;
-    private final List<Line> lines;
+    private final Lines lines;
 
-    private Ladder(Gamers gamers, List<Line> lines) {
+    private Ladder(Gamers gamers, Lines lines) {
         this.gamers = gamers;
         this.lines = lines;
     }
 
     public static Ladder of(Gamers gamers, MakeLadderStrategy ladderMaker) {
-        List<Line> lines = ladderMaker.makeBarLines();
-        int barsCount = lines.get(0).size();
+        Lines lines = Lines.of(ladderMaker);
+        int barsCount = lines.width();
         int gamerCount = gamers.size();
         if (barsCount != gamerCount - 1) {
             throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, gamerCount, barsCount));
@@ -40,21 +39,18 @@ public class Ladder {
     }
 
     public BarMatrixDto getBarMatrix() {
-        return new BarMatrixDto(lines.stream()
-                .map(Line::getBarExists)
-                .collect(Collectors.toList()));
+        return new BarMatrixDto(lines.getRawMatrix());
     }
 
     public LadderResultDto getResult(LadderResult ladderResult) {
         Map<String, String> resultMap = gamers.getGamers()
                 .stream()
-                .collect(Collectors.toMap(Gamer::getName, gamer -> {
-                    LadderNumber ladderNumber = gamer.getLadderNumber();
-                    for (Line line : lines) {
-                        ladderNumber = line.move(ladderNumber);
-                    }
-                    return ladderResult.getResults().get(ladderNumber.getNumber());
-                }));
+                .collect(Collectors.toMap(Gamer::getName, gamer -> getResult(ladderResult, gamer)));
         return new LadderResultDto(resultMap);
+    }
+
+    private String getResult(LadderResult ladderResult, Gamer gamer) {
+        LadderNumber ladderNumber = lines.getResultNumber(gamer);
+        return ladderResult.getResults().get(ladderNumber.getNumber());
     }
 }
