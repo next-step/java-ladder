@@ -13,4 +13,14 @@ class StairTest {
 
         assertThat(actual.getStair()).isFalse();
     }
+
+    @DisplayName("계단이 존재하는지 확인한다.")
+    @Test
+    void isExist() {
+        Stair prev = new Stair().first();
+        Stair next = new Stair(true);
+
+        assertThat(prev.isExist()).isFalse();
+        assertThat(next.isExist()).isTrue();
+    }
 }
