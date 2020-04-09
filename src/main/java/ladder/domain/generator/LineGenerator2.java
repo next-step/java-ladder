@@ -1,0 +1,9 @@
+package ladder.domain.generator;
+
+import ladder.domain.Stair;
+
+import java.util.List;
+
+public interface LineGenerator2 {
+    List<Stair> generate(int playerCount);
+}
