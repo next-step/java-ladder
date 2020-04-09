@@ -1,5 +1,4 @@
 package nextstep.ladder.domain.line;
-import static nextstep.ladder.domain.line.LadderPointGenerator.generatePoint;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
@@ -29,15 +28,19 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(DirectionSelector directionSelector) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(generatePoint());
+        return next(directionSelector.hasRightDirection());
     }
 
     public static Direction of(boolean first, boolean second) {
         return new Direction(first, second);
+    }
+
+    public static Direction first(DirectionSelector directionSelector) {
+        return of(FALSE, directionSelector.hasRightDirection());
     }
 
     public static Direction first(boolean right) {

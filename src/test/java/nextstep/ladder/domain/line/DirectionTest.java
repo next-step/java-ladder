@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.line.Direction;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -9,6 +9,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class DirectionTest {
+    private DirectionSelector directionSelector;
+
+    @BeforeEach
+    public void setUp() {
+        directionSelector = () -> true;
+    }
     @Test
     public void init() {
         assertThat(Direction.of(true, false))
@@ -23,14 +29,14 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(directionSelector);
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            Direction.first(FALSE).next(directionSelector);
         }
     }
 

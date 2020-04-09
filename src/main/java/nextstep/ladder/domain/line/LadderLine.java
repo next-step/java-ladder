@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static nextstep.ladder.domain.line.LadderPointGenerator.generatePoint;
-
 public class LadderLine implements Iterable<Point>{
     private final List<Point> points;
 
@@ -39,7 +37,7 @@ public class LadderLine implements Iterable<Point>{
     }
 
     private static Point initFirst(List<Point> points) {
-        Point point = Point.first(generatePoint());
+        Point point = Point.first();
         points.add(point);
         return point;
     }
