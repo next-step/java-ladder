@@ -41,7 +41,7 @@ public class LadderTest {
                         Line.of(Arrays.asList(NOT_EXIST, IS_EXIST)),
                         Line.of(Arrays.asList(IS_EXIST, NOT_EXIST)))
         );
-        LadderResult result = LadderResult.ofComma("1,2,3");
+        LadderResult result = LadderResult.of(Arrays.asList("1","2","3"));
 
         LadderResultDto dto = ladder.getResult(result);
 

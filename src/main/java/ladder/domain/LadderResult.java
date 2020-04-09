@@ -21,15 +21,6 @@ public class LadderResult {
         return new LadderResult(results);
     }
 
-    public static LadderResult ofComma(String result) {
-        List<String> results = Arrays.stream(result.split(","))
-                .map(String::trim)
-                .collect(Collectors.toList());
-
-        return of(results);
-
-    }
-
     public List<String> getResults() {
         return results;
     }
