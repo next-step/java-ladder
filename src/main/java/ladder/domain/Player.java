@@ -6,7 +6,7 @@ public class Player {
 
     private final String name;
 
-    public static Player of(String input){
+    public static Player of(String input) {
         return new Player(input);
     }
 
@@ -20,8 +20,11 @@ public class Player {
     }
 
     private void validate(String input) {
-        if (input.length() > NAME_MAX_LENGTH || input.length() < NAME_MIN_LENGTH) {
-            throw new IllegalArgumentException("이름이 길거나 짧습니다.");
+        if (input.length() > NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException(String.format("이름이 %d보다 깁니다.", NAME_MAX_LENGTH));
+        }
+        if (input.length() < NAME_MIN_LENGTH) {
+            throw new IllegalArgumentException(String.format("이름이 %d보다 짧습니다.", NAME_MIN_LENGTH));
         }
     }
 }
