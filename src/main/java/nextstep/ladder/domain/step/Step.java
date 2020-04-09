@@ -1,51 +1,47 @@
 package nextstep.ladder.domain.step;
 
 import nextstep.ladder.domain.step.strategy.Movement;
+import nextstep.ladder.vo.Position;
 
-import java.util.Objects;
-
+/**
+ * 다음 스텝으로 이동가능한 좌표를 가지는 클래스
+ */
 public class Step {
-    private static final int ONE = 1;
+    private static final int MOVE_ONE = 1;
 
-    private final Bridge bridge;
-    private final boolean movable;
+    private final Position linePosition;
+    private final Position stepPosition;
 
-    private Step(Bridge bridge, boolean movable) {
-        this.bridge = bridge;
-        this.movable = movable;
+    public Step(int linePosition, int stepPosition, Movement movement) {
+        if (movement.isMovable()) {
+            linePosition++;
+        }
+        this.linePosition = new Position(linePosition);
+        this.stepPosition = new Position(stepPosition);
     }
 
-    public static Step of(Bridge bridge, Movement movement) {
-        return new Step(bridge, movement.isMovable());
+    public Step(int linePosition, int stepPosition) {
+        this(linePosition, stepPosition, () -> false);
     }
 
-    public int getPosition() {
-        return bridge.getStepPosition();
+    public Step move() {
+        return new Step(linePosition.getPosition(), stepPosition.getPosition() + MOVE_ONE);
     }
 
-    public boolean isMovableLine(int linePosition) {
-        return bridge.isEqaulLinePosition(linePosition) && movable;
+    public int getLinePosition() {
+        return linePosition.getPosition();
     }
 
-    public boolean isMovableNext(int linePosition) {
-        return !(bridge.isEqaulLinePosition(linePosition + ONE) && movable);
+    public int getStepPosition() {
+        return stepPosition.getPosition();
     }
 
-    public boolean isMovablePrev(int linePosition) {
-        return bridge.isEqaulLinePosition(linePosition + ONE) && movable;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Step step = (Step) o;
-        return movable == step.movable &&
-                Objects.equals(bridge, step.bridge);
+    public boolean isMovable(int linePosition) {
+        return this.linePosition.equals(new Position(linePosition));
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(movable, bridge);
+    public String toString() {
+        return linePosition.getPosition() + " " + stepPosition.getPosition();
     }
 }

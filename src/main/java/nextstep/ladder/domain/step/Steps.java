@@ -1,62 +1,71 @@
 package nextstep.ladder.domain.step;
 
-import nextstep.ladder.domain.Position;
 import nextstep.ladder.domain.step.strategy.RandomMovement;
-import nextstep.ladder.domain.step.strategy.StepGenerator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Steps {
-    private static final int ONE = 1;
-
     private final List<Step> steps;
-    private final Position linePosition;
+    private final int linePosition;
 
     private Steps(List<Step> steps, int linePosition) {
         this.steps = Collections.unmodifiableList(steps);
-        this.linePosition = new Position(linePosition);
+        this.linePosition = linePosition;
     }
 
-    public static Optional<Steps> movableNext(int height, int linePosition) {
-        return Optional.ofNullable(
-                IntStream.range(0, height)
-                        .mapToObj(stepPosition -> Step.of(Bridge.next(linePosition, stepPosition), new RandomMovement()))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps -> new Steps(steps, linePosition)))
-        );
+    public static Steps firstLineSteps(int height, int linePosition) {
+        List<Step> steps = new ArrayList<>();
+        for (int stepPosition = 0; stepPosition < height; stepPosition++) {
+            steps.add(new Step(linePosition, stepPosition, new RandomMovement()));
+        }
+        return new Steps(steps, linePosition);
     }
 
-    public static Optional<Steps> movableByPreviousCondition(Steps previouSteps, StepGenerator stepGenerator) {
-        int height = previouSteps.getLineHeight();
-        int currentLinePosition = previouSteps.nextLinePosition();
+    public static Steps middleLineSteps(Steps previousSteps) {
+        List<Step> steps = new ArrayList<>();
+        int linePosition = previousSteps.linePosition + 1;
 
-        return Optional.ofNullable(
-                IntStream.range(0, height)
-                        .mapToObj(stepPosition -> stepGenerator.generate(previouSteps, Bridge.current(currentLinePosition, stepPosition)))
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), steps -> new Steps(steps, currentLinePosition)))
-        );
+        for (Step previousStep : previousSteps.steps) {
+            steps.add(createMiddleLineStep(linePosition, previousStep));
+        }
+        return new Steps(steps, linePosition);
     }
 
-    private int getLineHeight() {
-        return steps.size();
+    private static Step createMiddleLineStep(int linePosition, Step previousStep) {
+        if (previousStep.isMovable(linePosition)) {
+            return new Step(linePosition - 1, previousStep.getStepPosition(), () -> false);
+        }
+        return new Step(linePosition, previousStep.getStepPosition(), new RandomMovement());
+    }
+
+    public static Steps lastLineSteps(Steps previousLineSteps) {
+        List<Step> steps = new ArrayList<>();
+        int linePosition = previousLineSteps.linePosition + 1;
+
+        for (Step previousLineStep : previousLineSteps.steps) {
+            steps.add(createLastLineStep(linePosition, previousLineStep));
+        }
+        return new Steps(steps, linePosition);
+    }
+
+    private static Step createLastLineStep(int linePosition, Step previousStep) {
+        if (previousStep.isMovable(linePosition)) {
+            return new Step(linePosition - 1, previousStep.getStepPosition(), () -> false);
+        }
+        return new Step(linePosition, previousStep.getStepPosition(), () -> false);
     }
 
     public List<Step> getSteps() {
         return steps;
     }
 
-    public Step get(int index) {
-        return steps.get(index);
+    public Step get(int i) {
+        return steps.get(i);
     }
 
-    public int getLinePosition() {
-        return linePosition.getPosition();
-    }
-
-    private int nextLinePosition() {
-        return linePosition.getPosition() + ONE;
+    public int size() {
+        return steps.size();
     }
 }
