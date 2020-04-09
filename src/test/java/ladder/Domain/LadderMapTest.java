@@ -2,6 +2,8 @@ package ladder.Domain;
 
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Random;
 
@@ -9,9 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderMapTest {
 
-    @Test
-    void createLadderMapTest() {
-        Users uesrs = Users.of("pobi,honux,crong,jk");
+    @ParameterizedTest
+    @ValueSource(strings = "pobi,honux,crong,jk", "pobi,honux,crong", "pobi,honux")
+    void createLadderMapTest(String input) {
+        Users uesrs = Users.of(input);
         int highest = 4;
         MoveStrategy moveStrategy = () -> true;
 
