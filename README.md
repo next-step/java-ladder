@@ -33,27 +33,25 @@
 * Members
     * Member 목록을 관리한다.
     * 입력 받은 문자열 값을 ',' 기준으로 분리하여 Member를 생성한다.
-    * Member 목록의 크기를 MemberCount로 반환한다.
 * Member
     * 입력 받은 문자열을 참여자의 이름으로 저장하여 관리한다.
-* MemberCount
-    * 입력 받은 참여자들의 숫자를 관리한다.
+* PoleCount
+    * 입력 받은 참여자들의 숫자(=사다리의 세로 라인 숫자)를 관리한다.
 * LadderGame
     * 사다리 게임을 관리한다.
-    * Members와 Ladder를 가진다.
+    * LadderGameExecutionInfo와 Ladder를 가진다.
     * 게임을 실행하여 LadderGameResult를 반환한다.
+* LadderGameExecutionInfo
+    * Members와 게임 보상인 LadderGameRewords를 관리한다.
 * Ladder
     * LadderLines와 LadderPoleResults를 관리한다.
-    * LadderLines의 실행 결과를 리턴한다.
-* LadderLines
-    * LadderHeight 만큼의 가로 줄(LadderLine)을 관리한다.
-    * LadderPole을 입력 받아 해당하는 게임 결과인 LadderGameReword를 리턴한다. 
+    * LadderLines의 실행 결과인 LadderPoles를 리턴한다.
 * LadderBridge
     * 사다리 pole 사이의 가로 줄 유무를 관리한다.
 * LadderHeight
     * 입력 받은 Ladder의 높이를 관리한다.
 * LadderLine
-    * (MemberCount - 1) 만큼의 LadderBridge를 관리한다.
+    * (PoleCount - 1) 만큼의 LadderBridge를 관리한다.
     * 입력받은 LadderPole을 LadderBridge에 맞게 진행하여 새로운 LadderPole으로 리턴한다.
 * LadderPole
     * 사다리의 pole (세로 라인) 을 관리한다. 
@@ -64,4 +62,4 @@
     * 입력 받은 문자열을 사다리 기둥의 결과로 저장하여 관리한다.    
 * LadderGameResult
     * 게임 결과를 관리한다.
-    * 게임 결과는 Member와 LadderPoleResult를 매칭하여 관리한다.
+    * 게임 결과는 Member와 LadderGameReword를 매칭하여 관리한다.
