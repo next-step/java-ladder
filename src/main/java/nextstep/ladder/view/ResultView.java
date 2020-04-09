@@ -64,7 +64,6 @@ public class ResultView {
         for (Point point : ladderLine) {
             System.out.print(VERTICAL_LINE);
             displayHorizontalLine(point);
-
         }
     }
 

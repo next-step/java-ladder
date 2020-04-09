@@ -1,4 +1,5 @@
 package nextstep.ladder.domain.line;
+
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;

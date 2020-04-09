@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.controller.RandomDirectionSelector;
-
 public class Point {
     private final int index;
     private final Direction direction;
