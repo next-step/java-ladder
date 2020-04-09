@@ -37,13 +37,28 @@ public class Ladder {
     }
 
     public LadderPoles proceedAll() {
-        LadderPoles ladderPoles = getInitLadderPoles();
+        List<LadderPole> ladderPoles = IntStream.range(0, getPoleCount())
+                .mapToObj(i -> proceed(LadderPole.of(i)))
+                .collect(Collectors.toList());
 
-        for (LadderLine ladderLine : lines) {
-            ladderPoles = ladderLine.proceedLine(ladderPoles);
+        return LadderPoles.newInstance(ladderPoles);
+    }
+
+    public LadderPole proceed(final LadderPole ladderPole) {
+        LadderPole preLadderPole = LadderPole.of(ladderPole);
+
+        for (LadderLine line : lines) {
+            preLadderPole = line.move(preLadderPole);
         }
 
-        return ladderPoles;
+        return preLadderPole;
+    }
+
+    public int getPoleCount() {
+        return lines.stream()
+                .findAny()
+                .orElseThrow(() -> new RuntimeException("ladderLine must be existed."))
+                .poleCount();
     }
 
     public List<LadderLine> getLines() {

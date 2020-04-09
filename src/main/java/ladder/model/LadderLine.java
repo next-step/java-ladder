@@ -1,8 +1,10 @@
 package ladder.model;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class LadderLine {
@@ -38,16 +40,22 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
-    private LadderMoveDirection findLadderMoveDirection(final int polePosition) {
+    public LadderPole move(final LadderPole ladderPole) {
+        int polePosition = ladderPole.toInt();
+
         if (polePosition != 0 && bridges.get(polePosition - 1) == LadderBridge.EXIST) {
-            return LadderMoveDirection.LEFT;
+            return LadderPole.of(polePosition - 1);
         }
 
         if (polePosition != bridges.size() && bridges.get(polePosition) == LadderBridge.EXIST) {
-            return LadderMoveDirection.RIGHT;
+            return LadderPole.of(polePosition + 1);
         }
 
-        return LadderMoveDirection.STAY;
+        return LadderPole.of(polePosition);
+    }
+
+    public int poleCount() {
+        return bridges.size() + 1;
     }
 
     public List<LadderBridge> getBridges() {
