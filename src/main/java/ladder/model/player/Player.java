@@ -48,21 +48,15 @@ public class Player {
     }
 
     private Direction findNextDirection(Row nextRow) {
-        return Direction.findDirection(isNextLeftValueTrue(nextRow), isNextRightValueTrue(nextRow));
+        return Direction.findDirection(isNextLeftPositionTrue(nextRow), isNextRightPositionTrue(nextRow));
     }
 
-    private boolean isNextLeftValueTrue(Row nextRow) {
-        if (isFirstNow()) {
-            return false;
-        }
-        return nextRow.getRowElement(position.add(DECREASE_ONE));
+    private boolean isNextLeftPositionTrue(Row nextRow) {
+        return isFirstNow() ? false : nextRow.getRowElement(position.add(DECREASE_ONE));
     }
 
-    private boolean isNextRightValueTrue(Row nextRow) {
-        if (isLastNow(nextRow)) {
-            return false;
-        }
-        return nextRow.getRowElement(position);
+    private boolean isNextRightPositionTrue(Row nextRow) {
+        return isLastNow(nextRow) ? false : nextRow.getRowElement(position);
     }
 
     private boolean isFirstNow() {
