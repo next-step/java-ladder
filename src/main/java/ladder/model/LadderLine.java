@@ -16,7 +16,7 @@ public class LadderLine {
         this.bridges = Collections.unmodifiableList(bridges);
     }
 
-    public static LadderLine newInstance(LadderBridge... bridges) {
+    public static LadderLine newInstance(final LadderBridge... bridges) {
         return new LadderLine(Arrays.asList(bridges));
     }
 

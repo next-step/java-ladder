@@ -27,7 +27,7 @@ public class LadderGameRewords {
         return newInstance(separateLineWithComma(rewords));
     }
 
-    private static LadderGameRewords newInstance(final String[] rewordArray) {
+    public static LadderGameRewords newInstance(final String[] rewordArray) {
         List<LadderGameReword> rewords = Arrays.stream(rewordArray)
                 .map(LadderGameReword::of)
                 .collect(Collectors.toList());
@@ -45,5 +45,18 @@ public class LadderGameRewords {
 
     public LadderGameReword get(int i) {
         return ladderGameRewords.get(i);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LadderGameRewords)) return false;
+        LadderGameRewords that = (LadderGameRewords) o;
+        return Objects.equals(ladderGameRewords, that.ladderGameRewords);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladderGameRewords);
     }
 }

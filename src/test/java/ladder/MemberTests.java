@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -38,5 +39,14 @@ public class MemberTests {
     public void generateMembersTests() {
         List<Member> members = Arrays.asList(Member.of("abc"), Member.of("bcd"));
         assertThatCode(() -> Members.newInstance(members)).doesNotThrowAnyException();
+    }
+
+    @DisplayName("참여자 복수 생성 테스트 - 비정상")
+    @Test
+    public void generateMembersAbnormalTests() {
+        List<Member> members = Collections.emptyList();
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Members.newInstance(members))
+                .withMessageContaining("Member must be existed.");
     }
 }

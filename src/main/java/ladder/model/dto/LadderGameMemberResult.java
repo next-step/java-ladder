@@ -33,7 +33,7 @@ public class LadderGameMemberResult {
         return new LadderGameMemberResult(allResult);
     }
 
-    private static String getAllMemberResultToString(Map<Member, LadderGameReword> result) {
+    private static String getAllMemberResultToString(final Map<Member, LadderGameReword> result) {
         return result.keySet()
                 .stream()
                 .map(member -> makeEachResultToString(member, result.get(member)))
@@ -47,7 +47,7 @@ public class LadderGameMemberResult {
                 NEW_LINE;
     }
 
-    public LadderGameReword get(String memberName) {
+    public LadderGameReword get(final String memberName) {
         return result.get(Member.of(memberName));
     }
 }

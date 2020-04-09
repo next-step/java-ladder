@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -24,11 +25,23 @@ public class LadderPoles {
         return new LadderPoles(poles);
     }
 
-    public LadderGameRewords convertToGameRewords(LadderGameRewords originLadderGameRewords) {
-        List<LadderGameReword> ladderGameRewords = ladderPoles.stream()
-                .map(pole -> originLadderGameRewords.get(pole.toInt()))
+    public static LadderPoles newInstance(final int ...poles) {
+        List<LadderPole> ladderPoles = Arrays.stream(poles)
+                .mapToObj(LadderPole::of)
                 .collect(Collectors.toList());
 
-        return LadderGameRewords.newInstance(ladderGameRewords);
+        return new LadderPoles(ladderPoles);
+    }
+
+    public LadderGameRewords convertToGameRewords(final LadderGameRewords ladderGameRewords) {
+        if(ladderPoles.size() != ladderGameRewords.count()) {
+            throw new IllegalArgumentException("ladderGameRewords count must be same as ladderPoles count to map ths game rewords result.");
+        }
+
+        List<LadderGameReword> mappedLadderGameRewords = ladderPoles.stream()
+                .map(pole -> ladderGameRewords.get(pole.toInt()))
+                .collect(Collectors.toList());
+
+        return LadderGameRewords.newInstance(mappedLadderGameRewords);
     }
 }
