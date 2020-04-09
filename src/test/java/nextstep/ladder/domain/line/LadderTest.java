@@ -12,7 +12,7 @@ public class LadderTest {
     @Test
     void height() {
         LadderSize ladderSize = new LadderSize(4, 2);
-        Ladder ladder = Ladder.valueOf(ladderSize);
+        Ladder ladder = new Ladder(ladderSize);
         assertThat(ladder.getHeight()).isEqualTo(ladderSize.getHeight());
     }
 }

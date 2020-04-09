@@ -9,12 +9,11 @@ import java.util.List;
 public class Ladder implements Iterable<LadderLine> {
     private List<LadderLine> ladder;
 
-    public static Ladder valueOf(LadderSize ladderSize) {
-        Ladder ladder = new Ladder(generateHorizontalLines(ladderSize));
-        return ladder;
+    public Ladder(LadderSize ladderSize) {
+        ladder = generateHorizontalLines(ladderSize);
     }
 
-    private static List<LadderLine> generateHorizontalLines(
+    private List<LadderLine> generateHorizontalLines(
             LadderSize ladderSize) {
         List<LadderLine> ladderLines = new ArrayList<>();
         for (int i = 0, size = ladderSize.getHeight(); i < size; i++) {
@@ -22,10 +21,6 @@ public class Ladder implements Iterable<LadderLine> {
         }
 
         return ladderLines;
-    }
-
-    private Ladder(List<LadderLine> ladderLines) {
-        this.ladder = new ArrayList<>(ladderLines);
     }
 
     public int getHeight() {

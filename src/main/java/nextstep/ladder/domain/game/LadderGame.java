@@ -5,7 +5,6 @@ import nextstep.ladder.domain.line.Ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final String NO_EQUAL_LENGTH_ERROR_MESSAGE =

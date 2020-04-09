@@ -22,7 +22,7 @@ public class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        ladder = Ladder.valueOf(new LadderSize(4, 5));
+        ladder = new Ladder(new LadderSize(4, 5));
 
         names = Arrays.asList("boram", "rambo", "luv", "ram");
         prizes = Arrays.asList("꽝", "5000", "꽝", "3000");
