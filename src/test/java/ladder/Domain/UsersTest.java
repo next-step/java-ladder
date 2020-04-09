@@ -39,4 +39,13 @@ public class UsersTest {
                 .hasSize(4)
                 .contains(User.of("pobi", position));
     }
+
+    @Test
+    void userNameTest() {
+        Position position = Position.of(0);
+        User user = User.of("pobi", position);
+
+        assertThat(user.getName()).isEqualTo("pobi");
+    }
+
 }

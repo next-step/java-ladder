@@ -6,6 +6,8 @@ import ladder.Domain.LadderMap;
 import ladder.View.InputView;
 import ladder.View.OutputView;
 
+import java.util.List;
+
 public class LadderController {
 
     private InputView inputView;
@@ -27,7 +29,9 @@ public class LadderController {
         int ladderHHeight = inputView.ladderHeightReader();
 
         LadderMap ladderMap = climber.createLadder(userNames, ladderHHeight);
+        List<String> climberNames = climber.getUserNames();
 
+        outputView.printUsersName(climberNames);
         outputView.printLadderMap(ladderMap);
     }
 }

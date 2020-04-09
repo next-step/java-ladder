@@ -1,6 +1,9 @@
 package ladder.Domain;
 
 
+import java.util.Collections;
+import java.util.List;
+
 public class User {
 
     private final String name;
@@ -13,6 +16,10 @@ public class User {
 
     public static User of(String name, Position position) {
         return new User(name, position);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

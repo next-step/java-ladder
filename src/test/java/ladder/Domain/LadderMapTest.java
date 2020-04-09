@@ -18,6 +18,7 @@ public class LadderMapTest {
         LadderMap ladderMap = LadderMap.of(uesrs, height, crossRoadStrategy);
 
         ladderMap.toList().forEach(line -> {
+            System.out.println(line.toList().toString());
             assertThat(line).isEqualTo(Line.of(Integer.parseInt(expected), crossRoadStrategy));
         });
     }

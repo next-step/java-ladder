@@ -20,7 +20,7 @@ public class Line {
     private List<Boolean> createCrossLine(int userCount, CrossRoadStrategy crossRoadStrategy) {
         List<Boolean> crossable = new ArrayList<>();
         
-        for (int i = 0; i < userCount; i++) {
+        for (int i = 0; i < userCount-1; i++) {
             crossable.add(isCreateCrossable(crossable, crossRoadStrategy));
         }
 
