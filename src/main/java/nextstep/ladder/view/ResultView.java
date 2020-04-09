@@ -15,21 +15,13 @@ public class ResultView {
     private static final String HORIZONTAL_LINE = "-";
     private static final String EMPTY_LINE = " ";
     private static final String VERTICAL_LINE = "|";
-    private static final String PRINT_ALL_RESULT_COMMAND = "all";
+
 
     public static void displayLadder(LadderGame ladderGame) {
         System.out.println(LADDER_MESSAGE);
         displayNames(ladderGame.getParticipantNames());
         displayLadder(ladderGame.getLadder());
         displayPrizes(ladderGame.getPrizeNames());
-    }
-
-    public static void displayResult(String command, LadderGame ladderGame) {
-        if (command.equals(PRINT_ALL_RESULT_COMMAND)) {
-            ResultView.displayResult(ladderGame.resultAll());
-            return;
-        }
-        ResultView.displayResult(ladderGame.result(command));
     }
 
     public static void displayResult(LadderGameResult ladderGameResult) {

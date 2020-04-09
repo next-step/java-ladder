@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LadderController {
     private static final String INIT_COMMAND = "";
-    private static final String FINISH_COMMAND = "all";
+    private static final String PRINT_ALL_RESULT_COMMAND = "all";
 
     public static void start() {
         List<String> participants = InputView.getParticipant();
@@ -19,18 +19,25 @@ public class LadderController {
         Ladder ladder = Ladder.valueOf(
                 new LadderSize(participants.size(), height)
         );
-        LadderGame ladderGame =
-                new LadderGame(participants, prizes, ladder);
+        LadderGame ladderGame = new LadderGame(participants, prizes, ladder);
         ResultView.displayLadder(ladderGame);
         selectResult(ladderGame);
     }
 
-    public static void selectResult(LadderGame ladderGame) {
+    private static void selectResult(LadderGame ladderGame) {
         String command = INIT_COMMAND;
-        while (!command.equals(FINISH_COMMAND)) {
+        while (!command.equals(PRINT_ALL_RESULT_COMMAND)) {
             command = InputView.selectResult();
-            ResultView.displayResult(command, ladderGame);
+            displayResult(command, ladderGame);
         }
+    }
+
+    private static void displayResult(String command, LadderGame ladderGame) {
+        if (PRINT_ALL_RESULT_COMMAND.equals(command)) {
+            ResultView.displayResult(ladderGame.resultAll());
+            return;
+        }
+        ResultView.displayResult(ladderGame.result(command));
     }
 
     private LadderController() {
