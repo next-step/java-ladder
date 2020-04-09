@@ -17,9 +17,7 @@ public class LadderController {
         List<String> prizes = InputView.getPrizesList();
         int height = InputView.getHeight();
         Ladder ladder = Ladder.valueOf(
-                new LadderSize(participants.size(), height),
-                new RandomLineSelector(),
-                new RandomRightDirection()
+                new LadderSize(participants.size(), height)
         );
         LadderGame ladderGame =
                 new LadderGame(participants, prizes, ladder);

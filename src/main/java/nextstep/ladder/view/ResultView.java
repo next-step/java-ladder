@@ -57,14 +57,14 @@ public class ResultView {
     }
 
     private static void displayLadder(Ladder ladder) {
-        for (HorizontalLine horizontalLine : ladder) {
-            displayHorizontalLine(horizontalLine);
+        for (LadderLine ladderLine : ladder) {
+            displayHorizontalLine(ladderLine);
             System.out.println();
         }
     }
 
-    private static void displayHorizontalLine(HorizontalLine horizontalLine) {
-        for (Point point : horizontalLine) {
+    private static void displayHorizontalLine(LadderLine ladderLine) {
+        for (Point point : ladderLine) {
             System.out.print(VERTICAL_LINE);
             displayHorizontalLine(point);
 
