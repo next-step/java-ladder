@@ -35,9 +35,9 @@ public class PlayerTest {
         Row row = createFirstRow();
 
         //when, then
-        assertThat(player.findNextLocation(row)).isEqualTo(new Position(1));
-        assertThat(player2.findNextLocation(row)).isEqualTo(new Position(0));
-        assertThat(player3.findNextLocation(row)).isEqualTo(new Position(2));
+        assertThat(player.findNextPosition(row)).isEqualTo(new Position(1));
+        assertThat(player2.findNextPosition(row)).isEqualTo(new Position(0));
+        assertThat(player3.findNextPosition(row)).isEqualTo(new Position(2));
     }
 
     @DisplayName("전체 Rows 를 주면, Player의 마지막 Location을 준다.")

@@ -38,33 +38,24 @@ public class Player {
 
     public Position findFinalLocation(Rows rows) {
         for (Row row : rows.getRows()) {
-            position = findNextLocation(row);
+            position = findNextPosition(row);
         }
         return position;
     }
 
-    public Position findNextLocation(Row nextRow) {
-        if (isNextLeftValueTrue(nextRow)) {
-            return findNextLocationWhenLeft(nextRow);
-        }
-        if (isNextRightValueTrue(nextRow)) {
-            return findNextLocationWhenRight(nextRow);
-        }
+    public Position findNextPosition(Row nextRow){
+        position = position.add(findNextDirection(nextRow).getIncrement());
         return position;
     }
 
-    private Position findNextLocationWhenRight(Row nextRow) {
-        if (isNextRightValueTrue(nextRow)) {
-            return new Position(position.getPosition() + INCREASE_ONE);
+    private Direction findNextDirection(Row nextRow){
+        if(isNextLeftValueTrue(nextRow)){
+            return Direction.LEFT;
         }
-        return position;
-    }
-
-    private Position findNextLocationWhenLeft(Row nextRow) {
-        if (isNextLeftValueTrue(nextRow)) {
-            position = new Position(position.getPosition() + DECREASE_ONE);
+        if(isNextRightValueTrue(nextRow)){
+            return Direction.RIGHT;
         }
-        return position;
+        return Direction.STAY;
     }
 
     private boolean isNextLeftValueTrue(Row nextRow) {
