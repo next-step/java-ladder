@@ -28,7 +28,7 @@ public class Ladder implements Iterable<LadderLine> {
         this.ladder = new ArrayList<>(ladderLines);
     }
 
-    public int height() {
+    public int getHeight() {
         return ladder.size();
     }
 
