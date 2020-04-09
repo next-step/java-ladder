@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.Gamers;
-import ladder.domain.LadderResult;
+import ladder.domain.ResultValues;
 import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.maker.RandomLadderMaker;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,7 +41,7 @@ public class LadderTest {
                         Line.of(Arrays.asList(NOT_EXIST, IS_EXIST)),
                         Line.of(Arrays.asList(IS_EXIST, NOT_EXIST)))
         );
-        LadderResult result = LadderResult.of(Arrays.asList("1","2","3"));
+        ResultValues result = ResultValues.of(Arrays.asList("1","2","3"));
 
         LadderResultDto dto = ladder.getResult(result);
 

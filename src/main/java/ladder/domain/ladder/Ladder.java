@@ -2,7 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.Gamer;
 import ladder.domain.Gamers;
-import ladder.domain.LadderResult;
+import ladder.domain.ResultValues;
 import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
 import ladder.domain.ladder.maker.MakeLadderStrategy;
@@ -42,15 +42,15 @@ public class Ladder {
         return new BarMatrixDto(lines.getRawMatrix());
     }
 
-    public LadderResultDto getResult(LadderResult ladderResult) {
+    public LadderResultDto getResult(ResultValues ladderResult) {
         Map<String, String> resultMap = gamers.getGamers()
                 .stream()
                 .collect(Collectors.toMap(Gamer::getName, gamer -> getResult(ladderResult, gamer)));
         return new LadderResultDto(resultMap);
     }
 
-    private String getResult(LadderResult ladderResult, Gamer gamer) {
+    private String getResult(ResultValues ladderResult, Gamer gamer) {
         LadderNumber ladderNumber = lines.getResultNumber(gamer);
-        return ladderResult.getResults().get(ladderNumber.getNumber());
+        return ladderResult.getResult(ladderNumber.getNumber());
     }
 }

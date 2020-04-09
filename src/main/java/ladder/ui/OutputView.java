@@ -2,7 +2,7 @@ package ladder.ui;
 
 import ladder.domain.Gamer;
 import ladder.domain.Gamers;
-import ladder.domain.LadderResult;
+import ladder.domain.ResultValues;
 import ladder.domain.dto.BarMatrixDto;
 import ladder.domain.dto.LadderResultDto;
 
@@ -50,8 +50,8 @@ public class OutputView {
                 .collect(Collectors.joining(LADDER_STICK, LADDER_STICK_START, LADDER_STICK));
     }
 
-    public void printResultCandidate(LadderResult ladderResult) {
-        String resultString = ladderResult.getResults()
+    public void printResultCandidate(ResultValues resultValues) {
+        String resultString = resultValues.getResults()
                 .stream()
                 .map(this::spacePadding5Center)
                 .map(this::ellipsis5Character)
