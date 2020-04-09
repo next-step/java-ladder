@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
 import static ladder.Messages.WARNING_NOT_ALLOWED_DUPLICATION_NAME;
 
 public class Players {
-    private static List<Player> players;
+    private List<Player> players;
 
     private Players(List<Player> players) {
         validateDuplicationName(players);
@@ -28,10 +28,6 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
-    }
-
-    public static Players getAllPlayers(){
-        return Players.create(players);
     }
 
     public Players findFinalLocationByName(Rows rows, String name) {

@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class Rows {
-    private static List<Row> rows;
+    private List<Row> rows;
 
     public Rows(List<Row> rows) {
         this.rows = Collections.unmodifiableList(rows);
@@ -24,10 +24,6 @@ public class Rows {
 
     public List<Row> getRows() {
         return rows;
-    }
-
-    public static Rows getAllRows(){
-        return new Rows(rows);
     }
 
     public int getSize() {
