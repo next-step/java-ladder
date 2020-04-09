@@ -1,27 +1,39 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PointTest {
-    @DisplayName("포인트는 방향 데이터를 저장한다.")
     @Test
-    void direction() {
-        Point point = new Point();
-        point.setLeftDirection(true);
-        assertThat(point.hasLeftDirection()).isTrue();
-        assertThat(point.hasRightDirection()).isFalse();
+    public void first() {
+        assertThat(Point.first(TRUE).move()).isEqualTo(1);
+        assertThat(Point.first(FALSE).move()).isEqualTo(0);
     }
 
-    @DisplayName("양방향 다 가질 수 없다.")
     @Test
-    void notTwoWayDirection() {
-        Point point = new Point();
-        point.setLeftDirection(true);
-        point.setRightDirection(true);
-        assertThat(point.hasLeftDirection()).isTrue();
-        assertThat(point.hasRightDirection()).isFalse();
+    public void next_stay() {
+        Point second = Point.first(FALSE).next(FALSE);
+        assertThat(second.move()).isEqualTo(1);
+    }
+
+    @Test
+    public void next_left() {
+        Point second = Point.first(TRUE).next(FALSE);
+        assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    public void next_right() {
+        Point second = Point.first(FALSE).next(TRUE);
+        assertThat(second.move()).isEqualTo(2);
+    }
+
+    @Test
+    public void next() {
+        Point second = Point.first(TRUE).next();
+        assertThat(second.move()).isEqualTo(0);
     }
 }

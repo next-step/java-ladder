@@ -1,37 +1,51 @@
 package nextstep.ladder.domain;
 
 public class Point {
-    private boolean leftDirection;
-    private boolean rightDirection;
+    private final int index;
+    private final Direction direction;
 
-    public Point() {
-        this.leftDirection = false;
-        this.rightDirection = false;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public boolean setRightDirection(boolean rightDirection) {
-        if (rightDirection && this.leftDirection) {
-            return false;
+    public int move() {
+        if (direction.isRight()) {
+            return index + 1;
         }
 
-        this.rightDirection = rightDirection;
-        return true;
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+
+        return this.index;
     }
 
-    public boolean setLeftDirection(boolean leftDirection) {
-        if (leftDirection && this.rightDirection) {
-            return false;
-        }
+    public Point next() {
+        return new Point(index + 1, direction.next());
+    }
 
-        this.leftDirection = leftDirection;
-        return true;
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 
     public boolean hasRightDirection() {
-        return rightDirection;
+        return direction.isRight();
     }
 
-    public boolean hasLeftDirection() {
-        return leftDirection;
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 }
