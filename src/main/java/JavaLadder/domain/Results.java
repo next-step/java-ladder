@@ -14,12 +14,16 @@ public class Results {
             allUserList(users);
             return;
         }
-        this.resultList.add(users.getUserByName(resultBuyPerson));
+        User user = users.getUserByName(resultBuyPerson);
+        if (user == null){
+            throw new IllegalArgumentException("사용자에 없는 이름입니다.[" + resultBuyPerson + "]");
+        }
+        resultList.add(user);
     }
 
     private void allUserList(Users users) {
         for (int i = 0; i < users.size(); i++) {
-            this.resultList.add(users.getUser(i));
+            resultList.add(users.getUser(i));
         }
     }
 

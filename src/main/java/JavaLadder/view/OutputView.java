@@ -2,6 +2,9 @@ package JavaLadder.view;
 
 import JavaLadder.domain.*;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 public class OutputView {
     private static final String LADDER_RESULT = "사다리결과";
     private static final String ACTION_RESULT = "실행 결과";
@@ -27,7 +30,7 @@ public class OutputView {
 
     private void printLadder(Ladder ladder) {
         for (int i = 0; i < ladder.size(); i++) {
-            Line list = (Line) ladder.getLadder(i);
+            Line list = (Line) ladder.getLineByLadder(i);
             System.out.printf("%s", LADDER);
             printLine(list);
             System.out.println();
@@ -44,8 +47,8 @@ public class OutputView {
 
     private void printLine(Line list) {
         for (int i = 0; i < list.size(); i++) {
-            printLine(list.isLine(i), LINE_TRUE);
-            printLine(!list.isLine(i), LINE_FALSE);
+            printLine(list.isTrue(i), LINE_TRUE);
+            printLine(!list.isTrue(i), LINE_FALSE);
         }
     }
 

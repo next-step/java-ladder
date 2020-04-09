@@ -1,6 +1,8 @@
 package JavaLadder.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Line {
     private List<Boolean> line = new ArrayList<>();
@@ -14,16 +16,19 @@ public class Line {
         this.line = list;
     }
 
+    public Line(GameInformation gameInformation) {
+        this(gameInformation.getUsers().size());
+    }
+
     private List generate(int countOfPerson) {
-        List<Boolean> points = new ArrayList();
         for (int i = 0; i < countOfPerson - 1; i++) {
             checkSuccessTrue(line, i);
         }
         return line;
     }
 
-    private void checkSuccessTrue(List<Boolean> line, int i) {
-        if (i > 0 && line.get(i - 1)) {
+    private void checkSuccessTrue(List<Boolean> line, int index) {
+        if (index > 0 && line.get(index - 1)) {
             line.add(false);
             return;
         }
@@ -31,25 +36,21 @@ public class Line {
         return;
     }
 
-    @Override
-    public String toString() {
-        return line.toString();
-    }
-
-    public Boolean isLine(int i) {
-        return this.line.get(i);
-    }
-
     public int size() {
-        return this.line.size();
+        return line.size();
     }
 
-    public int countLine() {
-        return (int) Arrays.asList(line).stream()
-                .filter(n -> true).count();
+    public boolean isTrue(int index) {
+        return line.get(index);
     }
 
-    public void moveByLine(Point point) {
+    public int numberOfTrue() {
+        return (int) line.stream()
+                .filter(n -> n.equals(true))
+                .count();
+    }
+
+    public void isMove(Point point) {
         if (isMostLeftPoint(point)) {
             checkRightMove(point);
             return;
@@ -62,32 +63,44 @@ public class Line {
     }
 
     private boolean isMostLeftPoint(Point point) {
-        return point.getPoint() == 0;
+        return point.isEqualToPoint(0);
     }
 
     private boolean isMostRightPoint(Point point) {
-        return point.getPoint() == line.size();
+        return point.isEqualToPoint(line.size());
     }
 
     private void checkLeftAndRightMove(Point point) {
         int originalPoint = point.getPoint();
         checkLeftMove(point);
-        if(originalPoint == point.getPoint()){
+        if (point.isEqualToPoint(originalPoint)) {
             checkRightMove(point);
         }
     }
 
     private void checkLeftMove(Point point) {
-        if (line.get(point.getPoint() - 1)) {
-            point.leftMove();
+        if (isLeftTrue(point)) {
+            point.moveLeft();
         }
         return;
     }
 
+    private Boolean isLeftTrue(Point point) {
+        return line.get(point.getPoint() - 1);
+    }
+
     private void checkRightMove(Point point) {
-        if (line.get(point.getPoint())) {
-            point.rightMove();
+        if (isRightTrue(point)) {
+            point.moveRight();
         }
         return;
+    }
+
+    private Boolean isRightTrue(Point point) {
+        return line.get(point.getPoint());
+    }
+
+    public boolean onlyFalse() {
+        return numberOfTrue() == 0;
     }
 }

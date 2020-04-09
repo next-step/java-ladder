@@ -2,28 +2,42 @@ package JavaLadder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Prizes {
     private static final String REGEX = ",";
-    private List<Prize> prizeList = new ArrayList<>();
+    private List<Prize> prizes = new ArrayList<>();
 
-    public Prizes(String inputValue) {
-        String[] splitInputValue = inputValue.split(REGEX);
+    public Prizes(String input) {
+        String[] splitInputValue = input.split(REGEX);
         for (int i = 0; i < splitInputValue.length; i++) {
             Prize prize = new Prize(splitInputValue[i]);
-            this.prizeList.add(prize);
+            this.prizes.add(prize);
         }
     }
 
     public String getPrize(int index) {
-        return prizeList.get(index).getPrize();
-    }
-
-    public String getPrize(Point point) {
-        return prizeList.get(point.getPoint()).getPrize();
+        return prizes.get(index).getPrize();
     }
 
     public int size() {
-        return this.prizeList.size();
+        return prizes.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prizes prizes1 = (Prizes) o;
+        return Objects.equals(prizes, prizes1.prizes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prizes);
+    }
+
+    public String getPrize(Point point) {
+        return prizes.get(point.getPoint()).getPrize();
     }
 }

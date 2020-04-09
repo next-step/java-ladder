@@ -9,29 +9,9 @@ public class Point {
         this.point = point;
     }
 
-    public Point() {
-        this.point = 0;
-    }
-
-    public int getPoint() {
-        return this.point;
-    }
-
-    public void leftMove() {
-        this.point--;
-    }
-
-    public void rightMove() {
-        this.point++;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(this.getPoint());
-    }
-
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point1 = (Point) o;
@@ -41,5 +21,28 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(point);
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void moveRight() {
+        point++;
+    }
+
+    public void moveLeft() {
+        point--;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "point=" + point +
+                '}';
+    }
+
+    public boolean isEqualToPoint(int number) {
+        return point == number;
     }
 }
