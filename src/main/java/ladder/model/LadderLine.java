@@ -18,7 +18,6 @@ public class LadderLine {
         return new LadderLine(Arrays.asList(bridges));
     }
 
-    // TODO: 2020-04-06 겹치는 구간이 없는지 validation 추가
     private void validate(final List<LadderBridge> bridges) {
         if (Objects.isNull(bridges) || bridges.isEmpty()) {
             throw new IllegalArgumentException("Ladder Bridge must be greater than zero.");
@@ -39,42 +38,23 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
-    public LadderPoles getInitLadderPoles() {
-        List<LadderPole> poles = IntStream.rangeClosed(0, bridges.size())
-                .mapToObj(LadderPole::of)
+    public LadderMoveDirections proceed() {
+        List<LadderMoveDirection> ladderMoveDirections = IntStream.rangeClosed(0, bridges.size())
+                .mapToObj(this::findLadderMoveDirection)
                 .collect(Collectors.toList());
-        return LadderPoles.newInstance(poles);
+        return LadderMoveDirections.newInstance(ladderMoveDirections);
     }
 
-    public LadderPoles proceed(LadderPoles ladderPoles) {
-        List<LadderPole> nextLadderPoles = ladderPoles.getLadderPoles()
-                .stream()
-                .map(ladderPole -> nextLadderPole(ladderPole))
-                .collect(Collectors.toList());
-
-        return LadderPoles.newInstance(nextLadderPoles);
-    }
-
-    private LadderPole nextLadderPole(final LadderPole ladderPole) {
-        return getNearLadderBridgeIndex(ladderPole.toInt()).stream()
-                .filter(i -> bridges.get(i) == LadderBridge.EXIST)
-                .findAny()
-                .map(ladderPole::move)
-                .orElse(ladderPole);
-    }
-
-    private List<Integer> getNearLadderBridgeIndex(final int polePosition) {
-        List<Integer> bridgeIndexes = new ArrayList<>();
-
-        if (polePosition != 0) {
-            bridgeIndexes.add(polePosition - 1);
+    private LadderMoveDirection findLadderMoveDirection(final int polePosition) {
+        if (polePosition != 0 && bridges.get(polePosition - 1) == LadderBridge.EXIST) {
+            return LadderMoveDirection.LEFT;
         }
 
-        if (polePosition != bridges.size()) {
-            bridgeIndexes.add(polePosition);
+        if (polePosition != bridges.size() && bridges.get(polePosition) == LadderBridge.EXIST) {
+            return LadderMoveDirection.RIGHT;
         }
 
-        return bridgeIndexes;
+        return LadderMoveDirection.STAY;
     }
 
     public List<LadderBridge> getBridges() {
