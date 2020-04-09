@@ -35,8 +35,8 @@ public class PrizeName {
         }
     }
 
-    private void validatePositive(String prizeName){
-        if(Integer.parseInt(prizeName) < MINIMUM_VALUE_FOR_POSITIVE){
+    private void validatePositive(String prizeName) {
+        if (Integer.parseInt(prizeName) < MINIMUM_VALUE_FOR_POSITIVE) {
             throw new IllegalArgumentException(WARNING_NOT_ALLOWED_NUMBER);
         }
     }
