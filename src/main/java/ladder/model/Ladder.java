@@ -46,13 +46,6 @@ public class Ladder {
         return ladderPoles;
     }
 
-    private LadderPoles getInitLadderPoles() {
-        return lines.stream()
-                .findAny()
-                .map(line -> LadderPoles.createDefault(line.getPoleCount()))
-                .orElseThrow(() -> new IllegalArgumentException("Can not find ladder line."));
-    }
-
     public List<LadderLine> getLines() {
         return lines;
     }

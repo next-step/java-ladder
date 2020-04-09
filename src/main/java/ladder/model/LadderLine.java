@@ -38,13 +38,6 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
-    public LadderMoveDirections proceed() {
-        List<LadderMoveDirection> ladderMoveDirections = IntStream.rangeClosed(0, bridges.size())
-                .mapToObj(this::findLadderMoveDirection)
-                .collect(Collectors.toList());
-        return LadderMoveDirections.newInstance(ladderMoveDirections);
-    }
-
     private LadderMoveDirection findLadderMoveDirection(final int polePosition) {
         if (polePosition != 0 && bridges.get(polePosition - 1) == LadderBridge.EXIST) {
             return LadderMoveDirection.LEFT;
