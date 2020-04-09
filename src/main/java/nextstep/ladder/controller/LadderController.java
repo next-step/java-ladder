@@ -32,10 +32,10 @@ public class LadderController {
 
     private static void displayResult(String command, LadderGame ladderGame) {
         if (PRINT_ALL_RESULT_COMMAND.equals(command)) {
-            ResultView.displayResult(ladderGame.resultAll());
+            ResultView.displayResult(ladderGame.getResultAll());
             return;
         }
-        ResultView.displayResult(ladderGame.result(command));
+        ResultView.displayResult(ladderGame.getResult(command));
     }
 
     private LadderController() {

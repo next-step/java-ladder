@@ -32,14 +32,14 @@ public class LadderGame {
         return ladder;
     }
 
-    public LadderGameResult result(String participantName) {
+    public LadderGameResult getResult(String participantName) {
         Participant participant = new Participant(participantName);
         int index = participants.indexOf(participant);
         int prizeIndex = ladder.getEndPointIndex(index);
         return new LadderGameResult(participant, prizes.get(prizeIndex));
     }
 
-    public List<LadderGameResult> resultAll() {
+    public List<LadderGameResult> getResultAll() {
         List<LadderGameResult> results = new ArrayList<>();
         for (int i = 0, width = participants.size(); i < width; i++) {
             int prizeIndex = ladder.getEndPointIndex(i);
