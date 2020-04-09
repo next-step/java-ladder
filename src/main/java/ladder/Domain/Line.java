@@ -2,6 +2,7 @@ package ladder.Domain;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
@@ -38,4 +39,10 @@ public class Line {
     public boolean movable(int position) {
         return row.get(position);
     }
+
+    public List<Boolean> toList() {
+        return Collections.unmodifiableList(row);
+    }
+
+
 }
