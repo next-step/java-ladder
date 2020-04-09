@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.game.exception.NoEqualLengthArgumentException;
-import nextstep.ladder.domain.game.exception.ParticipantNotFoundException;
 import nextstep.ladder.domain.line.Ladder;
 
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class LadderGame {
     public List<LadderGameResult> resultAll() {
         List<LadderGameResult> results = new ArrayList<>();
         for (int i = 0, width = participants.size(); i < width; i++) {
-            int prizeIndex = ladder.result(i);
+            int prizeIndex = ladder.getEndPointIndex(i);
             results.add(new LadderGameResult(participants.get(i),
                     prizes.get(prizeIndex)));
         }

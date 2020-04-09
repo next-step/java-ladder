@@ -32,8 +32,8 @@ public class Ladder implements Iterable<LadderLine> {
         return ladder.size();
     }
 
-    public int result(int index) {
-        int nextIndex = index;
+    public int getEndPointIndex(int startPointIndex) {
+        int nextIndex = startPointIndex;
         for (LadderLine ladderLine : ladder) {
             nextIndex = ladderLine.move(nextIndex);
         }
