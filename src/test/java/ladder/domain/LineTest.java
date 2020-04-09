@@ -22,9 +22,9 @@ class LineTest {
         int playerCount = 1;
         Line line = Line.of(playerCount);
 
-        List<Boolean> actual = line.getLine();
+        List<Stair> actual = line.getLine();
 
-        assertThat(actual.get(0)).isFalse();
+        assertThat(actual.get(0)).isEqualTo(new Stair(false));
     }
 
     @DisplayName("참여자 1명, 라인이 존재하지 않으면 참여자 시작위치를 그대로 반환한다.")
