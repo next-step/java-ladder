@@ -25,7 +25,7 @@ public class LadderPoles {
         return new LadderPoles(poles);
     }
 
-    public static LadderPoles newInstance(final int ...poles) {
+    public static LadderPoles newInstance(final int... poles) {
         List<LadderPole> ladderPoles = Arrays.stream(poles)
                 .mapToObj(LadderPole::of)
                 .collect(Collectors.toList());
@@ -34,7 +34,7 @@ public class LadderPoles {
     }
 
     public LadderGameRewords convertToGameRewords(final LadderGameRewords ladderGameRewords) {
-        if(ladderPoles.size() != ladderGameRewords.count()) {
+        if (ladderPoles.size() != ladderGameRewords.count()) {
             throw new IllegalArgumentException("ladderGameRewords count must be same as ladderPoles count to map ths game rewords result.");
         }
 

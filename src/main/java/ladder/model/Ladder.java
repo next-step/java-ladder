@@ -48,7 +48,7 @@ public class Ladder {
         LadderPole preLadderPole = LadderPole.of(ladderPole);
 
         for (LadderLine line : lines) {
-            preLadderPole = line.move(preLadderPole);
+            preLadderPole = line.moveLadderPole(preLadderPole);
         }
 
         return preLadderPole;

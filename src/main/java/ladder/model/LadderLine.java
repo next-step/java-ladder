@@ -40,7 +40,7 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
-    public LadderPole move(final LadderPole ladderPole) {
+    public LadderPole moveLadderPole(final LadderPole ladderPole) {
         int polePosition = ladderPole.toInt();
 
         if (polePosition != 0 && bridges.get(polePosition - 1) == LadderBridge.EXIST) {

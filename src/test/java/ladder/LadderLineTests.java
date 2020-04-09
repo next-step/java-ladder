@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.model.LadderBridge;
 import ladder.model.LadderLine;
+import ladder.model.LadderPole;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,11 +36,21 @@ public class LadderLineTests {
     @Test
     public void compareLadderLineTests() {
         LadderLine ladderLine = LadderLine.newInstance(7);
-        List<LadderBridge> bridges = ladderLine.getBridges();
-        assertThat(bridges.size()).isEqualTo(6);
+        assertThat(ladderLine.poleCount()).isEqualTo(7);
     }
 
-    @DisplayName("라인 생성 (가로 라인이 연속으로 나오지 않는지) 테스트")
+    @DisplayName("사다리 라인 움직임 테스트")
+    @Test
+    public void nextLadderPolesTests() {
+        LadderLine ladderLine = LadderLine.newInstance(LadderBridge.UN_EXIST, LadderBridge.EXIST, LadderBridge.UN_EXIST);
+
+        assertThat(ladderLine.moveLadderPole(LadderPole.of(0))).isEqualTo(LadderPole.of(0));
+        assertThat(ladderLine.moveLadderPole(LadderPole.of(1))).isEqualTo(LadderPole.of(2));
+        assertThat(ladderLine.moveLadderPole(LadderPole.of(2))).isEqualTo(LadderPole.of(1));
+        assertThat(ladderLine.moveLadderPole(LadderPole.of(3))).isEqualTo(LadderPole.of(3));
+    }
+
+    @DisplayName(" (가로 라인이 연속으로 나오지 않는지) 테스트")
     @Test
     public void generateLadderConsecutiveBridgeTests() {
         LadderLine ladderLine = LadderLine.newInstance(5);

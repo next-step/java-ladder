@@ -1,5 +1,7 @@
 package ladder.model;
 
+import java.util.Objects;
+
 public class LadderPole {
 
     private final int polePosition;
@@ -21,5 +23,18 @@ public class LadderPole {
 
     public int toInt() {
         return polePosition;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LadderPole)) return false;
+        LadderPole that = (LadderPole) o;
+        return polePosition == that.polePosition;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(polePosition);
     }
 }
