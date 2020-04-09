@@ -1,7 +1,6 @@
 package ladder.Domain;
 
 
-import ladder.Domain.MoveStrategy;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -14,8 +13,8 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void lineCreateTest(int input) {
-        MoveStrategy moveStrategy = () -> true;
-        Line line = Line.of(input, moveStrategy);
+        CrossRoadStrategy crossRoadStrategy = () -> true;
+        Line line = Line.of(input, crossRoadStrategy);
 
         IntStream.range(0, input)
                 .boxed()

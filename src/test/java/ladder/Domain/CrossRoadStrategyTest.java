@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MoveStrategyTest {
+public class CrossRoadStrategyTest {
 
     @Test
     void moveStrategyTest() {
-        MoveStrategy moveStrategy = () -> true;
+        CrossRoadStrategy crossRoadStrategy = () -> true;
 
-        assertThat(moveStrategy.movable()).isTrue();
+        assertThat(crossRoadStrategy.movable()).isTrue();
     }
 }

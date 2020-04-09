@@ -9,31 +9,31 @@ public class Line {
 
     private final List<Boolean> row;
 
-    private Line(int userCount, MoveStrategy moveStrategy) {
-        this.row = createCrossLine(userCount, moveStrategy);
+    private Line(int userCount, CrossRoadStrategy crossRoadStrategy) {
+        this.row = createCrossLine(userCount, crossRoadStrategy);
     }
 
-    public static Line of(int userCount, MoveStrategy moveStrategy) {
-        return new Line(userCount, moveStrategy);
+    public static Line of(int userCount, CrossRoadStrategy crossRoadStrategy) {
+        return new Line(userCount, crossRoadStrategy);
     }
 
-    private List<Boolean> createCrossLine(int userCount, MoveStrategy moveStrategy) {
+    private List<Boolean> createCrossLine(int userCount, CrossRoadStrategy crossRoadStrategy) {
         List<Boolean> crossable = new ArrayList<>();
         
         for (int i = 0; i < userCount; i++) {
-            crossable.add(isCreateCrossable(crossable, moveStrategy));
+            crossable.add(isCreateCrossable(crossable, crossRoadStrategy));
         }
 
         return crossable;
     }
     
-    private boolean isCreateCrossable(List<Boolean> crossable, MoveStrategy moveStrategy) {
+    private boolean isCreateCrossable(List<Boolean> crossable, CrossRoadStrategy crossRoadStrategy) {
         int position = crossable.size();
         if(position >= 1 && crossable.get(position - 1)) {
             return false;
         }
 
-        return moveStrategy.movable();
+        return crossRoadStrategy.movable();
     }
 
     public boolean movable(int position) {

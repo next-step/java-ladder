@@ -1,6 +1,6 @@
 package ladder.Domain;
 
 
-public interface MoveStrategy {
+public interface CrossRoadStrategy {
     public boolean movable();
 }
