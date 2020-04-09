@@ -40,7 +40,7 @@ public class Ladder {
         LadderPoles ladderPoles = getInitLadderPoles();
 
         for (LadderLine ladderLine : lines) {
-            ladderPoles = ladderLine.proceed(ladderPoles);
+            ladderPoles = ladderLine.proceedLine(ladderPoles);
         }
 
         return ladderPoles;
@@ -49,7 +49,7 @@ public class Ladder {
     private LadderPoles getInitLadderPoles() {
         return lines.stream()
                 .findAny()
-                .map(LadderLine::getInitLadderPoles)
+                .map(line -> LadderPoles.createDefault(line.getPoleCount()))
                 .orElseThrow(() -> new IllegalArgumentException("Can not find ladder line."));
     }
 
