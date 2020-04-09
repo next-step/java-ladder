@@ -12,10 +12,10 @@ public class LadderMapTest {
     @CsvSource(value = {"pobi,honux,crong,jk:4", "pobi,honux,crong:3", "pobi,honux:2"}, delimiter = ':')
     void createLadderMapTest(String input, String expected) {
         Users uesrs = Users.of(input);
-        int highest = 4;
+        int height = 4;
         CrossRoadStrategy crossRoadStrategy = () -> true;
 
-        LadderMap ladderMap = LadderMap.of(uesrs, highest, crossRoadStrategy);
+        LadderMap ladderMap = LadderMap.of(uesrs, height, crossRoadStrategy);
 
         ladderMap.toList().forEach(line -> {
             assertThat(line).isEqualTo(Line.of(Integer.parseInt(expected), crossRoadStrategy));
