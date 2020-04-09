@@ -1,8 +1,9 @@
 package ladder.model;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderPoles {
 
@@ -23,7 +24,11 @@ public class LadderPoles {
         return new LadderPoles(poles);
     }
 
-    public List<LadderPole> getLadderPoles() {
-        return ladderPoles;
+    public LadderGameRewords convertToGameRewords(LadderGameRewords originLadderGameRewords) {
+        List<LadderGameReword> ladderGameRewords = ladderPoles.stream()
+                .map(pole -> originLadderGameRewords.get(pole.toInt()))
+                .collect(Collectors.toList());
+
+        return LadderGameRewords.newInstance(ladderGameRewords);
     }
 }

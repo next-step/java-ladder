@@ -24,8 +24,7 @@ public class LadderGame {
     }
 
     public LadderGameResult start() {
-        LadderPoles ladderPoles = ladder.proceedAll();
-        return ladderGameInfo.makeGameResult(ladderPoles);
+        return ladderGameInfo.makeGameResult(ladder.proceedAll());
     }
 
     public LadderGameExecutionInfo getLadderGameInfo() {

@@ -1,8 +1,6 @@
 package ladder.model;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class LadderGameExecutionInfo {
 
@@ -30,16 +28,7 @@ public class LadderGameExecutionInfo {
     }
 
     public LadderGameResult makeGameResult(final LadderPoles ladderPoles) {
-        return LadderGameResult.newInstance(members, convertGameRewordOrderAfterExecution(ladderPoles));
-    }
-
-    private LadderGameRewords convertGameRewordOrderAfterExecution(final LadderPoles ladderPoles) {
-        List<LadderGameReword> ladderGameRewords = ladderPoles.getLadderPoles()
-                .stream()
-                .map(pole -> originLadderGameRewords.get(pole.toInt()))
-                .collect(Collectors.toList());
-
-        return LadderGameRewords.newInstance(ladderGameRewords);
+        return LadderGameResult.newInstance(members, ladderPoles.convertToGameRewords(originLadderGameRewords));
     }
 
     public int count() {
