@@ -1,6 +1,4 @@
-package nextstep.ladder.controller;
-
-import nextstep.ladder.domain.line.DirectionSelector;
+package nextstep.ladder.domain.line;
 
 import java.util.Random;
 
