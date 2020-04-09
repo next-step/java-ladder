@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.drawable.Drawable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,24 +22,30 @@ public class VerticalLines {
         return verticalLines.stream()
                 .filter(v -> v.getLineNo() == index)
                 .findFirst()
-                .orElse(null);
+                .orElseGet(null);
     }
 
     public int getSize() {
         return this.verticalLines.size();
     }
 
-    public void drawSideLine(VerticalLine verticalLine, int height) {
-        VerticalLine rightVerticalLine = getRightLine(verticalLine);
-        if (rightVerticalLine != null) {
-            verticalLine.addPoint(height, rightVerticalLine.getLineNo());
-            rightVerticalLine.addPoint(height, verticalLine.getLineNo());
+    public void drawSideLines(int height, Drawable drawable) {
+        int verticalLinesSize = verticalLines.size();
+        for (int i = 1; i < verticalLinesSize; i++) {
+            VerticalLine verticalLine = getLine(i);
+            IntStream.rangeClosed(1, height)
+                    .forEach(h -> drawSideLine(verticalLine, h, drawable));
         }
     }
 
-    private VerticalLine getRightLine(VerticalLine verticalLine) {
-        return Optional.ofNullable(getLine(verticalLine.getLineNo() + 1))
-                .orElse(null);
+    private void drawSideLine(VerticalLine verticalLine, int height, Drawable drawable) {
+        if (drawable.isDraw() && !verticalLine.isExistPoint(height)) {
+            Optional.ofNullable(getLine(verticalLine.getLineNo() + 1))
+                    .ifPresent(rightVerticalLine -> {
+                        verticalLine.addPoint(height, rightVerticalLine.getLineNo());
+                        rightVerticalLine.addPoint(height, verticalLine.getLineNo());
+                    });
+        }
     }
 
     private List<VerticalLine> drawVerticalLines(int lineCount) {
