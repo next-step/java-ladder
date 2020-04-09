@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
 @FunctionalInterface
 public interface LineSelector {

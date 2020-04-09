@@ -1,6 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
 
-import nextstep.ladder.domain.exception.IllegalMaxLengthValueException;
+import nextstep.ladder.domain.game.exception.IllegalMaxLengthValueException;
 
 public class Prize {
     private static final int MAX_NAME_LENGTH = 5;

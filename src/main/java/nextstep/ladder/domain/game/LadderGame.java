@@ -1,6 +1,8 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
 
-import nextstep.ladder.domain.exception.NoEqualLengthArgumentException;
+import nextstep.ladder.domain.game.exception.NoEqualLengthArgumentException;
+import nextstep.ladder.domain.game.exception.ParticipantNotFoundException;
+import nextstep.ladder.domain.line.Ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,9 @@ import java.util.stream.Collectors;
 public class LadderGame {
     private static final String NO_EQUAL_LENGTH_ERROR_MESSAGE =
             "참가자 수와 경품 수가 맞지 않습니다.";
+    private static final String PARTICIPANT_NOT_FOUND_ERROR_MESSAGE =
+            "알 수 없는 참가자 이름입니다";
+    private static final int NO_EXIST_INDEX = -1;
     private Ladder ladder;
     private Participants participants;
     private Prizes prizes;
@@ -34,6 +39,10 @@ public class LadderGame {
     public LadderGameResult result(String participantName) {
         Participant participant = new Participant(participantName);
         int index = participants.indexOf(participant);
+        if (index == NO_EXIST_INDEX) {
+            throw new ParticipantNotFoundException(
+                    PARTICIPANT_NOT_FOUND_ERROR_MESSAGE);
+        }
         int prizeIndex = ladder.result(index);
         return new LadderGameResult(participant, prizes.get(prizeIndex));
     }

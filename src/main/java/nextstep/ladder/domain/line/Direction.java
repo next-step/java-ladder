@@ -1,5 +1,5 @@
-package nextstep.ladder.domain;
-import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
+package nextstep.ladder.domain.line;
+import static nextstep.ladder.domain.line.LadderPointGenerator.generatePoint;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;

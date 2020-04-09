@@ -1,6 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.RightDirection;
+import nextstep.ladder.domain.line.RightDirection;
 
 import java.util.Random;
 

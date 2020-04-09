@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
+
+import nextstep.ladder.domain.game.LadderSize;
 
 import java.util.ArrayList;
 import java.util.Iterator;

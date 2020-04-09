@@ -1,6 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
 
-import nextstep.ladder.domain.exception.IllegalMaxLengthValueException;
+import nextstep.ladder.domain.game.exception.IllegalMaxLengthValueException;
+import nextstep.ladder.domain.game.Participant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

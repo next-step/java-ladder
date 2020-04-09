@@ -1,5 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
+import nextstep.ladder.domain.game.LadderSize;
+import nextstep.ladder.domain.line.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

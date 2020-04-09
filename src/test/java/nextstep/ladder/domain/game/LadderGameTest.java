@@ -1,6 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
 
-import nextstep.ladder.domain.exception.NoEqualLengthArgumentException;
+import nextstep.ladder.domain.game.exception.NoEqualLengthArgumentException;
+import nextstep.ladder.domain.game.LadderGame;
+import nextstep.ladder.domain.game.LadderSize;
+import nextstep.ladder.domain.line.Ladder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

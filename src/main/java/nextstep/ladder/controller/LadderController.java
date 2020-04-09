@@ -1,8 +1,8 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.LadderSize;
+import nextstep.ladder.domain.line.Ladder;
+import nextstep.ladder.domain.game.LadderGame;
+import nextstep.ladder.domain.game.LadderSize;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 

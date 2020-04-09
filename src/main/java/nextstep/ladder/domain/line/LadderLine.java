@@ -1,10 +1,10 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
+import static nextstep.ladder.domain.line.LadderPointGenerator.generatePoint;
 
 public class LadderLine implements Iterable<Point>{
     private final List<Point> points;
