@@ -44,5 +44,12 @@ public class Line {
         return Collections.unmodifiableList(row);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Line compareLine = (Line) obj;
+        System.out.println(compareLine.row.toString());
+        System.out.println(this.row.toString());
 
+        return this.row.toString().equals(compareLine.row.toString());
+    }
 }
