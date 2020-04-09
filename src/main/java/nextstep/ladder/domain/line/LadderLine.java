@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class LadderLine implements Iterable<Point>{
+public class LadderLine implements Iterable<Point> {
     private final List<Point> points;
 
     public LadderLine(List<Point> points) {
@@ -15,16 +15,17 @@ public class LadderLine implements Iterable<Point>{
         return points.get(position).move();
     }
 
-    public static LadderLine init(int sizeOfPerson) {
+    public static LadderLine init(int width) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
-        point = initBody(sizeOfPerson, points, point);
+        point = initBody(width, points, point);
         initLast(points, point);
         return new LadderLine(points);
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
-        for (int i = 1; i < sizeOfPerson - 1; i++) {
+    private static Point initBody(int width, List<Point> points,
+                                  Point point) {
+        for (int i = 1; i < width - 1; i++) {
             point = point.next();
             points.add(point);
         }

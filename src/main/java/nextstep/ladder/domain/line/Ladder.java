@@ -9,6 +9,9 @@ import java.util.List;
 public class Ladder implements Iterable<LadderLine> {
     private List<LadderLine> ladder;
 
+    public Ladder(List<LadderLine> ladder) {
+        this.ladder = ladder;
+    }
     public Ladder(LadderSize ladderSize) {
         ladder = generateHorizontalLines(ladderSize);
     }
