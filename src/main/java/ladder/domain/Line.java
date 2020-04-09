@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private static final String WIDTH_REQUIRED = "가로줄이 존재해야합니다.";
+    private static final String WIDTH_REQUIRED = "가로라인이 존재해야합니다.";
     private final List<Boolean> widthLines;
 
     public Line(List<Boolean> width) {
@@ -16,6 +16,10 @@ public class Line {
             throw new IllegalArgumentException(WIDTH_REQUIRED);
         }
         return new ArrayList<>(horizontalLines);
+    }
+
+    public List<Boolean> getWidthLines() {
+        return widthLines;
     }
 
     @Override

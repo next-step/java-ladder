@@ -14,7 +14,7 @@ public class WidthGenerator {
         List<Boolean> lines = new ArrayList<>();
         int maxLine = personCount - 1;
         for (int line = 0; line < maxLine; line++) {
-            lines.add(Math.round(Math.random() * 9) < 0.5);
+            lines.add(Math.round(Math.random()) < 0.5);
         }
         return lines;
     }

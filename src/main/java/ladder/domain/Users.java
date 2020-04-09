@@ -18,6 +18,14 @@ public class Users {
         return new ArrayList<>(users);
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public int size() {
+        return users.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
