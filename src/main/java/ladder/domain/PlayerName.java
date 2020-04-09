@@ -6,6 +6,7 @@ import ladder.exception.NameLengthOutOfBoundException;
 import java.util.Objects;
 
 public class PlayerName {
+    private static final String ALL = "all";
     private static final int NAME_MAX_LENGTH = 5;
 
     private final String name;
@@ -18,6 +19,10 @@ public class PlayerName {
 
     public String value() {
         return name;
+    }
+
+    public boolean isAll() {
+        return name.equals(ALL);
     }
 
     private void validName(final String name) {
