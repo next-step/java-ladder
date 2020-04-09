@@ -6,22 +6,22 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+public class LadderLine {
     @Getter
     private List<ActionType> actions;
 
-    public Line(List<ActionType> actions) {
+    public LadderLine(List<ActionType> actions) {
         this.actions = actions;
     }
 
-    public static List<Line> listOf(int userCount, int lineHeight) {
-        List<Line> lines = new ArrayList<>();
+    public static List<LadderLine> listOf(int userCount, int lineHeight) {
+        List<LadderLine> ladderLines = new ArrayList<>();
 
         for (int i = 0; i < lineHeight; i++) {
-            lines.add(new Line(ActionType.listOf(userCount)));
+            ladderLines.add(new LadderLine(ActionType.listOf(userCount)));
         }
 
-        return lines;
+        return ladderLines;
     }
 
     public int getActionsSize() {

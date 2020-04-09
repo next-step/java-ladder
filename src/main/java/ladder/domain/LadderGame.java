@@ -15,10 +15,10 @@ public class LadderGame {
     @Getter
     private Users users;
 
-    public LadderGame(List<Line> lines, List<String> userNames, List<String> rewards) {
+    public LadderGame(List<LadderLine> ladderLines, List<String> userNames, List<String> rewards) {
         validResultValues(rewards.size(), userNames.size());
 
-        this.ladder = new Ladder(lines, new LadderReward(rewards));
+        this.ladder = new Ladder(ladderLines, new LadderReward(rewards));
         this.users = new Users(userNames, ladder);
     }
 
@@ -26,7 +26,7 @@ public class LadderGame {
         String[] userNames = userNameValues.split(REGEX);
         List<String> rewards = Arrays.asList(resultValues.split(REGEX));
 
-        return new LadderGame(Line.listOf(userNames.length, Integer.parseInt(heightValue)), Arrays.asList(userNames), rewards);
+        return new LadderGame(LadderLine.listOf(userNames.length, Integer.parseInt(heightValue)), Arrays.asList(userNames), rewards);
     }
 
     private void validResultValues(int rewardNumber, int userNumber) {

@@ -16,10 +16,10 @@ public class LadderGameTest {
     void of() {
         LadderGame ladderGame = LadderGame.of("pobi,honux,crong,jk", "5", "꽝,5000,꽝,3000");
 
-        assertThat(ladderGame.getLadder().getLines()).hasSize(5);
+        assertThat(ladderGame.getLadder().getLadderLines()).hasSize(5);
 
         ladderGame.getLadder()
-                .getLines()
+                .getLadderLines()
                 .forEach(line -> assertThat(line.getActionsSize()).isEqualTo(4));
     }
 
@@ -39,13 +39,13 @@ public class LadderGameTest {
 
     @Test
     void ladderGame() {
-        List<Line> lines = Arrays.asList(new Line(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)),
-                new Line(Arrays.asList(ActionType.DOWN, ActionType.RIGHT, ActionType.LEFT)),
-                new Line(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)));
+        List<LadderLine> ladderLines = Arrays.asList(new LadderLine(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)),
+                new LadderLine(Arrays.asList(ActionType.DOWN, ActionType.RIGHT, ActionType.LEFT)),
+                new LadderLine(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)));
         List<String> userNames = Arrays.asList("seulp", "seul", "pobi");
         List<String> rewards = Arrays.asList("꽝", "100억", "1000억");
 
-        LadderGame game = new LadderGame(lines, userNames, rewards);
+        LadderGame game = new LadderGame(ladderLines, userNames, rewards);
 
         List<User> users = game.getUsers().getUsers();
 

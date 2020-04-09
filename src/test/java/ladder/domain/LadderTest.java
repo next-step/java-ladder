@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
     private LadderReward reward;
-    private List<Line> lines;
+    private List<LadderLine> ladderLines;
 
     private ActionType down = ActionType.DOWN;
     private ActionType right = ActionType.RIGHT;
@@ -24,21 +24,21 @@ public class LadderTest {
     @BeforeEach
     void setUp() {
         reward = new LadderReward(Arrays.asList("꽝", "5000", "꽝"));
-        lines = new ArrayList<>(Arrays.asList(new Line(Arrays.asList(right, left, down)), new Line(Arrays.asList(down, left, right))));
+        ladderLines = new ArrayList<>(Arrays.asList(new LadderLine(Arrays.asList(right, left, down)), new LadderLine(Arrays.asList(down, left, right))));
     }
 
     @Test
     void ladder_exception() {
-        lines.add(new Line(Arrays.asList(right, left, down)));
+        ladderLines.add(new LadderLine(Arrays.asList(right, left, down)));
 
-        assertThatThrownBy(() -> new Ladder(lines, reward))
+        assertThatThrownBy(() -> new Ladder(ladderLines, reward))
                 .isInstanceOf(LadderException.class)
                 .hasMessageContaining(ExceptionType.INVALID_LINE_SIZE.getErrorMessage());
     }
 
     @Test
     void getReward() {
-        Ladder ladder = new Ladder(lines, reward);
+        Ladder ladder = new Ladder(ladderLines, reward);
 
         String actual = ladder.getReward(1);
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineTest {
+public class LadderLineTest {
     private ActionType leftType;
     private ActionType rightType;
     private ActionType downType;
@@ -25,17 +25,17 @@ public class LineTest {
 
     @Test
     void listOf() {
-        List<Line> lines = Line.listOf(3, 5);
+        List<LadderLine> ladderLines = LadderLine.listOf(3, 5);
 
-        assertThat(lines).hasSize(5);
-        assertThat(lines.get(0).getActionsSize()).isEqualTo(3);
+        assertThat(ladderLines).hasSize(5);
+        assertThat(ladderLines.get(0).getActionsSize()).isEqualTo(3);
     }
 
     @Test
     void getActionsSize() {
-        Line line = new Line(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN));
+        LadderLine ladderLine = new LadderLine(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN));
 
-        int actual = line.getActionsSize();
+        int actual = ladderLine.getActionsSize();
 
         assertThat(actual).isEqualTo(3);
     }
@@ -43,9 +43,9 @@ public class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"0:1", "1:-1", "2:0", "3:1", "4:-1"}, delimiter = ':')
     void getMovePoint(int value, int expected) {
-        Line line = new Line(Arrays.asList(rightType, leftType, downType, rightType, leftType));
+        LadderLine ladderLine = new LadderLine(Arrays.asList(rightType, leftType, downType, rightType, leftType));
 
-        int actual = line.getMovePoint(value);
+        int actual = ladderLine.getMovePoint(value);
 
         assertThat(actual).isEqualTo(expected);
     }

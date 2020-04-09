@@ -8,22 +8,22 @@ import java.util.List;
 
 public class Ladder {
     @Getter
-    private List<Line> lines;
+    private List<LadderLine> ladderLines;
     @Getter
     private LadderReward ladderReward;
 
-    public Ladder(List<Line> lines, LadderReward rewards) {
-        validRewardSize(rewards, lines.get(0).getActionsSize());
+    public Ladder(List<LadderLine> ladderLines, LadderReward rewards) {
+        validRewardSize(rewards, ladderLines.get(0).getActionsSize());
 
-        this.lines = lines;
+        this.ladderLines = ladderLines;
         this.ladderReward = rewards;
     }
 
     public String getReward(int startIndex) {
         int lineIndex = startIndex;
 
-        for (Line line : this.lines) {
-            lineIndex += line.getMovePoint(lineIndex);
+        for (LadderLine ladderLine : this.ladderLines) {
+            lineIndex += ladderLine.getMovePoint(lineIndex);
         }
 
         return ladderReward.getReward(lineIndex);

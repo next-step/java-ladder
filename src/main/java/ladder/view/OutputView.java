@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.LadderGame;
-import ladder.domain.Line;
+import ladder.domain.LadderLine;
 import ladder.domain.User;
 import ladder.domain.type.ActionType;
 
@@ -63,10 +63,10 @@ public class OutputView {
     }
 
     private static void printLadder(LadderGame ladderGame) {
-        for (Line line : ladderGame.getLadder().getLines()) {
+        for (LadderLine ladderLine : ladderGame.getLadder().getLadderLines()) {
             System.out.printf("\n%4s", "");
 
-            line.getActions().forEach(point -> {
+            ladderLine.getActions().forEach(point -> {
                 System.out.printf(HEIGHT);
                 printPoint(point);
             });

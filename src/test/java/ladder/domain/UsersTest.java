@@ -16,10 +16,10 @@ public class UsersTest {
 
     @BeforeEach
     void setUp() {
-        List<Line> lines = Arrays.asList(new Line(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)),
-                new Line(Arrays.asList(ActionType.DOWN, ActionType.RIGHT, ActionType.LEFT)));
+        List<LadderLine> ladderLines = Arrays.asList(new LadderLine(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)),
+                new LadderLine(Arrays.asList(ActionType.DOWN, ActionType.RIGHT, ActionType.LEFT)));
 
-        ladder = new Ladder(lines, new LadderReward(Arrays.asList("100", "꽝", "200")));
+        ladder = new Ladder(ladderLines, new LadderReward(Arrays.asList("100", "꽝", "200")));
     }
 
     @Test
