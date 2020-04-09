@@ -52,14 +52,10 @@ public class LadderGame {
     }
 
     public List<String> getParticipantNames() {
-        return participants.stream()
-                .map(Participant::getName)
-                .collect(Collectors.toList());
+        return participants.getNames();
     }
 
     public List<String> getPrizeNames() {
-        return prizes.stream()
-                .map(Prize::getName)
-                .collect(Collectors.toList());
+        return prizes.getNames();
     }
 }

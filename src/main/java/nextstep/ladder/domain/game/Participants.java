@@ -5,7 +5,6 @@ import nextstep.ladder.domain.game.exception.ParticipantNotFoundException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Participants implements Iterable<Participant> {
     private static final String PARTICIPANT_NOT_FOUND_ERROR_MESSAGE =
@@ -37,8 +36,10 @@ public class Participants implements Iterable<Participant> {
         return index;
     }
 
-    public Stream<Participant> stream() {
-        return participantList.stream();
+    public List<String> getNames() {
+        return participantList.stream()
+                .map(Participant::getName)
+                .collect(Collectors.toList());
     }
 
     @Override
