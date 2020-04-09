@@ -6,7 +6,6 @@ import ladder.model.row.Rows;
 public class Player {
     private static final int ZERO_LOCATION = 0;
     private static final int DECREASE_ONE = -1;
-    private static final int INCREASE_ONE = +1;
 
     private PlayerName name;
     private Position position;
@@ -43,19 +42,13 @@ public class Player {
         return position;
     }
 
-    public Position findNextPosition(Row nextRow){
+    public Position findNextPosition(Row nextRow) {
         position = position.add(findNextDirection(nextRow).getIncrement());
         return position;
     }
 
-    private Direction findNextDirection(Row nextRow){
-        if(isNextLeftValueTrue(nextRow)){
-            return Direction.LEFT;
-        }
-        if(isNextRightValueTrue(nextRow)){
-            return Direction.RIGHT;
-        }
-        return Direction.STAY;
+    private Direction findNextDirection(Row nextRow) {
+        return Direction.findDirection(isNextLeftValueTrue(nextRow), isNextRightValueTrue(nextRow));
     }
 
     private boolean isNextLeftValueTrue(Row nextRow) {
