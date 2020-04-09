@@ -15,7 +15,7 @@ public class ClimberTest {
 
     @BeforeEach
     void setUp() {
-        climber = Climber.init();
+        climber = Climber.of();
     }
 
     @ParameterizedTest
