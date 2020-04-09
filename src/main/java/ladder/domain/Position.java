@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
-    public static final int DEFAULT_MOVEMENT_POSITION = 1;
+    public static final int NEXT = 1;
 
     private final int position;
 
@@ -16,11 +16,11 @@ public class Position {
     }
 
     Position left() {
-        return new Position(position - DEFAULT_MOVEMENT_POSITION);
+        return new Position(position - NEXT);
     }
 
     Position right() {
-        return new Position(position + DEFAULT_MOVEMENT_POSITION);
+        return new Position(position + NEXT);
     }
 
     @Override
