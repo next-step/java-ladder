@@ -18,7 +18,7 @@ public class VerticalLine {
         return this.lineNo;
     }
 
-    public int getPointCount(){
+    public int getPointCount() {
         return this.points.size();
     }
 
@@ -37,6 +37,10 @@ public class VerticalLine {
     public boolean isDrawing(int heightPosition) {
         return points.stream()
                 .anyMatch(p -> p.isHeightPosition(heightPosition) && p.isEndPointLineNumber(lineNo + 1));
+    }
+
+    public boolean isLineNumber(int lineNumber) {
+        return this.lineNo == lineNumber;
     }
 
     public void addPoint(int heightPosition, int endPointLineNo) {

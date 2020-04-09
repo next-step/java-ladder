@@ -18,9 +18,9 @@ public class VerticalLines {
         this.verticalLines = verticalLines;
     }
 
-    public VerticalLine getLine(int index) {
+    public VerticalLine getLine(int no) {
         return verticalLines.stream()
-                .filter(v -> v.getLineNo() == index)
+                .filter(v -> v.isLineNumber(no))
                 .findFirst()
                 .orElseGet(null);
     }
@@ -32,9 +32,13 @@ public class VerticalLines {
     public void drawSideLines(int height, Drawable drawable) {
         int verticalLinesSize = verticalLines.size();
         for (int i = 1; i < verticalLinesSize; i++) {
-            VerticalLine verticalLine = getLine(i);
-            IntStream.rangeClosed(1, height)
-                    .forEach(h -> drawSideLine(verticalLine, h, drawable));
+            drawSideLineByHeights(getLine(i), height, drawable);
+        }
+    }
+
+    private void drawSideLineByHeights(VerticalLine verticalLine, int height, Drawable drawable) {
+        for (int i = 1; i <= height; i++) {
+            drawSideLine(verticalLine, i, drawable);
         }
     }
 
@@ -50,9 +54,9 @@ public class VerticalLines {
 
     private List<VerticalLine> drawVerticalLines(int lineCount) {
         List<VerticalLine> verticalLines = new ArrayList<>();
-        IntStream.rangeClosed(1, lineCount)
-                .forEach(c -> verticalLines.add(new VerticalLine(c)));
-
+        for (int i = 1; i <= lineCount; i++) {
+            verticalLines.add(new VerticalLine(i));
+        }
         return verticalLines;
     }
 }
