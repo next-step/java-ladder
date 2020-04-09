@@ -1,5 +1,6 @@
 package ladder.domain.generator;
 
+import ladder.domain.Stair;
 import ladder.util.RandomUtil;
 
 import java.util.ArrayList;
@@ -11,23 +12,23 @@ public class RandomLineGenerator implements LineGenerator {
     public RandomLineGenerator() { }
 
     @Override
-    public List<Boolean> generate(int playerCount) {
-        final List<Boolean> lines = init();
-        for (int i = lines.size(); i < playerCount; i++) {
-            boolean prevLine = lines.get(i - 1);
-            lines.add(drawLine(prevLine));
+    public List<Stair> generate(int playerCount) {
+        final List<Stair> stairs = init();
+        for (int i = stairs.size(); i < playerCount; i++) {
+            Stair prevStair = stairs.get(i - 1);
+            stairs.add(drawLine(prevStair));
         }
-        return lines;
+        return stairs;
     }
 
-    private List<Boolean> init() {
-        return new ArrayList<>(Arrays.asList(Boolean.FALSE));
+    private List<Stair> init() {
+        return new ArrayList<>(Arrays.asList(new Stair().first()));
     }
 
-    private Boolean drawLine(final boolean isExistPrev) {
-        if (isExistPrev) {
-            return Boolean.FALSE;
+    private Stair drawLine(final Stair prevStair) {
+        if (prevStair.isExist()) {
+            return new Stair(Boolean.FALSE);
         }
-        return RandomUtil.nextBoolean();
+        return new Stair(RandomUtil.nextBoolean());
     }
 }
