@@ -17,7 +17,7 @@ public class Players {
         return new ArrayList<>(this.players);
     }
 
-    public int getPlayersCount() {
+    public int getCount() {
         return this.players.size();
     }
 }

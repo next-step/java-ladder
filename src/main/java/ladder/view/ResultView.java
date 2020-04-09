@@ -1,8 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.VerticalLines;
+import ladder.domain.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,10 +11,11 @@ public class ResultView {
     private static final String LADDER_LINE_EXSIT = "|-----";
     private static final String LADDER_LINE_NONE = "|     ";
 
-    public static void viewSettingLadder(Players players, Ladder ladder) {
+    public static void viewSettingLadder(Players players, PlayResults playResults, Ladder ladder) {
         System.out.println("\n실행결과\n");
         viewPlayers(players);
         viewLadder(ladder);
+        viewPlayResult(playResults);
     }
 
     private static void viewPlayers(Players players) {
@@ -49,5 +48,13 @@ public class ResultView {
             return;
         }
         System.out.print(LADDER_LINE_NONE);
+    }
+
+    private static void viewPlayResult(PlayResults playResults) {
+        System.out.println(
+                playResults.getPlayResults().stream()
+                        .map(n -> getNameWithFormat(n.getResult()))
+                        .collect(Collectors.joining())
+        );
     }
 }

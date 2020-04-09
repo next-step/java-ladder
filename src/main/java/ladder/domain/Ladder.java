@@ -7,7 +7,7 @@ public class Ladder {
     private final int height;
 
     public Ladder(Players players, int height) {
-        this.verticalLines = new VerticalLines(players.getPlayersCount());
+        this.verticalLines = new VerticalLines(players.getCount());
         this.height = height;
         verticalLines.drawSideLines(height, new RandomDraw());
     }
