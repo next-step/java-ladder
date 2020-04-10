@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.step.Direction;
+import nextstep.ladder.domain.step.strategy.RandomMovement;
 
 /**
  * LadderLine의 두 점과 현재 위치를 Point로 추상화
@@ -12,12 +13,40 @@ public class Point {
     private final Direction direction;
 
     public Point(int linePosition, Direction direction) {
+        validateLinePosition(linePosition);
+
         this.linePosition = linePosition;
         this.direction = direction;
     }
 
+    private void validateLinePosition(int linePosition) {
+        if (linePosition < 0) {
+            throw new IllegalArgumentException("라인 위치는 음수가 될수 없습니다.");
+        }
+    }
+
     public static Point of(int linePosition, Direction direction) {
         return new Point(linePosition, direction);
+    }
+
+    public static Point first() {
+        return new Point(0, Direction.right(new RandomMovement()));
+    }
+
+    public static Point middle(Point point) {
+        return new Point(point.getLinePosition() + 1, point.direction.next());
+    }
+
+    public static Point last(Point point) {
+        return new Point(point.getLinePosition() + 1, point.direction.last());
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public int getLinePosition() {
+        return linePosition;
     }
 
     public int move() {
