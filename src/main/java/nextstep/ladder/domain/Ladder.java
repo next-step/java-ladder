@@ -79,10 +79,8 @@ public class Ladder {
                 .orElseThrow(() -> new IllegalArgumentException("유저를 찾을수 없습니다."));
     }
 
-    public List<Step> findAll() {
-        return lines.stream()
-                .map(Line::getPerson)
-                .map(Person::getName)
+    public List<Step> findResult(List<String> names) {
+        return names.stream()
                 .map(name -> findResult(name))
                 .collect(Collectors.toList());
     }

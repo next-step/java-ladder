@@ -35,11 +35,7 @@ public class LadderGame {
                 .collect(Collectors.toList());
     }
 
-    public static List<Step> findAll(Ladder ladder) {
-        return ladder.findAll();
-    }
-
-    public static Step findResult(Ladder ladder, String name) {
-        return ladder.findResult(name);
+    public static List<Step> findResult(Ladder ladder, List<String> names) {
+        return ladder.findResult(names);
     }
 }

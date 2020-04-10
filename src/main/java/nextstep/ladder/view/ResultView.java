@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.LadderGame;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Person;
@@ -77,12 +78,8 @@ public class ResultView {
         return stringBuilder.append(SPACE_FORMAT);
     }
 
-    public static void printOutput(Step result, LadderResponseDto ladderResponseDto) {
+    public static void printOutput(List<Step> steps, LadderResponseDto ladderResponseDto) {
         System.out.println("실행결과");
-        System.out.println(ladderResponseDto.getResults().get(result.getLinePosition()));
-    }
-
-    public static void printAllOutput(List<Step> steps, LadderResponseDto ladderResponseDto) {
         List<String> names = ladderResponseDto.getPersons().stream()
                 .map(Person::getName)
                 .collect(Collectors.toList());
