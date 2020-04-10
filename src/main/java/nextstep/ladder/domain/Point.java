@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.step.Direction;
-import nextstep.ladder.domain.step.strategy.RandomMovement;
+import nextstep.ladder.domain.direction.Direction;
+import nextstep.ladder.domain.direction.strategy.RandomMovement;
 
 /**
  * LadderLine의 두 점과 현재 위치를 Point로 추상화

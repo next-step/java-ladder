@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.step.strategy;
+package nextstep.ladder.domain.direction.strategy;
 
 import java.util.Random;
 

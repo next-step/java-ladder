@@ -1,13 +1,12 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.step.Direction;
+import nextstep.ladder.domain.direction.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
     @DisplayName("라인 위치와 방향을 가지는 포인트 생성")

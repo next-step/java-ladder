@@ -1,7 +1,7 @@
-package nextstep.ladder.domain.step;
+package nextstep.ladder.domain.direction;
 
-import nextstep.ladder.domain.step.strategy.Movement;
-import nextstep.ladder.domain.step.strategy.RandomMovement;
+import nextstep.ladder.domain.direction.strategy.Movement;
+import nextstep.ladder.domain.direction.strategy.RandomMovement;
 
 import java.util.Objects;
 
