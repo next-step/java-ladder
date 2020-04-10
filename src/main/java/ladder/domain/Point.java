@@ -9,6 +9,10 @@ public class Point {
         this.endPointLineNo = endPointLineNo;
     }
 
+    public int getEndPointLineNo() {
+        return endPointLineNo;
+    }
+
     public boolean isHeightPosition(int heightPosition) {
         return this.heightPosition == heightPosition;
     }

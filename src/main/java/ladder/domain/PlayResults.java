@@ -2,15 +2,16 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PlayResults {
     private List<PlayResult> playResults;
 
     public PlayResults(List<String> playResults) {
-        this.playResults = playResults.stream()
-                .map(s -> PlayResult.of(s))
-                .collect(Collectors.toList());
+        this.playResults = new ArrayList<>();
+        int playersCount = playResults.size();
+        for (int i = 0; i < playersCount; i++) {
+            this.playResults.add(PlayResult.of(playResults.get(i), i + 1));
+        }
     }
 
     public List<PlayResult> getPlayResults() {
@@ -19,5 +20,13 @@ public class PlayResults {
 
     public int getCount() {
         return this.playResults.size();
+    }
+
+    public String getResult(int order) {
+        return this.playResults.stream()
+                .filter(p -> p.isOrder(order))
+                .findFirst()
+                .map(p -> p.getResult())
+                .orElseThrow(() -> new IllegalArgumentException("맞는 순서의 결과가 없습니다."));
     }
 }

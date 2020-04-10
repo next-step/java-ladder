@@ -5,7 +5,6 @@ import ladder.drawable.Drawable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 public class VerticalLines {
     private final List<VerticalLine> verticalLines;
