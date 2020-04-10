@@ -34,7 +34,15 @@
 * Ladder - 사다리
     *  Lines를 가진다.
 
-       
+### 4단계 - 리팩토링
+* 사다리 한 Line 추상화
+    * 사다리 게임에서 한 Line을 LadderLine으로 이름을 붙이고 다음과 같이 구현
+    * 사다리 Line의 모든 Point 초기화와 이동을 담당
+* LadderLine의 두 점과 현재 위치를 Point로 추상화
+    * LadderLine에서 위치와 각 점의 방향을 관리
+* 각 Point의 좌/우 방향을 Direction으로 추상화
+    * 각 Point의 좌/우 방향 정보를 가진다.
+    * 현재 Point에서 다음 Point를 생성하는 역할
            
         
         
