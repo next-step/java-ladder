@@ -61,17 +61,6 @@ public class Ladder {
         return ladderLines;
     }
 
-    public Step findResult(String name) {
-        LadderLine startLadderLine = findLine(name);
-        Step step = startLadderLine.findNextStep(STRAT_INDEX);
-
-        for (int i = 1; i < heightOfLadder.getHeight(); i++) {
-            LadderLine ladderLine = ladderLines.get(step.getLinePosition());
-            step = ladderLine.findNextStep(step.getStepPosition());
-        }
-        return step;
-    }
-
     private LadderLine findLine(String name) {
         return ladderLines.stream()
                 .filter(ladderLine -> ladderLine.getPerson().equals(new Person(name)))
@@ -79,9 +68,20 @@ public class Ladder {
                 .orElseThrow(() -> new IllegalArgumentException("유저를 찾을수 없습니다."));
     }
 
-    public List<Step> findResult(List<String> names) {
+    public List<Step> findResults(List<String> names) {
         return names.stream()
-                .map(name -> findResult(name))
+                .map(name -> findResults(name))
                 .collect(Collectors.toList());
+    }
+
+    private Step findResults(String name) {
+        LadderLine startLadderLine = findLine(name);
+        Step step = startLadderLine.findNextStep(STRAT_INDEX);
+
+        for (int i = 1, end = heightOfLadder.getHeight(); i < end; i++) {
+            LadderLine ladderLine = ladderLines.get(step.getLinePosition());
+            step = ladderLine.findNextStep(step.getStepPosition());
+        }
+        return step;
     }
 }

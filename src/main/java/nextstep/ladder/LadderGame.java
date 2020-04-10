@@ -33,6 +33,6 @@ public class LadderGame {
     }
 
     public static List<Step> findResult(Ladder ladder, List<String> names) {
-        return ladder.findResult(names);
+        return ladder.findResults(names);
     }
 }
