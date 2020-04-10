@@ -19,9 +19,7 @@ public class LadderController {
         GameInfo gameInfo = new GameInfo(users, results);
         int ladderHeight = inputView.enterLadderHeight();
 
-        int countOfPerson = users.getUsers().size();
-        Ladder ladder = new Ladder(countOfPerson, ladderHeight);
-
+        Ladder ladder = new Ladder(users.getCountOfPerson(), ladderHeight);
         resultView.printLadder(gameInfo, ladder);
         Users resultsForAllPlayers = playLadderGame.generateResultsForAllPlayers(gameInfo, ladder);
 
