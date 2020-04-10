@@ -3,7 +3,7 @@ package ladder.model;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static ladder.model.PointTdd.generatePoint;
+import static ladder.model.Point.generatePoint;
 
 public class DirectionTdd {
     private final boolean left;

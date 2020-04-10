@@ -3,12 +3,12 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.model.PointTdd.generatePoint;
+import static ladder.model.Point.generatePoint;
 
 public class LadderLineTdd {
-    private final List<PointTdd> points;
+    private final List<Point> points;
 
-    public LadderLineTdd(final List<PointTdd> points) {
+    public LadderLineTdd(final List<Point> points) {
         this.points = points;
     }
 
@@ -17,14 +17,14 @@ public class LadderLineTdd {
     }
 
     public static LadderLineTdd init(final int sizeOfPerson) {
-        List<PointTdd> points = new ArrayList<>();
-        PointTdd point = initFirst(points);
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
         point = initBody(sizeOfPerson, points, point);
         initLast(points, point);
         return new LadderLineTdd(points);
     }
 
-    private static PointTdd initBody(final int sizeOfPerson, final List<PointTdd> points, PointTdd point) {
+    private static Point initBody(final int sizeOfPerson, final List<Point> points, Point point) {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
             point = point.next();
             points.add(point);
@@ -32,13 +32,13 @@ public class LadderLineTdd {
         return point;
     }
 
-    private static void initLast(final List<PointTdd> points, PointTdd point) {
+    private static void initLast(final List<Point> points, Point point) {
         point = point.last();
         points.add(point);
     }
 
-    private static PointTdd initFirst(final List<PointTdd> points) {
-        PointTdd point = PointTdd.first(generatePoint());
+    private static Point initFirst(final List<Point> points) {
+        Point point = Point.first(generatePoint());
         points.add(point);
         return point;
     }
