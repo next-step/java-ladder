@@ -18,4 +18,11 @@ public class Ladder {
         return lines;
     }
 
+    public int down(int col) {
+        int current = col;
+        for (Line line : lines) {
+            current = line.move(current);
+        }
+        return current;
+    }
 }
