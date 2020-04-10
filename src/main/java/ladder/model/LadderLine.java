@@ -16,10 +16,6 @@ public class LadderLine {
         this.bridges = Collections.unmodifiableList(bridges);
     }
 
-    public static LadderLine newInstance(final LadderBridge... bridges) {
-        return new LadderLine(Arrays.asList(bridges));
-    }
-
     private void validate(final List<LadderBridge> bridges) {
         if (Objects.isNull(bridges) || bridges.isEmpty()) {
             throw new IllegalArgumentException("Ladder Bridge must be greater than zero.");
@@ -41,6 +37,10 @@ public class LadderLine {
         if (preBridge == bridge && preBridge == LadderBridge.EXIST) {
             throw new IllegalArgumentException("Ladder Bridge can not set to consecutive.");
         }
+    }
+
+    public static LadderLine newInstance(final LadderBridge... bridges) {
+        return new LadderLine(Arrays.asList(bridges));
     }
 
     public static LadderLine newInstance(final int poleCount) {
