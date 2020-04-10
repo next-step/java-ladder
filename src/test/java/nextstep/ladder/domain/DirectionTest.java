@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.step.Direction;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class DirectionTest {
     @DisplayName("왼쪽으로 이동가능한 Direction")
     @Test
-    void nextDirection() {
+    void leftDirection() {
         boolean left = true;
         boolean right = false;
         Direction direction = Direction.of(left, right);
@@ -35,7 +36,7 @@ public class DirectionTest {
 
     @DisplayName("현재 위치에서 오른쪽 Direction 생성")
     @Test
-    void irection() {
+    void createRightDirection() {
         boolean left = true;
         boolean right = false;
         Direction direction = Direction.of(left, right).right();
@@ -44,7 +45,7 @@ public class DirectionTest {
 
     @DisplayName("현재 위치에서 왼쪽 Direction 생성")
     @Test
-    void irection() {
+    void createLeftDirection() {
         boolean left = true;
         boolean right = false;
         Direction direction = Direction.of(left, right).left();
