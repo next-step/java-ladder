@@ -6,19 +6,17 @@ public class PlayLadderGame {
     private static PlayLadderGame playLadderGame = new PlayLadderGame();
 
     public Users generateResultsForAllPlayers(GameInfo paramGameInfo, Ladder paramLadder) {
-        List<User> users = paramGameInfo.getUsers().getUsers();
+        Users users = paramGameInfo.getUsers();
+        List<User> userList = users.getUsers();
         List<Line> ladder = paramLadder.getLadder();
         List<Result> results = paramGameInfo.getResults().getResults();
 
-        int userCount = users.size();
-        int last = userCount - 1;
-        for (int i = 0; i < users.size(); i++) {
-            int index = initIndex(userCount, i);
-            index = repeatLineForFindIndex(ladder, last, index);
-            users.get(i).setResult(results.get(index).getResult());
+        for (int i = 0; i < users.getCountOfPerson(); i++) {
+            int index = initIndex(users.getCountOfPerson(), i);
+            index = repeatLineForFindIndex(ladder, users.getCountOfPerson()-1, index);
+            userList.get(i).setResult(results.get(index).getResult());
         }
-
-        return new Users(users);
+        return new Users(userList);
     }
 
     public int plusIndex(int index, boolean isLine) {
