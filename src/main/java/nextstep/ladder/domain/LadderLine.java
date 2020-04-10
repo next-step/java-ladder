@@ -1,8 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.step.Direction;
-import nextstep.ladder.domain.step.strategy.RandomMovement;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +12,13 @@ public class LadderLine {
     private List<Point> points = new ArrayList<>();
 
     public LadderLine(int personSize) {
-        for (int i = 0; i < personSize; i++) {
-            points.add(new Point(i, Direction.right(new RandomMovement())));
+        Point createdPoint = Point.first();
+        points.add(createdPoint);
+        for (int i = 1; i < personSize - 1; i++) {
+            createdPoint = Point.middle(createdPoint);
+            points.add(createdPoint);
         }
+        points.add(Point.last(createdPoint));
     }
 
     public int move(int i) {
