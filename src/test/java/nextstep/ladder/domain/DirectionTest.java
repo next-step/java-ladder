@@ -28,18 +28,28 @@ public class DirectionTest {
     @DisplayName("오른쪽 Direction 생성")
     @Test
     void createRightDirection() {
-        boolean left = false;
-        boolean right = false;
-        Direction direction = Direction.of(left, right).right(() -> true);
+        Direction direction = Direction.right(() -> true);
         assertThat(direction.isRight()).isTrue();
     }
 
     @DisplayName("왼쪽 Direction 생성")
     @Test
     void createLeftDirection() {
-        boolean left = false;
-        boolean right = false;
-        Direction direction = Direction.of(left, right).left();
+        Direction direction = Direction.left();
         assertThat(direction.isLeft()).isTrue();
+    }
+
+    @DisplayName("현재 방향이 왼쪽일 때 다음 Direction 생성")
+    @Test
+    void nextDirectionBaseLeft() {
+        Direction next = Direction.left().next();
+        assertThat(next.isLeft()).isFalse();
+    }
+
+    @DisplayName("현재 방향이 오른쪽일 때 다음 Direction 생성")
+    @Test
+    void nextDirectionBaseRight() {
+        Direction next = Direction.right(() -> true).next();
+        assertThat(next.isLeft()).isTrue();
     }
 }
