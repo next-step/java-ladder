@@ -12,7 +12,7 @@ public class Ladder {
     }
 
     public Ladder(List<Line> ladder) {
-        this.ladder = ladder;
+        this.ladder = Collections.unmodifiableList(ladder);
     }
 
     public List<Line> getLadder() {
