@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 import java.util.Objects;
 
@@ -19,8 +19,12 @@ public class Member {
         }
     }
 
-    public static Member newInstance(final String name) {
+    public static Member of(final String name) {
         return new Member(name);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

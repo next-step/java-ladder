@@ -1,13 +1,15 @@
 package ladder.view;
 
-import ladder.LadderBridge;
-import ladder.LadderGame;
-import ladder.LadderLine;
-import ladder.Member;
-import ladder.dto.LadderConsoleResult;
+import ladder.model.LadderBridge;
+import ladder.model.LadderLine;
+import ladder.model.dto.LadderGameConsoleResult;
+import ladder.model.dto.LadderGameMemberResult;
+import ladder.model.dto.LadderPoleInfo;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -18,29 +20,31 @@ public class OutputView {
     private static final String POLE_CONSOLE_DELIMITER_STRING = "|";
     private static final String POLE_CONSOLE_SUFFIX_STRING = "|";
     private static final String POLE_CONSOLE_PREFIX_STRING = "     |";
-    private static final String MEMBER_NAME_CONSOLE_DELIMITER_STRING = " ";
-    private static final String MEMBER_NAME_CONSOLE_STRING_FORMAT = "%5s";
+    private static final String POLE_INFO_CONSOLE_DELIMITER_STRING = " ";
+    private static final String POLE_INFO_CONSOLE_STRING_FORMAT = "%5s";
+    private static final String LADDER_GAME_ALL_RESULT_KEYWORD = "all";
+
+    private static Scanner scanner = new Scanner(System.in);
 
     private OutputView() {
     }
 
-    public static void printResult(final LadderGame ladderGame) {
-        System.out.println("실행결과\n");
+    public static void printLadderResult(final LadderGameConsoleResult result) {
+        System.out.println("사다리 결과\n");
 
-        LadderConsoleResult result = LadderConsoleResult.newInstance(ladderGame);
-        List<Member> members = result.getMembers();
+        List<LadderPoleInfo> ladderPoleInfos = result.getLadderPoleInfos();
         List<LadderLine> ladders = result.getLadderLines();
 
-        printMemberNames(members);
-        
-        printLadder(ladders, members.size());
+        printPoleInfo(ladderPoleInfos, LadderPoleInfo::getMemberName);
+        printLadder(ladders, ladderPoleInfos.size());
+        printPoleInfo(ladderPoleInfos, LadderPoleInfo::getLadderGameReword);
     }
 
-    private static void printMemberNames(final List<Member> members) {
-        String names = members.stream()
-                .map(name -> String.format(MEMBER_NAME_CONSOLE_STRING_FORMAT, name))
-                .collect(Collectors.joining(MEMBER_NAME_CONSOLE_DELIMITER_STRING));
-        System.out.println(names);
+    private static void printPoleInfo(final List<LadderPoleInfo> ladderPoleInfos, Function<LadderPoleInfo, String> poleInfoStringFunction) {
+        String poleInfoString = ladderPoleInfos.stream()
+                .map(poleInfo -> String.format(POLE_INFO_CONSOLE_STRING_FORMAT, poleInfoStringFunction.apply(poleInfo)))
+                .collect(Collectors.joining(POLE_INFO_CONSOLE_DELIMITER_STRING));
+        System.out.println(poleInfoString);
     }
 
     private static void printLadder(final List<LadderLine> lines, final int memberSize) {
@@ -66,5 +70,16 @@ public class OutputView {
         return IntStream.range(0, memberSize)
                 .mapToObj(i -> bridgeCharacter)
                 .collect(Collectors.joining());
+    }
+
+    public static void printLadderGameResult(final LadderGameMemberResult ladderGameMemberResult) {
+        String member = "";
+        while (!LADDER_GAME_ALL_RESULT_KEYWORD.equals(member)) {
+            System.out.println("\n결과를 보고 싶은 사람은?");
+            member = scanner.nextLine();
+
+            System.out.println("\n실행 결과");
+            System.out.println(ladderGameMemberResult.get(member));
+        }
     }
 }

@@ -1,9 +1,9 @@
-package ladder;
+package ladder.model;
 
 import java.util.Objects;
 
 public class LadderHeight {
-    private int height;
+    private final int height;
 
     private LadderHeight(final int height) {
         if (height <= 0) {

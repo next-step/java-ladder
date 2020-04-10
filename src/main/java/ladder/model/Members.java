@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +17,7 @@ public class Members {
         this.members = Collections.unmodifiableList(members);
     }
 
-    private void validate(List<Member> members) {
+    private void validate(final List<Member> members) {
         if (Objects.isNull(members) || members.isEmpty()) {
             throw new IllegalArgumentException("Member must be existed.");
         }
@@ -29,18 +29,22 @@ public class Members {
 
     public static Members newInstance(final String[] memberNames) {
         List<Member> members = Arrays.stream(memberNames)
-                .map(Member::newInstance)
+                .map(name -> Member.of(name.trim()))
                 .collect(Collectors.toList());
 
         return newInstance(members);
     }
 
-    public static Members newInstance(String inputMembers) {
-        return newInstance(separateLineWithComma(inputMembers));
+    public static Members newInstance(final String membersString) {
+        return newInstance(separateLineWithComma(membersString));
     }
 
-    public MemberCount count() {
-        return new MemberCount(members.size());
+    public Member get(final int index) {
+        return members.get(index);
+    }
+
+    public int count() {
+        return members.size();
     }
 
     public List<Member> getMembers() {
