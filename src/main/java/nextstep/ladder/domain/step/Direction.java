@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.step;
 
 import nextstep.ladder.domain.step.strategy.Movement;
+import nextstep.ladder.domain.step.strategy.RandomMovement;
 
 import java.util.Objects;
 
@@ -43,6 +44,20 @@ public class Direction {
 
     public static Direction right(Movement movement) {
         return new Direction(false, movement.isMovable());
+    }
+
+    public Direction next() {
+        if (right) {
+            return left();
+        }
+        return right(new RandomMovement());
+    }
+
+    public Direction last() {
+        if (right) {
+            return left();
+        }
+        return new Direction(false, false);
     }
 
     @Override
