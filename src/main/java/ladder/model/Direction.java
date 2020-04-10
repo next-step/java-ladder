@@ -3,13 +3,14 @@ package ladder.model;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static ladder.model.Point.generatePoint;
+import static ladder.model.PointGenerator.generatePoint;
 
-public class DirectionTdd {
+public class Direction {
+
     private final boolean left;
     private final boolean right;
 
-    private DirectionTdd(boolean left, boolean right) {
+    private Direction(final boolean left, final boolean right) {
         if (left && right) {
             throw new IllegalArgumentException();
         }
@@ -26,26 +27,26 @@ public class DirectionTdd {
         return this.left;
     }
 
-    public DirectionTdd next(boolean nextRight) {
+    public Direction next(final boolean nextRight) {
         return of(this.right, nextRight);
     }
 
-    public DirectionTdd next() {
+    public Direction next() {
         if (this.right) {
             return next(FALSE);
         }
         return next(generatePoint());
     }
 
-    public static DirectionTdd of(boolean first, boolean second) {
-        return new DirectionTdd(first, second);
+    public static Direction of(final boolean first, final boolean second) {
+        return new Direction(first, second);
     }
 
-    public static DirectionTdd first(boolean right) {
+    public static Direction first(final boolean right) {
         return of(FALSE, right);
     }
 
-    public DirectionTdd last() {
+    public Direction last() {
         return of(this.right, FALSE);
     }
 
@@ -53,7 +54,7 @@ public class DirectionTdd {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DirectionTdd pair = (DirectionTdd) o;
+        Direction pair = (Direction) o;
         return left == pair.left &&
                 right == pair.right;
     }

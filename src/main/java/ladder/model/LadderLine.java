@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static ladder.model.Point.generatePoint;
+import static ladder.model.PointGenerator.generatePoint;
 
 public class LadderLine {
     private final List<Point> points;
@@ -59,10 +59,6 @@ public class LadderLine {
 
     public int poleCount() {
         return points.size();
-    }
-
-    public List<Point> getPoints() {
-        return points;
     }
 
     @Override
