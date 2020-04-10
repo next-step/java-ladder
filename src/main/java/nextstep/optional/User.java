@@ -16,7 +16,14 @@ public class User {
     }
 
     public Integer getAge() {
-        return age;
+        if (betweenRange()) {
+            return age;
+        }
+        return null;
+    }
+
+    public boolean betweenRange() {
+        return this.age != null && this.age >= 30 && this.age <= 45;
     }
 
     public boolean matchName(String name) {
@@ -37,12 +44,7 @@ public class User {
     public static boolean ageIsInRange2(User user) {
         return Optional.ofNullable(user)
                 .map(User::getAge)
-                .filter(User::isAgeRange)
                 .isPresent();
-    }
-
-    private static boolean isAgeRange(int age) {
-        return age >= 30 && age <= 45;
     }
 
     @Override
