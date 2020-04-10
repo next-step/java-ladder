@@ -32,15 +32,23 @@ public class ResultView {
         StringBuffer buffer = new StringBuffer();
         line.getNodes().forEach(node -> {
             if (node.isMovableRight()) {
-                buffer.append(String.format(PRINT_HEIGHT));
-                buffer.append(String.format(PRINT_WIDTH));
+                printEmptyBridge(buffer);
             }
             if (!node.isMovableRight()) {
-                buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
+                printFullBridge(buffer);
             }
         });
         System.out.println(buffer.toString());
         buffer.setLength(0);
+    }
+
+    private static void printEmptyBridge(StringBuffer buffer) {
+        buffer.append(String.format(PRINT_HEIGHT));
+        buffer.append(String.format(PRINT_WIDTH));
+    }
+
+    private static void printFullBridge(StringBuffer buffer) {
+        buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
     }
 
     public static void printLadderResult(LadderResultDto ladderResultDto) {
