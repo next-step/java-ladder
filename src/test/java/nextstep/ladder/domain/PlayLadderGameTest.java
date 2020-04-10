@@ -26,7 +26,6 @@ class PlayLadderGameTest {
 
     @BeforeEach
     void setUp() {
-
         List<Point> points = Stream.of(new Point(true),
                                        new Point(false),
                                        new Point(true))
