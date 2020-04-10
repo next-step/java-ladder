@@ -21,8 +21,9 @@ public class LadderApplication {
         String name = DEFAULT;
         while (!name.equals(PRINT_ALL)) {
             name = InputView.inputResultName();
-            ResultView.printOutput(LadderGame.findResult(ladderResponseDto.getLadder(),
-                    getPrintedPeopleNames(ladderResponseDto.getPersons(), name)), ladderResponseDto);
+            List<String> names = getPrintedPeopleNames(ladderResponseDto.getLadderGameInfo().getPersons(), name);
+            ResultView.printOutput(LadderGame.findResult(ladderResponseDto.getLadder(), names),
+                    names, ladderResponseDto);
         }
     }
 

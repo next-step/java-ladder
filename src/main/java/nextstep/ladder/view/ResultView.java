@@ -1,10 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.LadderGame;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.domain.step.Steps;
 import nextstep.ladder.dto.LadderResponseDto;
@@ -22,9 +18,10 @@ public class ResultView {
     private static final String STEP = "-----";
 
     public static void printLadder(LadderResponseDto ladderResponseDto) {
-        printPersons(ladderResponseDto.getPersons());
+        LadderGameInfo ladderGameInfo = ladderResponseDto.getLadderGameInfo();
+        printPersons(ladderGameInfo.getPersons());
         printLines(ladderResponseDto.getLadder());
-        printResult(ladderResponseDto.getResults());
+        printResult(ladderGameInfo.getResults());
         System.out.println();
     }
 
@@ -48,18 +45,18 @@ public class ResultView {
     }
 
     private static void printLines(Ladder ladder) {
-        int heightOfLadder = ladder.getLines().get(0).getSteps().size();
-        List<Line> lines = ladder.getLines();
+        int heightOfLadder = ladder.getLadderLines().get(0).getSteps().size();
+        List<LadderLine> ladderLines = ladder.getLadderLines();
         for (int i = 0; i < heightOfLadder; i++) {
-            printRows(lines, i);
+            printRows(ladderLines, i);
         }
     }
 
-    private static void printRows(List<Line> lines, int stepIndex) {
+    private static void printRows(List<LadderLine> ladderLines, int stepIndex) {
         int lineIndex = ZERO;
         System.out.print(SPACE_FORMAT);
-        for (Line line : lines) {
-            Steps steps = line.getSteps();
+        for (LadderLine ladderLine : ladderLines) {
+            Steps steps = ladderLine.getSteps();
             System.out.print(printStep(lineIndex, steps.get(stepIndex)));
             lineIndex++;
         }
@@ -78,15 +75,13 @@ public class ResultView {
         return stringBuilder.append(SPACE_FORMAT);
     }
 
-    public static void printOutput(List<Step> steps, LadderResponseDto ladderResponseDto) {
+    public static void printOutput(List<Step> steps, List<String> names, LadderResponseDto ladderResponseDto) {
         System.out.println("실행결과");
-        List<String> names = ladderResponseDto.getPersons().stream()
-                .map(Person::getName)
-                .collect(Collectors.toList());
-        List<String> results = ladderResponseDto.getResults().stream()
+        LadderGameInfo ladderGameInfo = ladderResponseDto.getLadderGameInfo();
+        List<String> results = ladderGameInfo.getResults().stream()
                 .map(Result::getResult)
                 .collect(Collectors.toList());
-        for (int i = 0; i < names.size(); i++) {
+        for (int i = 0; i < steps.size(); i++) {
             System.out.println(names.get(i) + " : " + results.get(steps.get(i).getLinePosition()));
         }
     }

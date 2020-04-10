@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Result;
-import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.dto.LadderRequestDto;
 import nextstep.ladder.dto.LadderResponseDto;
@@ -17,10 +14,10 @@ public class LadderGame {
 
     public static LadderResponseDto makeLadder(LadderRequestDto ladderRequestDto) {
         int heightOfLadder = ladderRequestDto.getHeight();
-        List<Person> persons = namesToPersons(ladderRequestDto);
-        Results results = new Results(resultStiringToResults(ladderRequestDto), persons.size());
+        LadderGameInfo ladderGameInfo = new LadderGameInfo(namesToPersons(ladderRequestDto), resultStiringToResults(ladderRequestDto));
+        List<Person> persons = ladderGameInfo.getPersons();
 
-        return new LadderResponseDto(Ladder.of(persons, heightOfLadder), persons, results);
+        return new LadderResponseDto(Ladder.of(persons, heightOfLadder), ladderGameInfo);
     }
 
     private static List<Person> namesToPersons(LadderRequestDto ladderRequestDto) {
