@@ -5,6 +5,8 @@ import ladder.service.LadderService;
 import ladder.view.LadderResultDto;
 import ladder.view.ResultView;
 
+import java.util.Map;
+
 import static ladder.view.InputView.*;
 
 public class LadderApplication {
@@ -23,7 +25,9 @@ public class LadderApplication {
 
         while (true) {
             String who = inputWhoseResult();
-            LadderResultDto ladderResultDto = ladderService.startGameOfPlayer(who, game);
+            Map<String, String> gameResult = ladderService.startGameOfPlayer(who, game);
+            LadderResultDto ladderResultDto = new LadderResultDto();
+            ladderResultDto.setResult(gameResult);
             ResultView.printLadderResult(ladderResultDto);
         }
     }

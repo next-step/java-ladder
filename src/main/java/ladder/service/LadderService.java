@@ -2,7 +2,6 @@ package ladder.service;
 
 import ladder.domain.*;
 import ladder.utils.StringUtils;
-import ladder.view.LadderResultDto;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,21 +26,12 @@ public class LadderService {
         return new LadderGame(players, ladder);
     }
 
-    public LadderResultDto startGameOfPlayer(final String inputName, final LadderGame ladderGame) {
-        LadderResultDto ladderResultDto = new LadderResultDto();
-
+    public Map<String, String> startGameOfPlayer(final String inputName, final LadderGame ladderGame) {
         if (inputName.equals(ALL)) {
-            Map<String, String> allPlayer = findAllPlayer(ladderGame);
-            ladderResultDto.setResult(allPlayer);
-            return ladderResultDto;
+            return findAllPlayer(ladderGame);
         }
 
-        Map<String, String> result = new HashMap<>();
-        Map<String, String> onePlayer = findOnePlayer(inputName, ladderGame);
-        result.putAll(onePlayer);
-
-        ladderResultDto.setResult(result);
-        return ladderResultDto;
+        return findOnePlayer(inputName, ladderGame);
     }
 
     private Map<String, String> findAllPlayer(final LadderGame ladderGame) {
