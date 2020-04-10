@@ -4,6 +4,7 @@ import ladder.exception.ExceptionType;
 import ladder.exception.LadderException;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +27,12 @@ public class LadderGame {
         String[] userNames = userNameValues.split(REGEX);
         List<String> rewards = Arrays.asList(resultValues.split(REGEX));
 
-        return new LadderGame(LadderLine.listOf(userNames.length, Integer.parseInt(heightValue)), Arrays.asList(userNames), rewards);
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for (int i = 0, end = Integer.parseInt(heightValue); i < end; i++) {
+            ladderLines.add(LadderLine.of(userNames.length));
+        }
+
+        return new LadderGame(ladderLines, Arrays.asList(userNames), rewards);
     }
 
     private void validResultValues(int rewardNumber, int userNumber) {

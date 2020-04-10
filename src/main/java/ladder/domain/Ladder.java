@@ -13,24 +13,24 @@ public class Ladder {
     private LadderReward ladderReward;
 
     public Ladder(List<LadderLine> ladderLines, LadderReward rewards) {
-        validRewardSize(rewards, ladderLines.get(0).getActionsSize());
+        validRewardSize(rewards, ladderLines.get(0).getSize());
 
         this.ladderLines = ladderLines;
         this.ladderReward = rewards;
     }
 
-    public String getReward(int startIndex) {
-        int lineIndex = startIndex;
+    public String getReward(int startPosition) {
+        int position = startPosition;
 
         for (LadderLine ladderLine : this.ladderLines) {
-            lineIndex += ladderLine.getMovePoint(lineIndex);
+            position = ladderLine.move(position);
         }
 
-        return ladderReward.getReward(lineIndex);
+        return ladderReward.getReward(position);
     }
 
-    private void validRewardSize(LadderReward reward, int actionsSize) {
-        if(!reward.sameSize(actionsSize)) {
+    private void validRewardSize(LadderReward reward, int pointSize) {
+        if (!reward.sameSize(pointSize)) {
             throw new LadderException(ExceptionType.INVALID_LINE_SIZE);
         }
     }

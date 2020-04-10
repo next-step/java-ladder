@@ -3,7 +3,7 @@ package ladder.view;
 import ladder.domain.LadderGame;
 import ladder.domain.LadderLine;
 import ladder.domain.User;
-import ladder.domain.type.ActionType;
+import ladder.domain.type.DirectionType;
 
 import java.util.List;
 
@@ -52,8 +52,8 @@ public class OutputView {
         System.out.println(user.getName() + " : " + user.getReward());
     }
 
-    private static void printPoint(ActionType actionType) {
-        if (actionType == ActionType.RIGHT) {
+    private static void printPoint(DirectionType directionType) {
+        if (directionType == DirectionType.RIGHT) {
             System.out.printf(WIDTH_POINT);
 
             return;
@@ -66,9 +66,9 @@ public class OutputView {
         for (LadderLine ladderLine : ladderGame.getLadder().getLadderLines()) {
             System.out.printf("\n%4s", "");
 
-            ladderLine.getActions().forEach(point -> {
+            ladderLine.getPoints().forEach(point -> {
                 System.out.printf(HEIGHT);
-                printPoint(point);
+                printPoint(point.getDirectionType());
             });
         }
     }
