@@ -6,7 +6,6 @@ import nextstep.ladder.domain.GameInfo;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
-import nextstep.ladder.domain.ResultRadderText;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
@@ -14,11 +13,11 @@ import nextstep.ladder.domain.Users;
 public class ResultView {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String ALL = "all";
-    private static final String NEW_LINE = ResultRadderText.NEW_LINE.getText();
-    private static final String VERTICAL = ResultRadderText.VERTICAL.getText();
-    private static final String BLANK = ResultRadderText.BLANK.getText();
-    private static final String NO_LINE = ResultRadderText.NO_LINE.getText();
-    private static final String LINE = ResultRadderText.LINE.getText();
+    private static final String NEW_LINE = "\n";
+    private static final String VERTICAL = "|";
+    private static final String BLANK = " ";
+    private static final String NO_LINE = "     ";
+    private static final String LINE = "-----";
 
     private static ResultView resultView = new ResultView();
 
@@ -77,7 +76,6 @@ public class ResultView {
                       .map(result -> appendBlank(result))
                       .collect(Collectors.joining(BLANK));
     }
-
 
     public void printLadder(GameInfo gameInfo, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
