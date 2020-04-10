@@ -24,6 +24,23 @@ public class LadderLine {
         if (Objects.isNull(bridges) || bridges.isEmpty()) {
             throw new IllegalArgumentException("Ladder Bridge must be greater than zero.");
         }
+
+        validateConsecutiveLines(bridges);
+    }
+
+    private void validateConsecutiveLines(final List<LadderBridge> bridges) {
+        LadderBridge preBridge = LadderBridge.UN_EXIST;
+
+        for (LadderBridge bridge : bridges) {
+            validateConsecutiveBridges(preBridge, bridge);
+            preBridge = bridge;
+        }
+    }
+
+    private void validateConsecutiveBridges(final LadderBridge preBridge, final LadderBridge bridge) {
+        if (preBridge == bridge && preBridge == LadderBridge.EXIST) {
+            throw new IllegalArgumentException("Ladder Bridge can not set to consecutive.");
+        }
     }
 
     public static LadderLine newInstance(final int poleCount) {

@@ -6,7 +6,10 @@ import ladder.model.PoleCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayName("사다리 테스트")
 public class LadderTests {
@@ -16,5 +19,15 @@ public class LadderTests {
     public void generateLadderTests() {
         assertThatCode(() -> Ladder.newInstance(4, 5)).doesNotThrowAnyException();
         assertThatCode(() -> Ladder.newInstance(PoleCount.of(5), LadderHeight.newInstance(3))).doesNotThrowAnyException();
+    }
+
+    @DisplayName("사다리 생성 - 비정상 테스트")
+    @Test
+    public void generateLadderAbnormalTests() {
+        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.newInstance(null))
+                .withMessageContaining("Ladder Lines must be existed.");
+
+        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.newInstance(Collections.emptyList()))
+                .withMessageContaining("Ladder Lines must be existed.");
     }
 }

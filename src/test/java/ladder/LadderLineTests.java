@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static ladder.model.LadderBridge.EXIST;
+import static ladder.model.LadderBridge.UN_EXIST;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -30,6 +32,11 @@ public class LadderLineTests {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderLine.newInstance(0))
                 .withMessageContaining("Ladder Pole count must be greater than zero.");
+
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderLine.newInstance(EXIST, EXIST, UN_EXIST))
+                .withMessageContaining("Ladder Bridge can not set to consecutive.");
     }
 
     @DisplayName("라인 생성 - 사이즈 테스트")
@@ -42,7 +49,7 @@ public class LadderLineTests {
     @DisplayName("사다리 라인 움직임 테스트")
     @Test
     public void nextLadderPolesTests() {
-        LadderLine ladderLine = LadderLine.newInstance(LadderBridge.UN_EXIST, LadderBridge.EXIST, LadderBridge.UN_EXIST);
+        LadderLine ladderLine = LadderLine.newInstance(UN_EXIST, EXIST, UN_EXIST);
 
         assertThat(ladderLine.moveLadderPole(LadderPole.of(0))).isEqualTo(LadderPole.of(0));
         assertThat(ladderLine.moveLadderPole(LadderPole.of(1))).isEqualTo(LadderPole.of(2));
@@ -56,7 +63,7 @@ public class LadderLineTests {
         LadderLine ladderLine = LadderLine.newInstance(5);
         List<LadderBridge> bridges = ladderLine.getBridges();
 
-        LadderBridge preLadderBridge = LadderBridge.UN_EXIST;
+        LadderBridge preLadderBridge = UN_EXIST;
         for (int i = 0; i < bridges.size(); i++) {
             assertTrue(validateConsecutiveBridge(preLadderBridge, bridges.get(i)));
             preLadderBridge = bridges.get(i);
@@ -64,6 +71,6 @@ public class LadderLineTests {
     }
 
     private static boolean validateConsecutiveBridge(LadderBridge preBridge, LadderBridge nowBridge) {
-        return preBridge != nowBridge || nowBridge == LadderBridge.UN_EXIST;
+        return preBridge != nowBridge || nowBridge == UN_EXIST;
     }
 }
