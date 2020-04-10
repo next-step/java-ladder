@@ -14,39 +14,39 @@ public class Ladder {
     private static final int MINIMUM_LINE_SIZE = 2;
     private static final int STRAT_INDEX = 0;
 
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
     private final Height heightOfLadder;
 
-    private Ladder(List<Line> lines, int heightOfLadder) {
-        validateLine(lines);
+    private Ladder(List<LadderLine> ladderLines, int heightOfLadder) {
+        validateLine(ladderLines);
 
-        this.lines = Collections.unmodifiableList(lines);
+        this.ladderLines = Collections.unmodifiableList(ladderLines);
         this.heightOfLadder = new Height(heightOfLadder);
     }
 
-    private void validateLine(List<Line> lines) {
-        if (lines.size() < MINIMUM_LINE_SIZE) {
+    private void validateLine(List<LadderLine> ladderLines) {
+        if (ladderLines.size() < MINIMUM_LINE_SIZE) {
             throw new IllegalArgumentException("라인은 두개 이상이여야 합니다.");
         }
     }
 
     public static Ladder of(List<Person> persons, int heightOfLadder) {
-        List<Line> lines = new ArrayList<>();
-        Line previousLine = Line.firstLine(persons.get(FIRST_PERSON), heightOfLadder);
-        lines.add(previousLine);
+        List<LadderLine> ladderLines = new ArrayList<>();
+        LadderLine previousLadderLine = LadderLine.firstLine(persons.get(FIRST_PERSON), heightOfLadder);
+        ladderLines.add(previousLadderLine);
 
         for (int lineIndex = 1; lineIndex < persons.size(); lineIndex++) {
-            previousLine = newLine(persons, previousLine, lineIndex);
-            lines.add(previousLine);
+            previousLadderLine = newLine(persons, previousLadderLine, lineIndex);
+            ladderLines.add(previousLadderLine);
         }
-        return new Ladder(lines, heightOfLadder);
+        return new Ladder(ladderLines, heightOfLadder);
     }
 
-    private static Line newLine(List<Person> persons, Line previousLine, int lineIndex) {
+    private static LadderLine newLine(List<Person> persons, LadderLine previousLadderLine, int lineIndex) {
         if (isLastLine(persons, lineIndex)) {
-            return Line.lastLine(persons.get(lineIndex), previousLine.getSteps());
+            return LadderLine.lastLine(persons.get(lineIndex), previousLadderLine.getSteps());
         }
-        return Line.middleLine(persons.get(lineIndex), previousLine.getSteps());
+        return LadderLine.middleLine(persons.get(lineIndex), previousLadderLine.getSteps());
     }
 
     private static boolean isLastLine(List<Person> persons, int lineIndex) {
@@ -57,24 +57,24 @@ public class Ladder {
         return persons.size() - ONE;
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 
     public Step findResult(String name) {
-        Line startLine = findLine(name);
-        Step step = startLine.findNextStep(STRAT_INDEX);
+        LadderLine startLadderLine = findLine(name);
+        Step step = startLadderLine.findNextStep(STRAT_INDEX);
 
         for (int i = 1; i < heightOfLadder.getHeight(); i++) {
-            Line line = lines.get(step.getLinePosition());
-            step = line.findNextStep(step.getStepPosition());
+            LadderLine ladderLine = ladderLines.get(step.getLinePosition());
+            step = ladderLine.findNextStep(step.getStepPosition());
         }
         return step;
     }
 
-    private Line findLine(String name) {
-        return lines.stream()
-                .filter(line -> line.getPerson().equals(new Person(name)))
+    private LadderLine findLine(String name) {
+        return ladderLines.stream()
+                .filter(ladderLine -> ladderLine.getPerson().equals(new Person(name)))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("유저를 찾을수 없습니다."));
     }
