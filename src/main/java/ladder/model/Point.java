@@ -26,6 +26,18 @@ public class Point {
         return new Point(point.polePosition, point.direction);
     }
 
+    public Point next() {
+        return new Point(polePosition.plus(), direction.next());
+    }
+
+    public Point next(final Boolean right) {
+        return new Point(polePosition.plus(), direction.next(right));
+    }
+
+    public Point last() {
+        return new Point(polePosition.plus(), direction.last());
+    }
+
     public LadderPole move() {
 
         if (direction.isRight()) {
@@ -39,18 +51,6 @@ public class Point {
         return polePosition;
     }
 
-    public Point next() {
-        return new Point(polePosition.plus(), direction.next());
-    }
-
-    public Point next(final Boolean right) {
-        return new Point(polePosition.plus(), direction.next(right));
-    }
-
-    public Point last() {
-        return new Point(polePosition.plus(), direction.last());
-    }
-
     @Override
     public String toString() {
         return "Point{" +
@@ -58,4 +58,5 @@ public class Point {
                 ", direction=" + direction +
                 '}';
     }
+
 }

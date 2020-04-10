@@ -1,9 +1,6 @@
 package ladder.model.dto;
 
-import ladder.model.Ladder;
-import ladder.model.LadderGame;
-import ladder.model.LadderGameExecutionInfo;
-import ladder.model.LadderLineOld;
+import ladder.model.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,10 +11,9 @@ import java.util.stream.IntStream;
 public class LadderGameConsoleResult {
 
     private final List<LadderPoleInfo> ladderPoleInfos;
-    private final List<LadderLineOld> ladderLines;
+    private final List<LadderLine> ladderLines;
 
-    //Q1. unmodifiableList를 생성자에서 아예 쓰고 getter에서는 deepcopy만..?
-    private LadderGameConsoleResult(final List<LadderPoleInfo> ladderPoleInfos, final List<LadderLineOld> ladderLines) {
+    private LadderGameConsoleResult(final List<LadderPoleInfo> ladderPoleInfos, final List<LadderLine> ladderLines) {
         this.ladderPoleInfos = Collections.unmodifiableList(ladderPoleInfos);
         this.ladderLines = Collections.unmodifiableList(ladderLines);
     }
@@ -38,7 +34,7 @@ public class LadderGameConsoleResult {
         return new ArrayList<>(ladderPoleInfos);
     }
 
-    public List<LadderLineOld> getLadderLines() {
+    public List<LadderLine> getLadderLines() {
         return new ArrayList<>(ladderLines);
     }
 }

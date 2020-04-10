@@ -24,10 +24,7 @@ public class LadderTests {
     @DisplayName("사다리 생성 - 비정상 테스트")
     @Test
     public void generateLadderAbnormalTests() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.newInstance(null))
-                .withMessageContaining("Ladder Lines must be existed.");
-
-        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.newInstance(Collections.emptyList()))
+        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.newInstance(0, 0))
                 .withMessageContaining("Ladder Lines must be existed.");
     }
 }
