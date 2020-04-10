@@ -7,9 +7,6 @@ import java.util.List;
 public class Ladder {
     private List<Line> ladder = new ArrayList<>();
 
-    public Ladder() {
-    }
-
     public Ladder(int countOfPerson, int height) {
         this.ladder = createLadder(countOfPerson, height);
     }

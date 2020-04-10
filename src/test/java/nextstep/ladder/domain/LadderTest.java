@@ -14,10 +14,8 @@ class LadderTest {
     void createLadder() {
         int countOfPerson = 5;
         int height = 4;
-        Ladder ladder = new Ladder();
-
-        List<Line> lines = ladder.createLadder(countOfPerson, height);
-
+        Ladder ladder = new Ladder(countOfPerson, height);
+        List<Line> lines = ladder.getLadder();
         assertThat(lines).hasSize(height);
     }
 }
