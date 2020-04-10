@@ -45,11 +45,6 @@ public class LadderService {
     }
 
     private Map<String, String> findOnePlayer(final String inputName, final LadderGame ladderGame) {
-        Map<String, String> result = new HashMap<>();
-        Node last = ladderGame.findPlayerResult(inputName);
-        String prize = ladderGame.findPrize(last.getIndex());
-        result.put(inputName, prize);
-
-        return result;
+        return ladderGame.getResult(inputName);
     }
 }
