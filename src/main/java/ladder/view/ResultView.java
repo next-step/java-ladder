@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class ResultView {
     private static final String LADDER_RESULT = "사다리결과";
     private static final String PRINT_FORMAT = "%-6s";
-    private static final String PRINT_HEIGHT = "I";
+    private static final String PRINT_HEIGHT = "ㅣ";
     private static final String PRINT_WIDTH = "-----";
 
     public static void printPlayers(Players players) {
