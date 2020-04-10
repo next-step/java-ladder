@@ -18,7 +18,7 @@ class PlayersTest {
     public void constructor_success() throws Exception {
         //then
         Players players = new Players(
-                Arrays.asList(new Player("a"), new Player("B")));
+                Arrays.asList(PlayerTest.A, PlayerTest.B));
     }
 
     @DisplayName("2명 미만의 Players 생성")
@@ -26,7 +26,7 @@ class PlayersTest {
     public void constructor_fail() throws Exception {
         //then
         assertThatThrownBy(
-                () -> new Players(Arrays.asList(new Player("a")))
+                () -> new Players(Arrays.asList(PlayerTest.A))
         ).isInstanceOf(PlayerException.class);
     }
 
@@ -35,7 +35,7 @@ class PlayersTest {
     public void getPlayersCount_success() throws Exception {
         //given
         Players players = new Players(
-                Arrays.asList(new Player("a"), new Player("B")));
+                Arrays.asList(PlayerTest.A, PlayerTest.B));
 
         //then
         assertThat(players.size()).isEqualTo(2);

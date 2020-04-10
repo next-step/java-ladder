@@ -5,6 +5,7 @@ import ladder.exception.PlayerException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -22,10 +23,11 @@ public class Players {
     }
 
     public static Players of(final List<String> names) {
-        List<Player> collect = names.stream()
-                .map(Player::new)
+
+        List<Player> players = IntStream.range(0, names.size())
+                .mapToObj(i -> new Player(i, names.get(i)))
                 .collect(Collectors.toList());
-        return new Players(collect);
+        return new Players(players);
     }
 
     private void validateDuplicatePlayer(final List<Player> players) {
