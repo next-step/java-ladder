@@ -4,6 +4,11 @@ import nextstep.ladder.domain.step.strategy.Movement;
 
 import java.util.Objects;
 
+/**
+ * 각 Point의 좌/우 방향을 Direction으로 추상화
+ * 각 Point의 좌/우 방향 정보를 가진다.
+ * 현재 Point에서 다음 Point를 생성하는 역할
+ */
 public class Direction {
     private final boolean left;
     private final boolean right;
