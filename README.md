@@ -44,15 +44,23 @@
 * LadderGameExecutionInfo
     * Members와 게임 보상인 LadderGameRewords를 관리한다.
 * Ladder
-    * LadderLines와 LadderPoleResults를 관리한다.
-    * LadderLines의 실행 결과인 LadderPoles를 리턴한다.
-* LadderBridge
-    * 사다리 pole 사이의 가로 줄 유무를 관리한다.
+    * LadderLine 목록을 관리한다.
+    * 원하는 LadderPole의 각 LadderLine 결과를 최종 LadderPole을 반환한다.
+* Point
+    * LadderPole 위치 및 이동할 수 있는 방향인 Direction을 관리한다.
+    * 첫 위치의 Point를 생성할 수 있다.
+        * LadderPole 위치는 0. Direction은 오른쪽이거나 그대로.
+    * n번째 위치의 Point를 생성할 수 있다.
+        * n-1번째 Point의 위치는 n.
+        * n-1번째 Point의 Direction이 오른쪽이라면, n번째 Direction은 무조건 왼쪽.
+        * n-1번째 Point의 Direction이 오른쪽이 아니라면, n번째 Direction은 오른쪽 아니면 그대로.
+* Direction
+    * 다음 point로 가는 방향을 결정한다.
 * LadderHeight
     * 입력 받은 Ladder의 높이를 관리한다.
 * LadderLine
-    * (PoleCount - 1) 만큼의 LadderBridge를 관리한다.
-    * 입력받은 LadderPole을 LadderBridge에 맞게 진행하여 새로운 LadderPole으로 리턴한다.
+    * PoleCount 만큼의 Point를 관리한다.
+    * 원하는 Point를 이동하여 LadderPole 결과를 반환한다.
 * LadderPole
     * 사다리의 pole (세로 라인) 을 관리한다. 
 * LadderGameRewords
