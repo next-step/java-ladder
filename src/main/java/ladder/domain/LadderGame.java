@@ -1,21 +1,37 @@
 package ladder.domain;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class LadderGame {
     private static final int RULE_PLAYER_MIN_COUNT = 2;
     private static final int RULE_PLAY_RESULT_MIN_COUNT = 2;
-    private static final int RULE_LADDER_HEIGHT_MIN_COUNT = 2;
+    private static final int RULE_LADDER_HEIGHT_MIN_COUNT = 1;
 
     private Ladder ladder;
-    private PlayResults playResults;
+    private LadderGameResult ladderGameResult;
 
     public LadderGame(Players players, PlayResults playResults, int ladderHeight) {
         validate(players, playResults, ladderHeight);
         this.ladder = new Ladder(players, ladderHeight);
-        this.playResults = playResults;
+        this.ladderGameResult = playGame(players, playResults);
     }
 
     public Ladder getLadder() {
         return this.ladder;
+    }
+
+    public LadderGameResult getLadderGameResult(){
+        return this.ladderGameResult;
+    }
+
+    private LadderGameResult playGame(Players players, PlayResults playResults) {
+        MatchedLineInfos matchedLineInfos = ladder.getMatchedInfos();
+        Map<String, String> ladderGameResult = new LinkedHashMap<>();
+        for (int i = 1; i <= players.getCount(); i++) {
+            ladderGameResult.put(players.getPlayerName(i), playResults.getResult(matchedLineInfos.getMatchedLineNo(i)));
+        }
+        return new LadderGameResult(ladderGameResult);
     }
 
     private void validate(Players players, PlayResults playResults, int ladderHeight) {
