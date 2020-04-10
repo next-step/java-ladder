@@ -1,52 +1,45 @@
 package ladder.domain;
 
-import ladder.domain.type.ActionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
-import java.util.List;
 
+import static ladder.domain.type.DirectionType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest {
-    private ActionType leftType;
-    private ActionType rightType;
-    private ActionType downType;
+    private LadderLine ladderLine;
 
     @BeforeEach
     void setUp() {
-        leftType = ActionType.LEFT;
-        rightType = ActionType.RIGHT;
-        downType = ActionType.DOWN;
-    }
-
-    @Test
-    void listOf() {
-        List<LadderLine> ladderLines = LadderLine.listOf(3, 5);
-
-        assertThat(ladderLines).hasSize(5);
-        assertThat(ladderLines.get(0).getActionsSize()).isEqualTo(3);
-    }
-
-    @Test
-    void getActionsSize() {
-        LadderLine ladderLine = new LadderLine(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN));
-
-        int actual = ladderLine.getActionsSize();
-
-        assertThat(actual).isEqualTo(3);
+        ladderLine = new LadderLine(Arrays.asList(new Point(0, RIGHT),
+                new Point(1, LEFT),
+                new Point(2, DOWN),
+                new Point(3, DOWN)));
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:1", "1:-1", "2:0", "3:1", "4:-1"}, delimiter = ':')
-    void getMovePoint(int value, int expected) {
-        LadderLine ladderLine = new LadderLine(Arrays.asList(rightType, leftType, downType, rightType, leftType));
+    @CsvSource(value = {"0:1", "1:0", "2:2", "3:3"}, delimiter = ':')
+    void move(int value, int expected) {
+        int move = ladderLine.move(value);
 
-        int actual = ladderLine.getMovePoint(value);
+        assertThat(move).isEqualTo(expected);
+    }
 
-        assertThat(actual).isEqualTo(expected);
+    @Test
+    void getSize() {
+        int size = ladderLine.getSize();
+
+        assertThat(size).isEqualTo(4);
+    }
+
+    @Test
+    void of() {
+        LadderLine ladderLine = LadderLine.of(3);
+
+        assertThat(ladderLine.getPoints()).hasSize(3);
     }
 }

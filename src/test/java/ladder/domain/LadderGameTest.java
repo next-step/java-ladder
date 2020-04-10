@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.type.ActionType;
 import ladder.exception.ExceptionType;
 import ladder.exception.LadderException;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static ladder.domain.type.DirectionType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -20,7 +20,7 @@ public class LadderGameTest {
 
         ladderGame.getLadder()
                 .getLadderLines()
-                .forEach(line -> assertThat(line.getActionsSize()).isEqualTo(4));
+                .forEach(line -> assertThat(line.getSize()).isEqualTo(4));
     }
 
     @Test
@@ -39,9 +39,10 @@ public class LadderGameTest {
 
     @Test
     void ladderGame() {
-        List<LadderLine> ladderLines = Arrays.asList(new LadderLine(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)),
-                new LadderLine(Arrays.asList(ActionType.DOWN, ActionType.RIGHT, ActionType.LEFT)),
-                new LadderLine(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)));
+        List<LadderLine> ladderLines = Arrays.asList(
+                new LadderLine(Arrays.asList(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, DOWN))),
+                new LadderLine(Arrays.asList(new Point(0, DOWN), new Point(1, RIGHT), new Point(2, LEFT))),
+                new LadderLine(Arrays.asList(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, DOWN))));
         List<String> userNames = Arrays.asList("seulp", "seul", "pobi");
         List<String> rewards = Arrays.asList("꽝", "100억", "1000억");
 

@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.type.ActionType;
 import ladder.exception.ExceptionType;
 import ladder.exception.LadderException;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static ladder.domain.type.DirectionType.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UsersTest {
@@ -16,8 +16,9 @@ public class UsersTest {
 
     @BeforeEach
     void setUp() {
-        List<LadderLine> ladderLines = Arrays.asList(new LadderLine(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)),
-                new LadderLine(Arrays.asList(ActionType.DOWN, ActionType.RIGHT, ActionType.LEFT)));
+        List<LadderLine> ladderLines = Arrays.asList(
+                new LadderLine(Arrays.asList(new Point(0, RIGHT), new Point(1, LEFT), new Point(1, DOWN))),
+                new LadderLine(Arrays.asList(new Point(0, DOWN), new Point(1, RIGHT), new Point(1, LEFT))));
 
         ladder = new Ladder(ladderLines, new LadderReward(Arrays.asList("100", "꽝", "200")));
     }
