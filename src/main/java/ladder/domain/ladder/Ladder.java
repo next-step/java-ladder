@@ -1,35 +1,56 @@
 package ladder.domain.ladder;
 
-import java.util.List;
-import java.util.Optional;
+import ladder.domain.Gamer;
+import ladder.domain.Gamers;
+import ladder.domain.ResultValues;
+import ladder.domain.dto.BarMatrixDto;
+import ladder.domain.dto.LadderResultDto;
+import ladder.domain.ladder.maker.MakeLadderStrategy;
+import ladder.domain.ladder.maker.RandomLadderMaker;
+
+import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
-    private static final String INSTANTIATE_ERROR_FORMAT = "Create Ladder failed. height must be at least %d: height=%d";
-    private static final int MINIMUM_HEIGHT = 1;
-    private final List<Line> lines;
+    private static final String INSTANTIATE_ERROR_FORMAT = "Create Ladder failed. " +
+            "bars count must be gamers.size() - 1: gamerCount=%d, barsCount=%d";
 
-    private Ladder(List<Line> lines) {
+    private final Gamers gamers;
+    private final Lines lines;
+
+    private Ladder(Gamers gamers, Lines lines) {
+        this.gamers = gamers;
         this.lines = lines;
     }
 
-    public static Ladder of(int height, int size) {
-        return Optional.of(height)
-                .filter(h -> h >= MINIMUM_HEIGHT)
-                .map(h -> makeLadder(h, size))
-                .orElseThrow(() -> new IllegalArgumentException(
-                        String.format(INSTANTIATE_ERROR_FORMAT, MINIMUM_HEIGHT, height)));
+    public static Ladder of(Gamers gamers, MakeLadderStrategy ladderMaker) {
+        Lines lines = Lines.of(ladderMaker);
+        int barsCount = lines.width();
+        int gamerCount = gamers.size();
+        if (barsCount != gamerCount - 1) {
+            throw new IllegalArgumentException(String.format(INSTANTIATE_ERROR_FORMAT, gamerCount, barsCount));
+        }
+
+        return new Ladder(gamers, lines);
     }
 
-    private static Ladder makeLadder(int height, int size) {
-        return new Ladder(Stream.iterate(
-                LineMaker.makeLine(size), line -> LineMaker.makeLine(size))
-                .limit(height)
-                .collect(Collectors.toList()));
+    public static Ladder ofRandom(Gamers gamers, int height) {
+        return of(gamers, RandomLadderMaker.of(gamers.size() - 1, height));
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public BarMatrixDto getBarMatrix() {
+        return new BarMatrixDto(lines.getRawMatrix());
+    }
+
+    public LadderResultDto getResult(ResultValues ladderResult) {
+        Map<String, String> resultMap = gamers.getGamers()
+                .stream()
+                .collect(Collectors.toMap(Gamer::getName, gamer -> getResult(ladderResult, gamer)));
+        return new LadderResultDto(resultMap);
+    }
+
+    private String getResult(ResultValues ladderResult, Gamer gamer) {
+        LadderNumber ladderNumber = lines.getResultNumber(gamer);
+        return ladderResult.getResult(ladderNumber.getNumber());
     }
 }
