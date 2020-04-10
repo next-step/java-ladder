@@ -87,6 +87,14 @@ public class ResultView {
         System.out.println(playResult(paramUsers, userName));
     }
 
+    public void repeatPrintPlayResult(InputView inputView, Users resultsForAllPlayers) {
+        int countOfPerson = resultsForAllPlayers.getCountOfPerson();
+        for (int i = 0; i < countOfPerson; i++) {
+            String userName = inputView.enterResultUser(resultsForAllPlayers);
+            resultView.printPlayResult(resultsForAllPlayers, userName);
+        }
+    }
+
     public String playResult(Users paramUsers, String userName) {
         if (ALL.equals(userName)) {
             return playAllResult(paramUsers);

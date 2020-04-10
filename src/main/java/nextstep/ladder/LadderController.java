@@ -23,10 +23,6 @@ public class LadderController {
         resultView.printLadder(gameInfo, ladder);
         Users resultsForAllPlayers = playLadderGame.generateResultsForAllPlayers(gameInfo, ladder);
 
-        String userName = inputView.enterResultUser(users);
-        resultView.printPlayResult(resultsForAllPlayers, userName);
-
-        String all = inputView.enterResultUser(users);
-        resultView.printPlayResult(resultsForAllPlayers, all);
+        resultView.repeatPrintPlayResult(inputView, resultsForAllPlayers);
     }
 }
