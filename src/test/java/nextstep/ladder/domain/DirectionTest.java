@@ -30,7 +30,7 @@ public class DirectionTest {
     void createRightDirection() {
         boolean left = false;
         boolean right = false;
-        Direction direction = Direction.of(left, right).right();
+        Direction direction = Direction.of(left, right).right(() -> true);
         assertThat(direction.isRight()).isTrue();
     }
 
