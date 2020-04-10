@@ -35,5 +35,4 @@ public class LadderApplication {
         }
         return Collections.singletonList(name);
     }
-
 }

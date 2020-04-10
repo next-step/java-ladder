@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.step;
 
+import nextstep.ladder.domain.step.strategy.Movement;
+
 public class Direction {
     private boolean left;
     private boolean right;
@@ -32,7 +34,7 @@ public class Direction {
         return new Direction(true, false);
     }
 
-    public static Direction right() {
-        return new Direction(false, true);
+    public static Direction right(Movement movement) {
+        return new Direction(false, movement.isMovable());
     }
 }
