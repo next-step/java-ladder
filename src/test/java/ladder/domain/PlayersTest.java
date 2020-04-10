@@ -64,16 +64,16 @@ class PlayersTest {
         Players players = Players.of(Arrays.asList("a", "b", "c", "d"));
 
         //when
-        int a = players.findPlayer("a");
-        int b = players.findPlayer("b");
-        int c = players.findPlayer("c");
-        int d = players.findPlayer("d");
+        Player a = players.findPlayer("a");
+        Player b = players.findPlayer("b");
+        Player c = players.findPlayer("c");
+        Player d = players.findPlayer("d");
 
         //then
-        assertThat(a).isEqualTo(0);
-        assertThat(b).isEqualTo(1);
-        assertThat(c).isEqualTo(2);
-        assertThat(d).isEqualTo(3);
+        assertThat(a.getIndex()).isEqualTo(0);
+        assertThat(b.getIndex()).isEqualTo(1);
+        assertThat(c.getIndex()).isEqualTo(2);
+        assertThat(d.getIndex()).isEqualTo(3);
     }
 
     @DisplayName("참가자를 찾을 수 없을 경우 exception")

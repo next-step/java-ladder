@@ -35,8 +35,8 @@ public class LadderGame {
     }
 
     private Node findPlayerLastNode(final String playerName) {
-        int playerIndex = players.findPlayer(playerName);
-        return ladder.findLastNode(playerIndex);
+        Player player = players.findPlayer(playerName);
+        return ladder.findLastNode(player.getIndex());
     }
 
     public String findPrize(final int prizeIndex) {

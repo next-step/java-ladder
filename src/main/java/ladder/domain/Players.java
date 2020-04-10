@@ -45,18 +45,26 @@ public class Players {
         }
     }
 
-    public int findPlayer(String playerName) {
-        playerName = playerName.trim();
-
-        List<String> names = this.players.stream()
+    private void validateContainPlayer(final String playerName) {
+        List<String> names = players.stream()
                 .map(player -> player.getName())
                 .collect(Collectors.toList());
 
         if (!names.contains(playerName)) {
             throw new PlayerException(PLAYER_NOT_FOUND_ERR_MSG);
         }
+    }
 
-        return names.indexOf(playerName);
+    public Player findPlayer(String playerName) {
+        String name = playerName.trim();
+        validateContainPlayer(name);
+
+        Player player = players.stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst()
+                .get();
+
+        return player;
     }
 
     public int size() {
