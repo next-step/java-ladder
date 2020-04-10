@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LadderGame {
 
     private final Players players;
@@ -10,8 +13,17 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
+    public Map<String, String> getResult(final String playerName) {
+        Map<String, String> result = new HashMap<>();
 
-    public Node findPlayerResult(final String playerName) {
+        Node lastNode = findPlayerLastNode(playerName);
+        String prize = findPrize(lastNode.getIndex());
+        result.put(playerName, prize);
+
+        return result;
+    }
+
+    private Node findPlayerLastNode(final String playerName) {
         int playerIndex = players.findPlayer(playerName);
         return ladder.findLastNode(playerIndex);
     }
