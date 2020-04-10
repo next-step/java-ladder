@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
@@ -45,5 +44,41 @@ class PointTest {
         int actual = point.move();
 
         assertThat(actual).isEqualTo(expected - 1);
+    }
+
+    @DisplayName("시작 포인트 생성")
+    @Test
+    void first() {
+        Point first = Point.first();
+        assertThat(first.getLinePosition()).isEqualTo(0);
+    }
+
+    @DisplayName("중간 포인트 생성")
+    @Test
+    void middle() {
+        Point first = Point.first();
+        Point middle = Point.middle(first);
+
+        assertThat(middle.getLinePosition()).isEqualTo(first.getLinePosition() + 1);
+        assertThat(middle.getDirection().isLeft()).isEqualTo(first.getDirection().isRight());
+    }
+
+    @DisplayName("마지막 포인트 생성")
+    @Test
+    void last() {
+        Point first = Point.first();
+        Point middle = Point.middle(first);
+        Point last = Point.last(middle);
+
+        assertThat(last.getLinePosition()).isEqualTo(first.getLinePosition() + 2);
+        assertThat(last.getDirection().isLeft()).isEqualTo(middle.getDirection().isRight());
+        assertThat(last.getDirection().isRight()).isFalse();
+    }
+
+    @DisplayName("라인 위치가 음수 일때 생성 실패")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -2})
+    void createFailByNegative(int linePosition) {
+        assertThatIllegalArgumentException().isThrownBy(() -> Point.of(linePosition, Direction.of(false, false)));
     }
 }
