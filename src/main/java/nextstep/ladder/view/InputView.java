@@ -46,10 +46,9 @@ public class InputView {
     }
 
     private void validateUserNames(String names) {
-        Optional.ofNullable(names)
-                .filter(name -> !name.isEmpty())
-                .filter(name -> !ALL.equals(name))
-                .orElseThrow(() -> new IllegalArgumentException("이름을 빈값이나 all로 입력하였습니다. 이름을 입력해주세요."));
+        if (names == null || names.isEmpty() || ALL.equals(names)) {
+            throw new IllegalArgumentException("이름을 빈값이나 all 로 입력하였습니다. 이름을 입력해주세요.");
+        }
     }
 
     public String[] splitByComma(String userNames) {
