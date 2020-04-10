@@ -4,8 +4,7 @@ import java.util.List;
 
 public class PlayLadderGame {
     private static PlayLadderGame playLadderGame = new PlayLadderGame();
-
-
+    
     public Users generateResultsForAllPlayers(Users paramUsers, Ladder paramLadder, Results paramResults) {
         List<User> users = paramUsers.getUsers();
         List<Line> ladder = paramLadder.getLadder();
