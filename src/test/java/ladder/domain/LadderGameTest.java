@@ -1,24 +1,38 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderGameTest {
 
-    private LadderPrize gameResult = new LadderPrize(Arrays.asList("꽝", "100"));
+    private LadderPrize ladderPrize;
+    private List<Node> node;
+    private Players players;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        ladderPrize = new LadderPrize(Arrays.asList("꽝", "100"));
+        node = new ArrayList<>(Arrays.asList(
+                new Node(0, new Way(false, true)),
+                new Node(1, new Way(true, false))));
+        players = Players.of(Arrays.asList("a", "b"));
+
+    }
+
 
     @DisplayName("로또 게임 생성자 테스트")
     @Test
     public void constructor_success() throws Exception {
         //given
-        Players players =
-                new Players(Arrays.asList(new Player("a"), new Player("b")));
-        Lines lines = new Lines(Arrays.asList(new Line(), new Line()));
-        Ladder ladder = new Ladder(lines, new LadderPrize(Arrays.asList("1", "2")));
+        Lines lines = new Lines(Arrays.asList(new Line(node), new Line(node)));
+        Ladder ladder = new Ladder(lines, ladderPrize);
 
         //when
         LadderGame game = new LadderGame(players, ladder);
@@ -28,18 +42,7 @@ class LadderGameTest {
     @Test
     public void findPrize_success() throws Exception {
         //given
-        final Players players = Players.of(Arrays.asList("a", "b"));
-        final Lines lines = new Lines(
-                Arrays.asList(
-                        new Line(Arrays.asList(
-                                new Node(0, new Way(false, true)),
-                                new Node(1, new Way(true, false)))
-                        ),
-                        new Line(Arrays.asList(
-                                new Node(0, new Way(false, true)),
-                                new Node(1, new Way(true, false)))
-                        )));
-        final LadderPrize ladderPrize = new LadderPrize(Arrays.asList("100", "200"));
+        final Lines lines = new Lines(Arrays.asList(new Line(node), new Line(node)));
         Ladder ladder = new Ladder(lines, ladderPrize);
 
         LadderGame game = new LadderGame(players, ladder);
@@ -48,6 +51,6 @@ class LadderGameTest {
         String prize = game.findPrize(0);
 
         //then
-        assertThat(prize).isEqualTo("100");
+        assertThat(prize).isEqualTo("꽝");
     }
 }
