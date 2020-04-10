@@ -4,11 +4,11 @@ import java.util.List;
 
 public class PlayLadderGame {
     private static PlayLadderGame playLadderGame = new PlayLadderGame();
-    
-    public Users generateResultsForAllPlayers(Users paramUsers, Ladder paramLadder, Results paramResults) {
-        List<User> users = paramUsers.getUsers();
+
+    public Users generateResultsForAllPlayers(GameInfo paramGameInfo, Ladder paramLadder) {
+        List<User> users = paramGameInfo.getUsers().getUsers();
         List<Line> ladder = paramLadder.getLadder();
-        List<Result> results = paramResults.getResults();
+        List<Result> results = paramGameInfo.getResults().getResults();
 
         int userCount = users.size();
         int last = userCount - 1;

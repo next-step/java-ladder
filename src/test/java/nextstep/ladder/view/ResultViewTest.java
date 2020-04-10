@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import nextstep.ladder.domain.GameInfo;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.PlayLadderGame;
@@ -30,6 +31,7 @@ class ResultViewTest {
     private Ladder ladder;
     private Results results;
     private Users resultUsers;
+    private GameInfo gameInfo;
 
     @BeforeEach
     void setUp() {
@@ -60,8 +62,8 @@ class ResultViewTest {
                           new Result("3000")
                 )
                       .collect(Collectors.toList())));
-
-        resultUsers = playLadderGame.generateResultsForAllPlayers(users, ladder, results);
+        gameInfo = new GameInfo(users, results);
+        resultUsers = playLadderGame.generateResultsForAllPlayers(gameInfo, ladder);
     }
 
     @DisplayName("유저 이름을 출력한다.")

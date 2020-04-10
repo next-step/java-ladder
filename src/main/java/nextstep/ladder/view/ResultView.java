@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import java.util.stream.Collectors;
 
+import nextstep.ladder.domain.GameInfo;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Point;
@@ -59,6 +60,16 @@ public class ResultView {
         return result;
     }
 
+    public String drawLadder2(GameInfo gameInfo, Ladder ladder) {
+        String result = "";
+        result += appendUserNames(gameInfo.getUsers());
+        result += NEW_LINE;
+        result += appendLines(ladder);
+        result += NEW_LINE;
+        result += appendResults(gameInfo.getResults());
+        return result;
+    }
+
     public String appendResults(Results results) {
         return results.getResults()
                       .stream()
@@ -67,9 +78,10 @@ public class ResultView {
                       .collect(Collectors.joining(BLANK));
     }
 
-    public void printLadder(Users users, Ladder ladder, Results results) {
+
+    public void printLadder(GameInfo gameInfo, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
-        System.out.println(drawLadder(users, ladder, results));
+        System.out.println(drawLadder2(gameInfo, ladder));
     }
 
     public void printPlayResult(Users paramUsers, String userName) {

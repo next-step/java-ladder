@@ -22,6 +22,7 @@ class PlayLadderGameTest {
     private Ladder ladder;
     private Results results;
     private Users resultUsers;
+    private GameInfo gameInfo;
 
     @BeforeEach
     void setUp() {
@@ -82,7 +83,7 @@ class PlayLadderGameTest {
                 )
                       .collect(Collectors.toList())));
 
-
+        gameInfo = new GameInfo(users, results);
     }
 
     @DisplayName("점의 위치가 첫번째 이고 선이 있을 경우 무조건 index 값이 +1 증가함(이동)")
@@ -132,8 +133,8 @@ class PlayLadderGameTest {
     @DisplayName("사다리 게임에 대한 전체 결과 값을 만든다.")
     @Test
     void GenerateResultsForAllPlayers() {
-        resultView.printLadder(users, ladder, results);
-        resultUsers = playLadderGame.generateResultsForAllPlayers(users, ladder, results);
+        resultView.printLadder(gameInfo, ladder);
+        resultUsers = playLadderGame.generateResultsForAllPlayers(gameInfo, ladder);
 
         List<User> userList = resultUsers.getUsers();
         assertThat(userList.get(0).getResult()).isEqualTo("꽝");
