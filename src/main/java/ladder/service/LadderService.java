@@ -14,13 +14,13 @@ public class LadderService {
 
     public LadderGame createLadderGame(final String inputName,
                                        final String inputHeight,
-                                       final String inputResult) {
+                                       final String inputPrize) {
         List<String> names = StringUtils.split(inputName, COMMA);
-        List<String> gameResults = StringUtils.split(inputResult, COMMA);
+        List<String> gamePrize = StringUtils.split(inputPrize, COMMA);
         int height = StringUtils.parse(inputHeight);
 
         Players players = Players.of(names);
-        LadderPrize ladderPrize = new LadderPrize(gameResults);
+        LadderPrize ladderPrize = new LadderPrize(gamePrize);
         Ladder ladder = Ladder.of(players.size(), height, ladderPrize);
 
         return new LadderGame(players, ladder);
