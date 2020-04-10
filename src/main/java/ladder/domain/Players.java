@@ -1,8 +1,9 @@
 package ladder.domain;
 
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class Players {
     private static final String SEPARATOR = ",";
@@ -26,10 +27,12 @@ public class Players {
     }
 
     private List<Player> createPlayers(final String names) {
-        AtomicInteger index = new AtomicInteger();
-        return Arrays.stream(names.split(SEPARATOR))
-                     .map(name -> new Player(name, index.getAndIncrement()))
-                     .collect(Collectors.toList());
+        String[] splitNames = names.split(SEPARATOR);
+        List<Player> players = new ArrayList<>();
+        for (int index = 0; index < splitNames.length; index++) {
+            players.add(new Player(splitNames[index], index));
+        }
+        return players;
     }
 
     @Override

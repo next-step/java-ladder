@@ -1,7 +1,9 @@
 package ladder.domain.generator;
 
+import ladder.domain.Stair;
+
 import java.util.List;
 
 public interface LineGenerator {
-    List<Boolean> generate(int playerCount);
+    List<Stair> generate(int playerCount);
 }

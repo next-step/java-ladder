@@ -1,5 +1,6 @@
 package ladder.domain.fake;
 
+import ladder.domain.Stair;
 import ladder.domain.generator.LineGenerator;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 public class FakeThreeByOneRightLineGenerator implements LineGenerator {
 
     @Override
-    public List<Boolean> generate(final int playerCount) {
-        return new ArrayList<>(Arrays.asList(false, false, true));
+    public List<Stair> generate(final int playerCount) {
+        return new ArrayList<>(Arrays.asList(new Stair().first(), new Stair(false), new Stair(true)));
     }
 }

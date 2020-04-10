@@ -4,10 +4,9 @@ import ladder.controller.LadderGame;
 import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
+import ladder.view.domain.ResultView;
 
 public class Application {
-    private static final String ALL = "all";
-
     public static void main(String[] args) {
         InputView inputView = new InputView();
 
@@ -16,20 +15,16 @@ public class Application {
         Height height = inputView.inputHeight();
 
         Ladder ladder = new Ladder(players.count(), height);
-        Result result = LadderGame.run(players, ladder, prizes);
 
         OutputView.printPlayerName(players);
         OutputView.printLadder(ladder);
         OutputView.printPrize(prizes);
 
-        PlayerName playerName;
+        Result result = LadderGame.run(players, ladder, prizes);
+        ResultView resultView = new ResultView(result);
         while (true) {
-            playerName = inputView.inputPlayerName();
-            if (new PlayerName(ALL).equals(playerName)) {
-                break;
-            }
-            OutputView.printSingleResult(result, playerName);
+            PlayerName playerName = inputView.inputPlayerName();
+            resultView.printResult(playerName);
         }
-        OutputView.printAllResult(result);
     }
 }
