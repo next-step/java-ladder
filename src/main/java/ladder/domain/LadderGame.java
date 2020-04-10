@@ -13,6 +13,17 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
+    public Map<String, String> getResultAll() {
+        Map<String, String> result = new HashMap<>();
+
+        for (Player player : players.getPlayers()) {
+            String name = player.getName();
+            result.putAll(getResult(player.getName()));
+        }
+
+        return result;
+    }
+
     public Map<String, String> getResult(final String playerName) {
         Map<String, String> result = new HashMap<>();
 

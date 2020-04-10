@@ -1,9 +1,11 @@
 package ladder.service;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.LadderGame;
+import ladder.domain.LadderPrize;
+import ladder.domain.Players;
 import ladder.utils.StringUtils;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,13 +37,7 @@ public class LadderService {
     }
 
     private Map<String, String> findAllPlayer(final LadderGame ladderGame) {
-        Map<String, String> result = new HashMap<>();
-        for (Player player : ladderGame.getPlayers().getPlayers()) {
-            String name = player.getName();
-            Map<String, String> onePlayer = findOnePlayer(name, ladderGame);
-            result.putAll(onePlayer);
-        }
-        return result;
+        return ladderGame.getResultAll();
     }
 
     private Map<String, String> findOnePlayer(final String inputName, final LadderGame ladderGame) {
