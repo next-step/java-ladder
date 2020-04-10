@@ -1,81 +1,58 @@
 package ladder.model;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static ladder.model.Point.generatePoint;
 
 public class LadderLine {
+    private final List<Point> points;
 
-    private final List<LadderBridge> bridges;
-
-    private LadderLine(final List<LadderBridge> bridges) {
-        validate(bridges);
-        this.bridges = Collections.unmodifiableList(bridges);
+    public LadderLine(final List<Point> points) {
+        this.points = points;
     }
 
-    private void validate(final List<LadderBridge> bridges) {
-        if (Objects.isNull(bridges) || bridges.isEmpty()) {
-            throw new IllegalArgumentException("Ladder Bridge must be greater than zero.");
+    public static LadderLine init(final int poleCount) {
+        return init(PoleCount.of(poleCount));
+    }
+
+    public static LadderLine init(final PoleCount poleCount) {
+        List<Point> points = new ArrayList<>();
+        points.add(initFirst());
+        points.addAll(initBody(poleCount, points.get(points.size() - 1)));
+        points.add(initLast(points.get(points.size() - 1)));
+        return new LadderLine(points);
+    }
+
+    private static Point initFirst() {
+        return Point.first(generatePoint());
+    }
+
+    private static List<Point> initBody(final PoleCount poleCount, final Point firstPoint) {
+        List<Point> bodyPoints = new ArrayList<>();
+        Point prePoint = Point.of(firstPoint);
+
+        for (int i = 1; i < poleCount.toInt() - 1; i++) {
+            bodyPoints.add(prePoint.next());
+            prePoint = bodyPoints.get(i - 1);
         }
 
-        validateConsecutiveLines(bridges);
+        return bodyPoints;
     }
 
-    private void validateConsecutiveLines(final List<LadderBridge> bridges) {
-        LadderBridge preBridge = LadderBridge.UN_EXIST;
-
-        for (LadderBridge bridge : bridges) {
-            validateConsecutiveBridges(preBridge, bridge);
-            preBridge = bridge;
-        }
+    private static Point initLast(final Point prePoint) {
+        return prePoint.last();
     }
 
-    private void validateConsecutiveBridges(final LadderBridge preBridge, final LadderBridge bridge) {
-        if (preBridge == bridge && preBridge == LadderBridge.EXIST) {
-            throw new IllegalArgumentException("Ladder Bridge can not set to consecutive.");
-        }
+    public LadderPole move(final LadderPole position) {
+        Point targetPoint = points.get(position.toInt());
+        return targetPoint.move();
     }
 
-    public static LadderLine newInstance(final LadderBridge... bridges) {
-        return new LadderLine(Arrays.asList(bridges));
-    }
-
-    public static LadderLine newInstance(final int poleCount) {
-        return newInstance(PoleCount.of(poleCount));
-    }
-
-    public static LadderLine newInstance(final PoleCount poleCount) {
-        List<LadderBridge> bridges = Stream.iterate(
-                LadderBridge.randomBridge(),
-                LadderBridge::makeRandomBridgeByPreBridge)
-                .limit(poleCount.toInt() - 1)
-                .collect(Collectors.toList());
-
-        return new LadderLine(bridges);
-    }
-
-    public LadderPole moveLadderPole(final LadderPole ladderPole) {
-        int polePosition = ladderPole.toInt();
-
-        if (polePosition != 0 && bridges.get(polePosition - 1) == LadderBridge.EXIST) {
-            return LadderPole.of(polePosition - 1);
-        }
-
-        if (polePosition != bridges.size() && bridges.get(polePosition) == LadderBridge.EXIST) {
-            return LadderPole.of(polePosition + 1);
-        }
-
-        return LadderPole.of(polePosition);
-    }
-
-    public int poleCount() {
-        return bridges.size() + 1;
-    }
-
-    public List<LadderBridge> getBridges() {
-        return bridges;
+    @Override
+    public String toString() {
+        return "LadderLine{" +
+                "points=" + points +
+                '}';
     }
 }

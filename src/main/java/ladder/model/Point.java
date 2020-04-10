@@ -14,7 +14,7 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point first(Boolean right) {
+    public static Point first(final Boolean right) {
         return new Point(LadderPole.of(0), DirectionTdd.first(right));
     }
 
@@ -22,24 +22,28 @@ public class Point {
         return RANDOM.nextBoolean();
     }
 
-    public int move() {
+    public static Point of(final Point point) {
+        return new Point(point.polePosition, point.direction);
+    }
+
+    public LadderPole move() {
 
         if (direction.isRight()) {
-            return polePosition.toInt() + 1;
+            return polePosition.plus();
         }
 
         if (direction.isLeft()) {
-            return polePosition.toInt() - 1;
+            return polePosition.minus();
         }
 
-        return polePosition.toInt();
+        return polePosition;
     }
 
     public Point next() {
         return new Point(polePosition.plus(), direction.next());
     }
 
-    public Point next(Boolean right) {
+    public Point next(final Boolean right) {
         return new Point(polePosition.plus(), direction.next(right));
     }
 

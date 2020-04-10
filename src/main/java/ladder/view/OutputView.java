@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.model.LadderBridge;
-import ladder.model.LadderLine;
+import ladder.model.LadderLineOld;
 import ladder.model.dto.LadderGameConsoleResult;
 import ladder.model.dto.LadderGameMemberResult;
 import ladder.model.dto.LadderPoleInfo;
@@ -33,7 +33,7 @@ public class OutputView {
         System.out.println("사다리 결과\n");
 
         List<LadderPoleInfo> ladderPoleInfos = result.getLadderPoleInfos();
-        List<LadderLine> ladders = result.getLadderLines();
+        List<LadderLineOld> ladders = result.getLadderLines();
 
         printPoleInfo(ladderPoleInfos, LadderPoleInfo::getMemberName);
         printLadder(ladders, ladderPoleInfos.size());
@@ -47,11 +47,11 @@ public class OutputView {
         System.out.println(poleInfoString);
     }
 
-    private static void printLadder(final List<LadderLine> lines, final int memberSize) {
+    private static void printLadder(final List<LadderLineOld> lines, final int memberSize) {
         lines.forEach(line -> printLadderLine(line, memberSize));
     }
 
-    private static void printLadderLine(final LadderLine ladderLine, final int memberSize) {
+    private static void printLadderLine(final LadderLineOld ladderLine, final int memberSize) {
         String line = ladderLine.getBridges()
                 .stream()
                 .map(ladderBridge -> getBridgeString(memberSize, ladderBridge))

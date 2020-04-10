@@ -25,12 +25,12 @@ public class LadderGameResultTests {
 
     @BeforeEach
     public void init() {
-        List<LadderLine> ladderLines = new ArrayList<>();
-        ladderLines.add(LadderLine.newInstance(EXIST, UN_EXIST, EXIST));
-        ladderLines.add(LadderLine.newInstance(UN_EXIST, EXIST, UN_EXIST));
-        ladderLines.add(LadderLine.newInstance(EXIST, UN_EXIST, UN_EXIST));
-        ladderLines.add(LadderLine.newInstance(UN_EXIST, EXIST, UN_EXIST));
-        ladderLines.add(LadderLine.newInstance(UN_EXIST, EXIST, UN_EXIST));
+        List<LadderLineOld> ladderLines = new ArrayList<>();
+        ladderLines.add(LadderLineOld.newInstance(EXIST, UN_EXIST, EXIST));
+        ladderLines.add(LadderLineOld.newInstance(UN_EXIST, EXIST, UN_EXIST));
+        ladderLines.add(LadderLineOld.newInstance(EXIST, UN_EXIST, UN_EXIST));
+        ladderLines.add(LadderLineOld.newInstance(UN_EXIST, EXIST, UN_EXIST));
+        ladderLines.add(LadderLineOld.newInstance(UN_EXIST, EXIST, UN_EXIST));
         ladder = Ladder.newInstance(ladderLines);
 
         members = Members.newInstance("pobi, honux, crong, jk");

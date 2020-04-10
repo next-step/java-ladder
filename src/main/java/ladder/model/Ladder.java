@@ -8,14 +8,14 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<LadderLine> lines;
+    private final List<LadderLineOld> lines;
 
-    private Ladder(final List<LadderLine> lines) {
+    private Ladder(final List<LadderLineOld> lines) {
         validate(lines);
         this.lines = Collections.unmodifiableList(lines);
     }
 
-    private void validate(final List<LadderLine> lines) {
+    private void validate(final List<LadderLineOld> lines) {
         if (Objects.isNull(lines) || lines.isEmpty()) {
             throw new IllegalArgumentException("Ladder Lines must be existed.");
         }
@@ -26,13 +26,13 @@ public class Ladder {
     }
 
     public static Ladder newInstance(final int poleCount, final int height) {
-        List<LadderLine> ladders = IntStream.range(0, height)
-                .mapToObj(i -> LadderLine.newInstance(poleCount))
+        List<LadderLineOld> ladders = IntStream.range(0, height)
+                .mapToObj(i -> LadderLineOld.newInstance(poleCount))
                 .collect(Collectors.toList());
         return new Ladder(ladders);
     }
 
-    public static Ladder newInstance(final List<LadderLine> ladderLines) {
+    public static Ladder newInstance(final List<LadderLineOld> ladderLines) {
         return new Ladder(ladderLines);
     }
 
@@ -47,7 +47,7 @@ public class Ladder {
     public LadderPole proceed(final LadderPole ladderPole) {
         LadderPole preLadderPole = LadderPole.of(ladderPole);
 
-        for (LadderLine line : lines) {
+        for (LadderLineOld line : lines) {
             preLadderPole = line.moveLadderPole(preLadderPole);
         }
 
@@ -61,7 +61,7 @@ public class Ladder {
                 .poleCount();
     }
 
-    public List<LadderLine> getLines() {
+    public List<LadderLineOld> getLines() {
         return lines;
     }
 }
