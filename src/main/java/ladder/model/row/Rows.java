@@ -29,6 +29,10 @@ public class Rows {
                 .collect(collectingAndThen(toList(), Rows::new));
     }
 
+    public static Rows of(List<Row> rows) {
+        return new Rows(rows);
+    }
+
     public List<Row> getRows() {
         return rows;
     }
@@ -59,10 +63,12 @@ public class Rows {
     }
 
     private Position getFinalPosition(Players players, Player player) {
-        return findFinalPositionOfStartAt(players.getPlayers().indexOf(player));
+        return findFinalPositionOfStartAt(players.findIndexOf(player));
     }
 
     private Position findFinalPositionOfStartAt(int position) {
-        return Position.of(position).findFinalLocation(new Rows(rows));
+        Point initialPoint = Point.of(Position.of(position));
+        initialPoint.move(Rows.of(rows));
+        return initialPoint.getFinalPosition();
     }
 }

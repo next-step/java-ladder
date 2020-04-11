@@ -14,7 +14,7 @@ public class PlayerName {
         this.name = name;
     }
 
-    public static PlayerName of(String name){
+    public static PlayerName of(String name) {
         return new PlayerName(name);
     }
 

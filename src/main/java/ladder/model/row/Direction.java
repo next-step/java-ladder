@@ -1,9 +1,9 @@
-package ladder.model.player;
+package ladder.model.row;
 
 import java.util.Arrays;
 
 public enum Direction {
-    LEFT (-1, true, false),
+    LEFT(-1, true, false),
     RIGHT(1, false, true),
     STAY(0, false, false);
 
@@ -17,7 +17,7 @@ public enum Direction {
         this.isNextRightValueTrue = isNextRightValueTrue;
     }
 
-    public static Direction findDirection(boolean isNextLeftValueTrue, boolean isNextRightValueTrue){
+    public static Direction findDirection(boolean isNextLeftValueTrue, boolean isNextRightValueTrue) {
         return Arrays.stream(Direction.values())
                 .filter(direction -> direction.isNextLeftValueTrue == isNextLeftValueTrue)
                 .filter(direction -> direction.isNextRightValueTrue == isNextRightValueTrue)

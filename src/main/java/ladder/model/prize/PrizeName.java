@@ -19,7 +19,7 @@ public class PrizeName {
         this.prizeName = prizeName;
     }
 
-    public static PrizeName of(String prizeName){
+    public static PrizeName of(String prizeName) {
         return new PrizeName(prizeName);
     }
 

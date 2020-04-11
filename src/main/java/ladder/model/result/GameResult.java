@@ -15,11 +15,11 @@ public class GameResult {
         this.result = Collections.unmodifiableMap(result);
     }
 
-    public static GameResult of(Map<PlayerName, PrizeName> result){
+    public static GameResult of(Map<PlayerName, PrizeName> result) {
         return new GameResult(result);
     }
 
-    public GameResult findResultByPlayerName(String name){
+    public GameResult findResultByPlayerName(String name) {
         Map<PlayerName, PrizeName> result = new HashMap<>();
         result.put(PlayerName.of(name), PrizeName.of(findPrizeByPlayerName(name)));
         return GameResult.of(result);

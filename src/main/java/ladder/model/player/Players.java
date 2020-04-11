@@ -26,6 +26,10 @@ public class Players {
         return players;
     }
 
+    public int findIndexOf(Player player) {
+        return players.indexOf(player);
+    }
+
     private void validateDuplicationName(List<Player> players) {
         players.stream()
                 .filter(player -> Collections.frequency(findNames(players), player.getName()) > 1)
