@@ -51,12 +51,8 @@ public class Line {
         return currentPosition;
     }
 
-    private boolean isMove(int position, MoveCondition moveCondition) {
-        return moveCondition.isMove(position);
-    }
-
     private boolean canMoveRight(int currentPosition) {
-        return isMove(currentPosition, (position -> {
+        return canMove(currentPosition, (position -> {
             if(position <= 0) {
                 return false;
             }
@@ -67,7 +63,7 @@ public class Line {
     }
 
     private boolean canMoveLeft(int currentPosition) {
-        return isMove(currentPosition, (position -> {
+        return canMove(currentPosition, (position -> {
             if(position == points.size()) {
                 return false;
             }
@@ -75,6 +71,10 @@ public class Line {
             Point rightPoint = getPointByIndex(position);
             return rightPoint.hasLine();
         }));
+    }
+
+    private boolean canMove(int position, MoveCondition moveCondition) {
+        return moveCondition.isMove(position);
     }
 
     private Point getPointByIndex(int index) {
