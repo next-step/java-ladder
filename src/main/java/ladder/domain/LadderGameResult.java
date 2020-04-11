@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class LadderGameResult {
+    private static final String ALL = "all";
+
     private final List<NodeResult> nodeResults;
 
     public static LadderGameResult of(List<NodeResult> nodeResults) {
@@ -14,14 +16,13 @@ public class LadderGameResult {
         this.nodeResults = Collections.unmodifiableList(nodeResults);
     }
 
-    public NodeResult getNodeResult(String userName) {
-        return nodeResults.stream()
+    public List<NodeResult> getNodeResults(String userName) {
+        if (userName.equals(ALL)) {
+            return nodeResults;
+        }
+        return Collections.singletonList(nodeResults.stream()
                 .filter(nodeResult -> nodeResult.matchUser(User.of(userName)))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    public List<NodeResult> getNodeResults() {
-        return nodeResults;
+                .orElseThrow(IllegalArgumentException::new));
     }
 }

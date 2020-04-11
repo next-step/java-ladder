@@ -16,4 +16,10 @@ public class NodeResult {
     public boolean matchUser(User user) {
         return node.matchUser(user);
     }
+
+    @Override
+    public String toString() {
+        String userName = node.getUser().getName();
+        return userName + " : " + reward;
+    }
 }

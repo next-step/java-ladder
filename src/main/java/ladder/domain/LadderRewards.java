@@ -19,4 +19,8 @@ public class LadderRewards {
     public String getReward(Position position) {
         return ladderRewards.get(position.getPosition());
     }
+
+    public List<String> getLadderRewards() {
+        return ladderRewards;
+    }
 }
