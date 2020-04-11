@@ -1,6 +1,11 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.game.LadderGame;
+import nextstep.ladder.domain.game.LadderGameResult;
+import nextstep.ladder.domain.game.Participant;
+import nextstep.ladder.domain.line.Ladder;
+import nextstep.ladder.domain.line.LadderLine;
+import nextstep.ladder.domain.line.Point;
 
 import java.util.List;
 
@@ -10,21 +15,13 @@ public class ResultView {
     private static final String HORIZONTAL_LINE = "-";
     private static final String EMPTY_LINE = " ";
     private static final String VERTICAL_LINE = "|";
-    private static final String PRINT_ALL_RESULT_COMMAND = "all";
+
 
     public static void displayLadder(LadderGame ladderGame) {
         System.out.println(LADDER_MESSAGE);
         displayNames(ladderGame.getParticipantNames());
         displayLadder(ladderGame.getLadder());
         displayPrizes(ladderGame.getPrizeNames());
-    }
-
-    public static void displayResult(String command, LadderGame ladderGame) {
-        if (command.equals(PRINT_ALL_RESULT_COMMAND)) {
-            ResultView.displayResult(ladderGame.resultAll());
-            return;
-        }
-        ResultView.displayResult(ladderGame.result(command));
     }
 
     public static void displayResult(LadderGameResult ladderGameResult) {
@@ -57,17 +54,16 @@ public class ResultView {
     }
 
     private static void displayLadder(Ladder ladder) {
-        for (HorizontalLine horizontalLine : ladder) {
-            displayHorizontalLine(horizontalLine);
+        for (LadderLine ladderLine : ladder) {
+            displayHorizontalLine(ladderLine);
             System.out.println();
         }
     }
 
-    private static void displayHorizontalLine(HorizontalLine horizontalLine) {
-        for (Point point : horizontalLine) {
+    private static void displayHorizontalLine(LadderLine ladderLine) {
+        for (Point point : ladderLine) {
             System.out.print(VERTICAL_LINE);
             displayHorizontalLine(point);
-
         }
     }
 

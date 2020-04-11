@@ -1,16 +1,15 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
 
-import nextstep.ladder.domain.exception.NoEqualLengthArgumentException;
+import nextstep.ladder.domain.game.exception.NoEqualLengthArgumentException;
+import nextstep.ladder.domain.line.Ladder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final String NO_EQUAL_LENGTH_ERROR_MESSAGE =
             "참가자 수와 경품 수가 맞지 않습니다.";
+
     private Ladder ladder;
     private Participants participants;
     private Prizes prizes;
@@ -26,24 +25,24 @@ public class LadderGame {
     }
 
     public int getLadderHeight() {
-        return ladder.height();
+        return ladder.getHeight();
     }
 
     public Ladder getLadder() {
         return ladder;
     }
 
-    public LadderGameResult result(String participantName) {
+    public LadderGameResult getResult(String participantName) {
         Participant participant = new Participant(participantName);
         int index = participants.indexOf(participant);
-        int prizeIndex = ladder.result(index);
+        int prizeIndex = ladder.getEndPointIndex(index);
         return new LadderGameResult(participant, prizes.get(prizeIndex));
     }
 
-    public List<LadderGameResult> resultAll() {
+    public List<LadderGameResult> getResultAll() {
         List<LadderGameResult> results = new ArrayList<>();
         for (int i = 0, width = participants.size(); i < width; i++) {
-            int prizeIndex = ladder.result(i);
+            int prizeIndex = ladder.getEndPointIndex(i);
             results.add(new LadderGameResult(participants.get(i),
                     prizes.get(prizeIndex)));
         }
@@ -52,14 +51,10 @@ public class LadderGame {
     }
 
     public List<String> getParticipantNames() {
-        return participants.stream()
-                .map(Participant::getName)
-                .collect(Collectors.toList());
+        return participants.getNames();
     }
 
     public List<String> getPrizeNames() {
-        return prizes.stream()
-                .map(Prize::getName)
-                .collect(Collectors.toList());
+        return prizes.getNames();
     }
 }
