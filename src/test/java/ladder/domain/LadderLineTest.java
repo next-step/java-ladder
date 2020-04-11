@@ -25,11 +25,11 @@ class LadderLineTest {
         Line firstStubLine = new Line(0, true);
         Line secondStubLine = new Line(1, true);
         List<Line> lines = Arrays.asList(firstStubLine, secondStubLine);
+
         LadderLine ladderLine = new LadderLine(lines);
+        List<Line> existingLines = ladderLine.getLines();
 
-        Line line = ladderLine.get(0);
-
-        assertThat(line).isEqualTo(firstStubLine);
+        assertThat(existingLines).isEqualTo(lines);
     }
 
 }

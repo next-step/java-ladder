@@ -22,11 +22,6 @@ public class LineGenerator {
     }
 
     static List<Line> normal(int height, LadderLine beforeLadderLine) {
-        List<Line> normalLadderLine = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            Line beforeLine = beforeLadderLine.get(i);
-            normalLadderLine.add(Line.newLineOnBeforeLine(beforeLine));
-        }
-        return normalLadderLine;
+        return beforeLadderLine.newLineOnBeforeLine(height);
     }
 }

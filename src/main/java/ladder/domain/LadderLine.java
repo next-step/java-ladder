@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,8 +11,16 @@ public class LadderLine {
         this.lines = lines;
     }
 
-    Line get(int index) {
-        return lines.get(index);
+    public List<Line> newLineOnBeforeLine(int height) {
+        List<Line> normalLadderLine = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            normalLadderLine.add(Line.newLineOnBeforeLine(lines.get(i)));
+        }
+        return normalLadderLine;
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 
     @Override
