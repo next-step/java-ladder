@@ -3,8 +3,10 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    private final String name;
+    public static final Player ALL = new Player("all");
     private static final int NAME_LEN_LIMIT = 5;
+
+    private final String name;
 
     private Player(String name) {
         if (name == null) {
@@ -23,6 +25,9 @@ public class Player {
         return new Player(name);
     }
 
+    public static boolean isAllPlayer(Player player) {
+        return player.equals(ALL);
+    }
 
     public String getName() {
         return name;

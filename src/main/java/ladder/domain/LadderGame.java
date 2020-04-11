@@ -1,8 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,14 +10,20 @@ public class LadderGame {
 
     private static final Random random = new Random();
 
+    private final Map<Integer, Integer> resultCache;
     private final Ladder ladder;
 
     public LadderGame(int width, int height) {
+        this.ladder = generateLadder(width, height);
+        this.resultCache = new HashMap<>();
+    }
+
+    private Ladder generateLadder(int width, int height) {
         List<Line> lines = IntStream.range(0, height)
                 .mapToObj(i -> this.generateLine(width))
                 .collect(Collectors.toList());
 
-        ladder = Ladder.of(lines);
+        return Ladder.of(lines);
     }
 
     private Line generateLine(int width) {
@@ -45,5 +49,16 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
+    }
+
+    public int result(int idx) {
+        if (resultCache.get(idx) != null) {
+            return resultCache.get(idx);
+        }
+
+        int resultIdx = ladder.down(idx);
+        resultCache.put(idx, resultIdx);
+
+        return resultIdx;
     }
 }
