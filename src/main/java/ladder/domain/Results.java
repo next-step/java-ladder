@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 public class Results {
     private final List<Result> results;
 
@@ -12,16 +15,15 @@ public class Results {
     }
 
     public static Results valueOf(String[] resultNames) {
-        List<Result> results = Stream.of(resultNames)
+        return Stream.of(resultNames)
                 .map(Result::name)
-                .collect(Collectors.toList());
-        return new Results(results);
+                .collect(collectingAndThen(toList(), Results::new));
     }
 
     public List<String> getResultNames() {
         return results.stream()
                 .map(Result::getName)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public Result get(int resultIdx) {

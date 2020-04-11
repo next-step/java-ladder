@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.*;
 import static ladder.domain.Direction.LEFT;
 import static ladder.domain.Direction.RIGHT;
 
@@ -34,10 +35,9 @@ public class Line {
     }
 
     public static Line ofLength(int length) {
-        List<Point> points = IntStream.range(0, length)
+        return IntStream.range(0, length)
                 .mapToObj(Point::in)
-                .collect(Collectors.toList());
-        return new Line(points);
+                .collect(collectingAndThen(toList(), Line::new));
     }
 
     public Point at(int idx) {

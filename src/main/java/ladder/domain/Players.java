@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.*;
+
 public class Players {
     private final List<Player> players;
 
@@ -15,10 +17,9 @@ public class Players {
     }
 
     public static Players valueOf(String[] playerNames) {
-        List<Player> players = Stream.of(playerNames)
+        return Stream.of(playerNames)
                 .map(Player::name)
-                .collect(Collectors.toList());
-        return new Players(players);
+                .collect(collectingAndThen(toList(), Players::new));
     }
 
     public List<String> getPlayerNames() {
