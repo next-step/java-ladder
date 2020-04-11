@@ -88,6 +88,40 @@
 8. GameResult: Game의 결과를 관리한다. Map이 아니라, 각 GameResult 객체는 하나의 결과만을 갖는다. (participant, result)  
 9. LadderResult: List<String>으로 받은 실행결과를 감싸는 일급콜렉션  
 
+### Step4 설계를 위한 객체 책임 변경 및 추가 사항  
+
+> * Line이라는 개념을 버리고 해당 Point에서 단지 오른쪽으로 가냐, 왼쪽으로 가냐, 그냥 내려가냐를 따진다고 생각하자.  
+> * Point는 항상 Direction이라는 것을 가지고 있고, 좌우 방향으로 움직일 수 있느지의 여부를 관리하고 있다.  
+>
+> **[Ladder 생성]**  
+> * LadderLine에서 init() 메소드를 통해 Point들을 생성한다.  
+> * 먼저 initFirst를 통해 첫번째 Point에 대한 생성을 한다. 이 때는 generatePoint를 통해 left / right 여부를 Random으로 정한다.  
+>   * First Point는 무조건 Left 방향은 False이고, Right 방향은 랜덤이다. 따라서 Direction의 first() 메소드를 수행한다.
+>   * 생성된 Point는 다음 Point 생성을 위한 index 정보를 갖기 위해 가지고 있는다.   
+> * 이제 initBody를 통해 첫번째와 마지막 Point를 제외한 Point들을 생성한다.  
+>   * 이전 index + 1의 index 를 가지는 Point를 생성한다.  
+>   * First Point를 가지고 있던 Point 정보를 갱신하는 형태로 가진다. (다음 다음.. index를 참고하기 위해)  
+>   * 해당 Point의 Direction은 next() 메소드를 통해 수행한다. 이떄 수행되는 next()는 이전 Point의 Direction이다.  
+>       * 따라서 해당 Directin이 오른쪽으로 true값을 가지고 있으면, 선을 이어 가질 는 없으므로 무조건 False를 갖도록 한다. 
+>       * 그렇지 않으면 역시 랜덤으로 갖는다.  
+>       * 생성할 Point의 왼쪽 방향 여부는 곧 이전 Point의 오른쪽 방향 여부와 같으므로 of(this.right, nextRight)를 통해 생성한다.  
+> * 이제 마지막으로 initLast를 통해 마지막 Point를 생성한다.   
+>   * 마지막이므로 Point 정보를 들고 올 필요는 없다.  
+>   * lastPoint는 이전 Point의 right 여부를 left 여부로 갖고, right 여부는 무조건 false이다.  
+>   
+> **[Point move]**  
+> * Line에서 주어진 position의 Point의 move 메소드를 호출한다.  
+> * 해당 Point의 Direction의 isRight()가 true이면 position + 1된다.  
+> * isLeft()가 true이면 position - 1된다.  
+> * 둘다 아니면 position 그대로 다음 Line으로 이동한다.  
+
+1. Point : Line의 두 점과 현재 위치를 추상화한다.  
+    - Line에서 해당 Point의 위치와 각 점의 방향을 관리한다.  
+    - Direction 정보를 가지고 있다.  
+2. Direction : 각 Point의 좌/우 방향을 추상화한다.  
+    - 각 Point의 좌/우 방향 정보를 가진다. 
+    - 현재 Point에서 다음 Point를 생성하는 역할을 수행한다.  
+    
 ## 고민점
   
 - 사다리를 그리는 옵션 (선은 "-" 5개)은 누가 가질까? (전략?)  
