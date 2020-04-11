@@ -15,7 +15,7 @@ class NodeTest {
     void create(int input) {
         Node node = Node.of("yohan", input);
 
-        assertThat(node.getPosition()).isEqualTo(input);
+        assertThat(node.getPosition()).isEqualTo(Position.of(input));
     }
 
     @DisplayName("Node 의 startPosition 은 음수 일 수 없다.")
