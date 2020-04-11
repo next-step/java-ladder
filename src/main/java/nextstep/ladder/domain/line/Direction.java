@@ -48,7 +48,7 @@ public class Direction {
         return new Direction(left, right, directionSelector);
     }
 
-    public static Direction getFirst(DirectionSelector directionSelector) {
+    public static Direction createFirst(DirectionSelector directionSelector) {
         return of(FALSE, directionSelector.hasRightDirection(),
                 directionSelector);
     }

@@ -84,7 +84,7 @@ public class LadderGameTest {
 
     private Ladder getFixedLadder() {
         DirectionSelector directionSelector = () -> true;
-        Direction first = Direction.getFirst(directionSelector);
+        Direction first = Direction.createFirst(directionSelector);
         List<Point> points = Arrays.asList(
                 new Point(0, first),
                 new Point(1, first.getLast())
