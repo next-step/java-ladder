@@ -15,14 +15,14 @@ class LadderLineTest {
     @ParameterizedTest
     @ValueSource(ints = {2,3,4,5,6})
     void create(int personSize) {
-        assertThatCode(() -> new LadderLine(personSize)).doesNotThrowAnyException();
+        assertThatCode(() -> LadderLine.of(personSize)).doesNotThrowAnyException();
     }
 
     @DisplayName("다음 라인으로 이동")
     @ParameterizedTest
     @ValueSource(ints = {2})
     void name(int personSize) {
-        LadderLine ladderLine = new LadderLine(personSize);
+        LadderLine ladderLine = LadderLine.of(personSize);
         int linePosition = ladderLine.move(0);
 
         assertThat(linePosition).isBetween(0, 1);

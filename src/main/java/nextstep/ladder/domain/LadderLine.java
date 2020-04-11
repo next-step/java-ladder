@@ -9,9 +9,14 @@ import java.util.List;
  * 사다리 Line의 모든 Point 초기화와 이동을 담당
  */
 public class LadderLine {
-    private List<Point> points = new ArrayList<>();
+    private final List<Point> points;
 
-    public LadderLine(int personSize) {
+    public LadderLine(List<Point> points) {
+        this.points = points;
+    }
+
+    public static LadderLine of(int personSize) {
+        List<Point> points = new ArrayList<>();
         Point createdPoint = Point.first();
         points.add(createdPoint);
         for (int i = 1; i < personSize - 1; i++) {
@@ -19,9 +24,14 @@ public class LadderLine {
             points.add(createdPoint);
         }
         points.add(Point.last(createdPoint));
+        return new LadderLine(points);
     }
 
     public int move(int i) {
         return points.get(i).move();
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 }
