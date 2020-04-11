@@ -52,7 +52,7 @@ public class LadderGame {
     }
 
     public int result(int idx) {
-        if (resultCache.get(idx) != null) {
+        if (resultCache.containsKey(idx)) {
             return resultCache.get(idx);
         }
 
