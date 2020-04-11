@@ -1,4 +1,4 @@
-package ladder.Domain;
+package ladder.domain;
 
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +16,7 @@ public class LineTest {
         CrossRoadStrategy crossRoadStrategy = () -> true;
         Line line = Line.of(input, crossRoadStrategy);
 
-        IntStream.range(0, line.toList().size())
+        IntStream.range(0, line.size())
                 .boxed()
                 .peek(i -> {
                     System.out.print(line.movable(i) + " ");

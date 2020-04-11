@@ -1,10 +1,10 @@
-package ladder.Controller;
+package ladder.controller;
 
 
-import ladder.Domain.Climber;
-import ladder.Domain.LadderMap;
-import ladder.View.InputView;
-import ladder.View.OutputView;
+import ladder.domain.Climber;
+import ladder.domain.LadderMap;
+import ladder.view.InputView;
+import ladder.view.OutputView;
 
 import java.util.List;
 
@@ -26,9 +26,9 @@ public class LadderController {
 
     public void climbLadder() {
         String userNames = inputView.userNamesReader();
-        int ladderHHeight = inputView.ladderHeightReader();
+        int ladderHeight = inputView.ladderHeightReader();
 
-        LadderMap ladderMap = climber.createLadder(userNames, ladderHHeight);
+        LadderMap ladderMap = climber.createLadder(userNames, ladderHeight);
         List<String> climberNames = climber.getUserNames();
 
         outputView.printUsersName(climberNames);

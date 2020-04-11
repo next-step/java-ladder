@@ -1,4 +1,4 @@
-package ladder.Domain;
+package ladder.domain;
 
 
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ public class UsersTest {
 
     @Test
     void zeroUsersTest() {
-        assertThatExceptionOfType(MinimumUesrCountException.class).isThrownBy(() -> {
+        assertThatExceptionOfType(MinimumUserException.class).isThrownBy(() -> {
             Users.of("");
         });
     }

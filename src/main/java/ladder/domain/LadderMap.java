@@ -1,4 +1,4 @@
-package ladder.Domain;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,12 +9,12 @@ public class LadderMap {
 
     List<Line> ladderMap;
 
-    public LadderMap(Users uesrs, int highest, CrossRoadStrategy crossRoadStrategy) {
-        this.ladderMap = createMap(uesrs.toList().size(), highest, crossRoadStrategy);
+    public LadderMap(Users users, int highest, CrossRoadStrategy crossRoadStrategy) {
+        this.ladderMap = createMap(users.size(), highest, crossRoadStrategy);
     }
 
-    public static LadderMap of(Users uesrs, int height, CrossRoadStrategy crossRoadStrategy) {
-        return new LadderMap(uesrs, height, crossRoadStrategy);
+    public static LadderMap of(Users users, int height, CrossRoadStrategy crossRoadStrategy) {
+        return new LadderMap(users, height, crossRoadStrategy);
     }
 
     private List<Line> createMap(int usersCount, int height, CrossRoadStrategy crossRoadStrategy) {

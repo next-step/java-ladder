@@ -1,4 +1,4 @@
-package ladder.Domain;
+package ladder.domain;
 
 
 import java.util.List;
@@ -18,10 +18,14 @@ public class Climber {
 
     public LadderMap createLadder(String userNames, int height) {
         users = Users.of(userNames);
-        return LadderMap.of(users, height, () -> new Random().nextInt(10) >= 5);
+        CrossRoadStrategy halfPercentCreate = () -> new Random().nextInt(10) >= 5;
+        return LadderMap.of(users, height, halfPercentCreate);
     }
 
     public List<String> getUserNames() {
-        return users.toList().stream().map(User::getName).collect(Collectors.toList());
+        return users.toList()
+                .stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
     }
 }

@@ -1,4 +1,4 @@
-package ladder.Domain;
+package ladder.domain;
 
 
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ public class Line {
 
     private List<Boolean> createCrossLine(int userCount, CrossRoadStrategy crossRoadStrategy) {
         List<Boolean> crossable = new ArrayList<>();
-        
-        for (int i = 0; i < userCount-1; i++) {
+
+        for (int i = 0; i < userCount - 1; i++) {
             crossable.add(isCreateCrossable(crossable, crossRoadStrategy));
         }
 
@@ -38,6 +38,10 @@ public class Line {
 
     public boolean movable(int position) {
         return row.get(position);
+    }
+
+    public int size() {
+        return row.size();
     }
 
     public List<Boolean> toList() {

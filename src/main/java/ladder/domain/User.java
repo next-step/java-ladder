@@ -1,8 +1,5 @@
-package ladder.Domain;
+package ladder.domain;
 
-
-import java.util.Collections;
-import java.util.List;
 
 public class User {
 
