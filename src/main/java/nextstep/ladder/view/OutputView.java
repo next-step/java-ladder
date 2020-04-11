@@ -92,8 +92,7 @@ public class OutputView {
     }
 
     public void showGameResults(GameResults gameResults) {
-        ViewUtils.printLine(WHOS_RESULT);
-        String inputText = ViewUtils.readLine();
+        String inputText = getWhosResult();
 
         ViewUtils.printLine(LADDER_GAME_RESULT);
 
@@ -103,11 +102,20 @@ public class OutputView {
         }
 
         List<String> participantNames = Arrays.asList(inputText.split(InputView.DELIMITER_COMMA));
-        List<String> resultTexts = participantNames.stream()
-                .map(name -> {return String.format(GAME_RESULT_FORMAT, name, gameResults.getResult(name));})
-                .collect(Collectors.toList());
+        List<String> resultTexts = assembleResultTexts(participantNames, gameResults);
 
         resultTexts.forEach(text -> ViewUtils.printLine(text));
+    }
+
+    private String getWhosResult() {
+        ViewUtils.printLine(WHOS_RESULT);
+        return ViewUtils.readLine();
+    }
+
+    private List<String> assembleResultTexts(List<String> participantNames, GameResults gameResults) {
+        return participantNames.stream()
+                .map(name -> {return String.format(GAME_RESULT_FORMAT, name, gameResults.getResult(name));})
+                .collect(Collectors.toList());
     }
 
     public void showAllResults(GameResults gameResults) {
