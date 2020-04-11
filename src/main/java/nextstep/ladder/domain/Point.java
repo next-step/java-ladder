@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.direction.Direction;
 import nextstep.ladder.domain.direction.strategy.RandomMovement;
 
+import java.util.Objects;
+
 /**
  * LadderLine의 두 점과 현재 위치를 Point로 추상화
  * LadderLine에서 위치와 각 점의 방향을 관리
@@ -59,5 +61,19 @@ public class Point {
         }
 
         return linePosition;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return linePosition == point.linePosition &&
+                Objects.equals(direction, point.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(linePosition, direction);
     }
 }
