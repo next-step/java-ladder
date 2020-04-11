@@ -4,6 +4,7 @@ import ladder.model.player.PlayerName;
 import ladder.model.prize.PrizeName;
 import ladder.model.result.GameResult;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -41,6 +42,20 @@ public class GameResultTest {
 
         //then
         assertThat(prizeByPlayerName).isEqualTo(prizeName);
+    }
+
+    @DisplayName("알고 싶은 실행 결과로 all 을 입력하면 모두의 성적을 보여준다.")
+    @Test
+    void returnAllResult() {
+        //given
+        GameResult gameResult = new GameResult(createMapForTest());
+        String playerNameToKnow = "all";
+
+        //when
+        GameResult resultByPlayerName = gameResult.findResultByPlayerName(playerNameToKnow);
+
+        //then
+        assertThat(resultByPlayerName.getKeySet().size()).isEqualTo(3);
     }
 
     private Map<PlayerName, PrizeName> createMapForTest() {
