@@ -23,10 +23,11 @@ public class RowsTest {
         assertThat(rows.getRows()).hasSize(5);
     }
 
+
     private List<Player> createThreePlayers() {
         return Arrays.asList(
-                new Player("Mark"),
-                new Player("Palm"),
-                new Player("Jyung"));
+                new Player("Yuqi"),
+                new Player("Sujin"),
+                new Player("Shuha"));
     }
 }
