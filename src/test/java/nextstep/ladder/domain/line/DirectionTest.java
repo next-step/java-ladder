@@ -9,58 +9,68 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class DirectionTest {
-    private DirectionSelector directionSelector;
+    private DirectionSelector directionSelectorOnlyTrue;
+    private DirectionSelector directionSelectorOnlyFalse;
 
     @BeforeEach
     public void setUp() {
-        directionSelector = () -> true;
+        directionSelectorOnlyTrue = () -> true;
+        directionSelectorOnlyFalse = () -> false;
     }
+
     @Test
     public void init() {
-        assertThat(Direction.of(true, false))
-                .isEqualTo(Direction.of(true, false));
+        assertThat(Direction.of(true, false, directionSelectorOnlyTrue))
+                .isEqualTo(Direction.of(true, false, directionSelectorOnlyTrue));
     }
 
     @Test
     public void init_invalid() {
         assertThatExceptionOfType(IllegalStateException.class)
-                .isThrownBy(() -> Direction.of(TRUE, TRUE));
+                .isThrownBy(() -> Direction.of(TRUE, TRUE,
+                        directionSelectorOnlyTrue));
     }
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.getFirst(TRUE).getNext(directionSelector);
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
+        Direction next = Direction.getFirst(directionSelectorOnlyTrue).getNext();
+        assertThat(next)
+                .isEqualTo(Direction.of(TRUE, FALSE, directionSelectorOnlyTrue));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.getFirst(FALSE).getNext(directionSelector);
+            Direction.getFirst(directionSelectorOnlyFalse).getNext();
         }
     }
 
     @Test
     public void next_true() {
-        Direction next = Direction.of(TRUE, FALSE).getNext(TRUE);
-        assertThat(next).isEqualTo(Direction.of(FALSE, TRUE));
+        Direction next =
+                Direction.of(TRUE, FALSE, directionSelectorOnlyTrue).getNext(TRUE);
+        assertThat(next)
+                .isEqualTo(Direction.of(FALSE, TRUE, directionSelectorOnlyTrue));
     }
 
     @Test
     public void next_false() {
-        Direction next = Direction.of(FALSE, TRUE).getNext(FALSE);
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
+        Direction next =
+                Direction.of(FALSE, TRUE, directionSelectorOnlyTrue).getNext(FALSE);
+        assertThat(next)
+                .isEqualTo(Direction.of(TRUE, FALSE, directionSelectorOnlyTrue));
     }
 
     @Test
     public void first() {
-        Direction first = Direction.getFirst(TRUE);
+        Direction first = Direction.getFirst(directionSelectorOnlyTrue);
         assertThat(first.isLeft()).isEqualTo(FALSE);
     }
 
     @Test
     public void last() {
-        Direction last = Direction.getFirst(TRUE).getLast();
-        assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
+        Direction last = Direction.getFirst(directionSelectorOnlyTrue).getLast();
+        assertThat(last)
+                .isEqualTo(Direction.of(TRUE, FALSE, directionSelectorOnlyTrue));
     }
 }

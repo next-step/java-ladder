@@ -3,17 +3,10 @@ package nextstep.ladder.domain.line;
 public class Point {
     private final int index;
     private final Direction direction;
-    private final DirectionSelector directionSelector;
 
     public Point(int index, Direction direction) {
-        this(index, direction, new RandomDirectionSelector());
-    }
-
-    public Point(int index, Direction direction,
-                 DirectionSelector directionSelector) {
         this.index = index;
         this.direction = direction;
-        this.directionSelector = directionSelector;
     }
 
     public int move() {
@@ -29,7 +22,7 @@ public class Point {
     }
 
     public Point next() {
-        return new Point(index + 1, direction.getNext(directionSelector));
+        return new Point(index + 1, direction.getNext());
     }
 
     public Point next(Boolean right) {

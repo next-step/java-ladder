@@ -7,14 +7,17 @@ import static java.lang.Boolean.FALSE;
 public class Direction {
     private final boolean left;
     private final boolean right;
+    private DirectionSelector directionSelector;
 
-    private Direction(boolean left, boolean right) {
+    private Direction(boolean left, boolean right,
+                      DirectionSelector directionSelector) {
         if (left && right) {
             throw new IllegalStateException();
         }
 
         this.left = left;
         this.right = right;
+        this.directionSelector = directionSelector;
     }
 
     public boolean isRight() {
@@ -26,30 +29,28 @@ public class Direction {
     }
 
     public Direction getNext(boolean nextRight) {
-        return of(this.right, nextRight);
+        return of(this.right, nextRight, directionSelector);
     }
 
-    public Direction getNext(DirectionSelector directionSelector) {
+    public Direction getNext() {
         if (this.right) {
             return getNext(FALSE);
         }
         return getNext(directionSelector.hasRightDirection());
     }
 
-    public static Direction of(boolean left, boolean right) {
-        return new Direction(left, right);
+    public Direction getLast() {
+        return of(this.right, FALSE, directionSelector);
+    }
+
+    public static Direction of(boolean left, boolean right,
+                               DirectionSelector directionSelector) {
+        return new Direction(left, right, directionSelector);
     }
 
     public static Direction getFirst(DirectionSelector directionSelector) {
-        return of(FALSE, directionSelector.hasRightDirection());
-    }
-
-    public static Direction getFirst(boolean right) {
-        return of(FALSE, right);
-    }
-
-    public Direction getLast() {
-        return of(this.right, FALSE);
+        return of(FALSE, directionSelector.hasRightDirection(),
+                directionSelector);
     }
 
     @Override

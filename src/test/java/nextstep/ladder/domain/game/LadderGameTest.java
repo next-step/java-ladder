@@ -1,12 +1,7 @@
 package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.game.exception.NoEqualLengthArgumentException;
-import nextstep.ladder.domain.game.LadderGame;
-import nextstep.ladder.domain.game.LadderSize;
-import nextstep.ladder.domain.line.Direction;
-import nextstep.ladder.domain.line.Ladder;
-import nextstep.ladder.domain.line.LadderLine;
-import nextstep.ladder.domain.line.Point;
+import nextstep.ladder.domain.line.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -88,9 +83,11 @@ public class LadderGameTest {
     }
 
     private Ladder getFixedLadder() {
+        DirectionSelector directionSelector = () -> true;
+        Direction first = Direction.getFirst(directionSelector);
         List<Point> points = Arrays.asList(
-                new Point(0, Direction.of(false, true)),
-                new Point(1, Direction.of(true, false))
+                new Point(0, first),
+                new Point(1, first.getLast())
         );
         List<LadderLine> ladderLines =
                 Collections.singletonList(new LadderLine(points));
