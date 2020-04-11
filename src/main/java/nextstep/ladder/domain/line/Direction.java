@@ -36,8 +36,8 @@ public class Direction {
         return getNext(directionSelector.hasRightDirection());
     }
 
-    public static Direction of(boolean first, boolean second) {
-        return new Direction(first, second);
+    public static Direction of(boolean left, boolean right) {
+        return new Direction(left, right);
     }
 
     public static Direction firstOf(DirectionSelector directionSelector) {
