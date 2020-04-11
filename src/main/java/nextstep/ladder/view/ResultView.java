@@ -88,10 +88,12 @@ public class ResultView {
     }
 
     public void repeatPrintPlayResult(InputView inputView, Users resultsForAllPlayers) {
-        int countOfPerson = resultsForAllPlayers.getCountOfPerson();
-        for (int i = 0; i < countOfPerson; i++) {
+        while (true){
             String userName = inputView.enterResultUser(resultsForAllPlayers);
             resultView.printPlayResult(resultsForAllPlayers, userName);
+            if(ALL.equals(userName)){
+                break;
+            }
         }
     }
 
@@ -138,5 +140,4 @@ public class ResultView {
     private String appendUserResult(User user) {
         return user.getName() + " : " + user.getResult();
     }
-
 }
