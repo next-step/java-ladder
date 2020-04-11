@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class UsersTest {
 
@@ -38,6 +39,13 @@ public class UsersTest {
         assertThat(users.toList())
                 .hasSize(4)
                 .contains(User.of("pobi", position));
+    }
+
+    @Test
+    void zeroUsersTest() {
+        assertThatExceptionOfType(MinimumUesrCountException.class).isThrownBy(() -> {
+            Users.of("");
+        });
     }
 
     @Test
