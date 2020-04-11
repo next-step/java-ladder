@@ -3,6 +3,9 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Node {
+    private static final int FORWARD = 1;
+    private static final int BACK = 0;
+
     private final User user;
     private Position position;
 
@@ -19,12 +22,14 @@ public class Node {
         this.position = Objects.requireNonNull(startPosition);
     }
 
-    void move(LadderLine ladderLine) {
-        if (ladderLine.isLinkConnect(position)) {
+    void move(LinkDirection linkDirection) {
+        int direction = linkDirection.checkDirection(position);
+
+        if (direction == BACK) {
             position = position.back();
         }
 
-        if (ladderLine.isLinkConnect(position.forward())) {
+        if (direction == FORWARD) {
             position = position.forward();
         }
     }
