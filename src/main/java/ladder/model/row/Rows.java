@@ -41,17 +41,17 @@ public class Rows {
         return rows.get(index);
     }
 
-    public GameResult getResult(Players players, LadderPrizes ladderPrizes){
+    public GameResult getResult(Players players, LadderPrizes ladderPrizes) {
         Map<PlayerName, PrizeName> result = new HashMap<>();
 
-        for(int i=0; i<players.getPlayerCount(); i++){
+        for (int i = 0; i < players.getPlayerCount(); i++) {
             int position = i;
-            result.put(getPlayerNameAtFinalPosition(players, Position.of(i)), ladderPrizes.getLadderPrizes().get(i).getPrizeName());
+            result.put(getPlayerNameAtFinalPosition(players, Position.of(i)), ladderPrizes.getPrizeNameAtIndex(i));
         }
         return new GameResult(result);
     }
 
-    private PlayerName getPlayerNameAtFinalPosition(Players players, Position finalPosition){
+    private PlayerName getPlayerNameAtFinalPosition(Players players, Position finalPosition) {
         return players.getPlayers().stream()
                 .filter(player1 -> getFinalPosition(players, player1).equals(finalPosition))
                 .findFirst()
@@ -59,11 +59,11 @@ public class Rows {
                 .orElseThrow(IllegalAccessError::new);
     }
 
-    private Position getFinalPosition(Players players, Player player){
+    private Position getFinalPosition(Players players, Player player) {
         return findFinalPositionOfStartAt(players.getPlayers().indexOf(player));
     }
 
-    public Position findFinalPositionOfStartAt(int position){
-        return Position.of(position).findFinalLocation(new Rows (rows));
+    public Position findFinalPositionOfStartAt(int position) {
+        return Position.of(position).findFinalLocation(new Rows(rows));
     }
 }
