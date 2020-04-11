@@ -40,11 +40,11 @@ public class Direction {
         return new Direction(left, right);
     }
 
-    public static Direction firstOf(DirectionSelector directionSelector) {
+    public static Direction getFirst(DirectionSelector directionSelector) {
         return of(FALSE, directionSelector.hasRightDirection());
     }
 
-    public static Direction firstOf(boolean right) {
+    public static Direction getFirst(boolean right) {
         return of(FALSE, right);
     }
 

@@ -49,7 +49,7 @@ public class Point {
     }
 
     public static Point first(DirectionSelector directionSelector) {
-        return new Point(0, Direction.firstOf(directionSelector));
+        return new Point(0, Direction.getFirst(directionSelector));
     }
 
     @Override
