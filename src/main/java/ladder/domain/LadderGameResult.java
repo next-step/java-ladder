@@ -18,8 +18,4 @@ public class LadderGameResult {
     public String getPlayerResult(String name) {
         return this.result.getOrDefault(name, null);
     }
-
-    public boolean isExistPlayer(String name) {
-        return this.result.containsKey(name);
-    }
 }
