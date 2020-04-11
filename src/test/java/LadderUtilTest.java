@@ -1,7 +1,9 @@
+import ladder.IllegalSplitCommaException;
 import ladder.LadderUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -19,8 +21,9 @@ public class LadderUtilTest {
     }
 
 
-    @Test
-    void illegalSplitCommaExceptionTest(String input, String expected) {
+    @ParameterizedTest
+    @ValueSource(strings = {"abcd", "a b c"})
+    void illegalSplitCommaExceptionTest(String input) {
         assertThatExceptionOfType(IllegalSplitCommaException.class).isThrownBy(() -> {
             LadderUtil.splitStringByComma(input);
         });
