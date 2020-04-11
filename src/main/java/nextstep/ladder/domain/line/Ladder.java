@@ -15,7 +15,7 @@ public class Ladder implements Iterable<LadderLine> {
     public Ladder(LadderSize ladderSize) {
         ladderLines = new ArrayList<>();
         for (int i = 0, size = ladderSize.getHeight(); i < size; i++) {
-            ladderLines.add(LadderLine.valueOf(ladderSize.getWidth()));
+            ladderLines.add(LadderLine.of(ladderSize.getWidth()));
         }
     }
 
