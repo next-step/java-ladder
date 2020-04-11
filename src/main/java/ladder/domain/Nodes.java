@@ -15,17 +15,15 @@ public class Nodes {
     }
 
     public void move(LadderLine ladderLine) {
-        nodes.forEach(node -> {
-            node.move(position -> {
-                if (ladderLine.isLinkConnect(position)) {
-                    return -1;
-                }
+        nodes.forEach(node -> node.move(position -> {
+            if (ladderLine.isLinkConnect(position)) {
+                return -1;
+            }
 
-                if (ladderLine.isLinkConnect(position.forward())) {
-                    return 1;
-                }
-                return 0;
-            });
-        });
+            if (ladderLine.isLinkConnect(position.forward())) {
+                return 1;
+            }
+            return 0;
+        }));
     }
 }
