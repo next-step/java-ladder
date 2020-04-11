@@ -10,8 +10,6 @@
 * User
   * 생성 시 이름은 최대 5글자까지 부여
   * 5글자를 넘어가거나 0글자인 경우 exception
-* Users
-  * User의 일급 컬렉션
 * LadderGame
   * 유저와 사다리 높이를 입력 받아 사다리에게 만들 것을 요청한다. / LadderGame of(Users, 사다리 높이)
     * 유저는 Not Null & 2명 이상, 사다리 높이는 0보다 커야한다.
@@ -27,17 +25,15 @@
 * Node
   * User & Position을 가진 객체
   * LadderLine을 입력받아 Link를 확인하고 움직인다 / void move(LadderLine)
-* Nodes
-  * Node 의 일급 컬렉션
 * LadderLine
   * 유저 수를 입력 받아 LadderLine을 만든다. / LadderLine of(유저 수)
   * 유저 수를 입력 받고 유저 수 만큼(처음은 default로 DIS_CONNECT) LadderLink를 생성한다.
 * LadderLink
-  * LadderLink는 랜덤으로 존재 여부가 결정된다.
+  * LadderLink는 LinkStrategy 의 전략으로 존재 여부가 결정된다.
   * LadderLink는 이전의 LadderLink가 존재한다면 존재 할 수 없다.
 * Node
   * 유저와 Position 값을 가진 사다리를 타는 객체.
-  * LadderLine을 입력 받아 사다리를 타고 내려간다. / void move(LadderLine)
+  * LinkDirection 전략으로 사다리를 타고 내려간다. / void move(LinkDirection)
 * LadderRewards
   * 정상적인 실행 결과
   * 유효하지 않은 실행 결과 (User.size != Result.size)
