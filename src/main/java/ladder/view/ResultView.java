@@ -55,7 +55,7 @@ public class ResultView {
 
     private long getHeight(List<LadderLine> targetLadder) {
         return targetLadder.stream()
-                .map(LadderLine::getLines)
+                .map(ladderLine -> ladderLine.getLines().stream())
                 .count();
     }
 
