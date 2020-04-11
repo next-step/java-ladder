@@ -14,7 +14,7 @@ public class LadderGame {
     public LadderGame(GameInfo gameInfo, int ladderHeight) {
         validate(ladderHeight);
         this.ladder = new Ladder(gameInfo.getPlayers(), ladderHeight);
-        this.ladderGameResult = playGame(gameInfo.getPlayers(), gameInfo.getPlayResults());
+        this.ladderGameResult = playGame(gameInfo.getPlayers(), gameInfo.getPrizes());
     }
 
     public Ladder getLadder() {
@@ -25,11 +25,11 @@ public class LadderGame {
         return this.ladderGameResult;
     }
 
-    private LadderGameResult playGame(Players players, PlayResults playResults) {
+    private LadderGameResult playGame(Players players, Prizes prizes) {
         MatchedLineInfos matchedLineInfos = ladder.getMatchedInfos();
         Map<String, String> ladderGameResult = new LinkedHashMap<>();
         for (int i = 1; i <= players.count(); i++) {
-            ladderGameResult.put(players.getName(i - 1), playResults.getResult(matchedLineInfos.getMatchedLineNo(i) - 1));
+            ladderGameResult.put(players.getName(i - 1), prizes.getPrize(matchedLineInfos.getMatchedLineNo(i) - 1));
         }
         return new LadderGameResult(ladderGameResult);
     }

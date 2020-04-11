@@ -2,7 +2,7 @@ package ladder.controller;
 
 import ladder.domain.LadderGame;
 import ladder.domain.LadderGameResult;
-import ladder.domain.PlayResults;
+import ladder.domain.Prizes;
 import ladder.domain.Players;
 import ladder.dto.GameInfo;
 import ladder.view.InputView;
@@ -13,12 +13,12 @@ public class LadderGameRun {
 
     public static void main(String[] args) {
         Players players = InputView.inputPlayers();
-        PlayResults playResults = InputView.inputPlayResults();
-        GameInfo gameInfo = new GameInfo(players, playResults);
+        Prizes prizes = InputView.inputPlayResults();
+        GameInfo gameInfo = new GameInfo(players, prizes);
         int ladderHeight = InputView.inputHeight();
 
         LadderGame ladderGame = new LadderGame(gameInfo, ladderHeight);
-        ResultView.viewLadder(players, playResults, ladderGame.getLadder());
+        ResultView.viewLadder(players, prizes, ladderGame.getLadder());
         LadderGameResult ladderGameResult = ladderGame.getLadderGameResult();
 
         while (true) {

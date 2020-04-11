@@ -11,11 +11,11 @@ public class ResultView {
     private static final String LADDER_LINE_EXSIT = "|-----";
     private static final String LADDER_LINE_NONE = "|     ";
 
-    public static void viewLadder(Players players, PlayResults playResults, Ladder ladder) {
+    public static void viewLadder(Players players, Prizes prizes, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
         viewPlayers(players);
         viewLines(ladder);
-        viewPlayResults(playResults);
+        viewPlayResults(prizes);
         System.out.println("\n");
     }
 
@@ -51,10 +51,10 @@ public class ResultView {
         System.out.print(LADDER_LINE_NONE);
     }
 
-    private static void viewPlayResults(PlayResults playResults) {
+    private static void viewPlayResults(Prizes prizes) {
         System.out.println(
-                playResults.getPlayResults().stream()
-                        .map(n -> getNameWithFormat(n.getResult()))
+                prizes.getPrizes().stream()
+                        .map(n -> getNameWithFormat(n.getPrize()))
                         .collect(Collectors.joining())
         );
     }

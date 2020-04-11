@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
-import ladder.domain.PlayResults;
+import ladder.domain.Prizes;
 import ladder.domain.Players;
 import ladder.dto.GameInfo;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,14 +16,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderGameTest {
 
     private Players testPlayers;
-    private PlayResults testPlayResults;
+    private Prizes testPrizes;
     private GameInfo gameInfo;
 
     @BeforeEach
     void setUp() {
         this.testPlayers = new Players(Arrays.asList("jojae", "j", "young"));
-        this.testPlayResults = new PlayResults(Arrays.asList("꽝", "3000", "청소"));
-        this.gameInfo = new GameInfo(testPlayers, testPlayResults);
+        this.testPrizes = new Prizes(Arrays.asList("꽝", "3000", "청소"));
+        this.gameInfo = new GameInfo(testPlayers, testPrizes);
     }
 
     @Test

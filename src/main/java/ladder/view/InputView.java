@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.PlayResults;
+import ladder.domain.Prizes;
 import ladder.domain.Players;
 
 import java.util.Arrays;
@@ -16,9 +16,9 @@ public class InputView {
         return new Players(Arrays.asList(scanner.next().split(PLAYERS_DELIMETER)));
     }
 
-    public static PlayResults inputPlayResults() {
+    public static Prizes inputPlayResults() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        return new PlayResults(Arrays.asList(scanner.next().split(PLAY_RESULTS_DELIMETER)));
+        return new Prizes(Arrays.asList(scanner.next().split(PLAY_RESULTS_DELIMETER)));
     }
 
     public static int inputHeight() {

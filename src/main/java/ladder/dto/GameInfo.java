@@ -1,28 +1,28 @@
 package ladder.dto;
 
-import ladder.domain.PlayResults;
+import ladder.domain.Prizes;
 import ladder.domain.Players;
 
 public class GameInfo {
     private Players players;
-    private PlayResults playResults;
+    private Prizes prizes;
 
-    public GameInfo(Players players, PlayResults playResults) {
-        validate(players, playResults);
+    public GameInfo(Players players, Prizes prizes) {
+        validate(players, prizes);
         this.players = players;
-        this.playResults = playResults;
+        this.prizes = prizes;
     }
 
     public Players getPlayers() {
         return players;
     }
 
-    public PlayResults getPlayResults() {
-        return playResults;
+    public Prizes getPrizes() {
+        return prizes;
     }
 
-    private void validate(Players players, PlayResults playResults) {
-        if (players.count() != playResults.count()) {
+    private void validate(Players players, Prizes prizes) {
+        if (players.count() != prizes.count()) {
             throw new IllegalArgumentException("플레이어수와 결과개수는 일치해야 합니다.");
         }
     }

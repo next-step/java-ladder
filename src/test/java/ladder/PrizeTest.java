@@ -1,20 +1,18 @@
 package ladder;
 
-import ladder.domain.PlayResults;
+import ladder.domain.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class PlayResultsTest {
+public class PrizeTest {
 
     @Test
-    @DisplayName("플레이결과들 생성 실패 테스트")
+    @DisplayName("게임결과 생성 실패 테스트")
     void validateTest() {
         assertThatThrownBy(
-                () -> new PlayResults(Arrays.asList("asdf"))
+                () -> Prize.of("팔굽혀펴기40회")
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }
