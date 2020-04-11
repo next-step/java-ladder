@@ -10,36 +10,39 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LadderPositionTest {
+class NodeTest {
     @DisplayName("생성")
     @ParameterizedTest
     @ValueSource(ints = {0, 3, 4, 10, 100})
     void create(int input) {
-        LadderPosition ladderPosition = LadderPosition.of(input);
+        Node node = Node.of("yohan", input);
 
-        assertThat(ladderPosition.getPosition()).isEqualTo(input);
+        assertThat(node.getPosition()).isEqualTo(input);
     }
 
-    @DisplayName("LadderPosition 은 음수 일 수 없다.")
+    @DisplayName("Node 의 startPosition 은 음수 일 수 없다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, -5, -10})
     void exceptByCreation(int input) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            LadderPosition.of(input);
+            Node.of("yohan", input);
         });
     }
 
-    @DisplayName("LadderPosition 은 LadderLine 에 의존해 움직인다.")
+    @DisplayName("Node 은 LadderLine 에 의존해 움직인다.")
     @Test
     void move() {
         LadderLine ladderLine = LadderLine.of(Arrays.asList(
                 LadderLink.DIS_CONNECT,
                 LadderLink.CONNECT,
                 LadderLink.DIS_CONNECT));
-        LadderPosition ladderPosition = LadderPosition.of(0);
-        LadderPosition ladderPosition2 = LadderPosition.of(1);
+        Node node = Node.of("yohan", 0);
+        Node node2 = Node.of("yohan", 1);
 
-        assertThat(ladderPosition.move(ladderLine)).isEqualTo(LadderPosition.of(1));
-        assertThat(ladderPosition2.move(ladderLine)).isEqualTo(LadderPosition.of(0));
+        node.move(ladderLine);
+        node2.move(ladderLine);
+
+        assertThat(node).isEqualTo(Node.of("yohan", 1));
+        assertThat(node2).isEqualTo(Node.of("yohan", 0));
     }
 }
