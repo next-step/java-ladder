@@ -11,18 +11,19 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class ResultsTest {
+class LadderGameInfoTest {
     private static final String DELIMITER = ",";
 
     @DisplayName("결과 정상 생성")
     @ParameterizedTest
-    @ValueSource(strings = "a,b,c,d,e,f")
+    @ValueSource(strings = "a,b")
     void createResults(String resultString) {
         List<Result> resultList = Arrays.asList(resultString.split(DELIMITER)).stream()
                 .map(Result::new)
                 .collect(Collectors.toList());
+        List<Person> persons = Arrays.asList(new Person("dong"), new Person("chul"));
 
-        assertThatCode(() -> new Results(resultList, resultList.size()));
+        assertThatCode(() -> new LadderGameInfo(persons, resultList));
     }
 
     @DisplayName("유저 수와 결과 수가 같지 않을때 생성 실패")
@@ -33,6 +34,8 @@ class ResultsTest {
                 .map(Result::new)
                 .collect(Collectors.toList());
 
-        assertThatIllegalArgumentException().isThrownBy(() -> new Results(resultList, resultList.size() - 1));
+        List<Person> persons = Arrays.asList(new Person("dong"), new Person("chul"));
+
+        assertThatIllegalArgumentException().isThrownBy(() -> new LadderGameInfo(persons, resultList));
     }
 }

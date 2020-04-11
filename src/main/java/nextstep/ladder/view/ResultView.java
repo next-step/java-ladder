@@ -1,30 +1,42 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Result;
-import nextstep.ladder.domain.step.Step;
-import nextstep.ladder.domain.step.Steps;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.dto.LadderResponseDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
-
+    private static final String PRINT_ALL = "all";
     private static final String NAME_FORMAT = "%6s";
     private static final String SPACE_FORMAT = "     ";
-    private static final String LINE = "|";
-    private static final String STEP = "-----";
+    private static final String ROW_LINE = "|-----";
+    private static final String BLANK_LINE = "|     ";
 
     public static void printLadder(LadderResponseDto ladderResponseDto) {
-        printPersons(ladderResponseDto.getPersons());
-        printLines(ladderResponseDto.getLadder());
-        printResult(ladderResponseDto.getResults());
-        System.out.println();
+        printNames(ladderResponseDto.getLadderGameInfo().getPersons());
+        List<LadderLine> ladderLines = ladderResponseDto.getLadderLines();
+
+        for (LadderLine ladderLine : ladderLines) {
+            List<Point> points = ladderLine.getPoints();
+            System.out.println(getLineString(points));
+        }
+        printResult(ladderResponseDto.getLadderGameInfo().getResults());
+    }
+
+    private static StringBuilder getLineString(List<Point> points) {
+        StringBuilder stringBuilder = new StringBuilder(SPACE_FORMAT);
+        for (Point point : points) {
+            stringBuilder.append(printDirection(point, stringBuilder));
+        }
+        return stringBuilder;
+    }
+
+    private static String printDirection(Point point, StringBuilder stringBuilder) {
+        if(point.getDirection().isRight()) {
+            return ROW_LINE;
+        }
+        return BLANK_LINE;
     }
 
     private static void printResult(List<Result> results) {
@@ -34,7 +46,7 @@ public class ResultView {
         System.out.println(formatString);
     }
 
-    private static void printPersons(List<Person> persons) {
+    private static void printNames(List<Person> persons) {
         String names = persons.stream()
                 .map(Person::getName)
                 .map(name -> format(name))
@@ -46,51 +58,19 @@ public class ResultView {
         return String.format(NAME_FORMAT, name);
     }
 
-    private static void printLines(Ladder ladder) {
-        int heightOfLadder = ladder.getLines().get(0).getSteps().size();
-        List<Line> lines = ladder.getLines();
-        for (int i = 0; i < heightOfLadder; i++) {
-            printRows(lines, i);
+    public static void printOutput(List<Integer> linePosition, String name, LadderGameInfo ladderGameInfo) {
+        List<Person> persons = ladderGameInfo.getPersons();
+        List<Result> results = ladderGameInfo.getResults();
+        if (name.equals(PRINT_ALL)) {
+            printAllOutput(linePosition, persons, results);
+            return;
         }
+        System.out.println(name + " : " + results.get(linePosition.get(0)).getResult());
     }
 
-    private static void printRows(List<Line> lines, int stepIndex) {
-        int lineIndex = ZERO;
-        System.out.print(SPACE_FORMAT);
-        for (Line line : lines) {
-            Steps steps = line.getSteps();
-            System.out.print(printStep(lineIndex, steps.get(stepIndex)));
-            lineIndex++;
-        }
-        printNewLine();
-    }
-
-    private static void printNewLine() {
-        System.out.println();
-    }
-
-    private static StringBuilder printStep(int lineIndex, Step step) {
-        StringBuilder stringBuilder = new StringBuilder(LINE);
-        if (step.isMovable(lineIndex + ONE)) {
-            return stringBuilder.append(STEP);
-        }
-        return stringBuilder.append(SPACE_FORMAT);
-    }
-
-    public static void printOutput(Step result, LadderResponseDto ladderResponseDto) {
-        System.out.println("실행결과");
-        System.out.println(ladderResponseDto.getResults().get(result.getLinePosition()));
-    }
-
-    public static void printAllOutput(List<Step> steps, LadderResponseDto ladderResponseDto) {
-        List<String> names = ladderResponseDto.getPersons().stream()
-                .map(Person::getName)
-                .collect(Collectors.toList());
-        List<String> results = ladderResponseDto.getResults().stream()
-                .map(Result::getResult)
-                .collect(Collectors.toList());
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(names.get(i) + " : " + results.get(steps.get(i).getLinePosition()));
+    private static void printAllOutput(List<Integer> linePosition, List<Person> persons, List<Result> results) {
+        for (int i = 0; i < persons.size(); i++) {
+            System.out.println(persons.get(i).getName() + " : " + results.get(linePosition.get(i)).getResult());
         }
     }
 }

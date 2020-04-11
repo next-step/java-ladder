@@ -1,45 +1,63 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGameInfo;
+import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Person;
 import nextstep.ladder.domain.Result;
-import nextstep.ladder.domain.Results;
-import nextstep.ladder.domain.step.Step;
 import nextstep.ladder.dto.LadderRequestDto;
 import nextstep.ladder.dto.LadderResponseDto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final String DELIMITER = ",";
+    private static final int FIRST_LINE = 0;
 
-    public static LadderResponseDto makeLadder(LadderRequestDto ladderRequestDto) {
-        int heightOfLadder = ladderRequestDto.getHeight();
-        List<Person> persons = namesToPersons(ladderRequestDto);
-        Results results = new Results(resultStiringToResults(ladderRequestDto), persons.size());
+    public static LadderResponseDto run(LadderRequestDto ladderRequestDto) {
+        List<Person> persons = namesToPersons(ladderRequestDto.getNames());
+        List<Result> results = resultStringsToResult(ladderRequestDto.getResults());
+        List<LadderLine> ladderLines = personsToLadderLines(persons, ladderRequestDto.getHeight());
 
-        return new LadderResponseDto(Ladder.of(persons, heightOfLadder), persons, results);
+        return new LadderResponseDto(ladderLines, new LadderGameInfo(persons, results));
     }
 
-    private static List<Person> namesToPersons(LadderRequestDto ladderRequestDto) {
-        return Arrays.asList(ladderRequestDto.getNames().split(DELIMITER)).stream()
-                .map(Person::new)
-                .collect(Collectors.toList());
-    }
-
-    private static List<Result> resultStiringToResults(LadderRequestDto ladderRequestDto) {
-        return Arrays.asList(ladderRequestDto.getResults().split(DELIMITER)).stream()
+    private static List<Result> resultStringsToResult(String results) {
+        return Arrays.asList(results.split(DELIMITER)).stream()
                 .map(Result::new)
                 .collect(Collectors.toList());
     }
 
-    public static List<Step> findAll(Ladder ladder) {
-        return ladder.findAll();
+    private static List<LadderLine> personsToLadderLines(List<Person> persons, int heightOfLadder) {
+        List<LadderLine> ladderLines = new ArrayList<>();
+        for(int i = 0; i < heightOfLadder; i++) {
+            ladderLines.add(LadderLine.of(persons.size()));
+        }
+        return ladderLines;
     }
 
-    public static Step findResult(Ladder ladder, String name) {
-        return ladder.findResult(name);
+    private static List<Person> namesToPersons(String names) {
+        return Arrays.asList(names.split(DELIMITER)).stream()
+                .map(Person::new)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Integer> findResult(List<LadderLine> ladderLines, List<Integer> linePositions) {
+        List<Integer> resultPositions = new ArrayList<>();
+        for (int linePosition : linePositions) {
+            int nextLinePosition = getNextLinePosition(ladderLines, linePosition);
+            resultPositions.add(nextLinePosition);
+        }
+        return resultPositions;
+    }
+
+    private static int getNextLinePosition(List<LadderLine> ladderLines, int linePosition) {
+        int nextLinePosition = ladderLines.get(FIRST_LINE).move(linePosition);
+        for(int i = 1; i < ladderLines.size(); i++) {
+            nextLinePosition = ladderLines.get(i).move(nextLinePosition);
+        }
+        return nextLinePosition;
     }
 }
