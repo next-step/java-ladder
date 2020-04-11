@@ -15,7 +15,11 @@ public class Point {
     public Point(int index, Point previousPoint) {
         this.index = index;
 
-        if((previousPoint != null && previousPoint.hasLine()) ? (this.hasLine = false) : (this.hasLine = RandomBooleanProvider.getRandomBoolean()));
+        if(previousPoint != null && previousPoint.hasLine()) {
+            this.hasLine = false;
+            return ;
+        }
+        this.hasLine = RandomBooleanProvider.getRandomBoolean();
     }
 
     public boolean hasLine() {
