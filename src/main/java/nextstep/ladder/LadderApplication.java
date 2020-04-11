@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.LadderGameInfo;
 import nextstep.ladder.domain.Person;
 import nextstep.ladder.dto.LadderRequestDto;
 import nextstep.ladder.dto.LadderResponseDto;
@@ -19,12 +20,13 @@ public class LadderApplication {
         LadderRequestDto ladderRequestDto = InputView.inputParameters();
         LadderResponseDto ladderResponseDto = LadderGame.run(ladderRequestDto);
         ResultView.printLadder(ladderResponseDto);
+
         String name = DEFAULT;
         while (!name.equals(PRINT_ALL)) {
             name = InputView.inputResultName();
-            List<Integer> linePositions = getPrintedPeoplePositions(ladderResponseDto.getLadderGameInfo().getPersons(), name);
-            ResultView.printOutput(LadderGame.findResult(ladderResponseDto.getLadderLines(), linePositions),
-                    name, ladderResponseDto);
+            LadderGameInfo ladderGameInfo = ladderResponseDto.getLadderGameInfo();
+            List<Integer> linePositions = getPrintedPeoplePositions(ladderGameInfo.getPersons(), name);
+            ResultView.printOutput(LadderGame.findResult(ladderResponseDto.getLadderLines(), linePositions), name, ladderGameInfo);
         }
     }
 

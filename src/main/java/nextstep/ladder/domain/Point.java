@@ -10,6 +10,8 @@ import java.util.Objects;
  * LadderLine에서 위치와 각 점의 방향을 관리
  */
 public class Point {
+    private static final int MOVE_ONE = 1;
+    private static final int FIRST_POSITION = 0;
 
     private final int linePosition;
     private final Direction direction;
@@ -32,15 +34,15 @@ public class Point {
     }
 
     public static Point first() {
-        return new Point(0, Direction.right(new RandomMovement()));
+        return new Point(FIRST_POSITION, Direction.right(new RandomMovement()));
     }
 
     public static Point middle(Point point) {
-        return new Point(point.getLinePosition() + 1, point.direction.next());
+        return new Point(point.getLinePosition() + MOVE_ONE, point.direction.next());
     }
 
     public static Point last(Point point) {
-        return new Point(point.getLinePosition() + 1, point.direction.last());
+        return new Point(point.getLinePosition() + MOVE_ONE, point.direction.last());
     }
 
     public Direction getDirection() {
@@ -53,11 +55,11 @@ public class Point {
 
     public int move() {
         if(direction.isLeft()) {
-            return linePosition - 1;
+            return linePosition - MOVE_ONE;
         }
 
         if(direction.isRight()) {
-            return linePosition + 1;
+            return linePosition + MOVE_ONE;
         }
 
         return linePosition;

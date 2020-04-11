@@ -18,13 +18,18 @@ public class LadderLine {
     public static LadderLine of(int personSize) {
         List<Point> points = new ArrayList<>();
         Point createdPoint = Point.first();
+        createdPoint = addMiddlePoints(personSize, points, createdPoint);
+        points.add(Point.last(createdPoint));
+        return new LadderLine(points);
+    }
+
+    private static Point addMiddlePoints(int personSize, List<Point> points, Point createdPoint) {
         points.add(createdPoint);
         for (int i = 1; i < personSize - 1; i++) {
             createdPoint = Point.middle(createdPoint);
             points.add(createdPoint);
         }
-        points.add(Point.last(createdPoint));
-        return new LadderLine(points);
+        return createdPoint;
     }
 
     public int move(int i) {

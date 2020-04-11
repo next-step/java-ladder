@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
     private static final String DELIMITER = ",";
+    private static final int FIRST_LINE = 0;
 
     public static LadderResponseDto run(LadderRequestDto ladderRequestDto) {
         List<Person> persons = namesToPersons(ladderRequestDto.getNames());
@@ -53,7 +54,7 @@ public class LadderGame {
     }
 
     private static int getNextLinePosition(List<LadderLine> ladderLines, int linePosition) {
-        int nextLinePosition = ladderLines.get(0).move(linePosition);
+        int nextLinePosition = ladderLines.get(FIRST_LINE).move(linePosition);
         for(int i = 1; i < ladderLines.size(); i++) {
             nextLinePosition = ladderLines.get(i).move(nextLinePosition);
         }

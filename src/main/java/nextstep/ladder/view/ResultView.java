@@ -19,13 +19,17 @@ public class ResultView {
 
         for (LadderLine ladderLine : ladderLines) {
             List<Point> points = ladderLine.getPoints();
-            StringBuilder stringBuilder = new StringBuilder(SPACE_FORMAT);
-            for (Point point : points) {
-                stringBuilder.append(printDirection(point, stringBuilder));
-            }
-            System.out.println(stringBuilder);
+            System.out.println(getLineString(points));
         }
         printResult(ladderResponseDto.getLadderGameInfo().getResults());
+    }
+
+    private static StringBuilder getLineString(List<Point> points) {
+        StringBuilder stringBuilder = new StringBuilder(SPACE_FORMAT);
+        for (Point point : points) {
+            stringBuilder.append(printDirection(point, stringBuilder));
+        }
+        return stringBuilder;
     }
 
     private static String printDirection(Point point, StringBuilder stringBuilder) {
@@ -54,20 +58,19 @@ public class ResultView {
         return String.format(NAME_FORMAT, name);
     }
 
-    public static void printOutput(List<Integer> linePosition, String name, LadderResponseDto ladderResponseDto) {
-        LadderGameInfo ladderGameInfo = ladderResponseDto.getLadderGameInfo();
-        printOutputByName(linePosition, name, ladderGameInfo);
-    }
-
-    private static void printOutputByName(List<Integer> linePosition, String name, LadderGameInfo ladderGameInfo) {
+    public static void printOutput(List<Integer> linePosition, String name, LadderGameInfo ladderGameInfo) {
         List<Person> persons = ladderGameInfo.getPersons();
         List<Result> results = ladderGameInfo.getResults();
         if (name.equals(PRINT_ALL)) {
-            for (int i = 0; i < persons.size(); i++) {
-                System.out.println(persons.get(i).getName() + " : " + results.get(linePosition.get(i)).getResult());
-            }
+            printAllOutput(linePosition, persons, results);
             return;
         }
         System.out.println(name + " : " + results.get(linePosition.get(0)).getResult());
+    }
+
+    private static void printAllOutput(List<Integer> linePosition, List<Person> persons, List<Result> results) {
+        for (int i = 0; i < persons.size(); i++) {
+            System.out.println(persons.get(i).getName() + " : " + results.get(linePosition.get(i)).getResult());
+        }
     }
 }
