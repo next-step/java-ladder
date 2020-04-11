@@ -15,7 +15,7 @@ public class LadderLine implements Iterable<Point> {
         return points.get(position).move();
     }
 
-    public static LadderLine init(int width) {
+    public static LadderLine of(int width) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
         point = initBody(width, points, point);

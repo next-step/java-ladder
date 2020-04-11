@@ -1,18 +1,17 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.line.LadderLine;
 import org.junit.jupiter.api.Test;
 
 public class LadderLineTest {
     @Test
     public void init() {
         int sizeOfPerson = 5;
-        System.out.println(LadderLine.init(sizeOfPerson));
+        System.out.println(LadderLine.valueOf(sizeOfPerson));
     }
 
     @Test
     public void move() {
-        LadderLine line = LadderLine.init(2);
+        LadderLine line = LadderLine.valueOf(2);
         System.out.println("ladder result : " + line.move(0));
     }
 }
