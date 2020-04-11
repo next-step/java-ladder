@@ -9,11 +9,15 @@ public class Point {
         this.endPointLineNo = endPointLineNo;
     }
 
-    public int getHeightPosition() {
-        return heightPosition;
-    }
-
     public int getEndPointLineNo() {
         return endPointLineNo;
+    }
+
+    public boolean isHeightPosition(int heightPosition) {
+        return this.heightPosition == heightPosition;
+    }
+
+    public boolean isEndPointLineNumber(int endPointLineNo) {
+        return this.endPointLineNo == endPointLineNo;
     }
 }

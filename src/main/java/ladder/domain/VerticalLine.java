@@ -18,29 +18,29 @@ public class VerticalLine {
         return this.lineNo;
     }
 
-    public List<Point> getPoints() {
-        return new ArrayList<Point>(this.points);
+    public int getPointCount() {
+        return this.points.size();
     }
 
     public Point getPoint(int heightPosition) {
         return points.stream()
-                .filter(p -> p.getHeightPosition() == heightPosition)
+                .filter(p -> p.isHeightPosition(heightPosition))
                 .findFirst()
                 .orElse(null);
     }
 
     public boolean isExistPoint(int heightPosition) {
         return points.stream()
-                .filter(p -> p.getHeightPosition() == heightPosition)
-                .findFirst()
-                .isPresent();
+                .anyMatch(p -> p.isHeightPosition(heightPosition));
     }
 
     public boolean isDrawing(int heightPosition) {
         return points.stream()
-                .filter(p -> p.getHeightPosition() == heightPosition && p.getEndPointLineNo() == lineNo + 1)
-                .findFirst()
-                .isPresent();
+                .anyMatch(p -> p.isHeightPosition(heightPosition) && p.isEndPointLineNumber(lineNo + 1));
+    }
+
+    public boolean isLineNumber(int lineNumber) {
+        return this.lineNo == lineNumber;
     }
 
     public void addPoint(int heightPosition, int endPointLineNo) {

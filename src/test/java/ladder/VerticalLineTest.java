@@ -21,6 +21,6 @@ public class VerticalLineTest {
         verticalLine.addPoint(1, 2);
         verticalLine.addPoint(2, 2);
 
-        assertThat(verticalLine.getPoints().size()).isEqualTo(2);
+        assertThat(verticalLine.getPointCount()).isEqualTo(2);
     }
 }

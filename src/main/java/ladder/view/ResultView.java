@@ -1,22 +1,22 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.VerticalLines;
+import ladder.domain.*;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ResultView {
-
     private static final String PLAYER_NAME_FORMAT = "%6s";
     private static final String LADDER_LINE_EXSIT = "|-----";
     private static final String LADDER_LINE_NONE = "|     ";
 
-    public static void viewSettingLadder(Players players, Ladder ladder) {
-        System.out.println("\n실행결과\n");
+    public static void viewLadder(Players players, PlayResults playResults, Ladder ladder) {
+        System.out.println("\n사다리 결과\n");
         viewPlayers(players);
-        viewLadder(ladder);
+        viewLines(ladder);
+        viewPlayResults(playResults);
+        System.out.println("\n");
     }
 
     private static void viewPlayers(Players players) {
@@ -31,7 +31,7 @@ public class ResultView {
         return String.format(PLAYER_NAME_FORMAT, name);
     }
 
-    private static void viewLadder(Ladder ladder) {
+    private static void viewLines(Ladder ladder) {
         IntStream.rangeClosed(1, ladder.getHeight())
                 .forEach(i -> viewLineByHeight(ladder.getVerticalLines(), i));
     }
@@ -49,5 +49,26 @@ public class ResultView {
             return;
         }
         System.out.print(LADDER_LINE_NONE);
+    }
+
+    private static void viewPlayResults(PlayResults playResults) {
+        System.out.println(
+                playResults.getPlayResults().stream()
+                        .map(n -> getNameWithFormat(n.getResult()))
+                        .collect(Collectors.joining())
+        );
+    }
+
+    public static void viewPlayerResult(LadderGameResult ladderGameResult, String name) {
+        System.out.println("실행결과");
+        System.out.println(Optional.ofNullable(ladderGameResult.getPlayerResult(name))
+                .orElse("없는 플레이어 입니다."));
+        System.out.println();
+    }
+
+    public static void viewAllPlayerResult(LadderGameResult ladderGameResult) {
+        System.out.println("전체 실행결과");
+        ladderGameResult.getPlayerNames().stream()
+                .forEach(n -> System.out.println(n + " : " + ladderGameResult.getPlayerResult(n)));
     }
 }
