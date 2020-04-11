@@ -12,4 +12,8 @@ public class NodeResult {
         this.node = node;
         this.reward = reward;
     }
+
+    public boolean matchUser(User user) {
+        return node.matchUser(user);
+    }
 }

@@ -34,6 +34,10 @@ public class Node {
         }
     }
 
+    public boolean matchUser(User user) {
+        return this.user.equals(user);
+    }
+
     public Position getPosition() {
         return position;
     }
