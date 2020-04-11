@@ -20,6 +20,12 @@ public class Ladder {
         this.ladderLines = Collections.unmodifiableList(ladderLines);
     }
 
+    public Nodes exec(Users users) {
+        Nodes nodes = users.createNodes();
+        ladderLines.forEach(nodes::move);
+        return nodes;
+    }
+
     public List<LadderLine> getLadderLines() {
         return ladderLines;
     }
