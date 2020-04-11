@@ -19,32 +19,16 @@ public class PlayLadderGame {
         return new Users(userList);
     }
 
-    public int plusIndex(int index, boolean isLine) {
-        if (isLine) {
-            ++index;
-        }
-        return index;
+    private int plusIndex(Point point) {
+        return point.plusIndex();
     }
 
-    public int minusIndex(int index, boolean isLine) {
-        if (isLine) {
-            --index;
-        }
-        return index;
+    private int minusIndex(Point point) {
+        return point.minusIndex();
     }
 
-    public int judgeIndex(int index, boolean isLeftLine, boolean isRightLine) {
-        if (isLeftLine) {
-            --index;
-            return index;
-        }
-
-        if (isRightLine) {
-            ++index;
-            return index;
-        }
-
-        return index;
+    private int judgeIndex(Point point, boolean isLeftLine) {
+        return point.judgeIndex(isLeftLine);
     }
 
     private int initIndex(int userCount, int i) {
@@ -59,6 +43,7 @@ public class PlayLadderGame {
         for (int j = 0; j < ladder.size(); j++) {
             List<Point> points = ladder.get(j).getPoints();
             Point point = getPoint(points, last, index);
+            point.setIndex(index);
             index = getIndex(last, index, points, point);
         }
         return index;
@@ -66,16 +51,16 @@ public class PlayLadderGame {
 
     private int getIndex(int last, int index, List<Point> points, Point point) {
         if (index == last) {
-            index = minusIndex(index, point.isNextPoint());
+            index = minusIndex(point);
             return index;
         }
         if (index == 0) {
-            index = plusIndex(index, point.isNextPoint());
+            index = plusIndex(point);
             return index;
         }
         if (index > 0 && index < last) {
             Point prePoint = points.get(index - 1);
-            index = judgeIndex(index, prePoint.isNextPoint(), point.isNextPoint());
+            index = judgeIndex(point, prePoint.isNextPoint());
         }
         return index;
     }

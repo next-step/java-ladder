@@ -85,50 +85,6 @@ class PlayLadderGameTest {
         gameInfo = new GameInfo(users, results);
     }
 
-    @DisplayName("점의 위치가 첫번째 이고 선이 있을 경우 무조건 index 값이 +1 증가함(이동)")
-    @Test
-    void plusIndexForFirstPosition() {
-        int index = 0;
-        boolean isLine = true;
-        int plusIndex = playLadderGame.plusIndex(index, isLine);
-        assertThat(plusIndex).isEqualTo(index + 1);
-    }
-
-    @DisplayName("점의 위치가 마지막이고 선이 있을 경우 무조건 index 값이 -1 증가함(이동)")
-    @Test
-    void minusIndexForLastPosition() {
-        int index = 2;
-        boolean isLine = true;
-        int minusIndex = playLadderGame.minusIndex(index, isLine);
-        assertThat(minusIndex).isEqualTo(index - 1);
-    }
-
-    @DisplayName("점의 위치가 처음과 마지막이 아닐 경우는"
-                 + "양옆에 왼쪽 또 오른쪽에 선이 있는는 경우에 따라 다르게 이동한다."
-                 + "왼쪽으로 이동하는 경우 -1")
-    @Test
-    void judgeIndexForMiddlePositionAndMovingToLeft() {
-        int index = 1;
-        boolean isLeftLine = true;
-        boolean isRightLine = false;
-        int judgeIndex = playLadderGame.judgeIndex(index, isLeftLine, isRightLine);
-        assertThat(judgeIndex).isEqualTo(index - 1);
-
-    }
-
-    @DisplayName("점의 위치가 처음과 마지막이 아닐 경우는"
-                 + "양옆에 왼쪽 또 오른쪽에 선이 있는는 경우에 따라 다르게 이동한다."
-                 + "오른으로 이동하는 경우 +1")
-    @Test
-    void judgeIndexForMiddlePositionAndMovingToRight() {
-        int index = 1;
-        boolean isLeftLine = false;
-        boolean isRightLine = true;
-        int judgeIndex = playLadderGame.judgeIndex(index, isLeftLine, isRightLine);
-        assertThat(judgeIndex).isEqualTo(index + 1);
-
-    }
-
     @DisplayName("사다리 게임에 대한 전체 결과 값을 만든다.")
     @Test
     void GenerateResultsForAllPlayers() {
