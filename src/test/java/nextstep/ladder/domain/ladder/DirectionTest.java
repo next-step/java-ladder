@@ -18,7 +18,7 @@ public class DirectionTest {
     @Test
     public void init_invalid() {
         assertThatThrownBy(() -> Direction.of(TRUE, TRUE))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalStateException.class);
     }
 
     @Test

@@ -2,22 +2,23 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static nextstep.ladder.domain.ladder.LadderPointGenerator.generatePoint;
 
 
-public class LadderLine {
+class LadderLine {
     private final List<Point> points;
 
-    public LadderLine(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public int move(int position) {
+    int move(int position) {
         return points.get(position).move();
     }
 
-    public static LadderLine init(int sizeOfPerson) {
+    static LadderLine init(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
         Point point = initFirst(points);
         point = initBody(sizeOfPerson, points, point);
@@ -42,6 +43,13 @@ public class LadderLine {
         Point point = Point.first(generatePoint());
         points.add(point);
         return point;
+    }
+
+    List<Boolean> getIsRightDirections(){
+        return points.stream()
+                .limit(points.size()-1)
+                .map(Point::isRightDirection)
+                .collect(Collectors.toList());
     }
 
     @Override

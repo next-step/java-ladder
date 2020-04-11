@@ -42,4 +42,8 @@ public class Results {
     public int size() {
         return results.size();
     }
+
+    public List<String> getResults() {
+        return results;
+    }
 }

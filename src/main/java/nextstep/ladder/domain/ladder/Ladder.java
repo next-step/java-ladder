@@ -3,6 +3,7 @@ package nextstep.ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private static final String INSTANTIATE_ERROR_FORMAT = "Create Ladder fail. " +
@@ -45,5 +46,11 @@ public class Ladder {
 
     public int sizeOfPerson() {
         return sizeOfPerson;
+    }
+
+    public List<List<Boolean>> getIsRightDirectionsMatrix(){
+        return ladderLines.stream()
+                .map(LadderLine::getIsRightDirections)
+                .collect(Collectors.toList());
     }
 }

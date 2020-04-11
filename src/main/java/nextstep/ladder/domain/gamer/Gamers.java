@@ -57,4 +57,8 @@ public class Gamers {
     public int size() {
         return gamers.size();
     }
+
+    public List<String> getGamers() {
+        return gamers;
+    }
 }

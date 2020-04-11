@@ -5,7 +5,7 @@ import java.util.Objects;
 import static java.lang.Boolean.FALSE;
 import static nextstep.ladder.domain.ladder.LadderPointGenerator.generatePoint;
 
-public class Direction {
+class Direction {
     private final boolean left;
     private final boolean right;
 
@@ -16,37 +16,36 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
-    public boolean isRight() {
+    boolean isRight() {
         return this.right;
     }
 
-    public boolean isLeft() {
+    boolean isLeft() {
         return this.left;
     }
 
-    public Direction next(boolean nextRight) {
+    Direction next(boolean nextRight) {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    Direction next() {
         if (this.right) {
             return next(FALSE);
         }
         return next(generatePoint());
     }
 
-    public static Direction of(boolean first, boolean second) {
+    static Direction of(boolean first, boolean second) {
         return new Direction(first, second);
     }
 
-    public static Direction first(boolean right) {
+    static Direction first(boolean right) {
         return of(FALSE, right);
     }
 
-    public Direction last() {
+    Direction last() {
         return of(this.right, FALSE);
     }
 

@@ -43,4 +43,11 @@ public class PointTest {
         assertThat(second.move())
                 .isEqualTo((0));
     }
+
+    @Test
+    void isRightDirection() {
+        Point second = Point.first(TRUE).next(FALSE);
+        assertThat(second.isRightDirection())
+                .isFalse();
+    }
 }
