@@ -44,6 +44,19 @@ public class RowTest {
         assertThat(rowElement).isEqualTo(expected);
     }
 
+    @DisplayName("Row의 가장 마지막 Position 값(int)을 반환한다.")
+    @Test
+    void getLastLocationValue() {
+        //given
+        Row row = createOneRow();
+
+        //when
+        int lastLocationValue = row.getLastLocationValue();
+
+        //then
+        assertThat(lastLocationValue).isEqualTo(2);
+    }
+
     private Row createOneRow() {
         Map<Position, Boolean> row = new HashMap<>();
         row.put(Position.of(0), true);
