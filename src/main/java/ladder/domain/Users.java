@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Users {
     private static final String USER_SEPARATOR = ",";
@@ -19,6 +20,13 @@ public class Users {
 
     public Users(List<User> users) {
         this.users = Collections.unmodifiableList(users);
+    }
+
+    public Nodes createNodes() {
+        int userCount = users.size();
+        return Nodes.of(Stream.iterate(0, i -> i < userCount, i -> i + 1)
+                .map(i -> Node.of(users.get(i), i))
+                .collect(Collectors.toList()));
     }
 
     public List<User> getUsers() {
