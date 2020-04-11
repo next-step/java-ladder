@@ -45,7 +45,6 @@ public class Rows {
         Map<PlayerName, PrizeName> result = new HashMap<>();
 
         for (int i = 0; i < players.getPlayerCount(); i++) {
-            int position = i;
             result.put(getPlayerNameAtFinalPosition(players, Position.of(i)), ladderPrizes.getPrizeNameAtIndex(i));
         }
         return new GameResult(result);

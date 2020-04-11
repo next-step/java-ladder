@@ -3,9 +3,9 @@ package ladder.view;
 import ladder.model.player.Player;
 import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
-import ladder.model.row.Position;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;
+import ladder.model.row.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
 
@@ -15,19 +15,12 @@ public class ResultView {
     private static final String BLOCK_TRUE = "-----";
     private static final String ONE_VERTICAL = "|";
     private static final String ONE_BLANK = " ";
+    private static final String TWO_BLANK = "  ";
     private static final String DELIMITER_TO_PRINT = " : ";
     private static final String LADDER_TITLE = "사다리 게임 결과";
     private static final String RESULT_TITLE = "실행 결과";
     private static final int ONE_BLOCK_WIDTH = 6;
     private static final double HALF_BLOCK_WIDTH = 2.5;
-//
-//    public ResultView(GameResult gameResult) {
-//        this.gameResult = gameResult;
-//    }
-
-//    public static ResultView of(GameResult gameResult) {
-//        return new ResultView(gameResult);
-//    }
 
     public static void printLadder(Players players, Rows rows, LadderPrizes ladderPrizes) {
         printTitle();
@@ -42,18 +35,6 @@ public class ResultView {
         printResultTitle();
         printGameResult(gameResult);
     }
-
-//    public Players getPlayers() {
-//        return players;
-//    }
-//
-//    public Rows getRows() {
-//        return rows;
-//    }
-//
-//    public LadderPrizes getLadderPrizes() {
-//        return ladderPrizes;
-//    }
 
     private static void printGameResult(GameResult gameResult) {
         gameResult.getKeySet().stream()
@@ -124,9 +105,8 @@ public class ResultView {
     }
 
     private static void printBlankPriorToRow() {
-        for (int i = 0; i < 2; i++) {
-            System.out.print(ONE_BLANK);
-        }
+        System.out.print(TWO_BLANK);
+
     }
 
     private static void printValue(boolean booleanValue) {
