@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Node {
     private static final int FORWARD = 1;
-    private static final int BACK = 0;
+    private static final int BACK = -1;
 
     private final User user;
     private Position position;
@@ -40,6 +40,10 @@ public class Node {
 
     public Position getPosition() {
         return position;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override
