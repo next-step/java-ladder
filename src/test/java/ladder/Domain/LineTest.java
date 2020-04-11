@@ -16,7 +16,7 @@ public class LineTest {
         CrossRoadStrategy crossRoadStrategy = () -> true;
         Line line = Line.of(input, crossRoadStrategy);
 
-        IntStream.range(0, input)
+        IntStream.range(0, line.toList().size())
                 .boxed()
                 .peek(i -> {
                     System.out.print(line.movable(i) + " ");
