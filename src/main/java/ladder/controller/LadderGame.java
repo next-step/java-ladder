@@ -22,8 +22,11 @@ public class LadderGame {
 
     public static void getResult() {
         GameResult gameResult = rows.getResult(players, ladderPrizes);
-        GameResult resultToKnow = gameResult.findResultByPlayerName(InputView.getPlayerToGetResult());
 
-        ResultView.printResult(resultToKnow);
+        GameResult resultToKnow1 = gameResult.findResultByPlayerName(InputView.getPlayerToGetResult());
+        ResultView.printResult(resultToKnow1);
+
+        GameResult resultToKnow2 = gameResult.findResultByPlayerName(InputView.getPlayerToGetResult());
+        ResultView.printResult(resultToKnow2);
     }
 }
