@@ -12,8 +12,7 @@ public class WidthGenerator {
 
     public List<Boolean> generate() {
         List<Boolean> lines = new ArrayList<>();
-        int maxLine = personCount - 1;
-        for (int line = 0; line < maxLine; line++) {
+        for (int line = 0, maxLine = personCount - 1; line < maxLine; line++) {
             lines.add(Math.round(Math.random()) < 0.5);
         }
         return lines;
