@@ -17,7 +17,11 @@ public class LadderLine {
                 .collect(Collectors.toList()));
     }
 
-    public LadderLine(List<LadderLink> ladderLinks) {
+    public static LadderLine of(List<LadderLink> ladderLinks) {
+        return new LadderLine(ladderLinks);
+    }
+
+    private LadderLine(List<LadderLink> ladderLinks) {
         this.ladderLinks = Collections.unmodifiableList(ladderLinks);
     }
 
@@ -27,5 +31,12 @@ public class LadderLine {
 
     public List<LadderLink> getLadderLinks() {
         return ladderLinks;
+    }
+
+    public boolean isLinkConnect(int position) {
+        if (position < 0 || position >= ladderLinks.size()) {
+            return false;
+        }
+        return ladderLinks.get(position) == LadderLink.CONNECT;
     }
 }
