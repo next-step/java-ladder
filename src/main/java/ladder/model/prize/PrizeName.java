@@ -19,6 +19,10 @@ public class PrizeName {
         this.prizeName = prizeName;
     }
 
+    public static PrizeName of(String prizeName){
+        return new PrizeName(prizeName);
+    }
+
     public String getPrizeName() {
         return prizeName;
     }
