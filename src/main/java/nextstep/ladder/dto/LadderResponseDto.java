@@ -1,20 +1,21 @@
 package nextstep.ladder.dto;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.LadderGameInfo;
+import nextstep.ladder.domain.LadderLine;
 
 import java.util.List;
 
 public class LadderResponseDto {
-    private Ladder ladder;
+    private List<LadderLine> ladderLines;
     private LadderGameInfo ladderGameInfo;
 
-    public LadderResponseDto(Ladder ladder, LadderGameInfo ladderGameInfo) {
-        this.ladder = ladder;
+    public LadderResponseDto(List<LadderLine> ladderLines, LadderGameInfo ladderGameInfo) {
+        this.ladderLines = ladderLines;
         this.ladderGameInfo = ladderGameInfo;
     }
 
-    public Ladder getLadder() {
-        return ladder;
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 
     public LadderGameInfo getLadderGameInfo() {
