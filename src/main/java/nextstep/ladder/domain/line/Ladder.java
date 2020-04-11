@@ -7,32 +7,25 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Ladder implements Iterable<LadderLine> {
-    private List<LadderLine> ladder;
+    private List<LadderLine> ladderLines;
 
-    public Ladder(List<LadderLine> ladder) {
-        this.ladder = ladder;
+    public Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
     public Ladder(LadderSize ladderSize) {
-        ladder = generateHorizontalLines(ladderSize);
-    }
-
-    private List<LadderLine> generateHorizontalLines(
-            LadderSize ladderSize) {
-        List<LadderLine> ladderLines = new ArrayList<>();
+        ladderLines = new ArrayList<>();
         for (int i = 0, size = ladderSize.getHeight(); i < size; i++) {
             ladderLines.add(LadderLine.init(ladderSize.getWidth()));
         }
-
-        return ladderLines;
     }
 
     public int getHeight() {
-        return ladder.size();
+        return ladderLines.size();
     }
 
     public int getEndPointIndex(int startPointIndex) {
         int nextIndex = startPointIndex;
-        for (LadderLine ladderLine : ladder) {
+        for (LadderLine ladderLine : ladderLines) {
             nextIndex = ladderLine.move(nextIndex);
         }
 
@@ -41,6 +34,6 @@ public class Ladder implements Iterable<LadderLine> {
 
     @Override
     public Iterator<LadderLine> iterator() {
-        return ladder.iterator();
+        return ladderLines.iterator();
     }
 }
