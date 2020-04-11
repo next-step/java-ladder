@@ -6,6 +6,12 @@ import java.util.Objects;
 public class Gamers {
     private static final String INSTANTIATE_ERROR_FORMAT = "Create Gamer fail. name must be at least 1 character and 5 characters : name=%s";
     private static final int MAX_GAMER_STRING_LENGTH = 5;
+
+    private static final String WRONG_GAMER_NAME_MSG = "getResult fail. " +
+            "gamer name must be registered name " +
+            "registered gamers =%s, " +
+            "input gamer=%s";
+
     private final List<String> gamers;
 
     private Gamers(List<String> gamers) {
@@ -21,7 +27,11 @@ public class Gamers {
     }
 
     public int getLadderNumber(String gamer) {
-        return gamers.indexOf(gamer);
+        int number = gamers.indexOf(gamer);
+        if (number == -1) {
+            throw new IllegalArgumentException(String.format(WRONG_GAMER_NAME_MSG, gamers, gamer));
+        }
+        return number;
     }
 
     @Override
