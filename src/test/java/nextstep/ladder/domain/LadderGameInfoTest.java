@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGameInfoTest {
     private static final String DELIMITER = ",";
