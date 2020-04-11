@@ -8,7 +8,7 @@ public class LadderGame {
 
     public static LadderGame of(String names, int height) {
         Users users = Users.of(names);
-        return new LadderGame(users, Ladder.of(users, Height.of(height)));
+        return new LadderGame(users, Ladder.of(users.getUserCount(), Height.of(height)));
     }
 
     private LadderGame(Users users, Ladder ladder) {

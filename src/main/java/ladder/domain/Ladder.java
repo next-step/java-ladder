@@ -8,9 +8,8 @@ import java.util.stream.Stream;
 public class Ladder {
     private final List<LadderLine> ladderLines;
 
-    public static Ladder of(Users users, Height height) {
+    public static Ladder of(int userCount, Height height) {
         int heightCount = height.getHeight();
-        int userCount = users.getUserCount();
         return new Ladder(Stream.iterate(LadderLine.of(userCount),
                 i -> LadderLine.of(userCount))
                 .limit(heightCount)
