@@ -6,7 +6,7 @@ import java.util.List;
 public class LadderPrizes {
     private List<LadderPrize> ladderPrizes;
 
-    private LadderPrizes(List<LadderPrize> ladderPrizes) {
+    public LadderPrizes(List<LadderPrize> ladderPrizes) {
         this.ladderPrizes = Collections.unmodifiableList(ladderPrizes);
     }
 
