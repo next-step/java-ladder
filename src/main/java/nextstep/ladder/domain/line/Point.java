@@ -29,15 +29,15 @@ public class Point {
     }
 
     public Point next() {
-        return new Point(index + 1, direction.next(directionSelector));
+        return new Point(index + 1, direction.getNext(directionSelector));
     }
 
     public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
+        return new Point(index + 1, direction.getNext(right));
     }
 
     public Point last() {
-        return new Point(index + 1, direction.last());
+        return new Point(index + 1, direction.getLast());
     }
 
     public boolean hasRightDirection() {
@@ -49,7 +49,7 @@ public class Point {
     }
 
     public static Point first(DirectionSelector directionSelector) {
-        return new Point(0, Direction.first(directionSelector));
+        return new Point(0, Direction.firstOf(directionSelector));
     }
 
     @Override

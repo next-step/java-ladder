@@ -25,30 +25,30 @@ public class Direction {
         return this.left;
     }
 
-    public Direction next(boolean nextRight) {
+    public Direction getNext(boolean nextRight) {
         return of(this.right, nextRight);
     }
 
-    public Direction next(DirectionSelector directionSelector) {
+    public Direction getNext(DirectionSelector directionSelector) {
         if (this.right) {
-            return next(FALSE);
+            return getNext(FALSE);
         }
-        return next(directionSelector.hasRightDirection());
+        return getNext(directionSelector.hasRightDirection());
     }
 
     public static Direction of(boolean first, boolean second) {
         return new Direction(first, second);
     }
 
-    public static Direction first(DirectionSelector directionSelector) {
+    public static Direction firstOf(DirectionSelector directionSelector) {
         return of(FALSE, directionSelector.hasRightDirection());
     }
 
-    public static Direction first(boolean right) {
+    public static Direction firstOf(boolean right) {
         return of(FALSE, right);
     }
 
-    public Direction last() {
+    public Direction getLast() {
         return of(this.right, FALSE);
     }
 

@@ -29,38 +29,38 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next(directionSelector);
+        Direction next = Direction.firstOf(TRUE).getNext(directionSelector);
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next(directionSelector);
+            Direction.firstOf(FALSE).getNext(directionSelector);
         }
     }
 
     @Test
     public void next_true() {
-        Direction next = Direction.of(TRUE, FALSE).next(TRUE);
+        Direction next = Direction.of(TRUE, FALSE).getNext(TRUE);
         assertThat(next).isEqualTo(Direction.of(FALSE, TRUE));
     }
 
     @Test
     public void next_false() {
-        Direction next = Direction.of(FALSE, TRUE).next(FALSE);
+        Direction next = Direction.of(FALSE, TRUE).getNext(FALSE);
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void first() {
-        Direction first = Direction.first(TRUE);
+        Direction first = Direction.firstOf(TRUE);
         assertThat(first.isLeft()).isEqualTo(FALSE);
     }
 
     @Test
     public void last() {
-        Direction last = Direction.first(TRUE).last();
+        Direction last = Direction.firstOf(TRUE).getLast();
         assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
     }
 }
