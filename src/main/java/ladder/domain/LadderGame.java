@@ -29,7 +29,7 @@ public class LadderGame {
         MatchedLineInfos matchedLineInfos = ladder.getMatchedInfos();
         Map<String, String> ladderGameResult = new LinkedHashMap<>();
         for (int i = 1; i <= players.count(); i++) {
-            ladderGameResult.put(players.getName(i - 1), playResults.getResult(matchedLineInfos.getMatchedLineNo(i)));
+            ladderGameResult.put(players.getName(i - 1), playResults.getResult(matchedLineInfos.getMatchedLineNo(i) - 1));
         }
         return new LadderGameResult(ladderGameResult);
     }

@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.Players;
+import ladder.domain.PlayResults;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class PlayResultsTest {
     @DisplayName("플레이결과들 생성 실패 테스트")
     void validateTest() {
         assertThatThrownBy(
-                () -> new Players(Arrays.asList("asdf"))
+                () -> new PlayResults(Arrays.asList("asdf"))
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

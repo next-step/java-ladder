@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
@@ -28,6 +29,8 @@ public class LadderGameTest {
     @Test
     @DisplayName("게임 생성 테스트")
     void createGameTest() {
-        new LadderGame(this.gameInfo, 5);
+        assertThatCode(
+                () -> new LadderGame(this.gameInfo, 5)
+        ).doesNotThrowAnyException();
     }
 }

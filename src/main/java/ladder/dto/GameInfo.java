@@ -22,7 +22,7 @@ public class GameInfo {
     }
 
     private void validate(Players players, PlayResults playResults) {
-        if (players.count() != playResults.getCount()) {
+        if (players.count() != playResults.count()) {
             throw new IllegalArgumentException("플레이어수와 결과개수는 일치해야 합니다.");
         }
     }

@@ -7,34 +7,35 @@ public class PlayResults {
     private static final int RULE_PLAY_RESULT_MIN_COUNT = 2;
     private List<PlayResult> playResults;
 
-    public PlayResults(List<String> playResults) {
-        validate(playResults);
-        this.playResults = new ArrayList<>();
-        int playersCount = playResults.size();
-        for (int i = 0; i < playersCount; i++) {
-            this.playResults.add(PlayResult.of(playResults.get(i), i + 1));
-        }
+    public PlayResults(List<String> inputs) {
+        int playResultsCount = inputs.size();
+        validate(playResultsCount);
+        this.playResults = inputsToPlayerResults(inputs);
     }
 
     public List<PlayResult> getPlayResults() {
         return new ArrayList<>(this.playResults);
     }
 
-    public int getCount() {
+    public int count() {
         return this.playResults.size();
     }
 
-    public String getResult(int order) {
-        return this.playResults.stream()
-                .filter(p -> p.isOrder(order))
-                .findFirst()
-                .map(p -> p.getResult())
-                .orElseThrow(() -> new IllegalArgumentException("맞는 순서의 결과가 없습니다."));
+    public String getResult(int index) {
+        return this.playResults.get(index).getResult();
     }
 
-    private void validate(List<String> playResults) {
-        if (playResults.size() < RULE_PLAY_RESULT_MIN_COUNT) {
-            throw new IllegalArgumentException(String.format("게임 결과는 %d개 이상이어야 합니다.", RULE_PLAY_RESULT_MIN_COUNT));
+    private List<PlayResult> inputsToPlayerResults(List<String> inputs) {
+        List<PlayResult> playResults = new ArrayList<>();
+        for (String input : inputs) {
+            playResults.add(PlayResult.of(input));
+        }
+        return playResults;
+    }
+
+    private void validate(int playResultCount) {
+        if (playResultCount < RULE_PLAY_RESULT_MIN_COUNT) {
+            throw new IllegalArgumentException(String.format("플레이어는 %d명 이상이어야 합니다.", RULE_PLAY_RESULT_MIN_COUNT));
         }
     }
 }
