@@ -66,8 +66,8 @@ public class ResultView {
             for (int i = 0; i < persons.size(); i++) {
                 System.out.println(persons.get(i).getName() + " : " + results.get(linePosition.get(i)).getResult());
             }
-        } else {
-            System.out.println(name + " : " + results.get(linePosition.get(0)).getResult());
+            return;
         }
+        System.out.println(name + " : " + results.get(linePosition.get(0)).getResult());
     }
 }
