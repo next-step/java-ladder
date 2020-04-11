@@ -9,12 +9,7 @@ public class Player {
     private final String name;
 
     private Player(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("이름은 5자 이하이어야 합니다.");
-        }
-
-        name = name.trim();
-        if (name.isEmpty() || name.length() > NAME_LEN_LIMIT) {
+        if (name == null || name.trim().isEmpty() || name.trim().length() > NAME_LEN_LIMIT) {
             throw new IllegalArgumentException("이름은 5자 이하이어야 합니다.");
         }
 
