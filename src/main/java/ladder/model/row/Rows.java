@@ -63,7 +63,7 @@ public class Rows {
         return findFinalPositionOfStartAt(players.getPlayers().indexOf(player));
     }
 
-    public Position findFinalPositionOfStartAt(int position) {
+    private Position findFinalPositionOfStartAt(int position) {
         return Position.of(position).findFinalLocation(new Rows(rows));
     }
 }
