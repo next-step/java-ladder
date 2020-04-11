@@ -54,9 +54,8 @@ public class ResultView {
     }
 
     private long getHeight(List<LadderLine> targetLadder) {
-        return targetLadder.stream()
-                .map(ladderLine -> ladderLine.getLines().stream())
-                .count();
+        return targetLadder.get(ZERO)
+                .getLines().size();
     }
 
     private String drawByHeight(int height, List<LadderLine> ladder) {
