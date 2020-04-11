@@ -30,22 +30,22 @@ public class Players {
         return players;
     }
 
-    public Players findFinalLocationByName(Rows rows, String name) {
-        moveAllPlayers(rows);
+//    public Players findFinalLocationByName(Rows rows, String name) {
+//        moveAllPlayers(rows);
+//
+//        Optional<Player> optionalPlayer = players.stream()
+//                .filter(player -> player.hasEqualName(name))
+//                .findFirst();
+//
+//        return optionalPlayer
+//                .map(player -> Players.create(Arrays.asList(player)))
+//                .orElse(Players.create(players));
+//    }
 
-        Optional<Player> optionalPlayer = players.stream()
-                .filter(player -> player.hasEqualName(name))
-                .findFirst();
-
-        return optionalPlayer
-                .map(player -> Players.create(Arrays.asList(player)))
-                .orElse(Players.create(players));
-    }
-
-    private void moveAllPlayers(Rows rows) {
-        players.stream()
-                .forEach(player -> player.findFinalLocation(rows));
-    }
+//    private void moveAllPlayers(Rows rows) {
+//        players.stream()
+//                .forEach(player -> player.findFinalLocation(rows));
+//    }
 
     private void validateDuplicationName(List<Player> players) {
         players.stream()

@@ -4,6 +4,7 @@ import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.prize.PrizeName;
+import ladder.model.row.Rows;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,4 +34,9 @@ public class GameResult {
     public Set<PlayerName> getKeySet() {
         return result.keySet();
     }
+
+//    private void moveAllPlayers(Rows rows, Players players) {
+//        players.getPlayers().stream()
+//                .forEach(player -> player.findFinalLocation(rows));
+//    }
 }

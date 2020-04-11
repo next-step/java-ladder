@@ -34,36 +34,36 @@ public class Player {
     public boolean hasEqualName(String name) {
         return name.equals(this.name.getName());
     }
-
-    public Position findFinalLocation(Rows rows) {
-        for (Row row : rows.getRows()) {
-            position = findNextPosition(row);
-        }
-        return position;
-    }
-
-    public Position findNextPosition(Row nextRow) {
-        position = position.add(findNextDirection(nextRow).getIncrement());
-        return position;
-    }
-
-    private Direction findNextDirection(Row nextRow) {
-        return Direction.findDirection(isNextLeftPositionTrue(nextRow), isNextRightPositionTrue(nextRow));
-    }
-
-    private boolean isNextLeftPositionTrue(Row nextRow) {
-        return isFirstNow() ? false : nextRow.getRowElement(position.add(DECREASE_ONE));
-    }
-
-    private boolean isNextRightPositionTrue(Row nextRow) {
-        return isLastNow(nextRow) ? false : nextRow.getRowElement(position);
-    }
-
-    private boolean isFirstNow() {
-        return position.getPosition() == ZERO_LOCATION;
-    }
-
-    private boolean isLastNow(Row nextRow) {
-        return position.getPosition() == nextRow.getLastLocationValue();
-    }
+//
+//    public Position findFinalLocation(Rows rows) {
+//        for (Row row : rows.getRows()) {
+//            position = findNextPosition(row);
+//        }
+//        return position;
+//    }
+//
+//    public Position findNextPosition(Row nextRow) {
+//        position = position.add(findNextDirection(nextRow).getIncrement());
+//        return position;
+//    }
+//
+//    private Direction findNextDirection(Row nextRow) {
+//        return Direction.findDirection(isNextLeftPositionTrue(nextRow), isNextRightPositionTrue(nextRow));
+//    }
+//
+//    private boolean isNextLeftPositionTrue(Row nextRow) {
+//        return isFirstNow() ? false : nextRow.getRowElement(position.add(DECREASE_ONE));
+//    }
+//
+//    private boolean isNextRightPositionTrue(Row nextRow) {
+//        return isLastNow(nextRow) ? false : nextRow.getRowElement(position);
+//    }
+//
+//    private boolean isFirstNow() {
+//        return position.getPosition() == ZERO_LOCATION;
+//    }
+//
+//    private boolean isLastNow(Row nextRow) {
+//        return position.getPosition() == nextRow.getLastLocationValue();
+//    }
 }

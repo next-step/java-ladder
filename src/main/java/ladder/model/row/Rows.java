@@ -1,9 +1,18 @@
 package ladder.model.row;
 
+import ladder.model.player.Player;
+import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
+import ladder.model.player.Position;
+import ladder.model.prize.LadderPrize;
+import ladder.model.prize.LadderPrizes;
+import ladder.model.prize.PrizeName;
+import ladder.model.result.GameResult;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.collectingAndThen;
@@ -32,5 +41,31 @@ public class Rows {
 
     public Row getRowsElement(int index) {
         return rows.get(index);
+    }
+
+    public GameResult getResult(Players players, LadderPrizes ladderPrizes){
+        Map<PlayerName, PrizeName> result = new HashMap<>();
+
+        for(int i=0; i<players.getPlayerCount(); i++){
+            int position = i;
+            result.put(getPlayerNameAtFinalPosition(players, Position.of(i)), ladderPrizes.getLadderPrizes().get(i).getPrizeName());
+        }
+        return new GameResult(result);
+    }
+
+    private PlayerName getPlayerNameAtFinalPosition(Players players, Position finalPosition){
+        return players.getPlayers().stream()
+                .filter(player1 -> getFinalPosition(players, player1).equals(finalPosition))
+                .findFirst()
+                .map(Player::getName)
+                .orElseThrow(IllegalAccessError::new);
+    }
+
+    private Position getFinalPosition(Players players, Player player){
+        return findFinalPositionOfStartAt(players.getPlayers().indexOf(player));
+    }
+
+    public Position findFinalPositionOfStartAt(int position){
+        return Position.of(position).findFinalLocation(new Rows (rows));
     }
 }

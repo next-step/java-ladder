@@ -22,10 +22,10 @@ public class LadderGame {
     }
 
     public static void getResult() {
-        Players playersForResult
-                = players.findFinalLocationByName(rows, InputView.getPlayerToGetResult());
+        GameResult gameResult = rows.getResult(players, ladderPrizes);
+        ResultView.printResult(gameResult);
 
-        ResultView.of(GameResult.create(playersForResult, ladderPrizes))
-                .printResult();
+//        ResultView.of(GameResult.create(playersForResult, ladderPrizes))
+//                .printResult();
     }
 }

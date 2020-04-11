@@ -52,10 +52,10 @@ public class ResultView {
         printBlankLine();
     }
 
-    public void printResult() {
-        printBlankLine();
+    public static void printResult(GameResult gameResult) {
+        printBlank();
         printResultTitle();
-        printGameResult();
+        printGameResult(gameResult);
     }
 
     public Players getPlayers() {
@@ -70,14 +70,14 @@ public class ResultView {
         return ladderPrizes;
     }
 
-    private void printGameResult() {
+    private static void printGameResult(GameResult gameResult) {
         gameResult.getKeySet().stream()
                 .map(it -> it.getName())
                 .forEach(it -> System.out.println(it + DELIMITER_TO_PRINT + gameResult.findPrizeByPlayerName(it)));
-        printBlankLine();
+        printBlank();
     }
 
-    private void printResultTitle() {
+    private static void printResultTitle() {
         System.out.println(RESULT_TITLE);
     }
 
@@ -151,6 +151,10 @@ public class ResultView {
     }
 
     private void printBlankLine() {
+        System.out.println();
+    }
+
+    private static void printBlank() {
         System.out.println();
     }
 }
