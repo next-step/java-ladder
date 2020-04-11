@@ -6,15 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderRewardsTest {
-    @DisplayName("사다리 Reward 생성 시 , 로 구분한다")
+    @DisplayName("사다리 Reward 생성 시 , 로 구분한다.")
     @Test
     void create() {
         LadderRewards ladderRewards = LadderRewards.of("꽝,5000,꽝,3000");
 
-        assertThat(ladderRewards.getLadderRewards()).containsExactly(
-                LadderReward.of("꽝"),
-                LadderReward.of("5000"),
-                LadderReward.of("꽝"),
-                LadderReward.of("3000"));
+        assertThat(ladderRewards.getReward(Position.of(0))).isEqualTo("꽝");
+        assertThat(ladderRewards.getReward(Position.of(1))).isEqualTo("5000");
+        assertThat(ladderRewards.getReward(Position.of(2))).isEqualTo("꽝");
+        assertThat(ladderRewards.getReward(Position.of(3))).isEqualTo("3000");
     }
 }
