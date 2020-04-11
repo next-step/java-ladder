@@ -23,11 +23,14 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         String inputValue = scanner.nextLine();
         String[] nameToken = inputValue.split(COMMA);
-        this.participants = Arrays.asList(nameToken)
-                .stream()
-                .map(InputView::trimName)
-                .collect(toList());
+        this.participants = getParticipants(nameToken);
         this.height = requestHeight();
+    }
+
+    private List<String> getParticipants(String[] nameToken) {
+        return Arrays.stream(nameToken)
+                .map(String::trim)
+                .collect(toList());
     }
 
     public List<String> getParticipants() {
@@ -40,24 +43,6 @@ public class InputView {
 
     public int getHeight() {
         return height;
-    }
-
-    private static String trimName(String name) {
-        name = name.trim();
-        if (name.length() > NAME_LIMIT) {
-            return name.substring(NAME_START, NAME_LIMIT);
-        }
-        for (int i = 0; i < NAME_LIMIT; i++) {
-            name = nameAppendBlank(name, i);
-        }
-        return name;
-    }
-
-    private static String nameAppendBlank(String name, int i) {
-        if (name.length() <= i) {
-            name += BLANK;
-        }
-        return name;
     }
 
     private int requestHeight() {
