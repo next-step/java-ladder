@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameResult {
+    private final String ALL_PLAYERS = "all";
+
     private Map<PlayerName, PrizeName> result;
 
     public GameResult(Map<PlayerName, PrizeName> result) {
@@ -20,6 +22,10 @@ public class GameResult {
     }
 
     public GameResult findResultByPlayerName(String name) {
+        if(ALL_PLAYERS.equals(name.toLowerCase())){
+            return GameResult.of(result);
+        }
+
         Map<PlayerName, PrizeName> result = new HashMap<>();
         result.put(PlayerName.of(name), PrizeName.of(findPrizeByPlayerName(name)));
         return GameResult.of(result);
