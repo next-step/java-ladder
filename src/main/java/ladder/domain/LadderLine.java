@@ -33,10 +33,10 @@ public class LadderLine {
         return ladderLinks;
     }
 
-    public boolean isLinkConnect(int position) {
-        if (position < 0 || position >= ladderLinks.size()) {
+    public boolean isLinkConnect(Position position) {
+        if (position.goe(ladderLinks.size())) {
             return false;
         }
-        return ladderLinks.get(position) == LadderLink.CONNECT;
+        return ladderLinks.get(position.getPosition()) == LadderLink.CONNECT;
     }
 }
