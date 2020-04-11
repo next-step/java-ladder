@@ -2,7 +2,7 @@ package ladder.domain.result;
 
 import ladder.model.player.Player;
 import ladder.model.player.Players;
-import ladder.model.player.Position;
+import ladder.model.row.Position;
 import ladder.model.prize.LadderPrize;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.result.GameResult;

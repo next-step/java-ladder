@@ -17,15 +17,11 @@ public class LadderGame {
         rows = Rows.create(players, InputView.getHeight());
         ladderPrizes = LadderPrizes.create(InputView.getLadderPrizesInput());
 
-        ResultView.of(players, rows, ladderPrizes)
-                .printLadder();
+        ResultView.printLadder(players, rows, ladderPrizes);
     }
 
     public static void getResult() {
         GameResult gameResult = rows.getResult(players, ladderPrizes);
         ResultView.printResult(gameResult);
-
-//        ResultView.of(GameResult.create(playersForResult, ladderPrizes))
-//                .printResult();
     }
 }

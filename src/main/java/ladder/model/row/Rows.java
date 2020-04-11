@@ -3,8 +3,6 @@ package ladder.model.row;
 import ladder.model.player.Player;
 import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
-import ladder.model.player.Position;
-import ladder.model.prize.LadderPrize;
 import ladder.model.prize.LadderPrizes;
 import ladder.model.prize.PrizeName;
 import ladder.model.result.GameResult;

@@ -18,14 +18,14 @@ public class GameResult {
         this.result = Collections.unmodifiableMap(result);
     }
 
-    public static GameResult create(Players players, LadderPrizes ladderPrizes) {
-        Map<PlayerName, PrizeName> gameResult = new HashMap<>();
-
-        players.getPlayers().stream()
-                .forEach(player -> gameResult.put(player.getName(), ladderPrizes.findPrizeNameByPlayer(player)));
-
-        return new GameResult(gameResult);
-    }
+//    public static GameResult create(Players players, LadderPrizes ladderPrizes) {
+//        Map<PlayerName, PrizeName> gameResult = new HashMap<>();
+//
+//        players.getPlayers().stream()
+//                .forEach(player -> gameResult.put(player.getName(), ladderPrizes.findPrizeNameByPlayer(player)));
+//
+//        return new GameResult(gameResult);
+//    }
 
     public String findPrizeByPlayerName(String name) {
         return result.get(new PlayerName(name)).getPrizeName();

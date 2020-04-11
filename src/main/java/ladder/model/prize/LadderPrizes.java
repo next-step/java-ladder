@@ -24,7 +24,7 @@ public class LadderPrizes {
         return ladderPrizes.get(index).getPrizeName();
     }
 
-    public PrizeName findPrizeNameByPlayer(Player player) {
-        return findPrizeNameAtIndex(player.getIndex());
-    }
+//    public PrizeName findPrizeNameByPlayer(Player player) {
+//        return findPrizeNameAtIndex(player.getIndex());
+//    }
 }
