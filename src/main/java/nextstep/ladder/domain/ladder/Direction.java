@@ -1,9 +1,9 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladder;
 
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static nextstep.ladder.domain.LadderPointGenerator.generatePoint;
+import static nextstep.ladder.domain.ladder.LadderPointGenerator.generatePoint;
 
 public class Direction {
     private final boolean left;
