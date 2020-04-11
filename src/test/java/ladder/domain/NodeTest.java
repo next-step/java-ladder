@@ -29,18 +29,15 @@ class NodeTest {
         });
     }
 
-    @DisplayName("Node 은 LadderLine 에 의존해 움직인다.")
+    @DisplayName("Node 은 LinkDirection 에 따라 움직인다.")
     @Test
     void move() {
-        LadderLine ladderLine = LadderLine.of(Arrays.asList(
-                LadderLink.DIS_CONNECT,
-                LadderLink.CONNECT,
-                LadderLink.DIS_CONNECT));
         Node node = Node.of("yohan", 0);
         Node node2 = Node.of("yohan", 1);
 
-        node.move(ladderLine);
-        node2.move(ladderLine);
+        node.move(s -> 1); // 전진
+        node.move(s -> 0); // 그대로
+        node2.move(s -> -1); // 후진
 
         assertThat(node).isEqualTo(Node.of("yohan", 1));
         assertThat(node2).isEqualTo(Node.of("yohan", 0));

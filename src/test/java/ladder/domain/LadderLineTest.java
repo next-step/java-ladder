@@ -26,8 +26,8 @@ public class LadderLineTest {
                 LadderLink.CONNECT,
                 LadderLink.DIS_CONNECT));
 
-        assertThat(ladderLine.isLinkConnect(0)).isFalse();
-        assertThat(ladderLine.isLinkConnect(1)).isTrue();
-        assertThat(ladderLine.isLinkConnect(2)).isFalse();
+        assertThat(ladderLine.isLinkConnect(Position.of(0))).isFalse();
+        assertThat(ladderLine.isLinkConnect(Position.of(1))).isTrue();
+        assertThat(ladderLine.isLinkConnect(Position.of(2))).isFalse();
     }
 }
