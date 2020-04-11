@@ -27,12 +27,6 @@ public class InputView {
         this.height = requestHeight();
     }
 
-    private List<String> getParticipants(String[] nameToken) {
-        return Arrays.stream(nameToken)
-                .map(String::trim)
-                .collect(toList());
-    }
-
     public List<String> getParticipants() {
         return participants;
     }
@@ -43,6 +37,20 @@ public class InputView {
 
     public int getHeight() {
         return height;
+    }
+
+    private List<String> getParticipants(String[] nameToken) {
+        return Arrays.stream(nameToken)
+                .map(this::trimName)
+                .collect(toList());
+    }
+
+    private String trimName(String name) {
+        name = name.trim();
+        if (name.length() > NAME_LIMIT) {
+            return name.substring(NAME_START, NAME_LIMIT);
+        }
+        return name;
     }
 
     private int requestHeight() {
