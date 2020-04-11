@@ -28,8 +28,8 @@ public class LadderGame {
     private LadderGameResult playGame(Players players, PlayResults playResults) {
         MatchedLineInfos matchedLineInfos = ladder.getMatchedInfos();
         Map<String, String> ladderGameResult = new LinkedHashMap<>();
-        for (int i = 1; i <= players.getCount(); i++) {
-            ladderGameResult.put(players.getPlayerName(i), playResults.getResult(matchedLineInfos.getMatchedLineNo(i)));
+        for (int i = 1; i <= players.count(); i++) {
+            ladderGameResult.put(players.getName(i - 1), playResults.getResult(matchedLineInfos.getMatchedLineNo(i)));
         }
         return new LadderGameResult(ladderGameResult);
     }

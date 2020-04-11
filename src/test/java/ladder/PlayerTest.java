@@ -12,7 +12,7 @@ public class PlayerTest {
     @DisplayName("플레이어 생성 실패 테스트")
     void validateTest() {
         assertThatThrownBy(
-                () -> Player.of("jojaeasdfasdf", 1)
+                () -> Player.of("jojaeasdfasdf")
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }
