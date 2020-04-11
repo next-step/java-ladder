@@ -1,10 +1,11 @@
 package ladder.domain;
 
 
+import ladder.LadderUtil;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class Users {
 
@@ -21,10 +22,10 @@ public class Users {
 
     private List<User> readyToUsers(String userNames) {
         List<User> player = new ArrayList<>();
-        String[] userNamesArr = userNames.split(",");
+        List<String> userNamesArr = LadderUtil.splitStringByComma(userNames);
 
-        for (int position = 0; position < userNamesArr.length; position++) {
-            player.add(User.of(userNamesArr[position], Position.of(position)));
+        for (int position = 0; position < userNamesArr.size(); position++) {
+            player.add(User.of(userNamesArr.get(position), Position.of(position)));
         }
 
         return player;
