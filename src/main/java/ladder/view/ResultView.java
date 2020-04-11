@@ -11,14 +11,13 @@ public class ResultView {
     private static final String LADDER_LINE_EXSIT = "|-----";
     private static final String LADDER_LINE_NONE = "|     ";
 
-    public static void viewSettingLadder(Players players, PlayResults playResults, Ladder ladder) {
-        System.out.println("\n실행결과\n");
+    public static void viewLadder(Players players, PlayResults playResults, Ladder ladder) {
+        System.out.println("\n사다리 결과\n");
         viewPlayers(players);
-        viewLadder(ladder);
+        viewLines(ladder);
         viewPlayResults(playResults);
         System.out.println("\n");
     }
-
 
     private static void viewPlayers(Players players) {
         System.out.println(
@@ -32,7 +31,7 @@ public class ResultView {
         return String.format(PLAYER_NAME_FORMAT, name);
     }
 
-    private static void viewLadder(Ladder ladder) {
+    private static void viewLines(Ladder ladder) {
         IntStream.rangeClosed(1, ladder.getHeight())
                 .forEach(i -> viewLineByHeight(ladder.getVerticalLines(), i));
     }

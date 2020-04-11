@@ -16,7 +16,7 @@ public class LadderGameRun {
         int ladderHeight = InputView.inputHeight();
 
         LadderGame ladderGame = new LadderGame(players, playResults, ladderHeight);
-        ResultView.viewSettingLadder(players, playResults, ladderGame.getLadder());
+        ResultView.viewLadder(players, playResults, ladderGame.getLadder());
         LadderGameResult ladderGameResult = ladderGame.getLadderGameResult();
 
         while (true) {
