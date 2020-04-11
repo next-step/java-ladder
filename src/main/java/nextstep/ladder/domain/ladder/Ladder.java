@@ -48,7 +48,7 @@ public class Ladder {
         return sizeOfPerson;
     }
 
-    public List<List<Boolean>> getIsRightDirectionsMatrix(){
+    public List<List<Boolean>> getIsRightDirectionsMatrix() {
         return ladderLines.stream()
                 .map(LadderLine::getIsRightDirections)
                 .collect(Collectors.toList());

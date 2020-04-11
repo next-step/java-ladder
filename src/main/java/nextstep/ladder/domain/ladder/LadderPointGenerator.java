@@ -4,7 +4,8 @@ import java.util.Random;
 
 class LadderPointGenerator {
     private final static Random RANDOM = new Random();
-    static boolean generatePoint(){
+
+    static boolean generatePoint() {
         return RANDOM.nextBoolean();
     }
 }

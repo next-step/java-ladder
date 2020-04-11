@@ -45,9 +45,9 @@ class LadderLine {
         return point;
     }
 
-    List<Boolean> getIsRightDirections(){
+    List<Boolean> getIsRightDirections() {
         return points.stream()
-                .limit(points.size()-1)
+                .limit(points.size() - 1)
                 .map(Point::isRightDirection)
                 .collect(Collectors.toList());
     }

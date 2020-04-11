@@ -32,7 +32,7 @@ class ResultsTest {
     void getResults() {
         Results results = Results.of(Arrays.asList("꽝", "1000원", "2000원"));
         assertThat(results.getResults())
-                .containsExactly("꽝","1000원","2000원");
+                .containsExactly("꽝", "1000원", "2000원");
     }
 
 }

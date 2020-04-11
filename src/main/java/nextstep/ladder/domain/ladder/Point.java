@@ -37,7 +37,7 @@ class Point {
         return new Point(0, Direction.first(right));
     }
 
-    boolean isRightDirection(){
+    boolean isRightDirection() {
         return direction.isRight();
     }
 

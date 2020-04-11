@@ -34,12 +34,12 @@ class LadderTest {
     }
 
     @Test
-    void getRawMatrix(){
-        Ladder ladder = Ladder.of(4,5);
+    void getRawMatrix() {
+        Ladder ladder = Ladder.of(4, 5);
         assertThat(ladder.getIsRightDirectionsMatrix())
                 .hasSize(5)
                 .extracting("size")
-                .containsExactly(3,3,3,3,3);
+                .containsExactly(3, 3, 3, 3, 3);
     }
 
 }
