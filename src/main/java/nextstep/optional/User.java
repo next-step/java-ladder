@@ -18,18 +18,6 @@ public class User {
         this.age = age;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public boolean matchName(String name) {
-        return this.name.equals(name);
-    }
-
     public static boolean ageIsInRange1(User user) {
         Optional<User> optionalUser = ofNullable(user);
         if (optionalUser.isPresent()) {
@@ -72,6 +60,18 @@ public class User {
             return Optional.of(user);
         }
         return Optional.empty();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public boolean matchName(String name) {
+        return this.name.equals(name);
     }
 
     @Override

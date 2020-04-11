@@ -18,6 +18,14 @@ public class Line {
         return new Line(beforeLine.height, new RandomLinkable().get());
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public boolean isLink() {
+        return link;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
