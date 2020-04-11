@@ -4,6 +4,7 @@ import ladder.domain.LadderGame;
 import ladder.domain.LadderGameResult;
 import ladder.domain.PlayResults;
 import ladder.domain.Players;
+import ladder.dto.GameInfo;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -13,9 +14,10 @@ public class LadderGameRun {
     public static void main(String[] args) {
         Players players = InputView.inputPlayers();
         PlayResults playResults = InputView.inputPlayResults();
+        GameInfo gameInfo = new GameInfo(players, playResults);
         int ladderHeight = InputView.inputHeight();
 
-        LadderGame ladderGame = new LadderGame(players, playResults, ladderHeight);
+        LadderGame ladderGame = new LadderGame(gameInfo, ladderHeight);
         ResultView.viewLadder(players, playResults, ladderGame.getLadder());
         LadderGameResult ladderGameResult = ladderGame.getLadderGameResult();
 
