@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Nodes {
     private final List<Node> nodes;
@@ -25,5 +26,11 @@ public class Nodes {
             }
             return 0;
         }));
+    }
+
+    public List<NodeResult> matchRewards(LadderRewards rewards) {
+        return nodes.stream()
+                .map(node -> NodeResult.of(node, rewards.getReward(node.getPosition())))
+                .collect(Collectors.toList());
     }
 }
