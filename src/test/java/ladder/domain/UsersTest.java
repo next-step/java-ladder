@@ -16,5 +16,4 @@ class UsersTest {
                 .isThrownBy(() -> new Users(new ArrayList<>()));
     }
 
-
 }
