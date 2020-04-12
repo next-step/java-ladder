@@ -40,6 +40,10 @@ public class Point2 {
         return new Point2(0, Direction.first(right));
     }
 
+    public boolean hasRightDirection() {
+        return direction.isRight();
+    }
+
     @Override
     public String toString() {
         return "Point{" +

@@ -13,9 +13,8 @@ public class OutputView {
     private static final String WHOS_RESULT = "결과를 보고 싶은 사람은?";
     private static final String LADDER_GAME_RESULT = "실행 결과";
     private static final String POINT_FORMAT = "|%s";
-    private static final String POINT_LINE = "-----";
-    private static final String POINT_EMPTY = "     ";
-    private static final String LADDER_END = "|";
+    private static final String HORIZONTAL_LINE = "-----";
+    private static final String HORIZONTAL_EMPTY = "     ";
     private static final int SPACE_PER_POINT = 6;
     private static final String SPACE = " ";
     private static final String GAME_RESULT_FORMAT = "%s : %s";
@@ -31,27 +30,24 @@ public class OutputView {
         ViewUtils.printLine(LADDER_RESULT);
         showPersons(participants);
 
-        for(Line line : ladder.getValue()) {
+        for(Line2 line : ladder.getValue()) {
             showLine(line);
         }
 
         showLadderResults(ladderGame.getLadderResults());
     }
 
-    private void showLine(Line line) {
+    private void showLine(Line2 line) {
         StringBuilder builder = new StringBuilder();
 
-        builder.append(POINT_EMPTY);
-        for(Point point : line.getValue()) {
+        for(Point2 point : line.getValue()) {
             builder.append(getPointText(point));
         }
-        builder.append(LADDER_END);
-
         ViewUtils.printLine(builder.toString());
     }
 
-    private String getPointText(Point point) {
-        return String.format(POINT_FORMAT, point.hasLine() ? POINT_LINE : POINT_EMPTY);
+    private String getPointText(Point2 point) {
+        return String.format(POINT_FORMAT, point.hasRightDirection() ? HORIZONTAL_LINE : HORIZONTAL_EMPTY);
     }
 
     private void showPersons(List<Participant> participants) {
