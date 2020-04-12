@@ -1,11 +1,8 @@
 package ladder.domain;
 
-import ladder.exception.LadderException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,60 +15,35 @@ class WayTest {
         return false;
     };
 
-    @DisplayName("생성자 정상 테스트")
+    @DisplayName("이동 불가능한 첫 방향 생성")
     @Test
-    public void constructor_success() throws Exception {
-        //then
-        assertThat(new Way(true, false));
-        assertThat(new Way(false, true));
-        assertThat(new Way(false, false));
-    }
-
-    @DisplayName("양방향 이동은 불가능 하다")
-    @Test
-    public void validate_fail() throws Exception {
-        //then
-        assertThatThrownBy(
-                () -> new Way(true, true)
-        ).isInstanceOf(LadderException.class);
-    }
-
-    @DisplayName("첫 방향은 왼쪽은 불가 하지만 오른쪽 진행은 랜덤이다.")
-    @Test
-    public void from_success_first() throws Exception {
+    public void from_success_cantMove() throws Exception {
         //given
-        Way none = Way.from(strategyFalse);
-        Way right = Way.from(strategyTrue);
+        Way way = Way.from(strategyFalse);
 
         //then
-        assertFalse(none.isMovableLeft());
-        assertFalse(none.isMovableRight());
-        assertFalse(right.isMovableLeft());
-        assertTrue(right.isMovableRight());
+        assertFalse(way.isMovableLeft());
+        assertFalse(way.isMovableRight());
+
     }
 
-    @DisplayName("왼쪽/오른쪽 이동 방향으로 움직일수 있는지 체크")
+    @DisplayName("오른쪽 이동 가능한 첫 방향 생성")
     @Test
-    public void left_right() throws Exception {
+    public void from_success_moveRight() throws Exception {
         //given
-        Way left = new Way(true, false);
-        Way right = new Way(false, true);
-        Way none = new Way(false, false);
+        Way way = Way.from(strategyTrue);
 
         //then
-        assertTrue(left.isMovableLeft());
-        assertFalse(left.isMovableRight());
-        assertTrue(right.isMovableRight());
-        assertFalse(right.isMovableLeft());
-        assertFalse(none.isMovableLeft());
-        assertFalse(none.isMovableRight());
+        assertFalse(way.isMovableLeft());
+        assertTrue(way.isMovableRight());
+
     }
 
     @DisplayName("오른쪽 진행 가능할 경우 다음 방향은 오른쪽 진행 불가 함")
     @Test
     public void next_success_cantRight() throws Exception {
         //given
-        Way way = new Way(false, true);
+        Way way = Way.from(strategyTrue);
 
         //when
         Way next = way.next(strategyTrue);
@@ -85,7 +57,7 @@ class WayTest {
     @Test
     public void next_success_randomMove() throws Exception {
         //given
-        Way way = new Way(false, false);
+        Way way = Way.from(strategyFalse);
 
         //when
         Way right = way.next(strategyTrue);
@@ -101,7 +73,7 @@ class WayTest {
     @Test
     public void first_success() throws Exception {
         //given
-        Way way = new Way(false, true);
+        Way way = Way.from(strategyTrue);
 
         //when
         Way last = way.last();

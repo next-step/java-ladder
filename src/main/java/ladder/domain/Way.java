@@ -9,13 +9,13 @@ public class Way {
     private final boolean left;
     private final boolean right;
 
-    public Way(final boolean left, final boolean right) {
+    private Way(final boolean left, final boolean right) {
         validate(left, right);
         this.left = left;
         this.right = right;
     }
 
-    public static Way from(LadderMoveStrategy strategy) {
+    public static Way from(final LadderMoveStrategy strategy) {
         return new Way(false, strategy.move());
     }
 
@@ -25,7 +25,7 @@ public class Way {
         }
     }
 
-    public Way next(LadderMoveStrategy strategy) {
+    public Way next(final LadderMoveStrategy strategy) {
         if (right) {
             return new Way(true, false);
         }
