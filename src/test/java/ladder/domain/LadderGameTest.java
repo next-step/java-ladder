@@ -14,24 +14,12 @@ class LadderGameTest {
     private LadderPrize ladderPrize;
     private Players players;
     private Lines lines;
-    private LadderMoveStrategy strategy;
 
     @BeforeEach
     public void setUp() throws Exception {
         ladderPrize = new LadderPrize(Arrays.asList("꽝", "100"));
         players = Players.of(Arrays.asList("a", "b"));
-        lines =  Lines.of(2, 2, WayTest.strategyTrue);
-
-    }
-
-    @DisplayName("로또 게임 생성자 테스트")
-    @Test
-    public void constructor_success() throws Exception {
-        //given
-        Ladder ladder = new Ladder(lines, ladderPrize);
-
-        //when
-        LadderGame game = new LadderGame(players, ladder);
+        lines = Lines.of(2, 2, WayTest.strategyTrue);
     }
 
     @DisplayName("상품 이름을 찾고 반환한다.")
@@ -61,5 +49,22 @@ class LadderGameTest {
         //then
         assertThat(result.keySet()).contains("a");
         assertThat(result.get("a")).isEqualTo("꽝");
+    }
+
+    @DisplayName("모든 참가자의 사다리타기 결과를 반환한다")
+    @Test
+    public void getResultAll_success() throws Exception {
+        //given
+        Ladder ladder = new Ladder(lines, ladderPrize);
+        LadderGame game = new LadderGame(players, ladder);
+
+        //when
+        Map<String, String> result = game.getResultAll();
+
+        //then
+        assertThat(result.keySet()).contains("a");
+        assertThat(result.keySet()).contains("b");
+        assertThat(result.get("a")).isEqualTo("꽝");
+        assertThat(result.get("b")).isEqualTo("100");
     }
 }
