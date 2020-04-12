@@ -17,6 +17,10 @@ public class Node {
         this(ZERO, new Way(false, isMovableRight));
     }
 
+    public Node(final LadderMoveStrategy strategy) {
+        this(ZERO, Way.from(strategy));
+    }
+
     public Node createLast() {
         return new Node(this.index + PLUS_NEXT_INDEX, new Way(this.isMovableRight(), false));
     }

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.exception.LadderException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,18 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WayTest {
 
-    private LadderMoveStrategy strategyTrue;
-    private LadderMoveStrategy strategyFalse;
-
-    @BeforeEach
-    void setUp() {
-        strategyTrue = () -> {
-            return true;
-        };
-        strategyFalse = () -> {
-            return false;
-        };
-    }
+    public static LadderMoveStrategy strategyTrue = () -> {
+        return true;
+    };
+    public static LadderMoveStrategy strategyFalse = () -> {
+        return false;
+    };
 
     @DisplayName("생성자 정상 테스트")
     @Test

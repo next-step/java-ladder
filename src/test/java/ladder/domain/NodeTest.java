@@ -9,10 +9,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NodeTest {
 
-    @DisplayName("생성자 테스트")
+    @DisplayName("오른쪽으로 이동 가능한 첫 노드 생성")
     @Test
-    public void constructor_success() throws Exception {
-        new Node(1, new Way(false, false));
+    public void node_success_moveRight() throws Exception {
+        //given
+        Node node = new Node(WayTest.strategyTrue);
+
+        //then
+        assertTrue(node.isMovableRight());
+        assertFalse(node.isMovableLeft());
+    }
+
+    @DisplayName("오른쪽으로 이동 불가능한 첫 노드 생성")
+    @Test
+    public void node_success_moveNone() throws Exception {
+        //given
+        Node node = new Node(WayTest.strategyFalse);
+
+        //then
+        assertFalse(node.isMovableRight());
+        assertFalse(node.isMovableLeft());
     }
 
     @DisplayName("이동 방향으로 움직일수 있는지 체크")
