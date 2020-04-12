@@ -7,14 +7,14 @@ import java.util.List;
 
 public class Line {
 
-    private final Nodes nodes2;
+    private final Nodes nodes;
 
     public Line() {
         this(new ArrayList<>());
     }
 
     public Line(final List<Node> nodes) {
-        this.nodes2 = new Nodes(nodes);
+        this.nodes = new Nodes(nodes);
     }
 
     public static Line of(final int playerCount) {
@@ -29,11 +29,11 @@ public class Line {
     }
 
     public int move(int nodeNumber) {
-        return nodes2.getNodes().get(nodeNumber).move();
+        return nodes.getNodes().get(nodeNumber).move();
     }
 
     private Line addRandomNextNode(final boolean random) {
-        if (this.nodes2.getNodes().isEmpty()) {
+        if (this.nodes.getNodes().isEmpty()) {
             Node first = new Node(random);
             return addNode(first);
         }
@@ -45,31 +45,31 @@ public class Line {
     private Line addLastNode() {
         List<Node> merge = new ArrayList<>();
         Node last = getLastNode().createLast();
-        merge.addAll(this.nodes2.getNodes());
+        merge.addAll(this.nodes.getNodes());
         merge.add(last);
         return new Line(merge);
     }
 
     private Line addNode(Node node) {
         List<Node> merge = new ArrayList<>();
-        merge.addAll(this.nodes2.getNodes());
+        merge.addAll(this.nodes.getNodes());
         merge.add(node);
         return new Line(merge);
     }
 
     private Node getLastNode() {
-        return this.nodes2.getNodes().get(this.nodes2.getNodes().size() - 1);
+        return this.nodes.getNodes().get(this.nodes.getNodes().size() - 1);
     }
 
     public Nodes getNodes() {
-        return nodes2;
+        return nodes;
     }
 
     public int getNoteSize() {
-        return this.nodes2.getNodes().size();
+        return this.nodes.getNodes().size();
     }
 
     public Node getNode(int index) {
-        return nodes2.getNodes().get(index);
+        return nodes.getNodes().get(index);
     }
 }
