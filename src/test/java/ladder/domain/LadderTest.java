@@ -37,7 +37,7 @@ class LadderTest {
         ).isInstanceOf(LadderException.class);
     }
 
-    @DisplayName("사다리 타기를 진행하여 마지막 도드를 반환")
+    @DisplayName("사다리 타기를 진행하여 마지막 노드를 반환")
     @Test
     public void findLastNode_success() throws Exception {
         //given
