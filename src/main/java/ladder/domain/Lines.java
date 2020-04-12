@@ -32,9 +32,9 @@ public class Lines {
 
     public Node move(int nodeNumber) {
         for (Line line : lines) {
-            nodeNumber = line.getNodes().get(nodeNumber).move();
+            nodeNumber = line.move(nodeNumber);
         }
-        return getLastLine().getNodes().get(nodeNumber);
+        return getLastLine().getNode(nodeNumber);
     }
 
     private Line getLastLine() {
