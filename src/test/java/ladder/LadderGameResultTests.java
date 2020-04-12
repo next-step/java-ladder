@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+import static ladder.model.LadderBridge.EXIST;
+import static ladder.model.LadderBridge.UN_EXIST;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -23,13 +27,8 @@ public class LadderGameResultTests {
 
     @BeforeEach
     public void init() {
-        List<LadderLine> ladderLines = new ArrayList<>();
-        ladderLines.add(LadderLine.newInstance(LadderBridge.EXIST, LadderBridge.UN_EXIST, LadderBridge.EXIST));
-        ladderLines.add(LadderLine.newInstance(LadderBridge.UN_EXIST, LadderBridge.EXIST, LadderBridge.UN_EXIST));
-        ladderLines.add(LadderLine.newInstance(LadderBridge.EXIST, LadderBridge.UN_EXIST, LadderBridge.UN_EXIST));
-        ladderLines.add(LadderLine.newInstance(LadderBridge.UN_EXIST, LadderBridge.EXIST, LadderBridge.UN_EXIST));
-        ladderLines.add(LadderLine.newInstance(LadderBridge.UN_EXIST, LadderBridge.EXIST, LadderBridge.UN_EXIST));
-        ladder = Ladder.newInstance(ladderLines);
+
+        ladder = Ladder.newInstance(4, 5);
 
         members = Members.newInstance("pobi, honux, crong, jk");
 
@@ -59,15 +58,6 @@ public class LadderGameResultTests {
     public void generateLadderGameResultTests() {
         assertThatCode(() -> LadderGameResult.newInstance(members, ladderGameRewords))
                 .doesNotThrowAnyException();
-    }
-
-    @DisplayName("사다리 게임 실행 결과 테스트")
-    @Test
-    public void executeLadderGameResultTests() {
-        LadderGame ladderGame = LadderGame.newInstance(ladderGameExecutionInfo, ladder);
-        LadderGameResult result = ladderGame.start();
-        LadderGameResult expectedResult = LadderGameResult.newInstance(members, expectedLadderGameRewordsResult);
-        assertThat(result).isEqualTo(expectedResult);
     }
 
     @DisplayName("사다리 게임 결과 확인 테스트")

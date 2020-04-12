@@ -27,13 +27,9 @@ public class Ladder {
 
     public static Ladder newInstance(final int poleCount, final int height) {
         List<LadderLine> ladders = IntStream.range(0, height)
-                .mapToObj(i -> LadderLine.newInstance(poleCount))
+                .mapToObj(i -> LadderLine.init(poleCount))
                 .collect(Collectors.toList());
         return new Ladder(ladders);
-    }
-
-    public static Ladder newInstance(final List<LadderLine> ladderLines) {
-        return new Ladder(ladderLines);
     }
 
     public LadderPoles proceedAll() {
@@ -48,7 +44,7 @@ public class Ladder {
         LadderPole preLadderPole = LadderPole.of(ladderPole);
 
         for (LadderLine line : lines) {
-            preLadderPole = line.moveLadderPole(preLadderPole);
+            preLadderPole = line.move(preLadderPole);
         }
 
         return preLadderPole;

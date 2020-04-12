@@ -1,13 +1,12 @@
 package ladder.view;
 
-import ladder.model.LadderBridge;
 import ladder.model.LadderLine;
+import ladder.model.LadderPole;
 import ladder.model.dto.LadderGameConsoleResult;
 import ladder.model.dto.LadderGameMemberResult;
 import ladder.model.dto.LadderPoleInfo;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -52,18 +51,20 @@ public class OutputView {
     }
 
     private static void printLadderLine(final LadderLine ladderLine, final int memberSize) {
-        String line = ladderLine.getBridges()
-                .stream()
-                .map(ladderBridge -> getBridgeString(memberSize, ladderBridge))
+        String line = IntStream.range(0, memberSize - 1)
+                .mapToObj(position -> getBridgeString(ladderLine, LadderPole.of(position)))
                 .collect(Collectors.joining(POLE_CONSOLE_DELIMITER_STRING, POLE_CONSOLE_PREFIX_STRING, POLE_CONSOLE_SUFFIX_STRING));
         System.out.println(line);
     }
 
-    private static String getBridgeString(final int memberSize, final LadderBridge ladderBridge) {
-        return Optional.ofNullable(ladderBridge)
-                .filter(bridge -> bridge == LadderBridge.EXIST)
-                .map(bridge -> getBridgeConsoleStringAsMemberSize(BRIDGE_CONSOLE_STRING, memberSize))
-                .orElseGet(() -> getBridgeConsoleStringAsMemberSize(EMPTY_BRIDGE_CONSOLE_STRING, memberSize));
+    private static String getBridgeString(final LadderLine ladderLine, LadderPole ladderPole) {
+        LadderPole nextLadderPole = ladderLine.move(ladderPole);
+
+        if (nextLadderPole.equals(ladderPole.plus())) {
+            return getBridgeConsoleStringAsMemberSize(BRIDGE_CONSOLE_STRING, ladderLine.poleCount());
+        }
+
+        return getBridgeConsoleStringAsMemberSize(EMPTY_BRIDGE_CONSOLE_STRING, ladderLine.poleCount());
     }
 
     private static String getBridgeConsoleStringAsMemberSize(final String bridgeCharacter, final int memberSize) {

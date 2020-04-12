@@ -1,64 +1,70 @@
 package ladder.model;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static ladder.model.PointGenerator.generatePoint;
 
 public class LadderLine {
+    private final List<Point> points;
 
-    private final List<LadderBridge> bridges;
-
-    private LadderLine(final List<LadderBridge> bridges) {
-        validate(bridges);
-        this.bridges = Collections.unmodifiableList(bridges);
+    private LadderLine(final List<Point> points) {
+        validate(points);
+        this.points = points;
     }
 
-    public static LadderLine newInstance(final LadderBridge... bridges) {
-        return new LadderLine(Arrays.asList(bridges));
-    }
-
-    private void validate(final List<LadderBridge> bridges) {
-        if (Objects.isNull(bridges) || bridges.isEmpty()) {
-            throw new IllegalArgumentException("Ladder Bridge must be greater than zero.");
+    private void validate(final List<Point> points) {
+        if (Objects.isNull(points) || points.isEmpty()) {
+            throw new IllegalArgumentException("point count must be greater than zero.");
         }
     }
 
-    public static LadderLine newInstance(final int poleCount) {
-        return newInstance(PoleCount.of(poleCount));
+    public static LadderLine init(final int poleCount) {
+        return init(PoleCount.of(poleCount));
     }
 
-    public static LadderLine newInstance(final PoleCount poleCount) {
-        List<LadderBridge> bridges = Stream.iterate(
-                LadderBridge.randomBridge(),
-                LadderBridge::makeRandomBridgeByPreBridge)
-                .limit(poleCount.toInt() - 1)
-                .collect(Collectors.toList());
-
-        return new LadderLine(bridges);
+    public static LadderLine init(final PoleCount poleCount) {
+        List<Point> points = new ArrayList<>();
+        points.add(initFirst());
+        points.addAll(initBody(poleCount, points.get(points.size() - 1)));
+        points.add(initLast(points.get(points.size() - 1)));
+        return new LadderLine(points);
     }
 
-    public LadderPole moveLadderPole(final LadderPole ladderPole) {
-        int polePosition = ladderPole.toInt();
+    private static Point initFirst() {
+        return Point.first(generatePoint());
+    }
 
-        if (polePosition != 0 && bridges.get(polePosition - 1) == LadderBridge.EXIST) {
-            return LadderPole.of(polePosition - 1);
+    private static List<Point> initBody(final PoleCount poleCount, final Point firstPoint) {
+        List<Point> bodyPoints = new ArrayList<>();
+        Point prePoint = Point.of(firstPoint);
+
+        for (int i = 1; i < poleCount.toInt() - 1; i++) {
+            bodyPoints.add(prePoint.next());
+            prePoint = bodyPoints.get(i - 1);
         }
 
-        if (polePosition != bridges.size() && bridges.get(polePosition) == LadderBridge.EXIST) {
-            return LadderPole.of(polePosition + 1);
-        }
+        return bodyPoints;
+    }
 
-        return LadderPole.of(polePosition);
+    private static Point initLast(final Point prePoint) {
+        return prePoint.last();
+    }
+
+    public LadderPole move(final LadderPole position) {
+        Point targetPoint = points.get(position.toInt());
+        return targetPoint.move();
     }
 
     public int poleCount() {
-        return bridges.size() + 1;
+        return points.size();
     }
 
-    public List<LadderBridge> getBridges() {
-        return bridges;
+    @Override
+    public String toString() {
+        return "LadderLine{" +
+                "points=" + points +
+                '}';
     }
 }

@@ -25,6 +25,14 @@ public class LadderPole {
         return polePosition;
     }
 
+    public LadderPole plus() {
+        return new LadderPole(polePosition + 1);
+    }
+
+    public LadderPole minus() {
+        return new LadderPole(polePosition - 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

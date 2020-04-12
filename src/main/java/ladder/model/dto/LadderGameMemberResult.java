@@ -14,7 +14,6 @@ public class LadderGameMemberResult {
     private static final String NEW_LINE = "\n";
     private static final String LADDER_GAME_ALL_MEMBER_RESULT_KEYWORD = "all";
 
-    //Q3. dto는 객체가 아닌 primitive 타입으로 해도 되는가?
     private final Map<Member, LadderGameReword> result;
 
     private LadderGameMemberResult(final Map<Member, LadderGameReword> allResult) {
