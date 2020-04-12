@@ -28,6 +28,10 @@ public class Line implements Cloneable {
         return line;
     }
 
+    public int move(int nodeNumber) {
+        return nodes.get(nodeNumber).move();
+    }
+
     private Line addRandomNextNode(final boolean random) {
         if (this.nodes.isEmpty()) {
             Node first = new Node(random);
