@@ -29,8 +29,19 @@ public class ImprovingPoint {
         return new ImprovingPoint(index + 1, direction.next(right));
     }
 
+    public ImprovingPoint last() {
+        return new ImprovingPoint(index + 1, direction.last());
+    }
+
     public static ImprovingPoint first(Boolean right) {
         return new ImprovingPoint(0, Direction.first(right));
     }
 
+    @Override
+    public String toString() {
+        return "ImprovingPoint{" +
+               "index=" + index +
+               ", direction=" + direction +
+               '}';
+    }
 }
