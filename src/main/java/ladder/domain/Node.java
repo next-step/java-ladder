@@ -8,13 +8,9 @@ public class Node {
     private final int index;
     private final Way way;
 
-    public Node(final int index, final Way way) {
+    private Node(final int index, final Way way) {
         this.index = index;
         this.way = way;
-    }
-
-    public Node(final boolean isMovableRight) {
-        this(ZERO, new Way(false, isMovableRight));
     }
 
     public Node(final LadderMoveStrategy strategy) {
@@ -23,15 +19,6 @@ public class Node {
 
     public Node createLast() {
         return new Node(this.index + PLUS_NEXT_INDEX, way.last());
-    }
-
-    public Node createNextNode(final boolean isMovableRight) {
-        int nextIndex = this.index + PLUS_NEXT_INDEX;
-
-        if (isMovableRight()) {
-            return new Node(nextIndex, new Way(this.way.isMovableRight(), false));
-        }
-        return new Node(nextIndex, new Way(this.way.isMovableRight(), isMovableRight));
     }
 
     public Node createNextNode(final LadderMoveStrategy strategy) {
