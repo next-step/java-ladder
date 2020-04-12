@@ -30,7 +30,7 @@ public class ResultView {
 
     private static void makeNodeOutput(Line line) {
         StringBuffer buffer = new StringBuffer();
-        line.getNodes().forEach(node -> {
+        line.getNodes().getNodes().forEach(node -> {
             if (node.isMovableRight()) {
                 printEmptyBridge(buffer);
             }

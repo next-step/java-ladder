@@ -37,7 +37,7 @@ class LineTest {
         Line line = Line.of(3);
 
         //when
-        int size = line.getNodes().size();
+        int size = line.getNodes().getNodes().size();
 
         //then
         assertThat(size).isEqualTo(3);

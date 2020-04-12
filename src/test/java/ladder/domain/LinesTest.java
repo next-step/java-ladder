@@ -17,7 +17,7 @@ class LinesTest {
 
         //then
         assertThat(lines.getLines().size()).isEqualTo(3);
-        assertThat(lines.getLines().get(0).getNodes().size()).isEqualTo(5);
+        assertThat(lines.getLines().get(0).getNodes().getNodes().size()).isEqualTo(5);
     }
 
     @DisplayName("사다리 이동 결과 확인")

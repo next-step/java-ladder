@@ -5,7 +5,7 @@ import ladder.utils.RandomUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line implements Cloneable {
+public class Line {
 
     private final List<Node> nodes;
     private final Nodes nodes2;
@@ -35,7 +35,7 @@ public class Line implements Cloneable {
     }
 
     private Line addRandomNextNode(final boolean random) {
-        if (this.nodes.isEmpty()) {
+        if (this.nodes2.getNodes().isEmpty()) {
             Node first = new Node(random);
             return addNode(first);
         }
@@ -47,37 +47,31 @@ public class Line implements Cloneable {
     private Line addLastNode() {
         List<Node> merge = new ArrayList<>();
         Node last = getLastNode().createLast();
-        merge.addAll(this.nodes);
+        merge.addAll(this.nodes2.getNodes());
         merge.add(last);
         return new Line(merge);
     }
 
     private Line addNode(Node node) {
         List<Node> merge = new ArrayList<>();
-        merge.addAll(this.nodes);
+        merge.addAll(this.nodes2.getNodes());
         merge.add(node);
         return new Line(merge);
     }
 
     private Node getLastNode() {
-        return this.nodes.get(this.nodes.size() - 1);
+        return this.nodes2.getNodes().get(this.nodes.size() - 1);
     }
 
-    public List<Node> getNodes() {
-        return new ArrayList<>(nodes);
+    public Nodes getNodes() {
+        return nodes2;
     }
 
     public int getNoteSize() {
-        return this.nodes.size();
+        return this.nodes2.getNodes().size();
     }
 
     public Node getNode(int index) {
-        return nodes.get(index);
-    }
-
-    @Override
-    protected Line clone() {
-        List<Node> nodes = new ArrayList<>(this.nodes);
-        return new Line(nodes);
+        return nodes2.getNodes().get(index);
     }
 }
