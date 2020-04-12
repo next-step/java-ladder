@@ -1,37 +1,54 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.RandomBooleanProvider;
-
 public class Point {
-    public static final String POINT_HAS_LINE_ERROR = "가로 라인이 겹치면 어느 방향으로 이동할 지 결정할 수 없습니다.";
-    private int index;
-    private boolean hasLine;
+    private final int index;
+    private final Direction direction;
 
-    public Point(int index, boolean hasLine) {
+    public Point(int index, Direction direction) {
         this.index = index;
-        this.hasLine = hasLine;
+        this.direction = direction;
     }
 
-    public Point(int index, Point previousPoint) {
-        this.index = index;
+    public int move() {
+        System.out.println("is left? " + direction.isLeft());
+        System.out.println("is right? " + direction.isRight());
 
-        if((previousPoint != null && previousPoint.hasLine()) ? (this.hasLine = false) : (this.hasLine = RandomBooleanProvider.getRandomBoolean()));
-    }
-
-    public boolean hasLine() {
-        return hasLine;
-    }
-
-    public void compareWithPreviousPoint(Point point, Point previousPoint) {
-        if(previousPoint.hasLine() && point.hasLine()) {
-            throw new IllegalArgumentException(POINT_HAS_LINE_ERROR);
+        if (direction.isRight()) {
+            return index + 1;
         }
+
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+
+        return this.index;
     }
 
-    public boolean isSameIndex(int index) {
-        if(this.index == index) {
-            return true;
-        }
-        return false;
+    public Point next() {
+        return new Point(index + 1, direction.next());
+    }
+
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.last());
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public boolean hasRightDirection() {
+        return direction.isRight();
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 }

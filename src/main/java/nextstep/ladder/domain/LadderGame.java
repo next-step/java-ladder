@@ -10,10 +10,6 @@ public class LadderGame {
     private LadderResults ladderResults;
     private Ladder ladder;
 
-    public LadderGame(List<Participant> participants, LadderResults ladderResults) {
-        assertParticipantAndResultCount(participants, ladderResults);
-    }
-
     public LadderGame(List<Participant> participants, Ladder ladder, LadderResults ladderResults) {
         assertParticipantAndResultCount(participants, ladderResults);
 

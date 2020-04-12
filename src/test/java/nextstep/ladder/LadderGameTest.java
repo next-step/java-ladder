@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.domain.Participant;
@@ -19,6 +20,8 @@ public class LadderGameTest {
         participants.add(new Participant("참가자1", 0));
         participants.add(new Participant("참가자2", 1));
 
+        Ladder ladder = new Ladder(2, 5);
+
         List<String> results = new ArrayList<>();
         results.add("결과1");
         results.add("결과2");
@@ -26,7 +29,7 @@ public class LadderGameTest {
         LadderResults ladderResults = new LadderResults(results);
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new LadderGame(participants, ladderResults);
+            new LadderGame(participants, ladder, ladderResults);
         }).withMessage(LadderGame.PARTICIPANTS_RESULTS_COUNT_ERROR);
     }
 }

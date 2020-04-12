@@ -13,24 +13,21 @@ public class OutputView {
     private static final String WHOS_RESULT = "결과를 보고 싶은 사람은?";
     private static final String LADDER_GAME_RESULT = "실행 결과";
     private static final String POINT_FORMAT = "|%s";
-    private static final String POINT_LINE = "-----";
-    private static final String POINT_EMPTY = "     ";
-    private static final String LADDER_END = "|";
+    private static final String HORIZONTAL_LINE = "-----";
+    private static final String HORIZONTAL_EMPTY = "     ";
     private static final int SPACE_PER_POINT = 6;
     private static final String SPACE = " ";
     private static final String GAME_RESULT_FORMAT = "%s : %s";
     private static final String ALL_RESULT = "all";
-    private ViewUtils viewUtils;
 
     public OutputView() {
-        this.viewUtils = new ViewUtils();
     }
 
     public void showLadder(LadderGame ladderGame) {
         List<Participant> participants = ladderGame.getParticipants();
         Ladder ladder = ladderGame.getLadder();
 
-        viewUtils.printLine(LADDER_RESULT);
+        ViewUtils.printLine(LADDER_RESULT);
         showPersons(participants);
 
         for(Line line : ladder.getValue()) {
@@ -43,17 +40,14 @@ public class OutputView {
     private void showLine(Line line) {
         StringBuilder builder = new StringBuilder();
 
-        builder.append(POINT_EMPTY);
         for(Point point : line.getValue()) {
             builder.append(getPointText(point));
         }
-        builder.append(LADDER_END);
-
-        viewUtils.printLine(builder.toString());
+        ViewUtils.printLine(builder.toString());
     }
 
     private String getPointText(Point point) {
-        return String.format(POINT_FORMAT, point.hasLine() ? POINT_LINE : POINT_EMPTY);
+        return String.format(POINT_FORMAT, point.hasRightDirection() ? HORIZONTAL_LINE : HORIZONTAL_EMPTY);
     }
 
     private void showPersons(List<Participant> participants) {
@@ -63,7 +57,7 @@ public class OutputView {
             builder = appendLadderSources(participant.getName(), builder);
         }
 
-        viewUtils.printLine(builder.toString());
+        ViewUtils.printLine(builder.toString());
     }
 
     private void showLadderResults(LadderResults ladderResults) {
@@ -73,15 +67,15 @@ public class OutputView {
             builder = appendLadderSources(ladderResult, builder);
         }
 
-        viewUtils.printLine(builder.toString());
+        ViewUtils.printLine(builder.toString());
     }
 
     private StringBuilder appendLadderSources(String name, StringBuilder builder) {
         int length = name.length();
         int spaceCount = SPACE_PER_POINT - length;
 
-        builder = appendSpaces(builder, spaceCount);
         builder.append(name);
+        builder = appendSpaces(builder, spaceCount);
 
         return builder;
     }
@@ -94,10 +88,9 @@ public class OutputView {
     }
 
     public void showGameResults(GameResults gameResults) {
-        viewUtils.printLine(WHOS_RESULT);
-        String inputText = viewUtils.readLine();
+        String inputText = getWhosResult();
 
-        viewUtils.printLine(LADDER_GAME_RESULT);
+        ViewUtils.printLine(LADDER_GAME_RESULT);
 
         if(ALL_RESULT.equals(inputText)) {
             showAllResults(gameResults);
@@ -105,18 +98,27 @@ public class OutputView {
         }
 
         List<String> participantNames = Arrays.asList(inputText.split(InputView.DELIMITER_COMMA));
-        List<String> resultTexts = participantNames.stream()
+        List<String> resultTexts = assembleResultTexts(participantNames, gameResults);
+
+        resultTexts.forEach(text -> ViewUtils.printLine(text));
+    }
+
+    private String getWhosResult() {
+        ViewUtils.printLine(WHOS_RESULT);
+        return ViewUtils.readLine();
+    }
+
+    private List<String> assembleResultTexts(List<String> participantNames, GameResults gameResults) {
+        return participantNames.stream()
                 .map(name -> {return String.format(GAME_RESULT_FORMAT, name, gameResults.getResult(name));})
                 .collect(Collectors.toList());
-
-        resultTexts.forEach(text -> viewUtils.printLine(text));
     }
 
     public void showAllResults(GameResults gameResults) {
         Map<String, String> results = gameResults.getValue();
 
         for(Map.Entry<String, String> result : results.entrySet()) {
-            viewUtils.printLine(String.format(GAME_RESULT_FORMAT, result.getKey(), result.getValue()));
+            ViewUtils.printLine(String.format(GAME_RESULT_FORMAT, result.getKey(), result.getValue()));
         }
     }
 }

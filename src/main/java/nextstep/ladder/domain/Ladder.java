@@ -16,7 +16,7 @@ public class Ladder {
 
     public Ladder(int participantCount, int height) {
         List<Line> lines = Stream
-                .generate(() -> new Line(participantCount))
+                .generate(() -> Line.init(participantCount))
                 .limit(height)
                 .collect(Collectors.toList());
 
@@ -24,30 +24,17 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public int move(int startPosition) {
-        int nextPosition = startPosition;
-
+    public int move(int currentPosition) {
         for(Line line : lines) {
-            nextPosition = line.move(nextPosition);
+            currentPosition = line.move(currentPosition);
         }
-        return nextPosition;
+        return currentPosition;
     }
 
     private void assertLadderHeight(int height) {
         if(height < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException(LADDER_HEIGHT_ERROR);
         }
-    }
-
-    public int getWidth() {
-        Line firstLine = lines.get(0);
-        List<Point> points = firstLine.getValue();
-
-        return points.size();
-    }
-
-    public int getHeight() {
-        return lines.size();
     }
 
     public List<Line> getValue() {
