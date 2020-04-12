@@ -21,6 +21,10 @@ public class Line {
         return new ArrayList<>(points);
     }
 
+    public int getNextIndex(int index) {
+        return this.points.get(index).next();
+    }
+
     // 왼쪽부터 오른쪽으로 그려나간다
     // 맨 마지막점은 체크할 필요 없다.
     private void draw(int playerCount, Drawable drawable) {

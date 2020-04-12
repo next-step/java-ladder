@@ -41,4 +41,14 @@ public class LineTest {
                 () -> assertThat(line.getPoints().get(1)).isEqualTo(new Point(1, Direction.NONE))
         );
     }
+
+    @Test
+    @DisplayName("다음 인덱스 테스트")
+    void getNextIndexTest(){
+        Line line = new Line(2, () -> true);
+        assertAll(
+                () -> assertThat(line.getNextIndex(0)).isEqualTo(1),
+                () -> assertThat(line.getNextIndex(1)).isEqualTo(0)
+        );
+    }
 }

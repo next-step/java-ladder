@@ -17,8 +17,8 @@ public class Players {
         return new ArrayList<>(this.players);
     }
 
-    public String getName(int index) {
-        return this.players.get(index).getName();
+    public Player getPlayer(int index) {
+        return this.players.get(index);
     }
 
     public int count() {

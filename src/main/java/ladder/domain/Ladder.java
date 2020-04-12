@@ -20,6 +20,14 @@ public class Ladder {
         return new ArrayList<>(lines);
     }
 
+    public int resultIndex(int index) {
+        int resultIndex = index;
+        for (int i = 0; i < this.height; i++) {
+            resultIndex = lines.get(i).getNextIndex(resultIndex);
+        }
+        return resultIndex;
+    }
+
     private List<Line> drawLines(int playerCount, Drawable drawable) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {

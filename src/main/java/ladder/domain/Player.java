@@ -19,6 +19,10 @@ public class Player {
         return name;
     }
 
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
+    }
+
     private void validate(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(String.format("이름이 %d보다 깁니다.", NAME_MAX_LENGTH));

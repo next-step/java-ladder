@@ -1,38 +1,40 @@
 package ladder.domain;
 
 import ladder.dto.GameInfo;
+import ladder.dto.GameResult;
+import ladder.dto.GameResults;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LadderGame {
     private static final int RULE_LADDER_HEIGHT_MIN_COUNT = 1;
 
     private Ladder ladder;
-    private LadderGameResult ladderGameResult;
+    private GameInfo gameInfo;
 
     public LadderGame(GameInfo gameInfo, int ladderHeight) {
         validate(ladderHeight);
+        this.gameInfo = gameInfo;
         this.ladder = new Ladder(gameInfo, ladderHeight);
-//        this.ladderGameResult = playGame(gameInfo.getPlayers(), gameInfo.getPrizes());
     }
 
     public Ladder getLadder() {
         return this.ladder;
     }
 
-    public LadderGameResult getLadderGameResult(){
-        return this.ladderGameResult;
-    }
+    public GameResults play() {
+        List<GameResult> gameResult = new ArrayList<>();
+        Players players = gameInfo.getPlayers();
+        Prizes prizes = gameInfo.getPrizes();
 
-//    private LadderGameResult playGame(Players players, Prizes prizes) {
-//        MatchedLineInfos matchedLineInfos = ladder.getMatchedInfos();
-//        Map<String, String> ladderGameResult = new LinkedHashMap<>();
-//        for (int i = 1; i <= players.count(); i++) {
-//            ladderGameResult.put(players.getName(i - 1), prizes.getPrize(matchedLineInfos.getMatchedLineNo(i) - 1));
-//        }
-//        return new LadderGameResult(ladderGameResult);
-//    }
+        int playerCount = players.count();
+        for (int i = 0; i < playerCount; i++) {
+            int resultIndex = this.ladder.resultIndex(i);
+            gameResult.add(new GameResult(players.getPlayer(i), prizes.getPrize(resultIndex)));
+        }
+        return new GameResults(gameResult);
+    }
 
     private void validate(int ladderHeight) {
         if (ladderHeight < RULE_LADDER_HEIGHT_MIN_COUNT) {

@@ -21,8 +21,8 @@ public class Prizes {
         return this.prizes.size();
     }
 
-    public String getPrize(int index) {
-        return this.prizes.get(index).getPrize();
+    public Prize getPrize(int index) {
+        return this.prizes.get(index);
     }
 
     private List<Prize> inputsToPrizes(List<String> inputs) {

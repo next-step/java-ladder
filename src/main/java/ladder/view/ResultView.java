@@ -2,6 +2,8 @@ package ladder.view;
 
 import ladder.domain.*;
 import ladder.dto.GameInfo;
+import ladder.dto.GameResult;
+import ladder.dto.GameResults;
 
 import java.util.List;
 import java.util.Optional;
@@ -62,16 +64,16 @@ public class ResultView {
         );
     }
 
-    public static void viewPlayerResult(LadderGameResult ladderGameResult, String name) {
+    public static void viewPlayerResult(GameResults gameResults, String name) {
         System.out.println("실행결과");
-        System.out.println(Optional.ofNullable(ladderGameResult.getPlayerResult(name))
+        System.out.println(Optional.ofNullable(gameResults.getResult(name))
                 .orElse("없는 플레이어 입니다."));
         System.out.println();
     }
 
-    public static void viewAllPlayerResult(LadderGameResult ladderGameResult) {
+    public static void viewAllPlayerResult(GameResults gameResults) {
         System.out.println("전체 실행결과");
-        ladderGameResult.getPlayerNames().stream()
-                .forEach(n -> System.out.println(n + " : " + ladderGameResult.getPlayerResult(n)));
+        gameResults.getGameResults().stream()
+                .forEach(result -> System.out.println(result.getPlayerName() + " : " + result.getPrize()));
     }
 }
