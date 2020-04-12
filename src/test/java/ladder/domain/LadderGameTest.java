@@ -4,9 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,19 +12,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderGameTest {
 
     private LadderPrize ladderPrize;
-    private List<Node> node;
+    private Nodes nodes;
     private Players players;
     private Lines lines;
+    private LadderMoveStrategy strategy;
 
     @BeforeEach
     public void setUp() throws Exception {
         ladderPrize = new LadderPrize(Arrays.asList("꽝", "100"));
-        node = new ArrayList<>(Arrays.asList(
+        nodes = new Nodes(Arrays.asList(
                 new Node(0, new Way(false, true)),
                 new Node(1, new Way(true, false))));
         players = Players.of(Arrays.asList("a", "b"));
-//        lines = new Lines(Arrays.asList(new Line(new Nodes(Arrays.asList(node))), new Line(Arrays.asList(node))));
-        lines = new Lines(Arrays.asList(new Line(new Nodes((node))), new Line((new Nodes(node)))));
+        lines = new Lines(Arrays.asList(new Line(nodes), new Line(nodes)));
 
     }
 

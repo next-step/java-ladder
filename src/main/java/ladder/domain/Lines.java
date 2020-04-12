@@ -18,10 +18,10 @@ public class Lines {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Lines of(final int playerCount, final int ladderHeight) {
+    public static Lines of(final int playerCount, final int ladderHeight, final LadderMoveStrategy strategy) {
         Lines lines = new Lines();
         for (int i = 0; i < ladderHeight; i++) {
-            lines = lines.addLine(Line.of(playerCount));
+            lines = lines.addLine(Line.of(playerCount, strategy));
         }
         return lines;
     }

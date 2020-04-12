@@ -5,7 +5,7 @@ import ladder.utils.RandomUtils;
 public class LadderRandomMoveStrategy implements LadderMoveStrategy {
 
     @Override
-    public boolean createLadder() {
+    public boolean move() {
         return RandomUtils.getRandomBoolean();
     }
 }

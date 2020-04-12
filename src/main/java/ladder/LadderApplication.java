@@ -1,6 +1,8 @@
 package ladder;
 
 import ladder.domain.LadderGame;
+import ladder.domain.LadderMoveStrategy;
+import ladder.domain.LadderRandomMoveStrategy;
 import ladder.service.LadderService;
 import ladder.view.LadderResultDto;
 import ladder.view.ResultView;
@@ -17,8 +19,9 @@ public class LadderApplication {
         String names = inputNames();
         String prize = inputGamePrize();
         String height = inputHeight();
+        LadderMoveStrategy strategy = new LadderRandomMoveStrategy();
 
-        LadderGame game = ladderService.createLadderGame(names, height, prize);
+        LadderGame game = ladderService.createLadderGame(names, height, prize, strategy);
 
         ResultView.printPlayers(game.getPlayers());
         ResultView.printLadder(game.getLadder().getLines());

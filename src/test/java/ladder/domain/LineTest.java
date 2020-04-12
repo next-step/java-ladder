@@ -32,7 +32,13 @@ class LineTest {
     @Test
     public void of_success() throws Exception {
         //given
-        Line line = Line.of(3);
+        LadderMoveStrategy strategy = new LadderMoveStrategy() {
+            @Override
+            public boolean move() {
+                return false;
+            }
+        };
+        Line line = Line.of(3, strategy);
 
         //when
         int size = line.getNodes().getNodes().size();

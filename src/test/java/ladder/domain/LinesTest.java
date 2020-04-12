@@ -13,7 +13,13 @@ class LinesTest {
     @Test
     public void of_success() throws Exception {
         //given
-        Lines lines = Lines.of(5, 3);
+        LadderMoveStrategy strategy = new LadderMoveStrategy() {
+            @Override
+            public boolean move() {
+                return false;
+            }
+        };
+        Lines lines = Lines.of(5, 3, strategy);
 
         //then
         assertThat(lines.getLines().size()).isEqualTo(3);

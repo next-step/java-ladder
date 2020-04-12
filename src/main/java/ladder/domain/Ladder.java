@@ -18,8 +18,9 @@ public class Ladder {
 
     public static Ladder of(final int startPointCount,
                             final int height,
-                            final LadderPrize result) {
-        Lines lines = Lines.of(startPointCount, height);
+                            final LadderPrize result,
+                            final LadderMoveStrategy strategy) {
+        Lines lines = Lines.of(startPointCount, height, strategy);
 
         return new Ladder(lines, result);
     }

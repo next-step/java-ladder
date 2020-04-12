@@ -27,6 +27,16 @@ public class Nodes {
         return nodes.addLastNode();
     }
 
+    public static Nodes of2(final int playerCount, LadderMoveStrategy strategy) {
+        Nodes nodes = new Nodes();
+        for (int i = 0; i < playerCount - 1; i++) {
+//            boolean randomBoolean = RandomUtils.getRandomBoolean();
+            nodes = nodes.addRandomNextNode(strategy.move());
+        }
+
+        return nodes.addLastNode();
+    }
+
     public List<Node> getNodes() {
         return Collections.unmodifiableList(nodes);
     }
