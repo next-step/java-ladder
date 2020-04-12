@@ -12,6 +12,15 @@ public class Player {
     this.position = Position.at(position);
   }
 
+  public Player(Name name, Position position) {
+    this.name = name;
+    this.position = position;
+  }
+
+  public Position getPosition() {
+    return position;
+  }
+
   public boolean isAdjacent(Player other) {
     return this.position.isAdjacent(other.position);
   }

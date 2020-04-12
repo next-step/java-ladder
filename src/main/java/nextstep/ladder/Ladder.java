@@ -1,12 +1,35 @@
 package nextstep.ladder;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import nextstep.ladder.model.Position;
+
 public class Ladder {
 
-  public Ladder(int height, int width) {
+  private List<LadderLine> ladderLines;
 
+  public Ladder(int height, int width) {
+    ladderLines = IntStream.range(0, height)
+        .mapToObj(level -> new LadderLine(width))
+        .collect(Collectors.toList());
   }
 
   public Player ride(Player aya) {
-    return null;
+    Position finalPosition = ladderLines.stream()
+        .reduce(
+            aya.getPosition(),
+            (position, ladderLine) -> ladderLine.move(position),
+            (position, position2) -> position2
+        );
+
+    return new Player(aya.getName(), finalPosition);
+  }
+
+  public Players ride(Players players) {
+    return Players.of(players.getPlayers()
+        .stream()
+        .map(this::ride)
+        .collect(Collectors.toList()));
   }
 }

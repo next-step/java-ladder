@@ -8,10 +8,20 @@ public class Players {
 
   private List<Player> players;
 
-  public Players(List<String> names) {
-    players = IntStream.range(0, names.size())
-        .mapToObj(position -> new Player(names.get(position), position))
-        .collect(Collectors.toList());
+  private Players(List<Player> players) {
+    this.players = players;
+  }
+
+  public static Players withNames(List<String> names) {
+    return new Players(
+        IntStream.range(0, names.size())
+            .mapToObj(position -> new Player(names.get(position), position))
+            .collect(Collectors.toList())
+    );
+  }
+
+  public static Players of(List<Player> players) {
+    return new Players(players);
   }
 
   public List<Player> getPlayers() {

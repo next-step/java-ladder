@@ -14,7 +14,7 @@ public class PlayersTest {
   public void testConstructor() {
     List<String> names = Arrays.asList("Aya", "Billo", "Clsan", "Lucas");
 
-    List<Player> players = new Players(names).getPlayers();
+    List<Player> players = Players.withNames(names).getPlayers();
 
     assertThat(players.get(0).isAdjacent(players.get(1))).isTrue();
     assertThat(players.get(1).isAdjacent(players.get(0))).isTrue();
