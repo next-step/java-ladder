@@ -40,7 +40,8 @@ public class Ladder {
 
     private VerticalLine nextLine(VerticalLine verticalLine, int height) {
         if (verticalLine.isExistPoint(height)) {
-            return this.verticalLines.getLine(verticalLine.getPoint(height).getEndPointLineNo());
+            int currentPosition = verticalLine.getLineNo();
+            return this.verticalLines.getLine(verticalLine.getPoint(height).move(currentPosition));
         }
         return verticalLine;
     }

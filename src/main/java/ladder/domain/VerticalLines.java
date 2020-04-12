@@ -45,8 +45,8 @@ public class VerticalLines {
         if (drawable.isDraw() && !verticalLine.isExistPoint(height)) {
             Optional.ofNullable(getLine(verticalLine.getLineNo() + 1))
                     .ifPresent(rightVerticalLine -> {
-                        verticalLine.addPoint(height, rightVerticalLine.getLineNo());
-                        rightVerticalLine.addPoint(height, verticalLine.getLineNo());
+                        verticalLine.addPoint(height, Direction.RIGHT);
+                        rightVerticalLine.addPoint(height, Direction.LEFT);
                     });
         }
     }

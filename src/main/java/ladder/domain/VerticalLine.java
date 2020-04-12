@@ -36,15 +36,15 @@ public class VerticalLine {
 
     public boolean isDrawing(int heightPosition) {
         return points.stream()
-                .anyMatch(p -> p.isHeightPosition(heightPosition) && p.isEndPointLineNumber(lineNo + 1));
+                .anyMatch(p -> p.isHeightPosition(heightPosition) && p.isDirection(Direction.RIGHT));
     }
 
     public boolean isLineNumber(int lineNumber) {
         return this.lineNo == lineNumber;
     }
 
-    public void addPoint(int heightPosition, int endPointLineNo) {
-        points.add(new Point(heightPosition, endPointLineNo));
+    public void addPoint(int heightPosition, Direction direction) {
+        points.add(new Point(heightPosition, direction));
     }
 
     @Override

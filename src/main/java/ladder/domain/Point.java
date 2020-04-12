@@ -2,22 +2,22 @@ package ladder.domain;
 
 public class Point {
     private final int heightPosition;
-    private final int endPointLineNo;
+    private final Direction direction;
 
-    public Point(int heightPosition, int endPointLineNo) {
+    public Point(int heightPosition, Direction direction) {
         this.heightPosition = heightPosition;
-        this.endPointLineNo = endPointLineNo;
+        this.direction = direction;
     }
 
-    public int getEndPointLineNo() {
-        return endPointLineNo;
+    public int move(int currentIndex) {
+        return direction.next(currentIndex);
     }
 
     public boolean isHeightPosition(int heightPosition) {
         return this.heightPosition == heightPosition;
     }
 
-    public boolean isEndPointLineNumber(int endPointLineNo) {
-        return this.endPointLineNo == endPointLineNo;
+    public boolean isDirection(Direction direction){
+        return this.direction.equals(direction);
     }
 }
