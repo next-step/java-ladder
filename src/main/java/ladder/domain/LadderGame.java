@@ -39,7 +39,7 @@ public class LadderGame {
     }
 
     public String findPrize(final int prizeIndex) {
-        return ladder.getLadderPrize().getPrize().get(prizeIndex);
+        return ladder.getLadderPrize(prizeIndex);
     }
 
     public Players getPlayers() {

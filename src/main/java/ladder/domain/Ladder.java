@@ -42,4 +42,8 @@ public class Ladder {
     public LadderPrize getLadderPrize() {
         return ladderPrize;
     }
+
+    public String getLadderPrize(int prizeIndex) {
+        return ladderPrize.getPrize(prizeIndex);
+    }
 }

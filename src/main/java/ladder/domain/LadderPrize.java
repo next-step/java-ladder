@@ -16,7 +16,7 @@ public class LadderPrize {
         return prize.size();
     }
 
-    public List<String> getPrize() {
-        return Collections.unmodifiableList(prize);
+    public String getPrize(int prizeIndex) {
+        return prize.get(prizeIndex);
     }
 }
