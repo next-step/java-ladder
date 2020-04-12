@@ -41,7 +41,7 @@ public class Users {
         return users.stream()
                 .filter(user -> user.getName().equals(name))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new notFoundUserByNameException(name + " 유저를 찾을 수 없습니다."));
     }
     public int size() {
         return users.size();
