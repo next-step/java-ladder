@@ -1,7 +1,5 @@
-package ladder.engine.impl;
+package ladder.nextstep;
 
-import ladder.engine.Ladder;
-import ladder.engine.Line;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -12,14 +10,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     @Test
-    public void move() {
-        Line first = new DefaultLine(
+    public void play() {
+        NextStepLine first = new NextStepLine(
                 Arrays.asList(right(0), left(1), straight(2)));
-        Line second = new DefaultLine(
+        NextStepLine second = new NextStepLine(
                 Arrays.asList(straight(0), right(1), left(2)));
-        Line third = new DefaultLine(
+        NextStepLine third = new NextStepLine(
                 Arrays.asList(right(0), left(1), straight(2)));
-        Ladder ladder = new DefaultLadder(3, Arrays.asList(first, second, third));
+        NextStepLadder ladder = new NextStepLadder(3, Arrays.asList(first, second, third));
+
         assertThat(ladder.play().getTarget(0)).isEqualTo(2);
         assertThat(ladder.play().getTarget(1)).isEqualTo(1);
         assertThat(ladder.play().getTarget(2)).isEqualTo(0);

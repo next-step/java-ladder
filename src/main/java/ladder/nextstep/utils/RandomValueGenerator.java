@@ -1,4 +1,4 @@
-package ladder.engine.utils;
+package ladder.nextstep.utils;
 
 import java.util.Random;
 

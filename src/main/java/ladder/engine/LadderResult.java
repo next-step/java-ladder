@@ -13,4 +13,11 @@ public class LadderResult {
     public int getTarget(int source) {
         return result.get(source);
     }
+
+    @Override
+    public String toString() {
+        return "LadderResult{" +
+                "result=" + result +
+                '}';
+    }
 }

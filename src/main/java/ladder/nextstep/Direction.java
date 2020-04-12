@@ -1,6 +1,6 @@
-package ladder.engine.impl;
+package ladder.nextstep;
 
-import ladder.engine.utils.RandomValueGenerator;
+import ladder.nextstep.utils.RandomValueGenerator;
 
 import java.util.Objects;
 

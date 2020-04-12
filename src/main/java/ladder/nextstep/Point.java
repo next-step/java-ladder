@@ -1,4 +1,4 @@
-package ladder.engine.impl;
+package ladder.nextstep;
 
 class Point {
     private final int index;
@@ -11,6 +11,17 @@ class Point {
 
     int move() {
         return index + direction.move();
+    }
+
+    /**
+     * first와 last Point가 아닌 Point를 의미하는가?
+     * first와 last Point를 제외하다보니 2를 minus
+     *
+     * @param people
+     * @return
+     */
+    public boolean untilBeforeLastPoint(int people) {
+        return people - 2 > index;
     }
 
     Point next() {
@@ -27,6 +38,10 @@ class Point {
 
     static Point first(boolean right) {
         return new Point(0, Direction.first(right));
+    }
+
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 
     @Override

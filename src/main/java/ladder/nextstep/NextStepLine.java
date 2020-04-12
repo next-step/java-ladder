@@ -1,13 +1,13 @@
-package ladder.engine.impl;
+package ladder.nextstep;
 
 import ladder.engine.Line;
 
 import java.util.List;
 
-class DefaultLine implements Line {
+class NextStepLine implements Line {
     private final List<Point> points;
 
-    DefaultLine(List<Point> points) {
+    NextStepLine(List<Point> points) {
         this.points = points;
     }
 
@@ -18,7 +18,7 @@ class DefaultLine implements Line {
 
     @Override
     public String toString() {
-        return "DefaultLine{" +
+        return "NextStepLine{" +
                 "points=" + points +
                 '}';
     }
