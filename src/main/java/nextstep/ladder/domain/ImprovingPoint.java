@@ -37,6 +37,10 @@ public class ImprovingPoint {
         return new ImprovingPoint(0, Direction.first(right));
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
     @Override
     public String toString() {
         return "ImprovingPoint{" +
