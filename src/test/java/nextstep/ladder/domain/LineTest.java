@@ -1,7 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
@@ -24,12 +23,4 @@ class LineTest {
         assertThat(points).hasSize(4);
     }
 
-    @DisplayName("선이 존재하는지 확인한다.")
-    @Test
-    void existBeforeLine() {
-        Point point = new Point();
-        point.moveNextPoint();
-        boolean exist = line.existBeforeLine(point);
-        assertThat(exist).isTrue();
-    }
 }

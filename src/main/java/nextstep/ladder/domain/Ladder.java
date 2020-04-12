@@ -1,24 +1,21 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private List ladder = new ArrayList<>();
-
-    public Ladder() {
-    }
+    private List<Line> ladder = new ArrayList<>();
 
     public Ladder(int countOfPerson, int height) {
         this.ladder = createLadder(countOfPerson, height);
     }
 
     public Ladder(List<Line> ladder) {
-        this.ladder = ladder;
+        this.ladder = Collections.unmodifiableList(ladder);
     }
 
-    public List getLadder() {
+    public List<Line> getLadder() {
         return ladder;
     }
 

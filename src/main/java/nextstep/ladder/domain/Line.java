@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Line {
     private Random random = new Random();
-    private List points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     public Line() {
     }
@@ -16,7 +16,7 @@ public class Line {
         points = createPoints(countOfPerson);
     }
 
-    public Line(List points) {
+    public Line(List<Point> points) {
         this.points = points;
     }
 
@@ -33,13 +33,9 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public boolean existBeforeLine(Point point) {
-        return point.isNextPoint();
-    }
-
     private boolean isExistLine(boolean existLine, Point point) {
         if (!existLine) {
-            existLine = moveNextPoint(point);
+            existLine = drawLine(point);
             return existLine;
         }
 
@@ -47,13 +43,13 @@ public class Line {
         return existLine;
     }
 
-    private boolean moveNextPoint(Point point) {
+    private boolean drawLine(Point point) {
         boolean existLine = false;
         boolean randomBoolean = getRandomBoolean();
 
         if (randomBoolean) {
             existLine = true;
-            point.moveNextPoint();
+            point.drawLine();
         }
         return existLine;
     }
@@ -62,7 +58,7 @@ public class Line {
         return random.nextBoolean();
     }
 
-    public List getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 }

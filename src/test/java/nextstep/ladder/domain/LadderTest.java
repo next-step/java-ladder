@@ -1,7 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
@@ -13,12 +12,10 @@ class LadderTest {
     @DisplayName("사다리의 높이만큼 라인을 생성한다.")
     @Test
     void createLadder() {
-        int CountOfPerson = 5;
+        int countOfPerson = 5;
         int height = 4;
-        Ladder ladder = new Ladder();
-
-        List<Line> lines = ladder.createLadder(CountOfPerson, height);
-
+        Ladder ladder = new Ladder(countOfPerson, height);
+        List<Line> lines = ladder.getLadder();
         assertThat(lines).hasSize(height);
     }
 }
