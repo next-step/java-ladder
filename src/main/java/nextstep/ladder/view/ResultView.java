@@ -81,7 +81,8 @@ public class ResultView {
         System.out.println(playResult(paramUsers, userName));
     }
 
-    public void repeatPrintPlayResult(InputView inputView, Users resultsForAllPlayers) {
+    public void repeatPrintPlayResult(Users resultsForAllPlayers) {
+        InputView inputView = InputView.getInputView();
         while (true) {
             String userName = inputView.enterResultUser(resultsForAllPlayers);
             resultView.printPlayResult(resultsForAllPlayers, userName);
