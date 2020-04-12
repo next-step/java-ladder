@@ -12,9 +12,9 @@ public class Ladder {
     private List<Line> lines = new ArrayList<>();
     private int height;
 
-    public Ladder(int height, int personCount) {
-        validate(height, personCount);
-        this.lines = generateLines(height, personCount);
+    public Ladder(int height, Users users) {
+        validate(height, users.size());
+        this.lines = generateLines(height, users.size());
     }
 
     private void validate(int height, int personCount) {
