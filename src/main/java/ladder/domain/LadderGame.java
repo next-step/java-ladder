@@ -1,26 +1,53 @@
 package ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LadderGame {
 
     private final Players players;
-    private final Lines lines;
+    private final Ladder ladder;
 
-    public LadderGame(Players players, Lines lines) {
+    public LadderGame(Players players, Ladder ladder) {
         this.players = players;
-        this.lines = lines;
+        this.ladder = ladder;
     }
 
-    public static LadderGame of(Players players, int height) {
-        Lines lines = Lines.of(players.getPlayersCount(), height);
+    public Map<String, String> getResultAll() {
+        Map<String, String> result = new HashMap<>();
 
-        return new LadderGame(players, lines);
+        for (Player player : players.getPlayers()) {
+            String name = player.getName();
+            result.putAll(getResult(player.getName()));
+        }
+
+        return result;
     }
 
-    public Lines getLines() {
-        return lines;
+    public Map<String, String> getResult(final String playerName) {
+        Map<String, String> result = new HashMap<>();
+
+        Node lastNode = findPlayerLastNode(playerName);
+        String prize = findPrize(lastNode.getIndex());
+        result.put(playerName, prize);
+
+        return result;
+    }
+
+    private Node findPlayerLastNode(final String playerName) {
+        Player player = players.findPlayer(playerName);
+        return ladder.findLastNode(player.getIndex());
+    }
+
+    public String findPrize(final int prizeIndex) {
+        return ladder.getLadderPrize().getPrize().get(prizeIndex);
     }
 
     public Players getPlayers() {
         return players;
+    }
+
+    public Ladder getLadder() {
+        return ladder;
     }
 }

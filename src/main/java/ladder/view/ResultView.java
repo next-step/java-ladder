@@ -4,12 +4,13 @@ import ladder.domain.Line;
 import ladder.domain.Lines;
 import ladder.domain.Players;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private static final String LADDER_RESULT = "실행결과";
+    private static final String LADDER_RESULT = "사다리결과";
     private static final String PRINT_FORMAT = "%-6s";
-    private static final String PRINT_HEIGHT = "I";
+    private static final String PRINT_HEIGHT = "ㅣ";
     private static final String PRINT_WIDTH = "-----";
 
     public static void printPlayers(Players players) {
@@ -31,14 +32,30 @@ public class ResultView {
         StringBuffer buffer = new StringBuffer();
         line.getNodes().forEach(node -> {
             if (node.isMovableRight()) {
-                buffer.append(String.format(PRINT_HEIGHT));
-                buffer.append(String.format(PRINT_WIDTH));
+                printEmptyBridge(buffer);
             }
             if (!node.isMovableRight()) {
-                buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
+                printFullBridge(buffer);
             }
         });
         System.out.println(buffer.toString());
         buffer.setLength(0);
+    }
+
+    private static void printEmptyBridge(StringBuffer buffer) {
+        buffer.append(String.format(PRINT_HEIGHT));
+        buffer.append(String.format(PRINT_WIDTH));
+    }
+
+    private static void printFullBridge(StringBuffer buffer) {
+        buffer.append(String.format(PRINT_FORMAT, PRINT_HEIGHT));
+    }
+
+    public static void printLadderResult(LadderResultDto ladderResultDto) {
+        Map<String, String> result = ladderResultDto.getResult();
+
+        result.forEach((name, priz) -> {
+            System.out.println(name + ":" + priz);
+        });
     }
 }

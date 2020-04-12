@@ -18,7 +18,7 @@ class PlayersTest {
     public void constructor_success() throws Exception {
         //then
         Players players = new Players(
-                Arrays.asList(new Player("a"), new Player("B")));
+                Arrays.asList(PlayerTest.A, PlayerTest.B));
     }
 
     @DisplayName("2명 미만의 Players 생성")
@@ -26,7 +26,7 @@ class PlayersTest {
     public void constructor_fail() throws Exception {
         //then
         assertThatThrownBy(
-                () -> new Players(Arrays.asList(new Player("a")))
+                () -> new Players(Arrays.asList(PlayerTest.A))
         ).isInstanceOf(PlayerException.class);
     }
 
@@ -35,10 +35,10 @@ class PlayersTest {
     public void getPlayersCount_success() throws Exception {
         //given
         Players players = new Players(
-                Arrays.asList(new Player("a"), new Player("B")));
+                Arrays.asList(PlayerTest.A, PlayerTest.B));
 
         //then
-        assertThat(players.getPlayersCount()).isEqualTo(2);
+        assertThat(players.size()).isEqualTo(2);
     }
 
     @DisplayName("이름 List<String> 을 이용하여 Players를 생성")
@@ -54,6 +54,47 @@ class PlayersTest {
         Players players = Players.of(names);
 
         //then
-        assertThat(players.getPlayersCount()).isEqualTo(3);
+        assertThat(players.size()).isEqualTo(3);
+    }
+
+    @DisplayName("참가자를 찾고 index를 찾는다")
+    @Test
+    public void findPlayer_success() throws Exception {
+        //given
+        Players players = Players.of(Arrays.asList("a", "b", "c", "d"));
+
+        //when
+        Player a = players.findPlayer("a");
+        Player b = players.findPlayer("b");
+        Player c = players.findPlayer("c");
+        Player d = players.findPlayer("d");
+
+        //then
+        assertThat(a.getIndex()).isEqualTo(0);
+        assertThat(b.getIndex()).isEqualTo(1);
+        assertThat(c.getIndex()).isEqualTo(2);
+        assertThat(d.getIndex()).isEqualTo(3);
+    }
+
+    @DisplayName("참가자를 찾을 수 없을 경우 exception")
+    @Test
+    public void findPlayer_fail() throws Exception {
+        //given
+        Players players = Players.of(Arrays.asList("a", "b", "c", "d"));
+
+        //then
+        assertThatThrownBy(
+                () -> players.findPlayer("ABC")
+        ).isInstanceOf(PlayerException.class);
+
+    }
+
+    @DisplayName("동일 이름의 참가자가 등록 될 수 없다")
+    @Test
+    public void validateDuplicatePlayer_fail() throws Exception {
+        //then
+        assertThatThrownBy(
+                () -> Players.of(Arrays.asList("a", "a", "b"))
+        ).isInstanceOf(PlayerException.class);
     }
 }

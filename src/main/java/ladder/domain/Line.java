@@ -3,7 +3,6 @@ package ladder.domain;
 import ladder.utils.RandomUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Line implements Cloneable {
@@ -15,10 +14,10 @@ public class Line implements Cloneable {
     }
 
     public Line(final List<Node> nodes) {
-        this.nodes = Collections.unmodifiableList(nodes);
+        this.nodes = new ArrayList<>(nodes);
     }
 
-    public static Line of(int playerCount) {
+    public static Line of(final int playerCount) {
         Line line = new Line();
         for (int i = 0; i < playerCount - 1; i++) {
             boolean randomBoolean = RandomUtils.getRandomBoolean();
@@ -55,11 +54,11 @@ public class Line implements Cloneable {
     }
 
     private Node getLastNode() {
-        return this.nodes.get(nodes.size() - 1);
+        return this.nodes.get(this.nodes.size() - 1);
     }
 
     public List<Node> getNodes() {
-        return new ArrayList<>(this.nodes);
+        return new ArrayList<>(nodes);
     }
 
     @Override
