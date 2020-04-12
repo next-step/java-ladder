@@ -67,8 +67,8 @@ public class Rows {
     }
 
     private Position findFinalPositionOfStartAt(int position) {
-        Point initialPoint = Point.of(Position.of(position));
-        initialPoint.move(Rows.of(rows));
-        return initialPoint.getFinalPosition();
+        PositionManager initialPositionManager = PositionManager.of(Position.of(position));
+        initialPositionManager.move(Rows.of(rows));
+        return initialPositionManager.getFinalPosition();
     }
 }

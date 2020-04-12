@@ -1,18 +1,18 @@
 package ladder.model.row;
 
-public class Point {
+public class PositionManager {
     private static final int ZERO_LOCATION = 0;
     private static final int DECREASE_ONE = -1;
 
     private Position initialPosition;
     private Position finalPosition;
 
-    public Point(Position initialPosition) {
+    public PositionManager(Position initialPosition) {
         this.initialPosition = initialPosition;
     }
 
-    public static Point of(Position position) {
-        return new Point(position);
+    public static PositionManager of(Position position) {
+        return new PositionManager(position);
     }
 
     public void move(Rows rows) {

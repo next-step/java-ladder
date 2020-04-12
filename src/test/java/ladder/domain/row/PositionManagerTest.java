@@ -1,6 +1,6 @@
 package ladder.domain.row;
 
-import ladder.model.row.Point;
+import ladder.model.row.PositionManager;
 import ladder.model.row.Position;
 import ladder.model.row.Row;
 import ladder.model.row.Rows;
@@ -13,20 +13,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PointTest {
+public class PositionManagerTest {
     @DisplayName("최초 Position의 사다리 게임 후, 최종 포지션을 반환한다.")
     @ParameterizedTest
     @CsvSource(value = {"0:2", "1:0", "2:1"}, delimiter = ':')
     void findFinalPosition(int initialPosition, int finalPosition) {
         //given
-        Point initialPoint = Point.of(Position.of(initialPosition));
+        PositionManager initialPositionManager = PositionManager.of(Position.of(initialPosition));
         Rows rows = Rows.of(Arrays.asList(createFirstRow(), createSecondRow()));
 
         //then
-        initialPoint.move(rows);
+        initialPositionManager.move(rows);
 
         //then
-        Assertions.assertThat(initialPoint.getFinalPosition()).isEqualTo(Position.of(finalPosition));
+        Assertions.assertThat(initialPositionManager.getFinalPosition()).isEqualTo(Position.of(finalPosition));
     }
 
     private Row createFirstRow() {
