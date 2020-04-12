@@ -7,11 +7,11 @@ public class Line {
 
     private final List<Node> nodes;
 
-    private Line(List<Node> nodes) {
+    private Line(final List<Node> nodes) {
         this.nodes = new ArrayList<>(nodes);
     }
 
-    public static Line of(final int playerCount, LadderMoveStrategy strategy) {
+    public static Line of(final int playerCount, final LadderMoveStrategy strategy) {
         List<Node> nodes = new ArrayList<>();
         Node node = new Node(strategy);
         nodes.add(node);
@@ -26,7 +26,7 @@ public class Line {
         return new Line(nodes);
     }
 
-    public int move(int nodeNumber) {
+    public int move(final int nodeNumber) {
         return nodes.get(nodeNumber).move();
     }
 
