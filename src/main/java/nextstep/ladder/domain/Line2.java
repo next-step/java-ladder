@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line2 {
+    public static final int MIN_PARTICIPANT_COUNT = 2;
+    public static final String POINT_COUNT_ERROR = "참여자는 2명 이상이어야 합니다.";
+
     private final List<Point2> points;
 
     public Line2(List<Point2> points) {
@@ -17,6 +20,8 @@ public class Line2 {
     }
 
     public static Line2 init(int sizeOfPerson) {
+        assertParticipantCount(sizeOfPerson);
+
         List<Point2> points = new ArrayList<>();
         Point2 point = initFirst(points);
         point = initBody(sizeOfPerson, points, point);
@@ -41,6 +46,12 @@ public class Line2 {
         Point2 point = Point2.first(RandomBooleanProvider.getRandomBoolean());
         points.add(point);
         return point;
+    }
+
+    private static void assertParticipantCount(int sizeOfPerson) {
+        if(sizeOfPerson < MIN_PARTICIPANT_COUNT) {
+            throw new IllegalArgumentException(POINT_COUNT_ERROR);
+        }
     }
 
     @Override
