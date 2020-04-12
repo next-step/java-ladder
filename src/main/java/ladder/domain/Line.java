@@ -17,48 +17,23 @@ public class Line {
         this.nodes = new Nodes(nodes);
     }
 
+    public Line(Nodes nodes) {
+        this.nodes = nodes;
+    }
+
     public static Line of(final int playerCount) {
-        Line line = new Line();
+        Nodes nodes = new Nodes();
         for (int i = 0; i < playerCount - 1; i++) {
             boolean randomBoolean = RandomUtils.getRandomBoolean();
-            line = line.addRandomNextNode(randomBoolean);
+            nodes = nodes.addRandomNextNode(randomBoolean);
         }
 
-        line = line.addLastNode();
-        return line;
+        nodes.addLastNode();
+        return new Line(nodes);
     }
 
     public int move(int nodeNumber) {
         return nodes.move(nodeNumber);
-    }
-
-    private Line addRandomNextNode(final boolean random) {
-        if (this.nodes.isEmpty()) {
-            Node first = new Node(random);
-            return addNode(first);
-        }
-
-        Node nextNode = getLastNode().createNextNode(random);
-        return addNode(nextNode);
-    }
-
-    private Line addLastNode() {
-        List<Node> merge = new ArrayList<>();
-        Node last = getLastNode().createLast();
-        merge.addAll(this.nodes.getNodes());
-        merge.add(last);
-        return new Line(merge);
-    }
-
-    private Line addNode(Node node) {
-        List<Node> merge = new ArrayList<>();
-        merge.addAll(this.nodes.getNodes());
-        merge.add(node);
-        return new Line(merge);
-    }
-
-    private Node getLastNode() {
-        return this.nodes.getNodes().get(this.nodes.getNodes().size() - 1);
     }
 
     public Nodes getNodes() {
