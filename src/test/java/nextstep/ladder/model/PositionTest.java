@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import nextstep.ladder.model.Position;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,5 +25,12 @@ public class PositionTest {
   public void adjacentPositionTest(int position) {
     assertThat(Position.at(position).isAdjacent(Position.at(position + 1))).isTrue();
     assertThat(Position.at(position).isAdjacent(Position.at(position - 1))).isTrue();
+  }
+
+  @DisplayName("Test if \"at method\" returns same instance")
+  @Test
+  public void testSameInstance() {
+    int position = 1;
+    assertThat(Position.at(position) == Position.at(position)).isTrue();
   }
 }
