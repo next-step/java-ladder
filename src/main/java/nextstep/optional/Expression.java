@@ -1,5 +1,8 @@
 package nextstep.optional;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
@@ -14,6 +17,11 @@ enum Expression {
     }
 
     static Expression of(String expression) {
+        return Arrays.stream(values()).filter((value) -> matchExpression(value, expression)).findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    static Expression of2(String expression) {
         for (Expression v : values()) {
             if (matchExpression(v, expression)) {
                 return v;
