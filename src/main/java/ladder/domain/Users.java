@@ -37,6 +37,12 @@ public class Users {
         }
     }
 
+    public User findUserByName(String name) {
+        return users.stream()
+                .filter(user -> user.getName().equals(name))
+                .findFirst()
+                .orElseThrow();
+    }
     public int size() {
         return users.size();
     }
@@ -44,4 +50,5 @@ public class Users {
     public List<User> toList() {
         return Collections.unmodifiableList(users);
     }
+
 }

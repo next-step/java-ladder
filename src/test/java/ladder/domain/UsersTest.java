@@ -65,4 +65,13 @@ public class UsersTest {
 
         assertThat(user).isEqualTo(User.of("pobi", position));
     }
+
+    @Test
+    void notFoundUserByNameExceptionTest() {
+        Users users = Users.of("pobi,honux,crong,jk");
+
+        assertThatExceptionOfType(notFoundUserByNameException.class).isThrownBy(() -> {
+            users.findUserByName("noUser");
+        });
+    }
 }
