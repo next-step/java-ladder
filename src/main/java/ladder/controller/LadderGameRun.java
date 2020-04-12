@@ -18,16 +18,16 @@ public class LadderGameRun {
         int ladderHeight = InputView.inputHeight();
 
         LadderGame ladderGame = new LadderGame(gameInfo, ladderHeight);
-        ResultView.viewLadder(players, prizes, ladderGame.getLadder());
-        LadderGameResult ladderGameResult = ladderGame.getLadderGameResult();
-
-        while (true) {
-            String playerName = InputView.inputPlayerNameForViewResult();
-            if (playerName.equals(KEYWORD_ALL_VIEW)) {
-                break;
-            }
-            ResultView.viewPlayerResult(ladderGameResult, playerName);
-        }
-        ResultView.viewAllPlayerResult(ladderGameResult);
+        ResultView.viewLadder(gameInfo, ladderGame.getLadder());
+//        LadderGameResult ladderGameResult = ladderGame.getLadderGameResult();
+//
+//        while (true) {
+//            String playerName = InputView.inputPlayerNameForViewResult();
+//            if (playerName.equals(KEYWORD_ALL_VIEW)) {
+//                break;
+//            }
+//            ResultView.viewPlayerResult(ladderGameResult, playerName);
+//        }
+//        ResultView.viewAllPlayerResult(ladderGameResult);
     }
 }

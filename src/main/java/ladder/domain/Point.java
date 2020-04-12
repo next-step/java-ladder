@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Point {
     private final int index;
-    private final Direction direction;
+    private Direction direction;
 
     public Point(int index, Direction direction) {
         this.index = index;
@@ -21,6 +21,11 @@ public class Point {
 
     public boolean isDirection(Direction direction) {
         return this.direction.equals(direction);
+    }
+
+    public Point changeDirection(Direction direction) {
+        this.direction = direction;
+        return this;
     }
 
     @Override
