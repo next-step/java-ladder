@@ -39,19 +39,12 @@ public class LadderGameTest {
 
     @Test
     void ladderGame() {
-        List<LadderLine> ladderLines = Arrays.asList(
-                new LadderLine(Arrays.asList(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, DOWN))),
-                new LadderLine(Arrays.asList(new Point(0, DOWN), new Point(1, RIGHT), new Point(2, LEFT))),
-                new LadderLine(Arrays.asList(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, DOWN))));
         List<String> userNames = Arrays.asList("seulp", "seul", "pobi");
         List<String> rewards = Arrays.asList("꽝", "100억", "1000억");
 
-        LadderGame game = new LadderGame(ladderLines, userNames, rewards);
+        LadderGame game = new LadderGame(userNames, 3, rewards);
 
-        List<User> users = game.getUsers().getUsers();
-
-        assertThat(users.get(0).getReward()).isEqualTo(rewards.get(2));
-        assertThat(users.get(1).getReward()).isEqualTo(rewards.get(1));
-        assertThat(users.get(2).getReward()).isEqualTo(rewards.get(0));
+        assertThat(game.getLadder().getLadderLines()).hasSize(3);
+        assertThat(game.getLadder().getLadderLines().get(0).getPoints()).hasSize(3);
     }
 }

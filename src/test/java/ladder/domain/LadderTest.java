@@ -14,32 +14,29 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static ladder.domain.type.DirectionType.*;
 
 public class LadderTest {
-    private LadderReward reward;
     private List<LadderLine> ladderLines;
-
-    @BeforeEach
-    void setUp() {
-        reward = new LadderReward(Arrays.asList("꽝", "5000", "꽝"));
-    }
 
     @Test
     void ladder_exception() {
         ladderLines = new ArrayList<>(Arrays.asList(new LadderLine(Arrays.asList(new Point(0, RIGHT), new Point(1, LEFT)))));
 
-        assertThatThrownBy(() -> new Ladder(ladderLines, reward))
+        List<String> userNames = Arrays.asList("seul", "pobi");
+        int height = 5;
+
+        assertThatThrownBy(() -> new Ladder(userNames, height, Arrays.asList("꽝", "5000", "꽝")))
                 .isInstanceOf(LadderException.class)
                 .hasMessageContaining(ExceptionType.INVALID_LINE_SIZE.getErrorMessage());
     }
 
     @Test
     void getReward() {
-        ladderLines = new ArrayList<>(Arrays.asList(
-                new LadderLine(Arrays.asList(new Point(0, RIGHT), new Point(1, LEFT), new Point(2, DOWN))),
-                new LadderLine(Arrays.asList(new Point(0, DOWN), new Point(1, LEFT), new Point(2, RIGHT)))));
-        Ladder ladder = new Ladder(ladderLines, reward);
+        int height = 5;
+        List<String> userNames = Arrays.asList("seul", "pobi", "sseul");
+        List<String> rewardValue = Arrays.asList("꽝", "5000", "꽝");
+        Ladder ladder = new Ladder(userNames, height, rewardValue);
 
         String actual = ladder.getReward(1);
 
-        assertThat(actual).isEqualTo("꽝");
+        assertThat(rewardValue).contains(actual);
     }
 }
