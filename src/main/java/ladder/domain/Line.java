@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Node> nodes;
     private final Nodes nodes2;
 
     public Line() {
@@ -15,7 +14,6 @@ public class Line {
     }
 
     public Line(final List<Node> nodes) {
-        this.nodes = new ArrayList<>(nodes);
         this.nodes2 = new Nodes(nodes);
     }
 
@@ -60,7 +58,7 @@ public class Line {
     }
 
     private Node getLastNode() {
-        return this.nodes2.getNodes().get(this.nodes.size() - 1);
+        return this.nodes2.getNodes().get(this.nodes2.getNodes().size() - 1);
     }
 
     public Nodes getNodes() {
