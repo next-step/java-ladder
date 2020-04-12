@@ -11,7 +11,7 @@ public enum Direction {
         this.move = move;
     }
 
-    public int next(int currentPosition) {
-        return currentPosition + this.move;
+    public int nextIndex(int currentIndex) {
+        return currentIndex + this.move;
     }
 }

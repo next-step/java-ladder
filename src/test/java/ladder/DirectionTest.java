@@ -13,9 +13,9 @@ public class DirectionTest {
     @DisplayName("다음 방향 테스트")
     void nextTest(){
         assertAll(
-                () -> assertThat(Direction.RIGHT.next(1)).isEqualTo(2),
-                () -> assertThat(Direction.LEFT.next(2)).isEqualTo(1),
-                () -> assertThat(Direction.NONE.next(3)).isEqualTo(3)
+                () -> assertThat(Direction.RIGHT.nextIndex(1)).isEqualTo(2),
+                () -> assertThat(Direction.LEFT.nextIndex(2)).isEqualTo(1),
+                () -> assertThat(Direction.NONE.nextIndex(3)).isEqualTo(3)
         );
     }
 }

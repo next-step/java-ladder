@@ -1,48 +1,15 @@
 package ladder.domain;
 
-import ladder.drawable.RandomDraw;
+import ladder.dto.GameInfo;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Ladder {
-    private final VerticalLines verticalLines;
     private final int height;
+//    private final List<Line> lines;
 
-    public Ladder(Players players, int height) {
-        this.verticalLines = new VerticalLines(players.count());
+    public Ladder(GameInfo gameInfo, int height) {
         this.height = height;
-        verticalLines.drawSideLines(height, new RandomDraw());
-    }
-
-    public VerticalLines getVerticalLines() {
-        return verticalLines;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public MatchedLineInfos getMatchedInfos() {
-        Map<Integer, Integer> matchedInfos = new LinkedHashMap<>();
-        for (int i = 1; i <= verticalLines.getSize(); i++) {
-            matchedInfos.put(verticalLines.getLine(i).getLineNo(), getResultLine(verticalLines.getLine(i)).getLineNo());
-        }
-        return new MatchedLineInfos(matchedInfos);
-    }
-
-    public VerticalLine getResultLine(VerticalLine verticalLine) {
-        for (int i = 1; i <= this.height; i++) {
-            verticalLine = nextLine(verticalLine, i);
-        }
-        return verticalLine;
-    }
-
-    private VerticalLine nextLine(VerticalLine verticalLine, int height) {
-        if (verticalLine.isExistPoint(height)) {
-            int currentPosition = verticalLine.getLineNo();
-            return this.verticalLines.getLine(verticalLine.getPoint(height).move(currentPosition));
-        }
-        return verticalLine;
+//        this.lines = lines;
     }
 }

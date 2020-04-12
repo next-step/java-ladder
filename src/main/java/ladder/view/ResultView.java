@@ -14,7 +14,7 @@ public class ResultView {
     public static void viewLadder(Players players, Prizes prizes, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
         viewPlayers(players);
-        viewLines(ladder);
+//        viewLines(ladder);
         viewPlayResults(prizes);
         System.out.println("\n");
     }
@@ -31,17 +31,17 @@ public class ResultView {
         return String.format(PLAYER_NAME_FORMAT, name);
     }
 
-    private static void viewLines(Ladder ladder) {
-        IntStream.rangeClosed(1, ladder.getHeight())
-                .forEach(i -> viewLineByHeight(ladder.getVerticalLines(), i));
-    }
-
-    private static void viewLineByHeight(VerticalLines verticalLines, int height) {
-        System.out.print("     ");
-        IntStream.rangeClosed(1, verticalLines.getSize())
-                .forEach(i -> printLines(verticalLines.getLine(i).isDrawing(height)));
-        System.out.println();
-    }
+//    private static void viewLines(Ladder ladder) {
+//        IntStream.rangeClosed(1, ladder.getHeight())
+//                .forEach(i -> viewLineByHeight(ladder.getVerticalLines(), i));
+//    }
+//
+//    private static void viewLineByHeight(VerticalLines verticalLines, int height) {
+//        System.out.print("     ");
+//        IntStream.rangeClosed(1, verticalLines.getSize())
+//                .forEach(i -> printLines(verticalLines.getLine(i).isDrawing(height)));
+//        System.out.println();
+//    }
 
     private static void printLines(boolean isExistLine) {
         if (isExistLine) {
