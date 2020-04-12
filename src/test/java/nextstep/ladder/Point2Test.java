@@ -10,31 +10,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Point2Test {
     @Test
     public void first() {
-        assertThat(Point2.first(TRUE).move(), is(1));
-        assertThat(Point2.first(FALSE).move(), is(0));
+        assertThat(Point2.first(TRUE).move()).isEqualTo(1);
+        assertThat(Point2.first(FALSE).move()).isEqualTo(0);
     }
 
     @Test
     public void next_stay() {
         Point2 second = Point2.first(FALSE).next(FALSE);
-        assertThat(second.move(), is(1));
+        assertThat(second.move()).isEqualTo(1);
     }
 
     @Test
     public void next_left() {
         Point2 second = Point2.first(TRUE).next(FALSE);
-        assertThat(second.move(), is(0));
+        assertThat(second.move()).isEqualTo(0);
     }
 
     @Test
     public void next_right() {
         Point2 second = Point2.first(FALSE).next(TRUE);
-        assertThat(second.move(), is(2));
+        assertThat(second.move()).isEqualTo(2);
     }
 
     @Test
     public void next() {
         Point2 second = Point2.first(TRUE).next();
-        assertThat(second.move(), is(0));
+        assertThat(second.move()).isEqualTo(0);
     }
 }

@@ -11,7 +11,7 @@ public class Line2Test {
     }
 
     @Test
-    public void move() {
+    public void move1() {
         Line2 line = Line2.init(2);
         System.out.println("ladder result : " + line.move(0));
     }
