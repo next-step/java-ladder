@@ -8,11 +8,12 @@ public class Player {
   private Position position;
 
   public Player(String name, int position) {
-
+    this.name = new Name(name);
+    this.position = Position.at(position);
   }
 
   public boolean isAdjacent(Player other) {
-    return false;
+    return this.position.isAdjacent(other.position);
   }
 
   public Name getName() {

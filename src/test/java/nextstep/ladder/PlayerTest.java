@@ -12,7 +12,7 @@ public class PlayerTest {
   public void testAdjocent() {
     Player aya = new Player("Aya", 0);
     Player billo = new Player("Billo", 1);
-    Player clsan = new Player("Clsan", 1);
+    Player clsan = new Player("Clsan", 2);
 
     assertThat(aya.isAdjacent(billo)).isTrue();
     assertThat(aya.isAdjacent(clsan)).isFalse();
