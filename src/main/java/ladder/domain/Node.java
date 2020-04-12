@@ -22,7 +22,7 @@ public class Node {
     }
 
     public Node createLast() {
-        return new Node(this.index + PLUS_NEXT_INDEX, new Way(this.isMovableRight(), false));
+        return new Node(this.index + PLUS_NEXT_INDEX, way.last());
     }
 
     public Node createNextNode(final boolean isMovableRight) {

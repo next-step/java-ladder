@@ -35,14 +35,15 @@ class NodeTest {
     @Test
     public void move_success() throws Exception {
         //given
-        Node left = new Node(1, new Way(true, false));
-        Node right = new Node(1, new Way(false, true));
-        Node none = new Node(1, new Way(false, false));
+        Node left = new Node(WayTest.strategyTrue);
+        left = left.createNextNode(WayTest.strategyFalse);
+        Node right = new Node(WayTest.strategyTrue);
+        Node none = new Node(WayTest.strategyFalse);
 
         //then
         assertThat(left.move()).isEqualTo(0);
-        assertThat(right.move()).isEqualTo(2);
-        assertThat(none.move()).isEqualTo(1);
+        assertThat(right.move()).isEqualTo(1);
+        assertThat(none.move()).isEqualTo(0);
     }
 
     @DisplayName("현재 노드가 오른쪽으로 이동 가능 할때, 랜덥 값 상관 없이 다음 노드는 왼쪽으로 이동")
@@ -81,8 +82,8 @@ class NodeTest {
     @Test
     public void createLast_success() throws Exception {
         //given
-        Node nodeRight = new Node(0, new Way(false, true));
-        Node nodeNone = new Node(0, new Way(false, false));
+        Node nodeRight = new Node(WayTest.strategyTrue);
+        Node nodeNone = new Node(WayTest.strategyFalse);
 
         Node lastLeft = nodeRight.createLast();
         Node lastNone = nodeNone.createLast();
