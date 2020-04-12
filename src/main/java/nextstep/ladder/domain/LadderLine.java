@@ -20,14 +20,14 @@ public class LadderLine {
     public static LadderLine init(int sizeOfPerson) {
         List<ImprovingPoint> points = new ArrayList<>();
         ImprovingPoint point = initFirst(points);
-        initBody(sizeOfPerson, points, point);
+        point = initBody(sizeOfPerson, points, point);
         initLast(points, point);
         return new LadderLine(points);
     }
 
     private static ImprovingPoint initBody(int sizeOfPerson, List<ImprovingPoint> points,
                                            ImprovingPoint point) {
-        for (int i = 0; i < sizeOfPerson - 1; i++) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
             point = point.next();
             points.add(point);
         }
@@ -35,7 +35,7 @@ public class LadderLine {
     }
 
     private static void initLast(List<ImprovingPoint> points, ImprovingPoint point) {
-        point.last();
+        point = point.last();
         points.add(point);
     }
 
@@ -47,6 +47,10 @@ public class LadderLine {
 
     private static Boolean generatePoint() {
         return random.nextBoolean();
+    }
+
+    public List<ImprovingPoint> getPoints() {
+        return points;
     }
 
     @Override
