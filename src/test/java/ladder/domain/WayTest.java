@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.LadderException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WayTest {
+
+    private LadderMoveStrategy strategyTrue;
+    private LadderMoveStrategy strategyFalse;
+
+    @BeforeEach
+    void setUp() {
+        strategyTrue = () -> {
+            return true;
+        };
+        strategyFalse = () -> {
+            return false;
+        };
+    }
 
     @DisplayName("생성자 정상 테스트")
     @Test
@@ -44,5 +58,48 @@ class WayTest {
         assertFalse(right.isMovableLeft());
         assertFalse(none.isMovableLeft());
         assertFalse(none.isMovableRight());
+    }
+
+    @DisplayName("오른쪽 진행 가능할 경우 다음 방향은 오른쪽 진행 불가 함")
+    @Test
+    public void next_success_cantRight() throws Exception {
+        //given
+        Way way = new Way(false, true);
+
+        //when
+        Way next = way.next(strategyTrue);
+
+        //then
+
+        assertFalse(next.isMovableRight());
+    }
+
+    @DisplayName("오른쪽 진행 불가 할 경우 다음 방향은 랜덤으로 생성")
+    @Test
+    public void next_success_randomMove() throws Exception {
+        //given
+        Way way = new Way(false, false);
+
+        //when
+        Way right = way.next(strategyTrue);
+        Way none = way.next(strategyFalse);
+
+        //then
+
+        assertTrue(right.isMovableRight());
+        assertFalse(none.isMovableRight());
+    }
+
+    @DisplayName("마지막 방향은 오른쪽 진행 방향이 false 이다")
+    @Test
+    public void first_success() throws Exception {
+        //given
+        Way way = new Way(false, true);
+
+        //when
+        Way last = way.last();
+
+        //then
+        assertFalse(last.isMovableRight());
     }
 }

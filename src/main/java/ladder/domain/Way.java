@@ -21,6 +21,26 @@ public class Way {
         }
     }
 
+    public Way first(LadderMoveStrategy strategy) {
+        return new Way(false, strategy.move());
+    }
+
+    public Way next(LadderMoveStrategy strategy) {
+        boolean move = strategy.move();
+
+        if (right) {
+            return new Way(right, false);
+        }
+        return new Way(false, move);
+    }
+
+    public Way last() {
+        if (right) {
+            return new Way(right, false);
+        }
+        return new Way(false, false);
+    }
+
     public boolean isMovableLeft() {
         return left;
     }
