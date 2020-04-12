@@ -17,6 +17,7 @@ public class Ladder {
         this.lines = generateLines(height, users.size());
     }
 
+
     private void validate(int height, int personCount) {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException(MAXIMUM_HEIGHT_ERROR);

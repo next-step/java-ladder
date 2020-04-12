@@ -22,6 +22,19 @@ public class Users {
         return users;
     }
 
+    public String getUserName(int index) {
+        return users.get(index).getName();
+    }
+
+    public int index(String name) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public int size() {
         return users.size();
     }
