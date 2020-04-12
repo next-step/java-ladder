@@ -18,26 +18,14 @@ public class User {
         this.age = age;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public boolean matchName(String name) {
-        return this.name.equals(name);
-    }
-
     public static boolean ageIsInRange1(User user) {
         Optional<User> optionalUser = ofNullable(user);
         if (optionalUser.isPresent()) {
             return optionalUser
-                    .map(User::graterThanEqualThirty)
-                    .map(e -> User.lessThanEqualFortyFive(e.orElseGet(() -> new User(NULL_BLANK, AGE_CONDITION))))
-                    .map(e -> e.orElseGet(() -> new User(NULL_BLANK, AGE_CONDITION)).getAge())
-                    .orElseGet(() -> AGE_CONDITION) != AGE_CONDITION;
+                    .map(User::getAge)
+                    .filter(User::isGraterThanEqualThirty)
+                    .filter(User::isLessThanEqualFortyFive)
+                    .isPresent();
         }
         return false;
     }
@@ -47,7 +35,7 @@ public class User {
                 .map(User::getAge)
                 .filter(User::isGraterThanEqualThirty)
                 .filter(User::isLessThanEqualFortyFive)
-                .orElse(AGE_CONDITION) != AGE_CONDITION;
+                .isPresent();
     }
 
     private static boolean isGraterThanEqualThirty(int age) {
@@ -72,6 +60,18 @@ public class User {
             return Optional.of(user);
         }
         return Optional.empty();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public boolean matchName(String name) {
+        return this.name.equals(name);
     }
 
     @Override

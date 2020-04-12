@@ -22,15 +22,11 @@ public class ComputerStore {
         return version;
     }
 
-    public static String getVersionOptional(Computer computer) {
-        return Optional.ofNullable(
-                Optional.ofNullable(
-                        Optional.ofNullable(computer)
-                                .orElseGet(() -> new Computer(new Soundcard(new USB(UNKNOWN_VERSION))))
-                                .getSoundcard())
-                        .orElseGet(() -> new Soundcard(new USB(UNKNOWN_VERSION)))
-                        .getUsb())
-                .orElseGet(() -> new USB(UNKNOWN_VERSION))
-                .getVersion();
+    public static String getVersionOptional(Computer optionalComputer) {
+        return Optional.ofNullable(optionalComputer)
+                .map(computer -> computer.getSoundcard())
+                .map(soundcard -> soundcard.getUsb())
+                .map(version -> version.getVersion())
+                .orElseGet(() -> UNKNOWN_VERSION);
     }
 }
