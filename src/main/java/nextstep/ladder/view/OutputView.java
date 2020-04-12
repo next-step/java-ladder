@@ -74,8 +74,8 @@ public class OutputView {
         int length = name.length();
         int spaceCount = SPACE_PER_POINT - length;
 
-        builder = appendSpaces(builder, spaceCount);
         builder.append(name);
+        builder = appendSpaces(builder, spaceCount);
 
         return builder;
     }
