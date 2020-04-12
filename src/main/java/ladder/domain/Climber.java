@@ -9,17 +9,21 @@ public class Climber {
 
     private Users users;
 
-    private Climber() {
+    private Climber(String userNames) {
+        this.users = Users.of(userNames);
     }
 
-    public static Climber of() {
-        return new Climber();
+    public static Climber of(String userNames) {
+        return new Climber(userNames);
     }
 
-    public LadderMap createLadder(String userNames, int height) {
-        users = Users.of(userNames);
+    public LadderMap createLadder(int height) {
         CrossRoadStrategy halfPercentCreate = () -> new Random().nextInt(10) >= 5;
         return LadderMap.of(users, height, halfPercentCreate);
+    }
+
+    public Reward offerPrize(String rewards) {
+        return Reward.of(rewards, users.size());
     }
 
     public List<String> getUserNames() {
@@ -27,5 +31,13 @@ public class Climber {
                 .stream()
                 .map(User::getName)
                 .collect(Collectors.toList());
+    }
+
+    public List<List<Boolean>> getLadderMapList(LadderMap ladderMap) {
+        return ladderMap.getLadderMap();
+    }
+
+    public List<String> getRewards(Reward reward) {
+        return reward.toList();
     }
 }

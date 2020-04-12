@@ -1,11 +1,8 @@
 package ladder.domain;
 
 
-import ladder.LadderUtil;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -15,23 +12,22 @@ public class LadderRewardTest {
     @ParameterizedTest
     @ValueSource(strings = {"꽝,5000,꽝,3000"})
     void ladderRewardTest(String input) {
-        List<String> rewards = LadderUtil.splitStringByComma(input);
         int userCount = 4;
+        String[] expected = input.split(",");
 
-        Reward reward = Reward.of(rewards, userCount);
+        Reward reward = Reward.of(input, userCount);
 
-        assertThat(reward.toList()).containsAnyOf(rewards.toArray());
+        assertThat(reward.toList()).containsAnyOf(expected);
     }
 
 
     @ParameterizedTest
     @ValueSource(strings = {"꽝,5000,꽝,3000"})
-    void ladderRewardTest(String input) {
-        List<String> rewards = LadderUtil.splitStringByComma(input);
+    void unmatchRewardCountExceptionTest(String input) {
         int userCount = 1;
 
-        assertThatExceptionOfType(unmatchRewardCountException.class).isThrownBy(() -> {
-            Reward.of(rewards, userCount);
+        assertThatExceptionOfType(UnmatchRewardCountException.class).isThrownBy(() -> {
+            Reward.of(input, userCount);
         });
     }
 }

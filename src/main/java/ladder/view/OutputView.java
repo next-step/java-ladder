@@ -2,6 +2,7 @@ package ladder.view;
 
 
 import ladder.domain.LadderMap;
+import ladder.domain.Reward;
 
 import java.util.List;
 
@@ -17,7 +18,13 @@ public class OutputView {
         return new OutputView();
     }
 
-    public void printUsersName(List<String> climberNames) {
+    public void printLadderResult(List<String> climberNames, List<List<Boolean>> ladderMap, List<String> rewards) {
+        printUsersName(climberNames);
+        printLadderMap(ladderMap);
+        printReward(rewards);
+    }
+
+    private void printUsersName(List<String> climberNames) {
         System.out.println(CREATE_MAP_RESULT_INFOMATION);
         climberNames.forEach(climberName -> {
             System.out.print(lpadString(climberName, PADDING_LENGTH, " ") + " ");
@@ -38,10 +45,10 @@ public class OutputView {
         return lpadString.toString();
     }
 
-    public void printLadderMap(LadderMap ladderMap) {
-        ladderMap.toList().forEach(line -> {
+    private void printLadderMap(List<List<Boolean>> ladderMap) {
+        ladderMap.forEach(line -> {
             System.out.print("    |");
-            line.toList().stream().forEach(cross -> {
+            line.stream().forEach(cross -> {
                 System.out.print(ladderGap(cross));;
             });
             System.out.println();
@@ -55,4 +62,10 @@ public class OutputView {
         return "    |";
     }
 
+    private void printReward(List<String> rewards) {
+        rewards.forEach(reward -> {
+            System.out.print(lpadString(reward, PADDING_LENGTH, " ") + " ");
+        });
+        System.out.println();
+    }
 }

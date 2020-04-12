@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class InputView {
 
     private static String INFORMATION_USER_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static String INFORMATION_REWARD = "실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static String INFORMATION_LADDER_HEIGHT = "최대 사다리 높이는 몇 인가요?";
 
     private Scanner scanner;
@@ -20,6 +21,10 @@ public class InputView {
 
     public String userNamesReader() {
         return userInstructionToString(INFORMATION_USER_NAMES);
+    }
+
+    public String rewardReader() {
+        return userInstructionToString(INFORMATION_REWARD);
     }
 
     public int ladderHeightReader() {

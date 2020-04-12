@@ -3,6 +3,8 @@ package ladder.controller;
 
 import ladder.domain.Climber;
 import ladder.domain.LadderMap;
+import ladder.domain.Line;
+import ladder.domain.Reward;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -17,7 +19,6 @@ public class LadderController {
     private LadderController() {
         this.inputView = InputView.of();
         this.outputView = OutputView.of();
-        this.climber = Climber.of();
     }
 
     public static LadderController of() {
@@ -26,12 +27,18 @@ public class LadderController {
 
     public void climbLadder() {
         String userNames = inputView.userNamesReader();
+        this.climber = Climber.of(userNames);
+
+        String rewards = inputView.rewardReader();
+        Reward reward = climber.offerPrize(rewards);
+
         int ladderHeight = inputView.ladderHeightReader();
+        LadderMap ladderMap = climber.createLadder(ladderHeight);
 
-        LadderMap ladderMap = climber.createLadder(userNames, ladderHeight);
-        List<String> climberNames = climber.getUserNames();
+        List<String> climberNameList = climber.getUserNames();
+        List<List<Boolean>> ladderMapList = climber.getLadderMapList(ladderMap);
+        List<String> rewardList = climber.getRewards(reward);
 
-        outputView.printUsersName(climberNames);
-        outputView.printLadderMap(ladderMap);
+        outputView.printLadderResult(climberNameList, ladderMapList, rewardList);
     }
 }

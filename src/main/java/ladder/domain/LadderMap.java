@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LadderMap {
 
-    List<Line> ladderMap;
+    private List<Line> ladderMap;
 
     public LadderMap(Users users, int highest, CrossRoadStrategy crossRoadStrategy) {
         this.ladderMap = createMap(users.size(), highest, crossRoadStrategy);
@@ -27,5 +27,13 @@ public class LadderMap {
 
     public List<Line> toList() {
         return Collections.unmodifiableList(ladderMap);
+    }
+
+    public List<List<Boolean>> getLadderMap() {
+        List<List<Boolean>> ladderMapList = new ArrayList<>();
+        for (Line line : ladderMap) {
+            ladderMapList.add(line.toList());
+        }
+        return Collections.unmodifiableList(ladderMapList);
     }
 }
