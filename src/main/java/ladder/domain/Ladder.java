@@ -5,32 +5,40 @@ import ladder.exception.LadderException;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     @Getter
-    private List<Line> lines;
+    private List<LadderLine> ladderLines;
     @Getter
     private LadderReward ladderReward;
 
-    public Ladder(List<Line> lines, LadderReward rewards) {
-        validRewardSize(rewards, lines.get(0).getActionsSize());
+    public Ladder(List<String> userNames, int height, List<String> rewardValues) {
+        List<LadderLine> ladderLines = IntStream.range(0, height)
+                .mapToObj(value -> LadderLine.of(userNames.size()))
+                .collect(Collectors.toList());
 
-        this.lines = lines;
-        this.ladderReward = rewards;
+        LadderReward reward = new LadderReward(rewardValues);
+
+        validRewardSize(reward, ladderLines.get(0).getSize());
+
+        this.ladderLines = ladderLines;
+        this.ladderReward = reward;
     }
 
-    public String getReward(int startIndex) {
-        int lineIndex = startIndex;
+    public String getReward(int startPosition) {
+        int position = startPosition;
 
-        for (Line line : this.lines) {
-            lineIndex += line.getMovePoint(lineIndex);
+        for (LadderLine ladderLine : this.ladderLines) {
+            position = ladderLine.move(position);
         }
 
-        return ladderReward.getReward(lineIndex);
+        return ladderReward.getReward(position);
     }
 
-    private void validRewardSize(LadderReward reward, int actionsSize) {
-        if(!reward.sameSize(actionsSize)) {
+    private void validRewardSize(LadderReward reward, int pointSize) {
+        if (!reward.sameSize(pointSize)) {
             throw new LadderException(ExceptionType.INVALID_LINE_SIZE);
         }
     }

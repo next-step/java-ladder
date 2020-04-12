@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.type.ActionType;
 import ladder.exception.ExceptionType;
 import ladder.exception.LadderException;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,10 +15,11 @@ public class UsersTest {
 
     @BeforeEach
     void setUp() {
-        List<Line> lines = Arrays.asList(new Line(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)),
-                new Line(Arrays.asList(ActionType.DOWN, ActionType.RIGHT, ActionType.LEFT)));
+        int height = 5;
+        List<String> userNames = Arrays.asList("seul", "pobi", "sseul");
+        List<String> rewardValues = Arrays.asList("100", "꽝", "200");
 
-        ladder = new Ladder(lines, new LadderReward(Arrays.asList("100", "꽝", "200")));
+        ladder = new Ladder(userNames, height, rewardValues);
     }
 
     @Test

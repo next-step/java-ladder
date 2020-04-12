@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.type.ActionType;
 import ladder.exception.ExceptionType;
 import ladder.exception.LadderException;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static ladder.domain.type.DirectionType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,11 +16,11 @@ public class LadderGameTest {
     void of() {
         LadderGame ladderGame = LadderGame.of("pobi,honux,crong,jk", "5", "꽝,5000,꽝,3000");
 
-        assertThat(ladderGame.getLadder().getLines()).hasSize(5);
+        assertThat(ladderGame.getLadder().getLadderLines()).hasSize(5);
 
         ladderGame.getLadder()
-                .getLines()
-                .forEach(line -> assertThat(line.getActionsSize()).isEqualTo(4));
+                .getLadderLines()
+                .forEach(line -> assertThat(line.getSize()).isEqualTo(4));
     }
 
     @Test
@@ -39,18 +39,12 @@ public class LadderGameTest {
 
     @Test
     void ladderGame() {
-        List<Line> lines = Arrays.asList(new Line(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)),
-                new Line(Arrays.asList(ActionType.DOWN, ActionType.RIGHT, ActionType.LEFT)),
-                new Line(Arrays.asList(ActionType.RIGHT, ActionType.LEFT, ActionType.DOWN)));
         List<String> userNames = Arrays.asList("seulp", "seul", "pobi");
         List<String> rewards = Arrays.asList("꽝", "100억", "1000억");
 
-        LadderGame game = new LadderGame(lines, userNames, rewards);
+        LadderGame game = new LadderGame(userNames, 3, rewards);
 
-        List<User> users = game.getUsers().getUsers();
-
-        assertThat(users.get(0).getReward()).isEqualTo(rewards.get(2));
-        assertThat(users.get(1).getReward()).isEqualTo(rewards.get(1));
-        assertThat(users.get(2).getReward()).isEqualTo(rewards.get(0));
+        assertThat(game.getLadder().getLadderLines()).hasSize(3);
+        assertThat(game.getLadder().getLadderLines().get(0).getPoints()).hasSize(3);
     }
 }
