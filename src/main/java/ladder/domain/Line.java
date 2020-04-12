@@ -26,14 +26,18 @@ public class Line {
 
         return crossable;
     }
-    
+
     private boolean isCreateCrossable(List<Boolean> crossable, CrossRoadStrategy crossRoadStrategy) {
         int position = crossable.size();
-        if(position >= 1 && crossable.get(position - 1)) {
+        if (isGreaterThenFirstAndHasBeforeCrossLoad(position, crossable)) {
             return false;
         }
 
         return crossRoadStrategy.movable();
+    }
+
+    private boolean isGreaterThenFirstAndHasBeforeCrossLoad(int position, List<Boolean> crossable) {
+        return position >= 1 && crossable.get(position - 1);
     }
 
     public boolean movable(int position) {
