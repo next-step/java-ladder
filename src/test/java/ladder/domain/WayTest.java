@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class WayTest {
+public class WayTest {
 
     public static LadderMoveStrategy strategyTrue = () -> {
         return true;
