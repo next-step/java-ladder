@@ -59,10 +59,13 @@ public class LadderTest {
      */
     private static Line createHasLineRight() {
         List<Point> points = new ArrayList<>();
+
         Point point = Point.first(false);
         points.add(point);
+
         point = point.next(true);
         points.add(point);
+
         point = point.last();
         points.add(point);
 
@@ -74,10 +77,13 @@ public class LadderTest {
      */
     private static Line createHasLineLeft() {
         List<Point> points = new ArrayList<>();
+
         Point point = Point.first(true);
         points.add(point);
+
         point = point.next();
         points.add(point);
+
         point = point.last();
         points.add(point);
 

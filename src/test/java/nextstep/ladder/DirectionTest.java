@@ -19,7 +19,6 @@ public class DirectionTest {
         assertThatThrownBy(() -> {
             Direction.of(TRUE, TRUE);
         }).isInstanceOf(IllegalStateException.class);
-
     }
 
     @Test

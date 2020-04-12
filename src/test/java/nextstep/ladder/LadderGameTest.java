@@ -28,7 +28,6 @@ public class LadderGameTest {
         results.add("결과3");
         LadderResults ladderResults = new LadderResults(results);
 
-
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new LadderGame(participants, ladder, ladderResults);
         }).withMessage(LadderGame.PARTICIPANTS_RESULTS_COUNT_ERROR);
