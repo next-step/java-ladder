@@ -5,6 +5,8 @@ import ladder.exception.LadderException;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     @Getter
@@ -12,11 +14,17 @@ public class Ladder {
     @Getter
     private LadderReward ladderReward;
 
-    public Ladder(List<LadderLine> ladderLines, LadderReward rewards) {
-        validRewardSize(rewards, ladderLines.get(0).getSize());
+    public Ladder(List<String> userNames, int height, List<String> rewardValues) {
+        List<LadderLine> ladderLines = IntStream.range(0, height)
+                .mapToObj(value -> LadderLine.of(userNames.size()))
+                .collect(Collectors.toList());
+
+        LadderReward reward = new LadderReward(rewardValues);
+
+        validRewardSize(reward, ladderLines.get(0).getSize());
 
         this.ladderLines = ladderLines;
-        this.ladderReward = rewards;
+        this.ladderReward = reward;
     }
 
     public String getReward(int startPosition) {

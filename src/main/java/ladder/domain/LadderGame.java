@@ -6,8 +6,6 @@ import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderGame {
     private static final String REGEX = ",";
@@ -17,10 +15,10 @@ public class LadderGame {
     @Getter
     private Users users;
 
-    public LadderGame(List<LadderLine> ladderLines, List<String> userNames, List<String> rewards) {
+    public LadderGame(List<String> userNames, int heightValue, List<String> rewards) {
         validResultValues(rewards.size(), userNames.size());
 
-        this.ladder = new Ladder(ladderLines, new LadderReward(rewards));
+        this.ladder = new Ladder(userNames, heightValue, rewards);
         this.users = new Users(userNames, ladder);
     }
 
@@ -28,11 +26,7 @@ public class LadderGame {
         String[] userNames = userNameValues.split(REGEX);
         List<String> rewards = Arrays.asList(resultValues.split(REGEX));
 
-        List<LadderLine> ladderLines = IntStream.range(0, Integer.parseInt(heightValue))
-                .mapToObj(value -> LadderLine.of(userNames.length))
-                .collect(Collectors.toList());
-
-        return new LadderGame(ladderLines, Arrays.asList(userNames), rewards);
+        return new LadderGame(Arrays.asList(userNames), Integer.parseInt(heightValue), rewards);
     }
 
     private void validResultValues(int rewardNumber, int userNumber) {
