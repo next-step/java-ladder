@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.Static;
+
 import nextstep.ladder.domain.GameInfo;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
@@ -18,18 +20,19 @@ import nextstep.ladder.domain.PlayLadderGame;
 import nextstep.ladder.domain.Point;
 import nextstep.ladder.domain.Result;
 import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.ResultsTest;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.UsersTest;
 
 class ResultViewTest {
     private static ResultView resultView = ResultView.getResultView();
     private static PlayLadderGame playLadderGame = PlayLadderGame.getPlayLadderGame();
 
-    private Users users;
     private Line line;
     private List<Line> lineList;
     private Ladder ladder;
-    private Results results;
+
     private Users resultUsers;
     private GameInfo gameInfo;
 
@@ -45,30 +48,14 @@ class ResultViewTest {
                          .collect(Collectors.toList());
 
         ladder = new Ladder(lineList);
-
-        users = new Users(new ArrayList<>(
-                Stream.of(new User("pobi"),
-                          new User("honux"),
-                          new User("crong"),
-                          new User("jk")
-                )
-                      .collect(Collectors.toList())));
-
-        results = new Results(new ArrayList<>(
-                Stream.of(new Result("꽝"),
-                          new Result("5000"),
-                          new Result("꽝"),
-                          new Result("3000")
-                )
-                      .collect(Collectors.toList())));
-        gameInfo = new GameInfo(users, results);
+        gameInfo = new GameInfo(UsersTest.USERS, ResultsTest.RESULTS);
         resultUsers = playLadderGame.generateResultsForAllPlayers(gameInfo, ladder);
     }
 
     @DisplayName("유저 이름을 출력한다.")
     @Test
     void appendUserNames() {
-        String userNames = resultView.appendUserNames(users);
+        String userNames = resultView.appendUserNames(UsersTest.USERS);
         assertThat(userNames).isEqualTo(" pobi honux crong    jk");
     }
 
@@ -82,7 +69,7 @@ class ResultViewTest {
     @DisplayName("실행결과를 출력한다.")
     @Test
     void appendResults() {
-        String results = resultView.appendResults(this.results);
+        String results = resultView.appendResults(ResultsTest.RESULTS);
         assertThat(results).isEqualTo("    꽝  5000     꽝  3000");
     }
 
