@@ -35,7 +35,6 @@ class ResultViewTest {
 
     @BeforeEach
     void setUp() {
-
         List<Point> points = Stream.of(new Point(true),
                                        new Point(false),
                                        new Point(true))
@@ -90,7 +89,7 @@ class ResultViewTest {
     @DisplayName("입력 받은 사다리를 그린다.")
     @Test
     void drawLadder() {
-        String drawLadder = resultView.drawLadder(users, ladder, results);
+        String drawLadder = resultView.drawLadder(gameInfo, ladder);
         assertThat(drawLadder).isEqualTo(" pobi honux crong    jk\n"
                                          + "     |-----|     |-----|\n"
                                          + "     |-----|     |-----|\n"

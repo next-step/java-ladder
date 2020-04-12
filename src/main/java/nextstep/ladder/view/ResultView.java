@@ -35,11 +35,16 @@ public class ResultView {
     }
 
     public String appendLine(Line line) {
+        StringBuilder stringBuilder = new StringBuilder(NO_LINE);
         String tempLine = line.getPoints()
                               .stream()
                               .map(point -> drawLineByPoint(point))
                               .collect(Collectors.joining(VERTICAL));
-        return NO_LINE + VERTICAL + tempLine + VERTICAL;
+
+        return stringBuilder.append(VERTICAL)
+                            .append(tempLine)
+                            .append(VERTICAL)
+                            .toString();
     }
 
     public String drawLineByPoint(Point point) {
@@ -49,24 +54,13 @@ public class ResultView {
         return NO_LINE;
     }
 
-    public String drawLadder(Users users, Ladder ladder, Results results) {
-        String result = "";
-        result += appendUserNames(users);
-        result += NEW_LINE;
-        result += appendLines(ladder);
-        result += NEW_LINE;
-        result += appendResults(results);
-        return result;
-    }
-
-    public String drawLadder2(GameInfo gameInfo, Ladder ladder) {
-        String result = "";
-        result += appendUserNames(gameInfo.getUsers());
-        result += NEW_LINE;
-        result += appendLines(ladder);
-        result += NEW_LINE;
-        result += appendResults(gameInfo.getResults());
-        return result;
+    public String drawLadder(GameInfo gameInfo, Ladder ladder) {
+        return new StringBuilder().append(appendUserNames(gameInfo.getUsers()))
+                                  .append(NEW_LINE)
+                                  .append(appendLines(ladder))
+                                  .append(NEW_LINE)
+                                  .append(appendResults(gameInfo.getResults()))
+                                  .toString();
     }
 
     public String appendResults(Results results) {
@@ -79,7 +73,7 @@ public class ResultView {
 
     public void printLadder(GameInfo gameInfo, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
-        System.out.println(drawLadder2(gameInfo, ladder));
+        System.out.println(drawLadder(gameInfo, ladder));
     }
 
     public void printPlayResult(Users paramUsers, String userName) {
@@ -88,10 +82,10 @@ public class ResultView {
     }
 
     public void repeatPrintPlayResult(InputView inputView, Users resultsForAllPlayers) {
-        while (true){
+        while (true) {
             String userName = inputView.enterResultUser(resultsForAllPlayers);
             resultView.printPlayResult(resultsForAllPlayers, userName);
-            if(ALL.equals(userName)){
+            if (ALL.equals(userName)) {
                 break;
             }
         }
@@ -131,10 +125,11 @@ public class ResultView {
     private String appendBlank(String name) {
         int length = name.length();
         int repeatCount = MAX_NAME_LENGTH - length;
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < repeatCount; i++) {
-            name = BLANK + name;
+            stringBuilder.append(BLANK);
         }
-        return name;
+        return stringBuilder.append(name).toString();
     }
 
     private String appendUserResult(User user) {
