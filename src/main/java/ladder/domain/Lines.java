@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Lines {
 
+    private static final int ZERO = 0;
+
     private final List<Line> lines;
 
     public Lines() {
@@ -38,7 +40,7 @@ public class Lines {
     }
 
     public int getStartPointCount() {
-        return this.lines.get(0).getNodes().size();
+        return this.lines.get(ZERO).getNoteSize();
     }
 
     private Line getLastLine() {

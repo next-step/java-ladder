@@ -65,6 +65,10 @@ public class Line implements Cloneable {
         return new ArrayList<>(nodes);
     }
 
+    public int getNoteSize() {
+        return this.nodes.size();
+    }
+
     public Node getNode(int index) {
         return nodes.get(index);
     }
