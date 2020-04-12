@@ -1,31 +1,34 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Line {
 
-    private final Nodes nodes;
+    private final List<Node> nodes;
 
-    public Line(Nodes nodes) {
-        this.nodes = nodes;
+    private Line(List<Node> nodes) {
+        this.nodes = new ArrayList<>(nodes);
     }
 
     public static Line of(final int playerCount, LadderMoveStrategy strategy) {
-        Nodes nodes = Nodes.of2(playerCount, strategy);
+        List<Node> nodes = new ArrayList<>();
+        Node node = new Node(strategy);
+        nodes.add(node);
+
+        for (int i = 0; i < playerCount - 1; i++) {
+            node = node.createNextNode(strategy);
+            nodes.add(node);
+        }
+
         return new Line(nodes);
     }
 
     public int move(int nodeNumber) {
-        return nodes.move(nodeNumber);
+        return nodes.get(nodeNumber).move();
     }
 
-    public Nodes getNodes() {
+    public List<Node> getNodes() {
         return nodes;
-    }
-
-    public int getNoteSize() {
-        return this.nodes.getNodes().size();
-    }
-
-    public Node getNode(int index) {
-        return nodes.getNodes().get(index);
     }
 }
