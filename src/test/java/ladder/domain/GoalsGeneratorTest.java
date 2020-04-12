@@ -9,23 +9,23 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ResultGeneratorTest {
+class GoalsGeneratorTest {
 
-    private Map<Integer, String> ladderResult = new HashMap<>();;
+    private Map<Integer, String> ladderGoals = new HashMap<>();;
     private String inputText = "꽝, 5000, 꽝";
 
     @BeforeEach
     void setUp() {
-        ladderResult.put(0, "꽝");
-        ladderResult.put(1, "5000");
-        ladderResult.put(2, "꽝");
+        ladderGoals.put(0, "꽝");
+        ladderGoals.put(1, "5000");
+        ladderGoals.put(2, "꽝");
     }
 
     @DisplayName("사다리 결과 나누기 테스트")
     @Test
     void testCreateResult() {
-        LadderResult expected = new LadderResult(ladderResult);
-        LadderResult actual = new ResultGenerator(inputText).generate();
+        LadderGoals expected = new LadderGoals(ladderGoals);
+        LadderGoals actual = new GoalsGenerator(inputText).generate();
 
         assertThat(expected).isEqualTo(actual);
     }

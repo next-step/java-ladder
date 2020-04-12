@@ -39,11 +39,11 @@ public class OutputView {
         sb.append(System.lineSeparator());
     }
 
-    public static void printResult(LadderResult ladderResult) {
+    public static void printResult(LadderGoals ladderGoals) {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < ladderResult.size(); i++) {
-            sb.append(ladderResult.getResult(i) + TAB);
+        for (int i = 0; i < ladderGoals.size(); i++) {
+            sb.append(ladderGoals.getResult(i) + TAB);
         }
         System.out.println(sb.toString());
     }

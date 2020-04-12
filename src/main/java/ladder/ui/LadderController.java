@@ -6,7 +6,7 @@ import ladder.view.OutputView;
 
 public class LadderController {
     private Users users;
-    private LadderResult ladderResult;
+    private LadderGoals ladderGoals;
     private Ladder ladder;
 
     public LadderController() {
@@ -15,14 +15,14 @@ public class LadderController {
 
     private void init() {
         users = getUsers(InputView.askNumberOfUser());
-        ladderResult = getResult(InputView.askLadderResult());
+        ladderGoals = getResult(InputView.askLadderGoals());
         ladder = new Ladder(InputView.askLadderHeight(), users);
     }
 
     public void showResult() {
         OutputView.printNames(users);
         OutputView.printLadder(ladder);
-        OutputView.printResult(ladderResult);
+        OutputView.printResult(ladderGoals);
     }
 
     private Users getUsers(String user) {
@@ -30,8 +30,8 @@ public class LadderController {
         return new Users(userGenerator.generateUsers());
     }
 
-    private LadderResult getResult(String result) {
-        ResultGenerator resultGenerator = new ResultGenerator(result);
+    private LadderGoals getResult(String result) {
+        GoalsGenerator resultGenerator = new GoalsGenerator(result);
         return resultGenerator.generate();
     }
 }

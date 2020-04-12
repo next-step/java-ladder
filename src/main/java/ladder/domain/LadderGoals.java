@@ -3,11 +3,11 @@ package ladder.domain;
 import java.util.Map;
 import java.util.Objects;
 
-public class LadderResult {
+public class LadderGoals {
     public static final String INPUT_LADDER_RESULT = "사다리 결과값을 입력해주세요.";
     private Map<Integer, String> result;
 
-    public LadderResult(final Map<Integer, String> result) {
+    public LadderGoals(final Map<Integer, String> result) {
         validateResult(result);
         this.result = result;
     }
@@ -29,8 +29,8 @@ public class LadderResult {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LadderResult)) return false;
-        LadderResult that = (LadderResult) o;
+        if (!(o instanceof LadderGoals)) return false;
+        LadderGoals that = (LadderGoals) o;
         return Objects.equals(result, that.result);
     }
 
