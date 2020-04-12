@@ -17,4 +17,8 @@ public class Nodes {
     public int move(int nodeNumber) {
         return this.nodes.get(nodeNumber).move();
     }
+
+    public boolean isEmpty() {
+        return this.nodes.isEmpty();
+    }
 }

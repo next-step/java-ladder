@@ -33,7 +33,7 @@ public class Line {
     }
 
     private Line addRandomNextNode(final boolean random) {
-        if (this.nodes.getNodes().isEmpty()) {
+        if (this.nodes.isEmpty()) {
             Node first = new Node(random);
             return addNode(first);
         }

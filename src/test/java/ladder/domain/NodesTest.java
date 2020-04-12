@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NodesTest {
 
@@ -30,5 +32,17 @@ class NodesTest {
 
         //then
         assertThat(index).isEqualTo(1);
+    }
+
+    @DisplayName("리스트가 비어있는지 체크 한다.")
+    @Test
+    public void empty_success() throws Exception {
+        //given
+        Nodes nodesFull = new Nodes(Arrays.asList(node1, node2));
+        Nodes nodesEmpty = new Nodes(Arrays.asList());
+
+        //then
+        assertFalse(nodesFull.isEmpty());
+        assertTrue(nodesEmpty.isEmpty());
     }
 }
