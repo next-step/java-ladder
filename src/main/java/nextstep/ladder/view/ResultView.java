@@ -1,11 +1,12 @@
 package nextstep.ladder.view;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import nextstep.ladder.domain.GameInfo;
+import nextstep.ladder.domain.ImprovingPoint;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
@@ -34,8 +35,11 @@ public class ResultView {
 
     }
 
-    public String appendLine(Line line) {
+    public String appendLine(LadderLine line) {
         StringBuilder stringBuilder = new StringBuilder(NO_LINE);
+
+        List<ImprovingPoint> points = line.getPoints();
+
         String tempLine = line.getPoints()
                               .stream()
                               .map(point -> drawLineByPoint(point))
@@ -43,12 +47,11 @@ public class ResultView {
 
         return stringBuilder.append(VERTICAL)
                             .append(tempLine)
-                            .append(VERTICAL)
                             .toString();
     }
 
-    public String drawLineByPoint(Point point) {
-        if (point.isNextPoint()) {
+    public String drawLineByPoint(ImprovingPoint point) {
+        if (point.getDirection().isRight()) {
             return LINE;
         }
         return NO_LINE;

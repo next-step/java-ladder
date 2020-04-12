@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.view.ResultView;
 
-class PlayLadderGameTest {
+public class PlayLadderGameTest {
     private static ResultView resultView = ResultView.getResultView();
     private static PlayLadderGame playLadderGame = PlayLadderGame.getPlayLadderGame();
     private Users users;
-    private Line line;
-    private List<Line> lineList;
+    private LadderLine line;
+    private List<LadderLine> lineList;
     private Ladder ladder;
     private Results results;
     private Users resultUsers;
@@ -26,40 +26,43 @@ class PlayLadderGameTest {
 
     @BeforeEach
     void setUp() {
-        List<Point> points = Stream.of(new Point(true),
-                                       new Point(false),
-                                       new Point(true))
-                                   .collect(Collectors.toList());
+        List<ImprovingPoint> points = Stream.of(new ImprovingPoint(0, Direction.of(false, true)),
+                                                new ImprovingPoint(1, Direction.of(true, false)),
+                                                new ImprovingPoint(2, Direction.of(false, true)),
+                                                new ImprovingPoint(3, Direction.of(true, false)))
+                                            .collect(Collectors.toList());
 
-        line = new Line(points);
+        line = new LadderLine(points);
 
-        List<Point> points2 = Stream.of(new Point(false),
-                                        new Point(true),
-                                        new Point(false))
-                                    .collect(Collectors.toList());
+        List<ImprovingPoint> points2 = Stream.of(new ImprovingPoint(0, Direction.of(false, false)),
+                                                 new ImprovingPoint(1, Direction.of(false, true)),
+                                                 new ImprovingPoint(2, Direction.of(true, false)),
+                                                 new ImprovingPoint(3, Direction.of(false, false)))
+                                             .collect(Collectors.toList());
+        LadderLine line2 = new LadderLine(points2);
 
-        Line line2 = new Line(points2);
+        List<ImprovingPoint> points3 = Stream.of(new ImprovingPoint(0, Direction.of(false, true)),
+                                                 new ImprovingPoint(1, Direction.of(true, false)),
+                                                 new ImprovingPoint(2, Direction.of(false, false)),
+                                                 new ImprovingPoint(3, Direction.of(false, false)))
+                                             .collect(Collectors.toList());
 
-        List<Point> points3 = Stream.of(new Point(true),
-                                        new Point(false),
-                                        new Point(false))
-                                    .collect(Collectors.toList());
+        LadderLine line3 = new LadderLine(points3);
 
-        Line line3 = new Line(points3);
+        List<ImprovingPoint> points4 =  Stream.of(new ImprovingPoint(0, Direction.of(false, false)),
+                                                  new ImprovingPoint(1, Direction.of(false, true)),
+                                                  new ImprovingPoint(2, Direction.of(true, false)),
+                                                  new ImprovingPoint(3, Direction.of(false, false)))
+                                              .collect(Collectors.toList());
 
-        List<Point> points4 = Stream.of(new Point(false),
-                                        new Point(true),
-                                        new Point(false))
-                                    .collect(Collectors.toList());
+        LadderLine line4 = new LadderLine(points4);
 
-        Line line4 = new Line(points4);
-
-        List<Point> points5 = Stream.of(new Point(true),
-                                        new Point(false),
-                                        new Point(true))
-                                    .collect(Collectors.toList());
-
-        Line line5 = new Line(points5);
+        List<ImprovingPoint> points5 = Stream.of(new ImprovingPoint(0, Direction.of(false, true)),
+                                                 new ImprovingPoint(1, Direction.of(true, false)),
+                                                 new ImprovingPoint(2, Direction.of(false, true)),
+                                                 new ImprovingPoint(3, Direction.of(true, false)))
+                                             .collect(Collectors.toList());
+        LadderLine line5 = new LadderLine(points5);
 
         lineList = Stream.of(line, line2, line3, line4, line5)
                          .collect(Collectors.toList());
@@ -97,5 +100,4 @@ class PlayLadderGameTest {
         assertThat(userList.get(2).getResult()).isEqualTo("꽝");
         assertThat(userList.get(3).getResult()).isEqualTo("5000");
     }
-
 }

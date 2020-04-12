@@ -8,14 +8,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
-
     @DisplayName("사다리의 높이만큼 라인을 생성한다.")
     @Test
     void createLadder() {
         int countOfPerson = 5;
         int height = 4;
         Ladder ladder = new Ladder(countOfPerson, height);
-        List<Line> lines = ladder.getLadder();
-        assertThat(lines).hasSize(height);
+        List<LadderLine> ladderLines = ladder.getLadder();
+        assertThat(ladderLines).hasSize(height);
     }
 }

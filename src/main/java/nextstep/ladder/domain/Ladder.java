@@ -5,25 +5,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private List<Line> ladder = new ArrayList<>();
+    private List<LadderLine> ladder;
 
     public Ladder(int countOfPerson, int height) {
         this.ladder = createLadder(countOfPerson, height);
     }
 
-    public Ladder(List<Line> ladder) {
+    public Ladder(List<LadderLine> ladder) {
         this.ladder = Collections.unmodifiableList(ladder);
     }
 
-    public List<Line> getLadder() {
-        return ladder;
-    }
-
-    public List<Line> createLadder(int countOfPerson, int height) {
-        List<Line> ladder = new ArrayList<>();
+    public List<LadderLine> createLadder(int countOfPerson, int height) {
+        List<LadderLine> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(countOfPerson));
+            ladder.add(LadderLine.init(countOfPerson));
         }
         return Collections.unmodifiableList(ladder);
+    }
+
+    public List<LadderLine> getLadder() {
+        return ladder;
     }
 }
