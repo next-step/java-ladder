@@ -9,7 +9,7 @@ import java.util.List;
 public class Nodes {
     private final List<Node> nodes;
 
-    public Nodes() {
+    private Nodes() {
         this(new ArrayList<>());
     }
 
