@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,5 +12,9 @@ public class Nodes {
 
     public List<Node> getNodes() {
         return Collections.unmodifiableList(nodes);
+    }
+
+    public int move(int nodeNumber) {
+        return this.nodes.get(nodeNumber).move();
     }
 }
