@@ -1,8 +1,11 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Direction {
+    private Random random = new Random();
+
     private final boolean left;
     private final boolean right;
 
@@ -14,8 +17,39 @@ public class Direction {
         this.right = right;
     }
 
-    public static Object of(boolean first, boolean second) {
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(false);
+        }
+        return next(generatePoint());
+    }
+
+    public static Direction of(boolean first, boolean second) {
         return new Direction(first, second);
+    }
+
+    public static Direction first(boolean right) {
+        return of(false, right);
+    }
+
+    public Direction last() {
+        return of(this.right, false);
+    }
+
+    private boolean generatePoint() {
+        return random.nextBoolean();
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
     }
 
     @Override
@@ -30,5 +64,13 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+               "left=" + left +
+               ", right=" + right +
+               '}';
     }
 }
