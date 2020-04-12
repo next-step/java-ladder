@@ -35,7 +35,7 @@ public class Nodes {
         return this.nodes.get(nodeNumber).move();
     }
 
-    public Nodes addRandomNextNode(final boolean random) {
+    private Nodes addRandomNextNode(final boolean random) {
         if (this.nodes.isEmpty()) {
             return addFirstNode(random);
         }
@@ -49,13 +49,13 @@ public class Nodes {
         return addNode(first);
     }
 
-    public Nodes addLastNode() {
+    private Nodes addLastNode() {
         Node last = getLastNode().createLast();
         nodes.add(last);
         return new Nodes(this.nodes);
     }
 
-    public Nodes addNode(Node node) {
+    private Nodes addNode(Node node) {
         this.nodes.add(node);
         return new Nodes(this.nodes);
     }

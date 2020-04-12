@@ -34,20 +34,6 @@ class NodesTest {
         assertThat(index).isEqualTo(1);
     }
 
-    @DisplayName("주어진 노드를 추가하고 새로 생성해서 반환한다.")
-    @Test
-    public void addNode_success() throws Exception {
-        //given
-        Nodes nodes = new Nodes(Arrays.asList(node1));
-
-        //when
-        nodes = nodes.addNode(node2);
-
-        //then
-        assertThat(nodes.getNodes().size()).isEqualTo(2);
-    }
-
-
     @DisplayName("리스트가 비어있는지 체크 한다.")
     @Test
     public void empty_success() throws Exception {
