@@ -16,11 +16,13 @@ public class Line {
         Node node = new Node(strategy);
         nodes.add(node);
 
-        for (int i = 0; i < playerCount - 1; i++) {
+        for (int i = 1; i < playerCount - 1; i++) {
             node = node.createNextNode(strategy);
             nodes.add(node);
         }
 
+        node = node.createLast();
+        nodes.add(node);
         return new Line(nodes);
     }
 
