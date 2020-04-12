@@ -15,21 +15,19 @@ import nextstep.ladder.domain.GameInfo;
 import nextstep.ladder.domain.ImprovingPoint;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderLine;
-import nextstep.ladder.domain.PlayLadderGame;
 import nextstep.ladder.domain.ResultsTest;
 import nextstep.ladder.domain.Users;
 import nextstep.ladder.domain.UsersTest;
 
 class ResultViewTest {
     private static ResultView resultView = ResultView.getResultView();
-    private static PlayLadderGame playLadderGame = PlayLadderGame.getPlayLadderGame();
 
     private LadderLine line;
     private LadderLine line2;
     private List<LadderLine> lineList;
     private Ladder ladder;
 
-    private Users resultUsers;
+    private Users resultUsers = UsersTest.USERS;
     private GameInfo gameInfo;
 
     @BeforeEach
@@ -53,7 +51,7 @@ class ResultViewTest {
 
         ladder = new Ladder(lineList);
         gameInfo = new GameInfo(UsersTest.USERS, ResultsTest.RESULTS);
-        resultUsers = playLadderGame.generateResultsForAllPlayers(gameInfo, ladder);
+        resultUsers.generateResultsForAllPlayers(gameInfo, ladder);
     }
 
     @DisplayName("유저 이름을 출력한다.")
