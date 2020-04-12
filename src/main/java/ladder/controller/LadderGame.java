@@ -8,21 +8,25 @@ import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderGame {
-    public static void start() {
-        Players players = Players.create(InputView.getPlayersInput());
-        Rows rows = Rows.create(players, InputView.getHeight());
-        LadderPrizes ladderPrizes = LadderPrizes.create(InputView.getLadderPrizesInput());
+    private static Players players;
+    private static Rows rows;
+    private static LadderPrizes ladderPrizes;
 
-        ResultView.of(players, rows, ladderPrizes)
-                .printLadder();
+    public static void start() {
+        players = Players.create(InputView.getPlayersInput());
+        rows = Rows.create(players, InputView.getHeight());
+        ladderPrizes = LadderPrizes.create(InputView.getLadderPrizesInput());
+
+        ResultView.printLadder(players, rows, ladderPrizes);
     }
 
     public static void getResult() {
-        Players players = Players.getAllPlayers();
-        Players playersForResult
-                = players.findFinalLocationByName(Rows.getAllRows(), InputView.getPlayerToGetResult());
+        GameResult gameResult = rows.getResult(players, ladderPrizes);
 
-        ResultView.of(GameResult.create(playersForResult, LadderPrizes.getAllLadderPrizes()))
-                .printResult();
+        GameResult resultToKnow1 = gameResult.findResultByPlayerName(InputView.getPlayerToGetResult());
+        ResultView.printResult(resultToKnow1);
+
+        GameResult resultToKnow2 = gameResult.findResultByPlayerName(InputView.getPlayerToGetResult());
+        ResultView.printResult(resultToKnow2);
     }
 }

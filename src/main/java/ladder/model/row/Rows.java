@@ -1,16 +1,23 @@
 package ladder.model.row;
 
+import ladder.model.player.Player;
+import ladder.model.player.PlayerName;
 import ladder.model.player.Players;
+import ladder.model.prize.LadderPrizes;
+import ladder.model.prize.PrizeName;
+import ladder.model.result.GameResult;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class Rows {
-    private static List<Row> rows;
+    private List<Row> rows;
 
     public Rows(List<Row> rows) {
         this.rows = Collections.unmodifiableList(rows);
@@ -22,12 +29,12 @@ public class Rows {
                 .collect(collectingAndThen(toList(), Rows::new));
     }
 
-    public List<Row> getRows() {
-        return rows;
+    public static Rows of(List<Row> rows) {
+        return new Rows(rows);
     }
 
-    public static Rows getAllRows(){
-        return new Rows(rows);
+    public List<Row> getRows() {
+        return rows;
     }
 
     public int getSize() {
@@ -36,5 +43,32 @@ public class Rows {
 
     public Row getRowsElement(int index) {
         return rows.get(index);
+    }
+
+    public GameResult getResult(Players players, LadderPrizes ladderPrizes) {
+        Map<PlayerName, PrizeName> result = new HashMap<>();
+
+        for (int i = 0; i < players.getPlayerCount(); i++) {
+            result.put(getPlayerNameAtFinalPosition(players, Position.of(i)), ladderPrizes.getPrizeNameAtIndex(i));
+        }
+        return new GameResult(result);
+    }
+
+    private PlayerName getPlayerNameAtFinalPosition(Players players, Position finalPosition) {
+        return players.getPlayers().stream()
+                .filter(player1 -> getFinalPosition(players, player1).equals(finalPosition))
+                .findFirst()
+                .map(Player::getName)
+                .orElseThrow(IllegalAccessError::new);
+    }
+
+    private Position getFinalPosition(Players players, Player player) {
+        return findFinalPositionOfStartAt(players.findIndexOf(player));
+    }
+
+    private Position findFinalPositionOfStartAt(int position) {
+        PositionManager initialPositionManager = PositionManager.of(Position.of(position));
+        initialPositionManager.move(Rows.of(rows));
+        return initialPositionManager.getFinalPosition();
     }
 }

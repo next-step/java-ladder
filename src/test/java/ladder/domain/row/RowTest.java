@@ -1,9 +1,14 @@
 package ladder.domain.row;
 
-import ladder.model.player.Position;
+import ladder.model.row.Position;
 import ladder.model.row.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,5 +28,39 @@ public class RowTest {
                 assertThat(row.getRowElement(new Position(i - 1))).isFalse();
             }
         }
+    }
+
+    @DisplayName("position 값을 주면, 해당 위치에 true/false 중 어떤 값이 있는지 반환")
+    @ParameterizedTest
+    @CsvSource(value = {"0:true", "1:false"}, delimiter = ':')
+    void getRowElement(int position, boolean expected) {
+        //given
+        Row row = createOneRow();
+
+        //when
+        boolean rowElement = row.getRowElement(Position.of(position));
+
+        //then
+        assertThat(rowElement).isEqualTo(expected);
+    }
+
+    @DisplayName("Row의 가장 마지막 Position 값(int)을 반환한다.")
+    @Test
+    void getLastLocationValue() {
+        //given
+        Row row = createOneRow();
+
+        //when
+        int lastLocationValue = row.getLastLocationValue();
+
+        //then
+        assertThat(lastLocationValue).isEqualTo(2);
+    }
+
+    private Row createOneRow() {
+        Map<Position, Boolean> row = new HashMap<>();
+        row.put(Position.of(0), true);
+        row.put(Position.of(1), false);
+        return new Row(row);
     }
 }

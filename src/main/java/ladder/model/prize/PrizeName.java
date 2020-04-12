@@ -19,6 +19,10 @@ public class PrizeName {
         this.prizeName = prizeName;
     }
 
+    public static PrizeName of(String prizeName) {
+        return new PrizeName(prizeName);
+    }
+
     public String getPrizeName() {
         return prizeName;
     }
@@ -35,8 +39,8 @@ public class PrizeName {
         }
     }
 
-    private void validatePositive(String prizeName){
-        if(Integer.parseInt(prizeName) < MINIMUM_VALUE_FOR_POSITIVE){
+    private void validatePositive(String prizeName) {
+        if (Integer.parseInt(prizeName) < MINIMUM_VALUE_FOR_POSITIVE) {
             throw new IllegalArgumentException(WARNING_NOT_ALLOWED_NUMBER);
         }
     }

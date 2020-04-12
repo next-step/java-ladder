@@ -38,7 +38,7 @@ public class InputView {
     private static List<Player> convertToPlayer(List<String> names) {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
-            players.add(new Player(names.get(i), i));
+            players.add(new Player(names.get(i)));
         }
         return players;
     }

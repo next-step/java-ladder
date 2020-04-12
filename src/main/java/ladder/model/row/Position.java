@@ -1,4 +1,4 @@
-package ladder.model.player;
+package ladder.model.row;
 
 import java.util.Objects;
 
@@ -9,12 +9,16 @@ public class Position {
         this.position = position;
     }
 
+    public static Position of(int position) {
+        return new Position(position);
+    }
+
     public int getPosition() {
         return position;
     }
 
-    public Position add(int value){
-        return new Position(position + value);
+    public int add(int increment) {
+        return position + increment;
     }
 
     @Override

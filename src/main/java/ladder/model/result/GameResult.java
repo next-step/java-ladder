@@ -1,8 +1,6 @@
 package ladder.model.result;
 
 import ladder.model.player.PlayerName;
-import ladder.model.player.Players;
-import ladder.model.prize.LadderPrizes;
 import ladder.model.prize.PrizeName;
 
 import java.util.Collections;
@@ -11,19 +9,26 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameResult {
+    private final String ALL_PLAYERS = "all";
+
     private Map<PlayerName, PrizeName> result;
 
     public GameResult(Map<PlayerName, PrizeName> result) {
         this.result = Collections.unmodifiableMap(result);
     }
 
-    public static GameResult create(Players players, LadderPrizes ladderPrizes) {
-        Map<PlayerName, PrizeName> gameResult = new HashMap<>();
+    public static GameResult of(Map<PlayerName, PrizeName> result) {
+        return new GameResult(result);
+    }
 
-        players.getPlayers().stream()
-                .forEach(player -> gameResult.put(player.getName(), ladderPrizes.findPrizeNameByPlayer(player)));
+    public GameResult findResultByPlayerName(String name) {
+        if(ALL_PLAYERS.equals(name.toLowerCase())){
+            return GameResult.of(result);
+        }
 
-        return new GameResult(gameResult);
+        Map<PlayerName, PrizeName> result = new HashMap<>();
+        result.put(PlayerName.of(name), PrizeName.of(findPrizeByPlayerName(name)));
+        return GameResult.of(result);
     }
 
     public String findPrizeByPlayerName(String name) {
