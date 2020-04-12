@@ -43,6 +43,20 @@ class WayTest {
         ).isInstanceOf(LadderException.class);
     }
 
+    @DisplayName("첫 방향은 왼쪽은 불가 하지만 오른쪽 진행은 랜덤이다.")
+    @Test
+    public void from_success_first() throws Exception {
+        //given
+        Way none = Way.from(strategyFalse);
+        Way right = Way.from(strategyTrue);
+
+        //then
+        assertFalse(none.isMovableLeft());
+        assertFalse(none.isMovableRight());
+        assertFalse(right.isMovableLeft());
+        assertTrue(right.isMovableRight());
+    }
+
     @DisplayName("왼쪽/오른쪽 이동 방향으로 움직일수 있는지 체크")
     @Test
     public void left_right() throws Exception {

@@ -15,28 +15,26 @@ public class Way {
         this.right = right;
     }
 
+    public static Way from(LadderMoveStrategy strategy) {
+        return new Way(false, strategy.move());
+    }
+
     private void validate(final boolean left, final boolean right) {
         if (left && right) {
             throw new LadderException(TWO_WAY_MOVE_POSSIBLE);
         }
     }
 
-    public Way first(LadderMoveStrategy strategy) {
-        return new Way(false, strategy.move());
-    }
-
     public Way next(LadderMoveStrategy strategy) {
-        boolean move = strategy.move();
-
         if (right) {
-            return new Way(right, false);
+            return new Way(true, false);
         }
-        return new Way(false, move);
+        return new Way(false, strategy.move());
     }
 
     public Way last() {
         if (right) {
-            return new Way(right, false);
+            return new Way(true, false);
         }
         return new Way(false, false);
     }
