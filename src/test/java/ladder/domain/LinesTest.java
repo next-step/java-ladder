@@ -26,14 +26,14 @@ class LinesTest {
         //given
         Lines lines = new Lines(
                 Arrays.asList(
-                        new Line(Arrays.asList(
+                        new Line(new Nodes(Arrays.asList(
                                 new Node(0, new Way(false, true)),
                                 new Node(1, new Way(true, false)))
-                        ),
-                        new Line(Arrays.asList(
+                        )),
+                        new Line(new Nodes(Arrays.asList(
                                 new Node(0, new Way(false, true)),
                                 new Node(1, new Way(true, false)))
-                        )));
+                        ))));
 
         //when
         Node move1 = lines.move(0);

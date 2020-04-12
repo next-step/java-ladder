@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.utils.RandomUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +15,16 @@ public class Nodes {
 
     public Nodes(List<Node> nodes) {
         this.nodes = new ArrayList<>(nodes);
+    }
+
+    public static Nodes of(final int playerCount) {
+        Nodes nodes = new Nodes();
+        for (int i = 0; i < playerCount - 1; i++) {
+            boolean randomBoolean = RandomUtils.getRandomBoolean();
+            nodes = nodes.addRandomNextNode(randomBoolean);
+        }
+
+        return nodes.addLastNode();
     }
 
     public List<Node> getNodes() {

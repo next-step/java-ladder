@@ -5,20 +5,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
-    private List<Node> nodes;
+    private Nodes nodes;
     private Line line;
 
     @BeforeEach
     void setUp() {
-        nodes = Arrays.asList(
+        nodes = new Nodes(Arrays.asList(
                 new Node(0, new Way(false, true)),
-                new Node(1, new Way(true, false)));
+                new Node(1, new Way(true, false))));
         line = new Line(nodes);
     }
 

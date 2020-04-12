@@ -25,7 +25,8 @@ class LadderGameTest {
                 new Node(0, new Way(false, true)),
                 new Node(1, new Way(true, false))));
         players = Players.of(Arrays.asList("a", "b"));
-        lines = new Lines(Arrays.asList(new Line(node), new Line(node)));
+//        lines = new Lines(Arrays.asList(new Line(new Nodes(Arrays.asList(node))), new Line(Arrays.asList(node))));
+        lines = new Lines(Arrays.asList(new Line(new Nodes((node))), new Line((new Nodes(node)))));
 
     }
 
