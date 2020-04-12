@@ -3,8 +3,6 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LinesTest {
@@ -13,33 +11,18 @@ class LinesTest {
     @Test
     public void of_success() throws Exception {
         //given
-        LadderMoveStrategy strategy = new LadderMoveStrategy() {
-            @Override
-            public boolean move() {
-                return false;
-            }
-        };
-        Lines lines = Lines.of(5, 3, strategy);
+        Lines lines = Lines.of(5, 3, WayTest.strategyFalse);
 
         //then
         assertThat(lines.getLines().size()).isEqualTo(3);
-        assertThat(lines.getLines().get(0).getNodes().getNodes().size()).isEqualTo(5);
+        assertThat(lines.getLines().get(0).getNodes().size()).isEqualTo(5);
     }
 
     @DisplayName("사다리 이동 결과 확인")
     @Test
     public void move() throws Exception {
         //given
-        Lines lines = new Lines(
-                Arrays.asList(
-                        new Line(new Nodes(Arrays.asList(
-                                new Node(0, new Way(false, true)),
-                                new Node(1, new Way(true, false)))
-                        )),
-                        new Line(new Nodes(Arrays.asList(
-                                new Node(0, new Way(false, true)),
-                                new Node(1, new Way(true, false)))
-                        ))));
+        Lines lines = Lines.of(2, 2, WayTest.strategyTrue);
 
         //when
         Node move1 = lines.move(0);

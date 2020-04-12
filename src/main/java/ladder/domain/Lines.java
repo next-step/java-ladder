@@ -10,38 +10,29 @@ public class Lines {
 
     private final List<Line> lines;
 
-    public Lines() {
-        this.lines = new ArrayList<>();
-    }
-
-    public Lines(final List<Line> lines) {
+    private Lines(final List<Line> lines) {
         this.lines = new ArrayList<>(lines);
     }
 
     public static Lines of(final int playerCount, final int ladderHeight, final LadderMoveStrategy strategy) {
-        Lines lines = new Lines();
-        for (int i = 0; i < ladderHeight; i++) {
-            lines = lines.addLine(Line.of(playerCount, strategy));
-        }
-        return lines;
-    }
+        List<Line> lines = new ArrayList<>();
 
-    private Lines addLine(final Line line) {
-        List<Line> merge = new ArrayList<>();
-        merge.addAll(this.lines);
-        merge.add(line);
-        return new Lines(merge);
+        for (int i = 0; i < ladderHeight; i++) {
+            lines.add(Line.of(playerCount, strategy));
+        }
+
+        return new Lines(lines);
     }
 
     public Node move(int nodeNumber) {
         for (Line line : lines) {
             nodeNumber = line.move(nodeNumber);
         }
-        return getLastLine().getNode(nodeNumber);
+        return getLastLine().getNodes(nodeNumber);
     }
 
     public int getStartPointCount() {
-        return this.lines.get(ZERO).getNoteSize();
+        return this.lines.get(ZERO).size();
     }
 
     private Line getLastLine() {

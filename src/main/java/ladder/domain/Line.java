@@ -33,4 +33,12 @@ public class Line {
     public List<Node> getNodes() {
         return nodes;
     }
+
+    public Node getNodes(int index) {
+        return nodes.get(index);
+    }
+
+    public int size() {
+        return nodes.size();
+    }
 }
