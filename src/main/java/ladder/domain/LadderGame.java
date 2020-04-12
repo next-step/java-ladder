@@ -17,7 +17,6 @@ public class LadderGame {
         Map<String, String> result = new HashMap<>();
 
         for (Player player : players.getPlayers()) {
-            String name = player.getName();
             result.putAll(getResult(player.getName()));
         }
 
