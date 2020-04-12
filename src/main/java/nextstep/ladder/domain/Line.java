@@ -17,7 +17,7 @@ public class Line {
     }
 
     public Line(List<Point> points) {
-        this.points =Collections.unmodifiableList(points);
+        this.points = Collections.unmodifiableList(points);
     }
 
     public List<Point> createPoints(int countOfPerson) {

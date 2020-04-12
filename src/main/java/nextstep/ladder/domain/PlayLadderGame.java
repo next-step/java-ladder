@@ -13,7 +13,7 @@ public class PlayLadderGame {
 
         for (int i = 0; i < users.getCountOfPerson(); i++) {
             int index = initIndex(users.getCountOfPerson(), i);
-            index = repeatLineForFindIndex(ladder, users.getCountOfPerson()-1, index);
+            index = repeatLineForFindIndex(ladder, users.getCountOfPerson() - 1, index);
             userList.get(i).setResult(results.get(index).getResult());
         }
         return new Users(userList);
