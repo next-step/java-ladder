@@ -29,7 +29,7 @@ class WayTest {
         ).isInstanceOf(LadderException.class);
     }
 
-    @DisplayName("이동 방향으로 움직일수 있는지 체크")
+    @DisplayName("왼쪽/오른쪽 이동 방향으로 움직일수 있는지 체크")
     @Test
     public void left_right() throws Exception {
         //given

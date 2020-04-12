@@ -34,7 +34,7 @@ class NodeTest {
 
     @DisplayName("이동 하고 다음 노드의 index 반환")
     @Test
-    public void move() throws Exception {
+    public void move_success() throws Exception {
         //given
         Node left = new Node(1, new Way(true, false));
         Node right = new Node(1, new Way(false, true));
@@ -103,7 +103,7 @@ class NodeTest {
         assertFalse(firstNone.isMovableRight());
     }
 
-    @DisplayName("마짐가 노드를 만들어 준다")
+    @DisplayName("마지막 노드를 만들어 준다")
     @Test
     public void createLast_success() throws Exception {
         //given

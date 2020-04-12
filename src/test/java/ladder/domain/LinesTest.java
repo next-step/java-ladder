@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LinesTest {
 
-    @DisplayName("팩토리 메서드 테스트")
+    @DisplayName("참가자 수 만큼 Node를 가진, 높이 만큼의 Line를 가지도록 생성한다.")
     @Test
     public void of_success() throws Exception {
         //given
