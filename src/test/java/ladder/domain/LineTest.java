@@ -22,7 +22,6 @@ class LineTest {
         line = new Line(nodes);
     }
 
-
     @DisplayName("생성자 테스트")
     @Test
     public void constructor_success() throws Exception {

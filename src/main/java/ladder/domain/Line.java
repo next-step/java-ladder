@@ -29,7 +29,7 @@ public class Line {
     }
 
     public int move(int nodeNumber) {
-        return nodes.getNodes().get(nodeNumber).move();
+        return nodes.move(nodeNumber);
     }
 
     private Line addRandomNextNode(final boolean random) {
