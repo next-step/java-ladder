@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.Direction;
-import ladder.domain.Line;
-import ladder.domain.Point;
 import ladder.drawable.RandomDraw;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

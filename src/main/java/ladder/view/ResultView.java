@@ -26,7 +26,7 @@ public class ResultView {
     private static void viewPlayers(Players players) {
         System.out.println(
                 players.getPlayers().stream()
-                        .map(n -> getNameWithFormat(n.getName()))
+                        .map(player -> getNameWithFormat(player.getName()))
                         .collect(Collectors.joining())
         );
     }
@@ -59,7 +59,7 @@ public class ResultView {
     private static void viewPlayResults(Prizes prizes) {
         System.out.println(
                 prizes.getPrizes().stream()
-                        .map(n -> getNameWithFormat(n.getPrize()))
+                        .map(prize -> getNameWithFormat(prize.getPrize()))
                         .collect(Collectors.joining())
         );
     }

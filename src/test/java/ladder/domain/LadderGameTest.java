@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.LadderGame;
-import ladder.domain.Prizes;
-import ladder.domain.Players;
 import ladder.dto.GameInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
 
