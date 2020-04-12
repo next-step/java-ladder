@@ -71,10 +71,9 @@ public class InputView {
     }
 
     public void validateResultUser(Users users, String userName) {
-        Optional.ofNullable(users.getUsers())
-                .filter(user -> user.contains(new User(userName)))
-                .orElseThrow(() -> new IllegalArgumentException("유저 목록에 해당 이름이 없습니다."));
-
+        if (!users.getUsers().contains(new User(userName))) {
+            throw new IllegalArgumentException("유저 목록에 해당 이름이 없습니다.");
+        }
     }
 
     public static InputView getInputView() {
