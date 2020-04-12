@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lines {
@@ -52,6 +53,6 @@ public class Lines {
     }
 
     public List<Line> getLines() {
-        return new ArrayList<>(this.lines);
+        return Collections.unmodifiableList(this.lines);
     }
 }
