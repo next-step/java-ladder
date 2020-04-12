@@ -8,6 +8,7 @@ import java.util.List;
 public class Line implements Cloneable {
 
     private final List<Node> nodes;
+    private final Nodes nodes2;
 
     public Line() {
         this(new ArrayList<>());
@@ -15,6 +16,7 @@ public class Line implements Cloneable {
 
     public Line(final List<Node> nodes) {
         this.nodes = new ArrayList<>(nodes);
+        this.nodes2 = new Nodes(nodes);
     }
 
     public static Line of(final int playerCount) {
@@ -29,7 +31,7 @@ public class Line implements Cloneable {
     }
 
     public int move(int nodeNumber) {
-        return nodes.get(nodeNumber).move();
+        return nodes2.getNodes().get(nodeNumber).move();
     }
 
     private Line addRandomNextNode(final boolean random) {
