@@ -1,47 +1,38 @@
 package ladder.domain;
 
+import ladder.drawable.Drawable;
 import ladder.drawable.RandomDraw;
+import ladder.dto.GameInfo;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
-    private final VerticalLines verticalLines;
     private final int height;
+    private final List<Line> lines;
 
-    public Ladder(Players players, int height) {
-        this.verticalLines = new VerticalLines(players.getCount());
+    public Ladder(GameInfo gameInfo, int height) {
         this.height = height;
-        verticalLines.drawSideLines(height, new RandomDraw());
+        this.lines = drawLines(gameInfo.getPlayers().count(), new RandomDraw());
     }
 
-    public VerticalLines getVerticalLines() {
-        return verticalLines;
+    public List<Line> getLines() {
+        return new ArrayList<>(lines);
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public MatchedLineInfos getMatchedInfos() {
-        Map<Integer, Integer> matchedInfos = new LinkedHashMap<>();
-        for (int i = 1; i <= verticalLines.getSize(); i++) {
-            matchedInfos.put(verticalLines.getLine(i).getLineNo(), getResultLine(verticalLines.getLine(i)).getLineNo());
+    public int resultIndex(int index) {
+        int resultIndex = index;
+        for (int i = 0; i < this.height; i++) {
+            resultIndex = lines.get(i).getNextIndex(resultIndex);
         }
-        return new MatchedLineInfos(matchedInfos);
+        return resultIndex;
     }
 
-    public VerticalLine getResultLine(VerticalLine verticalLine) {
-        for (int i = 1; i <= this.height; i++) {
-            verticalLine = nextLine(verticalLine, i);
+    private List<Line> drawLines(int playerCount, Drawable drawable) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line(playerCount, drawable));
         }
-        return verticalLine;
-    }
-
-    private VerticalLine nextLine(VerticalLine verticalLine, int height) {
-        if (verticalLine.isExistPoint(height)) {
-            return this.verticalLines.getLine(verticalLine.getPoint(height).getEndPointLineNo());
-        }
-        return verticalLine;
+        return lines;
     }
 }

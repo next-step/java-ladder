@@ -1,62 +1,42 @@
 package ladder.domain;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import ladder.dto.GameInfo;
+import ladder.dto.GameResult;
+import ladder.dto.GameResults;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LadderGame {
-    private static final int RULE_PLAYER_MIN_COUNT = 2;
-    private static final int RULE_PLAY_RESULT_MIN_COUNT = 2;
     private static final int RULE_LADDER_HEIGHT_MIN_COUNT = 1;
 
     private Ladder ladder;
-    private LadderGameResult ladderGameResult;
+    private GameInfo gameInfo;
 
-    public LadderGame(Players players, PlayResults playResults, int ladderHeight) {
-        validate(players, playResults, ladderHeight);
-        this.ladder = new Ladder(players, ladderHeight);
-        this.ladderGameResult = playGame(players, playResults);
+    public LadderGame(GameInfo gameInfo, int ladderHeight) {
+        validate(ladderHeight);
+        this.gameInfo = gameInfo;
+        this.ladder = new Ladder(gameInfo, ladderHeight);
     }
 
     public Ladder getLadder() {
         return this.ladder;
     }
 
-    public LadderGameResult getLadderGameResult(){
-        return this.ladderGameResult;
-    }
+    public GameResults play() {
+        List<GameResult> gameResult = new ArrayList<>();
+        Players players = gameInfo.getPlayers();
+        Prizes prizes = gameInfo.getPrizes();
 
-    private LadderGameResult playGame(Players players, PlayResults playResults) {
-        MatchedLineInfos matchedLineInfos = ladder.getMatchedInfos();
-        Map<String, String> ladderGameResult = new LinkedHashMap<>();
-        for (int i = 1; i <= players.getCount(); i++) {
-            ladderGameResult.put(players.getPlayerName(i), playResults.getResult(matchedLineInfos.getMatchedLineNo(i)));
+        int playerCount = players.count();
+        for (int i = 0; i < playerCount; i++) {
+            int resultIndex = this.ladder.resultIndex(i);
+            gameResult.add(new GameResult(players.getPlayer(i), prizes.getPrize(resultIndex)));
         }
-        return new LadderGameResult(ladderGameResult);
+        return new GameResults(gameResult);
     }
 
-    private void validate(Players players, PlayResults playResults, int ladderHeight) {
-        validatePlayers(players);
-        validatePlayResults(playResults);
-        validateLadderHeight(ladderHeight);
-
-        if (players.getCount() != playResults.getCount()) {
-            throw new IllegalArgumentException("플레이어수와 결과개수는 일치해야 합니다.");
-        }
-    }
-
-    private void validatePlayers(Players players) {
-        if (players.getCount() < RULE_PLAYER_MIN_COUNT) {
-            throw new IllegalArgumentException(String.format("플레이어는 %d명 이상이어야 합니다.", RULE_PLAYER_MIN_COUNT));
-        }
-    }
-
-    private void validatePlayResults(PlayResults playResults) {
-        if (playResults.getCount() < RULE_PLAY_RESULT_MIN_COUNT) {
-            throw new IllegalArgumentException(String.format("게임 결과는 %d개 이상이어야 합니다.", RULE_PLAY_RESULT_MIN_COUNT));
-        }
-    }
-
-    private void validateLadderHeight(int ladderHeight) {
+    private void validate(int ladderHeight) {
         if (ladderHeight < RULE_LADDER_HEIGHT_MIN_COUNT) {
             throw new IllegalArgumentException(String.format("사다리 높이는 %d 이상이어야 합니다.", RULE_LADDER_HEIGHT_MIN_COUNT));
         }

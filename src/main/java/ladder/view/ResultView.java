@@ -1,7 +1,11 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.dto.GameInfo;
+import ladder.dto.GameResult;
+import ladder.dto.GameResults;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,18 +15,18 @@ public class ResultView {
     private static final String LADDER_LINE_EXSIT = "|-----";
     private static final String LADDER_LINE_NONE = "|     ";
 
-    public static void viewLadder(Players players, PlayResults playResults, Ladder ladder) {
+    public static void viewLadder(GameInfo gameInfo, Ladder ladder) {
         System.out.println("\n사다리 결과\n");
-        viewPlayers(players);
+        viewPlayers(gameInfo.getPlayers());
         viewLines(ladder);
-        viewPlayResults(playResults);
+        viewPlayResults(gameInfo.getPrizes());
         System.out.println("\n");
     }
 
     private static void viewPlayers(Players players) {
         System.out.println(
                 players.getPlayers().stream()
-                        .map(n -> getNameWithFormat(n.getName()))
+                        .map(player -> getNameWithFormat(player.getName()))
                         .collect(Collectors.joining())
         );
     }
@@ -32,14 +36,15 @@ public class ResultView {
     }
 
     private static void viewLines(Ladder ladder) {
-        IntStream.rangeClosed(1, ladder.getHeight())
-                .forEach(i -> viewLineByHeight(ladder.getVerticalLines(), i));
+        List<Line> lines = ladder.getLines();
+        IntStream.range(0, lines.size())
+                .forEach(i -> viewLineByHeight(lines.get(i)));
     }
 
-    private static void viewLineByHeight(VerticalLines verticalLines, int height) {
+    private static void viewLineByHeight(Line line) {
         System.out.print("     ");
-        IntStream.rangeClosed(1, verticalLines.getSize())
-                .forEach(i -> printLines(verticalLines.getLine(i).isDrawing(height)));
+        line.getPoints().stream()
+                .forEach(point -> printLines(point.isDirection(Direction.RIGHT)));
         System.out.println();
     }
 
@@ -51,24 +56,24 @@ public class ResultView {
         System.out.print(LADDER_LINE_NONE);
     }
 
-    private static void viewPlayResults(PlayResults playResults) {
+    private static void viewPlayResults(Prizes prizes) {
         System.out.println(
-                playResults.getPlayResults().stream()
-                        .map(n -> getNameWithFormat(n.getResult()))
+                prizes.getPrizes().stream()
+                        .map(prize -> getNameWithFormat(prize.getPrize()))
                         .collect(Collectors.joining())
         );
     }
 
-    public static void viewPlayerResult(LadderGameResult ladderGameResult, String name) {
+    public static void viewPlayerResult(GameResults gameResults, String name) {
         System.out.println("실행결과");
-        System.out.println(Optional.ofNullable(ladderGameResult.getPlayerResult(name))
+        System.out.println(Optional.ofNullable(gameResults.getResult(name))
                 .orElse("없는 플레이어 입니다."));
         System.out.println();
     }
 
-    public static void viewAllPlayerResult(LadderGameResult ladderGameResult) {
+    public static void viewAllPlayerResult(GameResults gameResults) {
         System.out.println("전체 실행결과");
-        ladderGameResult.getPlayerNames().stream()
-                .forEach(n -> System.out.println(n + " : " + ladderGameResult.getPlayerResult(n)));
+        gameResults.getGameResults().stream()
+                .forEach(result -> System.out.println(result.getPlayerName() + " : " + result.getPrize()));
     }
 }

@@ -4,29 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
-    private List<Player> players;
+    private static final int RULE_PLAYER_MIN_COUNT = 2;
+    private final List<Player> players;
 
-    public Players(List<String> players) {
-        this.players = new ArrayList<>();
-        int playersCount = players.size();
-        for (int i = 0; i < playersCount; i++) {
-            this.players.add(Player.of(players.get(i), i + 1));
-        }
+    public Players(List<String> inputs) {
+        int playersCount = inputs.size();
+        validate(playersCount);
+        this.players = inputsToPlayers(inputs);
     }
 
     public List<Player> getPlayers() {
         return new ArrayList<>(this.players);
     }
 
-    public String getPlayerName(int order) {
-        return this.players.stream()
-                .filter(p -> p.isOrder(order))
-                .findFirst()
-                .map(p -> p.getName())
-                .orElseThrow(() -> new IllegalArgumentException("해당 순서의 플레이어가 없습니다."));
+    public Player getPlayer(int index) {
+        return this.players.get(index);
     }
 
-    public int getCount() {
+    public int count() {
         return this.players.size();
+    }
+
+    private List<Player> inputsToPlayers(List<String> inputs) {
+        List<Player> players = new ArrayList<>();
+        for (String input : inputs) {
+            players.add(Player.of(input));
+        }
+        return players;
+    }
+
+    private void validate(int playerCount) {
+        if (playerCount < RULE_PLAYER_MIN_COUNT) {
+            throw new IllegalArgumentException(String.format("플레이어는 %d명 이상이어야 합니다.", RULE_PLAYER_MIN_COUNT));
+        }
     }
 }

@@ -5,30 +5,25 @@ public class Player {
     private static final int NAME_MIN_LENGTH = 1;
 
     private final String name;
-    private final int order;
 
-    public static Player of(String name, int order) {
-        return new Player(name, order);
+    public static Player of(String name) {
+        return new Player(name);
     }
 
-    private Player(String name, int order) {
-        validate(name, order);
+    private Player(String name) {
+        validate(name);
         this.name = name;
-        this.order = order;
     }
 
     public String getName() {
         return name;
     }
 
-    public boolean isOrder(int order) {
-        return this.order == order;
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
     }
 
-    private void validate(String name, int order) {
-        if (order < 1) {
-            throw new IllegalArgumentException("순서는 0보다 커야 합니다.");
-        }
+    private void validate(String name) {
         if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(String.format("이름이 %d보다 깁니다.", NAME_MAX_LENGTH));
         }
