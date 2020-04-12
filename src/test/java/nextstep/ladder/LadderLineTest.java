@@ -23,7 +23,7 @@ public class LadderLineTest {
 
     positions.forEach(position -> {
       Position moved = ladderLine.move(position);
-      assertThat(moved.isAdjacent(position)).isTrue();
+      assertThat(moved.isAdjacent(position) || moved == position).isTrue();
       assertThat(ladderLine.move(moved)).isEqualTo(position);
     });
   }

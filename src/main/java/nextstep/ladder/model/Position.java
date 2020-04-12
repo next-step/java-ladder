@@ -30,4 +30,16 @@ public class Position {
 
     return distance == 1 || distance == -1;
   }
+
+  public boolean isFirst() {
+    return position == 0;
+  }
+
+  public Position left() {
+    return Position.at(this.position - 1);
+  }
+
+  public Position right() {
+    return Position.at(this.position + 1);
+  }
 }
