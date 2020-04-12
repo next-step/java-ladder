@@ -37,6 +37,10 @@ public class Lines {
         return getLastLine().getNode(nodeNumber);
     }
 
+    public int getStartPointCount() {
+        return this.lines.get(0).getNodes().size();
+    }
+
     private Line getLastLine() {
         return this.lines.get(size() - 1);
     }
