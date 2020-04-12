@@ -56,4 +56,13 @@ public class UsersTest {
         assertThat(user.getName()).isEqualTo("pobi");
     }
 
+    @Test
+    void findUserByNameTest() {
+        Users users = Users.of("pobi,honux,crong,jk");
+        Position position = Position.of(0);
+
+        User user = users.findUserByName("pobi");
+
+        assertThat(user).isEqualTo(User.of("pobi", position));
+    }
 }
