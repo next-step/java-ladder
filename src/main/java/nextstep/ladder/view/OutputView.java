@@ -30,23 +30,23 @@ public class OutputView {
         ViewUtils.printLine(LADDER_RESULT);
         showPersons(participants);
 
-        for(Line2 line : ladder.getValue()) {
+        for(Line line : ladder.getValue()) {
             showLine(line);
         }
 
         showLadderResults(ladderGame.getLadderResults());
     }
 
-    private void showLine(Line2 line) {
+    private void showLine(Line line) {
         StringBuilder builder = new StringBuilder();
 
-        for(Point2 point : line.getValue()) {
+        for(Point point : line.getValue()) {
             builder.append(getPointText(point));
         }
         ViewUtils.printLine(builder.toString());
     }
 
-    private String getPointText(Point2 point) {
+    private String getPointText(Point point) {
         return String.format(POINT_FORMAT, point.hasRightDirection() ? HORIZONTAL_LINE : HORIZONTAL_EMPTY);
     }
 
