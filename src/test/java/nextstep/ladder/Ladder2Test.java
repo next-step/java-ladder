@@ -4,14 +4,36 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Line2;
 import nextstep.ladder.domain.Point2;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class Ladder2Test {
+
+    @Test
+    @DisplayName("사다리 높이가 1보다 작을 경우 Exception 처리를 한다.")
+    void assertLadderHeight() {
+        int height = 0;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Ladder(4, height);
+        }).withMessage(Ladder.LADDER_HEIGHT_ERROR);
+    }
+
+    @Test
+    @DisplayName("사다리의 참여자 수(Point)는 2 이상이어야 한다.")
+    void assertLadderWidth() {
+        int participantCount = 1;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Ladder(participantCount, 5);
+        }).withMessage(Line.POINT_COUNT_ERROR);
+    }
 
     /**
      * |-----|     |
