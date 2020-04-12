@@ -16,16 +16,7 @@ class LadderTest {
 
     @BeforeEach
     void setUp() {
-        lines = new Lines(
-                Arrays.asList(
-                        new Line(new Nodes(Arrays.asList(
-                                new Node(0, new Way(false, true)),
-                                new Node(1, new Way(true, false)))
-                        )),
-                        new Line(new Nodes(Arrays.asList(
-                                new Node(0, new Way(false, true)),
-                                new Node(1, new Way(true, false)))
-                        ))));
+        lines =  Lines.of(2, 2, WayTest.strategyTrue);
     }
 
 
