@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.model;
 
 public class Position {
 

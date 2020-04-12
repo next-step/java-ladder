@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.Map;
+import nextstep.ladder.model.Position;
 
 public class LadderLine {
 

@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+import nextstep.ladder.model.Prize;
 
 public class PrizeSheet {
 
