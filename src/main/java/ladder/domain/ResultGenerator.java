@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ResultGenerator {
     private final String inputText;
@@ -22,7 +20,7 @@ public class ResultGenerator {
         int index = 0;
 
         for (String result : splitText) {
-            map.put(index ++, result);
+            map.put(index++, result);
         }
 
         return new LadderResult(map);

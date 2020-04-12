@@ -18,6 +18,14 @@ public class LadderResult {
         }
     }
 
+    public String getResult(int index) {
+        return result.get(index);
+    }
+
+    public int size() {
+        return result.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

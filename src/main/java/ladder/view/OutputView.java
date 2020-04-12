@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.User;
-import ladder.domain.Users;
+import ladder.domain.*;
 
 public class OutputView {
     private static final String TAB = "    ";
@@ -28,21 +25,32 @@ public class OutputView {
         for (Line line : ladder.getLines()) {
             printLines(sb, line);
         }
-        System.out.println(sb.toString());
+        System.out.print(sb.toString());
     }
 
     private static void printLines(StringBuilder sb, Line line) {
         sb.append(TAB);
+
         for (Boolean canDrawWidth : line.getWidthLines()) {
             sb.append(VERTICAL);
             sb.append(canDrawWidth ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
         }
         sb.append(VERTICAL);
-        sb.append(System.getProperty("line.separator"));
+        sb.append(System.lineSeparator());
+    }
+
+    public static void printResult(LadderResult ladderResult) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < ladderResult.size(); i++) {
+            sb.append(ladderResult.getResult(i) + TAB);
+        }
+        System.out.println(sb.toString());
     }
 
     /**
      * 이름 출력시 5글자까지 반복하여 공백을 더해준다.
+     *
      * @param userName
      * @return
      */
