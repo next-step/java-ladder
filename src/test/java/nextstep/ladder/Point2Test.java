@@ -12,7 +12,6 @@ public class Point2Test {
     /**
      * startPosition: 0
      * |-----|
-     * |     |
      */
     @Test
     public void first() {
