@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderGameTest {
 
     private LadderPrize ladderPrize;
-    private Nodes nodes;
     private Players players;
     private Lines lines;
     private LadderMoveStrategy strategy;
@@ -20,11 +19,8 @@ class LadderGameTest {
     @BeforeEach
     public void setUp() throws Exception {
         ladderPrize = new LadderPrize(Arrays.asList("꽝", "100"));
-        nodes = new Nodes(Arrays.asList(
-                new Node(0, new Way(false, true)),
-                new Node(1, new Way(true, false))));
         players = Players.of(Arrays.asList("a", "b"));
-        lines = new Lines(Arrays.asList(new Line(nodes), new Line(nodes)));
+        lines =  Lines.of(2, 2, WayTest.strategyTrue);
 
     }
 
