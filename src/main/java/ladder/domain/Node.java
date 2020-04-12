@@ -34,6 +34,11 @@ public class Node {
         return new Node(nextIndex, new Way(this.way.isMovableRight(), isMovableRight));
     }
 
+    public Node createNextNode(final LadderMoveStrategy strategy) {
+        int nextIndex = this.index + PLUS_NEXT_INDEX;
+        return new Node(nextIndex, way.next(strategy));
+    }
+
     public int move() {
         if (isMovableLeft()) {
             return this.index - PLUS_NEXT_INDEX;
