@@ -5,24 +5,24 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderController {
-    private Users users;
-    private LadderGoals ladderGoals;
-    private Ladder ladder;
+    private GameResult gameResult;
 
     public LadderController() {
         init();
     }
 
     private void init() {
-        users = getUsers(InputView.askNumberOfUser());
-        ladderGoals = getResult(InputView.askLadderGoals());
-        ladder = new Ladder(InputView.askLadderHeight(), users);
+        Users users = getUsers(InputView.askNumberOfUser());
+        Ladder ladder = new Ladder(InputView.askLadderHeight(), users);
+        LadderGoals ladderGoals = getResult(InputView.askLadderGoals());
+
+        gameResult = new GameResult(users, ladder, ladderGoals);
     }
 
     public void showResult() {
-        OutputView.printNames(users);
-        OutputView.printLadder(ladder);
-        OutputView.printResult(ladderGoals);
+        OutputView.printNames(gameResult.getUsers());
+        OutputView.printLadder(gameResult.getLadder());
+        OutputView.printGoals(gameResult.getLadderGoals());
     }
 
     private Users getUsers(String user) {

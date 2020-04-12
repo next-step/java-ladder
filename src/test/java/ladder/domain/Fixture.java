@@ -22,4 +22,12 @@ public class Fixture {
     public static Users fourUsers() {
         return new Users(Arrays.asList(pobi, honux, crong, jk));
     }
+
+    public static Ladder fiveHeightLadder() {
+        return new Ladder(5, fourUsers());
+    }
+
+    public static LadderGoals fourLadderGoals() {
+        return new GoalsGenerator("꽝, 5000, 꽝, 5000").generate();
+    }
 }

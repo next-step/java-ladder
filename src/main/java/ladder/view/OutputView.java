@@ -39,7 +39,7 @@ public class OutputView {
         sb.append(System.lineSeparator());
     }
 
-    public static void printResult(LadderGoals ladderGoals) {
+    public static void printGoals(LadderGoals ladderGoals) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < ladderGoals.size(); i++) {
