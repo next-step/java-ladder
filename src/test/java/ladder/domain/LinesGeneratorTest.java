@@ -8,12 +8,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LineGeneratorTest {
+class LinesGeneratorTest {
 
     @DisplayName("높이 만큼 라인을 생성할 수 있다")
     @Test
     public void firstLadderLineGenerateTest() {
-        List<Line> first = LineGenerator.first(3);
+        List<Line> first = LinesGenerator.first(3);
 
         assertThat(first).hasSize(3);
     }
@@ -21,7 +21,7 @@ class LineGeneratorTest {
     @DisplayName("마지막 라인 생성기는 모든 라인 값을 false 로 갖는다")
     @Test
     public void lastLineGeneratedTest() {
-        List<Line> lastLines = LineGenerator.last(4);
+        List<Line> lastLines = LinesGenerator.last(4);
 
         List<Line> expected = stubLines(false, false, false, false);
 
@@ -32,7 +32,7 @@ class LineGeneratorTest {
     @Test
     public void test() {
         List<Line> beforeLines = stubLines(true, true, true, true);
-        List<Line> normalLine = LineGenerator.normal(4, new LadderLine(beforeLines));
+        List<Line> normalLine = LinesGenerator.normal(4, new LadderLine(beforeLines));
 
         List<Line> expected = stubLines(false, false, false, false);
 

@@ -11,11 +11,11 @@ public class Line {
         this.link = link;
     }
 
-    static Line newLineOnBeforeLine(Line beforeLine) {
+    static Line newLineBasedBeforeLine(Line beforeLine, LinkStrategy linkStrategy) {
         if (beforeLine.link == true) {
             return new Line(beforeLine.height, false);
         }
-        return new Line(beforeLine.height, new RandomLinkable().get());
+        return new Line(beforeLine.height, linkStrategy.get());
     }
 
     public int getHeight() {

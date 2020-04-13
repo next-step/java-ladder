@@ -12,11 +12,13 @@ public class LadderLine {
     }
 
     public List<Line> newLineOnBeforeLine(int height) {
-        List<Line> normalLadderLine = new ArrayList<>();
+        List<Line> innerLadderLine = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            normalLadderLine.add(Line.newLineOnBeforeLine(lines.get(i)));
+            RandomLinkStrategy randomLinkStrategy = new RandomLinkStrategy();
+            Line newLineBasedBeforeLine = Line.newLineBasedBeforeLine(lines.get(i), randomLinkStrategy);
+            innerLadderLine.add(newLineBasedBeforeLine);
         }
-        return normalLadderLine;
+        return innerLadderLine;
     }
 
     public List<Line> getLines() {

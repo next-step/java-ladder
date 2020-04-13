@@ -2,8 +2,8 @@ package ladder.domain;
 
 import java.util.Random;
 
-public class RandomLinkable implements Linkable {
-    private static final Random random = new Random();
+public class RandomLinkStrategy implements LinkStrategy {
+    private final Random random = RandomUtils.RANDOM;
 
     @Override
     public boolean get() {

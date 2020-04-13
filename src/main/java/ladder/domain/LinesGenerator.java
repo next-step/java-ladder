@@ -3,12 +3,12 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LineGenerator {
+public class LinesGenerator {
 
     static List<Line> first(int height) {
         List<Line> firstLadderLine = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            firstLadderLine.add(new Line(i, new RandomLinkable().get()));
+            firstLadderLine.add(new Line(i, new RandomLinkStrategy().get()));
         }
         return firstLadderLine;
     }

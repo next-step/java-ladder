@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Ladder {
     private static final int FIRST = 1;
+    private static final int MIN_HEIGHT = 1;
+    private static final int MIN_PERSON = 2;
 
     private final int countOfPerson;
     private final List<LadderLine> ladder;
@@ -20,36 +22,37 @@ public class Ladder {
     }
 
     private void validate(int height, int countOfPerson) {
-        if (height < 1) {
+        if (height < MIN_HEIGHT) {
             throw new InvalidHeightException();
         }
-        if (countOfPerson < 2) {
+        if (countOfPerson < MIN_PERSON) {
             throw new NotEnoughCountOfPersonException();
         }
     }
 
     private List<LadderLine> buildLadderLines(int height) {
         List<LadderLine> allLines = new ArrayList<>();
-        allLines.add(firstLine(height));
+        allLines.add(generateFirstLine(height));
         int normalLineCount = Math.subtractExact(countOfPerson, FIRST);
+
         for (int i = FIRST; i < normalLineCount; i++) {
             int beforeIndex = Math.subtractExact(i, FIRST);
-            allLines.add(normalLine(height, allLines.get(beforeIndex)));
+            allLines.add(generateBodyLine(height, allLines.get(beforeIndex)));
         }
-        allLines.add(lastLine(height));
+        allLines.add(generateLastLine(height));
         return allLines;
     }
 
-    private LadderLine firstLine(int height) {
-        return new LadderLine(LineGenerator.first(height));
+    private LadderLine generateFirstLine(int height) {
+        return new LadderLine(LinesGenerator.first(height));
     }
 
-    private LadderLine lastLine(int height) {
-        return new LadderLine(LineGenerator.last(height));
+    private LadderLine generateLastLine(int height) {
+        return new LadderLine(LinesGenerator.last(height));
     }
 
-    private LadderLine normalLine(int height, LadderLine ladderLine) {
-        return new LadderLine(LineGenerator.normal(height, ladderLine));
+    private LadderLine generateBodyLine(int height, LadderLine ladderLine) {
+        return new LadderLine(LinesGenerator.normal(height, ladderLine));
     }
 
     @Override
