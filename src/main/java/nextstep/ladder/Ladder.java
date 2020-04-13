@@ -15,15 +15,15 @@ public class Ladder {
         .collect(Collectors.toList());
   }
 
-  public Player ride(Player aya) {
+  public Player ride(Player player) {
     Position finalPosition = ladderLines.stream()
         .reduce(
-            aya.getPosition(),
+            player.getPosition(),
             (position, ladderLine) -> ladderLine.move(position),
             (position, position2) -> position2
         );
 
-    return new Player(aya.getName(), finalPosition);
+    return new Player(player.getName(), finalPosition);
   }
 
   public Players ride(Players players) {
