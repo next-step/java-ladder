@@ -31,10 +31,9 @@ public class InputView {
   public List<String> writePrizes() {
     printWithNewLine(PRIZE_QUESTION);
     String prizeInput = scanner.nextLine();
-    List<String> prizes = Arrays.stream(prizeInput.split(DELIMITER))
-        .collect(Collectors.toList());
 
-    return prizes;
+    return Arrays.stream(prizeInput.split(DELIMITER))
+        .collect(Collectors.toList());
   }
 
   public int askLadderHeight() {

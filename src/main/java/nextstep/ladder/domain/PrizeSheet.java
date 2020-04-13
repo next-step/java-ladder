@@ -21,15 +21,6 @@ public class PrizeSheet {
     return prizeSheet.get(player.getPosition());
   }
 
-  public List<Prize> getPrizes() {
-    int size = prizeSheet.size();
-
-    return IntStream.range(0, size)
-        .mapToObj(Position::at)
-        .map(prizeSheet::get)
-        .collect(Collectors.toList());
-  }
-
   public ResultSheet produceResult(Players players) {
     List<Prize> prizes = players.getPlayers().stream()
         .map(this::checkPrize)

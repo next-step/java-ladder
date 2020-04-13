@@ -50,14 +50,17 @@ public class ResultView {
     System.out.println();
     IntStream.range(0, width)
         .mapToObj(Position::at)
-        .forEach(position -> {
-           Position moved = ladderLine.move(position);
-           String ladderPiece = !position.isFirst() && position.left() == moved ?
-               LADDER_WITH_LEG : LADDER_WITHOUT_LEG;
-
-           System.out.print(ladderPiece);
-        });
+        .forEach(position -> drawLineAt(ladderLine, position));
   }
+
+  private void drawLineAt(LadderLine ladderLine, Position position) {
+    Position moved = ladderLine.move(position);
+    String ladderPiece = !position.isFirst() && position.left() == moved ?
+        LADDER_WITH_LEG : LADDER_WITHOUT_LEG;
+
+    System.out.print(ladderPiece);
+  }
+
 
   public void printPrizes(List<String> prizes) {
     System.out.println();
@@ -68,23 +71,27 @@ public class ResultView {
     String playerName = getPlayerName();
 
     while (!playerName.equals(NONE)) {
-      printResult(resultSheet, playerName);
+      printResultByName(resultSheet, playerName);
 
       playerName = getPlayerName();
     }
   }
 
-  private void printResult(ResultSheet resultSheet, String playerName) {
+  private void printResultByName(ResultSheet resultSheet, String playerName) {
     printWithNewLine(EXECUTION_RESULT);
     if (playerName.equals(ALL)) {
-      resultSheet.getResultSheet()
-          .forEach((name, prize) -> System.out.println(
-              String.format(RESULT_FORMAT, name, prize.getPrize())
-          ));
+      printAllResult(resultSheet);
       return;
     }
 
     System.out.println(resultSheet.checkResult(playerName).getPrize());
+  }
+
+  private void printAllResult(ResultSheet resultSheet) {
+    resultSheet.getResultSheet()
+        .forEach((name, prize) -> System.out.println(
+            String.format(RESULT_FORMAT, name, prize.getPrize())
+        ));
   }
 
   private String getPlayerName() {
