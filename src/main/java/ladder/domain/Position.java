@@ -17,6 +17,10 @@ public class Position {
         return Position.of(now + steerRule.getSteer());
     }
 
+    public int getPosition() {
+        return now;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return now == ((Position) obj).now;

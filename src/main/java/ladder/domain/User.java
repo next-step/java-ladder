@@ -25,4 +25,12 @@ public class User {
         return name.equals(compareUser.name)
                 && position.equals(compareUser.position);
     }
+
+    public void move(SteerRule steerRule) {
+        this.position = position.crossWay(steerRule);
+    }
+
+    public int position() {
+        return position.getPosition();
+    }
 }

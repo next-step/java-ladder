@@ -20,7 +20,7 @@ public class LadderGame {
     public int userClaim(String name) {
         User user = users.findUserByName(name);
         for (Line line : ladderMap.toList()) {
-            line.movable(user.)
+
         }
     }
 }

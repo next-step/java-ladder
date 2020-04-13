@@ -27,4 +27,16 @@ public class LineTest {
                     assertThat(movable).isTrue();
                 });
     }
+
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void steerWayTest(int input) {
+        CrossRoadStrategy crossRoadStrategy = () -> true;
+        Line line = Line.of(input, crossRoadStrategy);
+
+        SteerRule steerRule = line.steerWay(0);
+
+        assertThat(steerRule.getSteer()).isEqualTo(1);
+    }
 }
