@@ -55,7 +55,7 @@ public class ResultView {
 
   private void drawLineAt(LadderLine ladderLine, Position position) {
     Position moved = ladderLine.move(position);
-    String ladderPiece = !position.isFirst() && position.left() == moved ?
+    String ladderPiece = !position.isFirst() && position.getLeft() == moved ?
         LADDER_WITH_LEG : LADDER_WITHOUT_LEG;
 
     System.out.print(ladderPiece);

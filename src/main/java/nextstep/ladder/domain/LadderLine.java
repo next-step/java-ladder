@@ -21,7 +21,7 @@ public class LadderLine {
   private void drawLadderAt(int position) {
     Position here = Position.at(position);
     if (hasLeftLeg(here)) {
-      movingRule.put(here, here.left());
+      movingRule.put(here, here.getLeft());
       return;
     }
 
@@ -33,7 +33,7 @@ public class LadderLine {
       return false;
     }
 
-    return move(position.left()) == position;
+    return move(position.getLeft()) == position;
   }
 
   public int getWidth() {

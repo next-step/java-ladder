@@ -14,6 +14,8 @@
 - Position class
   - int position property
   - isAdjacent method
+  - isFirst method : void -> boolean
+  - getLeft method : void -> Position
   
 - Name class
   - String name property
@@ -21,6 +23,7 @@
 - Player class
   - Position position property
   - Name name property
+  - isAdjacent method : Player -> boolean
   
 - Players class
   - List<Player> players property
@@ -28,6 +31,7 @@
 - LadderLine class
   - Map<Position, Position> movingRule property
   - move method : Position -> Position
+  - getWidth method : void -> int
   
 - Ladder class
   - List<LadderLine> ladderLines property

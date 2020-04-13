@@ -35,7 +35,7 @@ public class Position {
     return position == 0;
   }
 
-  public Position left() {
+  public Position getLeft() {
     return Position.at(this.position - 1);
   }
 }
