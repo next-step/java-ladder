@@ -18,6 +18,13 @@ public enum Mark {
         this.ladder = ladder;
     }
 
+    public static Mark createByNumber(int number) {
+        return Arrays.stream(Mark.values())
+                .filter(mark -> mark.value == number)
+                .findFirst()
+                .orElse(null);
+    }
+
     public static String ofLadder(int value) {
         return Arrays.stream(Mark.values())
                 .filter(v -> v.value==value)
@@ -25,4 +32,5 @@ public enum Mark {
                 .findFirst()
                 .orElse(null);
     }
+
 }
