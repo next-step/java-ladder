@@ -9,7 +9,7 @@ public class UserCreateTest {
     @Test
     void maxNameLengthTest() {
         String names= "pobi,honux,crong11111,jk";
-        assertThatThrownBy(() ->new Users(names)).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() ->new Users(names)).isInstanceOf(IndexOutOfBoundsException.class);
     }
 
     @Test

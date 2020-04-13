@@ -20,12 +20,6 @@ public class Users implements Line {
                 .collect(Collectors.toList());
     }
 
-    private boolean lengthValidator(int length) {
-        if (length > MAX_NAME_LENGTH) {
-            throw new RuntimeException(LENGTH_EXCEPTION_MESSAGE);
-        }
-        return true;
-    }
 
     public int countOfUser() {
         return users.size();
