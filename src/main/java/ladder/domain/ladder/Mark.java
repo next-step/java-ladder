@@ -3,7 +3,7 @@ package ladder.domain.ladder;
 import java.util.Arrays;
 
 public enum Mark {
-    MARK(0, "     |"),
+    MARK(0, "|"),
     MARK_WIDTH_DASH(1,"-----|");
 
     private int value;
