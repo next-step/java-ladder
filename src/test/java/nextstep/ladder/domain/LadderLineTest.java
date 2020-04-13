@@ -1,11 +1,12 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import nextstep.ladder.model.Position;
+import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.model.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

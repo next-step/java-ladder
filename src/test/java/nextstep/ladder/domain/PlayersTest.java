@@ -1,9 +1,11 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

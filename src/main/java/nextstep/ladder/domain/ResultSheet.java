@@ -1,11 +1,11 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
-import nextstep.ladder.model.Name;
-import nextstep.ladder.model.Prize;
+import nextstep.ladder.domain.model.Name;
+import nextstep.ladder.domain.model.Prize;
 
 public class ResultSheet {
   private Map<Name, Prize> resultSheet = new HashMap<>();

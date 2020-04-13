@@ -1,4 +1,4 @@
-package nextstep.ladder.model;
+package nextstep.ladder.domain.model;
 
 import java.util.HashMap;
 import java.util.Map;

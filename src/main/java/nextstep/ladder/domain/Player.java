@@ -1,7 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.model.Name;
-import nextstep.ladder.model.Position;
+import nextstep.ladder.domain.model.Name;
+import nextstep.ladder.domain.model.Position;
 
 public class Player {
   private Name name;

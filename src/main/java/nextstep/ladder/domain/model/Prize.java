@@ -1,4 +1,4 @@
-package nextstep.ladder.model;
+package nextstep.ladder.domain.model;
 
 public class Prize {
 
