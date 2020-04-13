@@ -1,12 +1,11 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.Line;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.LadderLine;
 import ladder.domain.user.Users;
-
-import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     @Test
@@ -28,7 +27,7 @@ public class LadderTest {
     }
 
     @Test
-    void createLineTest() {
+    void createLadderLineTest() {
         int person = 5;
         Line line = new LadderLine(person);
         line.getLine().stream().forEach((l) -> System.out.print(l));
