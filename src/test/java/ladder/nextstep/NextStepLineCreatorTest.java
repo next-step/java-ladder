@@ -4,12 +4,12 @@ import ladder.engine.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class NextStepLineRepositoryTest {
-    private NextStepLineRepository lineRepository;
+public class NextStepLineCreatorTest {
+    private NextStepLineCreator lineRepository;
 
     @BeforeEach
     void setUp() {
-        lineRepository = new NextStepLineRepository();
+        lineRepository = new NextStepLineCreator();
     }
 
     @Test

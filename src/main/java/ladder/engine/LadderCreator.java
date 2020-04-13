@@ -1,5 +1,5 @@
 package ladder.engine;
 
-public interface LadderRepository {
+public interface LadderCreator {
     Ladder create(int countOfPersion, int height);
 }

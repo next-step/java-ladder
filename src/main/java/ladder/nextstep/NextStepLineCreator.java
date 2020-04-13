@@ -1,7 +1,7 @@
 package ladder.nextstep;
 
 import ladder.engine.Line;
-import ladder.engine.LineRepository;
+import ladder.engine.LineCreator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import static ladder.nextstep.utils.RandomValueGenerator.generate;
 
-public class NextStepLineRepository implements LineRepository {
+public class NextStepLineCreator implements LineCreator {
     @Override
     public Line create(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();

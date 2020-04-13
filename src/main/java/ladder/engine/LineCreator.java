@@ -1,5 +1,5 @@
 package ladder.engine;
 
-public interface LineRepository {
+public interface LineCreator {
     Line create(int sizeOfPerson);
 }
