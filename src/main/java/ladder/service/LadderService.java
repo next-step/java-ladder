@@ -1,9 +1,6 @@
 package ladder.service;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderGame;
-import ladder.domain.LadderPrize;
-import ladder.domain.Players;
+import ladder.domain.*;
 import ladder.utils.StringUtils;
 
 import java.util.List;
@@ -16,14 +13,15 @@ public class LadderService {
 
     public LadderGame createLadderGame(final String inputName,
                                        final String inputHeight,
-                                       final String inputPrize) {
+                                       final String inputPrize,
+                                       final LadderMoveStrategy strategy) {
         List<String> names = StringUtils.split(inputName, COMMA);
         List<String> gamePrize = StringUtils.split(inputPrize, COMMA);
         int height = StringUtils.parse(inputHeight);
 
         Players players = Players.of(names);
         LadderPrize ladderPrize = new LadderPrize(gamePrize);
-        Ladder ladder = Ladder.of(players.size(), height, ladderPrize);
+        Ladder ladder = Ladder.of(players.size(), height, ladderPrize, strategy);
 
         return new LadderGame(players, ladder);
     }

@@ -21,7 +21,7 @@ class PlayersTest {
                 Arrays.asList(PlayerTest.A, PlayerTest.B));
     }
 
-    @DisplayName("2명 미만의 Players 생성")
+    @DisplayName("2명 미만의 Players 생성시 exception")
     @Test
     public void constructor_fail() throws Exception {
         //then

@@ -9,16 +9,34 @@ public class Way {
     private final boolean left;
     private final boolean right;
 
-    public Way(final boolean left, final boolean right) {
+    private Way(final boolean left, final boolean right) {
         validate(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    public static Way from(final LadderMoveStrategy strategy) {
+        return new Way(false, strategy.move());
     }
 
     private void validate(final boolean left, final boolean right) {
         if (left && right) {
             throw new LadderException(TWO_WAY_MOVE_POSSIBLE);
         }
+    }
+
+    public Way next(final LadderMoveStrategy strategy) {
+        if (right) {
+            return new Way(true, false);
+        }
+        return new Way(false, strategy.move());
+    }
+
+    public Way last() {
+        if (right) {
+            return new Way(true, false);
+        }
+        return new Way(false, false);
     }
 
     public boolean isMovableLeft() {

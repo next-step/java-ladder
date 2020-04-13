@@ -1,69 +1,44 @@
 package ladder.domain;
 
-import ladder.utils.RandomUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line implements Cloneable {
+public class Line {
 
     private final List<Node> nodes;
 
-    public Line() {
-        this(new ArrayList<>());
-    }
-
-    public Line(final List<Node> nodes) {
+    private Line(final List<Node> nodes) {
         this.nodes = new ArrayList<>(nodes);
     }
 
-    public static Line of(final int playerCount) {
-        Line line = new Line();
-        for (int i = 0; i < playerCount - 1; i++) {
-            boolean randomBoolean = RandomUtils.getRandomBoolean();
-            line = line.addRandomNextNode(randomBoolean);
+    public static Line of(final int playerCount, final LadderMoveStrategy strategy) {
+        List<Node> nodes = new ArrayList<>();
+        Node node = new Node(strategy);
+        nodes.add(node);
+
+        for (int i = 1; i < playerCount - 1; i++) {
+            node = node.createNextNode(strategy);
+            nodes.add(node);
         }
 
-        line = line.addLastNode();
-        return line;
+        node = node.createLast();
+        nodes.add(node);
+        return new Line(nodes);
     }
 
-    private Line addRandomNextNode(final boolean random) {
-        if (this.nodes.isEmpty()) {
-            Node first = new Node(random);
-            return addNode(first);
-        }
-
-        Node nextNode = getLastNode().createNextNode(random);
-        return addNode(nextNode);
-    }
-
-    private Line addLastNode() {
-        List<Node> merge = new ArrayList<>();
-        Node last = getLastNode().createLast();
-        merge.addAll(this.nodes);
-        merge.add(last);
-        return new Line(merge);
-    }
-
-    private Line addNode(Node node) {
-        List<Node> merge = new ArrayList<>();
-        merge.addAll(this.nodes);
-        merge.add(node);
-        return new Line(merge);
-    }
-
-    private Node getLastNode() {
-        return this.nodes.get(this.nodes.size() - 1);
+    public int move(final int nodeNumber) {
+        return nodes.get(nodeNumber).move();
     }
 
     public List<Node> getNodes() {
-        return new ArrayList<>(nodes);
+        return nodes;
     }
 
-    @Override
-    protected Line clone() {
-        List<Node> nodes = new ArrayList<>(this.nodes);
-        return new Line(nodes);
+    public Node getNodes(int index) {
+        return nodes.get(index);
+    }
+
+    public int size() {
+        return nodes.size();
     }
 }

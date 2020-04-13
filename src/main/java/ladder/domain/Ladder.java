@@ -11,15 +11,16 @@ public class Ladder {
     private final LadderPrize ladderPrize;
 
     public Ladder(Lines lines, LadderPrize ladderPrize) {
-        validateUserAndResult(lines.getLines().get(0).getNodes().size(), ladderPrize);
+        validateUserAndResult(lines.getStartPointCount(), ladderPrize);
         this.lines = lines;
         this.ladderPrize = ladderPrize;
     }
 
     public static Ladder of(final int startPointCount,
                             final int height,
-                            final LadderPrize result) {
-        Lines lines = Lines.of(startPointCount, height);
+                            final LadderPrize result,
+                            final LadderMoveStrategy strategy) {
+        Lines lines = Lines.of(startPointCount, height, strategy);
 
         return new Ladder(lines, result);
     }
@@ -40,5 +41,9 @@ public class Ladder {
 
     public LadderPrize getLadderPrize() {
         return ladderPrize;
+    }
+
+    public String getLadderPrize(int prizeIndex) {
+        return ladderPrize.getPrize(prizeIndex);
     }
 }
