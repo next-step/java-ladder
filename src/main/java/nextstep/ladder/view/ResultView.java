@@ -7,10 +7,8 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.PrizeSheet;
 import nextstep.ladder.domain.ResultSheet;
 import nextstep.ladder.domain.model.Position;
-import nextstep.ladder.domain.model.Prize;
 
 public class ResultView {
 

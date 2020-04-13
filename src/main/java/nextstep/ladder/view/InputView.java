@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.PrizeSheet;
-import nextstep.ladder.domain.model.Prize;
 
 public class InputView {
 

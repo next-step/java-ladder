@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,11 +12,5 @@ public class NameTest {
   public void testLongName() {
     assertThatThrownBy(() -> new Name("abcdef"))
         .isInstanceOf(IllegalArgumentException.class);
-  }
-
-  @DisplayName("Test for equals methos")
-  @Test
-  public void testEquals() {
-    assertThat(new Name("aya").equals(new Name("aya")));
   }
 }
