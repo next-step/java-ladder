@@ -38,8 +38,4 @@ public class Position {
   public Position left() {
     return Position.at(this.position - 1);
   }
-
-  public Position right() {
-    return Position.at(this.position + 1);
-  }
 }

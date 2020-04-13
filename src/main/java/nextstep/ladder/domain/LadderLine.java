@@ -36,6 +36,10 @@ public class LadderLine {
     return move(position.left()) == position;
   }
 
+  public int getWidth() {
+    return movingRule.size();
+  }
+
   public Position move(Position position) {
     if (!movingRule.containsKey(position)) {
       throw new IllegalArgumentException("위치가 사다리의 범위를 벗어났습니다.");

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,6 +14,10 @@ public class Ladder {
     ladderLines = IntStream.range(0, height)
         .mapToObj(level -> new LadderLine(width))
         .collect(Collectors.toList());
+  }
+
+  public List<LadderLine> getLadderLines() {
+    return Collections.unmodifiableList(ladderLines);
   }
 
   public Player ride(Player player) {

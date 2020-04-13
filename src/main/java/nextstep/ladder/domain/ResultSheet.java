@@ -4,11 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
-import nextstep.ladder.domain.model.Name;
 import nextstep.ladder.domain.model.Prize;
 
 public class ResultSheet {
-  private Map<Name, Prize> resultSheet = new HashMap<>();
+  private Map<String, Prize> resultSheet = new HashMap<>();
 
   public ResultSheet(Players players, List<Prize> prizes) {
     List<Player> playerList = players.getPlayers();

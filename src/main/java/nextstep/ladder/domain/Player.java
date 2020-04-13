@@ -12,8 +12,8 @@ public class Player {
     this.position = Position.at(position);
   }
 
-  public Player(Name name, Position position) {
-    this.name = name;
+  public Player(String name, Position position) {
+    this.name = new Name(name);
     this.position = position;
   }
 
@@ -25,7 +25,7 @@ public class Player {
     return this.position.isAdjacent(other.position);
   }
 
-  public Name getName() {
-    return name;
+  public String getName() {
+    return name.getName();
   }
 }

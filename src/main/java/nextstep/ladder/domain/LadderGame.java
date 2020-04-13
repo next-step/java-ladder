@@ -12,6 +12,10 @@ public class LadderGame {
     prizeSheet = new PrizeSheet(prizes);
   }
 
+  public Ladder getLadder() {
+    return ladder;
+  }
+
   public ResultSheet play(Players players) {
     Players playersAfterRide = ladder.ride(players);
 
