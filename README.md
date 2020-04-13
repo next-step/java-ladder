@@ -44,7 +44,7 @@
   
 - ResultSheet class
   - Map<Name, Prize> resultSheet property
-  - checkResult method : Name -> Prize
+  - checkResult method : String -> Prize
   
 - LadderGame class
   - Ladder ladder property

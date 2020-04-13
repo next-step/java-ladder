@@ -21,4 +21,12 @@ public class ResultSheet {
           resultSheet.put(player.getName(), prizes.get(index));
         });
   }
+
+  public Map<String, Prize> getResultSheet() {
+    return resultSheet;
+  }
+
+  public Prize checkResult(String name) {
+    return resultSheet.get(name);
+  }
 }
