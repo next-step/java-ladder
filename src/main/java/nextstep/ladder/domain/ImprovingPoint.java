@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 public class ImprovingPoint {
+    private final static int CHANGE_INDEX = 1;
     private final int index;
     private final Direction direction;
 
@@ -11,26 +12,26 @@ public class ImprovingPoint {
 
     public int move() {
         if (direction.isRight()) {
-            return index + 1;
+            return index + CHANGE_INDEX;
         }
 
         if (direction.isLeft()) {
-            return index - 1;
+            return index - CHANGE_INDEX;
         }
 
         return index;
     }
 
     public ImprovingPoint next() {
-        return new ImprovingPoint(index + 1, direction.next());
+        return new ImprovingPoint(index + CHANGE_INDEX, direction.next());
     }
 
     public ImprovingPoint next(boolean right) {
-        return new ImprovingPoint(index + 1, direction.next(right));
+        return new ImprovingPoint(index + CHANGE_INDEX, direction.next(right));
     }
 
     public ImprovingPoint last() {
-        return new ImprovingPoint(index + 1, direction.last());
+        return new ImprovingPoint(index + CHANGE_INDEX, direction.last());
     }
 
     public static ImprovingPoint first(Boolean right) {
