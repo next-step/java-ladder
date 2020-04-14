@@ -1,7 +1,5 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.GameInfo;
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.Users;

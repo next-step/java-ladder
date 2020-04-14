@@ -12,7 +12,7 @@ class GameInfoTest {
     @Test
     void validateGameInfo() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            GameInfo gameInfo = new GameInfo(UsersTest.USERS, ResultsTest.RESULTS2);
+            new GameInfo(UsersTest.USERS, ResultsTest.RESULTS2);
         });
     }
 }
