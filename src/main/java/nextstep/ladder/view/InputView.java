@@ -34,17 +34,6 @@ public class InputView {
         return createResults(splitByComma(results));
     }
 
-    public String enterResultUser(Users users) {
-        System.out.println("\n결과를 보고 싶은 사람은? ");
-        String userName = scanner.next();
-        if (ALL.equals(userName)) {
-            return userName;
-        }
-
-        validateResultUser(users, userName);
-        return userName;
-    }
-
     private void validateUserNames(String names) {
         if (names == null || names.isEmpty() || ALL.equals(names)) {
             throw new IllegalArgumentException("이름을 빈값이나 all 로 입력하였습니다. 이름을 입력해주세요.");
@@ -68,12 +57,6 @@ public class InputView {
                                    .stream(splitResults)
                                    .map(Result::new)
                                    .collect(Collectors.toList()));
-    }
-
-    public void validateResultUser(Users users, String userName) {
-        if (!users.getUsers().contains(new User(userName))) {
-            throw new IllegalArgumentException("유저 목록에 해당 이름이 없습니다.");
-        }
     }
 
     public static InputView getInputView() {

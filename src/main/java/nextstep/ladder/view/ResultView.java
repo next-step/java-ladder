@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import nextstep.ladder.domain.GameInfo;
@@ -21,10 +22,7 @@ public class ResultView {
     private static final String LINE = "-----";
 
     private static ResultView resultView = new ResultView();
-
-    public static ResultView getResultView() {
-        return resultView;
-    }
+    private Scanner scanner = new Scanner(System.in);
 
     public String appendUserNames(Users users) {
         return users.getUsers()
@@ -85,9 +83,8 @@ public class ResultView {
     }
 
     public void repeatPrintPlayResult(Users resultsForAllPlayers) {
-        InputView inputView = InputView.getInputView();
         while (true) {
-            String userName = inputView.enterResultUser(resultsForAllPlayers);
+            String userName = enterResultUser(resultsForAllPlayers);
             resultView.printPlayResult(resultsForAllPlayers, userName);
             if (ALL.equals(userName)) {
                 break;
@@ -117,6 +114,27 @@ public class ResultView {
                          .stream()
                          .map(user -> appendUserResult(user))
                          .collect(Collectors.joining(NEW_LINE));
+    }
+
+    public void validateResultUser(Users users, String userName) {
+        if (!users.getUsers().contains(new User(userName))) {
+            throw new IllegalArgumentException("유저 목록에 해당 이름이 없습니다.");
+        }
+    }
+
+    public static ResultView getResultView() {
+        return resultView;
+    }
+
+    private String enterResultUser(Users users) {
+        System.out.println("\n결과를 보고 싶은 사람은? ");
+        String userName = scanner.next();
+        if (ALL.equals(userName)) {
+            return userName;
+        }
+
+        validateResultUser(users, userName);
+        return userName;
     }
 
     private String appendLines(Ladder ladder) {

@@ -57,24 +57,4 @@ class InputViewTest {
         List<Result> resultList = results.getResults();
         assertThat(resultList).hasSize(4);
     }
-
-    @DisplayName("결과를 보고싶은 사람을 입력받을 경우 유저에 포함되는지 확인해본다. "
-                 + "아닐경우 exception 발생시킨다.")
-    @Test
-    void validateResultUser() {
-        Users users = new Users(new ArrayList<>(
-                Stream.of(new User("pobi"),
-                          new User("honux"),
-                          new User("crong"),
-                          new User("jk")
-                )
-                      .collect(Collectors.toList())));
-
-        String userName = "soo";
-
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputView.validateResultUser(users, userName);
-        });
-
-    }
 }
