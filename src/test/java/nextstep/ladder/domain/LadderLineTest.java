@@ -8,8 +8,8 @@ class LadderLineTest {
 
     @Test
     void init() {
-        int sizeOfPerson = 5;
-        System.out.println(LadderLine.init(sizeOfPerson));
+        int countOfPerson = 5;
+        System.out.println(LadderLine.init(countOfPerson));
     }
 
     @Test
