@@ -12,11 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import nextstep.ladder.domain.Direction;
 import nextstep.ladder.domain.GameInfo;
-import nextstep.ladder.domain.ImprovingPoint;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.LadderLineTest;
 import nextstep.ladder.domain.ResultsTest;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
@@ -25,8 +24,6 @@ import nextstep.ladder.domain.UsersTest;
 class ResultViewTest {
     private static ResultView resultView = ResultView.getResultView();
 
-    private LadderLine line;
-    private LadderLine line2;
     private List<LadderLine> lineList;
     private Ladder ladder;
 
@@ -35,21 +32,7 @@ class ResultViewTest {
 
     @BeforeEach
     void setUp() {
-        List<ImprovingPoint> points = Stream.of(new ImprovingPoint(0, Direction.of(false, true)),
-                                                new ImprovingPoint(1, Direction.of(true, false)),
-                                                new ImprovingPoint(2, Direction.of(false, true)),
-                                                new ImprovingPoint(3, Direction.of(true, false)))
-                                            .collect(Collectors.toList());
-
-        List<ImprovingPoint> points2 = Stream.of(new ImprovingPoint(0, Direction.of(false, false)),
-                                                 new ImprovingPoint(1, Direction.of(false, true)),
-                                                 new ImprovingPoint(2, Direction.of(true, false)),
-                                                 new ImprovingPoint(3, Direction.of(false, false)))
-                                             .collect(Collectors.toList());
-
-        line = new LadderLine(points);
-        line2 = new LadderLine(points2);
-        lineList = Stream.of(line, line2)
+        lineList = Stream.of(LadderLineTest.LINE, LadderLineTest.LINE2)
                          .collect(Collectors.toList());
 
         ladder = new Ladder(lineList);
@@ -87,7 +70,7 @@ class ResultViewTest {
     @DisplayName("사다리의 라인의 해당하는 값을 그린다.")
     @Test
     void appendLine() {
-        String line = resultView.appendLine(this.line);
+        String line = resultView.appendLine(LadderLineTest.LINE);
         assertThat(line).isEqualTo("     |-----|     |-----|     ");
     }
 

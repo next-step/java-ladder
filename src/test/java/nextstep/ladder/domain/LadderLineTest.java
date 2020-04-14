@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class LadderLineTest {
+public class LadderLineTest {
+    public static final LadderLine LINE = new LadderLine(ImprovingPointTest.POINTS);
+    public static final LadderLine LINE2 = new LadderLine(ImprovingPointTest.POINTS2);
 
     @Test
     void init() {
