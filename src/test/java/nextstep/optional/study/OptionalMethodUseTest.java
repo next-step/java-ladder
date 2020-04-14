@@ -36,6 +36,7 @@ public class OptionalMethodUseTest {
 
     @Test
     void orElseThrowTest() {
+//        String name = opt.ofNullable(nullName).orElseThrow(NullPointerException::new);
         assertThatThrownBy(() -> System.out.println(
                 opt.ofNullable(nullName).orElseThrow(NullPointerException::new)
         )).isInstanceOf(NullPointerException.class);
