@@ -10,7 +10,7 @@ public class LadderLine {
     private final List<ImprovingPoint> points;
 
     public LadderLine(List<ImprovingPoint> points) {
-        this.points = Collections.unmodifiableList(points);
+        this.points = Collections.unmodifiableList(new ArrayList<>(points));
     }
 
     public int move(int position) {

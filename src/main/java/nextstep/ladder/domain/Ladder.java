@@ -12,7 +12,7 @@ public class Ladder {
     }
 
     public Ladder(List<LadderLine> ladder) {
-        this.ladder = Collections.unmodifiableList(ladder);
+        this.ladder = Collections.unmodifiableList(new ArrayList<>(ladder));
     }
 
     public List<LadderLine> createLadder(int countOfPerson, int height) {
@@ -20,7 +20,7 @@ public class Ladder {
         for (int i = 0; i < height; i++) {
             ladder.add(LadderLine.init(countOfPerson));
         }
-        return Collections.unmodifiableList(ladder);
+        return Collections.unmodifiableList(new ArrayList<>(ladder));
     }
 
     public List<LadderLine> getLadder() {

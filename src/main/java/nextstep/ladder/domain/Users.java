@@ -1,15 +1,14 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import nextstep.ladder.domain.User;
 
 public class Users {
     private List<User> users;
 
     public Users(List<User> users) {
-        this.users = Collections.unmodifiableList(users);
+        this.users = Collections.unmodifiableList(new ArrayList<>(users));
     }
 
     public int getCountOfPerson() {
