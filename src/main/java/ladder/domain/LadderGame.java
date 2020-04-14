@@ -16,9 +16,9 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public LadderGameResult start(LadderRewards rewards) {
+    public LadderGameResults start(LadderRewards rewards) {
         Nodes nodes = ladder.exec(users);
-        return LadderGameResult.of(nodes.matchRewards(rewards));
+        return LadderGameResults.of(nodes.matchRewards(rewards));
     }
 
     public List<User> getUsers() {

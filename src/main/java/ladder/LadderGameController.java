@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
-import ladder.domain.LadderGameResult;
+import ladder.domain.LadderGameResults;
 import ladder.domain.LadderRewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -17,8 +17,8 @@ public class LadderGameController {
 
         ResultView.print(ladderGame, ladderRewards);
 
-        LadderGameResult ladderGameResult = ladderGame.start(ladderRewards);
+        LadderGameResults ladderGameResults = ladderGame.start(ladderRewards);
         String result = InputView.inputResult();
-        ResultView.printResult(ladderGameResult.getNodeResults(result));
+        ResultView.printResult(ladderGameResults.getNodeResults(result));
     }
 }

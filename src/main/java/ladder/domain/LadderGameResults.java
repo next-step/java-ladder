@@ -3,16 +3,16 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.List;
 
-public class LadderGameResult {
+public class LadderGameResults {
     private static final String ALL = "all";
 
     private final List<NodeResult> nodeResults;
 
-    public static LadderGameResult of(List<NodeResult> nodeResults) {
-        return new LadderGameResult(nodeResults);
+    public static LadderGameResults of(List<NodeResult> nodeResults) {
+        return new LadderGameResults(nodeResults);
     }
 
-    private LadderGameResult(List<NodeResult> nodeResults) {
+    private LadderGameResults(List<NodeResult> nodeResults) {
         this.nodeResults = Collections.unmodifiableList(nodeResults);
     }
 
