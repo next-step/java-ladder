@@ -19,10 +19,10 @@ public class Users {
         List<LadderLine> ladder = paramLadder.getLadder();
         List<Result> results = paramGameInfo.getResults().getResults();
 
-        for (int i = 0; i < getCountOfPerson(); i++) {
-            int index = i;
-            index = getIndex(ladder, index);
-            users.get(i).setResult(results.get(index).getResult());
+        int index = 0;
+        for (User user : users) {
+            user.setResult(results.get(getIndex(ladder, index)).getResult());
+            ++index;
         }
     }
 
