@@ -27,8 +27,8 @@ public class Users {
     }
 
     private int getIndex(List<LadderLine> ladder, int index) {
-        for (int j = 0; j < ladder.size(); j++) {
-            index = ladder.get(j).move(index);
+        for (LadderLine ladderLine : ladder) {
+            index = ladderLine.move(index);
         }
         return index;
     }
