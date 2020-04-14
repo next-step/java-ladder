@@ -1,32 +1,42 @@
 package ladder.domain.user;
 
-import ladder.domain.Line;
-
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Users implements Line {
+public class Users {
     private static final String NAME_DELIMITER = ",";
-    private static final int MAX_NAME_LENGTH = 5;
-    private static final String LENGTH_EXCEPTION_MESSAGE = "이름이 길어요";
 
-    private final List<String> users;
+    private final List<User> users;
 
     public Users(String names) {
         this.users = Stream.of(names.split(NAME_DELIMITER))
                 .map(name -> name.trim())
-                .filter(name -> lengthValidator(name.length()))
+                .map(name -> new User(name))
                 .collect(Collectors.toList());
     }
-
 
     public int countOfUser() {
         return users.size();
     }
 
+    public List<User> showUsers() {
+        return users.stream()
+                .map(user -> user.user())
+                .collect(Collectors.toList());
+    }
+
     @Override
-    public List<String> getLine() {
-        return users;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users1 = (Users) o;
+        return Objects.equals(users, users1.users);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(users);
     }
 }

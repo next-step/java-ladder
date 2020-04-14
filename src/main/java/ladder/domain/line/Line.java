@@ -1,10 +1,10 @@
-package ladder.domain.ladder;
+package ladder.domain.line;
 
 import java.util.Arrays;
 
-public enum Mark {
-    MARK(0, "|"),
-    MARK_WIDTH_DASH(1,"-----|");
+public enum Line {
+    LINE(0, "|"),
+    LINE_WIDTH_DASH(1, "-----|");
 
     private int value;
     private String ladder;
@@ -13,22 +13,26 @@ public enum Mark {
         return ladder;
     }
 
-    Mark(int value, String ladder) {
+    public int lineValue() {
+        return value;
+    }
+
+    Line(int value, String ladder) {
         this.value = value;
         this.ladder = ladder;
     }
 
-    public static Mark createByNumber(int number) {
-        return Arrays.stream(Mark.values())
+    public static Line createByNumber(int number) {
+        return Arrays.stream(Line.values())
                 .filter(mark -> mark.value == number)
                 .findFirst()
                 .orElse(null);
     }
 
     public static String ofLadder(int value) {
-        return Arrays.stream(Mark.values())
-                .filter(v -> v.value==value)
-                .map(Mark::draw)
+        return Arrays.stream(Line.values())
+                .filter(v -> v.value == value)
+                .map(Line::draw)
                 .findFirst()
                 .orElse(null);
     }
