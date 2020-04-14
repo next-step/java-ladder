@@ -21,6 +21,10 @@ public class Players {
                 .collect(collectingAndThen(toList(), Players::new));
     }
 
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
+
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)

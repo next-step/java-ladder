@@ -18,4 +18,17 @@ public class Prizes {
                 .collect(collectingAndThen(toList(), Prizes::new));
     }
 
+    public int size() {
+        return prizes.size();
+    }
+
+    public List<String> getPrizeNames() {
+        return prizes.stream()
+                .map(Prize::getPrize)
+                .collect(toList());
+    }
+
+    public Prize getPrize(int resultIndex) {
+        return prizes.get(resultIndex);
+    }
 }

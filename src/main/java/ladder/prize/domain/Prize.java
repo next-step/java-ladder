@@ -13,6 +13,10 @@ public class Prize {
         return new Prize(prize);
     }
 
+    public String getPrize() {
+        return prize;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
