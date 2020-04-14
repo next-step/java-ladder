@@ -17,7 +17,7 @@ public class LadderGameResults {
     }
 
     public List<NodeResult> getNodeResults(String userName) {
-        if (userName.equals(ALL)) {
+        if (ALL.equals(userName)) {
             return nodeResults;
         }
         return Collections.singletonList(nodeResults.stream()
