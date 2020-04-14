@@ -30,12 +30,16 @@ public class LineTest {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
+    @ValueSource(ints = {1, 2, 3, 4})
     void steerWayTest(int input) {
         CrossRoadStrategy crossRoadStrategy = () -> true;
         Line line = Line.of(input, crossRoadStrategy);
 
-        SteerRule steerRule = line.steerWay(0);
+        System.out.println(line.toList().toString());
+
+        SteerRule steerRule = line.steerWay(2);
+
+        System.out.println("result " + steerRule.getSteer());
 
         assertThat(steerRule.getSteer()).isEqualTo(1);
     }

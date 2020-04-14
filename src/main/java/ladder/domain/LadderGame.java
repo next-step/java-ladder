@@ -22,5 +22,6 @@ public class LadderGame {
         for (Line line : ladderMap.toList()) {
 
         }
+        return 0;
     }
 }

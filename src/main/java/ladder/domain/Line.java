@@ -44,6 +44,19 @@ public class Line {
         return row.get(position);
     }
 
+    public SteerRule steerWay(int position) {
+
+        if (position < row.size() && movable(position)) {
+            return SteerRule.RIGHT;
+        }
+
+        if (position > 0 && movable(position-1)) {
+            return SteerRule.LEFT;
+        }
+
+        return SteerRule.KEEP;
+    }
+
     public int size() {
         return row.size();
     }
@@ -57,4 +70,5 @@ public class Line {
         Line compareLine = (Line) obj;
         return this.row.toString().equals(compareLine.row.toString());
     }
+
 }
