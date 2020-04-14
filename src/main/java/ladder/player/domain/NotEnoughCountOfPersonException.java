@@ -1,4 +1,4 @@
-package ladder.ladder.domain;
+package ladder.player.domain;
 
 public class NotEnoughCountOfPersonException extends IllegalArgumentException {
     public NotEnoughCountOfPersonException() {
