@@ -26,7 +26,7 @@ public class UsersTest {
                                           .collect(Collectors.toList());
 
         Ladder ladder = new Ladder(lineList);
-        USERS.generateResultsForAllPlayers(gameInfo, ladder);
+        USERS.generateResultsForAllPlayers(new LadderGame(gameInfo, ladder));
         List<User> users = USERS.getUsers();
 
         assertThat(users.get(0).getResult()).isEqualTo("꽝");

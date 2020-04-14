@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.GameInfo;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.Users;
 import nextstep.ladder.view.InputView;
@@ -14,12 +15,12 @@ public class LadderController {
     public static void main(String[] args) {
         Users users = inputView.enterUserNames();
         Results results = inputView.enterResults();
-        GameInfo gameInfo = new GameInfo(users, results);
         int ladderHeight = inputView.enterLadderHeight();
 
-        Ladder ladder = new Ladder(users.getCountOfPerson(), ladderHeight);
-        resultView.printLadder(gameInfo, ladder);
-        users.generateResultsForAllPlayers(gameInfo, ladder);
+        LadderGame ladderGame = new LadderGame(users, results, ladderHeight);
+
+        resultView.printLadder(ladderGame);
+        users.generateResultsForAllPlayers(ladderGame);
         resultView.repeatPrintPlayResult(users);
     }
 }

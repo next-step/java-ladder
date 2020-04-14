@@ -15,9 +15,9 @@ public class Users {
         return users.size();
     }
 
-    public void generateResultsForAllPlayers(GameInfo paramGameInfo, Ladder paramLadder) {
-        List<LadderLine> ladder = paramLadder.getLadder();
-        List<Result> results = paramGameInfo.getResults().getResults();
+    public void generateResultsForAllPlayers(LadderGame ladderGame) {
+        List<LadderLine> ladder = ladderGame.getLadder().getLadder();
+        List<Result> results = ladderGame.getGameInfo().getResults().getResults();
 
         int index = 0;
         for (User user : users) {

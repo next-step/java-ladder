@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import nextstep.ladder.domain.GameInfo;
 import nextstep.ladder.domain.ImprovingPoint;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Results;
 import nextstep.ladder.domain.User;
@@ -72,9 +73,9 @@ public class ResultView {
                       .collect(Collectors.joining(BLANK));
     }
 
-    public void printLadder(GameInfo gameInfo, Ladder ladder) {
+    public void printLadder(LadderGame ladderGame) {
         System.out.println("\n사다리 결과\n");
-        System.out.println(drawLadder(gameInfo, ladder));
+        System.out.println(drawLadder(ladderGame.getGameInfo(), ladderGame.getLadder()));
     }
 
     public void printPlayResult(Users paramUsers, String userName) {

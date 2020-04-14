@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.domain.GameInfo;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.LadderLineTest;
 import nextstep.ladder.domain.ResultsTest;
@@ -37,7 +38,7 @@ class ResultViewTest {
 
         ladder = new Ladder(lineList);
         gameInfo = new GameInfo(UsersTest.USERS, ResultsTest.RESULTS);
-        resultUsers.generateResultsForAllPlayers(gameInfo, ladder);
+        resultUsers.generateResultsForAllPlayers(new LadderGame(gameInfo, ladder));
     }
 
     @DisplayName("결과를 보고싶은 사람을 입력받을 경우 유저에 포함되는지 확인해본다. "
