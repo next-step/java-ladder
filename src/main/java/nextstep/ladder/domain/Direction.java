@@ -4,6 +4,9 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Direction {
+    private static final Direction TRUE_FALSE = new Direction(true, false);
+    private static final Direction FALSE_TRUE = new Direction(false, true);
+    private static final Direction FALSE_FALSE = new Direction(false, false);
     private Random random = new Random();
 
     private final boolean left;
@@ -29,6 +32,16 @@ public class Direction {
     }
 
     public static Direction of(boolean first, boolean second) {
+        if (first && !second) {
+            return TRUE_FALSE;
+        }
+        if (!first && second) {
+            return FALSE_TRUE;
+        }
+        if (!first && !second) {
+            return FALSE_FALSE;
+        }
+
         return new Direction(first, second);
     }
 
