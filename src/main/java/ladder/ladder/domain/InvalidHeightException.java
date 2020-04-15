@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.ladder.domain;
 
 public class InvalidHeightException extends IllegalArgumentException {
     public InvalidHeightException() {

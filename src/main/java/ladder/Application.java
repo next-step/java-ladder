@@ -1,21 +1,36 @@
 package ladder;
 
-import ladder.domain.Ladder;
+import ladder.game.domain.LadderGame;
+import ladder.game.domain.LadderGameAssembler;
+import ladder.game.domain.LadderGameInfo;
+import ladder.game.domain.LadderGameResults;
+import ladder.player.domain.Players;
+import ladder.prize.domain.Prizes;
 import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.view.OutputView;
 
-import java.util.List;
 
 public class Application {
+    public static final String END_CONDITION = "all";
+
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        int height = inputView.getHeight();
-        int countOfPeople = inputView.getCountOfPerson();
 
-        Ladder ladder = new Ladder(height, countOfPeople);
+        Players players = Players.of(InputView.requestPlayerNames());
+        Prizes prizes = Prizes.of(InputView.requestPrizes());
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(players, prizes);
 
-        List<String> participants = inputView.getParticipants();
-        ResultView resultView = new ResultView(participants);
-        resultView.print(ladder);
+        LadderGame ladderGame = LadderGame.init(ladderGameInfo, InputView.requestHeight());
+        OutputView.print(LadderGameAssembler.assemble(ladderGame));
+
+        LadderGameResults ladderGameResults = ladderGame.play();
+        while (true) {
+            String requestWinners = InputView.requestWinners();
+            if (requestWinners.equalsIgnoreCase(END_CONDITION)) {
+                OutputView.print(ladderGameResults.getLadderGameResults());
+                break;
+            }
+            OutputView.print(ladderGameResults.getSpecificWinner(requestWinners));
+        }
+
     }
 }

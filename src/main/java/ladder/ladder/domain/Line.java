@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.ladder.domain;
 
 import java.util.Objects;
 
@@ -6,16 +6,20 @@ public class Line {
     private final int height;
     private final boolean link;
 
-    Line(int height, boolean link) {
+    private Line(int height, boolean link) {
         this.height = height;
         this.link = link;
     }
 
-    static Line newLineOnBeforeLine(Line beforeLine) {
+    public static Line of(int height, boolean link) {
+        return new Line(height, link);
+    }
+
+    public static Line generateLineBasedPrevLine(Line beforeLine, boolean link) {
         if (beforeLine.link == true) {
             return new Line(beforeLine.height, false);
         }
-        return new Line(beforeLine.height, new RandomLinkable().get());
+        return new Line(beforeLine.height, link);
     }
 
     public int getHeight() {
@@ -40,11 +44,4 @@ public class Line {
         return Objects.hash(height, link);
     }
 
-    @Override
-    public String toString() {
-        return "Line{" +
-                "height=" + height +
-                ", link=" + link +
-                '}';
-    }
 }
