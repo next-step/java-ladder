@@ -2,8 +2,9 @@ package ladder.player.domain;
 
 import java.util.Objects;
 
+import static ladder.Application.END_CONDITION;
+
 public class Player {
-    private static final String BANNED_NAME = "all";
     private static final int NAME_LENGTH_START = 0;
     private static final int NAME_LENGTH_LIMIT = 5;
 
@@ -18,7 +19,7 @@ public class Player {
     }
 
     private String trimAndValidate(String name) {
-        if (BANNED_NAME.equalsIgnoreCase(name)) {
+        if (END_CONDITION.equalsIgnoreCase(name)) {
             throw new BannedNameException();
         }
         if (name.length() > NAME_LENGTH_LIMIT) {
