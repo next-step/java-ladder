@@ -16,7 +16,7 @@ class LineTest {
         assertThat(line).isEqualTo(anotherLine);
     }
 
-    @DisplayName("같은 높이의 이전 라인이 열결되어 있으면 현재 라인은 연결 될 수 없다")
+    @DisplayName("같은 높이에 있는 이전 라인이 열결되어 있으면 현재 라인은 연결 될 수 없다")
     @Test
     public void newLineOnConditionOfBeforeLine() {
         Line prevLine = Line.of(1, true);

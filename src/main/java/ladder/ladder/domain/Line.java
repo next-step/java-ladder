@@ -44,11 +44,4 @@ public class Line {
         return Objects.hash(height, link);
     }
 
-    @Override
-    public String toString() {
-        return "Line{" +
-                "height=" + height +
-                ", link=" + link +
-                '}';
-    }
 }

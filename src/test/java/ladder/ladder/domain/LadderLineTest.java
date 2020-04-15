@@ -3,9 +3,9 @@ package ladder.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderLineTest {
@@ -15,7 +15,7 @@ class LadderLineTest {
     public void ladderLineGetTest() {
         Line firstStubLine = Line.of(0, true);
         Line secondStubLine = Line.of(1, true);
-        List<Line> lines = Arrays.asList(firstStubLine, secondStubLine);
+        List<Line> lines = asList(firstStubLine, secondStubLine);
 
         LadderLine ladderLine = LadderLine.of(lines);
         List<Line> existingLines = ladderLine.getLines();

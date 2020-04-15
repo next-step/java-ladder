@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
-    private List<Line> lines;
+
+    private final List<Line> lines;
 
     private LadderLine(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static LadderLine of(List<Line> lines) {
-        return new LadderLine(lines);
+    public static LadderLine of(List<Line> firstLadderLine) {
+        return new LadderLine(firstLadderLine);
     }
 
     public List<Line> getLines() {
@@ -31,10 +32,4 @@ public class LadderLine {
         return Objects.hash(lines);
     }
 
-    @Override
-    public String toString() {
-        return "LadderLine{" +
-                "lines=" + lines +
-                '}';
-    }
 }
