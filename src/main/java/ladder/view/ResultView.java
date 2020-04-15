@@ -46,8 +46,8 @@ public class ResultView {
                 .collect(Collectors.joining(NODE, EMPTY, NODE)));
     }
 
-    public static void printResult(List<NodeResult> nodeResults) {
+    public static void printResult(LadderReward ladderReward) {
         System.out.println(RESULT_MESSAGE);
-        nodeResults.forEach(nodeResult -> System.out.println(nodeResult.toString()));
+        System.out.println(ladderReward.toString());
     }
 }

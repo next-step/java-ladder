@@ -28,9 +28,9 @@ public class Nodes {
         }));
     }
 
-    public List<NodeResult> matchRewards(LadderRewards rewards) {
-        return nodes.stream()
-                .map(node -> NodeResult.of(node, rewards.getReward(node.getPosition())))
-                .collect(Collectors.toList());
+    public LadderGameResults matchRewards(LadderRewards rewards) {
+        return LadderGameResults.of(nodes.stream()
+                .collect(Collectors.toMap(Node::getUser,
+                        node -> rewards.getReward(node.getPosition()))));
     }
 }

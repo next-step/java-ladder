@@ -17,8 +17,8 @@ public class LadderGameController {
 
         ResultView.print(ladderGame, ladderRewards);
 
-        LadderGameResults ladderGameResults = ladderGame.start(ladderRewards);
+        LadderGameResults ladderGameResults= ladderGame.start(ladderRewards);
         String result = InputView.inputResult();
-        ResultView.printResult(ladderGameResults.getNodeResults(result));
+        ResultView.printResult(ladderGameResults.getResult(result));
     }
 }

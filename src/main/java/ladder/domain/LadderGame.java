@@ -18,7 +18,7 @@ public class LadderGame {
 
     public LadderGameResults start(LadderRewards rewards) {
         Nodes nodes = ladder.exec(users);
-        return LadderGameResults.of(nodes.matchRewards(rewards));
+        return nodes.matchRewards(rewards);
     }
 
     public List<User> getUsers() {
