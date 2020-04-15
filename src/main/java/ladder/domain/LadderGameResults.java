@@ -1,28 +1,24 @@
 package ladder.domain;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Map;
 
 public class LadderGameResults {
-    private static final String ALL = "all";
+    private final Map<User, LadderReward> results;
 
-    private final List<NodeResult> nodeResults;
-
-    public static LadderGameResults of(List<NodeResult> nodeResults) {
-        return new LadderGameResults(nodeResults);
+    public static LadderGameResults of(Map<User, LadderReward> results) {
+        return new LadderGameResults(results);
     }
 
-    private LadderGameResults(List<NodeResult> nodeResults) {
-        this.nodeResults = Collections.unmodifiableList(nodeResults);
+    private LadderGameResults(Map<User, LadderReward> results) {
+        this.results = Collections.unmodifiableMap(results);
     }
 
-    public List<NodeResult> getNodeResults(String userName) {
-        if (ALL.equals(userName)) {
-            return nodeResults;
-        }
-        return Collections.singletonList(nodeResults.stream()
-                .filter(nodeResult -> nodeResult.matchUser(User.of(userName)))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new));
+    public LadderReward getResult(String userName) {
+        return results.get(User.of(userName));
+    }
+
+    public Map<User, LadderReward> getResults() {
+        return results;
     }
 }
