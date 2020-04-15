@@ -34,7 +34,7 @@ public class ImprovingPoint {
         return new ImprovingPoint(index + CHANGE_INDEX, direction.last());
     }
 
-    public static ImprovingPoint first(Boolean right) {
+    public static ImprovingPoint first(boolean right) {
         return new ImprovingPoint(0, Direction.first(right));
     }
 
