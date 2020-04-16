@@ -20,8 +20,9 @@ public class LadderGame {
     public int userClaim(String name) {
         User user = users.findUserByName(name);
         for (Line line : ladderMap.toList()) {
-
+            SteerRule steerRule = line.steerWay(user.position());
+            user.move(steerRule);
         }
-        return 0;
+        return user.position();
     }
 }
