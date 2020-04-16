@@ -7,30 +7,29 @@ import java.util.stream.Collectors;
 
 public class Climber {
 
-    private Users users;
+    private final LadderMap ladderMap;
+    private final Users users;
 
-    private Climber(String userNames) {
+    private Climber(String userNames, int height) {
         this.users = Users.of(userNames);
-    }
-
-    public static Climber of(String userNames) {
-        return new Climber(userNames);
-    }
-
-    public LadderMap createLadder(int height) {
         CrossRoadStrategy halfPercentCreate = () -> new Random().nextInt(10) >= 5;
-        return LadderMap.of(users, height, halfPercentCreate);
+        this.ladderMap =  LadderMap.of(users, height, halfPercentCreate);
+    }
+
+    public static Climber of(String userNames, int height) {
+        return new Climber(userNames, height);
+    }
+
+    public LadderMap targetLadder() {
+        return ladderMap;
     }
 
     public Reward offerPrize(String rewards) {
         return Reward.of(rewards, users.size());
     }
 
-    public List<String> getUserNames() {
-        return users.toList()
-                .stream()
-                .map(User::getName)
-                .collect(Collectors.toList());
+    public List<String> participantNames() {
+        return users.participantNames();
     }
 
     public List<List<Boolean>> getLadderMapList(LadderMap ladderMap) {

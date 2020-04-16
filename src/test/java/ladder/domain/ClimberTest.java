@@ -31,10 +31,10 @@ public class ClimberTest {
 
 
     @Test
-    void getUserNameTest() {
+    void participantNamesTest() {
         Climber climber = Climber.of("pobi,honux,crong,jk", 4);
 
-        assertThat(climber.getUserNames()).hasSize(4);
+        assertThat(climber.participantNames()).hasSize(4);
     }
 
     @Test

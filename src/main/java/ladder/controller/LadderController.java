@@ -24,15 +24,16 @@ public class LadderController {
 
     public void climbLadder() {
         String userNames = inputView.userNamesReader();
-        this.climber = Climber.of(userNames);
 
         String rewards = inputView.rewardReader();
         Reward reward = climber.offerPrize(rewards);
 
         int ladderHeight = inputView.ladderHeightReader();
-        LadderMap ladderMap = climber.createLadder(ladderHeight);
+        this.climber = Climber.of(userNames, ladderHeight);
 
-        List<String> climberNameList = climber.getUserNames();
+        LadderMap ladderMap = climber.targetLadder();
+
+        List<String> climberNameList = climber.participantNames();
         List<List<Boolean>> ladderMapList = climber.getLadderMapList(ladderMap);
         List<String> rewardList = climber.getRewards(reward);
 

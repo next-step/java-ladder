@@ -6,6 +6,7 @@ import ladder.LadderUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users {
 
@@ -36,6 +37,14 @@ public class Users {
                 .findFirst()
                 .orElseThrow(() -> new NotFoundUserByNameException(name + " 유저를 찾을 수 없습니다."));
     }
+
+    public List<String> participantNames() {
+        return users
+                .stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
+    }
+
     public int size() {
         return users.size();
     }
