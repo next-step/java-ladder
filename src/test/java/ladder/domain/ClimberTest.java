@@ -15,15 +15,15 @@ public class ClimberTest {
     @ParameterizedTest
     @CsvSource(value = {"pobi,honux,crong,jk:4", "pobi,honux,crong:3", "pobi,honux:2"}, delimiter = ':')
     void createLadderMapTest(String input, String expected) {
-        Climber climber = Climber.of(input);
-        LadderMap ladderMap = climber.createLadder(4);
+        Climber climber = Climber.of(input, 4);
+        LadderMap ladderMap = climber.targetLadder();
 
         assertThat(ladderMap.toList()).hasSize(4);
     }
 
     @Test
     void offerPrizeTest() {
-        Climber climber = Climber.of("pobi,honux,crong,jk");
+        Climber climber = Climber.of("pobi,honux,crong,jk", 4);
         Reward reward = climber.offerPrize("꽝,5000,꽝,3000");
 
         assertThat(reward.toList()).hasSize(4);
@@ -32,17 +32,17 @@ public class ClimberTest {
 
     @Test
     void getUserNameTest() {
-        Climber climber = Climber.of("pobi,honux,crong,jk");
+        Climber climber = Climber.of("pobi,honux,crong,jk", 4);
 
         assertThat(climber.getUserNames()).hasSize(4);
     }
 
     @Test
     void getLadderMapListTest() {
-        Climber climber = Climber.of("pobi,honux,crong,jk");
-        LadderMap ladderMap = climber.createLadder(4);
+        Climber climber = Climber.of("pobi,honux,crong,jk", 4);
+        LadderMap ladderMap = climber.targetLadder();
 
-        assertThat(climber.getLadderMapList(ladderMap)).isInstanceOf(List.class);
+        assertThat(ladderMap.toList()).isInstanceOf(List.class);
 
         climber.getLadderMapList(ladderMap).stream()
                 .flatMap(Collection::stream)
@@ -53,7 +53,7 @@ public class ClimberTest {
 
     @Test
     void getRewardTest() {
-        Climber climber = Climber.of("pobi,honux,crong,jk");
+        Climber climber = Climber.of("pobi,honux,crong,jk", 4);
         Reward reward = climber.offerPrize("꽝,5000,꽝,3000");
 
         assertThat(climber.getRewards(reward)).hasSize(4);

@@ -1,10 +1,7 @@
 package ladder.controller;
 
 
-import ladder.domain.Climber;
-import ladder.domain.LadderMap;
-import ladder.domain.Line;
-import ladder.domain.Reward;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -40,5 +37,13 @@ public class LadderController {
         List<String> rewardList = climber.getRewards(reward);
 
         outputView.printLadderResult(climberNameList, ladderMapList, rewardList);
+
+        while (true) {
+            String userName = inputView.userNamesReader();
+
+            if (userName.equals("all"))  {
+
+            }
+        }
     }
 }
