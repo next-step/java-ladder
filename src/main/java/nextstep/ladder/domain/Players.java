@@ -28,4 +28,12 @@ public class Players {
   public List<Player> getPlayers() {
     return Collections.unmodifiableList(players);
   }
+
+  public void ride(Ladder ladder) {
+
+  }
+
+  public ResultSheet produceResult(Ladder ladder, PrizeSheet prizeSheet) {
+    return null;
+  }
 }

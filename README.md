@@ -11,46 +11,44 @@
 ## 구현 설계
 
 ### Domain
-- Position class
-  - int position property
-  - isAdjacent method
-  - isFirst method : void -> boolean
-  - getLeft method : void -> Position
+- Direction class
+  - boolean left property
+  - boolean right property
+  
+- Point class
+  - int index property
+  - Direction direction property
   
 - Name class
   - String name property
   
 - Player class
-  - Position position property
   - Name name property
-  - isAdjacent method : Player -> boolean
+  - int position property
+  - ride method : Ladder -> void
+  - checkPrize method : PrizeSheet -> Prize
   
 - Players class
   - List<Player> players property
+  - ride method : Ladder -> void
+  - produceResult : Ladder, PrizeSheet -> ResultSheet
   
 - LadderLine class
-  - Map<Position, Position> movingRule property
-  - move method : Position -> Position
-  - getWidth method : void -> int
+  - List<Point> points property
+  - move method : int -> int
   
 - Ladder class
   - List<LadderLine> ladderLines property
-  - ride method : Player -> Player
-  - ride method : Players -> Players
+  - move method : int -> int
   
 - Prize class
   - String prize property
   
 - PrizeSheet class
-  - Map<Position, Prize> prizeSheet property
-  - checkPrize method : Player -> Prize
-  - produceResult : Players -> ResultSheet
+  - List<Prize> prizes property
+  - get method : int -> Prize
   
 - ResultSheet class
   - Map<Name, Prize> resultSheet property
   - checkResult method : String -> Prize
   
-- LadderGame class
-  - Ladder ladder property
-  - PrizeSheet prizeSheet property
-  - play method : Players -> ResultSheet

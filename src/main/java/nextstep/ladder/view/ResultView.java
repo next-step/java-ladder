@@ -2,13 +2,10 @@ package nextstep.ladder.view;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.ResultSheet;
-import nextstep.ladder.domain.model.Position;
 
 public class ResultView {
 
@@ -28,10 +25,10 @@ public class ResultView {
     scanner = new Scanner(System.in);
   }
 
-  public void printLadderResult(LadderGame ladderGame, Players players) {
+  public void printLadderResult(Ladder ladder, Players players) {
     printWithNewLine(LADDER_RESULT);
     printNames(players);
-    printLadder(ladderGame.getLadder());
+    printLadder(ladder);
   }
 
   private void printNames(Players players) {
@@ -45,20 +42,9 @@ public class ResultView {
   }
 
   private void printLadderLine(LadderLine ladderLine) {
-    int width = ladderLine.getWidth();
-
-    System.out.println();
-    IntStream.range(0, width)
-        .mapToObj(Position::at)
-        .forEach(position -> drawLineAt(ladderLine, position));
   }
 
-  private void drawLineAt(LadderLine ladderLine, Position position) {
-    Position moved = ladderLine.move(position);
-    String ladderPiece = !position.isFirst() && position.getLeft() == moved ?
-        LADDER_WITH_LEG : LADDER_WITHOUT_LEG;
-
-    System.out.print(ladderPiece);
+  private void drawLineAt(LadderLine ladderLine) {
   }
 
 
