@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
+
 public class LadderGame {
     private GameInfo gameInfo;
     private Ladder ladder;
@@ -9,9 +11,9 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public LadderGame(Users users, Results results, int ladderHeight) {
+    public LadderGame(Users users, Results results, List<LadderLine> lines) {
         gameInfo = new GameInfo(users, results);
-        ladder = new Ladder(users.getCountOfPerson(), ladderHeight);
+        this.ladder = new Ladder(lines);
     }
 
     public GameInfo getGameInfo() {
