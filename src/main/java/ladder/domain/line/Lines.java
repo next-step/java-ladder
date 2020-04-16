@@ -19,6 +19,30 @@ public class Lines {
         }
     }
 
+    public int move(int userPosition) {
+        if (canMoveRight(userPosition)) {
+            return userPosition + 1;
+        }
+        if (canMoveLeft(userPosition)) {
+            return userPosition - 1;
+        }
+        return userPosition;
+    }
+
+    private boolean canMoveLeft(int userPosition) {
+        if (userPosition == 0) {
+            return false;
+        }
+        return lines.get(userPosition).lineValue() == LINE_WIDTH_DASH_NUMBER;
+    }
+
+    private boolean canMoveRight(int userPosition) {
+        if (userPosition == lines.size() -1 ) {
+            return false;
+        }
+        return lines.get(userPosition + 1).lineValue() == LINE_WIDTH_DASH_NUMBER;
+    }
+
     public List<String> showLines() {
         return lines.stream()
                 .map(Line::draw)
