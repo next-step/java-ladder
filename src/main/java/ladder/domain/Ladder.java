@@ -17,6 +17,10 @@ public class Ladder {
         this.lines = generateLines(height, users.size());
     }
 
+    public Ladder(List<Line> lines) {
+        this.lines = new ArrayList<>(lines);
+    }
+
 
     private void validate(int height, int personCount) {
         if (height < MINIMUM_HEIGHT) {
@@ -30,9 +34,9 @@ public class Ladder {
 
     private List<Line> generateLines(int height, int personCount) {
         List<Line> generatedLines = new ArrayList<>();
-        WidthGenerator widthGenerator = new WidthGenerator(personCount);
+
         for (int i = 0; i < height; i++) {
-            generatedLines.add(new Line(widthGenerator.generate()));
+            generatedLines.add(new Line(personCount));
         }
         return new ArrayList<>(generatedLines);
     }
