@@ -3,6 +3,10 @@ package ladder.domain;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,5 +23,22 @@ public class LadderGameTest {
         int result = ladderGame.claimByUser(inputs[1]);
 
         assertThat(result).isEqualTo(Integer.parseInt(expected));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi,honux,crong,jk", "pobi,honux,crong", "pobi,honux"})
+    void claimAllTest(String input) {
+        String[] inputs = input.split(" ");
+        Users users = Users.of(inputs[0]);
+        LadderMap ladderMap = LadderMap.of(users, 4, () -> true);
+
+        LadderGame ladderGame = LadderGame.of(users, ladderMap);
+        List<User> claimAllList = ladderGame.claimAll();
+
+        List<Integer> result = claimAllList.stream()
+                .map(User::position)
+                .collect(Collectors.toList());
+
+        assertThat(result).hasSize(4).containsAnyOf(0, 1, 2, 3);
     }
 }
