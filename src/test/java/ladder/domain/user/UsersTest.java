@@ -25,14 +25,5 @@ public class UsersTest {
         for (int i = 0; i < users.countOfUser(); i++) {
             assertThat(users.showUsers().get(i).userName()).isEqualTo(names[i]);
         }
-
-    }
-
-    @Test
-    void c() {
-        String names= "pobi,honux,crong,jk";
-        Users user = new Users(names);
-//        assertThat(user.showLine().size()).isEqualTo(4);
-//        assertThat(user.showLine()).containsExactly("pobi","honux","crong","jk");
     }
 }
