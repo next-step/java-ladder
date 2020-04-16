@@ -3,7 +3,6 @@ package ladder;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class Direction {
     private final boolean left;
@@ -27,9 +26,9 @@ public class Direction {
 
     public Direction next(boolean nextRight) {
         if (this.right) {
-            return of(TRUE, FALSE);
+            nextRight = FALSE;
         }
-        return of(FALSE, nextRight);
+        return of(this.right, nextRight);
     }
 
     public Direction last() {
