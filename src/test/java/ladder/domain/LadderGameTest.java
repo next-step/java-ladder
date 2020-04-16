@@ -5,8 +5,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,17 +30,21 @@ public class LadderGameTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi,honux,crong,jk", "pobi,honux,crong", "pobi,honux"})
     void claimAllTest(String input) {
-        String[] inputs = input.split(" ");
-        Users users = Users.of(inputs[0]);
+        Users users = Users.of(input);
         LadderMap ladderMap = LadderMap.of(users, 4, () -> true);
 
         LadderGame ladderGame = LadderGame.of(users, ladderMap);
-        List<User> claimAllList = ladderGame.claimAll();
+        Users claimAllUsers = ladderGame.claimAll();
 
-        List<Integer> result = claimAllList.stream()
+        List<Integer> result = claimAllUsers.toList().stream()
                 .map(User::position)
                 .collect(Collectors.toList());
 
-        assertThat(result).hasSize(4).containsAnyOf(0, 1, 2, 3);
+        int resultSize = input.split(",").length;
+        Integer[] expectedResultIndex = IntStream.range(0, resultSize).boxed().toArray(Integer[]::new);
+
+        assertThat(result)
+                .hasSize(resultSize)
+                .containsOnlyOnce(expectedResultIndex);
     }
 }
