@@ -17,7 +17,7 @@ public class LadderGame {
         return new LadderGame(users, ladderMap);
     }
 
-    public int userClaim(String name) {
+    public int claimByUser(String name) {
         User user = users.findUserByName(name);
         for (Line line : ladderMap.toList()) {
             SteerRule steerRule = line.steerWay(user.position());
