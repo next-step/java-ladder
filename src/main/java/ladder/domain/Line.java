@@ -50,7 +50,7 @@ public class Line {
             return SteerRule.RIGHT;
         }
 
-        if (position > 0 && movable(position-1)) {
+        if (position > 0 && movable(position - 1)) {
             return SteerRule.LEFT;
         }
 

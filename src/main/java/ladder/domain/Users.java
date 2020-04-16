@@ -12,7 +12,6 @@ public class Users {
     private final List<User> users;
 
     private Users(String uesrNames) {
-        minimumUserException(uesrNames);
         this.users = readyToUsers(uesrNames);
     }
 
@@ -31,17 +30,11 @@ public class Users {
         return player;
     }
 
-    private void minimumUserException(String userNames) {
-        if (userNames.trim().isEmpty()) {
-            throw new MinimumUserException(userNames + "is empty");
-        }
-    }
-
     public User findUserByName(String name) {
         return users.stream()
                 .filter(user -> user.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new notFoundUserByNameException(name + " 유저를 찾을 수 없습니다."));
+                .orElseThrow(() -> new NotFoundUserByNameException(name + " 유저를 찾을 수 없습니다."));
     }
     public int size() {
         return users.size();

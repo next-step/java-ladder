@@ -4,7 +4,6 @@ package ladder.domain;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -40,14 +39,6 @@ public class UsersTest {
         assertThat(users.toList())
                 .hasSize(4)
                 .contains(User.of("pobi", position));
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"", "pobi"})
-    void underTwoUsersExceptionTest(String input) {
-        assertThatExceptionOfType(MinimumUserException.class).isThrownBy(() -> {
-            Users.of(input);
-        });
     }
 
     @Test
@@ -86,7 +77,7 @@ public class UsersTest {
     void notFoundUserByNameExceptionTest() {
         Users users = Users.of("pobi,honux,crong,jk");
 
-        assertThatExceptionOfType(notFoundUserByNameException.class).isThrownBy(() -> {
+        assertThatExceptionOfType(NotFoundUserByNameException.class).isThrownBy(() -> {
             users.findUserByName("noUser");
         });
     }
