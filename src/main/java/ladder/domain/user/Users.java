@@ -27,6 +27,18 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
+    public int findUserPosition(String name) {
+        return hasNameValidator(name);
+    }
+
+    private int hasNameValidator(String name) {
+        int position = users.indexOf(new User(name));
+        if(position == -1) {
+            throw new IllegalArgumentException("입력한 이름은 존재하지 않습니다.");
+        }
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

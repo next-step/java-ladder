@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UsersTest {
     private Users users;
@@ -17,6 +18,14 @@ public class UsersTest {
     @Test
     void createUsersTest() {
         assertThat(users.showUsers().size()).isEqualTo(4);
+    }
+
+    @Test
+    void findUserPosition() {
+        String name ="peter";
+        assertThat(users.findUserPosition(name)).isEqualTo(0);
+        assertThat(users.findUserPosition("ethan")).isEqualTo(2);
+        assertThatThrownBy(() ->users.findUserPosition("12")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
