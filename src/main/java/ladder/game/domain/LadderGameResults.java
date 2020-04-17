@@ -18,16 +18,18 @@ public class LadderGameResults {
         return new LadderGameResults(ladderGameResults);
     }
 
-    public Map<Player, Prize> getLadderGameResults() {
-        return ladderGameResults;
-    }
-
-    public Map<Player, Prize> getSpecificWinner(String requestWinners) {
+    public Map<Player, Prize> getSpecificPlayerResult(String specificPlayer) {
         Map<Player, Prize> results = new HashMap<>();
-        Player player = Player.of(requestWinners);
-        Prize prizeOfSpecificWinner = ladderGameResults.getOrDefault(Player.of(requestWinners),
-                Prize.of(String.format(NO_WINNER, requestWinners)));
-        results.put(player, prizeOfSpecificWinner);
+        Prize defaultPrize = ladderGameResults.getOrDefault(
+                Player.of(specificPlayer),
+                Prize.of(String.format(NO_WINNER, specificPlayer)));
+
+        results.put(Player.of(specificPlayer), defaultPrize);
         return results;
     }
+
+    public Map<Player, Prize> getAllPlayersResult() {
+        return new HashMap<>(ladderGameResults);
+    }
+
 }

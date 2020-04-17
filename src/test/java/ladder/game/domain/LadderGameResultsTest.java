@@ -34,22 +34,28 @@ class LadderGameResultsTest {
     @DisplayName("모든 참여자, 결과가 매핑된 결과를 알 수 있다.")
     @Test
     public void getLadderGameResultsTest() {
-        LadderGameResults thisGameResults = LadderGameResults.of(ladderGameResults);
+        Map<Player, Prize> gameResults = new HashMap<>();
+        gameResults.put(player1, prize2);
+        gameResults.put(player2, prize1);
 
-        assertThat(thisGameResults.getLadderGameResults()).satisfies(target -> {
-            assertThat(target).isEqualTo(ladderGameResults);
-            assertThat(target).containsKeys(player1, player2);
-            assertThat(target).containsValues(prize1, prize2);
-        });
+        LadderGameResults ladderGameResults = LadderGameResults.of(gameResults);
+        Map<Player, Prize> allPlayersResult = ladderGameResults.getAllPlayersResult();
+
+        assertThat(gameResults).isEqualTo(allPlayersResult);
     }
 
     @DisplayName("입력받은 참여자 한명의 결과를 알 수 있다.")
     @Test
-    public void test() {
-        LadderGameResults thisGameResults = LadderGameResults.of(ladderGameResults);
+    public void specificPlayersResult() {
+        Map<Player, Prize> gameResults = new HashMap<>();
+        gameResults.put(player1, prize2);
+        gameResults.put(player2, prize1);
 
-        assertThat(thisGameResults.getSpecificWinner("정원"))
-                .containsValue(prize1);
+        LadderGameResults ladderGameResults = LadderGameResults.of(gameResults);
+        Map<Player, Prize> specificPlayerResult = ladderGameResults.getSpecificPlayerResult(player1.getName());
+
+        assertThat(specificPlayerResult.keySet()).containsExactly(player1);
+        assertThat(specificPlayerResult.values()).containsExactly(prize2);
     }
 
 }
