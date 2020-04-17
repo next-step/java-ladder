@@ -27,6 +27,7 @@ public class ClimberTest {
 
     @Test
     void offerPrizeTest() {
+        CrossRoadStrategy crossRoadStrategy = () -> true;
         Climber climber = Climber.of("pobi,honux,crong,jk", crossRoadStrategy);
         Reward reward = climber.offerPrize("꽝,5000,꽝,3000");
 
@@ -35,6 +36,7 @@ public class ClimberTest {
 
     @Test
     void participantNamesTest() {
+        CrossRoadStrategy crossRoadStrategy = () -> true;
         Climber climber = Climber.of("pobi,honux,crong,jk", 4, crossRoadStrategy);
 
         assertThat(climber.participantNames()).hasSize(4);
@@ -42,6 +44,7 @@ public class ClimberTest {
 
     @Test
     void getLadderMapListTest() {
+        CrossRoadStrategy crossRoadStrategy = () -> true;
         Climber climber = Climber.of("pobi,honux,crong,jk", 4, crossRoadStrategy);
         LadderMap ladderMap = climber.targetLadder();
 
@@ -56,6 +59,7 @@ public class ClimberTest {
 
     @Test
     void getRewardTest() {
+        CrossRoadStrategy crossRoadStrategy = () -> true;
         Climber climber = Climber.of("pobi,honux,crong,jk", 4, crossRoadStrategy);
         Reward reward = climber.offerPrize("꽝,5000,꽝,3000");
 
