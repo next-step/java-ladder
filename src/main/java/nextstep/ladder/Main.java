@@ -1,7 +1,9 @@
 package nextstep.ladder;
 
-import java.util.List;
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.PrizeSheet;
+import nextstep.ladder.domain.ResultSheet;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -11,9 +13,14 @@ public class Main {
     ResultView resultView = new ResultView();
 
     Players players = inputView.acceptPlayers();
-    List<String> prizes = inputView.writePrizes();
+    PrizeSheet prizeSheet = inputView.writePrizes();
     int ladderHeight = inputView.askLadderHeight();
 
+    Ladder ladder = new Ladder(ladderHeight, prizeSheet.getSize());
+    resultView.printLadderResult(ladder, players);
+    prizeSheet.print();
 
+    ResultSheet resultSheet = players.produceResult(ladder, prizeSheet);
+    resultView.printWinningResult(resultSheet);
   }
 }

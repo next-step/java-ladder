@@ -1,11 +1,11 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
+  private static final String PLAYER_FORMAT = "%6s";
 
   private List<Player> players;
 
@@ -21,19 +21,25 @@ public class Players {
     );
   }
 
-  public static Players of(List<Player> players) {
-    return new Players(players);
-  }
-
-  public List<Player> getPlayers() {
-    return Collections.unmodifiableList(players);
-  }
-
   public void ride(Ladder ladder) {
-
+    players.forEach(player -> player.ride(ladder));
   }
 
   public ResultSheet produceResult(Ladder ladder, PrizeSheet prizeSheet) {
-    return null;
+    throwIfInvalid(prizeSheet);
+    this.ride(ladder);
+
+    return new ResultSheet(players, prizeSheet);
+  }
+
+  private void throwIfInvalid(PrizeSheet prizeSheet) {
+    if (players.size() != prizeSheet.getSize()) {
+      throw new IllegalArgumentException("선수의 수와 상의 개수가 같아야합니다.");
+    }
+  }
+
+  public void print() {
+    players.forEach(player -> System.out.printf(PLAYER_FORMAT, player.getName()));
+    System.out.println();
   }
 }

@@ -14,10 +14,14 @@
 - Direction class
   - boolean left property
   - boolean right property
+  - isRight method : void -> boolean
+  - isLeft method : void -> boolean
   
 - Point class
   - int index property
   - Direction direction property
+  - move method : void -> int
+  - hasLeftLeg : void -> boolean
   
 - Name class
   - String name property
@@ -26,29 +30,34 @@
   - Name name property
   - int position property
   - ride method : Ladder -> void
-  - checkPrize method : PrizeSheet -> Prize
   
 - Players class
   - List<Player> players property
   - ride method : Ladder -> void
   - produceResult : Ladder, PrizeSheet -> ResultSheet
-  
+  - print method : void -> void
+
 - LadderLine class
   - List<Point> points property
   - move method : int -> int
+  - print method : void -> void
   
 - Ladder class
   - List<LadderLine> ladderLines property
   - move method : int -> int
+  - print method : void -> void
   
 - Prize class
   - String prize property
   
 - PrizeSheet class
   - List<Prize> prizes property
+  - getSize method : void -> int
   - get method : int -> Prize
+  - print method : void -> void
   
 - ResultSheet class
-  - Map<Name, Prize> resultSheet property
+  - Map<String, Prize> resultSheet property
   - checkResult method : String -> Prize
+  - print method : void -> void
   

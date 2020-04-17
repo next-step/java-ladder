@@ -6,6 +6,9 @@ import nextstep.ladder.domain.model.LadderGenerationRule;
 import nextstep.ladder.domain.model.Point;
 
 public class LadderLine {
+  private static final String LADDER_WITH_LEG = "-----|";
+  private static final String LADDER_WITHOUT_LEG = "     |";
+
   private final List<Point> points;
 
   public LadderLine(List<Point> points) {
@@ -41,6 +44,14 @@ public class LadderLine {
   private static void initFirst(List<Point> points, LadderGenerationRule rule) {
     Point point = Point.first(rule.generate()); // point generater
     points.add(point);
+  }
+
+  public void print() {
+    points.forEach(point -> {
+      String ladderStep = point.hasLeftLeg() ? LADDER_WITH_LEG :LADDER_WITHOUT_LEG;
+      System.out.print(ladderStep);
+    });
+    System.out.println();
   }
 
   @Override

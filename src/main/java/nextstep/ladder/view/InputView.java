@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.PrizeSheet;
 
 public class InputView {
 
@@ -28,12 +29,12 @@ public class InputView {
     return Players.withNames(names);
   }
 
-  public List<String> writePrizes() {
+  public PrizeSheet writePrizes() {
     printWithNewLine(PRIZE_QUESTION);
     String prizeInput = scanner.nextLine();
 
     return Arrays.stream(prizeInput.split(DELIMITER))
-        .collect(Collectors.toList());
+        .collect(Collectors.collectingAndThen(Collectors.toList(), PrizeSheet::new));
   }
 
   public int askLadderHeight() {

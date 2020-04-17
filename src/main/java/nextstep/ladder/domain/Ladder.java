@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -16,11 +15,13 @@ public class Ladder {
         .collect(Collectors.toList());
   }
 
-  public List<LadderLine> getLadderLines() {
-    return Collections.unmodifiableList(ladderLines);
+  public int move(int position) {
+    return ladderLines.stream()
+        .reduce(position, (stopover, ladderLine) -> ladderLine.move(stopover), Integer::sum);
   }
 
-  public int move(int position) {
-    return 0;
+  public void print() {
+    ladderLines.forEach(LadderLine::print);
+    System.out.println();
   }
 }

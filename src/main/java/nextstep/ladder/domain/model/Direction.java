@@ -15,7 +15,6 @@ public class Direction {
 
     this.left = left;
     this.right = right;
-    System.out.println(this);
   }
 
   public boolean isRight() {
@@ -34,7 +33,7 @@ public class Direction {
     if (this.right) {
       return next(FALSE);
     }
-    // 여기 ??
+
     return next(rule.generate());
   }
 

@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.model.Name;
-import nextstep.ladder.domain.model.Prize;
 
 public class Player {
   private Name name;
@@ -21,10 +20,6 @@ public class Player {
   }
 
   public void ride(Ladder ladder) {
-
-  }
-
-  public Prize checkPrize(PrizeSheet prizeSheet) {
-    return null;
+    position = ladder.move(position);
   }
 }
