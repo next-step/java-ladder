@@ -22,10 +22,8 @@ public class Prizes {
         return prizes.size();
     }
 
-    public List<String> getPrizeNames() {
-        return prizes.stream()
-                .map(Prize::getPrize)
-                .collect(toList());
+    public List<Prize> getPrizes() {
+        return prizes;
     }
 
     public Prize getPrize(int resultIndex) {
