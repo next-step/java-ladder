@@ -65,36 +65,4 @@ public class ClimberTest {
 
         assertThat(climber.getRewards(reward)).hasSize(4);
     }
-
-    @ParameterizedTest
-    @CsvSource(value = {"pobi,honux,crong,jk pobi:0", "pobi,honux,crong crong:2", "pobi,honux pobi:0"}, delimiter = ':')
-    void claimByUserTest(String input, String expected) {
-        String[] inputs = input.split(" ");
-        CrossRoadStrategy crossRoadStrategy = () -> true;
-        Climber climber = Climber.of(inputs[0], 4, crossRoadStrategy);
-
-        int result = climber.claimByUser(inputs[1]);
-
-        assertThat(result).isEqualTo(Integer.parseInt(expected));
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"pobi,honux,crong,jk", "pobi,honux,crong", "pobi,honux"})
-    void claimAllTest(String input) {
-        CrossRoadStrategy crossRoadStrategy = () -> true;
-        Climber climber = Climber.of(input, 4, crossRoadStrategy);
-
-        Users claimAllUsers = climber.claimAll();
-
-        List<Integer> result = claimAllUsers.toList().stream()
-                .map(User::position)
-                .collect(Collectors.toList());
-
-        int resultSize = input.split(",").length;
-        Integer[] expectedResultIndex = IntStream.range(0, resultSize).boxed().toArray(Integer[]::new);
-
-        assertThat(result)
-                .hasSize(resultSize)
-                .containsOnlyOnce(expectedResultIndex);
-    }
 }
