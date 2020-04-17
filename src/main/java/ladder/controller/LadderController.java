@@ -46,7 +46,7 @@ public class LadderController {
             String userName = inputView.userNamesReader();
 
             if (userName.equals("all"))  {
-                Users users = climber.claimAll();
+                List<User> users = climber.climbAll();
             }
         }
     }

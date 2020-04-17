@@ -8,10 +8,12 @@ public class Climber {
 
     private final LadderMap ladderMap;
     private final Users users;
+    private final LadderGame ladderGame;
 
     private Climber(String userNames, int height, CrossRoadStrategy crossRule) {
         this.users = Users.of(userNames);
         this.ladderMap =  LadderMap.of(users, height, crossRule);
+        this.ladderGame = LadderGame.of(users, ladderMap);
     }
 
     public static Climber of(String userNames, int height, CrossRoadStrategy crossRule) {
@@ -26,20 +28,13 @@ public class Climber {
         return Reward.of(rewards, users.size());
     }
 
-    public int claimByUser(String name) {
-        User user = users.findUserByName(name);
-        for (Line line : ladderMap.toList()) {
-            SteerRule steerRule = line.steerWay(user.position());
-            user.move(steerRule);
-        }
-        return user.position();
+    public int climbByUser(String name) {
+        return ladderGame.claimByUser(name);
     }
 
-    public Users claimAll() {
-        for (User user : users.toList()) {
-            claimByUser(user.getName());
-        }
-        return users;
+    public List<User> climbAll() {
+        Users climbResultUser = ladderGame.claimAll();
+        return climbResultUser.toList();
     }
 
     public List<String> participantNames() {
