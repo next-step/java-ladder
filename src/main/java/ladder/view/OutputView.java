@@ -13,6 +13,7 @@ public class OutputView {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String GAME_END_WORD = "all";
     private static final String GAME_RESULT = "실행 결과";
+    public static final String NOT_FOUND_USER = "존재하지않는 사용자입니다";
 
     public static void printNames(Users users) {
         StringBuilder sb = new StringBuilder();
@@ -54,9 +55,9 @@ public class OutputView {
         System.out.println(GAME_RESULT);
 
         if (result == null) {
-            System.out.println("존재하지않는 사용자입니다");
+            result = NOT_FOUND_USER;
         }
-        System.out.println(gameResult.get(userName));
+        System.out.println(result);
     }
 
     public static void printResult(GameResult gameResult) {
