@@ -26,6 +26,22 @@ public class Climber {
         return Reward.of(rewards, users.size());
     }
 
+    public int claimByUser(String name) {
+        User user = users.findUserByName(name);
+        for (Line line : ladderMap.toList()) {
+            SteerRule steerRule = line.steerWay(user.position());
+            user.move(steerRule);
+        }
+        return user.position();
+    }
+
+    public Users claimAll() {
+        for (User user : users.toList()) {
+            claimByUser(user.getName());
+        }
+        return users;
+    }
+
     public List<String> participantNames() {
         return users.participantNames();
     }
