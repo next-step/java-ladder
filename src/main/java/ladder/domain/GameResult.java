@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GameResult {
     private static final String USER_GOALS_COUNTS_SHOULD_SAME = "사용자와 사다리결과 숫자는 같아야합니다.";
     public static final String NOT_FOUND_USER = "검색 결과가 없습니다.";
@@ -7,12 +10,22 @@ public class GameResult {
     private Users users;
     private LadderGoals ladderGoals;
     private Ladder ladder;
+    private Map<String, String> results;
 
     public GameResult(Users users, Ladder ladder, LadderGoals ladderGoals) {
-        validateUsers(users, ladderGoals);
+        this.results = new HashMap<>();
+        initGame(users, ladder, ladderGoals);
         this.users = users;
         this.ladder = ladder;
         this.ladderGoals = ladderGoals;
+    }
+
+    private void initGame(Users users, Ladder ladder, LadderGoals ladderGoals) {
+        validateUsers(users, ladderGoals);
+        for (int i = 0; i < users.size(); i++) {
+            int result = ladder.move(i);
+            results.put(users.getUserName(i), ladderGoals.getResult(result));
+        }
     }
 
     private void validateUsers(Users users, LadderGoals ladderGoals) {
@@ -31,6 +44,14 @@ public class GameResult {
             index += line.move(index);
         }
         return ladderGoals.getResult(index);
+    }
+
+    public String get(String playerName) {
+        return results.get(playerName);
+    }
+
+    public Map<String, String> getAll() {
+        return new HashMap<>(results);
     }
 
     public Users getUsers() {

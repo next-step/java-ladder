@@ -41,6 +41,13 @@ public class Ladder {
         return new ArrayList<>(generatedLines);
     }
 
+    public int move(int position) {
+        for (Line line : lines) {
+            position += line.move(position);
+        }
+        return position;
+    }
+
     public List<Line> getLines() {
         return new ArrayList<>(lines);
     }

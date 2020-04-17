@@ -2,6 +2,8 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.Map;
+
 public class OutputView {
     private static final String TAB = "    ";
     private static final String WIDTH_DRAW_SUCCESS = "-----";
@@ -9,6 +11,8 @@ public class OutputView {
     private static final String VERTICAL = "|";
     private static final String BLANK = " ";
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String GAME_END_WORD = "all";
+    private static final String GAME_RESULT = "실행 결과";
 
     public static void printNames(Users users) {
         StringBuilder sb = new StringBuilder();
@@ -46,6 +50,26 @@ public class OutputView {
             sb.append(ladderGoals.getResult(i) + TAB);
         }
         System.out.println(sb.toString());
+    }
+
+    public static void printGameResult(GameResult gameResult) {
+        String userName = "";
+        while (!(userName = InputView.askLadderWinner()).equals(GAME_END_WORD)) {
+            OutputView.printResult(gameResult, userName);
+        }
+        OutputView.printResult(gameResult);
+    }
+
+    public static void printResult(GameResult gameResult, String userName) {
+        System.out.println(GAME_RESULT);
+        System.out.println(gameResult.get(userName));
+    }
+
+    public static void printResult(GameResult gameResult) {
+        System.out.println(GAME_RESULT);
+        gameResult.getAll().forEach((name, goal) -> {
+            System.out.println(name + " : " + goal);
+        });
     }
 
     /**

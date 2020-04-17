@@ -14,10 +14,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameResultTest {
     private LadderGoals ladderGoals;
     private Users users;
+    private GameResult ladderGame;
 
     @BeforeEach
     void setUp() {
         ladderGoals = new GoalsGenerator("5000, 꽝").generate();
+
+        List<Boolean> width1 = Arrays.asList(true, false);
+        List<Boolean> width2 = Arrays.asList(true, false);
+        Line line1 = new Line(width1.size(), new WidthGenerator(width1));
+        Line line2 = new Line(width2.size(), new WidthGenerator(width2));
+
+        List<Line> lines = Arrays.asList(line1, line2);
+        Ladder ladder = new Ladder(lines);
+
+        ladderGame = new GameResult(twoUsers(), ladder , ladderGoals );
     }
 
     @DisplayName("사다리의 골과 사용자 숫자가 일치하는지 테스트")

@@ -8,10 +8,10 @@ public class Users {
     private final List<User> users;
 
     public Users(final List<User> users) {
-        this.users = validate(users);
+        this.users = validateUsers(users);
     }
 
-    public List<User> validate(final List<User> users) {
+    public List<User> validateUsers(final List<User> users) {
         if (users.isEmpty()) {
             throw new IllegalArgumentException("빈 값이 될 수 없습니다.");
         }

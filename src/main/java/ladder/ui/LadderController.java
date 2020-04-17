@@ -22,7 +22,9 @@ public class LadderController {
         OutputView.printNames(gameResult.getUsers());
         OutputView.printLadder(gameResult.getLadder());
         OutputView.printGoals(gameResult.getLadderGoals());
+        OutputView.printGameResult(gameResult);
     }
+
 
     private Users getUsers(String user) {
         UserGenerator userGenerator = new UserGenerator(user);
