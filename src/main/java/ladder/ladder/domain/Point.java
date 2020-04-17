@@ -1,4 +1,4 @@
 package ladder.ladder.domain;
 
-public interface LinkStrategy {
+public class Point {
 }
