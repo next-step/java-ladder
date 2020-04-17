@@ -36,10 +36,6 @@ public class Line {
         return new ArrayList<>(widthLines);
     }
 
-    public List<Boolean> getWidthLines() {
-        return widthLines;
-    }
-
     public int move(int index) {
         if (isLeft(index)) {
             return -1;
@@ -48,6 +44,10 @@ public class Line {
             return 1;
         }
         return 0;
+    }
+
+    public List<Boolean> getWidthLines() {
+        return widthLines;
     }
 
     private boolean isLeft(int index) {

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Users {
+    private static final String REQUIRE_USERS = "사용자의 값이 입력되어야합니다";
     private final List<User> users;
 
     public Users(final List<User> users) {
@@ -13,7 +14,7 @@ public class Users {
 
     public List<User> validateUsers(final List<User> users) {
         if (users.isEmpty()) {
-            throw new IllegalArgumentException("빈 값이 될 수 없습니다.");
+            throw new IllegalArgumentException(REQUIRE_USERS);
         }
         return new ArrayList<>(users);
     }

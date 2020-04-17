@@ -12,18 +12,18 @@ public class LadderGoals {
         this.result = result;
     }
 
-    private void validateResult(Map<Integer, String> result) {
-        if (result.isEmpty()) {
-            throw new IllegalArgumentException(INPUT_LADDER_RESULT);
-        }
-    }
-
     public String getResult(int index) {
         return result.get(index);
     }
 
     public int size() {
         return result.size();
+    }
+
+    private void validateResult(Map<Integer, String> result) {
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException(INPUT_LADDER_RESULT);
+        }
     }
 
     @Override

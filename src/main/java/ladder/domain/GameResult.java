@@ -20,6 +20,18 @@ public class GameResult {
         this.ladderGoals = ladderGoals;
     }
 
+    public String findPlayerGoal(String name) {
+        int index = users.index(name);
+        if (index == -1) {
+            throw new IllegalArgumentException(NOT_FOUND_USER);
+        }
+
+        for (Line line : ladder.getLines()) {
+            index += line.move(index);
+        }
+        return ladderGoals.getResult(index);
+    }
+
     private void initGame(Users users, Ladder ladder, LadderGoals ladderGoals) {
         validateUsers(users, ladderGoals);
         for (int i = 0; i < users.size(); i++) {
@@ -34,20 +46,8 @@ public class GameResult {
         }
     }
 
-    public String findPlayerGoal(String name) {
-        int index = users.index(name);
-        if (index == -1) {
-            throw new IllegalArgumentException(NOT_FOUND_USER);
-        }
-
-        for (Line line : ladder.getLines()) {
-            index += line.move(index);
-        }
-        return ladderGoals.getResult(index);
-    }
-
-    public String get(String playerName) {
-        return results.get(playerName);
+    public String get(String userName) {
+        return results.get(userName);
     }
 
     public Map<String, String> getAll() {

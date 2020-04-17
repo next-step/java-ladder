@@ -22,6 +22,13 @@ public class Ladder {
     }
 
 
+    public int move(int position) {
+        for (Line line : lines) {
+            position += line.move(position);
+        }
+        return position;
+    }
+
     private void validate(int height, int personCount) {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException(MAXIMUM_HEIGHT_ERROR);
@@ -39,13 +46,6 @@ public class Ladder {
             generatedLines.add(new Line(personCount));
         }
         return new ArrayList<>(generatedLines);
-    }
-
-    public int move(int position) {
-        for (Line line : lines) {
-            position += line.move(position);
-        }
-        return position;
     }
 
     public List<Line> getLines() {

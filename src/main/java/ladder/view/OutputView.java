@@ -32,17 +32,6 @@ public class OutputView {
         System.out.print(sb.toString());
     }
 
-    private static void printLines(StringBuilder sb, Line line) {
-        sb.append(TAB);
-
-        for (Boolean canDrawWidth : line.getWidthLines()) {
-            sb.append(VERTICAL);
-            sb.append(canDrawWidth ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
-        }
-        sb.append(VERTICAL);
-        sb.append(System.lineSeparator());
-    }
-
     public static void printGoals(LadderGoals ladderGoals) {
         StringBuilder sb = new StringBuilder();
 
@@ -61,7 +50,12 @@ public class OutputView {
     }
 
     public static void printResult(GameResult gameResult, String userName) {
+        String result = gameResult.get(userName);
         System.out.println(GAME_RESULT);
+
+        if (result == null) {
+            System.out.println("존재하지않는 사용자입니다");
+        }
         System.out.println(gameResult.get(userName));
     }
 
@@ -70,6 +64,17 @@ public class OutputView {
         gameResult.getAll().forEach((name, goal) -> {
             System.out.println(name + " : " + goal);
         });
+    }
+
+    private static void printLines(StringBuilder sb, Line line) {
+        sb.append(TAB);
+
+        for (Boolean canDrawWidth : line.getWidthLines()) {
+            sb.append(VERTICAL);
+            sb.append(canDrawWidth ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
+        }
+        sb.append(VERTICAL);
+        sb.append(System.lineSeparator());
     }
 
     /**
