@@ -6,6 +6,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 import java.util.List;
+import java.util.Random;
 
 public class LadderController {
 
@@ -29,7 +30,9 @@ public class LadderController {
         Reward reward = climber.offerPrize(rewards);
 
         int ladderHeight = inputView.ladderHeightReader();
-        this.climber = Climber.of(userNames, ladderHeight);
+
+        CrossRoadStrategy halfPercentCreate = () -> new Random().nextInt(10) >= 5;
+        this.climber = Climber.of(userNames, ladderHeight, halfPercentCreate);
 
         LadderMap ladderMap = climber.targetLadder();
 

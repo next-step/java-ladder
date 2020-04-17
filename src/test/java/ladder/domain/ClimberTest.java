@@ -28,7 +28,7 @@ public class ClimberTest {
     @Test
     void offerPrizeTest() {
         CrossRoadStrategy crossRoadStrategy = () -> true;
-        Climber climber = Climber.of("pobi,honux,crong,jk", crossRoadStrategy);
+        Climber climber = Climber.of("pobi,honux,crong,jk",4, crossRoadStrategy);
         Reward reward = climber.offerPrize("꽝,5000,꽝,3000");
 
         assertThat(reward.toList()).hasSize(4);

@@ -9,14 +9,13 @@ public class Climber {
     private final LadderMap ladderMap;
     private final Users users;
 
-    private Climber(String userNames, int height) {
+    private Climber(String userNames, int height, CrossRoadStrategy crossRule) {
         this.users = Users.of(userNames);
-        CrossRoadStrategy halfPercentCreate = () -> new Random().nextInt(10) >= 5;
-        this.ladderMap =  LadderMap.of(users, height, halfPercentCreate);
+        this.ladderMap =  LadderMap.of(users, height, crossRule);
     }
 
-    public static Climber of(String userNames, int height) {
-        return new Climber(userNames, height);
+    public static Climber of(String userNames, int height, CrossRoadStrategy crossRule) {
+        return new Climber(userNames, height, crossRule);
     }
 
     public LadderMap targetLadder() {
