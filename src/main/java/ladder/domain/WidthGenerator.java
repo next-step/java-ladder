@@ -6,8 +6,8 @@ import java.util.List;
 public class WidthGenerator {
     private List<Boolean> widthLines;
 
-    public WidthGenerator(int personCount) {
-        this.widthLines = generate(personCount);
+    public WidthGenerator(int userCounts) {
+        this.widthLines = generate(userCounts);
     }
 
     public WidthGenerator(List<Boolean> widthLines) {
