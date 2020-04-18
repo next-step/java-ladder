@@ -3,19 +3,19 @@ package ladder.dto;
 
 public class UserStatusDto {
 
-    private String name;
-    private int position;
+    private final String name;
+    private final String prize;
 
-    public UserStatusDto(String name, int position) {
+    public UserStatusDto(String name, String prize) {
         this.name = name;
-        this.position = position;
+        this.prize = prize;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getPosition() {
-        return position;
+    public String getPrize() {
+        return prize;
     }
 }

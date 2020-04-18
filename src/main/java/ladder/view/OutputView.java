@@ -1,14 +1,13 @@
 package ladder.view;
 
-
-import ladder.domain.LadderMap;
-import ladder.domain.Reward;
+import ladder.dto.UserStatusDto;
 
 import java.util.List;
 
 public class OutputView {
 
-    private static String CREATE_MAP_RESULT_INFOMATION = "실행결과";
+    private static String CREATE_MAP_RESULT_INFOMATION = "사다리 결과";
+    private static String RESULT_INFOMATION = "실행 결과";
     private static int PADDING_LENGTH = 5;
 
     private OutputView() {
@@ -67,5 +66,18 @@ public class OutputView {
             System.out.print(lpadString(reward, PADDING_LENGTH, " ") + " ");
         });
         System.out.println();
+    }
+
+    public void resultEachUser(UserStatusDto userStatusDto) {
+        System.out.println(RESULT_INFOMATION);
+        System.out.println(userStatusDto.getPrize());
+        System.out.println();
+    }
+
+    public void resultAllUser(List<UserStatusDto> userStatusDtos) {
+        System.out.println(RESULT_INFOMATION);
+        userStatusDtos.forEach(userStatusDto -> {
+            System.out.println(userStatusDto.getName() + " : " + userStatusDto.getPrize());
+        });
     }
 }

@@ -5,13 +5,13 @@ import ladder.dto.UserStatusDto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Climber {
 
     private final LadderMap ladderMap;
     private final Users users;
     private final LadderGame ladderGame;
+    private Reward reward;
 
     private Climber(String userNames, int height, CrossRoadStrategy crossRule) {
         this.users = Users.of(userNames);
@@ -28,20 +28,26 @@ public class Climber {
     }
 
     public Reward offerPrize(String rewards) {
-        return Reward.of(rewards, users.size());
+        this.reward = Reward.of(rewards, users.size());
+        return reward;
     }
 
     public UserStatusDto climbByUser(String name) {
-        return new UserStatusDto(name, ladderGame.claimByUser(name));
+        int resultPosition = ladderGame.claimByUser(name);
+        return userGameResult(name, resultPosition);
     }
 
     public List<UserStatusDto> climbAll() {
         Users climbResultUser = ladderGame.claimAll();
         List<UserStatusDto> userStatusDtos = new ArrayList<>();
         for (User user : climbResultUser.toList()) {
-            userStatusDtos.add(new UserStatusDto(user.getName(), user.position()));
+            userStatusDtos.add(userGameResult(user.getName(), user.position()));
         }
         return userStatusDtos;
+    }
+    private UserStatusDto userGameResult(String name, int position) {
+        String prize = reward.prizeByEachPosition(position);
+        return new UserStatusDto(name, prize);
     }
 
     public List<String> participantNames() {

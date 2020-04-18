@@ -26,14 +26,12 @@ public class LadderController {
 
     public void climbLadder() {
         String userNames = inputView.userNamesReader();
-
         String rewards = inputView.rewardReader();
-        Reward reward = climber.offerPrize(rewards);
-
         int ladderHeight = inputView.ladderHeightReader();
 
         CrossRoadStrategy halfPercentCreate = () -> new Random().nextInt(10) >= 5;
         this.climber = Climber.of(userNames, ladderHeight, halfPercentCreate);
+        Reward reward = climber.offerPrize(rewards);
 
         LadderMap ladderMap = climber.targetLadder();
 
@@ -43,16 +41,21 @@ public class LadderController {
 
         outputView.printLadderResult(climberNameList, ladderMapList, rewardList);
 
-        while (true) {
-            String userName = inputView.userNamesReader();
+        inquiryEachUserName();
 
-            if (userName.equals("all"))  {
-                List<UserStatusDto> userStatusDtos = climber.climbAll();
-                //출력
-                break;
-            }
-            UserStatusDto userStatusDto = climber.climbByUser(userName);
-            // 출력
-        }
+        List<UserStatusDto> userStatusDtos = climber.climbAll();
+        outputView.resultAllUser(userStatusDtos);
+
     }
+
+    private void inquiryEachUserName() {
+        String userName = inputView.userNameReader();
+        if(userName.equals("all")) {
+            return;
+        }
+        UserStatusDto userStatusDto = climber.climbByUser(userName);
+        outputView.resultEachUser(userStatusDto);
+
+        inquiryEachUserName();
+     }
 }

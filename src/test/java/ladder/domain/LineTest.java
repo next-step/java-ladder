@@ -1,6 +1,7 @@
 package ladder.domain;
 
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
+    @DisplayName("사다리_생성시_룰이_True_인경우_홀수번째만_항상_TURE")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void lineCreateTest(int input) {

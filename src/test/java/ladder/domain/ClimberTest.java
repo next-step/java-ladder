@@ -1,6 +1,7 @@
 package ladder.domain;
 
 
+import ladder.dto.UserStatusDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -64,5 +65,28 @@ public class ClimberTest {
         Reward reward = climber.offerPrize("꽝,5000,꽝,3000");
 
         assertThat(climber.getRewards(reward)).hasSize(4);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
+    void climbByUserTest(String input) {
+        CrossRoadStrategy crossRoadStrategy = () -> true;
+        Climber climber = Climber.of("pobi,honux,crong,jk", 4, crossRoadStrategy);
+        climber.offerPrize("꽝,5000,꽝,3000");
+
+        UserStatusDto userStatusDto = climber.climbByUser(input);
+
+        assertThat(userStatusDto.getName()).isEqualTo(input);
+    }
+
+    @Test
+    void climbAllTest() {
+        CrossRoadStrategy crossRoadStrategy = () -> true;
+        Climber climber = Climber.of("pobi,honux,crong,jk", 4, crossRoadStrategy);
+        climber.offerPrize("꽝,5000,꽝,3000");
+
+        List<UserStatusDto> userStatusDtos = climber.climbAll();
+
+        assertThat(userStatusDtos).hasSize(4);
     }
 }
