@@ -19,6 +19,14 @@ public class Users {
         this.users = users;
     }
 
+    public int size() {
+        return users.size();
+    }
+
+    public User getUser(int index) {
+        return users.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

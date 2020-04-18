@@ -19,6 +19,10 @@ public class LadderRewards {
         this.ladderRewards = ladderRewards;
     }
 
+    public LadderReward getLadderReward(Position resultPosition) {
+        return ladderRewards.get(resultPosition.toInt());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
