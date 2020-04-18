@@ -29,6 +29,10 @@ public class Ladder {
         return currentPosition;
     }
 
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

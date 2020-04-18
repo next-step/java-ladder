@@ -23,6 +23,10 @@ public class LadderRewards {
         return ladderRewards.get(resultPosition.toInt());
     }
 
+    public List<LadderReward> getLadderRewards() {
+        return ladderRewards;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

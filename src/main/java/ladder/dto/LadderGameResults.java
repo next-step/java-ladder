@@ -13,6 +13,14 @@ public class LadderGameResults {
         this.results = results;
     }
 
+    public LadderReward getLadderReward(String userName) {
+        return results.get(new User(userName));
+    }
+
+    public Map<User, LadderReward> getResults() {
+        return results;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

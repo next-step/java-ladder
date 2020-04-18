@@ -10,6 +10,11 @@ public class LadderReward {
     }
 
     @Override
+    public String toString() {
+        return reward;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof LadderReward)) return false;
