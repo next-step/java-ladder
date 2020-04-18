@@ -13,7 +13,8 @@ class LadderLineCreatorTest {
     @DisplayName("LadderLineCreatorTest 는 playCount 만큼 Point를 생성한다.")
     @Test
     void create() {
-        LadderLine ladderLine = LadderLineCreator.create(3, () -> true);
+        LadderLineCreator ladderLineCreator = new LadderLineCreator();
+        LadderLine ladderLine = ladderLineCreator.create(3, () -> true);
         assertThat(ladderLine).isEqualTo(new LadderLine(Arrays.asList(
                 new Point(0, Direction.of(FALSE, TRUE)),
                 new Point(1, Direction.of(TRUE, FALSE)),
