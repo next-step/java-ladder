@@ -22,8 +22,6 @@ class LadderGameInfoTest {
         assertThat(ladderGameInfo).satisfies(target -> {
             assertThat(target.getPlayers()).isEqualTo(players);
             assertThat(target.getPrizes()).isEqualTo(prizes);
-            assertThat(ladderGameInfo.getCountOfPlayer())
-                    .isEqualTo(players.getPlayerNames().size());
         });
     }
 

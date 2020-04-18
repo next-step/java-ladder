@@ -25,10 +25,6 @@ public class LadderGameInfo {
         }
     }
 
-    public int getCountOfPlayer() {
-        return players.size();
-    }
-
     public Players getPlayers() {
         return players;
     }
@@ -45,4 +41,7 @@ public class LadderGameInfo {
         return players.getPlayer(index);
     }
 
+    public int size() {
+        return players.size();
+    }
 }

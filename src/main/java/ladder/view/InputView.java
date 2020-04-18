@@ -47,7 +47,7 @@ public class InputView {
                 .collect(toList());
     }
 
-    public static String requestWinners() {
+    public static String requestSpecificPlayer() {
         CONSOLE.println(REQUEST_WINNER);
         return SCANNER.next();
     }
