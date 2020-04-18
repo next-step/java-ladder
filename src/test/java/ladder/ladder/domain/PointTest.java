@@ -1,6 +1,5 @@
 package ladder.ladder.domain;
 
-import ladder.ladder.infrastructure.RandomLinkStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

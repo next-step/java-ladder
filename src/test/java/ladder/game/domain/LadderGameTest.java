@@ -1,7 +1,7 @@
 package ladder.game.domain;
 
+import ladder.common.StubBuilder;
 import ladder.game.ui.LadderGame;
-import ladder.ladder.domain.Direction;
 import ladder.ladder.domain.Ladder;
 import ladder.ladder.domain.LadderLine;
 import ladder.ladder.domain.Point;
@@ -40,12 +40,12 @@ class LadderGameTest {
         Prizes prizes = Prizes.of(Arrays.asList("1등", "꽝", "꽝"));
         LadderGameInfo ladderGameInfo = LadderGameInfo.of(players, prizes);
 
-        Point point00 = buildStubPoint(0, false, true);
-        Point point01 = buildStubPoint(1, true, false);
-        Point point02 = buildStubPoint(2, false, false);
-        Point point10 = buildStubPoint(0, false, true);
-        Point point11 = buildStubPoint(1, true, false);
-        Point point12 = buildStubPoint(2, false, false);
+        Point point00 = StubBuilder.buildStubPoint(0, false, true);
+        Point point01 = StubBuilder.buildStubPoint(1, true, false);
+        Point point02 = StubBuilder.buildStubPoint(2, false, false);
+        Point point10 = StubBuilder.buildStubPoint(0, false, true);
+        Point point11 = StubBuilder.buildStubPoint(1, true, false);
+        Point point12 = StubBuilder.buildStubPoint(2, false, false);
 
         LadderLine ladderLine1 = LadderLine.of(Arrays.asList(point00, point01, point02));
         LadderLine ladderLine2 = LadderLine.of(Arrays.asList(point10, point11, point12));
@@ -61,10 +61,6 @@ class LadderGameTest {
 
         assertThat(gameResults.getAllPlayersResult())
                 .isEqualTo(expected);
-    }
-
-    private Point buildStubPoint(int index, boolean left, boolean right) {
-        return Point.of(index, Direction.of(left, right));
     }
 
 }
