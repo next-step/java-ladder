@@ -110,19 +110,13 @@ public class OutputView {
     }
 
     private static int checkMaxLength(List<String> players, List<String> prizes) {
-        String maxName = getLongestName(players);
-        String maxPrize = getLogiestPrize(prizes);
+        String maxName = getLongestWord(players);
+        String maxPrize = getLongestWord(prizes);
         return Math.max(maxName.length(), maxPrize.length());
     }
 
-    private static String getLongestName(List<String> players) {
-        return players.stream()
-                .max(comparing(String::length))
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    private static String getLogiestPrize(List<String> prizes) {
-        return prizes.stream()
+    private static String getLongestWord(List<String> targets) {
+        return targets.stream()
                 .max(comparing(String::length))
                 .orElseThrow(IllegalArgumentException::new);
     }
