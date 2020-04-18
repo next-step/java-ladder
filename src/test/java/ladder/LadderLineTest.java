@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +21,13 @@ public class LadderLineTest {
          *  0   1   2   3   4
          *  |---|   |---|   |
          */
-        ladderLine = LadderLine.of(5, () -> TRUE);
+        ladderLine = new LadderLine(Arrays.asList(
+                new Point(0, Direction.of(FALSE, TRUE)),
+                new Point(1, Direction.of(TRUE, FALSE)),
+                new Point(2, Direction.of(FALSE, TRUE)),
+                new Point(3, Direction.of(TRUE, FALSE)),
+                new Point(4, Direction.of(FALSE, FALSE))
+        ));
     }
 
     @DisplayName("특정 좌표 move")
@@ -33,12 +41,5 @@ public class LadderLineTest {
     @Test
     void move() {
         assertThat(ladderLine.move()).containsExactly(1, 0, 3, 2, 4);
-    }
-
-    @DisplayName("Direction 없을때 move")
-    @Test
-    void moveByNonDirection() {
-        ladderLine = LadderLine.of(5, () -> FALSE);
-        assertThat(ladderLine.move()).containsExactly(0, 1, 2, 3, 4);
     }
 }
