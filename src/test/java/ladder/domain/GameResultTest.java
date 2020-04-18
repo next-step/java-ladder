@@ -19,23 +19,13 @@ class GameResultTest {
     @BeforeEach
     void setUp() {
         ladderGoals = new GoalsGenerator("5000, 꽝").generate();
-
-        List<Boolean> width1 = Arrays.asList(true, false);
-        List<Boolean> width2 = Arrays.asList(true, false);
-        Line line1 = new Line(width1.size(), new WidthGenerator(width1));
-        Line line2 = new Line(width2.size(), new WidthGenerator(width2));
-
-        List<Line> lines = Arrays.asList(line1, line2);
-        Ladder ladder = new Ladder(lines);
-
-        ladderGame = new GameResult(twoUsers(), ladder , ladderGoals );
     }
 
     @DisplayName("사다리의 골과 사용자 숫자가 일치하는지 테스트")
     @Test
     void testGoalsAndUserCounts() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new GameResult(twoUsers(), fiveHeightLadder(), fourLadderGoals());
+            new GameResult(twoUsers(), new LadderGenerator(fiveHeightLadder(), fourLadderGoals()));
         });
     }
 
@@ -43,15 +33,16 @@ class GameResultTest {
     @Test
     void testLadderGoal() {
 
-        List<Boolean> width1 = Arrays.asList(true, false);
+        List<Boolean> width1 = Arrays.asList(false, false);
         List<Boolean> width2 = Arrays.asList(true, false);
         Line line1 = new Line(width1.size(), new WidthGenerator(width1));
         Line line2 = new Line(width2.size(), new WidthGenerator(width2));
 
         List<Line> lines = Arrays.asList(line1, line2);
         Ladder ladder = new Ladder(lines);
+        LadderGenerator ladderGenerator = new LadderGenerator(ladder , ladderGoals);
 
-        GameResult ladderGame = new GameResult(twoUsers(), ladder , ladderGoals );
+        GameResult ladderGame = new GameResult(twoUsers(), ladderGenerator);
 
         String actual = ladderGame.findPlayerGoal("pobi");
         assertThat(ladderGoals.getResult(1)).isEqualTo(actual);

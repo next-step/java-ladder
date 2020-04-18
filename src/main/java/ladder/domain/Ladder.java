@@ -21,7 +21,6 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-
     public int move(int position) {
         for (Line line : lines) {
             position += line.move(position);
