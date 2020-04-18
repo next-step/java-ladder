@@ -1,4 +1,7 @@
-package ladder;
+package ladder.dto;
+
+import ladder.domain.LadderReward;
+import ladder.domain.User;
 
 import java.util.Map;
 import java.util.Objects;

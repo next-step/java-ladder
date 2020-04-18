@@ -1,4 +1,6 @@
-package ladder;
+package ladder.dto;
+
+import ladder.domain.DirectionCreator;
 
 public class LadderInfo {
     private final int playerCount;

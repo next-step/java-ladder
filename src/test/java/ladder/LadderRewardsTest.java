@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.LadderReward;
+import ladder.domain.LadderRewards;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

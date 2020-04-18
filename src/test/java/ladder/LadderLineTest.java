@@ -1,5 +1,9 @@
 package ladder;
 
+import ladder.domain.Direction;
+import ladder.domain.LadderLine;
+import ladder.domain.Point;
+import ladder.domain.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

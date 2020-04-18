@@ -1,10 +1,10 @@
 package ladder;
 
+import ladder.domain.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PositionTest {
     @Test

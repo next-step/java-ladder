@@ -1,5 +1,8 @@
-package ladder;
+package ladder.dto;
 
+import ladder.domain.*;
+
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,10 +15,10 @@ public class LadderGameInfo {
         this.ladderRewards = ladderRewards;
     }
 
-    public LadderGameResults match(LadderResults ladderResults) {
-        return new LadderGameResults(Stream.iterate(0, i -> i < users.size(), i -> i + 1)
+    public Map<User, LadderReward> match(LadderResults ladderResults) {
+        return Stream.iterate(0, i -> i < users.size(), i -> i + 1)
                 .collect(Collectors.toMap(users::getUser,
-                        i -> ladderRewards.getLadderReward(ladderResults.getResultPosition(i)))));
+                        i -> ladderRewards.getLadderReward(ladderResults.getResultPosition(i))));
 
     }
 }
