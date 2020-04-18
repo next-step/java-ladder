@@ -20,7 +20,6 @@ public class LadderRewardTest {
         assertThat(reward.toList()).containsAnyOf(expected);
     }
 
-
     @ParameterizedTest
     @ValueSource(strings = {"꽝,5000,꽝,3000"})
     void unmatchRewardCountExceptionTest(String input) {
@@ -29,5 +28,16 @@ public class LadderRewardTest {
         assertThatExceptionOfType(UnmatchRewardCountException.class).isThrownBy(() -> {
             Reward.of(input, userCount);
         });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"꽝,5000,꽝,3000"})
+    void prizeByEachPositionTest(String input) {
+        int userCount = 4;
+        String[] expected = input.split(",");
+
+        Reward reward = Reward.of(input, userCount);
+
+        assertThat(reward.prizeByEachPosition(0)).containsAnyOf(expected[0]);
     }
 }

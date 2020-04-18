@@ -44,6 +44,15 @@ public class LadderController {
         outputView.printLadderResult(climberNameList, ladderMapList, rewardList);
 
         while (true) {
+            String userName = inputView.userNamesReader();
+
+            if (userName.equals("all"))  {
+                List<UserStatusDto> userStatusDtos = climber.climbAll();
+                //출력
+                break;
+            }
+            UserStatusDto userStatusDto = climber.climbByUser(userName);
+            // 출력
         }
     }
 }
