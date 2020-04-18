@@ -13,7 +13,7 @@ public class LadderCreator {
 
     private static List<LadderLine> createLadderLines(LadderInfo ladderInfo, int height) {
         return Stream.iterate(0, i -> i < height, i -> i + 1)
-                .map(i -> ladderLineCreator.create(ladderInfo.getPlayerCount(), ladderInfo.getDirectionGenerator()))
+                .map(i -> ladderLineCreator.create(ladderInfo.getPlayerCount(), ladderInfo.getDirectionCreator()))
                 .collect(Collectors.toList());
     }
 }

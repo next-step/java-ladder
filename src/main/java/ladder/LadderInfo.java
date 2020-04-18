@@ -2,18 +2,18 @@ package ladder;
 
 public class LadderInfo {
     private final int playerCount;
-    private final DirectionGenerator directionGenerator;
+    private final DirectionCreator directionCreator;
 
-    public LadderInfo(int playerCount, DirectionGenerator directionGenerator) {
+    public LadderInfo(int playerCount, DirectionCreator directionCreator) {
         this.playerCount = playerCount;
-        this.directionGenerator = directionGenerator;
+        this.directionCreator = directionCreator;
     }
 
     public int getPlayerCount() {
         return playerCount;
     }
 
-    public DirectionGenerator getDirectionGenerator() {
-        return directionGenerator;
+    public DirectionCreator getDirectionCreator() {
+        return directionCreator;
     }
 }
