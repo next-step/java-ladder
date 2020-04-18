@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.Objects;
+
 public class Point {
     private static final int INIT_INDEX = 0;
 
@@ -33,5 +35,19 @@ public class Point {
 
     public Point last() {
         return new Point(index + 1, direction.last());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point)) return false;
+        Point point = (Point) o;
+        return index == point.index &&
+                Objects.equals(direction, point.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, direction);
     }
 }
