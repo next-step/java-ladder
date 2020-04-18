@@ -1,6 +1,7 @@
 package ladder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,5 +27,19 @@ public class Ladder {
             currentPosition = ladderLine.move(currentPosition);
         }
         return currentPosition;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ladder)) return false;
+        Ladder ladder = (Ladder) o;
+        return playerCount == ladder.playerCount &&
+                Objects.equals(ladderLines, ladder.ladderLines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladderLines, playerCount);
     }
 }
