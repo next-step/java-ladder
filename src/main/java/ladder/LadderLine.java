@@ -13,7 +13,7 @@ public class LadderLine {
         this.points = points;
     }
 
-    public int move(int pointIndex) {
+    public Position move(int pointIndex) {
         return points.get(pointIndex).move();
     }
 }

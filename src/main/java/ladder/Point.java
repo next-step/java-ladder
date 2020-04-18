@@ -5,36 +5,40 @@ import java.util.Objects;
 public class Point {
     private static final int INIT_INDEX = 0;
 
-    private final int index;
+    private final Position position;
     private final Direction direction;
 
     public static Point first(boolean right) {
         return new Point(INIT_INDEX, Direction.first(right));
     }
 
-    public Point(int index, Direction direction) {
-        this.index = index;
+    public Point(int position, Direction direction) {
+        this(new Position(position), direction);
+    }
+
+    public Point(Position position, Direction direction) {
+        this.position = position;
         this.direction = direction;
     }
 
-    public int move() {
+    public Position move() {
         if (direction.isRight()) {
-            return index + 1;
+            return position.right();
         }
 
         if (direction.isLeft()) {
-            return index - 1;
+            return position.left();
         }
 
-        return index;
+        return position;
     }
 
     public Point next(boolean nextRight) {
-        return new Point(index + 1, direction.next(nextRight));
+        return new Point(position.right(), direction.next(nextRight));
     }
 
     public Point last() {
-        return new Point(index + 1, direction.last());
+        return new Point(position.right(), direction.last());
     }
 
     @Override
@@ -42,12 +46,12 @@ public class Point {
         if (this == o) return true;
         if (!(o instanceof Point)) return false;
         Point point = (Point) o;
-        return index == point.index &&
+        return position == point.position &&
                 Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, direction);
+        return Objects.hash(position, direction);
     }
 }
