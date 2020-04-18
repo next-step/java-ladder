@@ -33,6 +33,6 @@ public class LadderLineTest {
     @ParameterizedTest
     @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "4:4"}, delimiter = ':')
     void move(int startPoint, int endPoint) {
-        assertThat(ladderLine.move(startPoint)).isEqualTo(endPoint);
+        assertThat(ladderLine.move(new Position(startPoint))).isEqualTo(endPoint);
     }
 }

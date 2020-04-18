@@ -10,8 +10,8 @@ public class LadderLine {
         this.points = points;
     }
 
-    public Position move(int pointIndex) {
-        return points.get(pointIndex).move();
+    public Position move(Position currentPosition) {
+        return points.get(currentPosition.toInt()).move();
     }
 
     @Override
