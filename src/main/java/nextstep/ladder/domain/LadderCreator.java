@@ -12,10 +12,10 @@ public class LadderCreator {
         this.ladderLineCreator = ladderLineCreator;
     }
 
-    public List<LadderLine> create(int countOfPerson, int height) {
+    public List<LadderLine> create(int numberOfPlayers, int height) {
         List<LadderLine> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(ladderLineCreator.create(countOfPerson));
+            ladder.add(ladderLineCreator.create(numberOfPlayers));
         }
         return unmodifiableList(new ArrayList<>(ladder));
     }
