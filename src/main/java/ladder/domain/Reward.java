@@ -25,7 +25,12 @@ public class Reward {
         }
     }
 
+    public String prizeByEachPosition(int position) {
+        return rewards.get(position);
+    }
+
     public List<String> toList() {
         return Collections.unmodifiableList(rewards);
     }
+
 }

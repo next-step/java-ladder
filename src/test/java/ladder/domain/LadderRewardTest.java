@@ -38,6 +38,6 @@ public class LadderRewardTest {
 
         Reward reward = Reward.of(input, userCount);
 
-        assertThat(reward.prizeByEachPosition(0)).containsAnyOf(expected[0]);
+        assertThat(reward.prizeByEachPosition(0)).isEqualTo(expected[0]);
     }
 }
