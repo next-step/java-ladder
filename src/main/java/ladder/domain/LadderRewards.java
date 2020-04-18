@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ public class LadderRewards {
     }
 
     public LadderRewards(List<LadderReward> ladderRewards) {
-        this.ladderRewards = ladderRewards;
+        this.ladderRewards = Collections.unmodifiableList(ladderRewards);
     }
 
     public LadderReward getLadderReward(Position resultPosition) {

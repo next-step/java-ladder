@@ -3,6 +3,7 @@ package ladder.dto;
 import ladder.domain.LadderReward;
 import ladder.domain.User;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
@@ -10,7 +11,7 @@ public class LadderGameResults {
     private final Map<User, LadderReward> results;
 
     public LadderGameResults(Map<User, LadderReward> results) {
-        this.results = results;
+        this.results = Collections.unmodifiableMap(results);
     }
 
     public LadderReward getLadderReward(String userName) {

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ public class LadderResults {
     private final Map<Position, Position> results;
 
     public LadderResults(Map<Position, Position> results) {
-        this.results = results;
+        this.results = Collections.unmodifiableMap(results);
     }
 
     public Position getResultPosition(int position) {

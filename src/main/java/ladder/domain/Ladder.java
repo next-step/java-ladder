@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -11,7 +12,7 @@ public class Ladder {
     private final int playerCount;
 
     public Ladder(List<LadderLine> ladderLines, int playerCount) {
-        this.ladderLines = ladderLines;
+        this.ladderLines = Collections.unmodifiableList(ladderLines);
         this.playerCount = playerCount;
     }
 

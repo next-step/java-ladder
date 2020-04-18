@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ public class Users {
     }
 
     public Users(List<User> users) {
-        this.users = users;
+        this.users = Collections.unmodifiableList(users);
     }
 
     public int size() {
