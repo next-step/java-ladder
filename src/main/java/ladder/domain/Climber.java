@@ -1,6 +1,9 @@
 package ladder.domain;
 
 
+import ladder.dto.UserStatusDto;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -28,13 +31,17 @@ public class Climber {
         return Reward.of(rewards, users.size());
     }
 
-    public int climbByUser(String name) {
-        return ladderGame.claimByUser(name);
+    public UserStatusDto climbByUser(String name) {
+        return new UserStatusDto(name, ladderGame.claimByUser(name));
     }
 
-    public List<User> climbAll() {
+    public List<UserStatusDto> climbAll() {
         Users climbResultUser = ladderGame.claimAll();
-        return climbResultUser.toList();
+        List<UserStatusDto> userStatusDtos = new ArrayList<>();
+        for (User user : climbResultUser.toList()) {
+            userStatusDtos.add(new UserStatusDto(user.getName(), user.position()));
+        }
+        return userStatusDtos;
     }
 
     public List<String> participantNames() {
