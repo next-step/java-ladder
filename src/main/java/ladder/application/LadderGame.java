@@ -7,6 +7,8 @@ import ladder.dto.LadderInfo;
 import ladder.infra.RandomDirectionCreator;
 
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LadderGame {
     public static Ladder createLadder(LadderInfo ladderInfo) {
@@ -16,7 +18,12 @@ public class LadderGame {
 
     public static LadderGameResults start(Ladder ladder, LadderGameInfo ladderGameInfo) {
         LadderResults ladderResults = ladder.exec();
-        Map<User, LadderReward> ladderGameResult = ladderGameInfo.match(ladderResults);
-        return new LadderGameResults(ladderGameResult);
+        Users users = ladderGameInfo.getUsers();
+        LadderRewards ladderRewards = ladderGameInfo.getLadderRewards();
+
+        Map<User, LadderReward> matchResult = Stream.iterate(0, i -> i < users.size(), i -> i + 1)
+                .collect(Collectors.toMap(users::getUser,
+                        i -> ladderRewards.getLadderReward(ladderResults.getResultPosition(i))));
+        return new LadderGameResults(matchResult);
     }
 }
