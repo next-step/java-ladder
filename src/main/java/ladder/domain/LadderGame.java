@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class LadderGame {
@@ -14,13 +15,13 @@ public class LadderGame {
     }
 
     public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
+        return ladder;
     }
 
     private List<Line> generateLadder(int countOfPerson, int ladderMaxHeight) {
         return Stream
                 .generate(() -> new Line(countOfPerson))
                 .limit(ladderMaxHeight)
-                .collect(toList());
+                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 }
