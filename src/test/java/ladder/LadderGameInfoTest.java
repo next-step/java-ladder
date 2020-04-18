@@ -2,7 +2,6 @@ package ladder;
 
 import ladder.domain.*;
 import ladder.dto.LadderGameInfo;
-import ladder.dto.LadderGameResults;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -24,6 +23,6 @@ class LadderGameInfoTest {
         gameResults.put(new User("a"), new LadderReward("당첨2"));
         gameResults.put(new User("b"), new LadderReward("꽝"));
         gameResults.put(new User("c"), new LadderReward("당첨"));
-        assertThat(ladderGameInfo.match(ladderResults)).isEqualTo(new LadderGameResults(gameResults));
+        assertThat(ladderGameInfo.match(ladderResults)).isEqualTo(gameResults);
     }
 }

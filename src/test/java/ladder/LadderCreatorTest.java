@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderCreatorTest {
     @Test
     void create() {
-        Ladder ladder = LadderCreator.create(new LadderInfo(3, () -> true), 2);
+        Ladder ladder = LadderCreator.create(new LadderInfo(3, 2), ()->true);
         assertThat(ladder).isEqualTo(new Ladder(Arrays.asList(
                 new LadderLine(Arrays.asList(
                         new Point(0, Direction.of(FALSE, TRUE)),

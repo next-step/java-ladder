@@ -1,21 +1,19 @@
 package ladder.dto;
 
-import ladder.domain.DirectionCreator;
-
 public class LadderInfo {
     private final int playerCount;
-    private final DirectionCreator directionCreator;
+    private final int height;
 
-    public LadderInfo(int playerCount, DirectionCreator directionCreator) {
+    public LadderInfo(int playerCount, int height) {
         this.playerCount = playerCount;
-        this.directionCreator = directionCreator;
+        this.height = height;
     }
 
     public int getPlayerCount() {
         return playerCount;
     }
 
-    public DirectionCreator getDirectionCreator() {
-        return directionCreator;
+    public int getHeight() {
+        return height;
     }
 }
