@@ -25,7 +25,6 @@ public class LadderController {
         OutputView.printGameResult(gameResult);
     }
 
-
     private Users getUsers(String user) {
         UserGenerator userGenerator = new UserGenerator(user);
         return new Users(userGenerator.generateUsers());

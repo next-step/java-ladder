@@ -32,15 +32,14 @@ class GameResultTest {
     @DisplayName("사다리 골과 게임결과가 같은지 테스트")
     @Test
     void testLadderGoal() {
-
-        List<Boolean> width1 = Arrays.asList(false, false);
-        List<Boolean> width2 = Arrays.asList(true, false);
+        List<Point> width1 = Arrays.asList(new Point(true), new Point(false));
+        List<Point> width2 = Arrays.asList(new Point(false), new Point(false));
         Line line1 = new Line(width1.size(), new WidthGenerator(width1));
         Line line2 = new Line(width2.size(), new WidthGenerator(width2));
 
         List<Line> lines = Arrays.asList(line1, line2);
         Ladder ladder = new Ladder(lines);
-        LadderGenerator ladderGenerator = new LadderGenerator(ladder , ladderGoals);
+        LadderGenerator ladderGenerator = new LadderGenerator(ladder, ladderGoals);
 
         GameResult ladderGame = new GameResult(twoUsers(), ladderGenerator);
 

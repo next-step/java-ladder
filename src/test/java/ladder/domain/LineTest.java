@@ -21,11 +21,11 @@ class LineTest {
     @DisplayName("생성된 가로줄값 테스트")
     @Test
     void testWidthTrueFalse() {
-        List<Boolean> expected = Arrays.asList(false, true);
+        List<Point> expected = Arrays.asList(new Point(false), new Point(true));
 
         Line line = new Line(expected.size(), new WidthGenerator(expected));
-        List<Boolean> actual = line.getWidthLines();
+        List<Point> actual = line.getWidthLines();
 
-        assertThat(actual.get(1)).isTrue();
+        assertThat(actual.get(1).getPoint()).isTrue();
     }
 }

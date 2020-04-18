@@ -2,8 +2,6 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.Map;
-
 public class OutputView {
     private static final String TAB = "    ";
     private static final String WIDTH_DRAW_SUCCESS = "-----";
@@ -35,7 +33,6 @@ public class OutputView {
 
     public static void printGoals(LadderGoals ladderGoals) {
         StringBuilder sb = new StringBuilder();
-
         for (int i = 0; i < ladderGoals.size(); i++) {
             sb.append(ladderGoals.getResult(i) + TAB);
         }
@@ -70,9 +67,9 @@ public class OutputView {
     private static void printLines(StringBuilder sb, Line line) {
         sb.append(TAB);
 
-        for (Boolean canDrawWidth : line.getWidthLines()) {
+        for (Point canDrawWidth : line.getWidthLines()) {
             sb.append(VERTICAL);
-            sb.append(canDrawWidth ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
+            sb.append(canDrawWidth.getPoint() ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
         }
         sb.append(VERTICAL);
         sb.append(System.lineSeparator());
