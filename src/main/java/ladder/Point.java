@@ -46,7 +46,7 @@ public class Point {
         if (this == o) return true;
         if (!(o instanceof Point)) return false;
         Point point = (Point) o;
-        return position == point.position &&
+        return Objects.equals(position, point.position) &&
                 Objects.equals(direction, point.direction);
     }
 
