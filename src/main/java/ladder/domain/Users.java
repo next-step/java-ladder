@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Users {
     private static final String REQUIRE_USERS = "사용자의 값이 입력되어야합니다";
+    private static final String NOT_FOUND_USER = "검색 결과가 없습니다.";
+
     private final List<User> users;
 
     public Users(final List<User> users) {
@@ -33,7 +35,7 @@ public class Users {
                 return i;
             }
         }
-        return -1;
+        throw new IllegalArgumentException(NOT_FOUND_USER);
     }
 
     public int size() {

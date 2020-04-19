@@ -6,6 +6,9 @@ import java.util.List;
 
 public class Fixture {
 
+    private Fixture() {
+    }
+
     private static User pobi = new User("pobi");
     private static User honux = new User("honux");
     private static User crong = new User("crong");

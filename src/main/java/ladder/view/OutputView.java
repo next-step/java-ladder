@@ -33,8 +33,9 @@ public class OutputView {
 
     public static void printGoals(LadderGoals ladderGoals) {
         StringBuilder sb = new StringBuilder();
+
         for (int i = 0; i < ladderGoals.size(); i++) {
-            sb.append(ladderGoals.getResult(i) + TAB);
+            sb.append(makeSpace(ladderGoals.getResult(i)));
         }
         System.out.println(sb.toString());
     }

@@ -23,9 +23,6 @@ public class GameResult {
 
     public String findPlayerGoal(String name) {
         int index = users.index(name);
-        if (index == -1) {
-            throw new IllegalArgumentException(NOT_FOUND_USER);
-        }
 
         for (Line line : ladder.getLines()) {
             index += line.move(index);
