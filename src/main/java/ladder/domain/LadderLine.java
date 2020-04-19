@@ -2,27 +2,33 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Objects;
 
 public class LadderLine {
-    private final List<LadderLink> ladderLinks;
+    private final List<Point> points;
 
-    public static LadderLine of(int userCount) {
-        return new LadderLine(Stream.iterate(LadderLink.DIS_CONNECT, LadderLink::of)
-                .limit(userCount)
-                .collect(Collectors.toList()));
+    public LadderLine(List<Point> points) {
+        this.points = Collections.unmodifiableList(points);
     }
 
-    public LadderLine(List<LadderLink> ladderLinks) {
-        this.ladderLinks = Collections.unmodifiableList(ladderLinks);
+    public Position move(Position currentPosition) {
+        return points.get(currentPosition.toInt()).move();
     }
 
-    public int getLinkCount() {
-        return ladderLinks.size();
+    public List<Point> getPoints() {
+        return points;
     }
 
-    public List<LadderLink> getLadderLinks() {
-        return ladderLinks;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LadderLine)) return false;
+        LadderLine line = (LadderLine) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

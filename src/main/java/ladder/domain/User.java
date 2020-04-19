@@ -3,18 +3,26 @@ package ladder.domain;
 import java.util.Objects;
 
 public class User {
-    private final UserName name;
+    private final String name;
 
-    public static User of(String name) {
-        return new User(UserName.of(name));
-    }
-
-    private User(UserName name) {
+    public User(String name) {
+        verifyUserName(name);
         this.name = name;
     }
 
-    public String getName() {
-        return name.getName();
+    private void verifyUserName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
+        if (name.length() > 5) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     @Override

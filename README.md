@@ -6,19 +6,19 @@
 * 사다리 타기가 정상적으로 동작하려면 라인이 겹치지 않도록 해야 한다.
   * |-----|-----| 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
 
-## STEP1 기능 목록
-* User
-  * 생성 시 이름은 최대 5글자까지 부여
-  * 5글자를 넘어가거나 0글자인 경우 exception
-* Users
-  * 생성 시 사람 이름은 쉼표(,)를 기준으로 생성
-* LadderGame
-  * Ladder와 Users를 가지고 있는 객체
-* Ladder
-  * List<LadderLine>을 가진 일급 컬렉션
-  * 유저 수와 높이를 입력하면 유저 수만큼의 Link를 가진 Line을 높이만큼 생성
-* LadderLine
-  * 유저 수를 입력 받아 유저수 만큼 LadderLink를 가진 LadderLine을 생성한다.
-* LadderLink
-  * LadderLink는 랜덤으로 존재 여부가 결정된다.
-  * LadderLink는 이전의 LadderLink가 존재한다면 존재 할 수 없다.
+## Ladder domain 설계
+* 사다리(Ladder)는 사다리 라인들(List<LadderLine>)을 가진다.
+* 사다리 라인(LadderLine)은 사다리 좌표들(List<Point>)를 가진다.
+* 좌표(Point)는 index와 방향(Direction)을 가진다.
+* 방향(Direction)은 left, right 방향을 가진다.
+
+## Ladder domain 요구사항
+* Direction은 왼쪽과 오른쪽은 겹칠 수 없다.
+* n번째 Direction의 right는 n+1 번째 Direction의 left 이다.
+* 첫번째 Point의 Direction.left은 항상 연결되지 않는다.
+* 마지막 Point의 Direction.right는 항상 연결되지 않는다.
+
+## 핵심 로직
+* 유저 수를 입력받아 사다리를 생성한다.
+* 사다리를 실행해 결과를 얻는다.
+* 사다리 실행 결과와 게임정보를 입력받아 최종결과를 얻는다.

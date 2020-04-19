@@ -8,12 +8,11 @@ import java.util.stream.Collectors;
 
 public class Users {
     private static final String USER_SEPARATOR = ",";
-
     private final List<User> users;
 
     public static Users of(String users) {
         return new Users(Arrays.stream(users.split(USER_SEPARATOR))
-                .map(User::of)
+                .map(User::new)
                 .collect(Collectors.toList()));
     }
 
@@ -21,12 +20,16 @@ public class Users {
         this.users = Collections.unmodifiableList(users);
     }
 
-    public List<User> getUsers() {
-        return users;
+    public int size() {
+        return users.size();
     }
 
-    public int getUserCount() {
-        return users.size();
+    public User getUser(int index) {
+        return users.get(index);
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 
     @Override
