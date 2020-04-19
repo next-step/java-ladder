@@ -38,7 +38,8 @@ class ResultViewTest {
 
         ladder = new Ladder(lineList);
         gameInfo = new GameInfo(UsersTest.USERS, ResultsTest.RESULTS);
-        resultUsers.generateResultsForAllPlayers(new LadderGame(gameInfo, ladder));
+        LadderGame ladderGame = new LadderGame(gameInfo, ladder);
+        ladderGame.generateResultsForAllPlayers();
     }
 
     @DisplayName("결과를 보고싶은 사람을 입력받을 경우 유저에 포함되는지 확인해본다. "

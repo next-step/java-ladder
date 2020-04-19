@@ -21,24 +21,6 @@ public class Users {
         }
     }
 
-    public void generateResultsForAllPlayers(LadderGame ladderGame) {
-        List<LadderLine> ladder = ladderGame.getLadder().getLadder();
-        List<Result> results = ladderGame.getGameInfo().getResults().getResults();
-
-        int index = 0;
-        for (User user : users) {
-            user.setResult(results.get(getIndex(ladder, index)).getResult());
-            ++index;
-        }
-    }
-
-    private int getIndex(List<LadderLine> ladder, int index) {
-        for (LadderLine ladderLine : ladder) {
-            index = ladderLine.move(index);
-        }
-        return index;
-    }
-
     public List<User> getUsers() {
         return users;
     }
