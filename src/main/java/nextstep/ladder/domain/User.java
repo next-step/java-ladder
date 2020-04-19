@@ -7,7 +7,6 @@ public class User {
     private static final int MAX_NAME_LENTH = 5;
 
     private final String name;
-    private String result;
 
     public User(String name) {
         valdateName(name);
@@ -18,19 +17,10 @@ public class User {
         Optional.ofNullable(name)
                 .filter(n -> n.length() <= MAX_NAME_LENTH)
                 .orElseThrow(() -> new IllegalArgumentException("이름은 최대 5자리만 입력 가능합니다."));
-
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
     }
 
     @Override

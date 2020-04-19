@@ -5,6 +5,7 @@ import java.util.List;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.UserResult;
 import nextstep.ladder.domain.Users;
 import nextstep.ladder.engine.LadderCreator;
 import nextstep.ladder.factory.LadderFactoryBean;
@@ -26,7 +27,7 @@ public class LadderController {
         LadderGame ladderGame = new LadderGame(users, results, ladderLines);
 
         resultView.printLadder(ladderGame);
-        ladderGame.generateResultsForAllPlayers();
-        resultView.repeatPrintPlayResult(users);
+        List<UserResult> userResults = ladderGame.generateResultsForAllPlayers();
+        resultView.repeatPrintPlayResult(userResults);
     }
 }

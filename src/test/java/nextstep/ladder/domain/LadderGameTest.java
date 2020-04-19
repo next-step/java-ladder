@@ -18,12 +18,11 @@ class LadderGameTest {
 
         Ladder ladder = new Ladder(lineList);
         LadderGame ladderGame = new LadderGame(gameInfo, ladder);
-        ladderGame.generateResultsForAllPlayers();
-        List<User> users = UsersTest.USERS.getUsers();
+        List<UserResult> userResults = ladderGame.generateResultsForAllPlayers();
 
-        assertThat(users.get(0).getResult()).isEqualTo("꽝");
-        assertThat(users.get(1).getResult()).isEqualTo("꽝");
-        assertThat(users.get(2).getResult()).isEqualTo("3000");
-        assertThat(users.get(3).getResult()).isEqualTo("5000");
+        assertThat(userResults.get(0).getResult()).isEqualTo("꽝");
+        assertThat(userResults.get(1).getResult()).isEqualTo("꽝");
+        assertThat(userResults.get(2).getResult()).isEqualTo("3000");
+        assertThat(userResults.get(3).getResult()).isEqualTo("5000");
     }
 }

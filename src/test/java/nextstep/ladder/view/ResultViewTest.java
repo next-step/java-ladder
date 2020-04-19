@@ -19,6 +19,7 @@ import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.LadderLineTest;
 import nextstep.ladder.domain.ResultsTest;
 import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.UserResult;
 import nextstep.ladder.domain.Users;
 import nextstep.ladder.domain.UsersTest;
 
@@ -28,8 +29,8 @@ class ResultViewTest {
     private List<LadderLine> lineList;
     private Ladder ladder;
 
-    private Users resultUsers = UsersTest.USERS;
     private GameInfo gameInfo;
+    private List<UserResult> userResults;
 
     @BeforeEach
     void setUp() {
@@ -39,7 +40,7 @@ class ResultViewTest {
         ladder = new Ladder(lineList);
         gameInfo = new GameInfo(UsersTest.USERS, ResultsTest.RESULTS);
         LadderGame ladderGame = new LadderGame(gameInfo, ladder);
-        ladderGame.generateResultsForAllPlayers();
+        userResults = ladderGame.generateResultsForAllPlayers();
     }
 
     @DisplayName("결과를 보고싶은 사람을 입력받을 경우 유저에 포함되는지 확인해본다. "
@@ -57,7 +58,7 @@ class ResultViewTest {
         String userName = "soo";
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            resultView.validateResultUser(users, userName);
+            resultView.validateResultUser(userResults, userName);
         });
 
     }
@@ -97,14 +98,14 @@ class ResultViewTest {
     @DisplayName("유저별 실행결과를 출력한다")
     @Test
     void playResult() {
-        String resultByUser = resultView.playResultByUser(resultUsers, "honux");
+        String resultByUser = resultView.playResultByUser(userResults, "honux");
         assertThat(resultByUser).isEqualTo("꽝");
     }
 
     @DisplayName("전체 실행결과를 출력한다.")
     @Test
     void playAllResult() {
-        String playAllResult = resultView.playAllResult(resultUsers);
+        String playAllResult = resultView.playAllResult(userResults);
         assertThat(playAllResult).isEqualTo("pobi : 꽝\n"
                                             + "honux : 꽝\n"
                                             + "crong : 3000\n"

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
@@ -16,15 +17,17 @@ public class LadderGame {
         ladder = new Ladder(lines);
     }
 
-    public void generateResultsForAllPlayers() {
+    public List<UserResult> generateResultsForAllPlayers() {
         List<LadderLine> ladder = this.ladder.getLadder();
         List<Result> results = gameInfo.getResults().getResults();
 
+        List<UserResult> userResults = new ArrayList<>();
         int index = 0;
         for (User user : gameInfo.getUsers().getUsers()) {
-            user.setResult(results.get(getIndex(ladder, index)).getResult());
+            userResults.add(new UserResult(user, results.get(getIndex(ladder, index))));
             ++index;
         }
+        return userResults;
     }
 
     private int getIndex(List<LadderLine> ladder, int index) {
