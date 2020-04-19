@@ -12,11 +12,11 @@ import nextstep.ladder.engine.LadderCreator;
 public class DefaultLadderCreator implements LadderCreator {
     private static final int SIZE_OF_FIRST_AND_LAST_POINT = 2;
 
-    private final int numberOfPlayers;
+    private final int width;
     private final int height;
 
-    public DefaultLadderCreator(final int numberOfPlayers, final int height) {
-        this.numberOfPlayers = numberOfPlayers;
+    public DefaultLadderCreator(final int width, final int height) {
+        this.width = width;
         this.height = height;
     }
 
@@ -47,7 +47,7 @@ public class DefaultLadderCreator implements LadderCreator {
     }
 
     private int getBetweenSize() {
-        return numberOfPlayers - SIZE_OF_FIRST_AND_LAST_POINT;
+        return width - SIZE_OF_FIRST_AND_LAST_POINT;
     }
 
     private void initLast(List<ImprovingPoint> points, ImprovingPoint point) {

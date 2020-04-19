@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import nextstep.ladder.engine.LadderCreator;
+
 public class LadderGame {
     private GameInfo gameInfo;
     private Ladder ladder;
@@ -12,9 +14,8 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public LadderGame(Users users, Results results, List<LadderLine> lines) {
-        gameInfo = new GameInfo(users, results);
-        ladder = new Ladder(lines);
+    public LadderGame(String[] userNames, String[] results) {
+        gameInfo = new GameInfo(new Users(userNames), new Results(results));
     }
 
     public List<UserResult> generateResultsForAllPlayers() {
@@ -28,6 +29,11 @@ public class LadderGame {
             ++index;
         }
         return userResults;
+    }
+
+    public void startGame(LadderCreator ladderFactory) {
+        this.ladder = ladderFactory.create();
+
     }
 
     private int getIndex(List<LadderLine> ladder, int index) {

@@ -10,7 +10,6 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.domain.Results;
-import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.UserResult;
 import nextstep.ladder.domain.Users;
 
@@ -23,10 +22,9 @@ public class ResultView {
     private static final String NO_LINE = "     ";
     private static final String LINE = "-----";
 
-    private static ResultView resultView = new ResultView();
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    public String appendUserNames(Users users) {
+    public static String appendUserNames(Users users) {
         return users.getUsers()
                     .stream()
                     .map(user -> user.getName())
@@ -35,7 +33,7 @@ public class ResultView {
 
     }
 
-    public String appendLine(LadderLine line) {
+    public static String appendLine(LadderLine line) {
         StringBuilder stringBuilder = new StringBuilder(NO_LINE);
 
         List<ImprovingPoint> points = line.getPoints();
@@ -50,14 +48,14 @@ public class ResultView {
                             .toString();
     }
 
-    public String drawLineByPoint(ImprovingPoint point) {
+    public static String drawLineByPoint(ImprovingPoint point) {
         if (point.getDirection().isRight()) {
             return LINE;
         }
         return NO_LINE;
     }
 
-    public String drawLadder(GameInfo gameInfo, Ladder ladder) {
+    public static String drawLadder(GameInfo gameInfo, Ladder ladder) {
         return new StringBuilder().append(appendUserNames(gameInfo.getUsers()))
                                   .append(NEW_LINE)
                                   .append(appendLines(ladder))
@@ -66,7 +64,7 @@ public class ResultView {
                                   .toString();
     }
 
-    public String appendResults(Results results) {
+    public static String appendResults(Results results) {
         return results.getResults()
                       .stream()
                       .map(result -> result.getResult())
@@ -74,34 +72,34 @@ public class ResultView {
                       .collect(Collectors.joining(BLANK));
     }
 
-    public void printLadder(LadderGame ladderGame) {
+    public static void printLadder(LadderGame ladderGame) {
         System.out.println("\n사다리 결과\n");
         System.out.println(drawLadder(ladderGame.getGameInfo(), ladderGame.getLadder()));
     }
 
-    public void printPlayResult(List<UserResult> paramUsers, String userName) {
+    public static void printPlayResult(List<UserResult> paramUsers, String userName) {
         System.out.println("\n실행 결과");
         System.out.println(playResult(paramUsers, userName));
     }
 
-    public void repeatPrintPlayResult(List<UserResult> resultsForAllPlayers) {
+    public static void repeatPrintPlayResult(List<UserResult> resultsForAllPlayers) {
         while (true) {
             String userName = enterResultUser(resultsForAllPlayers);
-            resultView.printPlayResult(resultsForAllPlayers, userName);
+            printPlayResult(resultsForAllPlayers, userName);
             if (ALL.equals(userName)) {
                 break;
             }
         }
     }
 
-    public String playResult(List<UserResult> paramUsers, String userName) {
+    public static String playResult(List<UserResult> paramUsers, String userName) {
         if (ALL.equals(userName)) {
             return playAllResult(paramUsers);
         }
         return playResultByUser(paramUsers, userName);
     }
 
-    public String playResultByUser(List<UserResult> paramUsers, String userName) {
+    public static String playResultByUser(List<UserResult> paramUsers, String userName) {
         return paramUsers.stream()
                          .filter(user -> user.getName().equals(userName))
                          .findFirst()
@@ -110,24 +108,20 @@ public class ResultView {
 
     }
 
-    public String playAllResult(List<UserResult> paramUsers) {
+    public static String playAllResult(List<UserResult> paramUsers) {
         return paramUsers
                 .stream()
                 .map(result -> appendUserResult(result))
                 .collect(Collectors.joining(NEW_LINE));
     }
 
-    public void validateResultUser(List<UserResult> users, String userName) {
+    public static void validateResultUser(List<UserResult> users, String userName) {
         if (!users.contains(new UserResult(userName))) {
             throw new IllegalArgumentException("유저 목록에 해당 이름이 없습니다.");
         }
     }
 
-    public static ResultView getResultView() {
-        return resultView;
-    }
-
-    private String enterResultUser(List<UserResult> results) {
+    private static String enterResultUser(List<UserResult> results) {
         System.out.println("\n결과를 보고 싶은 사람은? ");
         String userName = scanner.next();
         if (ALL.equals(userName)) {
@@ -138,14 +132,14 @@ public class ResultView {
         return userName;
     }
 
-    private String appendLines(Ladder ladder) {
+    private static String appendLines(Ladder ladder) {
         return ladder.getLadder()
                      .stream()
                      .map(line -> appendLine(line))
                      .collect(Collectors.joining(NEW_LINE));
     }
 
-    private String appendBlank(String name) {
+    private static String appendBlank(String name) {
         int length = name.length();
         int repeatCount = MAX_NAME_LENGTH - length;
         StringBuilder stringBuilder = new StringBuilder();
@@ -155,7 +149,7 @@ public class ResultView {
         return stringBuilder.append(name).toString();
     }
 
-    private String appendUserResult(UserResult user) {
+    private static String appendUserResult(UserResult user) {
         return user.getName() + " : " + user.getResult();
     }
 }

@@ -20,8 +20,6 @@ import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
 
 class InputViewTest {
-
-    private static InputView inputView = InputView.getInputView();
     private String userNames = "pobi,honux,crong,jk";
 
     @DisplayName("참여할 사람 이름을 입력하지 않는 경우 예외를 발생시킨다.")
@@ -30,31 +28,14 @@ class InputViewTest {
     @NullAndEmptySource
     void validateUserNames(String names) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputView.splitByComma(names);
+            InputView.splitByComma(names);
         });
     }
 
     @DisplayName("입력받은 이름을 ,로 자른다.")
     @Test
     void splitUserNamesByComma() {
-        String[] names = inputView.splitByComma(userNames);
+        String[] names = InputView.splitByComma(userNames);
         assertThat(names).hasSize(4);
-    }
-
-    @DisplayName("입력 받은이름으로 Users 를 생성한다.")
-    @Test
-    void createUsers() {
-        Users users = inputView.createUsers(inputView.splitByComma(userNames));
-        List<User> userList = users.getUsers();
-        assertThat(userList).hasSize(4);
-    }
-
-    @DisplayName("입력 받은값으로 Results 를 생성한다.")
-    @Test
-    void createResults() {
-        String inputText = "꽝,5000,꽝,3000";
-        Results results = inputView.createResults(inputView.splitByComma(inputText));
-        List<Result> resultList = results.getResults();
-        assertThat(resultList).hasSize(4);
     }
 }

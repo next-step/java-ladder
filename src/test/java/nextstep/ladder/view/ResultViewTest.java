@@ -24,8 +24,6 @@ import nextstep.ladder.domain.Users;
 import nextstep.ladder.domain.UsersTest;
 
 class ResultViewTest {
-    private static ResultView resultView = ResultView.getResultView();
-
     private List<LadderLine> lineList;
     private Ladder ladder;
 
@@ -58,7 +56,7 @@ class ResultViewTest {
         String userName = "soo";
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            resultView.validateResultUser(userResults, userName);
+            ResultView.validateResultUser(userResults, userName);
         });
 
     }
@@ -66,28 +64,28 @@ class ResultViewTest {
     @DisplayName("유저 이름을 출력한다.")
     @Test
     void appendUserNames() {
-        String userNames = resultView.appendUserNames(UsersTest.USERS);
+        String userNames = ResultView.appendUserNames(UsersTest.USERS);
         assertThat(userNames).isEqualTo(" pobi honux crong    jk");
     }
 
     @DisplayName("사다리의 라인의 해당하는 값을 그린다.")
     @Test
     void appendLine() {
-        String line = resultView.appendLine(LadderLineTest.LINE);
+        String line = ResultView.appendLine(LadderLineTest.LINE);
         assertThat(line).isEqualTo("     |-----|     |-----|     ");
     }
 
     @DisplayName("실행결과를 출력한다.")
     @Test
     void appendResults() {
-        String results = resultView.appendResults(ResultsTest.RESULTS);
+        String results = ResultView.appendResults(ResultsTest.RESULTS);
         assertThat(results).isEqualTo("    꽝  5000     꽝  3000");
     }
 
     @DisplayName("입력 받은 사다리를 그린다.")
     @Test
     void drawLadder() {
-        String drawLadder = resultView.drawLadder(gameInfo, ladder);
+        String drawLadder = ResultView.drawLadder(gameInfo, ladder);
         assertThat(drawLadder).isEqualTo(" pobi honux crong    jk\n"
                                          + "     |-----|     |-----|     \n"
                                          + "     |     |-----|     |     \n"
@@ -98,14 +96,14 @@ class ResultViewTest {
     @DisplayName("유저별 실행결과를 출력한다")
     @Test
     void playResult() {
-        String resultByUser = resultView.playResultByUser(userResults, "honux");
+        String resultByUser = ResultView.playResultByUser(userResults, "honux");
         assertThat(resultByUser).isEqualTo("꽝");
     }
 
     @DisplayName("전체 실행결과를 출력한다.")
     @Test
     void playAllResult() {
-        String playAllResult = resultView.playAllResult(userResults);
+        String playAllResult = ResultView.playAllResult(userResults);
         assertThat(playAllResult).isEqualTo("pobi : 꽝\n"
                                             + "honux : 꽝\n"
                                             + "crong : 3000\n"
