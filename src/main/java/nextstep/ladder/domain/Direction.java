@@ -1,21 +1,25 @@
 package nextstep.ladder.domain;
 
+import static nextstep.ladder.util.RandomGenerator.generate;
+
 import java.util.Objects;
-import java.util.Random;
 
 public class Direction {
-    private static final Direction TRUE_FALSE = new Direction(true, false);
-    private static final Direction FALSE_TRUE = new Direction(false, true);
-    private static final Direction FALSE_FALSE = new Direction(false, false);
-    private Random random = new Random();
-
+    private static final int CALC_INDEX = 2;
+    private static final int TRUE_INDEX = 1;
+    private static final int FALSE_INDEX = 0;
+    private final static Direction[] cache = new Direction[3];
     private final boolean left;
     private final boolean right;
 
+    static {
+        cache[0] = new Direction(false, false);
+        cache[1] = new Direction(false, true);
+        cache[2] = new Direction(true, false);
+    }
+
     public Direction(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException();
-        }
+        validate(left, right);
         this.left = left;
         this.right = right;
     }
@@ -28,21 +32,12 @@ public class Direction {
         if (this.right) {
             return next(false);
         }
-        return next(generatePoint());
+        return next(generate());
     }
 
-    public static Direction of(boolean first, boolean second) {
-        if (first && !second) {
-            return TRUE_FALSE;
-        }
-        if (!first && second) {
-            return FALSE_TRUE;
-        }
-        if (!first && !second) {
-            return FALSE_FALSE;
-        }
-
-        return new Direction(first, second);
+    public static Direction of(boolean left, boolean right) {
+        validate(left, right);
+        return cache[getCacheIndex(left, right)];
     }
 
     public static Direction first(boolean right) {
@@ -53,8 +48,21 @@ public class Direction {
         return of(this.right, false);
     }
 
-    private boolean generatePoint() {
-        return random.nextBoolean();
+    private static void validate(final boolean left, final boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static int getCacheIndex(final boolean left, final boolean right) {
+        return toInt(left) * CALC_INDEX + toInt(right);
+    }
+
+    private static int toInt(final boolean bool) {
+        if (bool) {
+            return TRUE_INDEX;
+        }
+        return FALSE_INDEX;
     }
 
     public boolean isLeft() {
