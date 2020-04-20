@@ -18,7 +18,7 @@ public class Main {
 
     Ladder ladder = new Ladder(ladderHeight, prizeSheet.getSize());
     resultView.printLadderResult(ladder, players);
-    prizeSheet.print();
+    resultView.printPrizeSheet(prizeSheet);
 
     ResultSheet resultSheet = players.produceResult(ladder, prizeSheet);
     resultView.printWinningResult(resultSheet);

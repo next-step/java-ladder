@@ -15,13 +15,12 @@ public class Ladder {
         .collect(Collectors.toList());
   }
 
+  public List<LadderLine> getLadderLines() {
+    return ladderLines;
+  }
+
   public int move(int position) {
     return ladderLines.stream()
         .reduce(position, (stopover, ladderLine) -> ladderLine.move(stopover), Integer::sum);
-  }
-
-  public void print() {
-    ladderLines.forEach(LadderLine::print);
-    System.out.println();
   }
 }

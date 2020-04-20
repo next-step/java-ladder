@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
-  private static final String PLAYER_FORMAT = "%6s";
 
   private List<Player> players;
 
@@ -19,6 +18,10 @@ public class Players {
             .mapToObj(position -> new Player(names.get(position), position))
             .collect(Collectors.toList())
     );
+  }
+
+  public List<Player> getPlayers() {
+    return players;
   }
 
   public void ride(Ladder ladder) {
@@ -36,10 +39,5 @@ public class Players {
     if (players.size() != prizeSheet.getSize()) {
       throw new IllegalArgumentException("선수의 수와 상의 개수가 같아야합니다.");
     }
-  }
-
-  public void print() {
-    players.forEach(player -> System.out.printf(PLAYER_FORMAT, player.getName()));
-    System.out.println();
   }
 }

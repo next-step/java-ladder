@@ -48,12 +48,8 @@ public class LadderLine {
     return points;
   }
 
-  public void print() {
-    points.forEach(point -> {
-      String ladderStep = point.hasLeftLeg() ? LADDER_WITH_LEG :LADDER_WITHOUT_LEG;
-      System.out.print(ladderStep);
-    });
-    System.out.println();
+  public List<Point> getPoints() {
+    return points;
   }
 
   @Override

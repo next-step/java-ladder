@@ -6,7 +6,6 @@ import java.util.Map;
 import nextstep.ladder.domain.model.Prize;
 
 public class ResultSheet {
-  private static final String RESULT_FORMAT = "%s : %s";
 
   private Map<String, Prize> resultSheet = new HashMap<>();
 
@@ -19,10 +18,8 @@ public class ResultSheet {
         resultSheet.put(player.getName(), prizeSheet.get(player.getPosition())));
   }
 
-  public void print() {
-    resultSheet.forEach((name, prize) -> System.out.println(
-        String.format(RESULT_FORMAT, name, prize.getPrize())
-    ));
+  public Map<String, Prize> getResultSheet() {
+    return resultSheet;
   }
 
   public Prize checkResult(String name) {

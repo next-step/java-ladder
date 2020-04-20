@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import nextstep.ladder.domain.model.Prize;
 
 public class PrizeSheet {
-  private static final String PRIZE_FORMAT = "%6s";
 
   private List<Prize> prizeSheet;
 
@@ -13,6 +12,10 @@ public class PrizeSheet {
     prizeSheet = prizes.stream()
         .map(Prize::new)
         .collect(Collectors.toList());
+  }
+
+  public List<Prize> getPrizeSheet() {
+    return prizeSheet;
   }
 
   public int getSize() {
@@ -23,8 +26,4 @@ public class PrizeSheet {
     return prizeSheet.get(position);
   }
 
-  public void print() {
-    prizeSheet.forEach(prize -> System.out.printf(PRIZE_FORMAT, prize.getPrize()));
-    System.out.println();
-  }
 }
