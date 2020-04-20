@@ -22,7 +22,7 @@ public class Ladder {
                 .collect(Collectors.toMap(Function.identity(), this::getResultPosition)));
     }
 
-    public Position getResultPosition(Position startPosition) {
+    private Position getResultPosition(Position startPosition) {
         Position currentPosition = startPosition;
         for (LadderLine ladderLine : ladderLines) {
             currentPosition = ladderLine.move(currentPosition);
