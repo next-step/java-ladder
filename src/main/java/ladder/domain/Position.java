@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
+    private static final int CHANGING_UNIT = 1;
     private final int value;
 
     public Position(int value) {
@@ -13,11 +14,11 @@ public class Position {
     }
 
     public Position right() {
-        return new Position(value + 1);
+        return new Position(value + CHANGING_UNIT);
     }
 
     public Position left() {
-        return new Position(value - 1);
+        return new Position(value - CHANGING_UNIT);
     }
 
     public int toInt() {
