@@ -1,17 +1,11 @@
 package nextstep.ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import nextstep.ladder.domain.GameInfo;
-import nextstep.ladder.domain.ImprovingPoint;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.LadderLine;
-import nextstep.ladder.domain.Results;
-import nextstep.ladder.domain.UserResult;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 
 public class ResultView {
     private static final int MAX_NAME_LENGTH = 5;
@@ -26,10 +20,10 @@ public class ResultView {
 
     public static String appendUserNames(Users users) {
         return users.getUsers()
-                    .stream()
-                    .map(user -> user.getName())
-                    .map(name -> appendBlank(name))
-                    .collect(Collectors.joining(BLANK));
+                .stream()
+                .map(user -> user.getName())
+                .map(name -> appendBlank(name))
+                .collect(Collectors.joining(BLANK));
 
     }
 
@@ -39,13 +33,13 @@ public class ResultView {
         List<ImprovingPoint> points = line.getPoints();
 
         String tempLine = line.getPoints()
-                              .stream()
-                              .map(point -> drawLineByPoint(point))
-                              .collect(Collectors.joining(VERTICAL));
+                .stream()
+                .map(point -> drawLineByPoint(point))
+                .collect(Collectors.joining(VERTICAL));
 
         return stringBuilder.append(VERTICAL)
-                            .append(tempLine)
-                            .toString();
+                .append(tempLine)
+                .toString();
     }
 
     public static String drawLineByPoint(ImprovingPoint point) {
@@ -57,19 +51,19 @@ public class ResultView {
 
     public static String drawLadder(GameInfo gameInfo, Ladder ladder) {
         return new StringBuilder().append(appendUserNames(gameInfo.getUsers()))
-                                  .append(NEW_LINE)
-                                  .append(appendLines(ladder))
-                                  .append(NEW_LINE)
-                                  .append(appendResults(gameInfo.getResults()))
-                                  .toString();
+                .append(NEW_LINE)
+                .append(appendLines(ladder))
+                .append(NEW_LINE)
+                .append(appendResults(gameInfo.getResults()))
+                .toString();
     }
 
     public static String appendResults(Results results) {
         return results.getResults()
-                      .stream()
-                      .map(result -> result.getResult())
-                      .map(result -> appendBlank(result))
-                      .collect(Collectors.joining(BLANK));
+                .stream()
+                .map(result -> result.getResult())
+                .map(result -> appendBlank(result))
+                .collect(Collectors.joining(BLANK));
     }
 
     public static void printLadder(LadderGame ladderGame) {
@@ -77,12 +71,12 @@ public class ResultView {
         System.out.println(drawLadder(ladderGame.getGameInfo(), ladderGame.getLadder()));
     }
 
-    public static void printPlayResult(List<UserResult> paramUsers, String userName) {
+    public static void printPlayResult(UserResults paramUsers, String userName) {
         System.out.println("\n실행 결과");
         System.out.println(playResult(paramUsers, userName));
     }
 
-    public static void repeatPrintPlayResult(List<UserResult> resultsForAllPlayers) {
+    public static void repeatPrintPlayResult(UserResults resultsForAllPlayers) {
         while (true) {
             String userName = enterResultUser(resultsForAllPlayers);
             printPlayResult(resultsForAllPlayers, userName);
@@ -92,36 +86,42 @@ public class ResultView {
         }
     }
 
-    public static String playResult(List<UserResult> paramUsers, String userName) {
+    public static String playResult(UserResults paramUsers, String userName) {
         if (ALL.equals(userName)) {
             return playAllResult(paramUsers);
         }
         return playResultByUser(paramUsers, userName);
     }
 
-    public static String playResultByUser(List<UserResult> paramUsers, String userName) {
-        return paramUsers.stream()
-                         .filter(user -> user.getName().equals(userName))
-                         .findFirst()
-                         .get()
-                         .getResult();
+    public static String playResultByUser(UserResults paramUsers, String userName) {
+        return paramUsers
+                .getUserResults()
+                .entrySet()
+                .stream()
+                .filter(e -> e.getKey().equals(userName))
+                .findFirst()
+                .get()
+                .getValue()
+                .getResult();
 
     }
 
-    public static String playAllResult(List<UserResult> paramUsers) {
+    public static String playAllResult(UserResults paramUsers) {
         return paramUsers
+                .getUserResults()
+                .entrySet()
                 .stream()
-                .map(result -> appendUserResult(result))
+                .map(e -> appendUserResult(e.getKey(), e.getValue()))
                 .collect(Collectors.joining(NEW_LINE));
     }
 
-    public static void validateResultUser(List<UserResult> users, String userName) {
-        if (!users.contains(new UserResult(userName))) {
+    public static void validateResultUser(UserResults userResults, String userName) {
+        if (!userResults.getUserResults().containsKey(userName)) {
             throw new IllegalArgumentException("유저 목록에 해당 이름이 없습니다.");
         }
     }
 
-    private static String enterResultUser(List<UserResult> results) {
+    private static String enterResultUser(UserResults results) {
         System.out.println("\n결과를 보고 싶은 사람은? ");
         String userName = scanner.next();
         if (ALL.equals(userName)) {
@@ -134,9 +134,9 @@ public class ResultView {
 
     private static String appendLines(Ladder ladder) {
         return ladder.getLadder()
-                     .stream()
-                     .map(line -> appendLine(line))
-                     .collect(Collectors.joining(NEW_LINE));
+                .stream()
+                .map(line -> appendLine(line))
+                .collect(Collectors.joining(NEW_LINE));
     }
 
     private static String appendBlank(String name) {
@@ -149,7 +149,7 @@ public class ResultView {
         return stringBuilder.append(name).toString();
     }
 
-    private static String appendUserResult(UserResult user) {
-        return user.getName() + " : " + user.getResult();
+    private static String appendUserResult(String key, Result value) {
+        return key + " : " + value.getResult();
     }
 }

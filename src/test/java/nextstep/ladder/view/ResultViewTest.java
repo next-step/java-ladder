@@ -8,32 +8,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import nextstep.ladder.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import nextstep.ladder.domain.GameInfo;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.LadderLine;
-import nextstep.ladder.domain.LadderLineTest;
-import nextstep.ladder.domain.ResultsTest;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.UserResult;
-import nextstep.ladder.domain.Users;
-import nextstep.ladder.domain.UsersTest;
 
 class ResultViewTest {
     private List<LadderLine> lineList;
     private Ladder ladder;
 
     private GameInfo gameInfo;
-    private List<UserResult> userResults;
+    private UserResults userResults;
 
     @BeforeEach
     void setUp() {
         lineList = Stream.of(LadderLineTest.LINE, LadderLineTest.LINE2)
-                         .collect(Collectors.toList());
+                .collect(Collectors.toList());
 
         ladder = new Ladder(lineList);
         gameInfo = new GameInfo(UsersTest.USERS, ResultsTest.RESULTS);
@@ -42,16 +32,16 @@ class ResultViewTest {
     }
 
     @DisplayName("결과를 보고싶은 사람을 입력받을 경우 유저에 포함되는지 확인해본다. "
-                 + "아닐경우 exception 발생시킨다.")
+            + "아닐경우 exception 발생시킨다.")
     @Test
     void validateResultUser() {
         Users users = new Users(new ArrayList<>(
                 Stream.of(new User("pobi"),
-                          new User("honux"),
-                          new User("crong"),
-                          new User("jk")
+                        new User("honux"),
+                        new User("crong"),
+                        new User("jk")
                 )
-                      .collect(Collectors.toList())));
+                        .collect(Collectors.toList())));
 
         String userName = "soo";
 
@@ -87,9 +77,9 @@ class ResultViewTest {
     void drawLadder() {
         String drawLadder = ResultView.drawLadder(gameInfo, ladder);
         assertThat(drawLadder).isEqualTo(" pobi honux crong    jk\n"
-                                         + "     |-----|     |-----|     \n"
-                                         + "     |     |-----|     |     \n"
-                                         + "    꽝  5000     꽝  3000");
+                + "     |-----|     |-----|     \n"
+                + "     |     |-----|     |     \n"
+                + "    꽝  5000     꽝  3000");
 
     }
 
@@ -105,8 +95,8 @@ class ResultViewTest {
     void playAllResult() {
         String playAllResult = ResultView.playAllResult(userResults);
         assertThat(playAllResult).isEqualTo("pobi : 꽝\n"
-                                            + "honux : 꽝\n"
-                                            + "crong : 3000\n"
-                                            + "jk : 5000");
+                + "honux : 꽝\n"
+                + "crong : 3000\n"
+                + "jk : 5000");
     }
 }

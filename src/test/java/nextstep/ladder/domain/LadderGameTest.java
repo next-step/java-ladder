@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,11 +19,12 @@ class LadderGameTest {
 
         Ladder ladder = new Ladder(lineList);
         LadderGame ladderGame = new LadderGame(gameInfo, ladder);
-        List<UserResult> userResults = ladderGame.generateResultsForAllPlayers();
+        UserResults userResults = ladderGame.generateResultsForAllPlayers();
+        Map<String, Result> userResultsMap = userResults.getUserResults();
 
-        assertThat(userResults.get(0).getResult()).isEqualTo("꽝");
-        assertThat(userResults.get(1).getResult()).isEqualTo("꽝");
-        assertThat(userResults.get(2).getResult()).isEqualTo("3000");
-        assertThat(userResults.get(3).getResult()).isEqualTo("5000");
+        assertThat(userResultsMap.get("pobi").getResult()).isEqualTo("꽝");
+        assertThat(userResultsMap.get("honux").getResult()).isEqualTo("꽝");
+        assertThat(userResultsMap.get("crong").getResult()).isEqualTo("3000");
+        assertThat(userResultsMap.get("jk").getResult()).isEqualTo("5000");
     }
 }

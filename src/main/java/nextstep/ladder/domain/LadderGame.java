@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import nextstep.ladder.engine.LadderCreator;
 
@@ -18,22 +20,22 @@ public class LadderGame {
         gameInfo = new GameInfo(new Users(userNames), new Results(results));
     }
 
-    public List<UserResult> generateResultsForAllPlayers() {
+    public UserResults generateResultsForAllPlayers() {
         List<LadderLine> ladder = this.ladder.getLadder();
         List<Result> results = gameInfo.getResults().getResults();
 
-        List<UserResult> userResults = new ArrayList<>();
+        Map<String, Result> userResults = new LinkedHashMap<>();
         int index = 0;
         for (User user : gameInfo.getUsers().getUsers()) {
-            userResults.add(new UserResult(user, results.get(getIndex(ladder, index))));
+            Result result = results.get(getIndex(ladder, index));
+            userResults.put(user.getName(), result);
             ++index;
         }
-        return userResults;
+        return new UserResults(userResults);
     }
 
     public void startGame(LadderCreator ladderFactory) {
         this.ladder = ladderFactory.create();
-
     }
 
     private int getIndex(List<LadderLine> ladder, int index) {
