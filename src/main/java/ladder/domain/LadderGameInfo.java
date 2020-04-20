@@ -11,7 +11,7 @@ public class LadderGameInfo {
     }
 
     public LadderGameInfo(Users users, LadderRewards ladderRewards) {
-        if (!Objects.equals(users.size(), ladderRewards.size())) {
+        if (users.size() != ladderRewards.size()) {
             throw new IllegalArgumentException("참여할 사람과 실행 결과의 수는 같아야 한다.");
         }
         this.users = users;
