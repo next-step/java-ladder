@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import static nextstep.ladder.util.RandomGenerator.generate;
-
 import java.util.Objects;
 
 public class Direction {

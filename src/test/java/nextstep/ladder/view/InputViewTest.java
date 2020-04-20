@@ -3,21 +3,11 @@ package nextstep.ladder.view;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import nextstep.ladder.domain.Result;
-import nextstep.ladder.domain.Results;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
 
 class InputViewTest {
     private String userNames = "pobi,honux,crong,jk";

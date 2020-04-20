@@ -1,11 +1,18 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.GameInfo;
+import nextstep.ladder.domain.ImprovingPoint;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.Result;
+import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.UserResults;
+import nextstep.ladder.domain.Users;
 
 public class ResultView {
     private static final int MAX_NAME_LENGTH = 5;

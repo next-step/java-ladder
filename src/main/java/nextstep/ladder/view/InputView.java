@@ -1,14 +1,6 @@
 package nextstep.ladder.view;
 
-import java.util.Arrays;
-import java.util.Optional;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-
-import nextstep.ladder.domain.Result;
-import nextstep.ladder.domain.Results;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
 
 public class InputView {
     private static final String SPLIT_TEXT = ",";

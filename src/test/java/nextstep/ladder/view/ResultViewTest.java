@@ -8,10 +8,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import nextstep.ladder.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import nextstep.ladder.domain.GameInfo;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.LadderLineTest;
+import nextstep.ladder.domain.ResultsTest;
+import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.UserResults;
+import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.UsersTest;
 
 class ResultViewTest {
     private List<LadderLine> lineList;

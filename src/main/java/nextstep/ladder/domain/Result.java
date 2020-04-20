@@ -2,8 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-import nextstep.ladder.view.InputView;
-
 public class Result {
     private final String result;
 
