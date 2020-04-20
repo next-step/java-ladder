@@ -22,10 +22,6 @@ public class ImprovingPoint {
         return index;
     }
 
-    public ImprovingPoint next() {
-        return new ImprovingPoint(index + CHANGE_INDEX, direction.next());
-    }
-
     public ImprovingPoint next(boolean right) {
         return new ImprovingPoint(index + CHANGE_INDEX, direction.next(right));
     }
@@ -45,8 +41,8 @@ public class ImprovingPoint {
     @Override
     public String toString() {
         return "ImprovingPoint{" +
-               "index=" + index +
-               ", direction=" + direction +
-               '}';
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 }
