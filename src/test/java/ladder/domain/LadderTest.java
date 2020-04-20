@@ -32,7 +32,7 @@ public class LadderTest {
                         new Point(1, Direction.of(FALSE, TRUE)),
                         new Point(2, Direction.of(TRUE, FALSE))
                 ))
-        ), 3);
+        ));
     }
 
     @Test
@@ -42,6 +42,6 @@ public class LadderTest {
         results.put(new Position(1), new Position(0));
         results.put(new Position(2), new Position(1));
 
-        assertThat(ladder.exec()).isEqualTo(new LadderResults(results));
+        assertThat(ladder.exec(3)).isEqualTo(new LadderResults(results));
     }
 }

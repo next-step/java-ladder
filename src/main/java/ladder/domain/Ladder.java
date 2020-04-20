@@ -10,14 +10,12 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<LadderLine> ladderLines;
-    private final int playerCount;
 
-    public Ladder(List<LadderLine> ladderLines, int playerCount) {
+    public Ladder(List<LadderLine> ladderLines) {
         this.ladderLines = Collections.unmodifiableList(new ArrayList<>(ladderLines));
-        this.playerCount = playerCount;
     }
 
-    public LadderResults exec() {
+    public LadderResults exec(int playerCount) {
         return new LadderResults(IntStream.range(0, playerCount)
                 .mapToObj(Position::new)
                 .collect(Collectors.toMap(Function.identity(), this::getResultPosition)));
@@ -40,12 +38,11 @@ public class Ladder {
         if (this == o) return true;
         if (!(o instanceof Ladder)) return false;
         Ladder ladder = (Ladder) o;
-        return playerCount == ladder.playerCount &&
-                Objects.equals(ladderLines, ladder.ladderLines);
+        return Objects.equals(ladderLines, ladder.ladderLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderLines, playerCount);
+        return Objects.hash(ladderLines);
     }
 }

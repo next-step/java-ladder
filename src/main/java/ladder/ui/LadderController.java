@@ -22,11 +22,10 @@ public class LadderController {
         ResultView.print(ladder, ladderGameInfo);
         while (true) {
             String inputTarget = InputView.inputTarget();
+            ResultView.printResult(inputTarget, results);
             if (TARGET_ALL.equals(inputTarget)) {
-                ResultView.printAllResult(results);
                 break;
             }
-            ResultView.printResult(inputTarget, results);
         }
     }
 }

@@ -8,7 +8,7 @@ public class LadderCreator {
     private static final LadderLineCreator ladderLineCreator = new LadderLineCreator();
 
     public static Ladder create(LadderInfo ladderInfo, DirectionCreator directionCreator) {
-        return new Ladder(createLadderLines(ladderInfo, directionCreator), ladderInfo.getPlayerCount());
+        return new Ladder(createLadderLines(ladderInfo, directionCreator));
     }
 
     private static List<LadderLine> createLadderLines(LadderInfo ladderInfo, DirectionCreator directionCreator) {

@@ -17,10 +17,9 @@ public class LadderGame {
     }
 
     public static LadderGameResults start(Ladder ladder, LadderGameInfo ladderGameInfo) {
-        LadderResults ladderResults = ladder.exec();
         Users users = ladderGameInfo.getUsers();
         LadderRewards ladderRewards = ladderGameInfo.getLadderRewards();
-
+        LadderResults ladderResults = ladder.exec(users.size());
         int userCount = users.size();
         Map<User, LadderReward> matchResult = IntStream.range(0, userCount)
                 .boxed()

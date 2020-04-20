@@ -43,6 +43,6 @@ class LadderGameTest {
                         new Point(1, Direction.of(FALSE, TRUE)),
                         new Point(2, Direction.of(TRUE, FALSE))
                 ))
-        ), 3);
+        ));
     }
 }

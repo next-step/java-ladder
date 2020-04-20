@@ -23,6 +23,6 @@ class LadderCreatorTest {
                         new Point(1, Direction.of(TRUE, FALSE)),
                         new Point(2, Direction.of(FALSE, FALSE))
                 ))
-        ), 3));
+        )));
     }
 }

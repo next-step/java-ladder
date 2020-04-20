@@ -18,6 +18,7 @@ public class ResultView {
     private static final String RESULT_REQUEST = "결과를 보고 싶은 사람은?";
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String RESULT_FORMAT = "%s : %s";
+    private static final String TARGET_ALL = "all";
 
     public static void print(Ladder ladder, LadderGameInfo ladderGameInfo) {
         System.out.println(LADDER_MESSAGE);
