@@ -1,18 +1,19 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.model.Name;
+import nextstep.ladder.domain.model.Position;
 
 public class Player {
   private Name name;
-  private int position;
+  private Position position;
 
   public Player(String name, int position) {
     this.name = new Name(name);
-    this.position = position;
+    this.position = Position.at(position);
   }
 
   public int getPosition() {
-    return position;
+    return position.getPosition();
   }
 
   public String getName() {
@@ -20,6 +21,6 @@ public class Player {
   }
 
   public void ride(Ladder ladder) {
-    position = ladder.move(position);
+    position = Position.at(ladder.move(position.getPosition()));
   }
 }
