@@ -3,6 +3,9 @@ package ladder.domain;
 import static ladder.domain.Direction.*;
 
 public class Point {
+    private static final int DISTANCE_FROM_NEXT_POINT = 1;
+    private static final int DISTANCE_FROM_SELF = 0;
+
     private final int position;
     private Direction direction = DOWN;
 
@@ -15,9 +18,9 @@ public class Point {
     }
 
     public void connect(Point other) {
-        int distance = this.position - other.position;
+        int distanceToOther = this.position - other.position;
 
-        if (Math.abs(distance) >  1 || distance == 0) {
+        if (Math.abs(distanceToOther) > DISTANCE_FROM_NEXT_POINT || distanceToOther == DISTANCE_FROM_SELF) {
             throw new IllegalArgumentException("바로 옆에 있는 점만 연결 가능하다");
         }
 
@@ -25,7 +28,7 @@ public class Point {
             throw new IllegalArgumentException("양 옆으로 연결이 되어 있지 않은 점들끼리만 연결 가능하다");
         }
 
-        connect(other, distance);
+        connect(other, distanceToOther);
     }
 
     public boolean isConnectedTo(Direction direction) {
@@ -37,7 +40,7 @@ public class Point {
     }
 
     private void connect(Point other, int distance) {
-        if (distance == 1) {
+        if (distance > 0) {
             other.direction = RIGHT;
             this.direction = LEFT;
             return;
