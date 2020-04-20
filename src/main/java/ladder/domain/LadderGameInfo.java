@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import java.util.Objects;
-
 public class LadderGameInfo {
     private final Users users;
     private final LadderRewards ladderRewards;
