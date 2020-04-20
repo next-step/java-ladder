@@ -2,11 +2,15 @@ package nextstep.ladder.domain.model;
 
 public class UnconditionalGeneration implements LadderGenerationRule {
 
-  private static UnconditionalGeneration instance = new UnconditionalGeneration();
+  private static UnconditionalGeneration instance;
 
-  private UnconditionalGeneration() {}
+  public UnconditionalGeneration() {}
 
   public static UnconditionalGeneration getInstance() {
+    if (instance == null) {
+      instance = new UnconditionalGeneration();
+    }
+
     return instance;
   }
 

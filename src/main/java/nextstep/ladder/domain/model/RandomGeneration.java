@@ -4,11 +4,15 @@ import java.util.Random;
 
 public class RandomGeneration implements LadderGenerationRule {
 
-  private static RandomGeneration instance = new RandomGeneration();
+  private static RandomGeneration instance;
 
-  private RandomGeneration() {}
+  public RandomGeneration() {}
 
   public static RandomGeneration getInstance() {
+    if (instance == null) {
+      instance = new RandomGeneration();
+    }
+
     return instance;
   }
 

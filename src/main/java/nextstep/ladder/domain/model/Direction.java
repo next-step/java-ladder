@@ -5,14 +5,15 @@ import java.util.Objects;
 import static java.lang.Boolean.FALSE;
 
 public class Direction {
+
+  private static Direction LEFT = new Direction(true, false);
+  private static Direction MIDDLE = new Direction(false, false);
+  private static Direction RIGHT = new Direction(false, true);
+
   private final boolean left;
   private final boolean right;
 
   private Direction(boolean left, boolean right) {
-    if (left && right) {
-      throw new IllegalStateException();
-    }
-
     this.left = left;
     this.right = right;
   }
@@ -38,7 +39,19 @@ public class Direction {
   }
 
   public static Direction of(boolean first, boolean second) {
-    return new Direction(first, second);
+    if (first && second) {
+      throw new IllegalStateException();
+    }
+
+    if (first) {
+      return LEFT;
+    }
+
+    if (second) {
+      return RIGHT;
+    }
+
+    return MIDDLE;
   }
 
   public static Direction first(boolean right) {
