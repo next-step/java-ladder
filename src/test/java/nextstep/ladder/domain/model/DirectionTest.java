@@ -21,14 +21,14 @@ public class DirectionTest {
 
   @Test
   public void next_random_true() {
-    Direction next = Direction.first(TRUE).next(new RandomGeneration());
+    Direction next = Direction.first(TRUE).next(RandomGeneration.getInstance());
     assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
   }
 
   @Test
   public void next_random_false() {
     for (int i = 0; i < 100; i++) {
-      Direction.first(FALSE).next(new RandomGeneration());
+      Direction.first(FALSE).next(RandomGeneration.getInstance());
     }
   }
 

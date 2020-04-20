@@ -20,8 +20,7 @@ public class LadderLine {
   }
 
   public static LadderLine init(int sizeOfPerson, LadderGenerationRule rule) {
-    List<Point> points = new ArrayList<>();
-    initFirst(points, rule);
+    List<Point> points = initFirst(rule);
     Point point = initBody(sizeOfPerson, points, rule);
     initLast(points, point);
     return new LadderLine(points);
@@ -41,9 +40,12 @@ public class LadderLine {
     points.add(point);
   }
 
-  private static void initFirst(List<Point> points, LadderGenerationRule rule) {
-    Point point = Point.first(rule.generate()); // point generater
+  private static List<Point> initFirst(LadderGenerationRule rule) {
+    List<Point> points = new ArrayList<>();
+    Point point = Point.first(rule.generate());
     points.add(point);
+
+    return points;
   }
 
   public void print() {

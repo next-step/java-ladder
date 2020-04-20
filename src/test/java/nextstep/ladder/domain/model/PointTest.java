@@ -33,7 +33,7 @@ public class PointTest {
 
   @Test
   public void next() {
-    Point second = Point.first(TRUE).next(new RandomGeneration());
+    Point second = Point.first(TRUE).next(RandomGeneration.getInstance());
     assertThat(second.move()).isEqualTo(0);
   }
 }
