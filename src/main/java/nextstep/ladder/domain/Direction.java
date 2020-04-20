@@ -28,13 +28,6 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
-        if (this.right) {
-            return next(false);
-        }
-        return next(generate());
-    }
-
     public static Direction of(boolean left, boolean right) {
         validate(left, right);
         return cache[getCacheIndex(left, right)];
@@ -75,11 +68,15 @@ public class Direction {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (!(o instanceof Direction)) { return false; }
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Direction)) {
+            return false;
+        }
         final Direction direction = (Direction) o;
         return left == direction.left &&
-               right == direction.right;
+                right == direction.right;
     }
 
     @Override
@@ -90,8 +87,8 @@ public class Direction {
     @Override
     public String toString() {
         return "Direction{" +
-               "left=" + left +
-               ", right=" + right +
-               '}';
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }

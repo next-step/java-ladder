@@ -23,22 +23,6 @@ class DirectionTest {
         });
     }
 
-    @DisplayName("다음 방향 랜덤값이 항상 true 인경우")
-    @Test
-    void nextRandomTrue() {
-        Direction next = Direction.first(true).next();
-        assertThat(next).isEqualTo(Direction.of(true, false));
-
-    }
-
-    @DisplayName("다음 방향 랜덤값이 항상 달라진다.")
-    @Test
-    void nextRandomFalse() {
-        for (int i = 0; i < 100; i++) {
-            Direction next = Direction.first(false).next();
-        }
-    }
-
     @DisplayName("디음 방향이 true 일경우")
     @Test
     void nextTrue() {

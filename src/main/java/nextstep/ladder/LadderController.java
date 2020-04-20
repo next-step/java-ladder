@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import java.util.List;
-
 import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.UserResult;
 import nextstep.ladder.domain.UserResults;
 import nextstep.ladder.factory.LadderFactoryBean;
 import nextstep.ladder.view.InputView;

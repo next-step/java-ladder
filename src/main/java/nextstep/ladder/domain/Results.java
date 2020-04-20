@@ -20,6 +20,10 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
+    public int getCountOfResult(){
+        return results.size();
+    }
+
     public List<Result> getResults() {
         return results;
     }

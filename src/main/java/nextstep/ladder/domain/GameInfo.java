@@ -11,7 +11,7 @@ public class GameInfo {
     }
 
     public void checkValidateResults(Users users, Results results) {
-        if (users.getCountOfPerson() != results.getResults().size()) {
+        if (users.getCountOfPerson() != results.getCountOfResult()) {
             throw new IllegalArgumentException("참여할 사람과 실행 결과의 수는 같아야 합니다");
         }
     }
