@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +9,7 @@ public class LadderLine {
     private final List<Point> points;
 
     public LadderLine(List<Point> points) {
-        this.points = Collections.unmodifiableList(points);
+        this.points = Collections.unmodifiableList(new ArrayList<>(points));
     }
 
     public Position move(Position currentPosition) {
