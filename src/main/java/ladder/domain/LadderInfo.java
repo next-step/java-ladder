@@ -1,6 +1,4 @@
-package ladder.dto;
-
-import ladder.domain.Users;
+package ladder.domain;
 
 public class LadderInfo {
     private final int playerCount;

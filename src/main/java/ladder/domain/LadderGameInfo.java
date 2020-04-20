@@ -1,7 +1,4 @@
-package ladder.dto;
-
-import ladder.domain.LadderRewards;
-import ladder.domain.Users;
+package ladder.domain;
 
 public class LadderGameInfo {
     private final Users users;

@@ -1,8 +1,8 @@
 package ladder.view;
 
 import ladder.domain.*;
-import ladder.dto.LadderGameInfo;
-import ladder.dto.LadderGameResults;
+import ladder.domain.LadderGameInfo;
+import ladder.domain.LadderGameResults;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,9 +1,9 @@
 package ladder.application;
 
 import ladder.domain.*;
-import ladder.dto.LadderGameInfo;
-import ladder.dto.LadderGameResults;
-import ladder.dto.LadderInfo;
+import ladder.domain.LadderGameInfo;
+import ladder.domain.LadderGameResults;
+import ladder.domain.LadderInfo;
 import ladder.infra.RandomDirectionCreator;
 
 import java.util.Map;
