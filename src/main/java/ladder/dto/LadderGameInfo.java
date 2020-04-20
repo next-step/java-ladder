@@ -4,7 +4,7 @@ import ladder.domain.*;
 
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class LadderGameInfo {
     private final Users users;
@@ -28,9 +28,10 @@ public class LadderGameInfo {
     }
 
     public Map<User, LadderReward> match(LadderResults ladderResults) {
-        return Stream.iterate(0, i -> i < users.size(), i -> i + 1)
+        int userCount = users.size();
+        return IntStream.range(0, userCount)
+                .boxed()
                 .collect(Collectors.toMap(users::getUser,
                         i -> ladderRewards.getLadderReward(ladderResults.getResultPosition(i))));
-
     }
 }

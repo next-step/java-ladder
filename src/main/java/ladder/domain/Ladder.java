@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<LadderLine> ladderLines;
@@ -17,8 +17,8 @@ public class Ladder {
     }
 
     public LadderResults exec() {
-        return new LadderResults(Stream.iterate(0, i -> i < playerCount, i -> i + 1)
-                .map(Position::new)
+        return new LadderResults(IntStream.range(0, playerCount)
+                .mapToObj(Position::new)
                 .collect(Collectors.toMap(Function.identity(), this::getResultPosition)));
     }
 

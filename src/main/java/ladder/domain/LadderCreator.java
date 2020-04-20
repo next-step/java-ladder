@@ -4,7 +4,7 @@ import ladder.dto.LadderInfo;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class LadderCreator {
     private static final LadderLineCreator ladderLineCreator = new LadderLineCreator();
@@ -14,8 +14,9 @@ public class LadderCreator {
     }
 
     private static List<LadderLine> createLadderLines(LadderInfo ladderInfo, DirectionCreator directionCreator) {
-        return Stream.iterate(0, i -> i < ladderInfo.getHeight(), i -> i + 1)
-                .map(i -> ladderLineCreator.create(ladderInfo.getPlayerCount(), directionCreator))
+        int height = ladderInfo.getHeight();
+        return IntStream.range(0, height)
+                .mapToObj(i -> ladderLineCreator.create(ladderInfo.getPlayerCount(), directionCreator))
                 .collect(Collectors.toList());
     }
 }

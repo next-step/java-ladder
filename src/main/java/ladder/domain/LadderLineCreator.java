@@ -7,7 +7,8 @@ public class LadderLineCreator {
     public LadderLine create(int playerCount, DirectionCreator directionCreator) {
         List<Point> points = new ArrayList<>();
         Point lastPoint = initFirstPoint(points, directionCreator);
-        for (int i = 1; i < playerCount - 1; i++) {
+        int middlePointCount = playerCount - 2;
+        for (int i = 0; i < middlePointCount; i++) {
             lastPoint = lastPoint.next(directionCreator.create());
             points.add(lastPoint);
         }
