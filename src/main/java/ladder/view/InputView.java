@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.dto.LadderInfoRequest;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -9,17 +11,21 @@ public class InputView {
     private static final String RESULT_REQUEST = "결과를 보고 싶은 사람은?";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String inputNames() {
+    public static LadderInfoRequest inputLadderInfo() {
+        return new LadderInfoRequest(inputNames(), inputRewards(), inputHeight());
+    }
+
+    private static String inputNames() {
         System.out.println(USERS_REQUEST);
         return scanner.nextLine();
     }
 
-    public static String inputRewards() {
+    private static String inputRewards() {
         System.out.println(REWARD_REQUEST);
         return scanner.nextLine();
     }
 
-    public static int inputHeight() {
+    private static int inputHeight() {
         System.out.println(HEIGHT_REQUEST);
         return Integer.parseInt(scanner.nextLine());
     }

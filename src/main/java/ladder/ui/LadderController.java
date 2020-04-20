@@ -5,6 +5,7 @@ import ladder.domain.Ladder;
 import ladder.domain.LadderGameInfo;
 import ladder.domain.LadderGameResults;
 import ladder.domain.LadderInfo;
+import ladder.dto.LadderInfoRequest;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -12,9 +13,10 @@ public class LadderController {
     private static final String TARGET_ALL = "all";
 
     public static void main(String[] args) {
-        String users = InputView.inputNames();
-        LadderGameInfo ladderGameInfo = LadderGameInfo.of(users, InputView.inputRewards());
-        LadderInfo ladderInfo = LadderInfo.of(users, InputView.inputHeight());
+        LadderInfoRequest ladderInfoRequest = InputView.inputLadderInfo();
+        String users = ladderInfoRequest.getUserNames();
+        LadderGameInfo ladderGameInfo = LadderGameInfo.of(users, ladderInfoRequest.getRewards());
+        LadderInfo ladderInfo = LadderInfo.of(users, ladderInfoRequest.getHeight());
 
         Ladder ladder = LadderGame.createLadder(ladderInfo);
         LadderGameResults results = LadderGame.start(ladder, ladderGameInfo);
