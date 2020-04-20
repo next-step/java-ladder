@@ -28,9 +28,9 @@ public class InputView {
         return Results.valueOf(SCANNER.nextLine().split(DELIMITER));
     }
 
-    public static Player inputPlayer() {
+    public static String inputPlayerName() {
         System.out.println("결과를 보고 싶은 사람은?");
-        return Player.name(SCANNER.nextLine());
+        return SCANNER.nextLine();
     }
 
 }

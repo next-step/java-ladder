@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.collectingAndThen;
@@ -29,4 +28,6 @@ public class Results {
     public Result get(int resultIdx) {
         return results.get(resultIdx);
     }
+
+    public int size() { return results.size(); }
 }

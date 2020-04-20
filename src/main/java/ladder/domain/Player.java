@@ -3,29 +3,26 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Player {
-    public static final Player ALL = new Player("all");
     private static final int NAME_LEN_LIMIT = 5;
 
     private final String name;
+    private final int orderNumber;
 
-    private Player(String name) {
+    public Player(String name, int orderNumber) {
         if (name == null || name.trim().isEmpty() || name.trim().length() > NAME_LEN_LIMIT) {
             throw new IllegalArgumentException("이름은 5자 이하이어야 합니다.");
         }
 
         this.name = name;
-    }
-
-    public static Player name(String name) {
-        return new Player(name);
-    }
-
-    public static boolean isAllPlayer(Player player) {
-        return player.equals(ALL);
+        this.orderNumber = orderNumber;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
     }
 
     @Override
@@ -39,5 +36,9 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public boolean matchByName(String name) {
+        return this.name.equals(name);
     }
 }

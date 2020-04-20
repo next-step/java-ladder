@@ -12,35 +12,31 @@ import java.util.stream.IntStream;
 
 public class LadderController {
 
+    private static final String GAME_END_NAME = "all";
+
     public static void main(String[] args) {
         Players players = InputView.inputPlayers();
         Results results = InputView.inputResults();
         int height = InputView.inputHeight();
 
-        LadderGame ladderGame = new LadderGame(players.countOfPlayers(), height);
+        LadderGame ladderGame = new LadderGame(results, height);
 
         ResultView.print(players);
         ResultView.print(ladderGame.getLadder());
         ResultView.print(results);
 
-        Player inputPlayer = InputView.inputPlayer();
+        String playerName = InputView.inputPlayerName();
 
-        while (!Player.isAllPlayer(inputPlayer)) {
-            int playIdx = players.indexOf(inputPlayer);
-            int resultIdx = ladderGame.result(playIdx);
-            ResultView.print(results.get(resultIdx));
-            inputPlayer = InputView.inputPlayer();
+        while (!playerName.equals(GAME_END_NAME)) {
+            Player inputPlayer = players.findByName(playerName);
+            Result result = ladderGame.resultOf(inputPlayer);
+            ResultView.print(result);
+            playerName = InputView.inputPlayerName();
         }
 
-        List<PlayerResultDto> playerResultDtoList = new ArrayList<>();
-
-        IntStream.range(0, players.countOfPlayers()).forEach(playerIdx -> {
-            int resultIdx = ladderGame.result(playerIdx);
-            Player player = players.get(playerIdx);
-            Result result = results.get(resultIdx);
-            playerResultDtoList.add(new PlayerResultDto(player.getName(), result.getName()));
-        });
-
-        ResultView.print(playerResultDtoList);
+        for (Player player : players.getPlayers()) {
+            Result result = ladderGame.resultOf(player);
+            ResultView.print(player, result);
+        }
     }
 }

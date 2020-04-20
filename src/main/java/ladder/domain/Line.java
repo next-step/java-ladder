@@ -1,16 +1,17 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
-import static ladder.domain.Direction.LEFT;
-import static ladder.domain.Direction.RIGHT;
+import static ladder.domain.Direction.*;
 
 public class Line {
 
+    private static final Random random = new Random();
     private final List<Point> points;
 
     private Line(List<Point> points) {
@@ -35,9 +36,24 @@ public class Line {
     }
 
     public static Line ofLength(int length) {
-        return IntStream.range(0, length)
-                .mapToObj(Point::in)
-                .collect(collectingAndThen(toList(), Line::new));
+        List<Point> points = new ArrayList<>();
+        points.add(Point.in(0));
+
+        for (int i = 1; i < length; i++) {
+            Point right = Point.in(i);
+            Point left = points.get(i - 1);
+            connectPointRandomly(left, right);
+            points.add(right);
+        }
+
+        return new Line(points);
+    }
+
+    private static void connectPointRandomly(Point left, Point right) {
+        if (!random.nextBoolean() || left.existConnect() || right.existConnect()) {
+            return;
+        }
+        left.connect(right);
     }
 
     public Point at(int idx) {

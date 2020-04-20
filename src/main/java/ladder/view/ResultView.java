@@ -69,4 +69,8 @@ public class ResultView {
         }
     }
 
+    public static void print(Player player, Result result) {
+        System.out.printf("%s : %s%n", player.getName(), result.getName());
+    }
+
 }

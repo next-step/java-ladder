@@ -8,57 +8,28 @@ import static ladder.domain.Direction.DOWN;
 
 public class LadderGame {
 
-    private static final Random random = new Random();
-
-    private final Map<Integer, Integer> resultCache;
     private final Ladder ladder;
+    private final Results results;
 
-    public LadderGame(int width, int height) {
-        this.ladder = generateLadder(width, height);
-        this.resultCache = new HashMap<>();
+    public LadderGame(Results results, int height) {
+        this.ladder = generateLadder(results.size(), height);
+        this.results = results;
     }
 
     private Ladder generateLadder(int width, int height) {
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(i -> this.generateLine(width))
+                .mapToObj(i -> Line.ofLength(width))
                 .collect(Collectors.toList());
 
         return Ladder.of(lines);
     }
 
-    private Line generateLine(int width) {
-        List<Point> points = new ArrayList<>();
-        points.add(Point.in(0));
-
-        for (int i = 1; i < width; i++) {
-            Point right = Point.in(i);
-            Point left = points.get(i - 1);
-            connectPointRandomly(left, right);
-            points.add(right);
-        }
-
-        return Line.of(points);
-    }
-
-    private void connectPointRandomly(Point left, Point right) {
-        if (!random.nextBoolean() || !left.isConnectedTo(DOWN)) {
-            return;
-        }
-        left.connect(right);
-    }
-
-    public Ladder getLadder() {
+    public Ladder getLadder () {
         return ladder;
     }
 
-    public int result(int idx) {
-        if (resultCache.containsKey(idx)) {
-            return resultCache.get(idx);
-        }
-
-        int resultIdx = ladder.down(idx);
-        resultCache.put(idx, resultIdx);
-
-        return resultIdx;
+    public Result resultOf(Player player) {
+        int resultIdx = ladder.down(player.getOrderNumber());
+        return results.get(resultIdx);
     }
 }

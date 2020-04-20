@@ -32,6 +32,10 @@ public class Point {
         return this.direction == direction;
     }
 
+    public boolean existConnect() {
+        return !this.isConnectedTo(DOWN);
+    }
+
     private void connect(Point other, int distance) {
         if (distance == 1) {
             other.direction = RIGHT;

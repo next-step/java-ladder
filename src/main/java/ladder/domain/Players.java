@@ -2,9 +2,6 @@ package ladder.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.*;
 
 public class Players {
     private final List<Player> players;
@@ -17,9 +14,15 @@ public class Players {
     }
 
     public static Players valueOf(String[] playerNames) {
-        return Stream.of(playerNames)
-                .map(Player::name)
-                .collect(collectingAndThen(toList(), Players::new));
+        List<Player> players = new ArrayList<>();
+        for (int i = 0 ; i <playerNames.length ; i++) {
+            players.add(new Player(playerNames[i], i));
+        }
+        return new Players(players);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 
     public List<String> getPlayerNames() {
@@ -28,15 +31,10 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public int countOfPlayers() {
-        return players.size();
-    }
-
-    public int indexOf(Player player) {
-        return players.indexOf(player);
-    }
-
-    public Player get(int i) {
-        return players.get(i);
+    public Player findByName(String name) {
+        return players.stream()
+                .filter(player -> player.matchByName(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(name + " 의 player 는 없습니다."));
     }
 }
