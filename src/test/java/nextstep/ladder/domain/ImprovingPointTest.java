@@ -52,11 +52,4 @@ public class ImprovingPointTest {
         ImprovingPoint second = ImprovingPoint.first(false).next(true);
         assertThat(second.move()).isEqualTo(2);
     }
-
-    @DisplayName("인덱스가 0으로 이동하는 경우")
-    @Test
-    void next() {
-        ImprovingPoint second = ImprovingPoint.first(true).next();
-        assertThat(second.move()).isEqualTo(0);
-    }
 }
