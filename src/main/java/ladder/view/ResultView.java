@@ -15,7 +15,6 @@ public class ResultView {
     private static final String EMPTY = "";
     private static final String LINK_CONNECT = "-----";
     private static final String LINK_DIS_CONNECT = "     ";
-    private static final String RESULT_REQUEST = "결과를 보고 싶은 사람은?";
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String RESULT_FORMAT = "%s : %s";
     private static final String TARGET_ALL = "all";
@@ -52,12 +51,11 @@ public class ResultView {
 
     public static void printResult(String inputTarget, LadderGameResults results) {
         System.out.println(RESULT_MESSAGE);
+        if (TARGET_ALL.equals(inputTarget)) {
+            results.getResults().forEach((user, reward)
+                    -> System.out.println(String.format(RESULT_FORMAT, user.toString(), reward.toString())));
+            return;
+        }
         System.out.println(results.getLadderReward(inputTarget));
-    }
-
-    public static void printAllResult(LadderGameResults results) {
-        System.out.println(RESULT_REQUEST);
-        results.getResults().forEach((user, reward)
-                -> System.out.println(String.format(RESULT_FORMAT,user.toString(),reward.toString())));
     }
 }

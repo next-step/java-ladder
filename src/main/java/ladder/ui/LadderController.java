@@ -20,12 +20,10 @@ public class LadderController {
         LadderGameResults results = LadderGame.start(ladder, ladderGameInfo);
 
         ResultView.print(ladder, ladderGameInfo);
-        while (true) {
-            String inputTarget = InputView.inputTarget();
+        String inputTarget = InputView.inputTarget();
+        while (TARGET_ALL.equals(inputTarget)) {
+            inputTarget = InputView.inputTarget();
             ResultView.printResult(inputTarget, results);
-            if (TARGET_ALL.equals(inputTarget)) {
-                break;
-            }
         }
     }
 }
