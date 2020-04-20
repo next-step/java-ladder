@@ -1,6 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,7 +22,7 @@ class PositionTest {
     @Test
     void except() {
         assertThatIllegalStateException().isThrownBy(() -> {
-          new Position(-1);
+            new Position(-1);
         });
 
         Position position = new Position(0);

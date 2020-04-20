@@ -1,7 +1,6 @@
-package ladder;
+package ladder.domain;
 
 import ladder.application.LadderGame;
-import ladder.domain.*;
 import ladder.dto.LadderGameInfo;
 import ladder.dto.LadderGameResults;
 import org.junit.jupiter.api.Test;

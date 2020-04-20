@@ -1,7 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.Point;
-import ladder.domain.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +14,7 @@ public class PointTest {
         Point first = Point.first(TRUE);
         assertThat(first.move()).isEqualTo(new Position(1));
 
-        first= Point.first(FALSE);
+        first = Point.first(FALSE);
         assertThat(first.move()).isEqualTo(new Position(0));
     }
 
@@ -26,7 +24,7 @@ public class PointTest {
         Point first = Point.first(TRUE);
         assertThat(first.next(FALSE).move()).isEqualTo(new Position(0));
 
-        first= Point.first(FALSE);
+        first = Point.first(FALSE);
         assertThat(first.next(TRUE).move()).isEqualTo(new Position(2));
     }
 
@@ -36,7 +34,7 @@ public class PointTest {
         Point first = Point.first(TRUE);
         assertThat(first.last().move()).isEqualTo(new Position(0));
 
-        first= Point.first(FALSE);
+        first = Point.first(FALSE);
         assertThat(first.last().move()).isEqualTo(new Position(1));
     }
 }

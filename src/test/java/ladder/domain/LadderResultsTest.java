@@ -1,7 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.LadderResults;
-import ladder.domain.Position;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

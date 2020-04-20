@@ -1,7 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.User;
-import ladder.domain.Users;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -1,6 +1,5 @@
-package ladder;
+package ladder.domain;
 
-import ladder.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
