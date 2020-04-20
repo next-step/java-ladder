@@ -28,6 +28,10 @@ public class LadderRewards {
         return ladderRewards;
     }
 
+    public int size() {
+        return ladderRewards.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
