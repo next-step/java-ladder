@@ -1,5 +1,6 @@
 package ladder.ui;
 
+import ladder.domain.Point;
 import ladder.domain.User;
 import ladder.domain.Line;
 
@@ -40,9 +41,9 @@ public class ResultView {
         printMessage(stringBuilder.toString());
     }
 
-    private static String buildOneLine(List<Boolean> points) {
+    private static String buildOneLine(List<Point> points) {
         return points.stream()
-                .map(p -> p ? LINE : EMPTY_LINE)
+                .map(p -> p.isMovableRight() ? LINE : EMPTY_LINE)
                 .limit(points.size() - 1)
                 .collect(joining(""));
     }

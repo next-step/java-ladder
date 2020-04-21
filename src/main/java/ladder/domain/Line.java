@@ -1,21 +1,18 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 public class Line {
-    private final List<Boolean> points;
-    private boolean lineAppearLeft = false;
+    private final List<Point> points;
 
     public Line(int countOfPerson) {
-        points = generateLine(countOfPerson);
+        points = lineCreate(countOfPerson);
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 
@@ -23,32 +20,27 @@ public class Line {
         return points.size();
     }
 
-    private List<Boolean> generateLine(int countOfPerson) {
-        List<Boolean> line = Stream
-                .generate(() -> randomGenerateBlock())
-                .limit(countOfPerson)
-                .collect(toList());
+    private List<Point> lineCreate(int countOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = Point.first(randomGenerate());
+        points.add(point);
 
-        if (isEmptyLine(line)) {
-            line = generateLine(countOfPerson);
+        int i = 0;
+
+        while (countOfPerson - 2 > i) {
+            point = point.next(randomGenerate());
+            points.add(point);
+
+            i += 1;
         }
 
-        return line;
+        points.add(point.last());
+
+        return Collections.unmodifiableList(points);
     }
 
-    private boolean isEmptyLine(List<Boolean> line) {
-        return line.stream()
-                .limit(line.size() - 1)
-                .allMatch(point -> !point);
-    }
-
-    private boolean randomGenerateBlock() {
+    public boolean randomGenerate() {
         Random random = new Random();
-        boolean line = lineAppearLeft ? false : random.nextBoolean();
-        lineAppearLeft = false;
-        if (line) {
-            lineAppearLeft = true;
-        }
-        return line;
+        return random.nextBoolean();
     }
 }
