@@ -1,20 +1,30 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LadderGameInfoTest {
-    @Test
-    void create() {
+    private LadderGameInfo ladderGameInfo;
+
+    @BeforeEach
+    void setUp() {
         User userA = new User("userA");
         User userB = new User("userB");
         LadderReward ggang = new LadderReward("꽝");
         LadderReward lucky = new LadderReward("당첨");
-        assertThat(new LadderGameInfo(Arrays.asList(userA, userB), Arrays.asList(ggang, lucky))).isNotNull();
+        ladderGameInfo = new LadderGameInfo(Arrays.asList(userA, userB), Arrays.asList(ggang, lucky));
+    }
+
+    @Test
+    void create() {
+        assertThat(ladderGameInfo).isNotNull();
     }
 
     @Test
@@ -28,5 +38,17 @@ class LadderGameInfoTest {
             new LadderGameInfo(Arrays.asList(userA, userB), Arrays.asList(ggang, ggang2, lucky));
         }).withMessage("참여할 사람과 실행 결과의 수는 같아야 한다.");
 
+    }
+
+    @Test
+    void match() {
+        Map<Position, Position> ladderResults = new HashMap<>();
+        ladderResults.put(new Position(0), new Position(1));
+        ladderResults.put(new Position(1), new Position(0));
+        Map<User, LadderReward> expected = new HashMap<>();
+        expected.put(new User("userA"), new LadderReward("당첨"));
+        expected.put(new User("userB"), new LadderReward("꽝"));
+
+        assertThat(ladderGameInfo.match(ladderResults)).isEqualTo(expected);
     }
 }
