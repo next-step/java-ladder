@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.exception.InvalidLadderHeight;
+import ladder.domain.exception.InvalidLadderHeightException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Ladder {
 
     private Ladder(int height) {
         if (height < LADDER_HEIGHT_MIN) {
-            throw new InvalidLadderHeight();
+            throw new InvalidLadderHeightException();
         }
 
         this.ladder = new ArrayList<>();

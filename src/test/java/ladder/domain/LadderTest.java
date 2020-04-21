@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.exception.InvalidLadderHeight;
+import ladder.domain.exception.InvalidLadderHeightException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -23,7 +23,7 @@ public class LadderTest {
     @ValueSource(ints = {-1, 0})
     @DisplayName("유효하지 않은 높이 값이 주어진 경우 exception")
     public void generateLadderThrowException(int height) {
-        assertThatExceptionOfType(InvalidLadderHeight.class)
+        assertThatExceptionOfType(InvalidLadderHeightException.class)
                 .isThrownBy(() -> Ladder.getInstance(height));
 
     }
