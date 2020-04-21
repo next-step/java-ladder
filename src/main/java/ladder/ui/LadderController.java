@@ -2,7 +2,7 @@ package ladder.ui;
 
 import ladder.application.LadderGame;
 import ladder.domain.*;
-import ladder.dto.LadderInfoRequest;
+import ladder.dto.LadderRequest;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -15,11 +15,11 @@ public class LadderController {
     private static final String SEPARATOR = ",";
 
     public static void main(String[] args) {
-        LadderInfoRequest ladderInfoRequest = InputView.inputLadderInfo();
-        List<User> users = userNamesToUsers(ladderInfoRequest.getUserNames());
-        List<LadderReward> ladderRewards = rewardsToLadderRewards(ladderInfoRequest.getRewards());
+        LadderRequest ladderRequest = InputView.inputLadderInfo();
+        List<User> users = userNamesToUsers(ladderRequest.getUserNames());
+        List<LadderReward> ladderRewards = rewardsToLadderRewards(ladderRequest.getRewards());
         LadderGameInfo ladderGameInfo = new LadderGameInfo(users, ladderRewards);
-        LadderInfo ladderInfo = new LadderInfo(users.size(), ladderInfoRequest.getHeight());
+        LadderInfo ladderInfo = new LadderInfo(users.size(), ladderRequest.getHeight());
 
         Ladder ladder = LadderGame.createLadder(ladderInfo);
         LadderGameResults results = LadderGame.start(ladder, ladderGameInfo);

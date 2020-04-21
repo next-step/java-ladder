@@ -1,11 +1,11 @@
 package ladder.dto;
 
-public class LadderInfoRequest {
+public class LadderRequest {
     private final String userNames;
     private final String rewards;
     private final int height;
 
-    public LadderInfoRequest(String userNames, String rewards, int height) {
+    public LadderRequest(String userNames, String rewards, int height) {
         this.userNames = userNames;
         this.rewards = rewards;
         this.height = height;
