@@ -1,6 +1,8 @@
-package ladder.domain;
+package ladder.infra;
 
-import ladder.infra.LadderLineCreator;
+import ladder.domain.Direction;
+import ladder.domain.LadderLine;
+import ladder.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
