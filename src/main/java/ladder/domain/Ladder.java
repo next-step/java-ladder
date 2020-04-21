@@ -1,8 +1,25 @@
 package ladder.domain;
 
-public class Ladder {
-    private Ladder(int height) {
+import ladder.domain.exception.InvalidLadderHeight;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ladder {
+    private static int LADDER_HEIGHT_MIN = 1;
+
+    private final List<Line> ladder;
+
+    private Ladder(int height) {
+        if (height < LADDER_HEIGHT_MIN) {
+            throw new InvalidLadderHeight();
+        }
+
+        this.ladder = new ArrayList<>();
+
+        for (int i = 0; i < height; i++) {
+            ladder.add(new Line());
+        }
     }
 
     public static Ladder getInstance(int height) {
@@ -10,6 +27,6 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return -1;
+        return this.ladder.size();
     }
 }
