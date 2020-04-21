@@ -1,55 +1,52 @@
 package ladder.domain;
 
-import java.util.Objects;
-import java.util.Random;
+import static ladder.domain.Direction.*;
 
 public class Point {
-    public static final Point CONNECTED = new Point(true);
-    public static final Point UNCONNECTED = new Point(false);
+    private static final int DISTANCE_FROM_NEXT_POINT = 1;
+    private static final int DISTANCE_FROM_SELF = 0;
 
-    private final boolean isConnected;
-    private static final Random random = new Random();
+    private final int position;
+    private Direction direction = DOWN;
 
-    private Point(boolean isConnected) {
-        this.isConnected = isConnected;
+    private Point(int position) {
+        this.position = position;
     }
 
-    public static Point of(boolean isConnected) {
-        if (isConnected) {
-            return CONNECTED;
+    public static Point in(int position) {
+        return new Point(position);
+    }
+
+    public void connect(Point other) {
+        int distanceToOther = this.position - other.position;
+
+        if (Math.abs(distanceToOther) > DISTANCE_FROM_NEXT_POINT || distanceToOther == DISTANCE_FROM_SELF) {
+            throw new IllegalArgumentException("바로 옆에 있는 점만 연결 가능하다");
         }
-        return UNCONNECTED;
-    }
 
-    public static Point point() {
-        return new Point(random.nextBoolean());
-    }
-
-    public static Point nextOf(Point before) {
-        if (before.isConnected) {
-            return new Point(false);
+        if (!(this.isConnectedTo(DOWN) && other.isConnectedTo(DOWN))) {
+            throw new IllegalArgumentException("양 옆으로 연결이 되어 있지 않은 점들끼리만 연결 가능하다");
         }
-        return point();
+
+        connect(other, distanceToOther);
     }
 
-    public boolean isConnected() {
-        return isConnected;
+    public boolean isConnectedTo(Direction direction) {
+        return this.direction == direction;
     }
 
-    public boolean canBeNext(Point other) {
-        return !(other.isConnected && this.isConnected);
+    public boolean existConnect() {
+        return !this.isConnectedTo(DOWN);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return isConnected == point.isConnected;
-    }
+    private void connect(Point other, int distance) {
+        if (distance > 0) {
+            other.direction = RIGHT;
+            this.direction = LEFT;
+            return;
+        }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(isConnected);
+        other.direction = LEFT;
+        this.direction = RIGHT;
     }
 }
