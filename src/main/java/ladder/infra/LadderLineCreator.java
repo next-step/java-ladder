@@ -1,4 +1,8 @@
-package ladder.domain;
+package ladder.infra;
+
+import ladder.domain.DirectionCreator;
+import ladder.domain.LadderLine;
+import ladder.domain.Point;
 
 import java.util.ArrayList;
 import java.util.List;

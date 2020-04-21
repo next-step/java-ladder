@@ -1,6 +1,7 @@
 package ladder.application;
 
 import ladder.domain.*;
+import ladder.infra.BasicLadderCreator;
 import ladder.infra.RandomDirectionCreator;
 
 import java.util.List;
@@ -8,7 +9,8 @@ import java.util.List;
 public class LadderGame {
     public static Ladder createLadder(LadderInfo ladderInfo) {
         DirectionCreator directionCreator = new RandomDirectionCreator();
-        return LadderCreator.create(ladderInfo, directionCreator);
+        LadderCreator ladderCreator = new BasicLadderCreator();
+        return ladderCreator.create(ladderInfo, directionCreator);
     }
 
     public static LadderGameResults start(Ladder ladder, LadderGameInfo ladderGameInfo) {
