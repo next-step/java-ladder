@@ -21,9 +21,9 @@ public class ResultView {
 
     public static void print(Ladder ladder, LadderGameInfo ladderGameInfo) {
         System.out.println(LADDER_MESSAGE);
-        printUser(ladderGameInfo.getUsers().getUsers());
+        printUser(ladderGameInfo.getUsers());
         printLadderLines(ladder.getLadderLines());
-        printLadderRewards(ladderGameInfo.getLadderRewards().getLadderRewards());
+        printLadderRewards(ladderGameInfo.getLadderRewards());
     }
 
     private static void printUser(List<User> users) {

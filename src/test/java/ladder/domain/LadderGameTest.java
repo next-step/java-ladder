@@ -15,7 +15,14 @@ class LadderGameTest {
     @Test
     void start() {
         Ladder ladder = createLadder();
-        LadderGameInfo ladderGameInfo = new LadderGameInfo(Users.of("a,b,c"), LadderRewards.of("꽝,당첨,당첨2"));
+        User userA = new User("a");
+        User userB = new User("b");
+        User userC = new User("c");
+        LadderReward ggang = new LadderReward("꽝");
+        LadderReward lucky = new LadderReward("당첨");
+        LadderReward lucky2 = new LadderReward("당첨2");
+        LadderGameInfo ladderGameInfo = new LadderGameInfo(Arrays.asList(userA, userB, userC),
+                Arrays.asList(ggang, lucky, lucky2));
 
         LadderGameResults ladderGameResults = LadderGame.start(ladder, ladderGameInfo);
 
