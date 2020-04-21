@@ -16,10 +16,14 @@ public class InputView {
         System.out.println(GET_USER_NAMES_NOTICE);
 
         String userNames = scanner.nextLine();
-        if (Objects.isNull(userNames) || userNames.isEmpty()) {
+        if (!isValidNamesInput(userNames)) {
             throw new InvalidNamesInputException();
         }
 
         return Users.getInstanceByUserNames(userNames.split(USER_NAMES_DELIMITER));
+    }
+
+    private static boolean isValidNamesInput(String userNames) {
+        return !Objects.isNull(userNames) && !userNames.isEmpty();
     }
 }

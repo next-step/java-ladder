@@ -1,9 +1,7 @@
 package ladder.domain;
 
-import java.util.List;
-
 public class Users {
-    private Users(List<String> userNames) {
+    private Users(String[] userNames) {
 
     }
 
