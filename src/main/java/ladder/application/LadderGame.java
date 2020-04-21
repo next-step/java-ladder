@@ -7,10 +7,10 @@ import ladder.infra.RandomDirectionCreator;
 import java.util.List;
 
 public class LadderGame {
-    public static Ladder createLadder(LadderInfo ladderInfo) {
+    public static Ladder createLadder(int playerCount, int height) {
         DirectionCreator directionCreator = new RandomDirectionCreator();
         LadderCreator ladderCreator = new BasicLadderCreator();
-        return ladderCreator.create(ladderInfo, directionCreator);
+        return ladderCreator.create(playerCount, height, directionCreator);
     }
 
     public static LadderGameResults start(Ladder ladder, LadderGameInfo ladderGameInfo) {

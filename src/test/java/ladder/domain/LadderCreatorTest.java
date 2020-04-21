@@ -13,7 +13,7 @@ class LadderCreatorTest {
     @Test
     void create() {
         LadderCreator ladderCreator = new BasicLadderCreator();
-        Ladder ladder = ladderCreator.create(new LadderInfo(3, 2), () -> true);
+        Ladder ladder = ladderCreator.create(3, 2, () -> true);
         assertThat(ladder).isEqualTo(new Ladder(Arrays.asList(
                 new LadderLine(Arrays.asList(
                         new Point(0, Direction.of(FALSE, TRUE)),

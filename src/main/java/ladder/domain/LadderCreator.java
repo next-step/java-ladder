@@ -1,5 +1,5 @@
 package ladder.domain;
 
 public interface LadderCreator {
-    Ladder create(LadderInfo ladderInfo, DirectionCreator directionCreator);
+    Ladder create(int playerCount, int height, DirectionCreator directionCreator);
 }
