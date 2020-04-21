@@ -17,9 +17,8 @@ public class Users {
             new User("honux", 45));
 
     User getUser(String name) {
-        Optional<String> opt = Optional.ofNullable(name);
         return users.stream()
-                .filter(user -> user.matchName(opt.orElse("")))
+                .filter(user -> user.matchName(name))
                 .findFirst()
                 .orElse(DEFAULT_USER);
     }
