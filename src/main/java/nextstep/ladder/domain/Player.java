@@ -12,20 +12,15 @@ public class Player {
     this.position = Position.at(position);
   }
 
-  public Player(String name, Position position) {
-    this.name = new Name(name);
-    this.position = position;
-  }
-
-  public Position getPosition() {
-    return position;
-  }
-
-  public boolean isAdjacent(Player other) {
-    return this.position.isAdjacent(other.position);
+  public int getPosition() {
+    return position.getPosition();
   }
 
   public String getName() {
     return name.getName();
+  }
+
+  public void ride(Ladder ladder) {
+    position = Position.at(ladder.move(position.getPosition()));
   }
 }

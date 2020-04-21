@@ -1,10 +1,9 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import nextstep.ladder.domain.model.Position;
+import nextstep.ladder.domain.model.RandomGeneration;
 
 public class Ladder {
 
@@ -12,29 +11,16 @@ public class Ladder {
 
   public Ladder(int height, int width) {
     ladderLines = IntStream.range(0, height)
-        .mapToObj(level -> new LadderLine(width))
+        .mapToObj(level -> LadderLine.init(width, RandomGeneration.getInstance()))
         .collect(Collectors.toList());
   }
 
   public List<LadderLine> getLadderLines() {
-    return Collections.unmodifiableList(ladderLines);
+    return ladderLines;
   }
 
-  public Player ride(Player player) {
-    Position finalPosition = ladderLines.stream()
-        .reduce(
-            player.getPosition(),
-            (position, ladderLine) -> ladderLine.move(position),
-            (position, position2) -> position2
-        );
-
-    return new Player(player.getName(), finalPosition);
-  }
-
-  public Players ride(Players players) {
-    return Players.of(players.getPlayers()
-        .stream()
-        .map(this::ride)
-        .collect(Collectors.toList()));
+  public int move(int position) {
+    return ladderLines.stream()
+        .reduce(position, (stopover, ladderLine) -> ladderLine.move(stopover), Integer::sum);
   }
 }

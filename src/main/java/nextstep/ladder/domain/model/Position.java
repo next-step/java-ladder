@@ -25,17 +25,7 @@ public class Position {
     return positions.computeIfAbsent(position, Position::new);
   }
 
-  public boolean isAdjacent(Position other) {
-    int distance = this.position - other.position;
-
-    return distance == 1 || distance == -1;
-  }
-
-  public boolean isFirst() {
-    return position == 0;
-  }
-
-  public Position getLeft() {
-    return Position.at(this.position - 1);
+  public int getPosition() {
+    return position;
   }
 }

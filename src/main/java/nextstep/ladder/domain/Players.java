@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,11 +20,24 @@ public class Players {
     );
   }
 
-  public static Players of(List<Player> players) {
-    return new Players(players);
+  public List<Player> getPlayers() {
+    return players;
   }
 
-  public List<Player> getPlayers() {
-    return Collections.unmodifiableList(players);
+  public void ride(Ladder ladder) {
+    players.forEach(player -> player.ride(ladder));
+  }
+
+  public ResultSheet produceResult(Ladder ladder, PrizeSheet prizeSheet) {
+    throwIfInvalid(prizeSheet);
+    this.ride(ladder);
+
+    return new ResultSheet(players, prizeSheet);
+  }
+
+  private void throwIfInvalid(PrizeSheet prizeSheet) {
+    if (players.size() != prizeSheet.getSize()) {
+      throw new IllegalArgumentException("선수의 수와 상의 개수가 같아야합니다.");
+    }
   }
 }

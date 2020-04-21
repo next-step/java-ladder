@@ -1,50 +1,61 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.IntStream;
-import nextstep.ladder.domain.model.Position;
+import java.util.ArrayList;
+import java.util.List;
+import nextstep.ladder.domain.model.LadderGenerationRule;
+import nextstep.ladder.domain.model.Point;
 
 public class LadderLine {
+  private static final String LADDER_WITH_LEG = "-----|";
+  private static final String LADDER_WITHOUT_LEG = "     |";
 
-  private Map<Position, Position> movingRule = new HashMap<>();
+  private final List<Point> points;
 
-  public LadderLine(int ladderWidth) {
-    IntStream.range(0, ladderWidth)
-        .forEach(this::drawLadderAt);
-
-    if (movingRule.get(Position.at(ladderWidth - 1)) == Position.at(ladderWidth)) {
-      movingRule.put(Position.at(ladderWidth - 1), Position.at(ladderWidth - 1));
-    }
+  public LadderLine(List<Point> points) {
+    this.points = points;
   }
 
-  private void drawLadderAt(int position) {
-    Position here = Position.at(position);
-    if (hasLeftLeg(here)) {
-      movingRule.put(here, here.getLeft());
-      return;
-    }
-
-    movingRule.put(here, Position.at(position + (int) Math.round(Math.random())));
+  public int move(int position) {
+    return points.get(position).move();
   }
 
-  private boolean hasLeftLeg(Position position) {
-    if (position.isFirst()) {
-      return false;
-    }
-
-    return move(position.getLeft()) == position;
+  public static LadderLine init(int sizeOfPerson, LadderGenerationRule rule) {
+    List<Point> points = initFirst(rule);
+    Point point = initBody(sizeOfPerson, points, rule);
+    initLast(points, point);
+    return new LadderLine(points);
   }
 
-  public int getWidth() {
-    return movingRule.size();
+  private static Point initBody(int sizeOfPerson, List<Point> points, LadderGenerationRule rule) {
+    Point point = points.get(0);
+    for (int i = 1; i < sizeOfPerson - 1; i++) {
+      point = point.next(rule);
+      points.add(point);
+    }
+    return point;
   }
 
-  public Position move(Position position) {
-    if (!movingRule.containsKey(position)) {
-      throw new IllegalArgumentException("위치가 사다리의 범위를 벗어났습니다.");
-    }
+  private static void initLast(List<Point> points, Point point) {
+    point = point.last();
+    points.add(point);
+  }
 
-    return movingRule.get(position);
+  private static List<Point> initFirst(LadderGenerationRule rule) {
+    List<Point> points = new ArrayList<>();
+    Point point = Point.first(rule.generate());
+    points.add(point);
+
+    return points;
+  }
+
+  public List<Point> getPoints() {
+    return points;
+  }
+
+  @Override
+  public String toString() {
+    return "LadderLine{" +
+        "points=" + points +
+        '}';
   }
 }

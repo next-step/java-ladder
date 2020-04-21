@@ -1,8 +1,7 @@
 package nextstep.ladder.domain.model;
 
-import java.util.Objects;
-
 public class Name {
+  private static final int NAME_SIZE_LIMIT = 5;
 
   private String name;
 
@@ -13,7 +12,7 @@ public class Name {
   }
 
   private void throwIfInvalid(String name) {
-    if (name.length() > 5) {
+    if (name.length() > NAME_SIZE_LIMIT) {
       throw new IllegalArgumentException("6글자 넘는 이름은 생성할 수 없습니다.");
     }
   }
