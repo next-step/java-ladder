@@ -1,4 +1,4 @@
-package ladder.domain.exception;
+package ladder.view.exception;
 
 public class InvalidNamesInputException extends RuntimeException {
 }

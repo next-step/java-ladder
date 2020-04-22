@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.exception.InvalidLadderHeightException;
+import ladder.view.exception.InvalidLadderHeightException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
