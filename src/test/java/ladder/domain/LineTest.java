@@ -14,8 +14,10 @@ public class LineTest {
         int lineCount = countOfPerson - 1;
         Line line = new Line(countOfPerson);
 
-        for (int i = 1; i < lineCount; i++) {
-            assertThat(line.isLineExist(i)).isEqualTo(line.isLineExist(i - 1));
+        for (int i = 0; i < lineCount - 1; i++) {
+            if (line.isLineExist(i)) {
+                assertThat(line.isLineExist(i)).isNotEqualTo(line.isLineExist(i + 1));
+            }
         }
     }
 

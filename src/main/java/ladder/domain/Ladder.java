@@ -10,7 +10,7 @@ public class Ladder {
 
     private final List<Line> ladder;
 
-    private Ladder(int height) {
+    private Ladder(int height, int countOfPerson) {
         if (height < LADDER_HEIGHT_MIN) {
             throw new InvalidLadderHeightException();
         }
@@ -18,12 +18,12 @@ public class Ladder {
         this.ladder = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line());
+            ladder.add(new Line(countOfPerson));
         }
     }
 
-    public static Ladder getInstance(int height) {
-        return new Ladder(height);
+    public static Ladder getInstance(int height, int countOfPerson) {
+        return new Ladder(height, countOfPerson);
     }
 
     public int getHeight() {
