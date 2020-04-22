@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Users;
+import ladder.domain.Persons;
 import ladder.domain.exception.InvalidNamesInputException;
 
 import java.util.Objects;
@@ -9,21 +9,21 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    private static final String USER_NAMES_DELIMITER = ",";
-    private static final String GET_USER_NAMES_NOTICE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String PERSON_NAMES_DELIMITER = ",";
+    private static final String GET_PERSON_NAMES_NOTICE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
 
-    public static Users getUsers() {
-        System.out.println(GET_USER_NAMES_NOTICE);
+    public static Persons getPersons() {
+        System.out.println(GET_PERSON_NAMES_NOTICE);
 
-        String userNames = scanner.nextLine();
-        if (!isValidNamesInput(userNames)) {
+        String personNames = scanner.nextLine();
+        if (!isValidNamesInput(personNames)) {
             throw new InvalidNamesInputException();
         }
 
-        return Users.getInstanceByUserNames(userNames.split(USER_NAMES_DELIMITER));
+        return Persons.getInstanceByPersonNames(personNames.split(PERSON_NAMES_DELIMITER));
     }
 
-    private static boolean isValidNamesInput(String userNames) {
-        return !Objects.isNull(userNames) && !userNames.isEmpty();
+    private static boolean isValidNamesInput(String personNames) {
+        return !Objects.isNull(personNames) && !personNames.isEmpty();
     }
 }

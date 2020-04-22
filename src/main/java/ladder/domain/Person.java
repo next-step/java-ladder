@@ -1,4 +1,4 @@
 package ladder.domain;
 
-public class User {
+public class Person {
 }
