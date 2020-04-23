@@ -1,44 +1,58 @@
 package ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class Direction {
-    private static final Map<DirectionType, Direction> directions = new HashMap<>();
+    private static final int NON_CACHE_INDEX = 0;
+    private static final int LEFT_CACHE_INDEX = 1;
+    private static final int RIGHT_CACHE_INDEX = 2;
+
+    private static final Direction[] DIRECTIONS = new Direction[3];
     private final boolean left;
     private final boolean right;
 
     static {
-        directions.put(DirectionType.NONE, new Direction(FALSE, FALSE));
-        directions.put(DirectionType.LEFT_DIRECTION, new Direction(TRUE, FALSE));
-        directions.put(DirectionType.RIGHT_DIRECTION, new Direction(FALSE, TRUE));
+        DIRECTIONS[0] = new Direction(FALSE, FALSE);
+        DIRECTIONS[1] = new Direction(TRUE, FALSE);
+        DIRECTIONS[2] = new Direction(FALSE, TRUE);
     }
 
-    public static Direction of(boolean left, boolean right) {
+    public static Direction of(final boolean left, final boolean right) {
         if (left && right) {
             throw new IllegalStateException();
         }
-        return directions.get(DirectionType.of(left, right));
+        return DIRECTIONS[getCacheIndex(left, right)];
     }
 
-    public static Direction first(Boolean right) {
+    private static int getCacheIndex(final boolean left, final boolean right) {
+        if (left) {
+            return LEFT_CACHE_INDEX;
+        }
+
+        if (right) {
+            return RIGHT_CACHE_INDEX;
+        }
+
+        return NON_CACHE_INDEX;
+    }
+
+    public static Direction first(final boolean right) {
         return of(FALSE, right);
     }
 
-    private Direction(boolean left, boolean right) {
+    private Direction(final boolean left, final boolean right) {
         this.left = left;
         this.right = right;
     }
 
-    public Direction next(boolean nextRight) {
+    public Direction next(final boolean nextRight) {
         if (this.right) {
-            nextRight = FALSE;
+            return of(TRUE, FALSE);
         }
-        return of(this.right, nextRight);
+        return of(FALSE, nextRight);
     }
 
     public Direction last() {
