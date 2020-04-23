@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class Line {
     private static final int INDEX_DIFFERENCE = 1;
+    private static final Random random = new Random();
+
     private final List<Boolean> point;
 
     public Line(int countOfPerson) {
@@ -34,7 +36,7 @@ public class Line {
             return false;
         }
 
-        return new Random(System.currentTimeMillis()).nextBoolean();
+        return random.nextBoolean();
     }
 
     private boolean isPreviousPointExist(int index) {
