@@ -12,8 +12,8 @@ public class LadderController {
     }
 
     private void init() {
-        Users users = getUsers(InputView.askNumberOfUser());
-        LadderGoals ladderGoals = getResult(InputView.askLadderGoals());
+        Users users = InputView.askNumberOfUser();
+        LadderGoals ladderGoals = InputView.askLadderGoals();
         Ladder ladder = new Ladder(InputView.askLadderHeight(), users);
         gameResult = new GameResult(users, new LadderGenerator(ladder, ladderGoals));
     }
@@ -23,15 +23,5 @@ public class LadderController {
         OutputView.printLadder(gameResult.getLadder());
         OutputView.printGoals(gameResult.getLadderGoals());
         OutputView.printGameResult(gameResult);
-    }
-
-    private Users getUsers(String user) {
-        UserGenerator userGenerator = new UserGenerator(user);
-        return new Users(userGenerator.generateUsers());
-    }
-
-    private LadderGoals getResult(String result) {
-        GoalsGenerator resultGenerator = new GoalsGenerator(result);
-        return resultGenerator.generate();
     }
 }

@@ -1,5 +1,10 @@
 package ladder.view;
 
+import ladder.domain.GoalsGenerator;
+import ladder.domain.LadderGoals;
+import ladder.domain.UserGenerator;
+import ladder.domain.Users;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -9,9 +14,9 @@ public class InputView {
     public static final String LADDER_WINNER_QESTION = "결과를 보고 싶은 사람은?";
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String askNumberOfUser() {
+    public static Users askNumberOfUser() {
         System.out.println(USER_COUNT_QUESTION);
-        return scanner.nextLine();
+        return createUsers(scanner.nextLine());
     }
 
     public static int askLadderHeight() {
@@ -19,14 +24,24 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static String askLadderGoals() {
+    public static LadderGoals askLadderGoals() {
         System.out.println(LADDER_GOALS_QUESTION);
-        return scanner.nextLine();
+        return getResult(scanner.nextLine());
     }
 
     public static String askLadderWinner() {
         System.out.println(LADDER_WINNER_QESTION);
         return new Scanner(System.in).nextLine();
+    }
+
+    private static Users createUsers(String user) {
+        UserGenerator userGenerator = new UserGenerator(user);
+        return new Users(userGenerator.generateUsers());
+    }
+
+    private static LadderGoals getResult(String result) {
+        GoalsGenerator resultGenerator = new GoalsGenerator(result);
+        return resultGenerator.generate();
     }
 
 }

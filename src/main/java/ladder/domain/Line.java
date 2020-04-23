@@ -8,18 +8,18 @@ public class Line {
     private static final String WIDTH_REQUIRED = "가로라인이 존재해야합니다.";
     private static final int MINIMUM_USERS = 2;
     private static final String USER_SHOULD_MORE_THAN_TWO = "사람수는 2명 이상 이어야 합니다.";
-    public static final int LEFT = -1;
-    public static final int RIGHT = 1;
-    public static final int CENTER = 0;
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
+    private static final int CENTER = 0;
     private final List<Boolean> widthLines;
 
     public Line(final int userCounts) {
         this(userCounts, new WidthGenerator(userCounts));
     }
 
-    public Line(final int userCounts, WidthGenerator subLineGenerator) {
+    public Line(final int userCounts, WidthGenerator widthGenerator) {
         validateSize(userCounts);
-        this.widthLines = new ArrayList<>(validateLines(subLineGenerator.getWidthLines()));
+        this.widthLines = new ArrayList<>(validateLines(widthGenerator.getWidthLines()));
     }
 
     private void validateSize(int users) {
