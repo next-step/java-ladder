@@ -29,7 +29,7 @@ public class ResultView {
         List<Boolean> linePoints = line.getPoint();
         int pointsCount = linePoints.size();
 
-        addLine(LADDER_EMPTY, stringBuilder);
+        addLine(false, stringBuilder);
         for (int index = 0; index < pointsCount; index++) {
             addLine(linePoints.get(index), stringBuilder);
         }
@@ -40,11 +40,11 @@ public class ResultView {
     private static void addLine(boolean lineExist, StringBuilder stringBuilder) {
         if (lineExist) {
             addLine(LADDER_LINE, stringBuilder);
+            stringBuilder.append(LADDER_SEPARATOR);
             return;
         }
 
         addLine(LADDER_EMPTY,stringBuilder);
-
         stringBuilder.append(LADDER_SEPARATOR);
     }
 

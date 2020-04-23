@@ -17,6 +17,14 @@ public class Line {
         }
     }
 
+    private Line(List<Boolean> point) {
+        this.point = new ArrayList<>(point);
+    }
+
+    public static Line getNewInstance(Line line) {
+        return new Line(line.point);
+    }
+
     private int getPointCount(int countOfPerson) {
         return countOfPerson - INDEX_DIFFERENCE;
     }

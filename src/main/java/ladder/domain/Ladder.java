@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Line> lines;
@@ -23,6 +24,8 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return new ArrayList<>(lines);
+        return lines.stream()
+                .map(Line::getNewInstance)
+                .collect(Collectors.toList());
     }
 }
