@@ -27,7 +27,7 @@ public class Ladder {
     }
 
     public List<LadderLine> getLadderLines() {
-        return ladderLines;
+        return new ArrayList<>(ladderLines);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class LadderLine {
     }
 
     public List<Point> getPoints() {
-        return points;
+        return new ArrayList<>(points);
     }
 
     @Override
