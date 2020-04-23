@@ -68,9 +68,9 @@ public class OutputView {
     private static void printLines(StringBuilder sb, Line line) {
         sb.append(TAB);
 
-        for (Point canDrawWidth : line.getWidthLines()) {
+        for (Boolean canDrawWidth : line.getWidthLines()) {
             sb.append(VERTICAL);
-            sb.append(canDrawWidth.getPoint() ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
+            sb.append(canDrawWidth ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
         }
         sb.append(VERTICAL);
         sb.append(System.lineSeparator());

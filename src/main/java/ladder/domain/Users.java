@@ -38,6 +38,16 @@ public class Users {
         throw new IllegalArgumentException(NOT_FOUND_USER);
     }
 
+    public User findUser(String name) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getName().equals(name)) {
+                return users.get(i);
+            }
+        }
+
+        throw new IllegalArgumentException(NOT_FOUND_USER);
+    }
+
     public int size() {
         return users.size();
     }

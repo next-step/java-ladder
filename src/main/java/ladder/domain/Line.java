@@ -11,7 +11,7 @@ public class Line {
     public static final int LEFT = -1;
     public static final int RIGHT = 1;
     public static final int CENTER = 0;
-    private final List<Point> widthLines;
+    private final List<Boolean> widthLines;
 
     public Line(final int userCounts) {
         this(userCounts, new WidthGenerator(userCounts));
@@ -28,7 +28,7 @@ public class Line {
         }
     }
 
-    private List<Point> validateLines(List<Point> widthLines) {
+    private List<Boolean> validateLines(List<Boolean> widthLines) {
         if (widthLines.isEmpty()) {
             throw new IllegalArgumentException(WIDTH_REQUIRED);
         }
@@ -45,13 +45,12 @@ public class Line {
         return CENTER;
     }
 
-    public List<Point> getWidthLines() {
+    public List<Boolean> getWidthLines() {
         return widthLines;
     }
 
     private Boolean getPoint(int index) {
-        Point point = widthLines.get(index);
-        return point.getPoint();
+        return widthLines.get(index);
     }
 
     private boolean isLeft(int index) {
