@@ -14,7 +14,7 @@ public class InputView {
 
     private static final String PERSON_NAMES_DELIMITER = ",";
     private static final String GET_PERSON_NAMES_NOTICE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    private static final String GET_LADDER_HEIGHT_NOTICE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String GET_LADDER_HEIGHT_NOTICE = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String PERSON_NAME_INVALID_FORMAT_MESSAGE = "사람의 이름은 5글자 이하여야 합니다!";
     private static final String LADDER_HEIGHT_INVALID_FORMAT_MESSAGE = "사다리 높이는 숫자 값이어야 합니다!";
     private static final String LADDER_HEIGHT_INVALID_VALUE_MESSAGE = "사다리 높이는 0 이상 이어야 합니다!";

@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.controller.response.LadderResult;
 import ladder.domain.Line;
 import ladder.view.constant.ConstPerson;
 
@@ -8,15 +9,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private static final String RESULT_FORMAT = "실행 결과";
+    private static final String RESULT_FORMAT = "\n실행 결과\n";
     private static final String PERSON_NAME_FORMAT = "%5s";
     private static final String PERSON_NAME_DELIMITER = " ";
     private static final String LADDER_SEPARATOR = "|";
     private static final String LADDER_LINE = "-";
     private static final String LADDER_EMPTY = " ";
 
-    public static void printUserNames(String[] userNames) {
-        System.out.println(Arrays.stream(userNames)
+    public static void printPersonNames(List<String> userNames) {
+        System.out.println(userNames.stream()
                 .map(name -> String.format(PERSON_NAME_FORMAT, name))
                 .collect(Collectors.joining(PERSON_NAME_DELIMITER))
         );
@@ -32,7 +33,6 @@ public class ResultView {
         for (int index = 0; index < pointsCount; index++) {
             addLine(linePoints.get(index), stringBuilder);
         }
-        stringBuilder.append("\n");
 
         System.out.println(stringBuilder.toString());
     }
@@ -40,6 +40,7 @@ public class ResultView {
     private static void addLine(boolean lineExist, StringBuilder stringBuilder) {
         if (lineExist) {
             addLine(LADDER_LINE, stringBuilder);
+            return;
         }
 
         addLine(LADDER_EMPTY,stringBuilder);
@@ -53,4 +54,12 @@ public class ResultView {
         }
 
     }
+
+    public static void printLadderResult(LadderResult ladderResult) {
+        System.out.println(RESULT_FORMAT);
+
+        printPersonNames(ladderResult.getPersonNames());
+        ladderResult.getLines().forEach(ResultView::printLine);
+    }
+
 }
