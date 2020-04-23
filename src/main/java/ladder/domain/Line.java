@@ -6,34 +6,38 @@ import java.util.Random;
 
 public class Line {
     private static final int INDEX_DIFFERENCE = 1;
-    private final List<Boolean> line;
+    private final List<Boolean> point;
 
     public Line(int countOfPerson) {
-        this.line = new ArrayList<>();
-        int lineCount = getLineCount(countOfPerson);
+        this.point = new ArrayList<>();
+        int pointCount = getPointCount(countOfPerson);
 
-        for (int index = 0; index < lineCount; index++) {
-            this.line.add(generateLineValue(index));
+        for (int index = 0; index < pointCount; index++) {
+            this.point.add(generatePointValue(index));
         }
     }
 
-    private int getLineCount(int countOfPerson) {
+    private int getPointCount(int countOfPerson) {
         return countOfPerson - INDEX_DIFFERENCE;
     }
 
-    private boolean generateLineValue(int index) {
-        if (isPreviousLineExist(index)) {
+    private boolean generatePointValue(int index) {
+        if (isPreviousPointExist(index)) {
             return false;
         }
 
         return new Random(System.currentTimeMillis()).nextBoolean();
     }
 
-    private boolean isPreviousLineExist(int index) {
-        return index != 0 && this.line.get(index - INDEX_DIFFERENCE);
+    private boolean isPreviousPointExist(int index) {
+        return index != 0 && this.point.get(index - INDEX_DIFFERENCE);
     }
 
-    public boolean isLineExist(int index) {
-        return this.line.get(index);
+    public boolean isPointExist(int index) {
+        return this.point.get(index);
+    }
+
+    public List<Boolean> getPoint() {
+        return new ArrayList<>(this.point);
     }
 }

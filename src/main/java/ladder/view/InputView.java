@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Persons;
+import ladder.view.constant.ConstPerson;
 import ladder.view.exception.InvalidLadderHeightException;
 import ladder.view.exception.InvalidNamesInputException;
 
@@ -19,7 +20,6 @@ public class InputView {
     private static final String LADDER_HEIGHT_INVALID_VALUE_MESSAGE = "사다리 높이는 0 이상 이어야 합니다!";
 
     private static final int LADDER_HEIGHT_MIN = 1;
-    private static final int PERSON_NAME_SIZE_MAX = 5;
 
     public static Persons getPersons() {
         System.out.println(GET_PERSON_NAMES_NOTICE);
@@ -48,7 +48,7 @@ public class InputView {
     }
 
     private static boolean isPersonNameValid(String name) {
-        return name.length() <= PERSON_NAME_SIZE_MAX;
+        return name.length() <= ConstPerson.PERSON_NAME_SIZE_MAX;
     }
 
     public static int getLadderHeight() {

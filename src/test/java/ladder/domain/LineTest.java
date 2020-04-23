@@ -15,8 +15,8 @@ public class LineTest {
         Line line = new Line(countOfPerson);
 
         for (int i = 0; i < lineCount - 1; i++) {
-            if (line.isLineExist(i)) {
-                assertThat(line.isLineExist(i)).isNotEqualTo(line.isLineExist(i + 1));
+            if (line.isPointExist(i)) {
+                assertThat(line.isPointExist(i)).isNotEqualTo(line.isPointExist(i + 1));
             }
         }
     }
