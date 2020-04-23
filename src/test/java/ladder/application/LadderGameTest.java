@@ -21,7 +21,7 @@ class LadderGameTest {
         LadderReward ggang = new LadderReward("꽝");
         LadderReward lucky = new LadderReward("당첨");
         LadderReward lucky2 = new LadderReward("당첨2");
-        LadderGameInfo ladderGameInfo = new LadderGameInfo(Arrays.asList(userA, userB, userC),
+        LadderGameInfo ladderGameInfo = new LadderGameInfo(new Users(Arrays.asList(userA, userB, userC)),
                 Arrays.asList(ggang, lucky, lucky2));
 
         LadderGameResults ladderGameResults = LadderGame.start(ladder, ladderGameInfo);

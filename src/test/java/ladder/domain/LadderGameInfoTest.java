@@ -19,7 +19,7 @@ class LadderGameInfoTest {
         User userB = new User("userB");
         LadderReward ggang = new LadderReward("꽝");
         LadderReward lucky = new LadderReward("당첨");
-        ladderGameInfo = new LadderGameInfo(Arrays.asList(userA, userB), Arrays.asList(ggang, lucky));
+        ladderGameInfo = new LadderGameInfo(new Users(Arrays.asList(userA, userB)), Arrays.asList(ggang, lucky));
     }
 
     @Test
@@ -35,7 +35,7 @@ class LadderGameInfoTest {
         LadderReward ggang2 = new LadderReward("꽝");
         LadderReward lucky = new LadderReward("당첨");
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new LadderGameInfo(Arrays.asList(userA, userB), Arrays.asList(ggang, ggang2, lucky));
+            new LadderGameInfo(new Users(Arrays.asList(userA, userB)), Arrays.asList(ggang, ggang2, lucky));
         }).withMessage("참여할 사람과 실행 결과의 수는 같아야 한다.");
 
     }

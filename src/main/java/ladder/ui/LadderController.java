@@ -16,7 +16,7 @@ public class LadderController {
 
     public static void main(String[] args) {
         LadderRequest ladderRequest = InputView.inputLadderInfo();
-        List<User> users = userNamesToUsers(ladderRequest.getUserNames());
+        Users users = Users.of(ladderRequest.getUserNames(), SEPARATOR);
         List<LadderReward> ladderRewards = rewardsToLadderRewards(ladderRequest.getRewards());
         LadderGameInfo ladderGameInfo = new LadderGameInfo(users, ladderRewards);
 
@@ -29,12 +29,6 @@ public class LadderController {
             inputTarget = InputView.inputTarget();
             ResultView.printResult(inputTarget, results);
         }
-    }
-
-    private static List<User> userNamesToUsers(String userNames) {
-        return Arrays.stream(userNames.split(SEPARATOR))
-                .map(User::new)
-                .collect(Collectors.toList());
     }
 
     private static List<LadderReward> rewardsToLadderRewards(String rewards) {
