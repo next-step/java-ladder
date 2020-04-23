@@ -22,12 +22,17 @@ public class GameResult {
     }
 
     public String findPlayerGoal(String name) {
-        int index = users.index(name);
+        User user = users.findUser(name);
+        int position = moveResult(user);
+        return ladderGoals.getResult(position);
+    }
 
+    private int moveResult(User user) {
+        int position = user.getPosition();
         for (Line line : ladder.getLines()) {
-            index += line.move(index);
+            position += line.move(position);
         }
-        return ladderGoals.getResult(index);
+        return position;
     }
 
     private void initGame(Users users, LadderGenerator ladderGenerator) {

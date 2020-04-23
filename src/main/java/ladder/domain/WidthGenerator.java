@@ -28,15 +28,12 @@ public class WidthGenerator {
         return new ArrayList<>(lines);
     }
 
-    private void push(Stack<Boolean> subLines) {
-        if (!subLines.empty() && subLines.peek()) {
-            subLines.push(false);
+    private void push(Stack<Boolean> widthLines) {
+        if (!widthLines.empty() && widthLines.peek()) {
+            widthLines.push(false);
             return;
         }
-        subLines.push(randomBoolean());
+        widthLines.push(Math.round(Math.random()) < 0.5);
     }
 
-    private Boolean randomBoolean() {
-        return new Random().nextBoolean();
-    }
 }

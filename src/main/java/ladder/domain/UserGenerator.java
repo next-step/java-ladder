@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,10 +15,12 @@ public class UserGenerator {
     }
 
     public List<User> generateUsers() {
-        return Stream.of(names.split(DELIMETER))
-                .map(String::trim)
-                .map(User::new)
-                .collect(Collectors.toList());
+        String[] splitText = names.split(DELIMETER);
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i < splitText.length; i++) {
+            users.add(new User(splitText[i], i));
+        }
+        return new ArrayList<>(users);
     }
 
 

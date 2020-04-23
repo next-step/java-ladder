@@ -29,23 +29,11 @@ public class Users {
         return users.get(index).getName();
     }
 
-    public int index(String name) {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getName().equals(name)) {
-                return i;
-            }
-        }
-        throw new IllegalArgumentException(NOT_FOUND_USER);
-    }
-
     public User findUser(String name) {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getName().equals(name)) {
-                return users.get(i);
-            }
-        }
-
-        throw new IllegalArgumentException(NOT_FOUND_USER);
+        return users.stream()
+                .filter(u -> u.getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public int size() {
