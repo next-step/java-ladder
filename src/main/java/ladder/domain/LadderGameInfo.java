@@ -1,27 +1,26 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderGameInfo {
     private final Users users;
-    private final List<LadderReward> ladderRewards;
+    private final LadderRewards ladderRewards;
 
-    public LadderGameInfo(final Users users, final List<LadderReward> ladderRewards) {
+    public LadderGameInfo(final Users users, final LadderRewards ladderRewards) {
         if (users.size() != ladderRewards.size()) {
             throw new IllegalArgumentException("참여할 사람과 실행 결과의 수는 같아야 한다.");
         }
         this.users = users;
-        this.ladderRewards = new ArrayList<>(ladderRewards);
+        this.ladderRewards = ladderRewards;
     }
 
     public Map<User, LadderReward> match(Map<Position, Position> ladderResults) {
         return ladderResults.entrySet()
                 .stream()
                 .collect(Collectors.toMap(entry -> users.getUser(entry.getKey()),
-                        entry -> ladderRewards.get(entry.getValue().toInt())));
+                        entry -> ladderRewards.getReward(entry.getValue())));
     }
 
     public int userSize() {
@@ -33,6 +32,6 @@ public class LadderGameInfo {
     }
 
     public List<LadderReward> getLadderRewards() {
-        return new ArrayList<>(ladderRewards);
+        return ladderRewards.getRewards();
     }
 }
