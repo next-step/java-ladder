@@ -3,8 +3,8 @@ package nextstep.optional;
 import java.util.Optional;
 
 public class User {
-    private static final int MIN_AGE = 35;
-    private static final int MAX_AGE = 35;
+    private static final int MIN_AGE = 30;
+    private static final int MAX_AGE = 45;
 
     private String name;
     private Integer age;
