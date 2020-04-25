@@ -3,6 +3,7 @@ package ladder.ui;
 import ladder.application.LadderGame;
 import ladder.domain.*;
 import ladder.dto.LadderRequest;
+import ladder.infra.RandomDirection;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -16,8 +17,10 @@ public class LadderController {
         LadderRewards ladderRewards = LadderRewards.of(ladderRequest.getRewards(), SEPARATOR);
         LadderGameInfo ladderGameInfo = new LadderGameInfo(users, ladderRewards);
 
-        Ladder ladder = LadderGame.createLadder(users.size(), ladderRequest.getHeight());
-        LadderGameResults results = LadderGame.start(ladder, ladderGameInfo);
+        DirectionCreator directionCreator = new RandomDirection();
+        Ladder ladder = Ladder.of(users.size(), directionCreator, ladderRequest.getHeight());
+        LadderGame ladderGame = new LadderGame(ladder, ladderGameInfo);
+        LadderGameResults results = ladderGame.start();
 
         ResultView.print(ladder, ladderGameInfo);
         String inputTarget = InputView.inputTarget();

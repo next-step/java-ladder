@@ -8,6 +8,12 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<LadderLine> ladderLines;
 
+    public static Ladder of(int userCount, DirectionCreator directionCreator, int height) {
+        return new Ladder(IntStream.range(0, height)
+                .mapToObj(i -> LadderLine.of(userCount, directionCreator))
+                .collect(Collectors.toList()));
+    }
+
     public Ladder(List<LadderLine> ladderLines) {
         this.ladderLines = Collections.unmodifiableList(new ArrayList<>(ladderLines));
     }

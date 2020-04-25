@@ -16,7 +16,7 @@ public class LadderTest {
 
     @BeforeEach
     void setUp() {
-        /**
+        /*
          *  0   1   2
          *  |---|   |
          *  |   |---|
@@ -33,6 +33,23 @@ public class LadderTest {
                         new Point(2, Direction.of(TRUE, FALSE))
                 ))
         ));
+    }
+
+    @Test
+    void create() {
+        Ladder ladder = Ladder.of(3, () -> true, 2);
+        assertThat(ladder).isEqualTo(new Ladder(Arrays.asList(
+                new LadderLine(Arrays.asList(
+                        new Point(0, Direction.of(FALSE, TRUE)),
+                        new Point(1, Direction.of(TRUE, FALSE)),
+                        new Point(2, Direction.of(FALSE, FALSE))
+                )),
+                new LadderLine(Arrays.asList(
+                        new Point(0, Direction.of(FALSE, TRUE)),
+                        new Point(1, Direction.of(TRUE, FALSE)),
+                        new Point(2, Direction.of(FALSE, FALSE))
+                ))
+        )));
     }
 
     @Test

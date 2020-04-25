@@ -2,6 +2,7 @@ package ladder.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -27,6 +28,16 @@ public class LadderLineTest {
                 new Point(3, Direction.of(TRUE, FALSE)),
                 new Point(4, Direction.of(FALSE, FALSE))
         ));
+    }
+
+    @Test
+    void create() {
+        LadderLine ladderLine = LadderLine.of(3, () -> true);
+        assertThat(ladderLine).isEqualTo(new LadderLine(Arrays.asList(
+                new Point(0, Direction.of(FALSE, TRUE)),
+                new Point(1, Direction.of(TRUE, FALSE)),
+                new Point(2, Direction.of(FALSE, FALSE)
+                ))));
     }
 
     @DisplayName("특정 좌표 move")

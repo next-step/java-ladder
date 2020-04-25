@@ -24,7 +24,8 @@ class LadderGameTest {
         LadderGameInfo ladderGameInfo = new LadderGameInfo(new Users(Arrays.asList(userA, userB, userC)),
                 new LadderRewards(Arrays.asList(ggang, lucky, lucky2)));
 
-        LadderGameResults ladderGameResults = LadderGame.start(ladder, ladderGameInfo);
+        LadderGame ladderGame = new LadderGame(ladder, ladderGameInfo);
+        LadderGameResults ladderGameResults = ladderGame.start();
 
         Map<User, LadderReward> expectedResults = new HashMap<>();
         expectedResults.put(new User("a"), new LadderReward("당첨2"));

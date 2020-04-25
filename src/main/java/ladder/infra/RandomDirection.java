@@ -4,7 +4,7 @@ import ladder.domain.DirectionCreator;
 
 import java.util.Random;
 
-public class RandomDirectionCreator implements DirectionCreator {
+public class RandomDirection implements DirectionCreator {
     private static final Random random = new Random();
 
     @Override
