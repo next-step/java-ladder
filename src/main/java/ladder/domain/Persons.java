@@ -13,7 +13,7 @@ public class Persons {
                 .collect(Collectors.toList());
     }
 
-    public static Persons getInstanceByPersonNames(String[] personNames) {
+    public static Persons getInstance(String[] personNames) {
         return new Persons(personNames);
     }
 
