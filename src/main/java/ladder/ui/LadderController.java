@@ -15,8 +15,9 @@ public class LadderController {
     public LadderResponse run(LadderRequest ladderRequest) {
         Users users = Users.of(ladderRequest.getUserNames(), SEPARATOR);
         LadderRewards ladderRewards = LadderRewards.of(ladderRequest.getRewards(), SEPARATOR);
+        LadderLineInfo ladderLineInfo = new LadderLineInfo(users.size(), directionCreator);
 
-        Ladder ladder = Ladder.of(users.size(), directionCreator, ladderRequest.getHeight());
+        Ladder ladder = Ladder.of(ladderLineInfo, ladderRequest.getHeight());
         LadderGameInfo ladderGameInfo = new LadderGameInfo(users, ladderRewards);
         LadderGame ladderGame = new LadderGame(ladder, ladderGameInfo);
         LadderGameResults ladderGameResults = ladderGame.start();

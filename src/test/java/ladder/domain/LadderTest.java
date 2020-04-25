@@ -37,7 +37,7 @@ public class LadderTest {
 
     @Test
     void create() {
-        Ladder ladder = Ladder.of(3, () -> true, 2);
+        Ladder ladder = Ladder.of(new LadderLineInfo(3, () -> true), 2);
         assertThat(ladder).isEqualTo(new Ladder(Arrays.asList(
                 new LadderLine(Arrays.asList(
                         new Point(0, Direction.of(FALSE, TRUE)),

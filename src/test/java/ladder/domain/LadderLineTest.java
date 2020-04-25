@@ -32,7 +32,7 @@ public class LadderLineTest {
 
     @Test
     void create() {
-        LadderLine ladderLine = LadderLine.of(3, () -> true);
+        LadderLine ladderLine = LadderLine.from(new LadderLineInfo(3, () -> true));
         assertThat(ladderLine).isEqualTo(new LadderLine(Arrays.asList(
                 new Point(0, Direction.of(FALSE, TRUE)),
                 new Point(1, Direction.of(TRUE, FALSE)),

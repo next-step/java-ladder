@@ -8,27 +8,27 @@ import java.util.Objects;
 public class LadderLine {
     private final List<Point> points;
 
-    public static LadderLine of(final int userCount, final DirectionCreator directionCreator) {
+    public static LadderLine from(LadderLineInfo ladderLineInfo) {
         List<Point> points = new ArrayList<>();
-        Point lastPoint = initFirstPoint(points, directionCreator);
-        int middlePointCount = userCount - 2;
+        Point lastPoint = initFirstPoint(points, ladderLineInfo.createDirection());
+        int middlePointCount = ladderLineInfo.lineCount() - 2;
         for (int i = 0; i < middlePointCount; i++) {
-            lastPoint = initMiddlePoint(points, lastPoint, directionCreator);
+            lastPoint = initMiddlePoint(points, lastPoint, ladderLineInfo.createDirection());
         }
         initLastPoint(points, lastPoint);
         return new LadderLine(points);
     }
 
-    private static Point initMiddlePoint(List<Point> points, Point lastPoint, DirectionCreator directionCreator) {
-        lastPoint = lastPoint.next(directionCreator.create());
-        points.add(lastPoint);
-        return lastPoint;
-    }
-
-    private static Point initFirstPoint(List<Point> points, DirectionCreator directionCreator) {
-        Point first = Point.first(directionCreator.create());
+    private static Point initFirstPoint(List<Point> points, boolean direction) {
+        Point first = Point.first(direction);
         points.add(first);
         return first;
+    }
+
+    private static Point initMiddlePoint(List<Point> points, Point lastPoint, boolean direction) {
+        lastPoint = lastPoint.next(direction);
+        points.add(lastPoint);
+        return lastPoint;
     }
 
     private static void initLastPoint(List<Point> points, Point point) {

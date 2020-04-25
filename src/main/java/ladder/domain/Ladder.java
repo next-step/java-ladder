@@ -8,9 +8,9 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<LadderLine> ladderLines;
 
-    public static Ladder of(int userCount, DirectionCreator directionCreator, int height) {
+    public static Ladder of(LadderLineInfo ladderLineInfo, int height) {
         return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> LadderLine.of(userCount, directionCreator))
+                .mapToObj(i -> LadderLine.from(ladderLineInfo))
                 .collect(Collectors.toList()));
     }
 
