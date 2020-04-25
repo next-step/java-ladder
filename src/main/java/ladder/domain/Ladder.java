@@ -15,7 +15,7 @@ public class Ladder {
         }
     }
 
-    public static Ladder getInstanceWithHeight(int height, int countOfPerson) {
+    public static Ladder getInstance(int height, int countOfPerson) {
         return new Ladder(height, countOfPerson);
     }
 
