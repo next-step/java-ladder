@@ -8,7 +8,7 @@ import java.util.Objects;
 public class LadderLine {
     private final List<Point> points;
 
-    public static LadderLine from(LadderLineInfo ladderLineInfo) {
+    public static LadderLine from(final LadderLineInfo ladderLineInfo) {
         List<Point> points = new ArrayList<>();
         Point lastPoint = initFirstPoint(points, ladderLineInfo.createDirection());
         int middlePointCount = ladderLineInfo.lineCount() - 2;
@@ -19,27 +19,27 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
-    private static Point initFirstPoint(List<Point> points, boolean direction) {
+    private static Point initFirstPoint(final List<Point> points, final boolean direction) {
         Point first = Point.first(direction);
         points.add(first);
         return first;
     }
 
-    private static Point initMiddlePoint(List<Point> points, Point lastPoint, boolean direction) {
+    private static Point initMiddlePoint(final List<Point> points, Point lastPoint, final boolean direction) {
         lastPoint = lastPoint.next(direction);
         points.add(lastPoint);
         return lastPoint;
     }
 
-    private static void initLastPoint(List<Point> points, Point point) {
+    private static void initLastPoint(final List<Point> points, final Point point) {
         points.add(point.last());
     }
 
-    public LadderLine(List<Point> points) {
+    public LadderLine(final List<Point> points) {
         this.points = Collections.unmodifiableList(new ArrayList<>(points));
     }
 
-    public Position move(Position currentPosition) {
+    public Position move(final Position currentPosition) {
         return points.get(currentPosition.toInt()).move();
     }
 

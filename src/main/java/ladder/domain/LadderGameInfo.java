@@ -16,7 +16,7 @@ public class LadderGameInfo {
         this.ladderRewards = ladderRewards;
     }
 
-    public Map<User, LadderReward> match(Map<Position, Position> ladderResults) {
+    public Map<User, LadderReward> match(final Map<Position, Position> ladderResults) {
         return ladderResults.entrySet()
                 .stream()
                 .collect(Collectors.toMap(entry -> users.getUser(entry.getKey()),

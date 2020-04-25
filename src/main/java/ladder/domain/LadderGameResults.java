@@ -8,11 +8,11 @@ import java.util.Objects;
 public class LadderGameResults {
     private final Map<User, LadderReward> results;
 
-    public LadderGameResults(Map<User, LadderReward> results) {
+    public LadderGameResults(final Map<User, LadderReward> results) {
         this.results = Collections.unmodifiableMap(new HashMap<>(results));
     }
 
-    public LadderReward getLadderReward(String userName) {
+    public LadderReward getLadderReward(final String userName) {
         return results.get(new User(userName));
     }
 

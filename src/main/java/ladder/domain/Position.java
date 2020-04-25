@@ -6,7 +6,7 @@ public class Position {
     private static final int CHANGING_UNIT = 1;
     private final int value;
 
-    public Position(int value) {
+    public Position(final int value) {
         if (value < 0) {
             throw new IllegalStateException("Postion 은 음수 일 수 없습니다.");
         }

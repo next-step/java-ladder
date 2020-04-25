@@ -5,7 +5,7 @@ import java.util.Objects;
 public class LadderReward {
     private final String reward;
 
-    public LadderReward(String reward) {
+    public LadderReward(final String reward) {
         this.reward = reward;
     }
 

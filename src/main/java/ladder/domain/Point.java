@@ -8,15 +8,15 @@ public class Point {
     private final Position position;
     private final Direction direction;
 
-    public static Point first(boolean right) {
+    public static Point first(final boolean right) {
         return new Point(INIT_INDEX, Direction.first(right));
     }
 
-    public Point(int position, Direction direction) {
+    public Point(final int position, final Direction direction) {
         this(new Position(position), direction);
     }
 
-    public Point(Position position, Direction direction) {
+    public Point(final Position position, final Direction direction) {
         this.position = position;
         this.direction = direction;
     }
@@ -33,7 +33,7 @@ public class Point {
         return position;
     }
 
-    public Point next(boolean nextRight) {
+    public Point next(final boolean nextRight) {
         return new Point(position.right(), direction.next(nextRight));
     }
 

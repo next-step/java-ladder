@@ -5,12 +5,12 @@ import java.util.Objects;
 public class User {
     private final String name;
 
-    public User(String name) {
+    public User(final String name) {
         verifyUserName(name);
         this.name = name;
     }
 
-    private void verifyUserName(String name) {
+    private void verifyUserName(final String name) {
         if (Objects.isNull(name) || name.isEmpty()) {
             throw new IllegalArgumentException();
         }
