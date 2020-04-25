@@ -1,8 +1,4 @@
-package ladder.application;
-
-import ladder.domain.Ladder;
-import ladder.domain.LadderGameInfo;
-import ladder.domain.LadderGameResults;
+package ladder.domain;
 
 import java.util.Objects;
 

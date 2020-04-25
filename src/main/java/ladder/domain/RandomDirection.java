@@ -1,6 +1,4 @@
-package ladder.infra;
-
-import ladder.domain.DirectionCreator;
+package ladder.domain;
 
 import java.util.Random;
 

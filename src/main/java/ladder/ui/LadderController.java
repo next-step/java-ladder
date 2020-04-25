@@ -1,32 +1,26 @@
 package ladder.ui;
 
-import ladder.application.LadderGame;
 import ladder.domain.*;
 import ladder.dto.LadderRequest;
-import ladder.infra.RandomDirection;
-import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.dto.LadderResponse;
 
 public class LadderController {
-    private static final String TARGET_ALL = "all";
     private static final String SEPARATOR = ",";
+    private final DirectionCreator directionCreator;
 
-    public static void main(String[] args) {
-        LadderRequest ladderRequest = InputView.inputLadderInfo();
+    public LadderController(DirectionCreator directionCreator) {
+        this.directionCreator = directionCreator;
+    }
+
+    public LadderResponse run(LadderRequest ladderRequest) {
         Users users = Users.of(ladderRequest.getUserNames(), SEPARATOR);
         LadderRewards ladderRewards = LadderRewards.of(ladderRequest.getRewards(), SEPARATOR);
-        LadderGameInfo ladderGameInfo = new LadderGameInfo(users, ladderRewards);
 
-        DirectionCreator directionCreator = new RandomDirection();
         Ladder ladder = Ladder.of(users.size(), directionCreator, ladderRequest.getHeight());
+        LadderGameInfo ladderGameInfo = new LadderGameInfo(users, ladderRewards);
         LadderGame ladderGame = new LadderGame(ladder, ladderGameInfo);
-        LadderGameResults results = ladderGame.start();
-
-        ResultView.print(ladder, ladderGameInfo);
-        String inputTarget = InputView.inputTarget();
-        while (TARGET_ALL.equals(inputTarget)) {
-            inputTarget = InputView.inputTarget();
-            ResultView.printResult(inputTarget, results);
-        }
+        LadderGameResults ladderGameResults = ladderGame.start();
+        return new LadderResponse(ladder, ladderGameInfo, ladderGameResults);
     }
 }
+
