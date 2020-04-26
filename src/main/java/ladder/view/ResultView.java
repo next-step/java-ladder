@@ -11,6 +11,8 @@ public class ResultView {
     private static final String RESULT_FORMAT = "\n실행 결과\n";
     private static final String PERSON_NAME_FORMAT = "%5s";
     private static final String PERSON_NAME_DELIMITER = " ";
+    private static final String LADDER_RESULT_VALUE_FORMAT = "%5s";
+    private static final String LADDER_RESULT_VALUE_DELIMITER = " ";
     private static final String LADDER_SEPARATOR = "|";
     private static final String LADDER_LINE = "-";
     private static final String LADDER_EMPTY = " ";
@@ -59,6 +61,14 @@ public class ResultView {
 
         printPersonNames(ladderResult.getPersonNames());
         ladderResult.getLines().forEach(ResultView::printLine);
+        printLadderResultValues(ladderResult.getLadderResult());
+    }
+
+    private static void printLadderResultValues(List<String> resultValues) {
+        System.out.println(resultValues.stream()
+                .map(result -> String.format(LADDER_RESULT_VALUE_FORMAT, result))
+                .collect(Collectors.joining(LADDER_RESULT_VALUE_DELIMITER))
+        );
     }
 
 }
