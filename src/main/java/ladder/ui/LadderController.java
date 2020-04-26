@@ -1,21 +1,27 @@
 package ladder.ui;
 
-import ladder.domain.Ladder;
-import ladder.domain.UserGenerator;
-import ladder.domain.Users;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderController {
-    public void start() {
-        String user = InputView.askNumberOfUser();
-        int height = InputView.askLadderHeight();
+    private GameResult gameResult;
 
-        UserGenerator userGenerator = new UserGenerator(user);
-        Users users = new Users(userGenerator.generateUsers());
-        OutputView.printNames(users);
+    public LadderController() {
+        init();
+    }
 
-        Ladder ladder = new Ladder(height, users.size());
-        OutputView.printLadder(ladder);
+    private void init() {
+        Users users = InputView.askNumberOfUser();
+        LadderGoals ladderGoals = InputView.askLadderGoals();
+        Ladder ladder = new Ladder(InputView.askLadderHeight(), users);
+        gameResult = new GameResult(users, new LadderGenerator(ladder, ladderGoals));
+    }
+
+    public void showResult() {
+        OutputView.printNames(gameResult.getUsers());
+        OutputView.printLadder(gameResult.getLadder());
+        OutputView.printGoals(gameResult.getLadderGoals());
+        OutputView.printGameResult(gameResult);
     }
 }

@@ -3,17 +3,16 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
-class UsersTest {
+public class LadderGoalsTest {
 
-    @DisplayName("사용자 목록에 빈값인 경우 테스트")
+    @DisplayName("사다리의 결과가 1개이상인지 테스트")
     @Test
-    void testEmpty() {
+    void testResultMoreThanOne() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new Users(new ArrayList<>()));
+                .isThrownBy(() -> new LadderGoals(new HashMap<>()));
     }
-
 }

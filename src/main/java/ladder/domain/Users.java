@@ -5,21 +5,35 @@ import java.util.List;
 import java.util.Objects;
 
 public class Users {
+    private static final String REQUIRE_USERS = "사용자의 값이 입력되어야합니다";
+    private static final String NOT_FOUND_USER = "검색 결과가 없습니다.";
+
     private final List<User> users;
 
     public Users(final List<User> users) {
-        this.users = validate(users);
+        this.users = validateUsers(users);
     }
 
-    public List<User> validate(final List<User> users) {
+    public List<User> validateUsers(final List<User> users) {
         if (users.isEmpty()) {
-            throw new IllegalArgumentException("빈 값이 될 수 없습니다.");
+            throw new IllegalArgumentException(REQUIRE_USERS);
         }
         return new ArrayList<>(users);
     }
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public String getUserName(int index) {
+        return users.get(index).getName();
+    }
+
+    public User findUser(String name) {
+        return users.stream()
+                .filter(u -> u.getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public int size() {

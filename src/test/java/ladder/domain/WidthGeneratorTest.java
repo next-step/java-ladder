@@ -12,7 +12,6 @@ class WidthGeneratorTest {
     @ValueSource(ints = {5})
     void testCreateLine(final int personCount) {
         WidthGenerator widthGenerator = new WidthGenerator(personCount);
-
-        assertThat(widthGenerator.generate()).hasSize(4);
+        assertThat(widthGenerator.getWidthLines()).hasSize(4);
     }
 }
