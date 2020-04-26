@@ -17,4 +17,20 @@ public class LadderResult {
                 .collect(Collectors.toList())
         );
     }
+
+    public static LadderResult getNewInstance(LadderResult ladderResult) {
+        return new LadderResult(ladderResult.results.stream()
+                .map(ResultValue::getNewInstance)
+                .collect(Collectors.toList()));
+    }
+
+    public List<String> getValues() {
+        return results.stream()
+                .map(ResultValue::valueOf)
+                .collect(Collectors.toList());
+    }
+
+    public int getWidth() {
+        return results.size();
+    }
 }

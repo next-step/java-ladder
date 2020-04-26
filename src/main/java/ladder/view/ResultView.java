@@ -1,10 +1,9 @@
 package ladder.view;
 
-import ladder.controller.response.LadderResult;
+import ladder.controller.response.LadderDto;
 import ladder.domain.Line;
 import ladder.view.constant.ConstPerson;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +15,7 @@ public class ResultView {
     private static final String LADDER_LINE = "-";
     private static final String LADDER_EMPTY = " ";
 
-    public static void printPersonNames(List<String> userNames) {
+    private static void printPersonNames(List<String> userNames) {
         System.out.println(userNames.stream()
                 .map(name -> String.format(PERSON_NAME_FORMAT, name))
                 .collect(Collectors.joining(PERSON_NAME_DELIMITER))
@@ -55,7 +54,7 @@ public class ResultView {
 
     }
 
-    public static void printLadderResult(LadderResult ladderResult) {
+    public static void printLadderResult(LadderDto ladderResult) {
         System.out.println(RESULT_FORMAT);
 
         printPersonNames(ladderResult.getPersonNames());
