@@ -18,9 +18,9 @@ public class LadderTest {
     @ValueSource(ints = {1, 4, 10})
     @DisplayName("주어진 높이만큼의 사다리를 생성")
     public void generateLadderSuccess(int height) {
-        Ladder ladder = Ladder.getInstance(height, ladderResult);
+        Ladder ladder = Ladder.getInstance(Lines.getInstance(height, ladderResult.getWidth()), ladderResult);
 
-        assertThat(ladder.getHeight()).isEqualTo(height);
+        assertThat(ladder.isHeightSame(height)).isTrue();
     }
 
     @ParameterizedTest
@@ -28,14 +28,14 @@ public class LadderTest {
     @DisplayName("유효하지 않은 높이 값이 주어진 경우 exception")
     public void generateLadderThrowException(int height) {
         assertThatExceptionOfType(InvalidLadderHeightException.class)
-                .isThrownBy(() -> Ladder.getInstance(height, ladderResult));
+                .isThrownBy(() -> Ladder.getInstance(Lines.getInstance(height, ladderResult.getWidth()), ladderResult));
 
     }
 
     @Test
     @DisplayName("주어진 사다리 결과의 수만큼을 넓이로 가지는 사다리 생성 확인")
     public void generateLadderSuccess() {
-        Ladder ladder = Ladder.getInstance(HEIGHT_DEFAULT, ladderResult);
+        Ladder ladder = Ladder.getInstance(Lines.getInstance(HEIGHT_DEFAULT, ladderResult.getWidth()), ladderResult);
 
         assertThat(ladder.getLadderResult().getWidth()).isEqualTo(COUNT_OF_PERSON_DEFAULT);
     }

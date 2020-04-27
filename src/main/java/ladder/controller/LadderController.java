@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.controller.response.LadderDto;
 import ladder.domain.Ladder;
 import ladder.domain.LadderResult;
+import ladder.domain.Lines;
 import ladder.domain.Persons;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -13,10 +14,10 @@ public class LadderController {
         LadderResult ladderResult = InputView.getLadderResults(persons.getCount());
         int ladderHeight = InputView.getLadderHeight();
 
-        Ladder ladder = Ladder.getInstance(ladderHeight, ladderResult);
+        Ladder ladder = Ladder.getInstance(
+                Lines.getInstance(ladderHeight, ladderResult.getWidth()),
+                ladderResult);
 
         ResultView.printLadderResult(LadderDto.getInstance(persons, ladder));
-
-
     }
 }
