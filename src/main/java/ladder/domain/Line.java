@@ -33,6 +33,38 @@ public class Line {
     }
 
     public int movePosition(int position) {
-        return -1;
+        if (checkLeft(position)) {
+            return position - INDEX_DIFFERENCE;
+        }
+
+        if (checkRight(position)) {
+            return position + INDEX_DIFFERENCE;
+        }
+
+        return position;
+    }
+
+    private boolean checkLeft(int position) {
+        if (position <= INDEX_MIN) {
+            return false;
+        }
+
+        return points.get(leftIndexOfPerson(position));
+    }
+
+    private boolean checkRight(int position) {
+        if (position >= points.size()) {
+            return false;
+        }
+
+        return points.get(rightIndexOfPerson(position));
+    }
+
+    private int leftIndexOfPerson(int personPosition) {
+        return personPosition - INDEX_DIFFERENCE;
+    }
+
+    private int rightIndexOfPerson(int personPosition) {
+        return personPosition;
     }
 }

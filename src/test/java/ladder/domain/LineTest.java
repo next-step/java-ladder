@@ -23,7 +23,7 @@ public class LineTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:1", "1:1", "2:3", "4:4"}, delimiter = ':')
+    @CsvSource(value = {"0:1", "1:0", "2:3", "4:4"}, delimiter = ':')
     @DisplayName("주어진 위치의 이동 결과값 반환")
     public void movePositionSuccess(int position, int result) {
         assertThat(lineTest.movePosition(position)).isEqualTo(result);
