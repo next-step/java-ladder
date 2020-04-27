@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Line {
     private static final int INDEX_DIFFERENCE = 1;
+    private static final int INDEX_MIN = 0;
     private final List<Boolean> points;
 
     private Line(List<Boolean> points) {
@@ -29,5 +30,9 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return new ArrayList<>(this.points);
+    }
+
+    public int movePosition(int position) {
+        return -1;
     }
 }
