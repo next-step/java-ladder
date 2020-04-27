@@ -33,7 +33,7 @@ public class Users {
         return users.stream()
                 .filter(u -> u.getName().equals(name))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(NOT_FOUND_USER));
     }
 
     public int size() {

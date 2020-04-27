@@ -1,10 +1,10 @@
 package ladder.domain;
 
-public class LadderGenerator {
+public class LadderGame {
     private Ladder ladder;
     private LadderGoals ladderGoals;
 
-    public LadderGenerator(Ladder ladder, LadderGoals ladderGoals) {
+    public LadderGame(Ladder ladder, LadderGoals ladderGoals) {
         this.ladder = ladder;
         this.ladderGoals = ladderGoals;
     }

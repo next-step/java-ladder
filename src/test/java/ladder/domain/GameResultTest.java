@@ -25,7 +25,7 @@ class GameResultTest {
     @Test
     void testGoalsAndUserCounts() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new GameResult(twoUsers(), new LadderGenerator(fiveHeightLadder(), fourLadderGoals()));
+            new GameResult(twoUsers(), new LadderGame(fiveHeightLadder(), fourLadderGoals()));
         });
     }
 
@@ -39,7 +39,7 @@ class GameResultTest {
 
         List<Line> lines = Arrays.asList(line1, line2);
         Ladder ladder = new Ladder(lines);
-        LadderGenerator ladderGenerator = new LadderGenerator(ladder, ladderGoals);
+        LadderGame ladderGenerator = new LadderGame(ladder, ladderGoals);
 
         GameResult ladderGame = new GameResult(twoUsers(), ladderGenerator);
 

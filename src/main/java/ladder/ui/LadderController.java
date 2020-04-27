@@ -15,7 +15,7 @@ public class LadderController {
         Users users = InputView.askNumberOfUser();
         LadderGoals ladderGoals = InputView.askLadderGoals();
         Ladder ladder = new Ladder(InputView.askLadderHeight(), users);
-        gameResult = new GameResult(users, new LadderGenerator(ladder, ladderGoals));
+        gameResult = new GameResult(users, new LadderGame(ladder, ladderGoals));
     }
 
     public void showResult() {
