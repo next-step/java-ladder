@@ -39,4 +39,6 @@ public class LadderTest {
 
         assertThat(ladder.getLadderResult().getWidth()).isEqualTo(COUNT_OF_PERSON_DEFAULT);
     }
+
+
 }

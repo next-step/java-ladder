@@ -27,7 +27,7 @@ public class ResultView {
     public static void printLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        List<Boolean> linePoints = line.getPoint();
+        List<Boolean> linePoints = line.getPoints();
         int pointsCount = linePoints.size();
 
         addLine(false, stringBuilder);

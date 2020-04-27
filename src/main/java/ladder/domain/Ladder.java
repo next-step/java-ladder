@@ -12,13 +12,9 @@ public class Ladder {
     private final List<Line> lines;
     private final LadderResult ladderResult;
 
-    private Ladder(int height, LadderResult ladderResult) {
+    private Ladder(List<Line> lines, LadderResult ladderResult) {
         this.ladderResult = ladderResult;
-        this.lines = new ArrayList<>();
-
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(ladderResult.getWidth()));
-        }
+        this.lines = lines;
     }
 
     public static Ladder getInstance(int height, LadderResult ladderResult) {
@@ -26,7 +22,12 @@ public class Ladder {
             throw new InvalidLadderHeightException();
         }
 
-        return new Ladder(height, ladderResult);
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(Line.getNewInstance(LineGenerator.generateRandomPoints(ladderResult.getWidth())));
+        }
+
+        return new Ladder(lines, ladderResult);
     }
 
     public int getHeight() {

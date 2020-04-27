@@ -16,5 +16,7 @@ public class LadderController {
         Ladder ladder = Ladder.getInstance(ladderHeight, ladderResult);
 
         ResultView.printLadderResult(LadderDto.getInstance(persons, ladder));
+
+
     }
 }
