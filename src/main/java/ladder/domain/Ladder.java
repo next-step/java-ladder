@@ -26,4 +26,8 @@ public class Ladder {
     public List<Line> getLines() {
         return lines.getLines();
     }
+
+    public ResultValue getLadderResult(int personIndex) {
+        return ladderResult.getValue(lines.getResultIndex(personIndex));
+    }
 }

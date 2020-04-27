@@ -2,14 +2,17 @@ package ladder.domain;
 
 public class Person {
     private String name;
-    private ResultValue resultValue;
 
     private Person(String name) {
         this.name = name;
     }
 
-    public static Person getInstanceByName(String name) {
+    public static Person getInstance(String name) {
         return new Person(name);
+    }
+
+    public static Person getNewInstance(Person person) {
+        return new Person(person.name);
     }
 
     public String getName() {

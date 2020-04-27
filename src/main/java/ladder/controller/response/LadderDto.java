@@ -2,23 +2,25 @@ package ladder.controller.response;
 
 import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Person;
 import ladder.domain.Persons;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderDto {
     private List<String> personNames;
     private List<Line> lines;
     private List<String> ladderResult;
 
-    private LadderDto(List<String> personNames, Ladder ladder) {
-        this.personNames = personNames;
+    private LadderDto(List<Person> personNames, Ladder ladder) {
+        this.personNames = personNames.stream().map(Person::getName).collect(Collectors.toList());
         this.lines = ladder.getLines();
         this.ladderResult = ladder.getLadderResult().getValues();
     }
 
     public static LadderDto getInstance(Persons persons, Ladder ladder) {
-        return new LadderDto(persons.getNames(), ladder);
+        return new LadderDto(persons.getPersons(), ladder);
     }
 
     public List<String> getPersonNames() {

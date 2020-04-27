@@ -12,7 +12,9 @@ public class Lines {
     private List<Line> lines;
 
     public Lines(List<Line> lines) {
-        this.lines = lines;
+        this.lines = lines.stream()
+                .map(Line::getNewInstance)
+                .collect(Collectors.toList());
     }
 
     public static Lines getInstance(int height, int width) {
@@ -28,6 +30,10 @@ public class Lines {
         return new Lines(lines);
     }
 
+    public static Lines getInstance(List<Line> lines) {
+        return new Lines(lines);
+    }
+
     public List<Line> getLines() {
         return lines.stream()
                 .map(Line::getNewInstance)
@@ -36,5 +42,9 @@ public class Lines {
 
     public boolean isHeightSame(int height) {
         return height == lines.size();
+    }
+
+    public int getResultIndex(int personIndex) {
+        return -1;
     }
 }

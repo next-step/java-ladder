@@ -11,6 +11,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
+    public static final Line LINE_PERSON2 = Line.getNewInstance(Arrays.asList(true));
+
     private static final Line lineTest = Line.getNewInstance(Arrays.asList(true, false, true, false, false));
 
     @Test

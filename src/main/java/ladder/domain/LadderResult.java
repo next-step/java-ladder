@@ -7,8 +7,10 @@ import java.util.stream.Collectors;
 public class LadderResult {
     private List<ResultValue> results;
 
-    private LadderResult(List<ResultValue> results) {
-        this.results = results;
+    private LadderResult(List<ResultValue> resultValues) {
+        this.results = resultValues.stream()
+                .map(ResultValue::getNewInstance)
+                .collect(Collectors.toList());
     }
 
     public static LadderResult getInstance(String[] results) {
@@ -19,9 +21,11 @@ public class LadderResult {
     }
 
     public static LadderResult getNewInstance(LadderResult ladderResult) {
-        return new LadderResult(ladderResult.results.stream()
-                .map(ResultValue::getNewInstance)
-                .collect(Collectors.toList()));
+        return new LadderResult(ladderResult.results);
+    }
+
+    public static LadderResult getInstance(List<ResultValue> resultValues) {
+        return new LadderResult(resultValues);
     }
 
     public List<String> getValues() {
@@ -32,5 +36,9 @@ public class LadderResult {
 
     public int getWidth() {
         return results.size();
+    }
+
+    public ResultValue getValue(int resultIndex) {
+        return null;
     }
 }

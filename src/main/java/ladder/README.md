@@ -35,6 +35,8 @@
   - [ ] 결과를 보고 싶은 사람 입력 받기
 * LadderController
   - [ ] 사다리 게임 실행
+* LadderService
+  - [ ] 사다리 게임 실행
 * ladder
   - [ ] 입력받은 사다리의 결과값을 가진다
   - [ ] 주어진 index의 결과값을 반환

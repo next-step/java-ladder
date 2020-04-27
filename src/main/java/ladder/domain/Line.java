@@ -9,15 +9,15 @@ public class Line {
     private final List<Boolean> points;
 
     private Line(List<Boolean> points) {
-        this.points = new ArrayList<>(points);
+        this.points = points;
     }
 
     public static Line getNewInstance(Line line) {
-        return new Line(line.points);
+        return new Line(new ArrayList<>(line.points));
     }
 
     public static Line getNewInstance(List<Boolean> points) {
-        return new Line(points);
+        return new Line(new ArrayList<>(points));
     }
 
     private int getPointCount(int countOfPerson) {
