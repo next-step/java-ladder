@@ -36,7 +36,7 @@
 * LadderController
   - [ ] 사다리 게임 실행
 * LadderService
-  - [ ] 사다리 게임 실행
+  - [x] 사다리 게임 실행
 * ladder
   - [x] 입력받은 사다리의 결과값을 가진다
   - [x] 주어진 index의 결과값을 반환

@@ -6,6 +6,6 @@ import ladder.domain.Persons;
 
 public class LadderService {
     public static GameResult getLadderGameResult(Persons persons, Ladder ladder) {
-        return null;
+        return persons.getResultOfLadder(ladder);
     }
 }
