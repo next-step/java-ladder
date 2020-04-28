@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.service.type.GameResult;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,5 +37,9 @@ public class Persons {
 
     public int getCount() {
         return persons.size();
+    }
+
+    public GameResult getResultOfLadder(Ladder ladderPerson2) {
+        return GameResult.getInstance();
     }
 }

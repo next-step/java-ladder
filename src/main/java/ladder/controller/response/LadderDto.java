@@ -14,7 +14,7 @@ public class LadderDto {
     private List<String> ladderResult;
 
     private LadderDto(List<Person> personNames, Ladder ladder) {
-        this.personNames = personNames.stream().map(Person::getName).collect(Collectors.toList());
+        this.personNames = personNames.stream().map(Person::getNameOf).collect(Collectors.toList());
         this.lines = ladder.getLines();
         this.ladderResult = ladder.getLadderResult().getValues();
     }

@@ -15,7 +15,7 @@ public class Person {
         return new Person(person.name);
     }
 
-    public String getName() {
-        return this.name;
+    public static String getNameOf(Person person) {
+        return person.name;
     }
 }

@@ -1,11 +1,11 @@
 package ladder.service;
 
-import ladder.controller.response.GameResultDto;
+import ladder.service.type.GameResult;
 import ladder.domain.Ladder;
 import ladder.domain.Persons;
 
 public class LadderService {
-    public static GameResultDto getLadderGameResult(Persons persons, Ladder ladder) {
+    public static GameResult getLadderGameResult(Persons persons, Ladder ladder) {
         return null;
     }
 }
