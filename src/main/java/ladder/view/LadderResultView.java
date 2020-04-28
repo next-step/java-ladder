@@ -7,7 +7,7 @@ import ladder.view.constant.ConstPerson;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultView {
+public class LadderResultView {
     private static final String RESULT_FORMAT = "\n실행 결과\n";
     private static final String PERSON_NAME_FORMAT = "%5s";
     private static final String PERSON_NAME_DELIMITER = " ";
@@ -60,7 +60,7 @@ public class ResultView {
         System.out.println(RESULT_FORMAT);
 
         printPersonNames(ladderResult.getPersonNames());
-        ladderResult.getLines().forEach(ResultView::printLine);
+        ladderResult.getLines().forEach(LadderResultView::printLine);
         printLadderResultValues(ladderResult.getLadderResult());
     }
 

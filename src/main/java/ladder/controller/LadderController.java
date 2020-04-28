@@ -7,8 +7,8 @@ import ladder.domain.Lines;
 import ladder.domain.Persons;
 import ladder.service.LadderService;
 import ladder.service.type.GameResult;
-import ladder.view.InputView;
-import ladder.view.ResultView;
+import ladder.view.LadderInputView;
+import ladder.view.LadderResultView;
 
 public class LadderController {
 
@@ -19,15 +19,15 @@ public class LadderController {
     }
 
     private static GameResult ladderGameInit() {
-        Persons persons = InputView.getPersons();
-        LadderResult ladderResult = InputView.getLadderResults(persons.getCount());
-        int ladderHeight = InputView.getLadderHeight();
+        Persons persons = LadderInputView.getPersons();
+        LadderResult ladderResult = LadderInputView.getLadderResults(persons.getCount());
+        int ladderHeight = LadderInputView.getLadderHeight();
 
         Ladder ladder = Ladder.getInstance(
                 Lines.getInstance(ladderHeight, ladderResult.getWidth()),
                 ladderResult);
 
-        ResultView.printLadderResult(LadderDto.getInstance(persons, ladder));
+        LadderResultView.printLadderResult(LadderDto.getInstance(persons, ladder));
 
         return LadderService.getLadderGameResult(persons, ladder);
     }

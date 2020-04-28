@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class InputView {
+public class LadderInputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     private static final String PERSON_NAMES_DELIMITER = ",";
@@ -43,7 +43,7 @@ public class InputView {
 
     private static Persons getValidPersons(String[] names) {
         boolean isAllValid = Arrays.stream(names)
-                .allMatch(InputView::isPersonNameValid);
+                .allMatch(LadderInputView::isPersonNameValid);
 
         if (!isAllValid) {
             throw new InvalidNamesInputException(PERSON_NAME_INVALID_FORMAT_MESSAGE);
