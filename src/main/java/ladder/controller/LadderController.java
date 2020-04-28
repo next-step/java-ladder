@@ -12,13 +12,23 @@ import ladder.view.LadderInputView;
 import ladder.view.LadderResultView;
 
 public class LadderController {
+    public static final String END_GAME_COMMENT = "끝";
 
     public static void ladderGameStart() {
         GameResult gameResult = ladderGameInit();
 
-        while(true) {
-            LadderService.getRequestedResult(gameResult, GameInputView.getPersonToGetResult());
+        while (printResultIfValidInput(gameResult)) ;
+    }
+
+    private static boolean printResultIfValidInput(GameResult gameResult) {
+        String getResultKey = GameInputView.getPersonToGetResult();
+        if (END_GAME_COMMENT.equals(getResultKey)) {
+            return false;
         }
+
+        LadderService.getRequestedResult(gameResult, getResultKey);
+
+        return true;
     }
 
     private static GameResult ladderGameInit() {
