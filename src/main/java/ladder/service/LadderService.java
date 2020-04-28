@@ -11,14 +11,12 @@ import java.util.stream.Collectors;
 
 public class LadderService {
 
-    public static ResultDto getRequestedResult(GameResult result, String[] personsToGetResult) {
-        return ResultDto.getInstance(Arrays.stream(personsToGetResult)
-                .collect(Collectors.toMap(
-                        name -> name,
-                        result::get,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new))
-        );
+    public static ResultDto getAllResult(GameResult result) {
+        return null;
+    }
+
+    public static ResultDto getRequestedResult(GameResult result, String personToGetResult) {
+        return ResultDto.getInstance(personToGetResult, result.get(personToGetResult));
     }
 
     public static GameResult getLadderGameResult(Persons persons, Ladder ladder) {

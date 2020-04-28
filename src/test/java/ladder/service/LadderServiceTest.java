@@ -12,10 +12,21 @@ public class LadderServiceTest {
 
     @Test
     @DisplayName("주어진 사람 이름의 사다리타기의 결과값 정상 반환 확인")
-    public void getRequestResults() {
+    public void getAllResult() {
         GameResult gameResult = LadderService.getLadderGameResult(PersonsTest.PERSONS_COUNT_2, LadderTest.LADDER_PERSON2);
 
-        ResultDto resultDto = LadderService.getRequestedResult(gameResult, new String[]{Person.getNameOf(PersonTest.PERSON_1)});
+        ResultDto resultDto = LadderService.getAllResult(gameResult);
+
+        assertThat(resultDto.getNames()).contains(Person.getNameOf(PersonTest.PERSON_1));
+        assertThat(resultDto.getNames()).contains(Person.getNameOf(PersonTest.PERSON_2));
+    }
+
+    @Test
+    @DisplayName("주어진 사람 이름의 사다리타기의 결과값 정상 반환 확인")
+    public void getRequestResult() {
+        GameResult gameResult = LadderService.getLadderGameResult(PersonsTest.PERSONS_COUNT_2, LadderTest.LADDER_PERSON2);
+
+        ResultDto resultDto = LadderService.getRequestedResult(gameResult, Person.getNameOf(PersonTest.PERSON_1));
 
         assertThat(resultDto.getNames()).contains(Person.getNameOf(PersonTest.PERSON_1));
     }
