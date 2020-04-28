@@ -8,6 +8,7 @@ import ladder.domain.Persons;
 import ladder.service.LadderService;
 import ladder.service.type.GameResult;
 import ladder.view.GameInputView;
+import ladder.view.GameResultView;
 import ladder.view.LadderInputView;
 import ladder.view.LadderResultView;
 
@@ -26,7 +27,9 @@ public class LadderController {
             return false;
         }
 
-        LadderService.getRequestedResult(gameResult, getResultKey);
+        GameResultView.printGameResult(
+                LadderService.getRequestedResult(gameResult, getResultKey)
+        );
 
         return true;
     }

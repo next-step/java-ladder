@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class ResultDto {
+    private static final int SINGLE_RESULT_COUNT = 1;
+    private static final int SINGLE_RESULT_INDEX = 0;
+
     private Map<String, String> result;
 
     private ResultDto(Map<String, String> result) {
@@ -29,7 +32,22 @@ public class ResultDto {
         return new ResultDto(gameResult.getGameResult());
     }
 
+    public boolean isSingleResult() {
+        return result.size() == SINGLE_RESULT_COUNT;
+    }
+
+    public String getSingleResult() {
+        return result.entrySet()
+                .iterator()
+                .next()
+                .getValue();
+    }
+
     public Set<String> getNames() {
         return result.keySet();
+    }
+
+    public String getResultValue(String name) {
+        return result.get(name);
     }
 }

@@ -1,18 +1,13 @@
 package ladder.service;
 
 import ladder.controller.response.ResultDto;
-import ladder.domain.Person;
 import ladder.service.type.GameResult;
 import ladder.domain.Ladder;
 import ladder.domain.Persons;
 import ladder.view.exception.InvalidInputToGetResult;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.stream.Collectors;
-
 public class LadderService {
-    public static final String GET_ALL_COMMENT = "꽝";
+    private static final String GET_ALL_COMMENT = "all";
 
     public static ResultDto getAllResult(GameResult result) {
         return ResultDto.getAllResultInstance(result);

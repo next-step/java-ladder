@@ -6,12 +6,14 @@ import java.util.Random;
 
 public class LineGenerator {
     private static final int INDEX_DIFFERENCE = 1;
+    private static final int FIRST_POINT_INDEX = 0;
     private static final Random random = new Random();
 
     public static List<Boolean> generateRandomPoints(int count) {
         List<Boolean> points = new ArrayList<>();
 
-        for (int index = 0; index < count; index++) {
+        int countOfPoint = count - INDEX_DIFFERENCE;
+        for (int index = 0; index < countOfPoint; index++) {
             points.add(generatePointValue(isPreviousPointExist(points, index)));
         }
 
@@ -27,6 +29,6 @@ public class LineGenerator {
     }
 
     private static boolean isPreviousPointExist(List<Boolean> points, int index) {
-        return index != 0 && points.get(index - INDEX_DIFFERENCE);
+        return index != FIRST_POINT_INDEX && points.get(index - INDEX_DIFFERENCE);
     }
 }
