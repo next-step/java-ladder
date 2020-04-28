@@ -16,4 +16,8 @@ public class GameResult {
     public String get(String personName) {
         return gameResult.get(personName);
     }
+
+    public void put(String userName, String resultValue) {
+        gameResult.put(userName, resultValue);
+    }
 }

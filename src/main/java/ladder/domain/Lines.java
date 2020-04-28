@@ -45,6 +45,10 @@ public class Lines {
     }
 
     public int getResultIndex(int personIndex) {
-        return -1;
+        for (Line line : lines) {
+            personIndex = line.movePosition(personIndex);
+        }
+
+        return personIndex;
     }
 }

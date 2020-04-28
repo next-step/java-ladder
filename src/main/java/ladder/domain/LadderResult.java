@@ -39,6 +39,6 @@ public class LadderResult {
     }
 
     public ResultValue getValue(int resultIndex) {
-        return null;
+        return results.get(resultIndex);
     }
 }

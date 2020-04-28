@@ -39,7 +39,15 @@ public class Persons {
         return persons.size();
     }
 
-    public GameResult getResultOfLadder(Ladder ladderPerson2) {
-        return GameResult.getInstance();
+    public GameResult getResultOfLadder(Ladder ladder) {
+        GameResult gameResult = GameResult.getInstance();
+
+        int countOfPerson = persons.size();
+        for (int i = 0; i < countOfPerson; i++) {
+            String resultValue = ResultValue.valueOf(ladder.getLadderResult(i));
+            gameResult.put(Person.getNameOf(persons.get(i)), resultValue);
+        }
+
+        return gameResult;
     }
 }

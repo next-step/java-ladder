@@ -38,12 +38,12 @@
 * LadderService
   - [ ] 사다리 게임 실행
 * ladder
-  - [ ] 입력받은 사다리의 결과값을 가진다
-  - [ ] 주어진 index의 결과값을 반환
+  - [x] 입력받은 사다리의 결과값을 가진다
+  - [x] 주어진 index의 결과값을 반환
 * line
   - [ ] 주어진 위치의 이동 결과값 반환
-* Person
-  - [ ] 실행 결과 값을 갖는다
+* Persons
+  - [x] 사다리가 주어졌을 때 각 person의 결과 값을 반환한다
 * Persons
   - [x] 라인이 주어졌을 때 적합하게 person을 이동
 * ResultView
