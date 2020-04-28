@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class LadderService {
 
     public static ResultDto getAllResult(GameResult result) {
-        return null;
+        return ResultDto.getAllResultInstance(result);
     }
 
     public static ResultDto getRequestedResult(GameResult result, String personToGetResult) {
