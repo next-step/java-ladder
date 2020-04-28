@@ -1,6 +1,7 @@
 package ladder.controller.response;
 
-import java.util.LinkedHashMap;
+import ladder.service.type.GameResult;
+
 import java.util.Map;
 import java.util.Set;
 
@@ -8,7 +9,7 @@ public class ResultDto {
     private Map<String, String> result;
 
     private ResultDto(Map<String, String> result) {
-        this.result = new LinkedHashMap<>(result);
+        this.result = result;
     }
 
     public static final ResultDto getInstance(Map<String, String> result) {

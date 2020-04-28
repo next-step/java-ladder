@@ -18,8 +18,6 @@ public class LadderController {
 
     }
 
-
-
     private static GameResult ladderGameInit() {
         Persons persons = InputView.getPersons();
         LadderResult ladderResult = InputView.getLadderResults(persons.getCount());
