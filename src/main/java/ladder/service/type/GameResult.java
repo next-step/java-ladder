@@ -23,6 +23,10 @@ public class GameResult {
         gameResult.put(userName, resultValue);
     }
 
+    public boolean isContains(String name) {
+        return gameResult.containsKey(name);
+    }
+
     public Map<String, String> getGameResult() {
         return new HashMap<>(gameResult);
     }

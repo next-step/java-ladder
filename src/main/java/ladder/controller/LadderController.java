@@ -7,6 +7,7 @@ import ladder.domain.Lines;
 import ladder.domain.Persons;
 import ladder.service.LadderService;
 import ladder.service.type.GameResult;
+import ladder.view.GameInputView;
 import ladder.view.LadderInputView;
 import ladder.view.LadderResultView;
 
@@ -15,7 +16,9 @@ public class LadderController {
     public static void ladderGameStart() {
         GameResult gameResult = ladderGameInit();
 
-
+        while(true) {
+            LadderService.getRequestedResult(gameResult, GameInputView.getPersonToGetResult());
+        }
     }
 
     private static GameResult ladderGameInit() {
