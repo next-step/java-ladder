@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderResultView {
-    private static final String RESULT_FORMAT = "\n실행 결과\n";
+    private static final String RESULT_FORMAT = "\n사다리 결과\n";
     private static final String PERSON_NAME_FORMAT = "%5s";
     private static final String PERSON_NAME_DELIMITER = " ";
     private static final String LADDER_RESULT_VALUE_FORMAT = "%5s";
