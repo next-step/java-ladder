@@ -10,11 +10,11 @@ public class LadderServiceTest {
 
     @Test
     public void getGameResult() {
-        GameResult gameResultDto = LadderService.getLadderGameResult(PersonsTest.PERSONS_COUNT_2, LadderTest.LADDER_PERSON2);
+        GameResult gameResult = LadderService.getLadderGameResult(PersonsTest.PERSONS_COUNT_2, LadderTest.LADDER_PERSON2);
 
-        assertThat(gameResultDto.get(Person.getNameOf(PersonTest.PERSON_1)))
+        assertThat(gameResult.get(Person.getNameOf(PersonTest.PERSON_1)))
                 .isEqualTo(ResultValue.valueOf(ResultValueTest.RESULT_VALUE_5000));
-        assertThat(gameResultDto.get(Person.getNameOf(PersonTest.PERSON_2)))
+        assertThat(gameResult.get(Person.getNameOf(PersonTest.PERSON_2)))
                 .isEqualTo(ResultValue.valueOf(ResultValueTest.RESULT_VALUE_FAIL));
     }
 }
