@@ -2,52 +2,69 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
     private static final int INDEX_DIFFERENCE = 1;
-    private static final Random random = new Random();
+    private static final int INDEX_MIN = 0;
+    private final List<Boolean> points;
 
-    private final List<Boolean> point;
-
-    public Line(int countOfPerson) {
-        this.point = new ArrayList<>();
-        int pointCount = getPointCount(countOfPerson);
-
-        for (int index = 0; index < pointCount; index++) {
-            this.point.add(generatePointValue(index));
-        }
-    }
-
-    private Line(List<Boolean> point) {
-        this.point = new ArrayList<>(point);
+    private Line(List<Boolean> points) {
+        this.points = points;
     }
 
     public static Line getNewInstance(Line line) {
-        return new Line(line.point);
+        return new Line(new ArrayList<>(line.points));
+    }
+
+    public static Line getNewInstance(List<Boolean> points) {
+        return new Line(new ArrayList<>(points));
     }
 
     private int getPointCount(int countOfPerson) {
         return countOfPerson - INDEX_DIFFERENCE;
     }
 
-    private boolean generatePointValue(int index) {
-        if (isPreviousPointExist(index)) {
+    public boolean isPointExist(int index) {
+        return this.points.get(index);
+    }
+
+    public List<Boolean> getPoints() {
+        return new ArrayList<>(this.points);
+    }
+
+    public int movePosition(int position) {
+        if (checkLeft(position)) {
+            return position - INDEX_DIFFERENCE;
+        }
+
+        if (checkRight(position)) {
+            return position + INDEX_DIFFERENCE;
+        }
+
+        return position;
+    }
+
+    private boolean checkLeft(int position) {
+        if (position <= INDEX_MIN) {
             return false;
         }
 
-        return random.nextBoolean();
+        return points.get(leftIndexOfPerson(position));
     }
 
-    private boolean isPreviousPointExist(int index) {
-        return index != 0 && this.point.get(index - INDEX_DIFFERENCE);
+    private boolean checkRight(int position) {
+        if (position >= points.size()) {
+            return false;
+        }
+
+        return points.get(rightIndexOfPerson(position));
     }
 
-    public boolean isPointExist(int index) {
-        return this.point.get(index);
+    private int leftIndexOfPerson(int personPosition) {
+        return personPosition - INDEX_DIFFERENCE;
     }
 
-    public List<Boolean> getPoint() {
-        return new ArrayList<>(this.point);
+    private int rightIndexOfPerson(int personPosition) {
+        return personPosition;
     }
 }

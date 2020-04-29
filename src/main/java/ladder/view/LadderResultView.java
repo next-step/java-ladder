@@ -1,22 +1,23 @@
 package ladder.view;
 
-import ladder.controller.response.LadderResult;
+import ladder.controller.response.LadderDto;
 import ladder.domain.Line;
 import ladder.view.constant.ConstPerson;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultView {
-    private static final String RESULT_FORMAT = "\n실행 결과\n";
+public class LadderResultView {
+    private static final String RESULT_FORMAT = "\n사다리 결과\n";
     private static final String PERSON_NAME_FORMAT = "%5s";
     private static final String PERSON_NAME_DELIMITER = " ";
+    private static final String LADDER_RESULT_VALUE_FORMAT = "%5s";
+    private static final String LADDER_RESULT_VALUE_DELIMITER = " ";
     private static final String LADDER_SEPARATOR = "|";
     private static final String LADDER_LINE = "-";
     private static final String LADDER_EMPTY = " ";
 
-    public static void printPersonNames(List<String> userNames) {
+    private static void printPersonNames(List<String> userNames) {
         System.out.println(userNames.stream()
                 .map(name -> String.format(PERSON_NAME_FORMAT, name))
                 .collect(Collectors.joining(PERSON_NAME_DELIMITER))
@@ -26,7 +27,7 @@ public class ResultView {
     public static void printLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        List<Boolean> linePoints = line.getPoint();
+        List<Boolean> linePoints = line.getPoints();
         int pointsCount = linePoints.size();
 
         addLine(false, stringBuilder);
@@ -55,11 +56,19 @@ public class ResultView {
 
     }
 
-    public static void printLadderResult(LadderResult ladderResult) {
+    public static void printLadderResult(LadderDto ladderResult) {
         System.out.println(RESULT_FORMAT);
 
         printPersonNames(ladderResult.getPersonNames());
-        ladderResult.getLines().forEach(ResultView::printLine);
+        ladderResult.getLines().forEach(LadderResultView::printLine);
+        printLadderResultValues(ladderResult.getLadderResult());
+    }
+
+    private static void printLadderResultValues(List<String> resultValues) {
+        System.out.println(resultValues.stream()
+                .map(result -> String.format(LADDER_RESULT_VALUE_FORMAT, result))
+                .collect(Collectors.joining(LADDER_RESULT_VALUE_DELIMITER))
+        );
     }
 
 }

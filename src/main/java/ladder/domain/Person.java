@@ -7,11 +7,15 @@ public class Person {
         this.name = name;
     }
 
-    public static Person getInstanceByName(String name) {
+    public static Person getInstance(String name) {
         return new Person(name);
     }
 
-    public String getName() {
-        return this.name;
+    public static Person getNewInstance(Person person) {
+        return new Person(person.name);
+    }
+
+    public static String getNameOf(Person person) {
+        return person.name;
     }
 }

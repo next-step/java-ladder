@@ -1,31 +1,33 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final Lines lines;
+    private final LadderResult ladderResult;
 
-    private Ladder(int height, int countOfPerson) {
-        this.lines = new ArrayList<>();
-
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
-        }
+    private Ladder(Lines lines, LadderResult ladderResult) {
+        this.ladderResult = ladderResult;
+        this.lines = lines;
     }
 
-    public static Ladder getInstanceWithHeight(int height, int countOfPerson) {
-        return new Ladder(height, countOfPerson);
+    public static Ladder getInstance(Lines lines, LadderResult ladderResult) {
+        return new Ladder(lines, ladderResult);
     }
 
-    public int getHeight() {
-        return this.lines.size();
+    public boolean isHeightSame(int height) {
+        return this.lines.isHeightSame(height);
+    }
+
+    public LadderResult getLadderResult() {
+        return LadderResult.getNewInstance(ladderResult);
     }
 
     public List<Line> getLines() {
-        return lines.stream()
-                .map(Line::getNewInstance)
-                .collect(Collectors.toList());
+        return lines.getLines();
+    }
+
+    public ResultValue getLadderResult(int personIndex) {
+        return ladderResult.getValue(lines.getResultIndex(personIndex));
     }
 }
