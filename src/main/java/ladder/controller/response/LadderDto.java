@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderDto {
-    private List<String> personNames;
-    private List<Line> lines;
-    private List<String> ladderResult;
+    private final List<String> personNames;
+    private final List<Line> lines;
+    private final List<String> ladderResult;
 
     private LadderDto(List<Person> personNames, Ladder ladder) {
         this.personNames = personNames.stream().map(Person::getNameOf).collect(Collectors.toList());
