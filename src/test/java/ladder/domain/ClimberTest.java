@@ -68,15 +68,15 @@ public class ClimberTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
-    void climbByUserTest(String input) {
+    @CsvSource(value = {"pobi:0", "honux:1", "crong:2", "jk:3"}, delimiter = ':')
+    void climbByUserTest(String input, String expected) {
         CrossRoadStrategy crossRoadStrategy = () -> true;
         Climber climber = Climber.of("pobi,honux,crong,jk", 4, crossRoadStrategy);
         climber.offerPrize("꽝,5000,꽝,3000");
 
-        UserStatusDto userStatusDto = climber.climbByUser(input);
+        int position = climber.climbByUser(input);
 
-        assertThat(userStatusDto.getName()).isEqualTo(input);
+        assertThat(position).isEqualTo(Integer.parseInt(expected));
     }
 
     @Test
