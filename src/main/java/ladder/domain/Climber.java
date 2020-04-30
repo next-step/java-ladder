@@ -32,9 +32,8 @@ public class Climber {
         return reward;
     }
 
-    public UserStatusDto climbByUser(String name) {
-        int resultPosition = ladderGame.claimByUser(name);
-        return userGameResult(name, resultPosition);
+    public int climbByUser(String name) {
+        return ladderGame.claimByUser(name);
     }
 
     public List<UserStatusDto> climbAll() {

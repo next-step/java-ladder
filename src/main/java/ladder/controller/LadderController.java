@@ -41,21 +41,22 @@ public class LadderController {
 
         outputView.printLadderResult(climberNameList, ladderMapList, rewardList);
 
-        inquiryEachUserName();
+        inquiryEachUserName(reward);
 
         List<UserStatusDto> userStatusDtos = climber.climbAll();
         outputView.resultAllUser(userStatusDtos);
 
     }
 
-    private void inquiryEachUserName() {
+    private void inquiryEachUserName(Reward reward) {
         String userName = inputView.userNameReader();
         if(userName.equals("all")) {
             return;
         }
-        UserStatusDto userStatusDto = climber.climbByUser(userName);
+        int position = climber.climbByUser(userName);
+        UserStatusDto userStatusDto = new UserStatusDto(userName, reward.prizeByEachPosition(position));
         outputView.resultEachUser(userStatusDto);
 
-        inquiryEachUserName();
+        inquiryEachUserName(reward);
      }
 }
