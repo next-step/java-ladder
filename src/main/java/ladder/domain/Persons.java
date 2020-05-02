@@ -29,9 +29,9 @@ public class Persons {
         return new Persons(persons);
     }
 
-    public List<Person> getPersons() {
+    public List<String> getPersonNames() {
         return persons.stream()
-                .map(Person::getNewInstance)
+                .map(Person::nameOf)
                 .collect(Collectors.toList());
     }
 
@@ -44,8 +44,8 @@ public class Persons {
 
         int countOfPerson = persons.size();
         for (int i = 0; i < countOfPerson; i++) {
-            String resultValue = ResultValue.valueOf(ladder.getLadderResult(i));
-            gameResult.put(Person.getNameOf(persons.get(i)), resultValue);
+//            String resultValue = ResultValue.valueOf(ladder.getLadderResult(i));
+//            gameResult.put(Person.nameOf(persons.get(i)), resultValue);
         }
 
         return gameResult;

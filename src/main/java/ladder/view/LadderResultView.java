@@ -1,7 +1,9 @@
 package ladder.view;
 
-import ladder.controller.response.LadderDto;
+import ladder.domain.Ladder;
 import ladder.domain.Line;
+import ladder.domain.Persons;
+import ladder.domain.Rewards;
 import ladder.view.constant.ConstPerson;
 
 import java.util.List;
@@ -56,12 +58,12 @@ public class LadderResultView {
 
     }
 
-    public static void printLadderResult(LadderDto ladderResult) {
+    public static void printLadderResult(Persons persons, Ladder ladder, Rewards rewards) {
         System.out.println(RESULT_FORMAT);
 
-        printPersonNames(ladderResult.getPersonNames());
-        ladderResult.getLines().forEach(LadderResultView::printLine);
-        printLadderResultValues(ladderResult.getLadderResult());
+        printPersonNames(persons.getPersonNames());
+        ladder.getLines().forEach(LadderResultView::printLine);
+        printLadderResultValues(rewards.getValues());
     }
 
     private static void printLadderResultValues(List<String> resultValues) {

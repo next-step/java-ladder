@@ -1,9 +1,7 @@
 package ladder.controller;
 
-import ladder.controller.response.LadderDto;
 import ladder.domain.Ladder;
-import ladder.domain.LadderResult;
-import ladder.domain.Lines;
+import ladder.domain.Rewards;
 import ladder.domain.Persons;
 import ladder.service.LadderService;
 import ladder.service.type.GameResult;
@@ -36,14 +34,12 @@ public class LadderController {
 
     private static GameResult ladderGameInit() {
         Persons persons = LadderInputView.getPersons();
-        LadderResult ladderResult = LadderInputView.getLadderResults(persons.getCount());
+        Rewards rewards = LadderInputView.getLadderResults(persons.getCount());
         int ladderHeight = LadderInputView.getLadderHeight();
 
-        Ladder ladder = Ladder.getInstance(
-                Lines.getInstance(ladderHeight, ladderResult.getWidth()),
-                ladderResult);
+        Ladder ladder = Ladder.getInstance(ladderHeight, rewards.getWidth());
 
-        LadderResultView.printLadderResult(LadderDto.getInstance(persons, ladder));
+        LadderResultView.printLadderResult(persons, ladder, rewards);
 
         return LadderService.getLadderGameResult(persons, ladder);
     }

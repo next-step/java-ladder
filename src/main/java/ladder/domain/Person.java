@@ -15,7 +15,7 @@ public class Person {
         return new Person(person.name);
     }
 
-    public static String getNameOf(Person person) {
+    public static String nameOf(Person person) {
         return person.name;
     }
 }
