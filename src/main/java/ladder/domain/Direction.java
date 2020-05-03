@@ -3,12 +3,13 @@ package ladder.domain;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class Direction {
     private static final int CURRENT = 0;
     private static final int MOVE_RIGHT = 1;
     private static final int MOVE_LEFT = -1;
-    private static final String TRUE_NOT_DUPLCIATE = "연속해서 TRUE가 될 수 없습니다.";
+    private static final String TRUE_NOT_DUPLICATE = "연속해서 TRUE가 될 수 없습니다.";
 
     private final boolean left;
     private final boolean right;
@@ -21,7 +22,7 @@ public class Direction {
 
     private void validateDuplicate(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException(TRUE_NOT_DUPLCIATE);
+            throw new IllegalArgumentException(TRUE_NOT_DUPLICATE);
         }
     }
 
@@ -37,8 +38,13 @@ public class Direction {
         return of(this.right, FALSE);
     }
 
-    public Direction next(final boolean right) {
-        return of(this.right, right);
+
+    public Direction next(final boolean nextRight) {
+        if (this.right) {
+            return of(TRUE, FALSE);
+        }
+
+        return of(FALSE, nextRight);
     }
 
     public int move() {
