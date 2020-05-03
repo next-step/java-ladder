@@ -46,20 +46,6 @@ public class Ladder {
         return new ArrayList<>(generatedLines);
     }
 
-    public Map<String, String> play(final Users gamePlayers, final LadderGoals playerRewards) {
-        Map<String, String> result = new HashMap<>(gamePlayers.size());
-
-        for (final User player : gamePlayers.getUsers()) {
-            int position = player.getPosition();
-            for (final Line line : lines) {
-                position += line.move(position);
-            }
-            result.put(player.getName(), playerRewards.getResult(position));
-        }
-
-        return result;
-    }
-
     public List<Line> getLines() {
         return new ArrayList<>(lines);
     }
