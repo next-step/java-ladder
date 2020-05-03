@@ -25,11 +25,11 @@ public class Line {
         }
     }
 
-    private List<Direction> validateLines(List<Direction> widthLines) {
-        if (widthLines.isEmpty()) {
+    private List<Direction> validateLines(List<Direction> directions) {
+        if (directions.isEmpty()) {
             throw new IllegalArgumentException(WIDTH_REQUIRED);
         }
-        return new ArrayList<>(widthLines);
+        return new ArrayList<>(directions);
     }
 
     public List<Direction> getDirections() {

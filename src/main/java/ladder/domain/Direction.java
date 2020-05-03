@@ -20,10 +20,14 @@ public class Direction {
         this.right = right;
     }
 
-    private void validateDuplicate(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException(TRUE_NOT_DUPLICATE);
+    public int move() {
+        if (this.left) {
+            return MOVE_LEFT;
         }
+        if (this.right) {
+            return MOVE_RIGHT;
+        }
+        return CURRENT;
     }
 
     public static Direction of(final boolean first, final boolean second) {
@@ -38,6 +42,12 @@ public class Direction {
         return of(this.right, FALSE);
     }
 
+    private void validateDuplicate(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException(TRUE_NOT_DUPLICATE);
+        }
+    }
+
 
     public Direction next(final boolean nextRight) {
         if (this.right) {
@@ -45,16 +55,6 @@ public class Direction {
         }
 
         return of(FALSE, nextRight);
-    }
-
-    public int move() {
-        if (left) {
-            return MOVE_LEFT;
-        }
-        if (right) {
-            return MOVE_RIGHT;
-        }
-        return CURRENT;
     }
 
     public boolean isRight() {
