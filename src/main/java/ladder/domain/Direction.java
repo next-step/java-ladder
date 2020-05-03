@@ -19,8 +19,8 @@ public class Direction {
         this.right = right;
     }
 
-    public static Direction first(boolean left) {
-        return of(FALSE, left);
+    public static Direction first(boolean right) {
+        return of(FALSE, right);
     }
 
     public static Direction of(boolean left, boolean right) {
