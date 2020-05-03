@@ -14,9 +14,9 @@ public class Line {
         this.directions = directions;
     }
 
-    public Line(final int userCounts, DirectionGenerator widthGenerator) {
+    public Line(final int userCounts, DirectionGenerator directionGenerator) {
         validateSize(userCounts);
-        this.directions = new ArrayList<>(validateLines(widthGenerator.generate()));
+        this.directions = new ArrayList<>(validateLines(directionGenerator.generate()));
     }
 
     private void validateSize(int users) {
@@ -33,7 +33,7 @@ public class Line {
     }
 
     public List<Direction> getDirections() {
-        return directions;
+        return new ArrayList<>(directions);
     }
 
     public int move(int position){
