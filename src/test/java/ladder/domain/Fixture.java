@@ -27,7 +27,7 @@ public class Fixture {
     }
 
     public static Ladder fiveHeightLadder() {
-        return new Ladder(5, fourUsers());
+        return new Ladder(5, new DirectionGenerator(fourUsers().size()));
     }
 
     public static LadderGoals fourLadderGoals() {

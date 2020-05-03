@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static ladder.domain.Fixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -24,19 +23,6 @@ class DirectionTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Direction.of(TRUE, TRUE);
         });
-    }
-
-
-    @Test
-    public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
-    }
-
-    @Test
-    public void next_random_false() {
-        Direction next = Direction.first(FALSE).next();
-        assertThat(next).isEqualTo(Direction.of(FALSE, FALSE));
     }
 
     @Test

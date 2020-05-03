@@ -29,22 +29,5 @@ class GameResultTest {
         });
     }
 
-    @DisplayName("사다리 골과 게임결과가 같은지 테스트")
-    @Test
-    void testLadderGoal() {
-        List<Boolean> width1 = Arrays.asList(true, true);
-        List<Boolean> width2 = Arrays.asList(false, false);
-        Line line1 = new Line(width1.size(), new WidthGenerator(width1));
-        Line line2 = new Line(width2.size(), new WidthGenerator(width2));
-
-        List<Line> lines = Arrays.asList(line1, line2);
-        Ladder ladder = new Ladder(lines);
-        LadderGame ladderGenerator = new LadderGame(ladder, ladderGoals);
-
-        GameResult ladderGame = new GameResult(twoUsers(), ladderGenerator);
-
-        String actual = ladderGame.findPlayerGoal("pobi");
-        assertThat(ladderGoals.getResult(1)).isEqualTo(actual);
-    }
 
 }

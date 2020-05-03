@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static ladder.domain.Fixture.twoUsers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
@@ -18,26 +19,17 @@ class LineTest {
     @Test
     void testLineEmpty() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new Line(0));
+                .isThrownBy(() -> new Line(0, new DirectionGenerator(0)));
     }
 
     @DisplayName("생성된 가로줄값 테스트")
     @Test
     void testWidthTrueFalse() {
-        List<Boolean> expected = Arrays.asList(false, true);
 
-        Line line = new Line(expected.size(), new WidthGenerator(expected));
-        List<Boolean> actual = line.getWidthLines();
+        Line line = new Line(twoUsers().size(), new DirectionGenerator(twoUsers().size()));
+        List<Direction> actual = line.getDirections();
 
-        assertThat(actual.get(1)).isTrue();
-    }
-
-    @Test
-    void testMoveLine() {
-        List<Boolean> expected = Arrays.asList(true, true, false, true);
-        int myPosition = 1;
-        Line line = new Line(expected.size(), new WidthGenerator(expected));
-        assertThat(line.move(myPosition)).isEqualTo(LEFT);
+        assertThat(actual).isNotNull();
     }
 
 }

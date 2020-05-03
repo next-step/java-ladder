@@ -3,43 +3,33 @@ package ladder.domain;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class Direction {
+    private static final int CURRENT = 0;
+    private static final int MOVE_RIGHT = 1;
+    private static final int MOVE_LEFT = -1;
+    private static final String TRUE_NOT_DUPLCIATE = "연속해서 TRUE가 될 수 없습니다.";
+
     private final boolean left;
     private final boolean right;
 
-    private Direction(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException("연속해서 TRUE가 될 수 없습니다.");
-        }
-
+    private Direction(final boolean left, final boolean right) {
+        validateDuplicate(left, right);
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
-    public boolean isRight() {
-        return this.right;
+    private void validateDuplicate(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException(TRUE_NOT_DUPLCIATE);
+        }
     }
 
-    public boolean isLeft() {
-        return this.left;
-    }
-
-    public Direction next(boolean nextRight) {
-        return of(this.right, nextRight);
-    }
-
-    public Direction next() {
-        return next(FALSE);
-    }
-
-    public static Direction of(boolean first, boolean second) {
+    public static Direction of(final boolean first, final boolean second) {
         return new Direction(first, second);
     }
 
-    public static Direction first(boolean right) {
+    public static Direction first(final boolean right) {
         return of(FALSE, right);
     }
 
@@ -47,25 +37,39 @@ public class Direction {
         return of(this.right, FALSE);
     }
 
+    public Direction next(final boolean right) {
+        return of(this.right, right);
+    }
+
+    public int move() {
+        if (left) {
+            return MOVE_LEFT;
+        }
+        if (right) {
+            return MOVE_RIGHT;
+        }
+        return CURRENT;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Direction pair = (Direction) o;
-        return left == pair.left &&
-                right == pair.right;
+        if (!(o instanceof Direction)) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left &&
+                right == direction.right;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(left, right);
-    }
-
-    @Override
-    public String toString() {
-        return "Direction{" +
-                "left=" + left +
-                ", right=" + right +
-                '}';
     }
 }
