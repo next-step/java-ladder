@@ -7,14 +7,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LineGeneratorTest {
+public class DirectionGeneratorTest {
 
     @Test
     @DisplayName("겹치지 않는 라인 생성 확인")
     public void getLineSuccess() {
         int countOfPerson = 5;
         int lineCount = countOfPerson - 1;
-        List<Boolean> line = LineGenerator.generateRandomPoints(countOfPerson);
+        List<Boolean> line = DirectionGenerator.generateRandomPoints(countOfPerson);
 
         for (int i = 0; i < lineCount - 1; i++) {
             if (line.get(i)) {

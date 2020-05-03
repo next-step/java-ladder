@@ -24,7 +24,7 @@ public class Ladder {
 
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(Line.getNewInstance(LineGenerator.generateRandomPoints(width)));
+            lines.add(Line.getNewInstance(DirectionGenerator.generateRandomPoints(width)));
         }
 
         return new Ladder(lines);

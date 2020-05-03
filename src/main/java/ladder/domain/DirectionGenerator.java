@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class LineGenerator {
+public class DirectionGenerator {
     private static final int INDEX_DIFFERENCE = 1;
     private static final int FIRST_POINT_INDEX = 0;
     private static final Random random = new Random();
@@ -30,5 +30,9 @@ public class LineGenerator {
 
     private static boolean isPreviousPointExist(List<Boolean> points, int index) {
         return index != FIRST_POINT_INDEX && points.get(index - INDEX_DIFFERENCE);
+    }
+
+    public static boolean generateDirection() {
+        return random.nextBoolean();
     }
 }
