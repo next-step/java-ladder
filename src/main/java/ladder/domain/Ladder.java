@@ -34,7 +34,6 @@ public class Ladder {
         if (height < MINIMUM_HEIGHT) {
             throw new IllegalArgumentException(MAXIMUM_HEIGHT_ERROR);
         }
-
     }
 
     private List<Line> generateLines(int height, DirectionGenerator directionGenerator) {

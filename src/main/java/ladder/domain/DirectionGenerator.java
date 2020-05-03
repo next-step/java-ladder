@@ -7,6 +7,8 @@ public class DirectionGenerator {
     private static final int SECOND = 1;
     private static final int FIRST = 1;
     private static final String MINIMUM_USERS = "최소한 1명 이상의 사용자가 있어야합니다.";
+    private static final int MINIMUM_PERSON = 2;
+    private static final double FIFTY_PERCENT = 0.5;
     private final int personCounts;
 
     public DirectionGenerator(final int personCounts) {
@@ -26,11 +28,11 @@ public class DirectionGenerator {
     }
 
     private Boolean randomGenerator() {
-        return Math.round(Math.random()) < 0.5;
+        return Math.round(Math.random()) < FIFTY_PERCENT;
     }
 
     private int validatePerson(int personCounts) {
-        if (personCounts < 2) {
+        if (personCounts < MINIMUM_PERSON) {
             throw new IllegalArgumentException(MINIMUM_USERS);
         }
         return personCounts;
