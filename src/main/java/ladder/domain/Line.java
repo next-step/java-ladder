@@ -12,6 +12,10 @@ public class Line {
         this.points = points;
     }
 
+    public static Line init(int sizeOfPerson) {
+        return null;
+    }
+
     public static Line getNewInstance(Line line) {
         return new Line(new ArrayList<>(line.points));
     }
@@ -66,5 +70,9 @@ public class Line {
 
     private int rightIndexOfPerson(int personPosition) {
         return personPosition;
+    }
+
+    public boolean isCountOfPerson(int countOfPerson) {
+        return this.points.size() == countOfPerson;
     }
 }
