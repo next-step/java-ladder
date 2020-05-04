@@ -9,7 +9,6 @@ import java.util.Set;
 
 public class ResultDto {
     private static final int SINGLE_RESULT_COUNT = 1;
-    private static final int SINGLE_RESULT_INDEX = 0;
 
     private final Map<String, String> result;
 
