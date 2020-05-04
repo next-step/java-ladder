@@ -61,7 +61,7 @@ public class LadderResultView {
     public static void printLadderResult(Persons persons, Ladder ladder, Rewards rewards) {
         System.out.println(RESULT_FORMAT);
 
-        printPersonNames(persons.getPersonNames());
+        printPersonNames(persons.getPersons());
 //        ladder.getLines().forEach(LadderResultView::printLine);
         printLadderResultValues(rewards.getValues());
     }

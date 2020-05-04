@@ -57,6 +57,10 @@ public class Line {
         points.add(point.last());
     }
 
+    public int move(int index) {
+        return points.get(index).move();
+    }
+
     public boolean isCountOfPerson(int countOfPerson) {
         return this.points.size() == countOfPerson;
     }

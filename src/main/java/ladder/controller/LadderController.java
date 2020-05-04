@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderMatchResult;
 import ladder.domain.Rewards;
 import ladder.domain.Persons;
 import ladder.service.LadderService;
@@ -14,7 +15,14 @@ public class LadderController {
     public static final String END_GAME_COMMENT = "끝";
 
     public static void ladderGameStart() {
-        GameResult gameResult = ladderGameInit();
+        Persons persons = LadderInputView.getPersons();
+        Rewards rewards = LadderInputView.getLadderResults(persons.getCount());
+        int ladderHeight = LadderInputView.getLadderHeight();
+        Ladder ladder = Ladder.getInstance(ladderHeight, persons.getCount());
+
+        LadderResultView.printLadderResult(persons, ladder, rewards);
+
+        GameResult gameResult = LadderService.getLadderGameResult(persons, ladder, rewards);
 
         while (printResultIfValidInput(gameResult)) ;
     }
@@ -30,17 +38,5 @@ public class LadderController {
         );
 
         return true;
-    }
-
-    private static GameResult ladderGameInit() {
-        Persons persons = LadderInputView.getPersons();
-        Rewards rewards = LadderInputView.getLadderResults(persons.getCount());
-        int ladderHeight = LadderInputView.getLadderHeight();
-
-        Ladder ladder = Ladder.getInstance(ladderHeight, rewards.getWidth());
-
-        LadderResultView.printLadderResult(persons, ladder, rewards);
-
-        return LadderService.getLadderGameResult(persons, ladder);
     }
 }
