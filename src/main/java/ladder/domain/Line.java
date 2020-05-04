@@ -1,75 +1,60 @@
 package ladder.domain;
 
+import ladder.domain.exception.InvalidCountOfPersonException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private static final int INDEX_DIFFERENCE = 1;
-    private static final int INDEX_MIN = 0;
-    private final List<Boolean> points;
+    private static final int FIRST_INDEX = 0;
+    private static final int BODY_LAST_INDEX_DIFFERENCE = 1;
+    private static final int COUNT_OF_PERSON_MIN = 1;
+    private static final int COUNT_OF_PERSON_DIFFERENCE = 1;
+    private final List<Point> points;
 
-    private Line(List<Boolean> points) {
+    private Line(List<Point> points) {
         this.points = points;
     }
 
-    public static Line init(int sizeOfPerson) {
-        return null;
-    }
-
-    public static Line getNewInstance(Line line) {
-        return new Line(new ArrayList<>(line.points));
-    }
-
-    public static Line getNewInstance(List<Boolean> points) {
-        return new Line(new ArrayList<>(points));
-    }
-
-    private int getPointCount(int countOfPerson) {
-        return countOfPerson - INDEX_DIFFERENCE;
-    }
-
-    public boolean isPointExist(int index) {
-        return this.points.get(index);
-    }
-
-    public List<Boolean> getPoints() {
-        return new ArrayList<>(this.points);
-    }
-
-    public int movePosition(int position) {
-        if (checkLeft(position)) {
-            return position - INDEX_DIFFERENCE;
+    public static Line init(int countOfPerson) {
+        if (countOfPerson < COUNT_OF_PERSON_MIN) {
+            throw new InvalidCountOfPersonException();
         }
 
-        if (checkRight(position)) {
-            return position + INDEX_DIFFERENCE;
+        return new Line(initPoints(countOfPerson));
+    }
+
+    private static List<Point> initPoints(int countOfPerson)  {
+        List<Point> points = new ArrayList<>();
+
+        initFirst(points);
+        initBody(points, countOfPerson);
+        initLast(points, countOfPerson);
+
+        return points;
+    }
+
+    private static void initFirst(List<Point> points) {
+        points.add(Point.first(DirectionGenerator.generateDirection()));
+    }
+
+    private static void initBody(List<Point> points, int countOfPerson) {
+        Point point = points.get(FIRST_INDEX);
+
+        int bodyCount = countOfPerson - BODY_LAST_INDEX_DIFFERENCE;
+        for (int i = FIRST_INDEX + 1; i < bodyCount; i++) {
+            point = point.next();
+            points.add(point);
+        }
+    }
+
+    private static void initLast(List<Point> points, int countOfPerson) {
+        if (points.size() >= countOfPerson) {
+            return;
         }
 
-        return position;
-    }
-
-    private boolean checkLeft(int position) {
-        if (position <= INDEX_MIN) {
-            return false;
-        }
-
-        return points.get(leftIndexOfPerson(position));
-    }
-
-    private boolean checkRight(int position) {
-        if (position >= points.size()) {
-            return false;
-        }
-
-        return points.get(rightIndexOfPerson(position));
-    }
-
-    private int leftIndexOfPerson(int personPosition) {
-        return personPosition - INDEX_DIFFERENCE;
-    }
-
-    private int rightIndexOfPerson(int personPosition) {
-        return personPosition;
+        Point point = points.get(points.size() - BODY_LAST_INDEX_DIFFERENCE);
+        points.add(point.last());
     }
 
     public boolean isCountOfPerson(int countOfPerson) {

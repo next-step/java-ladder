@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.view.exception.InvalidLadderHeightException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,10 +12,7 @@ public class Ladder {
 
     private List<Line> lines;
 
-    public Ladder(List<Line> lines) {
-        this.lines = lines.stream()
-                .map(Line::getNewInstance)
-                .collect(Collectors.toList());
+    private Ladder(List<Line> lines) {
     }
 
     public static Ladder getInstance(int height, int width) {
@@ -22,33 +20,22 @@ public class Ladder {
             throw new InvalidLadderHeightException();
         }
 
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(Line.getNewInstance(DirectionGenerator.generateRandomPoints(width)));
-        }
+//        DirectionGenerator directionGenerator = new DefaultDirectionGenerator();
+//        List<Line> lines = new ArrayList<>();
+//        for (int i = 0; i < height; i++) {
+//            lines.add(Line.init(width, directionGenerator));
+//        }
 
-        return new Ladder(lines);
+        return new Ladder(Arrays.asList(Line.init(width)));
     }
 
     public static Ladder getInstance(List<Line> lines) {
         return new Ladder(lines);
     }
 
-    public List<Line> getLines() {
-        return lines.stream()
-                .map(Line::getNewInstance)
-                .collect(Collectors.toList());
-    }
 
     public boolean isHeightSame(int height) {
         return height == lines.size();
     }
 
-    public int getResultIndex(int personIndex) {
-        for (Line line : lines) {
-            personIndex = line.movePosition(personIndex);
-        }
-
-        return personIndex;
-    }
 }

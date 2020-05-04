@@ -29,13 +29,13 @@ public class LadderResultView {
     public static void printLine(Line line) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        List<Boolean> linePoints = line.getPoints();
-        int pointsCount = linePoints.size();
-
-        addLine(false, stringBuilder);
-        for (int index = 0; index < pointsCount; index++) {
-            addLine(linePoints.get(index), stringBuilder);
-        }
+//        List<Boolean> linePoints = line.getPoints_deprecate();
+//        int pointsCount = linePoints.size();
+//
+//        addLine(false, stringBuilder);
+//        for (int index = 0; index < pointsCount; index++) {
+//            addLine(linePoints.get(index), stringBuilder);
+//        }
 
         System.out.println(stringBuilder.toString());
     }
@@ -62,7 +62,7 @@ public class LadderResultView {
         System.out.println(RESULT_FORMAT);
 
         printPersonNames(persons.getPersonNames());
-        ladder.getLines().forEach(LadderResultView::printLine);
+//        ladder.getLines().forEach(LadderResultView::printLine);
         printLadderResultValues(rewards.getValues());
     }
 

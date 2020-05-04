@@ -39,4 +39,8 @@ public class Point {
     public Point next(boolean right) {
         return of(index + MOVE_INDEX_DIFFERENCE, direction.next(right));
     }
+
+    public Point last() {
+        return of(index + MOVE_INDEX_DIFFERENCE, direction.last());
+    }
 }

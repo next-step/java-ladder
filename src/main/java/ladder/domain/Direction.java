@@ -32,7 +32,7 @@ public class Direction {
             return next(FALSE);
         }
 
-        return of(this.right, DirectionGenerator.generateDirection());
+        return of(false, DirectionGenerator.generateDirection());
     }
 
     public Direction next(boolean nextRight) {

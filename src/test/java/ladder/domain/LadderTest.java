@@ -12,9 +12,6 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class LadderTest {
     public static final int COUNT_OF_PERSON_DEFAULT = 5;
-    public static final int COUNT_OF_PERSON_DEFAULT_TEST = 2;
-    public static final int HEIGHT_DEFAULT = 1;
-    public static final Ladder LADDER_PERSON_2 = Ladder.getInstance(Arrays.asList(LineTest.LINE_PERSON2));
 
     @ParameterizedTest
     @ValueSource(ints = {1, 4, 10})
