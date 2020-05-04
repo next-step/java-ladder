@@ -43,4 +43,8 @@ public class Point {
     public Point last() {
         return of(index + MOVE_INDEX_DIFFERENCE, direction.last());
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
 }

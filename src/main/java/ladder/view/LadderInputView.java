@@ -56,7 +56,7 @@ public class LadderInputView {
         return name.length() <= ConstPerson.PERSON_NAME_SIZE_MAX;
     }
 
-    public static Rewards getLadderResults(int countOfLadder) {
+    public static Rewards getLadderResults(int countOfPerson) {
         System.out.println(GET_LADDER_RESULTS_NOTICE);
 
         String ladderResults = scanner.nextLine();
@@ -66,7 +66,7 @@ public class LadderInputView {
 
         return getValidLadderResult(
                 ladderResults.split(LADDER_RESULTS_DELIMITER),
-                countOfLadder);
+                countOfPerson);
     }
 
     private static Rewards getValidLadderResult(String[] ladderResults,

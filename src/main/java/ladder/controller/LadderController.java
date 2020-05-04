@@ -1,7 +1,6 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderMatchResult;
 import ladder.domain.Rewards;
 import ladder.domain.Persons;
 import ladder.service.LadderService;
@@ -20,7 +19,9 @@ public class LadderController {
         int ladderHeight = LadderInputView.getLadderHeight();
         Ladder ladder = Ladder.getInstance(ladderHeight, persons.getCount());
 
-        LadderResultView.printLadderResult(persons, ladder, rewards);
+        LadderResultView.printPersons(persons);
+        LadderResultView.printLadder(ladder);
+        LadderResultView.printRewards(rewards);
 
         GameResult gameResult = LadderService.getLadderGameResult(persons, ladder, rewards);
 

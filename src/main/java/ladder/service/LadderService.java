@@ -27,7 +27,7 @@ public class LadderService {
     }
 
     public static GameResult getLadderGameResult(Persons persons, Ladder ladder, Rewards rewards) {
-        LadderMatchResult ladderMatchResult = ladder.play();
+        LadderMatchResult ladderMatchResult = ladder.play(persons.getCount());
         List<Person> personList = persons.getPersons();
 
         int countOfPerson = personList.size();

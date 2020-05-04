@@ -9,6 +9,7 @@ public class Line {
     private static final int FIRST_INDEX = 0;
     private static final int BODY_LAST_INDEX_DIFFERENCE = 1;
     private static final int COUNT_OF_PERSON_MIN = 1;
+    private static final int COUNT_OF_PERSON_ONLY = 1;
 
     private final List<Point> points;
 
@@ -27,14 +28,19 @@ public class Line {
     private static List<Point> initPoints(int countOfPerson)  {
         List<Point> points = new ArrayList<>();
 
-        initFirst(points);
+        initFirst(points, countOfPerson);
         initBody(points, countOfPerson);
         initLast(points, countOfPerson);
 
         return points;
     }
 
-    private static void initFirst(List<Point> points) {
+    private static void initFirst(List<Point> points, int countOfPerson) {
+        if (countOfPerson == COUNT_OF_PERSON_ONLY) {
+            points.add(Point.first(false));
+            return;
+        }
+
         points.add(Point.first(DirectionGenerator.generateDirection()));
     }
 
@@ -59,6 +65,10 @@ public class Line {
 
     public int move(int index) {
         return points.get(index).move();
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 
     public boolean isCountOfPerson(int countOfPerson) {

@@ -15,6 +15,6 @@ public class LadderMatchResult {
     }
 
     public int get(int startIndex) {
-        matchResult.get(startIndex);
+        return matchResult.get(startIndex);
     }
 }

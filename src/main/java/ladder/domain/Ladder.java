@@ -27,11 +27,10 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public LadderMatchResult play() {
+    public LadderMatchResult play(int countOfPerson) {
         LadderMatchResult ladderMatchResult = new LadderMatchResult();
 
-        int lineSize = lines.size();
-        for (int i = 0; i < lineSize; i++) {
+        for (int i = 0; i < countOfPerson; i++) {
             ladderMatchResult.put(i, getLastIndex(i));
         }
 
@@ -49,5 +48,9 @@ public class Ladder {
 
     public boolean isHeightSame(int height) {
         return lines.size() == height;
+    }
+
+    public List<Line> getLines() {
+        return lines;
     }
 }

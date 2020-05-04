@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Persons;
-import ladder.domain.Rewards;
+import ladder.domain.*;
 import ladder.view.constant.ConstPerson;
 
 import java.util.List;
@@ -18,27 +15,6 @@ public class LadderResultView {
     private static final String LADDER_SEPARATOR = "|";
     private static final String LADDER_LINE = "-";
     private static final String LADDER_EMPTY = " ";
-
-    private static void printPersonNames(List<String> userNames) {
-        System.out.println(userNames.stream()
-                .map(name -> String.format(PERSON_NAME_FORMAT, name))
-                .collect(Collectors.joining(PERSON_NAME_DELIMITER))
-        );
-    }
-
-    public static void printLine(Line line) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-//        List<Boolean> linePoints = line.getPoints_deprecate();
-//        int pointsCount = linePoints.size();
-//
-//        addLine(false, stringBuilder);
-//        for (int index = 0; index < pointsCount; index++) {
-//            addLine(linePoints.get(index), stringBuilder);
-//        }
-
-        System.out.println(stringBuilder.toString());
-    }
 
     private static void addLine(boolean lineExist, StringBuilder stringBuilder) {
         if (lineExist) {
@@ -58,19 +34,41 @@ public class LadderResultView {
 
     }
 
-    public static void printLadderResult(Persons persons, Ladder ladder, Rewards rewards) {
+    public static void printPersons(Persons persons) {
         System.out.println(RESULT_FORMAT);
+        List<String> personNames = persons.getPersons().stream()
+                .map(Person::nameOf)
+                .collect(Collectors.toList());
 
-        printPersonNames(persons.getPersons());
-//        ladder.getLines().forEach(LadderResultView::printLine);
-        printLadderResultValues(rewards.getValues());
+        System.out.println(personNames.stream()
+                .map(name -> String.format(PERSON_NAME_FORMAT, name))
+                .collect(Collectors.joining(PERSON_NAME_DELIMITER))
+        );
     }
 
-    private static void printLadderResultValues(List<String> resultValues) {
-        System.out.println(resultValues.stream()
+    public static void printLadder(Ladder ladder) {
+        for (Line line : ladder.getLines()) {
+            printLine(line);
+        }
+    }
+
+    public static void printLine(Line line) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        List<Point> linePoints = line.getPoints();
+        int pointsCount = linePoints.size();
+
+        for (int index = 0; index < pointsCount; index++) {
+            addLine(linePoints.get(index).getDirection().isLeft(), stringBuilder);
+        }
+
+        System.out.println(stringBuilder.toString());
+    }
+
+    public static void printRewards(Rewards rewards) {
+        System.out.println(rewards.getValues().stream()
                 .map(result -> String.format(LADDER_RESULT_VALUE_FORMAT, result))
                 .collect(Collectors.joining(LADDER_RESULT_VALUE_DELIMITER))
         );
     }
-
 }
