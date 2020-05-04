@@ -10,10 +10,6 @@ import java.util.List;
 public class LadderService {
     private static final String GET_ALL_COMMENT = "all";
 
-    public static ResultDto getAllResult(GameResult result) {
-        return ResultDto.getAllResultInstance(result);
-    }
-
     public static ResultDto getRequestedResult(GameResult result, String personToGetResult) {
         if (GET_ALL_COMMENT.equals(personToGetResult)) {
             return getAllResult(result);
@@ -24,6 +20,10 @@ public class LadderService {
         }
 
         return ResultDto.getInstance(personToGetResult, result.get(personToGetResult));
+    }
+
+    private static ResultDto getAllResult(GameResult result) {
+        return ResultDto.getAllResultInstance(result);
     }
 
     public static GameResult getLadderGameResult(Persons persons, Ladder ladder, Rewards rewards) {
