@@ -9,7 +9,7 @@ public class Line {
     private static final int FIRST_INDEX = 0;
     private static final int BODY_LAST_INDEX_DIFFERENCE = 1;
     private static final int COUNT_OF_PERSON_MIN = 1;
-    private static final int COUNT_OF_PERSON_DIFFERENCE = 1;
+
     private final List<Point> points;
 
     private Line(List<Point> points) {
