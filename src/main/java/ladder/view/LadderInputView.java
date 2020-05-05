@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.domain.LadderResult;
+import ladder.domain.Rewards;
 import ladder.domain.Persons;
 import ladder.view.constant.ConstPerson;
 import ladder.view.exception.InvalidLadderHeightException;
@@ -56,7 +56,7 @@ public class LadderInputView {
         return name.length() <= ConstPerson.PERSON_NAME_SIZE_MAX;
     }
 
-    public static LadderResult getLadderResults(int countOfLadder) {
+    public static Rewards getLadderResults(int countOfPerson) {
         System.out.println(GET_LADDER_RESULTS_NOTICE);
 
         String ladderResults = scanner.nextLine();
@@ -66,18 +66,18 @@ public class LadderInputView {
 
         return getValidLadderResult(
                 ladderResults.split(LADDER_RESULTS_DELIMITER),
-                countOfLadder);
+                countOfPerson);
     }
 
-    private static LadderResult getValidLadderResult(String[] ladderResults,
-                                                     int countOfLadder) {
+    private static Rewards getValidLadderResult(String[] ladderResults,
+                                                int countOfLadder) {
         if (ladderResults.length != countOfLadder) {
             throw new InvalidLadderResultInputException(
                     String.format(LADDER_RESULT_INVALID_COUNT_MESSAGE, countOfLadder)
             );
         }
 
-        return LadderResult.getInstance(ladderResults);
+        return Rewards.getInstance(ladderResults);
     }
 
     public static int getLadderHeight() {

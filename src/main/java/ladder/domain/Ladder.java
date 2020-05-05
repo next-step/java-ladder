@@ -1,33 +1,56 @@
 package ladder.domain;
 
+import ladder.view.exception.InvalidLadderHeightException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final Lines lines;
-    private final LadderResult ladderResult;
+    private static final int LINE_COUNT_MIN = 1;
 
-    private Ladder(Lines lines, LadderResult ladderResult) {
-        this.ladderResult = ladderResult;
+    private List<Line> lines;
+
+    private Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public static Ladder getInstance(Lines lines, LadderResult ladderResult) {
-        return new Ladder(lines, ladderResult);
+    public static Ladder getInstance(int height, int countOfPerson) {
+        if (height < LINE_COUNT_MIN) {
+            throw new InvalidLadderHeightException();
+        }
+
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(Line.init(countOfPerson));
+        }
+
+        return new Ladder(lines);
+    }
+
+    public LadderMatchResult play(int countOfPerson) {
+        LadderMatchResult ladderMatchResult = new LadderMatchResult();
+
+        for (int i = 0; i < countOfPerson; i++) {
+            ladderMatchResult.put(i, getLastIndex(i));
+        }
+
+        return ladderMatchResult;
+    }
+
+    private int getLastIndex(int startIndex) {
+        int index = startIndex;
+        for (Line line : lines) {
+            index = line.move(index);
+        }
+
+        return index;
     }
 
     public boolean isHeightSame(int height) {
-        return this.lines.isHeightSame(height);
-    }
-
-    public LadderResult getLadderResult() {
-        return LadderResult.getNewInstance(ladderResult);
+        return lines.size() == height;
     }
 
     public List<Line> getLines() {
-        return lines.getLines();
-    }
-
-    public ResultValue getLadderResult(int personIndex) {
-        return ladderResult.getValue(lines.getResultIndex(personIndex));
+        return lines;
     }
 }

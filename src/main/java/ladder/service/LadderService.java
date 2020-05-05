@@ -1,17 +1,12 @@
 package ladder.service;
 
 import ladder.controller.response.ResultDto;
-import ladder.service.type.GameResult;
-import ladder.domain.Ladder;
-import ladder.domain.Persons;
+import ladder.domain.*;
+import ladder.domain.GameResult;
 import ladder.view.exception.InvalidInputToGetResult;
 
 public class LadderService {
     private static final String GET_ALL_COMMENT = "all";
-
-    public static ResultDto getAllResult(GameResult result) {
-        return ResultDto.getAllResultInstance(result);
-    }
 
     public static ResultDto getRequestedResult(GameResult result, String personToGetResult) {
         if (GET_ALL_COMMENT.equals(personToGetResult)) {
@@ -25,7 +20,13 @@ public class LadderService {
         return ResultDto.getInstance(personToGetResult, result.get(personToGetResult));
     }
 
-    public static GameResult getLadderGameResult(Persons persons, Ladder ladder) {
-        return persons.getResultOfLadder(ladder);
+    private static ResultDto getAllResult(GameResult result) {
+        return ResultDto.getAllResultInstance(result);
+    }
+
+    public static GameResult getLadderGameResult(Persons persons, Ladder ladder, Rewards rewards) {
+        LadderMatchResult ladderMatchResult = ladder.play(persons.getCount());
+
+        return ladderMatchResult.map(persons, rewards);
     }
 }

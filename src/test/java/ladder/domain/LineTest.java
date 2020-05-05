@@ -1,34 +1,30 @@
 package ladder.domain;
 
+import ladder.domain.exception.InvalidCountOfPersonException;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.Arrays;
-import java.util.List;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class LineTest {
-    public static final Line LINE_PERSON2 = Line.getNewInstance(Arrays.asList(true));
 
-    private static final Line lineTest = Line.getNewInstance(Arrays.asList(true, false, true, false, false));
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 4})
+    @DisplayName("주어진 사람 수 만큼의 라인 생성 확인")
+    public void generateLintTest(int countOfPerson) {
+        Line line = Line.init(countOfPerson);
 
-    @Test
-    @DisplayName("주어진 점들로 라인 생성 확인")
-    public void generateLintTest() {
-        List<Boolean> expect = Arrays.asList(true, false, true);
-        Line line = Line.getNewInstance(expect);
-
-        assertThat(line.getPoints()).isEqualTo(expect);
+        assertThat(line.isCountOfPerson(countOfPerson)).isTrue();
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:1", "1:0", "2:3", "4:4"}, delimiter = ':')
-    @DisplayName("주어진 위치의 이동 결과값 반환")
-    public void movePositionSuccess(int position, int result) {
-        assertThat(lineTest.movePosition(position)).isEqualTo(result);
+    @ValueSource(ints = {-3, 0})
+    @DisplayName("유효하지 않은 사람수 입력 시 InvalidCountOfPersonException 발생")
+    public void movePositionSuccess(int countOfPerson) {
+        assertThatExceptionOfType(InvalidCountOfPersonException.class).isThrownBy(
+                () -> Line.init(countOfPerson)
+        );
     }
-
 }

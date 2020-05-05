@@ -1,4 +1,4 @@
-package ladder.service.type;
+package ladder.domain;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
