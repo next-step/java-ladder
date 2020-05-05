@@ -1,7 +1,7 @@
 package ladder.controller.response;
 
 
-import ladder.service.type.GameResult;
+import ladder.domain.GameResult;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -4,7 +4,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Rewards;
 import ladder.domain.Persons;
 import ladder.service.LadderService;
-import ladder.service.type.GameResult;
+import ladder.domain.GameResult;
 import ladder.view.GameInputView;
 import ladder.view.GameResultView;
 import ladder.view.LadderInputView;

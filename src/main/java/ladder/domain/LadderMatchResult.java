@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LadderMatchResult {
@@ -14,7 +15,16 @@ public class LadderMatchResult {
         matchResult.put(startIndex, lastIndex);
     }
 
-    public int get(int startIndex) {
-        return matchResult.get(startIndex);
+    public GameResult map(Persons persons, Rewards rewards) {
+        List<Person> personList = persons.getPersons();
+
+        int countOfPerson = personList.size();
+        GameResult gameResult = GameResult.getInstance();
+        for (int i = 0; i < countOfPerson; i++) {
+            int resultIndex = matchResult.get(i);
+            gameResult.put(Person.nameOf(personList.get(i)), rewards.getValue(resultIndex));
+        }
+
+        return gameResult;
     }
 }
