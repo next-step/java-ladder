@@ -5,56 +5,36 @@ import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
+import static ladder.domain.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class DirectionTest {
     @Test
-    public void init() {
-        assertThat(Direction.of(true, false)).isEqualTo(Direction.of(true, false));
-    }
-
-    @Test
-    public void init_invalid() {
+    public void RIGHT_next_RIGHT_throwIllegalStateException() {
         assertThatExceptionOfType(IllegalStateException.class).isThrownBy(
-                () -> Direction.of(TRUE, TRUE)
+                () -> RIGHT.next(true)
         );
     }
 
     @Test
-    public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
+    public void RIGHT_next_LEFT() {
+        Direction next = RIGHT.next();
+
+        assertThat(next).isEqualTo(LEFT);
     }
 
     @Test
-    public void next_random_false() {
-        for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
-        }
+    public void LEFT_next_not_LEFT() {
+        Direction next = LEFT.next();
+
+        assertThat(next).isNotEqualTo(LEFT);
     }
 
     @Test
-    public void next_true() {
-        Direction next = Direction.of(TRUE, FALSE).next(TRUE);
-        assertThat(next).isEqualTo(Direction.of(FALSE, TRUE));
-    }
+    public void STAY_next_not_LEFT() {
+        Direction next = STAY.next();
 
-    @Test
-    public void next_false() {
-        Direction next = Direction.of(FALSE, TRUE).next(FALSE);
-        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
-    }
-
-    @Test
-    public void first() {
-        Direction first = Direction.first(TRUE);
-        assertThat(first.isLeft()).isEqualTo(FALSE);
-    }
-
-    @Test
-    public void last() {
-        Direction last = Direction.first(TRUE).last();
-        assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
+        assertThat(next).isNotEqualTo(LEFT);
     }
 }

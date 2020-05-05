@@ -41,7 +41,7 @@ public class Line {
             return;
         }
 
-        points.add(Point.first(DirectionGenerator.generateDirection()));
+        points.add(Point.first(DirectionGenerator.shouldMove()));
     }
 
     private static void initBody(List<Point> points, int countOfPerson) {

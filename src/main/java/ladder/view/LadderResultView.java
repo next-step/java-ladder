@@ -6,6 +6,8 @@ import ladder.view.constant.ConstPerson;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ladder.domain.Direction.LEFT;
+
 public class LadderResultView {
     private static final String RESULT_FORMAT = "\n사다리 결과\n";
     private static final String PERSON_NAME_FORMAT = "%5s";
@@ -16,8 +18,8 @@ public class LadderResultView {
     private static final String LADDER_LINE = "-";
     private static final String LADDER_EMPTY = " ";
 
-    private static void addLine(boolean lineExist, StringBuilder stringBuilder) {
-        if (lineExist) {
+    private static void addLine(Direction direction, StringBuilder stringBuilder) {
+        if (direction == LEFT) {
             addLine(LADDER_LINE, stringBuilder);
             stringBuilder.append(LADDER_SEPARATOR);
             return;
@@ -59,7 +61,7 @@ public class LadderResultView {
         int pointsCount = linePoints.size();
 
         for (int index = 0; index < pointsCount; index++) {
-            addLine(linePoints.get(index).getDirection().isLeft(), stringBuilder);
+            addLine(linePoints.get(index).getDirection(), stringBuilder);
         }
 
         System.out.println(stringBuilder.toString());

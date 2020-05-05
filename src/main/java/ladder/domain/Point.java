@@ -21,15 +21,7 @@ public class Point {
     }
 
     public int move() {
-        if (direction.isRight()) {
-            return this.index + MOVE_INDEX_DIFFERENCE;
-        }
-
-        if (direction.isLeft()) {
-            return this.index - MOVE_INDEX_DIFFERENCE;
-        }
-
-        return this.index;
+        return direction.move(index);
     }
 
     public Point next() {

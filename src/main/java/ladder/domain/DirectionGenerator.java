@@ -5,7 +5,7 @@ import java.util.Random;
 public class DirectionGenerator {
     private static final Random random = new Random();
 
-    public static boolean generateDirection() {
+    public static boolean shouldMove() {
         return random.nextBoolean();
     }
 }
