@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DirectionGenerator {
     private static final int SECOND = 1;
@@ -28,7 +29,7 @@ public class DirectionGenerator {
     }
 
     private Boolean randomGenerator() {
-        return Math.round(Math.random()) < FIFTY_PERCENT;
+        return new Random().nextBoolean();
     }
 
     private int validatePerson(int personCounts) {

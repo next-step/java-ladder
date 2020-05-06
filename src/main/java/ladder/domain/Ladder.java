@@ -12,8 +12,7 @@ public class Ladder {
     private static final String MAXIMUM_USER_ERROR = "사용자가 두명 이상이어야합니다.";
     private static final String USER_GOALS_COUNTS_SHOULD_SAME = "사용자와 사다리결과 숫자는 같아야합니다.";
 
-    private List<Line> lines = new ArrayList<>();
-    private int height;
+    private List<Line> lines;
 
     public Ladder(int height, DirectionGenerator directionsGenerator) {
        validate(height);
