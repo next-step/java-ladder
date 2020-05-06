@@ -14,15 +14,12 @@ public class LadderController {
     private void init() {
         Users users = InputView.askNumberOfUser();
         LadderGoals ladderGoals = InputView.askLadderGoals();
+
         Ladder ladder = new Ladder(InputView.askLadderHeight(), new DirectionGenerator(users.size()));
+        OutputView.printLadders(users, ladder, ladderGoals);
 
-        OutputView.printNames(users);
-        OutputView.printLadder(ladder);
-        OutputView.printGoals(ladderGoals);
         ladderResult = new LadderResult(ladder.play(users, ladderGoals));
-    }
-
-    public void showResult() {
         OutputView.printGameResult(ladderResult);
     }
+
 }
