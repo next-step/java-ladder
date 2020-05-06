@@ -15,7 +15,10 @@ public class Direction {
     private final boolean right;
 
     private Direction(final boolean left, final boolean right) {
-        validateDuplicate(left, right);
+        if (left && right) {
+            throw new IllegalArgumentException(TRUE_NOT_DUPLICATE);
+        }
+
         this.left = left;
         this.right = right;
     }
@@ -41,13 +44,6 @@ public class Direction {
     public Direction last() {
         return of(this.right, FALSE);
     }
-
-    private void validateDuplicate(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException(TRUE_NOT_DUPLICATE);
-        }
-    }
-
 
     public Direction next(final boolean nextRight) {
         if (this.right) {
