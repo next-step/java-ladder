@@ -7,9 +7,7 @@ import java.util.Map;
 
 public class Ladder {
     private static final int MINIMUM_HEIGHT = 1;
-    private static final int MINIMUM_USERS = 2;
     private static final String MAXIMUM_HEIGHT_ERROR = "사다리 높이는 1이상 입력해야합니다";
-    private static final String MAXIMUM_USER_ERROR = "사용자가 두명 이상이어야합니다.";
     private static final String USER_GOALS_COUNTS_SHOULD_SAME = "사용자와 사다리결과 숫자는 같아야합니다.";
 
     private List<Line> lines;
