@@ -5,7 +5,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderController {
-    private GameResult gameResult;
+    private LadderResult ladderResult;
 
     public LadderController() {
         init();
@@ -15,13 +15,14 @@ public class LadderController {
         Users users = InputView.askNumberOfUser();
         LadderGoals ladderGoals = InputView.askLadderGoals();
         Ladder ladder = new Ladder(InputView.askLadderHeight(), new DirectionGenerator(users.size()));
-        gameResult = new GameResult(users, new LadderGame(ladder, ladderGoals));
+
+        OutputView.printNames(users);
+        OutputView.printLadder(ladder);
+        OutputView.printGoals(ladderGoals);
+        ladderResult = new LadderResult(ladder.play(users, ladderGoals));
     }
 
     public void showResult() {
-        OutputView.printNames(gameResult.getUsers());
-        OutputView.printLadder(gameResult.getLadder());
-        OutputView.printGoals(gameResult.getLadderGoals());
-        OutputView.printGameResult(gameResult);
+        OutputView.printGameResult(ladderResult);
     }
 }

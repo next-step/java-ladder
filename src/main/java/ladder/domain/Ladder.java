@@ -10,6 +10,7 @@ public class Ladder {
     private static final int MINIMUM_USERS = 2;
     private static final String MAXIMUM_HEIGHT_ERROR = "사다리 높이는 1이상 입력해야합니다";
     private static final String MAXIMUM_USER_ERROR = "사용자가 두명 이상이어야합니다.";
+    private static final String USER_GOALS_COUNTS_SHOULD_SAME = "사용자와 사다리결과 숫자는 같아야합니다.";
 
     private List<Line> lines = new ArrayList<>();
     private int height;
@@ -19,15 +20,21 @@ public class Ladder {
         this.lines = generateLines(height, directionsGenerator);
     }
 
-    public Ladder(List<Line> lines) {
-        this.lines = new ArrayList<>(lines);
-    }
-
-    public int move(int position) {
-        for (Line line : lines) {
-            position += line.move(position);
+    public Map<String, String> play(Users users, LadderGoals ladderGoals) {
+        Map<String, String> result = new HashMap<>();
+        if (users.size() != ladderGoals.size()) {
+            throw new IllegalArgumentException(USER_GOALS_COUNTS_SHOULD_SAME);
         }
-        return position;
+
+        for (User player : users.getUsers()) {
+            int position = player.getPosition();
+            for (Line line : lines) {
+                position += line.move(position);
+            }
+            result.put(player.getName(), ladderGoals.getResult(position));
+        }
+
+        return result;
     }
 
     private void validate(int height) {

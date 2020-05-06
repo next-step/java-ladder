@@ -39,23 +39,23 @@ public class OutputView {
         System.out.println(sb.toString());
     }
 
-    public static void printGameResult(GameResult gameResult) {
+    public static void printGameResult(LadderResult ladderResult) {
         String userName = "";
         while (!(userName = InputView.askLadderWinner()).equals(GAME_END_WORD)) {
-            OutputView.printResult(gameResult, userName);
+            OutputView.printResult(ladderResult, userName);
         }
-        OutputView.printResult(gameResult);
+        OutputView.printResult(ladderResult);
     }
 
-    public static void printResult(GameResult gameResult, String userName) {
-        String result = gameResult.findPlayerGoal(userName);
+    public static void printResult(LadderResult ladderResult, String userName) {
+        String result = ladderResult.findPlayerGoal(userName);
         System.out.println(GAME_RESULT);
         System.out.println(result);
     }
 
-    public static void printResult(GameResult gameResult) {
+    public static void printResult(LadderResult ladderResult) {
         System.out.println(GAME_RESULT);
-        gameResult.getAll().forEach((name, goal) -> {
+        ladderResult.getAll().forEach((name, goal) -> {
             System.out.println(name + " : " + goal);
         });
     }
