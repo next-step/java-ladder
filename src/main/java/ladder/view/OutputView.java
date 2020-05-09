@@ -10,10 +10,15 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final int MAX_NAME_LENGTH = 5;
     private static final String GAME_END_WORD = "all";
-    private static final String GAME_RESULT = "실행 결과";
-    public static final String NOT_FOUND_USER = "존재하지않는 사용자입니다";
+    private static final String LADDER_RESULT = "실행 결과";
 
-    public static void printNames(Users users) {
+    public static void printLadders(Users users, Ladder ladder, LadderGoals ladderGoals) {
+        printNames(users);
+        printLadder(ladder);
+        printGoals(ladderGoals);
+    }
+
+    private static void printNames(Users users) {
         StringBuilder sb = new StringBuilder();
         sb.append(BLANK);
         for (User user : users.getUsers()) {
@@ -22,7 +27,7 @@ public class OutputView {
         System.out.println(sb.toString());
     }
 
-    public static void printLadder(Ladder ladder) {
+    private static void printLadder(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
 
         for (Line line : ladder.getLines()) {
@@ -31,7 +36,7 @@ public class OutputView {
         System.out.print(sb.toString());
     }
 
-    public static void printGoals(LadderGoals ladderGoals) {
+    private static void printGoals(LadderGoals ladderGoals) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < ladderGoals.size(); i++) {
@@ -40,27 +45,23 @@ public class OutputView {
         System.out.println(sb.toString());
     }
 
-    public static void printGameResult(GameResult gameResult) {
+    public static void printGameResult(LadderResult ladderResult) {
         String userName = "";
         while (!(userName = InputView.askLadderWinner()).equals(GAME_END_WORD)) {
-            OutputView.printResult(gameResult, userName);
+            OutputView.printResult(ladderResult, userName);
         }
-        OutputView.printResult(gameResult);
+        OutputView.printResult(ladderResult);
     }
 
-    public static void printResult(GameResult gameResult, String userName) {
-        String result = gameResult.get(userName);
-        System.out.println(GAME_RESULT);
-
-        if (result == null) {
-            result = NOT_FOUND_USER;
-        }
+    public static void printResult(LadderResult ladderResult, String userName) {
+        String result = ladderResult.findPlayerGoal(userName);
+        System.out.println(LADDER_RESULT);
         System.out.println(result);
     }
 
-    public static void printResult(GameResult gameResult) {
-        System.out.println(GAME_RESULT);
-        gameResult.getAll().forEach((name, goal) -> {
+    public static void printResult(LadderResult ladderResult) {
+        System.out.println(LADDER_RESULT);
+        ladderResult.getAll().forEach((name, goal) -> {
             System.out.println(name + " : " + goal);
         });
     }
@@ -68,11 +69,10 @@ public class OutputView {
     private static void printLines(StringBuilder sb, Line line) {
         sb.append(TAB);
 
-        for (Boolean canDrawWidth : line.getWidthLines()) {
+        for (Direction canDrawWidth : line.getDirections()) {
             sb.append(VERTICAL);
-            sb.append(canDrawWidth ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
+            sb.append(canDrawWidth.isRight() ? WIDTH_DRAW_SUCCESS : WIDTH_DRAW_FAIL);
         }
-        sb.append(VERTICAL);
         sb.append(System.lineSeparator());
     }
 
@@ -91,5 +91,4 @@ public class OutputView {
         }
         return makeSpace(BLANK + userName);
     }
-
 }

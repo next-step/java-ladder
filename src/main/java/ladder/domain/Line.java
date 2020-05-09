@@ -8,18 +8,15 @@ public class Line {
     private static final String WIDTH_REQUIRED = "가로라인이 존재해야합니다.";
     private static final int MINIMUM_USERS = 2;
     private static final String USER_SHOULD_MORE_THAN_TWO = "사람수는 2명 이상 이어야 합니다.";
-    private static final int LEFT = -1;
-    private static final int RIGHT = 1;
-    private static final int CENTER = 0;
-    private final List<Boolean> widthLines;
+    private final List<Direction> directions;
 
-    public Line(final int userCounts) {
-        this(userCounts, new WidthGenerator(userCounts));
+    public Line(final List<Direction> directions) {
+        this.directions = directions;
     }
 
-    public Line(final int userCounts, WidthGenerator widthGenerator) {
+    public Line(final int userCounts, DirectionGenerator directionGenerator) {
         validateSize(userCounts);
-        this.widthLines = new ArrayList<>(validateLines(widthGenerator.getWidthLines()));
+        this.directions = new ArrayList<>(validateLines(directionGenerator.generate()));
     }
 
     private void validateSize(int users) {
@@ -28,37 +25,19 @@ public class Line {
         }
     }
 
-    private List<Boolean> validateLines(List<Boolean> widthLines) {
-        if (widthLines.isEmpty()) {
+    private List<Direction> validateLines(List<Direction> directions) {
+        if (directions.isEmpty()) {
             throw new IllegalArgumentException(WIDTH_REQUIRED);
         }
-        return new ArrayList<>(widthLines);
+        return new ArrayList<>(directions);
     }
 
-    public int move(int index) {
-        if (isLeft(index)) {
-            return LEFT;
-        }
-        if (isRight(index)) {
-            return RIGHT;
-        }
-        return CENTER;
+    public List<Direction> getDirections() {
+        return new ArrayList<>(directions);
     }
 
-    public List<Boolean> getWidthLines() {
-        return widthLines;
-    }
-
-    private Boolean getPoint(int index) {
-        return widthLines.get(index);
-    }
-
-    private boolean isLeft(int index) {
-        return index > 0 && getPoint(index - 1);
-    }
-
-    private boolean isRight(int index) {
-        return index < widthLines.size() && getPoint(index);
+    public int move(int position){
+        return directions.get(position).move();
     }
 
     @Override
@@ -66,11 +45,11 @@ public class Line {
         if (this == o) return true;
         if (!(o instanceof Line)) return false;
         Line line = (Line) o;
-        return Objects.equals(widthLines, line.widthLines);
+        return Objects.equals(getDirections(), line.getDirections());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(widthLines);
+        return Objects.hash(getDirections());
     }
 }
