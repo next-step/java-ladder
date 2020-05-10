@@ -1,9 +1,6 @@
 package ladder.domain;
 
 
-import ladder.dto.UserStatusDto;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Climber {
@@ -11,7 +8,6 @@ public class Climber {
     private final LadderMap ladderMap;
     private final Users users;
     private final LadderGame ladderGame;
-    private Reward reward;
 
     private Climber(String userNames, int height, CrossRoadStrategy crossRule) {
         this.users = Users.of(userNames);
@@ -28,8 +24,7 @@ public class Climber {
     }
 
     public Reward offerPrize(String rewards) {
-        this.reward = Reward.of(rewards, users.size());
-        return reward;
+        return Reward.of(rewards, users.size());
     }
 
     public int climbByUser(String name) {

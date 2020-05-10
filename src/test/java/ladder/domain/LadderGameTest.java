@@ -25,4 +25,18 @@ public class LadderGameTest {
 
         assertThat(result).isEqualTo(Integer.parseInt(expected));
     }
+
+
+    @ParameterizedTest
+    @CsvSource(value = {"pobi,honux,crong,jk pobi:0", "pobi,honux,crong crong:2", "pobi,honux pobi:0"}, delimiter = ':')
+    void inquiryLadderMapTest(String input, String expected) {
+        String[] inputs = input.split(" ");
+        Users users = Users.of(inputs[0]);
+        LadderMap ladderMap = LadderMap.of(users, 4, () -> true);
+
+        LadderGame ladderGame = LadderGame.of(users, ladderMap);
+        LadderMap result = ladderGame.inquiryLadderMap();
+
+        assertThat(ladderMap).isEqualTo(result);
+    }
 }
