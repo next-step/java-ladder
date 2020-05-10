@@ -7,28 +7,31 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 public class LineTest {
 
-    @DisplayName("사다리_생성시_룰이_True_인경우_홀수번째만_항상_TURE")
+    @DisplayName("사다리 생성시 룰이 True 인경우 짝수번째만 항상 TRUE")
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
+    @ValueSource(ints = {1, 2, 3, 10000, 10001})
     void lineCreateTest(int input) {
         CrossRoadStrategy crossRoadStrategy = () -> true;
         Line line = Line.of(input, crossRoadStrategy);
 
-        IntStream.range(0, line.size())
+        LineParityCheck isOdd = i -> i % 2 == 1;
+        filter(line, isOdd).forEach(i -> assertThat(line.movable(i)).isFalse());
+
+        LineParityCheck isEven = i -> i % 2 == 0;
+        filter(line, isEven).forEach(i -> assertThat(line.movable(i)).isTrue());
+    }
+
+    private Stream<Integer> filter(Line line, LineParityCheck parityCheck) {
+        return IntStream.range(0, line.size())
                 .boxed()
-                .peek(i -> {
-                    System.out.print(line.movable(i) + " ");
-                })
-                .filter(i -> i % 2 == 0)
-                .forEach(i  -> {
-                    boolean movable = line.movable(i);
-                    assertThat(movable).isTrue();
-                });
+                .filter(parityCheck::parityCheck);
     }
 
     @ParameterizedTest
