@@ -1,8 +1,5 @@
-package ladder.Domain;
+package ladder.domain;
 
-
-import java.util.Collections;
-import java.util.List;
 
 public class User {
 
@@ -27,5 +24,13 @@ public class User {
         User compareUser = (User) obj;
         return name.equals(compareUser.name)
                 && position.equals(compareUser.position);
+    }
+
+    public void move(SteerRule steerRule) {
+        this.position = position.crossWay(steerRule);
+    }
+
+    public int position() {
+        return position.getPosition();
     }
 }

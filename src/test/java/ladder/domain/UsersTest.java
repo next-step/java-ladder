@@ -1,4 +1,4 @@
-package ladder.Domain;
+package ladder.domain;
 
 
 import org.junit.jupiter.api.Test;
@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class UsersTest {
 
@@ -48,4 +49,36 @@ public class UsersTest {
         assertThat(user.getName()).isEqualTo("pobi");
     }
 
+    @Test
+    void moveUserTest() {
+        Users users = Users.of("pobi,honux,crong,jk");
+        Position position = Position.of(0);
+
+        User user = users.findUserByName("pobi");
+
+        assertThat(user).isEqualTo(User.of("pobi", position));
+    }
+
+    @Test
+    void findUserByNameTest() {
+        Position position = Position.of(0);
+        User user = User.of("pobi", position);
+
+        SteerRule steerRule = SteerRule.direction(1);
+
+        user.move(steerRule);
+
+        int now = user.position();
+
+        assertThat(now).isEqualTo(1);
+    }
+
+    @Test
+    void notFoundUserByNameExceptionTest() {
+        Users users = Users.of("pobi,honux,crong,jk");
+
+        assertThatExceptionOfType(NotFoundUserByNameException.class).isThrownBy(() -> {
+            users.findUserByName("noUser");
+        });
+    }
 }

@@ -1,11 +1,11 @@
-package ladder.Domain;
+package ladder.domain;
 
 
 import java.util.Arrays;
 
 public enum SteerRule {
     RIGHT(1),
-    STOP(0),
+    KEEP(0),
     LEFT(-1);
 
     private int steer;

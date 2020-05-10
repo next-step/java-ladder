@@ -1,4 +1,4 @@
-package ladder.Domain;
+package ladder.domain;
 
 
 import java.util.ArrayList;
@@ -19,25 +19,46 @@ public class Line {
 
     private List<Boolean> createCrossLine(int userCount, CrossRoadStrategy crossRoadStrategy) {
         List<Boolean> crossable = new ArrayList<>();
-        
-        for (int i = 0; i < userCount-1; i++) {
+
+        for (int i = 0; i < userCount - 1; i++) {
             crossable.add(isCreateCrossable(crossable, crossRoadStrategy));
         }
 
         return crossable;
     }
-    
+
     private boolean isCreateCrossable(List<Boolean> crossable, CrossRoadStrategy crossRoadStrategy) {
         int position = crossable.size();
-        if(position >= 1 && crossable.get(position - 1)) {
+        if (isGreaterThenFirstAndHasBeforeCrossLoad(position, crossable)) {
             return false;
         }
 
         return crossRoadStrategy.movable();
     }
 
+    private boolean isGreaterThenFirstAndHasBeforeCrossLoad(int position, List<Boolean> crossable) {
+        return position >= 1 && crossable.get(position - 1);
+    }
+
     public boolean movable(int position) {
         return row.get(position);
+    }
+
+    public SteerRule steerWay(int position) {
+
+        if (position < row.size() && movable(position)) {
+            return SteerRule.RIGHT;
+        }
+
+        if (position > 0 && movable(position - 1)) {
+            return SteerRule.LEFT;
+        }
+
+        return SteerRule.KEEP;
+    }
+
+    public int size() {
+        return row.size();
     }
 
     public List<Boolean> toList() {
@@ -47,9 +68,7 @@ public class Line {
     @Override
     public boolean equals(Object obj) {
         Line compareLine = (Line) obj;
-        System.out.println(compareLine.row.toString());
-        System.out.println(this.row.toString());
-
         return this.row.toString().equals(compareLine.row.toString());
     }
+
 }

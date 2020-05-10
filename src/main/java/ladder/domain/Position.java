@@ -1,4 +1,4 @@
-package ladder.Domain;
+package ladder.domain;
 
 
 public class Position {
@@ -15,6 +15,10 @@ public class Position {
 
     public Position crossWay(SteerRule steerRule) {
         return Position.of(now + steerRule.getSteer());
+    }
+
+    public int getPosition() {
+        return now;
     }
 
     @Override
