@@ -25,25 +25,4 @@ public class LadderGameTest {
 
         assertThat(result).isEqualTo(Integer.parseInt(expected));
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"pobi,honux,crong,jk", "pobi,honux,crong", "pobi,honux"})
-    void claimAllTest(String input) {
-        Users users = Users.of(input);
-        LadderMap ladderMap = LadderMap.of(users, 4, () -> true);
-
-        LadderGame ladderGame = LadderGame.of(users, ladderMap);
-        Users claimAllUsers = ladderGame.claimAll();
-
-        List<Integer> result = claimAllUsers.toList().stream()
-                .map(User::position)
-                .collect(Collectors.toList());
-
-        int resultSize = input.split(",").length;
-        Integer[] expectedResultIndex = IntStream.range(0, resultSize).boxed().toArray(Integer[]::new);
-
-        assertThat(result)
-                .hasSize(resultSize)
-                .containsOnlyOnce(expectedResultIndex);
-    }
 }

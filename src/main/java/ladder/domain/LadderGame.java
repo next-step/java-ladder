@@ -23,11 +23,4 @@ public class LadderGame {
         }
         return user.position();
     }
-
-    public Users claimAll() {
-        for (User user : users.toList()) {
-            claimByUser(user.getName());
-        }
-        return users;
-    }
 }
