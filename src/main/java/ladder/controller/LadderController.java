@@ -43,9 +43,6 @@ public class LadderController {
 
         inquiryEachUserName(reward);
 
-        List<UserStatusDto> userStatusDtos = climber.climbAll();
-        outputView.resultAllUser(userStatusDtos);
-
     }
 
     private void inquiryEachUserName(Reward reward) {

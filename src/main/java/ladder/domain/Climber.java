@@ -36,19 +36,6 @@ public class Climber {
         return ladderGame.claimByUser(name);
     }
 
-    public List<UserStatusDto> climbAll() {
-        Users climbResultUser = ladderGame.claimAll();
-        List<UserStatusDto> userStatusDtos = new ArrayList<>();
-        for (User user : climbResultUser.toList()) {
-            userStatusDtos.add(userGameResult(user.getName(), user.position()));
-        }
-        return userStatusDtos;
-    }
-    private UserStatusDto userGameResult(String name, int position) {
-        String prize = reward.prizeByEachPosition(position);
-        return new UserStatusDto(name, prize);
-    }
-
     public List<String> participantNames() {
         return users.participantNames();
     }
