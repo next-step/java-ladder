@@ -5,13 +5,12 @@ import java.util.List;
 
 public class Climber {
 
-    private final LadderMap ladderMap;
     private final Users users;
     private final LadderGame ladderGame;
 
     private Climber(String userNames, int height, CrossRoadStrategy crossRule) {
         this.users = Users.of(userNames);
-        this.ladderMap =  LadderMap.of(users, height, crossRule);
+        LadderMap ladderMap =  LadderMap.of(users, height, crossRule);
         this.ladderGame = LadderGame.of(users, ladderMap);
     }
 
@@ -20,7 +19,7 @@ public class Climber {
     }
 
     public LadderMap targetLadder() {
-        return ladderMap;
+        return ladderGame.inquiryLadderMap();
     }
 
     public Reward offerPrize(String rewards) {
