@@ -23,4 +23,8 @@ public class LadderGame {
         }
         return user.position();
     }
+
+    public LadderMap inquiryLadderMap() {
+        return ladderMap;
+    }
 }

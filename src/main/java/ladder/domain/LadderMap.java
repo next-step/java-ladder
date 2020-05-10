@@ -36,4 +36,9 @@ public class LadderMap {
         }
         return Collections.unmodifiableList(ladderMapList);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.ladderMap.containsAll(((LadderMap) obj).ladderMap);
+    }
 }
