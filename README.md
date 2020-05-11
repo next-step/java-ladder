@@ -7,3 +7,10 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+## 2nd commit
+* 사다리 만들기
+** 라인 생성 및 사다리 생성
+** 사다리 출력(스트림 사용)
+** 브랜치 실수로 전부 날아가서 브랜치 생성 후 다시 커밋(README는 다 날아간듯..)
