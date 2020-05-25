@@ -7,3 +7,8 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## Step1. 자바8 스트림, 람다, 옵셔널
+### 실습1 - 람다
+- [ ] 익명 클래스를 람다로 전환하기
+- [ ] 람다를 활용해서 중복 제거하기
