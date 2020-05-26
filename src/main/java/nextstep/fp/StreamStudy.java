@@ -31,6 +31,7 @@ public class StreamStudy {
         return words.stream()
                 .filter(word -> word.length() > 12)
                 .sorted(Comparator.comparing(String::length).reversed())
+                .distinct()
                 .collect(Collectors.toList())
                 .subList(0, 100);
     }

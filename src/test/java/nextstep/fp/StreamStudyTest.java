@@ -56,5 +56,6 @@ public class StreamStudyTest {
         assertThat(overTwelve.get(0).length() >= overTwelve.get(1).length()).isTrue();
         assertThat(overTwelve.get(1).length() >= overTwelve.get(2).length()).isTrue();
         assertThat(overTwelve.size()).isEqualTo(100);
+        assertThat(overTwelve).containsOnlyOnce(overTwelve.get(0));
     }
 }
