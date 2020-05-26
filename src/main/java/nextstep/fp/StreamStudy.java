@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,18 @@ public class StreamStudy {
             if (w.length() > 12) count++;
         }
         return count;
+    }
+
+    public static List<String> getOverTwelve() throws IOException {
+        String contents = new String(Files.readAllBytes(Paths
+                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+
+        return words.stream()
+                .filter(word -> word.length() > 12)
+                .sorted(Comparator.comparing(String::length).reversed())
+                .collect(Collectors.toList())
+                .subList(0, 100);
     }
 
     public static void printLongestWordTop100() throws IOException {
