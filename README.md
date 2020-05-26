@@ -28,6 +28,6 @@
     - [X] 추려낸 단어를 모두 소문자로 바꾼 뒤 출력한다.
 
 ### 실습3 - Optional
-- [ ] ageIsInRange2를 optional, stream을 사용해서 UserTest를 모두 통과하도록 구현한다.
+- [X] ageIsInRange2를 optional, stream을 사용해서 UserTest를 모두 통과하도록 구현한다.
 - [ ] getUser 메서드를 stream, optional을 활용해 구현한다.
 - [ ] ExpressionTest가 통과하도록 stream을 이용해서 Expression의 of 메서드를 구현한다. 
