@@ -5,6 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,11 +54,20 @@ public class StreamStudyTest {
     @DisplayName("12자를 넘는 단어 추출하고 긴 순서로 정렬한 뒤 100개만 뽑아내기")
     @Test
     public void wordSelectorSample() throws IOException {
-        List<String> overTwelve = StreamStudy.getOverTwelve();
+        String contents = new String(Files.readAllBytes(Paths
+                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
+
+        List<String> overTwelve = StreamStudy.getLengthOverTwelveAndNotDuplicatedHundred(words);
 
         assertThat(overTwelve.get(0).length() >= overTwelve.get(1).length()).isTrue();
         assertThat(overTwelve.get(1).length() >= overTwelve.get(2).length()).isTrue();
         assertThat(overTwelve.size()).isEqualTo(100);
         assertThat(overTwelve).containsOnlyOnce(overTwelve.get(0));
+    }
+
+    @Test
+    public void getLongestWordsTop100() throws Exception {
+        printLongestWordTop100();
     }
 }

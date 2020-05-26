@@ -23,25 +23,23 @@ public class StreamStudy {
         return count;
     }
 
-    public static List<String> getOverTwelve() throws IOException {
-        String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-
-        return words.stream()
-                .filter(word -> word.length() > 12)
-                .sorted(Comparator.comparing(String::length).reversed())
-                .distinct()
-                .collect(Collectors.toList())
-                .subList(0, 100);
-    }
-
     public static void printLongestWordTop100() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        List<String> longestWords = getLengthOverTwelveAndNotDuplicatedHundred(words);
+        longestWords.forEach(System.out::println);
+    }
+
+    static List<String> getLengthOverTwelveAndNotDuplicatedHundred(List<String> words) throws IOException {
+        return words.stream()
+                .filter(word -> word.length() > 12)
+                .sorted(Comparator.comparing(String::length).reversed())
+                .distinct()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList())
+                .subList(0, 100);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
