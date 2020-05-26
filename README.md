@@ -15,3 +15,9 @@
     - [X] 변경되는 부분을 인터페이스로 추출한다.
     - [X] 익명 클래스로 구현해본다.
     - [X] lambda로 바꿔본다.
+
+### 실습2 - Stream
+- [X] StreamStudy의 sumOverThreeAndDouble을 구현한다.
+    - [X] 3을 넘는 숫자만 골라내도록 구현한다. (filter)
+    - [X] 골라낸 숫자에 모두 2를 곱하도록 구현한다. (map)
+    - [X] 골라낸 숫자에 2가 곱해진 값을 모두 더한다. (reduce)
