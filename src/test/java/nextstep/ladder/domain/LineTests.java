@@ -10,7 +10,7 @@ class LineTests {
     @Test
     void createTest() {
         int countOfPerson = 3;
-        Line line = new Line(countOfPerson);
+        Line line = Line.create(countOfPerson);
         assertThat(line).isNotNull();
     }
 
@@ -18,7 +18,7 @@ class LineTests {
     @Test
     void firstLadderMustFalseTest() {
         int countOfPerson = 1;
-        Line line = new Line(countOfPerson);
+        Line line = Line.create(countOfPerson);
         assertThat(line.getPoints().get(0)).isFalse();
     }
 }
