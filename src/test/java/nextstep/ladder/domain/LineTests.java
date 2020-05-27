@@ -13,4 +13,12 @@ class LineTests {
         Line line = new Line(countOfPerson);
         assertThat(line).isNotNull();
     }
+
+    @DisplayName("첫번째 칸에는 무조건 다리를 놓을 수 없다.")
+    @Test
+    void firstLadderMustFalseTest() {
+        int countOfPerson = 1;
+        Line line = new Line(countOfPerson);
+        assertThat(line.getPoints().get(0)).isFalse();
+    }
 }
