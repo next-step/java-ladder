@@ -19,7 +19,7 @@ class LineTests {
     void firstLadderMustFalseTest() {
         int countOfPerson = 1;
         Line line = Line.create(countOfPerson);
-        assertThat(line.getPoints().get(0)).isFalse();
+        assertThat(line.getPointsIndex(0)).isFalse();
     }
 
     @DisplayName("다리가 없는 칸 다음의 칸에는 다리를 놓을 수 있다.")
@@ -27,7 +27,17 @@ class LineTests {
     void canMakeLadderAfterNoneLadder() {
         int countOfPerson = 2;
         Line line = Line.create(countOfPerson);
-        assertThat(line.getPoints().get(0)).isFalse();
-        assertThat(line.getPoints().get(1)).isTrue();
+        assertThat(line.getPointsIndex(0)).isFalse();
+        assertThat(line.getPointsIndex(1)).isTrue();
+    }
+
+    @DisplayName("이전칸에 다리가 놓였다면 이후 칸에는 다리를 놓을 수 없다.")
+    @Test
+    void cantMakeLadderAfterLadder() {
+        int countOfPerson = 3;
+        Line line = Line.create(countOfPerson);
+        assertThat(line.getPointsIndex(0)).isFalse();
+        assertThat(line.getPointsIndex(1)).isTrue();
+        assertThat(line.getPointsIndex(2)).isFalse();
     }
 }
