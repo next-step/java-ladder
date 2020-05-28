@@ -21,4 +21,13 @@ class LineTests {
         Line line = Line.create(countOfPerson);
         assertThat(line.getPoints().get(0)).isFalse();
     }
+
+    @DisplayName("다리가 없는 칸 다음의 칸에는 다리를 놓을 수 있다.")
+    @Test
+    void canMakeLadderAfterNoneLadder() {
+        int countOfPerson = 2;
+        Line line = Line.create(countOfPerson);
+        assertThat(line.getPoints().get(0)).isFalse();
+        assertThat(line.getPoints().get(1)).isTrue();
+    }
 }
