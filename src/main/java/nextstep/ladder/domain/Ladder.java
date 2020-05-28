@@ -1,0 +1,33 @@
+package nextstep.ladder.domain;
+
+import nextstep.ladder.domain.exceptions.InvalidLadderHeightException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
+public class Ladder {
+    private static final int MIN_HEIGHT = 1;
+    private List<Line> lines;
+
+    private Ladder(List<Line> lines) {
+        this.lines = new ArrayList<>(lines);
+    }
+
+    public static Ladder create(int ladderHeight, int countOfPerson) {
+        ladderHeightValidation(ladderHeight);
+        List<Line> lines = new ArrayList<>();
+        IntStream.range(0, ladderHeight).forEach(num -> lines.add(Line.create(countOfPerson)));
+        return new Ladder(lines);
+    }
+
+    public int getHeight() {
+        return lines.size();
+    }
+
+    private static void ladderHeightValidation(int ladderHeight) {
+        if (ladderHeight < MIN_HEIGHT) {
+            throw new InvalidLadderHeightException("Ladder height must exceed zero");
+        }
+    }
+}
