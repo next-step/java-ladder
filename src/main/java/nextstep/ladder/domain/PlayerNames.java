@@ -27,11 +27,19 @@ public class PlayerNames {
     }
 
     private static void validation(String inputValue) {
-        if (inputValue == null) {
-            throw new PlayerNamesEmptyException("Can't create PlayerNames from null source");
-        }
+        nullValidation(inputValue);
+        emptyValidation(inputValue);
+    }
+
+    private static void emptyValidation(String inputValue) {
         if (inputValue.trim().isEmpty()) {
             throw new PlayerNamesEmptyException("Can't create PlayerNames from empty value");
+        }
+    }
+
+    private static void nullValidation(String inputValue) {
+        if (inputValue == null) {
+            throw new PlayerNamesEmptyException("Can't create PlayerNames from null source");
         }
     }
 }
