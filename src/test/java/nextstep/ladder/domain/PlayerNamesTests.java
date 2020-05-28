@@ -4,6 +4,7 @@ import nextstep.ladder.domain.exceptions.PlayerNamesEmptyException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -26,5 +27,14 @@ class PlayerNamesTests {
     @ValueSource(strings = {"    ", ""})
     void createValidationTest(String invalidValue) {
         assertThatThrownBy(() -> PlayerNames.create(invalidValue)).isInstanceOf(PlayerNamesEmptyException.class);
+    }
+
+    @DisplayName("현재 객체의 가장 긴 이름의 길이를 알려줄 수 있다.")
+    @ParameterizedTest
+    @CsvSource(value = { "poppo, ita, saul:5", "pop, ita, saul:4" }, delimiter = ':')
+    void getMaxNameLengthTest(String inputValue, int resultSize) {
+        PlayerNames playerNames = PlayerNames.create(inputValue);
+        assertThat(playerNames.size()).isEqualTo(3);
+        assertThat(playerNames.getMaxNameLength()).isEqualTo(resultSize);
     }
 }
