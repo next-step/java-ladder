@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.PlayerNamesEmptyException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +15,7 @@ public class PlayerNames {
     }
 
     public static PlayerNames create(String inputValue) {
+        validation(inputValue);
         List<PlayerName> values = Arrays.stream(inputValue.trim().split(","))
                 .map(PlayerName::new)
                 .collect(Collectors.toList());
@@ -21,5 +24,14 @@ public class PlayerNames {
 
     public int size() {
         return this.values.size();
+    }
+
+    private static void validation(String inputValue) {
+        if (inputValue == null) {
+            throw new PlayerNamesEmptyException("Can't create PlayerNames from null source");
+        }
+        if (inputValue.trim().isEmpty()) {
+            throw new PlayerNamesEmptyException("Can't create PlayerNames from empty value");
+        }
     }
 }
