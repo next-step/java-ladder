@@ -29,6 +29,13 @@ public class PlayerNames {
         return this.values.size();
     }
 
+    public int getMaxNameLength() {
+        return this.values.stream()
+                .mapToInt(PlayerName::length)
+                .max()
+                .orElseThrow(() -> new PlayerNamesMaxLengthException("Can't find max length of PlayerNames"));
+    }
+
     private static void validation(String inputValue) {
         nullValidation(inputValue);
         emptyValidation(inputValue);
@@ -44,13 +51,6 @@ public class PlayerNames {
         if (inputValue == null) {
             throw new PlayerNamesEmptyException("Can't create PlayerNames from null source");
         }
-    }
-
-    public int getMaxNameLength() {
-        return this.values.stream()
-                .mapToInt(PlayerName::length)
-                .max()
-                .orElseThrow(() -> new PlayerNamesMaxLengthException("Can't find max length of PlayerNames"));
     }
 
     @Override
