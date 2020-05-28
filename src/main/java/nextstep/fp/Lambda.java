@@ -25,8 +25,9 @@ public class Lambda {
     public static int sum(List<Integer> numbers, Conditional<Integer> conditional) {
         int total = 0;
         for (int number : numbers) {
-            if (conditional.test(number))
+            if (conditional.test(number)) {
                 total += number;
+            }
         }
         return total;
     }
