@@ -1,9 +1,13 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.PointsNeedMoreThanOnePersonException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTests {
     @DisplayName("참여하는 인원수를 입력받아서 객체를 생성할 수 있다.")
@@ -12,6 +16,14 @@ class LineTests {
         int countOfPerson = 3;
         Line line = Line.create(countOfPerson);
         assertThat(line).isNotNull();
+    }
+
+    @DisplayName("0이하의 인원수로 객체를 생성 할 수 없다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0})
+    void createValidationTest(int invalidCountOfPerson) {
+        assertThatThrownBy(() -> Line.create(invalidCountOfPerson))
+                .isInstanceOf(PointsNeedMoreThanOnePersonException.class);
     }
 
     @DisplayName("첫번째 칸에는 무조건 다리를 놓을 수 없다.")
