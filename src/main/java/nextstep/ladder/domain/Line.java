@@ -13,15 +13,10 @@ public class Line {
     }
 
     public static Line create(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>(addFirstPoint());
-        IntStream.range(1, countOfPerson)
-                .forEach(num -> {
-                    if (points.get(num - 1)) {
-                        points.add(false);
-                    } else {
-                        points.add(true);
-                    }
-                });
+        if (countOfPerson == 1) {
+            return new Line(Collections.singletonList(false));
+        }
+        List<Boolean> points = createPoints(countOfPerson);
         return new Line(points);
     }
 
@@ -29,7 +24,10 @@ public class Line {
         return points;
     }
 
-    private static List<Boolean> addFirstPoint() {
-        return Collections.singletonList(false);
+    private static List<Boolean> createPoints(int countOfPerson) {
+        List<Boolean> points = new ArrayList<>(Collections.singletonList(false));
+        IntStream.range(1, countOfPerson)
+                .forEach(num -> points.add(!points.get(num - 1)));
+        return points;
     }
 }
