@@ -18,4 +18,11 @@ public class Points {
     public boolean get(int index) {
         return this.values.get(index);
     }
+
+    public void add() {
+        if (values.get(values.size() - 1)) {
+            values.add(false);
+        }
+        values.add(true);
+    }
 }
