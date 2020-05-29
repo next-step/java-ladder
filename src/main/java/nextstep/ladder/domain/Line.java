@@ -22,6 +22,10 @@ public class Line {
         return new Line(points);
     }
 
+    public int size() {
+        return points.size();
+    }
+
     public boolean getPointsIndex(int index) {
         return points.get(index);
     }

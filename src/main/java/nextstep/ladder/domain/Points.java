@@ -15,14 +15,20 @@ public class Points {
         return new Points(Collections.singletonList(false));
     }
 
+    public int size() {
+        return this.values.size();
+    }
+
     public boolean get(int index) {
         return this.values.get(index);
     }
 
-    public void add() {
+    public Points add() {
         if (values.get(values.size() - 1)) {
             values.add(false);
+            return new Points(new ArrayList<>(this.values));
         }
         values.add(true);
+        return new Points(new ArrayList<>(this.values));
     }
 }

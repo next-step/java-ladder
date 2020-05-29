@@ -17,7 +17,8 @@ public class OutputView {
     }
 
     public String drawLine(Line line) {
-        return line.getPointsValue().stream().map(this::drawPoint)
+        return line.getPointsValue().stream()
+                .map(this::drawPoint)
                 .collect(Collectors.joining());
     }
 

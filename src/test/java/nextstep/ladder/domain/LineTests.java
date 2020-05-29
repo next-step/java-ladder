@@ -31,6 +31,7 @@ class LineTests {
     void firstLadderMustFalseTest() {
         int countOfPerson = 1;
         Line line = Line.create(countOfPerson);
+        assertThat(line.size()).isEqualTo(1);
         assertThat(line.getPointsIndex(0)).isFalse();
     }
 
@@ -39,6 +40,7 @@ class LineTests {
     void canMakeLadderAfterNoneLadder() {
         int countOfPerson = 2;
         Line line = Line.create(countOfPerson);
+        assertThat(line.size()).isEqualTo(2);
         assertThat(line.getPointsIndex(0)).isFalse();
         assertThat(line.getPointsIndex(1)).isTrue();
     }
@@ -48,6 +50,7 @@ class LineTests {
     void cantMakeLadderAfterLadder() {
         int countOfPerson = 3;
         Line line = Line.create(countOfPerson);
+        assertThat(line.size()).isEqualTo(3);
         assertThat(line.getPointsIndex(0)).isFalse();
         assertThat(line.getPointsIndex(1)).isTrue();
         assertThat(line.getPointsIndex(2)).isFalse();
