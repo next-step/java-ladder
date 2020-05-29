@@ -2,6 +2,8 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exceptions.PointsNeedMoreThanOnePersonException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -22,6 +24,10 @@ public class Line {
 
     public boolean getPointsIndex(int index) {
         return points.get(index);
+    }
+
+    public List<Boolean> getPointsValue() {
+        return new ArrayList<>(this.points.values);
     }
 
     private static void countOfPersonValidation(int countOfPerson) {
