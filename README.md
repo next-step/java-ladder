@@ -68,14 +68,15 @@
     - [X] 쉼표로 구분된 문자열을 입력 받아서 객체를 생성할 수 있다.
     - [X] null이나 빈 문자열로 객체를 생성할 수 없다.
     - [X] 갖고 있는 PlayerName 중 가장 긴 이름의 길이를 알 수 있다.
-- [ ] InputView 객체
+- [X] InputView 객체
     - 게임에 참여할 사람 명단, 최대 사다리 높이를 입력받는 객체
     - [X] 사다리 게임에 참여할 사람 목록, 최대 사다리 높이를 입력받아서 객체를 생성할 수 있다.
-    - [ ] 객체 생성 시 System Scanner를 통해 값을 입력받을 수 있다.
+    - [X] 객체 생성 시 System Scanner를 통해 값을 입력받을 수 있다.
 - [ ] OutputView 객체
     - InputView의 값을 기반으로 생성된 Ladder를 출력할 수 있다.
     - [ ] PlayerNames, Ladder 객체를 주입받아서 객체를 생성할 수 있다.
     - [ ] 제일 긴 이름 길이, Line 객체를 받아서 사다리 한 줄을 출력할 수 있다.
     - [ ] Ladder의 모든 Line을 출력할 수 있다.
     - [ ] 출력된 Ladder의 폭에 맞게 Ladder 위에 참여자 명단을 출력할 수 있다.
-    
+- [ ] UiController 객체
+    - InputView와 OutputView를 잘 조율해서 결과를 출력한다.
