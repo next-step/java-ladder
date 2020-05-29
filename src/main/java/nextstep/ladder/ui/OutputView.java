@@ -22,14 +22,8 @@ public class OutputView {
     }
 
     private String drawPoint(boolean isDraw) {
-        if (isDraw) {
-            String pointResult = IntStream.range(0, playerNames.getMaxNameLength())
-                    .mapToObj(num -> "-")
-                    .collect(Collectors.joining());
-            return pointResult + "|";
-        }
         String pointResult = IntStream.range(0, playerNames.getMaxNameLength())
-                .mapToObj(num -> " ")
+                .mapToObj(num -> (isDraw) ? "-" : " ")
                 .collect(Collectors.joining());
         return pointResult + "|";
     }
