@@ -4,7 +4,6 @@ import nextstep.ladder.domain.exceptions.PointsNeedMoreThanOnePersonException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
     private static final int MIN_COUNT_OF_PERSON = 1;
@@ -16,9 +15,13 @@ public class Line {
 
     public static Line create(int countOfPerson) {
         countOfPersonValidation(countOfPerson);
+        if (countOfPerson == 1) {
+            return new Line(Points.create());
+        }
         Points points = Points.create();
-        IntStream.range(0, countOfPerson)
-                .forEach(num -> points.add());
+        for (int i = 1; i < countOfPerson; i++) {
+            points = points.add();
+        }
         return new Line(points);
     }
 
