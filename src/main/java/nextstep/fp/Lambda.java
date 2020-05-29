@@ -31,8 +31,8 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-       return  numbers.stream().filter(number -> number % 2 == 0)
-               .mapToInt(Integer::valueOf).sum();
+        return numbers.stream().filter(number -> number % 2 == 0)
+                .mapToInt(Integer::valueOf).sum();
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
