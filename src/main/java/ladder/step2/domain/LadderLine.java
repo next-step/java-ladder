@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -25,5 +26,9 @@ public class LadderLine {
                       prev[0] = strategy.createLine(prev[0]);
                       return prev[0];
                     }).collect(collectingAndThen(toList(), LadderLine::new));
+  }
+
+  public Stream<Boolean> stream() {
+    return lines.stream();
   }
 }
