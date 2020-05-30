@@ -29,6 +29,12 @@ public class PlayerNames {
         return this.values.size();
     }
 
+    public List<String> getPlayerNameValues() {
+        return this.values.stream()
+                .map(PlayerName::getNameValue)
+                .collect(Collectors.toList());
+    }
+
     public int getMaxNameLength() {
         return this.values.stream()
                 .mapToInt(PlayerName::length)

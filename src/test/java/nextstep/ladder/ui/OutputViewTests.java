@@ -53,4 +53,17 @@ class OutputViewTests {
                 "     |-----|     |\n" +
                 "     |-----|     |\n");
     }
+
+    @DisplayName("이름 길이에 따라 공백을 조절해서 게임 참여자 명단을 그릴 수 있다.")
+    @Test
+    void drawPlayerNames() {
+        PlayerNames playerNames = PlayerNames.create("poppo, ita, saul");
+        int maxLadderHeight = 5;
+        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size());
+        OutputView outputView = new OutputView(playerNames, ladder);
+
+        String drawResult = outputView.drawPlayerNames();
+
+        assertThat(drawResult).isEqualTo(" poppo   ita  saul");
+    }
 }

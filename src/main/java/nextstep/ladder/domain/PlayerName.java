@@ -18,6 +18,10 @@ public class PlayerName {
         return this.nameValue.length();
     }
 
+    public String getNameValue() {
+        return this.nameValue;
+    }
+
     private void validation(String nameValue) {
         nullValidation(nameValue);
         nameLengthValidation(nameValue);

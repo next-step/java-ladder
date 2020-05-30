@@ -16,6 +16,20 @@ public class OutputView {
         this.ladder = ladder;
     }
 
+    public String drawPlayerNames() {
+        return playerNames.getPlayerNameValues().stream()
+                .map(playerNameValue -> {
+                    int defaultDivideSize = 6;
+                    int spaceLength = defaultDivideSize - playerNameValue.length();
+                    String spaces = IntStream.range(0, spaceLength)
+                            .mapToObj(num -> " ")
+                            .collect(Collectors.joining());
+
+                    return spaces + playerNameValue;
+                })
+                .collect(Collectors.joining());
+    }
+
     public String drawLadder() {
         return ladder.getLines().stream()
                 .map(line -> drawLine(line) + System.lineSeparator())
