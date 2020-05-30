@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OutputView {
+    private static final int DEFAULT_PRINT_NAME_SIZE = 6;
     private PlayerNames playerNames;
     private Ladder ladder;
 
@@ -18,15 +19,14 @@ public class OutputView {
 
     public String drawPlayerNames() {
         return playerNames.getPlayerNameValues().stream()
-                .map(playerNameValue -> {
-                    int defaultDivideSize = 6;
-                    int spaceLength = defaultDivideSize - playerNameValue.length();
-                    String spaces = IntStream.range(0, spaceLength)
-                            .mapToObj(num -> " ")
-                            .collect(Collectors.joining());
+                .map(playerNameValue -> nameSpaceGenerate(playerNameValue) + playerNameValue)
+                .collect(Collectors.joining());
+    }
 
-                    return spaces + playerNameValue;
-                })
+    private String nameSpaceGenerate(String playerNameValue) {
+        int spaceLength = DEFAULT_PRINT_NAME_SIZE - playerNameValue.length();
+        return IntStream.range(0, spaceLength)
+                .mapToObj(num -> " ")
                 .collect(Collectors.joining());
     }
 
