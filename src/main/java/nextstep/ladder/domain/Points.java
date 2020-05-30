@@ -23,12 +23,12 @@ public class Points {
         return this.values.get(index);
     }
 
-    public Points add() {
+    public Points add(PointAddStrategy pointAddStrategy) {
         if (values.get(values.size() - 1)) {
-            values.add(false);
+            values.add(pointAddStrategy.confirm(false));
             return new Points(new ArrayList<>(this.values));
         }
-        values.add(true);
+        values.add(pointAddStrategy.confirm(true));
         return new Points(new ArrayList<>(this.values));
     }
 }

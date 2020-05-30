@@ -14,10 +14,10 @@ public class Ladder {
         this.lines = new ArrayList<>(lines);
     }
 
-    public static Ladder create(int ladderHeight, int countOfPerson) {
+    public static Ladder create(int ladderHeight, int countOfPerson, PointAddStrategy pointAddStrategy) {
         ladderHeightValidation(ladderHeight);
         List<Line> lines = new ArrayList<>();
-        IntStream.range(0, ladderHeight).forEach(num -> lines.add(Line.create(countOfPerson)));
+        IntStream.range(0, ladderHeight).forEach(num -> lines.add(Line.create(countOfPerson, pointAddStrategy)));
         return new Ladder(lines);
     }
 

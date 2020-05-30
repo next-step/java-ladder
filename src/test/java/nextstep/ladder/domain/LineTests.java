@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exceptions.PointsNeedMoreThanOnePersonException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,11 +11,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTests {
+    private PointAddStrategy simplePointAddStrategy;
+
+    @BeforeEach
+    public void setup() {
+        simplePointAddStrategy = new SimplePointAddStrategy();
+    }
+
     @DisplayName("참여하는 인원수를 입력받아서 객체를 생성할 수 있다.")
     @Test
     void createTest() {
         int countOfPerson = 3;
-        Line line = Line.create(countOfPerson);
+        Line line = Line.create(countOfPerson, simplePointAddStrategy);
         assertThat(line).isNotNull();
     }
 
@@ -22,7 +30,7 @@ class LineTests {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     void createValidationTest(int invalidCountOfPerson) {
-        assertThatThrownBy(() -> Line.create(invalidCountOfPerson))
+        assertThatThrownBy(() -> Line.create(invalidCountOfPerson, simplePointAddStrategy))
                 .isInstanceOf(PointsNeedMoreThanOnePersonException.class);
     }
 
@@ -30,7 +38,7 @@ class LineTests {
     @Test
     void firstLadderMustFalseTest() {
         int countOfPerson = 1;
-        Line line = Line.create(countOfPerson);
+        Line line = Line.create(countOfPerson, simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(1);
         assertThat(line.getPointsIndex(0)).isFalse();
     }
@@ -39,7 +47,7 @@ class LineTests {
     @Test
     void canMakeLadderAfterNoneLadder() {
         int countOfPerson = 2;
-        Line line = Line.create(countOfPerson);
+        Line line = Line.create(countOfPerson, simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(2);
         assertThat(line.getPointsIndex(0)).isFalse();
         assertThat(line.getPointsIndex(1)).isTrue();
@@ -49,7 +57,7 @@ class LineTests {
     @Test
     void cantMakeLadderAfterLadder() {
         int countOfPerson = 3;
-        Line line = Line.create(countOfPerson);
+        Line line = Line.create(countOfPerson, simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(3);
         assertThat(line.getPointsIndex(0)).isFalse();
         assertThat(line.getPointsIndex(1)).isTrue();

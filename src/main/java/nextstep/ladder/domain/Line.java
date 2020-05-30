@@ -13,14 +13,14 @@ public class Line {
         this.points = points;
     }
 
-    public static Line create(int countOfPerson) {
+    public static Line create(int countOfPerson, PointAddStrategy pointAddStrategy) {
         countOfPersonValidation(countOfPerson);
         if (countOfPerson == 1) {
             return new Line(Points.create());
         }
         Points points = Points.create();
         for (int i = 1; i < countOfPerson; i++) {
-            points = points.add();
+            points = points.add(pointAddStrategy);
         }
         return new Line(points);
     }

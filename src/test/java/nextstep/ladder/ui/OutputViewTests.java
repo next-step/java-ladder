@@ -1,20 +1,26 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.PlayerNames;
+import nextstep.ladder.domain.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputViewTests {
+    private PointAddStrategy simplePointAddStrategy;
+
+    @BeforeEach
+    public void setup() {
+        simplePointAddStrategy = new SimplePointAddStrategy();
+    }
+
     @DisplayName("PlayerNames, Ladder 객체를 주입받아서 객체를 생성할 수 있다.")
     @Test
     void createTest() {
         PlayerNames playerNames = PlayerNames.create("poppo, ita");
         int maxLadderHeight = 5;
-        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size());
+        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size(), simplePointAddStrategy);
 
         OutputView outputView = new OutputView(playerNames, ladder);
 
@@ -26,10 +32,10 @@ class OutputViewTests {
     void drawLineTest() {
         PlayerNames playerNames = PlayerNames.create("poppo, ita");
         int maxLadderHeight = 5;
-        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size());
+        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size(), simplePointAddStrategy);
         OutputView outputView = new OutputView(playerNames, ladder);
 
-        Line line = Line.create(playerNames.size());
+        Line line = Line.create(playerNames.size(), simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(2);
 
         String drawResult = outputView.drawLine(line);
@@ -42,7 +48,7 @@ class OutputViewTests {
     void drawLadderTest() {
         PlayerNames playerNames = PlayerNames.create("poppo, ita, sual");
         int maxLadderHeight = 5;
-        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size());
+        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size(), simplePointAddStrategy);
         OutputView outputView = new OutputView(playerNames, ladder);
 
         String drawResult = outputView.drawLadder();
@@ -59,7 +65,7 @@ class OutputViewTests {
     void drawPlayerNames() {
         PlayerNames playerNames = PlayerNames.create("poppo, ita, saul");
         int maxLadderHeight = 5;
-        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size());
+        Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size(), simplePointAddStrategy);
         OutputView outputView = new OutputView(playerNames, ladder);
 
         String drawResult = outputView.drawPlayerNames();

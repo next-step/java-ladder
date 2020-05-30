@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exceptions.InvalidLadderHeightException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,12 +11,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTests {
+    private PointAddStrategy simplePointAddStrategy;
+
+    @BeforeEach
+    public void setup() {
+        simplePointAddStrategy = new SimplePointAddStrategy();
+    }
+
     @DisplayName("사다리의 최대 높이를 입력받아서 객체를 생성할 수 있다.")
     @Test
     void createTest() {
         int ladderHeight = 5;
         int countOfPerson = 3;
-        Ladder ladder = Ladder.create(ladderHeight, countOfPerson);
+        Ladder ladder = Ladder.create(ladderHeight, countOfPerson, simplePointAddStrategy);
         assertThat(ladder.getHeight()).isEqualTo(ladderHeight);
     }
 
@@ -24,7 +32,7 @@ class LadderTests {
     @ValueSource(ints = {-1, 0})
     void createValidationTest(int invalidLadderHeight) {
         int countOfPerson = 3;
-        assertThatThrownBy(() -> Ladder.create(invalidLadderHeight, countOfPerson))
+        assertThatThrownBy(() -> Ladder.create(invalidLadderHeight, countOfPerson, simplePointAddStrategy))
                 .isInstanceOf(InvalidLadderHeightException.class);
     }
 }
