@@ -16,6 +16,12 @@ public class OutputView {
         this.ladder = ladder;
     }
 
+    public String drawLadder() {
+        return ladder.getLines().stream()
+                .map(line -> drawLine(line) + System.lineSeparator())
+                .collect(Collectors.joining());
+    }
+
     public String drawLine(Line line) {
         return line.getPointsValue().stream()
                 .map(this::drawPoint)

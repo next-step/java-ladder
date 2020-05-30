@@ -77,7 +77,7 @@
     - InputView의 값을 기반으로 생성된 Ladder를 출력할 수 있다.
     - [X] PlayerNames, Ladder 객체를 주입받아서 객체를 생성할 수 있다.
     - [X] 제일 긴 이름 길이, Line 객체를 받아서 사다리 한 줄을 출력할 수 있다.
-    - [ ] Ladder의 모든 Line을 출력할 수 있다.
+    - [X] Ladder의 모든 Line을 출력할 수 있다.
     - [ ] 출력된 Ladder의 폭에 맞게 Ladder 위에 참여자 명단을 출력할 수 있다.
 - [ ] UiController 객체
     - InputView와 OutputView를 잘 조율해서 결과를 출력한다.

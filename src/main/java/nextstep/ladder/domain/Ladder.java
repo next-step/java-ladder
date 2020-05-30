@@ -25,6 +25,10 @@ public class Ladder {
         return lines.size();
     }
 
+    public List<Line> getLines() {
+        return new ArrayList<>(this.lines);
+    }
+
     private static void ladderHeightValidation(int ladderHeight) {
         if (ladderHeight < MIN_HEIGHT) {
             throw new InvalidLadderHeightException("Ladder height must exceed zero");
