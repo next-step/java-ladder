@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OutputView {
-    private static final int DEFAULT_PRINT_NAME_SIZE = 6;
     private PlayerNames playerNames;
     private Ladder ladder;
 
@@ -24,7 +23,7 @@ public class OutputView {
     }
 
     private String nameSpaceGenerate(String playerNameValue) {
-        int spaceLength = DEFAULT_PRINT_NAME_SIZE - playerNameValue.length();
+        int spaceLength = playerNames.getMaxNameLength() - playerNameValue.length() + 1;
         return IntStream.range(0, spaceLength)
                 .mapToObj(num -> " ")
                 .collect(Collectors.joining());

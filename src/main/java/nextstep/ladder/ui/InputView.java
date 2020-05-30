@@ -33,6 +33,10 @@ public class InputView {
         return maxLadderHeight;
     }
 
+    public int getPlayerSize() {
+        return this.playerNames.size();
+    }
+
     private void ladderHeightValidation(int maxLadderHeight) {
         if (maxLadderHeight < MIN_MAXLADDERHEIGHT) {
             throw new IllegalArgumentException("Max Ladder Height must bigger than 0");
