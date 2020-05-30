@@ -1,7 +1,6 @@
-package nextstep.fp;
+package ladder.step1.fp;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {

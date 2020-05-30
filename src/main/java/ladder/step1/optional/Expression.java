@@ -1,4 +1,4 @@
-package nextstep.optional;
+package ladder.step1.optional;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package nextstep.fp;
+package ladder.step1.fp;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 
 public class StreamStudy {
 
-    private static final String PATH = "src/main/resources/fp/war-and-peace.txt";
+    private static final String PATH = "src/main/resources/ladder/fp/war-and-peace.txt";
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths.get(PATH)), StandardCharsets.UTF_8);

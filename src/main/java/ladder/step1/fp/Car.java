@@ -1,4 +1,4 @@
-package nextstep.fp;
+package ladder.step1.fp;
 
 import java.util.Objects;
 
