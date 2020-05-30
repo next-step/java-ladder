@@ -30,7 +30,7 @@ public class StreamStudy {
 
         words.stream()
                 .filter(word -> word.length() > 12)
-                .sorted(Comparator.comparing(String::length))
+                .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
                 .limit(100)
                 .map(String::toLowerCase)
