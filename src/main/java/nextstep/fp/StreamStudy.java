@@ -49,7 +49,7 @@ public class StreamStudy {
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         // List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다
-        return numbers.parallelStream()
+        return numbers.stream()
                       .filter(v -> v > 3)
                       .map(v -> v * 2)
                       .reduce(0, Math::addExact);
