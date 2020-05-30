@@ -5,10 +5,12 @@ import nextstep.ladder.domain.PlayerNames;
 import java.util.Scanner;
 
 public class InputView {
+    private static final int MIN_MAXLADDERHEIGHT = 1;
     private PlayerNames playerNames;
     private int maxLadderHeight;
 
     public InputView(String playerList, int maxLadderHeight) {
+        ladderHeightValidation(maxLadderHeight);
         this.playerNames = PlayerNames.create(playerList);
         this.maxLadderHeight = maxLadderHeight;
     }
@@ -29,5 +31,11 @@ public class InputView {
 
     public int getMaxLadderHeight() {
         return maxLadderHeight;
+    }
+
+    private void ladderHeightValidation(int maxLadderHeight) {
+        if (maxLadderHeight < MIN_MAXLADDERHEIGHT) {
+            throw new IllegalArgumentException("Max Ladder Height must bigger than 0");
+        }
     }
 }
