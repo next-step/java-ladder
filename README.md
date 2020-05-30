@@ -81,6 +81,6 @@
     - [X] 출력된 Ladder의 폭에 맞게 Ladder 위에 참여자 명단을 출력할 수 있다.
 - [X] UiController 객체
     - InputView와 OutputView를 잘 조율해서 결과를 출력한다.
-- [ ] PointAddStrategy 인터페이스
+- [X] PointAddStrategy 인터페이스
     - 고정적으로 사다리가 생성되는 현상을 방지하기 위해, 정책에 따라 사다리 point 추가가 변화하도록 구현
-    - [ ] 다리를 놓을 수 있는 위치에서 진짜로 놓을 것이지 확정하는 인터페이스 구현
+    - [X] 다리를 놓을 수 있는 위치에서 진짜로 놓을 것이지 확정하는 인터페이스 구현
