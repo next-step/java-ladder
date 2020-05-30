@@ -4,22 +4,22 @@ import ladder.step2.exception.ParticipantNameMaximumSizeException;
 
 import java.util.HashMap;
 
-public class ParticipantName {
-  private static final HashMap<String, ParticipantName> factory = new HashMap<>();
+public class Participant {
+  private static final HashMap<String, Participant> factory = new HashMap<>();
 
   private final String name;
 
-  private ParticipantName (String name) {
+  private Participant(String name) {
     this.name = name;
   }
 
-  public ParticipantName valueOf (String name) {
+  public static Participant valueOf (String name) {
     validate(name);
-    ParticipantName already = factory.get(name);
+    Participant already = factory.get(name);
     if (already != null) {
       return already;
     }
-    return new ParticipantName(name);
+    return new Participant(name);
   }
 
   public static void validate (String name) {
