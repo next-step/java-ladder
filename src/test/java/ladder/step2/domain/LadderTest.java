@@ -32,4 +32,43 @@ public class LadderTest {
     );
   }
 
+  @DisplayName("사다리가 규칙에 맞게 잘 정상적으로 잘 생성 되는지 테스트")
+  @ParameterizedTest
+  @MethodSource("provideLadder")
+  void 사다리_생성_테스트 (Ladder ladder, List<List<Boolean>> shape) {
+    assertThat(
+      ladder.stream()
+        .map(ladderLine -> ladderLine.stream()
+          .collect(toList()))
+        .collect(toList())).isEqualTo(shape);
+  }
+
+  private static Stream<Arguments> provideLadder () {
+    return Stream.of(
+      Arguments.of(
+        Ladder.of(4, 3, prev -> !prev),
+        Arrays.asList(
+          Arrays.asList(true, false, true),
+          Arrays.asList(true, false, true),
+          Arrays.asList(true, false, true)
+        )
+      ),
+      Arguments.of(
+        Ladder.of(4, 3, prev -> true),
+        Arrays.asList(
+          Arrays.asList(true, true, true),
+          Arrays.asList(true, true, true),
+          Arrays.asList(true, true, true)
+        )
+      ),
+      Arguments.of(
+        Ladder.of(4, 3, prev -> false),
+        Arrays.asList(
+          Arrays.asList(false, false, false),
+          Arrays.asList(false, false, false),
+          Arrays.asList(false, false, false)
+        )
+      )
+    );
+  }
 }
