@@ -29,10 +29,15 @@ public class Lambda {
     public static int sumAll(List<Integer> numbers, Conditional conditional) {
         int total = 0;
         for (int number : numbers) {
-            if (conditional.checkCondition(number)) {
-                total += number;
-            }
+            total += conditionMatchNumber(number, conditional);
         }
         return total;
+    }
+
+    static Integer conditionMatchNumber(Integer inputNumber, Conditional conditional) {
+        if (conditional.checkCondition(inputNumber)) {
+            return inputNumber;
+        }
+        return 0;
     }
 }

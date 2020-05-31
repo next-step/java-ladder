@@ -38,8 +38,8 @@ public class StreamStudy {
                 .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
                 .map(String::toLowerCase)
-                .collect(Collectors.toList())
-                .subList(0, 100);
+                .limit(100)
+                .collect(Collectors.toList());
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
