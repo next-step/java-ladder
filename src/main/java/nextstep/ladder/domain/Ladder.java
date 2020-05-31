@@ -19,7 +19,7 @@ public class Ladder {
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, ladderHeight)
                 .forEach(num ->
-                        lines.add(Line.create(countOfPerson, pointAddStrategy)));
+                        lines.add(LineFactory.create(countOfPerson, pointAddStrategy)));
         return new Ladder(lines);
     }
 

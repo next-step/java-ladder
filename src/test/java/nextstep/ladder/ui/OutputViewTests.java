@@ -33,7 +33,7 @@ class OutputViewTests {
     void drawLineTest() {
         OutputView outputView = new OutputView(playerNames, ladder);
 
-        Line line = Line.create(playerNames.size(), simplePointAddStrategy);
+        Line line = LineFactory.create(playerNames.size(), simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(2);
 
         String drawResult = outputView.parseLine(line);

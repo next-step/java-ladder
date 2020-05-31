@@ -22,7 +22,7 @@ class LineTests {
     @Test
     void createTest() {
         int countOfPerson = 3;
-        Line line = Line.create(countOfPerson, simplePointAddStrategy);
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
         assertThat(line).isNotNull();
     }
 
@@ -30,7 +30,7 @@ class LineTests {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     void createValidationTest(int invalidCountOfPerson) {
-        assertThatThrownBy(() -> Line.create(invalidCountOfPerson, simplePointAddStrategy))
+        assertThatThrownBy(() -> LineFactory.create(invalidCountOfPerson, simplePointAddStrategy))
                 .isInstanceOf(PointsNeedMoreThanOnePersonException.class);
     }
 
@@ -38,7 +38,7 @@ class LineTests {
     @Test
     void firstLadderMustFalseTest() {
         int countOfPerson = 1;
-        Line line = Line.create(countOfPerson, simplePointAddStrategy);
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(1);
         assertThat(line.getPointsIndex(0)).isFalse();
     }
@@ -47,7 +47,7 @@ class LineTests {
     @Test
     void canMakeLadderAfterNoneLadder() {
         int countOfPerson = 2;
-        Line line = Line.create(countOfPerson, simplePointAddStrategy);
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(2);
         assertThat(line.getPointsIndex(0)).isFalse();
         assertThat(line.getPointsIndex(1)).isTrue();
@@ -57,7 +57,7 @@ class LineTests {
     @Test
     void cantMakeLadderAfterLadder() {
         int countOfPerson = 3;
-        Line line = Line.create(countOfPerson, simplePointAddStrategy);
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(3);
         assertThat(line.getPointsIndex(0)).isFalse();
         assertThat(line.getPointsIndex(1)).isTrue();
