@@ -95,4 +95,4 @@
     - [ ] 나누지 않게 될 경우 add 연산이 아니라 아예 정적 팩토리 메서드로 새로 만드는 방법을 고려해본다.
 - [X] InputView를 초기화하는 과정을 세분화해본다
 - [X] draw 메서드 시리즈의 더 적합한 이름을 고민해본다(OutputView)
-- [ ] 테스트 코드 중복 해소(OutputViewTests)
+- [X] 테스트 코드 중복 해소(OutputViewTests)
