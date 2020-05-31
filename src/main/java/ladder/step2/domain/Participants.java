@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -35,5 +36,9 @@ public class Participants {
     if (size < 2) {
       throw new ParticipantsMinimumSizeException();
     }
+  }
+
+  public Stream<Participant> stream () {
+    return participants.stream();
   }
 }
