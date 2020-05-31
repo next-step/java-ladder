@@ -86,8 +86,8 @@
     - [X] 다리를 놓을 수 있는 위치에서 진짜로 놓을 것이지 확정하는 인터페이스 구현
 
 ### 1차 리뷰 반영
-- [ ] 가독성을 위한 개행(Ladder)
-- [ ] 메서드의 시작은 동사로 (모든 validation 메서드들)
+- [X] 가독성을 위한 개행(Ladder)
+- [X] 메서드의 시작은 동사로 (모든 validation 메서드들)
 - [ ] 중복되는 의미의 클래스 속성명 수정 (PlayerName)
 - [ ] 고정적인 의미의 문자열 상수화(PlayerNames, InputView, OutputView)
 - [ ] 인터페이스 메서드명으 좀 더 구체적으로 변경(PointAddStrategy)

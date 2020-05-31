@@ -10,7 +10,7 @@ public class PlayerName {
     private String nameValue;
 
     public PlayerName(String nameValue) {
-        validation(nameValue);
+        validate(nameValue);
         this.nameValue = nameValue;
     }
 
@@ -22,25 +22,25 @@ public class PlayerName {
         return this.nameValue;
     }
 
-    private void validation(String nameValue) {
-        nullValidation(nameValue);
-        nameLengthValidation(nameValue);
-        emptyNameValidation(nameValue);
+    private void validate(String nameValue) {
+        validateNull(nameValue);
+        validateNameLength(nameValue);
+        validateEmptyName(nameValue);
     }
 
-    private void nullValidation(String nameValue) {
+    private void validateNull(String nameValue) {
         if (nameValue == null) {
             throw new PlayerNameEmptyException("Player's name must not be null");
         }
     }
 
-    private void nameLengthValidation(String nameValue) {
+    private void validateNameLength(String nameValue) {
         if (nameValue.length() > MAX_NAME_VALUE_LENGTH) {
             throw new PlayerNameLengthException("Player's name length muse be smaller than 5");
         }
     }
 
-    private void emptyNameValidation(String nameValue) {
+    private void validateEmptyName(String nameValue) {
         if (nameValue.trim().isEmpty()) {
             throw new PlayerNameEmptyException("Player's name must not be empty");
         }

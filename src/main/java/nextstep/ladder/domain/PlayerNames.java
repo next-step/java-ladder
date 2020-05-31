@@ -17,7 +17,7 @@ public class PlayerNames {
     }
 
     public static PlayerNames create(String inputValue) {
-        validation(inputValue);
+        validate(inputValue);
         List<PlayerName> values = Arrays.stream(inputValue.split(","))
                 .map(String::trim)
                 .map(PlayerName::new)
@@ -42,18 +42,18 @@ public class PlayerNames {
                 .orElseThrow(() -> new PlayerNamesMaxLengthException("Can't find max length of PlayerNames"));
     }
 
-    private static void validation(String inputValue) {
-        nullValidation(inputValue);
-        emptyValidation(inputValue);
+    private static void validate(String inputValue) {
+        validateNull(inputValue);
+        validateEmpty(inputValue);
     }
 
-    private static void emptyValidation(String inputValue) {
+    private static void validateEmpty(String inputValue) {
         if (inputValue.trim().isEmpty()) {
             throw new PlayerNamesEmptyException("Can't create PlayerNames from empty value");
         }
     }
 
-    private static void nullValidation(String inputValue) {
+    private static void validateNull(String inputValue) {
         if (inputValue == null) {
             throw new PlayerNamesEmptyException("Can't create PlayerNames from null source");
         }

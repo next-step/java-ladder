@@ -14,7 +14,7 @@ public class Line {
     }
 
     public static Line create(int countOfPerson, PointAddStrategy pointAddStrategy) {
-        countOfPersonValidation(countOfPerson);
+        validateCountOfPerson(countOfPerson);
         if (countOfPerson == 1) {
             return new Line(Points.create());
         }
@@ -37,7 +37,7 @@ public class Line {
         return new ArrayList<>(this.points.values);
     }
 
-    private static void countOfPersonValidation(int countOfPerson) {
+    private static void validateCountOfPerson(int countOfPerson) {
         if (countOfPerson < MIN_COUNT_OF_PERSON) {
             throw new PointsNeedMoreThanOnePersonException("Need more than one people to make line");
         }

@@ -15,7 +15,7 @@ public class Ladder {
     }
 
     public static Ladder create(int ladderHeight, int countOfPerson, PointAddStrategy pointAddStrategy) {
-        ladderHeightValidation(ladderHeight);
+        validateLadderHeight(ladderHeight);
         List<Line> lines = new ArrayList<>();
         IntStream.range(0, ladderHeight)
                 .forEach(num ->
@@ -31,7 +31,7 @@ public class Ladder {
         return new ArrayList<>(this.lines);
     }
 
-    private static void ladderHeightValidation(int ladderHeight) {
+    private static void validateLadderHeight(int ladderHeight) {
         if (ladderHeight < MIN_HEIGHT) {
             throw new InvalidLadderHeightException("Ladder height must exceed zero");
         }

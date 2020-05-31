@@ -10,7 +10,7 @@ public class InputView {
     private int maxLadderHeight;
 
     public InputView(String playerList, int maxLadderHeight) {
-        ladderHeightValidation(maxLadderHeight);
+        validateLadderHeight(maxLadderHeight);
         this.playerNames = PlayerNames.create(playerList);
         this.maxLadderHeight = maxLadderHeight;
     }
@@ -37,7 +37,7 @@ public class InputView {
         return this.playerNames.size();
     }
 
-    private void ladderHeightValidation(int maxLadderHeight) {
+    private void validateLadderHeight(int maxLadderHeight) {
         if (maxLadderHeight < MIN_MAXLADDERHEIGHT) {
             throw new IllegalArgumentException("Max Ladder Height must bigger than 0");
         }
