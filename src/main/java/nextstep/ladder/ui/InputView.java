@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class InputView {
     private static final int MIN_MAXLADDERHEIGHT = 1;
+    private static final String INPUT_PLAYERS_COMMENT = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String INPUT_LADDER_HEIGHT_COMMENT = "최대 사다리 높이는 몇 개인가요?";
     private PlayerNames playerNames;
     private int maxLadderHeight;
 
@@ -16,10 +18,10 @@ public class InputView {
     }
 
     public static InputView createByUserInput(Scanner scanner) {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.println(INPUT_PLAYERS_COMMENT);
         String playerList = scanner.nextLine();
 
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(INPUT_LADDER_HEIGHT_COMMENT);
         int maxLadderHeight = scanner.nextInt();
 
         return new InputView(playerList, maxLadderHeight);
