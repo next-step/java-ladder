@@ -17,7 +17,9 @@ public class Ladder {
     public static Ladder create(int ladderHeight, int countOfPerson, PointAddStrategy pointAddStrategy) {
         ladderHeightValidation(ladderHeight);
         List<Line> lines = new ArrayList<>();
-        IntStream.range(0, ladderHeight).forEach(num -> lines.add(Line.create(countOfPerson, pointAddStrategy)));
+        IntStream.range(0, ladderHeight)
+                .forEach(num ->
+                        lines.add(Line.create(countOfPerson, pointAddStrategy)));
         return new Ladder(lines);
     }
 
