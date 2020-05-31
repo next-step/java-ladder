@@ -18,7 +18,7 @@ public class LadderLine {
 
   public static LadderLine of (int countOfPerson, LadderLineStrategy strategy) {
     final boolean[] prev = { false };
-    return IntStream.rangeClosed(0, countOfPerson)
+    return IntStream.range(0, countOfPerson)
                     .mapToObj(v -> {
                       prev[0] = strategy.createLine(prev[0]);
                       return prev[0];
