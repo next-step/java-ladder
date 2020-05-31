@@ -7,9 +7,13 @@ public class Player {
     private final static int MAX_OF_NAME_LENGTH = 5;
     private final String name;
 
-    public Player(String name) {
+    private Player(String name) {
         validateName(name);
         this.name = name;
+    }
+
+    String getName() {
+        return name;
     }
 
     private void validateName(String name) {
@@ -23,7 +27,7 @@ public class Player {
         }
     }
 
-    String getName() {
-        return name;
+    static Player of(String name) {
+        return new Player(name);
     }
 }
