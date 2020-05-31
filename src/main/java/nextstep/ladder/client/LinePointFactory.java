@@ -1,8 +1,9 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.client;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import nextstep.ladder.domain.line.LinePoints;
 import nextstep.ladder.domain.point.Point;
 import nextstep.ladder.domain.point.PointGenerator;
 

@@ -12,7 +12,7 @@ public class Player {
         this.name = name;
     }
 
-    static Player of(String name) {
+    public static Player of(String name) {
         return new Player(name);
     }
 

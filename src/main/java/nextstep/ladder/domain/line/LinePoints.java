@@ -8,7 +8,7 @@ public class LinePoints {
 
     private List<Point> points;
 
-    LinePoints(List<Point> points) {
+    public LinePoints(List<Point> points) {
         validate(points);
         this.points = points;
     }

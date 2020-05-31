@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.line.Line;
 
 public class OutputView {
 
