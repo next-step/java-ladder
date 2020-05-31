@@ -11,7 +11,7 @@ public class LineFactory {
 
     public static Line create(int countOfPerson, PointAddStrategy pointAddStrategy) {
         validateCountOfPerson(countOfPerson);
-        if (countOfPerson == 1) {
+        if (countOfPerson == MIN_COUNT_OF_PERSON) {
             return new Line(Collections.singletonList(false));
         }
         return new Line(new ArrayList<>(makeLineWhenMoreThanTwoPeople(countOfPerson, pointAddStrategy)));
