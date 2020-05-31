@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class PlayerName {
     private static final int MAX_NAME_VALUE_LENGTH = 5;
+
     private String name;
 
     public PlayerName(String name) {

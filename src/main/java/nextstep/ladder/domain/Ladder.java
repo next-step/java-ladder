@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
+
     private List<Line> lines;
 
     private Ladder(List<Line> lines) {

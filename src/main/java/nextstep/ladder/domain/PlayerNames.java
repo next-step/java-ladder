@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class PlayerNames {
     private static final String NAME_SEPARATOR = ",";
+
     private List<PlayerName> values;
 
     private PlayerNames(List<PlayerName> values) {

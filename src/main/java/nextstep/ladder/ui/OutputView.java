@@ -11,6 +11,7 @@ public class OutputView {
     private static final String EMPTY_SPACE = " ";
     private static final String LADDER_HORIZONTAL_LINE = "-";
     private static final String LADDER_POINT_SEPARATOR = "|";
+
     private PlayerNames playerNames;
     private Ladder ladder;
 
