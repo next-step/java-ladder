@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParticipantTest {
 
@@ -17,5 +18,12 @@ public class ParticipantTest {
   void 참여자_이름_검증 (String name) {
     assertThatExceptionOfType(ParticipantNameMaximumSizeException.class)
       .isThrownBy(() -> Participant.valueOf(name));
+  }
+
+  @DisplayName("객체를 재사용하고 있는지 확인")
+  @ParameterizedTest
+  @ValueSource(strings = { "aa", "bb", "cc" })
+  void 객체_재사용_검증 (String name) {
+    assertEquals(true, Participant.valueOf(name) == Participant.valueOf(name));
   }
 }
