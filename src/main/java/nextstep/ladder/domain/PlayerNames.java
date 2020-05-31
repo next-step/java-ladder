@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PlayerNames {
+    private static final String NAME_SEPARATOR = ",";
     private List<PlayerName> values;
 
     private PlayerNames(List<PlayerName> values) {
@@ -18,11 +19,11 @@ public class PlayerNames {
 
     public static PlayerNames create(String inputValue) {
         validate(inputValue);
-        List<PlayerName> values = Arrays.stream(inputValue.split(","))
+        List<PlayerName> names = Arrays.stream(inputValue.split(NAME_SEPARATOR))
                 .map(String::trim)
                 .map(PlayerName::new)
                 .collect(Collectors.toList());
-        return new PlayerNames(values);
+        return new PlayerNames(names);
     }
 
     public int size() {
