@@ -14,9 +14,7 @@ public class LineFactory {
         if (countOfPerson == 1) {
             return new Line(Collections.singletonList(false));
         }
-
-        List<Boolean> values = makeLineWhenMoreThanTwoPeople(countOfPerson, pointAddStrategy);
-        return new Line(new ArrayList<>(values));
+        return new Line(new ArrayList<>(makeLineWhenMoreThanTwoPeople(countOfPerson, pointAddStrategy)));
     }
 
     private static List<Boolean> makeLineWhenMoreThanTwoPeople(int countOfPerson, PointAddStrategy pointAddStrategy) {

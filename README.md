@@ -91,8 +91,9 @@
 - [X] 중복되는 의미의 클래스 속성명 수정 (PlayerName)
 - [X] 고정적인 의미의 문자열 상수화(PlayerNames, InputView, OutputView)
 - [X] 인터페이스 메서드명을 좀 더 구체적으로 변경(PointAddStrategy)
-- [ ] Line과 Points로 굳이 일급 컬렉션을 나눠야 하는지 고민해본다
-    - [ ] 나누지 않게 될 경우 add 연산이 아니라 아예 정적 팩토리 메서드로 새로 만드는 방법을 고려해본다.
+- [X] Line과 Points로 굳이 일급 컬렉션을 나눠야 하는지 고민해본다
+    - [X] 나누지 않게 될 경우 add 연산이 아니라 아예 정적 팩토리 메서드로 새로 만드는 방법을 고려해본다.
+    - Line의 생성 관련 복잡성을 다루기 위해서는 Factory 객체가 더 맞다고 판단되어 Factory 패턴을 사용하도록 리팩토링 진행
 - [X] InputView를 초기화하는 과정을 세분화해본다
 - [X] draw 메서드 시리즈의 더 적합한 이름을 고민해본다(OutputView)
 - [X] 테스트 코드 중복 해소(OutputViewTests)
