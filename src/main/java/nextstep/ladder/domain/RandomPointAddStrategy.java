@@ -6,7 +6,7 @@ public class RandomPointAddStrategy implements PointAddStrategy {
     private static final Random random = new Random();
 
     @Override
-    public boolean confirm(boolean canPlace) {
+    public boolean confirmPointLocation(boolean canPlace) {
         if (canPlace) {
             return random.nextBoolean();
         }

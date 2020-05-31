@@ -25,10 +25,10 @@ public class Points {
 
     public Points add(PointAddStrategy pointAddStrategy) {
         if (values.get(values.size() - 1)) {
-            values.add(pointAddStrategy.confirm(false));
+            values.add(pointAddStrategy.confirmPointLocation(false));
             return new Points(new ArrayList<>(this.values));
         }
-        values.add(pointAddStrategy.confirm(true));
+        values.add(pointAddStrategy.confirmPointLocation(true));
         return new Points(new ArrayList<>(this.values));
     }
 }

@@ -89,8 +89,8 @@
 - [X] 가독성을 위한 개행(Ladder)
 - [X] 메서드의 시작은 동사로 (모든 validation 메서드들)
 - [X] 중복되는 의미의 클래스 속성명 수정 (PlayerName)
-- [ ] 고정적인 의미의 문자열 상수화(PlayerNames, InputView, OutputView)
-- [ ] 인터페이스 메서드명으 좀 더 구체적으로 변경(PointAddStrategy)
+- [X] 고정적인 의미의 문자열 상수화(PlayerNames, InputView, OutputView)
+- [X] 인터페이스 메서드명을 좀 더 구체적으로 변경(PointAddStrategy)
 - [ ] Line과 Points로 굳이 일급 컬렉션을 나눠야 하는지 고민해본다
     - [ ] 나누지 않게 될 경우 add 연산이 아니라 아예 정적 팩토리 메서드로 새로 만드는 방법을 고려해본다.
 - [ ] InputView를 초기화하는 과정을 세분화해본다
