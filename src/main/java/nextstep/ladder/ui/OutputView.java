@@ -19,10 +19,29 @@ public class OutputView {
         this.ladder = ladder;
     }
 
-    public String drawPlayerNames() {
+    public String parsePlayerNames() {
         return playerNames.getPlayerNameValues().stream()
                 .map(playerNameValue -> nameSpaceGenerate(playerNameValue) + playerNameValue)
                 .collect(Collectors.joining());
+    }
+
+    public String parseLadder() {
+        return ladder.getLines().stream()
+                .map(line -> parseLine(line) + System.lineSeparator())
+                .collect(Collectors.joining());
+    }
+
+    String parseLine(Line line) {
+        return line.getPointsValue().stream()
+                .map(this::parsePoint)
+                .collect(Collectors.joining());
+    }
+
+    private String parsePoint(boolean isDraw) {
+        String pointResult = IntStream.range(0, playerNames.getMaxNameLength())
+                .mapToObj(num -> (isDraw) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
+                .collect(Collectors.joining());
+        return pointResult + LADDER_POINT_SEPARATOR;
     }
 
     private String nameSpaceGenerate(String playerNameValue) {
@@ -30,24 +49,5 @@ public class OutputView {
         return IntStream.range(0, spaceLength)
                 .mapToObj(num -> EMPTY_SPACE)
                 .collect(Collectors.joining());
-    }
-
-    public String drawLadder() {
-        return ladder.getLines().stream()
-                .map(line -> drawLine(line) + System.lineSeparator())
-                .collect(Collectors.joining());
-    }
-
-    String drawLine(Line line) {
-        return line.getPointsValue().stream()
-                .map(this::drawPoint)
-                .collect(Collectors.joining());
-    }
-
-    private String drawPoint(boolean isDraw) {
-        String pointResult = IntStream.range(0, playerNames.getMaxNameLength())
-                .mapToObj(num -> (isDraw) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
-                .collect(Collectors.joining());
-        return pointResult + LADDER_POINT_SEPARATOR;
     }
 }

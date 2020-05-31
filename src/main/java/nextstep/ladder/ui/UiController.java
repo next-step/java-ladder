@@ -15,7 +15,7 @@ public class UiController {
         Ladder ladder = Ladder.create(userInput.getMaxLadderHeight(), userInput.getPlayerSize(), pointAddStrategy);
         OutputView outputView = new OutputView(userInput.getPlayerNames(), ladder);
 
-        System.out.println(outputView.drawPlayerNames());
-        System.out.println(outputView.drawLadder());
+        System.out.println(outputView.parsePlayerNames());
+        System.out.println(outputView.parseLadder());
     }
 }

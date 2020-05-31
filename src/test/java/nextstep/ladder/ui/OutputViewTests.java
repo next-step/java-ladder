@@ -38,7 +38,7 @@ class OutputViewTests {
         Line line = Line.create(playerNames.size(), simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(2);
 
-        String drawResult = outputView.drawLine(line);
+        String drawResult = outputView.parseLine(line);
 
         assertThat(drawResult).isEqualTo("     |-----|");
     }
@@ -51,7 +51,7 @@ class OutputViewTests {
         Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size(), simplePointAddStrategy);
         OutputView outputView = new OutputView(playerNames, ladder);
 
-        String drawResult = outputView.drawLadder();
+        String drawResult = outputView.parseLadder();
 
         assertThat(drawResult).isEqualTo("     |-----|     |\n" +
                 "     |-----|     |\n" +
@@ -68,7 +68,7 @@ class OutputViewTests {
         Ladder ladder = Ladder.create(maxLadderHeight, playerNames.size(), simplePointAddStrategy);
         OutputView outputView = new OutputView(playerNames, ladder);
 
-        String drawResult = outputView.drawPlayerNames();
+        String drawResult = outputView.parsePlayerNames();
 
         assertThat(drawResult).isEqualTo(" poppo   ita  saul");
     }
