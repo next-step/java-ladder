@@ -27,4 +27,8 @@ public class Participant {
       throw new ParticipantNameMaximumSizeException();
     }
   }
+
+  public String getName () {
+    return name;
+  }
 }
