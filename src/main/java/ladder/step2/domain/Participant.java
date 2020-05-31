@@ -15,11 +15,10 @@ public class Participant {
 
   public static Participant valueOf (String name) {
     validate(name);
-    Participant already = factory.get(name);
-    if (already != null) {
-      return already;
+    if (factory.get(name) == null) {
+      factory.put(name, new Participant(name));
     }
-    return new Participant(name);
+    return factory.get(name);
   }
 
   public static void validate (String name) {
