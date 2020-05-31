@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OutputView {
+    private static final String EMPTY_SPACE = " ";
+    private static final String LADDER_HORIZONTAL_LINE = "-";
+    private static final String LADDER_POINT_SEPARATOR = "|";
     private PlayerNames playerNames;
     private Ladder ladder;
 
@@ -25,7 +28,7 @@ public class OutputView {
     private String nameSpaceGenerate(String playerNameValue) {
         int spaceLength = playerNames.getMaxNameLength() - playerNameValue.length() + 1;
         return IntStream.range(0, spaceLength)
-                .mapToObj(num -> " ")
+                .mapToObj(num -> EMPTY_SPACE)
                 .collect(Collectors.joining());
     }
 
@@ -43,8 +46,8 @@ public class OutputView {
 
     private String drawPoint(boolean isDraw) {
         String pointResult = IntStream.range(0, playerNames.getMaxNameLength())
-                .mapToObj(num -> (isDraw) ? "-" : " ")
+                .mapToObj(num -> (isDraw) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
                 .collect(Collectors.joining());
-        return pointResult + "|";
+        return pointResult + LADDER_POINT_SEPARATOR;
     }
 }
