@@ -7,19 +7,19 @@ import java.util.Objects;
 
 public class PlayerName {
     private static final int MAX_NAME_VALUE_LENGTH = 5;
-    private String nameValue;
+    private String name;
 
-    public PlayerName(String nameValue) {
-        validate(nameValue);
-        this.nameValue = nameValue;
+    public PlayerName(String name) {
+        validate(name);
+        this.name = name;
     }
 
     public int length() {
-        return this.nameValue.length();
+        return this.name.length();
     }
 
-    public String getNameValue() {
-        return this.nameValue;
+    public String getName() {
+        return this.name;
     }
 
     private void validate(String nameValue) {
@@ -51,18 +51,18 @@ public class PlayerName {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlayerName that = (PlayerName) o;
-        return Objects.equals(nameValue, that.nameValue);
+        return Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nameValue);
+        return Objects.hash(name);
     }
 
     @Override
     public String toString() {
         return "PlayerName{" +
-                "nameValue='" + nameValue + '\'' +
+                "nameValue='" + name + '\'' +
                 '}';
     }
 }

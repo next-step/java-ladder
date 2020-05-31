@@ -31,7 +31,7 @@ public class PlayerNames {
 
     public List<String> getPlayerNameValues() {
         return this.values.stream()
-                .map(PlayerName::getNameValue)
+                .map(PlayerName::getName)
                 .collect(Collectors.toList());
     }
 
