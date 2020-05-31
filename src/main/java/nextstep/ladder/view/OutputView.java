@@ -6,7 +6,7 @@ import nextstep.ladder.domain.Player;
 
 public class OutputView {
 
-    public void printResult(List<Player> players, List<Line> lines){
+    public void printResult(List<Player> players, List<Line> lines) {
         System.out.println("실핼결과\n");
 
         players.forEach(this::printPlayer);
@@ -16,7 +16,7 @@ public class OutputView {
         lines.forEach(this::printLine);
     }
 
-    private void printPlayer(Player player){
+    private void printPlayer(Player player) {
         System.out.print(String.format("%6s", player.getName()));
     }
 

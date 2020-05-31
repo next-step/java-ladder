@@ -25,15 +25,18 @@ public class Ladder {
         this.players = players;
     }
 
-    public List<Line> getLines() {
-        return new ArrayList<>(this.lines);
-    }
-    public List<Player> getPlayers() {return new ArrayList<>(this.players);}
-
     public static Ladder of(int height, List<String> names) {
         List<Player> players = names.stream()
             .map(Player::of).collect(Collectors.toList());
 
         return new Ladder(height, players);
+    }
+
+    public List<Line> getLines() {
+        return new ArrayList<>(this.lines);
+    }
+
+    public List<Player> getPlayers() {
+        return new ArrayList<>(this.players);
     }
 }

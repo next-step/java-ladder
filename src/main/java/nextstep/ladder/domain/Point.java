@@ -8,6 +8,10 @@ public class Point {
         this.hasLadder = hasLadder;
     }
 
+    public static Point of(boolean hasLadder) {
+        return new Point(hasLadder);
+    }
+
     boolean isValid(Point pre) {
         if (!hasLadder) {
             return true;
@@ -18,9 +22,5 @@ public class Point {
 
     public boolean hasLadder() {
         return this.hasLadder;
-    }
-
-    public static Point of(boolean hasLadder) {
-        return new Point(hasLadder);
     }
 }

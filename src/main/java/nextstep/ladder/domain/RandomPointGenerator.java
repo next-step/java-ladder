@@ -8,7 +8,7 @@ public class RandomPointGenerator implements PointGenerator {
 
     @Override
     public Point nextPoint(Point current) {
-        if(current.hasLadder()){
+        if (current.hasLadder()) {
             return Point.of(false);
         }
 
@@ -20,7 +20,7 @@ public class RandomPointGenerator implements PointGenerator {
         return random();
     }
 
-    private Point random(){
-        return  Point.of(random.nextBoolean());
+    private Point random() {
+        return Point.of(random.nextBoolean());
     }
 }

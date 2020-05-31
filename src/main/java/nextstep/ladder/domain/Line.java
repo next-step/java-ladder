@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+
     private final List<Point> points;
 
     public Line(int countOfPerson) {

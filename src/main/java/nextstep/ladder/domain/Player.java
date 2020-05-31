@@ -12,6 +12,10 @@ public class Player {
         this.name = name;
     }
 
+    static Player of(String name) {
+        return new Player(name);
+    }
+
     public String getName() {
         return name;
     }
@@ -25,9 +29,5 @@ public class Player {
         if (length > MAX_OF_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
-    }
-
-    static Player of(String name) {
-        return new Player(name);
     }
 }
