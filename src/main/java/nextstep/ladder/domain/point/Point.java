@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.point;
 
 public class Point {
 
@@ -12,7 +12,19 @@ public class Point {
         return new Point(hasLadder);
     }
 
-    boolean isValid(Point pre) {
+    public static Point first(PointGenerator pointGenerator) {
+        return Point.of(pointGenerator.hasLadder());
+    }
+
+    public Point next(PointGenerator pointGenerator) {
+        if (hasLadder) {
+            return Point.of(false);
+        }
+
+        return Point.of(pointGenerator.hasLadder());
+    }
+
+    public boolean isValid(Point pre) {
         if (!hasLadder) {
             return true;
         }

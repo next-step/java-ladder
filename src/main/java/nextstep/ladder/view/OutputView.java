@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.Player;
 
 public class OutputView {
@@ -21,11 +21,14 @@ public class OutputView {
     }
 
     private void printLine(Line line) {
-        System.out.print("     |");
+        StringBuilder builder = new StringBuilder();
+        builder.append("     |");
+
         line.getPoints().forEach(point -> {
-            System.out.print(point.hasLadder() ? "-----" : "     ");
-            System.out.print("|");
+            builder.append(point.hasLadder() ? "-----" : "     ")
+                .append('|');
         });
-        System.out.println();
+
+        System.out.println(builder.toString());
     }
 }

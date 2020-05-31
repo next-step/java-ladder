@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import nextstep.ladder.domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,7 +17,7 @@ public class PlayerTest {
         "aaaa"
     })
     @ParameterizedTest
-    void player_name_length(String name){
+    void player_name_length(String name) {
         Player player = Player.of(name);
 
         assertThat(player.getName()).isEqualTo(name);
@@ -30,7 +29,7 @@ public class PlayerTest {
         "1234567"
     })
     @ParameterizedTest
-    void given_more_than_5_when_crate_then_throw_exception(String name){
-        assertThatThrownBy(()->Player.of(name)).isInstanceOf(IllegalArgumentException.class);
+    void given_more_than_5_when_crate_then_throw_exception(String name) {
+        assertThatThrownBy(() -> Player.of(name)).isInstanceOf(IllegalArgumentException.class);
     }
 }
