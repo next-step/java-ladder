@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 public class ResultView {
   private static final ResultView instance = new ResultView();
@@ -26,7 +27,7 @@ public class ResultView {
 
   private String toStringOfParticipants (Participants participants) {
     return participants.stream()
-                       .map(participant -> String.format("%5s", participant))
+                       .map(participant -> String.format("%6s", participant.getName()))
                        .collect(joining(""));
   }
 
@@ -38,10 +39,11 @@ public class ResultView {
 
   private static String toStringOfLadderLine (LadderLine ladderLine) {
     return String.format(
+      "%s%s",
       NO_LINE,
       ladderLine.stream()
-        .map(v -> v ? IS_LINE : NO_LINE)
-        .collect(joining(""))
+                .map(v -> v ? IS_LINE : NO_LINE)
+                .collect(joining(""))
     );
   }
 
