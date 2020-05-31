@@ -16,11 +16,11 @@ public class Point {
         return !pre.hasLadder;
     }
 
-    boolean hasLadder() {
+    public boolean hasLadder() {
         return this.hasLadder;
     }
 
-    static Point of(boolean hasLadder) {
+    public static Point of(boolean hasLadder) {
         return new Point(hasLadder);
     }
 }
