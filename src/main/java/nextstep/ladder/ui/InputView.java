@@ -18,13 +18,7 @@ public class InputView {
     }
 
     public static InputView createByUserInput(Scanner scanner) {
-        System.out.println(INPUT_PLAYERS_COMMENT);
-        String playerList = scanner.nextLine();
-
-        System.out.println(INPUT_LADDER_HEIGHT_COMMENT);
-        int maxLadderHeight = scanner.nextInt();
-
-        return new InputView(playerList, maxLadderHeight);
+        return new InputView(getUserInputPlayers(scanner), getUserInputMaxLadderHeight(scanner));
     }
 
     public PlayerNames getPlayerNames() {
@@ -37,6 +31,16 @@ public class InputView {
 
     public int getPlayerSize() {
         return this.playerNames.size();
+    }
+
+    private static int getUserInputMaxLadderHeight(Scanner scanner) {
+        System.out.println(INPUT_LADDER_HEIGHT_COMMENT);
+        return scanner.nextInt();
+    }
+
+    private static String getUserInputPlayers(Scanner scanner) {
+        System.out.println(INPUT_PLAYERS_COMMENT);
+        return scanner.nextLine();
     }
 
     private void validateLadderHeight(int maxLadderHeight) {
