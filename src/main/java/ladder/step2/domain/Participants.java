@@ -4,16 +4,16 @@ import ladder.step2.exception.ParticipantsMinimumSizeException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
 public class Participants {
-  private final SortedSet<Participant> participants;
+  private final Set<Participant> participants;
 
-  private Participants (SortedSet<Participant> participants) {
+  private Participants (Set<Participant> participants) {
     this.participants = participants;
   }
 
@@ -24,10 +24,11 @@ public class Participants {
   }
 
   public static Participants ofList (List<Participant> participants) {
-    return of(new TreeSet<>(participants));
+    Set<Participant> setOfParticipants = new HashSet<>(participants);
+    return of(setOfParticipants);
   }
 
-  public static Participants of (TreeSet<Participant> participants) {
+  public static Participants of (Set<Participant> participants) {
     validate(participants.size());
     return new Participants(participants);
   }
