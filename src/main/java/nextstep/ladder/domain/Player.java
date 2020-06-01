@@ -53,19 +53,21 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player that = (Player) o;
-        return Objects.equals(name, that.name);
+        Player player = (Player) o;
+        return location == player.location &&
+                Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, location);
     }
 
     @Override
     public String toString() {
-        return "PlayerName{" +
-                "nameValue='" + name + '\'' +
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", location=" + location +
                 '}';
     }
 }
