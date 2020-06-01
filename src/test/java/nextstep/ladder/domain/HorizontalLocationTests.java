@@ -49,4 +49,18 @@ class HorizontalLocationTests {
         HorizontalLocation horizontalLocation = new HorizontalLocation(countOfPerson, countOfPerson);
         assertThatThrownBy(horizontalLocation::up).isInstanceOf(LocationLimitExceedException.class);
     }
+
+    @DisplayName("유효 범위 내에서 감소 연산 가능")
+    @Test
+    void downTest() {
+        HorizontalLocation horizontalLocation = new HorizontalLocation(locationValue, countOfPerson);
+        assertThat(horizontalLocation.down()).isEqualTo(new HorizontalLocation(0, countOfPerson));
+    }
+
+    @DisplayName("유효 범위를 벗어난 감소 연산 수행 시 예외 발생")
+    @Test
+    void downValidationTest() {
+        HorizontalLocation horizontalLocation = new HorizontalLocation(0, countOfPerson);
+        assertThatThrownBy(horizontalLocation::down).isInstanceOf(LocationLimitExceedException.class);
+    }
 }
