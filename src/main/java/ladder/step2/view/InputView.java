@@ -8,6 +8,7 @@ public class InputView {
 
   private static final InputView INSTANCE = new InputView();
   private static final Scanner SCANNER = new Scanner(System.in);
+  private static final String NEW_LINE = System.lineSeparator();
 
   private InputView () { }
 
@@ -17,7 +18,7 @@ public class InputView {
   }
 
   public int inputHeight () {
-    System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+    System.out.println(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
     return Integer.parseInt(SCANNER.nextLine());
   }
 

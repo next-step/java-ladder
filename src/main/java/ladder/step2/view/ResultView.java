@@ -4,22 +4,19 @@ import ladder.step2.domain.Ladder;
 import ladder.step2.domain.LadderLine;
 import ladder.step2.domain.Participants;
 
-import java.util.Scanner;
-import java.util.stream.Collectors;
-
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 public class ResultView {
   private static final ResultView INSTANCE = new ResultView();
   private static final String IS_LINE = "-----|";
   private static final String NO_LINE = "     |";
+  private static final String NEW_LINE = System.lineSeparator();
 
   private ResultView () { }
 
   public void viewLadder (Ladder ladder, Participants participants) {
     System.out.printf(
-      "\n실행결과\n%s\n%s",
+      NEW_LINE + "실행결과" + NEW_LINE + "%s" + NEW_LINE + "%s",
       toStringOfParticipants(participants),
       toStringOfLadder(ladder)
     );
@@ -34,17 +31,13 @@ public class ResultView {
   private static String toStringOfLadder (Ladder ladder) {
     return ladder.stream()
                  .map(ResultView::toStringOfLadderLine)
-                 .collect(joining("\n"));
+                 .collect(joining(NEW_LINE));
   }
 
   private static String toStringOfLadderLine (LadderLine ladderLine) {
-    return String.format(
-      "%s%s",
-      NO_LINE,
-      ladderLine.stream()
-                .map(v -> v ? IS_LINE : NO_LINE)
-                .collect(joining(""))
-    );
+    return NO_LINE + ladderLine.stream()
+                               .map(v -> v ? IS_LINE : NO_LINE)
+                               .collect(joining(""));
   }
 
 
