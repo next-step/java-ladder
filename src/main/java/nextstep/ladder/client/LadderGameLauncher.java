@@ -18,7 +18,7 @@ public class LadderGameLauncher {
         List<String> playerNames = inputView.requestPlayers();
         int height = inputView.requestHeight();
 
-        Ladder ladder = LadderFactory.createLadder(height, playerNames);
+        Ladder ladder = Ladder.of(height, playerNames);
 
         outputView.printResult(ladder.getPlayers(), ladder.getLines());
     }

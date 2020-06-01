@@ -8,7 +8,7 @@ public class Point {
         this.hasLadder = hasLadder;
     }
 
-    public static Point of(boolean hasLadder) {
+    private static Point of(boolean hasLadder) {
         return new Point(hasLadder);
     }
 

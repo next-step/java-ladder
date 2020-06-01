@@ -8,7 +8,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.client.LinePointFactory;
+import nextstep.ladder.domain.line.LinePoints;
 import nextstep.ladder.domain.point.RandomPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class LadderTest {
 
     private Ladder createLadder(int height, int playerCount){
         List<Line> lines = Stream.generate(() -> new Line(
-            LinePointFactory.of(playerCount, new RandomPointGenerator())))
+            LinePoints.of(playerCount, new RandomPointGenerator())))
             .limit(height)
             .collect(Collectors.toList());
 

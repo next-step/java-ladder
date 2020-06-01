@@ -2,7 +2,11 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.line.LinePoints;
+import nextstep.ladder.domain.point.RandomPointGenerator;
 
 public class Ladder {
 
@@ -14,6 +18,18 @@ public class Ladder {
 
         this.lines = lines;
         this.players = players;
+    }
+
+    public static Ladder of(int height, List<String> names) {
+        List<Player> players = names.stream()
+            .map(Player::of).collect(Collectors.toList());
+
+        List<Line> lines = Stream.generate(() -> new Line(
+            LinePoints.of(players.size(), new RandomPointGenerator())))
+            .limit(height)
+            .collect(Collectors.toList());
+
+        return new Ladder(lines, players);
     }
 
     private void validate(List<Line> lines, List<Player> players) {
@@ -31,5 +47,9 @@ public class Ladder {
 
     public List<Player> getPlayers() {
         return new ArrayList<>(this.players);
+    }
+
+    public String play(String pobi) {
+        return null;
     }
 }

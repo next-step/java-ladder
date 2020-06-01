@@ -13,9 +13,9 @@ class LinePointsTest {
     @DisplayName("연속적으로 사다리가 존재하면 예외가 발생한다.")
     @Test
     void point_validation() {
-        List<Point> points = Arrays.asList(Point.of(true), Point.of(true));
+        List<Point> points = Arrays.asList(Point.first(() -> true), Point.first(() -> true));
 
-        assertThatThrownBy(() -> new LinePoints(points))
+        assertThatThrownBy(() -> LinePoints.of(points))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
