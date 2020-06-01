@@ -21,8 +21,8 @@ public class LadderHeight {
   }
 
   public static LadderHeight valueOf (String height) {
-    validateThatItsNumber(height);
-    return valueOf(Integer.parseInt(height));
+    validateThatItsNumber(height.trim());
+    return valueOf(Integer.parseInt(height.trim()));
   }
 
   public static LadderHeight valueOf (int height) {
