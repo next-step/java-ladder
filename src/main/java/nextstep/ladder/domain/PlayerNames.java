@@ -23,7 +23,7 @@ public class PlayerNames {
         // TODO: location 추가에 따라 맞는 로직으로 객체 생성하도록 구현 필요
         List<Player> names = Arrays.stream(inputValue.split(NAME_SEPARATOR))
                 .map(String::trim)
-                .map(name -> new Player(name, 0))
+                .map(name -> new Player(name, new HorizontalLocation(0, 5)))
                 .collect(Collectors.toList());
         return new PlayerNames(names);
     }

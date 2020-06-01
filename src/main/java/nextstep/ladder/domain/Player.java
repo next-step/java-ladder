@@ -9,12 +9,12 @@ public class Player {
     private static final int MAX_NAME_VALUE_LENGTH = 5;
 
     private final String name;
-    private final int location;
+    private HorizontalLocation horizontalLocation;
 
-    public Player(String name, int location) {
+    public Player(String name, HorizontalLocation horizontalLocation) {
         validate(name);
         this.name = name;
-        this.location = location;
+        this.horizontalLocation = horizontalLocation;
     }
 
     public int length() {
@@ -25,12 +25,12 @@ public class Player {
         return this.name;
     }
 
-    public Player moveRight() {
-        return new Player(this.name, this.location + 1);
+    public void moveRight() {
+        this.horizontalLocation = horizontalLocation.up();
     }
 
-    public Player moveLeft() {
-        return new Player(this.name, this.location - 1);
+    public void moveLeft() {
+        this.horizontalLocation = horizontalLocation.down();
     }
 
     private void validate(String nameValue) {
@@ -62,20 +62,12 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return location == player.location &&
-                Objects.equals(name, player.name);
+        return Objects.equals(name, player.name) &&
+                Objects.equals(horizontalLocation, player.horizontalLocation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, location);
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", location=" + location +
-                '}';
+        return Objects.hash(name, horizontalLocation);
     }
 }
