@@ -12,17 +12,18 @@ import java.util.stream.Collectors;
 public class PlayerNames {
     private static final String NAME_SEPARATOR = ",";
 
-    private List<PlayerName> values;
+    private List<Player> values;
 
-    private PlayerNames(List<PlayerName> values) {
+    private PlayerNames(List<Player> values) {
         this.values = new ArrayList<>(values);
     }
 
     public static PlayerNames create(String inputValue) {
         validate(inputValue);
-        List<PlayerName> names = Arrays.stream(inputValue.split(NAME_SEPARATOR))
+        // TODO: location 추가에 따라 맞는 로직으로 객체 생성하도록 구현 필요
+        List<Player> names = Arrays.stream(inputValue.split(NAME_SEPARATOR))
                 .map(String::trim)
-                .map(PlayerName::new)
+                .map(name -> new Player(name, 0))
                 .collect(Collectors.toList());
         return new PlayerNames(names);
     }
@@ -33,13 +34,13 @@ public class PlayerNames {
 
     public List<String> getPlayerNameValues() {
         return this.values.stream()
-                .map(PlayerName::getName)
+                .map(Player::getName)
                 .collect(Collectors.toList());
     }
 
     public int getMaxNameLength() {
         return this.values.stream()
-                .mapToInt(PlayerName::length)
+                .mapToInt(Player::length)
                 .max()
                 .orElseThrow(() -> new PlayerNamesMaxLengthException("Can't find max length of PlayerNames"));
     }

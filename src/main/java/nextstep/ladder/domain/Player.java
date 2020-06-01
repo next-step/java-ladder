@@ -5,14 +5,16 @@ import nextstep.ladder.domain.exceptions.PlayerNameLengthException;
 
 import java.util.Objects;
 
-public class PlayerName {
+public class Player {
     private static final int MAX_NAME_VALUE_LENGTH = 5;
 
     private String name;
+    private int location;
 
-    public PlayerName(String name) {
+    public Player(String name, int location) {
         validate(name);
         this.name = name;
+        this.location = location;
     }
 
     public int length() {
@@ -51,7 +53,7 @@ public class PlayerName {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlayerName that = (PlayerName) o;
+        Player that = (Player) o;
         return Objects.equals(name, that.name);
     }
 
