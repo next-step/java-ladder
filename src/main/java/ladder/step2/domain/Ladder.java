@@ -15,8 +15,8 @@ public class Ladder {
     this.ladder = ladder;
   }
 
-  public static Ladder of (int participants, LadderHeight height, LadderLineStrategy strategy) {
-    int width = participants - 1;
+  public static Ladder of (Participants participants, LadderHeight height, LadderLineStrategy strategy) {
+    int width = participants.size() - 1;
     List<LadderLine> ladder = IntStream.range(0, height.getValue())
                                        .mapToObj(h -> LadderLine.of(width, strategy))
                                        .collect(toList());

@@ -1,5 +1,6 @@
 package ladder.step2.domain;
 
+import ladder.step2.domain.strategy.LadderLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -23,12 +24,14 @@ public class LadderTest {
   }
 
   private static Stream<Arguments> provideLadderAndHeight () {
+    Participants participants = Participants.ofString("a,b,c,d,e");
+    LadderLineStrategy strategy = prev -> true;
     return Stream.of(
-      Arguments.of(Ladder.of(5, 5, prev -> true), 5),
-      Arguments.of(Ladder.of(5, 4, prev -> true), 4),
-      Arguments.of(Ladder.of(5, 3, prev -> true), 3),
-      Arguments.of(Ladder.of(5, 2, prev -> true), 2),
-      Arguments.of(Ladder.of(5, 1, prev -> true), 1)
+      Arguments.of(Ladder.of(participants, LadderHeight.valueOf(5), strategy), 5),
+      Arguments.of(Ladder.of(participants, LadderHeight.valueOf(4), strategy), 4),
+      Arguments.of(Ladder.of(participants, LadderHeight.valueOf(3), strategy), 3),
+      Arguments.of(Ladder.of(participants, LadderHeight.valueOf(2), strategy), 2),
+      Arguments.of(Ladder.of(participants, LadderHeight.valueOf(1), strategy), 1)
     );
   }
 
@@ -44,9 +47,11 @@ public class LadderTest {
   }
 
   private static Stream<Arguments> provideLadder () {
+    Participants participants = Participants.ofString("aa,bb,cc");
+    LadderHeight ladderHeight = LadderHeight.valueOf(3);
     return Stream.of(
       Arguments.of(
-        Ladder.of(4, 3, prev -> !prev),
+        Ladder.of(participants, ladderHeight, prev -> !prev),
         Arrays.asList(
           Arrays.asList(true, false, true),
           Arrays.asList(true, false, true),
@@ -54,7 +59,7 @@ public class LadderTest {
         )
       ),
       Arguments.of(
-        Ladder.of(4, 3, prev -> true),
+        Ladder.of(participants, ladderHeight, prev -> true),
         Arrays.asList(
           Arrays.asList(true, true, true),
           Arrays.asList(true, true, true),
@@ -62,7 +67,7 @@ public class LadderTest {
         )
       ),
       Arguments.of(
-        Ladder.of(4, 3, prev -> false),
+        Ladder.of(participants, ladderHeight, prev -> false),
         Arrays.asList(
           Arrays.asList(false, false, false),
           Arrays.asList(false, false, false),

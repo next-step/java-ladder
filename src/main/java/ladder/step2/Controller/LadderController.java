@@ -1,6 +1,7 @@
 package ladder.step2.Controller;
 
 import ladder.step2.domain.Ladder;
+import ladder.step2.domain.LadderHeight;
 import ladder.step2.domain.Participants;
 import ladder.step2.domain.strategy.LadderLineStrategyImpl;
 import ladder.step2.view.*;
@@ -11,11 +12,11 @@ public class LadderController {
 
   public static void main(String[] args) {
     Participants participants = INPUT_VIEW.inputParticipants();
-    int height = INPUT_VIEW.inputHeight();
+    LadderHeight ladderHeight = INPUT_VIEW.inputHeight();
 
     Ladder ladder = Ladder.of(
-      participants.size(),
-      height,
+      participants,
+      ladderHeight,
       LadderLineStrategyImpl.getInstance()
     );
 
