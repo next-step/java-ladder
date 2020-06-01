@@ -8,27 +8,27 @@ import java.util.Map;
 public class Participant {
   private static final Map<String, Participant> FACTORY = new HashMap<>();
 
-  private final String name;
+  private final String value;
 
-  private Participant(String name) {
-    this.name = name;
+  private Participant(String value) {
+    this.value = value;
   }
 
-  public static Participant valueOf (String name) {
-    validate(name);
-    if (FACTORY.get(name) == null) {
-      FACTORY.put(name, new Participant(name));
+  public static Participant valueOf (String value) {
+    validate(value);
+    if (FACTORY.get(value) == null) {
+      FACTORY.put(value, new Participant(value));
     }
-    return FACTORY.get(name);
+    return FACTORY.get(value);
   }
 
-  public static void validate (String name) {
-    if (name.length() > 5) {
+  public static void validate (String value) {
+    if (value.length() > 5) {
       throw new ParticipantNameMaximumSizeException();
     }
   }
 
-  public String getName () {
-    return name;
+  public String getValue () {
+    return value;
   }
 }

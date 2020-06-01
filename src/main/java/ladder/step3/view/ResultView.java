@@ -24,7 +24,7 @@ public class ResultView {
 
   private String toStringOfParticipants (Participants participants) {
     return participants.stream()
-                       .map(participant -> String.format("%6s", participant.getName()))
+                       .map(participant -> String.format("%6s", participant.getValue()))
                        .collect(joining(""));
   }
 
