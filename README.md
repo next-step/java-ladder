@@ -137,3 +137,7 @@
         - [ ] Player가 위치한 Point가 true면 왼쪽 이동 후 아래로 이동
         - [ ] Player가 위치한 Point의 오른쪽 Point가 true면 오른쪽 이동 후 아래로 이동
         - Ladder 생성 규칙에 의해 두 위치가 모두 true인 경우는 존재하지 않는다.
+- [ ] Line
+    - [ ] Player 객체를 입력 받아서 현재 Point가 true면 왼쪽 이동 실행
+    - [ ] Player 객체를 입력 받아서 다음 Point가 true면 오른쪽 이동 실행
+        - [ ] 끝자리 여부 확인 필요 (끝자리인 경우 다음 Point 확인 안함)
