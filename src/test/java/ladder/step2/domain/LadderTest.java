@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LadderTest {
 
-  @DisplayName("사다리의 높이에 대한 테스트")
+  @DisplayName("사다리의 높이를 정상적으로 주입 받았는지 확인하는 테스트")
   @ParameterizedTest
   @MethodSource("provideLadderAndHeight")
-  void 사다리_높이_테스트 (Ladder ladder, long expected) {
+  void 사다리_높이_확인_테스트 (Ladder ladder, long expected) {
     assertEquals(expected, ladder.stream().count());
   }
 
@@ -47,7 +47,7 @@ public class LadderTest {
   }
 
   private static Stream<Arguments> provideLadder () {
-    Participants participants = Participants.ofString("aa,bb,cc");
+    Participants participants = Participants.ofString("aa,bb,cc,dd");
     LadderHeight ladderHeight = LadderHeight.valueOf(3);
     return Stream.of(
       Arguments.of(
