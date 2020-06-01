@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 public class ResultView {
-  private static final ResultView instance = new ResultView();
+  private static final ResultView INSTANCE = new ResultView();
   private static final String IS_LINE = "-----|";
   private static final String NO_LINE = "     |";
 
@@ -49,7 +49,7 @@ public class ResultView {
 
 
   public static ResultView getInstance() {
-    return instance;
+    return INSTANCE;
   }
 
 }
