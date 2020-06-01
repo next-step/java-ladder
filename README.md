@@ -145,5 +145,6 @@
     - Line에 확인하고 싶은 index를 전달하면 알맞는 정책 객체를 반환하도록 구현
     - [X] 인자로 전달된 index의 Point가 true면 왼쪽 이동 정책 반환
     - [X] 인자로 전달된 index의 옆 Point가 true면 오른쪽 이동 정책 반환
-        - [ ] 인자로 전달된 index가 Line index의 마지막이라면 옆 Point 확인하지 않음
+        - [ ] 인자로 전달된 index가 Line index의 마지막이고, 현재 index가 true면 왼쪽 이동 정책 반환
+        - [ ] 인자로 전달된 index가 Line index의 마지막이고, 현재 index가 false면 이동없음 정책 반환
     - [X] 위 두가지 경우에 속하지 않는다면 이동없음 정책 반환
