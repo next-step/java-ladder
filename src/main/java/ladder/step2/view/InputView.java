@@ -1,5 +1,6 @@
 package ladder.step2.view;
 
+import ladder.step2.domain.LadderHeight;
 import ladder.step2.domain.Participants;
 
 import java.util.Scanner;
@@ -17,9 +18,9 @@ public class InputView {
     return Participants.ofString(SCANNER.nextLine());
   }
 
-  public int inputHeight () {
+  public LadderHeight inputHeight () {
     System.out.println(NEW_LINE + "최대 사다리 높이는 몇 개인가요?");
-    return Integer.parseInt(SCANNER.nextLine());
+    return LadderHeight.valueOf(SCANNER.nextLine());
   }
 
   public static InputView getInstance() {
