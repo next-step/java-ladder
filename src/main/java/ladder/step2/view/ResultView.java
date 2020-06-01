@@ -40,8 +40,7 @@ public class ResultView {
                                .collect(joining(""));
   }
 
-
-  public static ResultView getInstance() {
+  public static ResultView getInstance () {
     return INSTANCE;
   }
 
