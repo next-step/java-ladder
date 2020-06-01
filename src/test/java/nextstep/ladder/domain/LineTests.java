@@ -63,4 +63,28 @@ class LineTests {
         assertThat(line.getPointsIndex(1)).isTrue();
         assertThat(line.getPointsIndex(2)).isFalse();
     }
+
+    @DisplayName("인자로 전달된 Player의 Location Point가 true면 왼쪽으로 이동시킨다.")
+    @Test
+    void moveLeftTest() {
+        int countOfPerson = 3;
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
+        Player player = new Player("poppo", new HorizontalLocation(1, countOfPerson));
+
+        line.move(player);
+
+        assertThat(player.getHorizontalLocation()).isEqualTo(new HorizontalLocation(0, countOfPerson));
+    }
+
+    @DisplayName("인자로 전달된 Player의 우측 Loction Point가 true면 오른쪽으로 이동시킨다.")
+    @Test
+    void moveRightTest() {
+        int countOfPerson = 3;
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
+        Player player = new Player("poppo", new HorizontalLocation(0, countOfPerson));
+
+        line.move(player);
+
+        assertThat(player.getHorizontalLocation()).isEqualTo(new HorizontalLocation(1, countOfPerson));
+    }
 }

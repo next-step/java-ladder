@@ -21,4 +21,8 @@ public class Line {
     public List<Point> getPointsValue() {
         return new ArrayList<>(this.points);
     }
+
+    public void move(Player player) {
+        player.moveLeft();
+    }
 }
