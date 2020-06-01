@@ -21,15 +21,7 @@ public class Players {
 
     public static Players create(String inputValue) {
         validate(inputValue);
-
-        List<String> names = Arrays.stream(inputValue.split(NAME_SEPARATOR))
-                .map(String::trim)
-                .collect(Collectors.toList());
-
-        List<Player> playerList = IntStream.range(0, names.size())
-                .mapToObj(num -> new Player(names.get(num), new HorizontalLocation(num, names.size())))
-                .collect(Collectors.toList());
-
+        List<Player> playerList = parseToPlayerList(parseToNames(inputValue));
         return new Players(playerList);
     }
 
@@ -52,6 +44,18 @@ public class Players {
 
     public HorizontalLocation getLocationOfIndex(int index) {
         return values.get(index).getHorizontalLocation();
+    }
+
+    private static List<Player> parseToPlayerList(List<String> names) {
+        return IntStream.range(0, names.size())
+                .mapToObj(num -> new Player(names.get(num), new HorizontalLocation(num, names.size())))
+                .collect(Collectors.toList());
+    }
+
+    private static List<String> parseToNames(String inputValue) {
+        return Arrays.stream(inputValue.split(NAME_SEPARATOR))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     private static void validate(String inputValue) {
