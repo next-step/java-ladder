@@ -22,7 +22,7 @@ public class OutputView {
 
     public String parsePlayerNames() {
         return playerNames.getPlayerNameValues().stream()
-                .map(playerNameValue -> nameSpaceGenerate(playerNameValue) + playerNameValue)
+                .map(playerNameValue -> generateNameSpace(playerNameValue) + playerNameValue)
                 .collect(Collectors.joining());
     }
 
@@ -45,7 +45,7 @@ public class OutputView {
         return pointResult + LADDER_POINT_SEPARATOR;
     }
 
-    private String nameSpaceGenerate(String playerNameValue) {
+    private String generateNameSpace(String playerNameValue) {
         int spaceLength = playerNames.getMaxNameLength() - playerNameValue.length() + 1;
         return IntStream.range(0, spaceLength)
                 .mapToObj(num -> EMPTY_SPACE)
