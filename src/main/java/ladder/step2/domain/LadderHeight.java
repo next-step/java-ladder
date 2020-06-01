@@ -44,7 +44,7 @@ public class LadderHeight {
   }
 
   public static void validateHeight (int height) {
-    if (height < 0) {
+    if (height < 1) {
       throw new LadderHeightMinimumSizeException();
     }
   }
