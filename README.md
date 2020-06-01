@@ -148,3 +148,9 @@
         - [ ] 인자로 전달된 index가 Line index의 마지막이고, 현재 index가 true면 왼쪽 이동 정책 반환
         - [ ] 인자로 전달된 index가 Line index의 마지막이고, 현재 index가 false면 이동없음 정책 반환
     - [X] 위 두가지 경우에 속하지 않는다면 이동없음 정책 반환
+- [ ] MoveStrategy
+    - currentPoint, nextPoint를 상태로 가짐
+    - (true, true) => 존재하지 않음 (사다리 게임 정책상 없음)
+    - (true, false) => 왼쪽으로 이동
+    - (false, true) => 오른쪽으로 이동
+    - (false, false) => 이동하지 않음
