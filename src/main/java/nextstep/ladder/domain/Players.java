@@ -8,24 +8,29 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class PlayerNames {
+public class Players {
     private static final String NAME_SEPARATOR = ",";
 
     private List<Player> values;
 
-    private PlayerNames(List<Player> values) {
+    private Players(List<Player> values) {
         this.values = new ArrayList<>(values);
     }
 
-    public static PlayerNames create(String inputValue) {
+    public static Players create(String inputValue) {
         validate(inputValue);
-        // TODO: location 추가에 따라 맞는 로직으로 객체 생성하도록 구현 필요
-        List<Player> names = Arrays.stream(inputValue.split(NAME_SEPARATOR))
+
+        List<String> names = Arrays.stream(inputValue.split(NAME_SEPARATOR))
                 .map(String::trim)
-                .map(name -> new Player(name, new HorizontalLocation(0, 5)))
                 .collect(Collectors.toList());
-        return new PlayerNames(names);
+
+        List<Player> playerList = IntStream.range(0, names.size())
+                .mapToObj(num -> new Player(names.get(num), new HorizontalLocation(num, names.size())))
+                .collect(Collectors.toList());
+
+        return new Players(playerList);
     }
 
     public int size() {
@@ -66,7 +71,7 @@ public class PlayerNames {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlayerNames that = (PlayerNames) o;
+        Players that = (Players) o;
         return Objects.equals(values, that.values);
     }
 

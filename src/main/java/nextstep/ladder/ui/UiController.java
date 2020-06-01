@@ -13,7 +13,7 @@ public class UiController {
 
         PointAddStrategy pointAddStrategy = new RandomPointAddStrategy();
         Ladder ladder = Ladder.create(userInput.getMaxLadderHeight(), userInput.getPlayerSize(), pointAddStrategy);
-        OutputView outputView = new OutputView(userInput.getPlayerNames(), ladder);
+        OutputView outputView = new OutputView(userInput.getPlayers(), ladder);
 
         System.out.println(outputView.parsePlayerNames());
         System.out.println(outputView.parseLadder());

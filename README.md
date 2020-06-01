@@ -129,8 +129,9 @@
     - [X] 유효 범위 내에서 증가 연산이 가능함.
     - [X] 유효 범위 내에서 감소 연산이 가능함.
 - [ ] Players(구 PlayerNames) 일급 컬렉션
-    - [ ] Player 객체를 관리하는 일급 컬렉션으로 리팩토링
-    - [ ] 내부의 Player를 움직일 때 locaiton이 현재 참여자 전체의 수보다 크지 못하게 검증한다.
+    - [X] Player 객체를 관리하는 일급 컬렉션으로 리팩토링
+    - [X] 내부의 Player를 움직일 때 locaiton이 현재 참여자 전체의 수보다 크지 못하게 검증한다.
+        - Location 검증은 모두 HorizontalLocation 객체에서 알아서 처리
 - [ ] Ladder
     - [ ] Player 객체를 입력받아서 현재 상태를 기준으로 사다리 게임을 진행할 수 있음
         - [ ] Player가 위치한 Point가 true면 왼쪽 이동 후 아래로 이동

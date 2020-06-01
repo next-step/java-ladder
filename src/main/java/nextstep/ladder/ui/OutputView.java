@@ -2,7 +2,7 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.PlayerNames;
+import nextstep.ladder.domain.Players;
 import nextstep.ladder.domain.Point;
 
 import java.util.stream.Collectors;
@@ -13,16 +13,16 @@ public class OutputView {
     private static final String LADDER_HORIZONTAL_LINE = "-";
     private static final String LADDER_POINT_SEPARATOR = "|";
 
-    private PlayerNames playerNames;
+    private Players players;
     private Ladder ladder;
 
-    public OutputView(PlayerNames playerNames, Ladder ladder) {
-        this.playerNames = playerNames;
+    public OutputView(Players players, Ladder ladder) {
+        this.players = players;
         this.ladder = ladder;
     }
 
     public String parsePlayerNames() {
-        return playerNames.getPlayerNameValues().stream()
+        return players.getPlayerNameValues().stream()
                 .map(playerNameValue -> generateNameSpace(playerNameValue) + playerNameValue)
                 .collect(Collectors.joining());
     }
@@ -40,14 +40,14 @@ public class OutputView {
     }
 
     private String parsePoint(Point isDraw) {
-        String pointResult = IntStream.range(0, playerNames.getMaxNameLength())
+        String pointResult = IntStream.range(0, players.getMaxNameLength())
                 .mapToObj(num -> (isDraw.getValue()) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
                 .collect(Collectors.joining());
         return pointResult + LADDER_POINT_SEPARATOR;
     }
 
     private String generateNameSpace(String playerNameValue) {
-        int spaceLength = playerNames.getMaxNameLength() - playerNameValue.length() + 1;
+        int spaceLength = players.getMaxNameLength() - playerNameValue.length() + 1;
         return IntStream.range(0, spaceLength)
                 .mapToObj(num -> EMPTY_SPACE)
                 .collect(Collectors.joining());

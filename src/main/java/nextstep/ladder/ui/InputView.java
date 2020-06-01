@@ -1,6 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.PlayerNames;
+import nextstep.ladder.domain.Players;
 
 import java.util.Scanner;
 
@@ -9,12 +9,12 @@ public class InputView {
     private static final String INPUT_PLAYERS_COMMENT = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_LADDER_HEIGHT_COMMENT = "최대 사다리 높이는 몇 개인가요?";
 
-    private PlayerNames playerNames;
+    private Players players;
     private int maxLadderHeight;
 
     public InputView(String playerList, int maxLadderHeight) {
         validateLadderHeight(maxLadderHeight);
-        this.playerNames = PlayerNames.create(playerList);
+        this.players = Players.create(playerList);
         this.maxLadderHeight = maxLadderHeight;
     }
 
@@ -22,8 +22,8 @@ public class InputView {
         return new InputView(getUserInputPlayers(scanner), getUserInputMaxLadderHeight(scanner));
     }
 
-    public PlayerNames getPlayerNames() {
-        return playerNames;
+    public Players getPlayers() {
+        return players;
     }
 
     public int getMaxLadderHeight() {
@@ -31,7 +31,7 @@ public class InputView {
     }
 
     public int getPlayerSize() {
-        return this.playerNames.size();
+        return this.players.size();
     }
 
     private static int getUserInputMaxLadderHeight(Scanner scanner) {
