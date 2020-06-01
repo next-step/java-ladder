@@ -8,8 +8,8 @@ import java.util.Objects;
 public class Player {
     private static final int MAX_NAME_VALUE_LENGTH = 5;
 
-    private String name;
-    private int location;
+    private final String name;
+    private final int location;
 
     public Player(String name, int location) {
         validate(name);
@@ -23,6 +23,10 @@ public class Player {
 
     public String getName() {
         return this.name;
+    }
+
+    public Player moveRight() {
+        return new Player(this.name, this.location + 1);
     }
 
     private void validate(String nameValue) {

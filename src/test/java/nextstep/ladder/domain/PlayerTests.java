@@ -33,4 +33,12 @@ class PlayerTests {
     void createEmptyValidationTest(String invalidNameValue) {
         assertThatThrownBy(() -> new Player(invalidNameValue, 0)).isInstanceOf(PlayerNameEmptyException.class);
     }
+
+    @DisplayName("오른쪽으로 이동 시 현재 Location을 1 증가시킨다.")
+    @Test
+    void moveRightTest() {
+        Player player = new Player("poppo", 0);
+        Player movedPlayer = player.moveRight();
+        assertThat(movedPlayer).isEqualTo(new Player("poppo", 1));
+    }
 }
