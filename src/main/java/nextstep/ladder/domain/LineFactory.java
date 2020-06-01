@@ -13,16 +13,18 @@ public class LineFactory {
         return new Line(new ArrayList<>(makeLine(countOfPerson, pointAddStrategy)));
     }
 
-    private static List<Boolean> makeLine(int countOfPerson, PointAddStrategy pointAddStrategy) {
-        List<Boolean> values = new ArrayList<>();
-        values.add(false);
+    private static List<Point> makeLine(int countOfPerson, PointAddStrategy pointAddStrategy) {
+        List<Point> values = new ArrayList<>();
+        values.add(new Point(false));
 
         if (countOfPerson == MIN_COUNT_OF_PERSON) {
             return values;
         }
 
         for (int i = 1; i < countOfPerson; i++) {
-            values.add(pointAddStrategy.confirmPointLocation(!values.get(values.size() - 1)));
+            values.add(new Point(
+                    pointAddStrategy.confirmPointLocation(
+                            !values.get(values.size() - 1).getValue())));
         }
         return values;
     }

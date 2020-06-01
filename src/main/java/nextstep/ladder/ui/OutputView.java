@@ -3,6 +3,7 @@ package nextstep.ladder.ui;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.PlayerNames;
+import nextstep.ladder.domain.Point;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -38,9 +39,9 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    private String parsePoint(boolean isDraw) {
+    private String parsePoint(Point isDraw) {
         String pointResult = IntStream.range(0, playerNames.getMaxNameLength())
-                .mapToObj(num -> (isDraw) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
+                .mapToObj(num -> (isDraw.getValue()) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
                 .collect(Collectors.joining());
         return pointResult + LADDER_POINT_SEPARATOR;
     }

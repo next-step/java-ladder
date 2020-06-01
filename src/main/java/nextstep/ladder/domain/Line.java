@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private List<Boolean> points;
+    private List<Point> points;
 
-    Line(List<Boolean> points) {
+    Line(List<Point> points) {
         this.points = new ArrayList<>(points);
     }
 
@@ -15,10 +15,10 @@ public class Line {
     }
 
     public boolean getPointsIndex(int index) {
-        return points.get(index);
+        return points.get(index).getValue();
     }
 
-    public List<Boolean> getPointsValue() {
+    public List<Point> getPointsValue() {
         return new ArrayList<>(this.points);
     }
 }
