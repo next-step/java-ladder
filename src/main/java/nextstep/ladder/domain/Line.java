@@ -22,7 +22,13 @@ public class Line {
         return new ArrayList<>(this.points);
     }
 
-    public void move(Player player) {
-        player.moveLeft();
+    public MoveStrategy whereToMove(int pointIndex) {
+        if (getPointsIndex(pointIndex)) {
+            return MoveStrategy.MOVE_LEFT;
+        }
+        if (getPointsIndex(pointIndex + 1)) {
+            return MoveStrategy.MOVE_RIGHT;
+        }
+        return MoveStrategy.STAY;
     }
 }

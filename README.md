@@ -143,7 +143,7 @@
         - [ ] 끝자리 여부 확인 필요 (끝자리인 경우 다음 Point 확인 안함) (폐기)
     - Player를 Line에 주입하는 형태로 구현 시 Player의 getter를 걷어낼 방안이 없음
     - Line에 확인하고 싶은 index를 전달하면 알맞는 정책 객체를 반환하도록 구현
-    - [ ] 인자로 전달된 index의 Point가 true면 왼쪽 이동 정책 반환
-    - [ ] 인자로 전달된 index의 옆 Point가 true면 오른쪽 이동 정책 반환
+    - [X] 인자로 전달된 index의 Point가 true면 왼쪽 이동 정책 반환
+    - [X] 인자로 전달된 index의 옆 Point가 true면 오른쪽 이동 정책 반환
         - [ ] 인자로 전달된 index가 Line index의 마지막이라면 옆 Point 확인하지 않음
-    - [ ] 위 두가지 경우에 속하지 않는다면 이동없음 정책 반환
+    - [X] 위 두가지 경우에 속하지 않는다면 이동없음 정책 반환
