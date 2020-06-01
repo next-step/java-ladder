@@ -29,6 +29,10 @@ public class Player {
         return new Player(this.name, this.location + 1);
     }
 
+    public Player moveLeft() {
+        return new Player(this.name, this.location - 1);
+    }
+
     private void validate(String nameValue) {
         validateNull(nameValue);
         validateNameLength(nameValue);

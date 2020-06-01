@@ -41,4 +41,12 @@ class PlayerTests {
         Player movedPlayer = player.moveRight();
         assertThat(movedPlayer).isEqualTo(new Player("poppo", 1));
     }
+
+    @DisplayName("왼쪽으로 이동 시 현재 Location을 1 감소시킨다.")
+    @Test
+    void moveLeftTest() {
+        Player player = new Player("poppo", 2);
+        Player movedPlayer = player.moveLeft();
+        assertThat(movedPlayer).isEqualTo(new Player("poppo", 1));
+    }
 }
