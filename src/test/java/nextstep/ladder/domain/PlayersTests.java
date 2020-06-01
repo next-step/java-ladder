@@ -37,4 +37,14 @@ class PlayersTests {
         assertThat(players.size()).isEqualTo(3);
         assertThat(players.getMaxNameLength()).isEqualTo(resultSize);
     }
+
+    @DisplayName("이름 순서대로 초기 사다리 위치가 설정된다.")
+    @ParameterizedTest
+    @ValueSource(ints = { 0, 1, 2 })
+    void locationTest(int nameIndex) {
+        String inputValue = "poppo, ita, saul";
+        Players players = Players.create(inputValue);
+        HorizontalLocation location = players.getLocationOfIndex(nameIndex);
+        assertThat(location).isEqualTo(new HorizontalLocation(nameIndex, 3));
+    }
 }

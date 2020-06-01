@@ -50,6 +50,10 @@ public class Players {
                 .orElseThrow(() -> new PlayerNamesMaxLengthException("Can't find max length of PlayerNames"));
     }
 
+    public HorizontalLocation getLocationOfIndex(int index) {
+        return values.get(index).getHorizontalLocation();
+    }
+
     private static void validate(String inputValue) {
         validateNull(inputValue);
         validateEmpty(inputValue);

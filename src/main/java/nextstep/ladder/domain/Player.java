@@ -33,6 +33,10 @@ public class Player {
         this.horizontalLocation = horizontalLocation.down();
     }
 
+    public HorizontalLocation getHorizontalLocation() {
+        return this.horizontalLocation;
+    }
+
     private void validate(String nameValue) {
         validateNull(nameValue);
         validateNameLength(nameValue);

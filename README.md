@@ -128,7 +128,7 @@
     - [X] 0 ~ 사다리 게임 참여 인원 사이의 값을 가짐
     - [X] 유효 범위 내에서 증가 연산이 가능함.
     - [X] 유효 범위 내에서 감소 연산이 가능함.
-- [ ] Players(구 PlayerNames) 일급 컬렉션
+- [X] Players(구 PlayerNames) 일급 컬렉션
     - [X] Player 객체를 관리하는 일급 컬렉션으로 리팩토링
     - [X] 내부의 Player를 움직일 때 locaiton이 현재 참여자 전체의 수보다 크지 못하게 검증한다.
         - Location 검증은 모두 HorizontalLocation 객체에서 알아서 처리
