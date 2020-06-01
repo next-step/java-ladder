@@ -26,4 +26,10 @@ public class Ladder {
   public Stream<LadderLine> stream () {
     return ladder.stream();
   }
+
+  public List<List<Boolean>> shape () {
+    return stream()
+            .map(ladderLine -> ladderLine.stream().collect(toList()))
+            .collect(toList());
+  }
 }
