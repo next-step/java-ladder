@@ -8,7 +8,7 @@ import nextstep.ladder.domain.Point;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class OutputView {
+public class LadderOutputView {
     private static final String EMPTY_SPACE = " ";
     private static final String LADDER_HORIZONTAL_LINE = "-";
     private static final String LADDER_POINT_SEPARATOR = "|";
@@ -16,7 +16,7 @@ public class OutputView {
     private Players players;
     private Ladder ladder;
 
-    public OutputView(Players players, Ladder ladder) {
+    public LadderOutputView(Players players, Ladder ladder) {
         this.players = players;
         this.ladder = ladder;
     }

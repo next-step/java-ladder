@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class OutputViewTests {
+class LadderOutputViewTests {
     private PointAddStrategy simplePointAddStrategy;
     private Players players;
     private Ladder ladder;
@@ -23,20 +23,20 @@ class OutputViewTests {
     @DisplayName("PlayerNames, Ladder 객체를 주입받아서 객체를 생성할 수 있다.")
     @Test
     void createTest() {
-        OutputView outputView = new OutputView(players, ladder);
+        LadderOutputView ladderOutputView = new LadderOutputView(players, ladder);
 
-        assertThat(outputView).isNotNull();
+        assertThat(ladderOutputView).isNotNull();
     }
 
     @DisplayName("Line 한 줄을 출력할 수 있다. 이때 사다리의 폭은 현재 이름 중 가장 긴 이름을 기준으로 그린다.")
     @Test
     void drawLineTest() {
-        OutputView outputView = new OutputView(players, ladder);
+        LadderOutputView ladderOutputView = new LadderOutputView(players, ladder);
 
         Line line = LineFactory.create(players.size(), simplePointAddStrategy);
         assertThat(line.size()).isEqualTo(2);
 
-        String drawResult = outputView.parseLine(line);
+        String drawResult = ladderOutputView.parseLine(line);
 
         assertThat(drawResult).isEqualTo("     |-----|");
     }
@@ -44,9 +44,9 @@ class OutputViewTests {
     @DisplayName("Ladder 전체를 출력할 수 있다. 이때 사다리의 폭은 현재 이름 중 가장 긴 이름을 기준으로 그린다.")
     @Test
     void drawLadderTest() {
-        OutputView outputView = new OutputView(players, ladder);
+        LadderOutputView ladderOutputView = new LadderOutputView(players, ladder);
 
-        String drawResult = outputView.parseLadder();
+        String drawResult = ladderOutputView.parseLadder();
 
         assertThat(drawResult).isEqualTo("     |-----|\n" +
                 "     |-----|\n" +
@@ -58,9 +58,9 @@ class OutputViewTests {
     @DisplayName("이름 길이에 따라 공백을 조절해서 게임 참여자 명단을 그릴 수 있다.")
     @Test
     void drawPlayerNames() {
-        OutputView outputView = new OutputView(players, ladder);
+        LadderOutputView ladderOutputView = new LadderOutputView(players, ladder);
 
-        String drawResult = outputView.parsePlayerNames();
+        String drawResult = ladderOutputView.parsePlayerNames();
 
         assertThat(drawResult).isEqualTo(" poppo   ita");
     }

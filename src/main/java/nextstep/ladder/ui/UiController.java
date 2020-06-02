@@ -1,8 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.PointAddStrategy;
-import nextstep.ladder.domain.RandomPointAddStrategy;
+import nextstep.ladder.domain.*;
 
 import java.util.Scanner;
 
@@ -15,12 +13,23 @@ public class UiController {
         LadderHeightInputView ladderHeightInputView = LadderHeightInputView
                 .createByUserInput(maxLadderHeightInputScanner);
 
+        Scanner rewardInputScanner = new Scanner(System.in);
+        RewardInputView rewardInputView = RewardInputView
+                .createByUserInput(rewardInputScanner);
+
         PointAddStrategy pointAddStrategy = new RandomPointAddStrategy();
         Ladder ladder = Ladder.create(ladderHeightInputView.getMaxLadderHeight(),
                 playerInputView.getPlayerSize(), pointAddStrategy);
-        OutputView outputView = new OutputView(playerInputView.getPlayers(), ladder);
+        Players players = playerInputView.getPlayers();
+        Rewards rewards = rewardInputView.getRewards();
 
-        System.out.println(outputView.parsePlayerNames());
-        System.out.println(outputView.parseLadder());
+        LadderOutputView ladderOutputView = new LadderOutputView(players, ladder);
+        RewardsOutputView rewardsOutputView = new RewardsOutputView(rewards);
+        ladder.playGameWithAllPlayers(players);
+        GameResults gameResults = GameResults.create(players, rewards);
+
+        System.out.println(ladderOutputView.parsePlayerNames());
+        System.out.println(ladderOutputView.parseLadder());
+        System.out.println(rewardsOutputView.parseRewards(players.getMaxNameLength()));
     }
 }

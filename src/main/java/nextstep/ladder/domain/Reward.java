@@ -14,6 +14,10 @@ public class Reward {
         this.name = rewardName;
     }
 
+    String getName() {
+        return this.name;
+    }
+
     private void validate(String rewardName) {
         validateNull(rewardName);
         validateEmpty(rewardName);

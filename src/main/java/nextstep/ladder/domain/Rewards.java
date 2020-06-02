@@ -36,6 +36,12 @@ public class Rewards {
         return this.values.get(index);
     }
 
+    public List<String> getRewardNameValues() {
+        return this.values.stream()
+                .map(Reward::getName)
+                .collect(Collectors.toList());
+    }
+
     private static void validate(String rewardValues) {
         if (rewardValues == null) {
             throw new InvalidRewardsParameterException("RewardValues must not be null");
