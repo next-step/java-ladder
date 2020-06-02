@@ -1,9 +1,9 @@
 package ladder.view;
 
+import ladder.util.StringUtil;
+
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class InputView {
 
@@ -19,9 +19,7 @@ public class InputView {
     public static List<String> inputPlayers() {
         String names = inputString(PLAYER_NAMES_MESSAGE);
 
-        return Stream.of(names.split(PLAYER_NAMES_DELIMITER))
-                .map(String::trim)
-                .collect(Collectors.toList());
+        return StringUtil.splitValues(names, PLAYER_NAMES_DELIMITER);
     }
 
     public static int inputHeight() {

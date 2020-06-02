@@ -2,7 +2,9 @@ package ladder.util;
 
 import ladder.exception.ErrorMessage;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StringUtil {
 
@@ -10,12 +12,12 @@ public class StringUtil {
         return (str == null || str.isEmpty());
     }
 
-    public static String[] splitValues(final String values, final String delimiter) {
+    public static List<String> splitValues(final String values, final String delimiter) {
         if (isEmpty(values) || delimiter == null) {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
-        return Arrays.stream(values.split(delimiter))
+        return Stream.of(values.split(delimiter))
                 .map(String::trim)
-                .toArray(String[]::new);
+                .collect(Collectors.toList());
     }
 }
