@@ -19,7 +19,9 @@ public class LadderController {
       LadderLineStrategyImpl.getInstance()
     );
 
-    LadderGame ladderGame = LadderGame.of(ladder, ladderResults, participants);
+    LadderGame ladderGame = LadderGame.of(
+      LadderGameExecutor.execute(participants, ladderResults, ladder.shape())
+    );
 
     RESULT_VIEW.viewLadder(ladder, participants, ladderResults);
     while (true) {

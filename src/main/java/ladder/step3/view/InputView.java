@@ -33,7 +33,7 @@ public class InputView {
   }
 
   public String inputResultTarget () {
-    System.out.println(NEW_LINE + "결과를 보고싶은 사람은?");
+    System.out.println(NEW_LINE + NEW_LINE + "결과를 보고싶은 사람은?");
     return SCANNER.nextLine();
   }
 
