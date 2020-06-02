@@ -1,5 +1,6 @@
 package ladder.step3.domain;
 
+import ladder.step3.exception.LadderResultMaximumSizeException;
 import ladder.step3.exception.ParticipantNameMaximumSizeException;
 
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class LadderResult {
 
   public static void validate (String value) {
     if (value.length() > 5) {
-      throw new ParticipantNameMaximumSizeException();
+      throw new LadderResultMaximumSizeException();
     }
   }
 
