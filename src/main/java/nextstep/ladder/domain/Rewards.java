@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.InvalidRewardsParameterException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +19,8 @@ public class Rewards {
 
     public static Rewards create(Players players, String rewardValues) {
         List<String> rewardValueList = parseRewardValues(rewardValues);
+        validate(players.size(), rewardValueList.size());
+
         List<Reward> rewardList = IntStream.range(0, players.size())
                 .mapToObj(num -> new Reward(rewardValueList.get(num), players.getPlayerOfLocation(num)))
                 .collect(Collectors.toList());
@@ -31,5 +35,11 @@ public class Rewards {
 
     public int size() {
         return this.values.size();
+    }
+
+    private static void validate(int playersSize, int rewardValueSize) {
+        if (playersSize != rewardValueSize) {
+            throw new InvalidRewardsParameterException("Players size and rewards size must equal");
+        }
     }
 }

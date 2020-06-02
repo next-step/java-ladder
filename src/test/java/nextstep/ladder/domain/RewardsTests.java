@@ -1,9 +1,11 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.exceptions.InvalidRewardsParameterException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RewardsTests {
     @DisplayName("RewardValue를 인자로 받아서 String collection으로 파싱할 수 있다.")
@@ -23,5 +25,15 @@ class RewardsTests {
 
         assertThat(rewards).isNotNull();
         assertThat(rewards.size()).isEqualTo(3);
+    }
+
+    @DisplayName("파싱된 RewardValue와 Players의 수가 다르면 예외 발생")
+    @Test
+    void createValidationTest() {
+        Players players = Players.create("poppo, sual");
+        String rewardValues = "empty, 1000, empty";
+
+        assertThatThrownBy(() -> Rewards.create(players, rewardValues))
+                .isInstanceOf(InvalidRewardsParameterException.class);
     }
 }
