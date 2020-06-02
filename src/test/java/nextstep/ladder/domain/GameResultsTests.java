@@ -26,4 +26,15 @@ class GameResultsTests {
         assertThatThrownBy(() -> GameResults.create(players, rewards))
                 .isInstanceOf(InvalidGameResultParameterException.class);
     }
+
+    @DisplayName("Player 이름으로 결과를 찾을 수 있음")
+    @Test
+    void findByPlayerNameTest() {
+        Players players = Players.create("sual, ita, poppo");
+        Rewards rewards = Rewards.create("1, 2, 3");
+
+        GameResults gameResults = GameResults.create(players, rewards);
+
+        assertThat(gameResults.findByPlayerName("ita").getReward()).isEqualTo(new Reward("2"));
+    }
 }

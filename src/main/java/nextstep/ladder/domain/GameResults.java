@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exceptions.InvalidGameResultParameterException;
+import nextstep.ladder.domain.exceptions.NotExistPlayerNameException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,13 @@ public class GameResults {
                 .collect(Collectors.toList());
 
         return new GameResults(gameResultList);
+    }
+
+    public GameResult findByPlayerName(String playerName) {
+        return this.values.stream()
+                .filter(gameResult -> gameResult.getPlayerName().equals(playerName))
+                .findFirst()
+                .orElseThrow(() -> new NotExistPlayerNameException("Player " + playerName + " is not exist"));
     }
 
     private static void validate(int playersSize, int rewardsSize) {

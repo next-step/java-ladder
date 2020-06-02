@@ -11,6 +11,14 @@ public class GameResult {
         this.reward = reward;
     }
 
+    Reward getReward() {
+        return this.reward;
+    }
+
+    String getPlayerName() {
+        return this.player.getName();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
