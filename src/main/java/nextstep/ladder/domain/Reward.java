@@ -2,19 +2,19 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exceptions.InvalidRewardArgumentException;
 
+import java.util.Objects;
+
 public class Reward {
     private static final int MAX_REWARD_NAME_LENGTH = 5;
 
     private String name;
-    private Player player;
 
-    public Reward(String rewardName, Player player) {
-        validateRewardName(rewardName);
+    public Reward(String rewardName) {
+        validate(rewardName);
         this.name = rewardName;
-        this.player = player;
     }
 
-    private void validateRewardName(String rewardName) {
+    private void validate(String rewardName) {
         validateNull(rewardName);
         validateEmpty(rewardName);
         validateLength(rewardName);
@@ -36,5 +36,18 @@ public class Reward {
         if (rewardName.trim().length() > MAX_REWARD_NAME_LENGTH) {
             throw new InvalidRewardArgumentException("Reward name length must smaller than 5");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reward reward = (Reward) o;
+        return Objects.equals(name, reward.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

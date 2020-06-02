@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exceptions.InvalidRewardArgumentException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,17 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RewardTests {
-    private Player testPlayer;
-
-    @BeforeEach
-    public void setup() {
-        testPlayer = new Player("poppo", new HorizontalLocation(0, 3));
-    }
-
-    @DisplayName("상품명과 상품 당첨 Player를 입력받아서 객체를 생성할 수 있다.")
+    @DisplayName("상품명을 입력받아서 객체를 생성할 수 있다.")
     @Test
     void createTest() {
-        assertThat(new Reward("100", testPlayer)).isNotNull();
+        assertThat(new Reward("100")).isNotNull();
     }
 
     @DisplayName("상품명이 null이거나 빈 값일 경우 객체를 생성 할 수 없다.")
@@ -30,7 +22,7 @@ class RewardTests {
     @NullSource
     @ValueSource(strings = {"  ", ""})
     void createEmptyValidationTest(String invalidRewardName) {
-        assertThatThrownBy(() -> new Reward(invalidRewardName, testPlayer))
+        assertThatThrownBy(() -> new Reward(invalidRewardName))
                 .isInstanceOf(InvalidRewardArgumentException.class);
     }
 
@@ -38,7 +30,7 @@ class RewardTests {
     @ParameterizedTest
     @ValueSource(strings = { "123456", "12345567" })
     void createTooLongNameValidationTest(String tooLongName) {
-        assertThatThrownBy(() -> new Reward(tooLongName, testPlayer))
+        assertThatThrownBy(() -> new Reward(tooLongName))
                 .isInstanceOf(InvalidRewardArgumentException.class);
     }
 }

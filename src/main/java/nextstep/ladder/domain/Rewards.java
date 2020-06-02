@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Rewards {
     private static final String DEFAULT_SEPARATOR = ",";
@@ -17,20 +16,15 @@ public class Rewards {
         this.values  = new ArrayList<>(rewardList);
     }
 
-    public static Rewards create(Players players, String rewardValues) {
-        validateRewardValues(rewardValues);
-        List<String> rewardValueList = parseRewardValues(rewardValues);
-        validate(players.size(), rewardValueList.size());
-
-        List<Reward> rewardList = IntStream.range(0, players.size())
-                .mapToObj(num -> new Reward(rewardValueList.get(num), players.getPlayerOfLocation(num)))
-                .collect(Collectors.toList());
-        return new Rewards(rewardList);
+    public static Rewards create(String rewardValues) {
+        validate(rewardValues);
+        return new Rewards(parseRewardValues(rewardValues));
     }
 
-    public static List<String> parseRewardValues(String rewardValues) {
+    public static List<Reward> parseRewardValues(String rewardValues) {
         return Arrays.stream(rewardValues.split(DEFAULT_SEPARATOR))
                 .map(String::trim)
+                .map(Reward::new)
                 .collect(Collectors.toList());
     }
 
@@ -38,13 +32,7 @@ public class Rewards {
         return this.values.size();
     }
 
-    private static void validate(int playersSize, int rewardValueSize) {
-        if (playersSize != rewardValueSize) {
-            throw new InvalidRewardsParameterException("Players size and rewards size must equal");
-        }
-    }
-
-    private static void validateRewardValues(String rewardValues) {
+    private static void validate(String rewardValues) {
         if (rewardValues == null) {
             throw new InvalidRewardsParameterException("RewardValues must not be null");
         }
