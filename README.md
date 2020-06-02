@@ -132,10 +132,10 @@
     - [X] Player 객체를 관리하는 일급 컬렉션으로 리팩토링
     - [X] 내부의 Player를 움직일 때 locaiton이 현재 참여자 전체의 수보다 크지 못하게 검증한다.
         - Location 검증은 모두 HorizontalLocation 객체에서 알아서 처리
-- [ ] Ladder
-    - [ ] Player 객체를 입력받아서 현재 상태를 기준으로 사다리 게임을 진행할 수 있음
-        - [ ] Player가 위치한 Point가 true면 왼쪽 이동 후 아래로 이동
-        - [ ] Player가 위치한 Point의 오른쪽 Point가 true면 오른쪽 이동 후 아래로 이동
+- [X] Ladder
+    - [X] Player 객체를 입력받아서 현재 상태를 기준으로 사다리 게임을 진행할 수 있음
+        - [X] 각 Line에 맞게 게임 진행
+        - [X] Ladder의 모든 라인을 진행해야 함
         - Ladder 생성 규칙에 의해 두 위치가 모두 true인 경우는 존재하지 않는다.
 - [X] Line
     - [X] Player 객체를 입력 받아서 현재 Point가 true면 왼쪽 이동 실행 (폐기)

@@ -35,4 +35,17 @@ class LadderTests {
         assertThatThrownBy(() -> Ladder.create(invalidLadderHeight, countOfPerson, simplePointAddStrategy))
                 .isInstanceOf(InvalidLadderHeightException.class);
     }
+
+    @DisplayName("전달받은 Player의 Ladder Game을 진행할 수 있다.")
+    @Test
+    void doLadderGameTest() {
+        int ladderHeight = 5;
+        int countOfPerson = 3;
+        Ladder ladder = Ladder.create(ladderHeight, countOfPerson, simplePointAddStrategy);
+        Player player = new Player("poppo", new HorizontalLocation(1, countOfPerson));
+
+        ladder.playGame(player);
+
+        assertThat(player.getHorizontalLocation()).isEqualTo(new HorizontalLocation(0, countOfPerson));
+    }
 }

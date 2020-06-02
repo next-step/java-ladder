@@ -37,4 +37,10 @@ public class Ladder {
             throw new InvalidLadderHeightException("Ladder height must exceed zero");
         }
     }
+
+    public void playGame(Player player) {
+        lines.stream()
+                .map(line -> line.whereToMove(player.getPlayerLocationValue()))
+                .forEach(horizontalMoveStrategy -> horizontalMoveStrategy.move(player));
+    }
 }

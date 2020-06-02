@@ -25,6 +25,10 @@ public class Player {
         return this.name;
     }
 
+    public int getPlayerLocationValue() {
+        return this.horizontalLocation.getValue();
+    }
+
     public void moveRight() {
         this.horizontalLocation = horizontalLocation.up();
     }

@@ -33,6 +33,10 @@ public class HorizontalLocation {
         return new HorizontalLocation(this.value - 1, this.countOfPerson);
     }
 
+    int getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
