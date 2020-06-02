@@ -9,14 +9,14 @@ public class LadderHeight {
 
     private static final Map<Integer, LadderHeight> FACTORY = new HashMap<>();
 
-    private final int height;
+    private final int value;
 
-    private LadderHeight(int height) {
-        this.height = height;
+    private LadderHeight(int value) {
+        this.value = value;
     }
 
     public int getValue() {
-        return height;
+        return value;
     }
 
     public static LadderHeight valueOf(String height) {

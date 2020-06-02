@@ -12,8 +12,7 @@ public class ResultView {
     private static final String NO_LINE = "     |";
     private static final String NEW_LINE = System.lineSeparator();
 
-    private ResultView() {
-    }
+    private ResultView() { }
 
     public static ResultView getInstance() {
         return INSTANCE;
