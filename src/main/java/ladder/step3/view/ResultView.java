@@ -59,7 +59,7 @@ public class ResultView {
     );
   }
 
-  private void viewAllResult (LadderGame ladderGame) {
+  public void viewAllResult (LadderGame ladderGame) {
     System.out.printf(
       "실행결과" + NEW_LINE,
       ladderGame.stream()
