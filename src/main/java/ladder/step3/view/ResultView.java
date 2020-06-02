@@ -20,7 +20,7 @@ public class ResultView {
 
   public void viewLadder (Ladder ladder, Participants participants, LadderResults ladderResults) {
     System.out.printf(
-      NEW_LINE + "실행결과%s%s%s",
+      NEW_LINE + "사다리결과%s%s%s",
       NEW_LINE + toStringOfParticipants(participants),
       NEW_LINE + toStringOfLadder(ladder),
       NEW_LINE + toStringOfLadderResults(ladderResults)
@@ -54,19 +54,21 @@ public class ResultView {
 
   public void viewSingleResult (LadderResult ladderResult) {
     System.out.printf(
-      "실행결과" + NEW_LINE,
-      ladderResult.getValue()
+      NEW_LINE + "실행결과",
+      NEW_LINE + ladderResult.getValue()
     );
   }
 
   public void viewAllResult (LadderGame ladderGame) {
     System.out.printf(
-      "실행결과" + NEW_LINE,
-      ladderGame.stream()
-                .map(participant -> String.format(
-                  "%s : %s", participant.getValue(), ladderGame.getResult(participant).getValue()
-                ))
-                .collect(joining(NEW_LINE))
+      NEW_LINE + "실행결과",
+      NEW_LINE + ladderGame.stream()
+                           .map(participant -> String.format(
+                             "%s : %s",
+                             participant.getValue(),
+                             ladderGame.getResult(participant).getValue()
+                           ))
+                           .collect(joining(NEW_LINE))
     );
   }
 
