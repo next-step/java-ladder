@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exceptions.PlayerNamesEmptyException;
 import nextstep.ladder.domain.exceptions.PlayerNamesMaxLengthException;
+import nextstep.ladder.domain.exceptions.PlayerNotExistException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +49,13 @@ public class Players {
 
     public List<Player> getValues() {
         return new ArrayList<>(this.values);
+    }
+
+    public Player getPlayerOfLocation(int location) {
+        return this.values.stream()
+                .filter(player -> player.getPlayerLocationValue() == location)
+                .findFirst()
+                .orElseThrow(() -> new PlayerNotExistException("No player in that place"));
     }
 
     private static List<Player> parseToPlayerList(List<String> names) {
