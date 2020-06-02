@@ -33,4 +33,12 @@ class RewardTests {
         assertThatThrownBy(() -> new Reward(invalidRewardName, testPlayer))
                 .isInstanceOf(InvalidRewardArgumentException.class);
     }
+
+    @DisplayName("상품명은 5글자를 넘을 수 없다.")
+    @ParameterizedTest
+    @ValueSource(strings = { "123456", "12345567" })
+    void createTooLongNameValidationTest(String tooLongName) {
+        assertThatThrownBy(() -> new Reward(tooLongName, testPlayer))
+                .isInstanceOf(InvalidRewardArgumentException.class);
+    }
 }
