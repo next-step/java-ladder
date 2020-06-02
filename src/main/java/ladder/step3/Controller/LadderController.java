@@ -10,6 +10,7 @@ public class LadderController {
 
   public static void main(String[] args) {
     Participants participants = INPUT_VIEW.inputParticipants();
+    LadderResults ladderResults = LadderResults.of(INPUT_VIEW.inputResults(), participants);
     LadderHeight ladderHeight = INPUT_VIEW.inputHeight();
 
     Ladder ladder = Ladder.of(
@@ -18,6 +19,17 @@ public class LadderController {
       LadderLineStrategyImpl.getInstance()
     );
 
-    RESULT_VIEW.viewLadder(ladder, participants);
+    LadderGame ladderGame = LadderGame.of(ladder, ladderResults, participants);
+
+    RESULT_VIEW.viewLadder(ladder, participants, ladderResults);
+    while (true) {
+      String target = INPUT_VIEW.inputResultTarget();
+      if (target.equals("all")) {
+        RESULT_VIEW.viewAllResult(ladderGame);
+        break;
+      }
+      RESULT_VIEW.viewSingleResult(ladderGame.getResult(target));
+    };
+
   }
 }
