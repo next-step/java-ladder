@@ -31,6 +31,10 @@ public class GameResults {
                 .orElseThrow(() -> new NotExistPlayerNameException("Player " + playerName + " is not exist"));
     }
 
+    public List<GameResult> getValues() {
+        return new ArrayList<>(values);
+    }
+
     private static void validate(int playersSize, int rewardsSize) {
         if (playersSize != rewardsSize) {
             throw new InvalidGameResultParameterException("Players size and rewards size must equal");

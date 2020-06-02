@@ -27,6 +27,7 @@ public class UiController {
         RewardsOutputView rewardsOutputView = new RewardsOutputView(rewards);
         ladder.playGameWithAllPlayers(players);
         GameResults gameResults = GameResults.create(players, rewards);
+        GameResultsOutputView gameResultsOutputView = new GameResultsOutputView(gameResults);
 
         System.out.println(ladderOutputView.parsePlayerNames());
         System.out.println(ladderOutputView.parseLadder());

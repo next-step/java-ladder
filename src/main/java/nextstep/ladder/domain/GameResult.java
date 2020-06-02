@@ -15,8 +15,12 @@ public class GameResult {
         return this.reward;
     }
 
-    String getPlayerName() {
+    public String getPlayerName() {
         return this.player.getName();
+    }
+
+    public String getRewardName() {
+        return this.reward.getName();
     }
 
     @Override
