@@ -155,12 +155,12 @@
     - (true, false) => 왼쪽으로 이동
     - (false, true) => 오른쪽으로 이동
     - (false, false) => 이동하지 않음
-- [ ] Price
-    - [ ] 상품명과 상품의 당첨 Player를 속성으로 갖는다.
+- [ ] Reward
+    - [X] 상품명과 상품의 당첨 Player를 속성으로 갖는다.
+    - [X] 상품명과 Player 객체를 입력받아서 객체를 생성할 수 있다.
     - [ ] 상품명이 null이나 비었을 경우 예외 발생
     - [ ] 사다리 배치를 위해 상품명은 5글자를 넘을 수 없다.
-    - [ ] 상품명과 Player 객체를 입력받아서 객체를 생성할 수 있다.
-- [ ] Prices
-    - Price 일급 컬렉션
+- [ ] Rewards
+    - Reward 일급 컬렉션
     - [ ] 정적 팩토리 메서드로 Players, PriceValue를 입력 받아서 객체를 생성할 수 있다.
     - [ ] PriceValue가 null이거나 비었을 경우 예외 발생
