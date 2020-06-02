@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class RewardInputViewTests {
+class RewardPlayerInputViewTests {
     @DisplayName("문자열을 입력받아서 Rewards 일급 컬렉션을 속성으로 갖는 객체를 만들 수 있다.")
     @Test
     void createTest() {
