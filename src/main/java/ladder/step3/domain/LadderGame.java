@@ -28,13 +28,12 @@ public class LadderGame {
                   while (y < height) {
                     List<Boolean> nowLadder = shape.get(y);
                     y += 1;
-                    if (x > 0) {
-                      x -= nowLadder.get(x - 1) ? 1 : 0;
+                    if (x > 0 && nowLadder.get(x - 1)) {
+                      x -= 1;
                       continue;
                     }
-                    if (x < width) {
-                      x += nowLadder.get(x) ? 1 : 0;
-                      continue;
+                    if (x < width && nowLadder.get(x)) {
+                      x += 1;
                     }
                   }
                   offset[0] += 1;
