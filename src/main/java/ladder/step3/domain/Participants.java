@@ -33,6 +33,10 @@ public class Participants {
     return participants.stream();
   }
 
+  public Participant get (int index) {
+    return participants.get(index);
+  }
+
   public int size () {
     return participants.size();
   }

@@ -32,4 +32,8 @@ public class LadderResults {
   public Stream<LadderResult> stream () {
     return results.stream();
   }
+
+  public LadderResult get (int index) {
+    return results.get(index);
+  }
 }
