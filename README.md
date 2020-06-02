@@ -160,9 +160,9 @@
     - [X] 상품명과 Player 객체를 입력받아서 객체를 생성할 수 있다.
     - [X] 상품명이 null이나 비었을 경우 예외 발생
     - [X] 사다리 배치를 위해 상품명은 5글자를 넘을 수 없다.
-- [ ] Rewards
+- [X] Rewards
     - Reward 일급 컬렉션
     - [X] 정적 팩토리 메서드로 Players, RewardValue을 입력 받아서 객체를 생성할 수 있다.
     - [X] RewardValue를 String 컬렉션으로 파싱할 수 있다.
     - [X] RewardValue를 String 컬렉션으로 파싱한 크기와 Players의 크기가 다르다면 예외가 발생한다.
-    - [ ] PriceValue가 null이거나 비었을 경우 예외 발생
+    - [X] PriceValue가 null이거나 비었을 경우 예외 발생

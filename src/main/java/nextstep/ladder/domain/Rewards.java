@@ -18,6 +18,7 @@ public class Rewards {
     }
 
     public static Rewards create(Players players, String rewardValues) {
+        validateRewardValues(rewardValues);
         List<String> rewardValueList = parseRewardValues(rewardValues);
         validate(players.size(), rewardValueList.size());
 
@@ -40,6 +41,15 @@ public class Rewards {
     private static void validate(int playersSize, int rewardValueSize) {
         if (playersSize != rewardValueSize) {
             throw new InvalidRewardsParameterException("Players size and rewards size must equal");
+        }
+    }
+
+    private static void validateRewardValues(String rewardValues) {
+        if (rewardValues == null) {
+            throw new InvalidRewardsParameterException("RewardValues must not be null");
+        }
+        if (rewardValues.trim().isEmpty()) {
+            throw new InvalidRewardsParameterException("RewardValues must not be empty");
         }
     }
 }
