@@ -170,3 +170,8 @@
 - [ ] GameResult
     - 어떤 유저가 어떤 상품을 갖는지에 대한 정보는 따로 관리가 필요함
     - Rewards에서 어떤 유저가 어떤 상품을 갖고 있는지에 대한 책임을 따로 관리
+    - [ ] Player와 Reward 객체를 전달 받아서 객체 생성 가능
+- [ ] GameResults
+    - GameResult 일급컬렉션
+    - [ ] Players, Rewards를 전달 받아서 일급 컬렉션 생성 가능
+    - [ ] Player 이름으로 결과를 찾을 수 있음
