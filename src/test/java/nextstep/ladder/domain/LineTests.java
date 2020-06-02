@@ -71,7 +71,7 @@ class LineTests {
         int pointIndex = 1;
         Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
 
-        assertThat(line.whereToMove(pointIndex)).isEqualTo(MoveStrategy.MOVE_LEFT);
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(HorizontalMoveStrategy.MOVE_LEFT);
     }
 
     @DisplayName("전달된 index의 오른쪽 Point가 true일 경우 오른쪽으로 이동")
@@ -81,7 +81,7 @@ class LineTests {
         int pointIndex = 0;
         Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
 
-        assertThat(line.whereToMove(pointIndex)).isEqualTo(MoveStrategy.MOVE_RIGHT);
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(HorizontalMoveStrategy.MOVE_RIGHT);
     }
 
     @DisplayName("전달된 index가 Line index의 마지막이고, 해당 index가 true인 경우 왼쪽으로 이동")
@@ -91,7 +91,7 @@ class LineTests {
         int pointIndex = 3;
         Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
 
-        assertThat(line.whereToMove(pointIndex)).isEqualTo(MoveStrategy.MOVE_LEFT);
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(HorizontalMoveStrategy.MOVE_LEFT);
     }
 
     @DisplayName("전달된 index가 Line index의 마지막이고, 해당 index가 false인 경우 움직이지 않음")
@@ -101,6 +101,6 @@ class LineTests {
         int pointIndex = 2;
         Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
 
-        assertThat(line.whereToMove(pointIndex)).isEqualTo(MoveStrategy.STAY);
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(HorizontalMoveStrategy.STAY);
     }
 }

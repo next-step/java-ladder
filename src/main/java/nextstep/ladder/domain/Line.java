@@ -22,10 +22,10 @@ public class Line {
         return new ArrayList<>(this.points);
     }
 
-    public MoveStrategy whereToMove(int pointIndex) {
+    public HorizontalMoveStrategy whereToMove(int pointIndex) {
         if (pointIndex == points.size() - 1) {
-            return MoveStrategy.create(getPointsIndex(pointIndex), false);
+            return HorizontalMoveStrategy.create(getPointsIndex(pointIndex), false);
         }
-        return MoveStrategy.create(getPointsIndex(pointIndex), getPointsIndex(pointIndex + 1));
+        return HorizontalMoveStrategy.create(getPointsIndex(pointIndex), getPointsIndex(pointIndex + 1));
     }
 }
