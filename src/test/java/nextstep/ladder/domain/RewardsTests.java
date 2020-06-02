@@ -10,6 +10,6 @@ class RewardsTests {
     @Test
     void parseRewardValueTest() {
         String rewardValue = "empty, 1000, empty";
-        assertThat(Rewards.parseRewardValue(rewardValue).get(0)).isEqualTo("empty");
+        assertThat(Rewards.parseRewardValues(rewardValue).get(0)).isEqualTo("empty");
     }
 }

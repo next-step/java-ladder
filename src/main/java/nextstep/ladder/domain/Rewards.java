@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Rewards {
     private static final String DEFAULT_SEPARATOR = ",";
 
-    public static List<String> parseRewardValue(String rewardValues) {
+    public static List<String> parseRewardValues(String rewardValues) {
         return Arrays.stream(rewardValues.split(DEFAULT_SEPARATOR))
                 .map(String::trim)
                 .collect(Collectors.toList());
