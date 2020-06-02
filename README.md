@@ -167,10 +167,10 @@
     - [X] RewardValue를 String 컬렉션으로 파싱한 크기와 Players의 크기가 다르다면 예외가 발생한다.
     - [X] PriceValue가 null이거나 비었을 경우 예외 발생
     - 객체 책임 수정: 단순히 사다리 게임의 상품명만을 관리하도록 수정 (입력되는 값에 대해서만 관리)
-- [ ] GameResult
+- [X] GameResult
     - 어떤 유저가 어떤 상품을 갖는지에 대한 정보는 따로 관리가 필요함
     - Rewards에서 어떤 유저가 어떤 상품을 갖고 있는지에 대한 책임을 따로 관리
-    - [ ] Player와 Reward 객체를 전달 받아서 객체 생성 가능
+    - [X] Player와 Reward 객체를 전달 받아서 객체 생성 가능
 - [ ] GameResults
     - GameResult 일급컬렉션
     - [ ] Players, Rewards를 전달 받아서 일급 컬렉션 생성 가능
