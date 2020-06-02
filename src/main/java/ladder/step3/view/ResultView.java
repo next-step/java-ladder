@@ -54,15 +54,15 @@ public class ResultView {
 
   public void viewSingleResult (LadderResult ladderResult) {
     System.out.printf(
-      NEW_LINE + "실행결과",
+      NEW_LINE + "실행결과%s",
       NEW_LINE + ladderResult.getValue()
     );
   }
 
-  public void viewAllResult (LadderGame ladderGame) {
+  public void viewAllResult (LadderGame ladderGame, Participants participants) {
     System.out.printf(
-      NEW_LINE + "실행결과",
-      NEW_LINE + ladderGame.stream()
+      NEW_LINE + "실행결과%s",
+      NEW_LINE + participants.stream()
                            .map(participant -> String.format(
                              "%s : %s",
                              participant.getValue(),

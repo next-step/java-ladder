@@ -39,7 +39,6 @@ public class LadderGame {
                   offset[0] += 1;
                   resultMap.put(participant, resultList.get(x));
                 });
-
     return new LadderGame(resultMap);
   }
 
@@ -50,10 +49,6 @@ public class LadderGame {
 
   public LadderResult getResult (String participant) {
     return getResult(Participant.valueOf(participant));
-  }
-
-  public Stream<Participant> stream () {
-    return resultMap.keySet().stream();
   }
 
   private void validate (Participant participant) {

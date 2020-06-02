@@ -25,7 +25,7 @@ public class LadderController {
     while (true) {
       String target = INPUT_VIEW.inputResultTarget();
       if (target.equals("all")) {
-        RESULT_VIEW.viewAllResult(ladderGame);
+        RESULT_VIEW.viewAllResult(ladderGame, participants);
         break;
       }
       RESULT_VIEW.viewSingleResult(ladderGame.getResult(target));
