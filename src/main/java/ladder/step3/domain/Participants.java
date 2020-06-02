@@ -17,7 +17,7 @@ public class Participants {
     validate();
   }
 
-  public static Participants ofString (String participants) {
+  public static Participants of(String participants) {
     return Arrays.stream(participants.split(","))
                  .map(Participant::valueOf)
                  .collect(collectingAndThen(toList(), Participants::new));

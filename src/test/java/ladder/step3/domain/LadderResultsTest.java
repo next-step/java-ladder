@@ -22,7 +22,7 @@ public class LadderResultsTest {
   }
 
   private static Stream<Arguments> provideParticipantsAndResults () {
-    Participants participants = Participants.ofString("aa,bb,cc");
+    Participants participants = Participants.of("aa,bb,cc");
     return Stream.of(
       Arguments.of("1,2", participants),
       Arguments.of("1,2,3,4", participants)
@@ -42,7 +42,7 @@ public class LadderResultsTest {
   }
 
   private static Stream<Arguments> provideLadderResultsOfLadderResult () {
-    LadderResults ladderResults = LadderResults.of("aa,bb,cc", Participants.ofString("1,2,3"));
+    LadderResults ladderResults = LadderResults.of("aa,bb,cc", Participants.of("1,2,3"));
     return Stream.of(
       Arguments.of(ladderResults, LadderResult.valueOf("aa")),
       Arguments.of(ladderResults, LadderResult.valueOf("bb")),

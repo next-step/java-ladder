@@ -19,7 +19,7 @@ public class ParticipantsTest {
   @ValueSource(strings = { "aa", "" })
   void 참여자수_검증_테스트 (String participants) {
     assertThatExceptionOfType(ParticipantsMinimumSizeException.class)
-      .isThrownBy(() -> Participants.ofString(participants));
+      .isThrownBy(() -> Participants.of(participants));
   }
 
   @DisplayName("Participatns에 Participant가 존재하는지 확인하는 테스트")
@@ -35,7 +35,7 @@ public class ParticipantsTest {
   }
 
   private static Stream<Arguments> provideParticipantsOfParticipant () {
-    Participants participants = Participants.ofString("aa,bb,cc");
+    Participants participants = Participants.of("aa,bb,cc");
     return Stream.of(
       Arguments.of(participants, Participant.valueOf("aa")),
       Arguments.of(participants, Participant.valueOf("bb")),
