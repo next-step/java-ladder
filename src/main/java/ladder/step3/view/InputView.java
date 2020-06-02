@@ -1,5 +1,7 @@
 package ladder.step3.view;
 
+import ladder.step3.domain.LadderResults;
+import ladder.step3.domain.Participant;
 import ladder.step3.domain.Participants;
 import ladder.step3.domain.LadderHeight;
 
@@ -13,9 +15,18 @@ public class InputView {
 
   private InputView () { }
 
+  public static InputView getInstance() {
+    return INSTANCE;
+  }
+
   public Participants inputParticipants () {
     System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
     return Participants.ofString(SCANNER.nextLine());
+  }
+
+  public String inputResults () {
+    System.out.println(NEW_LINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    return SCANNER.nextLine();
   }
 
   public LadderHeight inputHeight () {
@@ -23,8 +34,9 @@ public class InputView {
     return LadderHeight.valueOf(SCANNER.nextLine());
   }
 
-  public static InputView getInstance() {
-    return INSTANCE;
+  public String inputResultTarget () {
+    System.out.println(NEW_LINE + "결과를 보고싶은 사람은?");
+    return SCANNER.nextLine();
   }
 
 }
