@@ -1,9 +1,6 @@
-package ladder.step2.domain;
+package ladder.step3.domain;
 
-import ladder.step2.exception.ParticipantNameMaximumSizeException;
-import ladder.step3.domain.LadderResult;
 import ladder.step3.exception.LadderResultMaximumSizeException;
-import ladder.step3.exception.LadderResultSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
