@@ -137,18 +137,18 @@
         - [ ] Player가 위치한 Point가 true면 왼쪽 이동 후 아래로 이동
         - [ ] Player가 위치한 Point의 오른쪽 Point가 true면 오른쪽 이동 후 아래로 이동
         - Ladder 생성 규칙에 의해 두 위치가 모두 true인 경우는 존재하지 않는다.
-- [ ] Line
-    - [ ] Player 객체를 입력 받아서 현재 Point가 true면 왼쪽 이동 실행 (폐기)
-    - [ ] Player 객체를 입력 받아서 다음 Point가 true면 오른쪽 이동 실행 (폐기)
-        - [ ] 끝자리 여부 확인 필요 (끝자리인 경우 다음 Point 확인 안함) (폐기)
-    - Player를 Line에 주입하는 형태로 구현 시 Player의 getter를 걷어낼 방안이 없음
+- [X] Line
+    - [X] Player 객체를 입력 받아서 현재 Point가 true면 왼쪽 이동 실행 (폐기)
+    - [X] Player 객체를 입력 받아서 다음 Point가 true면 오른쪽 이동 실행 (폐기)
+        - [X] 끝자리 여부 확인 필요 (끝자리인 경우 다음 Point 확인 안함) (폐기)
+    - Player를 Line에 주입하는 형태로 구현 시 Player의 getter를 걷어낼 방안이 없음(이렇게 해도 getter 걷어내기 쉽지 않음..)
     - Line에 확인하고 싶은 index를 전달하면 알맞는 정책 객체를 반환하도록 구현
     - [X] 인자로 전달된 index의 Point가 true면 왼쪽 이동 정책 반환
     - [X] 인자로 전달된 index의 옆 Point가 true면 오른쪽 이동 정책 반환
-        - [ ] 인자로 전달된 index가 Line index의 마지막이고, 현재 index가 true면 왼쪽 이동 정책 반환
-        - [ ] 인자로 전달된 index가 Line index의 마지막이고, 현재 index가 false면 이동없음 정책 반환
+        - [X] 인자로 전달된 index가 Line index의 마지막이고, 현재 index가 true면 왼쪽 이동 정책 반환
+        - [X] 인자로 전달된 index가 Line index의 마지막이고, 현재 index가 false면 이동없음 정책 반환
     - [X] 위 두가지 경우에 속하지 않는다면 이동없음 정책 반환
-- [ ] MoveStrategy
+- [X] MoveStrategy
     - currentPoint, nextPoint를 상태로 가짐
     - (true, true) => 존재하지 않음 (사다리 게임 정책상 없음)
     - (true, false) => 왼쪽으로 이동

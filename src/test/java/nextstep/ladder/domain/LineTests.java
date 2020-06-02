@@ -83,4 +83,24 @@ class LineTests {
 
         assertThat(line.whereToMove(pointIndex)).isEqualTo(MoveStrategy.MOVE_RIGHT);
     }
+
+    @DisplayName("전달된 index가 Line index의 마지막이고, 해당 index가 true인 경우 왼쪽으로 이동")
+    @Test
+    void lastIndexMoveLeftTest() {
+        int countOfPerson = 4;
+        int pointIndex = 3;
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
+
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(MoveStrategy.MOVE_LEFT);
+    }
+
+    @DisplayName("전달된 index가 Line index의 마지막이고, 해당 index가 false인 경우 움직이지 않음")
+    @Test
+    void lastIndexStayTest() {
+        int countOfPerson = 3;
+        int pointIndex = 2;
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
+
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(MoveStrategy.STAY);
+    }
 }

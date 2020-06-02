@@ -26,7 +26,7 @@ class MoveStrategyTests {
                 Arguments.of(false, false, MoveStrategy.STAY)
         );
     }
-    
+
     @DisplayName("존재하지 않는 정책을 요구할 경우 NotExistMoveStrategyException 발생")
     @Test
     void validationTest() {

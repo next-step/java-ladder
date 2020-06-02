@@ -23,12 +23,9 @@ public class Line {
     }
 
     public MoveStrategy whereToMove(int pointIndex) {
-        if (getPointsIndex(pointIndex)) {
-            return MoveStrategy.MOVE_LEFT;
+        if (pointIndex == points.size() - 1) {
+            return MoveStrategy.create(getPointsIndex(pointIndex), false);
         }
-        if (getPointsIndex(pointIndex + 1)) {
-            return MoveStrategy.MOVE_RIGHT;
-        }
-        return MoveStrategy.STAY;
+        return MoveStrategy.create(getPointsIndex(pointIndex), getPointsIndex(pointIndex + 1));
     }
 }
