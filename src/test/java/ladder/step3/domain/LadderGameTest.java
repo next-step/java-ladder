@@ -1,27 +1,49 @@
 package ladder.step3.domain;
 
-import ladder.step3.view.ResultView;
+import ladder.step3.exception.NotParticipantException;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LadderGameTest {
 
+  private static final Participants participants = Participants.of("aa,bb,cc,dd");
+  private static final LadderResults ladderResults = LadderResults.of("1,2,3,4", participants);
+  private static final LadderHeight ladderHeight = LadderHeight.valueOf(3);
+  private static final Ladder ladder = Ladder.of(participants, ladderHeight, prev -> !prev);
+  private static final LadderGame ladderGame = LadderGame.of(
+    LadderGameExecutor.execute(participants, ladderResults, ladder.shape())
+  );
+
+  @DisplayName("사다리의 결과 확인시 잘못된 참여자를 입력할 경우 NotParticipantException 발생")
+  @ParameterizedTest
+  @ValueSource(strings = { "1", "2", "3", "4" })
+  void 참여자_검증_테스트 (String target) {
+    assertThatExceptionOfType(NotParticipantException.class)
+      .isThrownBy(() -> ladderGame.getResult(target));
+  }
+
+
   @DisplayName("사다리의 결과를 확인하는 테스트")
-  @Test
-  void 사다리_게임_테스트 () {
-    Participants participants = Participants.of("aa,bb,cc,dd");
-    LadderResults ladderResults = LadderResults.of("1,2,3,4", participants);
-    LadderHeight ladderHeight = LadderHeight.valueOf(3);
-    Ladder ladder = Ladder.of(participants, ladderHeight, prev -> !prev);
-    ResultView.getInstance().viewLadder(ladder, participants, ladderResults);
-    System.out.println("");
-    LadderGame ladderGame = LadderGame.of(
-      LadderGameExecutor.execute(participants, ladderResults, ladder.shape())
+  @ParameterizedTest
+  @MethodSource("provideLadderGameAndTarget")
+  void 사다리_게임_결과_테스트 (LadderGame ladderGame, Participant participant, LadderResult expected) {
+    assertEquals(expected, ladderGame.getResult(participant));
+  }
+
+  private static Stream<Arguments> provideLadderGameAndTarget () {
+    return Stream.of(
+      Arguments.of(ladderGame, Participant.valueOf("aa"), LadderResult.valueOf("2")),
+      Arguments.of(ladderGame, Participant.valueOf("bb"), LadderResult.valueOf("1")),
+      Arguments.of(ladderGame, Participant.valueOf("cc"), LadderResult.valueOf("4")),
+      Arguments.of(ladderGame, Participant.valueOf("dd"), LadderResult.valueOf("3"))
     );
-    ResultView.getInstance().viewAllResult(ladderGame, participants);
   }
 }
