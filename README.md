@@ -162,5 +162,7 @@
     - [X] 사다리 배치를 위해 상품명은 5글자를 넘을 수 없다.
 - [ ] Rewards
     - Reward 일급 컬렉션
-    - [ ] 정적 팩토리 메서드로 Players, PriceValue를 입력 받아서 객체를 생성할 수 있다.
+    - [ ] 정적 팩토리 메서드로 Players, RewardValue을 입력 받아서 객체를 생성할 수 있다.
+    - [ ] RewardValue를 String 컬렉션으로 파싱할 수 있다.
+    - [ ] RewardValue를 String 컬렉션으로 파싱한 크기와 Players의 크기가 다르다면 예외가 발생한다.
     - [ ] PriceValue가 null이거나 비었을 경우 예외 발생
