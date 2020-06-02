@@ -173,5 +173,6 @@
     - [X] Player와 Reward 객체를 전달 받아서 객체 생성 가능
 - [ ] GameResults
     - GameResult 일급컬렉션
-    - [ ] Players, Rewards를 전달 받아서 일급 컬렉션 생성 가능
+    - [X] Players, Rewards를 전달 받아서 일급 컬렉션 생성 가능
+    - [ ] Players, Rewards 수가 다른 경우 예외 발생
     - [ ] Player 이름으로 결과를 찾을 수 있음

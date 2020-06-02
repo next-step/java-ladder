@@ -32,6 +32,10 @@ public class Rewards {
         return this.values.size();
     }
 
+    public Reward getByIndex(int index) {
+        return this.values.get(index);
+    }
+
     private static void validate(String rewardValues) {
         if (rewardValues == null) {
             throw new InvalidRewardsParameterException("RewardValues must not be null");
