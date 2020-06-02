@@ -1,8 +1,8 @@
 package ladder.step3.view;
 
-import ladder.step3.domain.Participants;
-import ladder.step3.domain.Ladder;
-import ladder.step3.domain.LadderLine;
+import ladder.step3.domain.*;
+
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -14,11 +14,16 @@ public class ResultView {
 
   private ResultView () { }
 
-  public void viewLadder (Ladder ladder, Participants participants) {
+  public static ResultView getInstance () {
+    return INSTANCE;
+  }
+
+  public void viewLadder (Ladder ladder, Participants participants, LadderResults ladderResults) {
     System.out.printf(
-      NEW_LINE + "실행결과" + NEW_LINE + "%s" + NEW_LINE + "%s",
-      toStringOfParticipants(participants),
-      toStringOfLadder(ladder)
+      NEW_LINE + "실행결과%s%s%s",
+      NEW_LINE + toStringOfParticipants(participants),
+      NEW_LINE + toStringOfLadder(ladder),
+      NEW_LINE + toStringOfLadderResults(ladderResults)
     );
   }
 
@@ -28,20 +33,41 @@ public class ResultView {
                        .collect(joining(""));
   }
 
-  private static String toStringOfLadder (Ladder ladder) {
+  private String toStringOfLadder (Ladder ladder) {
     return ladder.stream()
-                 .map(ResultView::toStringOfLadderLine)
+                 .map(this::toStringOfLadderLine)
                  .collect(joining(NEW_LINE));
   }
 
-  private static String toStringOfLadderLine (LadderLine ladderLine) {
+  private String toStringOfLadderResults (LadderResults results) {
+    return results.stream()
+                  .map(participant -> String.format("%6s", participant.getValue()))
+                  .collect(joining(""));
+  }
+
+  private String toStringOfLadderLine (LadderLine ladderLine) {
     return NO_LINE + ladderLine.stream()
                                .map(v -> v ? IS_LINE : NO_LINE)
                                .collect(joining(""));
   }
 
-  public static ResultView getInstance () {
-    return INSTANCE;
+
+  public void viewSingleResult (LadderResult ladderResult) {
+    System.out.printf(
+      "실행결과" + NEW_LINE,
+      ladderResult.getValue()
+    );
+  }
+
+  private void viewAllResult (LadderGame ladderGame) {
+    System.out.printf(
+      "실행결과" + NEW_LINE,
+      ladderGame.stream()
+                .map(participant -> String.format(
+                  "%s : %s", participant.getValue(), ladderGame.getResult(participant).getValue()
+                ))
+                .collect(joining(NEW_LINE))
+    );
   }
 
 }
