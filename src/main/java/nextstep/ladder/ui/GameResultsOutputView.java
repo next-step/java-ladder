@@ -5,7 +5,7 @@ import nextstep.ladder.domain.GameResults;
 import java.util.stream.Collectors;
 
 public class GameResultsOutputView {
-    private static final String RESULT_HEAD_COMMENT = "실행 결과" + System.lineSeparator();
+    private static final String RESULT_HEAD_COMMENT =  System.lineSeparator() + "실행 결과" + System.lineSeparator();
     private static final String ALL_RESULT_SEPARATOR = " : ";
     private GameResults gameResults;
 

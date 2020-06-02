@@ -17,7 +17,7 @@ public class RewardsOutputView {
     public String parseRewards(int playerNameMaxLength) {
         return rewards.getRewardNameValues().stream()
                 .map(rewardNameValue -> generateNameSpace(playerNameMaxLength, rewardNameValue) + rewardNameValue)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining()) + System.lineSeparator();
     }
 
     private String generateNameSpace(int playerNameMaxLength, String rewardNameValue) {

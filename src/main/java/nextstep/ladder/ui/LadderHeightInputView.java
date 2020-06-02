@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class LadderHeightInputView {
     private static final int MIN_MAXLADDERHEIGHT = 1;
-    private static final String INPUT_LADDER_HEIGHT_COMMENT = "최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_LADDER_HEIGHT_COMMENT = System.lineSeparator() + "최대 사다리 높이는 몇 개인가요?";
 
     private int maxLadderHeight;
 

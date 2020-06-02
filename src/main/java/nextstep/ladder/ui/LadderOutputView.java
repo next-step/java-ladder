@@ -28,9 +28,10 @@ public class LadderOutputView {
     }
 
     public String parseLadder() {
-        return ladder.getLines().stream()
+        String ladderValue = this.ladder.getLines().stream()
                 .map(line -> parseLine(line) + System.lineSeparator())
                 .collect(Collectors.joining());
+        return ladderValue.substring(0, ladderValue.length() - 1);
     }
 
     String parseLine(Line line) {
