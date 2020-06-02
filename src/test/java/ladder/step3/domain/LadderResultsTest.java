@@ -29,24 +29,24 @@ public class LadderResultsTest {
     );
   }
 
-  @DisplayName("Participatns에 Participant가 존재하는지 확인하는 테스트")
+  @DisplayName("LadderResults에 LadderResult가 존재하는지 확인하는 테스트")
   @ParameterizedTest
-  @MethodSource("provideParticipantsOfParticipant")
-  void 참여자_확인_테스트 (Participants participants, Participant participant) {
+  @MethodSource("provideLadderResultsOfLadderResult")
+  void 결과_존재_확인_테스트 (LadderResults ladderResults, LadderResult ladderResult) {
     assertEquals(
-      participant,
-      participants.stream()
-                  .filter(v -> v == participant)
+      ladderResult,
+      ladderResults.stream()
+                  .filter(v -> v == ladderResult)
                   .findAny()
                   .orElse(null));
   }
 
-  private static Stream<Arguments> provideParticipantsOfParticipant () {
-    Participants participants = Participants.ofString("aa,bb,cc");
+  private static Stream<Arguments> provideLadderResultsOfLadderResult () {
+    LadderResults ladderResults = LadderResults.of("aa,bb,cc", Participants.ofString("1,2,3"));
     return Stream.of(
-      Arguments.of(participants, Participant.valueOf("aa")),
-      Arguments.of(participants, Participant.valueOf("bb")),
-      Arguments.of(participants, Participant.valueOf("cc"))
+      Arguments.of(ladderResults, LadderResult.valueOf("aa")),
+      Arguments.of(ladderResults, LadderResult.valueOf("bb")),
+      Arguments.of(ladderResults, LadderResult.valueOf("cc"))
     );
   }
 }
