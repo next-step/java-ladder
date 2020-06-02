@@ -1,5 +1,7 @@
 package ladder.step3.domain;
 
+import ladder.step3.exception.NotParticipantException;
+
 import java.util.Map;
 
 public class LadderGame {
@@ -25,7 +27,7 @@ public class LadderGame {
 
   private void validate (Participant participant) {
     if (resultMap.get(participant) == null) {
-      throw new IllegalArgumentException("참여자에 포함된 사람이 아닙니다.");
+      throw new NotParticipantException(participant);
     }
   }
 }
