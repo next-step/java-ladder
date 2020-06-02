@@ -46,6 +46,10 @@ public class Players {
         return values.get(index).getHorizontalLocation();
     }
 
+    public List<Player> getValues() {
+        return new ArrayList<>(this.values);
+    }
+
     private static List<Player> parseToPlayerList(List<String> names) {
         return IntStream.range(0, names.size())
                 .mapToObj(num -> new Player(names.get(num), new HorizontalLocation(num, names.size())))

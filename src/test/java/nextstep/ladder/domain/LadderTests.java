@@ -48,4 +48,19 @@ class LadderTests {
 
         assertThat(player.getHorizontalLocation()).isEqualTo(new HorizontalLocation(0, countOfPerson));
     }
+
+    @DisplayName("모든 Player의 Ladder Game을 진행할 수 있다.")
+    @Test
+    void doLadderGameAllPlayerTest() {
+        int ladderHeight = 5;
+        int countOfPerson = 3;
+        Ladder ladder = Ladder.create(ladderHeight, countOfPerson, simplePointAddStrategy);
+        Players players = Players.create("saul, poppo, ita");
+
+        ladder.playGameWithAllPlayers(players);
+
+        assertThat(players.getLocationOfIndex(0)).isEqualTo(new HorizontalLocation(1, countOfPerson));
+        assertThat(players.getLocationOfIndex(1)).isEqualTo(new HorizontalLocation(0, countOfPerson));
+        assertThat(players.getLocationOfIndex(2)).isEqualTo(new HorizontalLocation(2, countOfPerson));
+    }
 }

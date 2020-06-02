@@ -137,6 +137,7 @@
         - [X] 각 Line에 맞게 게임 진행
         - [X] Ladder의 모든 라인을 진행해야 함
         - Ladder 생성 규칙에 의해 두 위치가 모두 true인 경우는 존재하지 않는다.
+    - [X] Players 객체를 전달 받아서 모든 참가자들의 사다리 게임을 진행할 수 있다.
 - [X] Line
     - [X] Player 객체를 입력 받아서 현재 Point가 true면 왼쪽 이동 실행 (폐기)
     - [X] Player 객체를 입력 받아서 다음 Point가 true면 오른쪽 이동 실행 (폐기)

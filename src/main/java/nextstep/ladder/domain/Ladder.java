@@ -43,4 +43,8 @@ public class Ladder {
                 .map(line -> line.whereToMove(player.getPlayerLocationValue()))
                 .forEach(horizontalMoveStrategy -> horizontalMoveStrategy.move(player));
     }
+
+    public void playGameWithAllPlayers(Players players) {
+        players.getValues().forEach(this::playGame);
+    }
 }
