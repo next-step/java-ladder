@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,11 +29,17 @@ public class StreamStudy {
 
         // TODO 이 부분에 구현한다.
 
-        //
+        Stream<String> over12Words = words.stream()
+                .filter(x -> x.length() > 12);
 
+        Stream<String> top100Words = over12Words
+                .sorted(Comparator.comparing(String::length, Comparator.reverseOrder()))
+                .distinct()
+                .limit(100);
 
-
-
+        top100Words.forEachOrdered(x -> {
+            System.out.println(x.toLowerCase());
+        });
 
 
     }
