@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
+import ladder.exception.ErrorMessage;
 
 import java.util.Objects;
 
@@ -24,10 +25,10 @@ public class Stair {
 
     private void validate(final int position, final StairState state) {
         if (position < FIRST_PILLAR_POSITION) {
-            throw new IllegalArgumentException("계단의 위치는 0 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.REQUIRED_MIN_STAIR_POSITION);
         }
         if (Objects.isNull(state)) {
-            throw new IllegalArgumentException("계단의 상태값이 null 입니다.");
+            throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
         }
     }
 

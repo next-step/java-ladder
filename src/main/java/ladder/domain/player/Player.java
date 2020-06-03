@@ -23,7 +23,7 @@ public class Player {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
         if (name.length() > MAX_LENGTH_OF_NAME) {
-            throw new IllegalArgumentException("참여자의 이름은 5글자를 넘길 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.RANGE_OF_PLAYER_NAME);
         }
     }
 

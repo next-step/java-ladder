@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.exception.ErrorMessage;
+
 public class PillarCount {
 
     static final int MIN_COUNT = 1;
@@ -17,7 +19,7 @@ public class PillarCount {
 
     private static void verifyCount(final int count) {
         if (count < MIN_COUNT) {
-            throw new IllegalArgumentException("기둥의 개수는 최소 1 이상이여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.REQUIRED_MIN_PILLAR_COUNT);
         }
     }
 
