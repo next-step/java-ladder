@@ -3,23 +3,27 @@ package ladder.step3.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 
 public class LadderGameExecutor {
 
-    private final List<List<Boolean>> shape;
+    private final Ladder ladder;
 
-    private LadderGameExecutor (List<List<Boolean>> shape) {
-        this.shape = shape;
+    private LadderGameExecutor (Ladder ladder) {
+        this.ladder = ladder;
     }
 
     public static Map<Participant, LadderResult> execute (
-        Participants participants, LadderResults ladderResults, List<List<Boolean>> shape
+        Participants participants,
+        LadderResults ladderResults,
+        Ladder ladder
     ) {
-        return new LadderGameExecutor(shape).execute(participants, ladderResults);
+        return new LadderGameExecutor(ladder).execute(participants, ladderResults);
     }
 
     private Map<Participant, LadderResult> execute (
-        Participants participants, LadderResults ladderResults
+        Participants participants,
+        LadderResults ladderResults
     ) {
         Map<Participant, LadderResult> resultMap = new HashMap<>();
         int width = participants.size() - 1;
@@ -33,14 +37,12 @@ public class LadderGameExecutor {
     }
 
     private int getResultIndex (int index, int width) {
-        for (int y = 0, height = shape.size(); y < height; y++) {
-            if (index > 0 && shape.get(y).get(index - 1)) {
-                index -= 1; continue;
-            }
-            if (index < width && shape.get(y).get(index)) {
-                index += 1;
-            }
-        }
-        return index;
+        BiFunction<Integer, LadderLine, Integer> getNextIndex = (x, ladderLine) -> {
+             if (x > 0 && ladderLine.get(x - 1)) return x - 1;
+             if (x < width && ladderLine.get(x)) return x + 1;
+             return x;
+        };
+        return ladder.stream()
+                     .reduce(index, getNextIndex, (x, ladderLine) -> x);
     }
 }

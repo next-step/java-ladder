@@ -20,7 +20,7 @@ public class LadderController {
         );
 
         LadderGame ladderGame = LadderGame.of(
-            LadderGameExecutor.execute(participants, ladderResults, ladder.shape())
+            LadderGameExecutor.execute(participants, ladderResults, ladder)
         );
 
         RESULT_VIEW.viewLadder(ladder, participants, ladderResults);
