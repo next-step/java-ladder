@@ -24,14 +24,11 @@ public class LadderController {
         );
 
         RESULT_VIEW.viewLadder(ladder, participants, ladderResults);
-        while (true) {
-            String target = INPUT_VIEW.inputResultTarget();
-            if (target.equals("all")) {
-                RESULT_VIEW.viewAllResult(ladderGame, participants);
-                break;
-            }
-            RESULT_VIEW.viewSingleResult(ladderGame.getResult(target));
-        };
+        String target;
+        do {
+            target = INPUT_VIEW.inputResultTarget();
+            RESULT_VIEW.viewResult(ladderGame, participants, target);
+        } while(!target.equals("all"));
 
     }
 }

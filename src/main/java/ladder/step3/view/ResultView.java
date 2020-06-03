@@ -51,25 +51,23 @@ public class ResultView {
                                    .collect(joining(""));
     }
 
-
-    public void viewSingleResult(LadderResult ladderResult) {
-        System.out.printf(
-            NEW_LINE + "실행결과%s",
-            NEW_LINE + ladderResult.getValue()
+    public void viewResult (LadderGame ladderGame, Participants participants, String target) {
+        boolean isAll = target.equals("all");
+        System.out.println(NEW_LINE + "실행결과");
+        System.out.println(
+          isAll ? viewAllResult(ladderGame, participants)
+                : ladderGame.getResult(target).getValue()
         );
     }
 
-    public void viewAllResult(LadderGame ladderGame, Participants participants) {
-        System.out.printf(
-            NEW_LINE + "실행결과%s",
-            NEW_LINE + participants.stream()
-                                   .map(participant -> String.format(
-                                       "%s : %s",
-                                       participant.getValue(),
-                                       ladderGame.getResult(participant).getValue()
-                                   ))
-                                   .collect(joining(NEW_LINE))
-        );
+    private String viewAllResult(LadderGame ladderGame, Participants participants) {
+        return participants.stream()
+                           .map(participant -> String.format(
+                               "%s : %s",
+                               participant.getValue(),
+                               ladderGame.getResult(participant).getValue()
+                           ))
+                           .collect(joining(NEW_LINE));
     }
 
 }
