@@ -27,4 +27,8 @@ public class LadderLine {
     public Stream<Boolean> stream() {
         return lines.stream();
     }
+
+    public boolean get (int index) {
+      return lines.get(index);
+    }
 }
