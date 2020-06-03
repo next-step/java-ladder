@@ -26,4 +26,8 @@ public class Players {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
     }
+
+    public int count() {
+        return this.players.size();
+    }
 }
