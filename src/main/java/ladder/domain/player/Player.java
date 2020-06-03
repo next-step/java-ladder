@@ -5,7 +5,7 @@ import ladder.util.StringUtil;
 
 public class Player {
 
-    static final int MAX_LENGTH_OF_NAME = 5;
+    private static final int MAX_LENGTH_OF_NAME = 5;
 
     private final String name;
 
@@ -25,5 +25,9 @@ public class Player {
         if (name.length() > MAX_LENGTH_OF_NAME) {
             throw new IllegalArgumentException("참여자의 이름은 5글자를 넘길 수 없습니다.");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
