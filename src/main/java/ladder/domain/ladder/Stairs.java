@@ -14,27 +14,19 @@ public class Stairs {
         this.stairs = stairs;
     }
 
-    public static Stairs of(final int pillarCount) {
+    public static Stairs of(final PillarCount pillarCount) {
         return new Stairs(createHorizontalStairs(pillarCount));
     }
 
-    private static List<Stair> createHorizontalStairs(final int pillarCount) {
-        validatePillarCount(pillarCount);
-
+    private static List<Stair> createHorizontalStairs(final PillarCount pillarCount) {
         List<Stair> stairs = new ArrayList<>();
 
         Stair currentStair = createFirst();
         stairs.add(currentStair);
-        stairs.addAll(createMiddle(currentStair, pillarCount - EXCEPT_FIRST_AND_LAST_PILLAR_COUNT));
+        stairs.addAll(createMiddle(currentStair, pillarCount.getValue() - EXCEPT_FIRST_AND_LAST_PILLAR_COUNT));
         stairs.add(createLast(currentStair));
 
         return stairs;
-    }
-
-    private static void validatePillarCount(final int pillarCount) {
-        if (pillarCount < MIN_PILLAR_COUNT) {
-            throw new IllegalArgumentException("기둥의 최소 1개 이상이어야 합니다.");
-        }
     }
 
     private static Stair createFirst() {

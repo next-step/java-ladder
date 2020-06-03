@@ -20,4 +20,8 @@ public class PillarCount {
             throw new IllegalArgumentException("기둥의 개수는 최소 1 이상이여야 합니다.");
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }
