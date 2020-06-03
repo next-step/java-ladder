@@ -26,7 +26,7 @@ public class Player {
     }
 
     public int getPlayerLocationValue() {
-        return this.horizontalLocation.getValue();
+        return this.horizontalLocation.getIndex();
     }
 
     public void moveRight() {

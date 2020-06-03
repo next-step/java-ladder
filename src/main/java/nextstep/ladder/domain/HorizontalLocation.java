@@ -7,34 +7,34 @@ import java.util.Objects;
 public class HorizontalLocation {
     private static final int MIN_LOCATION_VALUE = 0;
 
-    private final int value;
-    private final int countOfPerson;
+    private final int index;
+    private final int maxIndex;
 
-    public HorizontalLocation(int value, int countOfPerson) {
-        validate(value, countOfPerson);
-        this.value = value;
-        this.countOfPerson = countOfPerson;
+    public HorizontalLocation(int index, int maxIndex) {
+        validate(index, maxIndex);
+        this.index = index;
+        this.maxIndex = maxIndex;
     }
 
-    private void validate(int value, int countOfPerson) {
+    private void validate(int value, int maxIndex) {
         if (value < MIN_LOCATION_VALUE) {
             throw new LocationLimitExceedException("Location must bigger than 0");
         }
-        if (value > countOfPerson) {
+        if (value > maxIndex) {
             throw new LocationLimitExceedException("Location must smaller than number of people who in ladder game");
         }
     }
 
     public HorizontalLocation up() {
-        return new HorizontalLocation(this.value + 1, this.countOfPerson);
+        return new HorizontalLocation(this.index + 1, this.maxIndex);
     }
 
     public HorizontalLocation down() {
-        return new HorizontalLocation(this.value - 1, this.countOfPerson);
+        return new HorizontalLocation(this.index - 1, this.maxIndex);
     }
 
-    int getValue() {
-        return value;
+    int getIndex() {
+        return index;
     }
 
     @Override
@@ -42,11 +42,11 @@ public class HorizontalLocation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HorizontalLocation that = (HorizontalLocation) o;
-        return value == that.value;
+        return index == that.index;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(index);
     }
 }

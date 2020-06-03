@@ -182,7 +182,7 @@
     
 ### 1차 리뷰 Todo List
 - [X] 값 비교를 위한 getter 없애고 객체 간 비교로 바꾸기
-- [ ] HorizontalLocation의 속성명 구체화시키기, 속성명 의미에 맞게 변경하기
+- [X] HorizontalLocation의 속성명 구체화시키기, 속성명 의미에 맞게 변경하기
 - [ ] Ladderd 생성자 접근 제한자 용도에 맞게 변경하기
 - [ ] Line 내 패키지에서만 사용하는 메서드 접근 제한자 용도에 맞게 변경하기
 - [ ] Player의 move 메서드 내부의 이름 통일성 높이기
