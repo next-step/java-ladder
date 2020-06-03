@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -27,8 +26,9 @@ public class Line {
             throw new IllegalArgumentException("존재하지 않은 라인이 포함되어 있습니다.");
         }
 
-        IntStream.range(1, points.size())
-                .forEach(index -> points.get(index).validate(points.get(index - 1)));
+        for (int i = 1; i < points.size(); i++) {
+            points.get(i).validate(points.get(i - 1));
+        }
     }
 
     public List<Point> toList() {
