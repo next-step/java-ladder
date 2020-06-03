@@ -37,4 +37,8 @@ public class StairDto {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
     }
+
+    public List<Boolean> getLines() {
+        return lines;
+    }
 }
