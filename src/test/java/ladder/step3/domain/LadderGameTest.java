@@ -19,7 +19,7 @@ public class LadderGameTest {
     private static final LadderHeight ladderHeight = LadderHeight.valueOf(3);
     private static final Ladder ladder = Ladder.of(participants, ladderHeight, prev -> !prev);
     private static final LadderGame ladderGame = LadderGame.of(
-        LadderGameExecutor.execute(participants, ladderResults, ladder.shape())
+        LadderGameExecutor.execute(participants, ladderResults, ladder)
     );
 
     @DisplayName("사다리의 결과 확인시 잘못된 참여자를 입력할 경우 NotParticipantException 발생")
