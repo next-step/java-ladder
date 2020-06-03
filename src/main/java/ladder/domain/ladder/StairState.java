@@ -21,4 +21,8 @@ public class StairState {
     public StairState ofMiddlePillarWithNoLine() {
         return new StairState(false);
     }
+
+    public boolean isExistLine() {
+        return existLine;
+    }
 }
