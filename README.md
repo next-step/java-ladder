@@ -7,3 +7,14 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+---
+
+### 2단계 - 사다리 (생성)
+- [기능 요구사항 목록](/contents/step2.md)
+
+### 3단계 - 사다리 (게임 실행)
+- [기능 요구사항 목록](/contents/step3.md)
+
+### 4단계 - 사다리 (리팩토링)
+- [기능 요구사항 목록](/contents/step4.md)
