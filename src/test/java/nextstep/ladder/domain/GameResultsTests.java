@@ -35,6 +35,8 @@ class GameResultsTests {
 
         GameResults gameResults = GameResults.create(players, rewards);
 
-        assertThat(gameResults.findByPlayerName("ita").getReward()).isEqualTo(new Reward("2"));
+        assertThat(gameResults.findByPlayerName("ita")).isEqualTo(new GameResult(
+                new Player("ita", new HorizontalLocation(1, 3)),
+                new Reward("2")));
     }
 }

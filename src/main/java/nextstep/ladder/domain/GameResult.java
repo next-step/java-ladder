@@ -11,10 +11,6 @@ public class GameResult {
         this.reward = reward;
     }
 
-    Reward getReward() {
-        return this.reward;
-    }
-
     public String getPlayerName() {
         return this.player.getName();
     }
