@@ -2,7 +2,7 @@ package ladder.domain.ladder;
 
 public class Height {
 
-    static final int MIN_HEIGHT = 1;
+    public static final int MIN_HEIGHT = 1;
 
     private final int value;
 
