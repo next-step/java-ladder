@@ -176,3 +176,6 @@
     - [X] Players, Rewards를 전달 받아서 일급 컬렉션 생성 가능
     - [X] Players, Rewards 수가 다른 경우 예외 발생
     - [X] Player 이름으로 결과를 찾을 수 있음
+- [ ] LadderGameService
+    - 객체 간의 실행 순서를 지정함
+    - GameResult는 반드시 게임이 실행 된 후에 만들어져야 하기 때문에 이를 서비스 레이어에서 제어

@@ -1,5 +1,6 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.application.LadderGameService;
 import nextstep.ladder.domain.*;
 
 import java.util.Scanner;
@@ -26,8 +27,10 @@ public class UiController {
 
         LadderOutputView ladderOutputView = new LadderOutputView(players, ladder);
         RewardsOutputView rewardsOutputView = new RewardsOutputView(rewards);
-        ladder.playGameWithAllPlayers(players);
-        GameResults gameResults = GameResults.create(players, rewards);
+
+        LadderGameService ladderGameService = new LadderGameService();
+        GameResults gameResults = ladderGameService.playGame(players, ladder, rewards);
+
         GameResultsOutputView gameResultsOutputView = new GameResultsOutputView(gameResults);
         GameResultsInputView gameResultsInputView = new GameResultsInputView(gameResultsOutputView);
 
