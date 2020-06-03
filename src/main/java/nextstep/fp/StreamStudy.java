@@ -6,7 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamStudy {
 
@@ -28,6 +31,14 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         // TODO 이 부분에 구현한다.
+
+        //
+
+
+
+
+
+
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -39,6 +50,12 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+
+        Integer sum = numbers.stream()
+                .filter(x -> x > 3)
+                .map(x -> x * 2)
+                .reduce(0, (x, y) -> x + y);
+
+        return sum;
     }
 }
