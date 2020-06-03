@@ -77,6 +77,17 @@
 
 #### LadderGame
 : 게임 참여자와 최대 사다리 높이의 개수로 사다리 판을 구성
+- [ ] 게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환할 수 있다.
+- [ ] 게임 참여자와 사다리 높이의 개수로 LadderGame 을 생성할 수 있다.
+
+#### LadderShapeResult
+: 사다리 판 출력을 위한 실행 결과 정보
+- [x] 참여자의 이름 리스트와 계단 라인 정보 리스트로 LadderShapeResult 를 생성할 수 있다. 
+
+#### StairDto
+: 각 행의 좌->우로 가면서 계단 라인을 그리기 위한 값 
+- [x] 사다리의 계단 라인이 null 이거나 라인이 하나도 없으면 예외를 반환한다.
+- [x] Ladder 의 각 행의 좌->우로 가면서 Stair 의 existLine 정보를 이용하여 출력하기 쉬운 boolean 리스트 값으로 변환한다. 
 
 ### # V (View)
 #### InputView
