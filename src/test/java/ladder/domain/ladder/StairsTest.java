@@ -12,13 +12,13 @@ public class StairsTest {
     @Test
     void createFailure() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Stairs.of(Stairs.MIN_PILLAR_COUNT - 1));
+                .isThrownBy(() -> Stairs.of(PillarCount.of(Stairs.MIN_PILLAR_COUNT - 1)));
     }
 
     @DisplayName("기둥의 개수 만큼 수평을 따라 계단 생성")
     @Test
     void create() {
-        assertThatCode(() -> Stairs.of(Stairs.MIN_PILLAR_COUNT))
+        assertThatCode(() -> Stairs.of(PillarCount.of(Stairs.MIN_PILLAR_COUNT)))
                 .doesNotThrowAnyException();
     }
 }
