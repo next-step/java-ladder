@@ -1,5 +1,6 @@
 package ladder.step3.domain;
 
+import ladder.step3.exception.ParticipantNameEmptyException;
 import ladder.step3.exception.ParticipantNameMaximumSizeException;
 
 import java.util.HashMap;
@@ -15,14 +16,21 @@ public class Participant {
     }
 
     public static Participant valueOf(String value) {
-        validate(value);
+        validateEmpty(value);
+        validateLength(value);
         if (FACTORY.get(value) == null) {
             FACTORY.put(value, new Participant(value));
         }
         return FACTORY.get(value);
     }
 
-    public static void validate(String value) {
+    public static void validateEmpty(String value) {
+        if (value == null || value.trim().equals("")) {
+            throw new ParticipantNameEmptyException();
+        }
+    }
+
+    public static void validateLength(String value) {
         if (value.length() > 5) {
             throw new ParticipantNameMaximumSizeException();
         }
