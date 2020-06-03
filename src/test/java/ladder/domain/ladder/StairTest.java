@@ -42,4 +42,12 @@ public class StairTest {
 
         assertThat(existLineOfPreviousStair && existLine).isFalse();
     }
+
+    @DisplayName("마지막 기둥에는 계단을 둘 수 없음")
+    @Test
+    void createOfLastPillar() {
+        assertThat(Stair.createOfFirstPillar().createOfLastPillar()
+                .isExistLine())
+                .isEqualTo(false);
+    }
 }
