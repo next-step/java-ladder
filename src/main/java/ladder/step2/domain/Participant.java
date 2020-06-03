@@ -3,9 +3,10 @@ package ladder.step2.domain;
 import ladder.step2.exception.ParticipantNameMaximumSizeException;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Participant {
-  private static final HashMap<String, Participant> factory = new HashMap<>();
+  private static final Map<String, Participant> FACTORY = new HashMap<>();
 
   private final String name;
 
@@ -15,10 +16,10 @@ public class Participant {
 
   public static Participant valueOf (String name) {
     validate(name);
-    if (factory.get(name) == null) {
-      factory.put(name, new Participant(name));
+    if (FACTORY.get(name) == null) {
+      FACTORY.put(name, new Participant(name));
     }
-    return factory.get(name);
+    return FACTORY.get(name);
   }
 
   public static void validate (String name) {
