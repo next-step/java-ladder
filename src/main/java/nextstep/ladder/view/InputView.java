@@ -16,8 +16,7 @@ public final class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DELIMITER_PATTERN = ",";
 
-    private InputView() {
-    }
+    private InputView() { }
 
     public static Players getPlayers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");

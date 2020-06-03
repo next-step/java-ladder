@@ -14,8 +14,7 @@ public final class ResultView {
     private final static String EMPTY_POINT = "     ";
     private final static String TAB = "\t";
 
-    private ResultView() {
-    }
+    private ResultView() { }
 
     private static void printResultTitle() {
         System.out.println("실행결과");

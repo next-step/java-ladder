@@ -9,8 +9,7 @@ import java.util.stream.Stream;
 
 public final class LadderFactory {
 
-    private LadderFactory() {
-    }
+    private LadderFactory() { }
 
     public static Ladder create(Players players, Height height) {
         validatePlayers(players);
