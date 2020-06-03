@@ -8,15 +8,15 @@ public class Player {
     private final String name;
 
     private Player(String name) {
-        validate(name);
         this.name = name;
     }
 
     public static Player newInstance(String name) {
+        validate(name);
         return new Player(name);
     }
 
-    private void validate(String name) {
+    private static void validate(String name) {
         if (StringUtils.isBlank(name)) {
             throw new InputValueException("이름이 존재하지 않습니다.");
         }

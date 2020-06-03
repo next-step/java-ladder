@@ -9,15 +9,15 @@ public class Players {
     private final List<Player> players;
 
     private Players(List<Player> players) {
-        validate(players);
         this.players = players;
     }
 
     public static Players newInstance(List<Player> players) {
+        validate(players);
         return new Players(players);
     }
 
-    private void validate(List<Player> players) {
+    private static void validate(List<Player> players) {
         if (players == null) {
             throw new IllegalArgumentException("참여자들이 존재하지 않습니다.");
         }

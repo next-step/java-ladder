@@ -10,15 +10,15 @@ public class Line {
     private final List<Point> points;
 
     private Line(List<Point> points) {
-        validate(points);
         this.points = points;
     }
 
     public static Line newInstance(List<Point> points) {
+        validate(points);
         return new Line(points);
     }
 
-    private void validate(List<Point> points) {
+    private static void validate(List<Point> points) {
         if (points == null) {
             throw new IllegalArgumentException("라인이 존재하지 않습니다.");
         }
