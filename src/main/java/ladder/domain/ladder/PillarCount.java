@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.exception.ErrorMessage;
+import ladder.exception.ValueOutOfBoundsException;
 
 public class PillarCount {
 
@@ -19,7 +20,7 @@ public class PillarCount {
 
     private static void verifyCount(final int count) {
         if (count < MIN_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.REQUIRED_MIN_PILLAR_COUNT);
+            throw new ValueOutOfBoundsException(ErrorMessage.REQUIRED_MIN_PILLAR_COUNT);
         }
     }
 

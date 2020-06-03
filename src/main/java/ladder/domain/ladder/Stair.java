@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.exception.ErrorMessage;
+import ladder.exception.ValueOutOfBoundsException;
 
 import java.util.Objects;
 
@@ -25,7 +26,7 @@ public class Stair {
 
     private void validate(final int position, final StairState state) {
         if (position < FIRST_PILLAR_POSITION) {
-            throw new IllegalArgumentException(ErrorMessage.REQUIRED_MIN_STAIR_POSITION);
+            throw new ValueOutOfBoundsException(ErrorMessage.REQUIRED_MIN_STAIR_POSITION);
         }
         if (Objects.isNull(state)) {
             throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);

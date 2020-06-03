@@ -1,6 +1,7 @@
 package ladder.domain.player;
 
 import ladder.exception.ErrorMessage;
+import ladder.exception.NameLengthOutOfRangeException;
 import ladder.util.StringUtil;
 
 public class Player {
@@ -23,7 +24,7 @@ public class Player {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
         if (name.length() > MAX_LENGTH_OF_NAME) {
-            throw new IllegalArgumentException(ErrorMessage.RANGE_OF_PLAYER_NAME);
+            throw new NameLengthOutOfRangeException(name);
         }
     }
 

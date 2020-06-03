@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.exception.ErrorMessage;
+import ladder.exception.ValueOutOfBoundsException;
 
 public class Height {
 
@@ -19,7 +20,7 @@ public class Height {
 
     private static void verifyHeight(final int height) {
         if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException(ErrorMessage.REQUIRED_MIN_LADDER_HEIGHT);
+            throw new ValueOutOfBoundsException(ErrorMessage.REQUIRED_MIN_LADDER_HEIGHT);
         }
     }
 
