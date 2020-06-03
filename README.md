@@ -179,3 +179,20 @@
 - [ ] LadderGameService
     - 객체 간의 실행 순서를 지정함
     - GameResult는 반드시 게임이 실행 된 후에 만들어져야 하기 때문에 이를 서비스 레이어에서 제어
+    
+### 1차 리뷰 Todo List
+- [ ] 값 비교를 위한 getter 없애고 객체 간 비교로 바꾸기
+- [ ] HorizontalLocation의 속성명 구체화시키기, 속성명 의미에 맞게 변경하기
+- [ ] Ladderd 생성자 접근 제한자 용도에 맞게 변경하기
+- [ ] Line 내 패키지에서만 사용하는 메서드 접근 제한자 용도에 맞게 변경하기
+- [ ] Player의 move 메서드 내부의 이름 통일성 높이기
+- [ ] Players 객체에서 사용자 입력값을 파싱하는 역할을 담당해야 될 지 고민하기
+- [ ] GameResultInputView 내부에 필요한 값 상수화 시키기
+- [ ] GameResultInputView에서 메서드화를 통해 depth 줄이기
+- [ ] UiController의 메서드화를 통해 적당한 책임 분리하기
+- [ ] UiController에서 Scanner 꼭 여러개 사용해야 되는지 다시 확인
+- [ ] 테스트 시 객체 간 비교를 활용하는 방안으로 개선하기
+- [ ] LineTest, PalyerTest에서 ParameterizedTest를 활용해서 중복 제거하기
+- [ ] Point의 boolean 값들을 상수화 시켜서 관리하기
+- [ ] HorizontalMoveStrategy 필터링 기능의 대상 캐싱하기
+- [ ] Player의 Location 값을 알아내는 getter 걷어내기 (메서드 역할을 다시 생각해보면서 객체간 책임을 설계할 것)
