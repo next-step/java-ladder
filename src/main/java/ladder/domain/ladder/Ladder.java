@@ -31,4 +31,8 @@ public class Ladder {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
     }
+
+    public List<Pillar> getPillars() {
+        return pillars;
+    }
 }

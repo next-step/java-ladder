@@ -47,4 +47,8 @@ public class Stairs {
     private static Stair createLast(final Stair stair) {
         return stair.createOfLastPillar();
     }
+
+    public List<Stair> getStairs() {
+        return stairs;
+    }
 }

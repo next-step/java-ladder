@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import java.util.List;
+
 public class Pillar {
 
     private final Stairs stairs;
@@ -10,5 +12,9 @@ public class Pillar {
 
     public static Pillar of(final PillarCount pillarCount) {
         return new Pillar(Stairs.of(pillarCount));
+    }
+
+    public List<Stair> getStairs() {
+        return stairs.getStairs();
     }
 }

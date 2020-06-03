@@ -20,4 +20,8 @@ public class Height {
             throw new IllegalArgumentException("사다리의 높이는 최소 1 이상이여야 합니다.");
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }
