@@ -5,6 +5,7 @@ import ladder.domain.dto.LadderShapeResult;
 import ladder.domain.ladder.Height;
 import ladder.domain.player.Players;
 import ladder.view.InputView;
+import ladder.view.ResultView;
 
 public class LadderApplication {
 
@@ -14,6 +15,6 @@ public class LadderApplication {
 
         LadderShapeResult result = LadderGame.of(players, height).play();
 
-//        ResultView.printResult(result);
+        ResultView.printResult(result);
     }
 }
