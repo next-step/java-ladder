@@ -28,7 +28,7 @@ public class LadderShapeResultTest {
 
     @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")
     @Test
-    void play() {
+    void create() {
         assertThatCode(() -> LadderShapeResult.of(names, StairDto.from(ladder)))
                 .doesNotThrowAnyException();
     }
