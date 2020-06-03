@@ -6,7 +6,6 @@ import java.util.List;
 public class Stairs {
 
     private static final int EXCEPT_FIRST_AND_LAST_PILLAR_COUNT = 2;
-    static final int MIN_PILLAR_COUNT = 1;
 
     private final List<Stair> stairs;
 
