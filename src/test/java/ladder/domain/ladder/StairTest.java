@@ -4,8 +4,7 @@ import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 public class StairTest {
 
@@ -30,5 +29,17 @@ public class StairTest {
     void createOfFirstPillar() {
         assertThatCode(Stair::createOfFirstPillar)
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("중간 기둥의 계단은 앞에 계단이 있으면 계단을 생성 X, 없으면 랜덤 전략으로 계단 생성 : T -> F, F -> T/F")
+    @Test
+    void createOfMiddlePillar() {
+        Stair previousStair = Stair.of(Stair.FIRST_PILLAR_POSITION,
+                StairState.ofFirstPillar(new RandomStairGenerationStrategy()));
+
+        boolean existLineOfPreviousStair = previousStair.isExistLine();
+        boolean existLine = previousStair.createOfMiddlePillar().isExistLine();
+
+        assertThat(existLineOfPreviousStair && existLine).isFalse();
     }
 }
