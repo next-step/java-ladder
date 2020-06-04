@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class PillarCount {
 
-    static final int MIN_COUNT = 1;
+    public static final int MIN_COUNT = 1;
 
     private final int value;
 
