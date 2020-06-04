@@ -1,0 +1,36 @@
+package ladder.domain;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+class LadderCreatorTest {
+
+    @Test
+    @DisplayName("사람 이름이 5글자 초과할 경우")
+    void LadderCreator() {
+        String[] personNames = {"a", "watermelon", "c"};
+
+        assertThatThrownBy(() -> {
+            new LadderCreator(personNames, 3);
+        }).isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("사람 이름은 최대 5글자까지 입니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    @DisplayName("사다리가 잘 생성되었는지 높이 체크")
+    void createLadder(int ladderHeight) {
+        String[] personNames = {"a", "b", "c"};
+        LadderCreator ladderCreator = new LadderCreator(personNames, ladderHeight);
+
+        Ladder ladder = ladderCreator.createLadder();
+
+        int ladderHeightResult = ladder.getLineList().size();
+        assertThat(ladderHeightResult).isEqualTo(ladderHeight);
+    }
+}
