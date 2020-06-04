@@ -17,7 +17,7 @@ class HorizontalMoveStrategyTests {
     @ParameterizedTest
     @MethodSource("moveStrategySource")
     void createTest(boolean currentPointStatus, boolean nextPointStatus, HorizontalMoveStrategy result) {
-        assertThat(HorizontalMoveStrategy.create(currentPointStatus, nextPointStatus)).isEqualTo(result);
+        assertThat(HorizontalMoveStrategy.find(currentPointStatus, nextPointStatus)).isEqualTo(result);
     }
     public static Stream<Arguments> moveStrategySource() {
         return Stream.of(
@@ -30,7 +30,7 @@ class HorizontalMoveStrategyTests {
     @DisplayName("존재하지 않는 정책을 요구할 경우 NotExistMoveStrategyException 발생")
     @Test
     void validationTest() {
-        assertThatThrownBy(() -> HorizontalMoveStrategy.create(true, true))
+        assertThatThrownBy(() -> HorizontalMoveStrategy.find(true, true))
                 .isInstanceOf(NotExistMoveStrategyException.class);
     }
 

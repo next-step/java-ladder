@@ -23,7 +23,7 @@ public enum HorizontalMoveStrategy {
         this.horizontalMove = horizontalMove;
     }
 
-    public static HorizontalMoveStrategy create(boolean currentPointStatus, boolean nextPointStatus) {
+    public static HorizontalMoveStrategy find(boolean currentPointStatus, boolean nextPointStatus) {
         return Optional.ofNullable(cachedHorizontalMoveStrategies.get(
                 new Direction(currentPointStatus, nextPointStatus)))
                 .orElseThrow(() -> new NotExistMoveStrategyException("Such HorizontalMoveStrategy not exist"));

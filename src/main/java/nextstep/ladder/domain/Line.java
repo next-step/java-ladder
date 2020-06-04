@@ -24,8 +24,8 @@ public class Line {
 
     public HorizontalMoveStrategy whereToMove(int pointIndex) {
         if (pointIndex == points.size() - 1) {
-            return HorizontalMoveStrategy.create(getPointsIndex(pointIndex), false);
+            return HorizontalMoveStrategy.find(getPointsIndex(pointIndex), false);
         }
-        return HorizontalMoveStrategy.create(getPointsIndex(pointIndex), getPointsIndex(pointIndex + 1));
+        return HorizontalMoveStrategy.find(getPointsIndex(pointIndex), getPointsIndex(pointIndex + 1));
     }
 }
