@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Stairs {
 
-    private static final int EXCEPT_FIRST_AND_LAST_PILLAR_COUNT = 2;
+    private static final int FIRST_AND_LAST_PILLAR_COUNT = 2;
 
     private final List<Stair> stairs;
 
@@ -19,7 +19,7 @@ public class Stairs {
 
     private static List<Stair> createHorizontalStairs(final PillarCount pillarCount) {
         List<Stair> stairs = new ArrayList<>();
-        int middlePillarCount = pillarCount.getValue() - EXCEPT_FIRST_AND_LAST_PILLAR_COUNT;
+        int middlePillarCount = pillarCount.getValue() - FIRST_AND_LAST_PILLAR_COUNT;
 
         Stair currentStair = Stair.createOfFirstPillar();
         stairs.add(currentStair);
