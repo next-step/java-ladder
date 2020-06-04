@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -45,26 +46,26 @@ class PlayerTests {
     }
 
     @DisplayName("오른쪽으로 이동 시 현재 Location을 1 증가시킨다.")
-    @Test
-    void moveRightTest() {
+    @ParameterizedTest
+    @CsvSource(value = "1:5", delimiter = ':')
+    void moveRightTest(int horizontalIndex, int maxIndex) {
         Player player = new Player("poppo", horizontalLocation);
 
         player.moveRight();
 
         assertThat(player).isEqualTo(new Player("poppo",
-                new HorizontalLocation(1, 5)));
+                new HorizontalLocation(horizontalIndex, maxIndex)));
     }
 
     @DisplayName("왼쪽으로 이동 시 현재 Location을 1 감소시킨다.")
-    @Test
-    void moveLeftTest() {
-        int initLocationValue = 1;
-        int countOfPerson = 5;
-        Player player = new Player("poppo",  new HorizontalLocation(initLocationValue, countOfPerson));
+    @ParameterizedTest
+    @CsvSource(value = "1:5:0", delimiter = ':')
+    void moveLeftTest(int initLocationValue, int maxIndex, int horizontalIndex) {
+        Player player = new Player("poppo",  new HorizontalLocation(initLocationValue, maxIndex));
 
         player.moveLeft();
 
         assertThat(player).isEqualTo(new Player("poppo",
-                new HorizontalLocation(0, 5)));
+                new HorizontalLocation(horizontalIndex, maxIndex)));
     }
 }

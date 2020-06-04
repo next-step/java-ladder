@@ -18,7 +18,6 @@ public class UiController {
         LadderHeightInputView ladderHeightInputView = LadderHeightInputView
                 .createByUserInput(maxLadderHeightInputScanner);
 
-
         PointAddStrategy pointAddStrategy = new RandomPointAddStrategy();
         Ladder ladder = Ladder.create(ladderHeightInputView.getMaxLadderHeight(),
                 playerInputView.getPlayerSize(), pointAddStrategy);

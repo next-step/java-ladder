@@ -189,10 +189,10 @@
 - [X] Players 객체에서 사용자 입력값을 파싱하는 역할을 담당해야 될 지 고민하기
 - [X] GameResultInputView 내부에 필요한 값 상수화 시키기
 - [X] GameResultInputView에서 메서드화를 통해 depth 줄이기
-- [ ] UiController의 메서드화를 통해 적당한 책임 분리하기
-- [ ] UiController에서 Scanner 꼭 여러개 사용해야 되는지 다시 확인
-- [ ] 테스트 시 객체 간 비교를 활용하는 방안으로 개선하기
-- [ ] LineTest, PalyerTest에서 ParameterizedTest를 활용해서 중복 제거하기
+- [X] 테스트 시 객체 간 비교를 활용하는 방안으로 개선하기
+- [X] LineTest, PalyerTest에서 ParameterizedTest를 활용해서 중복 제거하기
 - [ ] Point의 boolean 값들을 상수화 시켜서 관리하기
 - [ ] HorizontalMoveStrategy 필터링 기능의 대상 캐싱하기
 - [ ] Player의 Location 값을 알아내는 getter 걷어내기 (메서드 역할을 다시 생각해보면서 객체간 책임을 설계할 것)
+- [ ] UiController의 메서드화를 통해 적당한 책임 분리하기
+- [ ] UiController에서 Scanner 꼭 여러개 사용해야 되는지 다시 확인
