@@ -6,10 +6,10 @@ import java.util.Objects;
 
 public class StairState {
 
-    private final boolean existLine;
+    private final boolean isExistLine;
 
-    private StairState(final boolean existLine) {
-        this.existLine = existLine;
+    private StairState(final boolean isExistLine) {
+        this.isExistLine = isExistLine;
     }
 
     public static StairState ofFirstPillar(final StairGenerationStrategy strategy) {
@@ -28,7 +28,7 @@ public class StairState {
     }
 
     public boolean isExistLine() {
-        return existLine;
+        return isExistLine;
     }
 
     @Override
@@ -36,11 +36,11 @@ public class StairState {
         if (this == o) return true;
         if (!(o instanceof StairState)) return false;
         StairState that = (StairState) o;
-        return existLine == that.existLine;
+        return isExistLine == that.isExistLine;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(existLine);
+        return Objects.hash(isExistLine);
     }
 }
