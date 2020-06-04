@@ -29,6 +29,11 @@ public class Player {
         return this.horizontalLocation.getIndex();
     }
 
+    public HorizontalLocation move(HorizontalMoveStrategy horizontalMoveStrategy) {
+        horizontalMoveStrategy.move(this);
+        return this.horizontalLocation;
+    }
+
     public void moveRight() {
         this.horizontalLocation = horizontalLocation.moveRight();
     }

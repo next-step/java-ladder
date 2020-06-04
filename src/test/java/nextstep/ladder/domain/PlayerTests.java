@@ -6,9 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -45,27 +45,23 @@ class PlayerTests {
                 .isInstanceOf(PlayerNameEmptyException.class);
     }
 
-    @DisplayName("오른쪽으로 이동 시 현재 Location을 1 증가시킨다.")
+    @DisplayName("전달받은 HorizontalMoveStrategy에 따라 움직일 수 있다.")
     @ParameterizedTest
-    @CsvSource(value = "1:5", delimiter = ':')
-    void moveRightTest(int horizontalIndex, int maxIndex) {
-        Player player = new Player("poppo", horizontalLocation);
-
-        player.moveRight();
-
-        assertThat(player).isEqualTo(new Player("poppo",
-                new HorizontalLocation(horizontalIndex, maxIndex)));
+    @MethodSource("moveStrategies")
+    void moveTest(HorizontalLocation initHorizontalLocation, HorizontalMoveStrategy horizontalMoveStrategy,
+                  HorizontalLocation expectedLocation) {
+        Player player = new Player("poppo", initHorizontalLocation);
+        HorizontalLocation horizontalLocationAfterMove = player.move(horizontalMoveStrategy);
+        assertThat(horizontalLocationAfterMove).isEqualTo(expectedLocation);
     }
-
-    @DisplayName("왼쪽으로 이동 시 현재 Location을 1 감소시킨다.")
-    @ParameterizedTest
-    @CsvSource(value = "1:5:0", delimiter = ':')
-    void moveLeftTest(int initLocationValue, int maxIndex, int horizontalIndex) {
-        Player player = new Player("poppo",  new HorizontalLocation(initLocationValue, maxIndex));
-
-        player.moveLeft();
-
-        assertThat(player).isEqualTo(new Player("poppo",
-                new HorizontalLocation(horizontalIndex, maxIndex)));
+    public static Stream<Arguments> moveStrategies() {
+        return Stream.of(
+                Arguments.of(new HorizontalLocation(0, 5), HorizontalMoveStrategy.STAY,
+                        new HorizontalLocation(0, 5)),
+                Arguments.of(new HorizontalLocation(0, 5), HorizontalMoveStrategy.MOVE_RIGHT,
+                        new HorizontalLocation(1, 5)),
+                Arguments.of(new HorizontalLocation(1, 5), HorizontalMoveStrategy.MOVE_LEFT,
+                        new HorizontalLocation(0, 5))
+        );
     }
 }
