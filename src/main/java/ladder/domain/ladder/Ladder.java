@@ -9,30 +9,30 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-    private final List<Pillar> pillars;
+    private final List<RowPillars> rowPillars;
 
-    private Ladder(final List<Pillar> pillars) {
-        validatePillars(pillars);
-        this.pillars = pillars;
+    private Ladder(final List<RowPillars> rowPillars) {
+        validatePillars(rowPillars);
+        this.rowPillars = rowPillars;
     }
 
     public static Ladder of(final Height height, final int numOfPlayers) {
         return new Ladder(createPillars(height, numOfPlayers));
     }
 
-    private static List<Pillar> createPillars(final Height height, final int numOfPlayers) {
-        return Stream.generate(() -> Pillar.of(PillarCount.of(numOfPlayers)))
+    private static List<RowPillars> createPillars(final Height height, final int numOfPlayers) {
+        return Stream.generate(() -> RowPillars.of(PillarCount.of(numOfPlayers)))
                 .limit(height.getValue())
                 .collect(Collectors.toList());
     }
 
-    private void validatePillars(final List<Pillar> pillars) {
-        if (Objects.isNull(pillars) || pillars.size() == 0) {
+    private void validatePillars(final List<RowPillars> rowPillars) {
+        if (Objects.isNull(rowPillars) || rowPillars.size() == 0) {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
     }
 
-    public List<Pillar> getPillars() {
-        return pillars;
+    public List<RowPillars> getRowPillars() {
+        return rowPillars;
     }
 }

@@ -2,16 +2,16 @@ package ladder.domain.ladder;
 
 import java.util.List;
 
-public class Pillar {
+public class RowPillars {
 
     private final Stairs stairs;
 
-    private Pillar(final Stairs stairs) {
+    private RowPillars(final Stairs stairs) {
         this.stairs = stairs;
     }
 
-    public static Pillar of(final PillarCount pillarCount) {
-        return new Pillar(Stairs.of(pillarCount));
+    public static RowPillars of(final PillarCount pillarCount) {
+        return new RowPillars(Stairs.of(pillarCount));
     }
 
     public List<Stair> getStairs() {

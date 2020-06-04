@@ -1,7 +1,7 @@
 package ladder.domain.dto;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Pillar;
+import ladder.domain.ladder.RowPillars;
 import ladder.domain.ladder.Stair;
 import ladder.exception.ErrorMessage;
 
@@ -19,9 +19,9 @@ public class StairDto {
     }
 
     public static List<StairDto> from(final Ladder ladder) {
-        return ladder.getPillars()
+        return ladder.getRowPillars()
                 .stream()
-                .map(Pillar::getStairs)
+                .map(RowPillars::getStairs)
                 .map(StairDto::of)
                 .collect(Collectors.toList());
     }
