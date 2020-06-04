@@ -28,7 +28,7 @@ public class StairStateTest {
     @Test
     void ofMiddlePillarWithNoLine() {
         assertThat(StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance())
-                .ofMiddlePillarWithNoLine()
+                .ofWithNoLine()
                 .isExistLine())
                 .isEqualTo(false);
     }
