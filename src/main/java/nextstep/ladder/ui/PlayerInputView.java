@@ -14,6 +14,7 @@ public class PlayerInputView {
     private Players players;
 
     public PlayerInputView(String playerNameValues) {
+        validate(playerNameValues);
         this.players = Players.create(parseToNames(playerNameValues));
     }
 
@@ -27,6 +28,23 @@ public class PlayerInputView {
 
     public int getPlayerSize() {
         return this.players.size();
+    }
+
+    public void validate(String playerNameValues) {
+        validateNull(playerNameValues);
+        validateEmpty(playerNameValues);
+    }
+
+    private void validateNull(String playerNameValues) {
+        if (playerNameValues == null) {
+            throw new IllegalArgumentException("Input value must not be null");
+        }
+    }
+
+    private void validateEmpty(String playerNameValues) {
+        if (playerNameValues.trim().isEmpty()) {
+            throw new IllegalArgumentException("Input value must not be empty");
+        }
     }
 
     private static String getUserInputPlayers(Scanner scanner) {
