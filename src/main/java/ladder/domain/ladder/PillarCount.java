@@ -3,6 +3,8 @@ package ladder.domain.ladder;
 import ladder.exception.ErrorMessage;
 import ladder.exception.ValueOutOfBoundsException;
 
+import java.util.Objects;
+
 public class PillarCount {
 
     static final int MIN_COUNT = 1;
@@ -26,5 +28,18 @@ public class PillarCount {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PillarCount)) return false;
+        PillarCount that = (PillarCount) o;
+        return value == that.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
