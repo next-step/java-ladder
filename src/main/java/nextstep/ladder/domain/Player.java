@@ -26,15 +26,15 @@ public class Player {
     }
 
     public int getPlayerLocationValue() {
-        return this.horizontalLocation.getIndex();
+        return this.horizontalLocation.parseIndexNumber();
     }
 
     public HorizontalLocation move(HorizontalMoveStrategy horizontalMoveStrategy) {
         if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_LEFT)) {
-            this.horizontalLocation.moveLeft();
+            this.horizontalLocation = this.horizontalLocation.moveLeft();
         }
         if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_RIGHT)) {
-            this.horizontalLocation.moveRight();
+            this.horizontalLocation = this.horizontalLocation.moveRight();
         }
         return this.horizontalLocation;
     }

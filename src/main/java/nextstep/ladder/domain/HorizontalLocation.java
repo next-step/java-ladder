@@ -33,7 +33,7 @@ public class HorizontalLocation {
         return new HorizontalLocation(this.index - 1, this.maxIndex);
     }
 
-    int getIndex() {
+    int parseIndexNumber() {
         return index;
     }
 
@@ -48,5 +48,13 @@ public class HorizontalLocation {
     @Override
     public int hashCode() {
         return Objects.hash(index);
+    }
+
+    @Override
+    public String toString() {
+        return "HorizontalLocation{" +
+                "index=" + index +
+                ", maxIndex=" + maxIndex +
+                '}';
     }
 }

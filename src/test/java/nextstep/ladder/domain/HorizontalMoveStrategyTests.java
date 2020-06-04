@@ -33,31 +33,4 @@ class HorizontalMoveStrategyTests {
         assertThatThrownBy(() -> HorizontalMoveStrategy.find(true, true))
                 .isInstanceOf(NotExistMoveStrategyException.class);
     }
-
-    @DisplayName("왼쪽으로 이동 정책 실행 시 Player 왼쪽으로 이동")
-    @Test
-    void moveLeftTest() {
-        Player player = new Player("poppo", new HorizontalLocation(1, 3));
-        HorizontalMoveStrategy.MOVE_LEFT.move(player);
-
-        assertThat(player.getHorizontalLocation()).isEqualTo(new HorizontalLocation(0, 3));
-    }
-
-    @DisplayName("오른쪽으로 이동 정책 실행 시 Player 오른쪽으로 이동")
-    @Test
-    void moveRightTest() {
-        Player player = new Player("poppo", new HorizontalLocation(0, 3));
-        HorizontalMoveStrategy.MOVE_RIGHT.move(player);
-
-        assertThat(player.getHorizontalLocation()).isEqualTo(new HorizontalLocation(1, 3));
-    }
-
-    @DisplayName("제자리 정책 실행 시 Player 위치 변화 없음")
-    @Test
-    void stayTest() {
-        Player player = new Player("poppo", new HorizontalLocation(0, 3));
-        HorizontalMoveStrategy.STAY.move(player);
-
-        assertThat(player.getHorizontalLocation()).isEqualTo(new HorizontalLocation(0, 3));
-    }
 }
