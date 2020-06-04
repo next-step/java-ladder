@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
+
     private List<Line> lines;
 
     private Ladder(List<Line> lines) {
@@ -35,5 +36,15 @@ public class Ladder {
         if (ladderHeight < MIN_HEIGHT) {
             throw new InvalidLadderHeightException("Ladder height must exceed zero");
         }
+    }
+
+    void playGame(Player player) {
+        lines.stream()
+                .map(line -> line.whereToMove(player.move(HorizontalMoveStrategy.STAY).parseIndexNumber()))
+                .forEach(player::move);
+    }
+
+    public void playGameWithAllPlayers(Players players) {
+        players.getValues().forEach(this::playGame);
     }
 }

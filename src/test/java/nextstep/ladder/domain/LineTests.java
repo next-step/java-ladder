@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -62,5 +63,41 @@ class LineTests {
         assertThat(line.getPointsIndex(0)).isFalse();
         assertThat(line.getPointsIndex(1)).isTrue();
         assertThat(line.getPointsIndex(2)).isFalse();
+    }
+
+    @DisplayName("전달된 index의 Point가 true일 경우 왼쪽으로 이동")
+    @ParameterizedTest
+    @CsvSource(value = "3:1", delimiter = ':')
+    void moveLeftTest(int countOfPerson, int pointIndex) {
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
+
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(HorizontalMoveStrategy.MOVE_LEFT);
+    }
+
+    @DisplayName("전달된 index의 오른쪽 Point가 true일 경우 오른쪽으로 이동")
+    @ParameterizedTest
+    @CsvSource(value = "3:0", delimiter = ':')
+    void moveRightTest(int countOfPerson, int pointIndex) {
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
+
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(HorizontalMoveStrategy.MOVE_RIGHT);
+    }
+
+    @DisplayName("전달된 index가 Line index의 마지막이고, 해당 index가 true인 경우 왼쪽으로 이동")
+    @ParameterizedTest
+    @CsvSource(value = "4:3", delimiter = ':')
+    void lastIndexMoveLeftTest(int countOfPerson, int pointIndex) {
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
+
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(HorizontalMoveStrategy.MOVE_LEFT);
+    }
+
+    @DisplayName("전달된 index가 Line index의 마지막이고, 해당 index가 false인 경우 움직이지 않음")
+    @ParameterizedTest
+    @CsvSource(value = "3:2", delimiter = ':')
+    void lastIndexStayTest(int countOfPerson, int pointIndex) {
+        Line line = LineFactory.create(countOfPerson, simplePointAddStrategy);
+
+        assertThat(line.whereToMove(pointIndex)).isEqualTo(HorizontalMoveStrategy.STAY);
     }
 }

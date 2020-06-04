@@ -5,13 +5,16 @@ import nextstep.ladder.domain.exceptions.PlayerNameLengthException;
 
 import java.util.Objects;
 
-public class PlayerName {
+public class Player {
     private static final int MAX_NAME_VALUE_LENGTH = 5;
-    private String name;
 
-    public PlayerName(String name) {
+    private final String name;
+    private HorizontalLocation horizontalLocation;
+
+    public Player(String name, HorizontalLocation horizontalLocation) {
         validate(name);
         this.name = name;
+        this.horizontalLocation = horizontalLocation;
     }
 
     public int length() {
@@ -20,6 +23,24 @@ public class PlayerName {
 
     public String getName() {
         return this.name;
+    }
+
+    public int getPlayerLocationValue() {
+        return this.horizontalLocation.parseIndexNumber();
+    }
+
+    public HorizontalLocation move(HorizontalMoveStrategy horizontalMoveStrategy) {
+        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_LEFT)) {
+            this.horizontalLocation = this.horizontalLocation.moveLeft();
+        }
+        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_RIGHT)) {
+            this.horizontalLocation = this.horizontalLocation.moveRight();
+        }
+        return this.horizontalLocation;
+    }
+
+    HorizontalLocation getHorizontalLocation() {
+        return this.horizontalLocation;
     }
 
     private void validate(String nameValue) {
@@ -50,19 +71,13 @@ public class PlayerName {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlayerName that = (PlayerName) o;
-        return Objects.equals(name, that.name);
+        Player player = (Player) o;
+        return Objects.equals(name, player.name) &&
+                Objects.equals(horizontalLocation, player.horizontalLocation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-        return "PlayerName{" +
-                "nameValue='" + name + '\'' +
-                '}';
+        return Objects.hash(name, horizontalLocation);
     }
 }

@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.exceptions.PointsNeedMoreThanOnePersonException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LineFactory {
@@ -11,17 +10,21 @@ public class LineFactory {
 
     public static Line create(int countOfPerson, PointAddStrategy pointAddStrategy) {
         validateCountOfPerson(countOfPerson);
-        if (countOfPerson == 1) {
-            return new Line(Collections.singletonList(false));
-        }
-        return new Line(new ArrayList<>(makeLineWhenMoreThanTwoPeople(countOfPerson, pointAddStrategy)));
+        return new Line(new ArrayList<>(makeLine(countOfPerson, pointAddStrategy)));
     }
 
-    private static List<Boolean> makeLineWhenMoreThanTwoPeople(int countOfPerson, PointAddStrategy pointAddStrategy) {
-        List<Boolean> values = new ArrayList<>();
-        values.add(false);
+    private static List<Point> makeLine(int countOfPerson, PointAddStrategy pointAddStrategy) {
+        List<Point> values = new ArrayList<>();
+        values.add(new Point(false));
+
+        if (countOfPerson == MIN_COUNT_OF_PERSON) {
+            return values;
+        }
+
         for (int i = 1; i < countOfPerson; i++) {
-            values.add(pointAddStrategy.confirmPointLocation(!values.get(values.size() - 1)));
+            values.add(new Point(
+                    pointAddStrategy.confirmPointLocation(
+                            !values.get(values.size() - 1).getValue())));
         }
         return values;
     }
