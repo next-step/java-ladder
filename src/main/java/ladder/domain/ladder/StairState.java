@@ -11,11 +11,11 @@ public class StairState {
     }
 
     public static StairState ofFirstPillar(final StairGenerationStrategy strategy) {
-        return new StairState(strategy.isGeneratable());
+        return new StairState(strategy.generate());
     }
 
     public StairState ofMiddlePillar(final StairGenerationStrategy strategy) {
-        return new StairState(strategy.isGeneratable());
+        return new StairState(strategy.generate());
     }
 
     public StairState ofMiddlePillarWithNoLine() {

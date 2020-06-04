@@ -7,7 +7,7 @@ public class RandomStairGenerationStrategy implements StairGenerationStrategy {
     private static final Random random = new Random();
 
     @Override
-    public boolean isGeneratable() {
+    public boolean generate() {
         return random.nextBoolean();
     }
 }
