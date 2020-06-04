@@ -14,7 +14,7 @@ public class Line {
         return points.size();
     }
 
-    public boolean getPointsIndex(int index) {
+    boolean getPointsIndex(int index) {
         return points.get(index).getValue();
     }
 
