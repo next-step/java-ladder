@@ -34,14 +34,14 @@ public class Stair {
     }
 
     public static Stair createOfFirstPillar() {
-        return new Stair(FIRST_PILLAR_POSITION, StairState.ofFirstPillar(new RandomStairGenerationStrategy()));
+        return new Stair(FIRST_PILLAR_POSITION, StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
     }
 
     public Stair createOfMiddlePillar() {
         if (isExistLine()) {
             return createWithNoLine();
         }
-        return new Stair(position + POSITION_GAP, state.ofMiddlePillar(new RandomStairGenerationStrategy()));
+        return new Stair(position + POSITION_GAP, state.ofMiddlePillar(RandomStairGenerationStrategy.getInstance()));
     }
 
     public Stair createOfLastPillar() {
