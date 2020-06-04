@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 public class StairDto {
 
+    private static final int ZERO_VALUE = 0;
+
     private final List<Boolean> lines;
 
     private StairDto(final List<Boolean> lines) {
@@ -33,8 +35,8 @@ public class StairDto {
     }
 
     private void validateLines(final List<Boolean> lines) {
-        if (Objects.isNull(lines) || lines.size() == 0) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
+        if (Objects.isNull(lines)) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
         }
     }
 
