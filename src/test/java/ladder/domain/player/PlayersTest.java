@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PlayersTest {
@@ -28,7 +28,7 @@ public class PlayersTest {
         names.add("pobi");
         names.add("honux");
 
-        assertThatCode(() -> Players.of(names))
-                .doesNotThrowAnyException();
+        assertThat(Players.of(names).count())
+                .isEqualTo(names.size());
     }
 }
