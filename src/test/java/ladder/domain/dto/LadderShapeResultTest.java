@@ -29,14 +29,14 @@ public class LadderShapeResultTest {
     @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")
     @Test
     void create() {
-        assertThatCode(() -> LadderShapeResult.of(names, StairDto.from(ladder)))
+        assertThatCode(() -> LadderShapeResult.of(names, ladder))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("인자로 넣은 게임 참여자의 정보를 반환")
     @Test
     void getPlayerNames() {
-        assertThat(LadderShapeResult.of(names, StairDto.from(ladder))
+        assertThat(LadderShapeResult.of(names, ladder)
                 .getPlayerNames())
                 .isEqualTo(names);
     }
