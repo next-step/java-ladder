@@ -32,8 +32,8 @@ public class LadderShapeInfo {
         return PillarCount.of(players.count());
     }
 
-    public Height getHeight() {
-        return height;
+    public int getHeight() {
+        return height.getValue();
     }
 
     public Players getPlayers() {
