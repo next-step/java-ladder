@@ -19,33 +19,17 @@ public class Stairs {
 
     private static List<Stair> createHorizontalStairs(final PillarCount pillarCount) {
         List<Stair> stairs = new ArrayList<>();
+        int middlePillarCount = pillarCount.getValue() - EXCEPT_FIRST_AND_LAST_PILLAR_COUNT;
 
-        Stair currentStair = createFirst();
+        Stair currentStair = Stair.createOfFirstPillar();
         stairs.add(currentStair);
-        stairs.addAll(createMiddle(currentStair, pillarCount.getValue() - EXCEPT_FIRST_AND_LAST_PILLAR_COUNT));
-        stairs.add(createLast(currentStair));
+        for (int i = 0; i < middlePillarCount; i++) {
+            currentStair = currentStair.createOfMiddlePillar();
+            stairs.add(currentStair);
+        }
+        stairs.add(currentStair.createOfLastPillar());
 
         return stairs;
-    }
-
-    private static Stair createFirst() {
-        return Stair.createOfFirstPillar();
-    }
-
-    private static List<Stair> createMiddle(final Stair preStair, final int middlePillarCount) {
-        List<Stair> middleStairs = new ArrayList<>();
-        Stair stair = preStair;
-
-        for (int i = 0; i < middlePillarCount; i++) {
-            stair = stair.createOfMiddlePillar();
-            middleStairs.add(stair);
-        }
-
-        return middleStairs;
-    }
-
-    private static Stair createLast(final Stair stair) {
-        return stair.createOfLastPillar();
     }
 
     public List<Stair> getStairs() {
