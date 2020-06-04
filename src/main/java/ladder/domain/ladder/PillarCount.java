@@ -30,6 +30,10 @@ public class PillarCount {
         return value;
     }
 
+    public boolean isMinCount() {
+        return value == MIN_COUNT;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
