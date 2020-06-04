@@ -29,11 +29,14 @@ public class ResultView {
     }
 
     private static void printLadderShape(final List<StairDto> stairDtos) {
-        stairDtos.forEach(stairDto -> {
-            System.out.print(EMPTY_STAIR_MARK);
-            stairDto.getLines().forEach(existLine -> System.out.print(getOnePieceOfLadderShape(existLine)));
-            System.out.println();
-        });
+        stairDtos.forEach(ResultView::printStairDto);
+    }
+
+    private static void printStairDto(final StairDto stairDto) {
+        System.out.print(EMPTY_STAIR_MARK);
+        stairDto.getLines()
+                .forEach(existLine -> System.out.print(getOnePieceOfLadderShape(existLine)));
+        System.out.println();
     }
 
     private static String getOnePieceOfLadderShape(final boolean existLine) {
