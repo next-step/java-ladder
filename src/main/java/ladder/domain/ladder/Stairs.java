@@ -1,7 +1,10 @@
 package ladder.domain.ladder;
 
+import ladder.exception.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Stairs {
 
@@ -14,7 +17,14 @@ public class Stairs {
     }
 
     public static Stairs of(final PillarCount pillarCount) {
+        validatePillarCount(pillarCount);
         return new Stairs(createHorizontalStairs(pillarCount));
+    }
+
+    private static void validatePillarCount(final PillarCount pillarCount) {
+        if (Objects.isNull(pillarCount)) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
+        }
     }
 
     private static List<Stair> createHorizontalStairs(final PillarCount pillarCount) {
