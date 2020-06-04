@@ -37,12 +37,12 @@ public class Stair {
         return new Stair(FIRST_PILLAR_POSITION, StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
     }
 
-    public Stair createOfMiddlePillar() {
-        return new Stair(position + POSITION_GAP, state.ofMiddlePillar(RandomStairGenerationStrategy.getInstance()));
+    public Stair createOfNextPillar() {
+        return new Stair(position + POSITION_GAP, state.ofNextPillar(RandomStairGenerationStrategy.getInstance()));
     }
 
     public Stair createOfLastPillar() {
-        return new Stair(position + POSITION_GAP, state.ofWithNoLine());
+        return new Stair(position + POSITION_GAP, state.ofNextPillarWithNoLine());
     }
 
     public boolean isExistLine() {

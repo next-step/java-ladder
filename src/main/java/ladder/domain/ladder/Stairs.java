@@ -24,7 +24,7 @@ public class Stairs {
         Stair currentStair = Stair.createOfFirstPillar();
         stairs.add(currentStair);
         for (int i = 0; i < middlePillarCount; i++) {
-            currentStair = currentStair.createOfMiddlePillar();
+            currentStair = currentStair.createOfNextPillar();
             stairs.add(currentStair);
         }
         stairs.add(currentStair.createOfLastPillar());

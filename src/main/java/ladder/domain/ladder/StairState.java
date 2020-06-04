@@ -16,14 +16,14 @@ public class StairState {
         return new StairState(strategy.generate());
     }
 
-    public StairState ofMiddlePillar(final StairGenerationStrategy strategy) {
+    public StairState ofNextPillar(final StairGenerationStrategy strategy) {
         if (isExistLine()) {
-            return ofWithNoLine();
+            return ofNextPillarWithNoLine();
         }
         return new StairState(strategy.generate());
     }
 
-    public StairState ofWithNoLine() {
+    public StairState ofNextPillarWithNoLine() {
         return new StairState(false);
     }
 
