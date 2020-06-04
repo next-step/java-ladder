@@ -1,9 +1,9 @@
 package ladder.domain;
 
 import ladder.domain.dto.LadderShapeResult;
-import ladder.domain.dto.StairDto;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.player.Players;
 import ladder.exception.ErrorMessage;
 
@@ -26,6 +26,22 @@ public class LadderGame {
 
     private void validate(final Players players, final Height height) {
         if (Objects.isNull(players) || Objects.isNull(height)) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
+        }
+    }
+
+    private LadderGame(final LadderShapeInfo ladderShapeInfo) {
+        validateLadderShapeInfo(ladderShapeInfo);
+        this.players = ladderShapeInfo.getPlayers();
+        this.ladder = Ladder.of(ladderShapeInfo);
+    }
+
+    public static LadderGame of(final LadderShapeInfo ladderShapeInfo) {
+        return new LadderGame(ladderShapeInfo);
+    }
+
+    private static void validateLadderShapeInfo(final LadderShapeInfo ladderShapeInfo) {
+        if (Objects.isNull(ladderShapeInfo)) {
             throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
         }
     }
