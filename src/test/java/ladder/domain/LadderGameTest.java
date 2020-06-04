@@ -17,12 +17,16 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 public class LadderGameTest {
 
     private List<String> names;
+    private List<String> singlePlayerName;
 
     @BeforeEach
     void setUp() {
         this.names = new ArrayList<>();
         names.add("pobi");
         names.add("honux");
+
+        this.singlePlayerName = new ArrayList<>();
+        singlePlayerName.add("heee");
     }
 
     @DisplayName("LadderGame 생성")
@@ -52,6 +56,13 @@ public class LadderGameTest {
     @Test
     void play() {
         assertThatCode(() -> LadderGame.of(Players.of(names), Height.of(Height.MIN_HEIGHT * 5)).play())
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("게임 참여자가 1명 일 때, LadderGame 실행 가능")
+    @Test
+    void createWithSinglePlayer() {
+        assertThatCode(() -> LadderGame.of(Players.of(singlePlayerName), Height.of(Height.MIN_HEIGHT * 5)).play())
                 .doesNotThrowAnyException();
     }
 }
