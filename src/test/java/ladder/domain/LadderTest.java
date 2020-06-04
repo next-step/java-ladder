@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LadderCreatorTest {
+class LadderTest {
 
     @Test
     @DisplayName("사람 이름이 5글자 초과할 경우")
@@ -16,7 +16,7 @@ class LadderCreatorTest {
         String[] personNames = {"a", "watermelon", "c"};
 
         assertThatThrownBy(() -> {
-            new LadderCreator(personNames, 3);
+            new Ladder(personNames, 3);
         }).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("사람 이름은 최대 5글자까지 입니다.");
     }
@@ -26,9 +26,9 @@ class LadderCreatorTest {
     @DisplayName("사다리 높이 체크")
     void createLadder(int ladderHeight) {
         String[] personNames = {"a", "b", "c"};
-        LadderCreator ladderCreator = new LadderCreator(personNames, ladderHeight);
+        Ladder ladder = new Ladder(personNames, ladderHeight);
 
-        LineList lineList = ladderCreator.createLadder();
+        LineList lineList = ladder.createLadder();
 
         int ladderHeightResult = lineList.getLineList().size();
         assertThat(ladderHeightResult).isEqualTo(ladderHeight);

@@ -2,11 +2,11 @@ package ladder.domain;
 
 import java.util.Arrays;
 
-public class LadderCreator {
+public class Ladder {
     private final int countOfPerson;
     private final int ladderHeight;
 
-    public LadderCreator(String[] personNames, int ladderHeight) {
+    public Ladder(String[] personNames,int ladderHeight) {
         validate(personNames);
         this.countOfPerson = personNames.length;
         this.ladderHeight = ladderHeight;
