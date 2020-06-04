@@ -41,13 +41,6 @@ public class LadderGameTest {
     @DisplayName("LadderGame 생성")
     @Test
     void create() {
-        assertThatCode(() -> LadderGame.of(players, height))
-                .doesNotThrowAnyException();
-    }
-
-    @DisplayName("LadderGame 생성")
-    @Test
-    void create2() {
         assertThatCode(() -> LadderGame.of(LadderShapeInfo.valueOf(players, height)))
                 .doesNotThrowAnyException();
     }
@@ -57,37 +50,13 @@ public class LadderGameTest {
     @ParameterizedTest
     void playerIsNull(final Players players) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderGame.of(players, minHeight));
-    }
-
-    @DisplayName("LadderGame 생성 실패 : 게임 참여자가 null")
-    @NullSource
-    @ParameterizedTest
-    void playerIsNull2(final Players players) {
-        assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderGame.of(LadderShapeInfo.valueOf(players, minHeight)));
-    }
-
-    @DisplayName("LadderGame 생성 실패 : 사다리 높이가 null")
-    @NullSource
-    @ParameterizedTest
-    void heightIsNull(final Height height) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderGame.of(players, height));
-    }
-
-    @DisplayName("LadderGame 생성 실패 : 사다리 높이가 null")
-    @NullSource
-    @ParameterizedTest
-    void heightIsNull2(final Height height) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderGame.of(LadderShapeInfo.valueOf(players, height)));
     }
 
     @DisplayName("LadderGame 생성 실패 : LadderShapeInfo 가 null")
     @NullSource
     @ParameterizedTest
-    void heightIsNull2(final LadderShapeInfo ladderShapeInfo) {
+    void heightIsNull(final LadderShapeInfo ladderShapeInfo) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderGame.of(ladderShapeInfo));
     }
@@ -95,13 +64,6 @@ public class LadderGameTest {
     @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")
     @Test
     void play() {
-        assertThatCode(() -> LadderGame.of(players, height).play())
-                .doesNotThrowAnyException();
-    }
-
-    @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")
-    @Test
-    void play2() {
         assertThatCode(() -> LadderGame.of(LadderShapeInfo.valueOf(players, height)).play())
                 .doesNotThrowAnyException();
     }
@@ -109,14 +71,9 @@ public class LadderGameTest {
     @DisplayName("게임 참여자가 1명 일 때, LadderGame 실행 가능")
     @Test
     void createWithSinglePlayer() {
-        assertThatCode(() -> LadderGame.of(singlePlayer, height).play())
-                .doesNotThrowAnyException();
-    }
-
-    @DisplayName("게임 참여자가 1명 일 때, LadderGame 실행 가능")
-    @Test
-    void createWithSinglePlayer2() {
         assertThatCode(() -> LadderGame.of(LadderShapeInfo.valueOf(singlePlayer, height)).play())
                 .doesNotThrowAnyException();
     }
+
+    // TODO 게임 참여자가 1명이고 사다리의 높이가 N이면, N개의 Pillar 를 출력한다.
 }
