@@ -8,20 +8,11 @@ import static org.assertj.core.api.Assertions.*;
 
 public class StairTest {
 
-    @DisplayName("계단의 위치가 0보다 작으면 예외 반환")
-    @Test
-    void createFailure() {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Stair.of(
-                        Stair.FIRST_PILLAR_POSITION - 1,
-                        StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance())));
-    }
-
     @DisplayName("계단의 상태값이 null 이면 예외 반환")
     @Test
     void createFailureByStairStateIsNull() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Stair.of(Stair.FIRST_PILLAR_POSITION, null));
+                .isThrownBy(() -> Stair.of(null));
     }
 
     @DisplayName("첫 번째 기둥의 계단은 랜던 전략으로 생성")
@@ -34,7 +25,7 @@ public class StairTest {
     @DisplayName("중간 기둥의 계단은 앞에 계단이 있으면 계단을 생성 X, 없으면 랜덤 전략으로 계단 생성 : T -> F, F -> T/F")
     @Test
     void createOfMiddlePillar() {
-        Stair previousStair = Stair.of(Stair.FIRST_PILLAR_POSITION,
+        Stair previousStair = Stair.of(
                 StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
 
         boolean existLineOfPreviousStair = previousStair.isExistLine();
