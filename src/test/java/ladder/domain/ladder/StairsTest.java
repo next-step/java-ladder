@@ -2,11 +2,21 @@ package ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class StairsTest {
+
+    @DisplayName("기둥의 개수가 null 이면 예외 반환")
+    @NullSource
+    @ParameterizedTest
+    void createFailureByPillarCountIsNull(final PillarCount pillarCount) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> Stairs.of(pillarCount));
+    }
 
     @DisplayName("기둥의 최소 개수인 1보다 작은 수로 계단을 만들 수 없음")
     @Test
