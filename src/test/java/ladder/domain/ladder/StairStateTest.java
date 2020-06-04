@@ -32,4 +32,11 @@ public class StairStateTest {
                 .isExistLine())
                 .isEqualTo(false);
     }
+
+    @DisplayName("논리적 동치성 비교")
+    @Test
+    void equals() {
+        assertThat(StairState.ofFirstPillar(() -> false))
+                .isEqualTo(StairState.ofFirstPillar(() -> false));
+    }
 }
