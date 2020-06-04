@@ -30,19 +30,16 @@ public class Player {
     }
 
     public HorizontalLocation move(HorizontalMoveStrategy horizontalMoveStrategy) {
-        horizontalMoveStrategy.move(this);
+        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_LEFT)) {
+            this.horizontalLocation.moveLeft();
+        }
+        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_RIGHT)) {
+            this.horizontalLocation.moveRight();
+        }
         return this.horizontalLocation;
     }
 
-    public void moveRight() {
-        this.horizontalLocation = horizontalLocation.moveRight();
-    }
-
-    public void moveLeft() {
-        this.horizontalLocation = horizontalLocation.moveLeft();
-    }
-
-    public HorizontalLocation getHorizontalLocation() {
+    HorizontalLocation getHorizontalLocation() {
         return this.horizontalLocation;
     }
 

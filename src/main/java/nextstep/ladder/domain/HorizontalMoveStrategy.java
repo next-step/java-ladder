@@ -9,28 +9,22 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public enum HorizontalMoveStrategy {
-    MOVE_LEFT(new Direction(true, false), Player::moveLeft),
-    MOVE_RIGHT(new Direction(false, true), Player::moveRight),
-    STAY(new Direction(false, false), player -> {});
+    MOVE_LEFT(new Direction(true, false)),
+    MOVE_RIGHT(new Direction(false, true)),
+    STAY(new Direction(false, false));
 
     private final Direction direction;
-    private HorizontalMove horizontalMove;
     private static final Map<Direction, HorizontalMoveStrategy> cachedHorizontalMoveStrategies = createCache();
 
 
-    HorizontalMoveStrategy(Direction direction, HorizontalMove horizontalMove) {
+    HorizontalMoveStrategy(Direction direction) {
         this.direction = direction;
-        this.horizontalMove = horizontalMove;
     }
 
     public static HorizontalMoveStrategy find(boolean currentPointStatus, boolean nextPointStatus) {
         return Optional.ofNullable(cachedHorizontalMoveStrategies.get(
                 new Direction(currentPointStatus, nextPointStatus)))
                 .orElseThrow(() -> new NotExistMoveStrategyException("Such HorizontalMoveStrategy not exist"));
-    }
-
-    public void move(Player player) {
-        this.horizontalMove.move(player);
     }
 
     private static Map<Direction, HorizontalMoveStrategy> createCache() {
