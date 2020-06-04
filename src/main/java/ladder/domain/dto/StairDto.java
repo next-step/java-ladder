@@ -43,4 +43,8 @@ public class StairDto {
     public List<Boolean> getLines() {
         return lines;
     }
+
+    public boolean isSinglePillar() {
+        return lines.size() == ZERO_VALUE;
+    }
 }
