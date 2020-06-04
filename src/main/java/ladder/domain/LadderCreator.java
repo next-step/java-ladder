@@ -20,12 +20,12 @@ public class LadderCreator {
         });
     }
 
-    public Ladder createLadder() {
-        Ladder ladder = new Ladder();
+    public LineList createLadder() {
+        LineList lineList = new LineList();
         for (int idx = 0; idx < ladderHeight; idx++) {
-            ladder.createLine(countOfPerson);
+            lineList.createLine(countOfPerson);
         }
-        return ladder;
+        return lineList;
     }
 
 }

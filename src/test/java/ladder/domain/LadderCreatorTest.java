@@ -23,14 +23,14 @@ class LadderCreatorTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    @DisplayName("사다리가 잘 생성되었는지 높이 체크")
+    @DisplayName("사다리 높이 체크")
     void createLadder(int ladderHeight) {
         String[] personNames = {"a", "b", "c"};
         LadderCreator ladderCreator = new LadderCreator(personNames, ladderHeight);
 
-        Ladder ladder = ladderCreator.createLadder();
+        LineList lineList = ladderCreator.createLadder();
 
-        int ladderHeightResult = ladder.getLineList().size();
+        int ladderHeightResult = lineList.getLineList().size();
         assertThat(ladderHeightResult).isEqualTo(ladderHeight);
     }
 }
