@@ -187,8 +187,8 @@
 - [X] Line 내 패키지에서만 사용하는 메서드 접근 제한자 용도에 맞게 변경하기
 - [X] Player의 move 메서드 내부의 이름 통일성 높이기
 - [X] Players 객체에서 사용자 입력값을 파싱하는 역할을 담당해야 될 지 고민하기
-- [ ] GameResultInputView 내부에 필요한 값 상수화 시키기
-- [ ] GameResultInputView에서 메서드화를 통해 depth 줄이기
+- [X] GameResultInputView 내부에 필요한 값 상수화 시키기
+- [X] GameResultInputView에서 메서드화를 통해 depth 줄이기
 - [ ] UiController의 메서드화를 통해 적당한 책임 분리하기
 - [ ] UiController에서 Scanner 꼭 여러개 사용해야 되는지 다시 확인
 - [ ] 테스트 시 객체 간 비교를 활용하는 방안으로 개선하기

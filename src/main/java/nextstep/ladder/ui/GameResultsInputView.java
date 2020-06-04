@@ -17,11 +17,14 @@ public class GameResultsInputView {
             System.out.println(GAME_RESULT_INPUT_COMMENT);
             String userInput = scanner.nextLine();
 
-            if (userInput.equals(SELECT_ALL)) {
-                System.out.println(gameResultsOutputView.parseAllResults());
-                break;
-            }
-            System.out.println(gameResultsOutputView.parseIndividualResult(userInput));
+            System.out.println(parseResult(userInput));
         }
+    }
+
+    public String parseResult(String userInput) {
+        if (userInput.equals(SELECT_ALL)) {
+            return gameResultsOutputView.parseAllResults();
+        }
+        return gameResultsOutputView.parseIndividualResult(userInput);
     }
 }
