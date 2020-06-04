@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.exception.ErrorMessage;
 
 import java.util.List;
@@ -16,6 +17,12 @@ public class Ladder {
         this.rowPillars = rowPillars;
     }
 
+    private void validatePillars(final List<RowPillars> rowPillars) {
+        if (Objects.isNull(rowPillars) || rowPillars.size() == 0) {
+            throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
+        }
+    }
+
     public static Ladder of(final Height height, final int numOfPlayers) {
         return new Ladder(createPillars(height, numOfPlayers));
     }
@@ -26,10 +33,14 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    private void validatePillars(final List<RowPillars> rowPillars) {
-        if (Objects.isNull(rowPillars) || rowPillars.size() == 0) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
-        }
+    public static Ladder of(final LadderShapeInfo ladderShapeInfo) {
+        return new Ladder(createPillars2(ladderShapeInfo));
+    }
+
+    private static List<RowPillars> createPillars2(final LadderShapeInfo ladderShapeInfo) {
+        return Stream.generate(() -> RowPillars.of(ladderShapeInfo.getWidth()))
+                .limit(ladderShapeInfo.getHeight())
+                .collect(Collectors.toList());
     }
 
     public List<RowPillars> getRowPillars() {
