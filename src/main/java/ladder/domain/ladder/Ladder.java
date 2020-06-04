@@ -23,21 +23,11 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(final Height height, final int numOfPlayers) {
-        return new Ladder(createPillars(height, numOfPlayers));
-    }
-
-    private static List<RowPillars> createPillars(final Height height, final int numOfPlayers) {
-        return Stream.generate(() -> RowPillars.of(PillarCount.of(numOfPlayers)))
-                .limit(height.getValue())
-                .collect(Collectors.toList());
-    }
-
     public static Ladder of(final LadderShapeInfo ladderShapeInfo) {
-        return new Ladder(createPillars2(ladderShapeInfo));
+        return new Ladder(createPillars(ladderShapeInfo));
     }
 
-    private static List<RowPillars> createPillars2(final LadderShapeInfo ladderShapeInfo) {
+    private static List<RowPillars> createPillars(final LadderShapeInfo ladderShapeInfo) {
         return Stream.generate(() -> RowPillars.of(ladderShapeInfo.getWidth()))
                 .limit(ladderShapeInfo.getHeight())
                 .collect(Collectors.toList());
