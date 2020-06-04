@@ -38,18 +38,11 @@ public class Stair {
     }
 
     public Stair createOfMiddlePillar() {
-        if (isExistLine()) {
-            return createWithNoLine();
-        }
         return new Stair(position + POSITION_GAP, state.ofMiddlePillar(RandomStairGenerationStrategy.getInstance()));
     }
 
     public Stair createOfLastPillar() {
-        return createWithNoLine();
-    }
-
-    private Stair createWithNoLine() {
-        return new Stair(position + POSITION_GAP, state.ofMiddlePillarWithNoLine());
+        return new Stair(position + POSITION_GAP, state.ofWithNoLine());
     }
 
     public boolean isExistLine() {

@@ -15,10 +15,13 @@ public class StairState {
     }
 
     public StairState ofMiddlePillar(final StairGenerationStrategy strategy) {
+        if (isExistLine()) {
+            return ofWithNoLine();
+        }
         return new StairState(strategy.generate());
     }
 
-    public StairState ofMiddlePillarWithNoLine() {
+    public StairState ofWithNoLine() {
         return new StairState(false);
     }
 
