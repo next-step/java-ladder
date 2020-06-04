@@ -2,10 +2,8 @@ package ladder;
 
 import ladder.domain.LineList;
 import ladder.domain.Ladder;
-import ladder.domain.Line;
 import ladder.view.InputView;
-
-import java.util.List;
+import ladder.view.ResultVIew;
 
 public class Main {
 
@@ -13,10 +11,9 @@ public class Main {
         String[] peopleNames = InputView.askingPeopleName();
         int ladderHeight = InputView.askingLadderMaxHeight();
 
-        Ladder ladderCreator = new Ladder(peopleNames, ladderHeight);
-        LineList ladder = ladderCreator.createLadder();
+        Ladder ladder = new Ladder(peopleNames, ladderHeight);
+        LineList lineList = ladder.createLadder();
 
-        List<Line> lineList = ladder.getLineList();
-
+        ResultVIew.printLadder(peopleNames, lineList.getLineList());
     }
 }

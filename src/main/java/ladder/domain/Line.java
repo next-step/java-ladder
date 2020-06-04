@@ -17,18 +17,16 @@ public class Line {
         return GenerateRandomBoolean.isMove();
     }
 
-    public void createLine(final boolean preHasLine, final int presentPosition) {
-        if (presentPosition == countOfPerson) {
+    public void createLine(final boolean presentHasLine, final int nextPosition) {
+        if (nextPosition > countOfPerson) {
             return;
         }
 
-        if (preHasLine) {
-            points.add(false);
-            createLine(false, presentPosition + 1);
+        points.add(presentHasLine);
+        if (presentHasLine) {
+            createLine(false, nextPosition + 1);
         } else {
-            boolean nowHasLine = isCreate();
-            points.add(nowHasLine);
-            createLine(nowHasLine, presentPosition + 1);
+            createLine(isCreate(), nextPosition + 1);
         }
     }
 

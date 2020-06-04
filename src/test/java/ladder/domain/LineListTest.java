@@ -15,7 +15,7 @@ class LineListTest {
         LineList lineList = new LineList();
         lineList.createLine(countOfPerson);
 
-        int result = lineList.getLineList().size();
+        int result = lineList.getLineList().get(0).getPoints().size();
         assertThat(result).isEqualTo(countOfPerson);
     }
 }
