@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderOutputViewTests {
@@ -15,7 +17,7 @@ class LadderOutputViewTests {
     @BeforeEach
     public void setup() {
         simplePointAddStrategy = new SimplePointAddStrategy();
-        players = Players.create("poppo, ita");
+        players = Players.create(Arrays.asList("poppo", "ita"));
         int maxLadderHeight = 5;
         ladder = Ladder.create(maxLadderHeight, players.size(), simplePointAddStrategy);
     }

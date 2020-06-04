@@ -13,4 +13,9 @@ class PlayerInputViewTests {
         PlayerInputView playerInputView = new PlayerInputView(playerList);
         assertThat(playerInputView).isNotNull();
     }
+
+    @DisplayName("참여할 사람의 명단이 비어있거나 null인 경우 예외 발생")
+    void createValidationTest() {
+
+    }
 }

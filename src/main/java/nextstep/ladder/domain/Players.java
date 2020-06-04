@@ -5,24 +5,21 @@ import nextstep.ladder.domain.exceptions.PlayerNamesMaxLengthException;
 import nextstep.ladder.domain.exceptions.PlayerNotExistException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
-    private static final String NAME_SEPARATOR = ",";
-
     private List<Player> values;
 
     private Players(List<Player> values) {
         this.values = new ArrayList<>(values);
     }
 
-    public static Players create(String inputValue) {
-        validate(inputValue);
-        List<Player> playerList = parseToPlayerList(parseToNames(inputValue));
+    public static Players create(List<String> nameValues) {
+        validate(nameValues);
+        List<Player> playerList = parseToPlayerList(nameValues);
         return new Players(playerList);
     }
 
@@ -64,25 +61,19 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    private static List<String> parseToNames(String inputValue) {
-        return Arrays.stream(inputValue.split(NAME_SEPARATOR))
-                .map(String::trim)
-                .collect(Collectors.toList());
+    private static void validate(List<String> nameValues) {
+        validateNull(nameValues);
+        validateEmpty(nameValues);
     }
 
-    private static void validate(String inputValue) {
-        validateNull(inputValue);
-        validateEmpty(inputValue);
-    }
-
-    private static void validateEmpty(String inputValue) {
-        if (inputValue.trim().isEmpty()) {
+    private static void validateEmpty(List<String> nameValues) {
+        if (nameValues.size() == 0) {
             throw new PlayerNamesEmptyException("Can't create PlayerNames from empty value");
         }
     }
 
-    private static void validateNull(String inputValue) {
-        if (inputValue == null) {
+    private static void validateNull(List<String> nameValues) {
+        if (nameValues == null) {
             throw new PlayerNamesEmptyException("Can't create PlayerNames from null source");
         }
     }

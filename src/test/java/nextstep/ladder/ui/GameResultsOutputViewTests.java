@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameResultsOutputViewTests {
@@ -14,7 +16,7 @@ class GameResultsOutputViewTests {
 
     @BeforeEach
     public void setup() {
-        Players players = Players.create("poppo, ita, saul");
+        Players players = Players.create(Arrays.asList("poppo", "ita", "saul"));
         Rewards rewards = Rewards.create("1, 2, 3");
 
         gameResults = GameResults.create(players, rewards);

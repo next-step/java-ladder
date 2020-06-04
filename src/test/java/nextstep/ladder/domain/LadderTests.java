@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -55,7 +57,7 @@ class LadderTests {
         int ladderHeight = 5;
         int countOfPerson = 3;
         Ladder ladder = Ladder.create(ladderHeight, countOfPerson, simplePointAddStrategy);
-        Players players = Players.create("saul, poppo, ita");
+        Players players = Players.create(Arrays.asList("saul", "poppo", "ita"));
 
         ladder.playGameWithAllPlayers(players);
 
