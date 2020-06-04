@@ -14,7 +14,7 @@ public class StairTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Stair.of(
                         Stair.FIRST_PILLAR_POSITION - 1,
-                        StairState.ofFirstPillar(new RandomStairGenerationStrategy())));
+                        StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance())));
     }
 
     @DisplayName("계단의 상태값이 null 이면 예외 반환")
@@ -35,7 +35,7 @@ public class StairTest {
     @Test
     void createOfMiddlePillar() {
         Stair previousStair = Stair.of(Stair.FIRST_PILLAR_POSITION,
-                StairState.ofFirstPillar(new RandomStairGenerationStrategy()));
+                StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
 
         boolean existLineOfPreviousStair = previousStair.isExistLine();
         boolean existLine = previousStair.createOfMiddlePillar().isExistLine();

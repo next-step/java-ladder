@@ -10,7 +10,7 @@ public class RandomStairGenerationStrategyTest {
     @DisplayName("true 또는 false 를 반환")
     @Test
     void isGeneratable() {
-        assertThat(new RandomStairGenerationStrategy().generate())
+        assertThat(RandomStairGenerationStrategy.getInstance().generate())
                 .isIn(true, false);
     }
 }
