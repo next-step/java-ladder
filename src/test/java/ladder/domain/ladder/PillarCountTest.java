@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class PillarCountTest {
 
@@ -23,5 +22,12 @@ public class PillarCountTest {
     void create(final int count) {
         assertThatCode(() -> PillarCount.of(count))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("논리적 동치성 비교")
+    @Test
+    void equals() {
+        assertThat(PillarCount.of(PillarCount.MIN_COUNT))
+                .isEqualTo(PillarCount.of(PillarCount.MIN_COUNT));
     }
 }
