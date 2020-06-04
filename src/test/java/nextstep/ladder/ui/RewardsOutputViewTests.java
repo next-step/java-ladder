@@ -12,6 +12,7 @@ class RewardsOutputViewTests {
     void parseRewardsTest() {
         RewardsOutputView rewardsOutputView = new RewardsOutputView(Rewards.create("1, 2, 3"));
 
-        assertThat(rewardsOutputView.parseRewards(5)).isEqualTo("     1     2     3");
+        assertThat(rewardsOutputView.parseRewards(5)).isEqualTo("     1     2     3"
+                + System.lineSeparator());
     }
 }

@@ -26,7 +26,7 @@ class GameResultsOutputViewTests {
         GameResultsOutputView gameResultsOutputView = new GameResultsOutputView(gameResults);
 
         assertThat(gameResultsOutputView.parseIndividualResult("poppo"))
-                .isEqualTo("실행 결과" + System.lineSeparator() + "1");
+                .isEqualTo(System.lineSeparator() + "실행 결과" + System.lineSeparator() + "1");
     }
 
     @DisplayName("모든 종합 결과를 확인할 수 있음")
@@ -34,7 +34,7 @@ class GameResultsOutputViewTests {
     void getAllResultsTest() {
         GameResultsOutputView gameResultsOutputView = new GameResultsOutputView(gameResults);
 
-        assertThat(gameResultsOutputView.parseAllResults()).isEqualTo("실행 결과\n" +
-                "poppo : 1\n" + "ita : 2\n" + "saul : 3\n");
+        assertThat(gameResultsOutputView.parseAllResults()).isEqualTo(System.lineSeparator() + "실행 결과"
+                + System.lineSeparator() + "poppo : 1\n" + "ita : 2\n" + "saul : 3\n");
     }
 }
