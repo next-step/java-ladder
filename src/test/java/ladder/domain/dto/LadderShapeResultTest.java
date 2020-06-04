@@ -2,6 +2,8 @@ package ladder.domain.dto;
 
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.shape.LadderShapeInfo;
+import ladder.domain.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +25,7 @@ public class LadderShapeResultTest {
         names.add("pobi");
         names.add("honux");
 
-        this.ladder = Ladder.of(Height.of(5), names.size());
+        this.ladder = Ladder.of(LadderShapeInfo.valueOf(Players.of(names), Height.of(5)));
     }
 
     @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")
