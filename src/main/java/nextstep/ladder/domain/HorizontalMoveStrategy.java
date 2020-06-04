@@ -2,40 +2,46 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.exceptions.NotExistMoveStrategyException;
 
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public enum HorizontalMoveStrategy {
-    MOVE_LEFT(true, false, Player::moveLeft),
-    MOVE_RIGHT(false, true, Player::moveRight),
-    STAY(false, false, player -> {});
+    MOVE_LEFT(new Direction(true, false), Player::moveLeft),
+    MOVE_RIGHT(new Direction(false, true), Player::moveRight),
+    STAY(new Direction(false, false), player -> {});
 
-    private boolean currentPointStatus;
-    private boolean nextPointStatus;
+    private final Direction direction;
     private HorizontalMove horizontalMove;
+    private static final Map<Direction, HorizontalMoveStrategy> cachedHorizontalMoveStrategies = createCache();
 
-    HorizontalMoveStrategy(boolean currentPointStatus, boolean nextPointStatus, HorizontalMove horizontalMove) {
-        this.currentPointStatus = currentPointStatus;
-        this.nextPointStatus = nextPointStatus;
+
+    HorizontalMoveStrategy(Direction direction, HorizontalMove horizontalMove) {
+        this.direction = direction;
         this.horizontalMove = horizontalMove;
     }
 
     public static HorizontalMoveStrategy create(boolean currentPointStatus, boolean nextPointStatus) {
-        return Arrays.stream(HorizontalMoveStrategy.values())
-                .filter(horizontalMoveStrategy -> horizontalMoveStrategy.getCurrentPointStatus() == currentPointStatus &&
-                        horizontalMoveStrategy.getNextPointStatus() == nextPointStatus)
-                .findFirst()
-                .orElseThrow(() -> new NotExistMoveStrategyException("Such MoveStrategy not exists"));
+        return Optional.ofNullable(cachedHorizontalMoveStrategies.get(
+                new Direction(currentPointStatus, nextPointStatus)))
+                .orElseThrow(() -> new NotExistMoveStrategyException("Such HorizontalMoveStrategy not exist"));
     }
 
     public void move(Player player) {
         this.horizontalMove.move(player);
     }
 
-    private boolean getCurrentPointStatus() {
-        return currentPointStatus;
+    private static Map<Direction, HorizontalMoveStrategy> createCache() {
+        Map<Direction ,HorizontalMoveStrategy> cache = new HashMap<>();
+        Stream.of(values())
+                .forEach(horizontalMoveStrategy ->
+                        cache.put(horizontalMoveStrategy.getDirection(), horizontalMoveStrategy));
+        return Collections.unmodifiableMap(cache);
     }
 
-    private boolean getNextPointStatus() {
-        return nextPointStatus;
+    public Direction getDirection() {
+        return this.direction;
     }
 }
