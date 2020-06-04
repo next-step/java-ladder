@@ -194,5 +194,5 @@
 - [X] HorizontalMoveStrategy 필터링 기능의 대상 캐싱하기
 - [ ] Player의 Location 값을 알아내는 getter 걷어내기 (메서드 역할을 다시 생각해보면서 객체간 책임을 설계할 것)
 - [ ] UiController의 메서드화를 통해 적당한 책임 분리하기
-- [ ] UiController에서 Scanner 꼭 여러개 사용해야 되는지 다시 확인
+- [X] UiController에서 Scanner 꼭 여러개 사용해야 되는지 다시 확인
 - [ ] Point의 boolean 값들을 상수화 시켜서 관리하기

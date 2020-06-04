@@ -7,16 +7,10 @@ import java.util.Scanner;
 
 public class UiController {
     public static void main(String[] args) {
-        Scanner playerInputScanner = new Scanner(System.in);
-        PlayerInputView playerInputView = PlayerInputView.createByUserInput(playerInputScanner);
-
-        Scanner rewardInputScanner = new Scanner(System.in);
-        RewardInputView rewardInputView = RewardInputView
-                .createByUserInput(rewardInputScanner);
-
-        Scanner maxLadderHeightInputScanner = new Scanner(System.in);
-        LadderHeightInputView ladderHeightInputView = LadderHeightInputView
-                .createByUserInput(maxLadderHeightInputScanner);
+        Scanner gameInitScanner = new Scanner(System.in);
+        PlayerInputView playerInputView = PlayerInputView.createByUserInput(gameInitScanner);
+        RewardInputView rewardInputView = RewardInputView.createByUserInput(gameInitScanner);
+        LadderHeightInputView ladderHeightInputView = LadderHeightInputView.createByUserInput(gameInitScanner);
 
         PointAddStrategy pointAddStrategy = new RandomPointAddStrategy();
         Ladder ladder = Ladder.create(ladderHeightInputView.getMaxLadderHeight(),
@@ -36,6 +30,7 @@ public class UiController {
         System.out.println(ladderOutputView.parsePlayerNames());
         System.out.println(ladderOutputView.parseLadder());
         System.out.println(rewardsOutputView.parseRewards(players.getMaxNameLength()));
+
         Scanner gameResultsInputScanner = new Scanner(System.in);
         gameResultsInputView.startGameResult(gameResultsInputScanner);
     }
