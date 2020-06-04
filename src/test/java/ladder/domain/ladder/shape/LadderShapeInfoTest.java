@@ -61,7 +61,7 @@ public class LadderShapeInfoTest {
     @DisplayName("입력한 사다리의 높이를 반환")
     @Test
     void getHeight() {
-        assertThat(LadderShapeInfo.valueOf(players, height).getHeight().getValue())
+        assertThat(LadderShapeInfo.valueOf(players, height).getHeight())
                 .isEqualTo(height.getValue());
     }
 
