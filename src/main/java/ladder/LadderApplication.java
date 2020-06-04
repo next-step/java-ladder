@@ -15,7 +15,6 @@ public class LadderApplication {
         Height height = Height.of(InputView.inputHeight());
         LadderShapeInfo ladderShapeInfo = LadderShapeInfo.valueOf(players, height);
 
-//        LadderShapeResult result = LadderGame.of(players, height).play();
         LadderShapeResult result = LadderGame.of(ladderShapeInfo).play();
 
         ResultView.printResult(result);
