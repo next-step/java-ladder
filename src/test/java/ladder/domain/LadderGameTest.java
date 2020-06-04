@@ -5,11 +5,14 @@ import ladder.domain.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderGameTest {
 
@@ -27,6 +30,22 @@ public class LadderGameTest {
     void create() {
         assertThatCode(() -> LadderGame.of(Players.of(names), Height.of(Height.MIN_HEIGHT * 5)))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("LadderGame 생성 실패 : 게임 참여자가 null")
+    @NullSource
+    @ParameterizedTest
+    void playerIsNull(final Players players) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderGame.of(players, Height.of(Height.MIN_HEIGHT)));
+    }
+
+    @DisplayName("LadderGame 생성 실패 : 사다리 높이가 null")
+    @NullSource
+    @ParameterizedTest
+    void heightIsNull(final Height height) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderGame.of(Players.of(names), height));
     }
 
     @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")
