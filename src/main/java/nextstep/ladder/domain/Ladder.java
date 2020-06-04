@@ -38,7 +38,7 @@ public class Ladder {
         }
     }
 
-    public void playGame(Player player) {
+    void playGame(Player player) {
         lines.stream()
                 .map(line -> line.whereToMove(player.getPlayerLocationValue()))
                 .forEach(horizontalMoveStrategy -> horizontalMoveStrategy.move(player));
