@@ -12,7 +12,7 @@ public class GameResultsInputView {
         this.gameResultsOutputView = gameResultsOutputView;
     }
 
-    public void startGameResult(Scanner scanner) {
+    public void startPrintGameResult(Scanner scanner) {
         while (true) {
             System.out.println(GAME_RESULT_INPUT_COMMENT);
             String userInput = scanner.nextLine();
