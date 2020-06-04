@@ -25,11 +25,11 @@ public class HorizontalLocation {
         }
     }
 
-    public HorizontalLocation up() {
+    public HorizontalLocation moveRight() {
         return new HorizontalLocation(this.index + 1, this.maxIndex);
     }
 
-    public HorizontalLocation down() {
+    public HorizontalLocation moveLeft() {
         return new HorizontalLocation(this.index - 1, this.maxIndex);
     }
 

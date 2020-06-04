@@ -30,11 +30,11 @@ public class Player {
     }
 
     public void moveRight() {
-        this.horizontalLocation = horizontalLocation.up();
+        this.horizontalLocation = horizontalLocation.moveRight();
     }
 
     public void moveLeft() {
-        this.horizontalLocation = horizontalLocation.down();
+        this.horizontalLocation = horizontalLocation.moveLeft();
     }
 
     public HorizontalLocation getHorizontalLocation() {
