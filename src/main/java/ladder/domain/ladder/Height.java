@@ -3,6 +3,8 @@ package ladder.domain.ladder;
 import ladder.exception.ErrorMessage;
 import ladder.exception.ValueOutOfBoundsException;
 
+import java.util.Objects;
+
 public class Height {
 
     public static final int MIN_HEIGHT = 1;
@@ -26,5 +28,18 @@ public class Height {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Height)) return false;
+        Height height = (Height) o;
+        return value == height.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
