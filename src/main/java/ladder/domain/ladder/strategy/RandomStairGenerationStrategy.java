@@ -1,10 +1,8 @@
 package ladder.domain.ladder.strategy;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomStairGenerationStrategy implements StairGenerationStrategy {
-
-    private static final Random random = new Random();
 
     private RandomStairGenerationStrategy() {
     }
@@ -15,7 +13,8 @@ public class RandomStairGenerationStrategy implements StairGenerationStrategy {
 
     @Override
     public boolean generate() {
-        return random.nextBoolean();
+        return ThreadLocalRandom.current()
+                .nextBoolean();
     }
 
     private static class InnerInstanceClass {
