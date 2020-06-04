@@ -31,6 +31,6 @@ public class LadderGame {
     }
 
     public LadderShapeResult play() {
-        return LadderShapeResult.of(players.getNames(), StairDto.from(ladder));
+        return LadderShapeResult.of(players.getNames(), ladder);
     }
 }

@@ -1,5 +1,7 @@
 package ladder.domain.dto;
 
+import ladder.domain.ladder.Ladder;
+
 import java.util.List;
 
 public class LadderShapeResult {
@@ -12,8 +14,8 @@ public class LadderShapeResult {
         this.stairDtos = stairDtos;
     }
 
-    public static LadderShapeResult of(final List<String> playerNames, final List<StairDto> stairDtos) {
-        return new LadderShapeResult(playerNames, stairDtos);
+    public static LadderShapeResult of(final List<String> playerNames, final Ladder ladder) {
+        return new LadderShapeResult(playerNames, StairDto.from(ladder));
     }
 
     public List<String> getPlayerNames() {
