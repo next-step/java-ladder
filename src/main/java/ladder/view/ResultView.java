@@ -34,6 +34,12 @@ public class ResultView {
 
     private static void printStairDto(final StairDto stairDto) {
         System.out.print(EMPTY_STAIR_MARK);
+
+        if (stairDto.isSinglePillar()) {
+            System.out.println(PILLAR_MARK);
+            return;
+        }
+
         stairDto.getLines()
                 .forEach(existLine -> System.out.print(getOnePieceOfLadderShape(existLine)));
         System.out.println();
