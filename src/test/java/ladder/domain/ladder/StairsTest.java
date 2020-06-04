@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 public class StairsTest {
 
@@ -30,5 +29,14 @@ public class StairsTest {
     void create() {
         assertThatCode(() -> Stairs.of(PillarCount.of(PillarCount.MIN_COUNT)))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("기둥의 개수가 1개면 계단의 개수는 0 (하나의 기둥으로만 구성)")
+    @Test
+    void pillarCountIsMinCount() {
+        PillarCount pillarCount = PillarCount.of(PillarCount.MIN_COUNT);
+
+        assertThat(Stairs.of(pillarCount).getStairs().size())
+                .isEqualTo(0);
     }
 }
