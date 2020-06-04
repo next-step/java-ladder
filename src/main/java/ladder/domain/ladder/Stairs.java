@@ -28,6 +28,10 @@ public class Stairs {
     }
 
     private static List<Stair> createHorizontalStairs(final PillarCount pillarCount) {
+        if (pillarCount.isMinCount()) {
+            return new ArrayList<>();
+        }
+
         List<Stair> stairs = new ArrayList<>();
         int middlePillarCount = pillarCount.getValue() - FIRST_AND_LAST_PILLAR_COUNT;
 
