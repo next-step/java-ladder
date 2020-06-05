@@ -19,7 +19,7 @@ public class PlayersGroupTest {
         List<String> playerNames = Arrays.asList("abc", "ddd", "john", "doe");
 
         assertThatCode(() -> {
-            PlayersGroup.from(playerNames);
+            PlayersGroup.of(playerNames);
         }).doesNotThrowAnyException();
     }
 }
