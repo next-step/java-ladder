@@ -2,11 +2,11 @@ package ladder.step4.domain.strategy;
 
 import ladder.step4.domain.Direction;
 
-public class DirectionStrategyImpl implements DirectionStrategy {
+public class BodyDirectionStrategy implements DirectionStrategy {
 
-  private static final DirectionStrategy instance = new DirectionStrategyImpl();
+  private static final DirectionStrategy instance = new BodyDirectionStrategy();
 
-  private DirectionStrategyImpl() {}
+  private BodyDirectionStrategy() {}
 
   @Override
   public Direction create(Direction prev) {
