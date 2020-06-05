@@ -46,7 +46,7 @@ public class LadderTest {
             .limit(height)
             .collect(Collectors.toList());
 
-        return new Ladder(lines, getPlayer(playerCount));
+        return new Ladder(lines, getPlayer(playerCount), getPrize(playerCount));
     }
 
     private List<Player> getPlayer(int count) {
@@ -56,7 +56,14 @@ public class LadderTest {
             .collect(Collectors.toList());
     }
 
-    @DisplayName("한명의 유저의 결과를 확인한다.")
+    private List<String> getPrize(int count) {
+        return Stream.generate(() -> UUID.randomUUID().toString().substring(0, 5))
+            .limit(count)
+            .collect(Collectors.toList());
+    }
+
+
+    @DisplayName("한명의 유저의 사디리 결과를 확인한다.")
     @Test
     void single_result() {
         List<Line> lines = Stream.generate(() -> new Line(
@@ -71,7 +78,24 @@ public class LadderTest {
             Arrays.asList("꽝", "상품1")
         );
 
-        assertThat(ladder.play(Player.of("user1"))).isEqualTo("꽝");
-        assertThat(ladder.play(Player.of("user2"))).isEqualTo("상품1");
+        assertThat(ladder.play(Player.of("user1"))).isEqualTo(PlayerPrize.of(Player.of("user1"), "꽝"));
+    }
+
+    @DisplayName("모든 유저의 사디리 결과를 확인한다.")
+    @Test
+    void all_result() {
+        List<Line> lines = Stream.generate(() -> new Line(
+            LinePoints.of(2, () -> false)))
+            .limit(5)
+            .collect(Collectors.toList());
+
+        Ladder ladder = new Ladder(
+            lines,
+            Arrays.asList(Player.of("user1"), Player.of("user2")),
+            Arrays.asList("꽝", "상품1")
+        );
+
+        List<PlayerPrize> playerPrizes = ladder.play();
+        assertThat(playerPrizes).contains(PlayerPrize.of(Player.of("user1"), "꽝"));
     }
 }

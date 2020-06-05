@@ -12,24 +12,17 @@ public class Ladder {
 
     private List<Line> lines;
     private List<Player> players;
-    private List<String> prize;
+    private List<String> prizes;
 
-    public Ladder(List<Line> lines, List<Player> players) {
+    Ladder(List<Line> lines, List<Player> players, List<String> prizes) {
         validate(lines, players);
 
         this.lines = lines;
         this.players = players;
+        this.prizes = prizes;
     }
 
-    public Ladder(List<Line> lines, List<Player> players, List<String> prize) {
-        validate(lines, players);
-
-        this.lines = lines;
-        this.players = players;
-        this.prize = prize;
-    }
-
-    public static Ladder of(int height, List<String> names) {
+    public static Ladder of(int height, List<String> names, List<String> prizes) {
         List<Player> players = names.stream()
             .map(Player::of).collect(Collectors.toList());
 
@@ -38,7 +31,7 @@ public class Ladder {
             .limit(height)
             .collect(Collectors.toList());
 
-        return new Ladder(lines, players);
+        return new Ladder(lines, players, prizes);
     }
 
     private void validate(List<Line> lines, List<Player> players) {
@@ -58,12 +51,22 @@ public class Ladder {
         return new ArrayList<>(this.players);
     }
 
-    public String play(Player player) {
+    public List<String> getPrizes() {
+        return new ArrayList<>(this.prizes);
+    }
+
+    public PlayerPrize play(Player player) {
         int position = this.players.indexOf(player);
 
         for (Line line : this.lines) {
             position = line.move(position);
         }
-        return this.prize.get(position);
+        return PlayerPrize.of(player, this.prizes.get(position));
+    }
+
+    public List<PlayerPrize> play() {
+        return this.players.stream()
+            .map(this::play)
+            .collect(Collectors.toList());
     }
 }
