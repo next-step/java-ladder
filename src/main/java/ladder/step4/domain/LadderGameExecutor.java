@@ -1,8 +1,10 @@
 package ladder.step4.domain;
 
+import ladder.step4.domain.strategy.BodyDirectionStrategy;
+import ladder.step4.view.ResultView;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiFunction;
 
 public class LadderGameExecutor {
 
@@ -38,7 +40,19 @@ public class LadderGameExecutor {
     private int getResultIndex (int index) {
         return ladder.stream()
                      .reduce(index,
-                         (x, ladderLine) -> ladderLine.get(x).move(),
+                         (x, ladderLine) -> ladderLine.move(x),
                          (x, ladderLine) -> x);
+    }
+
+    public static void main(String[] args) {
+        final Participants participants = Participants.of("aa,bb,cc,dd");
+        final LadderResults ladderResults = LadderResults.of("1,2,3,4", participants);
+        final LadderHeight ladderHeight = LadderHeight.valueOf(3);
+        final Ladder ladder = Ladder.of(participants, ladderHeight, BodyDirectionStrategy.getInstance());
+        ResultView.getInstance().viewLadder(ladder, participants, ladderResults);
+        final LadderGame ladderGame = LadderGame.of(
+            LadderGameExecutor.execute(participants, ladderResults, ladder)
+        );
+        ResultView.getInstance().viewResult(ladderGame, participants, "all");
     }
 }
