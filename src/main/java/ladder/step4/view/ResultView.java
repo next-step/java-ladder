@@ -45,7 +45,7 @@ public class ResultView {
 
     private String toStringOfLadderLine(LadderLine ladderLine) {
         return NO_LINE + ladderLine.stream()
-                                   .map(v -> v ? IS_LINE : NO_LINE)
+                                   .map(v -> v.isRight() ? IS_LINE : NO_LINE)
                                    .collect(joining(""));
     }
 

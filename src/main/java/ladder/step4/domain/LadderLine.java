@@ -17,8 +17,9 @@ public class LadderLine {
         final List<LadderPoint> ladderLine = new ArrayList<>();
         Direction prev = Direction.EMPTY;
         for (int i = 0; i < countOfPerson; i++) {
-            Direction direction = prev = strategy.create(prev);
+            Direction direction = strategy.create(prev);
             ladderLine.add(LadderPoint.of(i, direction));
+            prev = direction;
         }
         return new LadderLine(ladderLine);
     }

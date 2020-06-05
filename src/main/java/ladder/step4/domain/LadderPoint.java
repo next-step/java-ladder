@@ -35,4 +35,8 @@ public class LadderPoint {
         }
         return point;
     }
+
+    public boolean isRight () {
+        return Direction.RIGHT == direction;
+    }
 }

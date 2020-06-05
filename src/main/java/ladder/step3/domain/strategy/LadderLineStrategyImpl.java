@@ -1,22 +1,20 @@
 package ladder.step3.domain.strategy;
 
-import ladder.step3.domain.Direction;
+import java.util.Random;
 
 public class LadderLineStrategyImpl implements LadderLineStrategy {
-
   private static final LadderLineStrategy instance = new LadderLineStrategyImpl();
+  private static final Random random = new Random();
 
   private LadderLineStrategyImpl () {}
 
   @Override
-  public Direction createLine(Direction prev) {
-    if (prev == Direction.LEFT) {
-      return Direction.createOptional(Direction.LEFT);
+  public boolean createLine(boolean prev) {
+    if (prev) {
+      return false;
     }
-    if (prev == Direction.RIGHT) {
-      return Direction.createOptional(Direction.RIGHT);
-    }
-    return Direction.createAny();
+
+    return random.nextBoolean();
   }
 
   public static LadderLineStrategy getInstance () {
