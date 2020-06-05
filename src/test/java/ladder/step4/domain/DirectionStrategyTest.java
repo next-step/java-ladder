@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DirectionStrategyTest {
 
-    private static final DirectionStrategy strategy = DirectionStrategyImpl.getInstance();
+    private static final DirectionStrategy strategy = BodyDirectionStrategyImpl.getInstance();
 
     @DisplayName("사다리에 줄이 생기지 말아야할 경우에 대한 테스트")
     @Test
