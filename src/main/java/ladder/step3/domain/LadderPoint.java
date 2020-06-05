@@ -25,4 +25,14 @@ public class LadderPoint {
     public static LadderPoint of (int point, Direction direction) {
         return new LadderPoint(point, direction);
     }
+
+    public int move () {
+        if (direction == Direction.LEFT) {
+            return point - 1;
+        }
+        if (direction == Direction.RIGHT) {
+            return point + 1;
+        }
+        return point;
+    }
 }
