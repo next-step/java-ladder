@@ -10,13 +10,10 @@ public class DirectionStrategyImpl implements DirectionStrategy {
 
   @Override
   public Direction create(Direction prev) {
-    if (prev == Direction.LEFT) {
-      return Direction.createOptional(Direction.LEFT);
-    }
     if (prev == Direction.RIGHT) {
-      return Direction.createOptional(Direction.RIGHT);
+      return Direction.LEFT;
     }
-    return Direction.createAny();
+    return Direction.createOptional(Direction.RIGHT);
   }
 
   public static DirectionStrategy getInstance () {

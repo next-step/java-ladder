@@ -33,13 +33,4 @@ public enum Direction {
     public static Direction createOptional (Direction direction) {
         return RANDOM.nextBoolean() ? direction: EMPTY;
     }
-
-    public static Direction createAny () {
-        final boolean l = RANDOM.nextBoolean();
-        final boolean r = RANDOM.nextBoolean();
-        if (l == r) {
-            return EMPTY;
-        }
-        return l ? LEFT : RIGHT;
-    }
 }

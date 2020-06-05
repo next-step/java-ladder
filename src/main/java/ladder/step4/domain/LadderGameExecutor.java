@@ -29,19 +29,16 @@ public class LadderGameExecutor {
         for (int index = 0; index <= width; index++) {
             resultMap.put(
                 participants.get(index),
-                ladderResults.get(getResultIndex(index, width))
+                ladderResults.get(getResultIndex(index))
             );
         }
         return resultMap;
     }
 
-    private int getResultIndex (int index, int width) {
-        BiFunction<Integer, LadderLine, Integer> getNextIndex = (x, ladderLine) -> {
-             if (x > 0 && ladderLine.get(x - 1)) return x - 1;
-             if (x < width && ladderLine.get(x)) return x + 1;
-             return x;
-        };
+    private int getResultIndex (int index) {
         return ladder.stream()
-                     .reduce(index, getNextIndex, (x, ladderLine) -> x);
+                     .reduce(index,
+                         (x, ladderLine) -> ladderLine.get(x).move(),
+                         (x, ladderLine) -> x);
     }
 }

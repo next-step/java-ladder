@@ -39,4 +39,8 @@ public class LadderPoint {
     public boolean isRight () {
         return Direction.RIGHT == direction;
     }
+
+    public String toString () {
+        return String.format(" %s ", direction);
+    }
 }

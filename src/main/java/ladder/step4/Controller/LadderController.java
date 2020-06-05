@@ -19,11 +19,12 @@ public class LadderController {
             DirectionStrategyImpl.getInstance()
         );
 
+        RESULT_VIEW.viewLadder(ladder, participants, ladderResults);
+
         LadderGame ladderGame = LadderGame.of(
             LadderGameExecutor.execute(participants, ladderResults, ladder)
         );
 
-        RESULT_VIEW.viewLadder(ladder, participants, ladderResults);
         String target;
         do {
             target = INPUT_VIEW.inputResultTarget();

@@ -4,6 +4,7 @@ import ladder.step4.domain.strategy.DirectionStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LadderLine {
@@ -21,6 +22,11 @@ public class LadderLine {
             ladderLine.add(LadderPoint.of(i, direction));
             prev = direction;
         }
+        System.out.println(
+            ladderLine.stream()
+                      .map(LadderPoint::toString)
+                      .collect(Collectors.joining(";"))
+        );
         return new LadderLine(ladderLine);
     }
 
