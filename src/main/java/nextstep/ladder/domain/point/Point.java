@@ -23,7 +23,7 @@ public class Point {
     }
 
     public Point next(PointGenerator pointGenerator) {
-        boolean nextRight = this.hasRight ? false : pointGenerator.hasRight();
+        boolean nextRight = !this.hasRight && pointGenerator.hasRight();
         return Point.of(this.hasRight, nextRight);
     }
 

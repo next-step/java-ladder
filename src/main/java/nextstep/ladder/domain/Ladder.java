@@ -17,7 +17,7 @@ public class Ladder {
     private List<String> prizes;
 
     Ladder(List<Line> lines, List<Player> players, List<String> prizes) {
-        validate(lines, players);
+        validate(lines, players, prizes);
 
         this.lines = lines;
         this.players = players;
@@ -36,10 +36,15 @@ public class Ladder {
         return new Ladder(lines, players, prizes);
     }
 
-    private void validate(List<Line> lines, List<Player> players) {
+    private void validate(List<Line> lines, List<Player> players, List<String> prizes) {
         if (players.size() < 2) {
             throw new IllegalArgumentException("min player is 2");
         }
+
+        if (players.size() != prizes.size()) {
+            throw new IllegalArgumentException("invalid prizes");
+        }
+
         if (lines.size() < 1) {
             throw new IllegalArgumentException("min height is 1");
         }
@@ -59,6 +64,9 @@ public class Ladder {
 
     public PlayerPrize play(Player player) {
         int position = this.players.indexOf(player);
+        if (position < 0) {
+            throw new IllegalArgumentException("invalid player");
+        }
 
         for (Line line : this.lines) {
             position = line.move(position);

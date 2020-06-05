@@ -39,7 +39,6 @@ class PointTest {
         assertThat(firstPoint.move(0)).isEqualTo(1);
     }
 
-
     @DisplayName("이전 point 방향이 오른쪽이면 다음 point는 왼쪽방향이다.")
     @Test
     void next_right_false_if_pre_right_true() {
