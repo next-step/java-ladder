@@ -22,8 +22,9 @@ class LinePointsTest {
 
     @DisplayName("point가 방향이 오른쪽이면 위치가 1증가한다.")
     @Test
-    void right_move(){
-        List<Point> points = Arrays.asList(Point.first(() -> true), Point.first(() -> false));
+    void right_move() {
+        Point first = Point.first(() -> true);
+        List<Point> points = Arrays.asList(first, first.next(() -> true));
         LinePoints linePoints = LinePoints.of(points);
 
         assertThat(linePoints.move(0)).isEqualTo(1);
@@ -31,8 +32,9 @@ class LinePointsTest {
 
     @DisplayName("point가 방향이 왼쪽이면 위치가 1감소한다.")
     @Test
-    void left_move(){
-        List<Point> points = Arrays.asList(Point.first(() -> true), Point.first(() -> false));
+    void left_move() {
+        Point first = Point.first(() -> true);
+        List<Point> points = Arrays.asList(Point.first(() -> true), first.next(() -> false));
         LinePoints linePoints = LinePoints.of(points);
 
         assertThat(linePoints.move(1)).isEqualTo(0);

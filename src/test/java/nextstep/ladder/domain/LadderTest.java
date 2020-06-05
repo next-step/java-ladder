@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -41,7 +40,7 @@ public class LadderTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private Ladder createLadder(int height, int playerCount){
+    private Ladder createLadder(int height, int playerCount) {
         List<Line> lines = Stream.generate(() -> new Line(
             LinePoints.of(playerCount, new RandomPointGenerator())))
             .limit(height)
@@ -59,11 +58,12 @@ public class LadderTest {
 
     @DisplayName("한명의 유저의 결과를 확인한다.")
     @Test
-    void single_result(){
+    void single_result() {
         List<Line> lines = Stream.generate(() -> new Line(
-            LinePoints.of(2, new RandomPointGenerator())))
+            LinePoints.of(2, () -> false)))
             .limit(5)
-            .collect(Collectors.toList());;
+            .collect(Collectors.toList());
+        ;
 
         Ladder ladder = new Ladder(
             lines,

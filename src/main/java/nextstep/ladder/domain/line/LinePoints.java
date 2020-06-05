@@ -27,7 +27,8 @@ public class LinePoints {
             points.add(pre.next(pointGenerator));
         }
 
-        points.add(Point.last());
+        Point last = points.get(points.size() - 1).last();
+        points.add(last);
         return of(points);
     }
 
@@ -40,20 +41,8 @@ public class LinePoints {
     }
 
     public int move(int position) {
-        if (position == 0) {
-            return points.get(0).hasRight() ? position + 1 : position;
-        }
-
-        Point pre = this.points.get(position - 1);
-        if(pre.hasRight()){
-            return position -1;
-        }
-
-        if(this.points.get(position).hasRight()){
-            return position + 1;
-        }
-
-        return position;
+        Point point = this.points.get(position);
+        return point.move(position);
     }
 
     private void validate(List<Point> points) {
