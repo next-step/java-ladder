@@ -16,7 +16,7 @@ public class ParticipantsTest {
 
     @DisplayName("참여자가 2명 미만일 경우에 ParticipantsMinimumSizeException 발생")
     @ParameterizedTest
-    @ValueSource(strings = {"aa", ""})
+    @ValueSource(strings = {"aa"})
     void 참여자수_검증_테스트(String participants) {
         assertThatExceptionOfType(ParticipantsMinimumSizeException.class)
             .isThrownBy(() -> Participants.of(participants));
