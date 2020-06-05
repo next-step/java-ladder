@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import java.util.List;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.PlayerPrize;
+import nextstep.ladder.domain.player.PlayerPrize;
 
 public class OutputView {
 

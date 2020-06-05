@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.line.Line;
 
 class LadderView {

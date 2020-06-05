@@ -3,8 +3,8 @@ package nextstep.ladder.client;
 import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.PlayerPrize;
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.PlayerPrize;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 

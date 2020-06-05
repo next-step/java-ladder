@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.LinePoints;
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.PlayerPrize;
 import nextstep.ladder.domain.point.RandomPointGenerator;
 
 public class Ladder {
