@@ -1,6 +1,6 @@
 package ladder.step4.domain;
 
-import ladder.step4.domain.strategy.LadderLineStrategy;
+import ladder.step4.domain.strategy.DirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -23,9 +23,9 @@ public class LadderLineTest {
     }
 
     private static Stream<Arguments> provideLadderAndStrategy() {
-        LadderLineStrategy toggleStrategy = prev -> !prev;
-        LadderLineStrategy alwaysCreateStrategy = prev -> true;
-        LadderLineStrategy alwaysDontCreateStrategy = prev -> false;
+        DirectionStrategy toggleStrategy = prev -> !prev;
+        DirectionStrategy alwaysCreateStrategy = prev -> true;
+        DirectionStrategy alwaysDontCreateStrategy = prev -> false;
         return Stream.of(
             Arguments.of(LadderLine.of(2, toggleStrategy), 1),
             Arguments.of(LadderLine.of(3, toggleStrategy), 2),

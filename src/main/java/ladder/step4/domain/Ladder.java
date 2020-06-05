@@ -1,6 +1,6 @@
 package ladder.step4.domain;
 
-import ladder.step4.domain.strategy.LadderLineStrategy;
+import ladder.step4.domain.strategy.DirectionStrategy;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -15,7 +15,7 @@ public class Ladder {
         this.ladder = ladder;
     }
 
-    public static Ladder of(Participants participants, LadderHeight height, LadderLineStrategy strategy) {
+    public static Ladder of(Participants participants, LadderHeight height, DirectionStrategy strategy) {
         int width = participants.size() - 1;
         List<LadderLine> ladder = IntStream.range(0, height.getValue())
                                            .mapToObj(h -> LadderLine.of(width, strategy))

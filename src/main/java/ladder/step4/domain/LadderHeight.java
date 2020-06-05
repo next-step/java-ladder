@@ -1,7 +1,6 @@
 package ladder.step4.domain;
 
-import ladder.step4.exception.LadderHeightMinimumSizeException;
-import ladder.step4.exception.LadderHeightNonNumberException;
+import ladder.step4.exception.*;
 
 import java.util.HashMap;
 import java.util.Map;

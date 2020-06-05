@@ -1,7 +1,7 @@
 package ladder.step4.view;
 
-import ladder.step4.domain.LadderHeight;
 import ladder.step4.domain.Participants;
+import ladder.step4.domain.LadderHeight;
 
 import java.util.Scanner;
 

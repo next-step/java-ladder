@@ -1,6 +1,5 @@
 package ladder.step3.domain;
 
-import ladder.step3.domain.LadderHeight;
 import ladder.step3.exception.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

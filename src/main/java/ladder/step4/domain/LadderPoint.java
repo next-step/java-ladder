@@ -11,7 +11,7 @@
  * ------------------       --------------            ------------------
  *   junil                2020-06-05
  */
-package ladder.step3.domain;
+package ladder.step4.domain;
 
 public class LadderPoint {
     private final int point;

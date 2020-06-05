@@ -1,6 +1,6 @@
 package ladder.step4.domain;
 
-import ladder.step4.domain.strategy.LadderLineStrategy;
+import ladder.step4.domain.strategy.DirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -25,7 +25,7 @@ public class LadderTest {
 
     private static Stream<Arguments> provideLadderAndHeight() {
         Participants participants = Participants.of("a,b,c,d,e");
-        LadderLineStrategy strategy = prev -> true;
+        DirectionStrategy strategy = prev -> true;
         return Stream.of(
             Arguments.of(Ladder.of(participants, LadderHeight.valueOf(5), strategy), 5),
             Arguments.of(Ladder.of(participants, LadderHeight.valueOf(4), strategy), 4),
