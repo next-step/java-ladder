@@ -31,7 +31,7 @@ public enum Direction {
     }
 
     public static Direction createOptional (Direction direction) {
-        return RANDOM.nextBoolean() ? direction: EMPTY;
+        return RANDOM.nextBoolean() ? direction : EMPTY;
     }
 
     public static Direction toggle (Direction direction) {
