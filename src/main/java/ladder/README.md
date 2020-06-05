@@ -11,3 +11,6 @@
 
 * InputView
     * 쉼표로 구분되는 게임 참가자(Player) 명단을 입력 받음.
+    
+    
+### Application
