@@ -1,33 +1,32 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.PlayerPrize;
 
 public class OutputView {
 
-    public void printResult(List<Player> players, List<Line> lines) {
+    private final LadderView ladderView = new LadderView();
+
+    public void printLadder(Ladder ladder) {
         System.out.println("실핼결과\n");
 
-        players.forEach(this::printPlayer);
+        ladderView.printLadder(ladder);
 
         System.out.println();
-
-        lines.forEach(this::printLine);
     }
 
-    private void printPlayer(Player player) {
-        System.out.print(String.format("%6s", player.getName()));
+    public void printPlayerPrize(PlayerPrize prize) {
+        System.out.println("실행 결과");
+        System.out.println(prize.getPrize());
+        System.out.println();
     }
 
-    private void printLine(Line line) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("     ");
-
-        line.getPoints().forEach(point -> {
-            builder.append('|').append(point.hasRight() ? "-----" : "     ");
-        });
-
-        System.out.println(builder.toString());
+    public void printPlayerPrizes(List<PlayerPrize> playerPrizes) {
+        System.out.println("실행 결과");
+        playerPrizes.forEach(
+            playerPrize -> System.out.println(String
+                .format("%s : %s", playerPrize.getPlayer().getName(), playerPrize.getPrize())));
     }
 }
+
