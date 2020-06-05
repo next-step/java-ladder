@@ -1,5 +1,7 @@
 package ladder.step3.domain.strategy;
 
+import ladder.step3.domain.Direction;
+
 public interface LadderLineStrategy {
-  boolean createLine(boolean prev);
+  Direction createLine(Direction prev);
 }
