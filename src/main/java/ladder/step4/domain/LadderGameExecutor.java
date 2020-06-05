@@ -27,8 +27,8 @@ public class LadderGameExecutor {
         LadderResults ladderResults
     ) {
         Map<Participant, LadderResult> resultMap = new HashMap<>();
-        int width = participants.size() - 1;
-        for (int index = 0; index <= width; index++) {
+        int width = participants.size();
+        for (int index = 0; index < width; index++) {
             resultMap.put(
                 participants.get(index),
                 ladderResults.get(getResultIndex(index))
