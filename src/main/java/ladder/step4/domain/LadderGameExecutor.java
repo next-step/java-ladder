@@ -1,8 +1,5 @@
 package ladder.step4.domain;
 
-import ladder.step4.domain.strategy.BodyDirectionStrategy;
-import ladder.step4.view.ResultView;
-
 import java.util.HashMap;
 import java.util.Map;
 
