@@ -48,7 +48,7 @@ public class DirectionStrategyTest {
     @DisplayName("새로운 전략 생성에 대한 테스트")
     @ParameterizedTest
     @MethodSource("provideLadderStrategy")
-    void 사다리_줄_전략_테스트(DirectionStrategy strategy, Direction direction, boolean expected) {
+    void 사다리_줄_전략_테스트(DirectionStrategy strategy, Direction direction, Direction expected) {
         assertEquals(expected, strategy.create(direction));
     }
 
@@ -56,14 +56,13 @@ public class DirectionStrategyTest {
         DirectionStrategy rightDirectionStrategy = prev -> Direction.RIGHT;
         DirectionStrategy leftDirectionStrategy = prev -> Direction.LEFT;
         DirectionStrategy emptyDirectionStrategy = prev -> Direction.EMPTY;
-        DirectionStrategy toggleStrategy = prev -> prev == Direction.LEFT ? Direction.RIGHT : Direction.LEFT;
+        DirectionStrategy toggleStrategy = Direction::toggle;
         return Stream.of(
             Arguments.of(rightDirectionStrategy, Direction.RIGHT, Direction.RIGHT),
             Arguments.of(leftDirectionStrategy, Direction.LEFT, Direction.LEFT),
             Arguments.of(emptyDirectionStrategy, Direction.EMPTY, Direction.EMPTY),
             Arguments.of(toggleStrategy, Direction.RIGHT, Direction.LEFT),
-            Arguments.of(toggleStrategy, Direction.LEFT, Direction.RIGHT),
-            Arguments.of(toggleStrategy, Direction.EMPTY, Direction.LEFT)
+            Arguments.of(toggleStrategy, Direction.LEFT, Direction.RIGHT)
         );
     }
 }

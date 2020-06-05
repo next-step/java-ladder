@@ -1,5 +1,6 @@
 package ladder.step4.domain;
 
+import ladder.step4.domain.strategy.DirectionStrategy;
 import ladder.step4.exception.NotParticipantException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +18,8 @@ public class LadderGameTest {
     private static final Participants participants = Participants.of("aa,bb,cc,dd");
     private static final LadderResults ladderResults = LadderResults.of("1,2,3,4", participants);
     private static final LadderHeight ladderHeight = LadderHeight.valueOf(3);
-    private static final Ladder ladder = Ladder.of(participants, ladderHeight, prev -> !prev);
+    private static final DirectionStrategy toggleStrategy = Direction::toggle;
+    private static final Ladder ladder = Ladder.of(participants, ladderHeight, toggleStrategy);
     private static final LadderGame ladderGame = LadderGame.of(
         LadderGameExecutor.execute(participants, ladderResults, ladder)
     );

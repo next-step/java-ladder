@@ -18,27 +18,30 @@ public class LadderLineTest {
     void 사다리_생성_확인_테스트(LadderLine ladderLine, long expected) {
         assertEquals(
             expected,
-            ladderLine.stream().filter(v -> v).count()
+            ladderLine.stream()
+                      .filter(LadderPoint::isRight)
+                      .count()
         );
     }
 
     private static Stream<Arguments> provideLadderAndStrategy() {
-        DirectionStrategy toggleStrategy = prev -> !prev;
-        DirectionStrategy alwaysCreateStrategy = prev -> true;
-        DirectionStrategy alwaysDontCreateStrategy = prev -> false;
+        DirectionStrategy toggleStrategy = Direction::toggle;
+        DirectionStrategy rightStrategy = prev -> Direction.RIGHT;
+        DirectionStrategy emptyStrategy = prev -> Direction.EMPTY;
         return Stream.of(
             Arguments.of(LadderLine.of(2, toggleStrategy), 1),
-            Arguments.of(LadderLine.of(3, toggleStrategy), 2),
+            Arguments.of(LadderLine.of(3, toggleStrategy), 1),
             Arguments.of(LadderLine.of(4, toggleStrategy), 2),
-            Arguments.of(LadderLine.of(5, toggleStrategy), 3),
-            Arguments.of(LadderLine.of(2, alwaysCreateStrategy), 2),
-            Arguments.of(LadderLine.of(3, alwaysCreateStrategy), 3),
-            Arguments.of(LadderLine.of(4, alwaysCreateStrategy), 4),
-            Arguments.of(LadderLine.of(5, alwaysCreateStrategy), 5),
-            Arguments.of(LadderLine.of(2, alwaysDontCreateStrategy), 0),
-            Arguments.of(LadderLine.of(3, alwaysDontCreateStrategy), 0),
-            Arguments.of(LadderLine.of(4, alwaysDontCreateStrategy), 0),
-            Arguments.of(LadderLine.of(5, alwaysDontCreateStrategy), 0)
+            Arguments.of(LadderLine.of(5, toggleStrategy), 2),
+            Arguments.of(LadderLine.of(6, toggleStrategy), 3),
+            Arguments.of(LadderLine.of(2, rightStrategy), 1),
+            Arguments.of(LadderLine.of(3, rightStrategy), 2),
+            Arguments.of(LadderLine.of(4, rightStrategy), 3),
+            Arguments.of(LadderLine.of(5, rightStrategy), 4),
+            Arguments.of(LadderLine.of(2, emptyStrategy), 0),
+            Arguments.of(LadderLine.of(3, emptyStrategy), 0),
+            Arguments.of(LadderLine.of(4, emptyStrategy), 0),
+            Arguments.of(LadderLine.of(5, emptyStrategy), 0)
         );
     }
 
