@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 
 public class LineTest {
 
-    @DisplayName("라인은 사람수-1개의 포인트를 생성한다.")
+    @DisplayName("라인은 사람수 만큼 포인트를 생성한다.")
     @Test
     void line_create_points() {
         Line line = new Line(LinePoints.of(5, new RandomPointGenerator()));
-        assertThat(line.getPoints()).hasSize(4);
+        assertThat(line.getPoints()).hasSize(5);
     }
 
 

@@ -27,6 +27,7 @@ public class LinePoints {
             points.add(pre.next(pointGenerator));
         }
 
+        points.add(Point.last());
         return of(points);
     }
 

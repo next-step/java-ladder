@@ -22,11 +22,10 @@ public class OutputView {
 
     private void printLine(Line line) {
         StringBuilder builder = new StringBuilder();
-        builder.append("     |");
+        builder.append("     ");
 
         line.getPoints().forEach(point -> {
-            builder.append(point.hasLadder() ? "-----" : "     ")
-                .append('|');
+            builder.append('|').append(point.hasLadder() ? "-----" : "     ");
         });
 
         System.out.println(builder.toString());

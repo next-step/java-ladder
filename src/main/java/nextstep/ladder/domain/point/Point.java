@@ -2,37 +2,41 @@ package nextstep.ladder.domain.point;
 
 public class Point {
 
-    private final boolean hasLadder;
+    private final boolean hasRight;
 
-    private Point(boolean hasLadder) {
-        this.hasLadder = hasLadder;
+    private Point(boolean hasRight) {
+        this.hasRight = hasRight;
     }
 
-    private static Point of(boolean hasLadder) {
-        return new Point(hasLadder);
+    private static Point of(boolean hasRight) {
+        return new Point(hasRight);
     }
 
     public static Point first(PointGenerator pointGenerator) {
-        return Point.of(pointGenerator.hasLadder());
+        return Point.of(pointGenerator.hasRight());
+    }
+
+    public static Point last() {
+        return Point.of(false);
     }
 
     public Point next(PointGenerator pointGenerator) {
-        if (hasLadder) {
+        if (hasRight) {
             return Point.of(false);
         }
 
-        return Point.of(pointGenerator.hasLadder());
+        return Point.of(pointGenerator.hasRight());
     }
 
     public boolean isValid(Point pre) {
-        if (!hasLadder) {
+        if (!hasRight) {
             return true;
         }
 
-        return !pre.hasLadder;
+        return !pre.hasRight;
     }
 
     public boolean hasLadder() {
-        return this.hasLadder;
+        return this.hasRight;
     }
 }
