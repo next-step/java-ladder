@@ -38,6 +38,6 @@ public class LadderLine {
     }
 
     public int move (int index) {
-        return lines.get(index).move();
+        return Math.max(lines.get(index).move(), 0);
     }
 }

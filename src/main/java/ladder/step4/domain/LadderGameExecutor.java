@@ -43,16 +43,4 @@ public class LadderGameExecutor {
                          (x, ladderLine) -> ladderLine.move(x),
                          (x, ladderLine) -> x);
     }
-
-    public static void main(String[] args) {
-        final Participants participants = Participants.of("aa,bb,cc,dd");
-        final LadderResults ladderResults = LadderResults.of("1,2,3,4", participants);
-        final LadderHeight ladderHeight = LadderHeight.valueOf(3);
-        final Ladder ladder = Ladder.of(participants, ladderHeight, BodyDirectionStrategy.getInstance());
-        ResultView.getInstance().viewLadder(ladder, participants, ladderResults);
-        final LadderGame ladderGame = LadderGame.of(
-            LadderGameExecutor.execute(participants, ladderResults, ladder)
-        );
-        ResultView.getInstance().viewResult(ladderGame, participants, "all");
-    }
 }

@@ -45,4 +45,35 @@ public class LadderLineTest {
         );
     }
 
+    @DisplayName("각 줄에서의 이동이 정확한지 확인")
+    @ParameterizedTest
+    @MethodSource("provideLadderLineAndIndex")
+    void 라인_이동_테스트 (int moved, int expected) {
+        assertEquals(expected, moved);
+    }
+
+    private static Stream<Arguments> provideLadderLineAndIndex () {
+        LadderLine ladderLineToggle = LadderLine.of(4, Direction::toggle);
+        LadderLine ladderLineRight = LadderLine.of(4, prev -> Direction.RIGHT);
+        LadderLine ladderLineLeft = LadderLine.of(4, prev -> Direction.LEFT);
+        LadderLine ladderLineEmpty = LadderLine.of(4, prev -> Direction.EMPTY);
+        return Stream.of(
+            Arguments.of(ladderLineToggle.move(0), 1),
+            Arguments.of(ladderLineToggle.move(1), 0),
+            Arguments.of(ladderLineToggle.move(2), 3),
+            Arguments.of(ladderLineToggle.move(3), 2),
+            Arguments.of(ladderLineRight.move(0), 1),
+            Arguments.of(ladderLineRight.move(1), 2),
+            Arguments.of(ladderLineRight.move(2), 3),
+            Arguments.of(ladderLineRight.move(3), 2),
+            Arguments.of(ladderLineLeft.move(0), 0),
+            Arguments.of(ladderLineLeft.move(1), 0),
+            Arguments.of(ladderLineLeft.move(2), 1),
+            Arguments.of(ladderLineLeft.move(3), 3),
+            Arguments.of(ladderLineEmpty.move(0), 0),
+            Arguments.of(ladderLineEmpty.move(1), 1),
+            Arguments.of(ladderLineEmpty.move(2), 2),
+            Arguments.of(ladderLineEmpty.move(3), 3)
+        );
+    }
 }
