@@ -40,7 +40,7 @@ public class LadderPoint {
         return Direction.RIGHT == direction;
     }
 
-    public String toString () {
-        return String.format(" %s ", direction);
+    public Direction getDirection () {
+        return direction;
     }
 }
