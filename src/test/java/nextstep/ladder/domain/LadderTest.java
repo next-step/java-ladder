@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -53,5 +55,23 @@ public class LadderTest {
             .limit(count)
             .map(Player::of)
             .collect(Collectors.toList());
+    }
+
+    @DisplayName("한명의 유저의 결과를 확인한다.")
+    @Test
+    void single_result(){
+        List<Line> lines = Stream.generate(() -> new Line(
+            LinePoints.of(2, new RandomPointGenerator())))
+            .limit(5)
+            .collect(Collectors.toList());;
+
+        Ladder ladder = new Ladder(
+            lines,
+            Arrays.asList(Player.of("user1"), Player.of("user2")),
+            Arrays.asList("꽝", "상품1")
+        );
+
+        assertThat(ladder.play(Player.of("user1"))).isEqualTo("꽝");
+        assertThat(ladder.play(Player.of("user2"))).isEqualTo("상품1");
     }
 }

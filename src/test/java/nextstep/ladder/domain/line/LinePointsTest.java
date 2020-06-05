@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.line;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
@@ -17,6 +18,24 @@ class LinePointsTest {
 
         assertThatThrownBy(() -> LinePoints.of(points))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("point가 방향이 오른쪽이면 위치가 1증가한다.")
+    @Test
+    void right_move(){
+        List<Point> points = Arrays.asList(Point.first(() -> true), Point.first(() -> false));
+        LinePoints linePoints = LinePoints.of(points);
+
+        assertThat(linePoints.move(0)).isEqualTo(1);
+    }
+
+    @DisplayName("point가 방향이 왼쪽이면 위치가 1감소한다.")
+    @Test
+    void left_move(){
+        List<Point> points = Arrays.asList(Point.first(() -> true), Point.first(() -> false));
+        LinePoints linePoints = LinePoints.of(points);
+
+        assertThat(linePoints.move(1)).isEqualTo(0);
     }
 
 }

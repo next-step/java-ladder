@@ -31,5 +31,4 @@ class PointTest {
 
         assertThat(currentPoint.isValid(prePoint)).isEqualTo(false);
     }
-
 }

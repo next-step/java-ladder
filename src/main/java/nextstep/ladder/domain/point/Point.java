@@ -36,7 +36,7 @@ public class Point {
         return !pre.hasRight;
     }
 
-    public boolean hasLadder() {
+    public boolean hasRight() {
         return this.hasRight;
     }
 }

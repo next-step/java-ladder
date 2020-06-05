@@ -15,4 +15,8 @@ public class Line {
     public List<Point> getPoints() {
         return new ArrayList<>(this.linePoints.getPoints());
     }
+
+    public int move(int position) {
+        return linePoints.move(position);
+    }
 }

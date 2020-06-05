@@ -12,12 +12,21 @@ public class Ladder {
 
     private List<Line> lines;
     private List<Player> players;
+    private List<String> prize;
 
     public Ladder(List<Line> lines, List<Player> players) {
         validate(lines, players);
 
         this.lines = lines;
         this.players = players;
+    }
+
+    public Ladder(List<Line> lines, List<Player> players, List<String> prize) {
+        validate(lines, players);
+
+        this.lines = lines;
+        this.players = players;
+        this.prize = prize;
     }
 
     public static Ladder of(int height, List<String> names) {
@@ -49,7 +58,12 @@ public class Ladder {
         return new ArrayList<>(this.players);
     }
 
-    public String play(String pobi) {
-        return null;
+    public String play(Player player) {
+        int position = this.players.indexOf(player);
+
+        for (Line line : this.lines) {
+            position = line.move(position);
+        }
+        return this.prize.get(position);
     }
 }

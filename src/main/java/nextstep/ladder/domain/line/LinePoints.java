@@ -31,12 +31,29 @@ public class LinePoints {
         return of(points);
     }
 
-    public static LinePoints of(List<Point> points){
+    public static LinePoints of(List<Point> points) {
         return new LinePoints(points);
     }
 
     public List<Point> getPoints() {
         return new ArrayList<>(points);
+    }
+
+    public int move(int position) {
+        if (position == 0) {
+            return points.get(0).hasRight() ? position + 1 : position;
+        }
+
+        Point pre = this.points.get(position - 1);
+        if(pre.hasRight()){
+            return position -1;
+        }
+
+        if(this.points.get(position).hasRight()){
+            return position + 1;
+        }
+
+        return position;
     }
 
     private void validate(List<Point> points) {
@@ -54,4 +71,6 @@ public class LinePoints {
             throw new IllegalArgumentException("invalid point");
         }
     }
+
+
 }

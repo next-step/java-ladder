@@ -25,7 +25,7 @@ public class OutputView {
         builder.append("     ");
 
         line.getPoints().forEach(point -> {
-            builder.append('|').append(point.hasLadder() ? "-----" : "     ");
+            builder.append('|').append(point.hasRight() ? "-----" : "     ");
         });
 
         System.out.println(builder.toString());
