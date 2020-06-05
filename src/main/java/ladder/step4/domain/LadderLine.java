@@ -1,6 +1,7 @@
 package ladder.step4.domain;
 
 import ladder.step4.domain.strategy.DirectionStrategy;
+import ladder.step4.domain.strategy.TailDirectionStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,25 +17,27 @@ public class LadderLine {
 
     public static LadderLine of(int countOfPerson, DirectionStrategy strategy) {
         final List<LadderPoint> ladderLine = new ArrayList<>();
+        init(ladderLine, countOfPerson, strategy);
+        return new LadderLine(ladderLine);
+    }
+
+    static private void init (List<LadderPoint> lines, int countOfPerson, DirectionStrategy strategy) {
         Direction prev = Direction.EMPTY;
-        for (int i = 0; i < countOfPerson; i++) {
+        int i = 0;
+        for (; i < countOfPerson - 1; i++) {
             Direction direction = strategy.create(prev);
-            ladderLine.add(LadderPoint.of(i, direction));
+            lines.add(LadderPoint.of(i, direction));
             prev = direction;
         }
-        System.out.println(
-            ladderLine.stream()
-                      .map(LadderPoint::toString)
-                      .collect(Collectors.joining(";"))
-        );
-        return new LadderLine(ladderLine);
+        Direction tailDirection = TailDirectionStrategy.getInstance().create(prev);
+        lines.add(LadderPoint.of(i, tailDirection));
     }
 
     public Stream<LadderPoint> stream() {
         return lines.stream();
     }
 
-    public LadderPoint get (int index) {
-      return lines.get(index);
+    public int move (int index) {
+        return lines.get(index).move();
     }
 }
