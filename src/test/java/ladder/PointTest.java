@@ -24,7 +24,7 @@ public class PointTest {
     @ValueSource(booleans = {true, false})
     public void getIsOnCurrentPosition(boolean isOnCurrentPosition) {
         Point point = new Point(isOnCurrentPosition);
-        
+
         assertThat(point.getIsOnCurrentPosition())
                 .isEqualTo(isOnCurrentPosition);
     }

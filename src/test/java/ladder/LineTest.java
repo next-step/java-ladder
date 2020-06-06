@@ -6,8 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
 
@@ -28,5 +27,15 @@ public class LineTest {
             new Line(playerCounts);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_PLAYER_COUNTS);
+    }
+
+    @DisplayName("Line 객체 생성시 player 수에 비례한 List<Point> 생성")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 5, 7})
+    public void testPointsList(int playerCounts) {
+        Line line = new Line(playerCounts);
+
+        assertThat(line.getLineSize())
+                .isEqualTo((playerCounts - 1) * 5);
     }
 }
