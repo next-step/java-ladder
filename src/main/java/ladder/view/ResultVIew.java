@@ -2,7 +2,6 @@ package ladder.view;
 
 import ladder.domain.Line;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ResultVIew {
@@ -11,11 +10,11 @@ public class ResultVIew {
     private static final String EMPTY_LINES = "     ";
     private static StringBuilder stringBuilder;
 
-    public static void printLadder(String[] peopleNames, List<Line> lineList) {
+    public static void printLadder(List<String> peopleNames, List<Line> lineList) {
         stringBuilder = new StringBuilder();
         stringBuilder.append("실행결과\n\n");
 
-        Arrays.stream(peopleNames).forEach(name -> printName(stringBuilder, name));
+        peopleNames.forEach(name -> printName(stringBuilder, name));
         stringBuilder.append("\n");
 
         lineList.forEach(line -> printLine(stringBuilder, line.getPoints()));

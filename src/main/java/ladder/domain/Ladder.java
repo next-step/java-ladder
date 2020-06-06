@@ -1,23 +1,12 @@
 package ladder.domain;
 
-import java.util.Arrays;
-
 public class Ladder {
     private final int countOfPerson;
     private final int ladderHeight;
 
-    public Ladder(String[] personNames,int ladderHeight) {
-        validate(personNames);
-        this.countOfPerson = personNames.length;
+    public Ladder(int countOfPerson,int ladderHeight) {
+        this.countOfPerson = countOfPerson;
         this.ladderHeight = ladderHeight;
-    }
-
-    private void validate(String[] personNames) {
-        Arrays.stream(personNames).forEach(v -> {
-            if (v.length() > 5) {
-                throw new IllegalArgumentException("사람 이름은 최대 5글자까지 입니다.");
-            }
-        });
     }
 
     public LineList createLadder() {
