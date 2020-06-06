@@ -5,6 +5,7 @@ import ladder.domain.Line;
 import java.util.List;
 
 public class ResultVIew {
+    private static final String PLAY_RESULT = "실행결과\n\n";
     private static final int NAME_SPACE = 6;
     private static final String LINES = "-----";
     private static final String EMPTY_LINES = "     ";
@@ -12,7 +13,7 @@ public class ResultVIew {
 
     public static void printLadder(List<String> peopleNames, List<Line> lineList) {
         stringBuilder = new StringBuilder();
-        stringBuilder.append("실행결과\n\n");
+        stringBuilder.append(PLAY_RESULT);
 
         peopleNames.forEach(name -> printName(stringBuilder, name));
         stringBuilder.append("\n");

@@ -7,7 +7,7 @@ public class LadderCreator {
     private final int countOfPerson;
     private final int ladderHeight;
 
-    public LadderCreator(int countOfPerson,int ladderHeight) {
+    public LadderCreator(final int countOfPerson, final int ladderHeight) {
         this.countOfPerson = countOfPerson;
         this.ladderHeight = ladderHeight;
     }

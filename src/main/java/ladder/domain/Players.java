@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Players {
     private final List<String> playerNames;
 
-    public Players(String[] personNames) {
+    public Players(final String[] personNames) {
         validate(personNames);
         this.playerNames = Arrays.stream(personNames).collect(Collectors.toList());
     }
