@@ -3,12 +3,15 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.client.LinePointFactory;
+import nextstep.ladder.domain.line.LinePoints;
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.PlayerPrize;
 import nextstep.ladder.domain.point.RandomPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,13 +42,13 @@ public class LadderTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private Ladder createLadder(int height, int playerCount){
+    private Ladder createLadder(int height, int playerCount) {
         List<Line> lines = Stream.generate(() -> new Line(
-            LinePointFactory.of(playerCount, new RandomPointGenerator())))
+            LinePoints.of(playerCount, new RandomPointGenerator())))
             .limit(height)
             .collect(Collectors.toList());
 
-        return new Ladder(lines, getPlayer(playerCount));
+        return new Ladder(lines, getPlayer(playerCount), getPrize(playerCount));
     }
 
     private List<Player> getPlayer(int count) {
@@ -53,5 +56,48 @@ public class LadderTest {
             .limit(count)
             .map(Player::of)
             .collect(Collectors.toList());
+    }
+
+    private List<String> getPrize(int count) {
+        return Stream.generate(() -> UUID.randomUUID().toString().substring(0, 5))
+            .limit(count)
+            .collect(Collectors.toList());
+    }
+
+
+    @DisplayName("한명의 유저의 사디리 결과를 확인한다.")
+    @Test
+    void single_result() {
+        List<Line> lines = Stream.generate(() -> new Line(
+            LinePoints.of(2, () -> false)))
+            .limit(5)
+            .collect(Collectors.toList());
+        ;
+
+        Ladder ladder = new Ladder(
+            lines,
+            Arrays.asList(Player.of("user1"), Player.of("user2")),
+            Arrays.asList("꽝", "상품1")
+        );
+
+        assertThat(ladder.play(Player.of("user1"))).isEqualTo(PlayerPrize.of(Player.of("user1"), "꽝"));
+    }
+
+    @DisplayName("모든 유저의 사디리 결과를 확인한다.")
+    @Test
+    void all_result() {
+        List<Line> lines = Stream.generate(() -> new Line(
+            LinePoints.of(2, () -> false)))
+            .limit(5)
+            .collect(Collectors.toList());
+
+        Ladder ladder = new Ladder(
+            lines,
+            Arrays.asList(Player.of("user1"), Player.of("user2")),
+            Arrays.asList("꽝", "상품1")
+        );
+
+        List<PlayerPrize> playerPrizes = ladder.play();
+        assertThat(playerPrizes).contains(PlayerPrize.of(Player.of("user1"), "꽝"));
     }
 }

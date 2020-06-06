@@ -1,7 +1,10 @@
 package nextstep.ladder.client;
 
 import java.util.List;
+import java.util.Objects;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.player.PlayerPrize;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -15,11 +18,27 @@ public class LadderGameLauncher {
     }
 
     private void play() {
+        Ladder ladder = inputLadder();
+        outputView.printLadder(ladder);
+
+        while (true) {
+            String player = inputView.requestResultOfPlayer();
+            boolean isAllUser = Objects.equals(player, "all");
+
+            if (isAllUser) {
+                List<PlayerPrize> playerPrizes = ladder.play();
+                outputView.printPlayerPrizes(playerPrizes);
+                break;
+            }
+
+            outputView.printPlayerPrize(ladder.play(Player.of(player)));
+        }
+    }
+
+    private Ladder inputLadder() {
         List<String> playerNames = inputView.requestPlayers();
+        List<String> prizes = inputView.requestPrize();
         int height = inputView.requestHeight();
-
-        Ladder ladder = LadderFactory.createLadder(height, playerNames);
-
-        outputView.printResult(ladder.getPlayers(), ladder.getLines());
+        return Ladder.of(height, playerNames, prizes);
     }
 }
