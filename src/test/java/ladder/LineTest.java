@@ -15,7 +15,7 @@ public class LineTest {
     @ValueSource(ints = {5, 6, 7})
     public void makeLineObject(int playerCounts) {
         assertThatCode(() -> {
-            new Line(playerCounts);
+            Line.drawLine(playerCounts);
         }).doesNotThrowAnyException();
     }
 
@@ -24,7 +24,7 @@ public class LineTest {
     @ValueSource(ints = {0, -1, -5})
     public void throwExceptionOnMakingLineObject(int playerCounts) {
         assertThatThrownBy(() -> {
-            new Line(playerCounts);
+            Line.drawLine(playerCounts);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_PLAYER_COUNTS);
     }
@@ -33,7 +33,7 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 5, 7})
     public void testPointsList(int playerCounts) {
-        Line line = new Line(playerCounts);
+        Line line = Line.drawLine(playerCounts);
 
         assertThat(line.getLineSize())
                 .isEqualTo((playerCounts - 1) * 5);
