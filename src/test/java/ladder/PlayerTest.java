@@ -7,7 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayerTest {
 
@@ -27,6 +28,7 @@ public class PlayerTest {
     public void throwExceptionWhenNameOverFiveCharacter(String name) {
         assertThatThrownBy(() -> {
             new Player(name);
-        }).hasMessageContaining(ErrorMessages.INVALID_PLAYER_NAME);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.INVALID_PLAYER_NAME);
     }
 }
