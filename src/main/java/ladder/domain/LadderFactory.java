@@ -12,7 +12,7 @@ public class LadderFactory {
 
     private void validateLadderHeight(int ladderHeight) {
         if (ladderHeight < MINIMUM_LADDER_HEIGHT) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_LADDER_HEIGHT);
+            throw new LadderBuildingException(LadderBuildingException.INVALID_LADDER_HEIGHT);
         }
     }
 

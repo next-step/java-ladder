@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.ErrorMessages;
+import ladder.domain.LadderBuildingException;
 import ladder.domain.LadderFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +26,7 @@ public class LadderFactoryTest {
     public void throwExceptionOnMakingLadderFactoryObject(int ladderHeight) {
         assertThatThrownBy(() -> {
             new LadderFactory(ladderHeight);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.INVALID_LADDER_HEIGHT);
+        }).isInstanceOf(LadderBuildingException.class)
+                .hasMessageContaining(LadderBuildingException.INVALID_LADDER_HEIGHT);
     }
 }

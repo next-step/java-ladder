@@ -12,7 +12,7 @@ public class Player {
 
     private void validateName(String name) {
         if (isNullOrEmpty(name) || isInvalidLength(name)) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_PLAYER_NAME);
+            throw new LadderBuildingException(LadderBuildingException.INVALID_PLAYER_NAME);
         }
     }
 

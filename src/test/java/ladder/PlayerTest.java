@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.ErrorMessages;
+import ladder.domain.LadderBuildingException;
 import ladder.domain.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +28,7 @@ public class PlayerTest {
     public void throwExceptionWhenNameOverFiveCharacter(String name) {
         assertThatThrownBy(() -> {
             new Player(name);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.INVALID_PLAYER_NAME);
+        }).isInstanceOf(LadderBuildingException.class)
+                .hasMessageContaining(LadderBuildingException.INVALID_PLAYER_NAME);
     }
 }

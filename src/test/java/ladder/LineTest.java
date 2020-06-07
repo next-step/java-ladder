@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.ErrorMessages;
+import ladder.domain.LadderBuildingException;
 import ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,8 +27,8 @@ public class LineTest {
     public void throwExceptionOnMakingLineObject(int playerCounts) {
         assertThatThrownBy(() -> {
             Line.drawLine(playerCounts);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.INVALID_PLAYER_COUNTS);
+        }).isInstanceOf(LadderBuildingException.class)
+                .hasMessageContaining(LadderBuildingException.INVALID_PLAYER_COUNTS);
     }
 
     @DisplayName("Line 객체를 통해 그린 Line의 길이는 playerCounts - 1과 동일함")

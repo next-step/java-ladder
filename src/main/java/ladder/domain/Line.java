@@ -20,7 +20,7 @@ public class Line {
 
     private static void validatePlayerCounts(int playerCounts) {
         if (playerCounts < MINIMUM_PLAYER_COUNTS) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_PLAYER_COUNTS);
+            throw new LadderBuildingException(LadderBuildingException.INVALID_PLAYER_COUNTS);
         }
     }
 
