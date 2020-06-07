@@ -16,6 +16,6 @@ public class Main {
 
         Ladder ladder = new Ladder(Height.of(maxHeight), users.length, new DirectionRandomPredicate());
 
-        ResultView.printResult(UserConverter.convertToString(users), ladder);
+        ResultView.printResult(UserConverter.convertToList(users), ladder);
     }
 }

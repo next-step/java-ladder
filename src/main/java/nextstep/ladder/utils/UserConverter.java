@@ -1,18 +1,20 @@
 package nextstep.ladder.utils;
 
+import nextstep.ladder.domain.user.User;
+
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserConverter {
 
-    private static final String DELIMITER = " ";
-
     private UserConverter() {
     }
 
-    public static String convertToString(String[] users) {
+    public static List<User> convertToList(String[] users) {
         return Arrays.stream(users)
                 .map(String::trim)
-                .collect(Collectors.joining(DELIMITER));
+                .map(User::newInstance)
+                .collect(Collectors.toList());
     }
 }
