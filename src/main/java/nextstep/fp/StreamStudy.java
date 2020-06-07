@@ -17,7 +17,9 @@ public class StreamStudy {
         String contents = new String(Files.readAllBytes(Paths.get(PATH)), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split(SPLIT_REG));
 
-        return words.stream().filter(word -> word.length() > 12).count();
+        return words.stream()
+                .filter(word -> word.length() > 12)
+                .count();
     }
 
     public static void printLongestWordTop100() throws IOException {
