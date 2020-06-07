@@ -4,14 +4,18 @@ import java.util.Objects;
 
 public class User {
 
-    private final String userName;
+    private final String name;
 
-    private User(String userName) {
-        this.userName = userName;
+    private User(String name) {
+        this.name = name;
     }
 
     public static User newInstance(String userName) {
         return new User(userName);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -19,11 +23,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userName, user.userName);
+        return Objects.equals(name, user.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName);
+        return Objects.hash(name);
     }
 }
