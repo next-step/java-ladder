@@ -29,6 +29,6 @@ public class LadderGenerator {
     private Stream<Position> createPositions(Height height, Direction direction, DirectionPredicate predicate) {
         return IntStream.range(0, maxPosition)
                 .boxed()
-                .map(position -> new Position(position, height, new Line(Direction.generate(position, direction, predicate))));
+                .map(position -> new Position(position, height, Direction.generate(position, direction, predicate)));
     }
 }

@@ -19,8 +19,8 @@ public class Ladder {
         return positions;
     }
 
-    public Height getHeight() {
-        return height;
+    public int getHeight() {
+        return height.getHeight();
     }
 
     private void validate(List<Position> positions, Height height) {

@@ -13,7 +13,7 @@ public class LadderGeneratorTest {
         LadderGenerator ladderGenerator = new LadderGenerator(3, Height.of(3));
         Ladder ladder = ladderGenerator.generate(new DirectionRandomPredicate());
         assertThat(ladder).isNotNull();
-        assertThat(ladder.getHeight()).isEqualTo(Height.of(3));
+        assertThat(ladder.getHeight()).isEqualTo(3);
         assertThat(ladder.getPositions()).hasSize(3 * 3);
     }
 }

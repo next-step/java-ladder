@@ -18,6 +18,6 @@ public class HeightTest {
     @DisplayName("높이 생성 예외 테스트")
     void exception(){
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Height.of(0));
+                .isThrownBy(() -> Height.of(-1));
     }
 }
