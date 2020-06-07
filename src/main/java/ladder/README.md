@@ -23,7 +23,9 @@
  * DrawingLineStrategy
     * 선을 그리는 전략 인터페이스
     * RandomDrawingLineStrategy는 인자로 참가자의 수(사다리의 너비)를 받음.
-    
+
+* LadderFactory
+    * 게임 참가자 수와 Ladder 높이를 파라미터로 받아 적합한 크기의 Ladder 생성
     
 ### View
 

@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.Player;
 import ladder.domain.PlayersGroup;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,5 +20,15 @@ public class PlayersGroupTest {
         assertThatCode(() -> {
             PlayersGroup.of(playerNames);
         }).doesNotThrowAnyException();
+    }
+
+    @DisplayName("PlayersGroup 크기 == playerCounts 일치 테스트")
+    @Test
+    public void getPlayerCounts() {
+        List<String> playerNames = Arrays.asList("abc", "ddd", "john", "doe");
+        PlayersGroup playersGroup = PlayersGroup.of(playerNames);
+
+        assertThat(playersGroup.getPlayerCounts())
+                .isEqualTo(4);
     }
 }

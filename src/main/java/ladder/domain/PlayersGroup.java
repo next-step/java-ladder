@@ -17,4 +17,8 @@ public class PlayersGroup {
                 .collect(Collectors.toList());
         return new PlayersGroup(players);
     }
+
+    public int getPlayerCounts() {
+        return players.size();
+    }
 }
