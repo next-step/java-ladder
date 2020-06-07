@@ -5,6 +5,7 @@ public class LadderPlayer {
     private String playerName;
 
     private LadderPlayer(String playerName) {
+        validatePlayer(playerName);
         this.playerName = playerName;
     }
 
@@ -16,7 +17,11 @@ public class LadderPlayer {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    private void validatePlayer(String playerName) {
+        if (playerName.length() > 5) {
+            throw new IllegalArgumentException("사람 이름은 최대 5글자 입니다.");
+        }
     }
+
+
 }

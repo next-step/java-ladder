@@ -24,12 +24,14 @@ public class LadderPlayers {
         return ladderPlayers.size();
     }
 
+    public List<LadderPlayer> getLadderPlayers() {
+        return ladderPlayers;
+    }
+
     private static void validatePlayer(String[] playerNames) {
-        Arrays.stream(playerNames).forEach(name -> {
-            if (name.length() > 5) {
-                throw new IllegalArgumentException("사람 이름은 최대 5글자 입니다.");
-            }
-        });
+        if (playerNames.length < 1) {
+            throw new IllegalArgumentException("플에이어를 입력하세요");
+        }
     }
 
 }

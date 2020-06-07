@@ -14,4 +14,7 @@ public class Ladder {
         return new Ladder(lineList);
     }
 
+    public List<Line> getLineList() {
+        return lineList;
+    }
 }
