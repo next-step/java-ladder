@@ -23,20 +23,20 @@ public class PointTest {
     @DisplayName("Point 객체 값 확인 테스트")
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
-    public void getIsOnCurrentPosition(boolean isOnCurrentPosition) {
-        Point point = new Point(isOnCurrentPosition);
+    public void getIsOnCurrentPosition(boolean isOnPosition) {
+        Point point = new Point(isOnPosition);
 
-        assertThat(point.getIsOnCurrentPosition())
-                .isEqualTo(isOnCurrentPosition);
+        assertThat(point.getIsOnPosition())
+                .isEqualTo(isOnPosition);
     }
 
     @DisplayName("Point 객체 생성시 5이상의 난수는 true, 그 밑은 false 값을 가짐")
     @ParameterizedTest
     @CsvSource({"5, true", "4, false", "9, true", "0, false"})
-    public void makePointObjectUsingRandomNumber(int randomNumber, boolean isOnCurrentPosition) {
+    public void makePointObjectUsingRandomNumber(int randomNumber, boolean isOnPosition) {
         Point point = Point.of(randomNumber);
 
-        assertThat(point.getIsOnCurrentPosition())
-                .isEqualTo(isOnCurrentPosition);
+        assertThat(point.getIsOnPosition())
+                .isEqualTo(isOnPosition);
     }
 }

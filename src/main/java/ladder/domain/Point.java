@@ -3,10 +3,10 @@ package ladder.domain;
 public class Point {
 
     private static final int RANDOM_NUMBER_BOUNDARY = 5;
-    private final boolean isOnCurrentPosition;
+    private final boolean isOnPosition;
 
-    public Point(boolean isOnCurrentPosition) {
-        this.isOnCurrentPosition = isOnCurrentPosition;
+    public Point(boolean isOnPosition) {
+        this.isOnPosition = isOnPosition;
     }
 
     public static Point of(int randomNumber) {
@@ -16,7 +16,7 @@ public class Point {
         return new Point(true);
     }
 
-    public boolean getIsOnCurrentPosition() {
-        return isOnCurrentPosition;
+    public boolean getIsOnPosition() {
+        return isOnPosition;
     }
 }
