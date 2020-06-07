@@ -6,5 +6,6 @@ public class LadderGameController {
 
     public void runGame() {
         List<PlayerName> playerNames = InputView.askPlayerNames();
+        LadderHeight ladderHeight = InputView.askLadderHeight();
     }
 }

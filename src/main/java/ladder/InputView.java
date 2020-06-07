@@ -22,4 +22,9 @@ public class InputView {
                 .map(name -> PlayerName.of(name.trim()))
                 .collect(Collectors.toList());
     }
+
+    public static LadderHeight askLadderHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return LadderHeight.of(SCANNER.nextInt());
+    }
 }
