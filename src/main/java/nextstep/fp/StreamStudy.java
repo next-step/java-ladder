@@ -24,7 +24,7 @@ public class StreamStudy {
         String contents = new String(Files.readAllBytes(Paths.get(PATH)), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split(SPLIT_REG));
 
-        words.stream().filter(word -> word.length() > 12)
+        words.stream().filter(w -> w.length() > 12)
                 .distinct()
                 .sorted((a, b) -> b.length() - a.length())
                 .limit(100)

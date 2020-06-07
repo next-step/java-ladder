@@ -35,6 +35,9 @@ public class User {
     }
 
     public static boolean ageIsInRange2(User user) {
+        if (user.age == null) {
+            throw new IllegalArgumentException("age값이 null입니다.");
+        }
         return Optional.ofNullable(user)
                     .map(User::getAge)
                     .filter(age -> age >= 30 && age <= 45)
