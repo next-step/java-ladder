@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
-public class LadderGameInput {
+public class LadderGameView {
 }
