@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.RandomBridgeGenerator;
+import nextstep.ladder.domain.ladder.LadderGame;
+import nextstep.ladder.domain.bridge.RandomBridgeGenerator;
 import nextstep.ladder.dto.LadderRequestDto;
 import nextstep.ladder.dto.LadderResultDto;
 import org.junit.jupiter.api.DisplayName;
@@ -18,36 +19,37 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderGameTest {
 
-    private LadderGame createLadderGame(List<String> names, int height) {
-        LadderRequestDto ladderRequestDto = this.createLadderRequestDto(names, height);
+    private LadderGame createLadderGame(List<String> names, List<String> results, int height) {
+        LadderRequestDto ladderRequestDto = this.createLadderRequestDto(names, results, height);
         return new LadderGame(ladderRequestDto, new RandomBridgeGenerator(new Random()));
     }
 
-    private LadderRequestDto createLadderRequestDto(List<String> names, int height) {
-        return new LadderRequestDto(names, height);
+    private LadderRequestDto createLadderRequestDto(List<String> names, List<String> results, int height) {
+        return new LadderRequestDto(names, results, height);
     }
 
     @ParameterizedTest
     @MethodSource("provideLadderInformation")
     @DisplayName("사다리 게임 생성 테스트")
-    void createLadderGameTest(List<String> names, int height) {
-        LadderGame ladderGame = this.createLadderGame(names, height);
+    void createLadderGameTest(List<String> names, List<String> results, int height) {
+        LadderGame ladderGame = this.createLadderGame(names, results, height);
         LadderResultDto ladderResultDto = ladderGame.getLadderResult();
         List<String> playerNames = ladderResultDto.getPlayers()
+                .getPlayers()
                 .stream()
                 .map(player -> player.getName())
                 .collect(Collectors.toList());
-        assertThat(ladderResultDto.getPlayers()).hasSize(names.size());
+        assertThat(ladderResultDto.getPlayers().getPlayers()).hasSize(names.size());
         assertThat(playerNames).isEqualTo(names);
-        assertThat(ladderResultDto.getLines()).hasSize(height);
+        assertThat(ladderResultDto.getLines().getLines()).hasSize(height);
     }
 
     private static Stream<Arguments> provideLadderInformation() {
         return Stream.of(
-                Arguments.of(Arrays.asList("il", "il2"), 5),
-                Arguments.of(Arrays.asList("il", "il2", "i3"), 3),
-                Arguments.of(Arrays.asList("il", "il2"), 6),
-                Arguments.of(Arrays.asList("il", "il2", "il3", "il4"), 4)
+                Arguments.of(Arrays.asList("il", "il2"), Arrays.asList("5000", "1000"), 5),
+                Arguments.of(Arrays.asList("il", "il2", "i3"), Arrays.asList("5000", "1000", "꽝"), 3),
+                Arguments.of(Arrays.asList("il", "il2"), Arrays.asList("5000", "1000"), 6),
+                Arguments.of(Arrays.asList("il", "il2", "il3", "il4"), Arrays.asList("5000", "1000", "꽝", "꽝"), 4)
         );
     }
 }
