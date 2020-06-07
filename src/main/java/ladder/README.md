@@ -26,7 +26,11 @@
 
 * LadderFactory
     * 게임 참가자 수와 Ladder 높이를 파라미터로 받아 적합한 크기의 Ladder 생성
-    
+
+* Ladder
+    * 사다리 2차원 배열의 정보를 List<Line>으로 가지고 있는 일급 컬렉션.
+    * 플레이어 명단과 사다리 높이를 바탕으로 사다리를 생성함.
+        
 ### View
 
 * InputView
