@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class Point {
-
     private static final int RANDOM_NUMBER_BOUNDARY = 5;
+
     private final boolean isExisting;
 
     public Point(boolean isExisting) {

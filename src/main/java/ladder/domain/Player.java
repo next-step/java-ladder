@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class Player {
-
     private static final int MAXIMUM_NAME_LENGTH = 5;
+
     private final String name;
 
     public Player(String name) {

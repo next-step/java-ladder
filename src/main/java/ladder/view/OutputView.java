@@ -6,7 +6,6 @@ import ladder.domain.PlayersGroup;
 import java.util.List;
 
 public class OutputView {
-
     private static final int LOOP_ZERO = 0;
     private static final int BLANK_BOUNDARY = 0;
     private static final int NAME_CHUNK_LENGTH = 5;

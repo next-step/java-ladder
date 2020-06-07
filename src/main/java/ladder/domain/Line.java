@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-
     private static final int MINIMUM_PLAYER_COUNTS = 1;
+
     private final List<Point> points;
 
     private Line(List<Point> points) {
