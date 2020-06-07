@@ -26,8 +26,11 @@ public class Lines {
     }
 
     public Line findLine(int height) {
-        return Optional.ofNullable(lines.get(height))
-                .orElseThrow(() -> new IllegalArgumentException("not found line"));
+        try {
+            return lines.get(height);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("not found line");
+        }
     }
 
     public List<Line> getLines() {
