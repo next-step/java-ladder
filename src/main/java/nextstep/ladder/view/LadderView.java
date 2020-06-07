@@ -29,11 +29,9 @@ class LadderView {
         builder.append("     ");
 
         line.getPoints().forEach(point -> {
-            builder.append('|').append(point.hasRight() ? "-----" : "     ");
+            builder.append('|').append(point.isRight() ? "-----" : "     ");
         });
 
         System.out.println(builder.toString());
     }
-
-
 }

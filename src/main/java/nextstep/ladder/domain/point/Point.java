@@ -2,52 +2,43 @@ package nextstep.ladder.domain.point;
 
 public class Point {
 
-    private final boolean hasRight;
-    private final boolean hasLeft;
+    private final int position;
+    private final Direction direction;
 
-    private Point(boolean hasLeft, boolean hasRight) {
-        this.hasLeft = hasLeft;
-        this.hasRight = hasRight;
-    }
-
-    private static Point of(boolean hasLeft, boolean hasRight) {
-        return new Point(hasLeft, hasRight);
+    public Point(int position, Direction direction) {
+        this.position = position;
+        this.direction = direction;
     }
 
     public static Point first(PointGenerator pointGenerator) {
-        return Point.of(false, pointGenerator.hasRight());
+        return new Point(0, Direction.first(pointGenerator));
     }
 
     public Point last() {
-        return Point.of(this.hasRight, false);
+        return new Point(this.position + 1, direction.last());
     }
 
     public Point next(PointGenerator pointGenerator) {
-        boolean nextRight = !this.hasRight && pointGenerator.hasRight();
-        return Point.of(this.hasRight, nextRight);
+        return new Point(this.position + 1, direction.next(pointGenerator));
     }
 
     public boolean isValid(Point pre) {
-        if (!this.hasRight) {
-            return true;
-        }
-
-        return !pre.hasRight;
+        return this.direction.isValid(pre.direction);
     }
 
-    public boolean hasRight() {
-        return this.hasRight;
+    public boolean isRight() {
+        return this.direction.isRight();
     }
 
-    public int move(int current) {
-        if (this.hasRight) {
-            return current + 1;
+    public int move() {
+        if (this.direction.isRight()) {
+            return this.position + 1;
         }
 
-        if (hasLeft) {
-            return current - 1;
+        if (this.direction.isLeft()) {
+            return this.position - 1;
         }
 
-        return current;
+        return this.position;
     }
 }

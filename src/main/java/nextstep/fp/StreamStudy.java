@@ -12,7 +12,7 @@ public class StreamStudy {
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+            .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         return words.stream()
@@ -22,7 +22,7 @@ public class StreamStudy {
 
     public static void printLongestWordTop100() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
-                .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
+            .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         words.stream().filter(s -> s.length() > 12)

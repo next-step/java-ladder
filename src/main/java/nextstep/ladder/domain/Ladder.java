@@ -47,16 +47,16 @@ public class Ladder {
     }
 
     public PlayerPrizes play(List<Player> players, List<String> prizes) {
-        if(players.size() != sizeOfPerson){
+        if (players.size() != sizeOfPerson) {
             throw new IllegalArgumentException("invalid players");
         }
 
-        if(players.size() != prizes.size()){
+        if (players.size() != prizes.size()) {
             throw new IllegalArgumentException("invalid prize");
         }
 
         Map<Player, String> playerPrizes = new LinkedHashMap<>();
-        for(int playerPosition = 0;  playerPosition < sizeOfPerson ; playerPosition++){
+        for (int playerPosition = 0; playerPosition < sizeOfPerson; playerPosition++) {
             String prize = prizes.get(play(playerPosition));
             playerPrizes.put(players.get(playerPosition), prize);
         }

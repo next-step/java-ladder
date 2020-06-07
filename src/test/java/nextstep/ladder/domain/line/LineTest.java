@@ -28,7 +28,7 @@ public class LineTest {
             "4,4"
         }
     )
-    void line_move(int curPosition, int nextPosition){
+    void line_move(int curPosition, int nextPosition) {
         Line line = new Line(LinePoints.of(5, () -> true));
 
         assertThat(line.move(curPosition)).isEqualTo(nextPosition);

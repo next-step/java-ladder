@@ -38,7 +38,7 @@ public class LinePoints {
 
     public int move(int position) {
         Point point = this.points.get(position);
-        return point.move(position);
+        return point.move();
     }
 
     private void validate(List<Point> points) {

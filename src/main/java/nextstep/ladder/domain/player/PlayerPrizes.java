@@ -12,7 +12,7 @@ public class PlayerPrizes {
         this.playerPrizes = new LinkedHashMap<>(playerPrizes);
     }
 
-    public Map<Player,String> getAll(){
+    public Map<Player, String> getAll() {
         return new LinkedHashMap<>(playerPrizes);
     }
 

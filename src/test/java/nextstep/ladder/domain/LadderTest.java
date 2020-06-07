@@ -61,14 +61,15 @@ public class LadderTest {
             .limit(5)
             .collect(Collectors.toList());
 
-        List<Player> players = Arrays.asList(new Player("user1"), new Player("user2"), new Player("user3"));
-        List<String> prize = Arrays.asList("꽝", "상품1","상품2");
+        List<Player> players = Arrays
+            .asList(new Player("user1"), new Player("user2"), new Player("user3"));
+        List<String> prize = Arrays.asList("꽝", "상품1", "상품2");
         Ladder ladder = new Ladder(lines, 3);
 
         Map<Player, String> expect = new LinkedHashMap<>();
-        expect.put(new Player("user1"),"꽝");
-        expect.put(new Player("user2"),"상품1");
-        expect.put(new Player("user3"),"상품2");
+        expect.put(new Player("user1"), "꽝");
+        expect.put(new Player("user2"), "상품1");
+        expect.put(new Player("user3"), "상품2");
 
         assertThat(ladder.play(players, prize)).isEqualTo(new PlayerPrizes(expect));
     }
