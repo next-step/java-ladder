@@ -10,7 +10,7 @@ public class LinePoints {
 
     private List<Point> points;
 
-    private LinePoints(List<Point> points) {
+    LinePoints(List<Point> points) {
         validate(points);
         this.points = points;
     }
@@ -29,10 +29,6 @@ public class LinePoints {
 
         Point last = points.get(points.size() - 1).last();
         points.add(last);
-        return of(points);
-    }
-
-    public static LinePoints of(List<Point> points) {
         return new LinePoints(points);
     }
 

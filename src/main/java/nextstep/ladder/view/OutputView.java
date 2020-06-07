@@ -1,32 +1,29 @@
 package nextstep.ladder.view;
 
 import java.util.List;
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.player.PlayerPrize;
+import java.util.Map;
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.player.Player;
 
 public class OutputView {
 
     private final LadderView ladderView = new LadderView();
 
-    public void printLadder(Ladder ladder) {
-        System.out.println("실핼결과\n");
-
-        ladderView.printLadder(ladder);
-
+    public void printPlayerPrize(String prize) {
+        System.out.println("실행 결과");
+        System.out.println(prize);
         System.out.println();
     }
 
-    public void printPlayerPrize(PlayerPrize prize) {
+    public void printPlayerPrizes(Map<Player, String> playerPrizes) {
         System.out.println("실행 결과");
-        System.out.println(prize.getPrize());
-        System.out.println();
+        playerPrizes.forEach((player, prize) -> System.out
+            .println(String.format("%s : %s", player.getName(), prize)));
     }
 
-    public void printPlayerPrizes(List<PlayerPrize> playerPrizes) {
-        System.out.println("실행 결과");
-        playerPrizes.forEach(
-            playerPrize -> System.out.println(String
-                .format("%s : %s", playerPrize.getPlayer().getName(), playerPrize.getPrize())));
+    public void printLadder(List<Player> players, List<String> prizes, List<Line> lines) {
+        System.out.println("사다리결과\n");
+        ladderView.printLadder(players, prizes, lines);
     }
 }
 

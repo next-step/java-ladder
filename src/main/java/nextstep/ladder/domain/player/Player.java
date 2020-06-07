@@ -8,13 +8,9 @@ public class Player {
     private final static int MAX_OF_NAME_LENGTH = 5;
     private final String name;
 
-    private Player(String name) {
+    public Player(String name) {
         validateName(name);
         this.name = name;
-    }
-
-    public static Player of(String name) {
-        return new Player(name);
     }
 
     public String getName() {

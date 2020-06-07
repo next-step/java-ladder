@@ -4,14 +4,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.LinePoints;
 import nextstep.ladder.domain.player.Player;
-import nextstep.ladder.domain.player.PlayerPrize;
+import nextstep.ladder.domain.player.PlayerPrizes;
 import nextstep.ladder.domain.point.RandomPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,56 +49,27 @@ public class LadderTest {
             .limit(height)
             .collect(Collectors.toList());
 
-        return new Ladder(lines, getPlayer(playerCount), getPrize(playerCount));
+        return new Ladder(lines, playerCount);
     }
 
-    private List<Player> getPlayer(int count) {
-        return Stream.generate(() -> UUID.randomUUID().toString().substring(0, 5))
-            .limit(count)
-            .map(Player::of)
-            .collect(Collectors.toList());
-    }
-
-    private List<String> getPrize(int count) {
-        return Stream.generate(() -> UUID.randomUUID().toString().substring(0, 5))
-            .limit(count)
-            .collect(Collectors.toList());
-    }
-
-
-    @DisplayName("한명의 유저의 사디리 결과를 확인한다.")
-    @Test
-    void single_result() {
-        List<Line> lines = Stream.generate(() -> new Line(
-            LinePoints.of(2, () -> false)))
-            .limit(5)
-            .collect(Collectors.toList());
-        ;
-
-        Ladder ladder = new Ladder(
-            lines,
-            Arrays.asList(Player.of("user1"), Player.of("user2")),
-            Arrays.asList("꽝", "상품1")
-        );
-
-        assertThat(ladder.play(Player.of("user1"))).isEqualTo(PlayerPrize.of(Player.of("user1"), "꽝"));
-    }
 
     @DisplayName("모든 유저의 사디리 결과를 확인한다.")
     @Test
     void all_result() {
-        List<Line> lines = Stream.generate(() -> new Line(
-            LinePoints.of(2, () -> false)))
+        List<Line> lines = Stream.generate(
+            () -> new Line(LinePoints.of(3, () -> false)))
             .limit(5)
             .collect(Collectors.toList());
 
-        Ladder ladder = new Ladder(
-            lines,
-            Arrays.asList(Player.of("user1"), Player.of("user2")),
-            Arrays.asList("꽝", "상품1")
-        );
+        List<Player> players = Arrays.asList(new Player("user1"), new Player("user2"), new Player("user3"));
+        List<String> prize = Arrays.asList("꽝", "상품1","상품2");
+        Ladder ladder = new Ladder(lines, 3);
 
-        List<PlayerPrize> playerPrizes = ladder.play();
-        assertThat(playerPrizes).contains(PlayerPrize.of(Player.of("user1"), "꽝"));
+        Map<Player, String> expect = new LinkedHashMap<>();
+        expect.put(new Player("user1"),"꽝");
+        expect.put(new Player("user2"),"상품1");
+        expect.put(new Player("user3"),"상품2");
+
+        assertThat(ladder.play(players, prize)).isEqualTo(new PlayerPrizes(expect));
     }
 }

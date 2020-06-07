@@ -1,20 +1,19 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.player.Player;
+import java.util.List;
 import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.player.Player;
 
 class LadderView {
 
-    void printLadder(Ladder ladder) {
-
-        ladder.getPlayers().forEach(this::printPlayer);
+    void printLadder(List<Player> players, List<String> prizes, List<Line> lines) {
+        players.forEach(this::printPlayer);
         System.out.println();
 
-        ladder.getLines().forEach(this::printLine);
+        lines.forEach(this::printLine);
 
-        ladder.getPrizes().forEach(this::printPrize);
-        System.out.println();
+        prizes.forEach(this::printPrize);
+        System.out.println("\n");
     }
 
     private void printPrize(String prize) {
@@ -35,4 +34,6 @@ class LadderView {
 
         System.out.println(builder.toString());
     }
+
+
 }

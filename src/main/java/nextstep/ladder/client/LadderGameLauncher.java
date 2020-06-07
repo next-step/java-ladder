@@ -2,9 +2,10 @@ package nextstep.ladder.client;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.player.Player;
-import nextstep.ladder.domain.player.PlayerPrize;
+import nextstep.ladder.domain.player.PlayerPrizes;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -18,27 +19,36 @@ public class LadderGameLauncher {
     }
 
     private void play() {
-        Ladder ladder = inputLadder();
-        outputView.printLadder(ladder);
+        List<Player> players = getPlayers();
+        List<String> prizes = inputView.requestPrize();
+        int height = inputView.requestHeight();
 
-        while (true) {
-            String player = inputView.requestResultOfPlayer();
-            boolean isAllUser = Objects.equals(player, "all");
+        Ladder ladder = Ladder.of(height, players.size());
 
-            if (isAllUser) {
-                List<PlayerPrize> playerPrizes = ladder.play();
-                outputView.printPlayerPrizes(playerPrizes);
-                break;
-            }
+        outputView.printLadder(players, prizes, ladder.getLines());
 
-            outputView.printPlayerPrize(ladder.play(Player.of(player)));
+        PlayerPrizes playerPrizes = ladder.play(players, prizes);
+        while (showResult(playerPrizes)) {
         }
     }
 
-    private Ladder inputLadder() {
-        List<String> playerNames = inputView.requestPlayers();
-        List<String> prizes = inputView.requestPrize();
-        int height = inputView.requestHeight();
-        return Ladder.of(height, playerNames, prizes);
+    private List<Player> getPlayers() {
+        return inputView.requestPlayers().stream()
+            .map(Player::new)
+            .collect(Collectors.toList());
+    }
+
+    private boolean showResult(PlayerPrizes playerPrizes) {
+
+        String playerName = inputView.requestResultOfPlayer();
+        boolean isAllUser = Objects.equals(playerName, "all");
+
+        if (isAllUser) {
+            outputView.printPlayerPrizes(playerPrizes.getAll());
+            return false;
+        }
+
+        outputView.printPlayerPrize(playerPrizes.get(new Player(playerName)));
+        return true;
     }
 }
