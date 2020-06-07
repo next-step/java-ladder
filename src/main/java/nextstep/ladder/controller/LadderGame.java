@@ -1,9 +1,8 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.view.LadderGameView;
-
 public class LadderGame {
 
+    public void playLadderGame() {
 
-    private LadderGameView ladderGameView;
+    }
 }
