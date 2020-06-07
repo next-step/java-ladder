@@ -10,6 +10,7 @@ public class PositionTest {
     @Test
     @DisplayName("위치 생성 테스트")
     void create() {
-        assertThatCode(() -> new Position(0, Height.of(4), new Line(false))).doesNotThrowAnyException();
+        Line line = new Line(true, Direction.of(Direction.LEFT));
+        assertThatCode(() -> new Position(0, Height.of(4), line)).doesNotThrowAnyException();
     }
 }
