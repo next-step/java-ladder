@@ -1,40 +1,36 @@
 package nextstep.ladder.domain.ladder;
 
-import java.util.Objects;
+import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Direction {
+public enum Direction {
 
-    public static final int LEFT = -1;
-    public static final int RIGHT = 1;
-    public static final int DOWN = -1;
+    LEFT(-1),
+    RIGHT(1),
+    DOWN(0);
+
+    private static final Map<Integer, Direction> directionMap;
+
+    static {
+        directionMap = Collections.unmodifiableMap(
+                Stream.of(Direction.values())
+                        .collect(Collectors.toMap(Direction::getDirection, direction -> direction))
+        );
+    }
 
     private final int direction;
 
-    public Direction(int direction) {
-        validate(direction);
+    Direction(int direction) {
         this.direction = direction;
     }
 
     public static Direction of(int direction) {
-        return new Direction(direction);
+        return directionMap.get(direction);
     }
 
-    private void validate(int direction) {
-        if (direction != LEFT && direction != RIGHT && direction != DOWN) {
-            throw new IllegalArgumentException(direction + " 은 잘못된 방향입니다.");
-        }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Direction direction1 = (Direction) o;
-        return direction == direction1.direction;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(direction);
+    public int getDirection() {
+        return direction;
     }
 }

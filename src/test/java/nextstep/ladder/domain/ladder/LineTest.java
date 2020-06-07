@@ -10,6 +10,6 @@ public class LineTest {
     @Test
     @DisplayName("라인 생성 테스트")
     void create() {
-        assertThatCode(()->new Line(Direction.of(Direction.LEFT)));
+        assertThatCode(()->new Line(Direction.LEFT));
     }
 }

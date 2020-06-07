@@ -25,15 +25,15 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성 에외 테스트 - 위치 리스트가 2보다 작으면 예외가 발생한다.")
     void exception() {
-        List<Position> positions = Arrays.asList(new Position(0, Height.of(0), new Line(Direction.of(Direction.RIGHT))));
+        List<Position> positions = Arrays.asList(new Position(0, Height.of(0), new Line(Direction.LEFT)));
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Ladder(positions));
     }
 
     private static Stream<Arguments> 사다리_위치_리스트_생성() {
         List<Position> positions = new ArrayList<>();
-        positions.add(new Position(0, Height.of(0), new Line(Direction.of(Direction.RIGHT))));
-        positions.add(new Position(1, Height.of(0), new Line(Direction.of(Direction.LEFT))));
+        positions.add(new Position(0, Height.of(0), new Line(Direction.LEFT)));
+        positions.add(new Position(1, Height.of(0), new Line(Direction.DOWN)));
 
         return Stream.of(
                 Arguments.of(positions));

@@ -10,20 +10,19 @@ public class DirectionTest {
     @Test
     @DisplayName("방향 생성 테스트")
     void create() {
-        assertThatCode(() -> Direction.of(Direction.RIGHT)).doesNotThrowAnyException();
+        assertThatCode(() -> Direction.of(-1)).doesNotThrowAnyException();
     }
 
     @Test
-    @DisplayName("잘못된 방향 값 생성 예외 테스트")
+    @DisplayName("잘못된 방향 값 생성 null 테스트")
     void InvalidArgumentException() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> Direction.of(3));
+        assertThat(Direction.of(3)).isNull();
     }
 
     @Test
     @DisplayName("같은 방향 생성 시 equal 테스트")
     void equal() {
-        Direction direction = Direction.of(Direction.LEFT);
-        assertThat(direction).isEqualTo(Direction.of(Direction.LEFT));
+        Direction direction = Direction.of(-1);
+        assertThat(direction).isEqualTo(Direction.LEFT);
     }
 }
