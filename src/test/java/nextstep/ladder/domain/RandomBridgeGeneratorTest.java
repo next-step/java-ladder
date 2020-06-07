@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.bridge.BridgeGenerator;
+import nextstep.ladder.domain.bridge.RandomBridgeGenerator;
 import nextstep.ladder.fake.FakeRandom;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
