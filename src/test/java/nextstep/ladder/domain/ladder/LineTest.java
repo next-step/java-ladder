@@ -16,7 +16,7 @@ public class LineTest {
 
     @MethodSource("사다리_위치_리스트_생성")
     @ParameterizedTest
-    @DisplayName("사다리 생성 테스트 추가")
+    @DisplayName("라인 생성 테스트 추가")
     void create(List<Position> positions) {
         assertThatCode(() -> new Line(positions));
     }
