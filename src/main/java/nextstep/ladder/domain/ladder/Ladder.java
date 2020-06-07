@@ -15,6 +15,14 @@ public class Ladder {
         this.height = height;
     }
 
+    public List<Position> getPositions() {
+        return positions;
+    }
+
+    public Height getHeight() {
+        return height;
+    }
+
     private void validate(List<Position> positions, Height height) {
         if(positions.size() < MINIMUM_POSITION_SIZE) {
             throw new IllegalArgumentException("사다리 위치 리스트의 최소 크기는 " + MINIMUM_POSITION_SIZE + "입니다.");

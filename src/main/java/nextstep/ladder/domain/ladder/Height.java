@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Height {
 
-    private final static int MINIMUM_HEIGHT = 1;
+    public final static int MINIMUM_HEIGHT = 0;
 
     private final int height;
 
@@ -17,9 +17,13 @@ public class Height {
         return new Height(height);
     }
 
+    public int getHeight() {
+        return height;
+    }
+
     private static void validate(int height) {
         if(height < MINIMUM_HEIGHT) {
-            throw new IllegalArgumentException("높이가 1보다 작을 수 없습니다.");
+            throw new IllegalArgumentException("높이가 0보다 작을 수 없습니다.");
         }
     }
 
