@@ -22,13 +22,13 @@ public class OutputView {
     }
 
     private static void appendEachPlayerName(String playerName, StringBuilder stringBuilder) {
-        if (stringBuilder.length() == BLANK_BOUNDARY) {
-            stringBuilder.append(playerName);
-            appendBlank(playerName, stringBuilder);
-        }
         if (stringBuilder.length() > BLANK_BOUNDARY) {
             appendBlank(playerName, stringBuilder);
             stringBuilder.append(playerName);
+        }
+        if (stringBuilder.length() == BLANK_BOUNDARY) {
+            stringBuilder.append(playerName);
+            appendBlank(playerName, stringBuilder);
         }
         stringBuilder.append(ViewMessages.BLANK);
     }
@@ -41,7 +41,25 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder) {
-        int ladderHeight = ladder.getLadderHeight();
+        List<List<Boolean>> ladderBluePrint = ladder.getLadderBluePrint();
+        StringBuilder stringBuilder = new StringBuilder();
+        ladderBluePrint.forEach(eachLadderLine -> appendEachLadderLine(eachLadderLine, stringBuilder));
+        System.out.println(stringBuilder.toString());
+    }
 
+    private static void appendEachLadderLine(List<Boolean> eachLadderLine, StringBuilder stringBuilder) {
+        stringBuilder.append(ViewMessages.LINE_PREFIX);
+        eachLadderLine.forEach(eachLinePosition -> appendEachLinePosition(eachLinePosition, stringBuilder));
+        stringBuilder.append(ViewMessages.VERTICAL_LINE);
+        stringBuilder.append(ViewMessages.NEW_LINE);
+    }
+
+    private static void appendEachLinePosition(boolean linePosition, StringBuilder stringBuilder) {
+        stringBuilder.append(ViewMessages.VERTICAL_LINE);
+        if (linePosition) {
+            stringBuilder.append(ViewMessages.HORIZON_LINE);
+            return;
+        }
+        stringBuilder.append(ViewMessages.BLANK_LINE);
     }
 }
