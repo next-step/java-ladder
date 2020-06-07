@@ -34,4 +34,11 @@ public class DirectionTest {
         assertThat(nextDirection).isEqualTo(Direction.LEFT);
         assertThat(nextDirection.next(() -> true)).isNotEqualTo(Direction.LEFT);
     }
+
+    @Test
+    @DisplayName("generate 메소드 실행 테스트")
+    void generate() {
+        Direction direction = Direction.generate(0, Direction.LEFT, () -> true);
+        assertThat(direction).isEqualTo(Direction.RIGHT);
+    }
 }
