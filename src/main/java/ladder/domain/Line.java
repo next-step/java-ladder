@@ -12,9 +12,9 @@ public class Line {
         this.points = points;
     }
 
-    public static Line drawLine(int playerCounts) {
+    public static Line drawLine(int playerCounts, DrawingLineStrategy drawingLineStrategy) {
         validatePlayerCounts(playerCounts);
-        List<Point> points = drawLineWithStrategy(playerCounts, new RandomDrawingLineStrategy());
+        List<Point> points = drawingLineStrategy.drawLine(playerCounts);
         return new Line(points);
     }
 
@@ -22,11 +22,6 @@ public class Line {
         if (playerCounts < MINIMUM_PLAYER_COUNTS) {
             throw new LadderBuildingException(LadderBuildingException.INVALID_PLAYER_COUNTS);
         }
-    }
-
-    private static List<Point> drawLineWithStrategy(int playerCounts,
-                                                    DrawingLineStrategy drawingLineStrategy) {
-        return drawingLineStrategy.drawLine(playerCounts);
     }
 
     public List<Boolean> getPointPositions() {

@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.LadderBuildingException;
 import ladder.domain.Line;
+import ladder.domain.RandomDrawingLineStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -17,7 +18,7 @@ public class LineTest {
     @ValueSource(ints = {1, 5, 10, 15})
     public void makeLineObject(int playerCounts) {
         assertThatCode(() -> {
-            Line.drawLine(playerCounts);
+            Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
         }).doesNotThrowAnyException();
     }
 
@@ -26,7 +27,7 @@ public class LineTest {
     @ValueSource(ints = {-1, 0})
     public void throwExceptionOnMakingLineObject(int playerCounts) {
         assertThatThrownBy(() -> {
-            Line.drawLine(playerCounts);
+            Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
         }).isInstanceOf(LadderBuildingException.class)
                 .hasMessageContaining(LadderBuildingException.INVALID_PLAYER_COUNTS);
     }
@@ -35,7 +36,7 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 5, 10, 15})
     public void lineSizeTest(int playerCounts) {
-        Line line = Line.drawLine(playerCounts);
+        Line line = Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
 
         List<Boolean> pointPositions = line.getPointPositions();
 

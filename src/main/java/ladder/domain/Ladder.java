@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
+    private static final DrawingLineStrategy drawingLineStrategy = new RandomDrawingLineStrategy();
 
     private final List<Line> lines;
 
@@ -14,7 +15,7 @@ public class Ladder {
 
     public static Ladder buildLadder(PlayersGroup playersGroup, int ladderHeight) {
         int playerCounts = playersGroup.getPlayerCounts();
-        List<Line> ladder = Stream.generate(() -> Line.drawLine(playerCounts))
+        List<Line> ladder = Stream.generate(() -> Line.drawLine(playerCounts, drawingLineStrategy))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
         return new Ladder(ladder);
