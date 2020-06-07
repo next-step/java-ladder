@@ -1,7 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderGameViewHelper;
-
 import java.util.List;
 import java.util.Scanner;
 

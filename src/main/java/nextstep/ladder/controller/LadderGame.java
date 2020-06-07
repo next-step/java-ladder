@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.controller;
 
 import nextstep.ladder.view.LadderGameView;
 
