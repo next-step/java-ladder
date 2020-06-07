@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.ladder.LadderGame;
-import nextstep.ladder.domain.bridge.RandomBridgeGenerator;
+import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.RandomMovementGenerator;
 import nextstep.ladder.dto.LadderRequestDto;
 import nextstep.ladder.dto.LadderResultDto;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +21,7 @@ class LadderGameTest {
 
     private LadderGame createLadderGame(List<String> names, List<String> results, int height) {
         LadderRequestDto ladderRequestDto = this.createLadderRequestDto(names, results, height);
-        return new LadderGame(ladderRequestDto, new RandomBridgeGenerator(new Random()));
+        return new LadderGame(ladderRequestDto, new RandomMovementGenerator(new Random()));
     }
 
     private LadderRequestDto createLadderRequestDto(List<String> names, List<String> results, int height) {
@@ -35,13 +35,12 @@ class LadderGameTest {
         LadderGame ladderGame = this.createLadderGame(names, results, height);
         LadderResultDto ladderResultDto = ladderGame.getLadderResult();
         List<String> playerNames = ladderResultDto.getPlayers()
-                .getPlayers()
                 .stream()
                 .map(player -> player.getName())
                 .collect(Collectors.toList());
-        assertThat(ladderResultDto.getPlayers().getPlayers()).hasSize(names.size());
+        assertThat(ladderResultDto.getPlayers()).hasSize(names.size());
         assertThat(playerNames).isEqualTo(names);
-        assertThat(ladderResultDto.getLines().getLines()).hasSize(height);
+        assertThat(ladderResultDto.getLines()).hasSize(height);
     }
 
     private static Stream<Arguments> provideLadderInformation() {

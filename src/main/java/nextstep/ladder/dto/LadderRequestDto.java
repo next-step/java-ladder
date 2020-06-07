@@ -11,16 +11,16 @@ public class LadderRequestDto {
 
     private final List<String> names;
     private final int height;
-    private final List<String> results;
+    private final List<String> scores;
 
-    public LadderRequestDto(List<String> names, List<String> results, int height) {
+    public LadderRequestDto(List<String> names, List<String> scores, int height) {
         this.validateHeight(height);
         this.validateNames(names);
-        results.stream()
-                .forEach(result -> this.validateResult(result));
-        this.validateNameAndResult(names, results);
+        scores.stream()
+                .forEach(score -> this.validateResult(score));
+        this.validateNameAndResult(names, scores);
         this.names = Collections.unmodifiableList(names);
-        this.results = Collections.unmodifiableList(results);
+        this.scores = Collections.unmodifiableList(scores);
         this.height = height;
     }
 
@@ -32,8 +32,8 @@ public class LadderRequestDto {
         return this.height;
     }
 
-    public List<String> getResults() {
-        return this.results;
+    public List<String> getScores() {
+        return this.scores;
     }
 
     private void validateNames(List<String> names) {

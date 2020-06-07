@@ -1,14 +1,11 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.line.Lines;
-import nextstep.ladder.domain.player.Players;
-import nextstep.ladder.domain.bridge.Bridge;
-import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.Bridge;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Player;
 import nextstep.ladder.dto.LadderGameResultDto;
 import nextstep.ladder.dto.LadderResultDto;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
@@ -26,9 +23,9 @@ public class OutputView {
         outputLadderGameResult(ladderResultDto.getResults());
     }
 
-    private static void outputNames(Players players) {
+    private static void outputNames(List<Player> players) {
         StringBuilder stringBuilder = new StringBuilder();
-        players.getPlayers().stream()
+        players.stream()
                 .map(player -> appendSpace(NAME_SPACE, player.getName()))
                 .forEach(name -> stringBuilder.append(name));
         System.out.println(stringBuilder);
@@ -38,9 +35,9 @@ public class OutputView {
         return String.format(format, name);
     }
 
-    private static void outputLines(Lines lines) {
+    private static void outputLines(List<Line> lines) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Line line : lines.getLines()) {
+        for (Line line : lines) {
             stringBuilder = appendLine(line, stringBuilder);
             stringBuilder.append(System.lineSeparator());
         }
@@ -53,12 +50,11 @@ public class OutputView {
             stringBuilder.append(LINE);
             stringBuilder = appendBridge(bridge, stringBuilder);
         }
-        stringBuilder.append(LINE);
         return stringBuilder;
     }
 
     private static StringBuilder appendBridge(Bridge bridge, StringBuilder stringBuilder) {
-        if (bridge.isCross()) {
+        if (bridge.isRight()) {
             return stringBuilder.append(BRIDGE);
         }
 
