@@ -31,7 +31,7 @@ public class Ladder {
     private List<Position> createPositions(int maxPosition, Direction direction) {
         return IntStream.range(0, maxPosition)
                 .boxed()
-                .map(position -> new Position(position, Direction.generate(position, direction, predicate)))
+                .map(position -> new Position(position, position == 0 ? direction : direction.next(predicate)))
                 .collect(Collectors.toList());
     }
 

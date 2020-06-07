@@ -37,11 +37,8 @@ public enum Direction {
     public Direction next(DirectionPredicate predicate) {
         return this == RIGHT ? LEFT : generate(predicate);
     }
+
     public static Direction generate(DirectionPredicate predicate) {
         return predicate.test() ? RIGHT : DOWN;
-    }
-
-    public static Direction generate(int position, Direction direction, DirectionPredicate predicate) {
-        return position == 0 ? generate(predicate) : direction.next(predicate);
     }
 }

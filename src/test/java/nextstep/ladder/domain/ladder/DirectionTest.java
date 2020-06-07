@@ -38,7 +38,7 @@ public class DirectionTest {
     @Test
     @DisplayName("generate 메소드 실행 테스트")
     void generate() {
-        Direction direction = Direction.generate(0, Direction.LEFT, () -> true);
+        Direction direction = Direction.generate(() -> true);
         assertThat(direction).isEqualTo(Direction.RIGHT);
     }
 }
