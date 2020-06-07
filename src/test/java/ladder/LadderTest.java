@@ -30,5 +30,11 @@ public class LadderTest {
 
         assertThat(ladder.getLadderHeight())
                 .isEqualTo(ladderHeight);
+
+        assertThat(ladder.getLadderBluePrint().size())
+                .isEqualTo(ladderHeight);
+
+        assertThat(ladder.getLadderBluePrint().get(0).size())
+                .isEqualTo(playersGroup.getPlayerCounts() - 1);
     }
 }

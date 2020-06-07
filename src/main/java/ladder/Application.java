@@ -14,6 +14,6 @@ public class Application {
         Ladder ladder = ladderFactory.buildLadder(playersGroup);
 
         OutputView.printPlayerNames(playersGroup);
-
+        OutputView.printLadder(ladder);
     }
 }
