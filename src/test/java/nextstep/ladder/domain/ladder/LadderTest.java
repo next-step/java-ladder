@@ -19,7 +19,7 @@ public class LadderTest {
     @ParameterizedTest
     @DisplayName("사다리 생성 테스트 추가")
     void create(List<Position> positions) {
-        assertThatCode(() -> new Ladder(positions)).doesNotThrowAnyException();
+        assertThatCode(() -> new Ladder(positions, Height.of(5))).doesNotThrowAnyException();
     }
 
     @Test
@@ -27,7 +27,7 @@ public class LadderTest {
     void exception() {
         List<Position> positions = Arrays.asList(new Position(0, Height.of(0), new Line(Direction.LEFT)));
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Ladder(positions));
+                .isThrownBy(() -> new Ladder(positions, Height.of(1)));
     }
 
     private static Stream<Arguments> 사다리_위치_리스트_생성() {
