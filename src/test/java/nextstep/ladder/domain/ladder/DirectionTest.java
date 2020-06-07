@@ -19,4 +19,11 @@ public class DirectionTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Direction.of(3));
     }
+
+    @Test
+    @DisplayName("같은 방향 생성 시 equal 테스트")
+    void equal() {
+        Direction direction = Direction.of(Direction.LEFT);
+        assertThat(direction).isEqualTo(Direction.of(Direction.LEFT));
+    }
 }
