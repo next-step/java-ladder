@@ -41,4 +41,11 @@ public class DirectionTest {
         Direction direction = Direction.generate(() -> true);
         assertThat(direction).isEqualTo(Direction.RIGHT);
     }
+
+    @Test
+    @DisplayName("last 메소드 실행 테스트")
+    void last() {
+        Direction direction = Direction.RIGHT;
+        assertThat(direction.last()).isEqualTo(Direction.LEFT);
+    }
 }
