@@ -1,10 +1,12 @@
 package nextstep.ladder.domain.ladder;
 
+import java.util.List;
+
 public class Line {
 
-    private final Direction direction;
+    private final List<Position> positions;
 
-    public Line(Direction direction) {
-        this.direction = direction;
+    public Line(List<Position> positions) {
+        this.positions = positions;
     }
 }
