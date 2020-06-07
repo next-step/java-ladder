@@ -6,8 +6,12 @@ public class User {
 
     private final String userName;
 
-    public User(String userName) {
+    private User(String userName) {
         this.userName = userName;
+    }
+
+    public static User newInstance(String userName) {
+        return new User(userName);
     }
 
     @Override

@@ -10,7 +10,7 @@ public class HeightTest {
     @Test
     @DisplayName("높이 생성 테스트")
     void create(){
-        Height height = new Height(5);
-        assertThat(height).isEqualTo(new Height(5));
+        Height height = Height.of(5);
+        assertThat(height).isEqualTo(Height.of(5));
     }
 }

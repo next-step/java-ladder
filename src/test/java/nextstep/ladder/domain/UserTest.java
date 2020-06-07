@@ -10,7 +10,7 @@ public class UserTest {
     @Test
     @DisplayName("유저 생성 테스트")
     void create(){
-        User user = new User("ray");
-        assertThat(user).isEqualTo(new User("ray"));
+        User user = User.newInstance("ray");
+        assertThat(user).isEqualTo(User.newInstance("ray"));
     }
 }

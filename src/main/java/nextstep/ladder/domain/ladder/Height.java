@@ -6,8 +6,12 @@ public class Height {
 
     private final int height;
 
-    public Height(int height) {
+    private Height(int height) {
         this.height = height;
+    }
+
+    public static Height of(int height) {
+        return new Height(height);
     }
 
     @Override
