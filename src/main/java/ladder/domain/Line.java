@@ -29,9 +29,9 @@ public class Line {
         return drawingLineStrategy.drawLine(playerCounts);
     }
 
-    public List<Boolean> getLinePositions() {
+    public List<Boolean> getPointPositions() {
         return points.stream()
-                .map(Point::getIsOnPosition)
+                .map(Point::getIsExisting)
                 .collect(Collectors.toList());
     }
 }

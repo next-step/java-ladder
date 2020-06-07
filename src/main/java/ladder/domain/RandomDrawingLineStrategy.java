@@ -26,18 +26,18 @@ public class RandomDrawingLineStrategy implements DrawingLineStrategy {
     private Point drawPoint(List<Point> points) {
         int randomNumber = generateRandomNumber();
         if (points.isEmpty()) {
-            return Point.of(randomNumber);
+            return Point.drawPoint(randomNumber);
         }
-        if (isFormerPointOnPosition(points)) {
+        if (isLastPointExisting(points)) {
             return new Point(false);
         }
-        return Point.of(randomNumber);
+        return Point.drawPoint(randomNumber);
     }
 
-    private boolean isFormerPointOnPosition(List<Point> points) {
-        int formerPointIndex = points.size() - INDEX_CONSTANT;
-        Point formerPoint = points.get(formerPointIndex);
-        return formerPoint.getIsOnPosition();
+    private boolean isLastPointExisting(List<Point> points) {
+        int lastPointIndex = points.size() - INDEX_CONSTANT;
+        Point lastPoint = points.get(lastPointIndex);
+        return lastPoint.getIsExisting();
     }
 
     private int generateRandomNumber() {

@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-    private final List<Line> ladder;
+    private final List<Line> lines;
 
-    private Ladder(List<Line> ladder) {
-        this.ladder = ladder;
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public static Ladder buildLadder(PlayersGroup playersGroup, int ladderHeight) {
@@ -21,12 +21,12 @@ public class Ladder {
     }
 
     public List<List<Boolean>> getLadderBluePrint() {
-        return ladder.stream()
-                .map(Line::getLinePositions)
+        return lines.stream()
+                .map(Line::getPointPositions)
                 .collect(Collectors.toList());
     }
 
     public int getLadderHeight() {
-        return ladder.size();
+        return lines.size();
     }
 }

@@ -43,20 +43,20 @@ public class OutputView {
     public static void printLadder(Ladder ladder) {
         List<List<Boolean>> ladderBluePrint = ladder.getLadderBluePrint();
         StringBuilder stringBuilder = new StringBuilder();
-        ladderBluePrint.forEach(eachLadderLine -> appendEachLadderLine(eachLadderLine, stringBuilder));
+        ladderBluePrint.forEach(eachLadderLine -> appendLadderLine(eachLadderLine, stringBuilder));
         System.out.println(stringBuilder.toString());
     }
 
-    private static void appendEachLadderLine(List<Boolean> eachLadderLine, StringBuilder stringBuilder) {
+    private static void appendLadderLine(List<Boolean> ladderLine, StringBuilder stringBuilder) {
         stringBuilder.append(ViewMessages.LINE_PREFIX);
-        eachLadderLine.forEach(eachLinePosition -> appendEachLinePosition(eachLinePosition, stringBuilder));
+        ladderLine.forEach(eachPointPosition -> appendPointPosition(eachPointPosition, stringBuilder));
         stringBuilder.append(ViewMessages.VERTICAL_LINE);
         stringBuilder.append(ViewMessages.NEW_LINE);
     }
 
-    private static void appendEachLinePosition(boolean linePosition, StringBuilder stringBuilder) {
+    private static void appendPointPosition(boolean pointPosition, StringBuilder stringBuilder) {
         stringBuilder.append(ViewMessages.VERTICAL_LINE);
-        if (linePosition) {
+        if (pointPosition) {
             stringBuilder.append(ViewMessages.HORIZON_LINE);
             return;
         }

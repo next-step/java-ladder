@@ -37,8 +37,8 @@ public class LineTest {
     public void lineSizeTest(int playerCounts) {
         Line line = Line.drawLine(playerCounts);
 
-        List<Boolean> linePositions = line.getLinePositions();
+        List<Boolean> pointPositions = line.getPointPositions();
 
-        assertThat(linePositions.size()).isEqualTo(playerCounts - 1);
+        assertThat(pointPositions.size()).isEqualTo(playerCounts - 1);
     }
 }

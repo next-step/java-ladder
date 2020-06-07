@@ -44,11 +44,11 @@ public class DrawingLineStrategyTest {
 
         boolean isAlwaysDrawingLineValid = alwaysDrawingStrategy.drawLine(countsOfPerson)
                 .stream()
-                .allMatch(point -> point.getIsOnPosition() == true);
+                .allMatch(point -> point.getIsExisting() == true);
 
         boolean isAlwaysNotDrawingLineValid = alwaysNotDrawingStrategy.drawLine(countsOfPerson)
                 .stream()
-                .allMatch(point -> point.getIsOnPosition() == false);
+                .allMatch(point -> point.getIsExisting() == false);
 
         assertThat(isAlwaysDrawingLineValid).isEqualTo(true);
         assertThat(isAlwaysNotDrawingLineValid).isEqualTo(true);
