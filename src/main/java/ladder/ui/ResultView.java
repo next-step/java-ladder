@@ -1,4 +1,4 @@
-package step2.ui;
+package ladder.ui;
 
 public class ResultView {
 }
