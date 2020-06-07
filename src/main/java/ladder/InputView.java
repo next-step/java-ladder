@@ -12,9 +12,10 @@ public class InputView {
 
     private InputView() {}
 
-    public static List<PlayerName> askPlayerNames() {
+    public static Players askPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return parsePlayerNames(SCANNER.nextLine());
+        List<PlayerName> playerNames = parsePlayerNames(SCANNER.nextLine());
+        return Players.of(playerNames);
     }
 
     private static List<PlayerName> parsePlayerNames(String namesStr) {
