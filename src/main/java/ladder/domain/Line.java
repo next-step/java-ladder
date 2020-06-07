@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    private static final int PLAYER_COUNTS_LIMIT = 1;
+    private static final int MINIMUM_PLAYER_COUNTS = 1;
     private final List<Point> points;
 
     private Line(List<Point> points) {
@@ -19,7 +19,7 @@ public class Line {
     }
 
     private static void validatePlayerCounts(int playerCounts) {
-        if (playerCounts < PLAYER_COUNTS_LIMIT) {
+        if (playerCounts < MINIMUM_PLAYER_COUNTS) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_PLAYER_COUNTS);
         }
     }
