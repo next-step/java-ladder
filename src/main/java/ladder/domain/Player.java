@@ -23,4 +23,8 @@ public class Player {
     private boolean isInvalidLength(String name) {
         return name.length() > MAXIMUM_NAME_LENGTH;
     }
+
+    public String getName() {
+        return name;
+    }
 }

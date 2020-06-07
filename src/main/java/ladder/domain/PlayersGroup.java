@@ -18,6 +18,12 @@ public class PlayersGroup {
         return new PlayersGroup(players);
     }
 
+    public List<String> getPlayerNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+    }
+
     public int getPlayerCounts() {
         return players.size();
     }

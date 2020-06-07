@@ -37,4 +37,7 @@
     * 쉼표로 구분되는 게임 참가자(Player) 명단을 입력 받음.
     * 사다리 높이를 입력 받음.
     
+* OutputView
+    * Ladder 객체를 바탕으로 사다리의 모습을 그림
+    
 ### Application

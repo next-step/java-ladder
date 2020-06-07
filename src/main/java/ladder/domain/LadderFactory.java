@@ -15,4 +15,8 @@ public class LadderFactory {
             throw new IllegalArgumentException(ErrorMessages.INVALID_LADDER_HEIGHT);
         }
     }
+
+    public Ladder buildLadder(PlayersGroup playersGroup) {
+        return Ladder.buildLadder(playersGroup, ladderHeight);
+    }
 }

@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class PlayersGroupTest {
 
+    private static final List<String> playerNames = Arrays.asList("abc", "ddd", "john", "doe");
+
     @DisplayName("PlayersGroup 객체 생성 성공 테스트")
     @Test
     public void makePlayersGroupObject() {
-        List<String> playerNames = Arrays.asList("abc", "ddd", "john", "doe");
-
         assertThatCode(() -> {
             PlayersGroup.of(playerNames);
         }).doesNotThrowAnyException();
@@ -25,10 +25,19 @@ public class PlayersGroupTest {
     @DisplayName("PlayersGroup 크기 == playerCounts 일치 테스트")
     @Test
     public void getPlayerCounts() {
-        List<String> playerNames = Arrays.asList("abc", "ddd", "john", "doe");
         PlayersGroup playersGroup = PlayersGroup.of(playerNames);
 
         assertThat(playersGroup.getPlayerCounts())
                 .isEqualTo(4);
+    }
+
+    @DisplayName("Player들의 이름 명단(String)만 추출하는 테스트")
+    @Test
+    public void getPlayerNames() {
+        PlayersGroup playersGroup = PlayersGroup.of(playerNames);
+
+        List<String> pickedPlayerNames = playersGroup.getPlayerNames();
+
+        assertThat(playerNames).isEqualTo(pickedPlayerNames);
     }
 }
