@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.bridge;
 
 import java.util.Objects;
 import java.util.Random;
