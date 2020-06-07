@@ -9,4 +9,8 @@ public class Line {
     public Line(List<Position> positions) {
         this.positions = positions;
     }
+
+    public List<Position> getPositions() {
+        return positions;
+    }
 }
