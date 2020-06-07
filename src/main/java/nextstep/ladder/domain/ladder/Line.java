@@ -1,25 +1,15 @@
 package nextstep.ladder.domain.ladder;
 
-import java.util.Objects;
-
 public class Line {
 
     private final boolean isExist;
+    private final Direction direction;
 
-    public Line(boolean isExist) {
+    public Line(boolean isExist, Direction direction) {
         this.isExist = isExist;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return isExist == line.isExist;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(isExist);
+        if (!isExist) {
+            direction = null;
+        }
+        this.direction = direction;
     }
 }
