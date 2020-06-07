@@ -25,4 +25,13 @@ public class DirectionTest {
         Direction direction = Direction.of(-1);
         assertThat(direction).isEqualTo(Direction.LEFT);
     }
+
+    @Test
+    @DisplayName("next 메소드 실행 테스트")
+    void next() {
+        Direction direction = Direction.RIGHT;
+        Direction nextDirection = direction.next(() -> true);
+        assertThat(nextDirection).isEqualTo(Direction.LEFT);
+        assertThat(nextDirection.next(() -> true)).isNotEqualTo(Direction.LEFT);
+    }
 }

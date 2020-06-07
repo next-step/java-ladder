@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,5 +33,12 @@ public enum Direction {
 
     public int getDirection() {
         return direction;
+    }
+
+    public Direction next(DirectionPredicate predicate) {
+        return this == RIGHT ? LEFT : generate(predicate);
+    }
+    private static Direction generate(DirectionPredicate predicate) {
+        return predicate.test() ? RIGHT : DOWN;
     }
 }
