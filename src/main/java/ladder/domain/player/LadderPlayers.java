@@ -1,6 +1,7 @@
 package ladder.domain.player;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,11 +26,11 @@ public class LadderPlayers {
     }
 
     public List<LadderPlayer> getLadderPlayers() {
-        return ladderPlayers;
+        return Collections.unmodifiableList(ladderPlayers);
     }
 
     private static void validatePlayer(String[] playerNames) {
-        if (playerNames.length < 1) {
+        if (playerNames.length < 1 || playerNames == null) {
             throw new IllegalArgumentException("플에이어를 입력하세요");
         }
     }

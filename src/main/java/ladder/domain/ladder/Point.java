@@ -5,7 +5,7 @@ public class Point {
     private final boolean left;
     private final boolean right;
 
-    public Point(int position, boolean left, boolean right) {
+    private Point(int position, boolean left, boolean right) {
         this.position = position;
         this.left = left;
         this.right = right;
@@ -22,7 +22,7 @@ public class Point {
         return new Point(0, false, right);
     }
 
-    public Point last() {
+    Point last() {
         return new Point(position + 1, left, false);
     }
 

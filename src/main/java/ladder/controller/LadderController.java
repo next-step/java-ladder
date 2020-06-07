@@ -13,5 +13,8 @@ public class LadderController {
         int height = InputView.inputLadderMaxHeight();
 
         LadderCreator ladderCreator = LadderCreator.create(ladderPlayers, height);
+        Ladder ladder = ladderCreator.getLadder();
+
+        ResultView.printResult(ladderPlayers, ladder);
     }
 }

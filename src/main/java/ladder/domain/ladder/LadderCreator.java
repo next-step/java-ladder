@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class LadderCreator {
-    Ladder ladder;
+    private Ladder ladder;
 
     private LadderCreator(LadderPlayers ladderPlayers, int ladderHeight) {
         validateHeight(ladderHeight);
