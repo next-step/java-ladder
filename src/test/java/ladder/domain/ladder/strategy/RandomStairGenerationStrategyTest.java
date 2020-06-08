@@ -1,6 +1,6 @@
 package ladder.domain.ladder.strategy;
 
-import ladder.domain.ladder.StairState;
+import ladder.domain.ladder.State;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +21,7 @@ public class RandomStairGenerationStrategyTest {
     @ParameterizedTest
     @ValueSource(booleans = { true, false })
     void trueOrFalse(final boolean randomResult) {
-        assertThat(StairState.ofFirstPillar(() -> randomResult).isExistLine())
+        assertThat(State.ofFirstPillar(() -> randomResult).isExistLine())
                 .isEqualTo(randomResult);
     }
 }

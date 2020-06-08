@@ -26,7 +26,7 @@ public class StairTest {
     @Test
     void createOfMiddlePillar() {
         Stair previousStair = Stair.of(
-                StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
+                State.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
 
         boolean existLineOfPreviousStair = previousStair.isExistLine();
         boolean existLine = previousStair.createOfNextPillar().isExistLine();
