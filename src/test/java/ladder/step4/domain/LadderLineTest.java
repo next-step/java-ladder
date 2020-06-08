@@ -1,6 +1,6 @@
 package ladder.step4.domain;
 
-import ladder.step4.domain.strategy.DirectionStrategy;
+import ladder.step4.domain.strategy.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -25,19 +25,19 @@ public class LadderLineTest {
     }
 
     private static Stream<Arguments> provideLadderAndStrategy() {
-        DirectionStrategy toggleStrategy = Direction::toggle;
-        DirectionStrategy rightStrategy = prev -> Direction.RIGHT;
-        DirectionStrategy emptyStrategy = prev -> Direction.EMPTY;
+        DirectionStrategy toggleStrategy = ToggleDirectionStrategy.getInstance();
+        DirectionStrategy rightStrategy = RightDirectionStrategy.getInstance();
+        DirectionStrategy emptyStrategy = EmptyDirectionStrategy.getInstance();
         return Stream.of(
             Arguments.of(LadderLine.of(2, toggleStrategy), 1),
-            Arguments.of(LadderLine.of(3, toggleStrategy), 1),
+            Arguments.of(LadderLine.of(3, toggleStrategy), 2),
             Arguments.of(LadderLine.of(4, toggleStrategy), 2),
-            Arguments.of(LadderLine.of(5, toggleStrategy), 2),
+            Arguments.of(LadderLine.of(5, toggleStrategy), 3),
             Arguments.of(LadderLine.of(6, toggleStrategy), 3),
-            Arguments.of(LadderLine.of(2, rightStrategy), 1),
-            Arguments.of(LadderLine.of(3, rightStrategy), 2),
-            Arguments.of(LadderLine.of(4, rightStrategy), 3),
-            Arguments.of(LadderLine.of(5, rightStrategy), 4),
+            Arguments.of(LadderLine.of(2, rightStrategy), 2),
+            Arguments.of(LadderLine.of(3, rightStrategy), 3),
+            Arguments.of(LadderLine.of(4, rightStrategy), 4),
+            Arguments.of(LadderLine.of(5, rightStrategy), 5),
             Arguments.of(LadderLine.of(2, emptyStrategy), 0),
             Arguments.of(LadderLine.of(3, emptyStrategy), 0),
             Arguments.of(LadderLine.of(4, emptyStrategy), 0),
@@ -53,10 +53,10 @@ public class LadderLineTest {
     }
 
     private static Stream<Arguments> provideLadderLineAndIndex () {
-        LadderLine ladderLineToggle = LadderLine.of(4, Direction::toggle);
-        LadderLine ladderLineRight = LadderLine.of(4, prev -> Direction.RIGHT);
-        LadderLine ladderLineLeft = LadderLine.of(4, prev -> Direction.LEFT);
-        LadderLine ladderLineEmpty = LadderLine.of(4, prev -> Direction.EMPTY);
+        LadderLine ladderLineToggle = LadderLine.of(4, ToggleDirectionStrategy.getInstance());
+        LadderLine ladderLineRight = LadderLine.of(4, RightDirectionStrategy.getInstance());
+        LadderLine ladderLineLeft = LadderLine.of(4, LeftDirectionStrategy.getInstance());
+        LadderLine ladderLineEmpty = LadderLine.of(4, EmptyDirectionStrategy.getInstance());
         return Stream.of(
             Arguments.of(ladderLineToggle.move(0), 1),
             Arguments.of(ladderLineToggle.move(1), 0),
@@ -65,11 +65,11 @@ public class LadderLineTest {
             Arguments.of(ladderLineRight.move(0), 1),
             Arguments.of(ladderLineRight.move(1), 2),
             Arguments.of(ladderLineRight.move(2), 3),
-            Arguments.of(ladderLineRight.move(3), 2),
+            Arguments.of(ladderLineRight.move(3), 4),
             Arguments.of(ladderLineLeft.move(0), 0),
             Arguments.of(ladderLineLeft.move(1), 0),
             Arguments.of(ladderLineLeft.move(2), 1),
-            Arguments.of(ladderLineLeft.move(3), 3),
+            Arguments.of(ladderLineLeft.move(3), 2),
             Arguments.of(ladderLineEmpty.move(0), 0),
             Arguments.of(ladderLineEmpty.move(1), 1),
             Arguments.of(ladderLineEmpty.move(2), 2),

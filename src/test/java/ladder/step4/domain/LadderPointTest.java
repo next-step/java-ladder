@@ -1,8 +1,5 @@
 package ladder.step4.domain;
 
-import ladder.step4.domain.strategy.BodyDirectionStrategy;
-import ladder.step4.domain.strategy.DirectionStrategy;
-import ladder.step4.domain.strategy.TailDirectionStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

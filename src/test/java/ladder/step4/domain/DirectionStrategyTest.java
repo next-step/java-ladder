@@ -2,7 +2,6 @@ package ladder.step4.domain;
 
 import ladder.step4.domain.strategy.*;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,14 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DirectionStrategyTest {
 
-    private static final DirectionStrategy bodyStrategy = BodyDirectionStrategy.getInstance();
-    private static final DirectionStrategy tailStrategy = TailDirectionStrategy.getInstance();
+    private static final DirectionStrategy strategy = LadderDirectionStrategy.getInstance();
 
     @DisplayName("사다리에 줄이 생기지 말아야할 경우에 대한 테스트")
     @ParameterizedTest
     @MethodSource("provideDirection")
     void 사다리_줄_생성_테스트(Direction prev) {
-        assertEquals(false, bodyStrategy.create(prev) == prev);
+        assertEquals(false, strategy.createBody(prev) == prev);
     }
 
     private static Stream<Arguments> provideDirection () {
@@ -34,7 +32,7 @@ public class DirectionStrategyTest {
     @ParameterizedTest
     @MethodSource("provideDirectionAndTailDirection")
     void 마지막_줄_생성_테스트(Direction prev, Direction expected) {
-        assertEquals(expected, tailStrategy.create(prev));
+        assertEquals(expected, strategy.createTail(prev));
     }
 
     private static Stream<Arguments> provideDirectionAndTailDirection () {
@@ -49,14 +47,15 @@ public class DirectionStrategyTest {
     @ParameterizedTest
     @MethodSource("provideLadderStrategy")
     void 사다리_줄_전략_테스트(DirectionStrategy strategy, Direction direction, Direction expected) {
-        assertEquals(expected, strategy.create(direction));
+        assertEquals(expected, strategy.createBody(direction));
+        assertEquals(expected, strategy.createTail(direction));
     }
 
     private static Stream<Arguments> provideLadderStrategy() {
-        DirectionStrategy rightDirectionStrategy = prev -> Direction.RIGHT;
-        DirectionStrategy leftDirectionStrategy = prev -> Direction.LEFT;
-        DirectionStrategy emptyDirectionStrategy = prev -> Direction.EMPTY;
-        DirectionStrategy toggleStrategy = Direction::toggle;
+        DirectionStrategy rightDirectionStrategy = RightDirectionStrategy.getInstance();
+        DirectionStrategy leftDirectionStrategy = LeftDirectionStrategy.getInstance();
+        DirectionStrategy emptyDirectionStrategy = EmptyDirectionStrategy.getInstance();
+        DirectionStrategy toggleStrategy = ToggleDirectionStrategy.getInstance();
         return Stream.of(
             Arguments.of(rightDirectionStrategy, Direction.RIGHT, Direction.RIGHT),
             Arguments.of(leftDirectionStrategy, Direction.LEFT, Direction.LEFT),

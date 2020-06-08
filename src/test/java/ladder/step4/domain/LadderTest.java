@@ -1,6 +1,6 @@
 package ladder.step4.domain;
 
-import ladder.step4.domain.strategy.DirectionStrategy;
+import ladder.step4.domain.strategy.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -25,7 +25,7 @@ public class LadderTest {
 
     private static Stream<Arguments> provideLadderAndHeight() {
         Participants participants = Participants.of("a,b,c,d,e");
-        DirectionStrategy strategy = prev -> Direction.RIGHT;
+        DirectionStrategy strategy = RightDirectionStrategy.getInstance();
         return Stream.of(
             Arguments.of(Ladder.of(participants, LadderHeight.valueOf(5), strategy), 5),
             Arguments.of(Ladder.of(participants, LadderHeight.valueOf(4), strategy), 4),
@@ -52,7 +52,7 @@ public class LadderTest {
         LadderHeight ladderHeight = LadderHeight.valueOf(3);
         return Stream.of(
             Arguments.of(
-                Ladder.of(participants, ladderHeight, Direction::toggle),
+                Ladder.of(participants, ladderHeight, ToggleDirectionStrategy.getInstance()),
                 Arrays.asList(
                     Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
                     Arrays.asList(Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT),
@@ -60,23 +60,23 @@ public class LadderTest {
                 )
             ),
             Arguments.of(
-                Ladder.of(participants, ladderHeight, prev -> Direction.RIGHT),
+                Ladder.of(participants, ladderHeight, RightDirectionStrategy.getInstance()),
                 Arrays.asList(
-                    Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.LEFT),
-                    Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.LEFT),
-                    Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.LEFT)
+                    Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT),
+                    Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT),
+                    Arrays.asList(Direction.RIGHT, Direction.RIGHT, Direction.RIGHT, Direction.RIGHT)
                 )
             ),
             Arguments.of(
-                Ladder.of(participants, ladderHeight, prev -> Direction.LEFT),
+                Ladder.of(participants, ladderHeight, LeftDirectionStrategy.getInstance()),
                 Arrays.asList(
-                    Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.EMPTY),
-                    Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.EMPTY),
-                    Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.EMPTY)
+                    Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.LEFT),
+                    Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.LEFT),
+                    Arrays.asList(Direction.LEFT, Direction.LEFT, Direction.LEFT, Direction.LEFT)
                 )
             ),
             Arguments.of(
-                Ladder.of(participants, ladderHeight, prev -> Direction.EMPTY),
+                Ladder.of(participants, ladderHeight, EmptyDirectionStrategy.getInstance()),
                 Arrays.asList(
                     Arrays.asList(Direction.EMPTY, Direction.EMPTY, Direction.EMPTY, Direction.EMPTY),
                     Arrays.asList(Direction.EMPTY, Direction.EMPTY, Direction.EMPTY, Direction.EMPTY),
