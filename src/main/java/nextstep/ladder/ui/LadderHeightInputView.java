@@ -15,7 +15,9 @@ public class LadderHeightInputView {
 
     public static LadderHeightInputView createByUserInput(Scanner scanner) {
         System.out.println(INPUT_LADDER_HEIGHT_COMMENT);
-        return new LadderHeightInputView(scanner.nextInt());
+        int maxLadderHeight = scanner.nextInt();
+        scanner.nextLine();
+        return new LadderHeightInputView(maxLadderHeight);
     }
 
     public int getMaxLadderHeight() {
