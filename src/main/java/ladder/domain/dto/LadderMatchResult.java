@@ -25,6 +25,16 @@ public class LadderMatchResult {
         return new LadderMatchResult(matchResult);
     }
 
+    public Prize match(final String playerName) {
+        Player player = Player.of(playerName);
+
+        if (!matchResult.containsKey(player)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_PLAYER_NAME);
+        }
+
+        return matchResult.get(player);
+    }
+
     public List<Player> getPlayers() {
         return new ArrayList<>(matchResult.keySet());
     }
