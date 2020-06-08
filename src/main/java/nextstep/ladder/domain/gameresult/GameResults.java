@@ -7,6 +7,7 @@ import nextstep.ladder.domain.exceptions.NotExistPlayerNameException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -41,5 +42,18 @@ public class GameResults {
         if (playersSize != rewardsSize) {
             throw new InvalidGameResultParameterException("Players size and rewards size must equal");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameResults that = (GameResults) o;
+        return Objects.equals(values, that.values);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(values);
     }
 }

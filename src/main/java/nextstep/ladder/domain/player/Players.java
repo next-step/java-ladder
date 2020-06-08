@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
 public class Players {
     private List<Player> values;
 
-    private Players(List<Player> values) {
+    public Players(List<Player> values) {
         this.values = new ArrayList<>(values);
     }
 
