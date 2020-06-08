@@ -32,14 +32,7 @@ public class Player {
     }
 
     public HorizontalLocation move(HorizontalMoveStrategy horizontalMoveStrategy) {
-        // TODO: remove comments
         this.horizontalLocation = horizontalMoveStrategy.move(this);
-//        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_LEFT)) {
-//            this.horizontalLocation = this.horizontalLocation.moveLeft();
-//        }
-//        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_RIGHT)) {
-//            this.horizontalLocation = this.horizontalLocation.moveRight();
-//        }
         return this.horizontalLocation;
     }
 
