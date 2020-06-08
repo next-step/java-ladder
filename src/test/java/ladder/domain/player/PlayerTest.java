@@ -1,10 +1,10 @@
 package ladder.domain.player;
 
+import ladder.domain.ladder.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class PlayerTest {
 
@@ -20,5 +20,12 @@ public class PlayerTest {
     void create() {
         assertThatCode(() -> Player.of("pobi"))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("논리적 동치성 비교")
+    @Test
+    void equals() {
+        assertThat(Player.of("pobi"))
+                .isEqualTo(Player.of("pobi"));
     }
 }
