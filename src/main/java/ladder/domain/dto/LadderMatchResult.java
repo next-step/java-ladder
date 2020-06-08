@@ -4,8 +4,7 @@ import ladder.domain.player.Player;
 import ladder.domain.prize.Prize;
 import ladder.exception.ErrorMessage;
 
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class LadderMatchResult {
 
@@ -24,5 +23,9 @@ public class LadderMatchResult {
 
     public static LadderMatchResult of(final Map<Player, Prize> matchResult) {
         return new LadderMatchResult(matchResult);
+    }
+
+    public List<Player> getPlayers() {
+        return new ArrayList<>(matchResult.keySet());
     }
 }
