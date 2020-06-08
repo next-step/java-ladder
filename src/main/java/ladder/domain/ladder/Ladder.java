@@ -18,7 +18,7 @@ public class Ladder {
     }
 
     private void validatePillars(final List<RowPillars> rowPillars) {
-        if (Objects.isNull(rowPillars) || rowPillars.size() == 0) {
+        if (Objects.isNull(rowPillars) || rowPillars.size() < Height.MIN_HEIGHT) {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
     }
