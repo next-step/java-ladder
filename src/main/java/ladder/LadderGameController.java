@@ -2,8 +2,13 @@ package ladder;
 
 public class LadderGameController {
 
-    public void runGame() {
-        Players players = InputView.askPlayerNames();
-        LadderHeight ladderHeight = InputView.askLadderHeight();
+    private final LadderGame ladderGame;
+
+    public LadderGameController(LadderGame ladderGame) {
+        this.ladderGame = ladderGame;
+    }
+
+    public void startGame() {
+        Ladder ladder = ladderGame.start(InputView.askPlayerNames(), InputView.askLadderHeight());
     }
 }
