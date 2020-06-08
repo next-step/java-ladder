@@ -19,4 +19,5 @@ public class LadderGameViewHelper {
             throw new IllegalArgumentException(INVALID_USER_NAME_EXCEPTION_MESSAGE);
         }
     }
+
 }

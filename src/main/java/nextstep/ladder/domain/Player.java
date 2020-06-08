@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Player {
 
     private static final Integer MAXIMUM_USER_NAME_LENGTH = 5;
@@ -7,9 +9,8 @@ public class Player {
 
     private String userName;
 
-    public Player(String userName) {
+    private Player(String userName) {
         validateUserName(userName);
-
         this.userName = userName;
     }
 
@@ -17,5 +18,13 @@ public class Player {
         if (userName.length() > MAXIMUM_USER_NAME_LENGTH) {
             throw new IllegalArgumentException(INVALID_USER_NAME_EXCEPTION_MESSAGE);
         }
+    }
+
+    public String convertUserNameWithLeftPad() {
+        return StringUtils.leftPad(this.userName, MAXIMUM_USER_NAME_LENGTH);
+    }
+
+    public static Player of(String userName) {
+        return new Player(userName);
     }
 }

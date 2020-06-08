@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.view.LadderGameView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -27,12 +29,15 @@ public class Line {
         if (hasNotPreviousMountingBlock(mountingBlockIndex)) {
             Boolean generatedMountingBlock = this.mountingBlockGenerator.generateMountingBlock();
             this.mountingBlock.add(generatedMountingBlock);
+            return;
         }
+
+        this.mountingBlock.add(Boolean.FALSE);
     }
 
     private Boolean hasNotPreviousMountingBlock(Integer mountingBlockIndex) {
 
-        if (mountingBlockIndex.equals(1)) {
+        if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK)) {
             return Boolean.TRUE;
         }
 
@@ -46,5 +51,9 @@ public class Line {
 
     private Integer getPreviousMountingBlockIndex(Integer mountingBlockIndex) {
         return mountingBlockIndex - 1;
+    }
+
+    public void viewLine() {
+        LadderGameView.viewLine(this.mountingBlock);
     }
 }
