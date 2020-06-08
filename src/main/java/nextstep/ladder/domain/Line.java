@@ -18,7 +18,7 @@ public class Line {
         return points.get(index).getValue();
     }
 
-    public List<Point> getPointsValue() {
+    public List<Point> getPoints() {
         return new ArrayList<>(this.points);
     }
 

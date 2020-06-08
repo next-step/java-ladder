@@ -198,8 +198,8 @@
 - [ ] Point의 boolean 값들을 상수화 시켜서 관리하기
 
 ### 2차 리뷰 Todo List
-- [ ] HorizontalMoveStrategy에서 각 객체별 Player 움직임에 대해 명시하도록 변경
-- [ ] Line 객체 메서드의 이름을 책임에 맞도록 변경
+- [X] HorizontalMoveStrategy에서 각 객체별 Player 움직임에 대해 명시하도록 변경
+- [X] Line 객체 메서드의 이름을 책임에 맞도록 변경
 - [ ] LadderHeightInputView의 상수 가독성 높이기
 - [ ] UIController의 Scanner 중복 해결하기
 - [ ] LineTests 테스트 좀 더 간결하기 바꾸기

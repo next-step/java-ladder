@@ -35,7 +35,7 @@ public class LadderOutputView {
     }
 
     String parseLine(Line line) {
-        return line.getPointsValue().stream()
+        return line.getPoints().stream()
                 .map(this::parsePoint)
                 .collect(Collectors.joining());
     }
