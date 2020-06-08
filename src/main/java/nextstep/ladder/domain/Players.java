@@ -90,4 +90,8 @@ public class Players {
     public int hashCode() {
         return Objects.hash(values);
     }
+
+    public void playLadderGame(Ladder ladder) {
+        this.values.forEach(ladder::playGame);
+    }
 }

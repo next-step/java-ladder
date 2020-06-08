@@ -61,4 +61,16 @@ class PlayersTests {
         HorizontalLocation location = players.getLocationOfIndex(nameIndex);
         assertThat(location).isEqualTo(new HorizontalLocation(nameIndex, 3));
     }
+
+    @DisplayName("속해 있는 Player 객체들의 게임을 진행할 수 있다.")
+    @Test
+    void playLadderGameAllTest() {
+        Ladder ladder = Ladder.create(5, 3, new SimplePointAddStrategy());
+        Players players = Players.create(Arrays.asList("poppo", "ita", "saul"));
+        players.playLadderGame(ladder);
+        
+        HorizontalLocation location = players.getLocationOfIndex(0);
+
+        assertThat(location).isEqualTo(new HorizontalLocation(1, 3));
+    }
 }
