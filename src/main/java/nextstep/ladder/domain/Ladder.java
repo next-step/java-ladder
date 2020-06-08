@@ -4,6 +4,7 @@ import nextstep.ladder.domain.exceptions.InvalidLadderHeightException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -17,10 +18,9 @@ public class Ladder {
 
     public static Ladder create(int ladderHeight, int countOfPerson, PointAddStrategy pointAddStrategy) {
         validateLadderHeight(ladderHeight);
-        List<Line> lines = new ArrayList<>();
-        IntStream.range(0, ladderHeight)
-                .forEach(num ->
-                        lines.add(LineFactory.create(countOfPerson, pointAddStrategy)));
+        List<Line> lines = IntStream.range(0, ladderHeight)
+                .mapToObj(num -> LineFactory.create(countOfPerson, pointAddStrategy))
+                .collect(Collectors.toList());
         return new Ladder(lines);
     }
 
