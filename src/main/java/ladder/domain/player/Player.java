@@ -4,6 +4,8 @@ import ladder.exception.ErrorMessage;
 import ladder.exception.NameLengthOutOfRangeException;
 import ladder.util.StringUtil;
 
+import java.util.Objects;
+
 public class Player {
 
     private static final int MAX_LENGTH_OF_NAME = 5;
@@ -30,5 +32,18 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+        Player player = (Player) o;
+        return name.equals(player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
