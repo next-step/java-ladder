@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private static final Integer FIRST_MOUNTING_BLOCK = 0;
+    private static final Integer FIRST_MOUNTING_BLOCK_INDEX = 0;
 
     private List<Boolean> mountingBlock;
     private MountingBlockGenerator mountingBlockGenerator;
@@ -17,7 +17,7 @@ public class Line {
         this.mountingBlock = new ArrayList<>();
         this.mountingBlockGenerator = mountingBlockGenerator;
 
-        IntStream.rangeClosed(FIRST_MOUNTING_BLOCK, getTotalMountingBlock(countOfPerson))
+        IntStream.rangeClosed(FIRST_MOUNTING_BLOCK_INDEX, getTotalMountingBlock(countOfPerson))
                 .forEach(this::makeLadderEachLine);
     }
 
@@ -37,7 +37,7 @@ public class Line {
 
     private Boolean hasNotPreviousMountingBlock(Integer mountingBlockIndex) {
 
-        if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK)) {
+        if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK_INDEX)) {
             return Boolean.TRUE;
         }
 
