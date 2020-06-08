@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Player;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class LadderGameView {
     private static final String SHAPE_OF_HEIGHT = "|";
     private static final String SHAPE_OF_MOUNTING_BLOCK = "-----";
     private static final String BLANK_MOUNTING_BLOCK = "     ";
+    private static final Integer FIRST_HEIGHT_PADDING_VALUE = 6;
 
     public static List<String> inputUserNames() {
         System.out.println(USER_NAME_INPUT_MESSAGE);
@@ -50,12 +52,17 @@ public class LadderGameView {
     }
 
     public static void viewLine(List<Boolean> mountingBlocks) {
+        drawFirstHeight();
         for (Boolean mountingBlock : mountingBlocks) {
-            System.out.print(SHAPE_OF_HEIGHT);
             drawMountingBlock(mountingBlock);
+            System.out.print(SHAPE_OF_HEIGHT);
         }
 
-        System.out.println(SHAPE_OF_HEIGHT);
+        System.out.println();
+    }
+
+    private static void drawFirstHeight() {
+        System.out.print(StringUtils.leftPad(SHAPE_OF_HEIGHT, FIRST_HEIGHT_PADDING_VALUE));
     }
 
     private static void drawMountingBlock(Boolean mountingBlock) {
