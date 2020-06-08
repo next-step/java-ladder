@@ -1,9 +1,9 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.ladder.Point;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

@@ -202,7 +202,7 @@
 - [X] Line 객체 메서드의 이름을 책임에 맞도록 변경
 - [X] LadderHeightInputView의 상수 가독성 높이기
 - [X] UIController의 Scanner 중복 해결하기
-- [ ] LineTests 테스트 좀 더 간결하기 바꾸기
+- [X] LineTests 테스트 좀 더 간결하기 바꾸기
 - [ ] LadderGameService 객체에 대해 다시 고려해보기
-- [ ] Ladder 내 게임 진행 메서드 개선하기
-- [ ] Domain 패키지를 역할별로 세분화하기
+- [X] Ladder 내 게임 진행 메서드 개선하기
+- [X] Domain 패키지를 역할별로 세분화하기

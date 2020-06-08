@@ -1,6 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.GameResults;
+import nextstep.ladder.domain.gameresult.GameResults;
 
 import java.util.stream.Collectors;
 

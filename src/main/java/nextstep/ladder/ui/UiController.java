@@ -1,7 +1,12 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.application.LadderGameService;
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.gameresult.GameResults;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.PointAddStrategy;
+import nextstep.ladder.domain.ladder.RandomPointAddStrategy;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.reward.Rewards;
 
 import java.util.Scanner;
 
