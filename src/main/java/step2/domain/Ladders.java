@@ -7,15 +7,6 @@ public class Ladders {
 
     private List<Ladder> ladderList = new ArrayList<>();
 
-    public Ladders() {
-
-    }
-
-    public Ladders(List<Ladder> ladderList) {
-        this.ladderList = ladderList;
-    }
-
-
     public List<Ladder> getLadderList() {
         return ladderList;
     }

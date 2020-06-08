@@ -4,22 +4,23 @@ import java.util.Random;
 
 public class Line {
 
-    private boolean step;
-
     private static Random random = new Random(System.currentTimeMillis());
 
+    private boolean canStepable;
+
+
     public Line(boolean setAble) {
-        this.step = (setAble) && random.nextBoolean();
+        this.canStepable = (setAble) && random.nextBoolean();
     }
 
-    public boolean isStep() {
-        return step;
+    public boolean isCanStepable() {
+        return canStepable;
     }
 
     public void removeDirection(Pointer pointer) {
 
         if (pointer == Pointer.RIGHT) {
-            step = false;
+            canStepable = false;
         }
 
     }

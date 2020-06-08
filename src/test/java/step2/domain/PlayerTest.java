@@ -1,5 +1,6 @@
 package step2.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+    @DisplayName("Player 개체 생성")
     @Test
     void setPlayerName() {
 
@@ -16,7 +18,7 @@ class PlayerTest {
 
     }
 
-
+    @DisplayName("게임 결과 판단")
     @Test
     void setGameResult() {
 

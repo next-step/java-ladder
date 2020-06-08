@@ -44,7 +44,7 @@ public class OutputView {
         ladderList.forEach(
                 ladder -> {
                     ladder = removeSide(i, ladder, lastLadderLocation);
-                    stringBuilder.append(ladder.getLineList().get(i).isStep() ? "|-----" : "|     ");
+                    stringBuilder.append(ladder.getLines().get(i).isCanStepable() ? "|-----" : "|     ");
                 }
         );
 
@@ -53,7 +53,7 @@ public class OutputView {
     private static Ladder removeSide(int i, Ladder ladder, int lastLadderLocation) {
 
         if(i == lastLadderLocation) {
-            ladder.getLineList().get(i).removeDirection(Pointer.RIGHT);
+            ladder.getLines().get(i).removeDirection(Pointer.RIGHT);
         }
 
         return ladder;

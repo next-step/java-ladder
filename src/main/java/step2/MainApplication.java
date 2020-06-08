@@ -12,10 +12,8 @@ public class MainApplication {
         // input player
         ladderGame.setPlayerList(InputView.inputPlayerName());
 
-
         // ladders setting
         ladderGame.setLaddersHeight(InputView.inputLadderHeight());
-
 
         // draw ladders
         ladderGame.outputView();

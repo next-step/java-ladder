@@ -2,10 +2,11 @@ package step2.domain;
 
 public class Player {
 
+    public static final int PLAYER_NAME_LENGTH_LIMIT = 5;
+
     private String playerName;
     private String gameResult;
 
-    public static final int PLAYER_NAME_LENGTH_LIMIT = 5;
 
     private Player() {
         // blocks

@@ -5,26 +5,26 @@ import java.util.List;
 
 public class Ladder {
 
-    private List<Line> lineList = new ArrayList<>();
+    private List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, boolean isStepable) {
         for (int i = 0; i < height; i++) {
-            lineList.add(new Line(isStepable));
+            lines.add(new Line(isStepable));
         }
     }
 
     public Ladder(int height, boolean isStepable, Ladder beforeLadder) {
         for (int i = 0; i < height; i++) {
-            lineList.add(new Line(isStepable && !beforeLadder.getLineList().get(i).isStep()));
+            lines.add(new Line(isStepable && !beforeLadder.getLines().get(i).isCanStepable()));
         }
     }
 
-    public List<Line> getLineList() {
-        return lineList;
+    public List<Line> getLines() {
+        return lines;
     }
 
     public int getLineCount() {
-        return lineList.size();
+        return lines.size();
     }
 
 
