@@ -30,12 +30,13 @@ public class Player {
     }
 
     public HorizontalLocation move(HorizontalMoveStrategy horizontalMoveStrategy) {
-        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_LEFT)) {
-            this.horizontalLocation = this.horizontalLocation.moveLeft();
-        }
-        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_RIGHT)) {
-            this.horizontalLocation = this.horizontalLocation.moveRight();
-        }
+        this.horizontalLocation = horizontalMoveStrategy.move(this);
+//        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_LEFT)) {
+//            this.horizontalLocation = this.horizontalLocation.moveLeft();
+//        }
+//        if (horizontalMoveStrategy.equals(HorizontalMoveStrategy.MOVE_RIGHT)) {
+//            this.horizontalLocation = this.horizontalLocation.moveRight();
+//        }
         return this.horizontalLocation;
     }
 
