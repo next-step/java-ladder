@@ -1,8 +1,8 @@
-package ladder.step4.Controller;
+package ladder.step3.controller;
 
-import ladder.step4.domain.*;
-import ladder.step4.domain.strategy.*;
-import ladder.step4.view.*;
+import ladder.step3.domain.*;
+import ladder.step3.domain.strategy.*;
+import ladder.step3.view.*;
 
 public class LadderController {
     private static final InputView INPUT_VIEW = InputView.getInstance();
@@ -16,15 +16,14 @@ public class LadderController {
         Ladder ladder = Ladder.of(
             participants,
             ladderHeight,
-            BodyDirectionStrategy.getInstance()
+            LadderLineStrategyImpl.getInstance()
         );
-
-        RESULT_VIEW.viewLadder(ladder, participants, ladderResults);
 
         LadderGame ladderGame = LadderGame.of(
             LadderGameExecutor.execute(participants, ladderResults, ladder)
         );
 
+        RESULT_VIEW.viewLadder(ladder, participants, ladderResults);
         String target;
         do {
             target = INPUT_VIEW.inputResultTarget();

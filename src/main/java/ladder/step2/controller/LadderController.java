@@ -1,4 +1,4 @@
-package ladder.step2.Controller;
+package ladder.step2.controller;
 
 import ladder.step2.domain.Ladder;
 import ladder.step2.domain.LadderHeight;
