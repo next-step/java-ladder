@@ -5,7 +5,8 @@ import java.util.Optional;
 
 public class Player {
 
-    private final static int MAX_OF_NAME_LENGTH = 5;
+    private static final int MAX_OF_NAME_LENGTH = 5;
+
     private final String name;
 
     public Player(String name) {
@@ -21,7 +22,8 @@ public class Player {
         int length = Optional.ofNullable(name)
             .map(String::trim)
             .map(String::length)
-            .orElse(MAX_OF_NAME_LENGTH + 1);
+            .filter(integer -> integer > 0)
+            .orElseThrow(() -> new IllegalArgumentException("name is empty"));
 
         if (length > MAX_OF_NAME_LENGTH) {
             throw new IllegalArgumentException();

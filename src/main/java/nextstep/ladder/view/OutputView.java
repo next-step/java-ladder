@@ -15,10 +15,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printPlayerPrizes(Map<Player, String> playerPrizes) {
+    public void printPlayerPrizes(Map<String, String> playerPrizes) {
         System.out.println("실행 결과");
-        playerPrizes.forEach((player, prize) -> System.out
-            .println(String.format("%s : %s", player.getName(), prize)));
+        playerPrizes.forEach(
+            (player, prize) -> System.out.println(String.format("%s : %s", player, prize)));
     }
 
     public void printLadder(List<Player> players, List<String> prizes, List<Line> lines) {

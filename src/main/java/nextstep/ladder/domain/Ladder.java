@@ -8,11 +8,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.LinePoints;
-import nextstep.ladder.domain.player.Player;
-import nextstep.ladder.domain.player.PlayerPrizes;
 import nextstep.ladder.domain.point.RandomPointGenerator;
 
 public class Ladder {
+
+    private static final int MIN_LINES = 1;
+    private static final int MIN_PLAYER = 2;
 
     private List<Line> lines;
     private int sizeOfPerson;
@@ -33,11 +34,11 @@ public class Ladder {
     }
 
     private void validate(List<Line> lines, int sizeOfPerson) {
-        if (lines.size() < 1) {
+        if (lines.size() < MIN_LINES) {
             throw new IllegalArgumentException("min height is 1");
         }
 
-        if (sizeOfPerson < 2) {
+        if (sizeOfPerson < MIN_PLAYER) {
             throw new IllegalArgumentException("min size Of Person is 2");
         }
     }
@@ -46,25 +47,15 @@ public class Ladder {
         return new ArrayList<>(this.lines);
     }
 
-    public PlayerPrizes play(List<Player> players, List<String> prizes) {
-        if (players.size() != sizeOfPerson) {
-            throw new IllegalArgumentException("invalid players");
+    public LadderResult moveLines() {
+        Map<Integer, Integer> results = new LinkedHashMap<>();
+        for (int position = 0; position < sizeOfPerson; position++) {
+            results.put(position, moveLines(position));
         }
-
-        if (players.size() != prizes.size()) {
-            throw new IllegalArgumentException("invalid prize");
-        }
-
-        Map<Player, String> playerPrizes = new LinkedHashMap<>();
-        for (int playerPosition = 0; playerPosition < sizeOfPerson; playerPosition++) {
-            String prize = prizes.get(play(playerPosition));
-            playerPrizes.put(players.get(playerPosition), prize);
-        }
-
-        return new PlayerPrizes(playerPrizes);
+        return new LadderResult(results);
     }
 
-    private int play(int position) {
+    private int moveLines(int position) {
         for (Line line : this.lines) {
             position = line.move(position);
         }

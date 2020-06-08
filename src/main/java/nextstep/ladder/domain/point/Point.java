@@ -2,6 +2,9 @@ package nextstep.ladder.domain.point;
 
 public class Point {
 
+    private static final int RIGHT_POSITION = 1;
+    private static final int LEFT_POSITION = -1;
+
     private final int position;
     private final Direction direction;
 
@@ -32,11 +35,11 @@ public class Point {
 
     public int move() {
         if (this.direction.isRight()) {
-            return this.position + 1;
+            return this.position + RIGHT_POSITION;
         }
 
         if (this.direction.isLeft()) {
-            return this.position - 1;
+            return this.position + LEFT_POSITION;
         }
 
         return this.position;

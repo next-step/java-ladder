@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.LinePoints;
-import nextstep.ladder.domain.player.Player;
-import nextstep.ladder.domain.player.PlayerPrizes;
 import nextstep.ladder.domain.point.RandomPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -61,16 +58,13 @@ public class LadderTest {
             .limit(5)
             .collect(Collectors.toList());
 
-        List<Player> players = Arrays
-            .asList(new Player("user1"), new Player("user2"), new Player("user3"));
-        List<String> prize = Arrays.asList("꽝", "상품1", "상품2");
         Ladder ladder = new Ladder(lines, 3);
 
-        Map<Player, String> expect = new LinkedHashMap<>();
-        expect.put(new Player("user1"), "꽝");
-        expect.put(new Player("user2"), "상품1");
-        expect.put(new Player("user3"), "상품2");
+        Map<Integer, Integer> expect = new LinkedHashMap<>();
+        expect.put(0, 0);
+        expect.put(1, 1);
+        expect.put(2, 2);
 
-        assertThat(ladder.play(players, prize)).isEqualTo(new PlayerPrizes(expect));
+        assertThat(ladder.moveLines()).isEqualTo(new LadderResult(expect));
     }
 }
