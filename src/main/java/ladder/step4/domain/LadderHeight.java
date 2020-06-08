@@ -30,7 +30,7 @@ public class LadderHeight {
         return FACTORY.computeIfAbsent(height, LadderHeight::new);
     }
 
-    public static void validateThatItsNumber(String value) {
+    private static void validateThatItsNumber(String value) {
         try {
             Integer.parseInt(value);
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class LadderHeight {
         }
     }
 
-    public static void validateHeight(int height) {
+    private static void validateHeight(int height) {
         if (height < MIN_HEIGHT) {
             throw new LadderHeightMinimumSizeException();
         }
