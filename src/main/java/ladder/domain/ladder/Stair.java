@@ -37,6 +37,10 @@ public class Stair {
     }
 
     public boolean isExistLine() {
-        return this.state.isExistLine();
+        return state.isExistLine();
+    }
+
+    public int move(final int position) {
+        return state.move(position);
     }
 }
