@@ -3,6 +3,8 @@ package ladder.domain.ladder;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -31,5 +33,21 @@ public class StateTest {
                 .ofLastPillar()
                 .isExistLine())
                 .isEqualTo(false);
+    }
+
+    @DisplayName("오른쪽 계단이 있는지 확인")
+    @ParameterizedTest
+    @ValueSource(booleans = { true, false })
+    void isExistLine(final boolean isExistLine) {
+        assertThat(State.ofFirstPillar(() -> isExistLine).isExistLine())
+                .isEqualTo(isExistLine);
+    }
+
+    @DisplayName("논리적 동치성 비교")
+    @ParameterizedTest
+    @ValueSource(booleans = { true, false })
+    void equals(final boolean strategy) {
+        assertThat(State.ofFirstPillar(() -> strategy))
+                .isEqualTo(State.ofFirstPillar(() -> strategy));
     }
 }
