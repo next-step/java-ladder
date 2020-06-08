@@ -3,6 +3,11 @@ package ladder.domain.ladder;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -40,5 +45,20 @@ public class StairTest {
         assertThat(Stair.createOfFirstPillar().createOfLastPillar()
                 .isExistLine())
                 .isEqualTo(false);
+    }
+
+    @DisplayName("해당 기둥의 계단의 상태에 따라 다음 위치를 반환")
+    @ParameterizedTest
+    @MethodSource
+    void move(final Stair stair, final int position, final int expected) {
+        assertThat(stair.move(position)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> move() {
+        return Stream.of(
+                Arguments.of(Stair.of(State.ofFirstPillar(() -> false)), 0, 0),
+                Arguments.of(Stair.of(State.ofFirstPillar(() -> true)), 0, 1),
+                Arguments.of(Stair.of(State.ofFirstPillar(() -> true).ofNextPillar(() -> false)), 1, 0)
+        );
     }
 }
