@@ -21,7 +21,7 @@ public class Player {
     }
 
     public String convertUserNameWithLeftPad() {
-        return StringUtils.leftPad(this.userName, MAXIMUM_USER_NAME_LENGTH);
+        return StringUtils.leftPad(this.userName, MAXIMUM_USER_NAME_LENGTH + 1);
     }
 
     public static Player of(String userName) {
