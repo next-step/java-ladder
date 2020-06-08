@@ -1,6 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.application.LadderGameService;
+import nextstep.ladder.domain.game.LadderGame;
 import nextstep.ladder.domain.gameresult.GameResults;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.PointAddStrategy;
@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class UiController {
     private static final Scanner LADDER_GAME_SCANNER = new Scanner(System.in);
     private static final PointAddStrategy RANDOM_POINT_ADD_STRATEGY = new RandomPointAddStrategy();
-    private static final LadderGameService ladderGameService = new LadderGameService();
 
     private static PlayerInputView playerInputView;
     private static RewardInputView rewardInputView;
@@ -32,8 +31,8 @@ public class UiController {
         Rewards rewards = rewardInputView.getRewards();
         initGameStatusOutput(ladder, players, rewards);
 
-        GameResults gameResults = ladderGameService.playGame(players, ladder, rewards);
-        initGameResult(gameResults);
+        LadderGame ladderGame = LadderGame.readyLadderGame(players, ladder);
+        initGameResult(ladderGame.playGame(rewards));
 
         printGameStatus(players);
         gameResultsInputView.startPrintGameResult(LADDER_GAME_SCANNER);
