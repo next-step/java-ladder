@@ -1,7 +1,7 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.ladder.LadderLine;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.ladder.Point;
 
@@ -28,14 +28,14 @@ public class LadderOutputView {
     }
 
     public String parseLadder() {
-        String ladderValue = this.ladder.getLines().stream()
+        String ladderValue = this.ladder.getLadderLines().stream()
                 .map(line -> parseLine(line) + System.lineSeparator())
                 .collect(Collectors.joining());
         return ladderValue.substring(0, ladderValue.length() - 1);
     }
 
-    String parseLine(Line line) {
-        return line.getPoints().stream()
+    String parseLine(LadderLine ladderLine) {
+        return ladderLine.getPoints().stream()
                 .map(this::parsePoint)
                 .collect(Collectors.joining());
     }

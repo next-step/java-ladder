@@ -3,10 +3,10 @@ package nextstep.ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+public class LadderLine {
     private List<Point> points;
 
-    Line(List<Point> points) {
+    LadderLine(List<Point> points) {
         this.points = new ArrayList<>(points);
     }
 

@@ -12,26 +12,26 @@ import java.util.stream.IntStream;
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
 
-    private List<Line> lines;
+    private List<LadderLine> ladderLines;
 
-    private Ladder(List<Line> lines) {
-        this.lines = new ArrayList<>(lines);
+    private Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = new ArrayList<>(ladderLines);
     }
 
     public static Ladder create(int ladderHeight, int countOfPerson, PointAddStrategy pointAddStrategy) {
         validateLadderHeight(ladderHeight);
-        List<Line> lines = IntStream.range(0, ladderHeight)
-                .mapToObj(num -> LineFactory.create(countOfPerson, pointAddStrategy))
+        List<LadderLine> ladderLines = IntStream.range(0, ladderHeight)
+                .mapToObj(num -> LadderLineFactory.create(countOfPerson, pointAddStrategy))
                 .collect(Collectors.toList());
-        return new Ladder(lines);
+        return new Ladder(ladderLines);
     }
 
     public int getHeight() {
-        return lines.size();
+        return ladderLines.size();
     }
 
-    public List<Line> getLines() {
-        return new ArrayList<>(this.lines);
+    public List<LadderLine> getLadderLines() {
+        return new ArrayList<>(this.ladderLines);
     }
 
     private static void validateLadderHeight(int ladderHeight) {
@@ -41,7 +41,7 @@ public class Ladder {
     }
 
     public void playGame(Player player) {
-        lines.stream()
+        ladderLines.stream()
                 .map(line -> line.whereToMove(player.move(HorizontalMoveStrategy.STAY).parseIndexNumber()))
                 .forEach(player::move);
     }

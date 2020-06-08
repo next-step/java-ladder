@@ -36,10 +36,10 @@ class LadderOutputViewTests {
     void drawLineTest() {
         LadderOutputView ladderOutputView = new LadderOutputView(players, ladder);
 
-        Line line = LineFactory.create(players.size(), simplePointAddStrategy);
-        assertThat(line.size()).isEqualTo(2);
+        LadderLine ladderLine = LadderLineFactory.create(players.size(), simplePointAddStrategy);
+        assertThat(ladderLine.size()).isEqualTo(2);
 
-        String drawResult = ladderOutputView.parseLine(line);
+        String drawResult = ladderOutputView.parseLine(ladderLine);
 
         assertThat(drawResult).isEqualTo("     |-----|");
     }

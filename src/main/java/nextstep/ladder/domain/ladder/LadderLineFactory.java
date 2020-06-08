@@ -5,12 +5,12 @@ import nextstep.ladder.domain.exceptions.PointsNeedMoreThanOnePersonException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LineFactory {
+public class LadderLineFactory {
     private static final int MIN_COUNT_OF_PERSON = 1;
 
-    public static Line create(int countOfPerson, PointAddStrategy pointAddStrategy) {
+    public static LadderLine create(int countOfPerson, PointAddStrategy pointAddStrategy) {
         validateCountOfPerson(countOfPerson);
-        return new Line(new ArrayList<>(makeLine(countOfPerson, pointAddStrategy)));
+        return new LadderLine(new ArrayList<>(makeLine(countOfPerson, pointAddStrategy)));
     }
 
     private static List<Point> makeLine(int countOfPerson, PointAddStrategy pointAddStrategy) {
