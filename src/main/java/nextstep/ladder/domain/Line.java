@@ -31,6 +31,29 @@ public class Line {
         }
     }
 
+    public Position move(Position position) {
+        int current = position.value();
+        if (isMoveLeft(current)) {
+            return position.left();
+        }
+
+        if (isMoveRight(current)) {
+            return position.right();
+        }
+
+        return position;
+    }
+
+    private boolean isMoveLeft(int position) {
+        return position - Position.DEFAULT_MOVE_POSITION >= 0
+                && this.points.get(position - Position.DEFAULT_MOVE_POSITION).hasPoint();
+    }
+
+    private boolean isMoveRight(int position) {
+        return position < this.points.size()
+                && this.points.get(position).hasPoint();
+    }
+
     public List<Point> toList() {
         return Collections.unmodifiableList(this.points);
     }
