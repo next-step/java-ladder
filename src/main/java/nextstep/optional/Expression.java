@@ -1,9 +1,12 @@
 package nextstep.optional;
 
+import java.util.Arrays;
+
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
     private String expression;
+    private static final String ERROR_MESSAGE = "%s는 사칙연산에 해당하지 않는 표현식입니다.";
 
     Expression(String expression) {
         this.expression = expression;
@@ -14,12 +17,9 @@ enum Expression {
     }
 
     static Expression of(String expression) {
-        for (Expression v : values()) {
-            if (matchExpression(v, expression)) {
-                return v;
-            }
-        }
-
-        throw new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression));
+        return Arrays.stream(values())
+                .filter(x -> matchExpression(x, expression))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format(ERROR_MESSAGE, expression)));
     }
 }
