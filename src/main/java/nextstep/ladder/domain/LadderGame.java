@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -26,8 +27,8 @@ public class LadderGame {
 
     private List<Line> generateLines(LadderRequestDto ladderRequestDto, MovementGenerator movementGenerator) {
         int countOfPerson = ladderRequestDto.getNames().size();
-        return IntStream.range(ZERO, ladderRequestDto.getHeight())
-                .mapToObj(currentHeight -> new Line(countOfPerson, movementGenerator))
+        return Stream.generate(() -> new Line(countOfPerson, movementGenerator))
+                .limit(ladderRequestDto.getHeight())
                 .collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
