@@ -1,6 +1,6 @@
-package ladder.step3.domain;
+package ladder.step4.domain;
 
-import ladder.step3.exception.*;
+import ladder.step4.exception.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -31,5 +31,12 @@ public class LadderHeightTest {
     @ValueSource(strings = {"1", "2", "3"})
     void 형변환_테스트(String height) {
         assertEquals(Integer.parseInt(height), LadderHeight.valueOf(height).getValue());
+    }
+
+    @DisplayName("값 객체 재활용 여부 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3"})
+    void 재활용_테스트(String height) {
+        assertEquals(LadderHeight.valueOf(height), LadderHeight.valueOf(height));
     }
 }

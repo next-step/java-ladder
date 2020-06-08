@@ -1,7 +1,8 @@
-package ladder.step3.domain;
+package ladder.step4.domain;
 
-import ladder.step3.exception.ParticipantsMinimumSizeException;
+import ladder.step4.exception.ParticipantsMinimumSizeException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,11 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ParticipantsTest {
 
     @DisplayName("참여자가 2명 미만일 경우에 ParticipantsMinimumSizeException 발생")
-    @ParameterizedTest
-    @ValueSource(strings = {"aa"})
-    void 참여자수_검증_테스트(String participants) {
+    @Test
+    void 참여자수_검증_테스트() {
         assertThatExceptionOfType(ParticipantsMinimumSizeException.class)
-            .isThrownBy(() -> Participants.of(participants));
+            .isThrownBy(() -> Participants.of("a"));
     }
 
     @DisplayName("Participatns에 Participant가 존재하는지 확인하는 테스트")
