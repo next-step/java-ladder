@@ -1,19 +1,25 @@
 package ladder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class LadderLine {
 
-	private final List<Point> points = new ArrayList<>();
+	private final LadderLinePoints ladderLinePoints;
 
 	public LadderLine(int playersCount) {
-		for (int i = 0; i < playersCount; i++) {
-			points.add(new Point());
-		}
+		this.ladderLinePoints = drawPoints(playersCount);
 	}
 
-	public List<Point> getPoints() {
-		return points;
+	private LadderLinePoints drawPoints(int playersCount) {
+		return IntStream.range(0, playersCount)
+				.mapToObj(i -> new LadderLinePoint())
+				.collect(collectingAndThen(toList(), LadderLinePoints::new));
+	}
+
+	public LadderLinePoints getLadderLinePoints() {
+		return ladderLinePoints;
 	}
 }
