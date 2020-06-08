@@ -3,6 +3,7 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Bridge;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.Scores;
 import nextstep.ladder.dto.LadderGameResultDto;
 import nextstep.ladder.dto.LadderResultDto;
 
@@ -20,7 +21,7 @@ public class OutputView {
         System.out.println(System.lineSeparator());
         outputNames(ladderResultDto.getPlayers());
         outputLines(ladderResultDto.getLines());
-        outputLadderGameResult(ladderResultDto.getResults());
+        outputLadderScores(ladderResultDto.getScores());
     }
 
     private static void outputNames(List<Player> players) {
@@ -61,9 +62,9 @@ public class OutputView {
         return stringBuilder.append(LINE_SPACE);
     }
 
-    private static void outputLadderGameResult(List<String> results) {
+    private static void outputLadderScores(Scores scores) {
         StringBuilder stringBuilder = new StringBuilder();
-        results
+        scores.getScores()
                 .stream()
                 .forEach(result -> stringBuilder.append(appendSpace(NAME_SPACE, result)));
         stringBuilder.append(System.lineSeparator());

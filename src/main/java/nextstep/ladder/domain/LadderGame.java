@@ -16,12 +16,12 @@ public class LadderGame {
 
     private final List<Line> lines;
     private final List<Player> players;
-    private final List<String> scores;
+    private final Scores scores;
 
     public LadderGame(LadderRequestDto ladderRequestDto, MovementGenerator movementGenerator) {
         this.players = this.generatePlayers(ladderRequestDto.getNames());
         this.lines = this.generateLines(ladderRequestDto, movementGenerator);
-        this.scores = ladderRequestDto.getScores();
+        this.scores = new Scores(ladderRequestDto.getScores());
     }
 
     private List<Line> generateLines(LadderRequestDto ladderRequestDto, MovementGenerator movementGenerator) {
@@ -47,7 +47,7 @@ public class LadderGame {
         for (int i = 0; i < countOfPerson; i++) {
             Player player = this.findPlayer(i);
             int moveIndex = this.moveLine(i);
-            String score = this.findScore(moveIndex);
+            String score = this.scores.findScore(moveIndex);
             LadderGameResultDto ladderGameResultDto = new LadderGameResultDto(player.getName(), score);
             ladderGameResultDtos.add(ladderGameResultDto);
         }
@@ -67,7 +67,4 @@ public class LadderGame {
         return this.players.get(index);
     }
 
-    private String findScore(int index) {
-        return this.scores.get(index);
-    }
 }
