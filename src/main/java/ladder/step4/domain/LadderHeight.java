@@ -8,6 +8,7 @@ import java.util.Map;
 public class LadderHeight {
 
     private static final Map<Integer, LadderHeight> FACTORY = new HashMap<>();
+    private static final int MIN_HEIGHT = 1;
 
     private final int value;
 
@@ -26,12 +27,7 @@ public class LadderHeight {
 
     public static LadderHeight valueOf(int height) {
         validateHeight(height);
-        LadderHeight ladderHeight = FACTORY.get(height);
-        if (ladderHeight == null) {
-            ladderHeight = new LadderHeight(height);
-            FACTORY.put(height, ladderHeight);
-        }
-        return ladderHeight;
+        return FACTORY.computeIfAbsent(height, LadderHeight::new);
     }
 
     public static void validateThatItsNumber(String value) {
@@ -43,7 +39,7 @@ public class LadderHeight {
     }
 
     public static void validateHeight(int height) {
-        if (height < 1) {
+        if (height < MIN_HEIGHT) {
             throw new LadderHeightMinimumSizeException();
         }
     }

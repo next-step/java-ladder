@@ -18,10 +18,7 @@ public class Participant {
     public static Participant valueOf(String value) {
         validateEmpty(value);
         validateLength(value);
-        if (FACTORY.get(value) == null) {
-            FACTORY.put(value, new Participant(value));
-        }
-        return FACTORY.get(value);
+        return FACTORY.computeIfAbsent(value, Participant::new);
     }
 
     public static void validateEmpty(String value) {

@@ -16,10 +16,7 @@ public class LadderResult {
 
     public static LadderResult valueOf(String value) {
         validate(value);
-        if (FACTORY.get(value) == null) {
-            FACTORY.put(value, new LadderResult(value));
-        }
-        return FACTORY.get(value);
+        return FACTORY.computeIfAbsent(value, LadderResult::new);
     }
 
     public static void validate(String value) {
