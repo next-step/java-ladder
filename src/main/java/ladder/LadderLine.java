@@ -15,8 +15,8 @@ public class LadderLine {
 
 	private LadderLinePoints drawPoints(int playersCount) {
 		return IntStream.range(0, playersCount)
-				.mapToObj(i -> new LadderLinePoint())
-				.collect(collectingAndThen(toList(), LadderLinePoints::new));
+				.mapToObj(i -> LadderLinePoint.of(false))
+				.collect(collectingAndThen(toList(), LadderLinePoints::of));
 	}
 
 	public LadderLinePoints getLadderLinePoints() {
