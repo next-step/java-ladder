@@ -16,11 +16,6 @@ enum Expression {
     }
 
     static Expression of(String expression) {
-        for (Expression v : values()) {
-            if (matchExpression(v, expression)) {
-                return v;
-            }
-        }
         return Arrays.stream(values())
                 .filter(v -> matchExpression(v, expression))
                 .findFirst()
