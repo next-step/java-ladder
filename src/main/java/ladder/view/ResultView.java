@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ResultView {
 
-    private static final String RESULT_MESSAGE = "실행 결과";
-    private static final String PLAYER_NAMES_INFO_FORMAT = "%6s";
+    private static final String RESULT_MESSAGE = "사다리 결과";
+    private static final String NAMES_INFO_FORMAT = "%6s";
     private static final String PILLAR_MARK = "|";
     private static final String STAIR_MARK = "-----";
     private static final String EMPTY_STAIR_MARK = "     ";
@@ -16,15 +16,16 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printResult(LadderShapeResult result) {
+    public static void printLadderShape(LadderShapeResult result) {
         System.out.println();
         System.out.println(RESULT_MESSAGE);
-        printPlayerNames(result.getPlayerNames());
+        printNames(result.getPlayerNames());
         printLadderShape(result.getStairDtos());
+        printNames(result.getPrizeNames());
     }
 
-    private static void printPlayerNames(final List<String> names) {
-        names.forEach(name -> System.out.print(String.format(PLAYER_NAMES_INFO_FORMAT, name)));
+    private static void printNames(final List<String> names) {
+        names.forEach(name -> System.out.print(String.format(NAMES_INFO_FORMAT, name)));
         System.out.println();
     }
 
