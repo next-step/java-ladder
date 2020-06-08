@@ -196,3 +196,13 @@
 - [X] UiController의 메서드화를 통해 적당한 책임 분리하기
 - [X] UiController에서 Scanner 꼭 여러개 사용해야 되는지 다시 확인
 - [ ] Point의 boolean 값들을 상수화 시켜서 관리하기
+
+### 2차 리뷰 Todo List
+- [ ] HorizontalMoveStrategy에서 각 객체별 Player 움직임에 대해 명시하도록 변경
+- [ ] Line 객체 메서드의 이름을 책임에 맞도록 변경
+- [ ] LadderHeightInputView의 상수 가독성 높이기
+- [ ] UIController의 Scanner 중복 해결하기
+- [ ] LineTests 테스트 좀 더 간결하기 바꾸기
+- [ ] LadderGameService 객체에 대해 다시 고려해보기
+- [ ] Ladder 내 게임 진행 메서드 개선하기
+- [ ] Domain 패키지를 역할별로 세분화하기
