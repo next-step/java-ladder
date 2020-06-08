@@ -45,6 +45,6 @@ public class Ladder {
     }
 
     public void playGameWithAllPlayers(Players players) {
-        players.getValues().forEach(this::playGame);
+        players.playLadderGame(this);
     }
 }
