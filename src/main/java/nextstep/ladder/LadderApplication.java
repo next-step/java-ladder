@@ -21,7 +21,6 @@ public class LadderApplication {
         LadderResultDto ladderResultDto = ladderGame.getLadderResult();
 
         OutputView.outputLadderResult(ladderResultDto);
-        List<LadderGameResultDto> ladderGameResultDtos = ladderGame.execute();
         String name = null;
 
         while (true) {
@@ -29,8 +28,8 @@ public class LadderApplication {
             if (name.equals(ALL)) {
                 break;
             }
-            OutputView.outputResults(ladderGameResultDtos, name);
+            OutputView.outputResults(ladderGame.findLadderGameResult(name));
         }
-        OutputView.outputAllResult(ladderGameResultDtos);
+        OutputView.outputAllResult(ladderGame.findAllLadderGameResult());
     }
 }

@@ -19,15 +19,15 @@ public class OutputView {
     public static void outputLadderResult(LadderResultDto ladderResultDto) {
         System.out.println("실행 결과");
         System.out.println(System.lineSeparator());
-        outputNames(ladderResultDto.getPlayers());
+        outputNames(ladderResultDto.getPlayerNames());
         outputLines(ladderResultDto.getLines());
         outputLadderScores(ladderResultDto.getScores());
     }
 
-    private static void outputNames(List<Player> players) {
+    private static void outputNames(List<String> playerNames) {
         StringBuilder stringBuilder = new StringBuilder();
-        players.stream()
-                .map(player -> appendSpace(NAME_SPACE, player.getName()))
+        playerNames.stream()
+                .map(name -> appendSpace(NAME_SPACE, name))
                 .forEach(name -> stringBuilder.append(name));
         System.out.println(stringBuilder);
     }
@@ -62,18 +62,17 @@ public class OutputView {
         return stringBuilder.append(LINE_SPACE);
     }
 
-    private static void outputLadderScores(Scores scores) {
+    private static void outputLadderScores(List<String> scores) {
         StringBuilder stringBuilder = new StringBuilder();
-        scores.getScores()
+        scores
                 .stream()
                 .forEach(result -> stringBuilder.append(appendSpace(NAME_SPACE, result)));
         stringBuilder.append(System.lineSeparator());
         System.out.println(stringBuilder);
     }
 
-    public static void outputResults(List<LadderGameResultDto> ladderGameResultDtos, String name) {
+    public static void outputResults(LadderGameResultDto ladderGameResultDto) {
         System.out.println("실행 결과");
-        LadderGameResultDto ladderGameResultDto = findLadderGameResultDto(ladderGameResultDtos, name);
         StringBuilder stringBuilder = appendResult(ladderGameResultDto.getPlayerName(), ladderGameResultDto.getScore(), new StringBuilder());
         stringBuilder.append(System.lineSeparator());
         System.out.println(stringBuilder);
@@ -94,12 +93,5 @@ public class OutputView {
         stringBuilder.append(COLON);
         stringBuilder.append(score);
         return stringBuilder;
-    }
-
-    private static LadderGameResultDto findLadderGameResultDto(List<LadderGameResultDto> ladderGameResultDtos, String name) {
-        return ladderGameResultDtos.stream()
-                .filter(ladderGameResultDto -> ladderGameResultDto.getPlayerName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("not matched name"));
     }
 }

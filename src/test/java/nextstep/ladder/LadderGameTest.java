@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,12 +33,8 @@ class LadderGameTest {
     void createLadderGameTest(List<String> names, List<String> results, int height) {
         LadderGame ladderGame = this.createLadderGame(names, results, height);
         LadderResultDto ladderResultDto = ladderGame.getLadderResult();
-        List<String> playerNames = ladderResultDto.getPlayers()
-                .stream()
-                .map(player -> player.getName())
-                .collect(Collectors.toList());
-        assertThat(ladderResultDto.getPlayers()).hasSize(names.size());
-        assertThat(playerNames).isEqualTo(names);
+        assertThat(ladderResultDto.getPlayerNames()).hasSize(names.size());
+        assertThat(ladderResultDto.getPlayerNames()).isEqualTo(names);
         assertThat(ladderResultDto.getLines()).hasSize(height);
     }
 
