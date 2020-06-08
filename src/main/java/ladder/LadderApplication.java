@@ -19,6 +19,8 @@ public class LadderApplication {
 
         LadderShapeResult result = LadderGame.of(ladderShapeInfo).play();
 
+        String targetPlayerNames = InputView.inputTargetPlayers();
+
         ResultView.printResult(result);
     }
 }

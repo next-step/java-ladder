@@ -11,6 +11,7 @@ public class InputView {
     private static final String PRIZES_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String DELIMITER = ",";
     private static final String MAX_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개인가요?";
+    private static final String TARGET_PLAYER_NAME_MESSAGE = "결과를 보고 싶은 사람은?";
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -27,6 +28,10 @@ public class InputView {
         String names = inputString(PRIZES_MESSAGE);
 
         return StringUtil.splitValues(names, DELIMITER);
+    }
+
+    public static String inputTargetPlayers() {
+        return inputString(TARGET_PLAYER_NAME_MESSAGE);
     }
 
     public static int inputHeight() {
