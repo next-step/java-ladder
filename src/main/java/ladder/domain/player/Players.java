@@ -36,4 +36,8 @@ public class Players {
                 .map(Player::getName)
                 .collect(Collectors.toList());
     }
+
+    public Player indexOf(final int index) {
+        return players.get(index);
+    }
 }
