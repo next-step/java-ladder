@@ -44,4 +44,8 @@ public enum State {
         }
         return EMPTY;
     }
+
+    public int move(final int position) {
+        return movePosition.apply(position);
+    }
 }
