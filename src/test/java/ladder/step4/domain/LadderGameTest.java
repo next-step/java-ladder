@@ -29,7 +29,7 @@ public class LadderGameTest {
     @ValueSource(strings = {"1", "2", "3", "4"})
     void 참여자_검증_테스트(String target) {
         assertThatExceptionOfType(NotParticipantException.class)
-            .isThrownBy(() -> ladderGame.getResult(target));
+            .isThrownBy(() -> ladderGame.getResultOfString(target));
     }
 
 

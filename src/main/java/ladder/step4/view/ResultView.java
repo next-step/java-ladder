@@ -56,7 +56,7 @@ public class ResultView {
         System.out.println(NEW_LINE + "실행결과");
         System.out.println(
           isAll ? viewAllResult(ladderGame, participants)
-                : ladderGame.getResult(target).getValue()
+                : ladderGame.getResultOfString(target).getValue()
         );
     }
 

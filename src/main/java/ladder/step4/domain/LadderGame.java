@@ -21,7 +21,7 @@ public class LadderGame {
         return resultMap.get(participant);
     }
 
-    public LadderResult getResult(String participant) {
+    public LadderResult getResultOfString(String participant) {
         return getResult(Participant.valueOf(participant));
     }
 
