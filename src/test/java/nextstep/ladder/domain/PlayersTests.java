@@ -68,7 +68,7 @@ class PlayersTests {
         Ladder ladder = Ladder.create(5, 3, new SimplePointAddStrategy());
         Players players = Players.create(Arrays.asList("poppo", "ita", "saul"));
         players.playLadderGame(ladder);
-        
+
         HorizontalLocation location = players.getLocationOfIndex(0);
 
         assertThat(location).isEqualTo(new HorizontalLocation(1, 3));
