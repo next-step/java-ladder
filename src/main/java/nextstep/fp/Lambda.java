@@ -26,6 +26,16 @@ public class Lambda {
         }).start();
     }
 
+    public static int sumByCondition(List<Integer> numbers, Conditional condition) {
+        int total = 0;
+        for (int number : numbers) {
+            if (condition.checkCondition(number)) {
+                total += number;
+            }
+        }
+        return total;
+    }
+
     public static int sumAll(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
@@ -53,4 +63,5 @@ public class Lambda {
         }
         return total;
     }
+
 }
