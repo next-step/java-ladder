@@ -23,8 +23,7 @@ public class Movement {
     }
 
     public static Movement of(Movement prevMovement, MovementGenerator movementGenerator) {
-        boolean left = prevMovement.isRight();
-        if (left) {
+        if (prevMovement.isRight()) {
             return new Movement(prevMovement.isRight(), false);
         }
 
