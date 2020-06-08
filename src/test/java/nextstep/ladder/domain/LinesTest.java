@@ -48,12 +48,23 @@ class LinesTest {
         assertThat(this.lines.toList()).isInstanceOf(List.class);
     }
 
+    @DisplayName("전체를 이동할 수 있다.")
+    @Test
+    void canMoveAll() {
+        assertThat(this.lines.moveAll(Position.newInstance(0))).isEqualTo(Position.newInstance(2));
+    }
+
     Lines initialize() {
-        List<Point> points = Arrays.asList(
+        Line line1 = Line.newInstance(Arrays.asList(
                 Point.newInstance(true),
                 Point.newInstance(false)
-        );
+        ));
 
-        return Lines.newInstance(Arrays.asList(Line.newInstance(points)));
+        Line line2 = Line.newInstance(Arrays.asList(
+                Point.newInstance(false),
+                Point.newInstance(true)
+        ));
+
+        return Lines.newInstance(Arrays.asList(line1, line2));
     }
 }
