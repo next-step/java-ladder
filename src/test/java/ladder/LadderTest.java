@@ -4,7 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
@@ -23,5 +25,17 @@ public class LadderTest {
 
         assertThatThrownBy(() -> new Ladder(players, null))
                 .isInstanceOf(NullPointerException.class);
+    }
+
+    @DisplayName("입력한 사다리의 높이만큼 사다리의 라인이 그려진다")
+    @Test
+    void ladderLinesSize() {
+        Players players = Players.of(Arrays.asList(PlayerName.of("name1"), PlayerName.of("name2")));
+        LadderHeight ladderHeight = LadderHeight.of(3);
+
+        Ladder ladder = new Ladder(players, ladderHeight);
+        List<LadderLine> ladderLines = ladder.getLadderLines();
+
+        assertThat(LadderHeight.of(ladderLines.size())).isEqualTo(ladderHeight);
     }
 }

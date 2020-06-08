@@ -35,4 +35,8 @@ public class Players {
             throw new IllegalArgumentException("참여하는 사람의 이름은 중복되지 않아야 합니다.");
         }
     }
+
+    public int size() {
+        return playerNames.size();
+    }
 }
