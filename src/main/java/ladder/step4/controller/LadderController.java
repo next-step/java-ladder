@@ -16,7 +16,7 @@ public class LadderController {
         Ladder ladder = Ladder.of(
             participants,
             ladderHeight,
-            BodyDirectionStrategy.getInstance()
+            LadderDirectionStrategy.getInstance()
         );
 
         RESULT_VIEW.viewLadder(ladder, participants, ladderResults);

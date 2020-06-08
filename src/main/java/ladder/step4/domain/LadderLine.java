@@ -1,7 +1,6 @@
 package ladder.step4.domain;
 
 import ladder.step4.domain.strategy.DirectionStrategy;
-import ladder.step4.domain.strategy.TailDirectionStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,11 @@ public class LadderLine {
         Direction prev = Direction.EMPTY;
         int i = 0;
         for (; i < countOfPerson - 1; i++) {
-            Direction direction = strategy.create(prev);
+            Direction direction = strategy.createBody(prev);
             lines.add(LadderPoint.of(i, direction));
             prev = direction;
         }
-        Direction tailDirection = TailDirectionStrategy.getInstance().create(prev);
+        Direction tailDirection = strategy.createTail(prev);
         lines.add(LadderPoint.of(i, tailDirection));
     }
 
