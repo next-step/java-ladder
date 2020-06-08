@@ -20,7 +20,6 @@ public enum HorizontalMoveStrategy {
     private HorizontalMove horizontalMove;
     private static final Map<Direction, HorizontalMoveStrategy> cachedHorizontalMoveStrategies = createCache();
 
-
     HorizontalMoveStrategy(Direction direction, HorizontalMove horizontalMove) {
         this.direction = direction;
         this.horizontalMove = horizontalMove;
