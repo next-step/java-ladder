@@ -63,4 +63,12 @@ public class LadderMatchResultTest {
                 Arguments.of("honux", Prize.of("꽝"))
         );
     }
+
+    @DisplayName("결과를 알고자 하는 참여자의 이름이 참여자에 포함되지 않은 경우 예외를 반환")
+    @Test
+    void matchFailure() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderMatchResult.of(matchResult)
+                        .match("heejeong"));
+    }
 }
