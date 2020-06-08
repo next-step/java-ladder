@@ -4,7 +4,11 @@ import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -49,5 +53,20 @@ public class StateTest {
     void equals(final boolean strategy) {
         assertThat(State.ofFirstPillar(() -> strategy))
                 .isEqualTo(State.ofFirstPillar(() -> strategy));
+    }
+
+    @DisplayName("해당 기둥의 계단의 상태에 따라 다음 위치를 반환")
+    @ParameterizedTest
+    @MethodSource
+    void move(final State state, final int position, final int expected) {
+        assertThat(state.move(position)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> move() {
+        return Stream.of(
+                Arguments.of(State.ofFirstPillar(() -> false), 0, 0),
+                Arguments.of(State.ofFirstPillar(() -> true), 0, 1),
+                Arguments.of(State.ofFirstPillar(() -> true).ofNextPillar(() -> false), 1, 0)
+        );
     }
 }
