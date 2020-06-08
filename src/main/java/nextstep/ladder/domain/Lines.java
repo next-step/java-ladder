@@ -27,6 +27,13 @@ public class Lines {
         }
     }
 
+    public Position moveAll(Position position) {
+        for (Line line : this.lines) {
+            position = line.move(position);
+        }
+        return position;
+    }
+
     public List<Line> toList() {
         return Collections.unmodifiableList(lines);
     }
