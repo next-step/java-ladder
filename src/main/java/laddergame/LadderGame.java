@@ -6,7 +6,7 @@ import laddergame.view.LadderGameView;
 
 public class LadderGame {
 
-  private static Scanner scanner = new Scanner(System.in);
+  private static final Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
     LadderGameView.printInputNameMsg();

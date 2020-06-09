@@ -7,7 +7,7 @@ public class Name {
   private final static int MAX_LENGTH = 5;
   private final static String WHITESPACE = " ";
 
-  private String value;
+  private final String value;
 
   public Name(String value) {
     if (MAX_LENGTH < value.length()) {
