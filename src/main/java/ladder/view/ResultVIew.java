@@ -5,7 +5,7 @@ import ladder.domain.Line;
 import java.util.List;
 
 public class ResultVIew {
-    private static final String PLAY_RESULT = "실행결과\n\n";
+    private static final String PLAY_RESULT = "사다리 결과\n";
     private static final int NAME_SPACE = 6;
     private static final String LINES = "-----";
     private static final String EMPTY_LINES = "     ";
@@ -15,21 +15,28 @@ public class ResultVIew {
         stringBuilder = new StringBuilder();
         stringBuilder.append(PLAY_RESULT);
 
-        peopleNames.forEach(name -> printName(stringBuilder, name));
+        peopleNames.forEach(ResultVIew::printName);
         stringBuilder.append("\n");
 
-        lineList.forEach(line -> printLine(stringBuilder, line.getPoints()));
+        lineList.forEach(line -> printLine(line.getPoints()));
+        stringBuilder.replace(stringBuilder.length()-1, stringBuilder.length(), "");
         System.out.println(stringBuilder.toString());
     }
 
-    private static void printName(StringBuilder stringBuilder, String name) {
+    public static void printResults(List<String> results) {
+        stringBuilder = new StringBuilder();
+        results.forEach(ResultVIew::printName);
+        System.out.println(stringBuilder.toString());
+    }
+
+    private static void printName(String name) {
         for (int idx = 0; idx < NAME_SPACE - name.length(); idx++) {
             stringBuilder.append(" ");
         }
         stringBuilder.append(name);
     }
 
-    private static void printLine(StringBuilder stringBuilder, List<Boolean> points) {
+    private static void printLine(List<Boolean> points) {
         points.forEach(v -> {
             if (v) {
                 stringBuilder.append(LINES);
