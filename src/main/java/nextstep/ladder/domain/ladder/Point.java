@@ -28,7 +28,8 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return index == point.index;
+        return index == point.index &&
+                Objects.equals(direction, point.direction);
     }
 
     @Override
