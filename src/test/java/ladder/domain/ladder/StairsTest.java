@@ -31,13 +31,14 @@ public class StairsTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("기둥의 개수가 1개면 계단의 개수는 0 (하나의 기둥으로만 구성)")
+    @DisplayName("기둥의 개수가 1개면 StairState 가 EMPTY 인 계단도 1개 (하나의 기둥으로만 구성)")
     @Test
     void pillarCountIsMinCount() {
+        final int firstIndex = 0;
         PillarCount pillarCount = PillarCount.of(PillarCount.MIN_COUNT);
 
-        assertThat(Stairs.of(pillarCount).getWidth())
-                .isEqualTo(0);
+        assertThat(Stairs.of(pillarCount).getStairs().get(firstIndex))
+                .isEqualTo(Stair.of(StairState.EMPTY));
     }
 
     @DisplayName("index 위치 계단의 상태에 따라 다음 위치를 반환")
