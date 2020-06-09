@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderGame;
+import ladder.domain.dto.LadderMatchResult;
 import ladder.domain.dto.LadderShapeResult;
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
@@ -22,6 +23,10 @@ public class LadderApplication {
         LadderShapeResult ladderShapeResult = ladderGame.ready();
         ResultView.printLadderShape(ladderShapeResult);
 
-        String targetPlayerNames = InputView.inputTargetPlayers();
+        LadderMatchResult ladderMatchResult = ladderGame.play();
+        while (true) {
+            String targetPlayerNames = InputView.inputTargetPlayers();
+            ResultView.printResult(ladderMatchResult, targetPlayerNames);
+        }
     }
 }
