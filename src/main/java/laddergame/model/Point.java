@@ -4,6 +4,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Point {
 
+  private static final String RUNG_EXIST = "-----|";
+  private static final String RUNG_NOT_EXIST = "     |";
+
   private final boolean rungCreated;
 
   public Point(boolean rungCreated) {
@@ -23,8 +26,6 @@ public class Point {
 
   @Override
   public String toString() {
-    return "Point{" +
-        "rungCreated=" + rungCreated +
-        '}';
+    return rungCreated ? RUNG_EXIST : RUNG_NOT_EXIST;
   }
 }

@@ -35,4 +35,11 @@ public class Players {
   public int hashCode() {
     return Objects.hash(players);
   }
+
+  @Override
+  public String toString() {
+    return players.stream()
+        .map(Player::toString)
+        .reduce("", String::concat);
+  }
 }

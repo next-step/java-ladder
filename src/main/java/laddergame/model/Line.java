@@ -36,4 +36,11 @@ public class Line {
   public List<Point> getPoints() {
     return new ArrayList<>(points);
   }
+
+  @Override
+  public String toString() {
+    return points.stream()
+        .map(Point::toString)
+        .reduce("", String::concat);
+  }
 }

@@ -4,8 +4,10 @@ import java.util.Objects;
 
 public class Name {
 
-  private static int MAX_LENGTH = 5;
-  String value;
+  private final static int MAX_LENGTH = 5;
+  private final static String WHITESPACE = " ";
+
+  private String value;
 
   public Name(String value) {
     if (MAX_LENGTH < value.length()) {
@@ -34,6 +36,12 @@ public class Name {
 
   @Override
   public String toString() {
-    return value;
+    StringBuilder result = new StringBuilder(value);
+
+    for (int i = value.length(); i <= MAX_LENGTH; i++) {
+      result.insert(0, WHITESPACE);
+    }
+
+    return result.toString();
   }
 }
