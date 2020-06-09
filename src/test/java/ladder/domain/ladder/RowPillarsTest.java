@@ -1,23 +1,48 @@
 package ladder.domain.ladder;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class RowPillarsTest {
+
+    private int width = PillarCount.MIN_COUNT * 5;
+    private PillarCount pillarCount;
+
+    @BeforeEach
+    void setUp() {
+        pillarCount = PillarCount.of(width);
+    }
 
     @DisplayName("기둥의 최소 개수인 1보다 작은 수로 기둥을 만들 수 없음")
     @Test
     void createFailure() {
-        assertThatIllegalArgumentException().isThrownBy(() -> RowPillars.of(PillarCount.of(PillarCount.MIN_COUNT - 1)));
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> RowPillars.of(PillarCount.of(PillarCount.MIN_COUNT - 1)));
     }
 
     @DisplayName("Pillar 생성")
     @Test
     void create() {
-        assertThatCode(() -> RowPillars.of(PillarCount.of(PillarCount.MIN_COUNT)))
+        assertThatCode(() -> RowPillars.of(pillarCount))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("RowPillars 의 모든 계단을 반환")
+    @Test
+    void getStairs() {
+        RowPillars rowPillars = RowPillars.of(pillarCount);
+
+        assertThat(rowPillars.getStairs().size())
+                .isEqualTo(width);
+    }
+
+    @DisplayName("RowPillars 의 기둥의 개수 반환")
+    @Test
+    void getWidth() {
+        assertThat(RowPillars.of(pillarCount).getWidth())
+                .isEqualTo(width);
     }
 }
