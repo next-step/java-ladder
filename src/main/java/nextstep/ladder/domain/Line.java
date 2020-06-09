@@ -10,43 +10,30 @@ public class Line {
 
     private static final Integer FIRST_MOUNTING_BLOCK_INDEX = 0;
 
-    private List<Boolean> mountingBlock;
-    private MountingBlockGenerator mountingBlockGenerator;
+    private List<MountingBlock> mountingBlocks;
 
-    public Line(Integer countOfPerson, MountingBlockGenerator mountingBlockGenerator) {
-        this.mountingBlock = new ArrayList<>();
-        this.mountingBlockGenerator = mountingBlockGenerator;
+    public Line(Integer countOfPerson) {
+        this.mountingBlocks = new ArrayList<>();
 
         IntStream.rangeClosed(FIRST_MOUNTING_BLOCK_INDEX, getTotalMountingBlock(countOfPerson))
-                .forEach(this::makeLadderEachLine);
+                .forEach(this::makeLine);
     }
 
     private Integer getTotalMountingBlock(Integer countOfPerson) {
         return countOfPerson - 2;
     }
 
-    private void makeLadderEachLine(Integer mountingBlockIndex) {
-        if (hasNotPreviousMountingBlock(mountingBlockIndex)) {
-            Boolean generatedMountingBlock = this.mountingBlockGenerator.generateMountingBlock();
-            this.mountingBlock.add(generatedMountingBlock);
-            return;
-        }
-
-        this.mountingBlock.add(Boolean.FALSE);
-    }
-
-    private Boolean hasNotPreviousMountingBlock(Integer mountingBlockIndex) {
+    private void makeLine(Integer mountingBlockIndex) {
 
         if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK_INDEX)) {
-            return Boolean.TRUE;
+            MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE);
+            this.mountingBlocks.add(mountingBlock);
         }
 
-        Boolean mountingBlockInPreviousLadderPoint = this.mountingBlock.get(getPreviousMountingBlockIndex(mountingBlockIndex));
-        if (mountingBlockInPreviousLadderPoint.equals(Boolean.TRUE)) {
-            return Boolean.FALSE;
-        }
+        Integer beforeMountingBlockIndex = getPreviousMountingBlockIndex(mountingBlockIndex);
+        MountingBlock beforeMountingBlock = this.mountingBlocks.get(beforeMountingBlockIndex);
 
-        return Boolean.TRUE;
+        this.mountingBlocks.add(MountingBlock.of(beforeMountingBlock.getMountingBlock()));
     }
 
     private Integer getPreviousMountingBlockIndex(Integer mountingBlockIndex) {
@@ -54,6 +41,6 @@ public class Line {
     }
 
     public void viewLine() {
-        LadderGameView.viewLine(this.mountingBlock);
+        LadderGameView.viewLine(this.mountingBlocks);
     }
 }

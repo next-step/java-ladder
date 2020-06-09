@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.MountingBlock;
 import nextstep.ladder.domain.Player;
 import org.apache.commons.lang3.StringUtils;
 
@@ -51,10 +52,10 @@ public class LadderGameView {
         }
     }
 
-    public static void viewLine(List<Boolean> mountingBlocks) {
+    public static void viewLine(List<MountingBlock> mountingBlocks) {
         drawFirstHeight();
-        for (Boolean mountingBlock : mountingBlocks) {
-            drawMountingBlock(mountingBlock);
+        for (MountingBlock mountingBlock : mountingBlocks) {
+            drawMountingBlock(mountingBlock.getMountingBlock());
             System.out.print(SHAPE_OF_HEIGHT);
         }
 
