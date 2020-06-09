@@ -23,11 +23,12 @@ public class Movement {
     }
 
     public static Movement of(Movement prevMovement, MovementGenerator movementGenerator) {
-        if (prevMovement.isRight()) {
-            return new Movement(prevMovement.isRight(), false);
+        boolean availableMoveRight = prevMovement.isRight();
+        if (availableMoveRight) {
+            return new Movement(true, false);
         }
 
-        return new Movement(prevMovement.isRight(), movementGenerator.isMove());
+        return new Movement(false, movementGenerator.isMove());
     }
 
     public static Movement last(Movement prevMovement) {
