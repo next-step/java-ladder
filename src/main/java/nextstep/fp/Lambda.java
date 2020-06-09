@@ -39,13 +39,9 @@ public class Lambda {
     }
 
     private static int sumWithCondition(List<Integer> numbers, Conditional conditional) {
-        int total = 0;
-        for (int number : numbers) {
-            if (conditional.test(number)) {
-                total += number;
-            }
-        }
-
-        return total;
+        return numbers.stream()
+                .filter(conditional::test)
+                .reduce(Integer::sum)
+                .orElse(0);
     }
 }
