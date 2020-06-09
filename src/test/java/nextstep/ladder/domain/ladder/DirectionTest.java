@@ -27,25 +27,11 @@ public class DirectionTest {
     }
 
     @Test
-    @DisplayName("next 메소드 실행 테스트")
-    void next() {
-        Direction direction = Direction.RIGHT;
-        Direction nextDirection = direction.next(() -> true);
-        assertThat(nextDirection).isEqualTo(Direction.LEFT);
-        assertThat(nextDirection.next(() -> true)).isNotEqualTo(Direction.LEFT);
-    }
-
-    @Test
     @DisplayName("generate 메소드 실행 테스트")
     void generate() {
         Direction direction = Direction.generate(() -> true);
         assertThat(direction).isEqualTo(Direction.RIGHT);
     }
 
-    @Test
-    @DisplayName("last 메소드 실행 테스트")
-    void last() {
-        Direction direction = Direction.RIGHT;
-        assertThat(direction.last()).isEqualTo(Direction.LEFT);
-    }
+
 }

@@ -2,6 +2,8 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.Objects;
 
+import static nextstep.ladder.domain.ladder.Direction.*;
+
 public class Position {
 
     private final Direction direction;
@@ -10,8 +12,19 @@ public class Position {
         this.direction = direction;
     }
 
-    public Direction getDirection() {
+    public Direction currentDirection() {
         return direction;
+    }
+
+
+    public Position next(DirectionPredicate predicate) {
+        Direction direction = (this.direction == RIGHT) ? LEFT : generate(predicate);
+        return new Position(direction);
+    }
+
+    public Position last() {
+        Direction direction = (this.direction == RIGHT) ? LEFT : DOWN;
+        return new Position(direction);
     }
 
     @Override

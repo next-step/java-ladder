@@ -35,7 +35,6 @@ pobi  honux crong   jk
     |-----|     |-----|
 ```
 
-### TODO
+### Feedback
 
-- User를 구현한다.
-- Line과 Height를 구현한다.
+> 책임을 수행할 정보를 알고 있는 객체에게 책임을 할당한다.
