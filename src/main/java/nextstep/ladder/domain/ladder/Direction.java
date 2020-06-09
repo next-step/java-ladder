@@ -42,6 +42,6 @@ public enum Direction {
     }
 
     public static Direction generate(DirectionPredicate predicate) {
-        return predicate.test() ? RIGHT : DOWN;
+        return predicate.isRight() ? RIGHT : DOWN;
     }
 }

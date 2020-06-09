@@ -7,7 +7,7 @@ public class DirectionRandomPredicate implements DirectionPredicate {
     private static final Random RANDOM = new Random();
 
     @Override
-    public boolean test() {
+    public boolean isRight() {
         return RANDOM.nextBoolean();
     }
 }
