@@ -2,9 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.exception.ErrorMessage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Stairs {
 
@@ -29,7 +27,7 @@ public class Stairs {
 
     private static List<Stair> createHorizontalStairs(final PillarCount pillarCount) {
         if (pillarCount.isMinCount()) {
-            return new ArrayList<>();
+            return Collections.singletonList(Stair.of(StairState.EMPTY));
         }
 
         List<Stair> stairs = new ArrayList<>();
