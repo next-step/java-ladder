@@ -8,7 +8,6 @@ public class ErrorMessage {
 
     public static final String REQUIRED_MIN_PILLAR_COUNT = "기둥의 개수는 최소 1 이상이여야 합니다.";
     public static final String REQUIRED_MIN_LADDER_HEIGHT = "사다리의 높이는 최소 1 이상이여야 합니다.";
-    public static final String REQUIRED_MIN_STAIR_POSITION = "계단의 위치는 0 이상이어야 합니다.";
 
     private ErrorMessage() {
     }
