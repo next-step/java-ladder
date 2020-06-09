@@ -10,7 +10,7 @@ class LadderLineTest {
 	@DisplayName("사람 수만큼의 좌표를 갖는다")
 	@Test
 	void ladderLinePointsSize() {
-		LadderLine ladderLine = new LadderLine(5);
+		LadderLine ladderLine = new LadderLine(5, new RandomDrawingPointsStrategy());
 		LadderLinePoints ladderLinePoints = ladderLine.getLadderLinePoints();
 
 		assertThat(ladderLinePoints.size()).isEqualTo(5);
