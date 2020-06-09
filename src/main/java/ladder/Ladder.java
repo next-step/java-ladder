@@ -1,15 +1,15 @@
 package ladder;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Ladder {
 
     private final Players players;
-    private final List<LadderLine> ladderLines;
+    private final LadderLines ladderLines;
 
     public Ladder(Players players, LadderHeight ladderHeight) {
         Objects.requireNonNull(players, "players는 null일 수 없습니다.");
@@ -19,16 +19,16 @@ public class Ladder {
         this.ladderLines = drawLines(ladderHeight);
     }
 
-    private List<LadderLine> drawLines(LadderHeight ladderHeight) {
+    private LadderLines drawLines(LadderHeight ladderHeight) {
         int playersCount = players.size();
         RandomDrawingPointsStrategy drawingPointsStrategy = new RandomDrawingPointsStrategy();
 
         return IntStream.range(0, ladderHeight.getHeight())
                 .mapToObj(i -> new LadderLine(playersCount, drawingPointsStrategy))
-                .collect(Collectors.toList());
+                .collect(collectingAndThen(toList(), LadderLines::new));
     }
 
-    public List<LadderLine> getLadderLines() {
-        return Collections.unmodifiableList(ladderLines);
+    public LadderLines getLadderLines() {
+        return ladderLines;
     }
 }

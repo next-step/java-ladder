@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -34,7 +33,7 @@ public class LadderTest {
         LadderHeight ladderHeight = LadderHeight.of(3);
 
         Ladder ladder = new Ladder(players, ladderHeight);
-        List<LadderLine> ladderLines = ladder.getLadderLines();
+        LadderLines ladderLines = ladder.getLadderLines();
 
         assertThat(LadderHeight.of(ladderLines.size())).isEqualTo(ladderHeight);
     }
