@@ -24,7 +24,7 @@ class LadderLadderLineFactoryTests {
         int countOfPerson = 1;
         LadderLine ladderLine = LadderLineFactory.create(countOfPerson, simplePointAddStrategy);
         assertThat(ladderLine.size()).isEqualTo(1);
-        assertThat(ladderLine.getPointsIndex(0)).isFalse();
+        assertThat(ladderLine.getPointStatus(0)).isFalse();
     }
 
     @DisplayName("이전 값이 false인 객체에 add 시 true값이 추가된 컬렉션으로 변화")
@@ -34,11 +34,11 @@ class LadderLadderLineFactoryTests {
         LadderLine ladderLine = LadderLineFactory.create(countOfPerson, simplePointAddStrategy);
 
         assertThat(ladderLine.size()).isEqualTo(5);
-        assertThat(ladderLine.getPointsIndex(0)).isFalse();
-        assertThat(ladderLine.getPointsIndex(1)).isTrue();
-        assertThat(ladderLine.getPointsIndex(2)).isFalse();
-        assertThat(ladderLine.getPointsIndex(3)).isTrue();
-        assertThat(ladderLine.getPointsIndex(4)).isFalse();
+        assertThat(ladderLine.getPointStatus(0)).isFalse();
+        assertThat(ladderLine.getPointStatus(1)).isTrue();
+        assertThat(ladderLine.getPointStatus(2)).isFalse();
+        assertThat(ladderLine.getPointStatus(3)).isTrue();
+        assertThat(ladderLine.getPointStatus(4)).isFalse();
     }
 
     @DisplayName("0이하의 인원수로 객체를 생성 할 수 없다.")

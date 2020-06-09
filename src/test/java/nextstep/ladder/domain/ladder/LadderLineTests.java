@@ -44,7 +44,7 @@ class LadderLineTests {
         int countOfPerson = 1;
         LadderLine ladderLine = LadderLineFactory.create(countOfPerson, simplePointAddStrategy);
         assertThat(ladderLine.size()).isEqualTo(1);
-        assertThat(ladderLine.getPointsIndex(0)).isFalse();
+        assertThat(ladderLine.getPointStatus(0)).isFalse();
     }
 
     @DisplayName("다리가 없는 칸 다음의 칸에는 다리를 놓을 수 있다.")
@@ -53,8 +53,8 @@ class LadderLineTests {
         int countOfPerson = 2;
         LadderLine ladderLine = LadderLineFactory.create(countOfPerson, simplePointAddStrategy);
         assertThat(ladderLine.size()).isEqualTo(2);
-        assertThat(ladderLine.getPointsIndex(0)).isFalse();
-        assertThat(ladderLine.getPointsIndex(1)).isTrue();
+        assertThat(ladderLine.getPointStatus(0)).isFalse();
+        assertThat(ladderLine.getPointStatus(1)).isTrue();
     }
 
     @DisplayName("이전칸에 다리가 놓였다면 이후 칸에는 다리를 놓을 수 없다.")
@@ -63,9 +63,9 @@ class LadderLineTests {
         int countOfPerson = 3;
         LadderLine ladderLine = LadderLineFactory.create(countOfPerson, simplePointAddStrategy);
         assertThat(ladderLine.size()).isEqualTo(3);
-        assertThat(ladderLine.getPointsIndex(0)).isFalse();
-        assertThat(ladderLine.getPointsIndex(1)).isTrue();
-        assertThat(ladderLine.getPointsIndex(2)).isFalse();
+        assertThat(ladderLine.getPointStatus(0)).isFalse();
+        assertThat(ladderLine.getPointStatus(1)).isTrue();
+        assertThat(ladderLine.getPointStatus(2)).isFalse();
     }
 
     @DisplayName("정상적인 이동테스트")

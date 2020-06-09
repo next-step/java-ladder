@@ -14,7 +14,7 @@ public class LadderLine {
         return points.size();
     }
 
-    boolean getPointsIndex(int index) {
+    boolean getPointStatus(int index) {
         return points.get(index).getCurrentStatus();
     }
 
@@ -24,8 +24,8 @@ public class LadderLine {
 
     public HorizontalMoveStrategy whereToMove(int pointIndex) {
         if (pointIndex == points.size() - 1) {
-            return HorizontalMoveStrategy.find(getPointsIndex(pointIndex), false);
+            return HorizontalMoveStrategy.find(getPointStatus(pointIndex), false);
         }
-        return HorizontalMoveStrategy.find(getPointsIndex(pointIndex), getPointsIndex(pointIndex + 1));
+        return HorizontalMoveStrategy.find(getPointStatus(pointIndex), getPointStatus(pointIndex + 1));
     }
 }
