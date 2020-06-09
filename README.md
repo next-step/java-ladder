@@ -212,4 +212,10 @@
     - [X] LadderLine으로 이름 변경
     - [ ] Line 객체에서 직접 Point를 이동시키도록 개선 
 - [ ] 힌트 참고해서 Point 객체 테스트 케이스 추가 및 리팩토링 진행
+    - [ ] Point 객체는 현재 index와 direction을 인자로 갖는다.
+    - [ ] 어느 방향으로 움직일지는 Point가 자체적으로 판단하고 움직인다.
+        - [ ] HorizontalMoveStrategy에 Point를 움직일 수 있는 함수형 인터페이스를 추가한다.
+            - [ ] 모든 리팩토링이 완료되면 Player를 움직이던 함수형 인터페이스를 제거한다.
+    - [ ] 어느 방향으로 움직일지는 Direction과 HorizontalMoveStrategy를 결합해서 결정한다.
 - [ ] 힌트 참고해서 Direction 객체 테스트 케이스 추가 및 리팩토링 진행
+    - [X] 현재 위치와 오른쪽 위치가 모두 true인 방향 생성 시 예외 발생
