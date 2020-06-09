@@ -18,6 +18,21 @@ class PointTests {
         assertThat(point).isNotNull();
     }
 
+    @DisplayName("현재 Point 상태를 기반으로 다음 Point를 생성할 수 있다.")
+    @Test
+    void createNextText() {
+        PointAddStrategy pointAddStrategy = new SimplePointAddStrategy();
+        Point point = new Point(1, new Direction(false, false));
+
+        Point nextPoint = point.next(pointAddStrategy);
+        Point twoNextPoint = nextPoint.next(pointAddStrategy);
+
+        assertThat(nextPoint)
+                .isEqualTo(new Point(2, new Direction(false, true)));
+        assertThat(twoNextPoint)
+                .isEqualTo(new Point(3, new Direction(true, false)));
+    }
+
     @DisplayName("정책에 따라 움직인 뒤 현재 위치를 반환한다.")
     @ParameterizedTest
     @MethodSource("directionAndResult")

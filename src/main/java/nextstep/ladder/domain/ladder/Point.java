@@ -15,6 +15,10 @@ public class Point {
         this.direction = direction;
     }
 
+    public Point next(PointAddStrategy pointAddStrategy) {
+        return new Point(this.index + 1, this.direction.next(pointAddStrategy));
+    }
+
     public boolean getCurrentStatus() {
         return this.direction.getCurrentStatus();
     }
