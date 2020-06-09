@@ -65,4 +65,11 @@ public class StairTest {
                         basePosition, basePosition - oneStep)
         );
     }
+
+    @DisplayName("논리적 동치성 비교")
+    @Test
+    void equals() {
+        assertThat(Stair.of(StairState.EMPTY))
+                .isEqualTo(Stair.of(StairState.EMPTY));
+    }
 }
