@@ -49,4 +49,16 @@ public class Stairs {
     public List<Stair> getStairs() {
         return stairs;
     }
+
+    public int getWidth() {
+        return stairs.size();
+    }
+
+    public int move(final int position) {
+        return indexOf(position).move(position);
+    }
+
+    private Stair indexOf(final int index) {
+        return stairs.get(index);
+    }
 }
