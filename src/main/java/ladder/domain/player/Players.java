@@ -22,7 +22,7 @@ public class Players {
     }
 
     private void validateNames(final List<String> names) {
-        if (Objects.isNull(names) || names.size() < 1) {
+        if (Objects.isNull(names) || names.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
         }
     }
