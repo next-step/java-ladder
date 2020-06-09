@@ -31,7 +31,7 @@ public class StairTest {
     @Test
     void createOfMiddlePillar() {
         Stair previousStair = Stair.of(
-                State.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
+                StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
 
         boolean existLineOfPreviousStair = previousStair.isExistLine();
         boolean existLine = previousStair.createOfNextPillar().isExistLine();
@@ -59,9 +59,9 @@ public class StairTest {
         final int oneStep = 1;
 
         return Stream.of(
-                Arguments.of(Stair.of(State.ofFirstPillar(() -> false)), basePosition, basePosition),
-                Arguments.of(Stair.of(State.ofFirstPillar(() -> true)), basePosition, basePosition + oneStep),
-                Arguments.of(Stair.of(State.ofFirstPillar(() -> true).ofNextPillar(() -> false)),
+                Arguments.of(Stair.of(StairState.ofFirstPillar(() -> false)), basePosition, basePosition),
+                Arguments.of(Stair.of(StairState.ofFirstPillar(() -> true)), basePosition, basePosition + oneStep),
+                Arguments.of(Stair.of(StairState.ofFirstPillar(() -> true).ofNextPillar(() -> false)),
                         basePosition, basePosition - oneStep)
         );
     }

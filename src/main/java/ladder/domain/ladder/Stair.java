@@ -7,40 +7,40 @@ import java.util.Objects;
 
 public class Stair {
 
-    private final State state;
+    private final StairState stairState;
 
-    private Stair(final State state) {
-        validate(state);
-        this.state = state;
+    private Stair(final StairState stairState) {
+        validate(stairState);
+        this.stairState = stairState;
     }
 
-    public static Stair of(final State state) {
-        return new Stair(state);
+    public static Stair of(final StairState stairState) {
+        return new Stair(stairState);
     }
 
-    private void validate(final State state) {
-        if (Objects.isNull(state)) {
+    private void validate(final StairState stairState) {
+        if (Objects.isNull(stairState)) {
             throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
         }
     }
 
     public static Stair createOfFirstPillar() {
-        return new Stair(State.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
+        return new Stair(StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
     }
 
     public Stair createOfNextPillar() {
-        return new Stair(state.ofNextPillar(RandomStairGenerationStrategy.getInstance()));
+        return new Stair(stairState.ofNextPillar(RandomStairGenerationStrategy.getInstance()));
     }
 
     public Stair createOfLastPillar() {
-        return new Stair(state.ofLastPillar());
+        return new Stair(stairState.ofLastPillar());
     }
 
     public boolean isExistLine() {
-        return state.isExistLine();
+        return stairState.isExistLine();
     }
 
     public int move(final int position) {
-        return state.move(position);
+        return stairState.move(position);
     }
 }

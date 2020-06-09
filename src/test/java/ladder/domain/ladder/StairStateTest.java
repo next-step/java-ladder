@@ -13,19 +13,19 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-public class StateTest {
+public class StairStateTest {
 
     @DisplayName("첫 번째 기둥의 State 생성")
     @Test
     void createOfFirstPillar() {
-        assertThatCode(() -> State.ofFirstPillar(RandomStairGenerationStrategy.getInstance()))
+        assertThatCode(() -> StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("중간 기둥의 State 생성")
     @Test
     void createOfMiddlePillar() {
-        assertThatCode(() -> State.ofFirstPillar(RandomStairGenerationStrategy.getInstance())
+        assertThatCode(() -> StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance())
                 .ofNextPillar(RandomStairGenerationStrategy.getInstance()))
                 .doesNotThrowAnyException();
     }
@@ -33,7 +33,7 @@ public class StateTest {
     @DisplayName("마지막 기둥의 계단 또는 앞에 이미 계단이 있는 중간 기둥의 위치에는 계단이 없음")
     @Test
     void ofMiddlePillarWithNoLine() {
-        assertThat(State.ofFirstPillar(RandomStairGenerationStrategy.getInstance())
+        assertThat(StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance())
                 .ofLastPillar()
                 .isExistLine())
                 .isEqualTo(false);
@@ -43,7 +43,7 @@ public class StateTest {
     @ParameterizedTest
     @ValueSource(booleans = { true, false })
     void isExistLine(final boolean isExistLine) {
-        assertThat(State.ofFirstPillar(() -> isExistLine).isExistLine())
+        assertThat(StairState.ofFirstPillar(() -> isExistLine).isExistLine())
                 .isEqualTo(isExistLine);
     }
 
@@ -51,15 +51,15 @@ public class StateTest {
     @ParameterizedTest
     @ValueSource(booleans = { true, false })
     void equals(final boolean strategy) {
-        assertThat(State.ofFirstPillar(() -> strategy))
-                .isEqualTo(State.ofFirstPillar(() -> strategy));
+        assertThat(StairState.ofFirstPillar(() -> strategy))
+                .isEqualTo(StairState.ofFirstPillar(() -> strategy));
     }
 
     @DisplayName("해당 기둥의 계단의 상태에 따라 다음 위치를 반환")
     @ParameterizedTest
     @MethodSource
-    void move(final State state, final int position, final int expected) {
-        assertThat(state.move(position)).isEqualTo(expected);
+    void move(final StairState stairState, final int position, final int expected) {
+        assertThat(stairState.move(position)).isEqualTo(expected);
     }
 
     private static Stream<Arguments> move() {
@@ -67,9 +67,9 @@ public class StateTest {
         final int oneStep = 1;
 
         return Stream.of(
-                Arguments.of(State.ofFirstPillar(() -> false), basePosition, basePosition),
-                Arguments.of(State.ofFirstPillar(() -> true), basePosition, basePosition + oneStep),
-                Arguments.of(State.ofFirstPillar(() -> true).ofNextPillar(() -> false),
+                Arguments.of(StairState.ofFirstPillar(() -> false), basePosition, basePosition),
+                Arguments.of(StairState.ofFirstPillar(() -> true), basePosition, basePosition + oneStep),
+                Arguments.of(StairState.ofFirstPillar(() -> true).ofNextPillar(() -> false),
                         basePosition, basePosition - oneStep)
         );
     }
