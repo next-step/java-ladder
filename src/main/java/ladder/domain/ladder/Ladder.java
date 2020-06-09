@@ -3,7 +3,6 @@ package ladder.domain.ladder;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.exception.ErrorMessage;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -42,10 +41,6 @@ public class Ladder {
     }
 
     public List<Integer> ride() {
-        if (isSinglePlayer()) {
-            return Collections.singletonList(FIRST_INDEX);
-        }
-
         return IntStream.range(FIRST_INDEX, getLadderWidth())
                 .map(this::rideOnePlayer)
                 .boxed()
@@ -56,10 +51,6 @@ public class Ladder {
         return rowPillars.stream()
                 .reduce(playerPosition, (byPosition, rowPillar) -> rowPillar.move(byPosition),
                         (x, y) -> {throw new RuntimeException(ErrorMessage.NOT_ALLOW_REDUCE_IN_PARALLEL_ENV);});
-    }
-
-    private boolean isSinglePlayer() {
-        return getLadderWidth() == 0;
     }
 
     private int getLadderWidth() {

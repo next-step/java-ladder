@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 
 public class StairDto {
 
-    private static final int ZERO_VALUE = 0;
-
     private final List<Boolean> lines;
 
     private StairDto(final List<Boolean> lines) {
@@ -42,9 +40,5 @@ public class StairDto {
 
     public List<Boolean> getLines() {
         return lines;
-    }
-
-    public boolean isSinglePillar() {
-        return lines.size() == ZERO_VALUE;
     }
 }
