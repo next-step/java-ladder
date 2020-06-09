@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.ladder.shape.PillarCount;
 import ladder.exception.ErrorMessage;
 
 import java.util.*;

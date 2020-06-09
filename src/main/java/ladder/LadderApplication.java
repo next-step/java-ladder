@@ -3,7 +3,7 @@ package ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.dto.LadderMatchResult;
 import ladder.domain.dto.LadderShapeResult;
-import ladder.domain.ladder.Height;
+import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;

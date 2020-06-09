@@ -1,5 +1,6 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.shape;
 
+import ladder.domain.ladder.shape.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

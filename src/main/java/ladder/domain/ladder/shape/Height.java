@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.shape;
 
 import ladder.exception.ErrorMessage;
 import ladder.exception.ValueOutOfBoundsException;

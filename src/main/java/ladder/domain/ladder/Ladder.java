@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.exception.ErrorMessage;
 

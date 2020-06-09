@@ -1,6 +1,6 @@
 package ladder.domain.dto;
 
-import ladder.domain.ladder.Height;
+import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.player.Players;

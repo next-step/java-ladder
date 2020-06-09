@@ -1,6 +1,5 @@
 package ladder.domain.ladder.shape;
 
-import ladder.domain.ladder.Height;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
 import org.junit.jupiter.api.BeforeEach;

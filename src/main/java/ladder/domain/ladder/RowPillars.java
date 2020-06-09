@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.domain.ladder.shape.PillarCount;
+
 import java.util.List;
 
 public class RowPillars {
