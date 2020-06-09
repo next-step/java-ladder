@@ -21,7 +21,7 @@ public class Ladder {
 
     private LadderLines drawLines(LadderHeight ladderHeight) {
         int playersCount = players.size();
-        RandomDrawingPointsStrategy drawingPointsStrategy = new RandomDrawingPointsStrategy();
+        RandomDrawingPointStrategy drawingPointsStrategy = new RandomDrawingPointStrategy();
 
         return IntStream.range(0, ladderHeight.getHeight())
                 .mapToObj(i -> new LadderLine(playersCount, drawingPointsStrategy))

@@ -6,14 +6,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomDrawingPointsStrategyTest {
+class LadderLinePointPainterTest {
 
 	@DisplayName("주어진 수만큼 좌표를 그린다")
 	@ParameterizedTest
 	@ValueSource(ints = {5, 50})
 	void ladderLinePointsSize(int count) {
-		RandomDrawingPointsStrategy drawingStrategy = new RandomDrawingPointsStrategy();
-		LadderLinePoints points = drawingStrategy.draw(count);
+		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(false));
+		LadderLinePoints points = pointsPainter.drawPoints(count);
 
 		assertThat(points.size()).isEqualTo(count);
 	}
@@ -22,8 +22,8 @@ class RandomDrawingPointsStrategyTest {
 	@ParameterizedTest
 	@ValueSource(ints = {1, 2})
 	void lastPointIsNotConnectedToNext(int count) {
-		RandomDrawingPointsStrategy drawingStrategy = new RandomDrawingPointsStrategy();
-		LadderLinePoints points = drawingStrategy.draw(count);
+		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(false));
+		LadderLinePoints points = pointsPainter.drawPoints(count);
 		LadderLinePoint point = points.getContent().get(0);
 
 		assertThat(point.isConnectedToNextPoint()).isFalse();

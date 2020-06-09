@@ -2,21 +2,23 @@ package ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class RandomDrawingPointsStrategy implements DrawingPointsStrategy {
+public class LadderLinePointPainter {
 
-	private final Random random = new Random();
+	private final DrawingPointStrategy drawingPointStrategy;
 
-	@Override
-	public LadderLinePoints draw(int count) {
+	public LadderLinePointPainter(DrawingPointStrategy drawingPointStrategy) {
+		this.drawingPointStrategy = drawingPointStrategy;
+	}
+
+	public LadderLinePoints drawPoints(int count) {
 		List<LadderLinePoint> points = new ArrayList<>();
 		boolean isConnectedToPreceding = false;
 
 		for (int i = 0; i < count; i++) {
-			LadderLinePoint point = drawPoint(i == count - 1, isConnectedToPreceding);
-			points.add(point);
+			LadderLinePoint point = drawPoint((i == count - 1), isConnectedToPreceding);
 			isConnectedToPreceding = point.isConnectedToNextPoint();
+			points.add(point);
 		}
 
 		return LadderLinePoints.of(points);
@@ -27,6 +29,6 @@ public class RandomDrawingPointsStrategy implements DrawingPointsStrategy {
 			return LadderLinePoint.of(false);
 		}
 
-		return LadderLinePoint.of(random.nextBoolean());
+		return drawingPointStrategy.drawPoint();
 	}
 }
