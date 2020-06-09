@@ -33,8 +33,8 @@ public class StairTest {
         Stair previousStair = Stair.of(
                 StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
 
-        boolean existLineOfPreviousStair = previousStair.isExistLine();
-        boolean existLine = previousStair.createOfNextPillar().isExistLine();
+        boolean existLineOfPreviousStair = previousStair.isRightLineExist();
+        boolean existLine = previousStair.createOfNextPillar().isRightLineExist();
 
         assertThat(existLineOfPreviousStair && existLine).isFalse();
     }
@@ -43,7 +43,7 @@ public class StairTest {
     @Test
     void createOfLastPillar() {
         assertThat(Stair.createOfFirstPillar().createOfLastPillar()
-                .isExistLine())
+                .isRightLineExist())
                 .isEqualTo(false);
     }
 

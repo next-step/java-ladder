@@ -21,7 +21,7 @@ public class RandomStairGenerationStrategyTest {
     @ParameterizedTest
     @ValueSource(booleans = { true, false })
     void trueOrFalse(final boolean randomResult) {
-        assertThat(StairState.ofFirstPillar(() -> randomResult).isExistLine())
+        assertThat(StairState.ofFirstPillar(() -> randomResult).isRightLineExist())
                 .isEqualTo(randomResult);
     }
 }

@@ -21,20 +21,20 @@ public enum StairState {
     }
 
     public StairState ofNextPillar(final StairGenerationStrategy strategy) {
-        if (isExistLine()) {
+        if (isRightLineExist()) {
             return LEFT;
         }
         return createStair(strategy);
     }
 
     public StairState ofLastPillar() {
-        if (isExistLine()) {
+        if (isRightLineExist()) {
             return LEFT;
         }
         return EMPTY;
     }
 
-    public boolean isExistLine() {
+    public boolean isRightLineExist() {
         return this == RIGHT;
     }
 

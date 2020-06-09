@@ -35,7 +35,7 @@ public class StairStateTest {
     void ofMiddlePillarWithNoLine() {
         assertThat(StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance())
                 .ofLastPillar()
-                .isExistLine())
+                .isRightLineExist())
                 .isEqualTo(false);
     }
 
@@ -43,7 +43,7 @@ public class StairStateTest {
     @ParameterizedTest
     @ValueSource(booleans = { true, false })
     void isExistLine(final boolean isExistLine) {
-        assertThat(StairState.ofFirstPillar(() -> isExistLine).isExistLine())
+        assertThat(StairState.ofFirstPillar(() -> isExistLine).isRightLineExist())
                 .isEqualTo(isExistLine);
     }
 

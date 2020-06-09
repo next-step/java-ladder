@@ -30,7 +30,7 @@ public class StairDto {
 
     private static StairDto of(final List<Stair> stairs) {
         return new StairDto(stairs.stream()
-                .map(Stair::isExistLine)
+                .map(Stair::isRightLineExist)
                 .collect(Collectors.toList()));
     }
 

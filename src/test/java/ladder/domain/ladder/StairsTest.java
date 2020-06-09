@@ -49,7 +49,7 @@ public class StairsTest {
         for (int position = 0; position < maxPosition; position++) {
             Stair stair = Stairs.of(pillarCount).getStairs().get(position);
 
-            if (stair.isExistLine()) {
+            if (stair.isRightLineExist()) {
                 assertThat(stair.move(position) == position + 1);
             } else {
                 assertThat(stair.move(position)).isIn(position, position - 1);

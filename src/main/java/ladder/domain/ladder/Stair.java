@@ -36,8 +36,8 @@ public class Stair {
         return new Stair(stairState.ofLastPillar());
     }
 
-    public boolean isExistLine() {
-        return stairState.isExistLine();
+    public boolean isRightLineExist() {
+        return stairState.isRightLineExist();
     }
 
     public int move(final int position) {
