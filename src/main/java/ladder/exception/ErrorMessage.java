@@ -9,6 +9,8 @@ public class ErrorMessage {
     public static final String REQUIRED_MIN_PILLAR_COUNT = "기둥의 개수는 최소 1 이상이여야 합니다.";
     public static final String REQUIRED_MIN_LADDER_HEIGHT = "사다리의 높이는 최소 1 이상이여야 합니다.";
 
+    public static final String NOT_MATCHED_VALUE = "입력한 참여자 수와 실행 결과의 개수가 일치하지 않습니다.";
+
     private ErrorMessage() {
     }
 }
