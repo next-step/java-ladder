@@ -36,7 +36,24 @@ public class StairsTest {
     void pillarCountIsMinCount() {
         PillarCount pillarCount = PillarCount.of(PillarCount.MIN_COUNT);
 
-        assertThat(Stairs.of(pillarCount).getStairs().size())
+        assertThat(Stairs.of(pillarCount).getWidth())
                 .isEqualTo(0);
+    }
+
+    @DisplayName("index 의 계단의 상태에 따라 다음 위치를 반환")
+    @Test
+    void move() {
+        int maxPosition = PillarCount.MIN_COUNT * 5;
+        PillarCount pillarCount = PillarCount.of(maxPosition);
+
+        for (int position = 0; position < maxPosition; position++) {
+            Stair stair = Stairs.of(pillarCount).getStairs().get(position);
+
+            if (stair.isExistLine()) {
+                assertThat(stair.move(position) == position + 1);
+            } else {
+                assertThat(stair.move(position)).isIn(position, position - 1);
+            }
+        }
     }
 }
