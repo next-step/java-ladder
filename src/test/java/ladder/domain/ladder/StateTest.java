@@ -63,10 +63,14 @@ public class StateTest {
     }
 
     private static Stream<Arguments> move() {
+        final int basePosition = 5;
+        final int oneStep = 1;
+
         return Stream.of(
-                Arguments.of(State.ofFirstPillar(() -> false), 0, 0),
-                Arguments.of(State.ofFirstPillar(() -> true), 0, 1),
-                Arguments.of(State.ofFirstPillar(() -> true).ofNextPillar(() -> false), 1, 0)
+                Arguments.of(State.ofFirstPillar(() -> false), basePosition, basePosition),
+                Arguments.of(State.ofFirstPillar(() -> true), basePosition, basePosition + oneStep),
+                Arguments.of(State.ofFirstPillar(() -> true).ofNextPillar(() -> false),
+                        basePosition, basePosition - oneStep)
         );
     }
 }
