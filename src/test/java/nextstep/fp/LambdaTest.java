@@ -33,19 +33,52 @@ public class LambdaTest {
 
     @Test
     public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers);
+        int sum = Lambda.sumAll(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer integer) {
+                return true;
+            }
+        });
+        assertThat(sum).isEqualTo(21);
+    }
+
+    @Test
+    public void sumAllLambda() throws Exception {
+        int sum = Lambda.sumAllLambda(numbers, integer -> true);
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
     public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+        int sum = Lambda.sumAll(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer integer) {
+                return integer % 2 == 0;
+            }
+        });
+        assertThat(sum).isEqualTo(12);
+    }
+
+    @Test
+    public void sumAllEvenLambda() throws Exception {
+        int sum = Lambda.sumAll(numbers, integer -> integer % 2 == 0);
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
     public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+        int sum = Lambda.sumAll(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer integer) {
+                return integer > 3;
+            }
+        });
+        assertThat(sum).isEqualTo(15);
+    }
+
+    @Test
+    public void sumAllOverThreeLambda() throws Exception {
+        int sum = Lambda.sumAll(numbers, integer -> integer > 3 );
         assertThat(sum).isEqualTo(15);
     }
 }
