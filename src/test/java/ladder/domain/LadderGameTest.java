@@ -39,14 +39,14 @@ public class LadderGameTest {
         singlePlayerName.add("heee");
         this.singlePlayer = Players.of(singlePlayerName);
 
-        List<String> singlePrizeName = new ArrayList<>();
-        singlePrizeName.add("win");
-        this.singlePrize = Prizes.of(singlePrizeName);
-
         List<String> prizeNames = new ArrayList<>();
         prizeNames.add("3000");
         prizeNames.add("꽝");
         this.prizes = Prizes.of(prizeNames);
+
+        List<String> singlePrizeName = new ArrayList<>();
+        singlePrizeName.add("win");
+        this.singlePrize = Prizes.of(singlePrizeName);
 
         this.minHeight = Height.of(Height.MIN_HEIGHT);
         this.height = Height.of(Height.MIN_HEIGHT * 5);
