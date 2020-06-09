@@ -9,13 +9,13 @@ public class LadderHeight {
 
     private int height;
 
-    private LadderHeight() {}
+    private LadderHeight(int height) {
+        this.height = height;
+    }
 
     public static LadderHeight of(int height) {
         validate(height);
-        LadderHeight ladderHeight = new LadderHeight();
-        ladderHeight.height = height;
-        return ladderHeight;
+        return new LadderHeight(height);
     }
 
     private static void validate(int height) {

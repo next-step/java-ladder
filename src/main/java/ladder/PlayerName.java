@@ -8,13 +8,13 @@ public class PlayerName {
 
     private String name;
 
-    private PlayerName() {}
+    private PlayerName(String name) {
+        this.name = name;
+    }
 
     public static PlayerName of(String name) {
         validate(name);
-        PlayerName playerName = new PlayerName();
-        playerName.name = name;
-        return playerName;
+        return new PlayerName(name);
     }
 
     private static void validate(String name) {
