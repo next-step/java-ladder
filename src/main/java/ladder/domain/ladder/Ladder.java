@@ -53,13 +53,9 @@ public class Ladder {
     }
 
     private int rideOnePlayer(final int playerPosition) {
-        int position = playerPosition;
-
-        for (RowPillars pillar : rowPillars) {
-            position = pillar.move(position);
-        }
-
-        return position;
+        return rowPillars.stream()
+                .reduce(playerPosition, (byPosition, rowPillar) -> rowPillar.move(byPosition),
+                        (x, y) -> {throw new RuntimeException(ErrorMessage.NOT_ALLOW_REDUCE_IN_PARALLEL_ENV);});
     }
 
     private boolean isSinglePlayer() {
