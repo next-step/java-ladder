@@ -25,6 +25,7 @@ public class StairDtoTest {
     private Players singlePlayer;
 
     private Prizes prizes;
+    private Prizes singlePrize;
 
     private Height height;
 
@@ -43,6 +44,10 @@ public class StairDtoTest {
         List<String> singlePlayerName = new ArrayList<>();
         singlePlayerName.add("heee");
         this.singlePlayer = Players.of(singlePlayerName);
+
+        List<String> singlePrizeName = new ArrayList<>();
+        singlePrizeName.add("win");
+        this.singlePrize = Prizes.of(singlePrizeName);
 
         this.height = Height.of(Height.MIN_HEIGHT * 5);
     }
@@ -74,7 +79,7 @@ public class StairDtoTest {
     @DisplayName("한 명의 참여자로 게임을 실행하면 모든 높이의 기둥에 존재하는 계단 수는 0개")
     @Test
     void isSinglePillar() {
-        Ladder ladder = Ladder.of(LadderShapeInfo.valueOf(singlePlayer, prizes, height));
+        Ladder ladder = Ladder.of(LadderShapeInfo.valueOf(singlePlayer, singlePrize, height));
 
         StairDto.from(ladder)
                 .forEach(stairDto -> assertThat(stairDto.isSinglePillar()).isEqualTo(true));
