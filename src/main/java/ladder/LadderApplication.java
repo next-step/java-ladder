@@ -25,8 +25,8 @@ public class LadderApplication {
 
         LadderMatchResult ladderMatchResult = ladderGame.play();
         while (true) {
-            String targetPlayerNames = InputView.inputTargetPlayers();
-            ResultView.printResult(ladderMatchResult, targetPlayerNames);
+            String targetPlayerName = InputView.inputTargetPlayers();
+            ResultView.printResult(ladderMatchResult, targetPlayerName);
         }
     }
 }

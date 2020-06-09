@@ -59,17 +59,16 @@ public class ResultView {
         return PILLAR_MARK + EMPTY_STAIR_MARK;
     }
 
-    public static void printResult(final LadderMatchResult ladderMatchResult, final String targetPlayerNames) {
+    public static void printResult(final LadderMatchResult ladderMatchResult, final String targetPlayerName) {
         System.out.print(MATCH_RESULT_MESSAGE);
+        System.out.println();
 
-        if (targetPlayerNames.equalsIgnoreCase(ALL_PLAYERS)) {
-            System.out.println();
+        if (targetPlayerName.equalsIgnoreCase(ALL_PLAYERS)) {
             ladderMatchResult.getPlayers()
                     .forEach(player -> printPlayerAndPrizeMatchResult(player, ladderMatchResult.match(player.getName())));
             return;
         }
-        System.out.println();
-        printPrizeMatchResult(ladderMatchResult.match(targetPlayerNames));
+        printPrizeMatchResult(ladderMatchResult.match(targetPlayerName));
     }
 
     private static void printPlayerAndPrizeMatchResult(final Player player, final Prize prize) {
