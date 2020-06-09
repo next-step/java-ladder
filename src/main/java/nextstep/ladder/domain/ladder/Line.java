@@ -4,13 +4,17 @@ import java.util.List;
 
 public class Line {
 
-    private final List<Position> positions;
+    private final Positions positions;
 
-    public Line(List<Position> positions) {
+    private Line(Positions positions) {
         this.positions = positions;
     }
 
     public List<Position> getPositions() {
-        return positions;
+        return positions.getPositions();
+    }
+
+    public static Line newInstance(int maxPosition, DirectionPredicate predicate) {
+        return new Line(Positions.newInstance(maxPosition, predicate));
     }
 }

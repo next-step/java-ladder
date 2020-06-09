@@ -1,31 +1,27 @@
 package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
 
-    @MethodSource("사다리_위치_리스트_생성")
+    @ValueSource(ints = {2, 3, 4, 5, 6})
     @ParameterizedTest
     @DisplayName("라인 생성 테스트 추가")
-    void create(List<Position> positions) {
-        assertThatCode(() -> new Line(positions));
+    void create(int maxPosition) {
+        assertThatCode(() -> Line.newInstance(maxPosition, new DirectionRandomPredicate()));
     }
 
-    private static Stream<Arguments> 사다리_위치_리스트_생성() {
-        List<Position> positions = new ArrayList<>();
-        positions.add(new Position(0, Direction.LEFT));
-        positions.add(new Position(1, Direction.DOWN));
-
-        return Stream.of(Arguments.of(positions));
+    @ValueSource(ints = {-1, 0, 1})
+    @ParameterizedTest
+    @DisplayName("라인 생성 예외 테스트 추가")
+    void exception(int maxPosition) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Line.newInstance(maxPosition, new DirectionRandomPredicate()));
     }
+
 }

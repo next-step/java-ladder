@@ -30,7 +30,7 @@ public class ResultView {
         StringBuilder builder = new StringBuilder();
         line.getPositions().forEach(position -> {
             builder.append(DEFAULT_HEIGHT);
-            String text = position.getDirection().equals(Direction.RIGHT) ? DEFAULT_LINE : EMPTY_LINE;
+            String text = position.currentDirection().equals(Direction.RIGHT) ? DEFAULT_LINE : EMPTY_LINE;
             appendLine(builder, height, text);
         });
         System.out.println(builder.toString());
