@@ -22,9 +22,9 @@ class LadderLinePointPainterTest {
 	@ParameterizedTest
 	@ValueSource(ints = {1, 2})
 	void lastPointIsNotConnectedToNext(int count) {
-		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(false));
+		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(true));
 		LadderLinePoints points = pointsPainter.drawPoints(count);
-		LadderLinePoint point = points.getContent().get(0);
+		LadderLinePoint point = points.getContent().get(points.size() - 1);
 
 		assertThat(point.isConnectedToNextPoint()).isFalse();
 	}
