@@ -14,6 +14,10 @@ public class Ladder {
   }
 
   public static Ladder createByHeightAndNamesStrArr(int height, String[] nameStrArr) {
+    if (height <= 0) {
+      throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
+    }
+
     List<Line> lines = new ArrayList<>();
 
     for (int i = 0; i < height; i++) {
