@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,15 +23,11 @@ public class LadderShapeResultTest {
 
     @BeforeEach
     void setUp() {
-        this.names = new ArrayList<>();
-        names.add("pobi");
-        names.add("honux");
+        this.names = Arrays.asList("pobi", "honux");
+        this.prizeNames = Arrays.asList("3000", "꽝");
 
-        this.prizeNames = new ArrayList<>();
-        prizeNames.add("3000");
-        prizeNames.add("꽝");
-
-        this.ladder = Ladder.of(LadderShapeInfo.valueOf(Players.of(names), Prizes.of(prizeNames), Height.of(5)));
+        this.ladder = Ladder.of(
+                LadderShapeInfo.valueOf(Players.of(names), Prizes.of(prizeNames), Height.of(5)));
     }
 
     @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")

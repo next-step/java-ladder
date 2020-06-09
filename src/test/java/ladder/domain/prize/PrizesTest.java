@@ -1,6 +1,5 @@
 package ladder.domain.prize;
 
-import ladder.domain.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -22,10 +22,7 @@ public class PrizesTest {
 
     @BeforeEach
     void setUp() {
-        names = new ArrayList<>();
-        names.add("3000");
-        names.add("꽝");
-
+        names = Arrays.asList("3000", "꽝");
     }
 
     @DisplayName("null 이거나 0개의 이름이 입력되면 예외를 반환")

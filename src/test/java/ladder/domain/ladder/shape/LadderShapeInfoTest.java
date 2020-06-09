@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -22,16 +22,12 @@ public class LadderShapeInfoTest {
 
     @BeforeEach
     void setUp() {
-        List<String> names = new ArrayList<>();
-        names.add("pobi");
-        names.add("honux");
-
-        List<String> prizeNames = new ArrayList<>();
-        prizeNames.add("3000");
-        prizeNames.add("꽝");
-
+        List<String> names = Arrays.asList("pobi", "honux");
         this.players = Players.of(names);
+
+        List<String> prizeNames = Arrays.asList("3000", "꽝");
         this.prizes = Prizes.of(prizeNames);
+
         this.height = Height.of(5);
     }
 
@@ -69,14 +65,8 @@ public class LadderShapeInfoTest {
     @DisplayName("LadderShapeInfo 생성 실패 : - 게임 참여자의 수와 게임 실행 결과의 수가 다른 경우")
     @Test
     void notEqualsCountWithPlayersAndPrizes() {
-        List<String> names = new ArrayList<>();
-        names.add("pobi");
-        names.add("honux");
-
-        List<String> prizeNames = new ArrayList<>();
-        prizeNames.add("3000");
-        prizeNames.add("5000");
-        prizeNames.add("꽝");
+        List<String> names = Arrays.asList("pobi", "honux");
+        List<String> prizeNames = Arrays.asList("3000", "꽝", "5000");
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderShapeInfo.valueOf(

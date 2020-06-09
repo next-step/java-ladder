@@ -8,6 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -22,22 +24,23 @@ public class LadderTest {
 
     @BeforeEach
     void setUp() {
-        List<String> names = new ArrayList<>();
-        names.add("pobi");
+        List<String> singlePlayerName = Collections.singletonList("heee");
+        Players singlePlayer = Players.of(singlePlayerName);
+
+        List<String> singlePrizeName = Collections.singletonList("win");
+        Prizes singlePrize = Prizes.of(singlePrizeName);
+
+        shapeInfoOfSinglePlayer = LadderShapeInfo.valueOf(
+                singlePlayer, singlePrize, Height.of(Height.MIN_HEIGHT));
+
+        List<String> names = Arrays.asList("pobi", "honux");
         this.players = Players.of(names);
 
-        List<String> prizeNames = new ArrayList<>();
-        prizeNames.add("3000");
+        List<String> prizeNames = Arrays.asList("3000", "꽝");
         this.prizes = Prizes.of(prizeNames);
 
-        shapeInfoOfSinglePlayer = LadderShapeInfo.valueOf(players, prizes, Height.of(Height.MIN_HEIGHT));
-
-        names.add("honux");
-        prizeNames.add("꽝");
         shapeInfoOfMultiplePlayers = LadderShapeInfo.valueOf(
-                Players.of(names),
-                Prizes.of(prizeNames),
-                Height.of(Height.MIN_HEIGHT * 5));
+                players, prizes, Height.of(Height.MIN_HEIGHT * 5));
     }
 
     @DisplayName("사다리 생성 실패: 사다리의 높이가 1보다 작은 경우")

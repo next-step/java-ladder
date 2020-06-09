@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -21,10 +21,7 @@ public class PlayersTest {
 
     @BeforeEach
     void setUp() {
-        names = new ArrayList<>();
-        names.add("pobi");
-        names.add("honux");
-
+        names = Arrays.asList("pobi", "honux");
     }
 
     @DisplayName("null 이거나 0개의 이름이 입력되면 예외를 반환")

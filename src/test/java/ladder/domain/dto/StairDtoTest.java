@@ -12,7 +12,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -31,22 +32,16 @@ public class StairDtoTest {
 
     @BeforeEach
     void setUp() {
-        List<String> names = new ArrayList<>();
-        names.add("pobi");
-        names.add("honux");
+        List<String> names = Arrays.asList("pobi", "honux");
         this.players = Players.of(names);
 
-        List<String> prizeNames = new ArrayList<>();
-        prizeNames.add("3000");
-        prizeNames.add("꽝");
+        List<String> prizeNames = Arrays.asList("3000", "꽝");
         this.prizes = Prizes.of(prizeNames);
 
-        List<String> singlePlayerName = new ArrayList<>();
-        singlePlayerName.add("heee");
+        List<String> singlePlayerName = Collections.singletonList("heee");
         this.singlePlayer = Players.of(singlePlayerName);
 
-        List<String> singlePrizeName = new ArrayList<>();
-        singlePrizeName.add("win");
+        List<String> singlePrizeName = Collections.singletonList("win");
         this.singlePrize = Prizes.of(singlePrizeName);
 
         this.height = Height.of(Height.MIN_HEIGHT * 5);
