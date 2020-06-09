@@ -36,6 +36,16 @@
 - [x] Prizes 의 모든 이름을 반환할 수 있다. 
 - [x] Prizes 수를 반환할 수 있다. 
 
+#### PlayersAndPrizes
+: Players 와 Prizes 를 같이 관리하는 클래스 
+- [ ] Players 가 null 이면 예외를 반환한다.
+- [ ] Prizes 가 null 이면 예외를 반환한다.
+- [ ] 게임 참여자의 수와 게임 실행 결과의 수가 맞지 않으면 예외가 발생한다. 
+- [ ] Players 의 이름을 반환한다.
+- [ ] Prizes 의 이름을 반환한다.
+- [ ] Players 수를 반환할 수 있다. 
+- [ ] Prizes 수를 반환할 수 있다. 
+
 #### Height
 - [x] 사다리의 높이는 최소 1이상 이어야 한다.
 - [x] 1 이상의 값으로 사다리의 높이를 생성할 수 있다. 
