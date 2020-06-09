@@ -2,19 +2,19 @@ package ladder;
 
 import java.util.Objects;
 
-public class PlayerName {
+public class Player {
 
     private static final int MAX_NAME_LENGTH = 5;
 
     private String name;
 
-    private PlayerName(String name) {
+    private Player(String name) {
         this.name = name;
     }
 
-    public static PlayerName of(String name) {
+    public static Player of(String name) {
         validate(name);
-        return new PlayerName(name);
+        return new Player(name);
     }
 
     private static void validate(String name) {
@@ -37,7 +37,7 @@ public class PlayerName {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        PlayerName that = (PlayerName) o;
+        Player that = (Player) o;
         return name.equals(that.name);
     }
 

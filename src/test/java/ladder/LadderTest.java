@@ -20,7 +20,7 @@ public class LadderTest {
     @DisplayName("ladderHeight이 null이면 NullPointerException")
     @Test
     void nullLadderHeight() {
-        Players players = Players.of(Arrays.asList(PlayerName.of("name1"), PlayerName.of("name2")));
+        Players players = Players.of(Arrays.asList(Player.of("name1"), Player.of("name2")));
 
         assertThatThrownBy(() -> new Ladder(players, null))
                 .isInstanceOf(NullPointerException.class);
@@ -29,7 +29,7 @@ public class LadderTest {
     @DisplayName("입력한 사다리의 높이만큼 사다리의 라인이 그려진다")
     @Test
     void ladderLinesSize() {
-        Players players = Players.of(Arrays.asList(PlayerName.of("name1"), PlayerName.of("name2")));
+        Players players = Players.of(Arrays.asList(Player.of("name1"), Player.of("name2")));
         LadderHeight ladderHeight = LadderHeight.of(3);
 
         Ladder ladder = new Ladder(players, ladderHeight);

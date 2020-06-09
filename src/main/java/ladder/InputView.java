@@ -14,13 +14,13 @@ public class InputView {
 
     public static Players askPlayerNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        List<PlayerName> playerNames = parsePlayerNames(SCANNER.nextLine());
-        return Players.of(playerNames);
+        List<Player> players = parsePlayerNames(SCANNER.nextLine());
+        return Players.of(players);
     }
 
-    private static List<PlayerName> parsePlayerNames(String namesStr) {
+    private static List<Player> parsePlayerNames(String namesStr) {
         return Arrays.stream(namesStr.split(PLAYER_NAME_DELIMITER))
-                .map(name -> PlayerName.of(name.trim()))
+                .map(name -> Player.of(name.trim()))
                 .collect(Collectors.toList());
     }
 

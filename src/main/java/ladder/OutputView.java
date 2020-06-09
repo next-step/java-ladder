@@ -10,8 +10,8 @@ public class OutputView {
 	}
 
 	private static void printPlayers(Players players) {
-		for (PlayerName playerName : players.getContent()) {
-			System.out.printf("%-6s", playerName.getName());
+		for (Player player : players.getContent()) {
+			System.out.printf("%-6s", player.getName());
 		}
 		System.out.println();
 	}

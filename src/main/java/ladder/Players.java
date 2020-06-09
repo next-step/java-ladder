@@ -5,43 +5,43 @@ import java.util.List;
 
 public class Players {
 
-    private final List<PlayerName> playerNames;
+    private final List<Player> players;
 
-    private Players(List<PlayerName> playerNames) {
-        this.playerNames = playerNames;
+    private Players(List<Player> players) {
+        this.players = players;
     }
 
-    public static Players of(List<PlayerName> playerNames) {
-        validate(playerNames);
-        return new Players(playerNames);
+    public static Players of(List<Player> players) {
+        validate(players);
+        return new Players(players);
     }
 
-    private static void validate(List<PlayerName> playerNames) {
-        validateSize(playerNames);
-        validateDuplication(playerNames);
+    private static void validate(List<Player> players) {
+        validateSize(players);
+        validateDuplication(players);
     }
 
-    private static void validateSize(List<PlayerName> playerNames) {
-        if (playerNames == null || playerNames.isEmpty()) {
+    private static void validateSize(List<Player> players) {
+        if (players == null || players.isEmpty()) {
             throw new IllegalArgumentException("참여하는 사람의 수는 1명 이상이어야 합니다.");
         }
     }
 
-    private static void validateDuplication(List<PlayerName> playerNames) {
-        long distinctCount = playerNames.stream()
+    private static void validateDuplication(List<Player> players) {
+        long distinctCount = players.stream()
                 .distinct()
                 .count();
 
-        if (distinctCount != playerNames.size()) {
+        if (distinctCount != players.size()) {
             throw new IllegalArgumentException("참여하는 사람의 이름은 중복되지 않아야 합니다.");
         }
     }
 
     public int size() {
-        return playerNames.size();
+        return players.size();
     }
 
-    public List<PlayerName> getContent() {
-        return Collections.unmodifiableList(playerNames);
+    public List<Player> getContent() {
+        return Collections.unmodifiableList(players);
     }
 }

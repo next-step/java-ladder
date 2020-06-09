@@ -22,9 +22,9 @@ public class PlayersTest {
     @DisplayName("참여하는 사람의 이름이 중복되면 IllegalArgumentException")
     @Test
     void duplicatePlayerNames() {
-        List<PlayerName> playerNames = Arrays.asList(PlayerName.of("name1"), PlayerName.of("name2"), PlayerName.of("name1"));
+        List<Player> players = Arrays.asList(Player.of("name1"), Player.of("name2"), Player.of("name1"));
 
-        assertThatThrownBy(() -> Players.of(playerNames))
+        assertThatThrownBy(() -> Players.of(players))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("사람의 이름");
     }
