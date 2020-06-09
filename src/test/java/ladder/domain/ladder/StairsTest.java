@@ -40,7 +40,7 @@ public class StairsTest {
                 .isEqualTo(0);
     }
 
-    @DisplayName("index 의 계단의 상태에 따라 다음 위치를 반환")
+    @DisplayName("index 위치 계단의 상태에 따라 다음 위치를 반환")
     @Test
     void move() {
         int maxPosition = PillarCount.MIN_COUNT * 5;

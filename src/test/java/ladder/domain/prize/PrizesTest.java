@@ -1,5 +1,6 @@
 package ladder.domain.prize;
 
+import ladder.domain.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,13 @@ public class PrizesTest {
     void createFailure(final List<String> names) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Prizes.of(names));
+    }
+
+    @DisplayName("이름 리스트로부터 여러 개의 Prize 생성")
+    @Test
+    void create() {
+        assertThat(Prizes.of(names).count())
+                .isEqualTo(names.size());
     }
 
     @DisplayName("Prizes 의 모든 이름을 반환")
