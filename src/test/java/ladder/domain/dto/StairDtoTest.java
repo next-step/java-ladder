@@ -71,13 +71,14 @@ public class StairDtoTest {
         );
     }
 
-    @DisplayName("한 명의 참여자로 게임을 실행하면 모든 높이의 기둥에 존재하는 계단 수는 0개")
+    @DisplayName("한 명의 참여자로 게임을 실행하면 모든 높이의 기둥에 존재하는 계단 수는 1개 (StairState 가 empty 인 계단)")
     @Test
     void isSinglePillar() {
         Ladder ladder = Ladder.of(LadderShapeInfo.valueOf(singlePlayer, singlePrize, height));
 
         StairDto.from(ladder)
-                .forEach(stairDto -> assertThat(stairDto.isSinglePillar()).isEqualTo(true));
+                .forEach(stairDto -> assertThat(stairDto.getLines().size())
+                        .isEqualTo(1));
     }
 
     // TODO 행의 계단이 T/F/T/F 로 StairDto 가 생기는지 확인
