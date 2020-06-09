@@ -28,6 +28,10 @@ public class Ladder {
                 .collect(collectingAndThen(toList(), LadderLines::new));
     }
 
+    public Players getPlayers() {
+        return players;
+    }
+
     public LadderLines getLadderLines() {
         return ladderLines;
     }

@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LadderLinePoints {
@@ -39,5 +40,9 @@ public class LadderLinePoints {
 
 	public int size() {
 		return points.size();
+	}
+
+	public List<LadderLinePoint> getContent() {
+		return Collections.unmodifiableList(points);
 	}
 }

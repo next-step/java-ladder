@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Players {
@@ -38,5 +39,9 @@ public class Players {
 
     public int size() {
         return playerNames.size();
+    }
+
+    public List<PlayerName> getContent() {
+        return Collections.unmodifiableList(playerNames);
     }
 }

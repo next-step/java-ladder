@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LadderLines {
@@ -12,5 +13,9 @@ public class LadderLines {
 
 	public int size() {
 		return lines.size();
+	}
+
+	public List<LadderLine> getContent() {
+		return Collections.unmodifiableList(lines);
 	}
 }
