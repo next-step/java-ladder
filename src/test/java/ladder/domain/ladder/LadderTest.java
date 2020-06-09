@@ -70,7 +70,7 @@ public class LadderTest {
         Ladder ladder = Ladder.of(shapeInfoOfSinglePlayer);
 
         assertThat(ladder.ride().size())
-                .isEqualTo(shapeInfoOfSinglePlayer.getPrizes().getNames().size());
+                .isEqualTo(shapeInfoOfSinglePlayer.getPrizes().count());
     }
 
     @DisplayName("모든 사용자가 사다리를 타고 난 결과에 대한 prize index 리스트를 반환")
@@ -79,6 +79,6 @@ public class LadderTest {
         Ladder ladder = Ladder.of(shapeInfoOfMultiplePlayers);
 
         assertThat(ladder.ride().size())
-                .isEqualTo(shapeInfoOfMultiplePlayers.getPrizes().getNames().size());
+                .isEqualTo(shapeInfoOfMultiplePlayers.getPrizes().count());
     }
 }
