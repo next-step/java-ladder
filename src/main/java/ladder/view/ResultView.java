@@ -1,7 +1,10 @@
 package ladder.view;
 
+import ladder.domain.dto.LadderMatchResult;
 import ladder.domain.dto.LadderShapeResult;
 import ladder.domain.dto.StairDto;
+import ladder.domain.player.Player;
+import ladder.domain.prize.Prize;
 
 import java.util.List;
 
@@ -12,6 +15,9 @@ public class ResultView {
     private static final String PILLAR_MARK = "|";
     private static final String STAIR_MARK = "-----";
     private static final String EMPTY_STAIR_MARK = "     ";
+    private static final String MATCH_RESULT_MESSAGE = "실행 결과";
+    private static final String ALL_PLAYERS = "all";
+    private static final String PLAYER_AND_PRIZE_FORMAT = "%s : %s";
 
     private ResultView() {
     }
@@ -51,5 +57,26 @@ public class ResultView {
             return PILLAR_MARK + STAIR_MARK;
         }
         return PILLAR_MARK + EMPTY_STAIR_MARK;
+    }
+
+    public static void printResult(final LadderMatchResult ladderMatchResult, final String targetPlayerNames) {
+        System.out.print(MATCH_RESULT_MESSAGE);
+
+        if (targetPlayerNames.equalsIgnoreCase(ALL_PLAYERS)) {
+            System.out.println();
+            ladderMatchResult.getPlayers()
+                    .forEach(player -> printPlayerAndPrizeMatchResult(player, ladderMatchResult.match(player.getName())));
+            return;
+        }
+        System.out.println();
+        printPrizeMatchResult(ladderMatchResult.match(targetPlayerNames));
+    }
+
+    private static void printPlayerAndPrizeMatchResult(final Player player, final Prize prize) {
+        System.out.println(String.format(PLAYER_AND_PRIZE_FORMAT, player.getName(), prize.getName()));
+    }
+
+    private static void printPrizeMatchResult(final Prize prize) {
+        System.out.println(prize.getName());
     }
 }
