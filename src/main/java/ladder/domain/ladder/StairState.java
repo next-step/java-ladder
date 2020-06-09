@@ -28,10 +28,7 @@ public enum StairState {
     }
 
     public StairState ofLastPillar() {
-        if (isRightLineExist()) {
-            return LEFT;
-        }
-        return EMPTY;
+        return ofNextPillar(() -> false);
     }
 
     public boolean isRightLineExist() {
