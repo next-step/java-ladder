@@ -66,6 +66,23 @@ public class LadderShapeInfoTest {
                 .isThrownBy(() -> LadderShapeInfo.valueOf(players, prizes, height));
     }
 
+    @DisplayName("LadderShapeInfo 생성 실패 : - 게임 참여자의 수와 게임 실행 결과의 수가 다른 경우")
+    @Test
+    void notEqualsCountWithPlayersAndPrizes() {
+        List<String> names = new ArrayList<>();
+        names.add("pobi");
+        names.add("honux");
+
+        List<String> prizeNames = new ArrayList<>();
+        prizeNames.add("3000");
+        prizeNames.add("5000");
+        prizeNames.add("꽝");
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderShapeInfo.valueOf(
+                        Players.of(names), Prizes.of(prizeNames), height));
+    }
+
     @DisplayName("입력한 게임 참여자를 반환")
     @Test
     void getPlayers() {
