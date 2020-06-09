@@ -21,13 +21,6 @@ class PointTest {
   }
 
   @Test
-  void isLineCreated_byRandom() {
-    Point point = new Point(ThreadLocalRandom.current().nextBoolean());
-
-    assertThat(point.isRungCreated()).isEqualTo(true || false);
-  }
-
-  @Test
   void createNonDuplicatedRungWith() {
     Point pointHasRung = new Point(true);
     Point pointNotHasRung = new Point(false);
