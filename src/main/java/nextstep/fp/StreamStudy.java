@@ -27,7 +27,19 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
+
         // TODO 이 부분에 구현한다.
+        words.stream().filter(x -> x.length() > 12).sorted((x1, x2) -> customCompare(x1, x2))
+                .limit(100).distinct().forEach(x -> System.out.print(x.toLowerCase() + " "))
+        ;
+    }
+
+    private static int customCompare(String x1, String x2) {
+        if (x1.length() > x2.length())
+            return -1;
+        if (x1.length() < x2.length())
+            return 1;
+        return 0;
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
