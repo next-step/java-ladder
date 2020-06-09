@@ -16,7 +16,7 @@ class LinePointsTest {
     void point_validation() {
         List<Point> points = Arrays.asList(Point.first(() -> true), Point.first(() -> true));
 
-        assertThatThrownBy(() -> LinePoints.of(points))
+        assertThatThrownBy(() -> new LinePoints(points))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -25,7 +25,7 @@ class LinePointsTest {
     void right_move() {
         Point first = Point.first(() -> true);
         List<Point> points = Arrays.asList(first, first.next(() -> true));
-        LinePoints linePoints = LinePoints.of(points);
+        LinePoints linePoints = new LinePoints(points);
 
         assertThat(linePoints.move(0)).isEqualTo(1);
     }
@@ -35,7 +35,7 @@ class LinePointsTest {
     void left_move() {
         Point first = Point.first(() -> true);
         List<Point> points = Arrays.asList(Point.first(() -> true), first.next(() -> false));
-        LinePoints linePoints = LinePoints.of(points);
+        LinePoints linePoints = new LinePoints(points);
 
         assertThat(linePoints.move(1)).isEqualTo(0);
     }

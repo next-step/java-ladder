@@ -10,7 +10,7 @@ public class LinePoints {
 
     private List<Point> points;
 
-    private LinePoints(List<Point> points) {
+    LinePoints(List<Point> points) {
         validate(points);
         this.points = points;
     }
@@ -22,18 +22,21 @@ public class LinePoints {
 
         List<Point> points = new ArrayList<>(Arrays.asList(Point.first(pointGenerator)));
 
-        for (int i = 1; i < countOfPerson - 1; i++) {
-            Point pre = points.get(i - 1);
-            points.add(pre.next(pointGenerator));
-        }
+        points.addAll(middle(points.get(0), countOfPerson - 2, pointGenerator));
 
         Point last = points.get(points.size() - 1).last();
         points.add(last);
-        return of(points);
+        return new LinePoints(points);
     }
 
-    public static LinePoints of(List<Point> points) {
-        return new LinePoints(points);
+    private static List<Point> middle(Point pre, int size, PointGenerator pointGenerator) {
+        List<Point> points = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            Point next = pre.next(pointGenerator);
+            points.add(next);
+            pre = next;
+        }
+        return points;
     }
 
     public List<Point> getPoints() {
@@ -42,7 +45,7 @@ public class LinePoints {
 
     public int move(int position) {
         Point point = this.points.get(position);
-        return point.move(position);
+        return point.move();
     }
 
     private void validate(List<Point> points) {

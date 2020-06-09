@@ -7,7 +7,7 @@ public class RandomPointGenerator implements PointGenerator {
     private final Random random = new Random();
 
     @Override
-    public boolean hasRight() {
+    public boolean isRight() {
         return random.nextBoolean();
     }
 }

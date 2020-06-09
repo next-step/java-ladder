@@ -1,6 +1,7 @@
 package nextstep.optional;
 
 public class Computer {
+
     private Soundcard soundcard;
 
     public Computer(Soundcard soundcard) {
@@ -12,6 +13,7 @@ public class Computer {
     }
 
     public static class Soundcard {
+
         private USB usb;
 
         public Soundcard(USB usb) {
@@ -25,6 +27,7 @@ public class Computer {
     }
 
     public static class USB {
+
         private String version;
 
         public USB(String version) {

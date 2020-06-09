@@ -19,7 +19,7 @@ public class PlayerTest {
     })
     @ParameterizedTest
     void player_name_length(String name) {
-        Player player = Player.of(name);
+        Player player = new Player(name);
 
         assertThat(player.getName()).isEqualTo(name);
     }
@@ -31,6 +31,6 @@ public class PlayerTest {
     })
     @ParameterizedTest
     void given_more_than_5_when_crate_then_throw_exception(String name) {
-        assertThatThrownBy(() -> Player.of(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Player(name)).isInstanceOf(IllegalArgumentException.class);
     }
 }

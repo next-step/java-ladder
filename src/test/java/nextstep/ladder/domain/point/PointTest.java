@@ -36,7 +36,7 @@ class PointTest {
     @Test
     void first() {
         Point firstPoint = Point.first(() -> true);
-        assertThat(firstPoint.move(0)).isEqualTo(1);
+        assertThat(firstPoint.move()).isEqualTo(1);
     }
 
     @DisplayName("이전 point 방향이 오른쪽이면 다음 point는 왼쪽방향이다.")
@@ -45,7 +45,7 @@ class PointTest {
         Point pre = Point.first(() -> true);
         Point next = pre.next(() -> true);
 
-        assertThat(next.move(1)).isEqualTo(0);
+        assertThat(next.move()).isEqualTo(0);
     }
 
     @DisplayName("이전 point 방향이 오른쪽 아니면 다음 point는 방향은 오른쪽/그대로 이다")
@@ -58,6 +58,6 @@ class PointTest {
         Point pre = Point.first(() -> false);
         Point next = pre.next(() -> hasRight);
 
-        assertThat(next.move(1)).isEqualTo(nextPosition);
+        assertThat(next.move()).isEqualTo(nextPosition);
     }
 }
