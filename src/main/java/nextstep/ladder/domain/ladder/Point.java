@@ -15,7 +15,7 @@ public class Point {
         this.direction = direction;
     }
 
-    public boolean getValue() {
+    public boolean getCurrentStatus() {
         return this.direction.getCurrentStatus();
     }
 

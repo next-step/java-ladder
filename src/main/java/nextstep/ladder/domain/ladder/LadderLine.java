@@ -15,7 +15,7 @@ public class LadderLine {
     }
 
     boolean getPointsIndex(int index) {
-        return points.get(index).getValue();
+        return points.get(index).getCurrentStatus();
     }
 
     public List<Point> getPoints() {

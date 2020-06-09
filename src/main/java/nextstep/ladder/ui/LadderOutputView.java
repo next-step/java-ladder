@@ -42,7 +42,7 @@ public class LadderOutputView {
 
     private String parsePoint(Point isDraw) {
         String pointResult = IntStream.range(0, players.getMaxNameLength())
-                .mapToObj(num -> (isDraw.getValue()) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
+                .mapToObj(num -> (isDraw.getCurrentStatus()) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
                 .collect(Collectors.joining());
         return pointResult + LADDER_POINT_SEPARATOR;
     }

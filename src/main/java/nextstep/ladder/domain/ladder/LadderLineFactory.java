@@ -25,7 +25,7 @@ public class LadderLineFactory {
         for (int i = 1; i < countOfPerson; i++) {
             values.add(new Point(
                     pointAddStrategy.confirmPointLocation(
-                            !values.get(values.size() - 1).getValue())));
+                            !values.get(values.size() - 1).getCurrentStatus())));
         }
         return values;
     }
