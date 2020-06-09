@@ -28,6 +28,7 @@ public class Line {
         if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK_INDEX)) {
             MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE);
             this.mountingBlocks.add(mountingBlock);
+            return;
         }
 
         Integer beforeMountingBlockIndex = getPreviousMountingBlockIndex(mountingBlockIndex);

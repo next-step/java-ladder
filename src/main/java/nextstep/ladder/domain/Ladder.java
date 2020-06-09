@@ -28,7 +28,7 @@ public class Ladder {
     }
 
     private void initializeLadderLine(Integer countOfPerson) {
-        Line line = new Line(countOfPerson, new RandomMountingBlockGenerator());
+        Line line = new Line(countOfPerson);
         this.ladders.add(line);
     }
 
