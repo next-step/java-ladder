@@ -25,8 +25,9 @@ public class Line {
 
     private void makeLine(Integer mountingBlockIndex) {
 
+        MoutingBlockGenerator moutingBlockGenerator = new RandomMountingBlockGenerator();
         if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK_INDEX)) {
-            MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE);
+            MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE, moutingBlockGenerator);
             this.mountingBlocks.add(mountingBlock);
             return;
         }
@@ -34,7 +35,7 @@ public class Line {
         Integer beforeMountingBlockIndex = getPreviousMountingBlockIndex(mountingBlockIndex);
         MountingBlock beforeMountingBlock = this.mountingBlocks.get(beforeMountingBlockIndex);
 
-        this.mountingBlocks.add(MountingBlock.of(beforeMountingBlock.getMountingBlock()));
+        this.mountingBlocks.add(MountingBlock.of(beforeMountingBlock.getMountingBlock(), moutingBlockGenerator));
     }
 
     private Integer getPreviousMountingBlockIndex(Integer mountingBlockIndex) {

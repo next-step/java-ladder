@@ -12,12 +12,12 @@ public class MountingBlock {
         return mountingBlock;
     }
 
-    public static MountingBlock of(Boolean beforeMountingBlock) {
+    public static MountingBlock of(Boolean beforeMountingBlock, MoutingBlockGenerator moutingBlockGenerator) {
         if (beforeMountingBlock.equals(Boolean.TRUE)) {
             return new MountingBlock(Boolean.FALSE);
         }
 
-        Boolean generatedMountBlock = RandomMountingBlockGenerator.generateMountingBlock();
+        Boolean generatedMountBlock = moutingBlockGenerator.generateMountingBlock();
         return new MountingBlock(generatedMountBlock);
     }
 }
