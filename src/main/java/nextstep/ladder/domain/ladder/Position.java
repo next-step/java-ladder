@@ -4,11 +4,9 @@ import java.util.Objects;
 
 public class Position {
 
-    private final int position;
     private final Direction direction;
 
-    public Position(int position, Direction direction) {
-        this.position = position;
+    public Position(Direction direction) {
         this.direction = direction;
     }
 
@@ -20,13 +18,12 @@ public class Position {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Position position1 = (Position) o;
-        return position == position1.position &&
-                Objects.equals(direction, position1.direction);
+        Position position = (Position) o;
+        return direction == position.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, direction);
+        return Objects.hash(direction);
     }
 }
