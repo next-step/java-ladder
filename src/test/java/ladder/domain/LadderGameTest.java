@@ -61,6 +61,14 @@ public class LadderGameTest {
                 .isThrownBy(() -> LadderGame.of(LadderShapeInfo.valueOf(players, prizes, minHeight)));
     }
 
+    @DisplayName("LadderGame 생성 실패 : 게임 실행 결과 null")
+    @NullSource
+    @ParameterizedTest
+    void prizesIsNull(final Prizes prizes) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderGame.of(LadderShapeInfo.valueOf(players, prizes, minHeight)));
+    }
+
     @DisplayName("LadderGame 생성 실패 : LadderShapeInfo 가 null")
     @NullSource
     @ParameterizedTest
