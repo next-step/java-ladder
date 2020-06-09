@@ -23,6 +23,7 @@ public class LadderLineFactory {
         }
 
         for (int i = 1; i < countOfPerson; i++) {
+            // TODO: Point 객체 기능 구현 완료 후 다시 돌아올 것
             values.add(new Point(i, new Direction(
                     pointAddStrategy.confirmPointLocation(!values.get(values.size() - 1).getCurrentStatus()),
                     pointAddStrategy.confirmPointLocation(!values.get(values.size() - 1).getCurrentStatus())
