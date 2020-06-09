@@ -14,7 +14,11 @@ public class Direction {
         this.nextPointStatus = nextPointStatus;
     }
 
-    public void validate(boolean currentPointStatus, boolean nextPointStatus) {
+    public boolean getCurrentStatus() {
+        return this.currentPointStatus;
+    }
+
+    private void validate(boolean currentPointStatus, boolean nextPointStatus) {
         if (currentPointStatus && nextPointStatus) {
             throw new InvalidDirectionParameterException("Can not make direction by both true");
         }

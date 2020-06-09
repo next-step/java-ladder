@@ -3,14 +3,20 @@ package nextstep.ladder.domain.ladder;
 import java.util.Objects;
 
 public class Point {
-    private final boolean value;
+    private final int index;
+    private final Direction direction;
 
-    public Point(boolean value) {
-        this.value = value;
+    public Point(boolean currentStatus) {
+        this(0, new Direction(currentStatus, false));
+    }
+
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
     public boolean getValue() {
-        return this.value;
+        return this.direction.getCurrentStatus();
     }
 
     @Override
@@ -18,11 +24,12 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return value == point.value;
+        return index == point.index &&
+                Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(index, direction);
     }
 }
