@@ -23,4 +23,17 @@ class DirectionTests {
         assertThatThrownBy(() -> new Direction(true, true))
                 .isInstanceOf(InvalidDirectionParameterException.class);
     }
+
+    @DisplayName("현재 Direction을 기반으로 다음 Direction을 생성할 수 있다.")
+    @Test
+    void createNextDirection() {
+        PointAddStrategy pointAddStrategy = new SimplePointAddStrategy();
+        Direction initDirection = new Direction(false, true);
+
+        Direction nextDirection = initDirection.next(pointAddStrategy);
+        assertThat(nextDirection).isEqualTo(new Direction(true, false));
+
+        Direction twoNextDirection = nextDirection.next(pointAddStrategy);
+        assertThat(twoNextDirection).isEqualTo(new Direction(false, true));
+    }
 }

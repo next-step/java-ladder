@@ -18,6 +18,11 @@ public class Direction {
         return this.currentPointStatus;
     }
 
+    public Direction next(PointAddStrategy pointAddStrategy) {
+        boolean nextDirectionCurrentStatus = pointAddStrategy.confirmPointLocation(this.nextPointStatus);
+        return new Direction(nextDirectionCurrentStatus, pointAddStrategy.confirmPointLocation(!nextDirectionCurrentStatus));
+    }
+
     private void validate(boolean currentPointStatus, boolean nextPointStatus) {
         if (currentPointStatus && nextPointStatus) {
             throw new InvalidDirectionParameterException("Can not make direction by both true");
@@ -36,5 +41,14 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(currentPointStatus, nextPointStatus);
+    }
+
+    @Override
+    public String
+    toString() {
+        return "Direction{" +
+                "currentPointStatus=" + currentPointStatus +
+                ", nextPointStatus=" + nextPointStatus +
+                '}';
     }
 }
