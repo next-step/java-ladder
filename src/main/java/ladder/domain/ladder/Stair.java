@@ -43,4 +43,17 @@ public class Stair {
     public int move(final int position) {
         return stairState.move(position);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Stair)) return false;
+        Stair stair = (Stair) o;
+        return stairState == stair.stairState;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stairState);
+    }
 }
