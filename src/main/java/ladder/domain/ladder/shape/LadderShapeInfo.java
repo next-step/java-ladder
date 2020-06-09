@@ -29,6 +29,9 @@ public class LadderShapeInfo {
         if (Objects.isNull(players) || Objects.isNull(prizes) || Objects.isNull(height)) {
             throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
         }
+        if (players.count() != prizes.count()) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_MATCHED_VALUE);
+        }
     }
 
     public PillarCount getWidth() {
