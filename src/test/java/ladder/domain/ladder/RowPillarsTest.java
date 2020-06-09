@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class RowPillarsTest {
@@ -44,5 +46,20 @@ public class RowPillarsTest {
     void getWidth() {
         assertThat(RowPillars.of(pillarCount).getWidth())
                 .isEqualTo(width);
+    }
+
+    @DisplayName("position 위치의 계단 상태에 따라 다음 위치를 반환")
+    @Test
+    void move() {
+        RowPillars rowPillars = RowPillars.of(pillarCount);
+        List<Stair> stairs = rowPillars.getStairs();
+
+        for (int position = 0; position < width; position++) {
+            if (stairs.get(position).isExistLine()) {
+                assertThat(rowPillars.move(position) == position + 1);
+            } else {
+                assertThat(rowPillars.move(position)).isIn(position, position - 1);
+            }
+        }
     }
 }
