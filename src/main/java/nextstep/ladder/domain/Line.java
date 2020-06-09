@@ -1,34 +1,33 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private List<Bridge> bridges = new ArrayList<>();
+    private final List<Bridge> bridges;
 
-    public Line(int countOfPerson, BridgeGenerator bridgeGenerator) {
-        this.generatePositions(countOfPerson, bridgeGenerator);
+    public Line(int countOfPerson, MovementGenerator movementGenerator) {
+        this.bridges = this.generateBridges(countOfPerson, movementGenerator);
     }
 
-    private void generatePositions(int countOfPerson, BridgeGenerator bridgeGenerator) {
-        this.bridges.add(new Bridge(bridgeGenerator.isCrossBridge()));
+    private List<Bridge> generateBridges(int countOfPerson, MovementGenerator movementGenerator) {
+        List<Bridge> bridges = new ArrayList<>();
+        Bridge bridge = Bridge.firstBridge(movementGenerator);
+        bridges.add(bridge);
         for (int i = 1; i < countOfPerson - 1; i++) {
-            Bridge prevBridge = this.bridges.get(i - 1);
-            Bridge currentBridge = this.generatePosition(prevBridge, bridgeGenerator);
-            this.bridges.add(currentBridge);
+            bridge = Bridge.middleBridge(bridge, movementGenerator);
+            bridges.add(bridge);
         }
+        bridges.add(Bridge.lastBridge(bridge));
+        return bridges;
     }
 
-    private Bridge generatePosition(Bridge prevBridge, BridgeGenerator bridgeGenerator) {
-        if (prevBridge.isCross()) {
-            return new Bridge(false);
-        }
-
-        return new Bridge(bridgeGenerator.isCrossBridge());
+    public int move(int lineIndex) {
+        return this.bridges.get(lineIndex).move();
     }
 
     public List<Bridge> getBridges() {
-        return Collections.unmodifiableList(this.bridges);
+        return this.bridges;
     }
+
 }

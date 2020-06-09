@@ -1,26 +1,31 @@
 package nextstep.ladder.dto;
 
 import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.Lines;
 
 import java.util.Collections;
 import java.util.List;
 
 public class LadderResultDto {
-    private final List<Player> players;
-    private final List<Line> lines;
+    private final List<String> playerNames;
+    private final Lines lines;
+    private final List<String> scores;
 
-    public LadderResultDto(List<Player> players, List<Line> lines) {
-        this.players = Collections.unmodifiableList(players);
-        this.lines = Collections.unmodifiableList(lines);
+    public LadderResultDto(List<String> playerNames, Lines lines, List<String> scores) {
+        this.playerNames = Collections.unmodifiableList(playerNames);
+        this.lines = lines;
+        this.scores = Collections.unmodifiableList(scores);
     }
 
-    public List<Player> getPlayers() {
-        return this.players;
+    public List<String> getPlayerNames() {
+        return this.playerNames;
     }
 
     public List<Line> getLines() {
-        return this.lines;
+        return this.lines.getLines();
     }
 
+    public List<String> getScores() {
+        return this.scores;
+    }
 }

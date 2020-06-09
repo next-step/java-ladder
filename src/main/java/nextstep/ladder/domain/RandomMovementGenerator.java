@@ -3,10 +3,10 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 import java.util.Random;
 
-public class RandomBridgeGenerator implements BridgeGenerator {
+public class RandomMovementGenerator implements MovementGenerator {
     private Random random;
 
-    public RandomBridgeGenerator(Random random) {
+    public RandomMovementGenerator(Random random) {
         if (Objects.isNull(random)) {
             throw new IllegalArgumentException("random is required");
         }
@@ -14,7 +14,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
     }
 
     @Override
-    public boolean isCrossBridge() {
+    public boolean isMove() {
         return this.random.nextBoolean();
     }
 }
