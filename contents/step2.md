@@ -51,6 +51,9 @@ RowPillars2          2    | Pillar4 - Pillar5 - Pillar6
 
 - [x] 기둥이 하나도 없거나 null 이면 예외를 반환한다.
 - [x] (numOfPlayers * height)개의 기둥으로 사다리 판을 생성한다.
+- [x] 한 명의 사용자가 사다리를 타면 index 0 의 prize 리스트를 반환한다. 
+- [x] 모든 사용자가 사다리를 타고 난 결과에 대한 prize index 리스트를 반환한다.
+    - [ ] 원하는 결과값을 미리 지정해서 해당하는 prizes 가 나오는지 확인?
 
 #### RowPillars 
 : 한 행에 있는 모든 세로 모양의 기둥들 (|)
