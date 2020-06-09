@@ -90,10 +90,17 @@ public class LadderGameTest {
                 .doesNotThrowAnyException();
     }
 
+    @DisplayName("게임 참여자의 수와 게임 실행 결과의 수가 맞지 않으면 예외가 발생")
+    @Test
+    void createFailure() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LadderGame.of(LadderShapeInfo.valueOf(singlePlayer, prizes, height)).ready());
+    }
+
     @DisplayName("게임 참여자가 1명 일 때, LadderGame 실행 가능")
     @Test
     void createWithSinglePlayer() {
-        assertThatCode(() -> LadderGame.of(LadderShapeInfo.valueOf(singlePlayer, prizes, height)).ready())
+        assertThatCode(() -> LadderGame.of(LadderShapeInfo.valueOf(singlePlayer, singlePrize, height)).ready())
                 .doesNotThrowAnyException();
     }
 
