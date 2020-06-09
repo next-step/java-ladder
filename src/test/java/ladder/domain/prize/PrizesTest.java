@@ -56,5 +56,4 @@ public class PrizesTest {
                 Arguments.of(1, Prize.of("꽝"))
         );
     }
-
 }
