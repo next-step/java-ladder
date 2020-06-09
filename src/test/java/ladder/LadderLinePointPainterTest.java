@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderLinePointPainterTest {
@@ -23,13 +25,18 @@ class LadderLinePointPainterTest {
 	@Test
 	void pointIsNotContinuouslyConnected() {
 		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(true));
-		LadderLinePoints points = pointsPainter.drawPoints(100);
+		List<LadderLinePoint> points = pointsPainter.drawPoints(100).getContent();
 
-		long connectionCount = points.getContent().stream()
-				.filter(LadderLinePoint::isConnectedToNextPoint)
-				.count();
+		boolean isContinuouslyConnected = false;
 
-		assertThat(connectionCount).isLessThanOrEqualTo(points.size() / 2);
+		for (int i = 0; i < points.size() - 1; i++) {
+			if (points.get(i).isConnectedToNextPoint() && points.get(i + 1).isConnectedToNextPoint()) {
+				isContinuouslyConnected = true;
+				break;
+			}
+		}
+
+		assertThat(isContinuouslyConnected).isFalse();
 	}
 
 	@DisplayName("마지막 좌표는 다음 좌표와 연결되어 있지 않다")

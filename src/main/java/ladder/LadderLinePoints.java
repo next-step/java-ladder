@@ -28,13 +28,10 @@ public class LadderLinePoints {
 	}
 
 	private static void validateNotContinuouslyConnected(List<LadderLinePoint> points) {
-		long maxConnectionCount = points.size() / 2;
-		long connectionCount = points.stream()
-				.filter(LadderLinePoint::isConnectedToNextPoint)
-				.count();
-
-		if (connectionCount > maxConnectionCount) {
-			throw new IllegalArgumentException("좌표는 연속으로 연결될 수 없습니다.");
+		for (int i = 0; i < points.size() - 1; i++) {
+			if (points.get(i).isConnectedToNextPoint() && points.get(i + 1).isConnectedToNextPoint()) {
+				throw new IllegalArgumentException("좌표는 연속으로 연결될 수 없습니다.");
+			}
 		}
 	}
 
