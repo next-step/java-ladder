@@ -17,4 +17,8 @@ public class RowPillars {
     public List<Stair> getStairs() {
         return stairs.getStairs();
     }
+
+    public int getWidth() {
+        return stairs.getWidth();
+    }
 }
