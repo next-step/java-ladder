@@ -14,6 +14,7 @@ public class LadderLineFactory {
     }
 
     private static List<Point> makeLine(int countOfPerson, PointAddStrategy pointAddStrategy) {
+        // TODO: 변경된 Point 생성자에 맞춰서 객체를 생성할 수 있도록 변경 필요
         List<Point> values = new ArrayList<>();
         values.add(new Point(false));
 

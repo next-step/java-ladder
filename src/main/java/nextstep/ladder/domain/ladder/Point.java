@@ -19,13 +19,16 @@ public class Point {
         return this.direction.getCurrentStatus();
     }
 
+    public int move() {
+        return this.index + HorizontalMoveStrategy.findByDirection(this.direction);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return index == point.index &&
-                Objects.equals(direction, point.direction);
+        return index == point.index;
     }
 
     @Override
