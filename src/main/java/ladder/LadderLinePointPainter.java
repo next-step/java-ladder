@@ -1,7 +1,10 @@
 package ladder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class LadderLinePointPainter {
 
@@ -12,16 +15,12 @@ public class LadderLinePointPainter {
 	}
 
 	public LadderLinePoints drawPoints(int count) {
-		List<LadderLinePoint> points = new ArrayList<>();
-		boolean isConnectedToPreceding = false;
+		AtomicBoolean isConnectedToPreceding = new AtomicBoolean(false);
 
-		for (int i = 0; i < count; i++) {
-			LadderLinePoint point = drawPoint((i == count - 1), isConnectedToPreceding);
-			isConnectedToPreceding = point.isConnectedToNextPoint();
-			points.add(point);
-		}
-
-		return LadderLinePoints.of(points);
+		return IntStream.range(0, count)
+				.mapToObj(index -> drawPoint(index == count - 1, isConnectedToPreceding.get()))
+				.peek(point -> isConnectedToPreceding.set(point.isConnectedToNextPoint()))
+				.collect(collectingAndThen(toList(), LadderLinePoints::of));
 	}
 
 	private LadderLinePoint drawPoint(boolean isLastPoint, boolean isConnectedToPreceding) {

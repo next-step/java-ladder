@@ -1,6 +1,7 @@
 package ladder;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -16,6 +17,19 @@ class LadderLinePointPainterTest {
 		LadderLinePoints points = pointsPainter.drawPoints(count);
 
 		assertThat(points.size()).isEqualTo(count);
+	}
+
+	@DisplayName("좌표는 연속으로 연결되지 않는다")
+	@Test
+	void pointIsNotContinuouslyConnected() {
+		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(true));
+		LadderLinePoints points = pointsPainter.drawPoints(100);
+
+		long connectionCount = points.getContent().stream()
+				.filter(LadderLinePoint::isConnectedToNextPoint)
+				.count();
+
+		assertThat(connectionCount).isLessThanOrEqualTo(points.size() / 2);
 	}
 
 	@DisplayName("마지막 좌표는 다음 좌표와 연결되어 있지 않다")
