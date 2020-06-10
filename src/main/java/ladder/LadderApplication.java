@@ -26,8 +26,8 @@ public class LadderApplication {
 //        LadderShapeInfo ladderShapeInfo = LadderShapeInfo.valueOf(players, prizes, height);
         LadderShapeInfo2 ladderShapeInfo = LadderShapeInfo2.valueOf(playersAndPrizes, height);
 
-        LadderGame ladderGame = LadderGame.of(ladderShapeInfo);
-//        LadderGame2 ladderGame = LadderGame2.of(ladderShapeInfo);
+//        LadderGame ladderGame = LadderGame.of(ladderShapeInfo);
+        LadderGame2 ladderGame = LadderGame2.of(ladderShapeInfo);
 
         LadderShapeResult ladderShapeResult = ladderGame.ready();
 //        LadderShapeResult2 ladderShapeResult = ladderGame.ready();
