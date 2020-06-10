@@ -5,28 +5,28 @@ import java.util.Map;
 
 public class Result {
 
-    private Map<Player, Reword> result;
+    private Map<Player, Reward> result;
 
-    private Result(Map<Player, Reword> result) {
+    private Result(Map<Player, Reward> result) {
         this.result = result;
     }
 
-    public static Result newInstance(Map<Player, Reword> result) {
+    public static Result newInstance(Map<Player, Reward> result) {
         validate(result);
         return new Result(result);
     }
 
-    private static void validate(Map<Player, Reword> result) {
+    private static void validate(Map<Player, Reward> result) {
         if (result == null || result.size() == 0) {
             throw new IllegalArgumentException("결과가 존재하지 않습니다.");
         }
     }
 
-    public Reword get(Player player) {
+    public Reward get(Player player) {
         return this.result.get(player);
     }
 
-    public Map<Player, Reword> toMap() {
+    public Map<Player, Reward> toMap() {
         return Collections.unmodifiableMap(this.result);
     }
 }

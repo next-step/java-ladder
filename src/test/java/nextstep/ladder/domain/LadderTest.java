@@ -28,9 +28,8 @@ class LadderTest {
     @DisplayName("라인 목록이 존재하지 않으면 생성할 수 없다.")
     @Test
     void canNotCreateLadderIfLinesIsNull() {
-        assertThatThrownBy(() -> {
-            Ladder.newInstance(this.players, null);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Ladder.newInstance(this.players, null))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("사다리를 생성할 수 있다.")
@@ -54,14 +53,14 @@ class LadderTest {
     @DisplayName("결과를 생성할 수 있다.")
     @Test
     void canCreateResult() {
-        Rewords rewords = Rewords.newInstance(
+        Rewards rewards = Rewards.newInstance(
                 Arrays.asList(
-                        Reword.newInstance("1000"),
-                        Reword.newInstance("꽝")
+                        Reward.newInstance("1000"),
+                        Reward.newInstance("꽝")
                 ),
                 2);
 
-        assertThat(this.ladder.run(rewords)).isInstanceOf(Result.class);
+        assertThat(this.ladder.run(rewards)).isInstanceOf(Result.class);
     }
 
     Ladder initialize() {

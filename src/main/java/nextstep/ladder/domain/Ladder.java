@@ -32,12 +32,12 @@ public class Ladder {
         }
     }
 
-    public Result run(Rewords rewords) {
-        Map<Player, Reword> result = new HashMap<>();
+    public Result run(Rewards rewards) {
+        Map<Player, Reward> result = new HashMap<>();
         for (Player player : this.players.toList()) {
             Position finish = this.lines.moveAll(player.getPosition());
-            Reword reword = rewords.findByPosition(finish);
-            result.put(player, reword);
+            Reward reward = rewards.findByPosition(finish);
+            result.put(player, reward);
         }
 
         return Result.newInstance(result);

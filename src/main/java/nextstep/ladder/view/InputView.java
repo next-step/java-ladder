@@ -30,15 +30,15 @@ public final class InputView {
         return Players.newInstance(players);
     }
     
-    public static Rewords getResults(int countOfPlayer) {
+    public static Rewards getResults(int countOfPlayer) {
         System.out.println(NEW_LINE + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         String inputValue = SCANNER.nextLine();
 
-        List<Reword> rewords = Arrays.stream(inputValue.split(DELIMITER_PATTERN))
-                .map(Reword::newInstance)
+        List<Reward> rewards = Arrays.stream(inputValue.split(DELIMITER_PATTERN))
+                .map(Reward::newInstance)
                 .collect(Collectors.toList());
 
-        return Rewords.newInstance(rewords, countOfPlayer);
+        return Rewards.newInstance(rewards, countOfPlayer);
     }
 
     public static Height getHeight() {

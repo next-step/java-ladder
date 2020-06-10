@@ -13,56 +13,56 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class RewordsTest {
+class RewardsTest {
 
-    private Rewords rewords = Rewords.newInstance(Arrays.asList(
-            Reword.newInstance("1000"),
-            Reword.newInstance("꽝"),
-            Reword.newInstance("2000")
+    private Rewards rewards = Rewards.newInstance(Arrays.asList(
+            Reward.newInstance("1000"),
+            Reward.newInstance("꽝"),
+            Reward.newInstance("2000")
     ), 3);
 
     @DisplayName("보상 리스트가 존재하지 않으면 생성할 수 없다.")
     @Test
-    void canNotCreateRewordsIfRewordsIsNull() {
-        assertThatThrownBy(() -> Rewords.newInstance(null, 1))
+    void canNotCreateRewardsIfRewardsIsNull() {
+        assertThatThrownBy(() -> Rewards.newInstance(null, 1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보상 리스트 수와 참여자 수가 다르면 생성할 수 없다.")
     @Test
-    void canNotCreateRewordsIfRewordCountNotEqPlayerCount() {
+    void canNotCreateRewardsIfRewardCountNotEqPlayerCount() {
         assertThatThrownBy(() -> {
-            List<Reword> rewords = Arrays.asList(Reword.newInstance("1000"));
-            Rewords.newInstance(rewords, 2);
+            List<Reward> rewards = Arrays.asList(Reward.newInstance("1000"));
+            Rewards.newInstance(rewards, 2);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보상 리스트에 유효하지 않은 보상이 있을 경우 생성할 수 없다.")
     @Test
-    void canNotCreateRewordsIfRewordsContainsNull() {
+    void canNotCreateRewardsIfRewardsContainsNull() {
         assertThatThrownBy(() -> {
-            List<Reword> rewords = Arrays.asList(Reword.newInstance("1000"), null);
-            Rewords.newInstance(rewords, 2);
+            List<Reward> rewards = Arrays.asList(Reward.newInstance("1000"), null);
+            Rewards.newInstance(rewards, 2);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("객체를 생성할 수 있다.")
     @Test
-    void canCreateRewords() {
-        assertThat(this.rewords).isInstanceOf(Rewords.class);
+    void canCreateRewards() {
+        assertThat(this.rewards).isInstanceOf(Rewards.class);
     }
 
     @DisplayName("보상 리스트를 얻을 수 있다.")
     @Test
     void canToList() {
-        assertThat(this.rewords.toList()).isInstanceOf(List.class);
+        assertThat(this.rewards.toList()).isInstanceOf(List.class);
     }
 
     @DisplayName("해당 위치의 보상을 얻을 수 있다,")
     @ParameterizedTest
     @MethodSource("generatePosition")
     void canFindByPosition(Position position, String result) {
-        assertThat(this.rewords.findByPosition(position).toString()).isEqualTo(result);
+        assertThat(this.rewards.findByPosition(position).toString()).isEqualTo(result);
     }
 
     static Stream<Arguments> generatePosition() {

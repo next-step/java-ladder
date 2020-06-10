@@ -11,14 +11,14 @@ public class Main {
 
     public static void main(String[] args) {
         Players players = InputView.getPlayers();
-        Rewords rewords = InputView.getResults(players.getCount());
+        Rewards rewards = InputView.getResults(players.getCount());
         Height height = InputView.getHeight();
 
         Ladder ladder = LadderFactory.create(players, height);
         ResultView.printLadder(ladder);
-        ResultView.printRewords(rewords);
+        ResultView.printRewards(rewards);
 
-        Result result = ladder.run(rewords);
+        Result result = ladder.run(rewards);
 
         while (true) {
             PlayerName playerName = InputView.getPlayerName();
