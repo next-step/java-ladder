@@ -16,7 +16,7 @@ class LadderCreatorTest {
         LadderCreator ladderCreator = new LadderCreator(countOfPerson, ladderHeight);
         Ladder ladder = ladderCreator.createLadder();
 
-        List<Line> lineList = ladder.getLineList();
+        List<Line> lineList = ladder.getLines();
         int resultHeight = lineList.size();
         int lineCount = lineList.get(0).getPoints().size();
 
