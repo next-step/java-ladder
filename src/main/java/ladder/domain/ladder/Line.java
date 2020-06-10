@@ -9,8 +9,6 @@ import java.util.stream.Stream;
 
 public class Line {
 
-    public static final int MINIMUM_COUNT_OF_PERSON = 1;
-
     private final List<Point> points;
 
     private Line(List<Point> points) {

@@ -16,9 +16,16 @@ public class Ladder {
     }
 
     public static Ladder of(int countOfPerson, int ladderHeight, LineStrategy lineStrategy) {
+        validate(ladderHeight);
         return IntStream.range(0, ladderHeight)
                 .mapToObj(i -> Line.of(countOfPerson, lineStrategy))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::new));
+    }
+
+    private static void validate(int ladderHeight) {
+        if (ladderHeight < 0) {
+            throw new IllegalArgumentException("Ladder height must be positive.");
+        }
     }
 
     public Line get(int index) {
