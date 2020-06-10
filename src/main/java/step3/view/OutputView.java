@@ -3,7 +3,7 @@ package step3.view;
 import step3.domain.Ladder;
 import step3.domain.Ladders;
 import step3.domain.Player;
-import step3.domain.Pointer;
+import step3.domain.PointStep;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class OutputView {
 
     private static Ladder removeSide(int i, Ladder ladder, int lastLadderLocation) {
         if (i == lastLadderLocation) {
-            ladder.getLines().get(i).removeDirection(Pointer.RIGHT);
+            ladder.getLines().get(i).removeDirection(PointStep.RIGHT);
         }
         return ladder;
     }
@@ -57,4 +57,25 @@ public class OutputView {
         }
         System.out.println(stringBuilder);
     }
+
+    public static void winner(String[] winningPrize, List<Player> players) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < winningPrize.length; i++) {
+            stringBuilder.append(String.format("%-6s", players.get(i).getPlayerName()));
+            stringBuilder.append(" : ");
+            stringBuilder.append(winningPrize[i]);
+            stringBuilder.append("\n\r");
+        }
+        System.out.println(stringBuilder);
+    }
+
+    public static void winner(String winningPrize, String player) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format("%-6s", player));
+        stringBuilder.append(" : ");
+        stringBuilder.append(winningPrize);
+        stringBuilder.append("\r\n");
+        System.out.println(stringBuilder);
+    }
+
 }

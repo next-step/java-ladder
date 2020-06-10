@@ -11,9 +11,9 @@ class LineTest {
     @Test
     void removeDirection() {
         Line line = new Line(true);
-        line.removeDirection(Pointer.RIGHT);
-
-        assertThat(line.isCanStepable()).isEqualTo(false);
+        line.setPointSetp(PointStep.RIGHT);
+        line.removeDirection(PointStep.RIGHT);
+        assertThat(line.getPointStep()).isEqualTo(PointStep.NONE);
     }
 
 }

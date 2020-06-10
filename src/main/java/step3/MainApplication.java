@@ -14,9 +14,11 @@ public class MainApplication {
         int laddersHeight = InputView.inputLadderHeight();
 
         LadderGame ladderGame = LadderGame.of(playerNames, winningPrize,laddersHeight);
-
         // draw ladders
         ladderGame.outputView();
+        ladderGame.calculateWinningPrizeLine();
+        ladderGame.outputResultView();
+
     }
 
 }

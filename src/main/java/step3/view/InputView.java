@@ -7,7 +7,9 @@ public class InputView {
     private static final String INPUT_PLAYER_NANMES = "Input players name (separate : , )  : ";
     private static final String INPUT_PLAY_RESULT = "Input play winning prize (separate : , )  : ";
     private static final String INPUT_MAXIMUM_HEIGHT = "Input ladder's height : ";
+    private static final String INPUT_PLAYER_WHO_WINNING = "Who do you want know winning player? (exit: quit)";
     private static final String STRING_DELIMITER = ",";
+    public static final String EXIT_KEY = "quit";
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -29,7 +31,7 @@ public class InputView {
     }
 
     public static String inputNameWhoWinning() {
-        System.out.println(INPUT_PLAY_RESULT);
+        System.out.println(INPUT_PLAYER_WHO_WINNING);
         return SCANNER.next();
     }
 

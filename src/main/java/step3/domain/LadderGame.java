@@ -1,5 +1,6 @@
 package step3.domain;
 
+import step3.view.InputView;
 import step3.view.OutputView;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 public class LadderGame {
 
     public static final int SINGLE_PLAYER_STATUS = 1;
+
     private static List<Player> players = new ArrayList<>();
     private static String[] winningPrize = {};
     private static Ladders ladders = new Ladders();
@@ -17,7 +19,7 @@ public class LadderGame {
         // block
     }
 
-    public LadderGame(String[] playerNames, String[] winningPrize, int laddersHeight) {
+    private LadderGame(String[] playerNames, String[] winningPrize, int laddersHeight) {
         if (playerNames.length == 0) {
             throw new IllegalArgumentException();
         }
@@ -31,6 +33,7 @@ public class LadderGame {
         setPlayerList(playerNames);
         setWinningPrize(winningPrize);
         setLaddersHeight(laddersHeight);
+
     }
 
     public static LadderGame of(String[] playerNames, String[] winningPrize, int laddersHeight) {
@@ -40,6 +43,7 @@ public class LadderGame {
     private void setPlayerList(String[] inputPlayers) {
         Arrays.asList(inputPlayers).forEach(x -> players.add(new Player(x)));
     }
+
     private void setWinningPrize(String[] winningPrize) {
         this.winningPrize = winningPrize;
     }
@@ -75,6 +79,12 @@ public class LadderGame {
         laddersToSet.add(new Ladder(inputLadderHeight, false, beforLader));
     }
 
+    public void calculateWinningPrizeLine() {
+        // result
+        CalculateLadder calculateLadder = new CalculateLadder(ladders);
+        winningPrize = calculateLadder.calculateWinningPrizeLine(winningPrize);
+    }
+
     public void outputView() {
         // print player
         OutputView.outputPlayer(players);
@@ -83,7 +93,39 @@ public class LadderGame {
         // print winning Prize
         OutputView.winningPrize(winningPrize);
 
+    }
 
+    public void outputResultView() {
+        // print winner
+        boolean keepViewing = true;
+        while (keepViewing) {
+
+            String winner = InputView.inputNameWhoWinning();
+            allResultView(winner);
+            eachResultView(winner);
+            keepViewing = isKeepViewing(keepViewing, winner);
+        }
+    }
+
+    private boolean isKeepViewing(boolean keepViewing, String winner) {
+        if (winner.equals(InputView.EXIT_KEY)) {
+            keepViewing = false;
+        }
+        return keepViewing;
+    }
+
+    private void allResultView(String winner) {
+        if (winner.equals("all")) {
+            OutputView.winner(winningPrize, players);
+        }
+    }
+
+    private void eachResultView(String winner) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getPlayerName().equals(winner)) {
+                OutputView.winner(winningPrize[i], winner);
+            }
+        }
     }
 
     public List<Player> getPlayerList() {

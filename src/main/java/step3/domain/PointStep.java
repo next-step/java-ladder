@@ -1,12 +1,13 @@
 package step3.domain;
 
-public enum Pointer {
+public enum PointStep {
     LEFT("LEFT"),
-    RIGHT("RIGHT");
+    RIGHT("RIGHT"),
+    NONE("PASS");
 
     public String Direction;
 
-    Pointer(String direction) {
+    PointStep(String direction) {
         Direction = direction;
     }
 
