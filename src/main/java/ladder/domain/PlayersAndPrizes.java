@@ -1,11 +1,16 @@
 package ladder.domain;
 
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.exception.ErrorMessage;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class PlayersAndPrizes {
 
@@ -30,6 +35,20 @@ public class PlayersAndPrizes {
         if (players.count() != prizes.count()) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCHED_VALUE);
         }
+    }
+
+    public Map<Player, Prize> matchPlayerAndPrize(final List<Integer> prizePositions) {
+        Map<Player, Prize> matchResult = new LinkedHashMap<>();
+
+        IntStream.range(0, getPlayersCount())
+                .forEach(index -> {
+                    Player player = players.indexOf(index);
+                    Prize prize = prizes.indexOf(prizePositions.get(index));
+
+                    matchResult.put(player, prize);
+                });
+
+        return matchResult;
     }
 
     public int getPlayersCount() {
