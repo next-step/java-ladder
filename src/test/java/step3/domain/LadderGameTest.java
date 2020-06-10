@@ -2,7 +2,6 @@ package step3.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step2.domain.LadderGame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
