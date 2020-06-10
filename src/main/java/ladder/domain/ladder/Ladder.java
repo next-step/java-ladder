@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.shape.Height;
-import ladder.domain.ladder.shape.LadderShapeInfo2;
+import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.exception.ErrorMessage;
 
 import java.util.List;
@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class Ladder2 {
+public class Ladder {
 
     private static final int FIRST_INDEX = 0;
 
     private final List<RowPillars> rowPillars;
 
-    private Ladder2(final List<RowPillars> rowPillars) {
+    private Ladder(final List<RowPillars> rowPillars) {
         validatePillars(rowPillars);
         this.rowPillars = rowPillars;
     }
@@ -27,11 +27,11 @@ public class Ladder2 {
         }
     }
 
-    public static Ladder2 of(final LadderShapeInfo2 ladderShapeInfo) {
-        return new Ladder2(createPillars(ladderShapeInfo));
+    public static Ladder of(final LadderShapeInfo ladderShapeInfo) {
+        return new Ladder(createPillars(ladderShapeInfo));
     }
 
-    private static List<RowPillars> createPillars(final LadderShapeInfo2 ladderShapeInfo) {
+    private static List<RowPillars> createPillars(final LadderShapeInfo ladderShapeInfo) {
         return Stream.generate(() -> RowPillars.of(ladderShapeInfo.getWidth()))
                 .limit(ladderShapeInfo.getHeight())
                 .collect(Collectors.toList());
