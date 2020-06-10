@@ -1,6 +1,7 @@
 package laddergame.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,6 +14,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
     private static Stream<Arguments> providePlayersAndExpectResult() {
@@ -32,5 +34,15 @@ class LineTest {
         assertThat(line.getLine().size()).isEqualTo(numberOfPlayer - 1);
         assertThat(line.getLine()).usingFieldByFieldElementComparator()
                 .isEqualTo(bridges);
+    }
+
+    @DisplayName("연속으로 연결된 다리가 존재하면 IllegalStateException Throw")
+    @Test
+    void continuousLineThrowException() {
+        assertThatThrownBy(() -> new Line(4, numberOfPlayer -> Stream.of(true, true, false)
+                .map(Bridge::createFirstBridge)
+                .collect(Collectors.toList()))
+        ).isInstanceOf(IllegalStateException.class)
+                .hasMessage("연속된 연결 다리가 존재합니다.");
     }
 }
