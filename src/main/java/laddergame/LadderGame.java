@@ -1,6 +1,7 @@
 package laddergame;
 
 import java.util.Scanner;
+import laddergame.model.Height;
 import laddergame.model.Ladder;
 import laddergame.view.LadderGameView;
 
@@ -13,9 +14,10 @@ public class LadderGame {
     String[] nameStrArr = scanner.nextLine().split(",");
 
     LadderGameView.printInputLadderHeightMsg();
-    int ladderHeight = scanner.nextInt();
+    Height ladderHeight = new Height(scanner.nextInt());
     scanner.nextLine();
 
-    LadderGameView.printResult(Ladder.createByHeightAndNamesStrArr(ladderHeight, nameStrArr));
+    LadderGameView
+        .printResult(Ladder.createByHeightAndNamesStrArr(ladderHeight, nameStrArr));
   }
 }

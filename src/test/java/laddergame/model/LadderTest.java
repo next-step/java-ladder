@@ -14,12 +14,12 @@ class LadderTest {
 
   @ParameterizedTest
   @MethodSource("heightAndNameStrArrProvider")
-  void createByHeightAndNamesStrArr(int height, String namesStr) {
+  void createByHeightAndNamesStrArr(Height height, String namesStr) {
     String[] nameStrArr = namesStr.split(",");
 
     Ladder ladder = Ladder.createByHeightAndNamesStrArr(height, nameStrArr);
 
-    assertThat(ladder.getLines().size()).isEqualTo(height);
+    assertThat(ladder.getLines().size()).isEqualTo(height.getValue());
 
     for (Line line : ladder.getLines()) {
       assertThat(line.getPoints().size()).isEqualTo(nameStrArr.length);
@@ -29,15 +29,15 @@ class LadderTest {
   public static Stream<Arguments> heightAndNameStrArrProvider() {
     return Stream.of(
         arguments(
-            1,
+            new Height(1),
             "test1, test2, test3, test4"
         ),
         arguments(
-            5,
+            new Height(5),
             "test1, test2, test3, test4"
         ),
         arguments(
-            5,
+            new Height(5),
             "test1, test2, test3, test4, test5, test6, test7"
         )
     );

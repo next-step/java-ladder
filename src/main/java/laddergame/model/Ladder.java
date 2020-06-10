@@ -13,14 +13,10 @@ public class Ladder {
     this.players = players;
   }
 
-  public static Ladder createByHeightAndNamesStrArr(int height, String[] nameStrArr) {
-    if (height <= 0) {
-      throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
-    }
-
+  public static Ladder createByHeightAndNamesStrArr(Height height, String[] nameStrArr) {
     List<Line> lines = new ArrayList<>();
 
-    for (int i = 0; i < height; i++) {
+    for (int i = 0; i < height.getValue(); i++) {
       lines.add(Line.createByCountOfPerson(nameStrArr.length));
     }
 
