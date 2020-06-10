@@ -24,7 +24,7 @@ public class Ladder {
   }
 
   public List<Line> getLines() {
-    return lines;
+    return Collections.unmodifiableList(lines);
   }
 
   public Players getPlayers() {
