@@ -1,4 +1,4 @@
-package ladder.domain.player;
+package laddergame.domain.player;
 
 public class Position {
     private static final int START_HEIGHT = 1;

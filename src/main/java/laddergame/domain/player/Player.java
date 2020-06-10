@@ -1,4 +1,4 @@
-package ladder.domain.player;
+package laddergame.domain.player;
 
 public class Player {
     private final Name name;
