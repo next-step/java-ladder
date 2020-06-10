@@ -12,40 +12,36 @@ Q. 가로줄은 조건만 맞으면 랜덤으로 생성되는건가요 ,,?
 
 [Domain]
 **BaseUserLine**
-1. 유저는 5자 이내이름과 최대 사다리 높이만큼의 Point를 가진다. 
-: name, List<Point> Points --> 연결되었는지 아닌지.
+1. 유저는 5자 이내이름과 자신의 지점을 가진다(0,1,2,3,...) 
+: name, List<Boolean> pointConnections 각 포인트별 라인이 연결되어있는지의 여부 
  
-| - Point 1
-| - Point 2
-| - Point 3 
+ |  ------- true/false
+ |  ------- 
+ |  ------- 
+ |  -------  
  
-** Point ** 
-1. BaseUserLine 의 각 높이지점  
-boolean leftConnected -> 옆의 Point와 연결되어있는지
-boolean rightConnected -> 옆의 Point와 연결되어있는지 
-- point 는 같아야한다. 같은 높이에 대해서만 라인을 그을 수 있다.
-
-cf) 양 끝의 BaseUserLine은 각각 left, right 를 연결할 수 없다.
 
 **Ladder**
 ```java
 List<BaseUserLine> baseUserLines
 ```
  
-1. 최대 사다리의 높이를 가지고 BaseUserLine 을 생성한다.
-2. 사다리 라인을 그린다.
-- 현재 그리는 라인의 전, 전전 라인이 연결되어있으면 그릴 수 없다.
-게임진행을 위해 아래는 필수로 그린다.  
+1. 최대 사다리의 높이를 가지고 BaseUserLine 을 생성한다. (pointConnections의 size)
+2. 
 ```java
-baseUserLines.get(0).getPoints().get(0).connect;
-baseUserLines.get(size-1).getPoints().get(size-1).connect;
-```
-| ----- |       |
-|       |       |
-|       | ----- |
- 
-- 그리고 각 BaseLine을 기준으로 오른쪽으로만 그림그리기를 시도한다. - Random
-- 그림을 그리면 자신의 rightConnect를 true로 바꿀 뿐 아니라, 오른쪽 BaseLine의 leftConnect도 true로 바꿔야한다. 
+for( 0..n-1 in baseUserLines) // 마지막 사다리는 긋지 않는다
+    while(최대높이 -1){ // 하나의 사다리는 최대 "높이 -1" 만큼의 라인을 그을 수 있다.
+        if(첫번째 사다리){
+            // 체크없이 Random으로 긋거나 긋지않는다
+        }else{
+            if(현재사다리의 이전사다리의 현재포인트가 true이면){
+                // 긋지않는다
+            }else{
+                // 긋거나 긋지않는다
+            }          
+        }       
+    }
+```   
 
 
 
