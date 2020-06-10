@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.ladder.Line;
 import ladder.domain.strategy.TrueLineStrategy;
 import org.junit.jupiter.api.Test;
 

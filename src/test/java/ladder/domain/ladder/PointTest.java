@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
+import ladder.domain.ladder.Point;
 import ladder.domain.strategy.FalseLineStrategy;
 import ladder.domain.strategy.LineStrategy;
 import ladder.domain.strategy.TrueLineStrategy;
