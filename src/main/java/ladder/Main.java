@@ -22,6 +22,8 @@ public class Main {
 
         LadderGame ladderGame = new LadderGame(players, resultGoods);
         List<ResultOfPlayer> resultOfPlayers = ladderGame.gameResult(ladder, peopleNames.size());
-        
+
+        ResultVIew.printResultOfPlayer(resultOfPlayers, InputView.askingWantPlayerName());
+        ResultVIew.printResultOfPlayer(resultOfPlayers, InputView.askingWantPlayerName());
     }
 }
