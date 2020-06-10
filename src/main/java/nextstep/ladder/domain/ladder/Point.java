@@ -10,10 +10,6 @@ public class Point {
     private final int index;
     private final Direction direction;
 
-    public Point(boolean currentStatus) {
-        this(0, new Direction(currentStatus, false));
-    }
-
     public Point(int index, Direction direction) {
         this.index = index;
         this.direction = direction;

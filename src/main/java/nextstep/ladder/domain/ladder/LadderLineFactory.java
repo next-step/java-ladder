@@ -15,20 +15,18 @@ public class LadderLineFactory {
 
     private static List<Point> makeLine(int countOfPerson, PointAddStrategy pointAddStrategy) {
         List<Point> values = new ArrayList<>();
-        values.add(new Point(0,
-                new Direction(false, pointAddStrategy.confirmPointLocation(true))));
+        values.add(Point.first(pointAddStrategy));
 
         if (countOfPerson == MIN_COUNT_OF_PERSON) {
             return values;
         }
 
-        for (int i = 1; i < countOfPerson; i++) {
-            // TODO: Point 객체 기능 구현 완료 후 다시 돌아올 것
-            values.add(new Point(i, new Direction(
-                    pointAddStrategy.confirmPointLocation(!values.get(values.size() - 1).getCurrentStatus()),
-                    pointAddStrategy.confirmPointLocation(!values.get(values.size() - 1).getCurrentStatus())
-            )));
+        for (int i = 1; i < countOfPerson - 1; i++) {
+            values.add(values.get(values.size() - 1).next(pointAddStrategy));
         }
+
+        values.add(values.get(values.size() - 1).last());
+
         return values;
     }
 

@@ -219,6 +219,7 @@
     - [X] 현재 Point를 기반으로 다음 Point를 계산해서 반환할 수 있다.
     - [X] 첫번째 Point를 고정적으로 생성할 수 있다.
     - [X] 마지막 Point를 고정적으로 생성할 수 있다.
+    - [X] 필요없어진 Point의 기존 생성자 제거
     - [ ] 어느 방향으로 움직일지는 Direction과 HorizontalMoveStrategy를 결합해서 결정한다.
 - [ ] 힌트 참고해서 Direction 객체 테스트 케이스 추가 및 리팩토링 진행
     - [X] 현재 위치와 오른쪽 위치가 모두 true인 방향 생성 시 예외 발생
@@ -226,4 +227,4 @@
         - [X] 현재는 PointAddStrategy 사용하지만, 리팩토링 완료 후에는 NextDirectionStrategy로 이름 변경
             - Point에서 추가할 때 정책을 타고 내려와서 같이 사용하기 때문에 그냥 현재 이름 유지
 - [ ] LadderLineFactory
-    - [ ] 변경된 Point 생성자에 맞게 생성 로직 변경
+    - [X] 변경된 Point 생성자에 맞게 생성 로직 변경
