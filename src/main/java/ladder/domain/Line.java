@@ -1,33 +1,26 @@
 package ladder.domain;
 
-import ladder.utils.GenerateRandomBoolean;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
-    private final int countOfPerson;
+    private final List<Boolean> points;
 
-    public Line(final int countOfPerson) {
-        this.countOfPerson = countOfPerson;
+    public Line(final List<Boolean> points) {
+        this.points = points;
     }
 
-    private boolean isCreate() {
-        return GenerateRandomBoolean.isMove();
-    }
-
-    public void createLine(final boolean presentHasLine, final int nextPosition) {
-        if (nextPosition > countOfPerson) {
-            return;
+    public int move(int location) {
+        int next = location;
+        if (location != 0) {
+            next = Direction.goLeft(points.get(location), location);
         }
-
-        points.add(presentHasLine);
-        if (presentHasLine) {
-            createLine(false, nextPosition + 1);
-        } else {
-            createLine(isCreate(), nextPosition + 1);
+        if (next != location) {
+            return next;
         }
+        if (location + 1 < points.size()) {
+            next = Direction.goRight(points.get(location + 1), location);
+        }
+        return next;
     }
 
     public List<Boolean> getPoints() {
