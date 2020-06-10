@@ -31,9 +31,9 @@ class LineTest {
     int cnt = 0;
 
     for (Point point : line.getPoints()) {
-      if (point.isRungCreated()) {
-        cnt++;
-      } else {
+      cnt++;
+
+      if (!point.isRungCreated()) {
         cnt = 0;
       }
 
