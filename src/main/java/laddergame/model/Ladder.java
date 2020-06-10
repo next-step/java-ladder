@@ -1,6 +1,6 @@
 package laddergame.model;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -14,11 +14,8 @@ public class Ladder {
   }
 
   public static Ladder createByHeightAndNamesStrArr(Height height, String[] nameStrArr) {
-    List<Line> lines = new ArrayList<>();
-
-    for (int i = 0; i < height.getValue(); i++) {
-      lines.add(Line.createByCountOfPerson(nameStrArr.length));
-    }
+    List<Line> lines = Collections
+        .nCopies(height.getValue(), Line.createByCountOfPerson(nameStrArr.length));
 
     return new Ladder(lines, Players.createByNameStrArr(nameStrArr));
   }

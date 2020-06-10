@@ -2,6 +2,8 @@ package laddergame.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Line {
 
@@ -22,15 +24,10 @@ public class Line {
    * @return 생성된 라인
    */
   public static Line createByCountOfPerson(int countOfPerson) {
-    List<Point> points = new ArrayList<>();
-
-    points.add(new Point(false));
-
-    for (int i = 1; i < countOfPerson; i++) {
-      points.add(Point.createNonDuplicatedRungWith(points.get(i - 1)));
-    }
-
-    return new Line(points);
+    return new Line(
+        Stream.iterate(new Point(false), Point::createNonDuplicatedRungWith)
+            .limit(countOfPerson)
+            .collect(Collectors.toList()));
   }
 
   public List<Point> getPoints() {
