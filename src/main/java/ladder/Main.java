@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.domain.LadderCreator;
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.ResultGoods;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultVIew;
 
@@ -20,7 +17,11 @@ public class Main {
         LadderCreator ladderCreator = new LadderCreator(peopleNames.size(), ladderHeight);
         Ladder ladder = ladderCreator.createLadder();
 
-        ResultVIew.printLadder(peopleNames, ladder.getLineList());
+        ResultVIew.printLadder(peopleNames, ladder.getLines());
         ResultVIew.printResults(resultGoods.getResults());
+
+        LadderGame ladderGame = new LadderGame(players, resultGoods);
+        List<ResultOfPlayer> resultOfPlayers = ladderGame.gameResult(ladder, peopleNames.size());
+        
     }
 }
