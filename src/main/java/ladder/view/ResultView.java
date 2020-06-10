@@ -1,6 +1,8 @@
 package ladder.view;
 
-import ladder.domain.dto.*;
+import ladder.domain.dto.LadderMatchResult;
+import ladder.domain.dto.LadderShapeResult2;
+import ladder.domain.dto.StairDto2;
 import ladder.domain.player.Player;
 import ladder.domain.prize.Prize;
 

@@ -3,7 +3,10 @@ package ladder.domain.ladder;
 import ladder.domain.ladder.shape.PillarCount;
 import ladder.exception.ErrorMessage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class Stairs {
 

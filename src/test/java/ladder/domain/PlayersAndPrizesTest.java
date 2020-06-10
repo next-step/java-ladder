@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.ladder.shape.Height;
-import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
@@ -56,8 +54,7 @@ public class PlayersAndPrizesTest {
         Prizes prizes = Prizes.of(Arrays.asList("3000", "꽝", "5000"));
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderShapeInfo.valueOf(
-                        players, prizes, Height.of(Height.MIN_HEIGHT)));
+                .isThrownBy(() -> PlayersAndPrizes.valueOf(players, prizes));
     }
 
     @DisplayName("사타리 타기 실행 결과에 따라 Player 에 매칭되는 Prize 를 Map 의 형태로 반환")

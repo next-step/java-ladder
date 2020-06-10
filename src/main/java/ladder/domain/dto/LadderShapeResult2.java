@@ -1,7 +1,6 @@
 package ladder.domain.dto;
 
 import ladder.domain.PlayersAndPrizes;
-import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Ladder2;
 
 import java.util.List;
