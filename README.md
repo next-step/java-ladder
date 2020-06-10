@@ -212,20 +212,23 @@
     - [X] LadderLine으로 이름 변경
     - [X] Line 객체에서 직접 Point를 이동시키도록 개선 (이동 후 해당 point의 현재 위치 반환)
         - [ ] 모든 기능 리팩토링 완료 후 whereToMove 메서드 제거 
-- [ ] 힌트 참고해서 Point 객체 테스트 케이스 추가 및 리팩토링 진행
+- [X] 힌트 참고해서 Point 객체 테스트 케이스 추가 및 리팩토링 진행
     - [X] Point 객체는 현재 index와 direction을 인자로 갖는다.
     - [X] 어느 방향으로 움직일지는 Point가 자체적으로 판단하고 움직인다.
         - [X] HorizontalMoveStrategy는 정책에 따라 움직일 수 있는 정수값을 갖는다.
-            - [ ] 모든 리팩토링이 완료되면 Player를 움직이던 함수형 인터페이스를 제거한다.
+            - [X] 모든 리팩토링이 완료되면 Player를 움직이던 함수형 인터페이스를 제거한다.
+            - 계속 활용하는 방향으로 변경
     - [X] 현재 Point를 기반으로 다음 Point를 계산해서 반환할 수 있다.
     - [X] 첫번째 Point를 고정적으로 생성할 수 있다.
     - [X] 마지막 Point를 고정적으로 생성할 수 있다.
     - [X] 필요없어진 Point의 기존 생성자 제거
     - [X] 어느 방향으로 움직일지는 Direction과 HorizontalMoveStrategy를 결합해서 결정한다.
-- [ ] 힌트 참고해서 Direction 객체 테스트 케이스 추가 및 리팩토링 진행
+- [X] 힌트 참고해서 Direction 객체 테스트 케이스 추가 및 리팩토링 진행
     - [X] 현재 위치와 오른쪽 위치가 모두 true인 방향 생성 시 예외 발생
     - [X] Direction이 현재 상태를 기반으로 다음 Direction을 생성할 수 있어야 함.
         - [X] 현재는 PointAddStrategy 사용하지만, 리팩토링 완료 후에는 NextDirectionStrategy로 이름 변경
             - Point에서 추가할 때 정책을 타고 내려와서 같이 사용하기 때문에 그냥 현재 이름 유지
-- [ ] LadderLineFactory
+- [X] LadderLineFactory
     - [X] 변경된 Point 생성자에 맞게 생성 로직 변경
+- [X] Ladder, LadderLine, Point 등에서 이동 후 이동된 index 반환이 아니라 HorizontalMoveStrategy 재활용하도록 리팩토링
+- [ ] HorizontalMoveStrategy에서 findByDirection만 남기기

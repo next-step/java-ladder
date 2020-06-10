@@ -34,8 +34,8 @@ public class Point {
         return this.direction.getCurrentStatus();
     }
 
-    public int move() {
-        return this.index + HorizontalMoveStrategy.findByDirection(this.direction);
+    public HorizontalMoveStrategy move() {
+        return HorizontalMoveStrategy.findByDirection(this.direction);
     }
 
     @Override

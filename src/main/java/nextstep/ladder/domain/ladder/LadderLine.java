@@ -22,7 +22,7 @@ public class LadderLine {
         return new ArrayList<>(this.points);
     }
 
-    public int move(int pointIndex) {
+    public HorizontalMoveStrategy move(int pointIndex) {
         return this.points.get(pointIndex).move();
     }
 

@@ -35,8 +35,8 @@ public enum HorizontalMoveStrategy {
                 .orElseThrow(() -> new NotExistMoveStrategyException("Such HorizontalMoveStrategy not exist"));
     }
 
-    public static int findByDirection(Direction direction) {
-        return Optional.of(cachedHorizontalMoveStrategies.get(direction).getMoveValue())
+    public static HorizontalMoveStrategy findByDirection(Direction direction) {
+        return Optional.ofNullable(cachedHorizontalMoveStrategies.get(direction))
                 .orElseThrow(() -> new NotExistMoveStrategyException("Such HorizontalMoveStrategy not exist"));
     }
 

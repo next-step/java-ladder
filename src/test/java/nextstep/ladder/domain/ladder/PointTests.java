@@ -64,18 +64,18 @@ class PointTests {
         );
     }
 
-    @DisplayName("정책에 따라 움직인 뒤 현재 위치를 반환한다.")
+    @DisplayName("현재 상황에서 움직일 수 있는 이동 정책을 반환한다.")
     @ParameterizedTest
     @MethodSource("directionAndResult")
-    void moveTest(Direction direction, int resultIndex) {
+    void moveTest(Direction direction, HorizontalMoveStrategy horizontalMoveStrategy) {
         Point point = new Point(2, direction);
-        assertThat(point.move()).isEqualTo(resultIndex);
+        assertThat(point.move()).isEqualTo(horizontalMoveStrategy);
     }
     public static Stream<Arguments> directionAndResult() {
         return Stream.of(
-                Arguments.of(new Direction(true, false), 1),
-                Arguments.of(new Direction(false, false), 2),
-                Arguments.of(new Direction(false, true), 3)
+                Arguments.of(new Direction(true, false), HorizontalMoveStrategy.MOVE_LEFT),
+                Arguments.of(new Direction(false, false), HorizontalMoveStrategy.STAY),
+                Arguments.of(new Direction(false, true), HorizontalMoveStrategy.MOVE_RIGHT)
         );
     }
 }
