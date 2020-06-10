@@ -6,7 +6,7 @@ public class Point {
 
     private final boolean hasLine;
 
-    private Point(boolean hasLine) {
+    public Point(boolean hasLine) {
         this.hasLine = hasLine;
     }
 

@@ -21,9 +21,17 @@ public class Line {
         List<Point> points = new ArrayList<>();
         IntStream.range(0, countOfPerson).forEach(i -> {
             boolean hasPreviousLine = i != 0 && points.get(i - 1).hasLine();
-            points.add(Point.of(hasPreviousLine, lineStrategy));
+            boolean isLastPoint = i == countOfPerson - 1;
+            points.add(getPoint(lineStrategy, hasPreviousLine, isLastPoint));
         });
         return new Line(points);
+    }
+
+    private static Point getPoint(LineStrategy lineStrategy, boolean hasPreviousLine, boolean isLastPoint) {
+        if (isLastPoint) {
+            return new Point(false);
+        }
+        return Point.of(hasPreviousLine, lineStrategy);
     }
 
     public Point get(int index) {
