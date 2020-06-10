@@ -1,37 +1,31 @@
 package ladder.domain.player;
 
+import ladder.domain.prize.Name;
 import ladder.exception.ErrorMessage;
-import ladder.exception.NameLengthOutOfRangeException;
-import ladder.util.StringUtil;
 
 import java.util.Objects;
 
 public class Player {
 
-    private static final int MAX_LENGTH_OF_NAME = 5;
+    private final Name name;
 
-    private final String name;
-
-    private Player(final String name) {
+    private Player(final Name name) {
         verifyName(name);
         this.name = name;
     }
 
     public static Player of(final String name) {
-        return new Player(name);
+        return new Player(Name.of(name));
     }
 
-    private void verifyName(final String name) {
-        if (StringUtil.isEmpty(name)) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
-        }
-        if (name.length() > MAX_LENGTH_OF_NAME) {
-            throw new NameLengthOutOfRangeException(name);
+    private void verifyName(final Name name) {
+        if (Objects.isNull(name)) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
         }
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     @Override
