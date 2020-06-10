@@ -5,19 +5,19 @@ import ladder.exception.ErrorMessage;
 
 import java.util.Objects;
 
-public class LadderShapeInfo2 {
+public class LadderShapeInfo {
 
     private final PlayersAndPrizes playersAndPrizes;
     private final Height height;
 
-    private LadderShapeInfo2(final PlayersAndPrizes playersAndPrizes, final Height height) {
+    private LadderShapeInfo(final PlayersAndPrizes playersAndPrizes, final Height height) {
         validate(playersAndPrizes, height);
         this.playersAndPrizes = playersAndPrizes;
         this.height = height;
     }
 
-    public static LadderShapeInfo2 valueOf(final PlayersAndPrizes playersAndPrizes, final Height height) {
-        return new LadderShapeInfo2(playersAndPrizes, height);
+    public static LadderShapeInfo valueOf(final PlayersAndPrizes playersAndPrizes, final Height height) {
+        return new LadderShapeInfo(playersAndPrizes, height);
     }
 
     private void validate(final PlayersAndPrizes playersAndPrizes, final Height height) {

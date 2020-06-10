@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LadderShapeInfo2Test {
+public class LadderShapeInfoTest {
 
     private PlayersAndPrizes playersAndPrizes;
     private Height height;
@@ -31,7 +31,7 @@ public class LadderShapeInfo2Test {
     @DisplayName("LadderShapeInfo 생성")
     @Test
     void create() {
-        assertThatCode(() -> LadderShapeInfo2.valueOf(playersAndPrizes, height))
+        assertThatCode(() -> LadderShapeInfo.valueOf(playersAndPrizes, height))
                 .doesNotThrowAnyException();
     }
 
@@ -40,7 +40,7 @@ public class LadderShapeInfo2Test {
     @ParameterizedTest
     void heightIsNull(final PlayersAndPrizes playersAndPrizes) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderShapeInfo2.valueOf(playersAndPrizes, height));
+                .isThrownBy(() -> LadderShapeInfo.valueOf(playersAndPrizes, height));
     }
 
     @DisplayName("LadderShapeInfo 생성 실패 : 사다리 높이가 null")
@@ -48,7 +48,7 @@ public class LadderShapeInfo2Test {
     @ParameterizedTest
     void heightIsNull(final Height height) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderShapeInfo2.valueOf(playersAndPrizes, height));
+                .isThrownBy(() -> LadderShapeInfo.valueOf(playersAndPrizes, height));
     }
 
     @DisplayName("LadderShapeInfo 생성 실패 : - 게임 참여자의 수와 게임 실행 결과의 수가 다른 경우")
@@ -58,14 +58,14 @@ public class LadderShapeInfo2Test {
         Prizes prizes = Prizes.of(Arrays.asList("3000", "꽝", "5000"));
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderShapeInfo2.valueOf(
+                .isThrownBy(() -> LadderShapeInfo.valueOf(
                         PlayersAndPrizes.valueOf(players, prizes), height));
     }
 
     @DisplayName("입력한 참여자와 게임 결과를 반환")
     @Test
     void getPlayers() {
-        assertThat(LadderShapeInfo2.valueOf(playersAndPrizes, height)
+        assertThat(LadderShapeInfo.valueOf(playersAndPrizes, height)
                 .getPlayersAndPrizes().getPlayerNames())
                 .isEqualTo(Arrays.asList("pobi", "honux"));
     }
@@ -73,7 +73,7 @@ public class LadderShapeInfo2Test {
     @DisplayName("입력한 참여자와 게임 결과를 반환")
     @Test
     void getPrizes() {
-        assertThat(LadderShapeInfo2.valueOf(playersAndPrizes, height)
+        assertThat(LadderShapeInfo.valueOf(playersAndPrizes, height)
                 .getPlayersAndPrizes().getPrizeNames())
                 .isEqualTo(Arrays.asList("3000", "꽝"));
     }
@@ -81,14 +81,14 @@ public class LadderShapeInfo2Test {
     @DisplayName("입력한 사다리의 높이를 반환")
     @Test
     void getHeight() {
-        assertThat(LadderShapeInfo2.valueOf(playersAndPrizes, height).getHeight())
+        assertThat(LadderShapeInfo.valueOf(playersAndPrizes, height).getHeight())
                 .isEqualTo(height.getValue());
     }
 
     @DisplayName("사다리의 한 행에 있는 기둥의 수를 반환")
     @Test
     void getWidth() {
-        assertThat(LadderShapeInfo2.valueOf(playersAndPrizes, height).getWidth().getValue())
+        assertThat(LadderShapeInfo.valueOf(playersAndPrizes, height).getWidth().getValue())
                 .isEqualTo(playersAndPrizes.getPlayersCount());
     }
 }

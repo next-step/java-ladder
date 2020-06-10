@@ -1,9 +1,9 @@
 package ladder.domain.dto;
 
 import ladder.domain.PlayersAndPrizes;
-import ladder.domain.ladder.Ladder2;
+import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.shape.Height;
-import ladder.domain.ladder.shape.LadderShapeInfo2;
+import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-public class StairDto2Test {
+public class StairDtoTest {
 
     private PlayersAndPrizes singlePlayersAndPrizes;
     private PlayersAndPrizes multiplePlayersAndPrizes;
@@ -43,7 +43,7 @@ public class StairDto2Test {
     @DisplayName("사다리 정보로 각 행의 좌->우로의 계단 라인 정보 리스트 반환")
     @Test
     void create() {
-        assertThatCode(() -> StairDto2.from(Ladder2.of(LadderShapeInfo2.valueOf(multiplePlayersAndPrizes, height))))
+        assertThatCode(() -> StairDto.from(Ladder.of(LadderShapeInfo.valueOf(multiplePlayersAndPrizes, height))))
                 .doesNotThrowAnyException();
     }
 
@@ -51,9 +51,9 @@ public class StairDto2Test {
     @ParameterizedTest
     @MethodSource
     void from(final Height height, final int heightValue) {
-        Ladder2 ladder = Ladder2.of(LadderShapeInfo2.valueOf(multiplePlayersAndPrizes, height));
+        Ladder ladder = Ladder.of(LadderShapeInfo.valueOf(multiplePlayersAndPrizes, height));
 
-        assertThat(StairDto2.from(ladder).size())
+        assertThat(StairDto.from(ladder).size())
                 .isEqualTo(heightValue);
     }
 
@@ -67,9 +67,9 @@ public class StairDto2Test {
     @DisplayName("한 명의 참여자로 게임을 실행하면 모든 높이의 기둥에 존재하는 계단 수는 1개 (StairState 가 empty 인 계단)")
     @Test
     void isSinglePillar() {
-        Ladder2 ladder = Ladder2.of(LadderShapeInfo2.valueOf(singlePlayersAndPrizes, height));
+        Ladder ladder = Ladder.of(LadderShapeInfo.valueOf(singlePlayersAndPrizes, height));
 
-        StairDto2.from(ladder)
+        StairDto.from(ladder)
                 .forEach(stairDto -> assertThat(stairDto.getLines().size())
                         .isEqualTo(1));
     }

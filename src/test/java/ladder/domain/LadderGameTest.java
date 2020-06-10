@@ -2,7 +2,7 @@ package ladder.domain;
 
 import ladder.domain.dto.LadderMatchResult;
 import ladder.domain.ladder.shape.Height;
-import ladder.domain.ladder.shape.LadderShapeInfo2;
+import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
@@ -19,7 +19,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LadderGame2Test {
+public class LadderGameTest {
 
     private PlayersAndPrizes multiplePlayersAndPrizes;
     private PlayersAndPrizes singlePlayersAndPrizes;
@@ -48,7 +48,7 @@ public class LadderGame2Test {
     @DisplayName("LadderGame 생성")
     @Test
     void create() {
-        assertThatCode(() -> LadderGame2.of(LadderShapeInfo2.valueOf(singlePlayersAndPrizes, height)))
+        assertThatCode(() -> LadderGame.of(LadderShapeInfo.valueOf(singlePlayersAndPrizes, height)))
                 .doesNotThrowAnyException();
     }
 
@@ -57,22 +57,22 @@ public class LadderGame2Test {
     @ParameterizedTest
     void playersAndPrizesIsNull(final PlayersAndPrizes playersAndPrizes) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderGame2.of(LadderShapeInfo2.valueOf(playersAndPrizes, minHeight)));
+                .isThrownBy(() -> LadderGame.of(LadderShapeInfo.valueOf(playersAndPrizes, minHeight)));
     }
 
     @DisplayName("LadderGame 생성 실패 : ladderShapeInfo 가 null")
     @NullSource
     @ParameterizedTest
-    void heightIsNull(final LadderShapeInfo2 ladderShapeInfo) {
+    void heightIsNull(final LadderShapeInfo ladderShapeInfo) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> LadderGame2.of(ladderShapeInfo));
+                .isThrownBy(() -> LadderGame.of(ladderShapeInfo));
     }
 
     @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")
     @Test
     void ready() {
-        assertThatCode(() -> LadderGame2.of(
-                LadderShapeInfo2.valueOf(multiplePlayersAndPrizes, height))
+        assertThatCode(() -> LadderGame.of(
+                LadderShapeInfo.valueOf(multiplePlayersAndPrizes, height))
                 .ready())
                 .doesNotThrowAnyException();
     }
@@ -80,8 +80,8 @@ public class LadderGame2Test {
     @DisplayName("게임 참여자가 1명 일 때, LadderGame 실행 가능")
     @Test
     void createWithSinglePlayer() {
-        assertThatCode(() -> LadderGame2.of(
-                LadderShapeInfo2.valueOf(singlePlayersAndPrizes, height))
+        assertThatCode(() -> LadderGame.of(
+                LadderShapeInfo.valueOf(singlePlayersAndPrizes, height))
                 .ready())
                 .doesNotThrowAnyException();
     }
@@ -92,7 +92,7 @@ public class LadderGame2Test {
     @Test
     void playAndReturnPlayerNames() {
         LadderMatchResult ladderMatchResult =
-                LadderGame2.of(LadderShapeInfo2.valueOf(multiplePlayersAndPrizes, height)).play();
+                LadderGame.of(LadderShapeInfo.valueOf(multiplePlayersAndPrizes, height)).play();
 
         assertThat(ladderMatchResult.getPlayers().stream().map(Player::getName))
                 .isEqualTo(multiplePlayersAndPrizes.getPlayerNames());
@@ -103,7 +103,7 @@ public class LadderGame2Test {
     void playWithSinglePlayer() {
         final int singleIndex = 0;
         LadderMatchResult ladderMatchResult =
-                LadderGame2.of(LadderShapeInfo2.valueOf(singlePlayersAndPrizes, height)).play();
+                LadderGame.of(LadderShapeInfo.valueOf(singlePlayersAndPrizes, height)).play();
 
         assertThat(ladderMatchResult.match(singlePlayersAndPrizes.getPlayerNames().get(singleIndex)))
                 .isEqualTo(Prize.of(singlePlayersAndPrizes.getPrizeNames().get(singleIndex)));
