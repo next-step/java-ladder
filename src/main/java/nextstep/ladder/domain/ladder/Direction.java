@@ -18,6 +18,10 @@ public class Direction {
         return this.currentPointStatus;
     }
 
+    public boolean getNextStatus() {
+        return this.nextPointStatus;
+    }
+
     public Direction next(PointAddStrategy pointAddStrategy) {
         boolean nextDirectionCurrentStatus = pointAddStrategy.confirmPointLocation(this.nextPointStatus);
         return new Direction(nextDirectionCurrentStatus, pointAddStrategy.confirmPointLocation(!nextDirectionCurrentStatus));

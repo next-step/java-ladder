@@ -41,6 +41,29 @@ class PointTests {
                 .isEqualTo(new Point(3, new Direction(true, false)));
     }
 
+    @DisplayName("Ladder Line의 마지막 Point를 생성할 수 있다.")
+    @ParameterizedTest
+    @MethodSource("createLastTestCases")
+    void createLastTest(Point beforeLastPoint, Point lastPoint) {
+        assertThat(beforeLastPoint.last()).isEqualTo(lastPoint);
+    }
+    public static Stream<Arguments> createLastTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new Point(3, new Direction(false, false)),
+                        new Point(4, new Direction(false, false))
+                ),
+                Arguments.of(
+                        new Point(2, new Direction(false, true)),
+                        new Point(3, new Direction(true, false))
+                ),
+                Arguments.of(
+                        new Point(0, new Direction(true, false)),
+                        new Point(1, new Direction(false, false))
+                )
+        );
+    }
+
     @DisplayName("정책에 따라 움직인 뒤 현재 위치를 반환한다.")
     @ParameterizedTest
     @MethodSource("directionAndResult")

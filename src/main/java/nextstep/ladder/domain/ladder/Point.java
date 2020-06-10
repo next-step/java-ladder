@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Point {
     private static final int FIRST_POINT_INDEX = 0;
     private static final boolean FIRST_POINT_INIT_STATUS = false;
+    private static final boolean LAST_POINT_NEXT_STATUS = false;
 
     private final int index;
     private final Direction direction;
@@ -27,6 +28,10 @@ public class Point {
 
     public Point next(PointAddStrategy pointAddStrategy) {
         return new Point(this.index + 1, this.direction.next(pointAddStrategy));
+    }
+
+    public Point last() {
+        return new Point(this.index + 1, new Direction(this.direction.getNextStatus(), LAST_POINT_NEXT_STATUS));
     }
 
     public boolean getCurrentStatus() {
