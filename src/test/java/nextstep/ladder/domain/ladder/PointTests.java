@@ -18,6 +18,14 @@ class PointTests {
         assertThat(point).isNotNull();
     }
 
+    @DisplayName("첫번째 Point를 생성할 수 있다.")
+    @Test
+    void createFirst() {
+        PointAddStrategy pointAddStrategy = new SimplePointAddStrategy();
+        Point firstPoint = Point.first(pointAddStrategy);
+        assertThat(firstPoint).isEqualTo(new Point(0, new Direction(false, true)));
+    }
+
     @DisplayName("현재 Point 상태를 기반으로 다음 Point를 생성할 수 있다.")
     @Test
     void createNextText() {
