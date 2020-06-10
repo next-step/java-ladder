@@ -11,7 +11,6 @@ public class LadderGame {
     public static final int SINGLE_PLAYER_STATUS = 1;
 
     private static List<Player> players = new ArrayList<>();
-
     private static Ladders ladders = new Ladders();
 
     public void setPlayerList(String[] inputPlayers) {
@@ -19,13 +18,11 @@ public class LadderGame {
     }
 
     public void setLaddersHeight(int inputLadderHeight) {
-
         List<Ladder> laddersToSet = new ArrayList<>();
 
         if (players.size() == SINGLE_PLAYER_STATUS) {
             laddersToSet.add(new Ladder(inputLadderHeight, false));
         }
-
         if (players.size() > SINGLE_PLAYER_STATUS) {
             laddersToSet.add(new Ladder(inputLadderHeight, true));
             setLddersHeightMorePlayer(inputLadderHeight, laddersToSet);
@@ -44,19 +41,14 @@ public class LadderGame {
         }
 
         laddersToSet.add(new Ladder(inputLadderHeight, false, beforLader));
-
     }
 
     public void outputView() {
-
         // print player
         OutputView.outputPlayer(players);
-
         // print ladder
         OutputView.outputLadder(ladders);
-
     }
-
 
     public List<Player> getPlayerList() {
         return players;

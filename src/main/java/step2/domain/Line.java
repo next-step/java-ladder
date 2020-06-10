@@ -8,7 +8,6 @@ public class Line {
 
     private boolean canStepable;
 
-
     public Line(boolean setAble) {
         this.canStepable = (setAble) && random.nextBoolean();
     }
@@ -18,11 +17,9 @@ public class Line {
     }
 
     public void removeDirection(Pointer pointer) {
-
         if (pointer == Pointer.RIGHT) {
             canStepable = false;
         }
-
     }
 
 }
