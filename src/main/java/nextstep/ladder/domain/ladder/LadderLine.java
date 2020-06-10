@@ -22,6 +22,11 @@ public class LadderLine {
         return new ArrayList<>(this.points);
     }
 
+    public int move(int pointIndex) {
+        return this.points.get(pointIndex).move();
+    }
+
+    // TODO: 리팩토링 완료 후 제거
     public HorizontalMoveStrategy whereToMove(int pointIndex) {
         if (pointIndex == points.size() - 1) {
             return HorizontalMoveStrategy.find(getPointStatus(pointIndex), false);

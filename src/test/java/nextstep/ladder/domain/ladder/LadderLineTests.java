@@ -71,30 +71,17 @@ class LadderLineTests {
     @DisplayName("정상적인 이동테스트")
     @ParameterizedTest
     @MethodSource
-    void normalMoveTest(int countOfPerson, int pointIndex, HorizontalMoveStrategy horizontalMoveStrategy) {
+    void normalMoveTest(int countOfPerson, int beforePointIndex, int afterPointIndex) {
         LadderLine ladderLine = LadderLineFactory.create(countOfPerson, simplePointAddStrategy);
 
-        assertThat(ladderLine.whereToMove(pointIndex)).isEqualTo(horizontalMoveStrategy);
+        assertThat(ladderLine.move(beforePointIndex)).isEqualTo(afterPointIndex);
     }
     public static Stream<Arguments> normalMoveTest() {
         return Stream.of(
-                Arguments.of(3, 1, HorizontalMoveStrategy.MOVE_LEFT),
-                Arguments.of(3, 0, HorizontalMoveStrategy.MOVE_RIGHT)
-        );
-    }
-
-    @DisplayName("라인 가장 끝에서의 이동테스트")
-    @ParameterizedTest
-    @MethodSource
-    void moveAtEndOfLineTest(int countOfPerson, int pointIndex, HorizontalMoveStrategy horizontalMoveStrategy) {
-        LadderLine ladderLine = LadderLineFactory.create(countOfPerson, simplePointAddStrategy);
-
-        assertThat(ladderLine.whereToMove(pointIndex)).isEqualTo(horizontalMoveStrategy);
-    }
-    public static Stream<Arguments> moveAtEndOfLineTest() {
-        return Stream.of(
-                Arguments.of(4, 3, HorizontalMoveStrategy.MOVE_LEFT),
-                Arguments.of(3, 2, HorizontalMoveStrategy.STAY)
+                Arguments.of(3, 1, 0),
+                Arguments.of(3, 0, 1),
+                Arguments.of(3, 2, 2),
+                Arguments.of(4, 3, 2)
         );
     }
 }
