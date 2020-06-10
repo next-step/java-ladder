@@ -208,10 +208,10 @@
 - [X] Domain 패키지를 역할별로 세분화하기
 
 ## Step 4. 사다리 추가 리팩토링
-- [ ] 힌트 참고해서 Line 객체 테스트 케이스 추가 및 리팩토링 진행
+- [X] 힌트 참고해서 Line 객체 테스트 케이스 추가 및 리팩토링 진행
     - [X] LadderLine으로 이름 변경
     - [X] Line 객체에서 직접 Point를 이동시키도록 개선 (이동 후 해당 point의 현재 위치 반환)
-        - [ ] 모든 기능 리팩토링 완료 후 whereToMove 메서드 제거 
+        - [X] 모든 기능 리팩토링 완료 후 whereToMove 메서드 제거 
 - [X] 힌트 참고해서 Point 객체 테스트 케이스 추가 및 리팩토링 진행
     - [X] Point 객체는 현재 index와 direction을 인자로 갖는다.
     - [X] 어느 방향으로 움직일지는 Point가 자체적으로 판단하고 움직인다.
@@ -231,4 +231,4 @@
 - [X] LadderLineFactory
     - [X] 변경된 Point 생성자에 맞게 생성 로직 변경
 - [X] Ladder, LadderLine, Point 등에서 이동 후 이동된 index 반환이 아니라 HorizontalMoveStrategy 재활용하도록 리팩토링
-- [ ] HorizontalMoveStrategy에서 findByDirection만 남기기
+- [X] HorizontalMoveStrategy에서 findByDirection만 남기기

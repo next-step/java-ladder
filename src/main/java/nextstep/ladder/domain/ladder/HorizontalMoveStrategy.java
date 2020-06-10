@@ -28,13 +28,6 @@ public enum HorizontalMoveStrategy {
         this.moveValue = moveValue;
     }
 
-    // TODO: 향후 Direction으로 찾는 find만 남기고 삭제할 것
-    public static HorizontalMoveStrategy find(boolean currentPointStatus, boolean nextPointStatus) {
-        return Optional.ofNullable(cachedHorizontalMoveStrategies.get(
-                new Direction(currentPointStatus, nextPointStatus)))
-                .orElseThrow(() -> new NotExistMoveStrategyException("Such HorizontalMoveStrategy not exist"));
-    }
-
     public static HorizontalMoveStrategy findByDirection(Direction direction) {
         return Optional.ofNullable(cachedHorizontalMoveStrategies.get(direction))
                 .orElseThrow(() -> new NotExistMoveStrategyException("Such HorizontalMoveStrategy not exist"));
