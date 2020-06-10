@@ -1,13 +1,11 @@
 package laddergame.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
 
@@ -15,7 +13,7 @@ class BridgeTest {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void createFirstBridge(boolean isConnected) {
-        Bridge firstBridge = Bridge.createFirstBrige(isConnected);
+        Bridge firstBridge = Bridge.createFirstBridge(isConnected);
 
         assertThat(firstBridge.isConnected()).isEqualTo(isConnected);
     }
@@ -27,7 +25,7 @@ class BridgeTest {
             "true, false, false",
             "true, true, false"})
     void createNextBridge(boolean before, boolean current, boolean afterCreate) {
-        Bridge beforeBridge = Bridge.createFirstBrige(before);
+        Bridge beforeBridge = Bridge.createFirstBridge(before);
 
         Bridge currentBridge = Bridge.createNextBridge(current, beforeBridge);
 

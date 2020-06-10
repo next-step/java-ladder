@@ -16,7 +16,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
         }
         List<Bridge> bridges = new ArrayList<>();
 
-        bridges.add(Bridge.createFirstBrige(RANDOM.nextBoolean()));
+        bridges.add(Bridge.createFirstBridge(RANDOM.nextBoolean()));
 
         for (int beforeIndex = 0; beforeIndex < numberOfPlayer - 2; beforeIndex++) {
             Bridge beforeBridge = bridges.get(beforeIndex);

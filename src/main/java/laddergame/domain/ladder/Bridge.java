@@ -7,7 +7,7 @@ public class Bridge {
         this.bridgeType = BridgeType.findType(isConnected);
     }
 
-    public static Bridge createFirstBrige(boolean isConnected) {
+    public static Bridge createFirstBridge(boolean isConnected) {
         return new Bridge(isConnected);
     }
 
@@ -20,7 +20,7 @@ public class Bridge {
     }
 
     private static boolean isContinuousBridge(boolean isConnected, Bridge beforeBridge) {
-        if (beforeBridge.bridgeType.isConnected() && isConnected) {
+        if (beforeBridge.isConnected() && isConnected) {
             return true;
         }
 
