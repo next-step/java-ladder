@@ -1,6 +1,6 @@
 package ladder.domain.player;
 
-import ladder.domain.prize.Name;
+import ladder.domain.name.Name;
 import ladder.exception.ErrorMessage;
 
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package ladder.domain.prize;
+package ladder.domain.name;
 
 import ladder.exception.ErrorMessage;
 import ladder.exception.NameLengthOutOfRangeException;

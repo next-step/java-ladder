@@ -1,6 +1,6 @@
-package ladder.domain.prize;
+package ladder.domain.name;
 
-import ladder.domain.prize.Name;
+import ladder.domain.name.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
