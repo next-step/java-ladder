@@ -1,33 +1,43 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.exception.InputValueException;
-import nextstep.ladder.util.StringUtils;
+import java.util.Objects;
 
 public class Player {
 
-    private final String name;
+    private final PlayerName name;
+    private final Position position;
 
-    private Player(String name) {
-        validate(name);
-        this.name = name;
+    private Player(String name, int position) {
+        this.name = PlayerName.newInstance(name);
+        this.position = Position.newInstance(position);
     }
 
-    public static Player newInstance(String name) {
-        return new Player(name);
+    public static Player newInstance(String name, int position) {
+        return new Player(name, position);
     }
 
-    private void validate(String name) {
-        if (StringUtils.isBlank(name)) {
-            throw new InputValueException("이름이 존재하지 않습니다.");
-        }
+    public boolean isMatchName(PlayerName playerName) {
+        return this.name.equals(playerName);
+    }
 
-        if (name.length() > 5) {
-            throw new InputValueException("이름은 최대 5글자까지 가능합니다.");
-        }
+    public PlayerName getName() {
+        return this.name;
+    }
+
+    public Position getPosition() {
+        return this.position;
     }
 
     @Override
-    public String toString() {
-        return this.name;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return name.equals(player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

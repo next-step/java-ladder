@@ -1,23 +1,21 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Players {
 
     private final List<Player> players;
 
     private Players(List<Player> players) {
-        validate(players);
         this.players = players;
     }
 
     public static Players newInstance(List<Player> players) {
+        validate(players);
         return new Players(players);
     }
 
-    private void validate(List<Player> players) {
+    private static void validate(List<Player> players) {
         if (players == null) {
             throw new IllegalArgumentException("참여자들이 존재하지 않습니다.");
         }
@@ -29,6 +27,13 @@ public class Players {
         if (players.stream().anyMatch(Objects::isNull)) {
             throw new IllegalArgumentException("존재하지 않는 참여자가 포함되어 있습니다.");
         }
+    }
+
+    public Player findByName(PlayerName playerName) {
+        return this.players.stream()
+                .filter(player -> player.isMatchName(playerName))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("해당 이름의 참여자를 찾을 수 없습니다."));
     }
 
     public List<Player> toList() {

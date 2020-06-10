@@ -16,8 +16,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayersTest {
 
-    private Players players = Players.newInstance(Arrays.asList(
-            Player.newInstance("a"), Player.newInstance("b"), Player.newInstance("c")));
+    private Players players = Players.newInstance(
+            Arrays.asList(
+                    Player.newInstance("a", 0),
+                    Player.newInstance("b", 1),
+                    Player.newInstance("c", 2))
+    );
 
     @DisplayName("사용자 리스트가 존재하지 않으면 생성할 수 없다.")
     @Test
@@ -37,14 +41,14 @@ class PlayersTest {
     static Stream<Arguments> generateInvalidPlayers() {
         return Stream.of(
                 Arguments.of(new ArrayList<Player>()),
-                Arguments.of(Arrays.asList(Player.newInstance("a")))
+                Arguments.of(Arrays.asList(Player.newInstance("a", 0)))
         );
     }
 
     @DisplayName("사용자 리스트가 유효하지 않은 사용자가 있을 경우 생성할 수 없다.")
     @Test
     void canNotCreatePlayersIfPlayersContainsNull() {
-        assertThatThrownBy(() -> Players.newInstance(Arrays.asList(Player.newInstance("a"), null)))
+        assertThatThrownBy(() -> Players.newInstance(Arrays.asList(Player.newInstance("a", 0), null)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -64,5 +68,20 @@ class PlayersTest {
     @Test
     void canToList() {
         assertThat(this.players.toList()).isInstanceOf(List.class);
+    }
+
+    @DisplayName("사용자 이름으로 사용자를 찾을 수 있다.")
+    @ParameterizedTest
+    @MethodSource("generatePlayerName")
+    void canFindByName(PlayerName playerName, Player result) {
+        assertThat(this.players.findByName(playerName)).isEqualTo(result);
+    }
+
+    static Stream<Arguments> generatePlayerName() {
+        return Stream.of(
+                Arguments.of(PlayerName.newInstance("a"), Player.newInstance("a", 0)),
+                Arguments.of(PlayerName.newInstance("b"), Player.newInstance("b", 0)),
+                Arguments.of(PlayerName.newInstance("c"), Player.newInstance("c", 0))
+        );
     }
 }

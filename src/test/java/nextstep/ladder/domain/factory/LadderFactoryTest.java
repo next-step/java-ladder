@@ -14,7 +14,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderFactoryTest {
 
-    private Players players = Players.newInstance(Arrays.asList(Player.newInstance("a"), Player.newInstance("b")));
+    private Players players = Players.newInstance(
+            Arrays.asList(
+                    Player.newInstance("a", 0),
+                    Player.newInstance("b", 1))
+    );
 
     @DisplayName("사용자 목록이 존재하지 않으면 생성할 수 없다.")
     @Test

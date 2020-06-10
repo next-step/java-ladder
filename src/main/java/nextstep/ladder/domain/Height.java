@@ -9,15 +9,15 @@ public class Height {
     private final int height;
 
     private Height(int height) {
-        validate(height);
         this.height = height;
     }
 
     public static Height newInstance(int height) {
+        validate(height);
         return new Height(height);
     }
 
-    private void validate(int height) {
+    private static void validate(int height) {
         if (height < 1) {
             throw new InputValueException("사다리 높이는 0 보다 커야 합니다.");
         }

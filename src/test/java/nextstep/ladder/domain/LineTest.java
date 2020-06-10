@@ -50,4 +50,11 @@ class LineTest {
     void canToList() {
         assertThat(this.line.toList()).isInstanceOf(List.class);
     }
+
+    @DisplayName("이동할 수 있다.")
+    @Test
+    void canMove() {
+        assertThat(this.line.move(Position.newInstance(0))).isEqualTo(Position.newInstance(1));
+        assertThat(this.line.move(Position.newInstance(1))).isEqualTo(Position.newInstance(0));
+    }
 }

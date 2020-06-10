@@ -11,7 +11,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
 
-    private Players players = Players.newInstance(Arrays.asList(Player.newInstance("a"), Player.newInstance("b")));
+    private Players players = Players.newInstance(
+            Arrays.asList(
+                    Player.newInstance("a", 0),
+                    Player.newInstance("b", 1))
+    );
     private Ladder ladder = initialize();
 
     @DisplayName("사용자 목록이 존재하지 않으면 생성할 수 없다.")
@@ -45,6 +49,19 @@ class LadderTest {
     @Test
     void canGetLines() {
         assertThat(this.ladder.getLines()).isInstanceOf(Lines.class);
+    }
+
+    @DisplayName("결과를 생성할 수 있다.")
+    @Test
+    void canCreateResult() {
+        Rewords rewords = Rewords.newInstance(
+                Arrays.asList(
+                        Reword.newInstance("1000"),
+                        Reword.newInstance("꽝")
+                ),
+                2);
+
+        assertThat(this.ladder.run(rewords)).isInstanceOf(Result.class);
     }
 
     Ladder initialize() {

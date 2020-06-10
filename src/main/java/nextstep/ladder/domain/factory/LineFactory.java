@@ -10,8 +10,7 @@ import java.util.List;
 
 public final class LineFactory {
 
-    private LineFactory() {
-    }
+    private LineFactory() { }
 
     public static Line create(int countOfPlayer, PointStrategy pointStrategy) {
         validateCount(countOfPlayer);
