@@ -9,33 +9,39 @@ import java.util.List;
 public class LadderGame {
 
     public static final int SINGLE_PLAYER_STATUS = 1;
-
     private static List<Player> players = new ArrayList<>();
+    private static String[] winningPrize = {};
     private static Ladders ladders = new Ladders();
 
     private LadderGame() {
         // block
     }
 
-    public LadderGame(String[] playerNames, int laddersHeight) {
-        if(playerNames.length == 0) {
+    public LadderGame(String[] playerNames, String[] winningPrize, int laddersHeight) {
+        if (playerNames.length == 0) {
             throw new IllegalArgumentException();
         }
-        if(laddersHeight < SINGLE_PLAYER_STATUS) {
+        if (laddersHeight < SINGLE_PLAYER_STATUS) {
             throw new IllegalArgumentException();
+        }
+        if (playerNames.length != winningPrize.length) {
+            throw new IllegalArgumentException("Unmatched with player and winningPrize count.");
         }
 
         setPlayerList(playerNames);
+        setWinningPrize(winningPrize);
         setLaddersHeight(laddersHeight);
-
     }
 
-    public static LadderGame of(String[] playerNames, int laddersHeight) {
-        return new LadderGame(playerNames, laddersHeight);
+    public static LadderGame of(String[] playerNames, String[] winningPrize, int laddersHeight) {
+        return new LadderGame(playerNames, winningPrize, laddersHeight);
     }
 
     private void setPlayerList(String[] inputPlayers) {
         Arrays.asList(inputPlayers).forEach(x -> players.add(new Player(x)));
+    }
+    private void setWinningPrize(String[] winningPrize) {
+        this.winningPrize = winningPrize;
     }
 
     private void setLaddersHeight(int inputLadderHeight) {
@@ -74,6 +80,10 @@ public class LadderGame {
         OutputView.outputPlayer(players);
         // print ladder
         OutputView.outputLadder(ladders);
+        // print winning Prize
+        OutputView.winningPrize(winningPrize);
+
+
     }
 
     public List<Player> getPlayerList() {

@@ -12,7 +12,7 @@ public class OutputView {
     public static void outputPlayer(List<Player> playerList) {
         StringBuilder stringBuilder = new StringBuilder();
         playerList.forEach(player -> {
-                stringBuilder.append(String.format("%-6s", player.getPlayerName()));
+                    stringBuilder.append(String.format("%-6s", player.getPlayerName()));
                 }
         );
         System.out.println(stringBuilder);
@@ -44,10 +44,17 @@ public class OutputView {
     }
 
     private static Ladder removeSide(int i, Ladder ladder, int lastLadderLocation) {
-        if(i == lastLadderLocation) {
+        if (i == lastLadderLocation) {
             ladder.getLines().get(i).removeDirection(Pointer.RIGHT);
         }
         return ladder;
     }
 
+    public static void winningPrize(String[] winningPrize) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String prize : winningPrize) {
+            stringBuilder.append(String.format("%-6s", prize));
+        }
+        System.out.println(stringBuilder);
+    }
 }
