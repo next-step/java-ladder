@@ -2,7 +2,6 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class Positions {
@@ -11,8 +10,9 @@ public class Positions {
 
     private final List<Position> positions;
 
-    private Positions(final List<Position> positions) {
-        this.positions = positions;
+    private Positions(int maxPosition, DirectionPredicate predicate) {
+        validate(maxPosition);
+        this.positions = createPositions(maxPosition, predicate);
     }
 
     public List<Position> getPositions() {
@@ -20,11 +20,10 @@ public class Positions {
     }
 
     public static Positions newInstance(int maxPosition, DirectionPredicate predicate) {
-        validate(maxPosition);
-        return new Positions(createPositions(maxPosition, predicate));
+        return new Positions(maxPosition, predicate);
     }
 
-    private static List<Position> createPositions(int maxPosition, DirectionPredicate predicate) {
+    private List<Position> createPositions(int maxPosition, DirectionPredicate predicate) {
         List<Position> positions = new ArrayList<>();
         positions.add(new Position(Direction.generate(predicate)));
 
@@ -36,7 +35,7 @@ public class Positions {
         return positions;
     }
 
-    private static void validate(int maxPosition) {
+    private void validate(int maxPosition) {
         if (maxPosition < MINIMUM_POSITION_SIZE) {
             throw new IllegalArgumentException("사다리 위치 리스트의 최소 크기는 " + MINIMUM_POSITION_SIZE + "입니다.");
         }
