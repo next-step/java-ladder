@@ -2,6 +2,8 @@ package laddergame.model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
 
@@ -14,8 +16,9 @@ public class Ladder {
   }
 
   public static Ladder createByHeightAndNamesStrArr(Height height, String[] nameStrArr) {
-    List<Line> lines = Collections
-        .nCopies(height.getValue(), Line.createByCountOfPerson(nameStrArr.length));
+    List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson(nameStrArr.length))
+        .limit(height.getValue()).collect(
+            Collectors.toList());
 
     return new Ladder(lines, Players.createByNameStrArr(nameStrArr));
   }
