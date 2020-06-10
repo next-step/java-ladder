@@ -1,8 +1,6 @@
 package ladder.view;
 
-import ladder.domain.dto.LadderMatchResult;
-import ladder.domain.dto.LadderShapeResult;
-import ladder.domain.dto.StairDto;
+import ladder.domain.dto.*;
 import ladder.domain.player.Player;
 import ladder.domain.prize.Prize;
 
@@ -22,7 +20,7 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printLadderShape(LadderShapeResult result) {
+    public static void printLadderShape(LadderShapeResult2 result) {
         System.out.println();
         System.out.println(RESULT_MESSAGE);
         printNames(result.getPlayerNames());
@@ -35,11 +33,11 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLadderShape(final List<StairDto> stairDtos) {
+    private static void printLadderShape(final List<StairDto2> stairDtos) {
         stairDtos.forEach(ResultView::printStairDto);
     }
 
-    private static void printStairDto(final StairDto stairDto) {
+    private static void printStairDto(final StairDto2 stairDto) {
         System.out.print(EMPTY_STAIR_MARK);
 
         stairDto.getLines()

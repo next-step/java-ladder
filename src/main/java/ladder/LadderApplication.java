@@ -29,11 +29,10 @@ public class LadderApplication {
 //        LadderGame ladderGame = LadderGame.of(ladderShapeInfo);
         LadderGame2 ladderGame = LadderGame2.of(ladderShapeInfo);
 
-        LadderShapeResult ladderShapeResult = ladderGame.ready();
-//        LadderShapeResult2 ladderShapeResult = ladderGame.ready();
+//        LadderShapeResult ladderShapeResult = ladderGame.ready();
+        LadderShapeResult2 ladderShapeResult = ladderGame.ready();
 
         ResultView.printLadderShape(ladderShapeResult);
-//        ResultView.printLadderShape2(ladderShapeResult);
 
         LadderMatchResult ladderMatchResult = ladderGame.play();
         while (true) {
