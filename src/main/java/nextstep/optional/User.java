@@ -16,7 +16,7 @@ public class User {
     }
 
     public Integer getAge() {
-        return age;
+        return Optional.ofNullable(age).orElse(0);
     }
 
     public boolean matchName(String name) {
