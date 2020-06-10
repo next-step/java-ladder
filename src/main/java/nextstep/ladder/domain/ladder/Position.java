@@ -16,6 +16,14 @@ public class Position {
         return direction;
     }
 
+    public static Position createPosition(boolean isLastPosition,
+                                           DirectionPredicate predicate,
+                                           Position prePosition) {
+        if (isLastPosition) {
+            return prePosition.last();
+        }
+        return prePosition.next(predicate);
+    }
 
     public Position next(DirectionPredicate predicate) {
         Direction direction = (this.direction == RIGHT) ? LEFT : generate(predicate);

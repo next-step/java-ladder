@@ -2,6 +2,7 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class Positions {
@@ -29,20 +30,10 @@ public class Positions {
 
         IntStream.range(1, maxPosition)
                 .boxed()
-                .map(index -> createPosition(index, maxPosition - 1, predicate, positions))
+                .map(index -> Position.createPosition(index == maxPosition - 1, predicate, positions.get(index - 1)))
                 .forEach(positions::add);
 
         return positions;
-    }
-
-    private static Position createPosition(Integer index, int lastPosition,
-                                           DirectionPredicate predicate,
-                                           List<Position> positions) {
-        Position prePosition = positions.get(index - 1);
-        if (index == lastPosition) {
-            return prePosition.last();
-        }
-        return prePosition.next(predicate);
     }
 
     private static void validate(int maxPosition) {
