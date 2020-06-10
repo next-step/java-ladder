@@ -35,7 +35,7 @@ public class Stairs {
         }
 
         List<Stair> stairs = new ArrayList<>();
-        int middlePillarCount = pillarCount.getValue() - FIRST_AND_LAST_PILLAR_COUNT;
+        int middlePillarCount = getMiddlePillarCount(pillarCount.getValue());
 
         Stair currentStair = Stair.createOfFirstPillar();
         stairs.add(currentStair);
@@ -46,6 +46,10 @@ public class Stairs {
         stairs.add(currentStair.createOfLastPillar());
 
         return stairs;
+    }
+
+    private static int getMiddlePillarCount(final int pillarCount) {
+        return pillarCount - FIRST_AND_LAST_PILLAR_COUNT;
     }
 
     public List<Stair> getStairs() {
