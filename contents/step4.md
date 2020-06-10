@@ -38,13 +38,14 @@
 
 #### PlayersAndPrizes
 : Players 와 Prizes 를 같이 관리하는 클래스 
-- [ ] Players 가 null 이면 예외를 반환한다.
-- [ ] Prizes 가 null 이면 예외를 반환한다.
-- [ ] 게임 참여자의 수와 게임 실행 결과의 수가 맞지 않으면 예외가 발생한다. 
-- [ ] Players 의 이름을 반환한다.
-- [ ] Prizes 의 이름을 반환한다.
-- [ ] Players 수를 반환할 수 있다. 
-- [ ] Prizes 수를 반환할 수 있다. 
+- [x] Players 가 null 이면 예외를 반환한다.
+- [x] Prizes 가 null 이면 예외를 반환한다.
+- [x] 게임 참여자의 수와 게임 실행 결과의 수가 맞지 않으면 예외가 발생한다. 
+- [x] Players 의 이름을 반환한다.
+- [x] Prizes 의 이름을 반환한다.
+- [x] Players 수를 반환할 수 있다. 
+- [x] Prizes 수를 반환할 수 있다. 
+- [x] 사타리 타기 실행 결과에 해당하는 prizes index 리스트 값으로 Player 에 매칭되는 Prize 를 Map 의 형태로 반환한다.
 
 #### Height
 - [x] 사다리의 높이는 최소 1이상 이어야 한다.
@@ -61,7 +62,8 @@ RowPillars1          1    | Pillar1 - Pillar2 - Pillar3
 RowPillars2          2    | Pillar4 - Pillar5 - Pillar6 
 ```
 
-- [x] 기둥이 하나도 없거나 null 이면 예외를 반환한다.
+- [x] 사다리의 높이가 1보다 작으면 예외를 반환한다. 
+- [x] PlayersAndPrizes 가 null 인 경우 예외를 반환한다.
 - [x] (numOfPlayers * height)개의 기둥으로 사다리 판을 생성한다.
 - [x] 한 명의 사용자가 사다리를 타면 index 0 의 prize 리스트를 반환한다. 
 - [x] 모든 사용자가 사다리를 타고 난 결과에 대한 prize index 리스트를 반환한다.
@@ -136,6 +138,7 @@ RowPillars2          2    | Pillar4 - Pillar5 - Pillar6
 - [x] 참여자의 이름 리스트와 계단 라인 정보, 게임 실행 결과 이름 리스트로 LadderShapeResult 를 생성할 수 있다. 
 - [x] 참여자의 이름을 반환할 수 있다.
 - [x] 실행 결과 이름을 반환할 수 있다.
+- [ ] 사다리 모양을 그리기 위한 계단 라인(한 행) 리스트(높이)를 반환한다.
 
 #### LadderMatchResult
 : 사다리 게임의 게임 결과 출력을 위한 정보
