@@ -1,4 +1,4 @@
-package ladder.domain.player;
+package ladder.domain.prize;
 
 import ladder.exception.ErrorMessage;
 
@@ -6,19 +6,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Players {
+public class Prizes {
 
-    private final List<Player> players;
+    private final List<Prize> prizes;
 
-    private Players(final List<String> names) {
+    private Prizes(final List<String> names) {
         validateNames(names);
-        this.players = names.stream()
-                .map(Player::of)
+        this.prizes = names.stream()
+                .map(Prize::of)
                 .collect(Collectors.toList());
     }
 
-    public static Players of(List<String> names) {
-        return new Players(names);
+    public static Prizes of(List<String> names) {
+        return new Prizes(names);
     }
 
     private void validateNames(final List<String> names) {
@@ -28,16 +28,16 @@ public class Players {
     }
 
     public int count() {
-        return this.players.size();
+        return this.prizes.size();
     }
 
     public List<String> getNames() {
-        return players.stream()
-                .map(Player::getName)
+        return prizes.stream()
+                .map(Prize::getName)
                 .collect(Collectors.toList());
     }
 
-    public Player indexOf(final int index) {
-        return players.get(index);
+    public Prize indexOf(final int index) {
+        return prizes.get(index);
     }
 }

@@ -1,12 +1,12 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.shape;
 
+import ladder.domain.ladder.shape.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
 public class HeightTest {
 
@@ -23,5 +23,12 @@ public class HeightTest {
     void create(final int height) {
         assertThatCode(() -> Height.of(height))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("논리적 동치성 비교")
+    @Test
+    void equals() {
+        assertThat(Height.of(Height.MIN_HEIGHT))
+                .isEqualTo(Height.of(Height.MIN_HEIGHT));
     }
 }

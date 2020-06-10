@@ -2,27 +2,47 @@ package ladder.domain.ladder;
 
 import ladder.domain.ladder.strategy.StairGenerationStrategy;
 
-public class StairState {
+import java.util.function.Function;
 
-    private final boolean existLine;
+public enum StairState {
 
-    private StairState(final boolean existLine) {
-        this.existLine = existLine;
+    EMPTY(position -> position),
+    RIGHT(position -> position + 1),
+    LEFT(position -> position - 1);
+
+    private Function<Integer, Integer> movePosition;
+
+    StairState(final Function<Integer, Integer> movePosition) {
+        this.movePosition = movePosition;
     }
 
     public static StairState ofFirstPillar(final StairGenerationStrategy strategy) {
-        return new StairState(strategy.isGeneratable());
+        return createStair(strategy);
     }
 
-    public StairState ofMiddlePillar(final StairGenerationStrategy strategy) {
-        return new StairState(strategy.isGeneratable());
+    public StairState ofNextPillar(final StairGenerationStrategy strategy) {
+        if (isRightLineExist()) {
+            return LEFT;
+        }
+        return createStair(strategy);
     }
 
-    public StairState ofMiddlePillarWithNoLine() {
-        return new StairState(false);
+    public StairState ofLastPillar() {
+        return ofNextPillar(() -> false);
     }
 
-    public boolean isExistLine() {
-        return existLine;
+    public boolean isRightLineExist() {
+        return this == RIGHT;
+    }
+
+    private static StairState createStair(final StairGenerationStrategy strategy) {
+        if (strategy.generate()) {
+            return RIGHT;
+        }
+        return EMPTY;
+    }
+
+    public int move(final int position) {
+        return movePosition.apply(position);
     }
 }

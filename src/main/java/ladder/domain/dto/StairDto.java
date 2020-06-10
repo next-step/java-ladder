@@ -1,7 +1,7 @@
 package ladder.domain.dto;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Pillar;
+import ladder.domain.ladder.RowPillars;
 import ladder.domain.ladder.Stair;
 import ladder.exception.ErrorMessage;
 
@@ -19,22 +19,22 @@ public class StairDto {
     }
 
     public static List<StairDto> from(final Ladder ladder) {
-        return ladder.getPillars()
+        return ladder.getRowPillars()
                 .stream()
-                .map(Pillar::getStairs)
+                .map(RowPillars::getStairs)
                 .map(StairDto::of)
                 .collect(Collectors.toList());
     }
 
     private static StairDto of(final List<Stair> stairs) {
         return new StairDto(stairs.stream()
-                .map(Stair::isExistLine)
+                .map(Stair::isRightLineExist)
                 .collect(Collectors.toList()));
     }
 
     private void validateLines(final List<Boolean> lines) {
-        if (Objects.isNull(lines) || lines.size() == 0) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NULL_OR_EMPTY);
+        if (Objects.isNull(lines)) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
         }
     }
 

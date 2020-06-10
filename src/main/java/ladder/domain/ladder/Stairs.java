@@ -1,11 +1,13 @@
 package ladder.domain.ladder;
 
-import java.util.ArrayList;
-import java.util.List;
+import ladder.domain.ladder.shape.PillarCount;
+import ladder.exception.ErrorMessage;
+
+import java.util.*;
 
 public class Stairs {
 
-    private static final int EXCEPT_FIRST_AND_LAST_PILLAR_COUNT = 2;
+    private static final int FIRST_AND_LAST_PILLAR_COUNT = 2;
 
     private final List<Stair> stairs;
 
@@ -14,41 +16,48 @@ public class Stairs {
     }
 
     public static Stairs of(final PillarCount pillarCount) {
+        validatePillarCount(pillarCount);
         return new Stairs(createHorizontalStairs(pillarCount));
     }
 
+    private static void validatePillarCount(final PillarCount pillarCount) {
+        if (Objects.isNull(pillarCount)) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
+        }
+    }
+
     private static List<Stair> createHorizontalStairs(final PillarCount pillarCount) {
-        List<Stair> stairs = new ArrayList<>();
-
-        Stair currentStair = createFirst();
-        stairs.add(currentStair);
-        stairs.addAll(createMiddle(currentStair, pillarCount.getValue() - EXCEPT_FIRST_AND_LAST_PILLAR_COUNT));
-        stairs.add(createLast(currentStair));
-
-        return stairs;
-    }
-
-    private static Stair createFirst() {
-        return Stair.createOfFirstPillar();
-    }
-
-    private static List<Stair> createMiddle(final Stair preStair, final int middlePillarCount) {
-        List<Stair> middleStairs = new ArrayList<>();
-        Stair stair = preStair;
-
-        for (int i = 0; i < middlePillarCount; i++) {
-            stair = stair.createOfMiddlePillar();
-            middleStairs.add(stair);
+        if (pillarCount.isMinCount()) {
+            return Collections.singletonList(Stair.of(StairState.EMPTY));
         }
 
-        return middleStairs;
-    }
+        List<Stair> stairs = new ArrayList<>();
+        int middlePillarCount = pillarCount.getValue() - FIRST_AND_LAST_PILLAR_COUNT;
 
-    private static Stair createLast(final Stair stair) {
-        return stair.createOfLastPillar();
+        Stair currentStair = Stair.createOfFirstPillar();
+        stairs.add(currentStair);
+        for (int i = 0; i < middlePillarCount; i++) {
+            currentStair = currentStair.createOfNextPillar();
+            stairs.add(currentStair);
+        }
+        stairs.add(currentStair.createOfLastPillar());
+
+        return stairs;
     }
 
     public List<Stair> getStairs() {
         return stairs;
+    }
+
+    public int getWidth() {
+        return stairs.size();
+    }
+
+    public int move(final int position) {
+        return indexOf(position).move(position);
+    }
+
+    private Stair indexOf(final int index) {
+        return stairs.get(index);
     }
 }
