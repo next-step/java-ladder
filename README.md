@@ -16,3 +16,5 @@
 5. 참가자의 현재 위치를 관리하는 Position
 6. 사다리의 정보를 가지는 Ladder
 7. 사다리 한 라인 Line
+8. 사다리의 한 연결 다리 Bridge
+9. 사다리의 연결 다리들을 생성하는 BridgeGenerator
