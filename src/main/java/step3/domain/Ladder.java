@@ -15,8 +15,13 @@ public class Ladder {
 
     public Ladder(int height, boolean isStepable, Ladder beforeLadder) {
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(isStepable && !beforeLadder.getLines().get(i).isCanStepable()));
+            lines.add(new Line(isSetAble(isStepable, beforeLadder, i)));
         }
+    }
+
+    private boolean isSetAble(boolean isStepable, Ladder beforeLadder, int i) {
+        // Check, step L/R duplicate at same point
+        return isStepable && !beforeLadder.getLines().get(i).isCanStepable();
     }
 
     public List<Line> getLines() {

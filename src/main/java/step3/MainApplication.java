@@ -6,19 +6,14 @@ import step3.view.InputView;
 public class MainApplication {
 
     public static void main(String[] args) {
-
-        LadderGame ladderGame = new LadderGame();
-
         // input player
-        ladderGame.setPlayerList(InputView.inputPlayerName());
-
+        String[] playerNames = InputView.inputPlayerName();
         // ladders setting
-        ladderGame.setLaddersHeight(InputView.inputLadderHeight());
+        int laddersHeight = InputView.inputLadderHeight();
 
+        LadderGame ladderGame = LadderGame.of(playerNames, laddersHeight);
         // draw ladders
         ladderGame.outputView();
-
     }
-
 
 }

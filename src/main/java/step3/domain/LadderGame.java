@@ -13,22 +13,48 @@ public class LadderGame {
     private static List<Player> players = new ArrayList<>();
     private static Ladders ladders = new Ladders();
 
-    public void setPlayerList(String[] inputPlayers) {
+    private LadderGame() {
+        // block
+    }
+
+    public LadderGame(String[] playerNames, int laddersHeight) {
+        if(playerNames.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        if(laddersHeight < SINGLE_PLAYER_STATUS) {
+            throw new IllegalArgumentException();
+        }
+
+        setPlayerList(playerNames);
+        setLaddersHeight(laddersHeight);
+
+    }
+
+    public static LadderGame of(String[] playerNames, int laddersHeight) {
+        return new LadderGame(playerNames, laddersHeight);
+    }
+
+    private void setPlayerList(String[] inputPlayers) {
         Arrays.asList(inputPlayers).forEach(x -> players.add(new Player(x)));
     }
 
-    public void setLaddersHeight(int inputLadderHeight) {
+    private void setLaddersHeight(int inputLadderHeight) {
         List<Ladder> laddersToSet = new ArrayList<>();
 
+        // single play
         if (players.size() == SINGLE_PLAYER_STATUS) {
             laddersToSet.add(new Ladder(inputLadderHeight, false));
+            ladders.setLadderList(laddersToSet);
+            return;
         }
+        // multi players
         if (players.size() > SINGLE_PLAYER_STATUS) {
             laddersToSet.add(new Ladder(inputLadderHeight, true));
             setLddersHeightMorePlayer(inputLadderHeight, laddersToSet);
+            ladders.setLadderList(laddersToSet);
+            return;
         }
 
-        ladders.setLadderList(laddersToSet);
     }
 
     private void setLddersHeightMorePlayer(int inputLadderHeight, List<Ladder> laddersToSet) {
