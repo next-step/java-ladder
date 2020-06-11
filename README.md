@@ -238,7 +238,7 @@
     - [X] Direction을 옆으로 이동하는 과정에서 문제 발생 여부 확인
     - [ ] Direction의 next가 잘못 생성되는 경우 미리 확인할 수 있는 테스트 코드 작성
 - [ ] Ladder에서 불필요한 메서드 제거
-- [ ] HorizontalLocation에서 움직이는 메서드 인자 개선
+- [X] HorizontalLocation에서 움직이는 메서드 인자 개선
 - [ ] 사용하지 않는 메서드 제거
 - [ ] 쓸모없는 getter 제거하고 객체 비교하기
 - [ ] GameResults를 Map으로 개선

@@ -47,8 +47,4 @@ public enum HorizontalMoveStrategy {
     public Direction getDirection() {
         return this.direction;
     }
-
-    public int getMoveValue() {
-        return moveValue;
-    }
 }
