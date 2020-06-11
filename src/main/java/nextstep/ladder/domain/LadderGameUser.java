@@ -31,4 +31,9 @@ public class LadderGameUser {
     public int hashCode() {
         return Objects.hash(userName);
     }
+
+    @Override
+    public String toString() {
+        return userName;
+    }
 }

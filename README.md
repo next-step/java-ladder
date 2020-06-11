@@ -1,6 +1,12 @@
 # Step2 - 사다리 (생성)
 Q. 가로줄은 조건만 맞으면 랜덤으로 생성되는건가요 ,,?
 
+Q. LadderGameUsers 가 오버프로그래밍인 건지? Getter 없는 로직이 생각이안난당.
+Dto 역할만 하는 것 같기도 한다. 
+```java
+List<LadderGameUser> gameUsers = ladderGameUsers.getLadderGameUsers();
+```
+
 
 기능
 [View]

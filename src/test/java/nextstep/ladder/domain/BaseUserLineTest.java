@@ -17,17 +17,17 @@ class BaseUserLineTest {
     void connect() {
         //given
         Set<Point> points = new HashSet<>();
-        points.add(new Point(1));
-        points.add(new Point(2));
-        ConnectPoints connectPoints = new ConnectPoints(points);
+        points.add(Point.of(1));
+        points.add(Point.of(2));
+        ConnectPoints connectPoints = new ConnectPoints(points, 5);
         BaseUserLine userLine = new BaseUserLine(new LadderGameUser("abc"), connectPoints);
 
         //when
         //then
         assertAll(
-                () -> assertThat(userLine.isConnected(new Point(1))).isEqualTo(true),
-                () -> assertThat(userLine.isConnected(new Point(2))).isEqualTo(true),
-                () -> assertThat(userLine.isConnected(new Point(3))).isEqualTo(false)
+                () -> assertThat(userLine.isConnected(Point.of(1))).isEqualTo(true),
+                () -> assertThat(userLine.isConnected(Point.of(2))).isEqualTo(true),
+                () -> assertThat(userLine.isConnected(Point.of(3))).isEqualTo(false)
         );
     }
 }

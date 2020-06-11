@@ -1,17 +1,19 @@
 package nextstep.ladder.domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Point {
+    private static final Map<Integer, Point> CACHE = new HashMap<>();
     private final int position;
 
-    public Point(final int position) {
-        // TODO: 최대높이에 대한 Validation
+    private Point(final int position) {
         this.position = position;
     }
 
-    public int getPosition() {
-        return position;
+    public static Point of(final int position) {
+        return CACHE.computeIfAbsent(position, (p) -> new Point(position));
     }
 
     @Override

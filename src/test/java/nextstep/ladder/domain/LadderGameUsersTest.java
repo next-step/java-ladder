@@ -9,12 +9,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderGameUsersTest {
 
-    @DisplayName("죽복된 유저네임을 입력하면 Exception을 던진다")
+    @DisplayName("중복된 유저네임을 입력하면 Exception을 던진다")
     @Test
     void duplicate() {
         //given
-        LadderGameUser user1 = new LadderGameUser("abc");
-        LadderGameUser user2 = new LadderGameUser("abc");
+        String user1 = "abc";
+        String user2 = "abc";
 
         //when
         //then
