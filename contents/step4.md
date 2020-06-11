@@ -117,6 +117,12 @@ RowPillars2          2    | Pillar4 - Pillar5 - Pillar6
 - [x] 해당 기둥의 계단의 상태에 따라 다음 위치를 반환한다.
 - [x] 논리적 동치성 비교 
 
+#### Position
+: 위치값
+- [x] 0보다 작은 위치면 예외를 반환한다.
+- [x] 위치 정수값을 반환한다.
+- [x] 논리적 동치성 비교
+
 #### StairGenerationStrategy
 : 좌표의 계단을 생성하는 함수형 인터페이스 
 
