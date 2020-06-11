@@ -232,3 +232,12 @@
     - [X] 변경된 Point 생성자에 맞게 생성 로직 변경
 - [X] Ladder, LadderLine, Point 등에서 이동 후 이동된 index 반환이 아니라 HorizontalMoveStrategy 재활용하도록 리팩토링
 - [X] HorizontalMoveStrategy에서 findByDirection만 남기기
+
+### 1차 리뷰 반영
+- [ ] 사다리 게임 제대로 진행되지 않는 현상 해결
+    - [ ] Direction을 옆으로 이동하는 과정에서 문제 발생 여부 확인
+- [ ] Ladder에서 불필요한 메서드 제거
+- [ ] HorizontalLocation에서 움직이는 메서드 인자 개선
+- [ ] 사용하지 않는 메서드 제거
+- [ ] 쓸모없는 getter 제거하고 객체 비교하기
+- [ ] GameResults를 Map으로 개선
