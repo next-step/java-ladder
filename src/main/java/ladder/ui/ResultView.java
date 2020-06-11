@@ -1,6 +1,6 @@
 package ladder.ui;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Lines;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 import ladder.domain.player.LadderPlayer;
@@ -16,11 +16,11 @@ public class ResultView {
     private static final String EMPTY_LINE = "     |";
     private static final String USER_INTERVAL = "%5s ";
 
-    public static void printResult(LadderPlayers ladderPlayers, Ladder ladder) {
+    public static void printResult(LadderPlayers ladderPlayers, Lines lines) {
         System.out.println("실행결과");
 
         printLadderPlayers(ladderPlayers);
-        printLadderLine(ladder);
+        printLadderLine(lines);
     }
 
     private static void printLadderPlayers(LadderPlayers ladderPlayers) {
@@ -30,8 +30,8 @@ public class ResultView {
         System.out.println("");
     }
 
-    private static void printLadderLine(Ladder ladder) {
-        List<Line> lineList = ladder.getLineList();
+    private static void printLadderLine(Lines lines) {
+        List<Line> lineList = lines.getLineList();
         lineList.forEach(ResultView::printLine);
     }
 
@@ -46,7 +46,6 @@ public class ResultView {
     private static String buildLine(List<Point> points) {
         return points.stream()
                 .map(p -> p.isMovableRight() ? LINE : EMPTY_LINE)
-                .limit(points.size() - 1)
                 .collect(joining(""));
     }
 }

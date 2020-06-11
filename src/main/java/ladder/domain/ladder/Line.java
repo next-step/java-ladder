@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.player.LadderPlayers;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,33 +12,36 @@ public class Line {
 
     private List<Point> points = new ArrayList<>();
 
-    private Line (LadderPlayers ladderPlayers) {
-        lineMaker(ladderPlayers);
+    private Line (LineCount lineCount) {
+        makeLine(lineCount);
     }
 
-    public static Line createLine(LadderPlayers ladderPlayers) {
-        return new Line(ladderPlayers);
+    public static Line createLine(LineCount lineCount) {
+        return new Line(lineCount);
     }
 
-    private List<Point> lineMaker(LadderPlayers ladderPlayers) {
-        int countOfPerson = ladderPlayers.getPlayerCount();
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
 
-        Point point = Point.first(isMovable());
+    private void makeLine(LineCount lineCount) {
+        int countOfPerson = lineCount.getLineCount();
+
+        Point point = Point.createFirstPoint(isMovable());
         points.add(point);
 
         int i = 0;
 
-        while (countOfPerson - PERSON_START_END_COUNT > i) {
+        while (getMiddlePerson(countOfPerson) > i) {
             point = point.next(isMovable());
             points.add(point);
             i += 1;
         }
 
         points.add(point.last());
-        return Collections.unmodifiableList(points);
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+    private int getMiddlePerson(int countOfPerson) {
+        return countOfPerson - PERSON_START_END_COUNT;
     }
 }

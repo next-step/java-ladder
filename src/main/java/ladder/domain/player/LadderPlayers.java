@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import ladder.domain.ladder.LineCount;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,9 +17,7 @@ public class LadderPlayers {
 
     public static LadderPlayers participate(String[] playerNames) {
         validatePlayer(playerNames);
-        List<LadderPlayer> ladderPlayers = Arrays.stream(playerNames)
-                                                .map(LadderPlayer::create)
-                                                .collect(Collectors.toList());
+        List<LadderPlayer> ladderPlayers = createLadderPlayers(playerNames);
         return new LadderPlayers(ladderPlayers);
     }
 
@@ -25,8 +25,18 @@ public class LadderPlayers {
         return ladderPlayers.size();
     }
 
+    public LineCount getRequestLineCount() {
+        return LineCount.inputLineCount(ladderPlayers.size());
+    }
+
     public List<LadderPlayer> getLadderPlayers() {
         return Collections.unmodifiableList(ladderPlayers);
+    }
+
+    private static List<LadderPlayer> createLadderPlayers(String[] playerNames) {
+        return Arrays.stream(playerNames)
+                .map(LadderPlayer::create)
+                .collect(Collectors.toList());
     }
 
     private static void validatePlayer(String[] playerNames) {

@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamStudy {
 
@@ -26,11 +27,17 @@ public class StreamStudy {
         String contents = new String(Files.readAllBytes(Paths.get(PATH)), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split(SPLIT_REG));
 
+        /*
+            - 단어의 길이가 12자를 초과하는 단어를 추출한다.
+            - 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 추출한다.
+            - 단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출해야 한다.
+            - 추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
+         */
         words.stream().filter(w -> w.length() > 12)
+                .map(String::toLowerCase)
                 .distinct()
                 .sorted((a, b) -> b.length() - a.length())
                 .limit(100)
-                .map(String::toLowerCase)
                 .forEach(System.out::println);
     }
 

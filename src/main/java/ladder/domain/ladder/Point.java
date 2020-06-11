@@ -11,15 +11,15 @@ public class Point {
         this.right = right;
     }
 
+    public static Point createFirstPoint(boolean right) {
+        return new Point(0, false, right);
+    }
+
     Point next(boolean newRight) {
         if (right) {
             return new Point(position + 1, true, false);
         }
         return new Point(position + 1, false, newRight);
-    }
-
-    static Point first(boolean right) {
-        return new Point(0, false, right);
     }
 
     Point last() {

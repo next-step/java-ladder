@@ -1,5 +1,6 @@
 package ladder.ui;
 
+import ladder.domain.ladder.LadderHeight;
 import ladder.domain.player.LadderPlayers;
 
 import java.util.Scanner;
@@ -15,8 +16,10 @@ public class InputView {
         return LadderPlayers.participate(playerNames.split(SPLITTER));
     }
 
-    public static int inputLadderMaxHeight() {
+    public static LadderHeight inputLadderMaxHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
+        int height = scanner.nextInt();
+        return LadderHeight.inputHeight(height);
+
     }
 }

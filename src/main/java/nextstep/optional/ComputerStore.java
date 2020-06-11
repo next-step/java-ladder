@@ -21,6 +21,6 @@ public class ComputerStore {
     }
 
     public static String getVersionOptional(Computer computer) {
-        return null;
+        return ComputerStore.getVersion(computer);
     }
 }

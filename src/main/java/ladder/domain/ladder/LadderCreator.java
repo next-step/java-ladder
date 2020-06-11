@@ -10,32 +10,25 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class LadderCreator {
-    private Ladder ladder;
+    private Lines lines;
 
-    private LadderCreator(LadderPlayers ladderPlayers, int ladderHeight) {
-        validateHeight(ladderHeight);
-        this.ladder = generateLadder(ladderPlayers, ladderHeight);
+    private LadderCreator(LineCount lineCount, LadderHeight ladderHeight) {
+        this.lines = generateLadder(lineCount, ladderHeight);
     }
 
-    public static LadderCreator create(final LadderPlayers ladderPlayers, final int ladderHeight) {
-        return new LadderCreator(ladderPlayers, ladderHeight);
+    public static LadderCreator create(LineCount lineCount, final LadderHeight ladderHeight) {
+        return new LadderCreator(lineCount, ladderHeight);
     }
 
-    private Ladder generateLadder(LadderPlayers ladderPlayers, int ladderMaxHeight) {
+    private Lines generateLadder(LineCount lineCount, LadderHeight ladderMaxHeight) {
         List<Line> lineList = Stream
-                .generate(() -> Line.createLine(ladderPlayers))
-                .limit(ladderMaxHeight)
+                .generate(() -> Line.createLine(lineCount))
+                .limit(ladderMaxHeight.getHeight())
                 .collect(collectingAndThen(toList(), Collections::unmodifiableList));
-        return Ladder.create(lineList);
+        return Lines.create(lineList);
     }
 
-    private void validateHeight(int ladderHeight) {
-        if (ladderHeight < 1) {
-            throw new IllegalArgumentException("높이는 1보다 작을 수 없습니다.");
-        }
-    }
-
-    public Ladder getLadder() {
-        return ladder;
+    public Lines getLines() {
+        return lines;
     }
 }

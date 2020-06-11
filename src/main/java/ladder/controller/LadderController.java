@@ -1,6 +1,8 @@
 package ladder.controller;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderHeight;
+import ladder.domain.ladder.LineCount;
+import ladder.domain.ladder.Lines;
 import ladder.domain.ladder.LadderCreator;
 import ladder.domain.player.LadderPlayers;
 import ladder.ui.InputView;
@@ -10,11 +12,12 @@ public class LadderController {
 
     public static void main(String[] args) {
         LadderPlayers ladderPlayers = InputView.inputGamerNames();
-        int height = InputView.inputLadderMaxHeight();
+        LadderHeight ladderHeight = InputView.inputLadderMaxHeight();
 
-        LadderCreator ladderCreator = LadderCreator.create(ladderPlayers, height);
-        Ladder ladder = ladderCreator.getLadder();
+        LineCount requestLineCount = ladderPlayers.getRequestLineCount();
+        LadderCreator ladderCreator = LadderCreator.create(requestLineCount, ladderHeight);
+        Lines lines = ladderCreator.getLines();
 
-        ResultView.printResult(ladderPlayers, ladder);
+        ResultView.printResult(ladderPlayers, lines);
     }
 }
