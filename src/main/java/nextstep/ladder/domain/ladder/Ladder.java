@@ -35,9 +35,9 @@ public class Ladder {
     }
 
     public void playGame(Player player) {
-        ladderLines.stream()
-                .map(ladderLine -> ladderLine.move(player.move(HorizontalMoveStrategy.STAY).parseIndexNumber()))
-                .forEach(player::move);
+        ladderLines.forEach(ladderLine ->
+                player.move(ladderLine.move(
+                        player.move(HorizontalMoveStrategy.STAY).parseIndexNumber())));
     }
 
     public void playGameWithAllPlayers(Players players) {
