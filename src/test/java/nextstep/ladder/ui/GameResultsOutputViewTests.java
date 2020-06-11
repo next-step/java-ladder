@@ -1,6 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.gameresult.GameResults;
+import nextstep.ladder.domain.game.GameResults;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.reward.Rewards;
 import org.junit.jupiter.api.BeforeEach;

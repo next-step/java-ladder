@@ -1,7 +1,7 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.game.LadderGame;
-import nextstep.ladder.domain.gameresult.GameResults;
+import nextstep.ladder.domain.game.GameResults;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.PointAddStrategy;
 import nextstep.ladder.domain.ladder.RandomPointAddStrategy;

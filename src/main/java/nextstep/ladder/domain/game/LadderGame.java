@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.game;
 
-import nextstep.ladder.domain.gameresult.GameResults;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.reward.Rewards;

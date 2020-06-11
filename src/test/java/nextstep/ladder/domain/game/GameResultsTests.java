@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.gameresult;
+package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.exceptions.InvalidGameResultParameterException;
 import nextstep.ladder.domain.player.Players;

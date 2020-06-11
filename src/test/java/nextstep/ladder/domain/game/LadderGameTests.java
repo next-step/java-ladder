@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.game;
 
-import nextstep.ladder.domain.gameresult.GameResults;
 import nextstep.ladder.domain.ladder.HorizontalLocation;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.SimplePointAddStrategy;
