@@ -23,8 +23,9 @@ public class Direction {
     }
 
     public Direction next(PointAddStrategy pointAddStrategy) {
-        boolean nextDirectionCurrentStatus = pointAddStrategy.confirmPointLocation(this.nextPointStatus);
-        return new Direction(nextDirectionCurrentStatus, pointAddStrategy.confirmPointLocation(!nextDirectionCurrentStatus));
+        boolean nextDirectionCurrentStatus = this.nextPointStatus;
+        return new Direction(
+                nextDirectionCurrentStatus, pointAddStrategy.confirmPointLocation(!nextDirectionCurrentStatus));
     }
 
     private void validate(boolean currentPointStatus, boolean nextPointStatus) {
