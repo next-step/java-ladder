@@ -53,6 +53,10 @@ public class Players {
                 .orElseThrow(() -> new PlayerNotExistException("No player in that place"));
     }
 
+    public void playLadderGame(Ladder ladder) {
+        this.values.forEach(ladder::playGame);
+    }
+
     private static List<Player> parseToPlayerList(List<String> names) {
         return IntStream.range(0, names.size())
                 .mapToObj(num -> new Player(names.get(num), new HorizontalLocation(num, names.size())))
@@ -87,9 +91,5 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(values);
-    }
-
-    public void playLadderGame(Ladder ladder) {
-        this.values.forEach(ladder::playGame);
     }
 }
