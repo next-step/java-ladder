@@ -14,13 +14,13 @@ public class GameResultsOutputView {
     }
 
     public String parseIndividualResult(String userName) {
-        return RESULT_HEAD_COMMENT + gameResults.findByPlayerName(userName).getRewardName();
+        return RESULT_HEAD_COMMENT + gameResults.findByPlayerName(userName).getName();
     }
 
     public String parseAllResults() {
-        return RESULT_HEAD_COMMENT + this.gameResults.getValues().stream()
-                .map(gameResult -> gameResult.getPlayerName() +
-                        ALL_RESULT_SEPARATOR + gameResult.getRewardName() + System.lineSeparator())
+        return RESULT_HEAD_COMMENT + this.gameResults.getValues().entrySet().stream()
+                .map(gameResult -> gameResult.getKey() +
+                        ALL_RESULT_SEPARATOR + gameResult.getValue().getName() + System.lineSeparator())
                 .collect(Collectors.joining());
     }
 }

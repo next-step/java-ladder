@@ -1,12 +1,7 @@
 package nextstep.ladder.domain.gameresult;
 
 import nextstep.ladder.domain.exceptions.InvalidGameResultParameterException;
-import nextstep.ladder.domain.gameresult.GameResult;
-import nextstep.ladder.domain.gameresult.GameResults;
-import nextstep.ladder.domain.ladder.HorizontalLocation;
-import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
-import nextstep.ladder.domain.reward.Reward;
 import nextstep.ladder.domain.reward.Rewards;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,8 +39,6 @@ class GameResultsTests {
 
         GameResults gameResults = GameResults.create(players, rewards);
 
-        assertThat(gameResults.findByPlayerName("ita")).isEqualTo(new GameResult(
-                new Player("ita", new HorizontalLocation(1, 3)),
-                new Reward("2")));
+        assertThat(gameResults.findByPlayerName("ita").getName()).isEqualTo("2");
     }
 }
