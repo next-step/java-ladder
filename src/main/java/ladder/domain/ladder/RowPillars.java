@@ -24,7 +24,7 @@ public class RowPillars {
         return stairs.getWidth();
     }
 
-    public int move(final int position) {
+    public int nextPosition(final int position) {
         return stairs.move(position);
     }
 }

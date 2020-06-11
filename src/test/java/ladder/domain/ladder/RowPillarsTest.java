@@ -57,9 +57,9 @@ public class RowPillarsTest {
 
         for (int position = 0; position < width; position++) {
             if (stairs.get(position).isRightLineExist()) {
-                assertThat(rowPillars.move(position) == position + 1);
+                assertThat(rowPillars.nextPosition(position) == position + 1);
             } else {
-                assertThat(rowPillars.move(position)).isIn(position, position - 1);
+                assertThat(rowPillars.nextPosition(position)).isIn(position, position - 1);
             }
         }
     }

@@ -50,7 +50,7 @@ public class Ladder {
 
     private int rideOnePlayer(final int playerPosition) {
         return rowPillars.stream()
-                .reduce(playerPosition, (byPosition, rowPillar) -> rowPillar.move(byPosition),
+                .reduce(playerPosition, (byPosition, rowPillar) -> rowPillar.nextPosition(byPosition),
                         (x, y) -> {throw new RuntimeException(ErrorMessage.NOT_ALLOW_REDUCE_IN_PARALLEL_ENV);});
     }
 
