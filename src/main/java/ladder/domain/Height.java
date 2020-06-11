@@ -3,10 +3,18 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Height {
+    private static final int MIN_HEIGHT = 1;
     private final int height;
 
     public Height(int height) {
+        validateLength(height);
         this.height = height;
+    }
+
+    private void validateLength(int height) {
+        if(height < MIN_HEIGHT) {
+            throw new HeightLengthException();
+        }
     }
 
     public int getHeight() {
