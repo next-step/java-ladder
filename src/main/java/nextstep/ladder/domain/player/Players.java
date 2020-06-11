@@ -46,10 +46,6 @@ public class Players {
         return values.get(index).getHorizontalLocation();
     }
 
-    public List<Player> getValues() {
-        return new ArrayList<>(this.values);
-    }
-
     public Player getPlayerOfLocation(int location) {
         return this.values.stream()
                 .filter(player -> player.getPlayerLocationValue() == location)
