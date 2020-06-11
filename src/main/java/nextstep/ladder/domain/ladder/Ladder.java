@@ -34,12 +34,6 @@ public class Ladder {
         return new ArrayList<>(this.ladderLines);
     }
 
-    private static void validateLadderHeight(int ladderHeight) {
-        if (ladderHeight < MIN_HEIGHT) {
-            throw new InvalidLadderHeightException("Ladder height must exceed zero");
-        }
-    }
-
     public void playGame(Player player) {
         ladderLines.stream()
                 .map(ladderLine -> ladderLine.move(player.move(HorizontalMoveStrategy.STAY).parseIndexNumber()))
@@ -48,5 +42,11 @@ public class Ladder {
 
     public void playGameWithAllPlayers(Players players) {
         players.playLadderGame(this);
+    }
+
+    private static void validateLadderHeight(int ladderHeight) {
+        if (ladderHeight < MIN_HEIGHT) {
+            throw new InvalidLadderHeightException("Ladder height must exceed zero");
+        }
     }
 }
