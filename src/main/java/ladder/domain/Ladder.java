@@ -20,12 +20,12 @@ public class Ladder {
                 .collect(Collectors.toList());
         return new Ladder(ladder);
     }
-
+/*
     public List<List<Boolean>> getLadderBluePrint() {
         return lines.stream()
                 .map(Line::getPointPositions)
                 .collect(Collectors.toList());
-    }
+    }*/
 
     public int getLadderHeight() {
         return lines.size();

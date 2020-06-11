@@ -1,22 +1,34 @@
 package ladder.domain;
 
 public class Point {
-    private static final int RANDOM_NUMBER_BOUNDARY = 5;
 
-    private final boolean isExisting;
+    private final int index;
+    private final Direction direction;
 
-    public Point(boolean isExisting) {
-        this.isExisting = isExisting;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point drawPoint(int randomNumber) {
-        if (randomNumber < RANDOM_NUMBER_BOUNDARY) {
-            return new Point(false);
+    public static Point drawFirstPoint(int playerCounts, int index, boolean isDown) {
+        if (playerCounts == 1 || isDown) {
+            return new Point(index, Direction.DOWN);
         }
-        return new Point(true);
+        return new Point(index, Direction.RIGHT);
     }
 
-    public boolean getIsExisting() {
-        return isExisting;
+    public static Point drawPoint(int index, int randomNumber) {
+        return new Point(index, Direction.valueOf(randomNumber));
+    }
+
+    public static Point drawLastPoint(int index, boolean isDown) {
+        if (isDown) {
+            return new Point(index, Direction.DOWN);
+        }
+        return new Point(index, Direction.LEFT);
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 }

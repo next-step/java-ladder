@@ -2,7 +2,6 @@ package ladder;
 
 import ladder.domain.*;
 import ladder.view.InputView;
-import ladder.view.OutputView;
 
 public class Application {
 
@@ -11,8 +10,8 @@ public class Application {
         LadderFactory ladderFactory = new LadderFactory(InputView.inputLadderHeight());
         DrawingLineStrategy drawingLineStrategy = new RandomDrawingLineStrategy();
         Ladder ladder = ladderFactory.buildLadder(playersGroup, drawingLineStrategy);
-
+/*
         OutputView.printPlayerNames(playersGroup);
-        OutputView.printLadder(ladder);
+        OutputView.printLadder(ladder);*/
     }
 }

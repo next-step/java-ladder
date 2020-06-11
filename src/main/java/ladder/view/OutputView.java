@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
 import ladder.domain.PlayersGroup;
 
 import java.util.List;
@@ -38,13 +37,13 @@ public class OutputView {
             stringBuilder.append(ViewMessages.BLANK);
         }
     }
-
+/*
     public static void printLadder(Ladder ladder) {
         List<List<Boolean>> ladderBluePrint = ladder.getLadderBluePrint();
         StringBuilder stringBuilder = new StringBuilder();
         ladderBluePrint.forEach(eachLadderLine -> appendLadderLine(eachLadderLine, stringBuilder));
         System.out.println(stringBuilder.toString());
-    }
+    }*/
 
     private static void appendLadderLine(List<Boolean> ladderLine, StringBuilder stringBuilder) {
         stringBuilder.append(ViewMessages.LINE_PREFIX);

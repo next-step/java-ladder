@@ -1,19 +1,23 @@
 package ladder.domain;
 
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public enum Direction {
     LEFT(index -> index -= 1),
     RIGHT(index -> index += 1),
     DOWN(index -> index);
 
-    private final Function<Integer, Integer> moveIndexByDirection;
+    private final UnaryOperator<Integer> moveIndexByDirection;
 
-    private Direction(Function<Integer, Integer> moveIndexByDirection) {
+    private Direction(UnaryOperator<Integer> moveIndexByDirection) {
         this.moveIndexByDirection = moveIndexByDirection;
     }
 
+    public static Direction valueOf(int index) {
+        return values()[index];
+    }
+
     public int moveIndexByDirection(int index) {
-        return moveIndexByDirection.apply(index);
+        return this.moveIndexByDirection.apply(index);
     }
 }
