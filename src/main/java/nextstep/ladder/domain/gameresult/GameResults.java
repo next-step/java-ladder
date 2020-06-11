@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.gameresult;
 
+import nextstep.ladder.domain.ladder.HorizontalLocation;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.reward.Rewards;
 import nextstep.ladder.domain.exceptions.InvalidGameResultParameterException;
@@ -21,7 +22,9 @@ public class GameResults {
     public static GameResults create(Players players, Rewards rewards) {
         validate(players.size(), rewards.size());
         List<GameResult> gameResultList = IntStream.range(0, players.size())
-                .mapToObj(num -> new GameResult(players.getPlayerOfLocation(num), rewards.getByIndex(num)))
+                .mapToObj(num -> new GameResult(
+                        players.getPlayerOfLocation(new HorizontalLocation(num, players.size())),
+                        rewards.getByIndex(num)))
                 .collect(Collectors.toList());
 
         return new GameResults(gameResultList);

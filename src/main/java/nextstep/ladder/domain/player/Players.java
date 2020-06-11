@@ -46,9 +46,9 @@ public class Players {
         return values.get(index).getHorizontalLocation();
     }
 
-    public Player getPlayerOfLocation(int location) {
+    public Player getPlayerOfLocation(HorizontalLocation horizontalLocation) {
         return this.values.stream()
-                .filter(player -> player.getPlayerLocationValue() == location)
+                .filter(player -> player.isSameLocation(horizontalLocation))
                 .findFirst()
                 .orElseThrow(() -> new PlayerNotExistException("No player in that place"));
     }

@@ -27,8 +27,8 @@ public class Player {
         return this.name;
     }
 
-    public int getPlayerLocationValue() {
-        return this.horizontalLocation.parseIndexNumber();
+    public boolean isSameLocation(HorizontalLocation horizontalLocation) {
+        return this.horizontalLocation.equals(horizontalLocation);
     }
 
     public HorizontalLocation move(HorizontalMoveStrategy horizontalMoveStrategy) {
