@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.PlayersGroup;
+import ladder.domain.RandomDrawingLineStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +27,7 @@ public class LadderTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 5, 10})
     public void makeLadderObject(int ladderHeight) {
-        Ladder ladder = Ladder.buildLadder(playersGroup, ladderHeight);
+        Ladder ladder = Ladder.buildLadder(playersGroup, ladderHeight, new RandomDrawingLineStrategy());
 
         assertThat(ladder.getLadderHeight())
                 .isEqualTo(ladderHeight);
