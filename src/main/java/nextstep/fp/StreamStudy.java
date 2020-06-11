@@ -49,6 +49,6 @@ public class StreamStudy {
         return numbers.stream()
                 .filter(number -> number > 3)
                 .map(number -> number * 2)
-                .reduce(0, (number1, number2) -> number1 + number2);
+                .reduce(0, Integer::sum);
     }
 }
