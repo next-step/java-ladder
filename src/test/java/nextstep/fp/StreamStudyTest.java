@@ -1,12 +1,12 @@
 package nextstep.fp;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class StreamStudyTest {
     private List<Integer> numbers;
@@ -24,7 +24,7 @@ public class StreamStudyTest {
 
     @Test
     public void printLongestWordTop100() throws Exception {
-        StreamStudy.printLongestWordTop100();
+        StreamStudy.printLongestWordTop100().forEach(System.out::println);
     }
 
     @Test
