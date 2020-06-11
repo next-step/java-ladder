@@ -36,4 +36,16 @@ class DirectionTests {
         Direction twoNextDirection = nextDirection.next(pointAddStrategy);
         assertThat(twoNextDirection).isEqualTo(new Direction(false, true));
     }
+
+    @DisplayName("Direction 정책에 관계 없이 다음 Direction과 현재 Direction의 상태는 생성 즉시 고정된다.")
+    @Test
+    void directionCorrectTest() {
+        PointAddStrategy randomStrategy = new RandomPointAddStrategy();
+        Direction firstDirection = new Direction(false, true);
+        Direction secondDirection = firstDirection.next(randomStrategy);
+
+        for (int i = 0; i < 100; i++) {
+            assertThat(firstDirection.getNextStatus()).isEqualTo(secondDirection.getCurrentStatus());
+        }
+    }
 }
