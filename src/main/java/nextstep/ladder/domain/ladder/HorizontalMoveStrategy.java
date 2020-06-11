@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.exceptions.NotExistMoveStrategyException;
 
 import java.util.Collections;
@@ -11,11 +10,11 @@ import java.util.stream.Stream;
 
 public enum HorizontalMoveStrategy {
     MOVE_LEFT(new Direction(true, false),
-            (Player player) -> player.getHorizontalLocation().moveLeft(), -1),
+            HorizontalLocation::moveLeft, -1),
     MOVE_RIGHT(new Direction(false, true),
-            (Player player) -> player.getHorizontalLocation().moveRight(), 1),
+            HorizontalLocation::moveRight, 1),
     STAY(new Direction(false, false),
-            Player::getHorizontalLocation, 0);
+            (HorizontalLocation horizontalLocation) -> horizontalLocation, 0);
 
     private final Direction direction;
     private HorizontalMove horizontalMove;
@@ -33,8 +32,8 @@ public enum HorizontalMoveStrategy {
                 .orElseThrow(() -> new NotExistMoveStrategyException("Such HorizontalMoveStrategy not exist"));
     }
 
-    public HorizontalLocation move(Player player) {
-        return horizontalMove.move(player);
+    public HorizontalLocation move(HorizontalLocation horizontalLocation) {
+        return horizontalMove.move(horizontalLocation);
     }
 
     private static Map<Direction, HorizontalMoveStrategy> createCache() {

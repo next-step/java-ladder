@@ -32,7 +32,7 @@ public class Player {
     }
 
     public HorizontalLocation move(HorizontalMoveStrategy horizontalMoveStrategy) {
-        this.horizontalLocation = horizontalMoveStrategy.move(this);
+        this.horizontalLocation = horizontalMoveStrategy.move(this.horizontalLocation);
         return this.horizontalLocation;
     }
 
