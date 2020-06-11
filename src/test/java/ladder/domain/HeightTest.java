@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-@DisplayName("Height 클래스 추가")
+@DisplayName("Height 클래스 테스트")
 class HeightTest {
 
     @DisplayName("1 이상의 Height 객체를 생성할 수 있다.")
