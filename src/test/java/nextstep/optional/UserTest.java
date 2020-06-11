@@ -2,6 +2,8 @@ package nextstep.optional;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static nextstep.optional.User.ageIsInRange1;
 import static nextstep.optional.User.ageIsInRange2;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,10 +20,10 @@ public class UserTest {
 
     @Test
     public void whenFiltersWithOptional_thenCorrect() {
-        assertThat(ageIsInRange2(new User("crong", 35))).isTrue();
-        assertThat(ageIsInRange2(new User("crong", 48))).isFalse();
-        assertThat(ageIsInRange2(new User("crong", null))).isFalse();
-        assertThat(ageIsInRange2(new User("crong", 29))).isFalse();
-        assertThat(ageIsInRange2(null)).isFalse();
+        assertThat(ageIsInRange2(Optional.of(new User("crong", 35)))).isTrue();
+        assertThat(ageIsInRange2(Optional.of(new User("crong", 48)))).isFalse();
+        assertThat(ageIsInRange2(Optional.of(new User("crong", null)))).isFalse();
+        assertThat(ageIsInRange2(Optional.of(new User("crong", 29)))).isFalse();
+        assertThat(ageIsInRange2(Optional.ofNullable(null))).isFalse();
     }
 }

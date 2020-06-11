@@ -1,5 +1,7 @@
 package nextstep.optional;
 
+import java.util.Optional;
+
 public class User {
     private String name;
     private Integer age;
@@ -32,8 +34,10 @@ public class User {
         return isInRange;
     }
 
-    public static boolean ageIsInRange2(User user) {
-        return false;
+    public static boolean ageIsInRange2(Optional<User> user) {
+        return user.filter(u -> u.getAge() != null)
+                        .filter(u -> u.getAge() >= 30 && u.getAge() <= 45)
+                        .isPresent();
     }
 
     @Override
