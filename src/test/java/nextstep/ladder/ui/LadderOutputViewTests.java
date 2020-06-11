@@ -1,6 +1,7 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.ladder.*;
+import nextstep.ladder.domain.player.Players;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,10 +36,10 @@ class LadderOutputViewTests {
     void drawLineTest() {
         LadderOutputView ladderOutputView = new LadderOutputView(players, ladder);
 
-        Line line = LineFactory.create(players.size(), simplePointAddStrategy);
-        assertThat(line.size()).isEqualTo(2);
+        LadderLine ladderLine = LadderLineFactory.create(players.size(), simplePointAddStrategy);
+        assertThat(ladderLine.size()).isEqualTo(2);
 
-        String drawResult = ladderOutputView.parseLine(line);
+        String drawResult = ladderOutputView.parseLine(ladderLine);
 
         assertThat(drawResult).isEqualTo("     |-----|");
     }

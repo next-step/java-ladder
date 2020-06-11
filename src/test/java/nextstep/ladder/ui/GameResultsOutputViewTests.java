@@ -1,8 +1,8 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.GameResults;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Rewards;
+import nextstep.ladder.domain.game.GameResults;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.reward.Rewards;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,8 @@ class GameResultsOutputViewTests {
     void getAllResultsTest() {
         GameResultsOutputView gameResultsOutputView = new GameResultsOutputView(gameResults);
 
-        assertThat(gameResultsOutputView.parseAllResults()).isEqualTo(System.lineSeparator() + "실행 결과"
-                + System.lineSeparator() + "poppo : 1\n" + "ita : 2\n" + "saul : 3\n");
+        assertThat(gameResultsOutputView.parseAllResults()).contains("saul : 3");
+        assertThat(gameResultsOutputView.parseAllResults()).contains("poppo : 1");
+        assertThat(gameResultsOutputView.parseAllResults()).contains("ita : 2");
     }
 }

@@ -1,15 +1,18 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.application.LadderGameService;
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.game.LadderGame;
+import nextstep.ladder.domain.game.GameResults;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.PointAddStrategy;
+import nextstep.ladder.domain.ladder.RandomPointAddStrategy;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.reward.Rewards;
 
 import java.util.Scanner;
 
 public class UiController {
-    private static final Scanner GAME_INIT_SCANNER = new Scanner(System.in);
-    private static final Scanner GAME_RESULT_SCANNER = new Scanner(System.in);
+    private static final Scanner LADDER_GAME_SCANNER = new Scanner(System.in);
     private static final PointAddStrategy RANDOM_POINT_ADD_STRATEGY = new RandomPointAddStrategy();
-    private static final LadderGameService ladderGameService = new LadderGameService();
 
     private static PlayerInputView playerInputView;
     private static RewardInputView rewardInputView;
@@ -28,17 +31,17 @@ public class UiController {
         Rewards rewards = rewardInputView.getRewards();
         initGameStatusOutput(ladder, players, rewards);
 
-        GameResults gameResults = ladderGameService.playGame(players, ladder, rewards);
-        initGameResult(gameResults);
+        LadderGame ladderGame = LadderGame.readyLadderGame(players, ladder);
+        initGameResult(ladderGame.playGame(rewards));
 
         printGameStatus(players);
-        gameResultsInputView.startPrintGameResult(GAME_RESULT_SCANNER);
+        gameResultsInputView.startPrintGameResult(LADDER_GAME_SCANNER);
     }
 
     private static void initLadderGame() {
-        playerInputView = PlayerInputView.createByUserInput(GAME_INIT_SCANNER);
-        rewardInputView = RewardInputView.createByUserInput(GAME_INIT_SCANNER);
-        ladderHeightInputView = LadderHeightInputView.createByUserInput(GAME_INIT_SCANNER);
+        playerInputView = PlayerInputView.createByUserInput(LADDER_GAME_SCANNER);
+        rewardInputView = RewardInputView.createByUserInput(LADDER_GAME_SCANNER);
+        ladderHeightInputView = LadderHeightInputView.createByUserInput(LADDER_GAME_SCANNER);
     }
 
     private static void initGameStatusOutput(Ladder ladder, Players players, Rewards rewards) {

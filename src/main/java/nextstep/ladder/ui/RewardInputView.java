@@ -1,6 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Rewards;
+import nextstep.ladder.domain.reward.Rewards;
 
 import java.util.Scanner;
 

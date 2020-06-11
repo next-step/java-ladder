@@ -1,6 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.player.Players;
 
 import java.util.Arrays;
 import java.util.List;

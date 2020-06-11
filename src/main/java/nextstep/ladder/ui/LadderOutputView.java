@@ -1,9 +1,9 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.LadderLine;
+import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.domain.ladder.Point;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -28,21 +28,21 @@ public class LadderOutputView {
     }
 
     public String parseLadder() {
-        String ladderValue = this.ladder.getLines().stream()
+        String ladderValue = this.ladder.getLadderLines().stream()
                 .map(line -> parseLine(line) + System.lineSeparator())
                 .collect(Collectors.joining());
         return ladderValue.substring(0, ladderValue.length() - 1);
     }
 
-    String parseLine(Line line) {
-        return line.getPointsValue().stream()
+    String parseLine(LadderLine ladderLine) {
+        return ladderLine.getPoints().stream()
                 .map(this::parsePoint)
                 .collect(Collectors.joining());
     }
 
     private String parsePoint(Point isDraw) {
         String pointResult = IntStream.range(0, players.getMaxNameLength())
-                .mapToObj(num -> (isDraw.getValue()) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
+                .mapToObj(num -> (isDraw.getCurrentStatus()) ? LADDER_HORIZONTAL_LINE : EMPTY_SPACE)
                 .collect(Collectors.joining());
         return pointResult + LADDER_POINT_SEPARATOR;
     }

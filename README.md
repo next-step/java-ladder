@@ -196,3 +196,49 @@
 - [X] UiController의 메서드화를 통해 적당한 책임 분리하기
 - [X] UiController에서 Scanner 꼭 여러개 사용해야 되는지 다시 확인
 - [ ] Point의 boolean 값들을 상수화 시켜서 관리하기
+
+### 2차 리뷰 Todo List
+- [X] HorizontalMoveStrategy에서 각 객체별 Player 움직임에 대해 명시하도록 변경
+- [X] Line 객체 메서드의 이름을 책임에 맞도록 변경
+- [X] LadderHeightInputView의 상수 가독성 높이기
+- [X] UIController의 Scanner 중복 해결하기
+- [X] LineTests 테스트 좀 더 간결하기 바꾸기
+- [X] LadderGameService 객체에 대해 다시 고려해보기
+- [X] Ladder 내 게임 진행 메서드 개선하기
+- [X] Domain 패키지를 역할별로 세분화하기
+
+## Step 4. 사다리 추가 리팩토링
+- [X] 힌트 참고해서 Line 객체 테스트 케이스 추가 및 리팩토링 진행
+    - [X] LadderLine으로 이름 변경
+    - [X] Line 객체에서 직접 Point를 이동시키도록 개선 (이동 후 해당 point의 현재 위치 반환)
+        - [X] 모든 기능 리팩토링 완료 후 whereToMove 메서드 제거 
+- [X] 힌트 참고해서 Point 객체 테스트 케이스 추가 및 리팩토링 진행
+    - [X] Point 객체는 현재 index와 direction을 인자로 갖는다.
+    - [X] 어느 방향으로 움직일지는 Point가 자체적으로 판단하고 움직인다.
+        - [X] HorizontalMoveStrategy는 정책에 따라 움직일 수 있는 정수값을 갖는다.
+            - [X] 모든 리팩토링이 완료되면 Player를 움직이던 함수형 인터페이스를 제거한다.
+            - 계속 활용하는 방향으로 변경
+    - [X] 현재 Point를 기반으로 다음 Point를 계산해서 반환할 수 있다.
+    - [X] 첫번째 Point를 고정적으로 생성할 수 있다.
+    - [X] 마지막 Point를 고정적으로 생성할 수 있다.
+    - [X] 필요없어진 Point의 기존 생성자 제거
+    - [X] 어느 방향으로 움직일지는 Direction과 HorizontalMoveStrategy를 결합해서 결정한다.
+- [X] 힌트 참고해서 Direction 객체 테스트 케이스 추가 및 리팩토링 진행
+    - [X] 현재 위치와 오른쪽 위치가 모두 true인 방향 생성 시 예외 발생
+    - [X] Direction이 현재 상태를 기반으로 다음 Direction을 생성할 수 있어야 함.
+        - [X] 현재는 PointAddStrategy 사용하지만, 리팩토링 완료 후에는 NextDirectionStrategy로 이름 변경
+            - Point에서 추가할 때 정책을 타고 내려와서 같이 사용하기 때문에 그냥 현재 이름 유지
+- [X] LadderLineFactory
+    - [X] 변경된 Point 생성자에 맞게 생성 로직 변경
+- [X] Ladder, LadderLine, Point 등에서 이동 후 이동된 index 반환이 아니라 HorizontalMoveStrategy 재활용하도록 리팩토링
+- [X] HorizontalMoveStrategy에서 findByDirection만 남기기
+
+### 1차 리뷰 반영
+- [X] 사다리 게임 제대로 진행되지 않는 현상 해결
+    - [X] Direction을 옆으로 이동하는 과정에서 문제 발생 여부 확인
+    - [X] Direction의 next가 잘못 생성되는 경우 미리 확인할 수 있는 테스트 코드 작성
+- [X] Ladder에서 불필요한 메서드 제거
+- [X] HorizontalLocation에서 움직이는 메서드 인자 개선
+- [X] 사용하지 않는 메서드 제거
+- [X] 쓸모없는 getter 제거하고 객체 비교하기
+- [X] GameResults를 Map으로 개선
