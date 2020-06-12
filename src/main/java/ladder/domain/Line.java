@@ -29,4 +29,9 @@ public class Line {
                 .map(Point::getDirection)
                 .collect(Collectors.toList());
     }
+
+    public int movePointOnLine(int index) {
+        Point point = points.get(index);
+        return point.moveByDirection();
+    }
 }

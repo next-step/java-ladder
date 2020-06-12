@@ -19,6 +19,13 @@ public class Point {
         return new Point(index, Direction.RIGHT);
     }
 
+    public static Point drawMiddlePoint(int index, boolean isDown) {
+        if (isDown) {
+            return new Point(index, Direction.DOWN);
+        }
+        return new Point(index, Direction.RIGHT);
+    }
+
     public static Point drawPoint(int index, int randomNumber) {
         return new Point(index, Direction.valueOf(randomNumber));
     }

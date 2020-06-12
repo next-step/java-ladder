@@ -1,13 +1,12 @@
 package ladder;
 
-import ladder.domain.Direction;
-import ladder.domain.LadderBuildingException;
-import ladder.domain.Line;
-import ladder.domain.RandomDrawingLineStrategy;
+import ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -43,5 +42,23 @@ public class LineTest {
 
         assertThat(pointDirections.size()).isEqualTo(playerCounts);
     }
-}
 
+    @DisplayName("Line 객체의 한 Point의 인덱스 좌표를 받으면 move시킨 뒤 인덱스 반환")
+    @Test
+    public void movePointOnLine() {
+        DrawingLineStrategy drawingLineStrategy = new DrawingLineStrategy() {
+            @Override
+            public List<Point> drawLine(int playerCounts) {
+                List<Point> points = Arrays.asList(new Point(0, Direction.RIGHT),
+                        new Point(1, Direction.LEFT),
+                        new Point(2, Direction.DOWN));
+                return points;
+            }
+        };
+
+        Line line = Line.drawLine(3, drawingLineStrategy);
+
+        assertThat(line.movePointOnLine(0)).isEqualTo(1);
+        assertThat(line.movePointOnLine(1)).isEqualTo(0);
+    }
+}

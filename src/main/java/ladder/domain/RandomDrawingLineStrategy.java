@@ -20,6 +20,7 @@ public class RandomDrawingLineStrategy implements DrawingLineStrategy {
         return points;
     }
 
+    // |-----|     |     |
     private Point drawPoint(int index, int playerCounts, List<Point> points) {
         if (points.isEmpty()) {
             return Point.drawFirstPoint(playerCounts, index, generateRandomBoolean());
@@ -27,11 +28,20 @@ public class RandomDrawingLineStrategy implements DrawingLineStrategy {
         if (isLastPointConnected(points)) {
             return new Point(index, Direction.DOWN);
         }
+        if (isLastPointLeft(points)) {
+            return Point.drawMiddlePoint(index, generateRandomBoolean());
+        }
         if (points.size() == playerCounts - 1) {
             return Point.drawLastPoint(index, generateRandomBoolean());
         }
         int randomNumber = RANDOM.nextInt(3);
         return Point.drawPoint(index, randomNumber);
+    }
+
+    private boolean isLastPointLeft(List<Point> points) {
+        int lastPointIndex = points.size() - INDEX_CONSTANT;
+        Point lastPoint = points.get(lastPointIndex);
+        return lastPoint.getDirection() == Direction.LEFT;
     }
 
     private boolean isLastPointConnected(List<Point> points) {

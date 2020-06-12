@@ -39,6 +39,7 @@
     * 사다리의 수평 라인 한 줄을 의미하는 객체
     * 수평 라인이 존재하는 부분과 아닌 부분을 List<Point>으로 가짐
     * 생성된 Line을 구성하는 각 Point들의 정보를 담은 List<Boolean> 반환
+    * parameter로 한 라인의 특정 point의 index를 받으면 해당 point를 검색해 move시킨 좌표를 반환.
     
  * DrawingLineStrategy
     * 선을 그리는 전략 인터페이스
