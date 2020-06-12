@@ -14,8 +14,17 @@ public class Application {
         DrawingLineStrategy drawingLineStrategy = new RandomDrawingLineStrategy();
         Ladder ladder = ladderFactory.buildLadder(playersGroup, drawingLineStrategy);
 
+        LadderGame ladderGame = new LadderGame();
+        GameResult gameResult = ladderGame.play(playersGroup, ladder, gamePrizesGroup);
 
         OutputView.printPlayerNames(playersGroup);
         OutputView.printLadder(ladder);
+        OutputView.printGamePrizeNames(gamePrizesGroup);
+
+        while (true) {
+            String resultPlayerName = InputView.inputResultPlayerName();
+            OutputView.printGameResult(gameResult, resultPlayerName);
+            break;
+        }
     }
 }

@@ -1,10 +1,9 @@
 package ladder.view;
 
-import ladder.domain.Direction;
-import ladder.domain.Ladder;
-import ladder.domain.PlayersGroup;
+import ladder.domain.*;
 
 import java.util.List;
+import java.util.Set;
 
 public class OutputView {
     private static final int LOOP_ZERO = 0;
@@ -44,7 +43,7 @@ public class OutputView {
         List<List<Direction>> ladderBluePrint = ladder.getLadderBluePrint();
         StringBuilder stringBuilder = new StringBuilder();
         ladderBluePrint.forEach(eachLadderLine -> appendLadderLine(eachLadderLine, stringBuilder));
-        System.out.println(stringBuilder.toString());
+        System.out.print(stringBuilder.toString());
     }
 
     private static void appendLadderLine(List<Direction> ladderLine, StringBuilder stringBuilder) {
@@ -64,5 +63,27 @@ public class OutputView {
             return;
         }
         stringBuilder.append(ViewMessages.BLANK_LINE);
+    }
+
+    public static void printGamePrizeNames(GamePrizesGroup gamePrizesGroup) {
+        List<String> gamePrizeNames = gamePrizesGroup.getGamePrizeNames();
+        gamePrizeNames.forEach(gamePrizeName -> System.out.printf("%-6s", gamePrizeName));
+        System.out.println();
+    }
+
+    public static void printGameResult(GameResult gameResult, String resultPlayerName) {
+        System.out.println("실행 결과");
+        if (resultPlayerName.equals("all")) {
+            printAllResult(gameResult);
+            return;
+        }
+        System.out.println(gameResult.getResultByPlayerName(resultPlayerName));
+    }
+
+    private static void printAllResult(GameResult gameResult) {
+        Set<String> keySet = gameResult.getKeySet();
+        for (String playerName : keySet) {
+            System.out.println(playerName + " : " + gameResult.getResultByPlayerName(playerName));
+        }
     }
 }

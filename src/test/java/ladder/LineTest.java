@@ -15,7 +15,7 @@ public class LineTest {
 
     @DisplayName("Line 객체 생성 테스트")
     @ParameterizedTest
-    @ValueSource(ints = {1, 5, 10, 15})
+    @ValueSource(ints = {2, 5, 10, 15})
     public void makeLineObject(int playerCounts) {
         assertThatCode(() -> {
             Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
@@ -34,7 +34,7 @@ public class LineTest {
 
     @DisplayName("Line 객체를 통해 그린 Line의 길이는 playerCounts과 동일함")
     @ParameterizedTest
-    @ValueSource(ints = {1, 5, 10, 15})
+    @ValueSource(ints = {2, 5, 10, 15})
     public void lineSizeTest(int playerCounts) {
         Line line = Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
 

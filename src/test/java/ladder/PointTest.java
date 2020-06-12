@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
@@ -44,8 +43,8 @@ public class PointTest {
     @DisplayName("1개 Line의 처음 점을 찍는 메소드 테스트")
     @Test
     public void drawFirstPoint() {
-        Point point = Point.drawFirstPoint(1, 0, true);
-        Point pointWithRightDirection = Point.drawFirstPoint(2, 0, false);
+        Point point = Point.drawFirstPoint(true);
+        Point pointWithRightDirection = Point.drawFirstPoint(false);
 
         assertThat(point.getDirection()).isEqualTo(Direction.DOWN);
         assertThat(pointWithRightDirection.getDirection()).isEqualTo(Direction.RIGHT);
@@ -59,15 +58,6 @@ public class PointTest {
 
         assertThat(pointWithDownDirection.getDirection()).isEqualTo(Direction.DOWN);
         assertThat(pointWithLeftDirection.getDirection()).isEqualTo(Direction.LEFT);
-    }
-
-    @DisplayName("RandomNumber를 바탕으로 Point를 찍는 테스트")
-    @ParameterizedTest
-    @MethodSource("mockDirectionBuilder")
-    public void drawRandomPoint(int directionIndex, Direction expectedDirection) {
-        Point point = Point.drawPoint(0, directionIndex);
-
-        assertThat(point.getDirection()).isEqualTo(expectedDirection);
     }
 
     @DisplayName("Direction이 Right일때 Index는 상승")

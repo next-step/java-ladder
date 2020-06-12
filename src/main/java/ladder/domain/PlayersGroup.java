@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayersGroup {
+    private static final int MINIMUM_PLAYER_COUNTS = 2;
 
     private final List<Player> players;
 
@@ -20,6 +21,9 @@ public class PlayersGroup {
     }
 
     private static void validatePlayerCounts(List<String> playerNames) {
+        if (playerNames.size() < MINIMUM_PLAYER_COUNTS) {
+            throw new LadderBuildingException(LadderBuildingException.INVALID_PLAYER_COUNTS);
+        }
         int distinctPlayerCounts = (int) playerNames.stream()
                 .distinct()
                 .count();

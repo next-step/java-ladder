@@ -20,4 +20,13 @@ public enum Direction {
     public int moveIndexByDirection(int index) {
         return this.moveIndexByDirection.apply(index);
     }
+
+    public String getName() {
+        if (this == LEFT) {
+            return "LEFT";
+        } else if (this == RIGHT) {
+            return "RIGHT";
+        }
+        return "STOP";
+    }
 }

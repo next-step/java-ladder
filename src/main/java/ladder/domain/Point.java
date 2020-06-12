@@ -12,11 +12,11 @@ public class Point {
         this.direction = direction;
     }
 
-    public static Point drawFirstPoint(int playerCounts, int index, boolean isDown) {
-        if (playerCounts == 1 || isDown) {
-            return new Point(index, Direction.DOWN);
+    public static Point drawFirstPoint(boolean isDown) {
+        if (isDown) {
+            return new Point(MINIMUM_INDEX, Direction.DOWN);
         }
-        return new Point(index, Direction.RIGHT);
+        return new Point(MINIMUM_INDEX, Direction.RIGHT);
     }
 
     public static Point drawMiddlePoint(int index, boolean isDown) {
@@ -24,10 +24,6 @@ public class Point {
             return new Point(index, Direction.DOWN);
         }
         return new Point(index, Direction.RIGHT);
-    }
-
-    public static Point drawPoint(int index, int randomNumber) {
-        return new Point(index, Direction.valueOf(randomNumber));
     }
 
     public static Point drawLastPoint(int index, boolean isDown) {

@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Map;
+import java.util.Set;
 
 public class GameResult {
 
@@ -12,5 +13,9 @@ public class GameResult {
 
     public String getResultByPlayerName(String playerName) {
         return gameResult.get(playerName);
+    }
+
+    public Set<String> getKeySet() {
+        return gameResult.keySet();
     }
 }
