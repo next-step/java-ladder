@@ -2,6 +2,7 @@ package ladder.domain.player;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,7 +28,7 @@ public class Players {
     }
 
     private static boolean isEmpty(String input) {
-        return input == null || input.isEmpty();
+        return Objects.isNull(input) || input.isEmpty();
     }
 
     private static String[] getNamesFrom(String input) {
