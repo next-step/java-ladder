@@ -5,6 +5,7 @@ import ladder.domain.dto.LadderShapeResult;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Positions;
 import ladder.domain.ladder.shape.LadderShapeInfo;
+import ladder.domain.ladder.strategy.StairGenerationStrategy;
 import ladder.domain.player.Player;
 import ladder.domain.prize.Prize;
 import ladder.exception.ErrorMessage;
@@ -18,14 +19,14 @@ public class LadderGame {
     private final PlayersAndPrizes playersAndPrizes;
     private final Ladder ladder;
 
-    private LadderGame(final LadderShapeInfo ladderShapeInfo) {
+    private LadderGame(final LadderShapeInfo ladderShapeInfo, final StairGenerationStrategy strategy) {
         validateLadderShapeInfo(ladderShapeInfo);
         this.playersAndPrizes = ladderShapeInfo.getPlayersAndPrizes();
-        this.ladder = Ladder.of(ladderShapeInfo);
+        this.ladder = Ladder.of(ladderShapeInfo, strategy);
     }
 
-    public static LadderGame of(final LadderShapeInfo ladderShapeInfo) {
-        return new LadderGame(ladderShapeInfo);
+    public static LadderGame of(final LadderShapeInfo ladderShapeInfo, final StairGenerationStrategy strategy) {
+        return new LadderGame(ladderShapeInfo, strategy);
     }
 
     private static void validateLadderShapeInfo(final LadderShapeInfo ladderShapeInfo) {

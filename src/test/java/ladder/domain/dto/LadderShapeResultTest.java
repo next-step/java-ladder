@@ -4,6 +4,7 @@ import ladder.domain.PlayersAndPrizes;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
+import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +28,9 @@ public class LadderShapeResultTest {
         this.playersAndPrizes = PlayersAndPrizes.valueOf(players, prizes);
 
         this.ladder = Ladder.of(
-                LadderShapeInfo.valueOf(playersAndPrizes, Height.of(5)));
+                LadderShapeInfo.valueOf(
+                        playersAndPrizes, Height.of(5)),
+                        new RandomStairGenerationStrategy());
     }
 
     @DisplayName("게임 참여자 이름과 사다리 판의 정보를 가진 LadderShapeResult 를 반환")

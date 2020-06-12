@@ -4,6 +4,7 @@ import ladder.domain.PlayersAndPrizes;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
+import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,15 +44,21 @@ public class StairDtoTest {
     @DisplayName("사다리 정보로 각 행의 좌->우로의 계단 라인 정보 리스트 반환")
     @Test
     void create() {
-        assertThatCode(() -> StairDto.from(Ladder.of(LadderShapeInfo.valueOf(multiplePlayersAndPrizes, height))))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> StairDto.from(
+                Ladder.of(LadderShapeInfo.valueOf(
+                        multiplePlayersAndPrizes, height),
+                        new RandomStairGenerationStrategy()))
+        ).doesNotThrowAnyException();
     }
 
     @DisplayName("인자로 지정한 높이 만큼 StairDto 리스트가 생성")
     @ParameterizedTest
     @MethodSource
     void from(final Height height, final int heightValue) {
-        Ladder ladder = Ladder.of(LadderShapeInfo.valueOf(multiplePlayersAndPrizes, height));
+        Ladder ladder = Ladder.of(
+                LadderShapeInfo.valueOf(
+                        multiplePlayersAndPrizes, height),
+                        new RandomStairGenerationStrategy());
 
         assertThat(StairDto.from(ladder).size())
                 .isEqualTo(heightValue);
@@ -67,7 +74,9 @@ public class StairDtoTest {
     @DisplayName("한 명의 참여자로 게임을 실행하면 모든 높이의 기둥에 존재하는 계단 수는 1개 (StairState 가 empty 인 계단)")
     @Test
     void isSinglePillar() {
-        Ladder ladder = Ladder.of(LadderShapeInfo.valueOf(singlePlayersAndPrizes, height));
+        Ladder ladder = Ladder.of(
+                LadderShapeInfo.valueOf(singlePlayersAndPrizes, height),
+                new RandomStairGenerationStrategy());
 
         StairDto.from(ladder)
                 .forEach(stairDto -> assertThat(stairDto.getLines().size())

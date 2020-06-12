@@ -18,22 +18,22 @@ public class StairStateTest {
     @DisplayName("첫 번째 기둥의 State 생성")
     @Test
     void createOfFirstPillar() {
-        assertThatCode(() -> StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()))
+        assertThatCode(() -> StairState.ofFirstPillar(new RandomStairGenerationStrategy()))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("중간 기둥의 State 생성")
     @Test
     void createOfMiddlePillar() {
-        assertThatCode(() -> StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance())
-                .ofNextPillar(RandomStairGenerationStrategy.getInstance()))
+        assertThatCode(() -> StairState.ofFirstPillar(new RandomStairGenerationStrategy())
+                .ofNextPillar(new RandomStairGenerationStrategy()))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("마지막 기둥의 계단 또는 앞에 이미 계단이 있는 중간 기둥의 위치에는 계단이 없음")
     @Test
     void ofMiddlePillarWithNoLine() {
-        assertThat(StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance())
+        assertThat(StairState.ofFirstPillar(new RandomStairGenerationStrategy())
                 .ofLastPillar()
                 .isRightLineExist())
                 .isEqualTo(false);

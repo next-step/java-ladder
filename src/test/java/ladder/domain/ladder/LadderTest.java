@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import ladder.domain.PlayersAndPrizes;
 import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
+import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,7 +46,8 @@ public class LadderTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Ladder.of(
-                        LadderShapeInfo.valueOf(multiplePlayersAndPrizes, Height.of(Height.MIN_HEIGHT - 1))));
+                        LadderShapeInfo.valueOf(multiplePlayersAndPrizes, Height.of(Height.MIN_HEIGHT - 1)),
+                        new RandomStairGenerationStrategy()));
     }
 
     @DisplayName("사다리 생성 실패: PlayersAndPrizes 가 null 인 경우")
@@ -53,13 +55,14 @@ public class LadderTest {
     void createFailureByPlayersLessThanMin() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Ladder.of(
-                        LadderShapeInfo.valueOf(null, Height.of(Height.MIN_HEIGHT))));
+                        LadderShapeInfo.valueOf(null, Height.of(Height.MIN_HEIGHT)),
+                        new RandomStairGenerationStrategy()));
     }
 
     @DisplayName("Ladder 생성")
     @Test
     void create() {
-        assertThatCode(() -> Ladder.of(shapeInfoOfSinglePlayer))
+        assertThatCode(() -> Ladder.of(shapeInfoOfSinglePlayer, new RandomStairGenerationStrategy()))
                 .doesNotThrowAnyException();
     }
 
@@ -69,7 +72,7 @@ public class LadderTest {
         Players singlePlayer = Players.of(Collections.singletonList("heee"));
         Prizes singlePrize = Prizes.of(Collections.singletonList("win"));
         singlePlayersAndPrizes = PlayersAndPrizes.valueOf(singlePlayer, singlePrize);
-        Ladder ladder = Ladder.of(shapeInfoOfSinglePlayer);
+        Ladder ladder = Ladder.of(shapeInfoOfSinglePlayer, new RandomStairGenerationStrategy());
 
         Positions positions = ladder.ride();
 
@@ -80,7 +83,7 @@ public class LadderTest {
     @DisplayName("모든 사용자가 사다리를 타고 난 결과에 대한 prize position 리스트를 반환")
     @Test
     void rideWithMultiplePlayers() {
-        Ladder ladder = Ladder.of(shapeInfoOfMultiplePlayers);
+        Ladder ladder = Ladder.of(shapeInfoOfMultiplePlayers, new RandomStairGenerationStrategy());
 
         Positions positions = ladder.ride();
 

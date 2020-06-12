@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
+import ladder.domain.ladder.strategy.StairGenerationStrategy;
 import ladder.exception.ErrorMessage;
 
 import java.util.List;
@@ -27,12 +28,12 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(final LadderShapeInfo ladderShapeInfo) {
-        return new Ladder(createPillars(ladderShapeInfo));
+    public static Ladder of(final LadderShapeInfo ladderShapeInfo, final StairGenerationStrategy strategy) {
+        return new Ladder(createPillars(ladderShapeInfo, strategy));
     }
 
-    private static List<RowPillars> createPillars(final LadderShapeInfo ladderShapeInfo) {
-        return Stream.generate(() -> RowPillars.of(ladderShapeInfo.getWidth()))
+    private static List<RowPillars> createPillars(final LadderShapeInfo ladderShapeInfo, final StairGenerationStrategy strategy) {
+        return Stream.generate(() -> RowPillars.of(ladderShapeInfo.getWidth(), strategy))
                 .limit(ladderShapeInfo.getHeight())
                 .collect(Collectors.toList());
     }

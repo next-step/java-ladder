@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.shape.PillarCount;
+import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,20 +16,22 @@ public class StairsTest {
     @ParameterizedTest
     void createFailureByPillarCountIsNull(final PillarCount pillarCount) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Stairs.of(pillarCount));
+                .isThrownBy(() -> Stairs.of(pillarCount, new RandomStairGenerationStrategy()));
     }
 
     @DisplayName("기둥의 최소 개수인 1보다 작은 수로 계단을 만들 수 없음")
     @Test
     void createFailure() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Stairs.of(PillarCount.of(PillarCount.MIN_COUNT - 1)));
+                .isThrownBy(() -> Stairs.of(
+                        PillarCount.of(PillarCount.MIN_COUNT - 1), new RandomStairGenerationStrategy()));
     }
 
     @DisplayName("기둥의 개수 만큼 수평을 따라 계단 생성")
     @Test
     void create() {
-        assertThatCode(() -> Stairs.of(PillarCount.of(PillarCount.MIN_COUNT)))
+        assertThatCode(() -> Stairs.of(
+                    PillarCount.of(PillarCount.MIN_COUNT), new RandomStairGenerationStrategy()))
                 .doesNotThrowAnyException();
     }
 
@@ -38,7 +41,8 @@ public class StairsTest {
         final int firstIndex = 0;
         PillarCount pillarCount = PillarCount.of(PillarCount.MIN_COUNT);
 
-        assertThat(Stairs.of(pillarCount).getStairs().get(firstIndex))
+        assertThat(Stairs.of(pillarCount, new RandomStairGenerationStrategy())
+                .getStairs().get(firstIndex))
                 .isEqualTo(Stair.of(StairState.EMPTY));
     }
 
@@ -49,7 +53,8 @@ public class StairsTest {
         PillarCount pillarCount = PillarCount.of(maxPosition);
 
         for (int index = 0; index < maxPosition; index++) {
-            Stair stair = Stairs.of(pillarCount).getStairs().get(index);
+            Stair stair = Stairs.of(pillarCount, new RandomStairGenerationStrategy())
+                    .getStairs().get(index);
             Position position = Position.of(index);
 
             if (stair.isRightLineExist()) {

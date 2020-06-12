@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.shape.PillarCount;
+import ladder.domain.ladder.strategy.StairGenerationStrategy;
 import ladder.exception.ErrorMessage;
 
 import java.util.ArrayList;
@@ -18,9 +19,9 @@ public class Stairs {
         this.stairs = stairs;
     }
 
-    public static Stairs of(final PillarCount pillarCount) {
+    public static Stairs of(final PillarCount pillarCount, final StairGenerationStrategy strategy) {
         validatePillarCount(pillarCount);
-        return new Stairs(createHorizontalStairs(pillarCount));
+        return new Stairs(createHorizontalStairs(pillarCount, strategy));
     }
 
     private static void validatePillarCount(final PillarCount pillarCount) {
@@ -29,7 +30,7 @@ public class Stairs {
         }
     }
 
-    private static List<Stair> createHorizontalStairs(final PillarCount pillarCount) {
+    private static List<Stair> createHorizontalStairs(final PillarCount pillarCount, final StairGenerationStrategy strategy) {
         if (pillarCount.isMinCount()) {
             return Collections.singletonList(Stair.of(StairState.EMPTY));
         }
@@ -37,10 +38,10 @@ public class Stairs {
         List<Stair> stairs = new ArrayList<>();
         int middlePillarCount = getMiddlePillarCount(pillarCount.getValue());
 
-        Stair currentStair = Stair.createOfFirstPillar();
+        Stair currentStair = Stair.createOfFirstPillar(strategy);
         stairs.add(currentStair);
         for (int i = 0; i < middlePillarCount; i++) {
-            currentStair = currentStair.createOfNextPillar();
+            currentStair = currentStair.createOfNextPillar(strategy);
             stairs.add(currentStair);
         }
         stairs.add(currentStair.createOfLastPillar());

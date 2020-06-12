@@ -1,6 +1,7 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.shape.PillarCount;
+import ladder.domain.ladder.strategy.StairGenerationStrategy;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ public class RowPillars {
         this.stairs = stairs;
     }
 
-    public static RowPillars of(final PillarCount pillarCount) {
-        return new RowPillars(Stairs.of(pillarCount));
+    public static RowPillars of(final PillarCount pillarCount, final StairGenerationStrategy strategy) {
+        return new RowPillars(Stairs.of(pillarCount, strategy));
     }
 
     public List<Stair> getStairs() {
