@@ -2,7 +2,13 @@ package ladder;
 
 public class LadderGame {
 
-    public Ladder start(Players players, LadderHeight ladderHeight) {
-        return new Ladder(players, ladderHeight);
+    private final LadderLinePainter ladderLinePainter;
+
+    public LadderGame(LadderLinePainter ladderLinePainter) {
+        this.ladderLinePainter = ladderLinePainter;
+    }
+
+    public LadderLines start(Players players, LadderHeight ladderHeight) {
+        return ladderLinePainter.drawLines(players, ladderHeight);
     }
 }

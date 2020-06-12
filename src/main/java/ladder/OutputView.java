@@ -4,9 +4,9 @@ public class OutputView {
 
 	private OutputView() {}
 
-	public static void printLadder(Ladder ladder) {
-		printPlayers(ladder.getPlayers());
-		printLadderLines(ladder.getLadderLines());
+	public static void printLadder(Players players, LadderLines ladderLines) {
+		printPlayers(players);
+		printLadderLines(ladderLines);
 	}
 
 	private static void printPlayers(Players players) {

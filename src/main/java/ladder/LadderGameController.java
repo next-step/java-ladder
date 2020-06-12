@@ -9,7 +9,10 @@ public class LadderGameController {
     }
 
     public void startGame() {
-        Ladder ladder = ladderGame.start(InputView.askPlayerNames(), InputView.askLadderHeight());
-        OutputView.printLadder(ladder);
+        Players players = InputView.askPlayerNames();
+        LadderHeight ladderHeight = InputView.askLadderHeight();
+
+        LadderLines ladderLines = ladderGame.start(players, ladderHeight);
+        OutputView.printLadder(players, ladderLines);
     }
 }
