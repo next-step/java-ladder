@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Point {
     private static final Map<Integer, Point> CACHE = new HashMap<>();
+    public static final Point INITIAL_POINT = Point.of(0);
+
     private final int position;
 
     private Point(final int position) {
@@ -27,5 +29,9 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    public Point plus() {
+        return Point.of(position + 1);
     }
 }

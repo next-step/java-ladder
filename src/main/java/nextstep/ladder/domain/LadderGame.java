@@ -1,6 +1,9 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class LadderGame {
     private final LadderLineDrawingMachine drawingMachine;
@@ -11,33 +14,44 @@ public class LadderGame {
 
     public Ladder createLadder(final LadderGameUsers ladderGameUsers, final int maxHeight) {
         List<LadderGameUser> gameUsers = ladderGameUsers.getLadderGameUsers();
-        List<BaseUserLine> baseUserLines = new ArrayList<>();
+        Ladder ladder = new Ladder(maxHeight);
 
         for (int currentUser = 0, size = gameUsers.size(); currentUser < size - 1; currentUser++) {
-            Set<Point> points = makeConnectionPoints(maxHeight, baseUserLines, currentUser);
+            ConnectPoints connectPoints = makeConnectPoints(ladder, currentUser);
 
-            baseUserLines.add(new BaseUserLine(gameUsers.get(currentUser), new ConnectPoints(points, maxHeight)));
+            ladder.addConnection(new LadderVerticalBaseLine(gameUsers.get(currentUser), connectPoints));
         }
 
-        baseUserLines.add(new BaseUserLine(gameUsers.get(gameUsers.size() - 1), new ConnectPoints(new HashSet<>(), maxHeight)));
+        ladder.addConnection(new LadderVerticalBaseLine(gameUsers.get(gameUsers.size() - 1), ConnectPoints.emptyPoints()));
 
-        return new Ladder(maxHeight, baseUserLines);
+        return ladder;
     }
 
-    private Set<Point> makeConnectionPoints(int maxHeight, List<BaseUserLine> baseUserLines, int currentUserIndex) {
+    private ConnectPoints makeConnectPoints(Ladder ladder, int currentUserIndex) {
         Set<Point> points = new HashSet<>();
-        for (int position = 0; position < maxHeight && points.size() < maxHeight - 1; position++) {
-            if (canDraw(baseUserLines, currentUserIndex, position)) {
-                points.add(Point.of(position));
+        Point point = Point.INITIAL_POINT;
+        int maxHeight = ladder.getMaxHeight();
+        while (enoughToDrawLine(points, maxHeight)) {
+            if (canDraw(ladder, currentUserIndex, point)) {
+                points.add(point);
             }
+            point = point.plus();
         }
-        return Collections.unmodifiableSet(points);
+        return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
     }
 
-    private boolean canDraw(List<BaseUserLine> baseUserLines, final int currentUserIndex, final int position) {
-        if (currentUserIndex == 0 || !baseUserLines.get(currentUserIndex - 1).isConnected(Point.of(position))) {
-            return drawingMachine.canDraw();
+    private boolean enoughToDrawLine(Set<Point> points, int maxHeight) {
+        return points.size() < maxHeight - 1;
+    }
+
+    private boolean canDraw(Ladder ladder, int currentUserIndex, Point point) {
+        if (isFirstUserLine(currentUserIndex) || ladder.canConnect(currentUserIndex, point)) {
+            return drawingMachine.attemptToDraw();
         }
         return false;
+    }
+
+    private boolean isFirstUserLine(int currentUserIndex) {
+        return currentUserIndex == 0;
     }
 }

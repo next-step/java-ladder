@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomLadderDrawingMachine implements LadderLineDrawingMachine {
 
     @Override
-    public boolean canDraw() {
+    public boolean attemptToDraw() {
         return ThreadLocalRandom.current().nextBoolean();
     }
 }

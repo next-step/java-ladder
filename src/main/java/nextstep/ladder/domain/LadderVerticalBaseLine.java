@@ -1,16 +1,16 @@
 package nextstep.ladder.domain;
 
-public class BaseUserLine {
+public class LadderVerticalBaseLine {
     private final LadderGameUser ladderGameUser;
     private final ConnectPoints connectPoints;
 
-    public BaseUserLine(LadderGameUser userName, ConnectPoints connectPoints) {
+    public LadderVerticalBaseLine(LadderGameUser userName, ConnectPoints connectPoints) {
         this.ladderGameUser = userName;
         this.connectPoints = connectPoints;
     }
 
-    public boolean isConnected(final Point point) {
-        return connectPoints.hasPoint(point);
+    public boolean connectedWith(final Point point) {
+        return connectPoints.has(point);
     }
 
     public ConnectPoints getConnectPoints() {

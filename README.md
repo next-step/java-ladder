@@ -7,6 +7,20 @@ Dto 역할만 하는 것 같기도 한다.
 List<LadderGameUser> gameUsers = ladderGameUsers.getLadderGameUsers();
 ```
 
+Q. 아예 안그려지는경우는 ,,? 게임이 진행할 수 있는 최소조건 --> 최소 1개는 그어야한다!
+
+Q. 사다리가 동작하려면 각 VerticalLine은 최대 (최대높이 -1)개 만큼의 연결라인을 가져야한다.
+그래서 ConnectPoints 객체에 maxHeight을 사용하는 validation이 필요한데, maxHeight이 ConnectPoints의 상태는 아닌 것 같아서 
+생성자로 받기만한다. 
+뭔가 이런 구조를 본적이 없어서 어색한 것 같은데 ,, 괜찮을지? 
+```java
+    public ConnectPoints(final Set<Point> points, final int maxHeight) {
+        this.points = points;
+        validateNumberOfPoints(maxHeight);
+    }
+``` 
+
+
 
 기능
 [View]
@@ -33,13 +47,13 @@ List<LadderGameUser> gameUsers = ladderGameUsers.getLadderGameUsers();
 
 **Ladder**
 ```java
-List<BaseUserLine> baseUserLines
+List<BaseUserLine> ladderVerticalBaseLines
 ```
  
 1. 최대 사다리의 높이를 가지고 BaseUserLine 을 생성한다. (pointConnections의 size)
 2. 
 ```java
-for( 0..n-1 in baseUserLines) // 마지막 사다리는 긋지 않는다
+for( 0..n-1 in ladderVerticalBaseLines) // 마지막 사다리는 긋지 않는다
     while(최대높이 -1){ // 하나의 사다리는 최대 "높이 -1" 만큼의 라인을 그을 수 있다.
         if(첫번째 사다리){
             // 체크없이 Random으로 긋거나 긋지않는다

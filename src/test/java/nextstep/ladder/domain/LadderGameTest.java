@@ -28,10 +28,10 @@ class LadderGameTest {
         |        | ------ |
          */
         assertAll(
-                () -> assertThat(ladder.getConnectionPoints(0).hasPoint(Point.of(0))).isTrue(),
-                () -> assertThat(ladder.getConnectionPoints(0).hasPoint(Point.of(1))).isTrue(),
-                () -> assertThat(ladder.getConnectionPoints(0).hasPoint(Point.of(2))).isFalse(),
-                () -> assertThat(ladder.getConnectionPoints(1).hasPoint(Point.of(2))).isTrue()
+                () -> assertThat(ladder.getConnectionPoints(0).has(Point.of(0))).isTrue(),
+                () -> assertThat(ladder.getConnectionPoints(0).has(Point.of(1))).isTrue(),
+                () -> assertThat(ladder.getConnectionPoints(0).has(Point.of(2))).isFalse(),
+                () -> assertThat(ladder.getConnectionPoints(1).has(Point.of(2))).isTrue()
         );
     }
 

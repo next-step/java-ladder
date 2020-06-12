@@ -12,11 +12,11 @@ import java.util.List;
 public class LadderApplication {
     public static void main(String[] args) {
         List<String> userNames = InputView.askParticipantsName();
-        int maximumLadderHeight = InputView.askMaximumLadderHeight();
+        int maxHeight = InputView.askMaximumLadderHeight();
 
         LadderGame ladderGame = new LadderGame(new RandomLadderDrawingMachine());
 
-        Ladder ladder = ladderGame.createLadder(new LadderGameUsers(userNames), maximumLadderHeight);
+        Ladder ladder = ladderGame.createLadder(new LadderGameUsers(userNames), maxHeight);
 
         OutputView.drawLadder(ladder);
     }

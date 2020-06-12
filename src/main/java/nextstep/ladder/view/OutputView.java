@@ -15,7 +15,7 @@ public class OutputView {
             StringBuilder stringBuilder = new StringBuilder("     ");
             for (int i = 0; i < ladder.size(); i++) {
                 stringBuilder.append("|");
-                if (ladder.getConnectionPoints(i).hasPoint(Point.of(currentPosition))) {
+                if (ladder.getConnectionPoints(i).has(Point.of(currentPosition))) {
                     stringBuilder.append("-----");
                 } else {
                     stringBuilder.append("     ");
