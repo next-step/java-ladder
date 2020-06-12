@@ -16,15 +16,17 @@ public class Line {
         points.add(Point.of(false));
 
         IntStream.range(1, countOfPlayers)
-                .forEach((i) -> {
-                    if (points.get(i - 1).isPoint()) {
-                        points.add(Point.of(false));
-                    } else {
-                        points.add(Point.ofStrategy(strategy));
-                    }
-                });
+                .forEach((i) -> points.add(decidePoint(points.get(i - 1), strategy)));
 
         return points;
+    }
+
+    private Point decidePoint(Point point, PointGenerationStrategy strategy) {
+        if (point.isPoint()) {
+            return Point.of(false);
+        }
+
+        return Point.ofStrategy(strategy);
     }
 
     public List<Point> getPoints() {
