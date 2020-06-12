@@ -2,7 +2,7 @@ package camp.nextstep.edu.nextstep8.ladder;
 
 import java.util.Scanner;
 
-public class LadderInput {
+public class LadderGameInput {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static int getLadderHeight() {

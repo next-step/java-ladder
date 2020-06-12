@@ -9,11 +9,12 @@ public class Point {
         this.right = false;
     }
 
-    public boolean hasLeftLine() {
+
+    public boolean isEnd() {
         return left;
     }
 
-    public boolean hasRightLine() {
+    public boolean isStart() {
         return right;
     }
 
