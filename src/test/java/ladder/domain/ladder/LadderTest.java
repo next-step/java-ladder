@@ -1,43 +1,32 @@
 package ladder.domain.ladder;
 
-import ladder.domain.PlayersAndPrizes;
 import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
-import ladder.domain.player.Players;
-import ladder.domain.prize.Prizes;
+import ladder.fixture.LadderFixtures;
+import ladder.fixture.PlayerAndPrizeFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class LadderTest {
-
-    private PlayersAndPrizes singlePlayersAndPrizes;
-    private PlayersAndPrizes multiplePlayersAndPrizes;
 
     private static LadderShapeInfo shapeInfoOfSinglePlayer;
     private static LadderShapeInfo shapeInfoOfMultiplePlayers;
 
     @BeforeEach
     void setUp() {
-        Players singlePlayer = Players.of(Collections.singletonList("heee"));
-        Prizes singlePrize = Prizes.of(Collections.singletonList("win"));
-        this.singlePlayersAndPrizes = PlayersAndPrizes.valueOf(singlePlayer, singlePrize);
-
         shapeInfoOfSinglePlayer = LadderShapeInfo.valueOf(
-                singlePlayersAndPrizes, Height.of(Height.MIN_HEIGHT));
-
-        Players players = Players.of(Arrays.asList("pobi", "honux"));
-        Prizes prizes = Prizes.of(Arrays.asList("3000", "꽝"));
-        this.multiplePlayersAndPrizes = PlayersAndPrizes.valueOf(players, prizes);
+                PlayerAndPrizeFixtures.of().getSinglePlayersAndPrizes(), Height.of(Height.MIN_HEIGHT));
 
         shapeInfoOfMultiplePlayers = LadderShapeInfo.valueOf(
-                multiplePlayersAndPrizes, Height.of(Height.MIN_HEIGHT * 5));
+                PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes(), Height.of(Height.MIN_HEIGHT * 5));
     }
 
     @DisplayName("사다리 생성 실패: 사다리의 높이가 1보다 작은 경우")
@@ -46,7 +35,9 @@ public class LadderTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Ladder.of(
-                        LadderShapeInfo.valueOf(multiplePlayersAndPrizes, Height.of(Height.MIN_HEIGHT - 1)),
+                        LadderShapeInfo.valueOf(
+                                PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes(),
+                                Height.of(Height.MIN_HEIGHT - 1)),
                         new RandomStairGenerationStrategy()));
     }
 
@@ -69,9 +60,6 @@ public class LadderTest {
     @DisplayName("한 명의 사용자가 사다리를 타면 index 0 의 prize 리스트를 반환")
     @Test
     void rideWithSinglePlayer() {
-        Players singlePlayer = Players.of(Collections.singletonList("heee"));
-        Prizes singlePrize = Prizes.of(Collections.singletonList("win"));
-        singlePlayersAndPrizes = PlayersAndPrizes.valueOf(singlePlayer, singlePrize);
         Ladder ladder = Ladder.of(shapeInfoOfSinglePlayer, new RandomStairGenerationStrategy());
 
         Positions positions = ladder.ride();
@@ -82,12 +70,17 @@ public class LadderTest {
 
     @DisplayName("모든 사용자가 사다리를 타고 난 결과에 대한 prize position 리스트를 반환")
     @Test
-    void rideWithMultiplePlayers() {
-        Ladder ladder = Ladder.of(shapeInfoOfMultiplePlayers, new RandomStairGenerationStrategy());
-
+    void playWithMultiplePlayers() {
+        Ladder ladder = Ladder.of(LadderFixtures.of().ladderShapeInfo,
+                new LadderFixtures.TestStairGenerationStrategy());
         Positions positions = ladder.ride();
 
-        assertThat(positions.size())
-                .isEqualTo(shapeInfoOfMultiplePlayers.getPlayersAndPrizes().getPrizesCount());
+        List<Integer> expectedPrizePositions = Arrays.asList(1, 0, 4, 3, 2);
+
+        IntStream.range(0, positions.size())
+                .forEach(index ->
+                        assertThat(positions.indexOf(Position.of(index)).getPosition())
+                                .isEqualTo(expectedPrizePositions.get(index))
+                );
     }
 }
