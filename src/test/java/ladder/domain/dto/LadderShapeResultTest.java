@@ -7,11 +7,16 @@ import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
+import ladder.fixture.LadderFixtures;
+import ladder.fixture.PlayerAndPrizeFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -56,5 +61,25 @@ public class LadderShapeResultTest {
                 .isEqualTo(Arrays.asList("3000", "꽝"));
     }
 
-    // TODO 사다리 모양을 그리기 위한 계단 라인(한 행) 리스트(높이)를 반환
+    @DisplayName("사다리 모양을 그리기 위한 계단 라인(한 행) 리스트를 반환")
+    @Test
+    void getStairDtos() {
+        Ladder ladder = Ladder.of(LadderFixtures.of().ladderShapeInfo,
+                new LadderFixtures.TestStairGenerationStrategy());
+        List<StairDto> stairDtos = LadderShapeResult.of(
+                PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes(), ladder)
+                .getStairDtos();
+
+        List<List<Boolean>> expectedLines = new ArrayList<>();
+        expectedLines.add(Arrays.asList(true, false, false, true, false));
+        expectedLines.add(Arrays.asList(false, false, true, false, false));
+        expectedLines.add(Arrays.asList(false, false, false, true, false));
+        expectedLines.add(Arrays.asList(false, true, false, false, false));
+        expectedLines.add(Arrays.asList(false, true, false, false, false));
+
+        IntStream.range(0, stairDtos.size())
+                .forEach(index ->
+                        assertThat(stairDtos.get(index).getLines())
+                                .isEqualTo(expectedLines.get(index)));
+    }
 }
