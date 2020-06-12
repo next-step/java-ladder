@@ -1,7 +1,9 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
+import ladder.domain.Line;
 import ladder.domain.Players;
+import ladder.domain.Point;
 
 public class OutputView {
     private static final String PRINT_RESULT_MESSAGE = "실행 결과";
@@ -29,14 +31,20 @@ public class OutputView {
     private static void printLadder(Ladder ladder) {
         ladder.getLines()
                 .forEach(line -> {
-                    line.getPoints().forEach(point -> {
-                        if (point.isPoint()) {
-                            System.out.print(PRINT_POINT_TRUE);
-                        } else {
-                            System.out.print(PRINT_POINT_FALSE);
-                        }
-                    });
+                    printLine(line);
                     System.out.println();
                 });
+    }
+
+    private static void printLine(Line line) {
+        line.getPoints()
+                .forEach(point -> System.out.print(decidePoint(point)));
+    }
+
+    private static String decidePoint(Point point) {
+        if (point.isPoint()) {
+            return PRINT_POINT_TRUE;
+        }
+        return PRINT_POINT_FALSE;
     }
 }
