@@ -48,7 +48,7 @@ public class LadderGameView {
 
     private static void viewLadder(List<Line> lines) {
         for (Line line : lines) {
-            line.viewLine();
+            viewLine(line.getMountingBlocks());
         }
     }
 

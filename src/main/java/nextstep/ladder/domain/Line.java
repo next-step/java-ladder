@@ -45,7 +45,7 @@ public class Line {
         return mountingBlockIndex - 1;
     }
 
-    public void viewLine() {
-        LadderGameView.viewLine(this.mountingBlocks);
+    public List<MountingBlock> getMountingBlocks() {
+        return this.mountingBlocks;
     }
 }
