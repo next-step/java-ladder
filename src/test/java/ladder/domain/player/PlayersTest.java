@@ -1,6 +1,7 @@
 package ladder.domain.player;
 
 import ladder.domain.ladder.Position;
+import ladder.fixture.PlayerAndPrizeFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -22,7 +22,7 @@ public class PlayersTest {
 
     @BeforeEach
     void setUp() {
-        names = Arrays.asList("pobi", "honux");
+        names = PlayerAndPrizeFixtures.playerNames;
     }
 
     @DisplayName("null 이거나 0개의 이름이 입력되면 예외를 반환")

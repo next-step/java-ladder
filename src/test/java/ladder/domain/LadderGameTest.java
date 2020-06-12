@@ -6,7 +6,6 @@ import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.domain.player.Player;
-import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 import ladder.fixture.LadderFixtures;
@@ -18,7 +17,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -34,17 +32,8 @@ public class LadderGameTest {
 
     @BeforeEach
     void setUp() {
-        List<String> names = Arrays.asList("pobi", "honux");
-        List<String> prizeNames = Arrays.asList("3000", "꽝");
-
-        multiplePlayersAndPrizes = PlayersAndPrizes.valueOf(
-                Players.of(names), Prizes.of(prizeNames));
-
-        List<String> singlePlayerName = Collections.singletonList("heee");
-        List<String> singlePrizeName = Collections.singletonList("win");
-
-        singlePlayersAndPrizes = PlayersAndPrizes.valueOf(
-                Players.of(singlePlayerName), Prizes.of(singlePrizeName));
+        multiplePlayersAndPrizes = PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes();
+        singlePlayersAndPrizes = PlayerAndPrizeFixtures.of().getSinglePlayersAndPrizes();
 
         this.minHeight = Height.of(Height.MIN_HEIGHT);
         this.height = Height.of(Height.MIN_HEIGHT * 5);

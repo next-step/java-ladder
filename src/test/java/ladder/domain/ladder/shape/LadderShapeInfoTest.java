@@ -3,6 +3,7 @@ package ladder.domain.ladder.shape;
 import ladder.domain.PlayersAndPrizes;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
+import ladder.fixture.PlayerAndPrizeFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -21,10 +21,7 @@ public class LadderShapeInfoTest {
 
     @BeforeEach
     void setUp() {
-        List<String> names = Arrays.asList("pobi", "honux");
-        List<String> prizeNames = Arrays.asList("3000", "꽝");
-
-        this.playersAndPrizes = PlayersAndPrizes.valueOf(Players.of(names), Prizes.of(prizeNames));
+        this.playersAndPrizes = PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes();
         this.height = Height.of(5);
     }
 
@@ -54,7 +51,7 @@ public class LadderShapeInfoTest {
     @DisplayName("LadderShapeInfo 생성 실패 : - 게임 참여자의 수와 게임 실행 결과의 수가 다른 경우")
     @Test
     void notEqualsCountWithPlayersAndPrizes() {
-        Players players = Players.of(Arrays.asList("pobi", "honux"));
+        Players players = PlayerAndPrizeFixtures.of().getPlayers();
         Prizes prizes = Prizes.of(Arrays.asList("3000", "꽝", "5000"));
 
         assertThatIllegalArgumentException()
@@ -67,7 +64,7 @@ public class LadderShapeInfoTest {
     void getPlayers() {
         assertThat(LadderShapeInfo.valueOf(playersAndPrizes, height)
                 .getPlayersAndPrizes().getPlayerNames())
-                .isEqualTo(Arrays.asList("pobi", "honux"));
+                .isEqualTo(PlayerAndPrizeFixtures.playerNames);
     }
 
     @DisplayName("입력한 참여자와 게임 결과를 반환")
@@ -75,7 +72,7 @@ public class LadderShapeInfoTest {
     void getPrizes() {
         assertThat(LadderShapeInfo.valueOf(playersAndPrizes, height)
                 .getPlayersAndPrizes().getPrizeNames())
-                .isEqualTo(Arrays.asList("3000", "꽝"));
+                .isEqualTo(PlayerAndPrizeFixtures.prizeNames);
     }
 
     @DisplayName("입력한 사다리의 높이를 반환")

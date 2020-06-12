@@ -8,6 +8,7 @@ import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
 import ladder.fixture.LadderFixtures;
+import ladder.fixture.PlayerAndPrizeFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,13 +35,8 @@ public class StairDtoTest {
 
     @BeforeEach
     void setUp() {
-        Players singlePlayer = Players.of(Collections.singletonList("heee"));
-        Prizes singlePrize = Prizes.of(Collections.singletonList("win"));
-        this.singlePlayersAndPrizes = PlayersAndPrizes.valueOf(singlePlayer, singlePrize);
-
-        Players players = Players.of(Arrays.asList("pobi", "honux"));
-        Prizes prizes = Prizes.of(Arrays.asList("3000", "꽝"));
-        this.multiplePlayersAndPrizes = PlayersAndPrizes.valueOf(players, prizes);
+        this.singlePlayersAndPrizes = PlayerAndPrizeFixtures.of().getSinglePlayersAndPrizes();
+        this.multiplePlayersAndPrizes = PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes();
 
         this.height = Height.of(Height.MIN_HEIGHT * 5);
     }

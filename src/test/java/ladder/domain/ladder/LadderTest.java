@@ -53,7 +53,7 @@ public class LadderTest {
     @DisplayName("Ladder 생성")
     @Test
     void create() {
-        assertThatCode(() -> Ladder.of(shapeInfoOfSinglePlayer, new RandomStairGenerationStrategy()))
+        assertThatCode(() -> Ladder.of(shapeInfoOfMultiplePlayers, new RandomStairGenerationStrategy()))
                 .doesNotThrowAnyException();
     }
 

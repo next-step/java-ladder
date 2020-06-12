@@ -5,8 +5,6 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
-import ladder.domain.player.Players;
-import ladder.domain.prize.Prizes;
 import ladder.fixture.LadderFixtures;
 import ladder.fixture.PlayerAndPrizeFixtures;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,9 +26,7 @@ public class LadderShapeResultTest {
 
     @BeforeEach
     void setUp() {
-        Players players = Players.of(Arrays.asList("pobi", "honux"));
-        Prizes prizes = Prizes.of(Arrays.asList("3000", "꽝"));
-        this.playersAndPrizes = PlayersAndPrizes.valueOf(players, prizes);
+        this.playersAndPrizes = PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes();
 
         this.ladder = Ladder.of(
                 LadderShapeInfo.valueOf(
@@ -50,7 +46,7 @@ public class LadderShapeResultTest {
     void getPlayerNames() {
         assertThat(LadderShapeResult.of(playersAndPrizes, ladder)
                 .getPlayerNames())
-                .isEqualTo(Arrays.asList("pobi", "honux"));
+                .isEqualTo(PlayerAndPrizeFixtures.playerNames);
     }
 
     @DisplayName("인자로 넣은 게임 실행 결과 정보를 반환")
@@ -58,7 +54,7 @@ public class LadderShapeResultTest {
     void getPrizeNames() {
         assertThat(LadderShapeResult.of(playersAndPrizes, ladder)
                 .getPrizeNames())
-                .isEqualTo(Arrays.asList("3000", "꽝"));
+                .isEqualTo(PlayerAndPrizeFixtures.prizeNames);
     }
 
     @DisplayName("사다리 모양을 그리기 위한 계단 라인(한 행) 리스트를 반환")
