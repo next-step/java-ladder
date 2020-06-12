@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class LadderGameUser {
-    private final static int USER_NAME_LENGTH_LIMIT = 5;
+    private static final int USER_NAME_LENGTH_LIMIT = 5;
 
     private final String userName;
 

@@ -5,6 +5,9 @@ import nextstep.ladder.domain.Point;
 
 public class OutputView {
 
+    private OutputView() {
+    }
+
     public static void drawLadder(Ladder ladder) {
         for (String userName : ladder.getGameUserName()) {
             System.out.printf(String.format("%5s ", userName));

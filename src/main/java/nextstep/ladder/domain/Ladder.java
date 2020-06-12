@@ -1,20 +1,32 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Ladder {
     private final int maxHeight;
-    private List<LadderVerticalBaseLine> lines = new ArrayList<>();
+    private final List<LadderVerticalBaseLine> lines;
+
 
     public Ladder(int maxHeight) {
         this.maxHeight = maxHeight;
+        this.lines = new ArrayList<>();
     }
 
-    public int size() {
-        return lines.size();
+    public Ladder(Ladder ladder) {
+        this.maxHeight = ladder.maxHeight;
+        this.lines = Collections.unmodifiableList(ladder.lines);
+    }
+
+    public void addConnection(LadderVerticalBaseLine ladderVerticalBaseLine) {
+        this.lines.add(ladderVerticalBaseLine);
+    }
+
+    public boolean canConnect(int currentUserIndex, Point point) {
+        return !lines.get(currentUserIndex - 1).connectedWith(point);
     }
 
     public ConnectPoints getConnectionPoints(final int userNo) {
@@ -32,11 +44,7 @@ public class Ladder {
         return maxHeight;
     }
 
-    public void addConnection(LadderVerticalBaseLine ladderVerticalBaseLine) {
-        this.lines.add(ladderVerticalBaseLine);
-    }
-
-    public boolean canConnect(int currentUserIndex, Point point) {
-        return !lines.get(currentUserIndex - 1).connectedWith(point);
+    public int size() {
+        return lines.size();
     }
 }

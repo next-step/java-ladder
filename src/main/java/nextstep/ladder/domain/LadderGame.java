@@ -24,18 +24,18 @@ public class LadderGame {
 
         ladder.addConnection(new LadderVerticalBaseLine(gameUsers.get(gameUsers.size() - 1), ConnectPoints.emptyPoints()));
 
-        return ladder;
+        return new Ladder(ladder);
     }
 
-    private ConnectPoints makeConnectPoints(Ladder ladder, int currentUserIndex) {
+    private ConnectPoints makeConnectPoints(Ladder ladder, int userIndex) {
         Set<Point> points = new HashSet<>();
         Point point = Point.INITIAL_POINT;
         int maxHeight = ladder.getMaxHeight();
         while (enoughToDrawLine(points, maxHeight)) {
-            if (canDraw(ladder, currentUserIndex, point)) {
+            if (canDraw(ladder, userIndex, point)) {
                 points.add(point);
             }
-            point = point.plus();
+            point = point.add();
         }
         return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
     }

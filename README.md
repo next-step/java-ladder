@@ -7,7 +7,7 @@ Dto 역할만 하는 것 같기도 한다.
 List<LadderGameUser> gameUsers = ladderGameUsers.getLadderGameUsers();
 ```
 
-Q. 아예 안그려지는경우는 ,,? 게임이 진행할 수 있는 최소조건 --> 최소 1개는 그어야한다!
+Q. 아예 안그려지는경우는 ,,?  --> 해결어떻게할지 ㅠㅠ!
 
 Q. 사다리가 동작하려면 각 VerticalLine은 최대 (최대높이 -1)개 만큼의 연결라인을 가져야한다.
 그래서 ConnectPoints 객체에 maxHeight을 사용하는 validation이 필요한데, maxHeight이 ConnectPoints의 상태는 아닌 것 같아서 
@@ -21,6 +21,27 @@ Q. 사다리가 동작하려면 각 VerticalLine은 최대 (최대높이 -1)개 
 ``` 
 
 
+Q. Ladder 클래스의 불변성 .. 
+- Getter지양에 어려움
+
+Q. LadderGame 매직넘버 남발 ,,
+
+
+Q. 인덴트 규칙과 파라미터개수 사이의 고민 ,,! 너무 많은 의존이 있는건가 싶었는데 다 필요해보여서 힘들다 ㅠㅠ
+```java
+    private ConnectPoints makeConnectPoints(Ladder ladder, int userIndex) {
+        Set<Point> points = new HashSet<>();
+        Point point = Point.INITIAL_POINT;
+        int maxHeight = ladder.getMaxHeight();
+        while (enoughToDrawLine(points, maxHeight)) {
+            if (canDraw(ladder, userIndex, point)) {
+                points.add(point);
+            }
+            point = point.add();
+        }
+        return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
+    }
+```
 
 기능
 [View]

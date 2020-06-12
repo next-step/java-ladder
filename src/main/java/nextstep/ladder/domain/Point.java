@@ -15,7 +15,7 @@ public class Point {
     }
 
     public static Point of(final int position) {
-        return CACHE.computeIfAbsent(position, (p) -> new Point(position));
+        return CACHE.computeIfAbsent(position, p -> new Point(position));
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Point {
         return Objects.hash(position);
     }
 
-    public Point plus() {
+    public Point add() {
         return Point.of(position + 1);
     }
 }
