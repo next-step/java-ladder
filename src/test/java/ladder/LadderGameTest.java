@@ -37,17 +37,15 @@ public class LadderGameTest {
         Ladder ladder = Ladder.buildLadder(playersGroup, 3, drawingLineStrategy);
 
         LadderGame ladderGame = new LadderGame();
-        List<String> playerNames = playersGroup.getPlayerNames();
-        List<String> gamePrizeNames = gamePrizesGroup.getGamePrizeNames();
-        Map<String, String> result = ladderGame.play(playersGroup, ladder, gamePrizesGroup);
+        Map<Player, GamePrize> result = ladderGame.play(playersGroup, ladder, gamePrizesGroup);
 
-        assertThat(result.get(playerNames.get(0)))
-                .isEqualTo(gamePrizeNames.get(1));
+        assertThat(result.get(playersGroup.valueOf(0)))
+                .isEqualTo(gamePrizesGroup.valueOf(1));
 
-        assertThat(result.get(playerNames.get(1)))
-                .isEqualTo(gamePrizeNames.get(0));
+        assertThat(result.get(playersGroup.valueOf(1)))
+                .isEqualTo(gamePrizesGroup.valueOf(0));
 
-        assertThat(result.get(playerNames.get(2)))
-                .isEqualTo(gamePrizeNames.get(2));
+        assertThat(result.get(playersGroup.valueOf(2)))
+                .isEqualTo(gamePrizesGroup.valueOf(2));
     }
 }

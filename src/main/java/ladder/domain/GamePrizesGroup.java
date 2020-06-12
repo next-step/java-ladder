@@ -25,6 +25,10 @@ public class GamePrizesGroup {
         }
     }
 
+    public GamePrize valueOf(int index) {
+        return gamePrizes.get(index);
+    }
+
     public List<String> getGamePrizeNames() {
         return gamePrizes.stream()
                 .map(GamePrize::getName)

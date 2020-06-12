@@ -28,6 +28,10 @@ public class PlayersGroup {
         }
     }
 
+    public Player valueOf(int index) {
+        return players.get(index);
+    }
+
     public List<String> getPlayerNames() {
         return players.stream()
                 .map(Player::getName)

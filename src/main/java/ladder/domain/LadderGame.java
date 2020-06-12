@@ -1,20 +1,17 @@
 package ladder.domain;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
+    private static final int LOOP_ZERO = 0;
 
-    public Map<String, String> play(PlayersGroup playersGroup, Ladder ladder, GamePrizesGroup gamePrizesGroup) {
-        Map<String, String> gameResult = new HashMap<>();
-
+    public Map<Player, GamePrize> play(PlayersGroup playersGroup, Ladder ladder, GamePrizesGroup gamePrizesGroup) {
+        Map<Player, GamePrize> gameResult = new HashMap<>();
         int playerCounts = playersGroup.getPlayerCounts();
-        List<String> playerNames = playersGroup.getPlayerNames();
-        List<String> gamePrizeNames = gamePrizesGroup.getGamePrizeNames();
-        for (int i = 0; i < playerCounts; i++) {
-            int resultLocation = ladder.climb(i);
-            gameResult.put(playerNames.get(i), gamePrizeNames.get(resultLocation));
+        for (int i = LOOP_ZERO; i < playerCounts; i++) {
+            int destinationIndex = ladder.climb(i);
+            gameResult.put(playersGroup.valueOf(i), gamePrizesGroup.valueOf(destinationIndex));
         }
         return gameResult;
     }
