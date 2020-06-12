@@ -43,6 +43,10 @@ public class Bridge {
         return bridgeType.isConnected();
     }
 
+    public static boolean isSameBridgeType(Bridge before, Bridge next) {
+        return before.getBridgeType().equals(next.getBridgeType());
+    }
+
     public BridgeType getBridgeType() {
         return bridgeType;
     }

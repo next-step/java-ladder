@@ -23,7 +23,7 @@ public class Line {
     }
 
     private void validateContinuous(Bridge current, Bridge next) {
-        if (current.isConnected() && next.isConnected()) {
+        if (current.isConnected() && Bridge.isSameBridgeType(current, next)) {
             throw new IllegalStateException("연속된 연결 다리가 존재합니다.");
         }
     }
