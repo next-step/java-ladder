@@ -43,4 +43,8 @@ public class PlayerAndPrizeFixtures {
     public PlayersAndPrizes getMultiplePlayersAndPrizes() {
         return multiplePlayersAndPrizes;
     }
+
+    public PlayersAndPrizes getSinglePlayersAndPrizes() {
+        return singlePlayersAndPrizes;
+    }
 }

@@ -4,6 +4,7 @@ import ladder.domain.LadderGame;
 import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.ladder.strategy.StairGenerationStrategy;
+import ladder.view.ResultView;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -19,6 +20,7 @@ public class LadderFixtures {
 
         ladderShapeInfo = LadderShapeInfo.valueOf(PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes(), height);
         ladderGame = LadderGame.of(ladderShapeInfo, new TestStairGenerationStrategy());
+        ResultView.printLadderShape(ladderGame.ready());
     }
 
     public static LadderFixtures of() {
@@ -26,8 +28,11 @@ public class LadderFixtures {
     }
 
     public static class TestStairGenerationStrategy implements StairGenerationStrategy {
-        static Queue<Boolean> stairQueue = new LinkedList<>();
-        static {
+        private Queue<Boolean> stairQueue;
+
+        public TestStairGenerationStrategy() {
+            stairQueue = new LinkedList<>();
+
             stairQueue.addAll(Arrays.asList(true, false, true, false));
             stairQueue.addAll(Arrays.asList(false, true, false, false));
             stairQueue.addAll(Arrays.asList(false, true, false, true));
