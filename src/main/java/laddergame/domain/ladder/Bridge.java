@@ -7,26 +7,6 @@ public class Bridge {
         this.bridgeType = bridgeType;
     }
 
-    public static Bridge createFirstBridge(boolean isConnected) {
-        if (isConnected) {
-            return createRightBridge();
-        }
-
-        return createNotLinkedBridge();
-    }
-
-    public static Bridge createNextBridge(boolean isConnected, Bridge beforeBridge) {
-        if (beforeBridge.bridgeType.isRightConnected()) {
-            return createLeftBridge();
-        }
-
-        if (isConnected) {
-            return createRightBridge();
-        }
-
-        return createNotLinkedBridge();
-    }
-
     public static Bridge createNotLinkedBridge() {
         return new Bridge(BridgeType.NONE);
     }

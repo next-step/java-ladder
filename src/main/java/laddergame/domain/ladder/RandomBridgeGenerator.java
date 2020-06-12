@@ -2,7 +2,6 @@ package laddergame.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -16,13 +15,21 @@ public class RandomBridgeGenerator implements BridgeGenerator {
             return Arrays.asList(Bridge.createNotLinkedBridge());
         }
 
-        Bridge firstBridge = Bridge.createFirstBridge(RANDOM.nextBoolean());
+        Bridge firstBridge = generateFirstBridge();
 
         List<Bridge> bridges = new ArrayList<>(generateMiddleBridges(firstBridge, numberOfPlayer));
 
         bridges.add(generateLastBridge(bridges, numberOfPlayer));
 
         return bridges;
+    }
+
+    private Bridge generateFirstBridge() {
+        if (RANDOM.nextBoolean()) {
+            return Bridge.createRightBridge();
+        }
+
+        return Bridge.createNotLinkedBridge();
     }
 
     private List<Bridge> generateMiddleBridges(Bridge firstBridge, int numberOfPlayer) {
@@ -32,7 +39,7 @@ public class RandomBridgeGenerator implements BridgeGenerator {
 
         for (int beforeIndex = 0; beforeIndex < numberOfPlayer - 2; beforeIndex++) {
             Bridge beforeBridge = bridges.get(beforeIndex);
-            bridges.add(Bridge.createNextBridge(RANDOM.nextBoolean(), beforeBridge));
+            bridges.add(generateNextBridge(RANDOM.nextBoolean(), beforeBridge));
         }
 
         return bridges;
@@ -43,6 +50,18 @@ public class RandomBridgeGenerator implements BridgeGenerator {
 
         if (beforeBridge.getBridgeType().isRightConnected()) {
             return Bridge.createLeftBridge();
+        }
+
+        return Bridge.createNotLinkedBridge();
+    }
+
+    private Bridge generateNextBridge(boolean isConnected, Bridge beforeBridge) {
+        if (beforeBridge.getBridgeType().isRightConnected()) {
+            return Bridge.createLeftBridge();
+        }
+
+        if (isConnected) {
+            return Bridge.createRightBridge();
         }
 
         return Bridge.createNotLinkedBridge();

@@ -1,32 +1,36 @@
 package laddergame.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BridgeTest {
+    @DisplayName("같은 연결 타입이면 true를 반환한다.")
+    @Test
+    void isSameBridgeType() {
+        Bridge bridgeFirst = Bridge.createRightBridge();
+        Bridge bridgeSecond = Bridge.createRightBridge();
+        Bridge bridgeThird = Bridge.createLeftBridge();
 
-    @DisplayName("첫번쨰 연결 다리는 다음 연결을 확인하지않고 생성한다.")
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    void createFirstBridge(boolean isConnected) {
-        Bridge firstBridge = Bridge.createFirstBridge(isConnected);
-
-        assertThat(firstBridge.isConnected()).isEqualTo(isConnected);
+        assertAll(
+                () -> assertThat(Bridge.isSameBridgeType(bridgeFirst, bridgeSecond)).isTrue(),
+                () -> assertThat(Bridge.isSameBridgeType(bridgeFirst, bridgeThird)).isFalse()
+        );
     }
 
-    @DisplayName("만약 이전 다리가 오른쪽 연결이면 만드려는 다리는 생성 여부에 상관없이 왼쪽 연결이다.")
-    @ParameterizedTest
-    @CsvSource({"true, true, LEFT",
-            "true, false, LEFT"})
-    void createNextBridge(boolean before, boolean current, BridgeType afterCreate) {
-        Bridge beforeBridge = Bridge.createFirstBridge(before);
+    @DisplayName("오른쪽 연결 또는 왼쪽 연결은 연결 여부 확인시 true를 반환한다.")
+    @Test
+    void isConnected() {
+        Bridge bridgeRight = Bridge.createRightBridge();
+        Bridge bridgeLeft = Bridge.createLeftBridge();
+        Bridge bridgeNone = Bridge.createNotLinkedBridge();
 
-        Bridge currentBridge = Bridge.createNextBridge(current, beforeBridge);
-
-        assertThat(currentBridge.getBridgeType()).isEqualTo(afterCreate);
+        assertAll(
+                () -> assertThat(bridgeRight.isConnected()).isTrue(),
+                () -> assertThat(bridgeLeft.isConnected()).isTrue(),
+                () -> assertThat(bridgeNone.isConnected()).isFalse()
+        );
     }
 }
