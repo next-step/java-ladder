@@ -4,6 +4,9 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderGame {
 
     private final Ladder ladder;
@@ -12,7 +15,15 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public int findEndPoint(int playerPosition) {
+    public List<Integer> findAllPosition(int countOfPerson) {
+        List<Integer> result = new ArrayList<>();
+        for (int player = 0; player < countOfPerson; player++) {
+            result.add(findResultPosition(player));
+        }
+        return result;
+    }
+
+    public int findResultPosition(int playerPosition) {
         for (int lineNumber = 0; lineNumber < ladder.height(); lineNumber++) {
             Line line = ladder.get(lineNumber);
             playerPosition = getNextPosition(line, playerPosition);
