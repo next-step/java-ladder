@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayersGroup {
-    private static final int MINIMUM_PLAYER_COUNTS = 2;
+    public static final int MINIMUM_PLAYER_COUNTS = 2;
 
     private final List<Player> players;
 

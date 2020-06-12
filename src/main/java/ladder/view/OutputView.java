@@ -77,13 +77,13 @@ public class OutputView {
             printAllResult(gameResult);
             return;
         }
-        System.out.println(gameResult.getResultByPlayerName(resultPlayerName));
+        System.out.println(gameResult.getGamePrizeNameByPlayerName(resultPlayerName));
     }
 
     private static void printAllResult(GameResult gameResult) {
         Set<String> keySet = gameResult.getKeySet();
         for (String playerName : keySet) {
-            System.out.println(playerName + " : " + gameResult.getResultByPlayerName(playerName));
+            System.out.println(playerName + " : " + gameResult.getGamePrizeNameByPlayerName(playerName));
         }
     }
 }

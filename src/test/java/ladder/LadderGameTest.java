@@ -38,10 +38,10 @@ public class LadderGameTest {
         LadderGame ladderGame = new LadderGame();
         GameResult result = ladderGame.play(playersGroup, ladder, gamePrizesGroup);
 
-        assertThat(result.getResultByPlayerName("aa")).isEqualTo("1000");
+        assertThat(result.getGamePrizeNameByPlayerName("aa")).isEqualTo("1000");
 
-        assertThat(result.getResultByPlayerName("bb")).isEqualTo("꽝");
+        assertThat(result.getGamePrizeNameByPlayerName("bb")).isEqualTo("꽝");
 
-        assertThat(result.getResultByPlayerName("cc")).isEqualTo("4444");
+        assertThat(result.getGamePrizeNameByPlayerName("cc")).isEqualTo("4444");
     }
 }

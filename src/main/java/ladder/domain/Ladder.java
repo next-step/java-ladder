@@ -21,6 +21,13 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
+    public int climb(int index) {
+        for (Line line : lines) {
+            index = line.movePointOnLine(index);
+        }
+        return index;
+    }
+
     public List<List<Direction>> getLadderBluePrint() {
         return lines.stream()
                 .map(Line::getPointDirections)
@@ -29,12 +36,5 @@ public class Ladder {
 
     public int getLadderHeight() {
         return lines.size();
-    }
-
-    public int climb(int index) {
-        for (Line line : lines) {
-            index = line.movePointOnLine(index);
-        }
-        return index;
     }
 }

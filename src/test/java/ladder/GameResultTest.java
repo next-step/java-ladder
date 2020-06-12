@@ -20,7 +20,7 @@ class GameResultTest {
 
         GameResult gameResult = new GameResult(gameResultMap);
 
-        assertThat(gameResult.getResultByPlayerName("test1")).isEqualTo("꽝");
-        assertThat(gameResult.getResultByPlayerName("test2")).isEqualTo("승리");
+        assertThat(gameResult.getGamePrizeNameByPlayerName("test1")).isEqualTo("꽝");
+        assertThat(gameResult.getGamePrizeNameByPlayerName("test2")).isEqualTo("승리");
     }
 }

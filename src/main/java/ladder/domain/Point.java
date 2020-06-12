@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class Point {
+    public static final int NEXT_INDEX = 1;
     private static final int MINIMUM_INDEX = 0;
-    private static final int NEXT_INDEX = 1;
 
     private final int index;
     private final Direction direction;
@@ -21,7 +21,7 @@ public class Point {
     }
 
     public static Point drawMiddlePoint(Point lastPoint, boolean isDown) {
-        if (lastPoint.direction == Direction.RIGHT) {
+        if (lastPoint.isConnected()) {
             return new Point(lastPoint.index + NEXT_INDEX, Direction.LEFT);
         }
         if (isDown) {
@@ -31,20 +31,24 @@ public class Point {
     }
 
     public static Point drawLastPoint(Point lastPoint) {
-        if (lastPoint.direction == Direction.RIGHT) {
+        if (lastPoint.isConnected()) {
             return new Point(lastPoint.index + NEXT_INDEX, Direction.LEFT);
         }
         return new Point(lastPoint.index + NEXT_INDEX, Direction.DOWN);
     }
 
-    public int moveByDirection() {
-        return direction.moveIndexByDirection(index);
+    private boolean isConnected() {
+        return direction == Direction.RIGHT;
     }
 
     private void validateIndex(int index) {
         if (index < MINIMUM_INDEX) {
             throw new LadderBuildingException(LadderBuildingException.NEGATIVE_INDEX);
         }
+    }
+
+    public int moveByDirection() {
+        return direction.moveIndexByDirection(index);
     }
 
     public Direction getDirection() {

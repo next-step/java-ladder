@@ -3,8 +3,8 @@ package ladder.domain;
 import java.util.function.UnaryOperator;
 
 public enum Direction {
-    LEFT(index -> index -= 1),
-    RIGHT(index -> index += 1),
+    LEFT(index -> index -= Point.NEXT_INDEX),
+    RIGHT(index -> index += Point.NEXT_INDEX),
     DOWN(index -> index);
 
     private final UnaryOperator<Integer> moveIndexByDirection;
@@ -13,20 +13,7 @@ public enum Direction {
         this.moveIndexByDirection = moveIndexByDirection;
     }
 
-    public static Direction valueOf(int index) {
-        return values()[index];
-    }
-
     public int moveIndexByDirection(int index) {
         return this.moveIndexByDirection.apply(index);
-    }
-
-    public String getName() {
-        if (this == LEFT) {
-            return "LEFT";
-        } else if (this == RIGHT) {
-            return "RIGHT";
-        }
-        return "STOP";
     }
 }

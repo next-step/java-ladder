@@ -10,6 +10,7 @@
 * PlayersGroup
     * 게임 참가지 객체의 리스트(List<Player>) 일급 컬렉션
     * Player들의 이름 중 중복이 있을 경우 예외 발생
+        * 참가자 수가 2명 미만일 때도 예외 발생
     * 참가자 객체의 이름 목록을 파라미터로 받아 객체 생성
     * Player들의 이름 명단(List<String>) 반환
     * Player들 수를 반환
@@ -33,12 +34,11 @@
 * Direction
     * Left, Right, Stop 3가지로 나뉨.
     * 각 상수는 index가 주어지면 해당 인덱스 좌표가 주어지면 방향에 맞게 수정시켜 리턴함.
-    * index를 통한 valueOf 객체 반환 기능
     
 * Line
     * 사다리의 수평 라인 한 줄을 의미하는 객체
     * 수평 라인이 존재하는 부분과 아닌 부분을 List<Point>으로 가짐
-    * 생성된 Line을 구성하는 각 Point들의 정보를 담은 List<Boolean> 반환
+    * 생성된 Line을 구성하는 각 Point들의 방향 정보를 담은 List<Direction> 반환
     * parameter로 한 라인의 특정 point의 index를 받으면 해당 point를 검색해 move시킨 좌표를 반환.
     
  * DrawingLineStrategy
@@ -52,7 +52,7 @@
 * Ladder
     * 사다리 2차원 배열의 정보를 List<Line>으로 가지고 있는 일급 컬렉션.
     * 플레이어 명단과 사다리 높이를 바탕으로 사다리를 생성함.
-    * 사다리의 설계도면을 List<List<Boolean>>으로 반환함
+    * 사다리의 설계도면을 List<List<Direction>>으로 반환함
     * 시작 위치가 주어지면 사다리를 타고 그 결과 위치를 반환함.
 
 * LadderGame

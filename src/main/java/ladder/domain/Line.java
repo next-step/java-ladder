@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    private static final int MINIMUM_PLAYER_COUNTS = 2;
 
     private final List<Point> points;
 
@@ -19,19 +18,19 @@ public class Line {
     }
 
     private static void validatePlayerCounts(int playerCounts) {
-        if (playerCounts < MINIMUM_PLAYER_COUNTS) {
+        if (playerCounts < PlayersGroup.MINIMUM_PLAYER_COUNTS) {
             throw new LadderBuildingException(LadderBuildingException.INVALID_PLAYER_COUNTS);
         }
+    }
+
+    public int movePointOnLine(int index) {
+        Point point = points.get(index);
+        return point.moveByDirection();
     }
 
     public List<Direction> getPointDirections() {
         return points.stream()
                 .map(Point::getDirection)
                 .collect(Collectors.toList());
-    }
-
-    public int movePointOnLine(int index) {
-        Point point = points.get(index);
-        return point.moveByDirection();
     }
 }

@@ -11,7 +11,7 @@ public class GameResult {
         this.gameResult = gameResult;
     }
 
-    public String getResultByPlayerName(String playerName) {
+    public String getGamePrizeNameByPlayerName(String playerName) {
         return gameResult.get(playerName);
     }
 
