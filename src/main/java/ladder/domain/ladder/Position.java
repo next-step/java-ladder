@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Position {
 
+    static final int ONE_STEP_POSITION = 1;
     static final int MIN_POSITION = 0;
 
     private final int position;
@@ -23,6 +24,14 @@ public class Position {
         if (position < MIN_POSITION) {
             throw new IllegalArgumentException(ErrorMessage.REQUIRED_MIN_POSITION);
         }
+    }
+
+    public Position moveLeft() {
+        return Position.of(position - ONE_STEP_POSITION);
+    }
+
+    public Position moveRight() {
+        return Position.of(position + ONE_STEP_POSITION);
     }
 
     public int getPosition() {

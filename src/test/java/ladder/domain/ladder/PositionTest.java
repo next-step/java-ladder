@@ -14,7 +14,23 @@ public class PositionTest {
     @Test
     void createFailure() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Position.of(Position.MIN_POSITION - 1));
+                .isThrownBy(() -> Position.of(Position.MIN_POSITION - Position.ONE_STEP_POSITION));
+    }
+
+    @DisplayName("왼쪽으로 이동한 위치값 반환")
+    @ParameterizedTest
+    @ValueSource(ints = { Position.MIN_POSITION, 10, 100 })
+    void moveLeft(final int position) {
+        assertThat(Position.of(position).moveLeft())
+                .isEqualTo(Position.of(position - Position.ONE_STEP_POSITION));
+    }
+
+    @DisplayName("오른쪽으로 이동한 위치값 반환")
+    @ParameterizedTest
+    @ValueSource(ints = { Position.MIN_POSITION, 10, 100 })
+    void moveRight(final int position) {
+        assertThat(Position.of(position).moveRight())
+                .isEqualTo(Position.of(position + Position.ONE_STEP_POSITION));
     }
 
     @DisplayName("위치값을 반환")
