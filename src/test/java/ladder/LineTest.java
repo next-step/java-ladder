@@ -22,7 +22,7 @@ public class LineTest {
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("PlayerCounts가 1 미만인 경우 객체 생성 에러 발생")
+    @DisplayName("PlayerCounts가 2 미만인 경우 객체 생성 에러 발생")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     public void throwExceptionOnMakingLineObject(int playerCounts) {
@@ -43,7 +43,12 @@ public class LineTest {
         assertThat(pointDirections.size()).isEqualTo(playerCounts);
     }
 
-    @DisplayName("Line 객체의 한 Point의 인덱스 좌표를 받으면 move시킨 뒤 인덱스 반환")
+    /*
+    |----|    |
+    형태의 1개 라인으로 테스트
+     */
+
+    @DisplayName("Line 객체의 한 Point의 인덱스 좌표를 받으면 방향에 따라 move시킨 뒤 인덱스 반환")
     @Test
     public void movePointOnLine() {
         DrawingLineStrategy drawingLineStrategy = new DrawingLineStrategy() {
@@ -60,5 +65,6 @@ public class LineTest {
 
         assertThat(line.movePointOnLine(0)).isEqualTo(1);
         assertThat(line.movePointOnLine(1)).isEqualTo(0);
+        assertThat(line.movePointOnLine(2)).isEqualTo(2);
     }
 }

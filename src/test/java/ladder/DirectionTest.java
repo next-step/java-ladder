@@ -30,7 +30,7 @@ public class DirectionTest {
         assertThat(direction).isEqualTo(expectedDirection);
     }
 
-    @DisplayName("Direction의 moveIndexByDirection 메소드 테스트")
+    @DisplayName("Direction의 moveIndexByDirection 메소드를 통한 index 좌표 값 변화 테스트")
     @Test
     public void moveIndexByDirection() {
         int index = 3;

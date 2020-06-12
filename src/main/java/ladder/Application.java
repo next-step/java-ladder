@@ -24,7 +24,6 @@ public class Application {
         while (true) {
             String resultPlayerName = InputView.inputResultPlayerName();
             OutputView.printGameResult(gameResult, resultPlayerName);
-            break;
         }
     }
 }

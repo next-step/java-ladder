@@ -22,7 +22,7 @@ public class PlayersGroupTest {
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("PlayersGroup 객체 생성 실패 테스트")
+    @DisplayName("PlayersGroup 객체 생성 실패 테스트(중복된 이름)")
     @Test
     public void throwExceptionOnMakingPlayersGroup() {
         List<String> testNames = Arrays.asList("aa", "bb", "cc", "cc");

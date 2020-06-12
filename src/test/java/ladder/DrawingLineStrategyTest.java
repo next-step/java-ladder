@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DrawingLineStrategyTest {
 
-    @DisplayName("Random전략으로 Line을 그리면 그 너비는 playerCounts - 1과 동일")
+    @DisplayName("Random전략으로 Line을 그리면 그 너비는 playerCounts과 동일")
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 4, 5})
     public void lineLengthTest(int playerCounts) {

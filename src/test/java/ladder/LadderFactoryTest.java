@@ -20,7 +20,7 @@ public class LadderFactoryTest {
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("LadderFactory 객체 정상 생성 실패 테스트")
+    @DisplayName("LadderFactory 객체 정상 생성 실패 테스트(사다리 길이가 1 미만일 경우)")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     public void throwExceptionOnMakingLadderFactoryObject(int ladderHeight) {

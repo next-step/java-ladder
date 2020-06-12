@@ -19,7 +19,7 @@ public class LadderGameTest {
     꽝 1000 4444
     형태의 사다리 테스트
     */
-    @DisplayName("사다리 게임을 통해 각 플레이어들의 결과를 집계함")
+    @DisplayName("사다리 게임을 통해 각 플레이어들의 결과가 정상 집계됨")
     @Test
     public void playLadderGame() {
         PlayersGroup playersGroup = PlayersGroup.of(Arrays.asList("aa", "bb", "cc"));
