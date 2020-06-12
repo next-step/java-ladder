@@ -23,8 +23,8 @@ public class Line {
         return new Line(points);
     }
 
-    private static boolean isLastPoint(int countOfPerson, int i) {
-        return i == countOfPerson - 1;
+    private static boolean isLastPoint(int countOfPerson, int index) {
+        return index == countOfPerson - 1;
     }
 
     private static boolean hasPreviousLine(List<Point> points, int index) {
