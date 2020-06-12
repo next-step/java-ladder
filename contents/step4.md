@@ -73,7 +73,7 @@ RowPillars2          2    | Pillar4 - Pillar5 - Pillar6
 - [x] (numOfPlayers * height)개의 기둥으로 사다리 판을 생성한다.
 - [x] 한 명의 사용자가 사다리를 타면 index 0 의 prize 리스트를 반환한다. 
 - [x] 모든 사용자가 사다리를 타고 난 결과에 대한 prize index 리스트를 반환한다.
-- [ ] 사다리 타기 게임 결과 예상하는 임의의 결과값 Prizes 의 순서가 반환한다.
+- [x] 사다리 타기 게임 결과 예상하는 임의의 결과값 Prizes 의 순서가 반환한다.
 
 #### RowPillars 
 : 한 행에 있는 모든 세로 모양의 기둥들 (|)
@@ -148,14 +148,14 @@ RowPillars2          2    | Pillar4 - Pillar5 - Pillar6
 - [x] 게임 참여자가 1명일 때 LadderGame 을 play 할 수 있다.
 - [x] 게임을 수행하고 난 후 참여자의 모든 이름을 반환한다.
 - [x] 게임 참여자가 1명 일 때, match 되는 prize 하나를 반환한다.
-- [ ] 게임 참여자가 여러 명일 때, match 되는 임의의 결과값인 Prize 값을 반환한다.
+- [x] 게임 참여자가 여러 명일 때, match 되는 임의의 결과값인 Prize 값을 반환한다.
 
 #### LadderShapeResult
 : 사다리 판 출력을 위한 실행 결과 정보
 - [x] 참여자의 이름 리스트와 계단 라인 정보, 게임 실행 결과 이름 리스트로 LadderShapeResult 를 생성할 수 있다. 
 - [x] 참여자의 이름을 반환할 수 있다.
 - [x] 실행 결과 이름을 반환할 수 있다.
-- [ ] 사다리 모양을 그리기 위한 계단 라인(한 행) 리스트(높이)를 반환한다.
+- [x] 사다리 모양을 그리기 위한 계단 라인(한 행) 리스트(높이)를 반환한다.
 
 #### LadderMatchResult
 : 사다리 게임의 게임 결과 출력을 위한 정보
@@ -169,8 +169,7 @@ RowPillars2          2    | Pillar4 - Pillar5 - Pillar6
 - [x] 사다리의 계단 라인이 null 이거나 라인이 하나도 없으면 예외를 반환한다.
 - [x] Ladder 의 각 행의 좌->우로 가면서 Stair 의 existLine 정보를 이용하여 출력하기 쉬운 boolean 리스트 값으로 변환한다. 
 - [x] 각 행의 계단 라인인 List<Boolean> 을 반환한다.
-- [ ] 행의 계단이 예상한 입력값으로 구성되는지 확인한다.
-    - 행의 계단이 T/F/T/F 로 StairDto 가 생기는지 확인
+- [x] 행의 계단이 예상한 입력값으로 구성되는지 확인한다.
 - [x] 한 명의 참여자로 게임을 실행하면 모든 높이의 기둥에 존재하는 계단 수는 1개 (StairState 가 empty 인 계단)
 
 #### LadderShapeInfo
