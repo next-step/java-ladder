@@ -30,4 +30,11 @@ public class Ladder {
     public int getLadderHeight() {
         return lines.size();
     }
+
+    public int climb(int index) {
+        for (Line line : lines) {
+            index = line.movePointOnLine(index);
+        }
+        return index;
+    }
 }

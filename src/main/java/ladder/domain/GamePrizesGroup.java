@@ -24,4 +24,10 @@ public class GamePrizesGroup {
             throw new LadderBuildingException(LadderBuildingException.INVALID_GAME_PRIZE_COUNTS);
         }
     }
+
+    public List<String> getGamePrizeNames() {
+        return gamePrizes.stream()
+                .map(GamePrize::getName)
+                .collect(Collectors.toList());
+    }
 }

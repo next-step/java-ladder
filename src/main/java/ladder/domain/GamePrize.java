@@ -14,4 +14,8 @@ public class GamePrize {
             throw new LadderBuildingException(LadderBuildingException.INVALID_GAME_PRIZE_NAME);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

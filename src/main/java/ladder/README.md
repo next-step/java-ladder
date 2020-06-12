@@ -53,6 +53,14 @@
     * 사다리 2차원 배열의 정보를 List<Line>으로 가지고 있는 일급 컬렉션.
     * 플레이어 명단과 사다리 높이를 바탕으로 사다리를 생성함.
     * 사다리의 설계도면을 List<List<Boolean>>으로 반환함
+    * 시작 위치가 주어지면 사다리를 타고 그 결과 위치를 반환함.
+
+* LadderGame
+    * 사다리 타기 게임을 진행하기 위한 객체
+    * 게임을 진행하고 GameResult를 기록하여 반환함.
+    
+* GameResult
+    * Key(Player) - Value(Prize) Map을 감싸는 일급 컬렉션
         
 ### View
 

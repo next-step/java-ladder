@@ -26,13 +26,16 @@ public class RandomDrawingLineStrategy implements DrawingLineStrategy {
             return Point.drawFirstPoint(playerCounts, index, generateRandomBoolean());
         }
         if (isLastPointConnected(points)) {
-            return new Point(index, Direction.DOWN);
+            return new Point(index, Direction.LEFT);
+        }
+        if (points.size() == playerCounts - 1 && isLastPointLeft(points)) {
+            return Point.drawLastPoint(index, true);
+        }
+        if (points.size() == playerCounts - 1 && isLastPointLeft(points)) {
+            return Point.drawLastPoint(index, true);
         }
         if (isLastPointLeft(points)) {
             return Point.drawMiddlePoint(index, generateRandomBoolean());
-        }
-        if (points.size() == playerCounts - 1) {
-            return Point.drawLastPoint(index, generateRandomBoolean());
         }
         int randomNumber = RANDOM.nextInt(3);
         return Point.drawPoint(index, randomNumber);
