@@ -7,6 +7,7 @@ import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prizes;
+import ladder.fixture.LadderFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -83,9 +87,23 @@ public class StairDtoTest {
                         .isEqualTo(1));
     }
 
-    // TODO 행의 계단이 T/F/T/F 로 StairDto 가 생기는지 확인
-//    @DisplayName("각 행의 계단 라인인 List<Boolean> 을 반환")
-//    @Test
-//    void getLines() {
-//    }
+    @DisplayName("각 행의 계단 라인인 List<Boolean> 을 반환")
+    @Test
+    void getLines() {
+        Ladder ladder = Ladder.of(LadderFixtures.of().ladderShapeInfo,
+                new LadderFixtures.TestStairGenerationStrategy());
+        List<StairDto> stairDtos = StairDto.from(ladder);
+
+        List<List<Boolean>> expectedLines = new ArrayList<>();
+        expectedLines.add(Arrays.asList(true, false, false, true, false));
+        expectedLines.add(Arrays.asList(false, false, true, false, false));
+        expectedLines.add(Arrays.asList(false, false, false, true, false));
+        expectedLines.add(Arrays.asList(false, true, false, false, false));
+        expectedLines.add(Arrays.asList(false, true, false, false, false));
+
+        IntStream.range(0, stairDtos.size())
+                .forEach(index ->
+                        assertThat(stairDtos.get(index).getLines())
+                                .isEqualTo(expectedLines.get(index)));
+    }
 }
