@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.view.LadderGameView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -11,11 +9,11 @@ public class Line {
     private static final Integer FIRST_MOUNTING_BLOCK_INDEX = 0;
 
     private List<MountingBlock> mountingBlocks;
-    private MountingBlockGeneratorFactory mountingBlockGeneratorFactory;
+    private MountingBlockGenerator mountingBlockGenerator;
 
-    public Line(Integer countOfPerson) {
+    public Line(Integer countOfPerson, MountingBlockGenerator mountingBlockGenerator) {
         this.mountingBlocks = new ArrayList<>();
-        this.mountingBlockGeneratorFactory = new MountingBlockGeneratorFactory();
+        this.mountingBlockGenerator = mountingBlockGenerator;
 
         IntStream.rangeClosed(FIRST_MOUNTING_BLOCK_INDEX, getTotalMountingBlock(countOfPerson))
                 .forEach(this::makeLine);
@@ -27,9 +25,8 @@ public class Line {
 
     private void makeLine(Integer mountingBlockIndex) {
 
-        MountingBlockGenerator mountingBlockGenerator = this.mountingBlockGeneratorFactory.randomMountingBlockGenerator();
         if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK_INDEX)) {
-            MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE, mountingBlockGenerator);
+            MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE, this.mountingBlockGenerator);
             this.mountingBlocks.add(mountingBlock);
 
             return;
@@ -38,7 +35,7 @@ public class Line {
         Integer beforeMountingBlockIndex = getPreviousMountingBlockIndex(mountingBlockIndex);
         MountingBlock beforeMountingBlock = this.mountingBlocks.get(beforeMountingBlockIndex);
 
-        this.mountingBlocks.add(MountingBlock.of(beforeMountingBlock.getMountingBlock(), mountingBlockGenerator));
+        this.mountingBlocks.add(MountingBlock.of(beforeMountingBlock.getMountingBlock(), this.mountingBlockGenerator));
     }
 
     private Integer getPreviousMountingBlockIndex(Integer mountingBlockIndex) {
