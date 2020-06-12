@@ -35,7 +35,7 @@ public class PlayersAndPrizes {
             throw new IllegalArgumentException(ErrorMessage.NULL_VALUE);
         }
         if (players.count() != prizes.count()) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_MATCHED_VALUE);
+            throw new IllegalArgumentException(ErrorMessage.NOT_SAME_MATCHED_VALUE);
         }
     }
 
