@@ -31,6 +31,7 @@ public class Line {
         if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK_INDEX)) {
             MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE, mountingBlockGenerator);
             this.mountingBlocks.add(mountingBlock);
+
             return;
         }
 
