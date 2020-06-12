@@ -1,5 +1,6 @@
 package ladder.domain.player;
 
+import ladder.domain.ladder.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,15 +50,15 @@ public class PlayersTest {
     @DisplayName("배열 순서에 해당하는 Player 를 반환")
     @ParameterizedTest
     @MethodSource
-    void indexOf(final int index, final Player expected) {
+    void indexOf(final Position index, final Player expected) {
         assertThat(Players.of(names).indexOf(index))
                 .isEqualTo(expected);
     }
 
     private static Stream<Arguments> indexOf() {
         return Stream.of(
-                Arguments.of(0, Player.of("pobi")),
-                Arguments.of(1, Player.of("honux"))
+                Arguments.of(Position.of(0), Player.of("pobi")),
+                Arguments.of(Position.of(1), Player.of("honux"))
         );
     }
 }

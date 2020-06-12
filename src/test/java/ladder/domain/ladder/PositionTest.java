@@ -19,7 +19,7 @@ public class PositionTest {
 
     @DisplayName("왼쪽으로 이동한 위치값 반환")
     @ParameterizedTest
-    @ValueSource(ints = { Position.MIN_POSITION, 10, 100 })
+    @ValueSource(ints = { Position.MIN_POSITION + 1, 10, 100 })
     void moveLeft(final int position) {
         assertThat(Position.of(position).moveLeft())
                 .isEqualTo(Position.of(position - Position.ONE_STEP_POSITION));

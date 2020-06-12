@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Position;
+import ladder.domain.ladder.Positions;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
@@ -13,7 +15,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -60,20 +61,20 @@ public class PlayersAndPrizesTest {
     @DisplayName("사타리 타기 실행 결과에 따라 Player 에 매칭되는 Prize 를 Map 의 형태로 반환")
     @ParameterizedTest
     @MethodSource
-    void matchPlayerAndPrize(final List<Integer> prizePositions) {
+    void matchPlayerAndPrize(final Positions prizePositions) {
         PlayersAndPrizes playersAndPrizes = PlayersAndPrizes.valueOf(players, prizes);
         Map<Player, Prize> matchResult = playersAndPrizes.matchPlayerAndPrize(prizePositions);
 
         IntStream.range(0, playersAndPrizes.getPlayersCount())
                 .forEach(index -> assertThat(matchResult.get(Player.of(playersAndPrizes.getPlayerNames().get(index))))
-                                    .isEqualTo(prizes.indexOf(prizePositions.get(index)))
+                                    .isEqualTo(prizes.indexOf(prizePositions.indexOf(Position.of(index))))
                 );
     }
 
     private static Stream<Arguments> matchPlayerAndPrize() {
         return Stream.of(
-                Arguments.of(Arrays.asList(0, 1)),
-                Arguments.of(Arrays.asList(1, 0))
+                Arguments.of(Positions.of(Arrays.asList(Position.of(0), Position.of(1)))),
+                Arguments.of(Positions.of(Arrays.asList(Position.of(1), Position.of(0))))
         );
     }
 

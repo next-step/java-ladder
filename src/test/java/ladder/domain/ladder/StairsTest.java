@@ -48,13 +48,18 @@ public class StairsTest {
         int maxPosition = PillarCount.MIN_COUNT * 5;
         PillarCount pillarCount = PillarCount.of(maxPosition);
 
-        for (int position = 0; position < maxPosition; position++) {
-            Stair stair = Stairs.of(pillarCount).getStairs().get(position);
+        for (int index = 0; index < maxPosition; index++) {
+            Stair stair = Stairs.of(pillarCount).getStairs().get(index);
+            Position position = Position.of(index);
 
             if (stair.isRightLineExist()) {
-                assertThat(stair.move(position) == position + 1);
+                assertThat(stair.move(position).equals(position.moveRight()));
             } else {
-                assertThat(stair.move(position)).isIn(position, position - 1);
+                if (index == Position.MIN_POSITION) {
+                    assertThat(stair.move(position)).isEqualTo(position);
+                    continue;
+                }
+                assertThat(stair.move(position)).isIn(position, position.moveLeft());
             }
         }
     }

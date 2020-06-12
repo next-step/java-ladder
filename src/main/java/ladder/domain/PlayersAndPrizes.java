@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.ladder.Position;
+import ladder.domain.ladder.Positions;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.prize.Prize;
@@ -37,13 +39,14 @@ public class PlayersAndPrizes {
         }
     }
 
-    public Map<Player, Prize> matchPlayerAndPrize(final List<Integer> prizePositions) {
+    public Map<Player, Prize> matchPlayerAndPrize(final Positions prizePositions) {
         Map<Player, Prize> matchResult = new LinkedHashMap<>();
 
         IntStream.range(0, getPlayersCount())
-                .forEach(index -> {
-                    Player player = players.indexOf(index);
-                    Prize prize = prizes.indexOf(prizePositions.get(index));
+                .mapToObj(Position::of)
+                .forEach(playerPosition -> {
+                    Player player = players.indexOf(playerPosition);
+                    Prize prize = prizes.indexOf(prizePositions.indexOf(playerPosition));
 
                     matchResult.put(player, prize);
                 });

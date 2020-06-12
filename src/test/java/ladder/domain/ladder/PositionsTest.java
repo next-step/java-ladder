@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -44,6 +45,22 @@ public class PositionsTest {
                 Arguments.of(Position.of(0), Position.of(2)),
                 Arguments.of(Position.of(1), Position.of(0)),
                 Arguments.of(Position.of(2), Position.of(1))
+        );
+    }
+
+    @DisplayName("위치 리스트의 개수")
+    @ParameterizedTest
+    @MethodSource
+    void size(final List<Position> positions, final int expected) {
+        assertThat(Positions.of(positions).size())
+                .isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> size() {
+        return Stream.of(
+                Arguments.of(Collections.singletonList(Position.of(0)), 1),
+                Arguments.of(Arrays.asList(Position.of(0), Position.of(1)), 2),
+                Arguments.of(Arrays.asList(Position.of(0), Position.of(1), Position.of(2)), 3)
         );
     }
 }

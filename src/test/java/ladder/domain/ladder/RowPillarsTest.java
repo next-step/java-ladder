@@ -55,11 +55,17 @@ public class RowPillarsTest {
         RowPillars rowPillars = RowPillars.of(pillarCount);
         List<Stair> stairs = rowPillars.getStairs();
 
-        for (int position = 0; position < width; position++) {
-            if (stairs.get(position).isRightLineExist()) {
-                assertThat(rowPillars.nextPosition(position) == position + 1);
+        for (int index = Position.MIN_POSITION; index < width; index++) {
+            Position position = Position.of(index);
+
+            if (stairs.get(index).isRightLineExist()) {
+                assertThat(rowPillars.nextPosition(position).equals(position.moveRight()));
             } else {
-                assertThat(rowPillars.nextPosition(position)).isIn(position, position - 1);
+                if (index == Position.MIN_POSITION) {
+                    assertThat(rowPillars.nextPosition(position)).isEqualTo(position);
+                    continue;
+                }
+                assertThat(rowPillars.nextPosition(position)).isIn(position, position.moveLeft());
             }
         }
     }

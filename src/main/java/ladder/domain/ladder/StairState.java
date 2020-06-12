@@ -7,12 +7,12 @@ import java.util.function.Function;
 public enum StairState {
 
     EMPTY(position -> position),
-    RIGHT(position -> position + 1),
-    LEFT(position -> position - 1);
+    RIGHT(Position::moveRight),
+    LEFT(Position::moveLeft);
 
-    private Function<Integer, Integer> movePosition;
+    private Function<Position, Position> movePosition;
 
-    StairState(final Function<Integer, Integer> movePosition) {
+    StairState(final Function<Position, Position> movePosition) {
         this.movePosition = movePosition;
     }
 
@@ -42,7 +42,7 @@ public enum StairState {
         return EMPTY;
     }
 
-    public int move(final int position) {
+    public Position move(final Position position) {
         return movePosition.apply(position);
     }
 }

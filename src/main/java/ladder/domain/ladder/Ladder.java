@@ -41,14 +41,16 @@ public class Ladder {
         return rowPillars;
     }
 
-    public List<Integer> ride() {
-        return IntStream.range(FIRST_INDEX, getLadderWidth())
-                .map(this::rideOnePlayer)
-                .boxed()
-                .collect(Collectors.toList());
+    public Positions ride() {
+        return Positions.of(
+                IntStream.range(FIRST_INDEX, getLadderWidth())
+                        .mapToObj(Position::of)
+                        .map(this::rideOnePlayer)
+                        .collect(Collectors.toList())
+        );
     }
 
-    private int rideOnePlayer(final int playerPosition) {
+    private Position rideOnePlayer(final Position playerPosition) {
         return rowPillars.stream()
                 .reduce(playerPosition, (byPosition, rowPillar) -> rowPillar.nextPosition(byPosition),
                         (x, y) -> {throw new RuntimeException(ErrorMessage.NOT_ALLOW_REDUCE_IN_PARALLEL_ENV);});

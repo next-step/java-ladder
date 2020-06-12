@@ -66,18 +66,25 @@ public class LadderTest {
     @DisplayName("한 명의 사용자가 사다리를 타면 index 0 의 prize 리스트를 반환")
     @Test
     void rideWithSinglePlayer() {
+        Players singlePlayer = Players.of(Collections.singletonList("heee"));
+        Prizes singlePrize = Prizes.of(Collections.singletonList("win"));
+        singlePlayersAndPrizes = PlayersAndPrizes.valueOf(singlePlayer, singlePrize);
         Ladder ladder = Ladder.of(shapeInfoOfSinglePlayer);
 
-        assertThat(ladder.ride().size())
-                .isEqualTo(shapeInfoOfSinglePlayer.getPlayersAndPrizes().getPrizesCount());
+        Positions positions = ladder.ride();
+
+        assertThat(positions.indexOf(Position.of(Position.MIN_POSITION)))
+                .isEqualTo(Position.of(Position.MIN_POSITION));
     }
 
-    @DisplayName("모든 사용자가 사다리를 타고 난 결과에 대한 prize index 리스트를 반환")
+    @DisplayName("모든 사용자가 사다리를 타고 난 결과에 대한 prize position 리스트를 반환")
     @Test
     void rideWithMultiplePlayers() {
         Ladder ladder = Ladder.of(shapeInfoOfMultiplePlayers);
 
-        assertThat(ladder.ride().size())
+        Positions positions = ladder.ride();
+
+        assertThat(positions.size())
                 .isEqualTo(shapeInfoOfMultiplePlayers.getPlayersAndPrizes().getPrizesCount());
     }
 }

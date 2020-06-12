@@ -60,11 +60,11 @@ public class Stairs {
         return stairs.size();
     }
 
-    public int move(final int position) {
+    public Position move(final Position position) {
         return indexOf(position).move(position);
     }
 
-    private Stair indexOf(final int index) {
-        return stairs.get(index);
+    private Stair indexOf(final Position position) {
+        return stairs.get(position.getPosition());
     }
 }

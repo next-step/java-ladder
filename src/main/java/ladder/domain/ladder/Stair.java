@@ -40,7 +40,7 @@ public class Stair {
         return stairState.isRightLineExist();
     }
 
-    public int move(final int position) {
+    public Position move(final Position position) {
         return stairState.move(position);
     }
 

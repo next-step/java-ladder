@@ -50,19 +50,18 @@ public class StairTest {
     @DisplayName("해당 기둥의 계단의 상태에 따라 다음 위치를 반환")
     @ParameterizedTest
     @MethodSource
-    void move(final Stair stair, final int position, final int expected) {
+    void move(final Stair stair, final Position position, final Position expected) {
         assertThat(stair.move(position)).isEqualTo(expected);
     }
 
     private static Stream<Arguments> move() {
-        final int basePosition = 5;
-        final int oneStep = 1;
+        final Position basePosition = Position.of(5);
 
         return Stream.of(
                 Arguments.of(Stair.of(StairState.ofFirstPillar(() -> false)), basePosition, basePosition),
-                Arguments.of(Stair.of(StairState.ofFirstPillar(() -> true)), basePosition, basePosition + oneStep),
+                Arguments.of(Stair.of(StairState.ofFirstPillar(() -> true)), basePosition, basePosition.moveRight()),
                 Arguments.of(Stair.of(StairState.ofFirstPillar(() -> true).ofNextPillar(() -> false)),
-                        basePosition, basePosition - oneStep)
+                        basePosition, basePosition.moveLeft())
         );
     }
 

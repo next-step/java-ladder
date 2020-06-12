@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.domain.dto.LadderMatchResult;
 import ladder.domain.dto.LadderShapeResult;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Positions;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.player.Player;
 import ladder.domain.prize.Prize;
@@ -38,7 +39,7 @@ public class LadderGame {
     }
 
     public LadderMatchResult play() {
-        List<Integer> prizePositions = ladder.ride();
+        Positions prizePositions = ladder.ride();
         Map<Player, Prize> matchResult = playersAndPrizes.matchPlayerAndPrize(prizePositions);
 
         return LadderMatchResult.of(matchResult);
