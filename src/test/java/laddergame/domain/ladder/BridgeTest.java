@@ -18,17 +18,15 @@ class BridgeTest {
         assertThat(firstBridge.isConnected()).isEqualTo(isConnected);
     }
 
-    @DisplayName("만약 이전 다리가 연결되어있고 연결된 다리를 새로 생성하려하면 연결이 끊긴 다리를 생성한다.")
+    @DisplayName("만약 이전 다리가 오른쪽 연결이면 만드려는 다리는 생성 여부에 상관없이 왼쪽 연결이다.")
     @ParameterizedTest
-    @CsvSource({"false, true, true",
-            "false, false, false",
-            "true, false, false",
-            "true, true, false"})
-    void createNextBridge(boolean before, boolean current, boolean afterCreate) {
+    @CsvSource({"true, true, LEFT",
+            "true, false, LEFT"})
+    void createNextBridge(boolean before, boolean current, BridgeType afterCreate) {
         Bridge beforeBridge = Bridge.createFirstBridge(before);
 
         Bridge currentBridge = Bridge.createNextBridge(current, beforeBridge);
 
-        assertThat(currentBridge.isConnected()).isEqualTo(afterCreate);
+        assertThat(currentBridge.getBridgeType()).isEqualTo(afterCreate);
     }
 }

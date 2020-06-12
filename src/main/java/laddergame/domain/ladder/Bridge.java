@@ -3,31 +3,47 @@ package laddergame.domain.ladder;
 public class Bridge {
     private final BridgeType bridgeType;
 
-    private Bridge(boolean isConnected) {
-        this.bridgeType = BridgeType.findType(isConnected);
+    private Bridge(BridgeType bridgeType) {
+        this.bridgeType = bridgeType;
     }
 
     public static Bridge createFirstBridge(boolean isConnected) {
-        return new Bridge(isConnected);
+        if (isConnected) {
+            return createRightBridge();
+        }
+
+        return createNotLinkedBridge();
     }
 
     public static Bridge createNextBridge(boolean isConnected, Bridge beforeBridge) {
-        if (isContinuousBridge(isConnected, beforeBridge)) {
-            return new Bridge(!isConnected);
+        if (beforeBridge.bridgeType.isRightConnected()) {
+            return createLeftBridge();
         }
 
-        return new Bridge(isConnected);
+        if (isConnected) {
+            return createRightBridge();
+        }
+
+        return createNotLinkedBridge();
     }
 
-    private static boolean isContinuousBridge(boolean isConnected, Bridge beforeBridge) {
-        if (beforeBridge.isConnected() && isConnected) {
-            return true;
-        }
+    public static Bridge createNotLinkedBridge() {
+        return new Bridge(BridgeType.NONE);
+    }
 
-        return false;
+    public static Bridge createLeftBridge() {
+        return new Bridge(BridgeType.LEFT);
+    }
+
+    public static Bridge createRightBridge() {
+        return new Bridge(BridgeType.RIGHT);
     }
 
     public boolean isConnected() {
         return bridgeType.isConnected();
+    }
+
+    public BridgeType getBridgeType() {
+        return bridgeType;
     }
 }

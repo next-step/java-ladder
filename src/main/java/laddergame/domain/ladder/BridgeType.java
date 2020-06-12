@@ -29,4 +29,8 @@ public enum BridgeType {
     public boolean isConnected() {
         return isConnected;
     }
+
+    public boolean isRightConnected() {
+        return this.equals(BridgeType.RIGHT);
+    }
 }
