@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,15 +36,12 @@ public class LadderGameTest {
         Ladder ladder = Ladder.buildLadder(playersGroup, 3, drawingLineStrategy);
 
         LadderGame ladderGame = new LadderGame();
-        Map<Player, GamePrize> result = ladderGame.play(playersGroup, ladder, gamePrizesGroup);
+        GameResult result = ladderGame.play(playersGroup, ladder, gamePrizesGroup);
 
-        assertThat(result.get(playersGroup.valueOf(0)))
-                .isEqualTo(gamePrizesGroup.valueOf(1));
+        assertThat(result.getResultByPlayerName("aa")).isEqualTo("1000");
 
-        assertThat(result.get(playersGroup.valueOf(1)))
-                .isEqualTo(gamePrizesGroup.valueOf(0));
+        assertThat(result.getResultByPlayerName("bb")).isEqualTo("꽝");
 
-        assertThat(result.get(playersGroup.valueOf(2)))
-                .isEqualTo(gamePrizesGroup.valueOf(2));
+        assertThat(result.getResultByPlayerName("cc")).isEqualTo("4444");
     }
 }

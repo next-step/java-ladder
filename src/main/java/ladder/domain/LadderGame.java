@@ -6,13 +6,15 @@ import java.util.Map;
 public class LadderGame {
     private static final int LOOP_ZERO = 0;
 
-    public Map<Player, GamePrize> play(PlayersGroup playersGroup, Ladder ladder, GamePrizesGroup gamePrizesGroup) {
-        Map<Player, GamePrize> gameResult = new HashMap<>();
+    public GameResult play(PlayersGroup playersGroup, Ladder ladder, GamePrizesGroup gamePrizesGroup) {
+        Map<String, String> gameResult = new HashMap<>();
         int playerCounts = playersGroup.getPlayerCounts();
         for (int i = LOOP_ZERO; i < playerCounts; i++) {
+            String currentPlayerName = playersGroup.getPlayerNameByIndex(i);
             int destinationIndex = ladder.climb(i);
-            gameResult.put(playersGroup.valueOf(i), gamePrizesGroup.valueOf(destinationIndex));
+            String gamePrizeName = gamePrizesGroup.getGamePrizeNameByIndex(destinationIndex);
+            gameResult.put(currentPlayerName, gamePrizeName);
         }
-        return gameResult;
+        return new GameResult(gameResult);
     }
 }

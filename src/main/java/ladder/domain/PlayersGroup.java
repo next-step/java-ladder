@@ -28,8 +28,8 @@ public class PlayersGroup {
         }
     }
 
-    public Player valueOf(int index) {
-        return players.get(index);
+    public String getPlayerNameByIndex(int index) {
+        return players.get(index).getName();
     }
 
     public List<String> getPlayerNames() {

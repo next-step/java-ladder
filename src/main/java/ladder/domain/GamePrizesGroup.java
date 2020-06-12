@@ -25,8 +25,8 @@ public class GamePrizesGroup {
         }
     }
 
-    public GamePrize valueOf(int index) {
-        return gamePrizes.get(index);
+    public String getGamePrizeNameByIndex(int index) {
+        return gamePrizes.get(index).getName();
     }
 
     public List<String> getGamePrizeNames() {
