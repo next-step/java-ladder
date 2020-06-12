@@ -3,8 +3,9 @@ package ladder.view;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+
+import java.util.stream.IntStream;
 
 public class ResultView {
 
@@ -14,14 +15,29 @@ public class ResultView {
 
     public void printLadder(Players players, Ladder ladder) {
         System.out.println("\n실행결과\n");
-        players.stream().map(Player::getName).forEach(name -> System.out.printf("%6s", name));
+        printPlayer(players);
+        printLadder(ladder);
+    }
+
+    private void printPlayer(Players players) {
+        IntStream.range(0, players.getCountOfPerson())
+                .mapToObj(players::get)
+                .map(player -> String.format("%6s", player.getName()))
+                .forEach(System.out::print);
         System.out.println();
-        ladder.stream().forEach(this::printLine);
+    }
+
+    private void printLadder(Ladder ladder) {
+        IntStream.range(0, ladder.height())
+                .mapToObj(ladder::get)
+                .forEach(this::printLine);
     }
 
     private void printLine(Line line) {
         System.out.print(BLANK_LINE);
-        line.stream().forEach(point -> System.out.print(COLUMN + getLine(point)));
+        IntStream.range(0, line.size())
+                .mapToObj(line::get)
+                .forEach(point -> System.out.print(COLUMN + getLine(point)));
         System.out.println();
     }
 

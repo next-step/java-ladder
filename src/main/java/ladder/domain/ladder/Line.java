@@ -5,7 +5,6 @@ import ladder.domain.strategy.LineStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Line {
 
@@ -44,9 +43,5 @@ public class Line {
 
     public int size() {
         return points.size();
-    }
-
-    public Stream<Point> stream() {
-        return points.stream();
     }
 }

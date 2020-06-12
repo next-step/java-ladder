@@ -34,8 +34,4 @@ public class Ladder {
     public int height() {
         return lines.size();
     }
-
-    public Stream<Line> stream() {
-        return lines.stream();
-    }
 }

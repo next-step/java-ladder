@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Players {
 
@@ -41,9 +40,5 @@ public class Players {
 
     public int getCountOfPerson() {
         return players.size();
-    }
-
-    public Stream<Player> stream() {
-        return players.stream();
     }
 }
