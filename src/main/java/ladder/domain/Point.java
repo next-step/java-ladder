@@ -5,8 +5,16 @@ import java.util.Objects;
 public class Point {
     private final boolean point;
 
-    public Point(PointGenerationStrategy pointGenerationStrategy) {
-        this.point = pointGenerationStrategy.generate();
+    private Point(Boolean point) {
+        this.point = point;
+    }
+
+    public static Point of(Boolean point) {
+        return new Point(point);
+    }
+
+    public static Point ofStrategy(PointGenerationStrategy pointGenerationStrategy) {
+        return new Point(pointGenerationStrategy.generate());
     }
 
     public boolean isPoint() {
