@@ -1,6 +1,7 @@
 package laddergame.domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
@@ -25,5 +26,9 @@ public class Ladder {
         if (ladderHeight < MIN_LADDER_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이가 너무 작습니다. - " + ladderHeight);
         }
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

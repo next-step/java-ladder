@@ -12,7 +12,7 @@ public class Line {
         this.bridges = bridges;
     }
 
-    public List<Bridge> getLine() {
+    public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
     }
 
