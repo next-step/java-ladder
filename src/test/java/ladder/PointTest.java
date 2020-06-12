@@ -43,20 +43,50 @@ public class PointTest {
     @DisplayName("1개 Line의 처음 점을 찍는 메소드 테스트")
     @Test
     public void drawFirstPoint() {
-        Point point = Point.drawFirstPoint(true);
+        Point pointWithDownDirection = Point.drawFirstPoint(true);
         Point pointWithRightDirection = Point.drawFirstPoint(false);
 
-        assertThat(point.getDirection()).isEqualTo(Direction.DOWN);
+        assertThat(pointWithDownDirection.getDirection()).isEqualTo(Direction.DOWN);
         assertThat(pointWithRightDirection.getDirection()).isEqualTo(Direction.RIGHT);
     }
 
-    @DisplayName("Line의 마지막 점을 찍는 메소드 테스트")
+    @DisplayName("이전 Point의 방향이 Right이면 그 다음 Point의 방향은 Left가 됨")
     @Test
-    public void drawLastPoint() {
-        Point pointWithDownDirection = Point.drawLastPoint(1, true);
-        Point pointWithLeftDirection = Point.drawLastPoint(1, false);
+    public void pointLeftWhenLastPointRight() {
+        Point lastPoint = new Point(0, Direction.RIGHT);
+
+        Point nextPoint = Point.drawMiddlePoint(lastPoint, false);
+
+        assertThat(nextPoint.getDirection()).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("이전 Point의 방향이 Right가 아니면 random boolean에 의해 방향이 결정됨")
+    @Test
+    public void pointRandomWhenLastPointNotRight() {
+        Point lastPoint = new Point(0, Direction.DOWN);
+
+        Point nextDownPoint = Point.drawMiddlePoint(lastPoint, true);
+        Point nextRightPoint = Point.drawMiddlePoint(lastPoint, false);
+
+        assertThat(nextDownPoint.getDirection()).isEqualTo(Direction.DOWN);
+        assertThat(nextRightPoint.getDirection()).isEqualTo(Direction.RIGHT);
+    }
+
+    @DisplayName("Line의 마지막 점을 찍을 때 이전 Point가 Left면 Down으로 찍힘")
+    @Test
+    public void drawLastDownPoint() {
+        Point lastLeftPoint = new Point(3, Direction.LEFT);
+        Point pointWithDownDirection = Point.drawLastPoint(lastLeftPoint);
 
         assertThat(pointWithDownDirection.getDirection()).isEqualTo(Direction.DOWN);
+    }
+
+    @DisplayName("Line의 마지막 점을 찍을 때 이전 Point가 Right면 Left로 찍힘")
+    @Test
+    public void drawLastLeftPoint() {
+        Point lastRightPoint = new Point(3, Direction.RIGHT);
+        Point pointWithLeftDirection = Point.drawLastPoint(lastRightPoint);
+
         assertThat(pointWithLeftDirection.getDirection()).isEqualTo(Direction.LEFT);
     }
 
