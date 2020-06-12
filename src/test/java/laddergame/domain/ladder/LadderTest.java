@@ -24,12 +24,12 @@ class LadderTest {
             }
 
             if (numberOfPlayer % 2 == 0) {
-                return IntStream.rangeClosed(0, numberOfPlayer)
+                return IntStream.range(0, numberOfPlayer)
                         .mapToObj(this::createBridge)
                         .collect(Collectors.toList());
             }
 
-            List<Bridge> bridges = IntStream.rangeClosed(0, numberOfPlayer)
+            List<Bridge> bridges = IntStream.range(0, numberOfPlayer - 1)
                     .mapToObj(this::createBridge)
                     .collect(Collectors.toList());
 
@@ -50,7 +50,7 @@ class LadderTest {
     @DisplayName("사다리 높이가 1보다 작으면 IllegalArgumentExceptionThrow")
     @Test
     void minLadderHeightThrowException() {
-        int ladderHeight = 1;
+        int ladderHeight = 0;
         int numberOfPlayer = 1;
         assertThatThrownBy(() -> new Ladder(ladderHeight, numberOfPlayer, switchingBridgeGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
