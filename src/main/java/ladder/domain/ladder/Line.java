@@ -17,12 +17,18 @@ public class Line {
 
     public static Line of(int countOfPerson, LineStrategy lineStrategy) {
         List<Point> points = new ArrayList<>();
-        IntStream.range(0, countOfPerson).forEach(i -> {
-            boolean hasPreviousLine = i != 0 && points.get(i - 1).hasLine();
-            boolean isLastPoint = i == countOfPerson - 1;
-            points.add(getPoint(lineStrategy, hasPreviousLine, isLastPoint));
-        });
+        IntStream.range(0, countOfPerson).forEach(i ->
+                points.add(getPoint(lineStrategy, hasPreviousLine(points, i), isLastPoint(countOfPerson, i)))
+        );
         return new Line(points);
+    }
+
+    private static boolean isLastPoint(int countOfPerson, int i) {
+        return i == countOfPerson - 1;
+    }
+
+    private static boolean hasPreviousLine(List<Point> points, int index) {
+        return index != 0 && points.get(index - 1).hasLine();
     }
 
     private static Point getPoint(LineStrategy lineStrategy, boolean hasPreviousLine, boolean isLastPoint) {
