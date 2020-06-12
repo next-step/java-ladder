@@ -11,9 +11,11 @@ public class Line {
     private static final Integer FIRST_MOUNTING_BLOCK_INDEX = 0;
 
     private List<MountingBlock> mountingBlocks;
+    private MountingBlockGeneratorFactory mountingBlockGeneratorFactory;
 
     public Line(Integer countOfPerson) {
         this.mountingBlocks = new ArrayList<>();
+        this.mountingBlockGeneratorFactory = new MountingBlockGeneratorFactory();
 
         IntStream.rangeClosed(FIRST_MOUNTING_BLOCK_INDEX, getTotalMountingBlock(countOfPerson))
                 .forEach(this::makeLine);
@@ -25,9 +27,9 @@ public class Line {
 
     private void makeLine(Integer mountingBlockIndex) {
 
-        MoutingBlockGenerator moutingBlockGenerator = new RandomMountingBlockGenerator();
+        MountingBlockGenerator mountingBlockGenerator = this.mountingBlockGeneratorFactory.randomMountingBlockGenerator();
         if (mountingBlockIndex.equals(FIRST_MOUNTING_BLOCK_INDEX)) {
-            MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE, moutingBlockGenerator);
+            MountingBlock mountingBlock = MountingBlock.of(Boolean.FALSE, mountingBlockGenerator);
             this.mountingBlocks.add(mountingBlock);
             return;
         }
@@ -35,7 +37,7 @@ public class Line {
         Integer beforeMountingBlockIndex = getPreviousMountingBlockIndex(mountingBlockIndex);
         MountingBlock beforeMountingBlock = this.mountingBlocks.get(beforeMountingBlockIndex);
 
-        this.mountingBlocks.add(MountingBlock.of(beforeMountingBlock.getMountingBlock(), moutingBlockGenerator));
+        this.mountingBlocks.add(MountingBlock.of(beforeMountingBlock.getMountingBlock(), mountingBlockGenerator));
     }
 
     private Integer getPreviousMountingBlockIndex(Integer mountingBlockIndex) {

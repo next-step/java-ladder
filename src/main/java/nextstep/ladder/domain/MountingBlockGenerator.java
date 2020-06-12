@@ -1,5 +1,5 @@
 package nextstep.ladder.domain;
 
-public interface MoutingBlockGenerator {
+public interface MountingBlockGenerator {
     Boolean generateMountingBlock();
 }
