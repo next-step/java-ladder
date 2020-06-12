@@ -123,15 +123,15 @@ public class LadderGameTest {
     @DisplayName("게임 참여자가 여러 명일 때, match 되는 Prize 확인")
     @Test
     void playWithMultiplePlayers() {
-        List<String> playerNames = PlayerAndPrizeFixtures.playerNames;
-        Prizes expectedPrizes = Prizes.of(Arrays.asList("5000", "꽝", "1000", "3000", "꽝"));
-
         LadderMatchResult ladderMatchResult = LadderFixtures.of().getLadderGame().play();
 
+        Prizes expectedPrizes = Prizes.of(Arrays.asList("5000", "꽝", "1000", "3000", "꽝"));
+
+        List<String> playerNames = PlayerAndPrizeFixtures.playerNames;
         IntStream.range(0, playerNames.size())
                 .forEach(index ->
-                    assertThat(ladderMatchResult.match(playerNames.get(index)))
-                            .isEqualTo(expectedPrizes.indexOf(Position.of(index)))
+                    assertThat(ladderMatchResult.match(playerNames.get(index)).getName())
+                            .isEqualTo(expectedPrizes.indexOf(Position.of(index)).getName())
                 );
     }
 }
