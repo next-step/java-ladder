@@ -16,35 +16,35 @@
 ## Todo List
 
 - Player: 참가자 한명
-    - [ ] Player는 참가자 이름을 가질 수 있다.
-    - [ ] 이름은 최대 5글자까지만 가질 수 있다.
+    - [X] Player는 참가자 이름을 가질 수 있다.
+    - [X] 이름은 최대 5글자까지만 가질 수 있다.
 
 - Players: 참가자 목록
-    - [ ] , 를 기준으로 여러 Player를 생성할 수 있다.
-    - [ ] null 또는 0개의 이름이 입력되면 예외를 반환한다.
+    - [X] 여러 Player를 생성할 수 있다.
+    - [X] null 또는 0개의 이름이 입력되면 예외를 반환한다.
 
 - Height: 사다리 높이
-    - [ ] Height은 1보다 작을 경우 예외를 반환한다.
-    - [ ] 1이상의 Height을 생성할 수 있다.
+    - [X] 1이상의 Height을 생성할 수 있다.
+    - [X] 1보다 작을 경우 예외를 반환한다.
 
 - Ladder: 사다리 판
-    - [ ] Height * Players 개의 Ladder를 생성할 수 있다.
+    - [X] Height * Players 개의 Ladder를 생성할 수 있다.
 
 - Line: 사다리 게임 한 단계
-    - [ ] Players 만큼 생성 할 수 있다.
-    - [ ] 첫 번째는 기둥 사이를 잇는 다리를 놓을 수 없다.
-    - [ ] 기둥 사이를 잇는 다리를 연속해서 생성할 수 없다. 
+    - [X] Players 만큼 생성 할 수 있다.
+    - [X] 첫 번째는 기둥 사이를 잇는 다리를 놓을 수 없다.
+    - [X] 기둥 사이를 잇는 다리를 연속해서 생성할 수 없다. 
 
 - Point: Line의 좌표 값 (= 사다리 기둥 사이를 잇는 다리의 존재 유무)
-    - [ ] RandomPointGenerationStrategy을 이용해 좌표 값을 생성할 수 있다.
+    - [X] RandomPointGenerationStrategy을 이용해 좌표 값을 생성할 수 있다.
 
 - PointGenerationStrategy, RandomPointGenerationStrategy: Point 생성 전략
-    - [ ] 무작위로 Point를 생성할 수 있다.
+    - [X] 무작위로 Point를 생성할 수 있다.
 
 - InputView: 입력
-    - [ ] ,를 기준으로 참가자 이름을 입력받을 수 있다.
-    - [ ] Height을 입력받을 수 있다. 
+    - [X] ,를 기준으로 참가자 이름을 입력받을 수 있다.
+    - [X] Height을 입력받을 수 있다. 
 
 - OutputView: 실행 결과 출력
-    - [ ] Players name을 출력할 수 있다.
-    - [ ] Ladder의 Line을 `|-----|` 모양으로 출력할 수 있다. 
+    - [X] Players name을 출력할 수 있다.
+    - [X] Ladder의 Line을 `|-----|` 모양으로 출력할 수 있다. 
