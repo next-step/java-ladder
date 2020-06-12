@@ -24,7 +24,7 @@ public class Positions {
         }
     }
 
-    public Position indexOf(final int index) {
-        return positions.get(index);
+    public Position indexOf(final Position position) {
+        return positions.get(position.getPosition());
     }
 }

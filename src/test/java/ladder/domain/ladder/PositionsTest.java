@@ -34,16 +34,16 @@ public class PositionsTest {
     @DisplayName("특정 순서의 위치값을 반환")
     @ParameterizedTest
     @MethodSource
-    void indexOf(final int index, final Position expected) {
+    void indexOf(final Position index, final Position expected) {
         assertThat(Positions.of(positions).indexOf(index))
                 .isEqualTo(expected);
     }
 
     private static Stream<Arguments> indexOf() {
         return Stream.of(
-                Arguments.of(0, Position.of(2)),
-                Arguments.of(1, Position.of(0)),
-                Arguments.of(2, Position.of(1))
+                Arguments.of(Position.of(0), Position.of(2)),
+                Arguments.of(Position.of(1), Position.of(0)),
+                Arguments.of(Position.of(2), Position.of(1))
         );
     }
 }
