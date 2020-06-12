@@ -8,10 +8,15 @@ import java.util.List;
 public class ResultVIew {
     private static final String PLAY_RESULT = "사다리 결과\n";
     private static final String GAME_RESULT = "실행 결과\n";
-    private static final int NAME_SPACE = 6;
     private static final String LINES = "-----";
+    private static final String STICK = "|";
     private static final String EMPTY_LINES = "     ";
+    private static final String COLON = " : ";
+    private static final String ONE_SPACE_BAR = " ";
+    private static final String ENTER = "\n";
     private static final String ALL = "all";
+    private static final int NAME_SPACE = 6;
+
     private static StringBuilder stringBuilder;
 
     public static void printLadder(List<String> peopleNames, List<Line> lines) {
@@ -19,7 +24,7 @@ public class ResultVIew {
         stringBuilder.append(PLAY_RESULT);
 
         peopleNames.forEach(ResultVIew::printName);
-        stringBuilder.append("\n");
+        stringBuilder.append(ENTER);
 
         lines.forEach(line -> printLine(line.getPoints()));
         stringBuilder.replace(stringBuilder.length()-1, stringBuilder.length(), "");
@@ -37,9 +42,9 @@ public class ResultVIew {
         if (ALL.equals(playerName)) {
             resultOfPlayers.forEach(resultOfPlayer -> {
                 stringBuilder.append(resultOfPlayer.getPlayerName());
-                stringBuilder.append(" : ");
+                stringBuilder.append(COLON);
                 stringBuilder.append(resultOfPlayer.getResult());
-                stringBuilder.append("\n");
+                stringBuilder.append(ENTER);
             });
             System.out.println(stringBuilder.toString());
             return;
@@ -54,7 +59,7 @@ public class ResultVIew {
 
     private static void printName(String name) {
         for (int idx = 0; idx < NAME_SPACE - name.length(); idx++) {
-            stringBuilder.append(" ");
+            stringBuilder.append(ONE_SPACE_BAR);
         }
         stringBuilder.append(name);
     }
@@ -66,8 +71,8 @@ public class ResultVIew {
             } else {
                 stringBuilder.append(EMPTY_LINES);
             }
-            stringBuilder.append("|");
+            stringBuilder.append(STICK);
         });
-        stringBuilder.append("\n");
+        stringBuilder.append(ENTER);
     }
 }
