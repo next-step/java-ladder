@@ -22,21 +22,41 @@ public class LadderLinePoints {
 	}
 
 	private void validateNotLastIsConnected() {
-		if (points.get(points.size() - 1).isConnectedToNextPoint()) {
+		if (canMoveToRight(points.size() - 1)) {
 			throw new IllegalArgumentException("마지막 좌표는 다음 좌표와 연결될 수 없습니다.");
 		}
 	}
 
 	private void validateNotContinuouslyConnected() {
-		for (int i = 0; i < points.size() - 1; i++) {
-			validateNotContinuouslyConnected(points.get(i), points.get(i + 1));
+		for (int i = 0; i < points.size(); i++) {
+			validateNotContinuouslyConnected(i);
 		}
 	}
 
-	private void validateNotContinuouslyConnected(LadderLinePoint point, LadderLinePoint nextPoint) {
-		if (point.isConnectedToNextPoint() && nextPoint.isConnectedToNextPoint()) {
+	private void validateNotContinuouslyConnected(int position) {
+		if (canMoveToRight(position) && canMoveToLeft(position)) {
 			throw new IllegalArgumentException("좌표는 연속으로 연결될 수 없습니다.");
 		}
+	}
+
+	public int moveSide(int position) {
+		if (canMoveToRight(position)) {
+			return position + 1;
+		}
+
+		if (canMoveToLeft(position)) {
+			return position - 1;
+		}
+
+		return position;
+	}
+
+	private boolean canMoveToRight(int position) {
+		return points.get(position).isConnectedToNextPoint();
+	}
+
+	private boolean canMoveToLeft(int position) {
+		return position > 0 && points.get(position - 1).isConnectedToNextPoint();
 	}
 
 	public int size() {
