@@ -11,6 +11,6 @@ public class LadderGame {
         List<String> userNames = LadderGameView.inputUserNames();
         Integer ladderHeight = LadderGameView.inputLadderHeight();
         Ladder ladder = Ladder.of(userNames, ladderHeight);
-        ladder.viewLadder();
+        LadderGameView.viewLadderShape(ladder);
     }
 }

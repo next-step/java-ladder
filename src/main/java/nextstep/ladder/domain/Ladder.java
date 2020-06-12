@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.view.LadderGameView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -32,12 +30,15 @@ public class Ladder {
         this.ladders.add(line);
     }
 
-    public void viewLadder() {
-        LadderGameView.viewLadderShape(this.players, this.ladders);
-    }
-
     public static Ladder of(List<String> userNames, Integer ladderHeight) {
         return new Ladder(userNames, ladderHeight);
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public List<Line> getLadders() {
+        return ladders;
+    }
 }

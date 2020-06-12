@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.MountingBlock;
 import nextstep.ladder.domain.Player;
@@ -31,10 +32,13 @@ public class LadderGameView {
         return scanner.nextInt();
     }
 
-    public static void viewLadderShape(List<Player> players, List<Line> lines) {
+    public static void viewLadderShape(Ladder ladder) {
         System.out.println(EXECUTION_RESULT_MESSAGE);
         System.out.println();
+
+        List<Player> players = ladder.getPlayers();
         viewPlayers(players);
+        List<Line> lines = ladder.getLadders();
         viewLadder(lines);
     }
 
