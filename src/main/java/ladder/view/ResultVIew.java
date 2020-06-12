@@ -1,5 +1,6 @@
 package ladder.view;
 
+import ladder.domain.Direction;
 import ladder.domain.Line;
 import ladder.domain.ResultOfPlayer;
 
@@ -64,9 +65,9 @@ public class ResultVIew {
         stringBuilder.append(name);
     }
 
-    private static void printLine(List<Boolean> points) {
+    private static void printLine(List<Direction> points) {
         points.forEach(v -> {
-            if (v) {
+            if (v.isLeft()) {
                 stringBuilder.append(LINES);
             } else {
                 stringBuilder.append(EMPTY_LINES);

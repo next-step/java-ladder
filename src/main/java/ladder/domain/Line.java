@@ -3,27 +3,24 @@ package ladder.domain;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Direction> points;
 
-    public Line(final List<Boolean> points) {
+    public Line(final List<Direction> points) {
         this.points = points;
     }
 
     public int move(int location) {
-        int next = location;
-        if (location != 0) {
-            next = Direction.goLeft(points.get(location), location);
+        Direction direction = points.get(location);
+        if (direction.isLeft()) {
+            return direction.goLeft(location);
         }
-        if (next != location) {
-            return next;
+        if (direction.isRight()) {
+            return direction.goRight(location);
         }
-        if (location + 1 < points.size()) {
-            next = Direction.goRight(points.get(location + 1), location);
-        }
-        return next;
+        return location;
     }
 
-    public List<Boolean> getPoints() {
+    public List<Direction> getPoints() {
         return points;
     }
 }

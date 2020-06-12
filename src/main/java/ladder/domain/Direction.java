@@ -1,12 +1,27 @@
 package ladder.domain;
 
 public class Direction {
+    private final boolean left;
+    private final boolean right;
 
-    public static int goLeft(boolean left, int location) {
-        return left ? location - 1 : location;
+    public Direction(boolean left,boolean right) {
+        this.left = left;
+        this.right = right;
     }
 
-    public static int goRight(boolean right, int location) {
-        return right ? location + 1 : location;
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public int goLeft(int location) {
+        return location - 1;
+    }
+
+    public int goRight(int location) {
+        return location + 1;
     }
 }

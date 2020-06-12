@@ -5,8 +5,8 @@ import ladder.utils.GenerateRandomBoolean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Creator {
-    private static List<Boolean> points;
+public class LadderFactory {
+    private static List<Direction> points;
     private static int countOfPerson;
 
     public static Ladder createLadder(final int personCount, final int ladderHeight) {
@@ -23,17 +23,19 @@ public class Creator {
     }
 
     private static Line createLine(final boolean presentHasLine, final int nextPosition) {
-        if (nextPosition > countOfPerson) {
+        if (nextPosition == countOfPerson) {
+            points.add(new Direction(presentHasLine, false));
             return new Line(points);
         }
 
-        points.add(presentHasLine);
         if (presentHasLine) {
-            createLine(false, nextPosition + 1);
+            points.add(new Direction(true, false));
+            return createLine(false, nextPosition + 1);
         } else {
-            createLine(isCreate(), nextPosition + 1);
+            boolean nextHasLine = isCreate();
+            points.add(new Direction(false, nextHasLine));
+            return createLine(nextHasLine, nextPosition + 1);
         }
-        return new Line(points);
     }
 
     private static boolean isCreate() {

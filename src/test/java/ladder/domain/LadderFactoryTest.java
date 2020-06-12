@@ -9,13 +9,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CreatorTest {
+class LadderFactoryTest {
 
     @ParameterizedTest
     @CsvSource(value = {"3,3", "2,5"})
     @DisplayName("사다리 높이와 line 수 확인")
     void createLadder(int countOfPerson, int ladderHeight) {
-        Ladder ladder = Creator.createLadder(countOfPerson, ladderHeight);
+        Ladder ladder = LadderFactory.createLadder(countOfPerson, ladderHeight);
 
         List<Line> lineList = ladder.getLines();
         int resultHeight = lineList.size();
