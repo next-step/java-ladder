@@ -90,7 +90,7 @@ public class PointTest {
         assertThat(pointWithLeftDirection.getDirection()).isEqualTo(Direction.LEFT);
     }
 
-    @DisplayName("Direction이 Right일때 Index는 상승")
+    @DisplayName("Direction이 Right일때 MOVE하면 Index는 상승")
     @ParameterizedTest
     @ValueSource(ints = {0, 3, 5})
     public void moveRight(int index) {
@@ -99,7 +99,7 @@ public class PointTest {
         assertThat(point.moveByDirection()).isEqualTo(index + 1);
     }
 
-    @DisplayName("Direction이 Leftt일때 Index는 상승")
+    @DisplayName("Direction이 Leftt일때 MOVE하면 Index는 상승")
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 5})
     public void moveLeft(int index) {
@@ -108,7 +108,7 @@ public class PointTest {
         assertThat(point.moveByDirection()).isEqualTo(index - 1);
     }
 
-    @DisplayName("Direction이 Down일때 Index는 변화없음")
+    @DisplayName("Direction이 Down일때 MOVE하면 Index는 변화없음")
     @ParameterizedTest
     @ValueSource(ints = {0, 3, 5})
     public void moveDown(int index) {
