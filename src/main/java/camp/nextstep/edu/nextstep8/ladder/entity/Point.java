@@ -1,4 +1,4 @@
-package camp.nextstep.edu.nextstep8.ladder;
+package camp.nextstep.edu.nextstep8.ladder.entity;
 
 public class Point {
     private boolean left;
@@ -8,7 +8,6 @@ public class Point {
         this.left = false;
         this.right = false;
     }
-
 
     public boolean isEnd() {
         return left;

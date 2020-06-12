@@ -1,23 +1,24 @@
 package camp.nextstep.edu.nextstep8.ladder;
 
+import camp.nextstep.edu.nextstep8.ladder.entity.Ladder;
+import camp.nextstep.edu.nextstep8.ladder.entity.Point;
+import camp.nextstep.edu.nextstep8.ladder.entity.Row;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class LadderGenerator {
 
-    private final Point[][] map;
-    private final int cols;
-    private final int height;
-
-    public LadderGenerator(int cols, int height) {
-        this.cols = cols;
-        this.height = height;
-        this.map = init(cols, height);
-        make();
+    public LadderGenerator(List<String> members, int height) {
+        // make(members, height);
+        // TODO
+        // make Rows
+        //
+        for(int i)
     }
 
-    private Point[][] init(int cols, int height) {
-        Point[][] ladderMap = new Point[height][cols];
+    private Point[][] init(int cols, int rows) {
+        Point[][] ladderMap = new Point[rows][cols];
         Arrays.stream(ladderMap)
                 .forEach(points -> Arrays.stream(points)
                         .map(point -> new Point()));
@@ -26,7 +27,7 @@ public class LadderGenerator {
 
     public Ladder make() {
         drawLine(0, 1);
-        return new Ladder();
+        return new Ladder(this.map);
     }
 
     private boolean isAlreadyDraw(int height, int cols) {

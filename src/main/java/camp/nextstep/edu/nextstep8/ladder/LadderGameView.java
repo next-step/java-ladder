@@ -1,5 +1,7 @@
 package camp.nextstep.edu.nextstep8.ladder;
 
+import camp.nextstep.edu.nextstep8.ladder.entity.Ladder;
+
 public class LadderGameView {
     private static final String LINE = "-----";
     private static final String SPACE = "     ";
