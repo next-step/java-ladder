@@ -14,8 +14,7 @@ public class Main {
         int ladderHeight = InputView.askingLadderMaxHeight();
 
         List<String> peopleNames = players.getPlayerNames();
-        LadderCreator ladderCreator = new LadderCreator(peopleNames.size(), ladderHeight);
-        Ladder ladder = ladderCreator.createLadder();
+        Ladder ladder = Creator.createLadder(peopleNames.size(), ladderHeight);
 
         ResultVIew.printLadder(peopleNames, ladder.getLines());
         ResultVIew.printResults(resultGoods.getResults());
