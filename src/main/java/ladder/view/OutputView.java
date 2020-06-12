@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.domain.Direction;
+import ladder.domain.Ladder;
 import ladder.domain.PlayersGroup;
 
 import java.util.List;
@@ -37,24 +39,27 @@ public class OutputView {
             stringBuilder.append(ViewMessages.BLANK);
         }
     }
-/*
+
     public static void printLadder(Ladder ladder) {
-        List<List<Boolean>> ladderBluePrint = ladder.getLadderBluePrint();
+        List<List<Direction>> ladderBluePrint = ladder.getLadderBluePrint();
         StringBuilder stringBuilder = new StringBuilder();
         ladderBluePrint.forEach(eachLadderLine -> appendLadderLine(eachLadderLine, stringBuilder));
         System.out.println(stringBuilder.toString());
-    }*/
+    }
 
-    private static void appendLadderLine(List<Boolean> ladderLine, StringBuilder stringBuilder) {
+    private static void appendLadderLine(List<Direction> ladderLine, StringBuilder stringBuilder) {
         stringBuilder.append(ViewMessages.LINE_PREFIX);
-        ladderLine.forEach(eachPointPosition -> appendPointPosition(eachPointPosition, stringBuilder));
+        int size = ladderLine.size() - 1;
+        for (int i = 0; i < size; i++) {
+            appendPointPosition(ladderLine.get(i), stringBuilder);
+        }
         stringBuilder.append(ViewMessages.VERTICAL_LINE);
         stringBuilder.append(ViewMessages.NEW_LINE);
     }
 
-    private static void appendPointPosition(boolean pointPosition, StringBuilder stringBuilder) {
+    private static void appendPointPosition(Direction pointDirection, StringBuilder stringBuilder) {
         stringBuilder.append(ViewMessages.VERTICAL_LINE);
-        if (pointPosition) {
+        if (pointDirection == Direction.RIGHT) {
             stringBuilder.append(ViewMessages.HORIZON_LINE);
             return;
         }

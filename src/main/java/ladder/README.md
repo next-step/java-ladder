@@ -9,9 +9,18 @@
 
 * PlayersGroup
     * 게임 참가지 객체의 리스트(List<Player>) 일급 컬렉션
+    * Player들의 이름 중 중복이 있을 경우 예외 발생
     * 참가자 객체의 이름 목록을 파라미터로 받아 객체 생성
     * Player들의 이름 명단(List<String>) 반환
     * Player들 수를 반환
+    
+* GamePrize
+    * 게임 실행 결과를 담고 있음
+    * 이름이 Null이거나 빈 문자열일 경우 예외 발생
+
+* GamePrizes
+    * List<GamePrize> 일급 컬렉션
+    * 개수가 게임 참가자와 일치하지 않을 경우 예외 발생
 
 * Point
     * 사다리 한 수평 라인에서 세로선(|) 위치의 한 점을 구성하는 객체

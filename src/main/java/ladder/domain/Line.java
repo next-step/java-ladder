@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
     private static final int MINIMUM_PLAYER_COUNTS = 1;
@@ -22,10 +23,10 @@ public class Line {
             throw new LadderBuildingException(LadderBuildingException.INVALID_PLAYER_COUNTS);
         }
     }
-/*
-    public List<Boolean> getPointPositions() {
+
+    public List<Direction> getPointDirections() {
         return points.stream()
-                .map(Point::getIsExisting)
+                .map(Point::getDirection)
                 .collect(Collectors.toList());
-    }*/
+    }
 }

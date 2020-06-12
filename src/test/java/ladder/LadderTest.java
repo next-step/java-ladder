@@ -1,4 +1,3 @@
-/*
 package ladder;
 
 import ladder.domain.Ladder;
@@ -37,7 +36,7 @@ public class LadderTest {
                 .isEqualTo(ladderHeight);
 
         assertThat(ladder.getLadderBluePrint().get(0).size())
-                .isEqualTo(playersGroup.getPlayerCounts() - 1);
+                .isEqualTo(playersGroup.getPlayerCounts());
     }
 }
-*/
+

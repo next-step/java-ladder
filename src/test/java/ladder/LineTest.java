@@ -1,6 +1,6 @@
-/*
 package ladder;
 
+import ladder.domain.Direction;
 import ladder.domain.LadderBuildingException;
 import ladder.domain.Line;
 import ladder.domain.RandomDrawingLineStrategy;
@@ -33,15 +33,15 @@ public class LineTest {
                 .hasMessageContaining(LadderBuildingException.INVALID_PLAYER_COUNTS);
     }
 
-    @DisplayName("Line 객체를 통해 그린 Line의 길이는 playerCounts - 1과 동일함")
+    @DisplayName("Line 객체를 통해 그린 Line의 길이는 playerCounts과 동일함")
     @ParameterizedTest
     @ValueSource(ints = {1, 5, 10, 15})
     public void lineSizeTest(int playerCounts) {
         Line line = Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
 
-        List<Boolean> pointPositions = line.getPointPositions();
+        List<Direction> pointDirections = line.getPointDirections();
 
-        assertThat(pointPositions.size()).isEqualTo(playerCounts - 1);
+        assertThat(pointDirections.size()).isEqualTo(playerCounts);
     }
 }
-*/
+

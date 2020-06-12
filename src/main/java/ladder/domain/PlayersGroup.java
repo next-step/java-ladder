@@ -12,10 +12,20 @@ public class PlayersGroup {
     }
 
     public static PlayersGroup of(List<String> playerNames) {
+        validatePlayerCounts(playerNames);
         List<Player> players = playerNames.stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
         return new PlayersGroup(players);
+    }
+
+    private static void validatePlayerCounts(List<String> playerNames) {
+        int distinctPlayerCounts = (int) playerNames.stream()
+                .distinct()
+                .count();
+        if (playerNames.size() != distinctPlayerCounts) {
+            throw new LadderBuildingException(LadderBuildingException.DUPLICATE_PLAYER_NAMES);
+        }
     }
 
     public List<String> getPlayerNames() {
