@@ -23,6 +23,7 @@ public class OutputView {
         players.getPlayers().forEach(player ->
                 System.out.print(String.format(PLAYER_NAME_FORMAT, player.getName()))
         );
+        System.out.println();
     }
 
     private static void printLadder(Ladder ladder) {
@@ -32,7 +33,7 @@ public class OutputView {
                         if (point.isPoint()) {
                             System.out.print(PRINT_POINT_TRUE);
                         } else {
-                            System.out.println(PRINT_POINT_FALSE);
+                            System.out.print(PRINT_POINT_FALSE);
                         }
                     });
                     System.out.println();
