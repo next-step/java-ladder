@@ -28,14 +28,12 @@ public class LadderFactory {
             return new Line(points);
         }
 
+        boolean nextHasLine = isCreate();
         if (presentHasLine) {
-            points.add(new Direction(true, false));
-            return createLine(false, nextPosition + 1);
-        } else {
-            boolean nextHasLine = isCreate();
-            points.add(new Direction(false, nextHasLine));
-            return createLine(nextHasLine, nextPosition + 1);
+            nextHasLine = false;
         }
+        points.add(new Direction(presentHasLine, nextHasLine));
+        return createLine(nextHasLine, nextPosition + 1);
     }
 
     private static boolean isCreate() {
