@@ -2,7 +2,6 @@ package ladder.domain.prize;
 
 import ladder.domain.ladder.Position;
 import ladder.fixture.PlayerAndPrizeFixtures;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,12 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class PrizesTest {
 
-    private List<String> names;
-
-    @BeforeEach
-    void setUp() {
-        names = PlayerAndPrizeFixtures.prizeNames;
-    }
+    private final static List<String> names = PlayerAndPrizeFixtures.prizeNames;
 
     @DisplayName("null 이거나 0개의 이름이 입력되면 예외를 반환")
     @NullAndEmptySource
