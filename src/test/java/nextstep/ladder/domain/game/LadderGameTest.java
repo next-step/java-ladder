@@ -32,7 +32,7 @@ public class LadderGameTest {
     }
 
     private static Stream<Arguments> 사다리_생성() {
-        Ladder ladder = new Ladder(Height.of(3), 3, new DirectionRandomPredicate());
+        Ladder ladder = new Ladder(Height.from(3), 3, new DirectionRandomPredicate());
         return Stream.of(Arguments.of(ladder));
     }
 }

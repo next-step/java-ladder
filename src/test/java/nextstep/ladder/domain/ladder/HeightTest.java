@@ -11,13 +11,13 @@ public class HeightTest {
     @Test
     @DisplayName("높이 생성 테스트")
     void create(){
-        Height height = Height.of(5);
-        assertThat(height).isEqualTo(Height.of(5));
+        Height height = Height.from(5);
+        assertThat(height).isEqualTo(Height.from(5));
     }
     @Test
     @DisplayName("높이 생성 예외 테스트")
     void exception(){
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Height.of(-1));
+                .isThrownBy(() -> Height.from(-1));
     }
 }

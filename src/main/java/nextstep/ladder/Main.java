@@ -14,7 +14,7 @@ public class Main {
         String[] users = InputView.inputUserName();
         int maxHeight = InputView.inputMaximumLadderHeight();
 
-        Ladder ladder = new Ladder(Height.of(maxHeight), users.length, new DirectionRandomPredicate());
+        Ladder ladder = new Ladder(Height.from(maxHeight), users.length, new DirectionRandomPredicate());
 
         ResultView.printResult(UserConverter.convertToList(users), ladder);
     }

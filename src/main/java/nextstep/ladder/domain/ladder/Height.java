@@ -12,7 +12,7 @@ public class Height {
         this.height = height;
     }
 
-    public static Height of(int height) {
+    public static Height from(int height) {
         validate(height);
         return new Height(height);
     }
