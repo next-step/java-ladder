@@ -2,10 +2,14 @@ package ladder.domain.ladder;
 
 import ladder.domain.ladder.shape.PillarCount;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
+import ladder.fixture.LadderFixtures;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -50,22 +54,16 @@ public class StairsTest {
     @Test
     void move() {
         int maxPosition = PillarCount.MIN_COUNT * 5;
-        PillarCount pillarCount = PillarCount.of(maxPosition);
+        List<Stair> stairs = Stairs.of(
+                    PillarCount.of(maxPosition), new LadderFixtures.TestStairGenerationStrategy()
+                ).getStairs();
 
-        for (int index = 0; index < maxPosition; index++) {
-            Stair stair = Stairs.of(pillarCount, new RandomStairGenerationStrategy())
-                    .getStairs().get(index);
-            Position position = Position.of(index);
+        IntStream.range(0, maxPosition)
+                .forEach(index -> {
+                            Position position = Position.of(index);
 
-            if (stair.isRightLineExist()) {
-                assertThat(stair.move(position).equals(position.moveRight()));
-            } else {
-                if (index == Position.MIN_POSITION) {
-                    assertThat(stair.move(position)).isEqualTo(position);
-                    continue;
-                }
-                assertThat(stair.move(position)).isIn(position, position.moveLeft());
-            }
-        }
+                            assertThat(stairs.get(index).move(position))
+                                    .isEqualTo(LadderFixtures.of().getExpectedPositions().get(index));
+                        });
     }
 }

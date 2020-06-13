@@ -2,11 +2,13 @@ package ladder.domain.ladder;
 
 import ladder.domain.ladder.shape.PillarCount;
 import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
+import ladder.fixture.LadderFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -54,21 +56,16 @@ public class RowPillarsTest {
     @DisplayName("position 위치의 계단 상태에 따라 다음 위치를 반환")
     @Test
     void move() {
-        RowPillars rowPillars = RowPillars.of(pillarCount, new RandomStairGenerationStrategy());
+        RowPillars rowPillars = RowPillars.of(
+                pillarCount, new LadderFixtures.TestStairGenerationStrategy());
         List<Stair> stairs = rowPillars.getStairs();
 
-        for (int index = Position.MIN_POSITION; index < width; index++) {
-            Position position = Position.of(index);
+        IntStream.range(0, width)
+                .forEach(index -> {
+                    Position position = Position.of(index);
 
-            if (stairs.get(index).isRightLineExist()) {
-                assertThat(rowPillars.nextPosition(position).equals(position.moveRight()));
-            } else {
-                if (index == Position.MIN_POSITION) {
-                    assertThat(rowPillars.nextPosition(position)).isEqualTo(position);
-                    continue;
-                }
-                assertThat(rowPillars.nextPosition(position)).isIn(position, position.moveLeft());
-            }
-        }
+                    assertThat(stairs.get(index).move(position))
+                            .isEqualTo(LadderFixtures.of().getExpectedPositions().get(index));
+                });
     }
 }
