@@ -3,6 +3,9 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+
+    public static final int ZERO = 0;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
@@ -18,39 +21,23 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
-        int total = 0;
+    public static int sumAll(List<Integer> numbers, LambdaSumCondition lambdaSumCondition) {
+        int total = ZERO;
         for (int number : numbers) {
-            total += number;
+            total += getAddableNumber(lambdaSumCondition, number);
         }
+
         return total;
     }
 
-    public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
+    private static int getAddableNumber(LambdaSumCondition lambdaSumCondition, int number) {
+        if (lambdaSumCondition.test(number)) {
+            return number;
         }
-        return total;
-    }
 
-    public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return ZERO;
     }
 }
