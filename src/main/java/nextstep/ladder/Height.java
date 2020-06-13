@@ -8,11 +8,11 @@ public class Height {
 	private final int heightValue;
 
 	//constructor logic
-	private Height(int heightValue) {
+	private Height(final int heightValue) {
 		this.heightValue = heightValue;
 	}
 
-	public static Height of(String heightValueString) {
+	public static Height of(final String heightValueString) {
 		validateValueStringIsNotEmpty(heightValueString);
 		int heightValue = convertValueStringToInt(heightValueString);
 		validateHeightValueIsLargeThanZero(heightValue);
@@ -20,13 +20,13 @@ public class Height {
 	}
 
 	//validation logic
-	private static void validateHeightValueIsLargeThanZero(int heightValue) {
+	private static void validateHeightValueIsLargeThanZero(final int heightValue) {
 		if (heightValue < MINIMUM_HEIGHT_THRESHOLD) {
 			throw new IllegalArgumentException("The minimum threshold of height is 1. check your input again.");
 		}
 	}
 
-	private static void validateValueStringIsNotEmpty(String heightValueString) {
+	private static void validateValueStringIsNotEmpty(final String heightValueString) {
 		if (Objects.isNull(heightValueString) || heightValueString.trim().isEmpty()) {
 			throw new IllegalArgumentException("The height input is null or undefined. What was wrong with you?");
 		}
