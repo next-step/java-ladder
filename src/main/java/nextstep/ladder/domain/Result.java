@@ -1,23 +1,22 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.Map;
 
 public class Result {
 
-    private Map<Player, Reward> result;
+    private final PlayerReward result;
 
-    private Result(Map<Player, Reward> result) {
+    private Result(PlayerReward result) {
         this.result = result;
     }
 
-    public static Result newInstance(Map<Player, Reward> result) {
+    public static Result newInstance(PlayerReward result) {
         validate(result);
         return new Result(result);
     }
 
-    private static void validate(Map<Player, Reward> result) {
-        if (result == null || result.size() == 0) {
+    private static void validate(PlayerReward result) {
+        if (result == null || result.count() == 0) {
             throw new IllegalArgumentException("결과가 존재하지 않습니다.");
         }
     }
@@ -27,6 +26,6 @@ public class Result {
     }
 
     public Map<Player, Reward> toMap() {
-        return Collections.unmodifiableMap(this.result);
+        return this.result.toMap();
     }
 }
