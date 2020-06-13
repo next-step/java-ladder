@@ -37,19 +37,9 @@ public class Point {
     }
 
     public boolean meetLast(int last) {
-        if(last <= x + 1) {
+        if(last <= y + 1) {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "x=" + x +
-                ", y=" + y +
-                ", left=" + left +
-                ", right=" + right +
-                '}';
     }
 }
