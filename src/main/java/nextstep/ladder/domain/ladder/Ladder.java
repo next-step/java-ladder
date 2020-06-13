@@ -1,8 +1,9 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.game.Destination;
-
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,9 +12,11 @@ public class Ladder {
     private static final int FIRST_LINE = 0;
 
     private final List<Line> lines;
+    private final Map<Integer, Direction> directionMap;
 
     public Ladder(Height height, int maxPosition, DirectionPredicate predicate) {
         this.lines = createLines(height, maxPosition, predicate);
+        this.directionMap = convertLinesToDirectionMap();
     }
 
     private List<Line> createLines(Height height, int maxPosition, DirectionPredicate predicate) {
@@ -21,6 +24,17 @@ public class Ladder {
                 .unordered()
                 .mapToObj(integer -> Line.newInstance(maxPosition, predicate))
                 .collect(Collectors.toList());
+    }
+
+    private Map<Integer, Direction> convertLinesToDirectionMap() {
+        List<Direction> directions = lines.stream()
+                .flatMap(line -> line.getPositions().stream())
+                .map(Position::currentDirection)
+                .collect(Collectors.toList());
+
+        return IntStream.range(0, directions.size())
+                .boxed()
+                .collect(Collectors.toMap(Function.identity(), directions::get));
     }
 
     public List<Line> getLines() {
@@ -38,7 +52,15 @@ public class Ladder {
         return null;
     }
 
-    public Destination findDestination(int order) {
-        return null;
+    public int findDestination(int position) {
+        while (Objects.nonNull(directionMap.get(position))) {
+            Direction direction = directionMap.get(position);
+            position = nextPosition(position, direction);
+        }
+        return position % getMaxPosition();
+    }
+
+    private int nextPosition(int current, Direction next) {
+        return current + next.getDirection() + getHeight();
     }
 }
