@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Order {
 
-    private static final int DEFAULT_ORDER = 0;
+    private static final int MINIMUM_ORDER = 0;
     private final int order;
 
     public Order(int order) {
@@ -12,13 +12,13 @@ public class Order {
     }
 
     public static Order from(int order) {
-        if (order < DEFAULT_ORDER) {
-            throw new IllegalArgumentException("order is more than " + DEFAULT_ORDER);
+        if (order < MINIMUM_ORDER) {
+            throw new IllegalArgumentException("order is less than " + MINIMUM_ORDER);
         }
         return new Order(order);
     }
 
-    public boolean isLessThanMaxPosition(int maxPosition) {
+    public boolean isEqualsOrLessThanMaxPosition(int maxPosition) {
         return order <= maxPosition;
     }
 

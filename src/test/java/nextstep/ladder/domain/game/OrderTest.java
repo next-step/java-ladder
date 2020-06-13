@@ -23,10 +23,11 @@ public class OrderTest {
                 .isThrownBy(() -> Order.from(-1));
     }
 
-    @ValueSource(ints = {6})
+    @ValueSource(ints = {0,1,2,3,4,5})
     @ParameterizedTest
     @DisplayName("order isLessThanMaxPosition 테스트")
-    void isLessThanMaxPosition(int maxPosition){
-        assertThat(Order.from(5).isLessThanMaxPosition(maxPosition)).isTrue();
+    void isEqualsOrLessThanMaxPosition(int order){
+        int maxPosition = 5;
+        assertThat(Order.from(order).isEqualsOrLessThanMaxPosition(maxPosition)).isTrue();
     }
 }
