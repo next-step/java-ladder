@@ -60,10 +60,10 @@ public class StairsTest {
 
         IntStream.range(0, maxPosition)
                 .forEach(index -> {
-                            Position position = Position.of(index);
+                    Position position = Position.of(index);
 
-                            assertThat(stairs.get(index).move(position))
-                                    .isEqualTo(LadderFixtures.of().getExpectedPositions().get(index));
-                        });
+                    assertThat(stairs.get(index).move(position))
+                            .isEqualTo(LadderFixtures.of().getExpectedPositions().get(index));
+                });
     }
 }

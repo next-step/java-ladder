@@ -67,10 +67,6 @@ public class LadderFixtures {
         return expectedPositions;
     }
 
-    public List<StairState> getExpectedStates() {
-        return expectedStates;
-    }
-
     public List<List<Boolean>> getExpectedLines() {
         return expectedLines;
     }
