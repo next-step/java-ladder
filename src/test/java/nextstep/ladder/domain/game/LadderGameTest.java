@@ -44,6 +44,24 @@ public class LadderGameTest {
         assertThat(gameResult).isNotNull();
     }
 
+    @MethodSource("사다리_생성")
+    @ParameterizedTest
+    @DisplayName("사다리 게임 user가 null 일 때 실행 테스트")
+    void play_null_use_exception(Ladder ladder) {
+        LadderGame ladderGame = new LadderGame(ladder);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> ladderGame.play(null));
+    }
+
+    @MethodSource("사다리_생성")
+    @ParameterizedTest
+    @DisplayName("사다리 게임 user의 순서가 최대 위치보다 같거나 크면 예외 발생 테스트")
+    void play_user_order_exception(Ladder ladder) {
+        LadderGame ladderGame = new LadderGame(ladder);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> ladderGame.play(Arrays.asList(User.newInstance("ray", Order.from(3)))));
+    }
+
     private static Stream<Arguments> 사다리_생성() {
         Ladder ladder = new Ladder(Height.from(3), 3, new DirectionRandomPredicate());
         return Stream.of(Arguments.of(ladder));
