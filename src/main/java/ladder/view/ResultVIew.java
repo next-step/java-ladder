@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Direction;
 import ladder.domain.Line;
-import ladder.domain.ResultOfPlayer;
+import ladder.domain.ResultRecord;
 
 import java.util.List;
 
@@ -38,23 +38,20 @@ public class ResultVIew {
         System.out.println(stringBuilder.toString());
     }
 
-    public static void printResultOfPlayer(List<ResultOfPlayer> resultOfPlayers, String playerName) {
+    public static void printAllResultOfPlayer(ResultRecord resultRecord) {
         stringBuilder = new StringBuilder(GAME_RESULT);
-        if (ALL.equals(playerName)) {
-            resultOfPlayers.forEach(resultOfPlayer -> {
-                stringBuilder.append(resultOfPlayer.getPlayerName());
-                stringBuilder.append(COLON);
-                stringBuilder.append(resultOfPlayer.getResult());
-                stringBuilder.append(ENTER);
-            });
-            System.out.println(stringBuilder.toString());
-            return;
-        }
-        ResultOfPlayer resultOfPlayer = resultOfPlayers.stream()
-                                            .filter(v -> v.getPlayerName().equals(playerName))
-                                            .findFirst()
-                                            .orElseThrow(() -> new IllegalArgumentException("일치하는 이름이 없습니다."));
-        stringBuilder.append(resultOfPlayer.getResult());
+        resultRecord.getResultOfPlayers().forEach(resultOfPlayer -> {
+            stringBuilder.append(resultOfPlayer.getPlayerName());
+            stringBuilder.append(COLON);
+            stringBuilder.append(resultOfPlayer.getResult());
+            stringBuilder.append(ENTER);
+        });
+        System.out.println(stringBuilder.toString());
+    }
+
+    public static void printResultOfPlayer(ResultRecord resultRecord, String playerName) {
+        stringBuilder = new StringBuilder(GAME_RESULT);
+        stringBuilder.append(resultRecord.find(playerName).getResult());
         System.out.println(stringBuilder.toString());
     }
 
