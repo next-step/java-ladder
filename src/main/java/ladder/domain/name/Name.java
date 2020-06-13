@@ -12,7 +12,7 @@ public class Name {
 
     private final String name;
 
-    private Name(String name) {
+    private Name(final String name) {
         verifyName(name);
         this.name = name;
     }
