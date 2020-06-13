@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.game.Destination;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -7,6 +9,7 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private static final int FIRST_LINE = 0;
+
     private final List<Line> lines;
 
     public Ladder(Height height, int maxPosition, DirectionPredicate predicate) {
@@ -29,9 +32,13 @@ public class Ladder {
     }
 
     public Integer getMaxPosition() {
-        if(lines.size() > FIRST_LINE) {
+        if (lines.size() > FIRST_LINE) {
             return lines.get(FIRST_LINE).sizeOfPositions();
         }
+        return null;
+    }
+
+    public Destination findDestination(int order) {
         return null;
     }
 }

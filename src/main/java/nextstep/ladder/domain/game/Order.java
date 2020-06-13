@@ -18,6 +18,10 @@ public class Order {
         return new Order(order);
     }
 
+    public int getOrder() {
+        return order;
+    }
+
     public boolean isEqualsOrLessThanMaxPosition(int maxPosition) {
         return order <= maxPosition;
     }

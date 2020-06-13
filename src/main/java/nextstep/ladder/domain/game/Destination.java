@@ -16,6 +16,10 @@ public class Destination {
         return new Destination(order, result);
     }
 
+    public int getOrder() {
+        return order.getOrder();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
