@@ -10,7 +10,6 @@ public class LadderGame {
         Ladder ladder = new Ladder(joinMemberStr, height);
         ladder.make();
 
-        LadderGameView view = new LadderGameView(ladder);
-        view.show();
+        LadderGameView.show(ladder);
     }
 }

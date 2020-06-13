@@ -24,14 +24,14 @@ public class Row {
         next.markEnd();
     }
 
-    private boolean isAlreadyDraw(Point cur, Point next) {
-        return cur.isEnd() || next.isStart();
-    }
-
     public Point pick(int x, int y) {
         return points.stream()
                 .filter(p -> p.match(x, y) == true)
                 .findFirst()
                 .orElse(null);
+    }
+
+    private boolean isAlreadyDraw(Point cur, Point next) {
+        return cur.isEnd() || next.isStart();
     }
 }
