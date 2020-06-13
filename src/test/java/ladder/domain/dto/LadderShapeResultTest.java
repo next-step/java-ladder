@@ -11,8 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -60,22 +58,15 @@ public class LadderShapeResultTest {
     @DisplayName("사다리 모양을 그리기 위한 계단 라인(한 행) 리스트를 반환")
     @Test
     void getStairDtos() {
-        Ladder ladder = Ladder.of(LadderFixtures.of().ladderShapeInfo,
+        Ladder ladder = Ladder.of(LadderFixtures.of().getLadderShapeInfo(),
                 new LadderFixtures.TestStairGenerationStrategy());
         List<StairDto> stairDtos = LadderShapeResult.of(
                 PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes(), ladder)
                 .getStairDtos();
 
-        List<List<Boolean>> expectedLines = new ArrayList<>();
-        expectedLines.add(Arrays.asList(true, false, false, true, false));
-        expectedLines.add(Arrays.asList(false, false, true, false, false));
-        expectedLines.add(Arrays.asList(false, false, false, true, false));
-        expectedLines.add(Arrays.asList(false, true, false, false, false));
-        expectedLines.add(Arrays.asList(false, true, false, false, false));
-
         IntStream.range(0, stairDtos.size())
                 .forEach(index ->
                         assertThat(stairDtos.get(index).getLines())
-                                .isEqualTo(expectedLines.get(index)));
+                                .isEqualTo(LadderFixtures.of().getExpectedLines().get(index)));
     }
 }

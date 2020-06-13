@@ -71,7 +71,7 @@ public class LadderTest {
     @DisplayName("모든 사용자가 사다리를 타고 난 결과에 대한 prize position 리스트를 반환")
     @Test
     void playWithMultiplePlayers() {
-        Ladder ladder = Ladder.of(LadderFixtures.of().ladderShapeInfo,
+        Ladder ladder = Ladder.of(LadderFixtures.of().getLadderShapeInfo(),
                 new LadderFixtures.TestStairGenerationStrategy());
         Positions positions = ladder.ride();
 

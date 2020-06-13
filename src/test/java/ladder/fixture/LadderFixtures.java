@@ -1,19 +1,21 @@
 package ladder.fixture;
 
 import ladder.domain.LadderGame;
+import ladder.domain.ladder.StairState;
 import ladder.domain.ladder.shape.Height;
 import ladder.domain.ladder.shape.LadderShapeInfo;
 import ladder.domain.ladder.strategy.StairGenerationStrategy;
 import ladder.view.ResultView;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class LadderFixtures {
 
-    public final LadderShapeInfo ladderShapeInfo;
-    public final LadderGame ladderGame;
+    private final LadderShapeInfo ladderShapeInfo;
+    private final LadderGame ladderGame;
+
+    private final List<StairState> expectedStates = new ArrayList<>();
+    private final List<List<Boolean>> expectedLines = new ArrayList<>();
 
     private LadderFixtures() {
         Height height = Height.of(Height.MIN_HEIGHT * 5);
@@ -21,10 +23,42 @@ public class LadderFixtures {
         ladderShapeInfo = LadderShapeInfo.valueOf(PlayerAndPrizeFixtures.of().getMultiplePlayersAndPrizes(), height);
         ladderGame = LadderGame.of(ladderShapeInfo, new TestStairGenerationStrategy());
         ResultView.printLadderShape(ladderGame.ready());
+
+        initExpectedStates();
+        initExpectedLines();
     }
 
     public static LadderFixtures of() {
         return new LadderFixtures();
+    }
+
+    private void initExpectedStates() {
+        expectedStates.addAll(
+                Arrays.asList(StairState.RIGHT, StairState.LEFT, StairState.EMPTY, StairState.RIGHT, StairState.LEFT));
+    }
+
+    private void initExpectedLines() {
+        expectedLines.add(Arrays.asList(true, false, false, true, false));
+        expectedLines.add(Arrays.asList(false, false, true, false, false));
+        expectedLines.add(Arrays.asList(false, false, false, true, false));
+        expectedLines.add(Arrays.asList(false, true, false, false, false));
+        expectedLines.add(Arrays.asList(false, true, false, false, false));
+    }
+
+    public LadderGame getLadderGame() {
+        return ladderGame;
+    }
+
+    public LadderShapeInfo getLadderShapeInfo() {
+        return ladderShapeInfo;
+    }
+
+    public List<StairState> getExpectedStates() {
+        return expectedStates;
+    }
+
+    public List<List<Boolean>> getExpectedLines() {
+        return expectedLines;
     }
 
     public static class TestStairGenerationStrategy implements StairGenerationStrategy {
@@ -44,9 +78,5 @@ public class LadderFixtures {
         public boolean generate() {
             return stairQueue.poll();
         }
-    }
-
-    public LadderGame getLadderGame() {
-        return ladderGame;
     }
 }
