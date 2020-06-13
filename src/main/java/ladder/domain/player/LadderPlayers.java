@@ -40,7 +40,7 @@ public class LadderPlayers {
     }
 
     private static void validatePlayer(String[] playerNames) {
-        if (playerNames.length < 1 || playerNames == null) {
+        if (playerNames == null || playerNames.length < 1) {
             throw new IllegalArgumentException("플에이어를 입력하세요");
         }
     }

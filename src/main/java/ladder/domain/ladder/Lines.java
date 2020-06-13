@@ -5,24 +5,24 @@ import java.util.List;
 
 public class Lines {
 
-    private final List<Line> lineList;
+    private final List<Line> lines;
 
-    private Lines(final List<Line> lineList){
-        this.lineList = lineList;
+    private Lines(final List<Line> lines){
+        validate(lines);
+        this.lines = lines;
     }
 
-    public static Lines create(final List<Line> lineList) {
-        validate(lineList);
-        return new Lines(lineList);
+    public static Lines create(final List<Line> lines) {
+        return new Lines(lines);
     }
 
     public List<Line> getLineList() {
-        return Collections.unmodifiableList(lineList);
+        return Collections.unmodifiableList(lines);
     }
 
-    private static void validate(List<Line> lineList) {
-        if (lineList == null) {
-            throw new IllegalArgumentException("lineList 의 값이 null 입니다.");
+    private static void validate(List<Line> lines) {
+        if (lines == null) {
+            throw new IllegalArgumentException("lines 의 값이 null 입니다.");
         }
     }
 }

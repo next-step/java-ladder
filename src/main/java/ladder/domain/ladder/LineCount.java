@@ -4,11 +4,11 @@ public class LineCount {
     private final int lineCount;
 
     private LineCount(int personCount) {
+        validateLineCount(personCount);
         this.lineCount = personCount -1;
     }
 
     public static LineCount inputLineCount(final int personCount) {
-        validateLineCount(personCount);
         return new LineCount(personCount);
     }
 
