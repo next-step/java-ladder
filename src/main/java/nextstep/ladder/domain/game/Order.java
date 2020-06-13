@@ -18,7 +18,7 @@ public class Order {
         return new Order(order);
     }
 
-    public boolean isEqualOrLessThanMaxPosition(int maxPosition) {
+    public boolean isLessThanMaxPosition(int maxPosition) {
         return order <= maxPosition;
     }
 

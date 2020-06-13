@@ -25,9 +25,8 @@ public class OrderTest {
 
     @ValueSource(ints = {6})
     @ParameterizedTest
-    @DisplayName("order isEqualOrLessThanMaxPosition 테스트")
-    void isEqualOrLessThanMaxPosition(int maxPosition){
-        assertThat(Order.from(5).isEqualOrLessThanMaxPosition(maxPosition)).isTrue();
-        assertThat(Order.from(6).isEqualOrLessThanMaxPosition(maxPosition)).isTrue();
+    @DisplayName("order isLessThanMaxPosition 테스트")
+    void isLessThanMaxPosition(int maxPosition){
+        assertThat(Order.from(5).isLessThanMaxPosition(maxPosition)).isTrue();
     }
 }
