@@ -4,20 +4,19 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LadderTest {
 
   @ParameterizedTest
   @MethodSource("heightAndNameStrArrProvider")
-  void createByHeightAndNamesStrArr(Height height, String namesStr) {
+  void createByHeightAndNamesStrArr(PositiveNumber height, String namesStr) {
     String[] nameStrArr = namesStr.split(",");
+    Players players = Players.createByNameStrArr(namesStr.split(","));
 
-    Ladder ladder = Ladder.createByHeightAndNamesStrArr(height, nameStrArr);
+    Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, players.getCountOfPerson());
 
     assertThat(ladder.getLines().size()).isEqualTo(height.getValue());
 
@@ -29,15 +28,15 @@ class LadderTest {
   public static Stream<Arguments> heightAndNameStrArrProvider() {
     return Stream.of(
         arguments(
-            new Height(1),
+            new PositiveNumber(1),
             "test1, test2, test3, test4"
         ),
         arguments(
-            new Height(5),
+            new PositiveNumber(5),
             "test1, test2, test3, test4"
         ),
         arguments(
-            new Height(5),
+            new PositiveNumber(5),
             "test1, test2, test3, test4, test5, test6, test7"
         )
     );

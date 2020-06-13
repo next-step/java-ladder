@@ -1,8 +1,9 @@
 package laddergame;
 
 import java.util.Scanner;
-import laddergame.model.Height;
 import laddergame.model.Ladder;
+import laddergame.model.Players;
+import laddergame.model.PositiveNumber;
 import laddergame.view.LadderGameView;
 
 public class LadderGame {
@@ -11,13 +12,13 @@ public class LadderGame {
 
   public static void main(String[] args) {
     LadderGameView.printInputNameMsg();
-    String[] nameStrArr = scanner.nextLine().split(",");
+    Players players = Players.createByNameStrArr(scanner.nextLine().split(","));
 
     LadderGameView.printInputLadderHeightMsg();
-    Height ladderHeight = new Height(scanner.nextInt());
+    PositiveNumber ladderHeight = new PositiveNumber(scanner.nextInt());
     scanner.nextLine();
 
     LadderGameView
-        .printResult(Ladder.createByHeightAndNamesStrArr(ladderHeight, nameStrArr));
+        .printResult(players, Ladder.createByHeightAndCountOfPerson(ladderHeight, players.getCountOfPerson()));
   }
 }

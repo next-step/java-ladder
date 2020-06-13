@@ -1,6 +1,7 @@
 package laddergame.view;
 
 import laddergame.model.Ladder;
+import laddergame.model.Players;
 
 public class LadderGameView {
 
@@ -12,10 +13,10 @@ public class LadderGameView {
     System.out.println("최대 사다리 높이는 몇 개인가요?");
   }
 
-  public static void printResult(Ladder ladder) {
+  public static void printResult(Players players, Ladder ladder) {
     StringBuilder sb = new StringBuilder("실행결과\n");
 
-    sb.append(ladder.getPlayers().toString()).append("\n");
+    sb.append(players.toString()).append("\n");
 
     ladder.getLines().stream()
         .forEach(line -> sb.append(line).append("\n"));

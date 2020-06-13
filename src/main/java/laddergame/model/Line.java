@@ -23,10 +23,10 @@ public class Line {
    * @param countOfPerson 게임 참가 인원 수
    * @return 생성된 라인
    */
-  public static Line createByCountOfPerson(int countOfPerson) {
+  public static Line createByCountOfPerson(PositiveNumber countOfPerson) {
     return new Line(
         Stream.iterate(new Point(false), Point::createNonDuplicatedRungWith)
-            .limit(countOfPerson)
+            .limit(countOfPerson.getValue())
             .collect(Collectors.toList()));
   }
 

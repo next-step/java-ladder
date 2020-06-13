@@ -19,6 +19,10 @@ public class Players {
         .collect(Collectors.toList()));
   }
 
+  public PositiveNumber getCountOfPerson() {
+    return new PositiveNumber(players.size());
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -8,26 +8,22 @@ import java.util.stream.Stream;
 public class Ladder {
 
   private final List<Line> lines;
-  private final Players players;
 
-  public Ladder(List<Line> lines, Players players) {
+  public Ladder(List<Line> lines) {
     this.lines = lines;
-    this.players = players;
   }
 
-  public static Ladder createByHeightAndNamesStrArr(Height height, String[] nameStrArr) {
-    List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson(nameStrArr.length))
+  public static Ladder createByHeightAndCountOfPerson(
+      PositiveNumber height, PositiveNumber countOfPerson) {
+    List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson(countOfPerson))
         .limit(height.getValue()).collect(
             Collectors.toList());
 
-    return new Ladder(lines, Players.createByNameStrArr(nameStrArr));
+    return new Ladder(lines);
   }
 
   public List<Line> getLines() {
     return Collections.unmodifiableList(lines);
   }
 
-  public Players getPlayers() {
-    return players;
-  }
 }
