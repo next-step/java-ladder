@@ -1,27 +1,37 @@
 package ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class DirectionTest {
-    private final int nowLocation = 1;
+    private final Direction direction = new Direction(true, false);
+
+    @Test
+    void isLeft() {
+        boolean result = direction.isLeft();
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    void isRight() {
+        boolean result = direction.isRight();
+        assertThat(result).isEqualTo(false);
+    }
 
     @ParameterizedTest
-    @CsvSource(value = {"true,0", "false,1"})
-    @DisplayName("왼쪽에 다리 있을 경우 이동")
-    void goLeft(boolean left, int nextLocation) {
-        int result = Direction.goLeft(left, nowLocation);
+    @CsvSource(value = {"1,0"})
+    void goLeft(int nowLocation, int nextLocation) {
+        int result = direction.goLeft(nowLocation);
         assertThat(result).isEqualTo(nextLocation);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"true,2", "false,1"})
-    @DisplayName("오른쪽에 다리 있을 경우 이동")
-    void goRight(boolean right, int nextLocation) {
-        int result = Direction.goRight(right, nowLocation);
+    @CsvSource(value = {"1,2"})
+    void goRight(int nowLocation, int nextLocation) {
+        int result = direction.goRight(nowLocation);
         assertThat(result).isEqualTo(nextLocation);
     }
 }
