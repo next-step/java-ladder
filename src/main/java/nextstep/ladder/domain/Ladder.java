@@ -1,8 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Ladder {
 
     private final Players players;
@@ -33,14 +30,14 @@ public class Ladder {
     }
 
     public Result run(Rewards rewards) {
-        Map<Player, Reward> result = new HashMap<>();
+        PlayerReward playerReward = new PlayerReward();
         for (Player player : this.players.toList()) {
             Position finish = this.lines.moveAll(player.getPosition());
             Reward reward = rewards.findByPosition(finish);
-            result.put(player, reward);
+            playerReward.put(player, reward);
         }
 
-        return Result.newInstance(result);
+        return Result.newInstance(playerReward);
     }
 
     public Players getPlayers() {
