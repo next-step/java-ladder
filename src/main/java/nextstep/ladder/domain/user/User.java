@@ -5,17 +5,23 @@ import java.util.Objects;
 public class User {
 
     private final String name;
+    private final int order;
 
-    private User(String name) {
+    private User(String name, int order) {
         this.name = name;
+        this.order = order;
     }
 
-    public static User newInstance(String userName) {
-        return new User(userName);
+    public static User newInstance(String userName, int order) {
+        return new User(userName, order);
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getOrder() {
+        return order;
     }
 
     @Override
@@ -23,11 +29,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(name, user.name);
+        return order == user.order &&
+                Objects.equals(name, user.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, order);
     }
 }
