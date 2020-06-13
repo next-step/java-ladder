@@ -22,6 +22,10 @@ public class User {
         return name;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -17,4 +17,8 @@ public class Line {
     public static Line newInstance(int maxPosition, DirectionPredicate predicate) {
         return new Line(Positions.newInstance(maxPosition, predicate));
     }
+
+    public int sizeOfPositions(){
+        return positions.size();
+    }
 }

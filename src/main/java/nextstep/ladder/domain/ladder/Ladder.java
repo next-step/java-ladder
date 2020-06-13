@@ -6,15 +6,14 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final Height height;
+    private static final int FIRST_LINE = 0;
     private final List<Line> lines;
 
     public Ladder(Height height, int maxPosition, DirectionPredicate predicate) {
-        this.height = height;
-        this.lines = createLines(maxPosition, predicate);
+        this.lines = createLines(height, maxPosition, predicate);
     }
 
-    private List<Line> createLines(int maxPosition, DirectionPredicate predicate) {
+    private List<Line> createLines(Height height, int maxPosition, DirectionPredicate predicate) {
         return IntStream.range(0, height.getHeight())
                 .unordered()
                 .mapToObj(integer -> Line.newInstance(maxPosition, predicate))
@@ -26,6 +25,13 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return height.getHeight();
+        return lines.size();
+    }
+
+    public Integer getMaxPosition() {
+        if(lines.size() > FIRST_LINE) {
+            return lines.get(FIRST_LINE).sizeOfPositions();
+        }
+        return null;
     }
 }
