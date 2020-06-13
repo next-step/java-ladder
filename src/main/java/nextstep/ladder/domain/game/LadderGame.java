@@ -14,4 +14,8 @@ public class LadderGame {
         }
         this.ladder = ladder;
     }
+
+    public LadderGameResult play() {
+        return null;
+    }
 }
