@@ -8,15 +8,13 @@ public class Ladder {
 
     private final Height height;
     private final List<Line> lines;
-    private DirectionPredicate predicate;
 
     public Ladder(Height height, int maxPosition, DirectionPredicate predicate) {
         this.height = height;
-        this.predicate = (predicate != null) ? predicate : new DirectionRandomPredicate();
-        this.lines = createLines(maxPosition);
+        this.lines = createLines(maxPosition, predicate);
     }
 
-    private List<Line> createLines(int maxPosition) {
+    private List<Line> createLines(int maxPosition, DirectionPredicate predicate) {
         return IntStream.range(0, height.getHeight())
                 .unordered()
                 .mapToObj(integer -> Line.newInstance(maxPosition, predicate))
