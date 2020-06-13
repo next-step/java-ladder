@@ -39,16 +39,18 @@ public class LadderLinePoints {
 		}
 	}
 
-	public int moveSide(int position) {
-		if (canMoveToRight(position)) {
-			return position + 1;
+	private void validateExistPosition(int position) {
+		if (position >= points.size()) {
+			throw new IllegalArgumentException("좌표 수보다 큰 위치는 존재하지 않습니다.");
 		}
+	}
 
-		if (canMoveToLeft(position)) {
-			return position - 1;
-		}
+	public int moveSideFrom(int position) {
+		validateExistPosition(position);
 
-		return position;
+		return canMoveToRight(position) ? position + 1
+				: canMoveToLeft(position) ? position - 1
+				: position;
 	}
 
 	private boolean canMoveToRight(int position) {

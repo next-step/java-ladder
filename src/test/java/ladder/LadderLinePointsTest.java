@@ -73,7 +73,7 @@ class LadderLinePointsTest {
 	@ParameterizedTest
 	@MethodSource("moveToRightArguments")
 	void moveToRight(LadderLinePoints points, int position, int expected) {
-		int movedPointIndex = points.moveSide(position);
+		int movedPointIndex = points.moveSideFrom(position);
 		assertThat(movedPointIndex).isEqualTo(expected);
 	}
 
@@ -97,7 +97,7 @@ class LadderLinePointsTest {
 	@ParameterizedTest
 	@MethodSource("moveToLeftArguments")
 	void moveToLeft(LadderLinePoints points, int position, int expected) {
-		int movedPointIndex = points.moveSide(position);
+		int movedPointIndex = points.moveSideFrom(position);
 		assertThat(movedPointIndex).isEqualTo(expected);
 	}
 
@@ -121,7 +121,7 @@ class LadderLinePointsTest {
 	@ParameterizedTest
 	@MethodSource("stayArguments")
 	void stay(LadderLinePoints points, int position, int expected) {
-		int movedPointIndex = points.moveSide(position);
+		int movedPointIndex = points.moveSideFrom(position);
 		assertThat(movedPointIndex).isEqualTo(expected);
 	}
 
@@ -135,5 +135,17 @@ class LadderLinePointsTest {
 				Arguments.of(points, 0, 0),
 				Arguments.of(points, 1, 1),
 				Arguments.of(points, 2, 2));
+	}
+
+	@DisplayName("좌표 수보다 큰 위치에서 이동하려고 하면 IllegalArgumentException")
+	@Test
+	void moveSideFrom_greaterThanPointCount() {
+		LadderLinePoints points = LadderLinePoints.of(Arrays.asList(
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(false)));
+
+		assertThatThrownBy(() -> points.moveSideFrom(2))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("좌표 수보다 큰 위치");
 	}
 }
