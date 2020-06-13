@@ -18,6 +18,10 @@ public class Order {
         return new Order(order);
     }
 
+    public boolean isEqualOrLessThanMaxPosition(int maxPosition) {
+        return order <= maxPosition;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
