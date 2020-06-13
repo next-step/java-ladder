@@ -4,6 +4,7 @@ import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 import ladder.domain.player.Players;
+import ladder.domain.result.LadderResult;
 
 import java.util.stream.IntStream;
 
@@ -13,10 +14,11 @@ public class ResultView {
     public static final String BLANK_LINE = "     ";
     public static final String LINE = "-----";
 
-    public void printLadder(Players players, Ladder ladder) {
+    public void printLadder(Players players, Ladder ladder, LadderResult ladderResult) {
         System.out.println("\n실행결과\n");
         printPlayer(players);
         printLadder(ladder);
+        printResult(ladderResult);
     }
 
     private void printPlayer(Players players) {
@@ -39,6 +41,13 @@ public class ResultView {
                 .mapToObj(line::get)
                 .forEach(point -> System.out.print(COLUMN + getLine(point)));
         System.out.println();
+    }
+
+    private void printResult(LadderResult ladderResult) {
+        IntStream.range(0, ladderResult.size())
+                .mapToObj(ladderResult::get)
+                .map(result -> String.format("%6s", result))
+                .forEach(System.out::print);
     }
 
     private String getLine(Point point) {

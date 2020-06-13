@@ -1,8 +1,4 @@
-package ladder.domain;
-
-import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
-import ladder.domain.ladder.Point;
+package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,27 +21,22 @@ public class LadderGame {
 
     public int findResultPosition(int playerPosition) {
         for (int lineNumber = 0; lineNumber < ladder.height(); lineNumber++) {
-            Line line = ladder.get(lineNumber);
-            playerPosition = getNextPosition(line, playerPosition);
+            playerPosition = getNextPosition(ladder.get(lineNumber), playerPosition);
         }
         return playerPosition;
     }
 
     private int getNextPosition(Line line, int playerPosition) {
-        if (hasLine(line, playerPosition)) {
+        if (hasLine(line.get(playerPosition))) {
             return playerPosition + 1;
         }
-        if (hasLine(line, playerPosition - 1)) {
+        if (playerPosition > 0 && hasLine(line.get(playerPosition - 1))) {
             return playerPosition - 1;
         }
         return playerPosition;
     }
 
-    private boolean hasLine(Line line, int position) {
-        if (position < 0) {
-            return false;
-        }
-        Point point = line.get(position);
+    private boolean hasLine(Point point) {
         return point.hasLine();
     }
 }
