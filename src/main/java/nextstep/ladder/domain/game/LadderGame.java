@@ -1,7 +1,9 @@
 package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.user.User;
 
+import java.util.List;
 import java.util.Objects;
 
 public class LadderGame {
@@ -15,7 +17,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public LadderGameResult play() {
+    public LadderGameResult play(List<User> users) {
         return null;
     }
 }
