@@ -1,6 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
 import ladder.domain.ladder.strategy.StairGenerationStrategy;
 import ladder.exception.ErrorMessage;
 
