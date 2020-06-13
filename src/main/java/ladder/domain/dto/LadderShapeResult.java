@@ -1,31 +1,30 @@
 package ladder.domain.dto;
 
+import ladder.domain.PlayersAndPrizes;
 import ladder.domain.ladder.Ladder;
 
 import java.util.List;
 
 public class LadderShapeResult {
 
-    private final List<String> playerNames;
-    private final List<String> prizeNames;
+    private final PlayersAndPrizes playersAndPrizes;
     private final List<StairDto> stairDtos;
 
-    private LadderShapeResult(final List<String> playerNames, final List<String> prizeNames, final List<StairDto> stairDtos) {
-        this.playerNames = playerNames;
-        this.prizeNames = prizeNames;
+    private LadderShapeResult(final PlayersAndPrizes playersAndPrizes, final List<StairDto> stairDtos) {
+        this.playersAndPrizes = playersAndPrizes;
         this.stairDtos = stairDtos;
     }
 
-    public static LadderShapeResult of(final List<String> playerNames, final List<String> prizeNames, final Ladder ladder) {
-        return new LadderShapeResult(playerNames, prizeNames, StairDto.from(ladder));
+    public static LadderShapeResult of(final PlayersAndPrizes playersAndPrizes, final Ladder ladder) {
+        return new LadderShapeResult(playersAndPrizes, StairDto.from(ladder));
     }
 
     public List<String> getPlayerNames() {
-        return playerNames;
+        return playersAndPrizes.getPlayerNames();
     }
 
     public List<String> getPrizeNames() {
-        return prizeNames;
+        return playersAndPrizes.getPrizeNames();
     }
 
     public List<StairDto> getStairDtos() {

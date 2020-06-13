@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
+import ladder.domain.ladder.strategy.StairGenerationStrategy;
 import ladder.exception.ErrorMessage;
 
 import java.util.Objects;
@@ -24,12 +24,12 @@ public class Stair {
         }
     }
 
-    public static Stair createOfFirstPillar() {
-        return new Stair(StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
+    public static Stair createOfFirstPillar(final StairGenerationStrategy strategy) {
+        return new Stair(StairState.ofFirstPillar(strategy));
     }
 
-    public Stair createOfNextPillar() {
-        return new Stair(stairState.ofNextPillar(RandomStairGenerationStrategy.getInstance()));
+    public Stair createOfNextPillar(final StairGenerationStrategy strategy) {
+        return new Stair(stairState.ofNextPillar(strategy));
     }
 
     public Stair createOfLastPillar() {
@@ -40,7 +40,7 @@ public class Stair {
         return stairState.isRightLineExist();
     }
 
-    public int move(final int position) {
+    public Position move(final Position position) {
         return stairState.move(position);
     }
 

@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import ladder.domain.ladder.Position;
+import ladder.fixture.PlayerAndPrizeFixtures;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +10,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -21,7 +22,7 @@ public class PlayersTest {
 
     @BeforeEach
     void setUp() {
-        names = Arrays.asList("pobi", "honux");
+        names = PlayerAndPrizeFixtures.playerNames;
     }
 
     @DisplayName("null 이거나 0개의 이름이 입력되면 예외를 반환")
@@ -49,15 +50,15 @@ public class PlayersTest {
     @DisplayName("배열 순서에 해당하는 Player 를 반환")
     @ParameterizedTest
     @MethodSource
-    void indexOf(final int index, final Player expected) {
+    void indexOf(final Position index, final Player expected) {
         assertThat(Players.of(names).indexOf(index))
                 .isEqualTo(expected);
     }
 
     private static Stream<Arguments> indexOf() {
         return Stream.of(
-                Arguments.of(0, Player.of("pobi")),
-                Arguments.of(1, Player.of("honux"))
+                Arguments.of(Position.of(0), Player.of("pobi")),
+                Arguments.of(Position.of(1), Player.of("honux"))
         );
     }
 }

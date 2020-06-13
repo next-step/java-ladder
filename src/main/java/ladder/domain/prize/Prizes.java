@@ -1,5 +1,6 @@
 package ladder.domain.prize;
 
+import ladder.domain.ladder.Position;
 import ladder.exception.ErrorMessage;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class Prizes {
                 .collect(Collectors.toList());
     }
 
-    public Prize indexOf(final int index) {
-        return prizes.get(index);
+    public Prize indexOf(final Position position) {
+        return prizes.get(position.getPosition());
     }
 }

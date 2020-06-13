@@ -23,7 +23,7 @@ public class StairTest {
     @DisplayName("첫 번째 기둥의 계단은 랜던 전략으로 생성")
     @Test
     void createOfFirstPillar() {
-        assertThatCode(Stair::createOfFirstPillar)
+        assertThatCode(() -> Stair.createOfFirstPillar(new RandomStairGenerationStrategy()))
                 .doesNotThrowAnyException();
     }
 
@@ -31,10 +31,11 @@ public class StairTest {
     @Test
     void createOfMiddlePillar() {
         Stair previousStair = Stair.of(
-                StairState.ofFirstPillar(RandomStairGenerationStrategy.getInstance()));
+                StairState.ofFirstPillar(new RandomStairGenerationStrategy()));
 
         boolean existLineOfPreviousStair = previousStair.isRightLineExist();
-        boolean existLine = previousStair.createOfNextPillar().isRightLineExist();
+        boolean existLine = previousStair.createOfNextPillar(new RandomStairGenerationStrategy())
+                .isRightLineExist();
 
         assertThat(existLineOfPreviousStair && existLine).isFalse();
     }
@@ -42,7 +43,8 @@ public class StairTest {
     @DisplayName("마지막 기둥에는 계단을 둘 수 없음")
     @Test
     void createOfLastPillar() {
-        assertThat(Stair.createOfFirstPillar().createOfLastPillar()
+        assertThat(Stair.createOfFirstPillar(new RandomStairGenerationStrategy())
+                .createOfLastPillar()
                 .isRightLineExist())
                 .isEqualTo(false);
     }
@@ -50,19 +52,18 @@ public class StairTest {
     @DisplayName("해당 기둥의 계단의 상태에 따라 다음 위치를 반환")
     @ParameterizedTest
     @MethodSource
-    void move(final Stair stair, final int position, final int expected) {
+    void move(final Stair stair, final Position position, final Position expected) {
         assertThat(stair.move(position)).isEqualTo(expected);
     }
 
     private static Stream<Arguments> move() {
-        final int basePosition = 5;
-        final int oneStep = 1;
+        final Position basePosition = Position.of(5);
 
         return Stream.of(
                 Arguments.of(Stair.of(StairState.ofFirstPillar(() -> false)), basePosition, basePosition),
-                Arguments.of(Stair.of(StairState.ofFirstPillar(() -> true)), basePosition, basePosition + oneStep),
+                Arguments.of(Stair.of(StairState.ofFirstPillar(() -> true)), basePosition, basePosition.moveRight()),
                 Arguments.of(Stair.of(StairState.ofFirstPillar(() -> true).ofNextPillar(() -> false)),
-                        basePosition, basePosition - oneStep)
+                        basePosition, basePosition.moveLeft())
         );
     }
 

@@ -1,10 +1,15 @@
 package ladder.domain.ladder;
 
 import ladder.domain.ladder.shape.PillarCount;
+import ladder.domain.ladder.strategy.RandomStairGenerationStrategy;
+import ladder.fixture.LadderFixtures;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -15,20 +20,22 @@ public class StairsTest {
     @ParameterizedTest
     void createFailureByPillarCountIsNull(final PillarCount pillarCount) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Stairs.of(pillarCount));
+                .isThrownBy(() -> Stairs.of(pillarCount, new RandomStairGenerationStrategy()));
     }
 
     @DisplayName("기둥의 최소 개수인 1보다 작은 수로 계단을 만들 수 없음")
     @Test
     void createFailure() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Stairs.of(PillarCount.of(PillarCount.MIN_COUNT - 1)));
+                .isThrownBy(() -> Stairs.of(
+                        PillarCount.of(PillarCount.MIN_COUNT - 1), new RandomStairGenerationStrategy()));
     }
 
     @DisplayName("기둥의 개수 만큼 수평을 따라 계단 생성")
     @Test
     void create() {
-        assertThatCode(() -> Stairs.of(PillarCount.of(PillarCount.MIN_COUNT)))
+        assertThatCode(() -> Stairs.of(
+                    PillarCount.of(PillarCount.MIN_COUNT), new RandomStairGenerationStrategy()))
                 .doesNotThrowAnyException();
     }
 
@@ -38,7 +45,8 @@ public class StairsTest {
         final int firstIndex = 0;
         PillarCount pillarCount = PillarCount.of(PillarCount.MIN_COUNT);
 
-        assertThat(Stairs.of(pillarCount).getStairs().get(firstIndex))
+        assertThat(Stairs.of(pillarCount, new RandomStairGenerationStrategy())
+                .getStairs().get(firstIndex))
                 .isEqualTo(Stair.of(StairState.EMPTY));
     }
 
@@ -46,16 +54,16 @@ public class StairsTest {
     @Test
     void move() {
         int maxPosition = PillarCount.MIN_COUNT * 5;
-        PillarCount pillarCount = PillarCount.of(maxPosition);
+        List<Stair> stairs = Stairs.of(
+                    PillarCount.of(maxPosition), new LadderFixtures.TestStairGenerationStrategy()
+                ).getStairs();
 
-        for (int position = 0; position < maxPosition; position++) {
-            Stair stair = Stairs.of(pillarCount).getStairs().get(position);
+        IntStream.range(0, maxPosition)
+                .forEach(index -> {
+                    Position position = Position.of(index);
 
-            if (stair.isRightLineExist()) {
-                assertThat(stair.move(position) == position + 1);
-            } else {
-                assertThat(stair.move(position)).isIn(position, position - 1);
-            }
-        }
+                    assertThat(stairs.get(index).move(position))
+                            .isEqualTo(LadderFixtures.of().getExpectedPositions().get(index));
+                });
     }
 }
