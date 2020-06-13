@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -52,7 +51,7 @@ class ResultTest {
     }
 
     Result initialize() {
-        Map<Player, Reward> result = new HashMap<>();
+        PlayerReward result = new PlayerReward();
         result.put(Player.newInstance("A", 0), Reward.newInstance("1000"));
         result.put(Player.newInstance("B", 0), Reward.newInstance("2000"));
         result.put(Player.newInstance("C", 0), Reward.newInstance("3000"));
