@@ -35,7 +35,7 @@ class LadderGameTest {
         LadderResultDto ladderResultDto = ladderGame.getLadderResult();
         assertThat(ladderResultDto.getPlayerNames()).hasSize(names.size());
         assertThat(ladderResultDto.getPlayerNames()).isEqualTo(names);
-        assertThat(ladderResultDto.getLines()).hasSize(height);
+        assertThat(ladderResultDto.getLadderLines()).hasSize(height);
     }
 
     private static Stream<Arguments> provideLadderInformation() {
