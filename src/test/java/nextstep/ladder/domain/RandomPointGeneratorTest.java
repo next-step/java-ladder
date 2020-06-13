@@ -8,7 +8,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomBridgeGeneratorTest {
+class RandomPointGeneratorTest {
 
     private MovementGenerator createBridge(Random random) {
         return new RandomMovementGenerator(random);
