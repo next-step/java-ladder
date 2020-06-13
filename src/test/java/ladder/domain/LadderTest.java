@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,8 +15,18 @@ class LadderTest {
 
     @BeforeEach
     void setup() {
-        List<Boolean> points1 = Arrays.asList(false, true, false, false);
-        List<Boolean> points2 = Arrays.asList(false, false, true, false);
+        // |----|    |
+        // |    |----|
+        List<Direction> points1 = new ArrayList<>();
+        points1.add(new Direction(false, true));
+        points1.add(new Direction(true, false));
+        points1.add(new Direction(false, false));
+
+        List<Direction> points2 = new ArrayList<>();
+        points2.add(new Direction(false, false));
+        points2.add(new Direction(false, true));
+        points2.add(new Direction(true, false));
+
         lines.add(new Line(points1));
         lines.add(new Line(points2));
     }
