@@ -19,12 +19,14 @@ public class Ladder {
         Set<Point> points = new HashSet<>();
         Point currentPoint = Point.INITIAL_POINT;
         Point maxPoint = Point.of(maxHeight);
+
         while (currentPoint.isUnderThan(maxPoint) || currentPoint.equals(maxPoint)) {
             if (enoughToDrawLine(points.size()) && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
                 points.add(currentPoint);
             }
             currentPoint = currentPoint.add();
         }
+
         return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
     }
 

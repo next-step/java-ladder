@@ -16,6 +16,7 @@ public class LadderGame {
         for (int userIndex = 0, size = gameUsers.size(); userIndex < size - 1; userIndex++) {
             ladder.drawLine(gameUsers.get(userIndex), drawingMachine);
         }
+
         return ladder;
     }
 }
