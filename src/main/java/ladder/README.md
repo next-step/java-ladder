@@ -32,6 +32,7 @@
     - String name을 가지는 사람 객체
     - 이름이 5글자가 넘는지 체크한다.
         * functionalInterface 사용해서 예외 처리 해보기
+            -> (수정) Person에서 체크 시 그냥 길이로 체크하면 된다.
         
 5. Ladder 사다리
     - List<Line> 을 가지는 1급 컬렉션
