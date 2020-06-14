@@ -49,7 +49,7 @@ public class OutputView {
     }
 
     private static void printLadderLine(final LadderLine ladderLine, final int memberCount) {
-        String line = ladderLine.getLadderBridges()
+        String line = ladderLine.getBridges()
             .stream()
             .map(ladderBridge -> printBridge(memberCount, ladderBridge))
             .collect(Collectors.joining(POLE_DELIMITER, POLE_PREFIX, POLE_SUFFIX));
