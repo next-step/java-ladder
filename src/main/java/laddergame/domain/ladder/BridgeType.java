@@ -31,6 +31,6 @@ public enum BridgeType {
     }
 
     public boolean isRightConnected() {
-        return this.equals(BridgeType.RIGHT);
+        return this == BridgeType.RIGHT;
     }
 }

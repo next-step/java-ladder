@@ -24,7 +24,7 @@ public class Bridge {
     }
 
     public static boolean isSameBridgeType(Bridge before, Bridge next) {
-        return before.getBridgeType().equals(next.getBridgeType());
+        return before.getBridgeType() == next.getBridgeType();
     }
 
     public BridgeType getBridgeType() {
