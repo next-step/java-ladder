@@ -17,7 +17,7 @@ class LadderFactoryTest {
     void createLadder(int countOfPerson, int ladderHeight) {
         Ladder ladder = LadderFactory.createLadder(countOfPerson, ladderHeight);
 
-        List<Line> lineList = ladder.getLines();
+        List<LadderLine> lineList = ladder.getLines();
         int resultHeight = lineList.size();
         int lineCount = lineList.get(0).getPoints().size();
 
