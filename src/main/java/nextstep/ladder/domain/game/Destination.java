@@ -5,19 +5,15 @@ import java.util.Objects;
 public class Destination {
 
     private Order order;
-    private String result;
+    private Result result;
 
-    private Destination(Order order, String result) {
+    private Destination(Order order, Result result) {
         this.order = order;
         this.result = result;
     }
 
-    public static Destination of(Order order, String result) {
+    public static Destination of(Order order, Result result) {
         return new Destination(order, result);
-    }
-
-    public int getOrder() {
-        return order.getOrder();
     }
 
     @Override
