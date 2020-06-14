@@ -11,9 +11,9 @@ public class LineCountTest {
     @Test
     @DisplayName("라인 카운트 생성 테스트")
     void lineCountCreateTest() {
-        int lineCount = 4;
-        LineCount createLineCount = LineCount.inputLineCount(lineCount);
-        assertThat(createLineCount.getLineCount()).isEqualTo(lineCount);
+        int playerCount = 4;
+        LineCount createLineCount = LineCount.inputLineCount(playerCount);
+        assertThat(createLineCount.getLineCount()).isEqualTo(3);
     }
 
     @Test

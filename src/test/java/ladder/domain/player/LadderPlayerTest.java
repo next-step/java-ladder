@@ -8,13 +8,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class LadderPlayerTest {
 
     @Test
-    void LinesPlyerCreateTest() {
+    void LadderPlayerCreateTest() {
         LadderPlayer pobi = LadderPlayer.create("pobi");
         assertThat(pobi.getPlayerName()).isEqualTo("pobi");
     }
 
     @Test
-    void LinesPlayerCreate_5글자이상_Test() {
+    void LadderPlayerCreate_5글자이상_Test() {
         assertThatThrownBy(() -> LadderPlayer.create("pobiccc"))
                 .hasMessageMatching("사람 이름은 최대 5글자 입니다.");
     }
