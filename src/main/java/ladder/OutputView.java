@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class OutputView {
 
 	private static final Scanner SCANNER = new Scanner(System.in);
+	private static final String CHECK_ALL_RESULT_COMMAND = "all";
 
 	private OutputView() {}
 
@@ -46,12 +47,37 @@ public class OutputView {
 
 	private static void checkResult(Players players, Prizes prizes, PositionLogs positionLogs) {
 		System.out.println("결과를 보고 싶은 사람은?");
+		String playerName = SCANNER.nextLine();
 
-		int playerIndex = players.findIndexByName(SCANNER.nextLine());
+		if (CHECK_ALL_RESULT_COMMAND.equals(playerName)) {
+			printAllResults(players, prizes, positionLogs);
+			return;
+		}
+
+		printOneResult(players, prizes, positionLogs, playerName);
+	}
+
+	private static void printAllResults(Players players, Prizes prizes, PositionLogs positionLogs) {
+		System.out.println("실행 결과");
+		List<Player> playerList = players.getContent();
+
+		for (int i = 0; i < players.size(); i++) {
+			Player player = playerList.get(i);
+			String playerName = player.getName();
+			Prize prize = getPrizeByPlayerName(players, prizes, positionLogs, playerName);
+			System.out.println(String.format("%s : %s", playerName, prize.getName()));
+		}
+	}
+
+	private static void printOneResult(Players players, Prizes prizes, PositionLogs positionLogs, String playerName) {
+		Prize prize = getPrizeByPlayerName(players, prizes, positionLogs, playerName);
+		System.out.println(prize.getName());
+	}
+
+	private static Prize getPrizeByPlayerName(Players players, Prizes prizes, PositionLogs positionLogs, String playerName) {
+		int playerIndex = players.findIndexByName(playerName);
 		int lastPosition = positionLogs.getLastPosition(playerIndex);
 		List<Prize> prizeList = prizes.getContent();
-		Prize prize = prizeList.get(lastPosition);
-
-		System.out.println(prize.getName());
+		return prizeList.get(lastPosition);
 	}
 }
