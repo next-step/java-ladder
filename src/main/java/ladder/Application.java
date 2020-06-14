@@ -4,8 +4,11 @@ public class Application {
 
     public static void main(String[] args) {
         LadderLinePainter ladderLinePainter = new LadderLinePainter();
-        LadderGame ladderGame = new LadderGame(ladderLinePainter);
+        PositionLogFactory positionLogFactory = new PositionLogFactory();
+
+        LadderGame ladderGame = new LadderGame(ladderLinePainter, positionLogFactory);
         LadderGameController gameController = new LadderGameController(ladderGame);
+
         gameController.startGame();
     }
 }
