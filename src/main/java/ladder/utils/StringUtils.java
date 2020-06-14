@@ -15,6 +15,10 @@ public class StringUtils {
     }
 
     public static String[] getNamesFrom(String input) {
-        return input.trim().replaceAll(" ", "").split(",");
+        return getNameFrom(input).split(",");
+    }
+
+    public static String getNameFrom(String input) {
+        return input.trim().replaceAll(" ", "");
     }
 }

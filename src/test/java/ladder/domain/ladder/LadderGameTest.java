@@ -1,9 +1,10 @@
 package ladder.domain.ladder;
 
+import ladder.domain.player.Players;
+import ladder.domain.result.LadderResults;
+import ladder.domain.result.MatchResult;
 import ladder.domain.strategy.FalseLineStrategy;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -12,13 +13,15 @@ class LadderGameTest {
     @Test
     void findAllResult() {
         LadderGame ladderGame = new LadderGame(Ladder.of(5,5, new FalseLineStrategy()));
+        Players players = Players.of("a,b,c,d,e");
+        LadderResults ladderResults = LadderResults.of("1,2,3,4,5", players);
 
-        List<Integer> result = ladderGame.findAllPosition(5);
+        MatchResult result = ladderGame.findAllPosition(players, ladderResults);
 
-        assertThat(result.get(0)).isEqualTo(0);
-        assertThat(result.get(1)).isEqualTo(1);
-        assertThat(result.get(2)).isEqualTo(2);
-        assertThat(result.get(3)).isEqualTo(3);
-        assertThat(result.get(4)).isEqualTo(4);
+        assertThat(result.get(players.get(0))).isEqualTo(ladderResults.get(0));
+        assertThat(result.get(players.get(1))).isEqualTo(ladderResults.get(1));
+        assertThat(result.get(players.get(2))).isEqualTo(ladderResults.get(2));
+        assertThat(result.get(players.get(3))).isEqualTo(ladderResults.get(3));
+        assertThat(result.get(players.get(4))).isEqualTo(ladderResults.get(4));
     }
 }

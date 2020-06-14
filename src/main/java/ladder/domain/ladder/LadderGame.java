@@ -1,7 +1,13 @@
 package ladder.domain.ladder;
 
-import java.util.ArrayList;
-import java.util.List;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
+import ladder.domain.result.LadderResult;
+import ladder.domain.result.LadderResults;
+import ladder.domain.result.MatchResult;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGame {
 
@@ -11,12 +17,12 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public List<Integer> findAllPosition(int countOfPerson) {
-        List<Integer> result = new ArrayList<>();
-        for (int player = 0; player < countOfPerson; player++) {
-            result.add(findResultPosition(player));
+    public MatchResult findAllPosition(Players players, LadderResults ladderResults) {
+        Map<Player, LadderResult> result = new HashMap<>();
+        for (int i = 0; i < players.getCountOfPerson(); i++) {
+            result.put(players.get(i), ladderResults.get(findResultPosition(i)));
         }
-        return result;
+        return new MatchResult(result);
     }
 
     public int findResultPosition(int playerPosition) {

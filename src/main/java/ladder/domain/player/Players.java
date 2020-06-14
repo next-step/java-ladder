@@ -25,6 +25,13 @@ public class Players {
         return players.get(index);
     }
 
+    public Player get(String name) {
+        return players.stream()
+                .filter(player -> player.equalName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("There are no participants with the same name."));
+    }
+
     public int getCountOfPerson() {
         return players.size();
     }
