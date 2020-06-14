@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BridgeTest {
@@ -32,5 +33,13 @@ class BridgeTest {
                 () -> assertThat(bridgeLeft.isConnected()).isTrue(),
                 () -> assertThat(bridgeNone.isConnected()).isFalse()
         );
+    }
+
+    @DisplayName("다리의 열번호가 1보다 작으면 IllegalArgumentException Throw")
+    @Test
+    void underMinColumnThrowException() {
+        assertThatThrownBy(() -> Bridge.createBridge(true, 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("열 번호는 1 이상이어야 합니다. - " + 0);
     }
 }

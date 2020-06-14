@@ -1,10 +1,12 @@
 package laddergame.domain.ladder;
 
 public class Bridge {
+    private static final int MIN_COLUMN = 1;
     private final int column;
     private final BridgeType bridgeType;
 
     private Bridge(BridgeType bridgeType, int column) {
+        validateBridgeColumn(column);
         this.bridgeType = bridgeType;
         this.column = column;
     }
@@ -55,5 +57,11 @@ public class Bridge {
         }
 
         return new Bridge(BridgeType.NONE, column + 1);
+    }
+
+    private void validateBridgeColumn(int column) {
+        if (column < MIN_COLUMN) {
+            throw new IllegalArgumentException("열 번호는 1 이상이어야 합니다. - " + column);
+        }
     }
 }
