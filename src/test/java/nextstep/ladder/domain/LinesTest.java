@@ -19,11 +19,19 @@ public class LadderTest {
     void lineConstructorTest(final List<String> userNames, final Integer height, final Ladder expected) {
         Ladder ladder = Ladder.of(userNames, height);
 
-        Integer resultPlayerSize = ladder.getPlayers().size();
-        Integer resultLadderSize = ladder.getLadders().size();
+        Players players = ladder.getPlayers();
+        Lines lines = ladder.getLines();
 
-        Integer expectedPlayerSize = expected.getPlayers().size();
-        Integer expectedLaddersSize = expected.getLadders().size();
+        Integer resultPlayerSize = players.getPlayers().size();
+        Integer resultLadderSize = lines.getLines().size();
+
+
+        Players expectedPlayers = expected.getPlayers();
+        Lines expectedLines = expected.getLines();
+
+
+        Integer expectedPlayerSize = expectedPlayers.getPlayers().size();
+        Integer expectedLaddersSize = expectedLines.getLines().size();
 
         assertThat(resultPlayerSize).isEqualTo(expectedPlayerSize);
         assertThat(resultLadderSize).isEqualTo(expectedLaddersSize);

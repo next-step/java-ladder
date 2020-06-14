@@ -1,44 +1,26 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private List<Player> players;
-    private List<Line> ladders;
+    private Players players;
+    private Lines lines;
 
-    private Ladder(List<String> userNames, Integer ladderHeight) {
-        this.players = new ArrayList<>();
-        this.ladders = new ArrayList<>();
-
-        initializePlayers(userNames);
-        Integer countOfPerson = userNames.size();
-        IntStream.range(0, ladderHeight).forEach(i -> initializeLadderLine(countOfPerson));
-    }
-
-    private void initializePlayers(List<String> userNames) {
-        userNames.forEach(userName -> {
-            Player player = Player.of(userName);
-            this.players.add(player);
-        });
-    }
-
-    private void initializeLadderLine(Integer countOfPerson) {
-        Line line = new Line(countOfPerson, new RandomMountingBlockGenerator());
-        this.ladders.add(line);
+    private Ladder(List<String> userNames, int ladderHeight) {
+        this.players = Players.of(userNames);
+        this.lines = Lines.of(userNames.size(), ladderHeight);
     }
 
     public static Ladder of(List<String> userNames, Integer ladderHeight) {
         return new Ladder(userNames, ladderHeight);
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public Players getPlayers() {
+        return this.players;
     }
 
-    public List<Line> getLadders() {
-        return ladders;
+    public Lines getLines() {
+        return this.lines;
     }
 }

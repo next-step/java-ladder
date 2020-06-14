@@ -1,11 +1,9 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.constant.LadderConstants;
 import org.apache.commons.lang3.StringUtils;
 
 public class Player {
-
-    private static final Integer MAXIMUM_USER_NAME_LENGTH = 5;
-    private static final String INVALID_USER_NAME_EXCEPTION_MESSAGE = "이름은 길이는 최대 5글자 입니다.";
 
     private String userName;
 
@@ -15,13 +13,13 @@ public class Player {
     }
 
     private void validateUserName(String userName) {
-        if (userName.length() > MAXIMUM_USER_NAME_LENGTH) {
-            throw new IllegalArgumentException(INVALID_USER_NAME_EXCEPTION_MESSAGE);
+        if (userName.length() > LadderConstants.MAXIMUM_USER_NAME_LENGTH) {
+            throw new IllegalArgumentException(LadderConstants.INVALID_USER_NAME_EXCEPTION_MESSAGE);
         }
     }
 
     public String convertUserNameWithLeftPad() {
-        return StringUtils.leftPad(this.userName, MAXIMUM_USER_NAME_LENGTH + 1);
+        return StringUtils.leftPad(this.userName, LadderConstants.MAXIMUM_USER_NAME_LENGTH + 1);
     }
 
     public static Player of(String userName) {
