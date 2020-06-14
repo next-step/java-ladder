@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 public class Person {
     public static final int MAX_NAME_LENGTH = 5;

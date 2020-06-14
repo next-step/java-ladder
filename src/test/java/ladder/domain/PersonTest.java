@@ -1,5 +1,6 @@
-package ladder;
+package ladder.domain;
 
+import ladder.domain.Person;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
