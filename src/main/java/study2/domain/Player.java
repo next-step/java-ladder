@@ -6,8 +6,11 @@ public class Player {
 	private static final String nameLimit = "이름은 최대 5글자 입니다.";
 	private static final String leastNameLimit = "이름은 최소 1글자 이상, 공백은 불가능합니다.";
 	
-	private Player(String name) {
+	
+	
+	public Player(String name) {
 		nameLimiation(name);
+		this.name = name;
 	}
 
 	private void nameLimiation(String name) {
