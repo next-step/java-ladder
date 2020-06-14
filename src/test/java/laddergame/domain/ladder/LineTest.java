@@ -18,26 +18,5 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineTest {
-    static BridgeGenerator continuousBridgeGenerator = numberOfPlayer -> {
-        Bridge first = Bridge.createRightBridge();
-        Bridge second = Bridge.createRightBridge();
 
-        List<Bridge> continuousBridges = new ArrayList<>();
-        continuousBridges.add(first);
-        continuousBridges.add(second);
-
-        for (int i = 2; i < numberOfPlayer; i++) {
-            continuousBridges.add(Bridge.createNotLinkedBridge());
-        }
-
-        return continuousBridges;
-    };
-
-    @DisplayName("연속으로 연결된 다리가 존재하면 IllegalStateException Throw")
-    @Test
-    void continuousLineThrowException() {
-        assertThatThrownBy(() -> new Line(4, continuousBridgeGenerator))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage("연속된 연결 다리가 존재합니다.");
-    }
 }

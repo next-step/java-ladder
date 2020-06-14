@@ -15,44 +15,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LadderTest {
-
-    static BridgeGenerator switchingBridgeGenerator = new BridgeGenerator() {
-        @Override
-        public List<Bridge> generate(int numberOfPlayer) {
-            if (numberOfPlayer == 1) {
-                return Arrays.asList(Bridge.createNotLinkedBridge());
-            }
-
-            if (numberOfPlayer % 2 == 0) {
-                return IntStream.range(0, numberOfPlayer)
-                        .mapToObj(this::createBridge)
-                        .collect(Collectors.toList());
-            }
-
-            List<Bridge> bridges = IntStream.range(0, numberOfPlayer - 1)
-                    .mapToObj(this::createBridge)
-                    .collect(Collectors.toList());
-
-            bridges.add(Bridge.createNotLinkedBridge());
-
-            return bridges;
-        }
-
-        private Bridge createBridge(int index) {
-            if (index % 2 == 0) {
-                return Bridge.createRightBridge();
-            }
-
-            return Bridge.createLeftBridge();
-        }
-    };
-
     @DisplayName("사다리 높이가 1보다 작으면 IllegalArgumentExceptionThrow")
     @Test
     void minLadderHeightThrowException() {
         int ladderHeight = 0;
         int numberOfPlayer = 1;
-        assertThatThrownBy(() -> new Ladder(ladderHeight, numberOfPlayer, switchingBridgeGenerator))
+        assertThatThrownBy(() -> new Ladder(ladderHeight, numberOfPlayer, () -> true))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사다리 높이가 너무 작습니다. - " + ladderHeight);
 
@@ -62,7 +30,7 @@ class LadderTest {
     @ParameterizedTest
     @CsvSource({"1, 2", "2, 4", "2, 1"})
     void createLadder(int ladderHeight, int numberOfPlayer) {
-        Ladder ladder = new Ladder(ladderHeight, numberOfPlayer, switchingBridgeGenerator);
+        Ladder ladder = new Ladder(ladderHeight, numberOfPlayer, () -> true);
 
         List<Line> lines = ladder.getLines();
         List<Bridge> bridges = lines.get(0).getBridges();

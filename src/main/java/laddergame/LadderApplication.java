@@ -1,7 +1,8 @@
 package laddergame;
 
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.RandomBridgeGenerator;
+import laddergame.domain.ladder.BridgeGenerator;
+import laddergame.domain.ladder.RandomConnectGenerator;
 import laddergame.domain.player.Players;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
@@ -13,7 +14,7 @@ public class LadderApplication {
 
         int ladderHeight = InputView.inputLadderHeight();
 
-        Ladder ladder = new Ladder(ladderHeight, names.length, new RandomBridgeGenerator());
+        Ladder ladder = new Ladder(ladderHeight, names.length, new RandomConnectGenerator());
 
         OutputView.printLadder(players, ladder);
     }

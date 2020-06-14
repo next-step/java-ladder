@@ -6,8 +6,8 @@ import java.util.List;
 public class Line {
     private final List<Bridge> bridges;
 
-    public Line(int numberOfPlayer, BridgeGenerator bridgeGenerator) {
-        List<Bridge> bridges = bridgeGenerator.generate(numberOfPlayer);
+    public Line(int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
+        List<Bridge> bridges = BridgeGenerator.generate(numberOfPlayer, connectGenerator);
         validateBridges(bridges);
         this.bridges = bridges;
     }

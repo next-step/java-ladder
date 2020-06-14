@@ -8,15 +8,15 @@ public class Ladder {
     private static final int MIN_LADDER_HEIGHT = 1;
     private final List<Line> lines;
 
-    public Ladder(int ladderHeight, int numberOfPlayer, BridgeGenerator bridgeGenerator) {
+    public Ladder(int ladderHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
         validateLadderHeight(ladderHeight);
-        this.lines = createLines(ladderHeight, numberOfPlayer, bridgeGenerator);
+        this.lines = createLines(ladderHeight, numberOfPlayer, connectGenerator);
     }
 
-    private List<Line> createLines(int ladderHeight, int numberOfPlayer, BridgeGenerator bridgeGenerator) {
+    private List<Line> createLines(int ladderHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(numberOfPlayer, bridgeGenerator));
+            lines.add(new Line(numberOfPlayer, connectGenerator));
         }
 
         return lines;
