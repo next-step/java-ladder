@@ -5,15 +5,12 @@ import java.util.Objects;
 import static java.lang.Boolean.FALSE;
 import static ladder.domain.ladder.RandomGenerator.isMovable;
 
-public class Direction {
+public class PointDirection {
     private final boolean left;
     private final boolean right;
 
-    private Direction(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalStateException("입력된 방향이 없습니다.");
-        }
-
+    private PointDirection(boolean left, boolean right) {
+        validteDirection(left, right);
         this.left = left;
         this.right = right;
         System.out.println(this);
@@ -27,34 +24,40 @@ public class Direction {
         return this.left;
     }
 
-    public Direction next(boolean nextRight) {
+    public PointDirection next(boolean nextRight) {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public PointDirection next() {
         if (this.right) {
             return next(FALSE);
         }
         return next(isMovable());
     }
 
-    public static Direction of(boolean first, boolean second) {
-        return new Direction(first, second);
+    public static PointDirection of(boolean first, boolean second) {
+        return new PointDirection(first, second);
     }
 
-    public static Direction first(boolean right) {
+    public static PointDirection first(boolean right) {
         return of(FALSE, right);
     }
 
-    public Direction last() {
+    public PointDirection last() {
         return of(this.right, FALSE);
+    }
+
+    private void validteDirection(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException("입력된 방향이 없습니다.");
+        }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Direction pair = (Direction) o;
+        PointDirection pair = (PointDirection) o;
         return left == pair.left &&
                 right == pair.right;
     }

@@ -1,14 +1,12 @@
 package ladder.ui;
 
-import ladder.domain.ladder.Lines;
 import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Lines;
 import ladder.domain.ladder.Point;
 import ladder.domain.player.LadderPlayer;
 import ladder.domain.player.LadderPlayers;
-import ladder.domain.reward.LadderReward;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
