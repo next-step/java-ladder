@@ -34,7 +34,6 @@ public class Lambda {
         return total;
     }
 
-
     public static int sumAll(List<Integer> numbers) {
         return sum(numbers, number -> true);
     }
