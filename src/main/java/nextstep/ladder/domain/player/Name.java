@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.player;
 
 public class Name {
     private static final int NAME_UPPER_BOUND = 5;
