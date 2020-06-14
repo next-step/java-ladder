@@ -16,4 +16,8 @@ public class Point {
 			throw new IllegalArgumentException("last point should not be connected to the next point.");
 		}
 	}
+
+	public boolean isConnectedToNextPoint() {
+		return isConnectedToNextPoint;
+	}
 }
