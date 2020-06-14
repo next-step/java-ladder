@@ -1,6 +1,4 @@
-package ladder.domain.ladder;
-
-import ladder.domain.player.LadderPlayer;
+package ladder.domain.reward;
 
 import java.util.Arrays;
 import java.util.Collections;

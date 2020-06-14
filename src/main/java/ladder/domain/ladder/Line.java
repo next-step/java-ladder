@@ -10,35 +10,41 @@ public class Line {
 
     private static final int PERSON_START_END_COUNT = 2;
 
-    private List<Point> points = new ArrayList<>();
+    private List<Point> points;
 
-    private Line (LineCount lineCount) {
-        makeLine(lineCount);
+    private Line (List<Point> points) {
+        this.points = points;
     }
 
     public static Line createLine(LineCount lineCount) {
-        return new Line(lineCount);
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(lineCount, points, point);
+        initLast(points, point);
+        return new Line(points);
     }
 
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 
-    private void makeLine(LineCount lineCount) {
-        int countOfPerson = lineCount.getLineCount();
-
-        Point point = Point.createFirstPoint(isMovable());
-        points.add(point);
-
-        int i = 0;
-
-        while (getMiddlePerson(countOfPerson) > i) {
-            point = point.next(isMovable());
+    private static Point initBody(LineCount lineCount, List<Point> points, Point point) {
+        for (int i = 1; i < lineCount.getLineCount(); i++) {
+            point = point.next();
             points.add(point);
-            i += 1;
         }
+        return point;
+    }
 
-        points.add(point.last());
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(isMovable());
+        points.add(point);
+        return point;
     }
 
     private int getMiddlePerson(int countOfPerson) {

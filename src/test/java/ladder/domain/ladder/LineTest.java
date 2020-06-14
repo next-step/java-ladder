@@ -14,6 +14,6 @@ public class LineTest {
         String[] playerNames = {"pobi","honux","po","bi"};
         LadderPlayers ladderPlayers = LadderPlayers.participate(playerNames);
         Line line = Line.createLine(ladderPlayers.getRequestLineCount());
-        assertThat(line.getPoints().size()).isEqualTo(ladderPlayers.getPlayerCount() - 1);
+        assertThat(line.getPoints().size()).isEqualTo(ladderPlayers.getPlayerCount());
     }
 }

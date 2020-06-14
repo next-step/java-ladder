@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.reward;
 
 public class LadderReward {
     private final String reward;

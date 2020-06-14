@@ -5,8 +5,10 @@ import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 import ladder.domain.player.LadderPlayer;
 import ladder.domain.player.LadderPlayers;
+import ladder.domain.reward.LadderReward;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
@@ -45,7 +47,7 @@ public class ResultView {
 
     private static String buildLine(List<Point> points) {
         return points.stream()
-                .map(p -> p.isMovableRight() ? LINE : EMPTY_LINE)
+                .map(p -> p.isMoveRight() ? LINE : EMPTY_LINE)
                 .collect(joining(""));
     }
 }

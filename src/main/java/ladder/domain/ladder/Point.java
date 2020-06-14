@@ -1,32 +1,52 @@
 package ladder.domain.ladder;
 
 public class Point {
+
     private final int position;
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
 
-    private Point(int position, boolean left, boolean right) {
+    private Point(int position, Direction direction) {
         this.position = position;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
-    public static Point createFirstPoint(boolean right) {
-        return new Point(0, false, right);
-    }
-
-    Point next(boolean newRight) {
-        if (right) {
-            return new Point(position + 1, true, false);
+    public int move() {
+        if (direction.isRight()) {
+            return position + 1;
         }
-        return new Point(position + 1, false, newRight);
+
+        if (direction.isLeft()) {
+            return position - 1;
+        }
+
+        return this.position;
     }
 
-    Point last() {
-        return new Point(position + 1, left, false);
+    public Point next() {
+        return new Point(position + 1, direction.next());
     }
 
-    public boolean isMovableRight() {
-        return right;
+    public Point next(Boolean right) {
+        return new Point(position + 1, direction.next(right));
+    }
+
+    public Point last() {
+        return new Point(position + 1, direction.last());
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public Boolean isMoveRight() {
+        return direction.isRight();
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + position +
+                ", direction=" + direction +
+                '}';
     }
 }
