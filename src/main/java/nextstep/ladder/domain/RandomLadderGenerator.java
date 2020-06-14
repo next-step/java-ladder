@@ -19,25 +19,25 @@ public class RandomLadderGenerator implements LadderGenerator {
 
     @Override
     public List<Line> generate() {
-        List<Line> ladder2DList = new ArrayList<>();
+        List<Line> lines = new ArrayList<>();
 
         for (int i = Y_OFFSET; i < height; i++) {
-            ladder2DList.add(getNextLine(width));
+            lines.add(getNextLine(width));
         }
-        return ladder2DList;
+        return lines;
     }
 
     private Line getNextLine(int width) {
-        List<Boolean> ladderList = new ArrayList<>();
+        List<Boolean> holders = new ArrayList<>();
         boolean exHolder = FIRST_HOLDER;
 
-        ladderList.add(exHolder);
+        holders.add(exHolder);
         for (int i = X_OFFSET; i < width; i++) {
             boolean nextHolder = getNextHolder(exHolder);
             exHolder = nextHolder;
-            ladderList.add(nextHolder);
+            holders.add(nextHolder);
         }
-        return new Line(ladderList);
+        return new Line(holders);
     }
 
     private boolean getNextHolder(boolean exHolder) {
