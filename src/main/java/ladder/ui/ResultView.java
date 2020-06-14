@@ -58,14 +58,14 @@ public class ResultView {
                 .collect(Collectors.joining(NAME_DELIMiTER)));
     }
 
-    public static void printResult(String inputTarget, LadderGameResults results) {
+    public static void printResult(LadderPlayer ladderPlayer, LadderGameResults results) {
         System.out.println(RESULT_MESSAGE);
-        System.out.println(results.getLadderReward(inputTarget));
+        System.out.println(results.getLadderReward(ladderPlayer));
     }
 
     public static void printAllResult(LadderGameResults results) {
         System.out.println(RESULT_REQUEST);
-        results.getResults().forEach((user, reward)
-                -> System.out.println(String.format(RESULT_FORMAT,user.toString(),reward.toString())));
+        results.getResults().forEach((player, reward)
+                -> System.out.println(String.format(RESULT_FORMAT, player.getPlayerName(), reward.getReward())));
     }
 }

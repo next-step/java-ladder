@@ -24,8 +24,6 @@ public class LadderReward {
 
     @Override
     public String toString() {
-        return "LadderReward{" +
-                "reward='" + reward + '\'' +
-                '}';
+        return reward;
     }
 }

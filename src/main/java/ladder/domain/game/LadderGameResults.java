@@ -12,8 +12,8 @@ public class LadderGameResults {
         this.results = Collections.unmodifiableMap(results);
     }
 
-    public LadderReward getLadderReward(String userName) {
-        return results.get(LadderPlayer.create(userName));
+    public LadderReward getLadderReward(LadderPlayer ladderPlayer) {
+        return results.get(ladderPlayer);
     }
 
     public Map<LadderPlayer, LadderReward> getResults() {
