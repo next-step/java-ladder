@@ -18,8 +18,8 @@ public class RandomLadderGenerator implements LadderGenerator {
     }
 
     @Override
-    public List<List<Boolean>> generate() {
-        List<List<Boolean>> ladder2DList = new ArrayList<>();
+    public List<Line> generate() {
+        List<Line> ladder2DList = new ArrayList<>();
 
         for (int i = Y_OFFSET; i < height; i++) {
             ladder2DList.add(getNextLine(width));
@@ -27,7 +27,7 @@ public class RandomLadderGenerator implements LadderGenerator {
         return ladder2DList;
     }
 
-    private List<Boolean> getNextLine(int width) {
+    private Line getNextLine(int width) {
         List<Boolean> ladderList = new ArrayList<>();
         boolean exHolder = FIRST_HOLDER;
 
@@ -37,7 +37,7 @@ public class RandomLadderGenerator implements LadderGenerator {
             exHolder = nextHolder;
             ladderList.add(nextHolder);
         }
-        return ladderList;
+        return new Line(ladderList);
     }
 
     private boolean getNextHolder(boolean exHolder) {
