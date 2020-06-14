@@ -12,4 +12,13 @@ class PlayersTest {
 
         assertThat(players.getCountOfPerson()).isEqualTo(3);
     }
+
+    @Test
+    void getPlayerFromName() {
+        Players players = Players.of("aaa, bbb, ccc");
+
+        Player player = players.get("aaa");
+
+        assertThat(player.getName()).isEqualTo("aaa");
+    }
 }
