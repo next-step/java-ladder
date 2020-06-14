@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-public class LadderTest {
+public class LinesTest {
 
     @DisplayName("사다리 생성 테스트")
     @ParameterizedTest

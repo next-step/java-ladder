@@ -13,7 +13,11 @@ public class TestQueueMountingBlockGenerator implements MountingBlockGenerator {
     }
 
     @Override
-    public Boolean generateMountingBlock() {
+    public boolean generateMountingBlock() {
+        if (this.expectedMountingBlocks.isEmpty()) {
+            return false;
+        }
+
         return this.expectedMountingBlocks.poll();
     }
 }
