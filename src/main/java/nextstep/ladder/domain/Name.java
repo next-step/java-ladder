@@ -19,4 +19,8 @@ public class Name {
             throw new IllegalArgumentException(String.format("이름은 %d 글자를 넘으면 안됩니다.", NAME_UPPER_BOUND));
         }
     }
+
+    public String toString() {
+        return String.format("%" + NAME_UPPER_BOUND + "s", name);
+    }
 }
