@@ -39,13 +39,14 @@ public class Ladder {
         return new Row(points);
     }
 
-    public void make() {
+    public Ladder make() {
         int randomRows, randomCols;
         for(int i = 0; i < cols * height; i++) {
             randomRows = RANDOM.nextInt(height - 1);
             randomCols = RANDOM.nextInt(cols - 1);
             rows.get(randomRows).draw(randomRows, randomCols);
         }
+        return this;
     }
 
     public String getHeaderForPrint() {

@@ -7,9 +7,7 @@ public class LadderGame {
         String joinMemberStr = LadderGameInput.getJoinMembers();
         int height = LadderGameInput.getLadderHeight();
 
-        Ladder ladder = new Ladder(joinMemberStr, height);
-        ladder.make();
-
+        Ladder ladder = new Ladder(joinMemberStr, height).make();
         LadderGameView.show(ladder);
     }
 }
