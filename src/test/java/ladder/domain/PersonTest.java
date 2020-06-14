@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.Person;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -8,12 +8,14 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 class PersonTest {
     @Test
-    void 생성_테스트() {
+    @DisplayName("생성 테스트")
+    void create() {
         assertThatCode(() -> Person.create("eunji")).doesNotThrowAnyException();
     }
 
     @Test
-    void 이름은_5글자_까지(){
+    @DisplayName("이름이 5글자가 넘는 경우 에러를 발생한다.")
+    void checkNameLength() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Person.create("parkeunji"))
                 .withMessageContaining("이름은 최대 5글자 까지 가능 합니다.");
