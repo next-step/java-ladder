@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.game.Destination;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
