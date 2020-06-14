@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Line {
+    public static final String POINT_TRUE = "-----|";
+    public static final String POINT_FALSE = "     |";
     private static final Random RANDOM = new Random();
     private List<Boolean> points;
 
@@ -21,7 +23,7 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
         IntStream.rangeClosed(0, countOfPerson)
                 .mapToObj(i -> false)
-                .reduce((point, first) -> {
+                .reduce((point, base) -> {
                     points.add(point);
                     return checkLineOverlap(point);
                 });
@@ -33,5 +35,13 @@ public class Line {
             return false;
         }
         return RANDOM.nextBoolean();
+    }
+
+    public String drawLadderLine() {
+        String ladderLine = "";
+        for (boolean point : points) {
+            ladderLine += point ? POINT_TRUE : POINT_FALSE;
+        }
+        return ladderLine;
     }
 }

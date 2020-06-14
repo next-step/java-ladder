@@ -18,4 +18,9 @@ public class Person {
             throw new IllegalArgumentException("이름은 최대 5글자 까지 가능 합니다.");
         }
     }
+
+    public String tellName(){
+        return this.name;
+
+    }
 }

@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ladder.utils.LadderUtil.fillSpace;
+
 public class Participants {
     public static final String SEPARATOR = ",";
 
@@ -22,4 +24,13 @@ public class Participants {
     public int tellCountOfPerson() {
         return participants.size();
     }
+
+    public String tellParticipants() {
+        String nameOfPerson = "";
+        for (Person person : participants) {
+            nameOfPerson += fillSpace(person.tellName());
+        }
+        return nameOfPerson;
+    }
+
 }
