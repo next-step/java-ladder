@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.HalfPossibilityStrategy;
 import ladder.domain.Line;
 import ladder.domain.Linetype;
 import ladder.domain.OnePossibilityStrategy;
@@ -31,7 +30,7 @@ public class LineTest {
     void initLineTypeListTest() {
         List<Linetype> lineTypeList = new ArrayList<>(List.of(Linetype.VERTICAL, Linetype.BLANK, Linetype.HORIZONTAL));
         Line line = new Line(lineTypeList);
-        assertThat(line.getLineTypeList()).containsAll(lineTypeList);
+        assertThat(line.getLineTypes()).containsAll(lineTypeList);
     }
 
     @Test

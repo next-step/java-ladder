@@ -34,7 +34,7 @@ public class LadderTest {
 
     @Test
     void initLadderParticipantTest() {
-        assertThat(ladder.getParticipantList()).containsAll(participantList);
+        assertThat(ladder.getParticipants()).containsAll(participantList);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class LadderTest {
                                             .map(participant -> participant.getName())
                                             .collect(Collectors.toList());
 
-        assertThat(ladder.getParticipantsNameList()).containsAll(expectedList);
+        assertThat(ladder.getParticipantsNames()).containsAll(expectedList);
     }
 
     @Test

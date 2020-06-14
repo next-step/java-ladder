@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Line;
+import ladder.domain.Linetype;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ public class LadderView extends TextView {
     private static final String RESULT_TEXT = "실행결과";
     private static final String BLANK_TEXT = " ";
     private static final int MIN_BLANK_CHECK_VALUE = 2;
+    private static final int MIN_LINE_LENGTH = 3;
 
     @Override
     public void view(Object o) {
@@ -59,11 +61,22 @@ public class LadderView extends TextView {
     }
 
     private void printLineType(Line line, int participantCount) {
-        line.getLineTypeList().stream().forEach(lineType -> {
-            viewInLine(lineType.getLine(participantCount));
+        line.getLineTypes().stream().forEach(lineType -> {
+            viewInLine(getFormattedLineType(lineType.getLine(), participantCount));
         });
     }
 
+    private String getFormattedLineType(String lineType, int participantCount) {
+        if (lineType.equals(Linetype.VERTICAL.getLine())) {
+            return lineType;
+        }
+
+        int lineLength = participantCount < MIN_LINE_LENGTH ? MIN_LINE_LENGTH : participantCount;
+
+        return IntStream.rangeClosed(0, lineLength)
+                .mapToObj(operand -> lineType)
+                .collect(Collectors.joining());
+    }
 
     private String getBlankString(int blankCount) {
         return IntStream.rangeClosed(0, blankCount)
