@@ -10,10 +10,10 @@ public class BridgeGenerator {
 
     public static List<Bridge> generate(int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
         if (isOnePlayer(numberOfPlayer)) {
-            return Arrays.asList(Bridge.createNotLinkedBridge());
+            return Arrays.asList(Bridge.createNotLinkedBridge(MIN_PLAYER));
         }
 
-        Bridge firstBridge = Bridge.createBridge(connectGenerator.generateConnectionState());
+        Bridge firstBridge = Bridge.createBridge(connectGenerator.generateConnectionState(), MIN_PLAYER);
 
         List<Bridge> bridges = new ArrayList<>(generateLastBridges(firstBridge, numberOfPlayer, connectGenerator));
 
@@ -22,6 +22,7 @@ public class BridgeGenerator {
 
     private static List<Bridge> generateLastBridges(Bridge firstBridge, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
         List<Bridge> bridges = new ArrayList<>();
+        bridges.add(firstBridge);
 
         for (int beforeIndex = 0; beforeIndex < numberOfPlayer - 2; beforeIndex++) {
             Bridge beforeBridge = bridges.get(beforeIndex);
