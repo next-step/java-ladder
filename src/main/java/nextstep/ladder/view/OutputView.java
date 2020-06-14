@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class OutputView {
     private static final String VERTICAL_LADDER_LINE = "|";
     private static final String LADDER_CONNECTION_LINE = "-----";
-    private static final String BALCK_INTERVAL = "     ";
+    private static final String BLANK_INTERVAL = "     ";
 
     private OutputView() {
     }
@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println();
 
         for (int currentPosition = 0; currentPosition < ladder.getMaxHeight(); currentPosition++) {
-            System.out.println(BALCK_INTERVAL + drawLadderLine(ladder, currentPosition));
+            System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, currentPosition));
         }
 
     }
@@ -39,7 +39,7 @@ public class OutputView {
         if (isConnected(ladder, currentPosition, currentUser)) {
             connectionLine.append(LADDER_CONNECTION_LINE);
         } else {
-            connectionLine.append(BALCK_INTERVAL);
+            connectionLine.append(BLANK_INTERVAL);
         }
         return connectionLine.toString();
     }

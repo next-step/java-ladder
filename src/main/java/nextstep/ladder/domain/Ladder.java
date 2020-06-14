@@ -11,43 +11,40 @@ public class Ladder {
     }
 
     public void drawLine(LadderGameUser ladderGameUser, LadderLineDrawingMachine drawingMachine) {
-        Optional<Order> beforeOrder = ladderGameUser.getOrder().before();
-        if (!beforeOrder.isPresent()) {
-            ConnectPoints connectPoints = makeConnectPoints(drawingMachine);
-            ladderBaseLines.put(ladderGameUser.getOrder(), new LadderBaseLine(ladderGameUser, connectPoints));
-            return;
-        }
-        ConnectPoints connectPoints = makeConnectPoints(drawingMachine, beforeOrder.get());
+        ConnectPoints connectPoints = makeConnectPoints(drawingMachine, ladderGameUser.getOrder());
         ladderBaseLines.put(ladderGameUser.getOrder(), new LadderBaseLine(ladderGameUser, connectPoints));
     }
 
-    private ConnectPoints makeConnectPoints(LadderLineDrawingMachine drawingMachine) {
+    private ConnectPoints makeConnectPoints(LadderLineDrawingMachine drawingMachine, Order order) {
         Set<Point> points = new HashSet<>();
-        Point point = Point.INITIAL_POINT;
-        while (enoughToDrawLine(points)) {
-            if (drawingMachine.isEnough()) {
-                points.add(point);
+        Point currentPoint = Point.INITIAL_POINT;
+        Point maxPoint = Point.of(maxHeight);
+        while (currentPoint.isUnderThan(maxPoint)) {
+            if (enoughToDrawLine(points.size()) && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
+                points.add(currentPoint);
             }
-            point = point.add();
+            currentPoint = currentPoint.add();
         }
         return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
     }
 
-    private ConnectPoints makeConnectPoints(LadderLineDrawingMachine drawingMachine, Order beforeOrder) {
-        LadderBaseLine beforeLadderBaseLine = ladderBaseLines.get(beforeOrder);
-        Set<Point> points = new HashSet<>();
-        Point point = Point.INITIAL_POINT;
-        while (enoughToDrawLine(points)) {
-            if (!beforeLadderBaseLine.connectedWith(point) && drawingMachine.isEnough()) {
-                points.add(point);
-            }
-            point = point.add();
+    /**
+     * indent 규칙을 지키려다보니 파라미터가 너무 많아졌습니다 ㅠㅠ
+     **/
+    private void attemptToAddPoint(final LadderLineDrawingMachine drawingMachine, final Order order, final Set<Point> points, final Point currentPoint) {
+        if (enoughToDrawLine(points.size()) && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
+            points.add(currentPoint);
         }
-        return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
     }
 
-    private boolean enoughToDrawLine(Set<Point> points) {
-        return points.size() < this.maxHeight - 1;
+    private boolean canConnect(Order order, Point point) {
+        return order.before()
+                .map(before -> ladderBaseLines.get(before).connectedWith(point))
+                .orElse(true);
+    }
+
+    private boolean enoughToDrawLine(final int size) {
+        return size < this.maxHeight - 1;
     }
 
     public LadderBaseLine findByOrder(Order order) {

@@ -18,6 +18,14 @@ public class Point {
         return CACHE.computeIfAbsent(position, p -> new Point(position));
     }
 
+    public Point add() {
+        return Point.of(position + 1);
+    }
+
+    public boolean isUnderThan(final Point point) {
+        return this.position < point.position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -29,9 +37,5 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(position);
-    }
-
-    public Point add() {
-        return Point.of(position + 1);
     }
 }

@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.Set;
 
 public class ConnectPoints {
@@ -9,10 +8,6 @@ public class ConnectPoints {
     private ConnectPoints(final Set<Point> points, final int maxHeight) {
         this.points = points;
         validateNumberOfPoints(maxHeight);
-    }
-
-    public ConnectPoints(ConnectPoints connectPoints) {
-        this.points = Collections.unmodifiableSet(connectPoints.points);
     }
 
     public static ConnectPoints of(final Set<Point> points, final int maxHeight) {
