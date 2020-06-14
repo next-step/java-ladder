@@ -1,50 +1,64 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class Ladder {
     private final int maxHeight;
-    private final List<LadderVerticalBaseLine> lines;
+    private final Map<Order, LadderBaseLine> ladderBaseLines = new HashMap<>();
 
-
-    public Ladder(int maxHeight) {
+    public Ladder(final int maxHeight) {
         this.maxHeight = maxHeight;
-        this.lines = new ArrayList<>();
     }
 
-    public Ladder(Ladder ladder) {
-        this.maxHeight = ladder.maxHeight;
-        this.lines = Collections.unmodifiableList(ladder.lines);
+    public void drawLine(LadderGameUser ladderGameUser, LadderLineDrawingMachine drawingMachine) {
+        Optional<Order> beforeOrder = ladderGameUser.getOrder().before();
+        if (!beforeOrder.isPresent()) {
+            ConnectPoints connectPoints = makeConnectPoints(drawingMachine);
+            ladderBaseLines.put(ladderGameUser.getOrder(), new LadderBaseLine(ladderGameUser, connectPoints));
+            return;
+        }
+        ConnectPoints connectPoints = makeConnectPoints(drawingMachine, beforeOrder.get());
+        ladderBaseLines.put(ladderGameUser.getOrder(), new LadderBaseLine(ladderGameUser, connectPoints));
     }
 
-    public void addConnection(LadderVerticalBaseLine ladderVerticalBaseLine) {
-        this.lines.add(ladderVerticalBaseLine);
+    private ConnectPoints makeConnectPoints(LadderLineDrawingMachine drawingMachine) {
+        Set<Point> points = new HashSet<>();
+        Point point = Point.INITIAL_POINT;
+        while (enoughToDrawLine(points)) {
+            if (drawingMachine.isEnough()) {
+                points.add(point);
+            }
+            point = point.add();
+        }
+        return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
     }
 
-    public boolean canConnect(int currentUserIndex, Point point) {
-        return !lines.get(currentUserIndex - 1).connectedWith(point);
+    private ConnectPoints makeConnectPoints(LadderLineDrawingMachine drawingMachine, Order beforeOrder) {
+        LadderBaseLine beforeLadderBaseLine = ladderBaseLines.get(beforeOrder);
+        Set<Point> points = new HashSet<>();
+        Point point = Point.INITIAL_POINT;
+        while (enoughToDrawLine(points)) {
+            if (!beforeLadderBaseLine.connectedWith(point) && drawingMachine.isEnough()) {
+                points.add(point);
+            }
+            point = point.add();
+        }
+        return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
     }
 
-    public ConnectPoints getConnectionPoints(final int userNo) {
-        return lines.get(userNo).getConnectPoints();
+    private boolean enoughToDrawLine(Set<Point> points) {
+        return points.size() < this.maxHeight - 1;
     }
 
-    public List<String> getGameUserName() {
-        return lines.stream()
-                .map(LadderVerticalBaseLine::getLadderGameUser)
-                .map(Objects::toString)
-                .collect(Collectors.toList());
+    public LadderBaseLine findByOrder(Order order) {
+        return ladderBaseLines.get(order);
     }
 
     public int getMaxHeight() {
         return maxHeight;
     }
 
-    public int size() {
-        return lines.size();
+    public int getNumberOfUser() {
+        return ladderBaseLines.size();
     }
 }

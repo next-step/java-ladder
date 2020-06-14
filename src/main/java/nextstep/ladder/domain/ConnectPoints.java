@@ -6,10 +6,6 @@ import java.util.Set;
 public class ConnectPoints {
     private final Set<Point> points;
 
-    private ConnectPoints(Set<Point> points) {
-        this.points = points;
-    }
-
     private ConnectPoints(final Set<Point> points, final int maxHeight) {
         this.points = points;
         validateNumberOfPoints(maxHeight);
@@ -21,10 +17,6 @@ public class ConnectPoints {
 
     public static ConnectPoints of(final Set<Point> points, final int maxHeight) {
         return new ConnectPoints(points, maxHeight);
-    }
-
-    public static ConnectPoints emptyPoints() {
-        return new ConnectPoints(Collections.emptySet());
     }
 
     private void validateNumberOfPoints(int maxHeight) {

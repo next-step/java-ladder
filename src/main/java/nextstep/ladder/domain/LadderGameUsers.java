@@ -7,15 +7,12 @@ import java.util.stream.Collectors;
 public class LadderGameUsers {
     private final List<LadderGameUser> ladderGameUsers;
 
-    public LadderGameUsers(final List<String> ladderGameUsers) {
-        this.ladderGameUsers = ladderGameUsers.stream()
-                .map(String::trim)
-                .map(LadderGameUser::new)
-                .collect(Collectors.toList());
-        checkDuplication(this.ladderGameUsers);
+    public LadderGameUsers(final List<LadderGameUser> ladderGameUsers) {
+        this.ladderGameUsers = ladderGameUsers;
+        validateUserNames(ladderGameUsers);
     }
 
-    private void checkDuplication(List<LadderGameUser> ladderGameUsers) {
+    private void validateUserNames(List<LadderGameUser> ladderGameUsers) {
         List<LadderGameUser> uniqueUsers = ladderGameUsers.stream()
                 .distinct()
                 .collect(Collectors.toList());

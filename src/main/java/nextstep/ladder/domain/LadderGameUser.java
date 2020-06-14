@@ -5,10 +5,12 @@ import java.util.Objects;
 public class LadderGameUser {
     private static final int USER_NAME_LENGTH_LIMIT = 5;
 
+    private final Order order;
     private final String userName;
 
-    public LadderGameUser(final String userName) {
+    public LadderGameUser(final Order order, final String userName) {
         validate(userName);
+        this.order = order;
         this.userName = userName;
     }
 
@@ -17,6 +19,10 @@ public class LadderGameUser {
         if (userNameSize > USER_NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException(String.format("유저이름은 5자를 넘길 수 없습니다. 현재글자수: %d", userNameSize));
         }
+    }
+
+    public Order getOrder() {
+        return order;
     }
 
     @Override

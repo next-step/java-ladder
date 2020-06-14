@@ -1,46 +1,50 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Order;
 import nextstep.ladder.domain.Point;
+
+import java.util.stream.IntStream;
 
 public class OutputView {
     private static final String VERTICAL_LADDER_LINE = "|";
     private static final String LADDER_CONNECTION_LINE = "-----";
-    private static final String NAME_INTERVAL = "     ";
+    private static final String BALCK_INTERVAL = "     ";
 
     private OutputView() {
     }
 
     public static void drawLadder(Ladder ladder) {
-        for (String userName : ladder.getGameUserName()) {
-            System.out.printf(String.format("%5s ", userName));
-        }
+        IntStream.rangeClosed(1, ladder.getNumberOfUser())
+                .forEach(index -> System.out.printf(String.format("%5s ", ladder.findByOrder(Order.of(index)))));
         System.out.println();
 
         for (int currentPosition = 0; currentPosition < ladder.getMaxHeight(); currentPosition++) {
-            StringBuilder outputResult = new StringBuilder(NAME_INTERVAL);
-            drawLadderLine(ladder, currentPosition, outputResult);
-            System.out.println(outputResult.toString());
+            System.out.println(BALCK_INTERVAL + drawLadderLine(ladder, currentPosition));
         }
 
     }
 
-    private static void drawLadderLine(final Ladder ladder, final int currentPosition, final StringBuilder outputResult) {
-        for (int i = 0, count = ladder.getNumberOfBaseLine(); i < count; i++) {
-            outputResult.append(VERTICAL_LADDER_LINE);
-            drawConnectionLine(ladder, currentPosition, outputResult, i);
+    private static String drawLadderLine(final Ladder ladder, final int currentPosition) {
+        StringBuilder ladderLine = new StringBuilder();
+        for (int currentUser = 0, count = ladder.getNumberOfUser(); currentUser < count; currentUser++) {
+            ladderLine.append(VERTICAL_LADDER_LINE);
+            ladderLine.append(drawConnectionLine(ladder, currentPosition, currentUser));
         }
+        return ladderLine.toString();
     }
 
-    private static void drawConnectionLine(final Ladder ladder, final int currentPosition, final StringBuilder outputResult, final int i) {
-        if (isConnected(ladder, currentPosition, i)) {
-            outputResult.append(LADDER_CONNECTION_LINE);
+    private static String drawConnectionLine(final Ladder ladder, final int currentPosition, final int currentUser) {
+        StringBuilder connectionLine = new StringBuilder();
+        if (isConnected(ladder, currentPosition, currentUser)) {
+            connectionLine.append(LADDER_CONNECTION_LINE);
         } else {
-            outputResult.append(NAME_INTERVAL);
+            connectionLine.append(BALCK_INTERVAL);
         }
+        return connectionLine.toString();
     }
 
     private static boolean isConnected(final Ladder ladder, final int currentPosition, final int i) {
-        return ladder.getConnectionPoints(i).has(Point.of(currentPosition));
+        return ladder.findByOrder(Order.of(currentPosition)).connectedWith(Point.of(i));
     }
 }
