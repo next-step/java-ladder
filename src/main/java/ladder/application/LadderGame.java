@@ -1,4 +1,6 @@
-package ladder;
+package ladder.application;
+
+import ladder.domain.*;
 
 public class LadderGame {
 

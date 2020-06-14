@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;

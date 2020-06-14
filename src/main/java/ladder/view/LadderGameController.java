@@ -1,4 +1,7 @@
-package ladder;
+package ladder.view;
+
+import ladder.application.LadderGame;
+import ladder.domain.*;
 
 public class LadderGameController {
 

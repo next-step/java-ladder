@@ -1,4 +1,6 @@
-package ladder;
+package ladder.domain;
+
+import ladder.infra.domain.RandomDrawingPointStrategy;
 
 import java.util.Objects;
 import java.util.stream.IntStream;

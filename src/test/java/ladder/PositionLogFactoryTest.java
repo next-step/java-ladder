@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.PositionLogFactory;
+import ladder.domain.PositionLogs;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
