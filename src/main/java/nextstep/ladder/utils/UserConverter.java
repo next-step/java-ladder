@@ -2,13 +2,12 @@ package nextstep.ladder.utils;
 
 import nextstep.ladder.domain.game.Order;
 import nextstep.ladder.domain.user.User;
+import nextstep.ladder.view.InputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 public class UserConverter {
-
-    private static final String ALL = "all";
 
     private UserConverter() {
     }
@@ -20,7 +19,7 @@ public class UserConverter {
     }
 
     public static List<User> convertToListFromInput(String input, List<User> users) {
-        if (input.equalsIgnoreCase(ALL)) {
+        if (input.equalsIgnoreCase(InputView.ALL)) {
             return users;
         }
         return IntStream.range(0, users.size())
