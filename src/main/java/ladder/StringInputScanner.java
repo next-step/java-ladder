@@ -10,17 +10,17 @@ public class StringInputScanner {
 
     private String[] namesString;
 
-    private void getInputStream() {
-        Scanner scanner = new Scanner(System.in);
-        this.namesString  = scanner.nextLine().replace(" ", "").split(",");
-    }
-
     public List<String> getNames() {
         getInputStream();
 
         return Arrays.stream(namesString)
                 .map(wrapper(s -> String.valueOf(s)))
                 .collect(Collectors.toList());
+    }
+
+    private void getInputStream() {
+        Scanner scanner = new Scanner(System.in);
+        this.namesString  = scanner.nextLine().replace(" ", "").split(",");
     }
 
     private <T, R, E extends Exception> Function<T, R> wrapper(FunctionWithException<T, R, E> fe) {

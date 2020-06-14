@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import ladder.domain.Line;
 import ladder.domain.Linetype;
@@ -19,7 +19,6 @@ public class LineTest {
     void setUp() {
         line = new Line();
     }
-
 
     @Test
     void initLineTest() {

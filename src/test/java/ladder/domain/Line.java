@@ -25,7 +25,7 @@ public class Line {
         });
     }
 
-    private Linetype makeType(int point) {
+    Linetype makeType(int point) {
         if (point % CHUNKER_VALUE == 0) {
             return Linetype.VERTICAL;
         }
@@ -39,7 +39,7 @@ public class Line {
         return getHorizontalType(new HalfPossibilityStrategy());
     }
 
-    private Linetype getHorizontalType(PossibilityStrategy possibilityStrategy) {
+    Linetype getHorizontalType(PossibilityStrategy possibilityStrategy) {
         if (possibilityStrategy.check()) {
             return Linetype.HORIZONTAL;
         }

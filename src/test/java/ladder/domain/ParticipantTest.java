@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 import ladder.domain.Participant;
 import org.junit.jupiter.api.Test;

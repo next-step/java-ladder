@@ -25,7 +25,6 @@ public class Main {
         int ladderHeight = numberInputScanner.getNumber();
 
         Ladder ladder = new Ladder(participantList, ladderHeight);
-        ladder.makeLadder();
 
         ladderView.printLadder(participantNames, ladder.getLines());
 
