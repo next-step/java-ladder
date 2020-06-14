@@ -13,14 +13,13 @@ public class Person {
         return new Person(name);
     }
 
+    public String tellName(){
+        return this.name;
+    }
+
     private void checkNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 5글자 까지 가능 합니다.");
         }
-    }
-
-    public String tellName(){
-        return this.name;
-
     }
 }

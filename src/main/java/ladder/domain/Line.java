@@ -9,14 +9,30 @@ public class Line {
     public static final String POINT_TRUE = "-----|";
     public static final String POINT_FALSE = "     |";
     private static final Random RANDOM = new Random();
+
     private List<Boolean> points;
 
-    public Line(int countOfPerson) {
+    private Line(int countOfPerson) {
         this.points = createLine(countOfPerson);
     }
 
     public static Line create(int countOfPerson) {
         return new Line(countOfPerson);
+    }
+
+    public String drawLadderLine() {
+        String ladderLine = "";
+        for (boolean point : points) {
+            ladderLine += point ? POINT_TRUE : POINT_FALSE;
+        }
+        return ladderLine;
+    }
+
+    boolean checkLineOverlap(Boolean point) {
+        if (point) {
+            return false;
+        }
+        return RANDOM.nextBoolean();
     }
 
     private List<Boolean> createLine(int countOfPerson) {
@@ -28,20 +44,5 @@ public class Line {
                     return checkLineOverlap(point);
                 });
         return points;
-    }
-
-    boolean checkLineOverlap(Boolean point) {
-        if (point) {
-            return false;
-        }
-        return RANDOM.nextBoolean();
-    }
-
-    public String drawLadderLine() {
-        String ladderLine = "";
-        for (boolean point : points) {
-            ladderLine += point ? POINT_TRUE : POINT_FALSE;
-        }
-        return ladderLine;
     }
 }

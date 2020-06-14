@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.domain.Participants;
 import ladder.view.InputView;
+import ladder.view.ResultView;
 
 public class LadderApplication {
 
