@@ -5,17 +5,17 @@ import nextstep.ladder.util.StringUtils;
 
 import java.util.Objects;
 
-public class Reword {
+public class Reward {
 
     private final String name;
 
-    private Reword(String name) {
+    private Reward(String name) {
         this.name = name;
     }
 
-    public static Reword newInstance(String result) {
+    public static Reward newInstance(String result) {
         validate(result);
-        return new Reword(result);
+        return new Reward(result);
     }
 
     private static void validate(String name) {
@@ -28,8 +28,8 @@ public class Reword {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Reword reword = (Reword) o;
-        return Objects.equals(name, reword.name);
+        Reward reward = (Reward) o;
+        return Objects.equals(name, reward.name);
     }
 
     @Override

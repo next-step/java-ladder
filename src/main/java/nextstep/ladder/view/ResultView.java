@@ -45,8 +45,8 @@ public final class ResultView {
         return (point.hasPoint() ? POINT : EMPTY_POINT) + PIN;
     }
 
-    public static void printRewords(Rewords rewords) {
-        rewords.toList().forEach(reword -> System.out.print(reword + TAB));
+    public static void printRewards(Rewards rewards) {
+        rewards.toList().forEach(reward -> System.out.print(reward + TAB));
         enter();
     }
 
