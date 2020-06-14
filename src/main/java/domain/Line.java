@@ -30,4 +30,8 @@ public class Line {
     public int getPersonSize() {
         return points.size();
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }

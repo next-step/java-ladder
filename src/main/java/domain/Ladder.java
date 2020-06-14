@@ -25,4 +25,8 @@ public class Ladder {
                 .map(Person::toString)
                 .collect(Collectors.joining());
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }
