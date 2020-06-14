@@ -2,12 +2,17 @@ package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.user.User;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class LadderGameResult {
-    private final List<User> users;
 
-    public LadderGameResult(List<User> users) {
-        this.users = users;
+    private final Map<User, Result> userResult;
+
+    public LadderGameResult(Map<User, Result> userResult) {
+        if(Objects.isNull(userResult)) {
+            throw new IllegalArgumentException("userResult is null");
+        }
+        this.userResult = userResult;
     }
 }
