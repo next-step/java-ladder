@@ -16,10 +16,10 @@ public class OutputView {
 
     public static void drawLadder(Ladder ladder) {
         IntStream.rangeClosed(1, ladder.getNumberOfUser())
-                .forEach(index -> System.out.printf(String.format("%5s ", ladder.findByOrder(Order.of(index)).getLadderGameUser())));
+                .forEach(index -> System.out.printf(String.format("%5s ", ladder.findLadderLineByOrder(Order.of(index)).getLadderGameUser())));
         System.out.println();
 
-        for (int currentPosition = 0; currentPosition < ladder.getMaxHeight(); currentPosition++) {
+        for (int currentPosition = 1; currentPosition <= ladder.getMaxHeight(); currentPosition++) {
             System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, currentPosition));
         }
 
@@ -31,6 +31,7 @@ public class OutputView {
             ladderLine.append(VERTICAL_LADDER_LINE);
             ladderLine.append(drawConnectionLine(ladder, currentPosition, currentUser));
         }
+        ladderLine.append(VERTICAL_LADDER_LINE);
         return ladderLine.toString();
     }
 
@@ -45,6 +46,6 @@ public class OutputView {
     }
 
     private static boolean isConnected(final Ladder ladder, final int currentPosition, final int currentUser) {
-        return ladder.findByOrder(Order.of(currentUser)).connectedWith(Point.of(currentPosition));
+        return ladder.findLadderLineByOrder(Order.of(currentUser)).connectedWith(Point.of(currentPosition));
     }
 }

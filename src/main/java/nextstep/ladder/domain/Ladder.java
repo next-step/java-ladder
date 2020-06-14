@@ -19,7 +19,7 @@ public class Ladder {
         Set<Point> points = new HashSet<>();
         Point currentPoint = Point.INITIAL_POINT;
         Point maxPoint = Point.of(maxHeight);
-        while (currentPoint.isUnderThan(maxPoint)) {
+        while (currentPoint.isUnderThan(maxPoint) || currentPoint.equals(maxPoint)) {
             if (enoughToDrawLine(points.size()) && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
                 points.add(currentPoint);
             }
@@ -39,7 +39,7 @@ public class Ladder {
 
     private boolean canConnect(Order order, Point point) {
         return order.before()
-                .map(before -> ladderBaseLines.get(before).connectedWith(point))
+                .map(before -> !ladderBaseLines.get(before).connectedWith(point))
                 .orElse(true);
     }
 
@@ -47,7 +47,7 @@ public class Ladder {
         return size < this.maxHeight - 1;
     }
 
-    public LadderBaseLine findByOrder(Order order) {
+    public LadderBaseLine findLadderLineByOrder(Order order) {
         return ladderBaseLines.get(order);
     }
 

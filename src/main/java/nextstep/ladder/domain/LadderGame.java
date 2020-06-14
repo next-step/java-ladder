@@ -13,10 +13,9 @@ public class LadderGame {
         List<LadderGameUser> gameUsers = ladderGameUsers.getLadderGameUsers();
         Ladder ladder = new Ladder(maxHeight);
 
-        for (LadderGameUser user : gameUsers) {
-            ladder.drawLine(user, drawingMachine);
+        for (int userIndex = 0, size = gameUsers.size(); userIndex < size - 1; userIndex++) {
+            ladder.drawLine(gameUsers.get(userIndex), drawingMachine);
         }
-
         return ladder;
     }
 }

@@ -3,23 +3,24 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class LadderGameTest {
+@DisplayName("항상 true를 반환하는 드로잉머신으로 사다리테스트")
+class LadderTest {
 
-    @DisplayName("항상 true를 반환하는 드로잉머신으로 사다리리를 생성하는 테스트")
+    @DisplayName("첫번째 유저는 최대높이-1 만큼의 Point 무조건 생성하고, 두번째 유저는 첫번쨰 유저와 연결되는 포인트가 아닌 3번쨰 포인트연결을 생성한다.")
     @Test
     void createLadder() {
         //given
-        LadderGame ladderGame = new LadderGame(() -> true);
-        LadderGameUsers users = createLadderGameUsers();
+        LadderGameUser user1 = new LadderGameUser(Order.FIRST_ORDER, "abc");
+        LadderGameUser user2 = new LadderGameUser(Order.of(2), "def");
         int maxHeight = 3;
+        Ladder ladder = new Ladder(maxHeight);
 
         //when
-        Ladder ladder = ladderGame.createLadder(users, maxHeight);
+        ladder.drawLine(user1, () -> true);
+        ladder.drawLine(user2, () -> true);
 
         //then
         /*
@@ -33,13 +34,6 @@ class LadderGameTest {
                 () -> assertThat(ladder.findLadderLineByOrder(Order.of(1)).connectedWith(Point.of(3))).isFalse(),
                 () -> assertThat(ladder.findLadderLineByOrder(Order.of(2)).connectedWith(Point.of(3))).isTrue()
         );
-    }
-
-    private LadderGameUsers createLadderGameUsers() {
-        LadderGameUser user1 = new LadderGameUser(Order.FIRST_ORDER, "abc");
-        LadderGameUser user2 = new LadderGameUser(Order.of(2), "def");
-        LadderGameUser user3 = new LadderGameUser(Order.of(3), "ghi");
-        return new LadderGameUsers(Arrays.asList(user1, user2, user3));
     }
 
 }
