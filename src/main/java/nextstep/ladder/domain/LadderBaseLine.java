@@ -12,4 +12,8 @@ public class LadderBaseLine {
     public boolean connectedWith(final Point point) {
         return connectPoints.has(point);
     }
+
+    public LadderGameUser getLadderGameUser() {
+        return ladderGameUser;
+    }
 }
