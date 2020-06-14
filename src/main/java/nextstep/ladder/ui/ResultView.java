@@ -13,7 +13,7 @@ public class ResultView {
     private static final String RESULT_LADDER_OPEN = "-----|";
     private static final String RESULT_LADDER_CLOSE = "     |";
 
-    public void printResult(List<User> userList, Ladder ladder) {
+    public static void printResult(List<User> userList, Ladder ladder) {
         System.out.println(RESULT_NOTICE_COMMENT);
 
         userList.stream()
@@ -25,7 +25,7 @@ public class ResultView {
                 .forEach(line -> System.out.println(getLineString(line)));
     }
 
-    private String getLineString(Line line) {
+    private static String getLineString(Line line) {
         List<String> lineStringList = line.getPoints().stream()
                 .map(b -> b ? RESULT_LADDER_OPEN : RESULT_LADDER_CLOSE)
                 .collect(Collectors.toList());

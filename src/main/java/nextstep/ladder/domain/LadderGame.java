@@ -7,15 +7,12 @@ import java.util.List;
 
 public class LadderGame {
     public static void main(String[] argv) {
-        InputView inputView = new InputView();
-        ResultView resultView = new ResultView();
+        List<User> userList = InputView.insertUserLine();
 
-        List<User> userList = inputView.insertUserLine();
-
-        int height = inputView.insertHeight();
+        int height = InputView.insertHeight();
 
         Ladder ladder = new Ladder(new RandomLadderGenerator(userList.size(), height));
 
-        resultView.printResult(userList, ladder);
+        ResultView.printResult(userList, ladder);
     }
 }

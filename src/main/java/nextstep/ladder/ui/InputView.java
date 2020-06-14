@@ -14,7 +14,7 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public List<User> insertUserLine() {
+    public static List<User> insertUserLine() {
         System.out.println(INPUT_USER_LINE_COMMENT);
         String userLineString = scanner.nextLine();
         return Arrays.stream(userLineString.split(USER_DELIMITER))
@@ -22,7 +22,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int insertHeight() {
+    public static int insertHeight() {
         System.out.println(INPUT_HEIGHT_COMMENT);
         return Integer.parseInt(scanner.nextLine());
     }
