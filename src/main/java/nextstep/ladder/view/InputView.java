@@ -36,14 +36,14 @@ public class InputView {
 
     public static List<String> inputResults() {
         System.out.println(INPUT_RESULTS_MESSAGE);
-        String input = SCANNER.nextLine();
+        String input = SCANNER.next();
         System.out.println();
         return Stream.of(input.split(SEPARATOR)).collect(Collectors.toList());
     }
 
     public static String inputUserForResult() {
         System.out.println(INPUT_SHOW_USER_RESULT_MESSAGE);
-        String userName = SCANNER.nextLine();
+        String userName = SCANNER.next();
         System.out.println();
         return userName;
     }
