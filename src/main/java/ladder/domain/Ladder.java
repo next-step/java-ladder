@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class Ladder {
     private List<Line> ladder;
 
-    public Ladder(int ladderHeight, int countOfPerson) {
+    private Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
         this.ladder = IntStream.range(0, ladderHeight)
                 .mapToObj(i -> Line.create(countOfPerson))
@@ -19,14 +19,14 @@ public class Ladder {
         return new Ladder(ladderHeight, countOfPerson);
     }
 
+    public List<Line> getLadder() {
+        return Collections.unmodifiableList(ladder);
+    }
+
     private void checkLadderHeight(int ladderHeight) {
         if (ladderHeight < 1) {
             throw new IllegalArgumentException("사다리 길이가 0 이하 입니다.");
         }
-    }
-
-    public List<Line> getLadder() {
-        return Collections.unmodifiableList(ladder);
     }
 
 }
