@@ -33,7 +33,7 @@ public class LambdaTest {
 
     @Test
     public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers, (number) -> true);
+        int sum = Lambda.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
     }
 

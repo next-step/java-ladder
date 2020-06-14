@@ -24,6 +24,10 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
+    public static int sumAll(List<Integer> numbers) {
+        return sumAll(numbers, number -> true);
+    }
+
     public static int sumAll(List<Integer> numbers, Conditional c) {
         return numbers.stream()
                 .filter(c::test)
