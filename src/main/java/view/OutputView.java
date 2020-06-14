@@ -1,7 +1,6 @@
 package view;
 
 import domain.Ladder;
-import domain.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;

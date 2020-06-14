@@ -3,7 +3,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String[] personNames = InputView.inputPersonNames();
         int height = InputView.inputLadderHeight();
 

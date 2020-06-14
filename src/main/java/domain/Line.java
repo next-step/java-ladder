@@ -20,8 +20,8 @@ public class Line {
     private List<Boolean> createPoints(int length, PointGenerator pointGenerator) {
         List<Boolean> points = new ArrayList<>();
         points.add(pointGenerator.isConnect(false));
-        for(int i=1; i<length; i++) {
-            points.add(pointGenerator.isConnect(points.get(i-1)));
+        for (int i = 1; i < length; i++) {
+            points.add(pointGenerator.isConnect(points.get(i - 1)));
         }
 
         return points;

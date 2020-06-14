@@ -1,7 +1,6 @@
 package domain;
 
 public class Person {
-
     private String name;
 
     private static final String DEFAULT_NAME = "     ";
