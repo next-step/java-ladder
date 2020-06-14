@@ -8,11 +8,11 @@ public class Players {
     private final List<String> playerNames;
 
     public Players(final String[] personNames) {
-        validate(personNames);
+        validateNameLength(personNames);
         this.playerNames = Arrays.stream(personNames).collect(Collectors.toList());
     }
 
-    private void validate(String[] personNames) {
+    private void validateNameLength(String[] personNames) {
         Arrays.stream(personNames).forEach(v -> {
             if (v.length() > 5) {
                 throw new IllegalArgumentException("사람 이름은 최대 5글자까지 입니다.");

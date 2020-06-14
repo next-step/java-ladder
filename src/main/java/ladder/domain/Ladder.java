@@ -3,13 +3,20 @@ package ladder.domain;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lineList;
+    private final List<Line> lines;
 
-    public Ladder(final List<Line> lineList) {
-        this.lineList = lineList;
+    public Ladder(final List<Line> lines) {
+        this.lines = lines;
     }
 
-    public List<Line> getLineList() {
-        return lineList;
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    public int move(int location) {
+        for (Line line : lines) {
+            location = line.move(location);
+        }
+        return location;
     }
 }
