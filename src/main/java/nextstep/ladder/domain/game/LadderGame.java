@@ -4,7 +4,10 @@ import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.user.User;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
 
@@ -22,7 +25,16 @@ public class LadderGame {
     public LadderGameResult play(List<User> users) {
         validateUsers(users);
 
-        return null;
+        Map<User, Result> userResult = IntStream.range(0, users.size())
+                .boxed()
+                .collect(Collectors.toMap(users::get, index -> getDestinationResult(users, index)));
+
+        return new LadderGameResult(userResult);
+    }
+
+    private Result getDestinationResult(List<User> users, Integer index) {
+        int destinationPosition = ladder.findDestinationPosition(users.get(index).getOrderValue());
+        return results.get(destinationPosition);
     }
 
     private void validateUsers(List<User> users) {
