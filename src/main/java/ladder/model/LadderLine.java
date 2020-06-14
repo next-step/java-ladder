@@ -22,13 +22,21 @@ public class LadderLine {
         }
     }
 
-    public static LadderLine create(int count) {
+    public static LadderLine create(int memberCount) {
+        validate(memberCount);
+
         List<LadderBridge> bridges = Stream
             .iterate(LadderBridge.randomBridge(), LadderBridge::makeLadderBridgeByPreBridge)
-            .limit(count - ONE)
+            .limit(memberCount - ONE)
             .collect(Collectors.toList());
 
         return new LadderLine(bridges);
+    }
+
+    private static void validate(int memberCount) {
+        if (memberCount <= 0) {
+            throw new IllegalArgumentException("참여하는 멤버는 1명 이상이어야 합니다.");
+        }
     }
 
     public List<LadderBridge> getBridges() {
