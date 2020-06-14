@@ -16,7 +16,7 @@ public class LadderGame {
 
     public LadderGame(Ladder ladder, Results results) {
         if (Objects.isNull(ladder) || Objects.isNull(results)) {
-            throw new IllegalArgumentException("inject null from LadderGame class");
+            throw new IllegalArgumentException("inject null ub LadderGame constructor");
         }
         this.ladder = ladder;
         this.results = results;

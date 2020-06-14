@@ -10,7 +10,7 @@ public class Results {
 
     public Results(List<String> results) {
         if (Objects.isNull(results)) {
-            throw new IllegalArgumentException("inject result list is null from results class");
+            throw new IllegalArgumentException("inject result list is null in results constructor");
         }
         this.results = createResults(results);
     }
