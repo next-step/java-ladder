@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     public static void printResult(final LadderGame ladderGame) {
-        System.out.println("실행결과\n");
+        System.out.println("실행결과");
 
         Members members = ladderGame.getMembers();
         Ladder ladder = ladderGame.getLadder();
