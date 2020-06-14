@@ -5,10 +5,10 @@ import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,12 +25,11 @@ public class LadderGameTest {
         assertThatCode(() -> new LadderGame(ladder, results)).doesNotThrowAnyException();
     }
 
-    @NullSource
-    @ParameterizedTest
+    @Test
     @DisplayName("사다리 게임 생성 예외 테스트")
-    void create_exception(Ladder ladder, Results results) {
+    void create_exception() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LadderGame(ladder, results));
+                .isThrownBy(() -> new LadderGame(null, null));
     }
 
     @MethodSource("사다리_그리고_결과_생성")
