@@ -30,10 +30,10 @@ public class LadderGame {
             throw new IllegalArgumentException("play user list is null");
         }
         users.stream().map(User::getOrder)
-                .forEach(this::validateOrder);
+                .forEach(this::validateStartOrder);
     }
 
-    private void validateOrder(Order order) {
+    private void validateStartOrder(Order order) {
         if (!order.isEqualsOrLessThanMaxPosition(ladder.getMaxPosition())) {
             throw new IllegalArgumentException("user order is not less than max position");
         }
