@@ -9,8 +9,7 @@ public class LadderGameViewHelper {
 
     public static List<String> parseUserNameInput(String userNameInput) {
         validateUserNameInput(userNameInput);
-        String[] userNames = userNameInput.split(LadderConstants.USER_NAME_SEPARATOR);
-        return Arrays.asList(userNames);
+        return Arrays.asList(userNameInput.split(LadderConstants.USER_NAME_SEPARATOR));
     }
 
     private static void validateUserNameInput(String userNameInput) {
