@@ -1,6 +1,6 @@
 package camp.nextstep.edu.nextstep8.ladder.entity;
 
-import camp.nextstep.edu.nextstep8.ladder.JoinMemberConvertor;
+import camp.nextstep.edu.nextstep8.ladder.JoinersConvertor;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,8 +16,8 @@ public class Ladder {
     private final List<Row> rows;
     private final List<String> joiners;
 
-    public Ladder(String joinMemberStr, int height) {
-        this.joiners = JoinMemberConvertor.makeJoinMembers(joinMemberStr);
+    public Ladder(String input, int height) {
+        this.joiners = JoinersConvertor.makeJoiners(input);
         this.cols = joiners.size();
         this.height = height;
         this.rows = generateRows();
@@ -28,7 +28,6 @@ public class Ladder {
         for(int x = 0; x < height; x++) {
             rows.add(generateRow(x));
         }
-
         return rows;
     }
 
@@ -49,22 +48,22 @@ public class Ladder {
         }
     }
 
-    public String getHeaderPrintString() {
+    public String getHeaderForPrint() {
         return joiners.stream().collect(Collectors.joining(SPACE));
     }
 
-    public String getLadderPrintString() {
+    public String getLadderForPrint() {
         StringBuilder output = new StringBuilder();
         int x = 0;
         for(Row row : rows) {
-            output.append(getRowPrintString(row, x));
+            output.append(getRowForPrint(row, x));
             output.append("\n");
             x++;
         }
         return output.toString();
     }
 
-    private String getRowPrintString(Row row, int rowIndex) {
+    private String getRowForPrint(Row row, int rowIndex) {
         StringBuilder output = new StringBuilder();
         for(int y = 0; y < cols; y++) {
             output.append(PIPE);

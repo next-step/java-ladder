@@ -10,7 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class JoinMemberConvertorTest {
+class JoinersConvertorTest {
     @DisplayName("참가자 문자열이 제대로 변환 되는지 확인")
     @ParameterizedTest
     @CsvSource(value = {
@@ -18,9 +18,9 @@ class JoinMemberConvertorTest {
             "apple,bread,car,dry,egg:5",
             "boy,girl:2"
     }, delimiter = ':')
-    public void makeJoinMembersTest(String joinMembersStr, int expectedCount) {
+    public void makeJoinersTest(String input, int expectedCount) {
         // when
-        List<String> joinMembers = JoinMemberConvertor.makeJoinMembers(joinMembersStr);
+        List<String> joinMembers = JoinersConvertor.makeJoiners(input);
 
         // then
         assertThat(joinMembers.size()).isEqualTo(expectedCount);
@@ -28,21 +28,21 @@ class JoinMemberConvertorTest {
 
     @DisplayName("빈 문자 열일 경우 예외")
     @Test
-    public void makeJoinMemberEmptyTest() {
+    public void makeJoinersEmptyTest() {
         // when & then
-        assertThatThrownBy(() -> JoinMemberConvertor.makeJoinMembers(""))
+        assertThatThrownBy(() -> JoinersConvertor.makeJoiners(""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참가자가 없습니다");
     }
 
     @DisplayName("최대 글자 수를 초과 하였을 경우 예외")
     @Test
-    public void makeJoinMemberExceedLimitTest() {
+    public void makeJoinersExceedLimitTest() {
         // given
-        String joinMembersStr = "abcde,123456";
+        String input = "abcde,123456";
 
         // when & then
-        assertThatThrownBy(() -> JoinMemberConvertor.makeJoinMembers(joinMembersStr))
+        assertThatThrownBy(() -> JoinersConvertor.makeJoiners(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("최대 글자 수를 초과 하였습니다 : 123456");
     }

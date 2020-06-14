@@ -16,15 +16,12 @@ public class Point {
     public boolean isEnd() {
         return left;
     }
-
     public boolean isStart() {
         return right;
     }
-
     public void markStart() {
         this.right = true;
     }
-
     public void markEnd() {
         this.left = true;
     }

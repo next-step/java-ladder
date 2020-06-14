@@ -5,18 +5,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class JoinMemberConvertor {
+public class JoinersConvertor {
     private static int MAX_NAME_LENGTH = 5;
     private static final String EMPTY = "";
     private static final String SEPARATOR = ",";
 
-    private JoinMemberConvertor() {
-    }
+    private JoinersConvertor() {}
 
-    public static List<String> makeJoinMembers(String joinMembersStr) {
-        validateEmpty(joinMembersStr);
-        return Arrays.stream(joinMembersStr.split(SEPARATOR))
-                .map(n -> validateName(n))
+    public static List<String> makeJoiners(String input) {
+        validateEmpty(input);
+        return Arrays.stream(input.split(SEPARATOR))
+                .map(name -> validateName(name))
                 .distinct()
                 .collect(Collectors.toList());
     }
