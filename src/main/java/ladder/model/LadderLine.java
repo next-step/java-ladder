@@ -11,18 +11,18 @@ public class LadderLine {
 
     private final List<LadderBridge> bridges;
 
-    public LadderLine(List<LadderBridge> bridges) {
+    public LadderLine(final List<LadderBridge> bridges) {
         validate(bridges);
         this.bridges = bridges;
     }
 
-    private void validate(List<LadderBridge> bridges) {
+    private void validate(final List<LadderBridge> bridges) {
         if (Objects.isNull(bridges) || bridges.isEmpty()) {
             throw new IllegalArgumentException("사다리 브릿지는 하나 이상이어야 합니다.");
         }
     }
 
-    public static LadderLine create(int memberCount) {
+    public static LadderLine create(final int memberCount) {
         validate(memberCount);
 
         List<LadderBridge> bridges = Stream
@@ -33,7 +33,7 @@ public class LadderLine {
         return new LadderLine(bridges);
     }
 
-    private static void validate(int memberCount) {
+    private static void validate(final int memberCount) {
         if (memberCount <= 0) {
             throw new IllegalArgumentException("참여하는 멤버는 1명 이상이어야 합니다.");
         }

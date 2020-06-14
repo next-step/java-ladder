@@ -11,12 +11,12 @@ public class Members {
 
     private final List<Member> members;
 
-    public Members(List<Member> members) {
+    public Members(final List<Member> members) {
         validate(members);
         this.members = members;
     }
 
-    private void validate(List<Member> members) {
+    private void validate(final List<Member> members) {
         if (Objects.isNull(members) || members.isEmpty()) {
             throw new IllegalArgumentException("사다리 게임에 참여하는 사람이 없습니다.");
         }

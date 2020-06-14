@@ -8,7 +8,7 @@ public class Member {
     private static final int MEMBER_NAME_LENGTH_LIMIT = 5;
     private final String name;
 
-    public Member(String name) {
+    public Member(final String name) {
         validate(name);
         this.name = name;
     }
