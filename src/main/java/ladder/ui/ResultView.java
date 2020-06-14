@@ -45,7 +45,7 @@ public class ResultView {
 
     private static String buildLine(List<Point> points) {
         return points.stream()
-                .map(p -> p.isMoveRight() ? LINE : EMPTY_LINE)
+                .map(p -> p.getPointDirection().isLeft() ? LINE : EMPTY_LINE)
                 .collect(joining(""));
     }
 }

@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.ladderInfo;
 
 public class LineCount {
     private final int lineCount;

@@ -3,53 +3,47 @@ package ladder.domain.ladder;
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
-import static ladder.domain.ladder.RandomGenerator.isMovable;
 
 public class PointDirection {
     private final boolean left;
     private final boolean right;
 
+    public static PointDirection of(boolean left, boolean right) {
+        return new PointDirection(left, right);
+    }
+
+    public static PointDirection first(Boolean right) {
+        return of(FALSE, right);
+    }
+
     private PointDirection(boolean left, boolean right) {
-        validteDirection(left, right);
+        validateDirection(left, right);
         this.left = left;
         this.right = right;
-        System.out.println(this);
-    }
-
-    public boolean isRight() {
-        return this.right;
-    }
-
-    public boolean isLeft() {
-        return this.left;
     }
 
     public PointDirection next(boolean nextRight) {
-        return of(this.right, nextRight);
-    }
-
-    public PointDirection next() {
         if (this.right) {
-            return next(FALSE);
+            nextRight = FALSE;
         }
-        return next(isMovable());
-    }
-
-    public static PointDirection of(boolean first, boolean second) {
-        return new PointDirection(first, second);
-    }
-
-    public static PointDirection first(boolean right) {
-        return of(FALSE, right);
+        return of(this.right, nextRight);
     }
 
     public PointDirection last() {
         return of(this.right, FALSE);
     }
 
-    private void validteDirection(boolean left, boolean right) {
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    private void validateDirection(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException("입력된 방향이 없습니다.");
+            throw new IllegalStateException("왼쪽 오른쪽을 모두 연결할 수 없습니다.");
         }
     }
 

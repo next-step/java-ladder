@@ -1,4 +1,6 @@
-package ladder.domain.reward;
+package ladder.domain.game;
+
+import ladder.domain.ladder.Position;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,6 +18,10 @@ public class LadderRewards {
 
     public static LadderRewards inputRewards(String[] rewards) {
         return new LadderRewards(rewards);
+    }
+
+    public LadderReward getLadderReward(Position resultPosition) {
+        return ladderRewards.get(resultPosition.getPosition());
     }
 
     public List<LadderReward> getLadderRewards() {

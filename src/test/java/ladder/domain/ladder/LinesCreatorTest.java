@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.domain.ladder.ladderInfo.LadderHeight;
+import ladder.domain.ladder.ladderInfo.LineCount;
 import ladder.domain.player.LadderPlayers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

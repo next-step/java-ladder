@@ -1,8 +1,8 @@
 package ladder.ui;
 
-import ladder.domain.ladder.LadderHeight;
+import ladder.domain.ladder.ladderInfo.LadderHeight;
 import ladder.domain.player.LadderPlayer;
-import ladder.domain.reward.LadderRewards;
+import ladder.domain.game.LadderRewards;
 import ladder.domain.player.LadderPlayers;
 
 import java.util.Scanner;

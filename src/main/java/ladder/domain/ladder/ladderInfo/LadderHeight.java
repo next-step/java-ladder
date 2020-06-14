@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.ladderInfo;
 
 public class LadderHeight {
     private final int height;

@@ -1,6 +1,6 @@
 package ladder.domain.player;
 
-import ladder.domain.ladder.LineCount;
+import ladder.domain.ladder.ladderInfo.LineCount;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,6 +31,10 @@ public class LadderPlayers {
 
     public List<LadderPlayer> getLadderPlayers() {
         return Collections.unmodifiableList(ladderPlayers);
+    }
+
+    public LadderPlayer getLadderPlayer(int index) {
+        return ladderPlayers.get(index);
     }
 
     private List<LadderPlayer> createLadderPlayers(String[] playerNames) {
