@@ -9,7 +9,7 @@ import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MovementTest {
+class DirectionTest {
 
     private MovementGenerator movementGenerator;
     private MovementGenerator trueMovementGenerator;
@@ -25,42 +25,42 @@ class MovementTest {
     @Test
     @DisplayName("첫번째 movement 생성")
     void firstMovementTest() {
-        Movement movement = Movement.first(movementGenerator);
-        assertThat(movement.isLeft()).isFalse();
+        Direction direction = Direction.first(movementGenerator);
+        assertThat(direction.isLeft()).isFalse();
     }
 
     @Test
     @DisplayName("movement 생성")
     void createMovementTest() {
-        Movement firstMovement = Movement.first(movementGenerator);
-        Movement movement = Movement.of(firstMovement, movementGenerator);
-        assertThat(firstMovement.isRight()).isEqualTo(movement.isLeft());
+        Direction firstDirection = Direction.first(movementGenerator);
+        Direction direction = Direction.of(firstDirection, movementGenerator);
+        assertThat(firstDirection.isRight()).isEqualTo(direction.isLeft());
     }
 
     @Test
     @DisplayName("마지막 movement 생성")
     void lastMovementTest() {
-        Movement firstMovement = Movement.first(movementGenerator);
-        Movement movement = Movement.last(firstMovement);
-        assertThat(firstMovement.isRight()).isEqualTo(movement.isLeft());
-        assertThat(movement.isRight()).isFalse();
+        Direction firstDirection = Direction.first(movementGenerator);
+        Direction direction = Direction.last(firstDirection);
+        assertThat(firstDirection.isRight()).isEqualTo(direction.isLeft());
+        assertThat(direction.isRight()).isFalse();
     }
 
     @Test
     @DisplayName("움직임 테스트")
     void moveTest() {
-        Movement firstMovement = Movement.first(trueMovementGenerator);
-        Movement lastMovement = Movement.last(firstMovement);
-        assertThat(firstMovement.move()).isEqualTo(1);
-        assertThat(lastMovement.move()).isEqualTo(-1);
+        Direction firstDirection = Direction.first(trueMovementGenerator);
+        Direction lastDirection = Direction.last(firstDirection);
+        assertThat(firstDirection.move()).isEqualTo(1);
+        assertThat(lastDirection.move()).isEqualTo(-1);
     }
 
     @Test
     @DisplayName("움직이지 않는 경우 테스트")
     void notMoveTest() {
-        Movement firstMovement = Movement.first(falseMovementGenerator);
-        Movement lastMovement = Movement.last(firstMovement);
-        assertThat(firstMovement.move()).isEqualTo(0);
-        assertThat(lastMovement.move()).isEqualTo(0);
+        Direction firstDirection = Direction.first(falseMovementGenerator);
+        Direction lastDirection = Direction.last(firstDirection);
+        assertThat(firstDirection.move()).isEqualTo(0);
+        assertThat(lastDirection.move()).isEqualTo(0);
     }
 }

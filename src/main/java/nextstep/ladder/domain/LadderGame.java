@@ -8,24 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
-    private final Lines lines;
+    private final LadderLines ladderLines;
     private final Players players;
     private final Scores scores;
 
     public LadderGame(LadderRequestDto ladderRequestDto, MovementGenerator movementGenerator) {
         this.players = new Players(ladderRequestDto.getNames());
         int countOfPerson = ladderRequestDto.getNames().size();
-        this.lines = new Lines(countOfPerson, ladderRequestDto.getHeight(), movementGenerator);
+        this.ladderLines = LadderLines.generateLines(countOfPerson, ladderRequestDto.getHeight(), movementGenerator);
         this.scores = new Scores(ladderRequestDto.getScores());
     }
 
     public LadderResultDto getLadderResult() {
-        return new LadderResultDto(this.players.findAllPlayerNames(), this.lines, this.scores.getScores());
+        return new LadderResultDto(this.players.findAllPlayerNames(), this.ladderLines, this.scores.getScores());
     }
 
     public LadderGameResultDto findLadderGameResult(String playerName) {
         Player player = this.players.findPlayer(playerName);
-        int moveIndex = this.lines.move(player.getAssignBridgeIndex());
+        int moveIndex = this.ladderLines.move(player.getAssignBridgeIndex());
         return new LadderGameResultDto(playerName, this.scores.findScore(moveIndex));
     }
 

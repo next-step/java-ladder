@@ -1,9 +1,7 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Bridge;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Player;
-import nextstep.ladder.domain.Scores;
+import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.LadderLine;
 import nextstep.ladder.dto.LadderGameResultDto;
 import nextstep.ladder.dto.LadderResultDto;
 
@@ -20,7 +18,7 @@ public class OutputView {
         System.out.println("실행 결과");
         System.out.println(System.lineSeparator());
         outputNames(ladderResultDto.getPlayerNames());
-        outputLines(ladderResultDto.getLines());
+        outputLines(ladderResultDto.getLadderLines());
         outputLadderScores(ladderResultDto.getScores());
     }
 
@@ -36,26 +34,26 @@ public class OutputView {
         return String.format(format, name);
     }
 
-    private static void outputLines(List<Line> lines) {
+    private static void outputLines(List<LadderLine> ladderLines) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Line line : lines) {
-            stringBuilder = appendLine(line, stringBuilder);
+        for (LadderLine ladderLine : ladderLines) {
+            stringBuilder = appendLine(ladderLine, stringBuilder);
             stringBuilder.append(System.lineSeparator());
         }
         System.out.println(stringBuilder);
     }
 
-    private static StringBuilder appendLine(Line line, StringBuilder stringBuilder) {
+    private static StringBuilder appendLine(LadderLine ladderLine, StringBuilder stringBuilder) {
         stringBuilder.append(appendSpace(LINE_SPACE, ""));
-        for (Bridge bridge : line.getBridges()) {
+        for (Point point : ladderLine.getPoints()) {
             stringBuilder.append(LINE);
-            stringBuilder = appendBridge(bridge, stringBuilder);
+            stringBuilder = appendPoint(point, stringBuilder);
         }
         return stringBuilder;
     }
 
-    private static StringBuilder appendBridge(Bridge bridge, StringBuilder stringBuilder) {
-        if (bridge.isRight()) {
+    private static StringBuilder appendPoint(Point point, StringBuilder stringBuilder) {
+        if (point.isRight()) {
             return stringBuilder.append(BRIDGE);
         }
 
