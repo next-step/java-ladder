@@ -10,4 +10,10 @@ public class Point {
 	public static Point ofPoint(boolean isConnectedToNextPoint) {
 		return new Point(isConnectedToNextPoint);
 	}
+
+	public void validateNotConnectedIfLastPoint() {
+		if (isConnectedToNextPoint) {
+			throw new IllegalArgumentException("last point should not be connected to the next point.");
+		}
+	}
 }

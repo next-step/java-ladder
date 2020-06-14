@@ -19,4 +19,19 @@ public class PointsTest {
 		);
 		assertThat(points.size()).isEqualTo(4);
 	}
+
+	@DisplayName("마지막 좌표가 다음 좌표와 연결되어 있으면 오류를 반환한다.")
+	@Test
+	void 마지막_좌표가_다음_좌표에_연결되지_않는다() {
+		List<Point> points = Arrays.asList(
+			Point.ofPoint(true),
+			Point.ofPoint(true),
+			Point.ofPoint(false),
+			Point.ofPoint(false),
+			Point.ofPoint(true)
+		);
+		assertThatThrownBy(() -> Points.ofPoints(points))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("last point should not be connected to the next point.");
+	}
 }
