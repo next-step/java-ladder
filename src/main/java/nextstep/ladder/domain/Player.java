@@ -8,21 +8,21 @@ public class Player {
     private String userName;
 
     private Player(String userName) {
-        validateUserName(userName);
         this.userName = userName;
     }
 
-    private void validateUserName(String userName) {
-        if (userName.length() > LadderConstants.MAXIMUM_USER_NAME_LENGTH) {
-            throw new IllegalArgumentException(LadderConstants.INVALID_USER_NAME_EXCEPTION_MESSAGE);
-        }
+    public static Player of(String userName) {
+        validateUserName(userName);
+        return new Player(userName);
     }
 
     public String convertUserNameWithLeftPad() {
         return StringUtils.leftPad(this.userName, LadderConstants.MAXIMUM_USER_NAME_LENGTH + 1);
     }
-
-    public static Player of(String userName) {
-        return new Player(userName);
+    
+    private static void validateUserName(String userName) {
+        if (userName.length() > LadderConstants.MAXIMUM_USER_NAME_LENGTH) {
+            throw new IllegalArgumentException(LadderConstants.INVALID_USER_NAME_EXCEPTION_MESSAGE);
+        }
     }
 }
