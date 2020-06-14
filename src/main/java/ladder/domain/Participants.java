@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Participants {
     public static final String SEPARATOR = ",";
 
-    List<Person> participants;
+    private List<Person> participants;
 
     private Participants(String nameOfPerson) {
         this.participants = Arrays.stream(nameOfPerson.split(SEPARATOR))
@@ -17,5 +17,9 @@ public class Participants {
 
     public static Participants create(String nameOfPerson) {
         return new Participants(nameOfPerson);
+    }
+
+    public int tellCountOfPerson() {
+        return participants.size();
     }
 }
