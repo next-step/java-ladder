@@ -22,3 +22,32 @@ public class Line {
 }
 ```
 * 위와 같이 Line 객체를 추가하면 ArrayList<ArrayList<Boolean>> 코드를 ArrayList<Line>과 같이 구현하는 것이 가능해 진다.
+
+* Model
+    * Member
+        [x] Member 는 게임에 참여하는 멤버
+        [x] 이름의 최대 글자수는 다섯 글자이다.
+    * Members
+        [x] Members 는 member 의 일급 컬렉션이다.
+    * LadderGame
+        [x] LadderGame 은 사다리 게임 클래스이다.
+        [x] 외부에서 입력되는 LadderHeight 을 받아서 Ladder 를 생성한다.
+    * LadderHeight
+        [x] LadderHeight 는 외부에서 입력되는 숫자로 LadderHeight 를 생성한다. 
+    * Ladder
+        [x] Ladder 는 사다리 클래스이다.
+        [x] Line 을 가지고 있다.
+    * LadderLine
+        [x] LadderLine 은 사다리의 한 라인을 의미하는 클래스이다.
+        [x] LadderBridge 를 가지고 있다. 
+    * LadderBridge
+        [x] LadderBridge 는 enum class 이다.
+        [x] Bridge 가 Exist 인지 Not Exist 인지 상태를 가지고 있다.
+        [x] 이전 Bridge 에 따라, 현재 Bridge 를 만든다.
+    
+    
+* View
+    * InputView
+    * OutputView
+
+* Main
