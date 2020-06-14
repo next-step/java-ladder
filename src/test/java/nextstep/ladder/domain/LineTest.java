@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
+@DisplayName("사다리 수평라인 생성 테스트")
 class LineTest {
 
     @DisplayName("사다리의 수평라인을 생성할 수 있다")

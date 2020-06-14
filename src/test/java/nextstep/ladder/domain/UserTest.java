@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("참여자 생성 테스트")
 class UserTest {
-
 
     @DisplayName("이름은 5자 이하여야 한다")
     @ParameterizedTest
