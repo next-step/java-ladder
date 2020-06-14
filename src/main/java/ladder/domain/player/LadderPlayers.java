@@ -11,14 +11,14 @@ public class LadderPlayers {
 
     private final List<LadderPlayer> ladderPlayers;
 
-    private LadderPlayers(List<LadderPlayer> ladderPlayers) {
+    private LadderPlayers(String[] playerNames) {
+        validatePlayer(playerNames);
+        List<LadderPlayer> ladderPlayers = createLadderPlayers(playerNames);
         this.ladderPlayers = ladderPlayers;
     }
 
     public static LadderPlayers participate(String[] playerNames) {
-        validatePlayer(playerNames);
-        List<LadderPlayer> ladderPlayers = createLadderPlayers(playerNames);
-        return new LadderPlayers(ladderPlayers);
+        return new LadderPlayers(playerNames);
     }
 
     public int getPlayerCount() {
@@ -33,13 +33,13 @@ public class LadderPlayers {
         return Collections.unmodifiableList(ladderPlayers);
     }
 
-    private static List<LadderPlayer> createLadderPlayers(String[] playerNames) {
+    private List<LadderPlayer> createLadderPlayers(String[] playerNames) {
         return Arrays.stream(playerNames)
                 .map(LadderPlayer::create)
                 .collect(Collectors.toList());
     }
 
-    private static void validatePlayer(String[] playerNames) {
+    private void validatePlayer(String[] playerNames) {
         if (playerNames == null || playerNames.length < 1) {
             throw new IllegalArgumentException("플에이어를 입력하세요");
         }

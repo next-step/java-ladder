@@ -1,6 +1,7 @@
 package ladder.ui;
 
 import ladder.domain.ladder.LadderHeight;
+import ladder.domain.ladder.LadderRewards;
 import ladder.domain.player.LadderPlayers;
 
 import java.util.Scanner;
@@ -14,6 +15,12 @@ public class InputView {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String playerNames = scanner.nextLine();
         return LadderPlayers.participate(playerNames.split(SPLITTER));
+    }
+
+    public static LadderRewards inputGameResult() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String rewords = scanner.nextLine();
+        return LadderRewards.inputRewards(rewords.split(SPLITTER));
     }
 
     public static LadderHeight inputLadderMaxHeight() {
