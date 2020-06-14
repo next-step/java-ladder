@@ -28,15 +28,18 @@ class LadderGameTest {
         |        | ------ |
          */
         assertAll(
-                () -> assertThat(ladder.getConnectionPoints(0).has(Point.of(0))).isTrue(),
-                () -> assertThat(ladder.getConnectionPoints(0).has(Point.of(1))).isTrue(),
-                () -> assertThat(ladder.getConnectionPoints(0).has(Point.of(2))).isFalse(),
-                () -> assertThat(ladder.getConnectionPoints(1).has(Point.of(2))).isTrue()
+                () -> assertThat(ladder.findByOrder(Order.of(1)).connectedWith(Point.of(0))).isTrue(),
+                () -> assertThat(ladder.findByOrder(Order.of(1)).connectedWith(Point.of(1))).isTrue(),
+                () -> assertThat(ladder.findByOrder(Order.of(1)).connectedWith(Point.of(2))).isFalse(),
+                () -> assertThat(ladder.findByOrder(Order.of(2)).connectedWith(Point.of(2))).isTrue()
         );
     }
 
     private LadderGameUsers createLadderGameUsers() {
-        return new LadderGameUsers(Arrays.asList("abc", "def", "ghi"));
+        LadderGameUser user1 = new LadderGameUser(Order.FIRST_ORDER, "abc");
+        LadderGameUser user2 = new LadderGameUser(Order.of(2), "def");
+        LadderGameUser user3 = new LadderGameUser(Order.of(3), "ghi");
+        return new LadderGameUsers(Arrays.asList(user1, user2, user3));
     }
 
 }

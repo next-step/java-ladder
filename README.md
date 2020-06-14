@@ -68,13 +68,13 @@ Q. 인덴트 규칙과 파라미터개수 사이의 고민 ,,! 너무 많은 의
 
 **Ladder**
 ```java
-List<BaseUserLine> ladderVerticalBaseLines
+List<BaseUserLine> ladderBaseLines
 ```
  
 1. 최대 사다리의 높이를 가지고 BaseUserLine 을 생성한다. (pointConnections의 size)
 2. 
 ```java
-for( 0..n-1 in ladderVerticalBaseLines) // 마지막 사다리는 긋지 않는다
+for( 0..n-1 in ladderBaseLines) // 마지막 사다리는 긋지 않는다
     while(최대높이 -1){ // 하나의 사다리는 최대 "높이 -1" 만큼의 라인을 그을 수 있다.
         if(첫번째 사다리){
             // 체크없이 Random으로 긋거나 긋지않는다
