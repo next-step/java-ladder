@@ -23,6 +23,10 @@ public class Players {
     return new PositiveNumber(players.size());
   }
 
+  public Player getPlayerByIndex(int index) {
+    return players.get(index);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

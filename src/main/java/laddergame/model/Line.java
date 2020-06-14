@@ -34,6 +34,18 @@ public class Line {
     return Collections.unmodifiableList(points);
   }
 
+  public boolean leftPointHasRung(Position position) {
+    return points.get(position.getValue()).isRungCreated();
+  }
+
+  public boolean rightPointHasRung(Position position) {
+    if (position.getValue() < points.size() - 1) {
+      return points.get(position.getValue() + 1).isRungCreated();
+    }
+
+    return false;
+  }
+
   @Override
   public String toString() {
     return points.stream()
