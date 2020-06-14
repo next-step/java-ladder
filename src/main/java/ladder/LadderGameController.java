@@ -14,6 +14,8 @@ public class LadderGameController {
         LadderHeight ladderHeight = InputView.askLadderHeight();
 
         LadderLines ladderLines = ladderGame.start(players, ladderHeight);
-        OutputView.printLadder(players, ladderLines);
+        PositionLogs positionLogs = ladderGame.play(players, ladderLines);
+
+        OutputView.printResult(players, ladderLines, prizes, positionLogs);
     }
 }

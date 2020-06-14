@@ -1,5 +1,6 @@
 package ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Prizes {
@@ -12,5 +13,9 @@ public class Prizes {
 
     public static Prizes of(List<Prize> prizes) {
         return new Prizes(prizes);
+    }
+
+    public List<Prize> getContent() {
+        return Collections.unmodifiableList(prizes);
     }
 }

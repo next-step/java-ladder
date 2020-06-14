@@ -11,4 +11,8 @@ public class Prize {
     public static Prize of(String name) {
         return new Prize(name);
     }
+
+    public String getName() {
+        return name;
+    }
 }

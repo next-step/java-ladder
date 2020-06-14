@@ -44,4 +44,13 @@ public class Players {
     public List<Player> getContent() {
         return Collections.unmodifiableList(players);
     }
+
+    public int findIndexByName(String name) {
+        Player player = players.stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 사람이 없습니다."));
+
+        return players.indexOf(player);
+    }
 }
