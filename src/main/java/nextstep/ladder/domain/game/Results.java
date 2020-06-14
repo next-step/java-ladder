@@ -2,16 +2,23 @@ package nextstep.ladder.domain.game;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Results {
 
     private final List<Result> results;
 
-    public Results(List<Result> results) {
+    public Results(List<String> results) {
         if (Objects.isNull(results)) {
             throw new IllegalArgumentException("inject result list is null from results class");
         }
-        this.results = results;
+        this.results = createResults(results);
+    }
+
+    private List<Result> createResults(List<String> results) {
+        return results.stream()
+                .map(Result::from)
+                .collect(Collectors.toList());
     }
 
     public int size() {

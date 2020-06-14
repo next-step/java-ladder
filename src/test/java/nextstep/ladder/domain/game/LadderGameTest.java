@@ -79,7 +79,7 @@ public class LadderGameTest {
 
     private static Stream<Arguments> 사다리_그리고_결과_생성() {
         Ladder ladder = new Ladder(Height.from(3), 3, new DirectionRandomPredicate());
-        Results results = new Results(Arrays.asList(Result.from("꽝"), Result.from("10000"), Result.from("꽝")));
+        Results results = new Results(Arrays.asList("꽝", "10000", "꽝"));
         return Stream.of(Arguments.of(ladder, results));
     }
 }

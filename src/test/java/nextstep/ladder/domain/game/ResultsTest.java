@@ -18,7 +18,7 @@ public class ResultsTest {
     @MethodSource("결과셋_생성")
     @ParameterizedTest
     @DisplayName("results 생성 테스트")
-    void create(List<Result> resultList) {
+    void create(List<String> resultList) {
         Results results = new Results(resultList);
         assertThat(results.size()).isEqualTo(resultList.size());
     }
@@ -26,7 +26,7 @@ public class ResultsTest {
     @NullSource
     @ParameterizedTest
     @DisplayName("results 생성 테스트")
-    void exception(List<Result> resultList) {
+    void exception(List<String> resultList) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Results(resultList));
     }
@@ -34,13 +34,13 @@ public class ResultsTest {
     @MethodSource("결과셋_생성")
     @ParameterizedTest
     @DisplayName("get 검증 테스트")
-    void get(List<Result> resultList) {
+    void get(List<String> resultList) {
         Results results = new Results(resultList);
-        assertThat(results.get(0)).isEqualTo(resultList.get(0));
+        assertThat(results.get(0)).isEqualTo(Result.from(resultList.get(0)));
     }
 
     private static Stream<Arguments> 결과셋_생성() {
-        List<Result> resultList = Arrays.asList(Result.from("꽝"), Result.from("50000"), Result.from("꽝"), Result.from("10000"));
+        List<String> resultList = Arrays.asList("꽝", "50000", "꽝", "10000");
         return Stream.of(Arguments.of(resultList));
     }
 }
