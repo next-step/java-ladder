@@ -12,10 +12,10 @@ public class Line {
     }
 
     public Position move(Position currentPosition) {
-        return points.get(currentPosition.getPosition()).move();
+        return points.get(currentPosition.getValue()).move();
     }
 
     public List<Point> getPoints() {
-        return unmodifiableList(points);
+        return points;
     }
 }

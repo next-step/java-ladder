@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.ladderInfo.LineCount;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +9,10 @@ public class LineCreator {
 
     private LineCreator() { }
 
-    public static Line create(LineCount LineCount) {
+    public static Line create(int playerCount) {
         List<Point> points = new ArrayList<>();
         Point point = initFirstPoint(points);
-        for (int i = 1; i < LineCount.getLineCount() - 1; i++) {
+        for (int i = 1; i < playerCount - 1; i++) {
             point = point.next(isMovable());
             points.add(point);
         }

@@ -21,4 +21,11 @@ public class LadderReward {
     public String getReward() {
         return reward;
     }
+
+    @Override
+    public String toString() {
+        return "LadderReward{" +
+                "reward='" + reward + '\'' +
+                '}';
+    }
 }

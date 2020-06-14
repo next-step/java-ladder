@@ -20,8 +20,8 @@ public class LadderRewards {
         return new LadderRewards(rewards);
     }
 
-    public LadderReward getLadderReward(Position resultPosition) {
-        return ladderRewards.get(resultPosition.getPosition());
+    public LadderReward getLadderReward(Position position) {
+        return ladderRewards.get(position.getValue());
     }
 
     public List<LadderReward> getLadderRewards() {
@@ -38,5 +38,12 @@ public class LadderRewards {
         return Arrays.stream(rewards)
                 .map(LadderReward::inputReward)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return "LadderRewards{" +
+                "ladderRewards=" + ladderRewards +
+                '}';
     }
 }

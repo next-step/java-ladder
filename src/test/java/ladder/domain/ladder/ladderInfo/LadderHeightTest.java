@@ -1,4 +1,4 @@
-package ladder.domain.ladder;
+package ladder.domain.ladder.ladderInfo;
 
 import ladder.domain.ladder.ladderInfo.LadderHeight;
 import org.junit.jupiter.api.DisplayName;

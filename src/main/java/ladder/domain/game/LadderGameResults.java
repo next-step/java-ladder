@@ -17,6 +17,6 @@ public class LadderGameResults {
     }
 
     public Map<LadderPlayer, LadderReward> getResults() {
-        return results;
+        return Collections.unmodifiableMap(results);
     }
 }

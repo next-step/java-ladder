@@ -11,16 +11,16 @@ import java.util.stream.Stream;
 public class Lines {
 
     private final List<Line> lines;
-    LineCount lineCount;
+    int playerCount;
 
-    public Lines(final List<Line> lines, final LineCount lineCount){
+    public Lines(final List<Line> lines, int playerCount){
         validate(lines);
         this.lines = lines;
-        this.lineCount = lineCount;
+        this.playerCount = playerCount;
     }
 
     public LadderResults create() {
-        return new LadderResults(Stream.iterate(0, i -> i < lineCount.getLineCount(), i -> i + 1)
+        return new LadderResults(Stream.iterate(0, i -> i < playerCount, i -> i + 1)
                 .map(Position::new)
                 .collect(Collectors.toMap(Function.identity(), this::getResultPosition)));
     }
