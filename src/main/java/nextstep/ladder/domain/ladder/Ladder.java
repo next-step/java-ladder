@@ -52,7 +52,8 @@ public class Ladder {
         return null;
     }
 
-    public int findDestination(int position) {
+    public int findDestinationPosition(int startPosition) {
+        int position = startPosition;
         while (Objects.nonNull(directionMap.get(position))) {
             Direction direction = directionMap.get(position);
             position = nextPosition(position, direction);

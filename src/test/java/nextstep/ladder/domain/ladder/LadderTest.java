@@ -23,10 +23,10 @@ public class LadderTest {
     @ValueSource(ints = {0, 1, 2, 3})
     @ParameterizedTest
     @DisplayName("사다리 도착지 메소드 테스트")
-    void findDestination(int order) {
+    void findDestination(int startPosition) {
         int maxPosition = 3;
         Ladder ladder = new Ladder(Height.from(5), maxPosition, new DirectionRandomPredicate());
-        int destinationOrder = ladder.findDestination(order);
+        int destinationOrder = ladder.findDestinationPosition(startPosition);
         assertThat(destinationOrder).isNotNull();
         assertThat(destinationOrder).isLessThanOrEqualTo(maxPosition);
     }
