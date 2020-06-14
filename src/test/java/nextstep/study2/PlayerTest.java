@@ -16,6 +16,7 @@ class PlayerTest {
 	
 	@BeforeEach
 	void init() {
+		
 	}
 	
 	@Test

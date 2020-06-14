@@ -5,14 +5,14 @@ public class Player {
 	private String name;
 	private static final String nameLimit = "이름은 최대 5글자 입니다.";
 	private static final String leastNameLimit = "이름은 최소 1글자 이상, 공백은 불가능합니다.";
-	
-	
-	
+			
 	public Player(String name) {
 		nameLimiation(name);
 		this.name = name;
 	}
-
+		
+	// Question
+	// InputView에서 체크했는데 중복으로 체크해도 상관없나요?
 	private void nameLimiation(String name) {
 		
 		if(name.length() > 5) {
