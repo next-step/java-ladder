@@ -9,12 +9,14 @@ import java.util.Objects;
 public class LadderGame {
 
     private final Ladder ladder;
+    private final Results results;
 
-    public LadderGame(Ladder ladder) {
-        if (Objects.isNull(ladder)) {
-            throw new IllegalArgumentException("Ladder is null.");
+    public LadderGame(Ladder ladder, Results results) {
+        if (Objects.isNull(ladder) || Objects.isNull(results)) {
+            throw new IllegalArgumentException("inject null from LadderGame class");
         }
         this.ladder = ladder;
+        this.results = results;
     }
 
     public LadderGameResult play(List<User> users) {
