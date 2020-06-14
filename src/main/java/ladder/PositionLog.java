@@ -38,8 +38,11 @@ public class PositionLog {
     }
 
     private void moveDown(LadderLine line) {
-        int lastPosition = positions.get(size() - 1);
-        int newPosition = line.moveDownFrom(lastPosition);
+        int newPosition = line.moveDownFrom(getLastPosition());
         addPosition(newPosition);
+    }
+
+    public int getLastPosition() {
+        return positions.get(size() - 1);
     }
 }

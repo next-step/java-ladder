@@ -28,4 +28,8 @@ public class PositionLogs {
             log.moveDown(lines);
         }
     }
+
+    public int getLastPosition(int initialPosition) {
+        return positionLogs.get(initialPosition).getLastPosition();
+    }
 }
