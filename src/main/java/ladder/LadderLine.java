@@ -4,8 +4,8 @@ public class LadderLine {
 
 	private final LadderLinePoints ladderLinePoints;
 
-	public LadderLine(int pointCount) {
-		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(new RandomDrawingPointStrategy());
+	public LadderLine(int pointCount, DrawingPointStrategy drawingPointStrategy) {
+		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(drawingPointStrategy);
 		this.ladderLinePoints = pointsPainter.drawPoints(pointCount);
 	}
 
