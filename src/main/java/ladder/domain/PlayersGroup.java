@@ -21,13 +21,14 @@ public class PlayersGroup {
     }
 
     private static void validatePlayerCounts(List<String> playerNames) {
-        if (playerNames.size() < MINIMUM_PLAYER_COUNTS) {
-            throw new LadderBuildingException(LadderBuildingException.INVALID_PLAYER_COUNTS);
-        }
+        int playerCounts = playerNames.size();
         int distinctPlayerCounts = (int) playerNames.stream()
                 .distinct()
                 .count();
-        if (playerNames.size() != distinctPlayerCounts) {
+        if (playerCounts < MINIMUM_PLAYER_COUNTS) {
+            throw new LadderBuildingException(LadderBuildingException.INVALID_PLAYER_COUNTS);
+        }
+        if (playerCounts != distinctPlayerCounts) {
             throw new LadderBuildingException(LadderBuildingException.DUPLICATE_PLAYER_NAMES);
         }
     }
