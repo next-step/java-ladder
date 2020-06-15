@@ -2,6 +2,10 @@ package nextstep.ladder.constant;
 
 public class LadderConstants {
 
+    private LadderConstants() {
+
+    }
+
     public static final String PLAYER_NAME_ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE = "사다리 게임을 진행할 사람의 이름을 입력해주세요.";
     public static final int FIRST_MOUNTING_BLOCK_INDEX = 0;
     public static final String USER_NAME_INPUT_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";

@@ -17,7 +17,7 @@ public class Lines {
     }
 
     public static Lines of(int countOfPerson, int ladderHeight) {
-        Lines lines = new Lines(new LineGenerator(new RandomMountingBlockGenerator()));
+        Lines lines = new Lines(LadderGameManager.lineGenerator());
         IntStream.range(LadderConstants.FIRST_MOUNTING_BLOCK_INDEX, ladderHeight).forEach(i -> lines.initializeLadderLine(countOfPerson));
 
         return lines;
