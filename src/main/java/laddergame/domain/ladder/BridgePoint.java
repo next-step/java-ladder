@@ -25,6 +25,14 @@ public class BridgePoint {
         return false;
     }
 
+    public int getLeft() {
+        return left;
+    }
+
+    public int getRight() {
+        return right;
+    }
+
     private boolean isLeftColumn(final int targetColumn) {
         return left == targetColumn;
     }

@@ -2,44 +2,42 @@ package laddergame.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BridgeTest {
-    @DisplayName("같은 연결 타입이면 true를 반환한다.")
-    @Test
-    void isSameBridgeType() {
-        Bridge bridgeFirst = Bridge.createRightBridge(1);
-        Bridge bridgeSecond = Bridge.createRightBridge(2);
-        Bridge bridgeThird = Bridge.createLeftBridge(3);
 
-        assertAll(
-                () -> assertThat(Bridge.isSameBridgeType(bridgeFirst, bridgeSecond)).isTrue(),
-                () -> assertThat(Bridge.isSameBridgeType(bridgeFirst, bridgeThird)).isFalse()
-        );
+    @DisplayName("true 또는 false로 Bridge 생성시 연결여부를 결정한다.")
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void newBridge(boolean isConnect) {
+        Bridge bridge = new Bridge(isConnect, 1);
+
+        assertThat(bridge.isConnected()).isEqualTo(isConnect);
     }
 
-    @DisplayName("오른쪽 연결 또는 왼쪽 연결은 연결 여부 확인시 true를 반환한다.")
-    @Test
-    void isConnected() {
-        Bridge bridgeRight = Bridge.createRightBridge(1);
-        Bridge bridgeLeft = Bridge.createLeftBridge(2);
-        Bridge bridgeNone = Bridge.createNotLinkedBridge(3);
+    @DisplayName("두 인접 Bridge가 연속으로 연결되어있는지 확인")
+    @ParameterizedTest
+    @CsvSource({"true, true, true", "false, true, false", "true, false, false"})
+    void isContinuousBridge(boolean beforeConnection, boolean nextConnection, boolean result) {
+        Bridge before = new Bridge(beforeConnection, 1);
+        Bridge next = new Bridge(nextConnection, 2);
 
-        assertAll(
-                () -> assertThat(bridgeRight.isConnected()).isTrue(),
-                () -> assertThat(bridgeLeft.isConnected()).isTrue(),
-                () -> assertThat(bridgeNone.isConnected()).isFalse()
-        );
+        assertThat(Bridge.isContinuousBridge(before, next)).isEqualTo(result);
     }
 
-    @DisplayName("다리의 열번호가 1보다 작으면 IllegalArgumentException Throw")
-    @Test
-    void underMinColumnThrowException() {
-        assertThatThrownBy(() -> Bridge.createBridge(true, 0))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("열 번호는 1 이상이어야 합니다. - " + 0);
+    @DisplayName("두 Bridge가 인접 Bridge가 아니라면 연결 여부에 상관없이 false 반환")
+    @ParameterizedTest
+    @CsvSource({"true, true", "true, false", "false, true", "false, false"})
+    void isContinuousBridgeNotNext(boolean beforeConnection, boolean nextConnection) {
+        Bridge before = new Bridge(beforeConnection, 1);
+        Bridge next = new Bridge(nextConnection, 3);
+
+        assertThat(Bridge.isContinuousBridge(before, next)).isFalse();
     }
 }

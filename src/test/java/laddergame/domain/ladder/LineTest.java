@@ -26,19 +26,19 @@ class LineTest {
     }
 
     private static List<Bridge> createBridges(int numberOfPlayer) {
-        if (numberOfPlayer == 1) {
-            return Arrays.asList(Bridge.createNotLinkedBridge(1));
-        }
+//        if (numberOfPlayer == 1) {
+//            return Arrays.asList(Bridge.createNotLinkedBridge(1));
+//        }
 
         List<Bridge> bridges = new ArrayList<>();
-        for (int i = 1; i <= numberOfPlayer / 2; i++) {
-            bridges.add(Bridge.createRightBridge(i));
-            bridges.add(Bridge.createLeftBridge(i + 1));
-        }
-
-        if (numberOfPlayer % 2 == 1) {
-            bridges.add(Bridge.createNotLinkedBridge(numberOfPlayer));
-        }
+//        for (int i = 1; i <= numberOfPlayer / 2; i++) {
+//            bridges.add(Bridge.createRightBridge(i));
+//            bridges.add(Bridge.createLeftBridge(i + 1));
+//        }
+//
+//        if (numberOfPlayer % 2 == 1) {
+//            bridges.add(Bridge.createNotLinkedBridge(numberOfPlayer));
+//        }
 
         return bridges;
     }
