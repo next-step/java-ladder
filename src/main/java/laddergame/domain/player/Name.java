@@ -27,4 +27,17 @@ public class Name {
             throw new IllegalArgumentException("이름은 5글자를 넘을 수 없습니다. - " + name.trim());
         }
     }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Name)) return false;
+        Name name1 = (Name) o;
+        return Objects.equals(getName(), name1.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
 }
