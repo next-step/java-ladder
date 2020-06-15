@@ -62,6 +62,6 @@ public class Ladder {
     }
 
     private int nextPosition(int current, Direction next) {
-        return current + next.getDirection() + getHeight();
+        return current + next.getDirection() + getMaxPosition();
     }
 }
