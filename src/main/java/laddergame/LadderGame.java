@@ -1,29 +1,24 @@
 package laddergame;
 
 import java.util.Map;
-import java.util.Scanner;
 import laddergame.model.Ladder;
 import laddergame.model.LadderResultPositions;
 import laddergame.model.Name;
 import laddergame.model.Names;
 import laddergame.model.PositiveNumber;
+import laddergame.view.LadderGameInput;
 import laddergame.view.LadderGameView;
 
 public class LadderGame {
 
-  private static final Scanner scanner = new Scanner(System.in);
-
   public static void main(String[] args) {
-    LadderGameView.printInputPlayerNamesMsg();
-    Names players = Names.createByNameStrArr(scanner.nextLine().split(","));
+    String[] playerNameStrArr = LadderGameInput.getPlayerNameStrArrInputWithPrintMsg();
+    Names players = Names.createByNameStrArr(playerNameStrArr);
 
-    LadderGameView.printInputResultNamesMsg();
-    Names results = Names.createByNameStrArrWithLength(
-        scanner.nextLine().split(","), players.getCountOfNames());
+    String[] resultNameStrArr = LadderGameInput.getResultNameStrArrInputWithPrintMsg();
+    Names results = Names.createByNameStrArrWithLength(resultNameStrArr, players.getCountOfNames());
 
-    LadderGameView.printInputLadderHeightMsg();
-    PositiveNumber ladderHeight = new PositiveNumber(scanner.nextInt());
-    scanner.nextLine();
+    PositiveNumber ladderHeight = new PositiveNumber(LadderGameInput.getHeightInputWithPrintMsg());
 
     Ladder ladder = Ladder.createByHeightAndCountOfPerson(ladderHeight, players.getCountOfNames());
 
@@ -31,12 +26,11 @@ public class LadderGame {
 
     LadderResultPositions resultPositions = LadderResultPositions
         .createByLadderWithCountOfPerson(ladder, players.getCountOfNames());
-
     Map<Name, Name> resultMap = resultPositions.getMapOf(players, results);
 
     while (true) {
-      LadderGameView.printInputResultOfPlayerMsg();
-      LadderGameView.printResult(resultMap, new Name(scanner.nextLine()));
+      Name resultOfPlayer = new Name(LadderGameInput.getResultOfPlayerInputWithPrintMsg());
+      LadderGameView.printResult(resultMap, resultOfPlayer);
     }
 
 
