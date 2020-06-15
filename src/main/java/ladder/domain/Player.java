@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Player {
 
+    public static final int NAME_LIMIT = 5;
     private String name;
 
     public Player(String name) {
@@ -14,7 +15,16 @@ public class Player {
     }
 
     private boolean nameValidate(String name) {
-        return name.length() > 5;
+        return name.length() > NAME_LIMIT;
+    }
+
+    @Override
+    public String toString() {
+        String space = "";
+        for (int i = this.name.length(); i < NAME_LIMIT; i++) {
+            space += " ";
+        }
+        return this.name + space;
     }
 
     @Override

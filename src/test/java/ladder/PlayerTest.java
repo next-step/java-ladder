@@ -17,4 +17,10 @@ public class PlayerTest {
             new Player("abcdea");
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.")
+    @Test
+    void LADDER_PLAYER_NAME_OUTPUT_TEST() {
+        assertThat(new Player("abc").toString().length()).isEqualTo(Player.NAME_LIMIT);
+    }
 }
