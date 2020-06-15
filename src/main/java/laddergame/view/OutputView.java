@@ -25,13 +25,13 @@ public class OutputView {
     }
 
     private static void printLine(Line line) {
-        System.out.println(line.getBridges().stream()
+        System.out.println(line.getLineStates().stream()
                 .map(OutputView::mappingBridge)
                 .collect(Collectors.joining("|", "|", "|")));
     }
 
-    private static String mappingBridge(Bridge bridge) {
-        if (bridge.getBridgeType().equals(BridgeType.RIGHT)) {
+    private static String mappingBridge(boolean isConnected) {
+        if (isConnected) {
             return "-----";
         }
 

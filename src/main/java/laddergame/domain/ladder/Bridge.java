@@ -1,5 +1,7 @@
 package laddergame.domain.ladder;
 
+import java.util.Objects;
+
 public class Bridge {
     private static final int MIN_COLUMN = 1;
     private final int column;
@@ -63,5 +65,19 @@ public class Bridge {
         if (column < MIN_COLUMN) {
             throw new IllegalArgumentException("열 번호는 1 이상이어야 합니다. - " + column);
         }
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Bridge)) return false;
+        Bridge bridge = (Bridge) o;
+        return column == bridge.column &&
+                getBridgeType() == bridge.getBridgeType();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(column, getBridgeType());
     }
 }

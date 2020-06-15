@@ -2,6 +2,7 @@ package laddergame.domain.ladder;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
     private final List<Bridge> bridges;
@@ -14,6 +15,21 @@ public class Line {
 
     public List<Bridge> getBridges() {
         return Collections.unmodifiableList(bridges);
+    }
+
+    public List<Boolean> getLineStates() {
+        return bridges.stream()
+                .map(this::bridgeTypeTobool)
+                .limit(bridges.size() - 1)
+                .collect(Collectors.toList());
+    }
+
+    private boolean bridgeTypeTobool(Bridge bridge) {
+        if (bridge.getBridgeType() == BridgeType.RIGHT) {
+            return true;
+        }
+
+        return false;
     }
 
     private void validateBridges(List<Bridge> bridges) {
