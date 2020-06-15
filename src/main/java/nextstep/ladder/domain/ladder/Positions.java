@@ -19,6 +19,10 @@ public class Positions {
         return positions;
     }
 
+    public int size() {
+        return positions.size();
+    }
+
     public static Positions newInstance(int maxPosition, DirectionPredicate predicate) {
         return new Positions(maxPosition, predicate);
     }

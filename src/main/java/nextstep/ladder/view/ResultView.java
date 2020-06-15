@@ -1,5 +1,7 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.game.LadderGameResult;
+import nextstep.ladder.domain.game.Result;
 import nextstep.ladder.domain.ladder.Direction;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
@@ -10,20 +12,31 @@ import java.util.stream.Collectors;
 
 public class ResultView {
 
+    private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
     private static final String EXECUTE_RESULT_MESSAGE = "실행 결과";
 
     private static String EMPTY_LINE = " ";
     private static String DEFAULT_LINE = "-";
     private static String DEFAULT_HEIGHT = "|";
 
-    public static void printResult(List<User> users, Ladder ladder) {
-        System.out.println(EXECUTE_RESULT_MESSAGE + "\n");
+    public static void printLadder(List<User> users, Ladder ladder) {
+        System.out.println(LADDER_RESULT_MESSAGE + "\n");
 
         String userString = users.stream().map(User::getName)
                 .collect(Collectors.joining(EMPTY_LINE));
 
         System.out.println(userString);
         ladder.getLines().forEach(line -> printLadderLine(line, ladder.getHeight()));
+        System.out.println();
+    }
+
+    public static void printResult(LadderGameResult ladderGameResult) {
+        System.out.println(EXECUTE_RESULT_MESSAGE);
+
+        ladderGameResult.getUserResult().entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + ":" + entry.getValue()));
+
+        System.out.println();
     }
 
     private static void printLadderLine(Line line, int height) {
