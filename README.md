@@ -9,11 +9,14 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## 기능 요구사항
-### User
-- [ ] 사람은 이름이라는 필드를 가진다.
+### Name
 - [X] 이름은 null 이거나 빈문자열일 수 없다.
-- [ ] 이름은 최대 5글자까지 부여할 수 있다.
+- [X] 이름은 최대 5글자까지 부여할 수 있다.
 - [ ] 이름은 5글자 너비로 출력한다.
+
+### User
+- [] 사람은 이름이라는 필드를 가진다.
+- [] 출력 시 이름 필드를 출력한다.
 
 ### FootStep :: 디딤대
 - [ ] 디딤대는 true/false의 arrayList로 이루어져 있다.
