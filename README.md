@@ -1,3 +1,97 @@
+# Step2 - 사다리 (생성)
+Q. 가로줄은 조건만 맞으면 랜덤으로 생성되는건가요 ,,?
+
+Q. LadderGameUsers 가 오버프로그래밍인 건지? Getter 없는 로직이 생각이안난당.
+Dto 역할만 하는 것 같기도 한다. 
+```java
+List<LadderGameUser> gameUsers = ladderGameUsers.getLadderGameUsers();
+```
+
+Q. 아예 안그려지는경우는 ,,?  --> 해결어떻게할지 ㅠㅠ!
+
+Q. 사다리가 동작하려면 각 VerticalLine은 최대 (최대높이 -1)개 만큼의 연결라인을 가져야한다.
+그래서 ConnectPoints 객체에 maxHeight을 사용하는 validation이 필요한데, maxHeight이 ConnectPoints의 상태는 아닌 것 같아서 
+생성자로 받기만한다. 
+뭔가 이런 구조를 본적이 없어서 어색한 것 같은데 ,, 괜찮을지? 
+```java
+    public ConnectPoints(final Set<Point> points, final int maxHeight) {
+        this.points = points;
+        validateNumberOfPoints(maxHeight);
+    }
+``` 
+
+
+Q. Ladder 클래스의 불변성 .. 
+- Getter지양에 어려움
+
+Q. LadderGame 매직넘버 남발 ,,
+
+
+Q. 인덴트 규칙과 파라미터개수 사이의 고민 ,,! 너무 많은 의존이 있는건가 싶었는데 다 필요해보여서 힘들다 ㅠㅠ
+```java
+    private ConnectPoints makeConnectPoints(Ladder ladder, int userIndex) {
+        Set<Point> points = new HashSet<>();
+        Point point = Point.INITIAL_POINT;
+        int maxHeight = ladder.getMaxHeight();
+        while (enoughToDrawLine(points, maxHeight)) {
+            if (canDraw(ladder, userIndex, point)) {
+                points.add(point);
+            }
+            point = point.add();
+        }
+        return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
+    }
+```
+
+기능
+[View]
+1. 사용자의 이름을 입력받는다(,기준)
+2. 최대 사다리의 높이를 입력받는다.
+
+1. 생성된 사다리를 출력한다.(5자 기준이라 폭도 넓게)
+
+
+[Domain]
+**BaseUserLine**
+1. 유저는 5자 이내이름과 자신의 지점을 가진다(0,1,2,3,...) - o 
+: name, List<Boolean> pointConnections 각 포인트별 라인이 연결되어있는지의 여부 
+ 
+ |  ------- true/false
+ |  ------- 
+ |  ------- 
+ |  -------  
+ 
+**LadderGameUser**
+게임참여자
+- 이름은 5자를 넘길 수 없다. - o
+- 중복시 Exception을 던질까? - o 
+
+**Ladder**
+```java
+List<BaseUserLine> ladderBaseLines
+```
+ 
+1. 최대 사다리의 높이를 가지고 BaseUserLine 을 생성한다. (pointConnections의 size)
+2. 
+```java
+for( 0..n-1 in ladderBaseLines) // 마지막 사다리는 긋지 않는다
+    while(최대높이 -1){ // 하나의 사다리는 최대 "높이 -1" 만큼의 라인을 그을 수 있다.
+        if(첫번째 사다리){
+            // 체크없이 Random으로 긋거나 긋지않는다
+        }else{
+            if(현재사다리의 이전사다리의 현재포인트가 true이면){
+                // 긋지않는다
+            }else{
+                // 긋거나 긋지않는다
+            }          
+        }       
+    }
+```   
+
+
+
+
+
 # 사다리 게임
 ## 진행 방법
 * 사다리 게임 게임 요구사항을 파악한다.
