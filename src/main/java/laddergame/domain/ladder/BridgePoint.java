@@ -3,24 +3,17 @@ package laddergame.domain.ladder;
 import java.util.Objects;
 
 public class BridgePoint {
-    private static final int MIN_BRIDGE_INDEX = 1;
-    private final int left;
-    private final int right;
+    private final Column left;
+    private final Column right;
 
-    public BridgePoint(final int leftIndex) {
-        validateBridgePointIndex(leftIndex);
-        this.left = leftIndex;
-        this.right = leftIndex + 1;
-    }
-
-    private void validateBridgePointIndex(final int leftIndex) {
-        if (leftIndex < MIN_BRIDGE_INDEX) {
-            throw new IllegalArgumentException("Bridge 연결 Index는 1보다 작을 수 없습니다. - " + leftIndex);
-        }
+    public BridgePoint(final int leftColumn) {
+        this.left = new Column(leftColumn);
+        this.right = new Column(leftColumn + 1);
     }
 
     public boolean isBridgeColumn(final int targetColumn) {
-        if (isLeftColumn(targetColumn) || isRightColumn(targetColumn)) {
+        Column target = new Column(targetColumn);
+        if (isLeftColumn(target) || isRightColumn(target)) {
             return true;
         }
 
@@ -28,19 +21,19 @@ public class BridgePoint {
     }
 
     public int getLeft() {
-        return left;
+        return left.getColumn();
     }
 
     public int getRight() {
-        return right;
+        return right.getColumn();
     }
 
-    private boolean isLeftColumn(final int targetColumn) {
-        return left == targetColumn;
+    private boolean isLeftColumn(final Column targetColumn) {
+        return left.equals(targetColumn);
     }
 
-    private boolean isRightColumn(final int targetColumn) {
-        return right == targetColumn;
+    private boolean isRightColumn(final Column targetColumn) {
+        return right.equals(targetColumn);
     }
 
     @Override

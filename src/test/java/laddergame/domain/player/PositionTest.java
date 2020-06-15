@@ -25,6 +25,6 @@ class PositionTest {
     void validateColumn(int column) {
         assertThatThrownBy(() -> new Position(column))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Column 번호는 1 이상이어야 합니다. - " + column);
+                .hasMessage("열 번호는 1보다 작을 수 없습니다. - " + column);
     }
 }

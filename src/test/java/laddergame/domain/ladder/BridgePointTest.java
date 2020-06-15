@@ -18,7 +18,7 @@ class BridgePointTest {
 
         assertThatThrownBy(() -> new BridgePoint(left))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Bridge 연결 Index는 1보다 작을 수 없습니다. - " + left);
+                .hasMessage("열 번호는 1보다 작을 수 없습니다. - " + left);
     }
 
     @DisplayName("인자로 받은 column 값이 자신의 left 또는 right 와 같은지 반환")
