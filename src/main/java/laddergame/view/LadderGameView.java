@@ -28,8 +28,7 @@ public class LadderGameView {
 
     sb.append(players.toString()).append(NEWLINE);
 
-    ladder.getLines().stream()
-        .forEach(line -> sb.append(line).append(NEWLINE));
+    ladder.getLines().forEach(line -> sb.append(line).append(NEWLINE));
 
     sb.append(results.toString());
 
