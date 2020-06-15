@@ -41,7 +41,7 @@ public class UserConverterTest {
     @DisplayName("유저 이름을 입력하면 해당 유저를 반환된다.")
     void convertToListFromInput(String input) {
         List<User> users = UserConverter.convertToListFromInput(input, testUser);
-        assertThat(users).hasSize(1);
+        assertThat(users.get(0).getName()).isEqualTo(input);
     }
 
     @ValueSource(strings = {"all"})

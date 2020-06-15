@@ -20,7 +20,7 @@ public class ResultsTest {
     @DisplayName("results 생성 테스트")
     void create(List<String> resultList) {
         Results results = new Results(resultList);
-        assertThat(results.size()).isEqualTo(resultList.size());
+        assertThat(results).isEqualTo(new Results(resultList));
     }
 
     @NullSource

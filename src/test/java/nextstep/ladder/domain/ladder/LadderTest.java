@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -9,13 +8,14 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LadderTest {
 
-    @Test
+    @ValueSource(ints = {1, 2, 3, 4, 5})
+    @ParameterizedTest
     @DisplayName("사다리 생성 테스트")
-    void create() {
-        Ladder ladder = new Ladder(Height.from(5), 3, new DirectionRandomPredicate());
-        assertThat(ladder.getLines()).hasSize(5);
+    void create(int height) {
+        Ladder ladder = new Ladder(Height.from(height), 3, new DirectionRandomPredicate());
+        assertThat(ladder.getLines()).hasSize(height);
         assertThat(ladder.getLines().get(0).getPositions()).isNotNull();
-        assertThat(ladder.getHeight()).isEqualTo(5);
+        assertThat(ladder.getHeight()).isEqualTo(height);
     }
 
 
