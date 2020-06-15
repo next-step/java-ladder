@@ -1,8 +1,7 @@
 package laddergame;
 
-import laddergame.domain.ladder.Height;
+import laddergame.domain.vo.Height;
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.ladder.BridgeGenerator;
 import laddergame.domain.ladder.RandomConnectGenerator;
 import laddergame.domain.player.Players;
 import laddergame.view.InputView;

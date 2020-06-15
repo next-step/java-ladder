@@ -1,12 +1,10 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Column;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ColumnTest {
     @DisplayName("열 번호가 1보다 작으면 IllegalArgumentException Throw")

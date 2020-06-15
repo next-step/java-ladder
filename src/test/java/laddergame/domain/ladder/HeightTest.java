@@ -1,12 +1,11 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Height;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class HeightTest {
     @DisplayName("높이가 1 보다 작으면 IllegalArgumentException Throw")

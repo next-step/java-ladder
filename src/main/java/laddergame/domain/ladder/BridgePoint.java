@@ -1,5 +1,7 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Column;
+
 import java.util.Objects;
 
 public class BridgePoint {

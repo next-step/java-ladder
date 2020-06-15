@@ -1,7 +1,7 @@
 package laddergame.domain.player;
 
-import laddergame.domain.ladder.Column;
-import laddergame.domain.ladder.Height;
+import laddergame.domain.vo.Column;
+import laddergame.domain.vo.Height;
 
 public class Position {
     private static final int START_HEIGHT = 1;
