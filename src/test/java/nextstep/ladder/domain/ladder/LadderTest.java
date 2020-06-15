@@ -37,7 +37,6 @@ public class LadderTest {
         int maxPosition = 3;
         Ladder ladder = new Ladder(Height.from(5), maxPosition, () -> false);
         int destinationOrder = ladder.findDestinationPosition(startPosition);
-        System.err.println(destinationOrder);
         assertThat(destinationOrder).isEqualTo(startPosition);
     }
 }
