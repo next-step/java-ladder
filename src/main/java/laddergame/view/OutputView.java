@@ -8,6 +8,11 @@ import laddergame.domain.player.Players;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    private static final String NAME_JOIN_DELIMITER = "  ";
+    private static final String PILLAR = "|";
+    private static final String BRIDGE_CONNECT = "-----";
+    private static final String BRIDGE_DISCONNECT = "     ";
+
     private OutputView() {
     }
 
@@ -16,7 +21,7 @@ public class OutputView {
 
         System.out.println(players.getPlayers().stream()
                 .map(Player::getName)
-                .collect(Collectors.joining("  ")));
+                .collect(Collectors.joining(NAME_JOIN_DELIMITER)));
 
         ladder.getLines()
                 .forEach(OutputView::printLine);
@@ -25,15 +30,15 @@ public class OutputView {
     private static void printLine(Line line) {
         System.out.println(line.getLineStates().stream()
                 .map(OutputView::mappingBridge)
-                .collect(Collectors.joining("|", "|", "|")));
+                .collect(Collectors.joining(PILLAR, PILLAR, PILLAR)));
     }
 
     private static String mappingBridge(boolean isConnected) {
         if (isConnected) {
-            return "-----";
+            return BRIDGE_CONNECT;
         }
 
-        return "     ";
+        return BRIDGE_DISCONNECT;
     }
 
 }
