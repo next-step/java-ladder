@@ -3,7 +3,6 @@ package laddergame.model;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,9 +14,9 @@ class LadderTest {
   @MethodSource("heightAndNameStrArrProvider")
   void createByHeightAndNamesStrArr(PositiveNumber height, String namesStr) {
     String[] nameStrArr = namesStr.split(",");
-    Players players = Players.createByNameStrArr(namesStr.split(","));
+    Names names = Names.createByNameStrArr(namesStr.split(","));
 
-    Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, players.getCountOfPerson());
+    Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, names.getCountOfNames());
 
     assertThat(ladder.getLines().size()).isEqualTo(height.getValue());
 

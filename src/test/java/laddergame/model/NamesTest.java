@@ -10,15 +10,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class PlayersTest {
+class NamesTest {
 
   @ParameterizedTest
   @MethodSource("nameStrArrProvider")
   void createByNameStrArr(List<String> nameStrList, String namesStr) {
-    Players playersCreatedByList = Players.createByNameStrArr(nameStrList.toArray(new String[0]));
-    Players playersCreatedByStr = Players.createByNameStrArr(namesStr.split(","));
+    Names namesCreatedByList = Names.createByNameStrArr(nameStrList.toArray(new String[0]));
+    Names namesCreatedByStr = Names.createByNameStrArr(namesStr.split(","));
 
-    assertThat(playersCreatedByList).isEqualTo(playersCreatedByStr);
+    assertThat(namesCreatedByList).isEqualTo(namesCreatedByStr);
   }
 
   public static Stream<Arguments> nameStrArrProvider() {
