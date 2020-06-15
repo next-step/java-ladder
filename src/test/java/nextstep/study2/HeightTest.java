@@ -24,11 +24,12 @@ class HeightTest {
 	
 	
 	@Test
-	@DisplayName("사다리의 높이 테스트")
-	void 테스트() {
+	@DisplayName("사다리의 높이가 같은지 검증")
+	void 사다리의_높이가_같은지_검증() {
 		height = new Height(50);
 		height1 = new Height(50);
 		
 		assertThat(height).isEqualTo(height1);
+		assertThat(height.getHeight()).isEqualTo(height1.getHeight());
 	}
 }

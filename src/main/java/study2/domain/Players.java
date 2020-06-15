@@ -26,5 +26,9 @@ public class Players {
 		}
 		
 	}
+
+	public int getPlayersCount() {
+		return this.players.size();
+	}
 	
 }
