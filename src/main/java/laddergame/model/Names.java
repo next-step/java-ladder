@@ -19,11 +19,21 @@ public class Names {
         .collect(Collectors.toList()));
   }
 
+  public static Names createByNameStrArrWithLength(String[] nameStrArr, PositiveNumber length) {
+    if (nameStrArr.length != length.getValue()) {
+      throw new IllegalArgumentException("입력 값의 길이가 지정된 길이와 다릅니다.");
+    }
+
+    return new Names(Stream.of(nameStrArr)
+        .map(Name::new)
+        .collect(Collectors.toList()));
+  }
+
   public PositiveNumber getCountOfNames() {
     return new PositiveNumber(names.size());
   }
 
-  public Name getPlayerByIndex(int index) {
+  public Name getNameByIndex(int index) {
     return names.get(index);
   }
 

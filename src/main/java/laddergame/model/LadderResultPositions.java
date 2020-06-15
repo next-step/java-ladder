@@ -1,6 +1,7 @@
 package laddergame.model;
 
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -42,8 +43,10 @@ public class LadderResultPositions {
         .range(0, positions.size())
         .boxed()
         .collect(Collectors
-            .toMap(players::getPlayerByIndex,
-                i -> results.getPlayerByIndex(positions.get(i).getValue())));
+            .toMap(players::getNameByIndex,
+                i -> results.getNameByIndex(positions.get(i).getValue()),
+                (x, y) -> y,
+                LinkedHashMap::new));
   }
 
   @Override

@@ -10,6 +10,8 @@ public class Name {
   private final String value;
 
   public Name(String value) {
+    value = value.trim();
+
     if (MAX_LENGTH < value.length()) {
       throw new IllegalArgumentException("이름이 5글자 초과 value : " + value);
     }
