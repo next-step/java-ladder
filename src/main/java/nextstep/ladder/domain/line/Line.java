@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private static final String POINT_TRUE = "-----";
-    private static final String POINT_FALSE = "     ";
+    private static final String POINT_LINED = "-----|";
+    private static final String POINT_UNLINED = "     |";
 
     private final List<Boolean> points = new ArrayList<>();
     private final Random random = new Random();
@@ -16,13 +16,16 @@ public class Line {
     }
 
     private void createLine(int playerCount) {
-        for(int i = 0; i < playerCount; i++) {
-            if(i == 0 || !points.get(i-1)) {
-                points.add(i, getRandomBoolean());
-            } else {
-                points.add(i, false);
-            }
+        boolean lined;
+
+        for(int i = 0; i < playerCount-1; i++) {
+            lined = (i == 0 || !isBeforeLined(i)) ? getRandomBoolean() : false;
+            points.add(i, lined);
         }
+    }
+
+    private boolean isBeforeLined(int index) {
+        return points.get(index - 1);
     }
 
     private boolean getRandomBoolean() {
@@ -34,16 +37,11 @@ public class Line {
     }
 
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("|");
+        StringBuilder stringBuilder = new StringBuilder("    |");
 
         points.forEach(point -> {
-            if(point) {
-                stringBuilder.append(POINT_TRUE);
-            } else {
-                stringBuilder.append(POINT_FALSE);
-            }
-
-            stringBuilder.append("|");
+            String append = point ? POINT_LINED : POINT_UNLINED;
+            stringBuilder.append(append);
         });
 
         return stringBuilder.toString();
