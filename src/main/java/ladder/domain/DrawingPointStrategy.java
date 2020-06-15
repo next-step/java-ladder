@@ -1,4 +1,4 @@
-package ladder;
+package ladder.domain;
 
 @FunctionalInterface
 public interface DrawingPointStrategy {

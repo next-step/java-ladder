@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.LadderLinePoint;
+import ladder.domain.LadderLinePoints;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -67,5 +69,85 @@ class LadderLinePointsTest {
 						LadderLinePoint.of(false),
 						LadderLinePoint.of(false),
 						LadderLinePoint.of(false))));
+	}
+
+	@DisplayName("오른쪽으로 연결된 n번째 좌표를 지나면 n+1번째 위치로 이동한다")
+	@ParameterizedTest
+	@MethodSource("moveToRightArguments")
+	void moveToRight(LadderLinePoints points, int position, int expected) {
+		int movedPointIndex = points.moveSideFrom(position);
+		assertThat(movedPointIndex).isEqualTo(expected);
+	}
+
+	public static Stream<Arguments> moveToRightArguments() {
+		LadderLinePoints points = LadderLinePoints.of(Arrays.asList(
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(true),
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(true),
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(true),
+				LadderLinePoint.of(false)));
+
+		return Stream.of(
+				Arguments.of(points, 1, 2),
+				Arguments.of(points, 3, 4),
+				Arguments.of(points, 5, 6));
+	}
+
+	@DisplayName("왼쪽으로 연결된 n번째 좌표를 지나면 n-1번째 위치로 이동한다")
+	@ParameterizedTest
+	@MethodSource("moveToLeftArguments")
+	void moveToLeft(LadderLinePoints points, int position, int expected) {
+		int movedPointIndex = points.moveSideFrom(position);
+		assertThat(movedPointIndex).isEqualTo(expected);
+	}
+
+	public static Stream<Arguments> moveToLeftArguments() {
+		LadderLinePoints points = LadderLinePoints.of(Arrays.asList(
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(true),
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(true),
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(true),
+				LadderLinePoint.of(false)));
+
+		return Stream.of(
+				Arguments.of(points, 2, 1),
+				Arguments.of(points, 4, 3),
+				Arguments.of(points, 6, 5));
+	}
+
+	@DisplayName("연결되지 않은 n번째 좌표를 지나면 n번째 위치로 이동한다")
+	@ParameterizedTest
+	@MethodSource("stayArguments")
+	void stay(LadderLinePoints points, int position, int expected) {
+		int movedPointIndex = points.moveSideFrom(position);
+		assertThat(movedPointIndex).isEqualTo(expected);
+	}
+
+	public static Stream<Arguments> stayArguments() {
+		LadderLinePoints points = LadderLinePoints.of(Arrays.asList(
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(false)));
+
+		return Stream.of(
+				Arguments.of(points, 0, 0),
+				Arguments.of(points, 1, 1),
+				Arguments.of(points, 2, 2));
+	}
+
+	@DisplayName("좌표 수보다 큰 위치에서 이동하려고 하면 IllegalArgumentException")
+	@Test
+	void moveSideFrom_greaterThanPointCount() {
+		LadderLinePoints points = LadderLinePoints.of(Arrays.asList(
+				LadderLinePoint.of(false),
+				LadderLinePoint.of(false)));
+
+		assertThatThrownBy(() -> points.moveSideFrom(2))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("좌표 수보다 큰 위치");
 	}
 }
