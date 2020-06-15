@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
@@ -39,6 +41,22 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        Predicate<Integer> isOverThree = isGraterThan(3);
+        Function<Integer, Integer> calculateDouble = multiply(2);
+
+        return numbers.stream()
+                .filter(isOverThree)
+                .map(calculateDouble)
+                .reduce(Integer::sum)
+                .orElse(0);
+    }
+
+    private static Function<Integer, Integer> multiply(Integer operand) {
+        return i -> i * operand;
+    }
+
+
+    private static Predicate<Integer> isGraterThan(Integer number) {
+        return i -> i > number;
     }
 }
