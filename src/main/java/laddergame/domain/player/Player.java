@@ -1,5 +1,7 @@
 package laddergame.domain.player;
 
+import java.util.Objects;
+
 public class Player {
     private final Name name;
     private final Position position;
@@ -14,7 +16,7 @@ public class Player {
     }
 
     public boolean isSameName(String name) {
-        return getName().equals(name);
+        return Objects.equals(getName(), name);
     }
 
     public int getCurrentHeight() {
