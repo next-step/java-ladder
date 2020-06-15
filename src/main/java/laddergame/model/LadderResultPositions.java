@@ -1,6 +1,5 @@
 package laddergame.model;
 
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -38,12 +37,13 @@ public class LadderResultPositions {
     return position;
   }
 
-  public Map<Player, String> getMapOf(Players players, String[] results) {
+  public Map<Name, Name> getMapOf(Names players, Names results) {
     return IntStream
         .range(0, positions.size())
         .boxed()
         .collect(Collectors
-            .toMap(players::getPlayerByIndex, i -> results[positions.get(i).getValue()]));
+            .toMap(players::getPlayerByIndex,
+                i -> results.getPlayerByIndex(positions.get(i).getValue())));
   }
 
   @Override

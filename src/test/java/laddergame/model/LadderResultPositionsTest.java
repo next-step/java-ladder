@@ -39,7 +39,7 @@ class LadderResultPositionsTest {
   @DisplayName("사다리 결과 저장")
   void createByLadderWithCountOfPerson(Ladder ladder, LadderResultPositions expected) {
     PositiveNumber countOfPerson = new PositiveNumber(ladder.getLines().get(0).getPoints().size());
-    
+
     assertThat(LadderResultPositions.createByLadderWithCountOfPerson(ladder, countOfPerson))
         .isEqualTo(expected);
   }
@@ -144,10 +144,10 @@ class LadderResultPositionsTest {
   @ParameterizedTest
   @MethodSource("providePositionsPlayersResultsWithExpected")
   @DisplayName("플레이어와 결과 매핑")
-  void getMapOf(LadderResultPositions ladderResultPositions, Players players, String[] results,
-      Map<Player, String> expected) {
-    Map<Player, String> resultPositionsMap = ladderResultPositions
-        .getMapOf(players, results);
+  void getMapOf(LadderResultPositions ladderResultPositions, Names keys, Names values,
+      Map<Name, String> expected) {
+    Map<Name, Name> resultPositionsMap = ladderResultPositions
+        .getMapOf(keys, values);
 
     resultPositionsMap.keySet().forEach(
         player -> assertThat(resultPositionsMap.get(player)).isEqualTo(expected.get(player)));
@@ -164,20 +164,27 @@ class LadderResultPositionsTest {
                     new Position(new NaturalNumber(1))
                 )
             ),
-            new Players(
+            new Names(
                 Arrays.asList(
-                    new Player(new Name("test1")),
-                    new Player(new Name("test2")),
-                    new Player(new Name("test3")),
-                    new Player(new Name("test4"))
+                    new Name("test1"),
+                    new Name("test2"),
+                    new Name("test3"),
+                    new Name("test4")
                 )
             ),
-            "result1,result2,result3,result4".split((",")),
-            new HashMap<Player, String>() {{
-              put(new Player(new Name("test1")), "result3");
-              put(new Player(new Name("test2")), "result1");
-              put(new Player(new Name("test3")), "result4");
-              put(new Player(new Name("test4")), "result2");
+            new Names(
+                Arrays.asList(
+                    new Name("rslt1"),
+                    new Name("rslt2"),
+                    new Name("rslt3"),
+                    new Name("rslt4")
+                )
+            ),
+            new HashMap<Name, Name>() {{
+              put(new Name("test1"), new Name("rslt3"));
+              put(new Name("test2"), new Name("rslt1"));
+              put(new Name("test3"), new Name("rslt4"));
+              put(new Name("test4"), new Name("rslt2"));
             }}
         )
     );
