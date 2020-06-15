@@ -1,8 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Direction;
-import ladder.domain.Line;
-import ladder.domain.ResultRecord;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -15,19 +13,23 @@ public class ResultVIew {
     private static final String COLON = " : ";
     private static final String ONE_SPACE_BAR = " ";
     private static final String ENTER = "\n";
-    private static final String ALL = "all";
     private static final int NAME_SPACE = 6;
 
     private static StringBuilder stringBuilder;
 
-    public static void printLadder(List<String> peopleNames, List<Line> lines) {
+    public static void printLadder(List<String> peopleNames, List<LadderLine> lines) {
         stringBuilder = new StringBuilder();
         stringBuilder.append(PLAY_RESULT);
 
         peopleNames.forEach(ResultVIew::printName);
         stringBuilder.append(ENTER);
 
-        lines.forEach(line -> printLine(line.getPoints()));
+        lines.forEach(line -> {
+            for (Point point : line.getPoints()) {
+                printLine(point.getDirection());
+            }
+            stringBuilder.append(ENTER);
+        });
         stringBuilder.replace(stringBuilder.length()-1, stringBuilder.length(), "");
         System.out.println(stringBuilder.toString());
     }
@@ -62,15 +64,12 @@ public class ResultVIew {
         stringBuilder.append(name);
     }
 
-    private static void printLine(List<Direction> points) {
-        points.forEach(v -> {
-            if (v.isLeft()) {
-                stringBuilder.append(LINES);
-            } else {
-                stringBuilder.append(EMPTY_LINES);
-            }
-            stringBuilder.append(STICK);
-        });
-        stringBuilder.append(ENTER);
+    private static void printLine(Direction direction) {
+        if (direction.isLeft()) {
+            stringBuilder.append(LINES);
+        } else {
+            stringBuilder.append(EMPTY_LINES);
+        }
+        stringBuilder.append(STICK);
     }
 }

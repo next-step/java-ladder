@@ -11,24 +11,24 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderTest {
-    private final List<Line> lines = new ArrayList<>();
+    private final List<LadderLine> lines = new ArrayList<>();
 
     @BeforeEach
     void setup() {
         // |----|    |
         // |    |----|
-        List<Direction> points1 = new ArrayList<>();
-        points1.add(new Direction(false, true));
-        points1.add(new Direction(true, false));
-        points1.add(new Direction(false, false));
+        List<Point> points1 = new ArrayList<>();
+        points1.add(new Point(0, Direction.of(false, true)));
+        points1.add(new Point(1, Direction.of(true, false)));
+        points1.add(new Point(2, Direction.of(false, false)));
 
-        List<Direction> points2 = new ArrayList<>();
-        points2.add(new Direction(false, false));
-        points2.add(new Direction(false, true));
-        points2.add(new Direction(true, false));
+        List<Point> points2 = new ArrayList<>();
+        points2.add(new Point(0, Direction.of(false, false)));
+        points2.add(new Point(1, Direction.of(false, true)));
+        points2.add(new Point(2, Direction.of(true, false)));
 
-        lines.add(new Line(points1));
-        lines.add(new Line(points2));
+        lines.add(new LadderLine(points1));
+        lines.add(new LadderLine(points2));
     }
 
     @ParameterizedTest
