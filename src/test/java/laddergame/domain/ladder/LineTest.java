@@ -16,38 +16,31 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.in;
 
 class LineTest {
-
     private static Stream<Arguments> provideNumberOfPlayerAndBridges() {
-        return Stream.of(Arguments.of(1, createBridges(1)),
-                Arguments.of(2, createBridges(2)),
-                Arguments.of(3, createBridges(3)));
+        return Stream.of(
+                Arguments.of(1, Arrays.asList(false), createBridges(Arrays.asList(false))),
+                Arguments.of(2, Arrays.asList(true), createBridges(Arrays.asList(true))),
+                Arguments.of(3, Arrays.asList(false, true), createBridges(Arrays.asList(false, true))));
     }
 
-    private static List<Bridge> createBridges(int numberOfPlayer) {
-//        if (numberOfPlayer == 1) {
-//            return Arrays.asList(Bridge.createNotLinkedBridge(1));
-//        }
+    private static List<Bridge> createBridges(List<Boolean> connections) {
+        return IntStream.rangeClosed(1, connections.size())
+                .mapToObj(column -> new Bridge(connections.get(column - 1), column))
+                .collect(Collectors.toList());
 
-        List<Bridge> bridges = new ArrayList<>();
-//        for (int i = 1; i <= numberOfPlayer / 2; i++) {
-//            bridges.add(Bridge.createRightBridge(i));
-//            bridges.add(Bridge.createLeftBridge(i + 1));
-//        }
-//
-//        if (numberOfPlayer % 2 == 1) {
-//            bridges.add(Bridge.createNotLinkedBridge(numberOfPlayer));
-//        }
-
-        return bridges;
     }
 
     @DisplayName("인원수에 맞게 다리를 생성한다.")
     @ParameterizedTest
     @MethodSource("provideNumberOfPlayerAndBridges")
-    void createLine(int numberOfPlayer, List<Bridge> expectedResult) {
-        Line line = new Line(numberOfPlayer, () -> true);
+    void createLine(int numberOfPlayer, List<Boolean> expectedConnection, List<Bridge> expectedResult) {
+        FixedConnectGenerator fixedConnectGenerator = new FixedConnectGenerator(expectedConnection);
+
+        Line line = new Line(numberOfPlayer, fixedConnectGenerator);
+
         assertThat(line.getBridges()).isEqualTo(expectedResult);
     }
 

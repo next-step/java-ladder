@@ -46,4 +46,18 @@ public class Bridge {
     public boolean isConnected() {
         return connection;
     }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Bridge)) return false;
+        Bridge bridge = (Bridge) o;
+        return connection == bridge.connection &&
+                bridgePoint.equals(bridge.bridgePoint);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(connection, bridgePoint);
+    }
 }

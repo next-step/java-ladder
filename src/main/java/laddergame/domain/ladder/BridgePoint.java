@@ -1,5 +1,7 @@
 package laddergame.domain.ladder;
 
+import java.util.Objects;
+
 public class BridgePoint {
     private static final int MIN_BRIDGE_INDEX = 1;
     private final int left;
@@ -39,5 +41,19 @@ public class BridgePoint {
 
     private boolean isRightColumn(final int targetColumn) {
         return right == targetColumn;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BridgePoint)) return false;
+        BridgePoint that = (BridgePoint) o;
+        return getLeft() == that.getLeft() &&
+                getRight() == that.getRight();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLeft(), getRight());
     }
 }

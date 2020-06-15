@@ -28,7 +28,7 @@ class LadderTest {
 
     @DisplayName("사다리 높이와 참여 인원수에 맞는 사다리를 만든다.")
     @ParameterizedTest
-    @CsvSource({"1, 2", "2, 4", "2, 1"})
+    @CsvSource({"1, 2", "2, 4"})
     void createLadder(int ladderHeight, int numberOfPlayer) {
         Ladder ladder = new Ladder(ladderHeight, numberOfPlayer, () -> true);
 
@@ -37,7 +37,7 @@ class LadderTest {
 
         assertAll(
                 () -> assertThat(lines.size()).isEqualTo(ladderHeight),
-                () -> assertThat(bridges.size()).isEqualTo(numberOfPlayer)
+                () -> assertThat(bridges.size()).isEqualTo(numberOfPlayer - 1)
         );
     }
 }
