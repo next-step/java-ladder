@@ -15,7 +15,6 @@ public class LadderService {
     }
 
     public void printLadder() {
-        ResultView.printPlayers(players);
-        ResultView.printLines(lines);
+        ResultView.printResult(players, lines);
     }
 }

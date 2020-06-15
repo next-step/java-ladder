@@ -21,6 +21,6 @@ public class Name {
     }
 
     public String toString() {
-        return String.format("%-" + (NAME_UPPER_BOUND+1) + "s", name);
+        return String.format("%" + NAME_UPPER_BOUND + "s ", name);
     }
 }
