@@ -26,10 +26,10 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers, Filter<Integer> f) {
+    public static int sumAll(List<Integer> numbers, Conditional<Integer> f) {
         int total = 0;
         for (int number : numbers) {
-            if (f.filter(number)) {
+            if (f.matches(number)) {
                 total += number;
             }
         }
