@@ -22,6 +22,4 @@ class LadderRewardTest {
         assertThatThrownBy(() -> LadderReward.inputReward(""))
                 .hasMessageMatching("유요하지 않은 경품을 입력했습니다.");
     }
-
-
 }

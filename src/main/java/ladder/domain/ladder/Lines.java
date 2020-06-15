@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class Lines {
 
     private final List<Line> lines;
-    int playerCount;
+    private int playerCount;
 
     public Lines(final List<Line> lines, int playerCount){
         validate(lines);

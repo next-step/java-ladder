@@ -1,6 +1,5 @@
-package ladder.domain.ladder;
+package ladder.domain.util;
 
-import ladder.domain.util.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
