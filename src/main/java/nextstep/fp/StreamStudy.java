@@ -30,13 +30,7 @@ public class StreamStudy {
 
         words.stream()
                 .distinct()
-                .sorted((str1, str2) -> {
-                    if(str1.length() == str2.length()) {
-                        return 0;
-                    }
-
-                    return str1.length() < str2.length() ? 1 : -1;
-                })
+                .sorted((str1, str2) -> str2.length() - str1.length())
                 .limit(100)
                 .map(String::toLowerCase)
                 .forEach(System.out::println);
