@@ -29,4 +29,15 @@ public class LadderTest {
         assertThat(destinationOrder).isNotNull();
         assertThat(destinationOrder).isLessThanOrEqualTo(maxPosition);
     }
+
+    @ValueSource(ints = {0, 1, 2})
+    @ParameterizedTest
+    @DisplayName("사다리 도착지점 예상 테스트")
+    void findDestinationPredicate(int startPosition) {
+        int maxPosition = 3;
+        Ladder ladder = new Ladder(Height.from(5), maxPosition, () -> false);
+        int destinationOrder = ladder.findDestinationPosition(startPosition);
+        System.err.println(destinationOrder);
+        assertThat(destinationOrder).isEqualTo(startPosition);
+    }
 }
