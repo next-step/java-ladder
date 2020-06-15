@@ -1,7 +1,5 @@
 package laddergame.view;
 
-import laddergame.domain.ladder.Bridge;
-import laddergame.domain.ladder.BridgeType;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
 import laddergame.domain.player.Player;
