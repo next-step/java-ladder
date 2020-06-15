@@ -5,12 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    private static final int MIN_LADDER_HEIGHT = 1;
     private final List<Line> lines;
 
-    public Ladder(int ladderHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
-        validateLadderHeight(ladderHeight);
-        this.lines = createLines(ladderHeight, numberOfPlayer, connectGenerator);
+    public Ladder(Height ladderHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
+        this.lines = createLines(ladderHeight.getHeight(), numberOfPlayer, connectGenerator);
     }
 
     private List<Line> createLines(int ladderHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
@@ -20,12 +18,6 @@ public class Ladder {
         }
 
         return lines;
-    }
-
-    public void validateLadderHeight(int ladderHeight) {
-        if (ladderHeight < MIN_LADDER_HEIGHT) {
-            throw new IllegalArgumentException("사다리 높이가 너무 작습니다. - " + ladderHeight);
-        }
     }
 
     public List<Line> getLines() {
