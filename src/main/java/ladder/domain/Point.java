@@ -14,27 +14,20 @@ public class Point {
     }
 
     public static Point drawFirstPoint(boolean isDown) {
-        if (isDown) {
-            return new Point(MINIMUM_INDEX, Direction.DOWN);
-        }
-        return new Point(MINIMUM_INDEX, Direction.RIGHT);
+        return isDown ? new Point(MINIMUM_INDEX, Direction.DOWN) : new Point(MINIMUM_INDEX, Direction.RIGHT);
     }
 
     public static Point drawMiddlePoint(Point lastPoint, boolean isDown) {
         if (lastPoint.isConnected()) {
             return new Point(lastPoint.index + NEXT_INDEX, Direction.LEFT);
         }
-        if (isDown) {
-            return new Point(lastPoint.index + NEXT_INDEX, Direction.DOWN);
-        }
-        return new Point(lastPoint.index + NEXT_INDEX, Direction.RIGHT);
+        return isDown ? new Point(lastPoint.index + NEXT_INDEX, Direction.DOWN)
+                : new Point(lastPoint.index + NEXT_INDEX, Direction.RIGHT);
     }
 
     public static Point drawLastPoint(Point lastPoint) {
-        if (lastPoint.isConnected()) {
-            return new Point(lastPoint.index + NEXT_INDEX, Direction.LEFT);
-        }
-        return new Point(lastPoint.index + NEXT_INDEX, Direction.DOWN);
+        return lastPoint.isConnected() ? new Point(lastPoint.index + NEXT_INDEX, Direction.LEFT)
+                : new Point(lastPoint.index + NEXT_INDEX, Direction.DOWN);
     }
 
     private boolean isConnected() {
