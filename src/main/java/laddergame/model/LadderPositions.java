@@ -20,8 +20,8 @@ public class LadderPositions {
     this.positions = positions;
   }
 
-  public Position getPositionByIndex(int index) {
-    return positions.get(index);
+  public static LadderPositions createResultPositionsByLadderWithCountOfNumber() {
+
   }
 
   public Map<Player, String> getMapOf(Players players, String[] results) {

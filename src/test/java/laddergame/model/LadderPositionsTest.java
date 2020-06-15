@@ -16,34 +16,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LadderPositionsTest {
 
   @ParameterizedTest
-  @MethodSource("providePositionsWithIndex")
-  void getPositionByIndex(LadderPositions result, int index, Position expected) {
-    assertThat(result.getPositionByIndex(index)).isEqualTo(expected);
-
-  }
-
-  public static Stream<Arguments> providePositionsWithIndex() {
-    return Stream.of(
-        arguments(
-            new LadderPositions(Arrays.asList(
-                new Position(new NaturalNumber(1)))
-            ),
-            0,
-            new Position(new NaturalNumber(1))
-        ),
-        arguments(
-            new LadderPositions(Arrays.asList(
-                new Position(new NaturalNumber(1)),
-                new Position(new NaturalNumber(3)),
-                new Position(new NaturalNumber(2)))
-            ),
-            2,
-            new Position(new NaturalNumber(2))
-        )
-    );
-  }
-
-  @ParameterizedTest
   @MethodSource("provideDuplicatedPositions")
   @DisplayName("LadderPositions 생성 시 positions 의 값이 겹치는 경우")
   void init_withDuplicatedPositions(List<Position> positions) {
@@ -65,8 +37,9 @@ class LadderPositionsTest {
 
 
   @ParameterizedTest
-  @MethodSource("provideLadderPlayersResultsExpected")
-  void getResultPositionsMapOf(LadderPositions ladderPositions, Players players, String[] results,
+  @MethodSource("providePositionsPlayersResultsWithExpected")
+  @DisplayName("플레이어와 결과 매핑")
+  void getMapOf(LadderPositions ladderPositions, Players players, String[] results,
       Map<Player, String> expected) {
     Map<Player, String> resultPositionsMap = ladderPositions
         .getMapOf(players, results);
@@ -75,7 +48,7 @@ class LadderPositionsTest {
         player -> assertThat(resultPositionsMap.get(player)).isEqualTo(expected.get(player)));
   }
 
-  public static Stream<Arguments> provideLadderPlayersResultsExpected() {
+  public static Stream<Arguments> providePositionsPlayersResultsWithExpected() {
     return Stream.of(
         arguments(
             new LadderPositions(
