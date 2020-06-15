@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position {
 
-  NaturalNumber value;
+  private final NaturalNumber value;
 
   public Position(NaturalNumber value) {
     this.value = value;

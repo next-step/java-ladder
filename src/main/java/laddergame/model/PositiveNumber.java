@@ -3,7 +3,7 @@ package laddergame.model;
 import java.util.Objects;
 
 public class PositiveNumber {
-  private int value;
+  private final int value;
 
   public PositiveNumber(int value) {
     if (value < 1) {
