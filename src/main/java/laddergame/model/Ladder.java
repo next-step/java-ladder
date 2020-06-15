@@ -2,9 +2,7 @@ package laddergame.model;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -48,14 +46,4 @@ public class Ladder {
     return resultPositions;
   }
 
-  public Map<Player, String> getResultPositionsMapOf(Players players, String[] results) {
-    List<Position> positions = getResultPositions().getPositions();
-
-    return IntStream
-        .range(0, positions.size())
-        .boxed()
-        .collect(Collectors
-            .toMap(players::getPlayerByIndex, i -> results[positions.get(i).getValue()],
-                (a, b) -> b));
-  }
 }

@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -150,66 +149,4 @@ class LadderTest {
         )
     );
   }
-
-  @ParameterizedTest
-  @MethodSource("provideLadderPlayersResultsExpected")
-  void getResultPositionsMapOf(Ladder ladder, Players players, String[] results,
-      Map<Player, String> expected) {
-    Map<Player, String> resultPositionsMap = ladder.getResultPositionsMapOf(players, results);
-
-    resultPositionsMap.keySet().forEach(
-        player -> assertThat(resultPositionsMap.get(player)).isEqualTo(expected.get(player)));
-  }
-
-  public static Stream<Arguments> provideLadderPlayersResultsExpected() {
-    return Stream.of(
-        arguments(
-            new Ladder(
-                Arrays.asList(
-                    new Line(
-                        Arrays.asList(
-                            new Point(false),
-                            new Point(false),
-                            new Point(false),
-                            new Point(true)
-                        )
-                    ),
-                    new Line(
-                        Arrays.asList(
-                            new Point(false),
-                            new Point(true),
-                            new Point(false),
-                            new Point(false)
-                        )
-                    ),
-                    new Line(
-                        Arrays.asList(
-                            new Point(false),
-                            new Point(false),
-                            new Point(true),
-                            new Point(false)
-                        )
-                    )
-                )
-            ),
-            new Players(
-                Arrays.asList(
-                    new Player(new Name("test1")),
-                    new Player(new Name("test2")),
-                    new Player(new Name("test3")),
-                    new Player(new Name("test4"))
-                )
-            ),
-            "result1,result2,result3,result4".split((",")),
-            new HashMap<Player, String>(){{
-              put(new Player(new Name("test1")), "result3");
-              put(new Player(new Name("test2")), "result1");
-              put(new Player(new Name("test3")), "result4");
-              put(new Player(new Name("test4")), "result2");
-            }}
-        )
-    );
-  }
-
-
 }

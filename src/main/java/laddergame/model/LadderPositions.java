@@ -1,14 +1,16 @@
 package laddergame.model;
 
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderPositions {
 
-  List<Position> positions;
+  private final List<Position> positions;
 
   public LadderPositions(List<Position> positions) {
     if (new HashSet<>(positions).size() != positions.size()) {
@@ -22,8 +24,12 @@ public class LadderPositions {
     return positions.get(index);
   }
 
-  public List<Position> getPositions() {
-    return Collections.unmodifiableList(positions);
+  public Map<Player, String> getMapOf(Players players, String[] results) {
+    return IntStream
+        .range(0, positions.size())
+        .boxed()
+        .collect(Collectors
+            .toMap(players::getPlayerByIndex, i -> results[positions.get(i).getValue()]));
   }
 
   @Override
@@ -49,4 +55,5 @@ public class LadderPositions {
         "positions=" + positions +
         '}';
   }
+
 }
