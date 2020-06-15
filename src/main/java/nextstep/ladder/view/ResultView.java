@@ -20,7 +20,7 @@ public class ResultView {
         players.getPlayers()
                 .stream()
                 .map(Player::getName)
-                .forEach(System.out::print);
+                .forEach(name -> System.out.print(name + " "));
 
         System.out.println();
     }
