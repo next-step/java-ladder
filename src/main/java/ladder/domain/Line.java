@@ -7,56 +7,28 @@ import java.util.stream.IntStream;
 public class Line {
 
     private static final int PER_PERSON_LINE = 2;
-    private static final int CHUNKER_VALUE = 2;
     private static final int MIN_CHECKOUT_POINT = 1;
     private static final int PRE_CHECKOUT_POINT = 2;
-    private List<Linetype> lineTypes = new ArrayList<>();
-    private PossibilityStrategy possibilityStrategy;
+    private List<LineType> lineTypes = new ArrayList<>();
 
-    public Line() {
-    }
-
-    public Line(List<Linetype> lineTypes) {
+    public Line(List<LineType> lineTypes) {
         this.lineTypes = lineTypes;
     }
 
     public Line(int participantCount, PossibilityStrategy possibilityStrategy) {
-        this.possibilityStrategy = possibilityStrategy;
-
         IntStream.rangeClosed(0, (participantCount - 1) * PER_PERSON_LINE).forEach(point -> {
-            lineTypes.add(makeType(point));
+            lineTypes.add(LineType.makeType(new LineTypeDTO(point, possibilityStrategy, checkPrePoint(point))));
         });
     }
 
-    public List<Linetype> getLineTypes() {
+    public List<LineType> getLineTypes() {
         return lineTypes;
     }
 
-    private Linetype makeType(int point) {
-        if (point % CHUNKER_VALUE == 0) {
-            return Linetype.VERTICAL;
-        }
-        return getRandomType(point);
-    }
-
-    private Linetype getRandomType(int point) {
-        if (checkPrePoint(point)) {
-            return Linetype.BLANK;
-        }
-        return getHorizontalType(possibilityStrategy);
-    }
-
-    private Linetype getHorizontalType(PossibilityStrategy possibilityStrategy) {
-        if (possibilityStrategy.check()) {
-            return Linetype.HORIZONTAL;
-        }
-        return Linetype.BLANK;
-    }
-
-    private boolean checkPrePoint(int point) {
+    boolean checkPrePoint(int point) {
         if (point <= MIN_CHECKOUT_POINT) {
             return false;
         }
-        return lineTypes.get(point - PRE_CHECKOUT_POINT).equals(Linetype.HORIZONTAL);
+        return lineTypes.get(point - PRE_CHECKOUT_POINT).equals(LineType.HORIZONTAL);
     }
 }

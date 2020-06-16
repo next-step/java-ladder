@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.Line;
-import ladder.domain.Linetype;
-import ladder.domain.OnePossibilityStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LineTest {
 
     Line line;
+    List<LineType> lineTypeList;
 
     @BeforeEach
     void setUp() {
-        line = new Line();
+        lineTypeList = new ArrayList<>(List.of(LineType.VERTICAL, LineType.BLANK, LineType.VERTICAL, LineType.HORIZONTAL));
+        line = new Line(lineTypeList);
     }
 
     @Test
@@ -27,20 +26,12 @@ public class LineTest {
 
     @Test
     void initLineTypeListTest() {
-        List<Linetype> lineTypeList = new ArrayList<>(List.of(Linetype.VERTICAL, Linetype.BLANK, Linetype.HORIZONTAL));
-        Line line = new Line(lineTypeList);
         assertThat(line.getLineTypes()).containsAll(lineTypeList);
     }
 
     @Test
-    void makeVerticalTypeTest() {
-        Linetype linetype = line.makeType(0);
-        assertThat(Linetype.VERTICAL.getLine()).isEqualTo(linetype.getLine());
+    void checkPrePointTest() {
+        assertThat(line.checkPrePoint(3)).isEqualTo(false);
     }
 
-    @Test
-    void getHorizontalTypeTest() {
-        Linetype linetype = line.getHorizontalType(new OnePossibilityStrategy());
-        assertThat(Linetype.HORIZONTAL.getLine()).isEqualTo(linetype.getLine());
-    }
 }
