@@ -31,6 +31,10 @@ public class Point {
         return new Point(this.index +1, direction.last());
     }
 
+    public Point next(PointGenerationStrategy strategy) {
+        return new Point(index + 1, direction.next(strategy));
+    }
+
     public Direction getDirection() {
         return direction;
     }
