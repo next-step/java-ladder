@@ -23,4 +23,7 @@ public class Player {
 			throw new IllegalArgumentException(leastNameLimit);
 		}
 	}
+	public String getPlayerName() {
+		return name;
+	}
 }

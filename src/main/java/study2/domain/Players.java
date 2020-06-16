@@ -1,10 +1,14 @@
 package study2.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.platform.commons.util.StringUtils;
+
 public class Players {
 
+	private static final String empty = " ";
 	List<Player> players;
 	
 	public Players(List<String> names) {
@@ -31,4 +35,13 @@ public class Players {
 		return this.players.size();
 	}
 	
+	public List<String> getPlayers() {
+		
+		return players.stream()
+				.map(Player::getPlayerName)
+				.collect(Collectors.toList());
+			
+		// java8사용중입니다.
+				//.collect(Collectors.joining(String.join("", Collections.nCopies(4, empty))));
+	}
 }

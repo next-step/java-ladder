@@ -8,6 +8,7 @@ public class Ladder {
 	
 	private List<Line> lines;
 	
+	
 	public Ladder(Players players, Height height) {
 		this.lines = makeLadder(players, height);
 	}
@@ -15,14 +16,13 @@ public class Ladder {
 	private List<Line> makeLadder(Players players, Height height) {
 		int playerNumbers = players.getPlayersCount();
 		
-		
-		
+				
 		return IntStream.rangeClosed(1, height.getHeight())
-				.mapToObj(i -> new Line(playerNumbers, RandomGenerator.randomGenratoring()))
+				.mapToObj(i -> new Line(playerNumbers, false))
 				.collect(Collectors.toList());
 	}
 	
-	public List<Line> getLine() {
+	public List<Line> getLadder() {
 		return lines;
 	}
 	
