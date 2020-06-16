@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,12 +26,7 @@ public class Participants {
         return participants.size();
     }
 
-    public String tellParticipants() {
-        String nameOfPerson = "";
-        for (Person person : participants) {
-            nameOfPerson += fillSpace(person.tellName());
-        }
-        return nameOfPerson;
+    public List<Person> getParticipants() {
+        return Collections.unmodifiableList(participants);
     }
-
 }
