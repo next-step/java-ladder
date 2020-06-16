@@ -4,8 +4,8 @@ import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.player.Players;
 
 public class Ladder {
-    private Players players;
-    private Lines lines;
+    private final Players players;
+    private final Lines lines;
 
     private Ladder(Players players, Lines lines) {
         this.players = players;

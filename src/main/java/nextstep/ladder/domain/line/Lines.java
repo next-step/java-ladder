@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Lines {
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Lines(int playerCount, int ladderHeight) {
         lines = Stream.generate(() -> new Line(playerCount))
