@@ -5,21 +5,18 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    public static final String POINT_TRUE = "-----|";
-    public static final String POINT_FALSE = "     |";
+    private List<Point> points;
 
-    private List<Boolean> points;
-
-    private Line(List<Boolean> points) {
+    private Line(List<Point> points) {
         this.points = points;
     }
 
     public static Line valueOf(int countOfPerson) {
-        List<Boolean> points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
         Random random = new Random();
         boolean point = false;
         while (countOfPerson > 0 ){
-            points.add(point);
+            points.add(Point.of(point));
             point = checkLineOverlap(point, random);
             countOfPerson --;
         }
@@ -33,11 +30,7 @@ public class Line {
         return random.nextBoolean();
     }
 
-    public String drawLadderLine() {
-        String ladderLine = "";
-        for (boolean point : points) {
-            ladderLine += point ? POINT_TRUE : POINT_FALSE;
-        }
-        return ladderLine;
+    public List<Point> getPoints() {
+        return points;
     }
 }
