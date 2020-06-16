@@ -6,8 +6,15 @@ import java.util.stream.Collectors;
 public class Rewards {
     private final List<Reward> rewards;
 
-    public Rewards(List<String> rewards) {
+    public Rewards(List<String> rewards, int countOfPlayers) {
+        validateRewardsCount(rewards, countOfPlayers);
         this.rewards = createRewards(rewards);
+    }
+
+    private void validateRewardsCount(List<String> rewards, int countOfPlayers) {
+        if (rewards.size() != countOfPlayers) {
+            throw new RewardsCountException();
+        }
     }
 
     private List<Reward> createRewards(List<String> rewards) {
