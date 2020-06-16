@@ -15,6 +15,10 @@ public class Direction {
         return new Direction(FALSE, right);
     }
 
+    public Direction last() {
+        return new Direction(this.right, FALSE);
+    }
+
     public boolean isLeft() {
         return left;
     }
