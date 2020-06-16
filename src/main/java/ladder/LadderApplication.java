@@ -14,7 +14,7 @@ public class LadderApplication {
 
         //사다리 생성
         int ladderHeight = InputView.enterLadderHeight();
-        int countOfPerson = participants.tellCountOfPerson();
+        int countOfPerson = participants.size();
         Ladder ladder = Ladder.valueOf(ladderHeight, countOfPerson);
 
         //결과 출력

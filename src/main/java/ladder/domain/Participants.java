@@ -21,7 +21,7 @@ public class Participants {
         return new Participants(nameOfPerson);
     }
 
-    public int tellCountOfPerson() {
+    public int size() {
         return participants.size();
     }
 

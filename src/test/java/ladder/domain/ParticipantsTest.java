@@ -19,7 +19,7 @@ class ParticipantsTest {
     @DisplayName("참가자 수를 반환")
     void tellCountOfPerson() {
         Participants participants = Participants.from(nameOfPerson);
-        int countOfPerson = participants.tellCountOfPerson();
+        int countOfPerson = participants.size();
 
         assertThat(countOfPerson).isEqualTo(3);
     }
