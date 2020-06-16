@@ -23,6 +23,10 @@ public class Rewards {
                 .collect(Collectors.toList());
     }
 
+    public Reward getReward(int position) {
+        return this.rewards.get(position);
+    }
+
     public List<Reward> getRewards() {
         return rewards;
     }
