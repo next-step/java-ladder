@@ -7,3 +7,17 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 사다리 게임 요구사항
+1. 사용자의 입력을 받는 InputView
+2. 사다리 참가자와 생성된 사다리를 출력하는 OutputView
+3. 사다리에 참가하는 참가자 클래스 Player
+4. 참가자의 이름을 관리하는 Name
+5. 참가자의 현재 위치를 관리하는 Position
+6. 사다리의 정보를 가지는 Ladder
+7. 사다리 한 라인 Line
+8. 사다리의 한 연결 다리 Bridge
+9. 사다리의 연결 다리들을 생성하는 BridgeGenerator
+11. 참가자 리스트를 감싸는 Players 일급컬렉션
+12. 사다리 게임에서 사용하는 높이의 VO Height
+13. 사다리 게임에서 사용하는 열번호의 VO Column
