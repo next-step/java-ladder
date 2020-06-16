@@ -9,8 +9,6 @@ public class Point {
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
-        this.left = false;
-        this.right = false;
     }
 
     public boolean isEnd() {
@@ -27,16 +25,10 @@ public class Point {
     }
 
     public boolean match(int x, int y) {
-        if(this.x == x && this.y == y) {
-            return true;
-        }
-       return false;
+        return (this.x == x && this.y == y);
     }
 
     public boolean meetLast(int last) {
-        if(last <= y + 1) {
-            return true;
-        }
-        return false;
+        return (last <= y + 1);
     }
 }
