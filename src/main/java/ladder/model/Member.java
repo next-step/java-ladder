@@ -13,6 +13,10 @@ public class Member {
         this.name = name;
     }
 
+    public static Member create(final String name) {
+        return new Member(name);
+    }
+
     private void validate(final String name) {
         validateNullOrEmpty(name);
         validateLengthLimit(name);
@@ -28,10 +32,6 @@ public class Member {
         if (name.length() > MEMBER_NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("사다리 게임에 참여하는 사람의 이름은 최대 5 글자 입니다.");
         }
-    }
-
-    public static Member create(final String name) {
-        return new Member(name);
     }
 
     @Override
