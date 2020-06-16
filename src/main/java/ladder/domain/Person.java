@@ -2,9 +2,11 @@ package ladder.domain;
 
 public class Person {
     public static final int MAX_NAME_LENGTH = 5;
+
     private String name;
 
     private Person(String name) {
+        checkEmpty(name);
         checkNameLength(name);
         this.name = name;
     }
@@ -15,6 +17,12 @@ public class Person {
 
     public String getName() {
         return name;
+    }
+
+    private void checkEmpty(String name) {
+         if(name.isEmpty()){
+             throw new IllegalArgumentException("이름이 없거나 빈 값 입니다.");
+         }
     }
 
     private void checkNameLength(String name) {

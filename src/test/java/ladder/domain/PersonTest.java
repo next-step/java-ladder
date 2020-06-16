@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -11,6 +13,15 @@ class PersonTest {
     @DisplayName("생성 테스트")
     void create() {
         assertThatCode(() -> Person.from("eunji")).doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @EmptySource
+    @DisplayName("이름이 빈 값인지 확인한다.")
+    void checkEmpty(String name){
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Person.from(name))
+                .withMessageContaining("이름이 없거나 빈 값 입니다.");
     }
 
     @Test
