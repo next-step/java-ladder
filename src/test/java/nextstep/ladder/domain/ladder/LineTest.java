@@ -1,11 +1,17 @@
 package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class LineTest {
 
@@ -22,6 +28,29 @@ public class LineTest {
     void exception(int maxPosition) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Line.newInstance(maxPosition, new DirectionRandomPredicate()));
+    }
+
+    @MethodSource("ladderLine_argument_create")
+    @ParameterizedTest
+    void init(Positions positions, int sizeOfPerson) {
+        Line line = Line.init(sizeOfPerson);
+        assertThat(line).isEqualTo(new Line(positions));
+    }
+
+    @ValueSource(ints = {2, 3, 4, 5, 6})
+    @ParameterizedTest
+    public void move(int initValue) {
+        int value = 3;
+        Line line = Line.init(initValue);
+        assertThat(line.move(value)).isEqualTo(initValue + value);
+    }
+
+
+    private static Stream<Arguments> ladderLine_argument_create() {
+        int sizeOfPerson = 5;
+        return Stream.of(Arguments.of(
+                Positions.newInstance(sizeOfPerson, new DirectionRandomPredicate()), sizeOfPerson)
+        );
     }
 
 }
