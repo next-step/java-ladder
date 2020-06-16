@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.player;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,9 +16,5 @@ public class Players {
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
-    }
-
-    public int getPlayerCount() {
-        return players.size();
     }
 }
