@@ -11,6 +11,10 @@ public class Line {
         this.points = createLine(countOfPlayers, strategy);
     }
 
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
     private List<Point> createLine(int countOfPlayers, PointGenerationStrategy strategy) {
         List<Point> points = new ArrayList<>();
 
