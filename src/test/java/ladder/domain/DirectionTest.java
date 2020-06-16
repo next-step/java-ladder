@@ -26,4 +26,23 @@ public class DirectionTest {
         Direction last = Direction.first(true).last();
         assertThat(last.isRight()).isFalse();
     }
+
+    @Test
+    void next_true() {
+        Direction next = Direction.first(false).next(true);
+        assertThat(next.isRight()).isTrue();
+    }
+
+    @Test
+    public void next_strategy_true() {
+        Direction next = Direction.first(false).next(new alwaysTruePointGenerationStrategy());
+        assertThat(next.isRight()).isTrue();
+    }
+
+    private static class alwaysTruePointGenerationStrategy implements PointGenerationStrategy {
+        @Override
+        public boolean generate() {
+            return true;
+        }
+    }
 }
