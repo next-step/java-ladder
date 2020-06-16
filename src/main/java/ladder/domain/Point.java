@@ -12,12 +12,12 @@ public class Point {
     }
 
     public int move() {
-        if (direction.isRight()) {
-            return index + 1;
+        if (this.direction.isRight()) {
+            return this.index + 1;
         }
 
-        if (direction.isLeft()) {
-            return index - 1;
+        if (this.direction.isLeft()) {
+            return this.index - 1;
         }
 
         return this.index;
@@ -28,11 +28,11 @@ public class Point {
     }
 
     public Point last() {
-        return new Point(this.index +1, direction.last());
+        return new Point(this.index +1, this.direction.last());
     }
 
     public Point next(PointGenerationStrategy strategy) {
-        return new Point(index + 1, direction.next(strategy));
+        return new Point(this.index + 1, this.direction.next(strategy));
     }
 
     public Direction getDirection() {
