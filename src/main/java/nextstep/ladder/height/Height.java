@@ -1,10 +1,11 @@
-package nextstep.ladder;
+package nextstep.ladder.height;
 
 import java.util.Objects;
 
 public class Height {
 
 	private final static int MINIMUM_HEIGHT_THRESHOLD = 1;
+	private final static int MAXIMUM_HEIGHT_THRESHOLD = 5;
 	private final int heightValue;
 
 	//constructor logic
@@ -15,13 +16,13 @@ public class Height {
 	public static Height of(final String heightValueString) {
 		validateValueStringIsNotEmpty(heightValueString);
 		int heightValue = convertValueStringToInt(heightValueString);
-		validateHeightValueIsLargeThanZero(heightValue);
+		validateHeightValueInRange(heightValue);
 		return new Height(heightValue);
 	}
 
 	//validation logic
-	private static void validateHeightValueIsLargeThanZero(final int heightValue) {
-		if (heightValue < MINIMUM_HEIGHT_THRESHOLD) {
+	private static void validateHeightValueInRange(final int heightValue) {
+		if (heightValue < MINIMUM_HEIGHT_THRESHOLD || heightValue > MAXIMUM_HEIGHT_THRESHOLD) {
 			throw new IllegalArgumentException("The minimum threshold of height is 1. check your input again.");
 		}
 	}
