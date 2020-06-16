@@ -2,7 +2,6 @@ package camp.nextstep.edu.nextstep8.ladder.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Row {
     private static final Point EMPTY_POINT = new Point(-1, -1);

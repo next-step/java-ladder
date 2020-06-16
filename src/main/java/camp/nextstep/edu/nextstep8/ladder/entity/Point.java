@@ -6,7 +6,6 @@ public class Point {
     private boolean left;
     private boolean right;
 
-
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
