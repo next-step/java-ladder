@@ -259,6 +259,6 @@ pobi  honux crong   jk
 * [x] [fix#6][Row.java] 존재하지 않는 값을 표현히가 위해 null을 사용하기보다, 존재할 지 안 할지 모르는 값을 표현할 수 있는 Optional을 사용할 것
 * [x] [fix#7][Ladder.java] RANDOM 을 클래스 변수로 선언한 이유가 있을 지 
 * [x] [fix#8][Ladder.java] Ladder 객체를 생성하는 순간, 사다리 판이 만들어질 수 있도록 수정 (불필요한 make 호출을 없앨 것)
-* [ ] [fix#9][JoinersConvertorTest.java] @MethodSource에 대해서 학습할 것
+* [x] [fix#9][JoinersConvertorTest.java] @MethodSource에 대해서 학습할 것
     * https://www.baeldung.com/parameterized-tests-junit-5
    

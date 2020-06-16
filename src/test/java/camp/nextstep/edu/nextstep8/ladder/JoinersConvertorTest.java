@@ -3,9 +3,12 @@ package camp.nextstep.edu.nextstep8.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,6 +27,25 @@ class JoinersConvertorTest {
 
         // then
         assertThat(joinMembers.size()).isEqualTo(expectedCount);
+    }
+
+    @DisplayName("참가자 문자열이 제대로 변환 되는지 확인 (Method source 사용")
+    @ParameterizedTest
+    @MethodSource("provideJoinerInput")
+    public void makeJoinersTestWithMethodSource(String input, int expectedCount) {
+        // when
+        List<String> joinMembers = JoinersConvertor.makeJoiners(input);
+
+        // then
+        assertThat(joinMembers.size()).isEqualTo(expectedCount);
+    }
+
+    private static Stream<Arguments> provideJoinerInput() {
+        return Stream.of(
+                Arguments.of("A,B,C,D,E", 5),
+                Arguments.of("apple,bread,car,dry,egg", 5),
+                Arguments.of("boy,girl", 2)
+        );
     }
 
     @DisplayName("빈 문자 열일 경우 예외")
