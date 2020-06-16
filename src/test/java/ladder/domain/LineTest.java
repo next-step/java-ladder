@@ -12,13 +12,13 @@ class LineTest {
     @Test
     @DisplayName("생성 테스트")
     void create() {
-        assertThatCode(() -> Line.create(countOfPerson)).doesNotThrowAnyException();
+        assertThatCode(() -> Line.from(countOfPerson)).doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("이 전 값이 true이면 false를 반환한다")
     void checkLineOverlap() {
-        Line line = Line.create(countOfPerson);
+        Line line = Line.from(countOfPerson);
         boolean point = line.checkLineOverlap(true);
 
         assertThat(point).isFalse();

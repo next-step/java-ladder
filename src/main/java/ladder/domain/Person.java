@@ -9,7 +9,7 @@ public class Person {
         this.name = name;
     }
 
-    public static Person create(String name) {
+    public static Person from(String name) {
         return new Person(name);
     }
 

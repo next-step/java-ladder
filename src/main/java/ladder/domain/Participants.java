@@ -13,11 +13,11 @@ public class Participants {
 
     private Participants(String nameOfPerson) {
         this.participants = Arrays.stream(nameOfPerson.split(SEPARATOR))
-                .map(name -> Person.create(name.trim()))
+                .map(name -> Person.from(name.trim()))
                 .collect(Collectors.toList());
     }
 
-    public static Participants create(String nameOfPerson) {
+    public static Participants from(String nameOfPerson) {
         return new Participants(nameOfPerson);
     }
 

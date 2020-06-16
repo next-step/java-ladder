@@ -16,7 +16,7 @@ public class Line {
         this.points = createLine(countOfPerson);
     }
 
-    public static Line create(int countOfPerson) {
+    public static Line from(int countOfPerson) {
         return new Line(countOfPerson);
     }
 

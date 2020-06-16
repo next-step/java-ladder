@@ -11,7 +11,7 @@ class LadderTest {
     @Test
     @DisplayName("생성 테스트")
     void create() {
-        assertThatCode(() -> Ladder.create(5, 3))
+        assertThatCode(() -> Ladder.valueOf(5, 3))
                 .doesNotThrowAnyException();
     }
 
@@ -19,7 +19,7 @@ class LadderTest {
     @DisplayName("사다리 길이 입력 값 검증")
     void checkLadderHeight(){
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Ladder.create(0, 3))
+                .isThrownBy(() -> Ladder.valueOf(0, 3))
         .withMessageContaining("사다리 길이가 0 이하 입니다.");
 
     }

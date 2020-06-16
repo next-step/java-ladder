@@ -11,11 +11,11 @@ public class Ladder {
     private Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
         this.ladder = IntStream.range(0, ladderHeight)
-                .mapToObj(i -> Line.create(countOfPerson))
+                .mapToObj(i -> Line.from(countOfPerson))
                 .collect(Collectors.toList());
     }
 
-    public static Ladder create(int ladderHeight, int countOfPerson) {
+    public static Ladder valueOf(int ladderHeight, int countOfPerson) {
         return new Ladder(ladderHeight, countOfPerson);
     }
 
