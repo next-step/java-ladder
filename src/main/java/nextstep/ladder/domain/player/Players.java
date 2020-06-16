@@ -1,19 +1,22 @@
 package nextstep.ladder.domain.player;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
-    private List<Player> players = new ArrayList<>();
+    private List<Player> players;
 
     public Players(String[] names) {
-        Arrays.stream(names)
-                .forEach(name -> players.add(new Player(name)));
+        players = Arrays.stream(names)
+                .map(Player::new)
+                .collect(Collectors.toList());
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 
     public int getPlayerCount() {

@@ -1,18 +1,20 @@
 package nextstep.ladder.domain.line;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Lines {
-    private List<Line> lines = new ArrayList<>();
+    private List<Line> lines;
 
     public Lines(int playerCount, int ladderHeight) {
-        for(int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(playerCount));
-        }
+        lines = Stream.generate(() -> new Line(playerCount))
+                .limit(ladderHeight)
+                .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }
