@@ -16,7 +16,7 @@ public class LadderFactory {
         }
     }
 
-    public Ladder buildLadder(PlayersGroup playersGroup) {
-        return Ladder.buildLadder(playersGroup, ladderHeight);
+    public Ladder buildLadder(PlayersGroup playersGroup, DrawingLineStrategy drawingLineStrategy) {
+        return Ladder.buildLadder(playersGroup, ladderHeight, drawingLineStrategy);
     }
 }

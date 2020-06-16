@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private static final DrawingLineStrategy drawingLineStrategy = new RandomDrawingLineStrategy();
 
     private final List<Line> lines;
 
@@ -13,7 +12,8 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder buildLadder(PlayersGroup playersGroup, int ladderHeight) {
+    public static Ladder buildLadder(PlayersGroup playersGroup, int ladderHeight,
+                                     DrawingLineStrategy drawingLineStrategy) {
         int playerCounts = playersGroup.getPlayerCounts();
         List<Line> ladder = Stream.generate(() -> Line.drawLine(playerCounts, drawingLineStrategy))
                 .limit(ladderHeight)
@@ -21,9 +21,16 @@ public class Ladder {
         return new Ladder(ladder);
     }
 
-    public List<List<Boolean>> getLadderBluePrint() {
+    public int climb(int index) {
+        for (Line line : lines) {
+            index = line.movePointOnLine(index);
+        }
+        return index;
+    }
+
+    public List<List<Direction>> getLadderBluePrint() {
         return lines.stream()
-                .map(Line::getPointPositions)
+                .map(Line::getPointDirections)
                 .collect(Collectors.toList());
     }
 

@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.Direction;
 import ladder.domain.DrawingLineStrategy;
 import ladder.domain.Point;
 import ladder.domain.RandomDrawingLineStrategy;
@@ -15,42 +16,42 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DrawingLineStrategyTest {
 
-    @DisplayName("Random전략으로 Line을 그리면 그 너비는 playerCounts - 1과 동일")
+    @DisplayName("Random전략으로 Line을 그리면 그 너비는 playerCounts과 동일")
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5})
+    @ValueSource(ints = {2, 3, 4, 5})
     public void lineLengthTest(int playerCounts) {
         DrawingLineStrategy drawingLineStrategy = new RandomDrawingLineStrategy();
 
         List<Point> points = drawingLineStrategy.drawLine(playerCounts);
 
-        assertThat(points.size()).isEqualTo(playerCounts - 1);
+        assertThat(points.size()).isEqualTo(playerCounts);
     }
 
     @DisplayName("다른 전략으로 Line 생성 테스트")
     @ParameterizedTest
     @ValueSource(ints = {3, 5, 10})
     public void useOtherStrategy(int countsOfPerson) {
-        DrawingLineStrategy alwaysDrawingStrategy = (playerCounts) -> {
-            return Stream.generate(() -> new Point(true))
+        DrawingLineStrategy rightDrawingStrategy = (playerCounts) -> {
+            return Stream.generate(() -> new Point(0, Direction.RIGHT))
                     .limit(playerCounts)
                     .collect(Collectors.toList());
         };
 
-        DrawingLineStrategy alwaysNotDrawingStrategy = (playerCounts) -> {
-            return Stream.generate(() -> new Point(false))
+        DrawingLineStrategy leftDrawingStrategy = (playerCounts) -> {
+            return Stream.generate(() -> new Point(0, Direction.LEFT))
                     .limit(playerCounts)
                     .collect(Collectors.toList());
         };
 
-        boolean isAlwaysDrawingLineValid = alwaysDrawingStrategy.drawLine(countsOfPerson)
+        boolean isRightDrawingLineValid = rightDrawingStrategy.drawLine(countsOfPerson)
                 .stream()
-                .allMatch(point -> point.getIsExisting() == true);
+                .allMatch(point -> point.getDirection() == Direction.RIGHT);
 
-        boolean isAlwaysNotDrawingLineValid = alwaysNotDrawingStrategy.drawLine(countsOfPerson)
+        boolean isLeftDrawingLineValid = leftDrawingStrategy.drawLine(countsOfPerson)
                 .stream()
-                .allMatch(point -> point.getIsExisting() == false);
+                .allMatch(point -> point.getDirection() == Direction.LEFT);
 
-        assertThat(isAlwaysDrawingLineValid).isEqualTo(true);
-        assertThat(isAlwaysNotDrawingLineValid).isEqualTo(true);
+        assertThat(isRightDrawingLineValid).isEqualTo(true);
+        assertThat(isLeftDrawingLineValid).isEqualTo(true);
     }
 }
