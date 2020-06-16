@@ -6,6 +6,7 @@ public class Point {
     private boolean left;
     private boolean right;
 
+
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
@@ -28,7 +29,7 @@ public class Point {
         return (this.x == x && this.y == y);
     }
 
-    public boolean meetLast(int last) {
-        return (last <= y + 1);
+    public int getHorizontalPosition() {
+        return y;
     }
 }

@@ -53,23 +53,4 @@ class PointTest {
         // then
         assertThat(point.isEnd()).isTrue();
     }
-
-    @DisplayName("한 Row의 마지막 좌표인지 확인")
-    @ParameterizedTest
-    @CsvSource(value = {
-            "0:0:false",
-            "0:3:false",
-            "0:4:true"
-    }, delimiter = ':')
-    public void meetLastTest(int x, int y, boolean expected) {
-        // given
-        int rowSize = 5;
-        Point point = new Point(x, y);
-
-        // when
-        boolean result = point.meetLast(rowSize);
-
-        // then
-        assertThat(result).isEqualTo(expected);
-    }
 }

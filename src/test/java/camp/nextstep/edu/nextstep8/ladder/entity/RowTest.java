@@ -19,11 +19,7 @@ class RowTest {
 
     @BeforeEach
     public void generateOneRows() {
-        List<Point> points = new ArrayList<>();
-        for(int col = 0; col < MAX_COLS; col++) {
-            points.add(new Point(0, col));
-        }
-        row = new Row(points);
+        row = new Row(0, MAX_COLS);
     }
 
     @DisplayName("Row 에서 좌표에 맞는 Point가 잘 선택되는 지 확인")

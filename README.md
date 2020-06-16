@@ -249,16 +249,16 @@ pobi  honux crong   jk
 </code></pre>
 
 ### Step2 리뷰사항
-* [ ] [fix#1][Ladder.java] 객체지향 생활체조 7번, 8번 원칙을 지킬 것
+* [x] [fix#1][Ladder.java] 객체지향 생활체조 7번, 8번 원칙을 지킬 것
     * 규칙 7 : 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다
     * 규칙 8 : 일급 콜렉션을 쓴다
-* [ ] [fix#2][Ladder.java] Ladder에서 하나의 Row를 의미하는 Row까지 생성하고 있음. 이 부분을 해당 책임을 가진 객체에게 위임하고 결과를 반환 받도록 수정
-* [ ] [fix#3][Ladder.java] 핵심 로직을 가지는 도메인 객체와 화면과 관련된 View를 변경할 것 (현재 기준 View에 대한 요구사항이 변경 되었을 때 도메인이 변경되어야 함)
+* [x] [fix#2][Ladder.java] Ladder에서 하나의 Row를 의미하는 Row까지 생성하고 있음. 이 부분을 해당 책임을 가진 객체에게 위임하고 결과를 반환 받도록 수정
+* [x] [fix#3][Ladder.java] 핵심 로직을 가지는 도메인 객체와 화면과 관련된 View를 변경할 것 (현재 기준 View에 대한 요구사항이 변경 되었을 때 도메인이 변경되어야 함)
 * [x] [fix#4][Point.java] if문의 조건을 한 줄로 표현 할 것 
 * [x] [fix#5][Point.java] Primitive type(기본 타입)은 Default 값을 가짐. 즉 항상 값이 있는 상태이므로 null이 될 수 없음 (boolean은 기본 값으로 false를 가짐) 
-* [ ] [fix#6][Row.java] 존재하지 않는 값을 표현히가 위해 null을 사용하기보다, 존재할 지 안 할지 모르는 값을 표현할 수 있는 Optional을 사용할 것
-* [ ] [fix#7][Ladder.java] RANDOM 을 클래스 변수로 선언한 이유가 있을 지 
-* [ ] [fix#8][Ladder.java] Ladder 객체를 생성하는 순간, 사다리 판이 만들어질 수 있도록 수정 (불필요한 make 호출을 없앨 것)
+* [x] [fix#6][Row.java] 존재하지 않는 값을 표현히가 위해 null을 사용하기보다, 존재할 지 안 할지 모르는 값을 표현할 수 있는 Optional을 사용할 것
+* [x] [fix#7][Ladder.java] RANDOM 을 클래스 변수로 선언한 이유가 있을 지 
+* [x] [fix#8][Ladder.java] Ladder 객체를 생성하는 순간, 사다리 판이 만들어질 수 있도록 수정 (불필요한 make 호출을 없앨 것)
 * [ ] [fix#9][JoinersConvertorTest.java] @MethodSource에 대해서 학습할 것
     * https://www.baeldung.com/parameterized-tests-junit-5
    
