@@ -3,15 +3,15 @@ package ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Ladder {
     private List<Line> ladder;
 
     private Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
-        this.ladder = IntStream.range(0, ladderHeight)
-                .mapToObj(i -> Line.from(countOfPerson))
+        this.ladder = Stream.generate(() -> Line.from(countOfPerson))
+                .limit(countOfPerson)
                 .collect(Collectors.toList());
     }
 
