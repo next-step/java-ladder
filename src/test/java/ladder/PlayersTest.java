@@ -13,6 +13,13 @@ public class PlayersTest {
     @Test
     void PLAYER_DELIMITER_TEST() {
         String players = "iu,iu2,iu3,iu4";
-        assertThat(new Players(players).getPlayers().size()).isEqualTo(4);
+        assertThat(new Players(players).getPlayerCount()).isEqualTo(4);
     }
+
+    @Test
+    void PLAYER_NAME_OUTPUT_TEST() {
+        String players = "iu,iu2,iu3,iu4";
+        System.out.println(new Players(players).getPlayerName());
+    }
+
 }

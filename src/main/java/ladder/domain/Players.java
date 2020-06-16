@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Players {
 
-    private final static String PLAYER_DELIMITER = ",";
+    public final static String PLAYER_DELIMITER = ",";
 
     List<Player> players = new ArrayList<>();
 
@@ -17,7 +17,13 @@ public class Players {
                         .collect(Collectors.toList());
     }
 
-    public List<Player> getPlayers() {
-        return this.players;
+    public int getPlayerCount() {
+        return players.size();
+    }
+
+    public String getPlayerName() {
+        return players.stream()
+                    .map(p -> p.toString())
+                    .collect(Collectors.joining());
     }
 }
