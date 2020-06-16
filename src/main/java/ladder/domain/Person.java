@@ -13,8 +13,8 @@ public class Person {
         return new Person(name);
     }
 
-    public String tellName(){
-        return this.name;
+    public String getName() {
+        return name;
     }
 
     private void checkNameLength(String name) {
