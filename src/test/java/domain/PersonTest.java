@@ -1,16 +1,20 @@
 package domain;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PersonTest {
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void 사람이름은_5글자를_넘으면_안된다() {
         String IllegalName = "abcdef";
 
-        new Person(IllegalName);
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Person(IllegalName);
+        });
+
     }
 
     @Test
