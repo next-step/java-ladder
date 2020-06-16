@@ -6,7 +6,6 @@ import java.util.Optional;
 
 public class Order {
     private static final int FIRST_ORDER_NUM = 1;
-    public static final Order FIRST_ORDER = Order.of(FIRST_ORDER_NUM);
     private final int num;
 
     private Order(final int num) {
@@ -22,10 +21,6 @@ public class Order {
             return Optional.empty();
         }
         return Optional.of(Order.of(this.num - 1));
-    }
-
-    public Order next() {
-        return Order.of(num + 1);
     }
 
     @Override

@@ -1,11 +1,11 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderGameUser;
-import nextstep.ladder.domain.Order;
+import nextstep.ladder.domain.LadderGameUsers;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class InputView {
@@ -18,19 +18,16 @@ public class InputView {
     private InputView() {
     }
 
-    public static List<LadderGameUser> askParticipantsName() {
+    public static LadderGameUsers askParticipantsName() {
         System.out.println(ASK_PARTICIPANTS_NAME_MESSAGE);
         String[] inputUserNames = SCANNER.nextLine().split(USERNAME_DELIMITER);
+        Map<Integer, LadderGameUser> ladderGameUsers = new HashMap<>();
 
-        List<LadderGameUser> ladderGameUsers = new ArrayList<>();
-        Order order = Order.FIRST_ORDER;
-
-        for (String userName : inputUserNames) {
-            ladderGameUsers.add(new LadderGameUser(order, userName));
-            order = order.next();
+        for (int i = 0; i < inputUserNames.length; i++) {
+            ladderGameUsers.put(i + 1, new LadderGameUser(inputUserNames[i]));
         }
 
-        return Collections.unmodifiableList(ladderGameUsers);
+        return new LadderGameUsers(Collections.unmodifiableMap(ladderGameUsers));
     }
 
     public static int askMaximumLadderHeight() {

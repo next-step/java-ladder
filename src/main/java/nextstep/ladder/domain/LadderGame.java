@@ -1,7 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.List;
-
 public class LadderGame {
     private final LadderLineDrawingMachine drawingMachine;
 
@@ -10,13 +8,10 @@ public class LadderGame {
     }
 
     public Ladder createLadder(final LadderGameUsers ladderGameUsers, final int maxHeight) {
-        List<LadderGameUser> gameUsers = ladderGameUsers.getLadderGameUsers();
-        Ladder ladder = new Ladder(maxHeight);
-
-        for (int userIndex = 0, size = gameUsers.size(); userIndex < size - 1; userIndex++) {
-            ladder.drawLine(gameUsers.get(userIndex), drawingMachine);
+        LadderLines ladderLines = new LadderLines();
+        for (int orderValue = 1; orderValue <= ladderGameUsers.size(); orderValue++) {
+            ladderLines.addLine(Order.of(orderValue), ladderGameUsers.findUserByOrder(orderValue), drawingMachine, maxHeight);
         }
-
-        return ladder;
+        return Ladder.of(maxHeight, ladderLines);
     }
 }
