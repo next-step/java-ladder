@@ -20,4 +20,10 @@ public class DirectionTest {
         Direction first = Direction.first(true);
         assertThat(first.isLeft()).isFalse();
     }
+
+    @Test
+    void last() {
+        Direction last = Direction.first(true).last();
+        assertThat(last.isRight()).isFalse();
+    }
 }
