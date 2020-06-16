@@ -82,6 +82,96 @@
     jk : 5000
     ```
   
+### step4
+아래의 객체 설계 힌트를 참고하여 TDD로 재구현한다.
+
+```
+public class LadderLine {
+    private final List<Point> points;
+
+    public static LadderLine init(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(sizeOfPerson, points, point);
+        initLast(points, point);
+        return new LadderLine(points);
+    }
+
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(LadderPointGenerator.generatePoint());
+        points.add(point);
+    }
+
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
+        }
+        return point;
+    }
+
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
+    }
+}
+```
+
+```
+public class Point {
+    private final int index;
+    private final Direction direction;
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public int move() {
+        if (direction.isRight()) {
+            return index + 1;
+        }
+
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+
+        return index;
+    }
+
+    public Point next() {
+        return new Point(index + 1, direction.next());
+    }
+
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next());
+    }
+}
+```
+
+```
+public class Direction {
+    private final boolean left;
+    private final boolean right;
+
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(false);
+        }
+
+        return next(LadderPointGenerator.generatePoint());
+    }
+}
+```
+
+  
 ## 프로그래밍 요구사항
 - 자바8 스트림과 람다를 사용한다.
 - 모든 엔티티를 작게 유지한다.
