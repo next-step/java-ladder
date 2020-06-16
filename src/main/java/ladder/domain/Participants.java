@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ladder.utils.LadderUtil.fillSpace;
-
 public class Participants {
     public static final String SEPARATOR = ",";
 
