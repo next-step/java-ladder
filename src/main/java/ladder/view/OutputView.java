@@ -2,12 +2,15 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.Map;
+
 public class OutputView {
     private static final String PRINT_RESULT_MESSAGE = "실행 결과";
     private static final String PLAYER_FORMAT = "%6s";
     private static final String PRINT_POINT_TRUE = "|-----";
     private static final String PRINT_POINT_FALSE = "|     ";
     private static final String PRINT_POINT_FIRST = "     ";
+    private static final String PRINT_COLON = " : ";
 
     public static void printResult(Players players, Rewards rewards, Ladder ladder) {
         printResultMessage();
@@ -53,5 +56,14 @@ public class OutputView {
             return PRINT_POINT_TRUE;
         }
         return PRINT_POINT_FALSE;
+    }
+
+    public static void printReward(Reward reward) {
+        System.out.println(reward.getReward());
+    }
+
+    public static void printAllReward(Map<String, Reward> result) {
+        System.out.println(PRINT_RESULT_MESSAGE);
+        result.forEach((key, value) -> System.out.println(key + PRINT_COLON + value.getReward()));
     }
 }
