@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class GenerateLadder {
+public class LadderGenerator {
     private List<Line> ladder;
 
-    public GenerateLadder(int userCount, int ladderHeightCount) {
+    public LadderGenerator(int userCount, int ladderHeightCount) {
         ladder = Stream.generate(() -> new Line(userCount))
                 .limit(ladderHeightCount)
                 .collect(Collectors.toList());

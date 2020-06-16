@@ -6,8 +6,9 @@ import java.util.List;
 
 public class ResultView {
 
-    private final String LINE = "-----";
-    private final String NO_LINE = "     ";
+    private static final String BAR = "|";
+    private static final String LINE = "-----";
+    private static final String NO_LINE = "     ";
 
     public void showResult(List<String> userNames, List<Line> lines) {
         System.out.println();
@@ -24,11 +25,15 @@ public class ResultView {
 
     private void printLadderLine(List<Line> lines) {
         lines.forEach(line -> {
-            System.out.print("|");
-            line.getPoints().stream()
-                    .peek(point -> System.out.print(point ? LINE : NO_LINE))
-                    .forEach(point -> System.out.print("|"));
+            System.out.print(BAR);
+            printLine(line);
             System.out.println();
         });
+    }
+
+    private void printLine(Line line) {
+        line.getPoints().stream()
+                .peek(point -> System.out.print(point ? LINE : NO_LINE))
+                .forEach(point -> System.out.print("|"));
     }
 }

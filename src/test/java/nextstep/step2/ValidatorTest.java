@@ -1,9 +1,7 @@
 package nextstep.step2;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -12,7 +10,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("입력값 검증")
 class ValidatorTest {
@@ -31,7 +28,7 @@ class ValidatorTest {
     @DisplayName("사다리 높이값 체크 - 성공케이스")
     @ParameterizedTest
     @ValueSource(ints = {5,9})
-    void checkLadderHeight_success(int intputValue) {
+    void checkLadderHeight_success(int intputValue) throws Exception {
         assertThat(validator.checkLadderHeight(intputValue)).isEqualTo(intputValue);
     }
 
@@ -40,7 +37,7 @@ class ValidatorTest {
     @MethodSource("userNamesOverFiveProvider")
     void userNameLengthIsUnderFive_fail(List<String> inputValue) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validator.userNameLengthIsUnderFive(inputValue))
+                .isThrownBy(() -> validator.checkUserNameLength(inputValue))
                 .withMessage("참여할 사람의 이름은 최대 5자 입니다.");
     }
 
@@ -48,7 +45,7 @@ class ValidatorTest {
     @ParameterizedTest
     @MethodSource("userNamesUnderFiveProvider")
     void userNameLengthIsUnderFive_success(List<String> inputValue) {
-        assertThat(validator.userNameLengthIsUnderFive(inputValue)).isEqualTo(inputValue);
+        assertThat(validator.checkUserNameLength(inputValue)).isEqualTo(inputValue);
     }
 
     private static Stream<List<String>> userNamesOverFiveProvider() {
