@@ -12,11 +12,11 @@ public class Participants {
 
     private Participants(String nameOfPerson) {
         this.participants = Arrays.stream(nameOfPerson.split(SEPARATOR))
-                .map(name -> Person.from(name.trim()))
+                .map(name -> Person.valueOf(name.trim()))
                 .collect(Collectors.toList());
     }
 
-    public static Participants from(String nameOfPerson) {
+    public static Participants valueOf(String nameOfPerson) {
         return new Participants(nameOfPerson);
     }
 

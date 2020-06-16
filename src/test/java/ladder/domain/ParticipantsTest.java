@@ -12,13 +12,13 @@ class ParticipantsTest {
     @Test
     @DisplayName("생성 테스트")
     void create() {
-        assertThatCode(() -> Participants.from(nameOfPerson)).doesNotThrowAnyException();
+        assertThatCode(() -> Participants.valueOf(nameOfPerson)).doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("참가자 수를 반환")
     void tellCountOfPerson() {
-        Participants participants = Participants.from(nameOfPerson);
+        Participants participants = Participants.valueOf(nameOfPerson);
         int countOfPerson = participants.size();
 
         assertThat(countOfPerson).isEqualTo(3);

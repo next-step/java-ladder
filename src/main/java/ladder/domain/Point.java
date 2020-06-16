@@ -20,7 +20,7 @@ public class Point {
         this.point = point;
     }
 
-    public static Point of(boolean point) {
+    public static Point valueOf(boolean point) {
         if (point) {
             return POINTS.get(TRUE);
         }
@@ -29,9 +29,9 @@ public class Point {
 
     public Point checkOverlap(boolean random) {
         if (point) {
-            return Point.of(false);
+            return Point.valueOf(false);
         }
-        return Point.of(random);
+        return Point.valueOf(random);
     }
 
     public boolean isPoint() {

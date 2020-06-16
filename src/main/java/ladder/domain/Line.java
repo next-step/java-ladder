@@ -15,7 +15,7 @@ public class Line {
     public static Line valueOf(int countOfPerson) {
         List<Point> points = new ArrayList<>();
         Random random = new Random();
-        Point point = Point.of(false);
+        Point point = Point.valueOf(false);
         while (countOfPerson > 0) {
             point = addLine(points, random, point);
             countOfPerson--;
