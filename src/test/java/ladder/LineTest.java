@@ -27,4 +27,12 @@ public class LineTest {
     void LINE_DRAW_DUPLICATE_TEST(int countOfPerson, int lineMaxNumber) {
         assertThat(new Line(countOfPerson).getDrawLineCount() < lineMaxNumber).isTrue();
     }
+
+    @DisplayName("line 아웃풋 테스트")
+    @Test
+    void LINE_OUTPUT_TEST() {
+        System.out.println(new Line(5).drawLine());
+        System.out.println(new Line(5).drawLine());
+        System.out.println(new Line(5).drawLine());
+    }
 }
