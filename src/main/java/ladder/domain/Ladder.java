@@ -11,7 +11,7 @@ public class Ladder {
     private Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
         this.ladder = Stream.generate(() -> Line.from(countOfPerson))
-                .limit(countOfPerson)
+                .limit(ladderHeight)
                 .collect(Collectors.toList());
     }
 
