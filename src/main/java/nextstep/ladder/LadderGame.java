@@ -1,14 +1,14 @@
 package nextstep.ladder;
 
-import nextstep.ladder.service.LadderService;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.ResultView;
 
 public class LadderGame {
 
     public static void main(String... args) {
-        LadderService ladderService = new LadderService();
+        Ladder ladder = Ladder.of(InputView.scanPlayerNames(), InputView.scanLadderHeight());
 
-        ladderService.initLadderGame();
-
-        ladderService.printLadder();
+        ResultView.printResult(ladder);
     }
 }
