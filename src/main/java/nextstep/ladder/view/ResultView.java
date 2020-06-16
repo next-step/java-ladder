@@ -7,7 +7,7 @@ import nextstep.ladder.domain.player.Players;
 
 public class ResultView {
 
-    public static void printResult(Ladder ladder) {
+    public static void printLadder(Ladder ladder) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
