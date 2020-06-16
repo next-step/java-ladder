@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 @DisplayName("Players 클래스 테스트")
 class PlayersTest {
 
-    @DisplayName(", 를 기준으로 여러 Player를 생성할 수 있다.")
+    @DisplayName("여러 Player를 생성할 수 있다.")
     @Test
     void create_player() {
         String name = "pobi";
