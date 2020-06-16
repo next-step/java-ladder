@@ -29,7 +29,7 @@ public class StreamStudy {
 
         words.stream()
                 .filter(word -> word.length() > 12)
-                .sorted((a, b) -> a.length() == b.length() ? 0 : a.length() > b.length() ? -1 : 1)
+                .sorted((a, b) -> Integer.compare(b.length(), a.length()))
                 .distinct()
                 .limit(100)
                 .map(String::toLowerCase)
@@ -48,6 +48,6 @@ public class StreamStudy {
         return numbers.stream()
                 .filter(number -> number > 3)
                 .map(number -> number * 2)
-                .reduce(0, (x,y) -> x+y);
+                .reduce(0, Integer::sum);
     }
 }
