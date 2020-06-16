@@ -13,20 +13,16 @@ public class Line {
 
     private List<Point> createLine(int countOfPlayers, PointGenerationStrategy strategy) {
         List<Point> points = new ArrayList<>();
-        points.add(Point.of(false));
 
-        IntStream.range(1, countOfPlayers)
-                .forEach((i) -> points.add(decidePoint(points.get(i - 1), strategy)));
+        Point point = Point.first(strategy);
+        points.add(point);
+
+        IntStream.range(1, countOfPlayers - 1)
+                .forEach((i) -> points.add(point.next(strategy)));
+
+        points.add(point.last());
 
         return points;
-    }
-
-    private Point decidePoint(Point point, PointGenerationStrategy strategy) {
-        if (point.isPoint()) {
-            return Point.of(false);
-        }
-
-        return Point.ofStrategy(strategy);
     }
 
     public List<Point> getPoints() {
