@@ -9,10 +9,6 @@ public class Ladder {
 
     private List<Participant> participants;
     private List<Line> lines = new ArrayList<>();
-    private int height;
-
-    public Ladder() {
-    }
 
     public Ladder(List<Participant> participants, int height) {
         this(participants, height, new HalfPossibilityStrategy());
@@ -20,8 +16,7 @@ public class Ladder {
 
     public Ladder(List<Participant> participants, int height, PossibilityStrategy possibilityStrategy) {
         this.participants = participants;
-        this.height = height;
-        makeLadder(possibilityStrategy);
+        makeLadder(height, possibilityStrategy);
     }
 
     public List<Participant> getParticipants() {
@@ -39,11 +34,11 @@ public class Ladder {
     }
 
     public int getHeight() {
-        return height;
+        return lines.size();
     }
 
-    private void makeLadder(PossibilityStrategy possibilityStrategy) {
-        IntStream.rangeClosed(0, height).forEach(value -> {
+    private void makeLadder(int height, PossibilityStrategy possibilityStrategy) {
+        IntStream.rangeClosed(1, height).forEach(value -> {
             lines.add(makeLine(possibilityStrategy));
         });
     }

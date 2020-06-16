@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Line;
-import ladder.domain.Linetype;
+import ladder.domain.LineType;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,7 +41,7 @@ public class LadderView extends TextView {
         printResultText();
         printParticipantNames(participantNames);
 
-        lines.stream().forEach(line -> {
+        lines.forEach(line -> {
             printStartBlank(participantNames.size());
             printLineType(line, participantNames.size());
             view(BLANK_TEXT);
@@ -50,24 +50,19 @@ public class LadderView extends TextView {
 
     private void printParticipantNames(List<String> participantNames) {
         participantNames.stream().forEach(name -> {
-            if (participantNames.size() - name.length() > MIN_BLANK_CHECK_VALUE) {
-                int blankCount = participantNames.size() - name.length();
-                viewInLine(getBlankString(blankCount).concat(name));
-                return;
-            }
-            viewInLine(BLANK_TEXT.concat(name).concat(BLANK_TEXT));
+            viewInLine(getBlankStringWithName(participantNames.size(), name));
         });
         view(BLANK_TEXT);
     }
 
     private void printLineType(Line line, int participantCount) {
-        line.getLineTypes().stream().forEach(lineType -> {
+        line.getLineTypes().forEach(lineType -> {
             viewInLine(getFormattedLineType(lineType.getLine(), participantCount));
         });
     }
 
     private String getFormattedLineType(String lineType, int participantCount) {
-        if (lineType.equals(Linetype.VERTICAL.getLine())) {
+        if (lineType.equals(LineType.VERTICAL.getLine())) {
             return lineType;
         }
 
@@ -76,6 +71,14 @@ public class LadderView extends TextView {
         return IntStream.rangeClosed(0, lineLength)
                 .mapToObj(operand -> lineType)
                 .collect(Collectors.joining());
+    }
+
+    private String getBlankStringWithName(int participantCount, String name) {
+        if (participantCount - name.length() > MIN_BLANK_CHECK_VALUE) {
+            int blankCount = participantCount - name.length();
+            return getBlankString(blankCount).concat(name);
+        }
+        return BLANK_TEXT.concat(name).concat(BLANK_TEXT);
     }
 
     private String getBlankString(int blankCount) {
