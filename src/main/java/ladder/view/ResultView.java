@@ -18,8 +18,9 @@ public class ResultView {
                 .forEach(System.out::print);
         System.out.println();
 
-        for (Line line : ladder.getLadder()) {
-            System.out.println(line.drawLadderLine());
+        for(Line line : ladder.getLadder()){
+            line.getPoints().forEach(System.out::print);
+            System.out.println();
         }
     }
 }
