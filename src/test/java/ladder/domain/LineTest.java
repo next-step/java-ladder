@@ -16,5 +16,15 @@ class LineTest {
 
         assertThat(line.getPoints()).hasSize(countOfPlayers);
     }
+
+    @DisplayName("Point 이동 후의 index를 반환할 수 있다.")
+    @Test
+    void move() {
+        Line line = new Line(countOfPlayers, new RandomPointGenerationStrategy());
+
+        int actual = line.move(0);
+
+        assertThat(actual).isGreaterThanOrEqualTo(0);
+    }
 }
 
