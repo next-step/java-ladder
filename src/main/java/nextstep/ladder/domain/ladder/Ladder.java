@@ -28,8 +28,8 @@ public class Ladder {
 
     private Map<Integer, Direction> convertLinesToDirectionMap() {
         List<Direction> directions = lines.stream()
-                .flatMap(line -> line.getPositions().stream())
-                .map(Position::currentDirection)
+                .flatMap(line -> line.getPoints().stream())
+                .map(Point::currentDirection)
                 .collect(Collectors.toList());
 
         return IntStream.range(0, directions.size())
@@ -45,23 +45,23 @@ public class Ladder {
         return lines.size();
     }
 
-    public Integer getMaxPosition() {
+    public Integer getMaxPoint() {
         if (lines.size() > FIRST_LINE) {
             return lines.get(FIRST_LINE).sizeOfPositions();
         }
         return null;
     }
 
-    public int findDestinationPosition(int startPosition) {
-        int position = startPosition;
-        while (Objects.nonNull(directionMap.get(position))) {
-            Direction direction = directionMap.get(position);
-            position = nextPosition(position, direction);
+    public int findDestinationPosition(int startPoint) {
+        int point = startPoint;
+        while (Objects.nonNull(directionMap.get(point))) {
+            Direction direction = directionMap.get(point);
+            point = nextPosition(point, direction);
         }
-        return position % getMaxPosition();
+        return point % getMaxPoint();
     }
 
     private int nextPosition(int current, Direction next) {
-        return current + next.getDirection() + getMaxPosition();
+        return current + next.getDirection() + getMaxPoint();
     }
 }

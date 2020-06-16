@@ -14,7 +14,7 @@ public class LadderTest {
     void create(int height) {
         Ladder ladder = new Ladder(Height.from(height), 3, new DirectionRandomPredicate());
         assertThat(ladder.getLines()).hasSize(height);
-        assertThat(ladder.getLines().get(0).getPositions()).isNotNull();
+        assertThat(ladder.getLines().get(0).getPoints()).isNotNull();
         assertThat(ladder.getHeight()).isEqualTo(height);
     }
 

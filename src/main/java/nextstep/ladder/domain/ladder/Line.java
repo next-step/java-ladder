@@ -5,10 +5,10 @@ import java.util.Objects;
 
 public class Line {
 
-    private final Positions positions;
+    private final Points points;
 
-    public Line(Positions positions) {
-        this.positions = positions;
+    public Line(Points points) {
+        this.points = points;
     }
 
     public static Line init(int sizeOfPerson) {
@@ -19,16 +19,16 @@ public class Line {
         return 0;
     }
 
-    public List<Position> getPositions() {
-        return positions.getPositions();
+    public List<Point> getPoints() {
+        return points.getPoints();
     }
 
-    public static Line newInstance(int maxPosition, DirectionPredicate predicate) {
-        return new Line(Positions.newInstance(maxPosition, predicate));
+    public static Line newInstance(int maxPoint, DirectionPredicate predicate) {
+        return new Line(Points.newInstance(maxPoint, predicate));
     }
 
     public int sizeOfPositions(){
-        return positions.size();
+        return points.size();
     }
 
     @Override
@@ -36,11 +36,11 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(positions, line.positions);
+        return Objects.equals(points, line.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(positions);
+        return Objects.hash(points);
     }
 }

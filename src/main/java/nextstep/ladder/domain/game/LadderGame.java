@@ -46,8 +46,8 @@ public class LadderGame {
     }
 
     private void validateStartOrder(Order order) {
-        if (!order.isEqualsOrLessThanMaxPosition(ladder.getMaxPosition())) {
-            throw new IllegalArgumentException("user order is not less than max position");
+        if (!order.isEqualsOrLessThanMaxPosition(ladder.getMaxPoint())) {
+            throw new IllegalArgumentException("user order is not less than max point");
         }
     }
 }

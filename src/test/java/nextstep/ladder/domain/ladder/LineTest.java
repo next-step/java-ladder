@@ -1,14 +1,11 @@
 package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
@@ -32,9 +29,9 @@ public class LineTest {
 
     @MethodSource("ladderLine_argument_create")
     @ParameterizedTest
-    void init(Positions positions, int sizeOfPerson) {
+    void init(Points points, int sizeOfPerson) {
         Line line = Line.init(sizeOfPerson);
-        assertThat(line).isEqualTo(new Line(positions));
+        assertThat(line).isEqualTo(new Line(points));
     }
 
     @ValueSource(ints = {2, 3, 4, 5, 6})
@@ -49,7 +46,7 @@ public class LineTest {
     private static Stream<Arguments> ladderLine_argument_create() {
         int sizeOfPerson = 5;
         return Stream.of(Arguments.of(
-                Positions.newInstance(sizeOfPerson, new DirectionRandomPredicate()), sizeOfPerson)
+                Points.newInstance(sizeOfPerson, new DirectionRandomPredicate()), sizeOfPerson)
         );
     }
 
