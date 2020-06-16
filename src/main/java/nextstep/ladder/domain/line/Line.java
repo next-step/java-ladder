@@ -1,18 +1,20 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.strategy.LiningStrategy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
     private static final String POINT_LINED = "-----|";
     private static final String POINT_UNLINED = "     |";
 
     private final List<Boolean> points = new ArrayList<>();
-    private final Random random = new Random();
+    private final LiningStrategy liningStrategy;
 
-    public Line(int playerCount) {
+    public Line(LiningStrategy liningStrategy, int playerCount) {
+        this.liningStrategy = liningStrategy;
         createLine(playerCount);
     }
 
@@ -20,17 +22,13 @@ public class Line {
         boolean lined;
 
         for(int i = 0; i < playerCount-1; i++) {
-            lined = (i == 0 || !isBeforeLined(i)) && getRandomBoolean();
+            lined = (i == 0 || !isBeforeLined(i)) && liningStrategy.canDrawLine();
             points.add(i, lined);
         }
     }
 
     private boolean isBeforeLined(int index) {
         return points.get(index - 1);
-    }
-
-    private boolean getRandomBoolean() {
-        return random.nextBoolean();
     }
 
     public List<Boolean> getPoints() {

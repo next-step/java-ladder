@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.player.Players;
+import nextstep.ladder.strategy.RandomStrategy;
 
 public class Ladder {
     private final Players players;
@@ -13,7 +14,7 @@ public class Ladder {
     }
 
     private Ladder(String[] playerNames, int ladderHeight) {
-        this(new Players(playerNames), new Lines(playerNames.length, ladderHeight));
+        this(new Players(playerNames), new Lines(new RandomStrategy(), playerNames.length, ladderHeight));
     }
 
     public static Ladder of(String[] playerNames, int ladderHeight) {
