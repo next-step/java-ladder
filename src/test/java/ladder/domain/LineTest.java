@@ -17,14 +17,4 @@ class LineTest {
         assertThatCode(() -> Line.valueOf(countOfPerson)).doesNotThrowAnyException();
     }
 
-    @Test
-    @DisplayName("이 전 값이 true이면 false를 반환한다")
-    void checkLineOverlap() {
-        Line line = Line.valueOf(countOfPerson);
-        Random random = new Random();
-        boolean point = line.checkLineOverlap(true, random);
-
-        assertThat(point).isFalse();
-    }
-
 }

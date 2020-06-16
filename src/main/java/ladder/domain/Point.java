@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Point {
-    private static final Map<Integer, Point> POINTS;
     public static final int TRUE = 1;
     public static final int FALSE = 0;
+    private static final Map<Integer, Point> POINTS;
 
     static {
         POINTS = new HashMap<>();
@@ -27,11 +27,14 @@ public class Point {
         return POINTS.get(FALSE);
     }
 
-    @Override
-    public String toString() {
+    public Point checkOverlap(boolean random) {
         if (point) {
-            return "-----|";
+            return Point.of(false);
         }
-        return "     |";
+        return Point.of(random);
+    }
+
+    public boolean isPoint() {
+        return point;
     }
 }

@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -14,23 +15,22 @@ public class Line {
     public static Line valueOf(int countOfPerson) {
         List<Point> points = new ArrayList<>();
         Random random = new Random();
-        boolean point = false;
-        while (countOfPerson > 0 ){
-            points.add(Point.of(point));
-            point = checkLineOverlap(point, random);
-            countOfPerson --;
+        Point point = Point.of(false);
+        while (countOfPerson > 0) {
+            point = addLine(points, random, point);
+            countOfPerson--;
         }
         return new Line(points);
     }
 
-    static boolean checkLineOverlap(Boolean point, Random random) {
-        if (point) {
-            return false;
-        }
-        return random.nextBoolean();
+    private static Point addLine(List<Point> points, Random random, Point point) {
+        points.add(point);
+        point = point.checkOverlap(random.nextBoolean());
+        return point;
     }
 
     public List<Point> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
+
 }
