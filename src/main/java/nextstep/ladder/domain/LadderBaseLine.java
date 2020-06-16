@@ -9,6 +9,10 @@ public class LadderBaseLine {
         this.connectPoints = connectPoints;
     }
 
+    public boolean connectedWith(final int point) {
+        return connectPoints.has(Point.of(point));
+    }
+
     public boolean connectedWith(final Point point) {
         return connectPoints.has(point);
     }

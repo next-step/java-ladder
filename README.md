@@ -1,3 +1,8 @@
+# Step3 - 사다리 (실행)
+1. 리팩토링
+- https://github.com/next-step/java-ladder/pull/444#discussion_r440148275
+
+
 # Step2 - 사다리 (생성)
 Q. 가로줄은 조건만 맞으면 랜덤으로 생성되는건가요 ,,?
 

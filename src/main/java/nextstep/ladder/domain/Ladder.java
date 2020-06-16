@@ -27,16 +27,7 @@ public class Ladder {
             currentPoint = currentPoint.add();
         }
 
-        return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
-    }
-
-    /**
-     * indent 규칙을 지키려다보니 파라미터가 너무 많아졌습니다 ㅠㅠ
-     **/
-    private void attemptToAddPoint(final LadderLineDrawingMachine drawingMachine, final Order order, final Set<Point> points, final Point currentPoint) {
-        if (enoughToDrawLine(points.size()) && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
-            points.add(currentPoint);
-        }
+        return ConnectPoints.of(Collections.unmodifiableSet(points));
     }
 
     private boolean canConnect(Order order, Point point) {
@@ -47,6 +38,10 @@ public class Ladder {
 
     private boolean enoughToDrawLine(final int size) {
         return size < this.maxHeight - 1;
+    }
+
+    public LadderBaseLine findLadderLineByOrder(int order) {
+        return ladderBaseLines.get(Order.of(order));
     }
 
     public LadderBaseLine findLadderLineByOrder(Order order) {

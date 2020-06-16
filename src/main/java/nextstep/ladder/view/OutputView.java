@@ -2,7 +2,6 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Order;
-import nextstep.ladder.domain.Point;
 
 import java.util.stream.IntStream;
 
@@ -46,6 +45,6 @@ public class OutputView {
     }
 
     private static boolean isConnected(final Ladder ladder, final int currentPosition, final int currentUser) {
-        return ladder.findLadderLineByOrder(Order.of(currentUser)).connectedWith(Point.of(currentPosition));
+        return ladder.findLadderLineByOrder(currentUser).connectedWith(currentPosition);
     }
 }
