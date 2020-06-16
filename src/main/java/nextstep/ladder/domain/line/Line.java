@@ -19,7 +19,7 @@ public class Line {
         boolean lined;
 
         for(int i = 0; i < playerCount-1; i++) {
-            lined = (i == 0 || !isBeforeLined(i)) ? getRandomBoolean() : false;
+            lined = (i == 0 || !isBeforeLined(i)) && getRandomBoolean();
             points.add(i, lined);
         }
     }
