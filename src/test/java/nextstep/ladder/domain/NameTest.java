@@ -24,6 +24,6 @@ public class NameTest {
     @ValueSource(strings = {"pobi", "honux", "crong", "jk"} )
     void name_toString(String name) {
         assertThat(new Name(name).toString().length())
-                .isEqualTo(5);
+                .isEqualTo(Name.NAME_UPPER_BOUND);
     }
 }
