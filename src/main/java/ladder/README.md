@@ -22,21 +22,38 @@
 - Players: 참가자 목록
     - [X] 여러 Player를 생성할 수 있다.
     - [X] null 또는 0개의 이름이 입력되면 예외를 반환한다.
+    - [ ] 참가자 이름으로 순서를 찾을 수 있다.
+
+- Reward: 사다리 결과 보상 하나
+    - [ ] 보상명을 가질 수 있다.
+
+- Rewards: 사다리 결과 목록
+    - [ ] 여러 Reward를 생성할 수 있다.
+    - [ ] Players 수와 갯수가 같지 않으면 예외를 반환한다.
 
 - Height: 사다리 높이
     - [X] 1이상의 Height을 생성할 수 있다.
     - [X] 1보다 작을 경우 예외를 반환한다.
 
+- LadderGame: 사다리 게임
+    - [ ] Ladder를 생성할 수 있다.
+    - [ ] 참가자 한명에 대한 사다리 게임 실행 결과를 반환할 수 있다.
+    - [ ] 참가자 전체에 대한 사다리 게임 실행 결과를 반환할 수 있다. 
+
 - Ladder: 사다리 판
     - [X] Height * Players 개의 Ladder를 생성할 수 있다.
 
 - Line: 사다리 게임 한 단계
-    - [X] Players 만큼 생성 할 수 있다.
-    - [X] 첫 번째는 기둥 사이를 잇는 다리를 놓을 수 없다.
-    - [X] 기둥 사이를 잇는 다리를 연속해서 생성할 수 없다. 
+    - [ ] Players 만큼 Point를 생성 할 수 있다.
+    - [X] 첫 번째는 왼쪽 다리를 가지지 않는 기둥 사이를 잇는 다리를 놓을 수 없다. 
 
-- Point: Line의 좌표 값 (= 사다리 기둥 사이를 잇는 다리의 존재 유무)
-    - [X] RandomPointGenerationStrategy을 이용해 좌표 값을 생성할 수 있다.
+- Point: Line의 좌표 값과 Direction
+    - [ ] Direction에 따라 이동 한 뒤, 좌표값을 반환할 수 있다.
+
+- Direction: 다리의 방향(왼쪽, 오른쪽 방향 존재 여부)
+    - [ ] 첫번째는 왼쪽 방향이 없는 상태로 Direction을 생성할 수 있다.
+    - [ ] RandomPointGenerationStrategy을 이용해 Direction을 생성할 수 있다.
+    - [ ] 마지막은 오른쪽 방향이 없는 상태로 Direction을 생성할 수 있다.
 
 - PointGenerationStrategy, RandomPointGenerationStrategy: Point 생성 전략
     - [X] 무작위로 Point를 생성할 수 있다.
@@ -44,7 +61,10 @@
 - InputView: 입력
     - [X] ,를 기준으로 참가자 이름을 입력받을 수 있다.
     - [X] Height을 입력받을 수 있다. 
+    - [ ] ,를 기준으로 실행 결과를 입력받을 수 있다.
+    - [ ] 결과를 보고 싶은 Player의 이름 또는 전체(all)를 입력 받을 수 있다. 
 
 - OutputView: 실행 결과 출력
     - [X] Players name을 출력할 수 있다.
-    - [X] Ladder의 Line을 `|-----|` 모양으로 출력할 수 있다. 
+    - [X] Ladder의 Line을 `|-----|` 모양으로 출력할 수 있다.
+    - [ ] LadderGame 결과를 출력할 수 있다. 
