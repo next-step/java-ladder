@@ -31,10 +31,10 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers, Conditional c) {
-        return numbers.stream().filter(c::filter).reduce(0, Integer::sum);
+        return sumAll(numbers, c);
     }
 
     public static int sumAllOverThree(List<Integer> numbers, Conditional c) {
-        return numbers.stream().filter(c::filter).reduce(0, Integer::sum);
+        return sumAll(numbers, c);
     }
 }
