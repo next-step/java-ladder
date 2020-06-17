@@ -19,7 +19,7 @@ public class LadderLines {
         Point maxPoint = Point.of(maxHeight);
 
         while (currentPoint.isUnderThan(maxPoint) || currentPoint.equals(maxPoint)) {
-            if (points.size() < maxHeight && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
+            if (points.size() < maxHeight - 1 && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
                 points.add(currentPoint);
             }
             currentPoint = currentPoint.add();
