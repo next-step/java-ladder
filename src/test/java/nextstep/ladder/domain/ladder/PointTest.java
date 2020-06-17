@@ -40,4 +40,11 @@ public class PointTest {
         Point point = new Point(direction);
         assertThat(point.last()).isEqualTo(new Point(Direction.LEFT));
     }
+
+    @Test
+    @DisplayName("Point first 메소드 실행 테스트")
+    void first() {
+        Point point = Point.first(() -> true);
+        assertThat(point.currentDirection()).isNotEqualTo(Direction.LEFT);
+    }
 }
