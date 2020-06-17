@@ -5,19 +5,19 @@ import nextstep.ladder.domain.LadderGameSnapshot;
 import nextstep.ladder.domain.RandomLadderConnection;
 import nextstep.ladder.domain.game.LadderGame;
 import nextstep.ladder.domain.game.LadderResult;
-import nextstep.ladder.domain.user.LadderGameUsers;
+import nextstep.ladder.domain.user.LadderGameUserStore;
 import nextstep.ladder.domain.vo.Point;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        LadderGameUsers ladderGameUsers = InputView.askParticipantsName();
+        LadderGameUserStore ladderGameUserStore = InputView.askParticipantsName();
         int maxPoint = InputView.askMaximumLadderHeight();
 
         LadderGame ladderGame = new LadderGame(new RandomLadderConnection());
 
-        Ladder ladder = ladderGame.createLadder(ladderGameUsers, maxPoint);
+        Ladder ladder = ladderGame.createLadder(ladderGameUserStore, maxPoint);
 
         OutputView.drawLadder(ladder);
 

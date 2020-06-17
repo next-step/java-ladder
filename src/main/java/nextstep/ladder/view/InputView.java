@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.game.LadderGamePrize;
 import nextstep.ladder.domain.user.LadderGameUser;
-import nextstep.ladder.domain.user.LadderGameUsers;
+import nextstep.ladder.domain.user.LadderGameUserStore;
 import nextstep.ladder.domain.vo.Order;
 
 import java.util.*;
@@ -19,13 +19,13 @@ public class InputView {
     private InputView() {
     }
 
-    public static LadderGameUsers askParticipantsName() {
+    public static LadderGameUserStore askParticipantsName() {
         System.out.println(ASK_PARTICIPANTS_NAME_MESSAGE);
         String[] inputUserNames = SCANNER.nextLine().split(DELIMITER);
         List<LadderGameUser> gameUsers = Arrays.asList(inputUserNames).stream()
                 .map(LadderGameUser::new)
                 .collect(Collectors.toList());
-        return new LadderGameUsers(gameUsers);
+        return new LadderGameUserStore(gameUsers);
     }
 
     public static int askMaximumLadderHeight() {
