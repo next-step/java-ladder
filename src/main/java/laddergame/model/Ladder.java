@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 public class Ladder {
 
   private final List<Line> lines;
+
   public Ladder(List<Line> lines) {
     this.lines = lines;
   }
@@ -26,5 +27,4 @@ public class Ladder {
   public List<Line> getLines() {
     return Collections.unmodifiableList(lines);
   }
-
 }
