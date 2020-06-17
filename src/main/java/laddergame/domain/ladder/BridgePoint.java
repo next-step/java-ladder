@@ -30,11 +30,11 @@ public class BridgePoint {
         return right.getColumn();
     }
 
-    private boolean isLeftColumn(final Column targetColumn) {
+    public boolean isLeftColumn(final Column targetColumn) {
         return left.equals(targetColumn);
     }
 
-    private boolean isRightColumn(final Column targetColumn) {
+    public boolean isRightColumn(final Column targetColumn) {
         return right.equals(targetColumn);
     }
 
