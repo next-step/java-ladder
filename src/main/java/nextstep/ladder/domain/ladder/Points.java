@@ -22,6 +22,10 @@ public class Points {
         return points.size();
     }
 
+    public int move(int position) {
+        return position + points.get(position).move();
+    }
+
     public static Points newInstance(List<Point> points) {
         return new Points(points);
     }
