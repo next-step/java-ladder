@@ -12,6 +12,10 @@ public class Point {
         this.direction = direction;
     }
 
+    public static Point first(DirectionPredicate directionPredicate) {
+        return new Point(Direction.generate(directionPredicate));
+    }
+
     public Direction currentDirection() {
         return direction;
     }
