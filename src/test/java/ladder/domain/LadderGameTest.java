@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,7 +49,7 @@ class LadderGameTest {
     @DisplayName("참가자 전체에 대한 사다리 게임 실행 결과를 반환할 수 있다.")
     @Test
     void playAll() {
-        Map<String, Reward> resultMap = ladderGame.playAll();
-        assertThat(resultMap).hasSize(4);
+        GameResult gameResult= ladderGame.playAll();
+        assertThat(gameResult.getResult()).hasSize(4);
     }
 }
