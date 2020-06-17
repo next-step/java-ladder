@@ -1,7 +1,8 @@
 package nextstep.ladder.domain.ladder;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Points {
 
@@ -9,9 +10,9 @@ public class Points {
 
     private final List<Point> points;
 
-    private Points(List<Point> points) {
-        validate(points);
-        this.points = points;
+    private Points(int sizeOfPerson, DirectionPredicate directionPredicate) {
+        validate(sizeOfPerson);
+        this.points = init(sizeOfPerson, directionPredicate);
     }
 
     public List<Point> getPoints() {
@@ -26,15 +27,41 @@ public class Points {
         return position + points.get(position).move();
     }
 
-    public static Points newInstance(List<Point> points) {
-        return new Points(points);
+    public static Points newInstance(int sizeOfPerson, DirectionPredicate predicate) {
+        return new Points(sizeOfPerson, predicate);
     }
 
-    private void validate(List<Point> points) {
-        if (Objects.isNull(points)) {
-            throw new IllegalArgumentException("argument points is null");
-        }
-        if (points.size() < MINIMUM_POINT_SIZE) {
+    private List<Point> init(int pointSize, DirectionPredicate predicate) {
+        List<Point> points = new ArrayList<>();
+        Point first = initFirst(predicate);
+        points.add(first);
+        points.addAll(initBody(first, predicate, pointSize - 2));
+        points.add(initLast(points.get(points.size() - 1)));
+        return points;
+    }
+
+    private Point initFirst(DirectionPredicate predicate) {
+        return Point.first(predicate);
+    }
+
+    private List<Point> initBody(Point fist, DirectionPredicate predicate, int bodySize) {
+        List<Point> points = new ArrayList<>();
+        points.add(fist.next(predicate));
+
+        IntStream.range(0, bodySize - 1)
+                .mapToObj(points::get)
+                .map(point -> point.next(predicate))
+                .forEach(points::add);
+
+        return points;
+    }
+
+    private Point initLast(Point point) {
+        return point.last();
+    }
+
+    private void validate(int pointSize) {
+        if (pointSize < MINIMUM_POINT_SIZE) {
             throw new IllegalArgumentException("사다리 위치 리스트의 최소 크기는 " + MINIMUM_POINT_SIZE + "입니다.");
         }
     }

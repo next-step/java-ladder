@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,19 +23,20 @@ public class LineTest {
                 .isThrownBy(() -> Line.init(maxPosition, new DirectionRandomPredicate()));
     }
 
-    @Test
+    @ValueSource(ints = {2, 3, 4, 5, 6, 7})
+    @ParameterizedTest
     @DisplayName("init method 테스트")
     void init(int sizeOfPerson) {
-        Line line = Line.init(sizeOfPerson, new DirectionRandomPredicate());
-        assertThat(line).isEqualTo(new Line(Points.newInstance(line.getPoints())));
+        assertThatCode(() -> Line.init(sizeOfPerson, new DirectionRandomPredicate()))
+                .doesNotThrowAnyException();
     }
 
     @ValueSource(ints = {2, 3, 4, 5, 6})
     @ParameterizedTest
     @DisplayName("move 메소드 테스트")
     public void move(int initValue) {
-        int value = 3;
-        Line line = Line.init(initValue, new DirectionRandomPredicate());
-        assertThat(line.move(value)).isEqualTo(initValue + value);
+        int value = initValue - 1;
+        Line line = Line.init(initValue, () -> false);
+        assertThat(line.move(value)).isEqualTo(value);
     }
 }
