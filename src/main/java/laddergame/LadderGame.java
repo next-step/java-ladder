@@ -11,6 +11,8 @@ import laddergame.view.LadderGameView;
 
 public class LadderGame {
 
+  private final static Name NAME_FOR_END = new Name("all");
+
   public static void main(String[] args) {
     String[] playerNames = LadderGameInput.getPlayerNamesInputWithPrintMsg();
     Names players = Names.createBy(playerNames);
@@ -31,8 +33,10 @@ public class LadderGame {
     while (true) {
       Name resultOfPlayer = new Name(LadderGameInput.getResultOfPlayerInputWithPrintMsg());
       LadderGameView.printResult(resultMap, resultOfPlayer);
+
+      if (resultOfPlayer.equals(NAME_FOR_END)) {
+        break;
+      }
     }
-
-
   }
 }
