@@ -13,7 +13,7 @@ public class Height {
 		this.heightValue = heightValue;
 	}
 
-	public static Height of(final String heightValueString) {
+	public static Height ofHeight(final String heightValueString) {
 		validateValueStringIsNotEmpty(heightValueString);
 		int heightValue = convertValueStringToInt(heightValueString);
 		validateHeightValueInRange(heightValue);
