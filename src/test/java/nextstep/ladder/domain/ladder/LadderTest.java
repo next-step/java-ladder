@@ -19,7 +19,7 @@ public class LadderTest {
     }
 
 
-    @ValueSource(ints = {0, 1, 2, 3})
+    @ValueSource(ints = {0, 1, 2})
     @ParameterizedTest
     @DisplayName("사다리 도착지 메소드 테스트")
     void findDestination(int startPosition) {
