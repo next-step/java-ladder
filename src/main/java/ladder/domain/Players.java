@@ -13,7 +13,7 @@ public class Players {
 
     public Players(String players) {
         this.players = Arrays.stream(players.split(PLAYER_DELIMITER))
-                        .map(p -> new Player(p))
+                        .map(Player::new)
                         .collect(Collectors.toList());
     }
 
