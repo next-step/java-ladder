@@ -20,7 +20,7 @@ class LineTest {
       "2"
   })
   void getPoints_길이테스트(int countOfPerson) {
-    Line line = Line.createByCountOfPerson(new PositiveNumber(countOfPerson));
+    Line line = Line.createByCountOfPerson(countOfPerson);
 
     assertThat(line.getPoints().size()).isEqualTo(countOfPerson);
   }
@@ -34,7 +34,7 @@ class LineTest {
       "20"
   })
   void getPoints_true중복테스트(int countOfPerson) {
-    Line line = Line.createByCountOfPerson(new PositiveNumber(countOfPerson));
+    Line line = Line.createByCountOfPerson(countOfPerson);
     int cnt = 0;
 
     for (Point point : line.getPoints()) {

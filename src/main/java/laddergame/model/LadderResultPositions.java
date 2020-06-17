@@ -22,10 +22,10 @@ public class LadderResultPositions {
   }
 
   public static LadderResultPositions createByLadderWithCountOfPerson(Ladder ladder,
-      PositiveNumber countOfPerson) {
+      int countOfPerson) {
     return new LadderResultPositions(
         Stream.iterate(0, n -> n + 1)
-            .limit(countOfPerson.getValue())
+            .limit(countOfPerson)
             .map(n -> getResultPosition(ladder.getLines(), new Position(new NaturalNumber(n))))
             .collect(Collectors.toList()));
   }

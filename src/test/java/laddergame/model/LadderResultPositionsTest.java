@@ -38,7 +38,7 @@ class LadderResultPositionsTest {
   @MethodSource("ladderWithResultPositionProvider")
   @DisplayName("사다리 결과 저장")
   void createByLadderWithCountOfPerson(Ladder ladder, LadderResultPositions expected) {
-    PositiveNumber countOfPerson = new PositiveNumber(ladder.getLines().get(0).getPoints().size());
+    int countOfPerson = ladder.getLines().get(0).getPoints().size();
 
     assertThat(LadderResultPositions.createByLadderWithCountOfPerson(ladder, countOfPerson))
         .isEqualTo(expected);

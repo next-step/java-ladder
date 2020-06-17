@@ -14,7 +14,7 @@ public class Ladder {
   }
 
   public static Ladder createByHeightAndCountOfPerson(
-      PositiveNumber height, PositiveNumber countOfPerson) {
+      PositiveNumber height, int countOfPerson) {
 
     List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson(countOfPerson))
         .limit(height.getValue()).collect(

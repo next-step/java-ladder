@@ -19,8 +19,8 @@ public class Names {
         .collect(Collectors.toList()));
   }
 
-  public static Names createByNamesWithLength(String[] names, PositiveNumber length) {
-    if (names.length != length.getValue()) {
+  public static Names createByNamesWithLength(String[] names, int length) {
+    if (names.length != length) {
       throw new IllegalArgumentException("입력 값의 길이가 지정된 길이와 다릅니다.");
     }
 
@@ -29,8 +29,8 @@ public class Names {
         .collect(Collectors.toList()));
   }
 
-  public PositiveNumber getCountOfNames() {
-    return new PositiveNumber(names.size());
+  public int getCountOfNames() {
+    return names.size();
   }
 
   public Name getNameByIndex(int index) {

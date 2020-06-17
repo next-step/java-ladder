@@ -35,7 +35,7 @@ class NamesTest {
   @ParameterizedTest
   @MethodSource("namesProviderWithLength")
   void createByNamesWithLength(List<String> nameList, String namesStr,
-      PositiveNumber length) {
+      int length) {
     String[] nameStrArray = nameList.toArray(new String[0]);
 
     Names namesCreatedByList = Names.createByNamesWithLength(nameStrArray, length);
@@ -49,7 +49,7 @@ class NamesTest {
         arguments(
             Arrays.asList("test1", "test2", "test3", "test4"),
             "test1, test2, test3, test4",
-            new PositiveNumber(4)
+            4
         )
     );
   }
@@ -57,7 +57,7 @@ class NamesTest {
   @ParameterizedTest
   @MethodSource("namesProviderWithWrongLength")
   @DisplayName("입력길이가 다른 경우")
-  void createByNamesWithLength_Wrong(List<String> nameStrList, PositiveNumber length) {
+  void createByNamesWithLength_Wrong(List<String> nameStrList, int length) {
     String[] nameStrArray = nameStrList.toArray(new String[0]);
     assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
       Names.createByNamesWithLength(nameStrArray, length);
@@ -68,11 +68,11 @@ class NamesTest {
     return Stream.of(
         arguments(
             Arrays.asList("test1", "test2", "test3", "test4"),
-            new PositiveNumber(3)
+            3
         ),
         arguments(
             Arrays.asList("test1", "test2", "test3", "test4"),
-            new PositiveNumber(5)
+            5
         )
     );
   }
