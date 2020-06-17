@@ -1,46 +1,40 @@
 package nextstep.ladder.domain.ladder;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private static final int FIRST_LINE = 0;
-
-    private final List<Line> lines;
+    private final int MINIMUM_LINE_SIZE = 1;
+    private final Lines lines;
 
     public Ladder(Height height, int sizeOfPerson, DirectionPredicate predicate) {
-        this.lines = createLines(height, sizeOfPerson, predicate);
-    }
-
-    private List<Line> createLines(Height height, int sizeOfPerson, DirectionPredicate predicate) {
-        return IntStream.range(0, height.getHeight())
-                .unordered()
-                .mapToObj(integer -> Line.init(sizeOfPerson, predicate))
-                .collect(Collectors.toList());
+        this.lines = new Lines(height, sizeOfPerson, predicate);
     }
 
     public List<Line> getLines() {
-        return lines;
-    }
-
-    public int getHeight() {
-        return lines.size();
-    }
-
-    public Integer getMaxPoint() {
-        if (lines.size() > FIRST_LINE) {
-            return lines.get(FIRST_LINE).sizeOfPositions();
-        }
-        return null;
+        return lines.getLines();
     }
 
     public int findDestinationPosition(int startPoint) {
         int point = startPoint;
-        for (int i = 0; i < lines.size(); i++) {
-            point = lines.get(i).move(point);
+        for (int i = 0; i < getLines().size(); i++) {
+            point = getLine(i).move(point);
         }
         return point;
+    }
+
+    private Line getLine(int index) {
+        return getLines().get(index);
+    }
+
+    public int getHeight() {
+        return getLines().size();
+    }
+
+    public int getMaxPoint() {
+        if (getLines().size() >= MINIMUM_LINE_SIZE) {
+            return getLine(MINIMUM_LINE_SIZE).sizeOfPositions();
+        }
+        throw new RuntimeException("Max Point is less than 1");
     }
 }
