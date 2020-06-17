@@ -16,7 +16,7 @@ public class Players {
 
     public static Players of(String input) {
         StringUtils.validate(input);
-        return new Players(Arrays.stream(StringUtils.getNamesFrom(input))
+        return new Players(Arrays.stream(StringUtils.splitByComma(input))
                 .map(Player::of)
                 .collect(Collectors.toList()));
     }

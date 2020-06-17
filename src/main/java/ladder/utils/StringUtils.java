@@ -14,11 +14,11 @@ public class StringUtils {
         return Objects.isNull(input) || input.isEmpty();
     }
 
-    public static String[] getNamesFrom(String input) {
-        return getNameFrom(input).split(",");
+    public static String[] splitByComma(String input) {
+        return removeBlank(input).split(",");
     }
 
-    public static String getNameFrom(String input) {
+    public static String removeBlank(String input) {
         return input.trim().replaceAll(" ", "");
     }
 }

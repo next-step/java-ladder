@@ -18,7 +18,7 @@ public class LadderResults {
     public static LadderResults of(String input, Players players) {
         StringUtils.validate(input);
         LadderResults ladderResults = new LadderResults(Arrays
-                .stream(StringUtils.getNamesFrom(input))
+                .stream(StringUtils.splitByComma(input))
                 .map(LadderResult::of)
                 .collect(Collectors.toList()));
         validateSize(ladderResults, players);

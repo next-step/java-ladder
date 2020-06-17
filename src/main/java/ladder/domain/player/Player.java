@@ -14,7 +14,7 @@ public class Player {
 
     public static Player of(String name) {
         StringUtils.validate(name);
-        return new Player(StringUtils.getNameFrom(name));
+        return new Player(StringUtils.removeBlank(name));
     }
 
     public String getName() {
