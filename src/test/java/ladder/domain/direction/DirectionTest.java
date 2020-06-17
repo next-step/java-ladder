@@ -4,48 +4,30 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class DirectionTest {
 
-    @DisplayName("객체 생성 테스트")
-    @Test
-    void init() {
-        Direction direction = Direction.of(true, false);
-
-        assertThat(direction).isEqualTo(Direction.of(true, false));
-        assertThat(direction).isNotEqualTo(Direction.of(false, true));
-    }
-
-    @DisplayName("양 방향으로 향하고자 하면 IllegalArgumentException")
-    @Test
-    void init_invalid() {
-        assertThatThrownBy(() -> Direction.of(true, true))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("오른쪽의 다음 방향은 왼쪽이다")
+    @DisplayName("오른쪽의 다음 방향은 isNextRight 인자와 상관없이 왼쪽이다")
     @Test
     void right_next_left() {
-        Direction direction = Direction.of(false, true);
+        Direction right = Direction.RIGHT;
+        Direction nextDirection = right.next(true);
 
-        Direction nextDirection = direction.next(true);
-
-        assertThat(nextDirection).isEqualTo(Direction.of(true, false));
+        assertThat(nextDirection).isEqualTo(Direction.LEFT);
     }
 
-    @DisplayName("왼쪽의 다음 방향은 제자리이거나 오른쪽이다")
+    @DisplayName("왼쪽의 다음 방향은 isNextRight 인자에 따라 제자리이거나 오른쪽이다")
     @Test
     void notRight_nextIsGivenValue() {
-        Direction direction = Direction.of(false, false);
+        Direction left = Direction.LEFT;
 
-        Direction rightDirection = direction.next(true);
-        Direction stayDirection = direction.next(false);
+        Direction rightDirection = left.next(true);
+        Direction stayDirection = left.next(false);
 
         assertAll(
-                () -> assertThat(rightDirection).isEqualTo(Direction.of(false, true)),
-                () -> assertThat(stayDirection).isEqualTo(Direction.of(false, false)));
+                () -> assertThat(rightDirection).isEqualTo(Direction.RIGHT),
+                () -> assertThat(stayDirection).isEqualTo(Direction.STAY));
     }
 
     @DisplayName("첫 번째 방향은 왼쪽일 수 없다")
@@ -53,7 +35,7 @@ public class DirectionTest {
     void fist_not_left() {
         Direction direction = Direction.first(false);
 
-        assertThat(direction).isNotEqualTo(Direction.of(true, false));
+        assertThat(direction).isNotEqualTo(Direction.LEFT);
     }
 
     @DisplayName("마지막 방향은 오른쪽일 수 없다")
@@ -61,6 +43,6 @@ public class DirectionTest {
     void last_not_right() {
         Direction direction = Direction.last(false);
 
-        assertThat(direction).isNotEqualTo(Direction.of(false, true));
+        assertThat(direction).isNotEqualTo(Direction.RIGHT);
     }
 }
