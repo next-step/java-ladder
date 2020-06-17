@@ -2,8 +2,6 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.Objects;
 
-import static nextstep.ladder.domain.ladder.Direction.*;
-
 public class Point {
 
     private final Direction direction;
