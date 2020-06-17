@@ -3,7 +3,9 @@ package nextstep.ladder.domain.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -46,5 +48,14 @@ public class PointTest {
     void first() {
         Point point = Point.first(() -> true);
         assertThat(point.currentDirection()).isNotEqualTo(Direction.LEFT);
+    }
+
+    @ValueSource(ints =  {-1, 0, 1})
+    @ParameterizedTest
+    @DisplayName("move 메소드 실행 테스트")
+    void move(int value) {
+        Direction direction = Direction.of(value);
+        Point point = new Point(direction);
+        assertThat(point.move(direction)).isEqualTo(value);
     }
 }
