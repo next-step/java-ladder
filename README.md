@@ -21,3 +21,6 @@
 11. 참가자 리스트를 감싸는 Players 일급컬렉션
 12. 사다리 게임에서 사용하는 높이의 VO Height
 13. 사다리 게임에서 사용하는 열번호의 VO Column
+14. 사용자가 입력한 실행 결과 하나를 가지는 Result
+15. Result를 감싸는 일급 컬렉션 Results
+16. 사다리 결과를 가지는 LadderResult 
