@@ -8,13 +8,17 @@ public class Line {
     private List<Draw> points = new ArrayList<>();
 
     public Line (int countOfPerson) {
-        for (int i = 0; i < countOfPerson; i++) {
+        for (int i = 1; i < countOfPerson; i++) {
             this.points.add(new Draw(getLastDraw()));
         }
     }
 
     public int getLineCount() {
         return points.size();
+    }
+
+    public Draw getDrawByPosition(int position) {
+        return points.get(position);
     }
 
     public Draw getLastDraw() {
@@ -25,7 +29,6 @@ public class Line {
 
     public int getDrawLineCount() {
         return (int) points.stream()
-                        .filter(draw -> Draw.of(true).equals(draw))
                         .count();
     }
 
