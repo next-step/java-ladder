@@ -17,7 +17,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class FootStepTest {
     @ParameterizedTest(name = "input = {0}")
-    @ValueSource(ints = {1, 2, 3})
+    @ValueSource(ints = {2, 3})
     @DisplayName("디딤대는 사람 수 만큼 생성된다.")
     void make_footStep(int countOfUser) {
         FootStep footStep = new FootStep(countOfUser);
@@ -25,8 +25,8 @@ class FootStepTest {
     }
 
     @ParameterizedTest(name = "input = {0}")
-    @ValueSource(ints = 0)
-    @DisplayName("FootStep 생성 시 countOfUser은 0 이상이어야 한다.")
+    @ValueSource(ints = {0, 1})
+    @DisplayName("FootStep 생성 시 countOfUser은 1 이상이어야 한다.")
     void validate_countOfUser(int countOfUser) {
         assertThatThrownBy(() -> new FootStep(countOfUser))
                 .isInstanceOf(IllegalArgumentException.class)

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class FootStep {
-    private static final int MIN_COUNT_OF_USER = 1;
+    private static final int MIN_COUNT_OF_USER = 2;
     private final List<Boolean> steps = new ArrayList<>();
 
     public FootStep(int countOfUser) {
