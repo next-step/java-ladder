@@ -12,11 +12,11 @@ import laddergame.view.LadderGameView;
 public class LadderGame {
 
   public static void main(String[] args) {
-    String[] playerNameStrArr = LadderGameInput.getPlayerNameStrArrInputWithPrintMsg();
-    Names players = Names.createByNameStrArr(playerNameStrArr);
+    String[] playerNames = LadderGameInput.getPlayerNamesInputWithPrintMsg();
+    Names players = Names.createBy(playerNames);
 
-    String[] resultNameStrArr = LadderGameInput.getResultNameStrArrInputWithPrintMsg();
-    Names results = Names.createByNameStrArrWithLength(resultNameStrArr, players.getCountOfNames());
+    String[] resultNames = LadderGameInput.getResultNamesInputWithPrintMsg();
+    Names results = Names.createByNamesWithLength(resultNames, players.getCountOfNames());
 
     PositiveNumber ladderHeight = new PositiveNumber(LadderGameInput.getHeightInputWithPrintMsg());
 

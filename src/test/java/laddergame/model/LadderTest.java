@@ -11,10 +11,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LadderTest {
 
   @ParameterizedTest
-  @MethodSource("heightAndNameStrArrProvider")
+  @MethodSource("heightAndNamesProvider")
   void createByHeightAndNamesStrArr(PositiveNumber height, String namesStr) {
     String[] nameStrArr = namesStr.split(",");
-    Names names = Names.createByNameStrArr(namesStr.split(","));
+    Names names = Names.createBy(namesStr.split(","));
 
     Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, names.getCountOfNames());
 
@@ -25,7 +25,7 @@ class LadderTest {
     }
   }
 
-  public static Stream<Arguments> heightAndNameStrArrProvider() {
+  public static Stream<Arguments> heightAndNamesProvider() {
     return Stream.of(
         arguments(
             new PositiveNumber(1),

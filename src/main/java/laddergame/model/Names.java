@@ -13,18 +13,18 @@ public class Names {
     this.names = names;
   }
 
-  public static Names createByNameStrArr(String[] nameStrArr) {
-    return new Names(Stream.of(nameStrArr)
+  public static Names createBy(String[] names) {
+    return new Names(Stream.of(names)
         .map(s -> new Name(s.trim()))
         .collect(Collectors.toList()));
   }
 
-  public static Names createByNameStrArrWithLength(String[] nameStrArr, PositiveNumber length) {
-    if (nameStrArr.length != length.getValue()) {
+  public static Names createByNamesWithLength(String[] names, PositiveNumber length) {
+    if (names.length != length.getValue()) {
       throw new IllegalArgumentException("입력 값의 길이가 지정된 길이와 다릅니다.");
     }
 
-    return new Names(Stream.of(nameStrArr)
+    return new Names(Stream.of(names)
         .map(Name::new)
         .collect(Collectors.toList()));
   }

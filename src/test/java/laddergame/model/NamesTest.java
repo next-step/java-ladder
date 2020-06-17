@@ -14,15 +14,16 @@ import org.junit.jupiter.params.provider.MethodSource;
 class NamesTest {
 
   @ParameterizedTest
-  @MethodSource("nameStrArrProvider")
-  void createByNameStrArr(List<String> nameStrList, String namesStr) {
-    Names namesCreatedByList = Names.createByNameStrArr(nameStrList.toArray(new String[0]));
-    Names namesCreatedByStr = Names.createByNameStrArr(namesStr.split(","));
+  @MethodSource("namesProvider")
+  @DisplayName("배열로 생성 테스트")
+  void createBy(List<String> nameStrList, String namesStr) {
+    Names namesCreatedByList = Names.createBy(nameStrList.toArray(new String[0]));
+    Names namesCreatedByStr = Names.createBy(namesStr.split(","));
 
     assertThat(namesCreatedByList).isEqualTo(namesCreatedByStr);
   }
 
-  public static Stream<Arguments> nameStrArrProvider() {
+  public static Stream<Arguments> namesProvider() {
     return Stream.of(
         arguments(
             Arrays.asList("test1", "test2", "test3", "test4"),
@@ -32,18 +33,18 @@ class NamesTest {
   }
 
   @ParameterizedTest
-  @MethodSource("nameStrArrProviderWithLength")
-  void createByNameStrArrWithLength(List<String> nameStrList, String namesStr,
+  @MethodSource("namesProviderWithLength")
+  void createByNamesWithLength(List<String> nameList, String namesStr,
       PositiveNumber length) {
-    String[] nameStrArray = nameStrList.toArray(new String[0]);
+    String[] nameStrArray = nameList.toArray(new String[0]);
 
-    Names namesCreatedByList = Names.createByNameStrArrWithLength(nameStrArray, length);
-    Names namesCreatedByStr = Names.createByNameStrArrWithLength(namesStr.split(","), length);
+    Names namesCreatedByList = Names.createByNamesWithLength(nameStrArray, length);
+    Names namesCreatedByStr = Names.createByNamesWithLength(namesStr.split(","), length);
 
     assertThat(namesCreatedByList).isEqualTo(namesCreatedByStr);
   }
 
-  public static Stream<Arguments> nameStrArrProviderWithLength() {
+  public static Stream<Arguments> namesProviderWithLength() {
     return Stream.of(
         arguments(
             Arrays.asList("test1", "test2", "test3", "test4"),
@@ -54,16 +55,16 @@ class NamesTest {
   }
 
   @ParameterizedTest
-  @MethodSource("nameStrArrProviderWithWrongLength")
+  @MethodSource("namesProviderWithWrongLength")
   @DisplayName("입력길이가 다른 경우")
-  void createByNameStrArrWithLength_Wrong(List<String> nameStrList, PositiveNumber length) {
+  void createByNamesWithLength_Wrong(List<String> nameStrList, PositiveNumber length) {
     String[] nameStrArray = nameStrList.toArray(new String[0]);
     assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-      Names.createByNameStrArrWithLength(nameStrArray, length);
+      Names.createByNamesWithLength(nameStrArray, length);
     });
   }
 
-  public static Stream<Arguments> nameStrArrProviderWithWrongLength() {
+  public static Stream<Arguments> namesProviderWithWrongLength() {
     return Stream.of(
         arguments(
             Arrays.asList("test1", "test2", "test3", "test4"),

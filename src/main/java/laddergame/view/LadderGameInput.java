@@ -6,13 +6,13 @@ public class LadderGameInput {
 
   private static final Scanner scanner = new Scanner(System.in);
 
-  public static String[] getPlayerNameStrArrInputWithPrintMsg() {
+  public static String[] getPlayerNamesInputWithPrintMsg() {
     LadderGameView.printInputPlayerNamesMsg();
 
     return scanner.nextLine().split(",");
   }
 
-  public static String[] getResultNameStrArrInputWithPrintMsg() {
+  public static String[] getResultNamesInputWithPrintMsg() {
     LadderGameView.printInputResultNamesMsg();
 
     return scanner.nextLine().split(",");
