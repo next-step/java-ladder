@@ -1,9 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,29 +9,16 @@ public class Ladder {
     private static final int FIRST_LINE = 0;
 
     private final List<Line> lines;
-    private final Map<Integer, Direction> directionMap;
 
-    public Ladder(Height height, int maxPosition, DirectionPredicate predicate) {
-        this.lines = createLines(height, maxPosition, predicate);
-        this.directionMap = convertLinesToDirectionMap();
+    public Ladder(Height height, int sizeOfPerson, DirectionPredicate predicate) {
+        this.lines = createLines(height, sizeOfPerson, predicate);
     }
 
-    private List<Line> createLines(Height height, int maxPosition, DirectionPredicate predicate) {
+    private List<Line> createLines(Height height, int sizeOfPerson, DirectionPredicate predicate) {
         return IntStream.range(0, height.getHeight())
                 .unordered()
-                .mapToObj(integer -> Line.init(maxPosition, predicate))
+                .mapToObj(integer -> Line.init(sizeOfPerson, predicate))
                 .collect(Collectors.toList());
-    }
-
-    private Map<Integer, Direction> convertLinesToDirectionMap() {
-        List<Direction> directions = lines.stream()
-                .flatMap(line -> line.getPoints().stream())
-                .map(Point::currentDirection)
-                .collect(Collectors.toList());
-
-        return IntStream.range(0, directions.size())
-                .boxed()
-                .collect(Collectors.toMap(Function.identity(), directions::get));
     }
 
     public List<Line> getLines() {
@@ -54,14 +38,9 @@ public class Ladder {
 
     public int findDestinationPosition(int startPoint) {
         int point = startPoint;
-        while (Objects.nonNull(directionMap.get(point))) {
-            Direction direction = directionMap.get(point);
-            point = nextPosition(point, direction);
+        for (int i = 0; i < lines.size(); i++) {
+            point = lines.get(i).move(point);
         }
-        return point % getMaxPoint();
-    }
-
-    private int nextPosition(int current, Direction next) {
-        return current + next.getDirection() + getMaxPoint();
+        return point;
     }
 }

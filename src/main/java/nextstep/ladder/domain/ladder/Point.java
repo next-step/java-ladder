@@ -18,15 +18,6 @@ public class Point {
         return direction;
     }
 
-    public static Point createPoint(boolean isLastPoint,
-                                       DirectionPredicate predicate,
-                                       Point prePoint) {
-        if (isLastPoint) {
-            return prePoint.last();
-        }
-        return prePoint.next(predicate);
-    }
-
     public Point next(DirectionPredicate predicate) {
         return new Point(direction.next(predicate));
     }
