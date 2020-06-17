@@ -14,7 +14,7 @@ public class HeightTest {
 	@ParameterizedTest
 	void 높이가_6을_초과하는_경우_오류를_반환한다(String heightValueString) {
 		assertThatThrownBy(
-			() -> Height.of(heightValueString))
+			() -> Height.ofHeight(heightValueString))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("The minimum threshold of height is 1. check your input again.");
 	}
@@ -24,7 +24,7 @@ public class HeightTest {
 	@ParameterizedTest
 	void 하나_이하의_높이를_가진_경우_오류를_반환한다(String heightValueString) {
 		assertThatThrownBy(
-			() -> Height.of(heightValueString))
+			() -> Height.ofHeight(heightValueString))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("The minimum threshold of height is 1. check your input again.");
 	}
@@ -34,7 +34,7 @@ public class HeightTest {
 	@ParameterizedTest
 	void NULL_또는_UNDEFINED인_경우_오류를_반환한다(String heightValueString) {
 		assertThatThrownBy(
-			() -> Height.of(heightValueString))
+			() -> Height.ofHeight(heightValueString))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("The height input is null or undefined. What was wrong with you?");
 	}
