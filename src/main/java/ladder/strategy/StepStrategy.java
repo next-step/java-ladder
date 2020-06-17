@@ -1,4 +1,4 @@
-package ladder.service;
+package ladder.strategy;
 
 public interface StepStrategy {
     public Boolean nextStep();

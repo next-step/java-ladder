@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
-import ladder.service.StepRandomStrategy;
-import ladder.service.StepStrategy;
+import ladder.strategy.StepRandomStrategy;
+import ladder.strategy.StepStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

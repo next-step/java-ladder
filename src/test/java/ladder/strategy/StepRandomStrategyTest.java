@@ -1,4 +1,4 @@
-package ladder.service;
+package ladder.strategy;
 
 import ladder.domain.ladder.FootStep;
 import org.junit.jupiter.api.DisplayName;
