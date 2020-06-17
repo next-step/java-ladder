@@ -1,13 +1,17 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LadderGameUsers {
-    private final Map<Integer, LadderGameUser> ladderGameUsers;
+    private final List<LadderGameUser> ladderGameUsers;
 
-    public LadderGameUsers(final Map<Integer, LadderGameUser> ladderGameUsers) {
+    public LadderGameUsers(final List<LadderGameUser> ladderGameUsers) {
         this.ladderGameUsers = ladderGameUsers;
-        validateUserNames(ladderGameUsers.values());
+        validateUserNames(this.ladderGameUsers);
     }
 
     private void validateUserNames(Collection<LadderGameUser> ladderGameUsers) {
@@ -17,15 +21,18 @@ public class LadderGameUsers {
         }
     }
 
-    public List<LadderGameUser> getLadderGameUserNames() {
-        return new ArrayList<>(ladderGameUsers.values());
+    public List<LadderGameUser> getLadderGameUsers() {
+        return ladderGameUsers;
+    }
+
+    public List<String> getLadderGameUserNames() {
+        return ladderGameUsers.stream()
+                .map(LadderGameUser::getUserName)
+                .collect(Collectors.toList());
     }
 
     public int size() {
         return ladderGameUsers.size();
     }
 
-    public LadderGameUser findUserByOrder(final Integer order) {
-        return ladderGameUsers.get(order);
-    }
 }

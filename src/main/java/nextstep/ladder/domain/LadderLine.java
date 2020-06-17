@@ -1,16 +1,14 @@
 package nextstep.ladder.domain;
 
 public class LadderLine {
-    private final LadderGameUser ladderGameUser;
     private final ConnectPoints connectPoints;
 
-    private LadderLine(final LadderGameUser ladderGameUser, final ConnectPoints connectPoints) {
-        this.ladderGameUser = ladderGameUser;
+    private LadderLine(final ConnectPoints connectPoints) {
         this.connectPoints = connectPoints;
     }
 
-    public static LadderLine of(final LadderGameUser ladderGameUser, final ConnectPoints connectPoints) {
-        return new LadderLine(ladderGameUser, connectPoints);
+    public static LadderLine of(final ConnectPoints connectPoints) {
+        return new LadderLine(connectPoints);
     }
 
     public boolean connectedWith(final int point) {
@@ -21,7 +19,4 @@ public class LadderLine {
         return connectPoints.has(point);
     }
 
-    public String getUserName() {
-        return ladderGameUser.getUserName();
-    }
 }

@@ -22,6 +22,13 @@ public class Point {
         return Point.of(position + 1);
     }
 
+    public Point before() {
+        if (this.position <= 0) {
+            throw new IllegalArgumentException(String.format("%d positon은 존재하지 않습니다.", this.position - 1));
+        }
+        return Point.of(this.position - 1);
+    }
+
     public boolean isUnderThan(final Point point) {
         return this.position < point.position;
     }

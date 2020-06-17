@@ -16,6 +16,10 @@ public class Order {
         return new Order(num);
     }
 
+    public Order next() {
+        return Order.of(this.num + 1);
+    }
+
     public Optional<Order> before() {
         if (num <= FIRST_ORDER_NUM) {
             return Optional.empty();
@@ -34,5 +38,10 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(num);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(num);
     }
 }

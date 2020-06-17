@@ -2,8 +2,6 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 
-import java.util.stream.IntStream;
-
 public class OutputView {
     private static final String VERTICAL_LADDER_LINE = "|";
     private static final String LADDER_CONNECTION_LINE = "-----";
@@ -13,11 +11,12 @@ public class OutputView {
     }
 
     public static void drawLadder(Ladder ladder) {
-        IntStream.rangeClosed(1, ladder.getNumberOfUsers())
-                .forEach(order -> System.out.printf(String.format("%5s ", ladder.findUserNameByOrder(order))));
+        ladder.getLadderGameUsers().getLadderGameUserNames()
+                .stream()
+                .forEach((userName) -> System.out.printf("%s%s", userName, BLANK_INTERVAL));
         System.out.println();
 
-        for (int point = 1; point <= ladder.getMaxHeight(); point++) {
+        for (int point = 1; point <= ladder.getMaxPoint(); point++) {
             System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, point));
         }
 
