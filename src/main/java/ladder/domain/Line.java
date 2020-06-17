@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
     private List<Point> points;
@@ -12,20 +11,19 @@ public class Line {
         this.points = points;
     }
 
-    public static Line valueOf(int countOfPerson) {
+    public static Line valueOf(int countOfPerson, PointGenerator pointGenerator) {
         List<Point> points = new ArrayList<>();
-        Random random = new Random();
         Point point = Point.stop();
         while (countOfPerson > 0) {
-            point = addLine(points, random, point);
+            point = addLine(points, pointGenerator, point);
             countOfPerson--;
         }
         return new Line(points);
     }
 
-    private static Point addLine(List<Point> points, Random random, Point point) {
+    private static Point addLine(List<Point> points, PointGenerator pointGenerator, Point point) {
         points.add(point);
-        point = point.checkOverlap(random.nextBoolean());
+        point = point.checkOverlap(pointGenerator.generate());
         return point;
     }
 

@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -10,7 +11,8 @@ public class Ladder {
 
     private Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
-        this.ladder = Stream.generate(() -> Line.valueOf(countOfPerson))
+        Random random = new Random();
+        this.ladder = Stream.generate(() -> Line.valueOf(countOfPerson, random::nextBoolean))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }
