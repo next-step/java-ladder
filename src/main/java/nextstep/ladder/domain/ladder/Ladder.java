@@ -22,7 +22,7 @@ public class Ladder {
     private List<Line> createLines(Height height, int maxPosition, DirectionPredicate predicate) {
         return IntStream.range(0, height.getHeight())
                 .unordered()
-                .mapToObj(integer -> Line.newInstance(maxPosition, predicate))
+                .mapToObj(integer -> Line.init(maxPosition, predicate))
                 .collect(Collectors.toList());
     }
 
