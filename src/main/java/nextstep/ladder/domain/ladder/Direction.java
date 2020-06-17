@@ -26,24 +26,24 @@ public enum Direction {
         this.direction = direction;
     }
 
+    public int getDirection() {
+        return direction;
+    }
+
     public static Direction of(int direction) {
         return directionMap.get(direction);
     }
 
-    public static Direction first(DirectionPredicate directionPredicate) {
-        return null;
-    }
-
-    public Direction next() {
-        return null;
+    public Direction next(DirectionPredicate directionPredicate) {
+        return (this == RIGHT) ? LEFT : generate(directionPredicate);
     }
 
     public Direction last() {
-        return null;
+        return (this == RIGHT) ? LEFT : DOWN;
     }
 
-    public int getDirection() {
-        return direction;
+    public static Direction first(DirectionPredicate directionPredicate) {
+        return generate(directionPredicate);
     }
 
     public static Direction generate(DirectionPredicate predicate) {
