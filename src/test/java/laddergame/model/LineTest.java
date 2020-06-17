@@ -56,9 +56,9 @@ class LineTest {
   void leftAndRightPointHasRung(Line line, List<Boolean> leftExpected,
       List<Boolean> rightExpected) {
     for (int i = 0; i < line.getPoints().size(); i++) {
-      assertThat(line.leftPointHasRung(new Position(new NaturalNumber(i))))
+      assertThat(line.hasRungLeft(new Position(new NaturalNumber(i))))
           .isEqualTo(leftExpected.get(i));
-      assertThat(line.rightPointHasRung(new Position(new NaturalNumber(i))))
+      assertThat(line.hasRungRight(new Position(new NaturalNumber(i))))
           .isEqualTo(rightExpected.get(i));
     }
   }
