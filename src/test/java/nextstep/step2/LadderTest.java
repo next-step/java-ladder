@@ -29,13 +29,26 @@ public class LadderTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(names));
     }
 
+//    @ParameterizedTest
+//    @ValueSource(ints = {3, 4, 5, 6})
+//    @DisplayName("사다리 높이 입력받아서 사다리 값 셋팅되는지 테스트")
+//    void inputLadderHeightValueTest(int inputLadderHeight) {
+//        Ladder ladder = new Ladder(inputLadderHeight);
+//        List<List<Boolean>> ladders = ladder.getLadders();
+//        assertThat(ladders).hasSize(inputLadderHeight);
+//    }
+
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5, 6})
-    @DisplayName("사다리 높이 입력받아서 사다리 값 셋팅하기")
-    void inputLadderHeightValueTest(int inputLadderHeight) {
-        Ladder ladder = new Ladder(inputLadderHeight);
-        List<Boolean> ladders = ladder.getLadders();
+    @DisplayName("사다리타기 참여자, 사다리 높이 입력받아서 참여자 x 사다리높이 만큼 셋팅되는지 테스트")
+    void inputNamesAndLadderHeightTest(int inputLadderHeight) {
+        String names = "pobi,honux,crong,jk";
+        Ladder ladder = new Ladder(names, inputLadderHeight);
+        int joinedPeopleCount = ladder.getNames().size();
+        List<List<Boolean>> ladders = ladder.getLadders();
         assertThat(ladders).hasSize(inputLadderHeight);
+        ladders.forEach(booleans -> assertThat(booleans).hasSize(joinedPeopleCount));
+
     }
 
 }
