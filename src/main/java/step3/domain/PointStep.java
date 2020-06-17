@@ -11,8 +11,4 @@ public enum PointStep {
         Direction = direction;
     }
 
-    public String getDirection() {
-        return Direction;
-    }
-
 }

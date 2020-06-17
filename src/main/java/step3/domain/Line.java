@@ -9,7 +9,11 @@ public class Line {
     private boolean canStepable;
 
     public Line(boolean setAble) {
-        this.canStepable = (setAble) && random.nextBoolean();
+        this.canStepable = (setAble) && isaBoolean();
+    }
+
+    private boolean isaBoolean() {
+        return random.nextBoolean();
     }
 
     public boolean isCanStepable() {
@@ -25,6 +29,12 @@ public class Line {
 
     public PointStep getPointStep() {
         return pointSetp;
+    }
+
+    public void setPointSetp(PointStep pointSetp, boolean lineStepable) {
+        if(lineStepable) {
+            this.pointSetp = pointSetp;
+        }
     }
 
     public void setPointSetp(PointStep pointSetp) {

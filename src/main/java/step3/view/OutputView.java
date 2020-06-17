@@ -1,17 +1,21 @@
 package step3.view;
 
-import step3.domain.Ladder;
-import step3.domain.Ladders;
-import step3.domain.Player;
-import step3.domain.PointStep;
+import step3.domain.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class OutputView {
 
-    public static void outputPlayer(List<Player> playerList) {
+    public static void output(LadderGame ladderGame) {
+        outputPlayer(ladderGame.getPlayers());
+        outputLadder(ladderGame.getLadders());
+        winningPrize(ladderGame.getWinningPrizes());
+    }
+
+    public static void outputPlayer(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
-        playerList.forEach(player -> {
+        players.getPlayerList().forEach(player -> {
                     stringBuilder.append(String.format("%-6s", player.getPlayerName()));
                 }
         );
@@ -50,26 +54,44 @@ public class OutputView {
         return ladder;
     }
 
-    public static void winningPrize(String[] winningPrize) {
+    public static void winningPrize(WinningPrizes winningPrize) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String prize : winningPrize) {
-            stringBuilder.append(String.format("%-6s", prize));
+        for (int i = 0; i < winningPrize.size(); i++) {
+            stringBuilder.append(String.format("%-6s", winningPrize.get(i)));
         }
         System.out.println(stringBuilder);
     }
 
-    public static void winner(String[] winningPrize, List<Player> players) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < winningPrize.length; i++) {
-            stringBuilder.append(String.format("%-6s", players.get(i).getPlayerName()));
-            stringBuilder.append(" : ");
-            stringBuilder.append(winningPrize[i]);
-            stringBuilder.append("\n\r");
+    public static void outputResultView(MatchingResult matchingResult) {
+        // print winner
+        boolean keepViewing = true;
+        while (keepViewing) {
+            String winner = InputView.inputNameWhoWinning();
+            resultView(winner, matchingResult);
+            keepViewing = isKeepViewing(keepViewing, winner);
         }
-        System.out.println(stringBuilder);
     }
 
-    public static void winner(String winningPrize, String player) {
+    private static boolean isKeepViewing(boolean keepViewing, String winner) {
+        if (winner.equals(InputView.EXIT_KEY)) {
+            keepViewing = false;
+        }
+        return keepViewing;
+    }
+
+    private static void resultView(String winner, MatchingResult matchingResult) {
+        if (!winner.equals("all")) {
+            winner(matchingResult.getMatchedWinningPrizeOrederByPlayerName(winner), winner);
+            return;
+        }
+        Iterator<Player> playerIterator = matchingResult.getIterator();
+        while (playerIterator.hasNext()) {
+            Player player = playerIterator.next();
+            winner(matchingResult.getMatchedWinningPrizeOrederByPlayerName(player.getPlayerName()), player.getPlayerName());
+        }
+    }
+
+    private static void winner(String winningPrize, String player) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format("%-6s", player));
         stringBuilder.append(" : ");

@@ -1,6 +1,8 @@
 package step3.domain;
 
-public class Player {
+import java.util.Comparator;
+
+public class Player implements Comparator<Player> {
 
     public static final int PLAYER_NAME_LENGTH_LIMIT = 5;
 
@@ -35,4 +37,10 @@ public class Player {
         return stringBuilder.toString();
     }
 
+    @Override
+    public int compare(Player o1, Player o2) {
+        return o2.getPlayerName().compareTo(o1.getPlayerName());
+    }
+
 }
+

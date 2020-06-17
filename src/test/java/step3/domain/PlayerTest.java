@@ -14,10 +14,5 @@ class PlayerTest {
         assertThat(player.getPlayerName()).isEqualTo("일이삼사오");
     }
 
-    @DisplayName("게임 결과 판단")
-    @Test
-    void setGameResult() {
-        // not implements yet.
-    }
 
 }

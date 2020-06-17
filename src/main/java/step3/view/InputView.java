@@ -1,5 +1,12 @@
 package step3.view;
 
+import step3.domain.Player;
+import step3.domain.Players;
+import step3.domain.WinningPrizes;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -13,16 +20,23 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static String[] inputPlayerName() {
+    public static Players createPlayers() {
         System.out.println(INPUT_PLAYER_NANMES);
         String inputNameString = SCANNER.next();
-        return inputNameString.split(STRING_DELIMITER);
+        if (inputNameString.length() == 0) {
+            throw new IllegalArgumentException();
+        }
+        List<Player> players = new ArrayList<>();
+        Arrays.asList(inputNameString.split(STRING_DELIMITER)).forEach(x -> players.add(new Player(x)));
+        return new Players(players);
     }
 
-    public static String[] inputWinningPrize() {
+    public static WinningPrizes createWinningPrizes() {
         System.out.println(INPUT_PLAY_RESULT);
         String inputWinningPrize = SCANNER.next();
-        return inputWinningPrize.split(STRING_DELIMITER);
+        List<String> winningPrizes = new ArrayList<>();
+        Arrays.asList(inputWinningPrize.split(STRING_DELIMITER)).forEach(x -> winningPrizes.add(x));
+        return new WinningPrizes(winningPrizes);
     }
 
     public static int inputLadderHeight() {

@@ -1,5 +1,7 @@
 package step3.domain;
 
+import java.util.Arrays;
+
 public class CalculateLadder {
 
     private static Ladders ladders;
@@ -25,21 +27,29 @@ public class CalculateLadder {
         for (int i = 0; i < ladderSize; i++) {
             stepLocation = i;
             lineLocation = 0;
-            while (lineLocation < lineSize) {
-                PointStep pointStep = ladders.getLadderList().get(stepLocation).getLines().get(lineLocation).getPointStep();
-                if (pointStep.equals(PointStep.RIGHT)) {
-                    stepLocation++;
-                }
-                if (pointStep.equals(PointStep.LEFT)) {
-                    stepLocation--;
-                }
-                if (pointStep.equals(PointStep.NONE)) {
-                }
-                lineLocation++;
-            }
+            stepLocation = getStepLocation(lineSize, stepLocation, lineLocation);
             result[i] = stepLocation;
         }
         return result;
+    }
+
+    private int getStepLocation(int lineSize, int stepLocation, int lineLocation) {
+        while (lineLocation < lineSize) {
+            PointStep pointStep = ladders.getLadderList().get(stepLocation).getLines().get(lineLocation).getPointStep();
+            stepLocation += getStepLocationLR(pointStep);
+            lineLocation++;
+        }
+        return stepLocation;
+    }
+
+    private int getStepLocationLR(PointStep pointStep) {
+        if (pointStep.equals(PointStep.RIGHT)) {
+            return 1;
+        }
+        if (pointStep.equals(PointStep.LEFT)) {
+            return -1;
+        }
+        return 0;
     }
 
     private void markingPointStep() {
@@ -61,8 +71,8 @@ public class CalculateLadder {
         for (int j = 0; j < ladder.getLineCount(); j++) {
             Line line = ladder.getLines().get(j);
             Line beforeLine = beforeLadder.getLines().get(j);
-            if (line.isCanStepable() && i != laddersCount) {
-                line.setPointSetp(PointStep.RIGHT);
+            if (i != laddersCount) {
+                line.setPointSetp(PointStep.RIGHT, line.isCanStepable());
             }
             if (beforeLine.isCanStepable()) {
                 line.setPointSetp(PointStep.LEFT);
@@ -70,7 +80,7 @@ public class CalculateLadder {
             if (!beforeLine.isCanStepable() && !line.isCanStepable()) {
                 line.setPointSetp(PointStep.NONE);
             }
-            if (beforeLine.isCanStepable() &&  !line.isCanStepable()) {
+            if (beforeLine.isCanStepable() && !line.isCanStepable()) {
                 line.setPointSetp(PointStep.LEFT);
             }
         }
@@ -79,24 +89,20 @@ public class CalculateLadder {
     private void markingFirstLineWithoutLeftDirection(int i, Ladder ladder) {
         for (int j = 0; j < ladder.getLineCount(); j++) {
             Line line = ladder.getLines().get(j);
-            if (line.isCanStepable()) {
-                line.setPointSetp(PointStep.RIGHT);
-            }
-            if (!line.isCanStepable()) {
-                line.setPointSetp(PointStep.NONE);
-            }
+            PointStep pointStep = line.isCanStepable() ? PointStep.RIGHT :
+                    PointStep.NONE;
+            line.setPointSetp(pointStep);
         }
     }
 
-
-    public String[] calculateWinningPrizeLine(String[] winningPrize) {
+    public String[] calculateWinningPrizeLine(WinningPrizes winningPrizes) {
         // calculate Point
         CalculateLadder calculateLadder = new CalculateLadder(ladders);
         int[] result = calculateLadder.calculte();
         // apply Prize Location
         String[] winningPrizeOrder = new String[result.length];
         for (int i = 0; i < result.length; i++) {
-            winningPrizeOrder[i] = winningPrize[result[i]];
+            winningPrizeOrder[i] = winningPrizes.get(result[i]);
         }
         return winningPrizeOrder;
     }
