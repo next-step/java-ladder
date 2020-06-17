@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.player;
 
 public class Name {
-    public static final int NAME_UPPER_BOUND = 5;
+    private static final int NAME_UPPER_BOUND = 5;
 
     private final String name;
 
