@@ -32,7 +32,8 @@ public class ResultView {
     public static void printResult(LadderGameResult ladderGameResult) {
         System.out.println(EXECUTE_RESULT_MESSAGE);
 
-        ladderGameResult.getUserResult().forEach((key, value) -> System.out.println(key + ":" + value));
+        ladderGameResult.getUserResult().entrySet().stream()
+                .forEach(entry -> System.out.println(entry.getKey() + ":" + entry.getValue()));
 
         System.out.println();
     }

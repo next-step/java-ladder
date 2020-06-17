@@ -30,7 +30,7 @@ public class Main {
 
         while(isPlay) {
             String input = InputView.inputUserForResult();
-            isPlay = !input.equalsIgnoreCase(InputView.STOP);
+            isPlay = input.equalsIgnoreCase(InputView.STOP) ? false : true;
             List<User> userForResult = UserConverter.convertToListFromInput(input, users);
             LadderGameResult ladderGameResult = ladderGame.play(userForResult);
             ResultView.printResult(ladderGameResult);
