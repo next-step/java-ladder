@@ -16,7 +16,7 @@ public class Ladder {
     private List<Line> createLines(int ladderHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(numberOfPlayer, connectGenerator));
+            lines.add(new Line(i + 1, numberOfPlayer, connectGenerator));
         }
 
         return lines;
