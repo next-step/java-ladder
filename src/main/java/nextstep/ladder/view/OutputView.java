@@ -1,11 +1,19 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.game.LadderGameResult;
+import nextstep.ladder.domain.user.LadderGameUser;
+import nextstep.ladder.domain.user.LadderGameUserStore;
+
+import java.util.List;
 
 public class OutputView {
     private static final String VERTICAL_LADDER_LINE = "|";
     private static final String LADDER_CONNECTION_LINE = "-----";
     private static final String BLANK_INTERVAL = "     ";
+
+    private static final String ALL_USER = "all";
+    private static final String LADDER_OUTPUT_START_MESSAGE = "실행결과";
 
     private OutputView() {
     }
@@ -43,5 +51,18 @@ public class OutputView {
 
     private static boolean isConnected(final Ladder ladder, final int point, final int order) {
         return ladder.hasConnection(order, point);
+    }
+
+    public static void printPrize(final LadderGameUserStore userStore, final String resultUser, final LadderGameResult ladderGameResult) {
+        System.out.println(LADDER_OUTPUT_START_MESSAGE);
+        if (ALL_USER.equals(resultUser)) {
+            List<LadderGameUser> allOfUsers = userStore.findAll();
+            for (LadderGameUser user : allOfUsers) {
+                System.out.printf("%s : %s", user.getUserName(), ladderGameResult.getPrizeOf(user));
+            }
+            return;
+        }
+        userStore.findByUserName(resultUser)
+                .ifPresent(user -> System.out.printf("%s : %s", user.getUserName(), ladderGameResult.getPrizeOf(user)));
     }
 }

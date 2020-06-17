@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.user.LadderGameUser;
 import nextstep.ladder.domain.vo.Order;
@@ -14,5 +14,9 @@ public class LadderGameSnapshot {
 
     public Order findOrderOf(final LadderGameUser gameUser) {
         return snapshot.get(gameUser);
+    }
+
+    public int count() {
+        return snapshot.size();
     }
 }

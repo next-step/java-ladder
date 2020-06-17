@@ -18,8 +18,14 @@ public class LadderGameUserStore {
         }
     }
 
-    public List<LadderGameUser> getLadderGameUsers() {
+    public List<LadderGameUser> findAll() {
         return Collections.unmodifiableList(ladderGameUsers);
+    }
+
+    public Optional<LadderGameUser> findByUserName(final String userName) {
+        return ladderGameUsers.stream()
+                .filter(user -> user.getUserName().equals(userName))
+                .findFirst();
     }
 
     public List<String> getLadderGameUserNames() {

@@ -2,7 +2,6 @@ package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderConnectionConditional;
-import nextstep.ladder.domain.LadderGameSnapshot;
 import nextstep.ladder.domain.LadderLines;
 import nextstep.ladder.domain.user.LadderGameUser;
 import nextstep.ladder.domain.user.LadderGameUserStore;
@@ -41,7 +40,7 @@ public class LadderGame {
         ladderLines.addLine(Order.of(ladderGameUserStore.count()), () -> false, maxPoint);
     }
 
-    public LadderResult execute(final Ladder ladder) {
+    public LadderGameResult execute(final Ladder ladder, final LadderGamePrize prize) {
         LadderGameUserStore ladderGameUserStore = ladder.getLadderGameUsers();
         Map<Point, LadderGameSnapshot> ladderResult = new HashMap<>();
         ladderResult.put(Point.ZERO_BASE_POINT, createInitialSnapshot(ladderGameUserStore));
@@ -53,12 +52,12 @@ public class LadderGame {
             //Snapshot 추가
             ladderResult.put(Point.of(point), new LadderGameSnapshot(currentSnapshot));
         }
-        return new LadderResult(ladderResult);
+        return new LadderGameResult(ladderResult.get(maxPoint), prize);
     }
 
     private Map<LadderGameUser, Order> createSnapshot(final Ladder ladder, final LadderGameUserStore userStore, final int point, final LadderGameSnapshot beforeSnapshot) {
         Map<LadderGameUser, Order> currentSnapshot = new HashMap<>();
-        for (LadderGameUser ladderGameUser : userStore.getLadderGameUsers()) {
+        for (LadderGameUser ladderGameUser : userStore.findAll()) {
             Order beforeOrder = beforeSnapshot.findOrderOf(ladderGameUser);
             Order resultOrder = getCurrentOrder(ladder, beforeOrder, Point.of(point));
             currentSnapshot.put(ladderGameUser, resultOrder);
@@ -82,7 +81,7 @@ public class LadderGame {
 
     private LadderGameSnapshot createInitialSnapshot(final LadderGameUserStore ladderGameUserStore) {
         final AtomicInteger orderValue = new AtomicInteger(FIRST_ORDER_NUMBER);
-        return ladderGameUserStore.getLadderGameUsers().stream()
+        return ladderGameUserStore.findAll().stream()
                 .collect(collectingAndThen(
                         toMap(user -> user, a -> Order.of(orderValue.getAndIncrement())), LadderGameSnapshot::new
                 ));

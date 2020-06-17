@@ -10,4 +10,12 @@ public class LadderGamePrize {
     public LadderGamePrize(final Map<Order, String> ladderGamePrizes) {
         this.ladderGamePrizes = ladderGamePrizes;
     }
+
+    public String findByOrder(final Order order) {
+        return ladderGamePrizes.get(order);
+    }
+
+    public int count() {
+        return ladderGamePrizes.size();
+    }
 }
