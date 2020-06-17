@@ -4,6 +4,7 @@ import ladder.domain.game.LadderGame;
 import ladder.domain.game.LadderGameResults;
 import ladder.domain.game.LadderRewards;
 import ladder.domain.ladder.Lines;
+import ladder.domain.ladder.LinesCreator;
 import ladder.domain.ladder.ladderInfo.LadderHeight;
 import ladder.domain.player.LadderPlayer;
 import ladder.domain.player.LadderPlayers;
@@ -18,7 +19,7 @@ public class LadderController {
         LadderRewards ladderRewards = InputView.inputGameResult();
         LadderHeight ladderHeight = InputView.inputLadderMaxHeight();
 
-        Lines ladder = LadderGame.createLadder(ladderPlayers.getPlayerCount(), ladderHeight);
+        Lines ladder = LinesCreator.create(ladderPlayers.getPlayerCount(), ladderHeight);
         ResultView.print(ladder, ladderPlayers, ladderRewards);
 
         LadderGameResults results = LadderGame.start(ladder, ladderPlayers, ladderRewards);

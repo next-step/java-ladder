@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.ladder.ladderInfo.LineCount;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;

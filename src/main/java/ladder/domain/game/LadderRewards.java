@@ -21,6 +21,7 @@ public class LadderRewards {
     }
 
     public LadderReward getLadderReward(Position position) {
+        validatePosition(position);
         return ladderRewards.get(position.getValue());
     }
 
@@ -28,16 +29,22 @@ public class LadderRewards {
         return ladderRewards;
     }
 
-    private void validateReward(String[] rewards) {
-        if (rewards == null || rewards.length < 1) {
-            throw new IllegalArgumentException("실행 결과를 입력하세요");
-        }
-    }
-
     private List<LadderReward> createRewords(String[] rewards) {
         return Arrays.stream(rewards)
                 .map(LadderReward::inputReward)
                 .collect(Collectors.toList());
+    }
+
+    private void validateReward(String[] rewards) {
+        if (rewards == null || rewards.length < 1) {
+            throw new IllegalArgumentException("보상을 빈칸 혹은 null 로 입력하였습니다.");
+        }
+    }
+
+    private void validatePosition(Position position) {
+        if (position == null ||  position.getValue() > ladderRewards.size()) {
+            throw new IllegalArgumentException("유효하지 않은 position 을 입력했습니다.");
+        }
     }
 
     @Override

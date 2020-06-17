@@ -22,7 +22,15 @@ class LadderRewardsTest {
     void LadderRewardsCreate_Fail_Test() {
         String[] rewards = null;
         assertThatThrownBy(() ->LadderRewards.inputRewards(rewards))
-                .hasMessageMatching("실행 결과를 입력하세요");
+                .hasMessageMatching("보상을 빈칸 혹은 null 로 입력하였습니다.");
+    }
+
+    @Test
+    void LadderRewards_보상_GET_FAIL_Test() {
+        String[] rewards = {"1000", "10", "10000", "1"};
+        LadderRewards ladderRewards = LadderRewards.inputRewards(rewards);
+        assertThatThrownBy(() -> ladderRewards.getLadderReward(new Position(5)))
+                .hasMessageMatching("유효하지 않은 position 을 입력했습니다.");
     }
 
 }
