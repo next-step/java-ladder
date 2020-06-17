@@ -1,5 +1,9 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.user.LadderGameUsers;
+import nextstep.ladder.domain.vo.Order;
+import nextstep.ladder.domain.vo.Point;
+
 public class Ladder {
     private final int maxPoint;
     private final LadderGameUsers ladderGameUsers;

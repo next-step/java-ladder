@@ -1,9 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderGamePrize;
-import nextstep.ladder.domain.LadderGameUser;
-import nextstep.ladder.domain.LadderGameUsers;
-import nextstep.ladder.domain.Order;
+import nextstep.ladder.domain.game.LadderGamePrize;
+import nextstep.ladder.domain.user.LadderGameUser;
+import nextstep.ladder.domain.user.LadderGameUsers;
+import nextstep.ladder.domain.vo.Order;
 
 import java.util.*;
 import java.util.stream.Collectors;

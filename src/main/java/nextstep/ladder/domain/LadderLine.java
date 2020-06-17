@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.vo.Point;
+
 public class LadderLine {
     private final ConnectPoints connectPoints;
 

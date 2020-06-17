@@ -1,6 +1,12 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderGameSnapshot;
+import nextstep.ladder.domain.RandomLadderConnection;
+import nextstep.ladder.domain.game.LadderGame;
+import nextstep.ladder.domain.game.LadderResult;
+import nextstep.ladder.domain.user.LadderGameUsers;
+import nextstep.ladder.domain.vo.Point;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 

@@ -1,4 +1,13 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderConnectionLineConditional;
+import nextstep.ladder.domain.LadderGameSnapshot;
+import nextstep.ladder.domain.LadderLines;
+import nextstep.ladder.domain.user.LadderGameUser;
+import nextstep.ladder.domain.user.LadderGameUsers;
+import nextstep.ladder.domain.vo.Order;
+import nextstep.ladder.domain.vo.Point;
 
 import java.util.HashMap;
 import java.util.Map;

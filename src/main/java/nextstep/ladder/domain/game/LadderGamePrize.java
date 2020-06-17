@@ -1,4 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.game;
+
+import nextstep.ladder.domain.vo.Order;
 
 import java.util.Map;
 

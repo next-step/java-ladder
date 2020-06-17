@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.vo.Order;
+import nextstep.ladder.domain.vo.Point;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
