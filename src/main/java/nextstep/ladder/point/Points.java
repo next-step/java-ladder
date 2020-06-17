@@ -1,7 +1,6 @@
 package nextstep.ladder.point;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Points {
 
@@ -25,19 +24,20 @@ public class Points {
 	}
 
 	private static void validateNotConnectedContinuously(List<Point> pointList) {
-		AtomicBoolean beforePoint = new AtomicBoolean(false);
-
-		long check = pointList.stream()
-			.filter(point -> point.isConnectedToNextPoint() == beforePoint.get())
-			.peek(point -> beforePoint.set(point.isConnectedToNextPoint()))
-			.count();
-
-		if (check > 0) {
-			throw new IllegalArgumentException("illegal input that tries to connect points continuously.");
-		}
+		pointList.stream()
+			.reduce((lastElement, nextElement) -> {
+				if (lastElement.isConnectedToNextPoint() && nextElement.isConnectedToNextPoint()) {
+					throw new IllegalArgumentException("illegal input that tries to connect points continuously.");
+				}
+				return nextElement;
+			});
 	}
 
 	public List<Point> getPoints() {
 		return points;
+	}
+
+	public int getSize() {
+		return points.size();
 	}
 }
