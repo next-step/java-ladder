@@ -27,7 +27,7 @@ public class Players {
 
     public Player get(String name) {
         return players.stream()
-                .filter(player -> player.equalName(name))
+                .filter(player -> player.isEqualName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("There are no participants with the same name."));
     }

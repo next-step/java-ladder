@@ -21,7 +21,7 @@ public class Player {
         return name;
     }
 
-    public boolean equalName(String name) {
+    public boolean isEqualName(String name) {
         return this.name.equals(name);
     }
 
