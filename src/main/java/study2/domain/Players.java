@@ -35,13 +35,11 @@ public class Players {
 		return this.players.size();
 	}
 	
-	public List<String> getPlayers() {
+	public List<Player> getPlayers() {
 		
-		return players.stream()
-				.map(Player::getPlayerName)
-				.collect(Collectors.toList());
-			
-		// java8사용중입니다.
-				//.collect(Collectors.joining(String.join("", Collections.nCopies(4, empty))));
+		return players;
+		
+		// 잠시 주석처리 하도록 하겠습니다.	
+		//.collect(Collectors.joining(String.join("", Collections.nCopies(4, empty))));
 	}
 }

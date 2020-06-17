@@ -25,9 +25,10 @@ public class ResultView {
 	}
 
 	private void viewPlayerList(Players players) {
-
-		System.out.println(String.format("%6s",
-				players.getPlayers()));
+		players.getPlayers()
+		.forEach(player -> System.out.print(String.format("%6s",
+				player.getPlayerName())));
+		System.out.println();
 	}
 	
 	private void viewRowAndColumn(Ladder ladder) {

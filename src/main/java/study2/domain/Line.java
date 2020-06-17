@@ -17,12 +17,16 @@ public class Line {
 		points.add(new Point(anyValue)); // 첫번째 값은 무조건 false
 
 		IntStream.range(1, playerNumbers)
-			.forEach(i -> points.add(randomPoint()));
+			.forEach(i -> points.add(randomPoint(points.get(i-1))));
 
 		return points;
 	}
 
-	private Point randomPoint() {
+	private Point randomPoint(Point point) {
+		if(point.getPoint()) {
+			return new Point(false);
+		}
+		
 		return new Point(new RandomGenerator());
 	}
 
