@@ -22,4 +22,12 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    public int move(int startPoint) {
+        int point = startPoint;
+        for (int i = 0; i < getLines().size(); i++) {
+            point = lines.get(i).move(point);
+        }
+        return point;
+    }
 }

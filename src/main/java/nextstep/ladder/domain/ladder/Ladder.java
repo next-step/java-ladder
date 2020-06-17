@@ -16,15 +16,7 @@ public class Ladder {
     }
 
     public int findDestinationPosition(int startPoint) {
-        int point = startPoint;
-        for (int i = 0; i < getLines().size(); i++) {
-            point = getLine(i).move(point);
-        }
-        return point;
-    }
-
-    private Line getLine(int index) {
-        return getLines().get(index);
+        return lines.move(startPoint);
     }
 
     public int getHeight() {
@@ -33,7 +25,7 @@ public class Ladder {
 
     public int getMaxPoint() {
         if (getLines().size() >= MINIMUM_LINE_SIZE) {
-            return getLine(MINIMUM_LINE_SIZE).sizeOfPositions();
+            return getLines().get(MINIMUM_LINE_SIZE).sizeOfPositions();
         }
         throw new RuntimeException("Max Point is less than 1");
     }
