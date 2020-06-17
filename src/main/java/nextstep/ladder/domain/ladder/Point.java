@@ -30,13 +30,11 @@ public class Point {
     }
 
     public Point next(DirectionPredicate predicate) {
-        Direction direction = (this.direction == RIGHT) ? LEFT : generate(predicate);
-        return new Point(direction);
+        return new Point(direction.next(predicate));
     }
 
     public Point last() {
-        Direction direction = (this.direction == RIGHT) ? LEFT : DOWN;
-        return new Point(direction);
+        return new Point(direction.last());
     }
 
     @Override
