@@ -62,8 +62,9 @@ public class OutputView {
         System.out.println(reward.getReward());
     }
 
-    public static void printAllReward(Map<String, Reward> result) {
+    public static void printAllReward(GameResult result) {
         System.out.println(PRINT_RESULT_MESSAGE);
-        result.forEach((key, value) -> System.out.println(key + PRINT_COLON + value.getReward()));
+        result.getResult()
+                .forEach((key, value) -> System.out.println(key + PRINT_COLON + value.getReward()));
     }
 }

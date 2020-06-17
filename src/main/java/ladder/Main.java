@@ -22,7 +22,7 @@ public class Main {
             String name = InputView.printResult();
 
             if(name.equals(GAME_END_KEYWORD)) {
-                Map<String, Reward> result = ladderGame.playAll();
+                GameResult result = ladderGame.playAll();
                 OutputView.printAllReward(result);
                 break;
             }

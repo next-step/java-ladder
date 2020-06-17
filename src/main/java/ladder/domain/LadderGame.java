@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class LadderGame {
     private final Players players;
     private final Rewards rewards;
@@ -29,14 +26,14 @@ public class LadderGame {
         return this.rewards.getReward(position);
     }
 
-    public Map<String, Reward> playAll() {
-        Map<String, Reward> result = new HashMap<>();
+    public GameResult playAll() {
+        GameResult result = new GameResult();
 
         players.getPlayers()
                 .forEach(player -> {
                     String name = player.getName();
                     Reward reward = playOne(name);
-                    result.put(name, reward);
+                    result.add(name, reward);
                 });
 
         return result;
