@@ -19,11 +19,11 @@ public class NaturalNumber {
   }
 
   public void plusOne() {
-    value++;
+    new NaturalNumber(++value);
   }
 
   public void minusOne() {
-    value--;
+    new NaturalNumber(--value);
   }
 
   @Override
