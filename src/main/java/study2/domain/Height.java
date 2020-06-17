@@ -18,6 +18,11 @@ public class Height {
 		return height;
 	}
 		
+	// Question 	
+	// 이클립스를 사용중입니다.
+	// hashCode와 equals 메소드를 자동완성하면
+	// Intelli J와 코드가 조금 다른거같은데 혹시 아시나요?
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
