@@ -13,6 +13,8 @@ public class ResultView {
     }
 
     public void displayLadder(Ladder ladder) {
-        System.out.println(ladder.draw());
+        for (int i = 0; i < ladder.getLineHeight(); i++) {
+
+        }
     }
 }

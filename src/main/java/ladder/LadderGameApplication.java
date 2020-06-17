@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.Lines;
 import ladder.domain.Players;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -16,7 +15,7 @@ public class LadderGameApplication {
         ResultView resultView = new ResultView();
 
         resultView.displayLadderplayers(players);
-        resultView.displayLadder(new Ladder(new Lines(ladderHeight, players.getPlayerCount())));
+        resultView.displayLadder(new Ladder(ladderHeight, players.getPlayerCount()));
 
     }
 

@@ -6,8 +6,16 @@ public class Draw {
 
     private boolean drawable;
 
+    public Draw(Draw lastDraw) {
+        this.drawable = (lastDraw.getDrawableStatus()) ? false : RandomGenerator.getRandom() ;
+    }
+
     public Draw(boolean drawable) {
         this.drawable = drawable;
+    }
+
+    public boolean getDrawableStatus() {
+        return this.drawable;
     }
 
     public static Draw of(boolean drawable) {

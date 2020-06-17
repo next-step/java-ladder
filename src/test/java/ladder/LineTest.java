@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,11 +27,4 @@ public class LineTest {
         assertThat(new Line(countOfPerson).getDrawLineCount() < lineMaxNumber).isTrue();
     }
 
-    @DisplayName("line 아웃풋 테스트")
-    @Test
-    void LINE_OUTPUT_TEST() {
-        System.out.println(new Line(5).drawLine());
-        System.out.println(new Line(5).drawLine());
-        System.out.println(new Line(5).drawLine());
-    }
 }
