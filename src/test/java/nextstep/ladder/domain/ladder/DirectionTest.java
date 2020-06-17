@@ -41,17 +41,23 @@ public class DirectionTest {
     }
 
     @Test
-    @DisplayName("first가 true일 때 next 메소드 실행 테스트")
-    void next_with_first_true() {
-        Direction direction = Direction.first(() -> true).next();
-        assertThat(direction).isNotEqualTo(Direction.RIGHT);
+    @DisplayName("left일 때 next 메소드 directionPredicate true 실행 테스트")
+    void next_with_random_true() {
+        Direction direction = Direction.LEFT.next(()->true);
+        assertThat(direction).isNotEqualTo(Direction.LEFT);
     }
 
     @Test
-    @DisplayName("first가 false일 때 next 메소드 실행 테스트")
-    void next_with_first_false() {
-        Direction direction = Direction.first(() -> false).next();
+    @DisplayName("left일 때  next 메소드 directionPredicate false 실행 테스트")
+    void next_with_left_and_false() {
+        Direction direction = Direction.LEFT.next(() -> false);
         assertThat(direction).isNotEqualTo(Direction.LEFT);
+    }
+    @Test
+    @DisplayName("right 일 때 next 메소드 directionPredicate false 실행 테스트")
+    void next_with_direction_right() {
+        Direction direction = Direction.RIGHT.next(() -> true);
+        assertThat(direction).isEqualTo(Direction.LEFT);
     }
 
     @Test
