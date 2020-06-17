@@ -24,13 +24,12 @@ public class Points {
 	}
 
 	private static void validateNotConnectedContinuously(List<Point> pointList) {
-		pointList.stream()
-			.reduce((lastElement, nextElement) -> {
-				if (lastElement.isConnectedToNextPoint() && nextElement.isConnectedToNextPoint()) {
-					throw new IllegalArgumentException("illegal input that tries to connect points continuously.");
-				}
-				return nextElement;
-			});
+		pointList.stream().reduce((lastElement, nextElement) -> {
+			if (lastElement.isConnectedToNextPoint() && nextElement.isConnectedToNextPoint()) {
+				throw new IllegalArgumentException("illegal input that tries to connect points continuously.");
+			}
+			return nextElement;
+		});
 	}
 
 	public List<Point> getPoints() {
