@@ -2,6 +2,8 @@ package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.vo.Order;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class LadderGamePrize {
@@ -17,5 +19,9 @@ public class LadderGamePrize {
 
     public int count() {
         return ladderGamePrizes.size();
+    }
+
+    public List<String> findAllPrizes() {
+        return new ArrayList<>(ladderGamePrizes.values());
     }
 }

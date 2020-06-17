@@ -15,10 +15,10 @@ public class LadderApplication {
         int maxPoint = InputView.askMaximumLadderHeight();
 
         LadderGame ladderGame = new LadderGame(new RandomLadderConnection());
-        Ladder ladder = ladderGame.createLadder(ladderGameUserStore, maxPoint);
-        OutputView.drawLadder(ladder);
-
         LadderGamePrize ladderGamePrize = InputView.askLadderGamePrize();
+        Ladder ladder = ladderGame.createLadder(ladderGameUserStore, maxPoint);
+        OutputView.drawLadder(ladder, ladderGamePrize);
+
         LadderGameResult ladderGameResult = ladderGame.execute(ladder, ladderGamePrize);
         String resultUser = InputView.askResultUser();
         OutputView.printPrize(ladderGameUserStore, resultUser, ladderGameResult);

@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.game.LadderGamePrize;
 import nextstep.ladder.domain.game.LadderGameResult;
 import nextstep.ladder.domain.user.LadderGameUser;
 import nextstep.ladder.domain.user.LadderGameUserStore;
@@ -18,7 +19,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void drawLadder(Ladder ladder) {
+    public static void drawLadder(Ladder ladder, LadderGamePrize prizes) {
         ladder.getLadderGameUsers().getLadderGameUserNames()
                 .forEach(userName -> System.out.printf("%s%s", userName, BLANK_INTERVAL));
         System.out.println();
@@ -26,7 +27,9 @@ public class OutputView {
         for (int point = 1, height = ladder.getMaxPoint().getPosition(); point <= height; point++) {
             System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, point));
         }
-
+        prizes.findAllPrizes()
+                .forEach(prize -> System.out.printf("%s%s", prize, BLANK_INTERVAL));
+        System.out.println();
     }
 
     private static String drawLadderLine(final Ladder ladder, final int point) {
@@ -56,13 +59,18 @@ public class OutputView {
     public static void printPrize(final LadderGameUserStore userStore, final String resultUser, final LadderGameResult ladderGameResult) {
         System.out.println(LADDER_OUTPUT_START_MESSAGE);
         if (ALL_USER.equals(resultUser)) {
-            List<LadderGameUser> allOfUsers = userStore.findAll();
-            for (LadderGameUser user : allOfUsers) {
-                System.out.printf("%s : %s", user.getUserName(), ladderGameResult.getPrizeOf(user));
-            }
+            printAllResult(userStore, ladderGameResult);
             return;
         }
         userStore.findByUserName(resultUser)
                 .ifPresent(user -> System.out.printf("%s : %s", user.getUserName(), ladderGameResult.getPrizeOf(user)));
+    }
+
+    private static void printAllResult(final LadderGameUserStore userStore, final LadderGameResult ladderGameResult) {
+        List<LadderGameUser> allOfUsers = userStore.findAll();
+        for (LadderGameUser user : allOfUsers) {
+            System.out.printf("%s : %s%n", user.getUserName(), ladderGameResult.getPrizeOf(user));
+        }
+        return;
     }
 }
