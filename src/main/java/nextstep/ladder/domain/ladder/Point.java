@@ -35,6 +35,10 @@ public class Point {
         return new Point(direction.last());
     }
 
+    public int move() {
+        return direction.getDirection();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

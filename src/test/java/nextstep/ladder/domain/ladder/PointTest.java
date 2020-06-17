@@ -56,6 +56,6 @@ public class PointTest {
     void move(int value) {
         Direction direction = Direction.of(value);
         Point point = new Point(direction);
-        assertThat(point.move(direction)).isEqualTo(value);
+        assertThat(point.move()).isEqualTo(value);
     }
 }
