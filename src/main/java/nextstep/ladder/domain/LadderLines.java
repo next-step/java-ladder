@@ -11,23 +11,27 @@ import java.util.Set;
 public class LadderLines {
     private final Map<Order, LadderLine> ladderLines = new HashMap<>();
 
-    public void addLine(Order order, LadderConnectionLineConditional connectionLineConditional, final int maxHeight) {
-        ConnectPoints connectPoints = makeConnectPoints(order, connectionLineConditional, maxHeight);
+    public void addLine(Order order, LadderConnectionConditional connectionConditional, final Point maxPoint) {
+        ConnectPoints connectPoints = makeConnectPoints(order, connectionConditional, maxPoint);
         ladderLines.put(order, LadderLine.of(connectPoints));
     }
 
-    private ConnectPoints makeConnectPoints(final Order order, final LadderConnectionLineConditional drawingMachine, final int maxHeight) {
+    private ConnectPoints makeConnectPoints(final Order order, final LadderConnectionConditional connectionConditional, final Point maxPoint) {
         Set<Point> points = new HashSet<>();
         Point currentPoint = Point.INITIAL_POINT;
-        Point maxPoint = Point.of(maxHeight);
 
-        while (currentPoint.isUnderThan(maxPoint) || currentPoint.equals(maxPoint)) {
-            if (points.size() < maxHeight - 1 && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
+        while (currentPoint.isUnderThanAndEquals(maxPoint) && isEnableToStore(maxPoint, points)) {
+            if (connectionConditional.isEnough() && canConnect(order, currentPoint)) {
                 points.add(currentPoint);
             }
-            currentPoint = currentPoint.add();
+            currentPoint = currentPoint.next();
         }
+
         return ConnectPoints.of(points);
+    }
+
+    private boolean isEnableToStore(final Point maxPoint, final Set<Point> points) {
+        return points.size() < maxPoint.getPosition() - 1;
     }
 
     private boolean canConnect(Order order, Point point) {
@@ -40,11 +44,11 @@ public class LadderLines {
         return ladderLines.size();
     }
 
-    public LadderLine findLadderLineByOrder(final int order) {
+    public LadderLine findLadderLineBy(final int order) {
         return ladderLines.get(Order.of(order));
     }
 
-    public LadderLine findLadderLineByOrder(final Order order) {
+    public LadderLine findLadderLineBy(final Order order) {
         return ladderLines.get(order);
     }
 }

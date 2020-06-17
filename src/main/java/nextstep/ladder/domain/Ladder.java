@@ -5,25 +5,21 @@ import nextstep.ladder.domain.vo.Order;
 import nextstep.ladder.domain.vo.Point;
 
 public class Ladder {
-    private final int maxPoint;
+    private final Point maxPoint;
     private final LadderGameUserStore ladderGameUserStore;
     private final LadderLines ladderLines;
 
-    private Ladder(final int maxPoint, final LadderGameUserStore ladderGameUserStore, final LadderLines ladderLines) {
+    private Ladder(final Point maxPoint, final LadderGameUserStore userStore, final LadderLines ladderLines) {
         this.maxPoint = maxPoint;
-        this.ladderGameUserStore = ladderGameUserStore;
+        this.ladderGameUserStore = userStore;
         this.ladderLines = ladderLines;
     }
 
-    public static Ladder of(final int maxHeight, final LadderGameUserStore ladderGameUserStore, final LadderLines ladderLines) {
-        return new Ladder(maxHeight, ladderGameUserStore, ladderLines);
+    public static Ladder of(final Point maxHeight, final LadderGameUserStore userStore, final LadderLines ladderLines) {
+        return new Ladder(maxHeight, userStore, ladderLines);
     }
 
-    public boolean connected(final int orderValue, final int pointValue) {
-        return ladderLines.findLadderLineByOrder(orderValue).connectedWith(pointValue);
-    }
-
-    public int getMaxPoint() {
+    public Point getMaxPoint() {
         return maxPoint;
     }
 
@@ -36,7 +32,12 @@ public class Ladder {
     }
 
     public boolean hasConnection(final Order order, final Point point) {
-        LadderLine ladderLine = ladderLines.findLadderLineByOrder(order);
+        LadderLine ladderLine = ladderLines.findLadderLineBy(order);
+        return ladderLine.connectedWith(point);
+    }
+
+    public boolean hasConnection(final int order, final int point) {
+        LadderLine ladderLine = ladderLines.findLadderLineBy(order);
         return ladderLine.connectedWith(point);
     }
 }

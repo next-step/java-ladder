@@ -15,11 +15,4 @@ public class LadderGameSnapshot {
     public Order findOrderOf(final LadderGameUser gameUser) {
         return snapshot.get(gameUser);
     }
-
-    @Override
-    public String toString() {
-        return "LadderGameSnapshot{" +
-                "snapshot=" + snapshot +
-                '}';
-    }
 }

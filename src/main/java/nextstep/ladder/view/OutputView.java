@@ -12,11 +12,10 @@ public class OutputView {
 
     public static void drawLadder(Ladder ladder) {
         ladder.getLadderGameUsers().getLadderGameUserNames()
-                .stream()
-                .forEach((userName) -> System.out.printf("%s%s", userName, BLANK_INTERVAL));
+                .forEach(userName -> System.out.printf("%s%s", userName, BLANK_INTERVAL));
         System.out.println();
 
-        for (int point = 1; point <= ladder.getMaxPoint(); point++) {
+        for (int point = 1, height = ladder.getMaxPoint().getPosition(); point <= height; point++) {
             System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, point));
         }
 
@@ -43,6 +42,6 @@ public class OutputView {
     }
 
     private static boolean isConnected(final Ladder ladder, final int point, final int order) {
-        return ladder.connected(order, point);
+        return ladder.hasConnection(order, point);
     }
 }

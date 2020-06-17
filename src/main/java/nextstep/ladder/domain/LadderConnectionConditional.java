@@ -1,5 +1,5 @@
 package nextstep.ladder.domain;
 
-public interface LadderConnectionLineConditional {
+public interface LadderConnectionConditional {
     boolean isEnough();
 }
