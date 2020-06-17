@@ -1,16 +1,17 @@
 package nextstep.ladder.line;
 
-import java.util.ArrayList;
-import java.util.List;
+import nextstep.ladder.painter.RandomPointPainter;
+import nextstep.ladder.point.Points;
 
 public class Line {
-	private List<Boolean> points = new ArrayList<>();
+	private Points points;
 
 	public Line(int playerCount) {
-		// this.points = new LineGenerator().create();
+		RandomPointPainter painter = new RandomPointPainter();
+		this.points = painter.drawPoints(playerCount);
 	}
 
-	public List<Boolean> getPoints() {
+	public Points getPoints() {
 		return points;
 	}
 }
