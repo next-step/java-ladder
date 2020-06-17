@@ -13,6 +13,8 @@ public class Players {
 	}
 
 	public static Players ofPlayers(List<Player> players) {
+		validatePlayerNumIsLargerThanZero(players);
+		validatePlayerNameDistinct(players);
 		return new Players(players);
 	}
 
@@ -24,13 +26,20 @@ public class Players {
 	}
 
 	private static void validatePlayerNameDistinct(List<Player> players) {
-		if (players.stream().distinct().count() != players.size()) {
+		if (getDistinctNameCount(players) != players.size()) {
 			throw new IllegalArgumentException("please double check whether player name is not distinct.");
 		}
 	}
 
 	public int getSize() {
 		return players.size();
+	}
+
+	public static Long getDistinctNameCount(List<Player> players) {
+		return players.stream()
+			.map(Player::getName)
+			.distinct()
+			.count();
 	}
 
 	public List<Player> getPlayers() {

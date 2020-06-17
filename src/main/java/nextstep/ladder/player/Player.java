@@ -12,6 +12,8 @@ public class Player {
 	}
 
 	public static Player ofPlayer(String name) {
+		validateNotNull(name);
+		validateNameLength(name);
 		return new Player(name);
 	}
 
