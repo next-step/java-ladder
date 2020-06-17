@@ -6,7 +6,6 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,8 +14,9 @@ class PositionTest {
 
   @ParameterizedTest
   @MethodSource("providePositionWithLine")
-  void movePositions(Position position, Line line, Position expected) {
-    position.movePositions(position, line);
+  void movePositionsTest(Position position, boolean canMoveLeft, boolean canMoveRight,
+      Position expected) {
+    position.movePositions(canMoveLeft, canMoveRight);
     assertThat(position).isEqualTo(expected);
   }
 
@@ -24,18 +24,14 @@ class PositionTest {
     return Stream.of(
         arguments(
             new Position(new NaturalNumber(0)),
-            new Line(Arrays.asList(
-                new Point(false),
-                new Point(true)
-            )),
+            false,
+            true,
             new Position(new NaturalNumber(1))
         ),
         arguments(
             new Position(new NaturalNumber(1)),
-            new Line(Arrays.asList(
-                new Point(false),
-                new Point(true)
-            )),
+            true,
+            false,
             new Position(new NaturalNumber(0))
         )
     );

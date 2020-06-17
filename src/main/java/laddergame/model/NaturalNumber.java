@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class NaturalNumber {
 
-  private int value;
+  private final int value;
 
   public NaturalNumber(int value) {
     if (value < 0) {
@@ -18,12 +18,12 @@ public class NaturalNumber {
     return value;
   }
 
-  public void plusOne() {
-    new NaturalNumber(++value);
+  public NaturalNumber plusOne() {
+    return new NaturalNumber(value+1);
   }
 
-  public void minusOne() {
-    new NaturalNumber(--value);
+  public NaturalNumber minusOne() {
+    return new NaturalNumber(value-1);
   }
 
   @Override

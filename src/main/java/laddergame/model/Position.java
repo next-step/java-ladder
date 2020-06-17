@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class Position {
 
-  private final NaturalNumber value;
+  private NaturalNumber value;
 
   public Position(NaturalNumber value) {
     this.value = value;
   }
 
-  public void movePositions(Position position, Line line) {
-    if (line.leftPointHasRung(position)) {
-      position.moveLeft();
+   public void movePositions(boolean canMoveLeft, boolean canMoveRight) {
+    if (canMoveLeft) {
+      moveLeft();
       return;
     }
-    if (line.rightPointHasRung(position)) {
-      position.moveRight();
+    if (canMoveRight) {
+      moveRight();
     }
   }
 
@@ -25,11 +25,11 @@ public class Position {
   }
 
   public void moveLeft() {
-    value.minusOne();
+    this.value = value.minusOne();
   }
 
   public void moveRight() {
-    value.plusOne();
+    this.value = value.plusOne();
   }
 
   @Override
@@ -47,5 +47,12 @@ public class Position {
   @Override
   public int hashCode() {
     return Objects.hash(value);
+  }
+
+  @Override
+  public String toString() {
+    return "Position{" +
+        "value=" + value +
+        '}';
   }
 }

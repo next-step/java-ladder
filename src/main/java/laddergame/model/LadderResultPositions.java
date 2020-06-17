@@ -33,7 +33,9 @@ public class LadderResultPositions {
   private static Position getResultPosition(List<Line> lines, Position startPosition) {
     Position position = new Position(new NaturalNumber(startPosition.getValue()));
 
-    lines.forEach(line -> position.movePositions(position, line));
+    lines.forEach(line -> position.movePositions(
+        line.leftPointHasRung(position),
+        line.rightPointHasRung(position)));
 
     return position;
   }
