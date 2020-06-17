@@ -14,7 +14,7 @@ class PointTest {
     void createPointWithLine() {
         LineStrategy lineStrategy = new TrueLineStrategy();
 
-        Point pointWithLine = Point.of(false, lineStrategy);
+        Point pointWithLine = Point.createFirstPoint(lineStrategy);
 
         assertThat(pointWithLine.hasLine()).isTrue();
     }
@@ -23,7 +23,7 @@ class PointTest {
     void createPointWithoutLine() {
         LineStrategy lineStrategy = new FalseLineStrategy();
 
-        Point pointWithoutLine = Point.of(false, lineStrategy);
+        Point pointWithoutLine = Point.createFirstPoint(lineStrategy);
 
         assertThat(pointWithoutLine.hasLine()).isFalse();
     }

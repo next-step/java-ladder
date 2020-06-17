@@ -15,26 +15,16 @@ public class Line {
     }
 
     public static Line of(int countOfPerson, LineStrategy lineStrategy) {
+        return new Line(getPoints(countOfPerson, lineStrategy));
+    }
+
+    private static List<Point> getPoints(int countOfPerson, LineStrategy lineStrategy) {
         List<Point> points = new ArrayList<>();
-        IntStream.range(0, countOfPerson).forEach(i ->
-                points.add(getPoint(lineStrategy, hasPreviousLine(points, i), isLastPoint(countOfPerson, i)))
-        );
-        return new Line(points);
-    }
-
-    private static boolean isLastPoint(int countOfPerson, int index) {
-        return index == countOfPerson - 1;
-    }
-
-    private static boolean hasPreviousLine(List<Point> points, int index) {
-        return index != 0 && points.get(index - 1).hasLine();
-    }
-
-    private static Point getPoint(LineStrategy lineStrategy, boolean hasPreviousLine, boolean isLastPoint) {
-        if (isLastPoint) {
-            return new Point(false);
-        }
-        return Point.of(hasPreviousLine, lineStrategy);
+        points.add(Point.createFirstPoint(lineStrategy));
+        IntStream.range(1, countOfPerson - 1).forEach(i ->
+                points.add(Point.createMiddlePoint(points.get(i - 1), lineStrategy)));
+        points.add(Point.createLastPoint());
+        return points;
     }
 
     public Point get(int index) {

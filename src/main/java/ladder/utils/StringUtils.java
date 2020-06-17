@@ -4,6 +4,10 @@ import java.util.Objects;
 
 public class StringUtils {
 
+    private StringUtils() {
+        throw new AssertionError("Unauthorized instance creation.");
+    }
+
     public static void validate(String input) {
         if (isEmpty(input)) {
             throw new IllegalArgumentException("There is no input. Please check your input.");
