@@ -7,10 +7,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("")
+@DisplayName("사다리 클래스 테스트")
 public class LadderTest {
 
     @ParameterizedTest
@@ -28,6 +27,15 @@ public class LadderTest {
     void validateNameLengthTest() {
         String names = "pobi12,honux1,crong1,jk1234";
         assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(names));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4, 5, 6})
+    @DisplayName("사다리 높이 입력받아서 사다리 값 셋팅하기")
+    void inputLadderHeightValueTest(int inputLadderHeight) {
+        Ladder ladder = new Ladder(inputLadderHeight);
+        List<Boolean> ladders = ladder.getLadders();
+        assertThat(ladders).hasSize(inputLadderHeight);
     }
 
 }
