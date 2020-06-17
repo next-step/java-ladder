@@ -1,5 +1,8 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.player.Position;
+import laddergame.domain.vo.Column;
+
 import java.util.Objects;
 
 public class Bridge {
@@ -45,6 +48,21 @@ public class Bridge {
 
     public boolean isConnected() {
         return connection;
+    }
+
+    public Position movePositionColumn(Position position) {
+        if (!connection) {
+            return position;
+        }
+        if (bridgePoint.isLeftColumn(position.column())) {
+            return position.moveRight();
+        }
+
+        return position.moveLeft();
+    }
+
+    public boolean isBridgeColumn(Column column) {
+        return bridgePoint.isBridgeColumn(column.getColumn());
     }
 
     @Override
