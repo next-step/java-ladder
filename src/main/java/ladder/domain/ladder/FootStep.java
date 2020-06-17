@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import ladder.service.StepStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,6 +14,14 @@ public class FootStep {
         validate(countOfUser);
         for (int i = 1; i < countOfUser; i++) {
             steps.add(new Random().nextBoolean());
+        }
+    }
+
+    public FootStep(int countOfUser, StepStrategy stepStrategy) {
+        validate(countOfUser);
+
+        for (int i = 1; i < countOfUser; i++) {
+            steps.add(stepStrategy.nextStep());
         }
     }
 
