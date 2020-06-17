@@ -30,6 +30,18 @@ public enum Direction {
         return directionMap.get(direction);
     }
 
+    public static Direction first(DirectionPredicate directionPredicate) {
+        return null;
+    }
+
+    public Direction next() {
+        return null;
+    }
+
+    public Direction last() {
+        return null;
+    }
+
     public int getDirection() {
         return direction;
     }
@@ -37,4 +49,5 @@ public enum Direction {
     public static Direction generate(DirectionPredicate predicate) {
         return predicate.isRight() ? RIGHT : DOWN;
     }
+
 }
