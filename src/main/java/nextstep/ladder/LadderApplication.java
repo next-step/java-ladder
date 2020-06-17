@@ -3,7 +3,7 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.domain.LadderGameUsers;
-import nextstep.ladder.domain.RandomLadderDrawingMachine;
+import nextstep.ladder.domain.RandomLadderConnection;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -12,7 +12,7 @@ public class LadderApplication {
         LadderGameUsers ladderGameUsers = InputView.askParticipantsName();
         int maxHeight = InputView.askMaximumLadderHeight();
 
-        LadderGame ladderGame = new LadderGame(new RandomLadderDrawingMachine());
+        LadderGame ladderGame = new LadderGame(new RandomLadderConnection());
 
         Ladder ladder = ladderGame.createLadder(ladderGameUsers, maxHeight);
 

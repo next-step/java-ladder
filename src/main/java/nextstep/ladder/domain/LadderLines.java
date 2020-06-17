@@ -8,12 +8,12 @@ import java.util.Set;
 public class LadderLines {
     private final Map<Order, LadderLine> ladderLines = new HashMap<>();
 
-    public void addLine(Order order, LadderGameUser gameUser, LadderLineDrawingMachine drawingMachine, final int maxHeight) {
+    public void addLine(Order order, LadderGameUser gameUser, LadderConnectionLineConditional drawingMachine, final int maxHeight) {
         ConnectPoints connectPoints = makeConnectPoints(order, drawingMachine, maxHeight);
         ladderLines.put(order, LadderLine.of(gameUser, connectPoints));
     }
 
-    private ConnectPoints makeConnectPoints(final Order order, final LadderLineDrawingMachine drawingMachine, final int maxHeight) {
+    private ConnectPoints makeConnectPoints(final Order order, final LadderConnectionLineConditional drawingMachine, final int maxHeight) {
         Set<Point> points = new HashSet<>();
         Point currentPoint = Point.INITIAL_POINT;
         Point maxPoint = Point.of(maxHeight);

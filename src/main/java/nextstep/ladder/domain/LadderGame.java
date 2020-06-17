@@ -1,9 +1,9 @@
 package nextstep.ladder.domain;
 
 public class LadderGame {
-    private final LadderLineDrawingMachine drawingMachine;
+    private final LadderConnectionLineConditional drawingMachine;
 
-    public LadderGame(LadderLineDrawingMachine drawingMachine) {
+    public LadderGame(LadderConnectionLineConditional drawingMachine) {
         this.drawingMachine = drawingMachine;
     }
 
