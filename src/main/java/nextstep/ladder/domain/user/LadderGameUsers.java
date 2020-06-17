@@ -1,9 +1,6 @@
 package nextstep.ladder.domain.user;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LadderGameUsers {
@@ -22,7 +19,7 @@ public class LadderGameUsers {
     }
 
     public List<LadderGameUser> getLadderGameUsers() {
-        return ladderGameUsers;
+        return Collections.unmodifiableList(ladderGameUsers);
     }
 
     public List<String> getLadderGameUserNames() {
@@ -31,8 +28,7 @@ public class LadderGameUsers {
                 .collect(Collectors.toList());
     }
 
-    public int size() {
+    public int count() {
         return ladderGameUsers.size();
     }
-
 }

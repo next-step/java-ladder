@@ -1,10 +1,13 @@
 package nextstep.ladder.domain.vo;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
 public class Order {
+    private static final Map<Integer, Order> CACHE = new HashMap<>();
     private static final int FIRST_ORDER_NUM = 1;
     private final int num;
 
@@ -13,7 +16,7 @@ public class Order {
     }
 
     public static Order of(final int num) {
-        return new Order(num);
+        return CACHE.computeIfAbsent(num, Order::new);
     }
 
     public Order next() {
@@ -44,4 +47,5 @@ public class Order {
     public String toString() {
         return String.valueOf(num);
     }
+
 }

@@ -25,10 +25,10 @@ public class LadderGame {
 
     public Ladder createLadder(final LadderGameUsers ladderGameUsers, final int maxHeight) {
         LadderLines ladderLines = new LadderLines();
-        for (int orderValue = 1; orderValue < ladderGameUsers.size(); orderValue++) {
+        for (int orderValue = 1; orderValue < ladderGameUsers.count(); orderValue++) {
             ladderLines.addLine(Order.of(orderValue), drawingMachine, maxHeight);
         }
-        ladderLines.addLine(Order.of(ladderGameUsers.size()), () -> false, maxHeight);
+        ladderLines.addLine(Order.of(ladderGameUsers.count()), () -> false, maxHeight);
         return Ladder.of(maxHeight, ladderGameUsers, ladderLines);
     }
 
