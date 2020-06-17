@@ -7,8 +7,12 @@ public class Lines {
 
 	private final List<Line> lines;
 
-	public Lines(List<Line> lines) {
+	private Lines(List<Line> lines) {
 		this.lines = lines;
+	}
+
+	public static Lines ofLines(List<Line> lines) {
+		return new Lines(lines);
 	}
 
 	public int size() {

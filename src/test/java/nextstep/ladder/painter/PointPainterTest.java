@@ -13,13 +13,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 import nextstep.ladder.point.Point;
 import nextstep.ladder.point.Points;
 
-public class RandomPointPainterTest {
+public class PointPainterTest {
 
-	RandomPointPainter painter;
+	PointPainter painter;
+	RandomPaintingStrategyImpl randomPaintingStrategy;
 
 	@BeforeEach
 	void setUp() {
-		painter = new RandomPointPainter();
+		randomPaintingStrategy = new RandomPaintingStrategyImpl();
+		painter = new PointPainter(randomPaintingStrategy);
 	}
 
 	@DisplayName("주어지는 수 만큼 좌표에 해당하는 페인터를 그린다.")
