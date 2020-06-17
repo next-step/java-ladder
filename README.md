@@ -2,6 +2,27 @@
 1. 리팩토링
 - https://github.com/next-step/java-ladder/pull/444#discussion_r440148275
 
+2.3단계
+- 결과를 입력받는다
+    - 유저수와 동일한지?
+- 게임을 실행한다 
+    - (Order, Point) 짝으로 .
+   
+한 포인트 이동한다 --> Connection이 있다면(오른쪽, 왼쪽) Order를 변경한다
+- **LadderGameSnapshot** - Map<LadderGameUser, Order> : 현재 유저가 몇번째 라인에있는지를 알려주는 컬렉션
+- **LadderGameResult** - Map<Point, LadderGameSnapshot> : 각 Point에 LadderGameShapshot
+
+ex) 
+A     B     C
+|-----|     |  -------> Point=1, LadderGameSnapshot=(LadderGameUser(A),Order(2)), (LadderGameUser(B),Order(1)),(LadderGameUser(C),Order(3))
+|     |-----|  -------> Point=2, LadderGameSnapshot=(LadderGameUser(A),Order(3)), (LadderGameUser(B),Order(1)),(LadderGameUser(C),Order(2))  
+|     |     |  -------> Point=3, LadderGameSnapshot=(LadderGameUser(A),Order(3)), (LadderGameUser(B),Order(1)),(LadderGameUser(C),Order(2))
+|     |-----|  -------> Point=4, LadderGameSnapshot=(LadderGameUser(A),Order(2)), (LadderGameUser(B),Order(1)),(LadderGameUser(C),Order(3)) => 최종결과
+a     b     c   
+LadderGamePrize = Map<Order, Prize>
+
+    
+
 
 # Step2 - 사다리 (생성)
 Q. 가로줄은 조건만 맞으면 랜덤으로 생성되는건가요 ,,?

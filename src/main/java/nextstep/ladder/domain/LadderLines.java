@@ -8,8 +8,8 @@ import java.util.Set;
 public class LadderLines {
     private final Map<Order, LadderLine> ladderLines = new HashMap<>();
 
-    public void addLine(Order order, LadderGameUser gameUser, LadderConnectionLineConditional drawingMachine, final int maxHeight) {
-        ConnectPoints connectPoints = makeConnectPoints(order, drawingMachine, maxHeight);
+    public void addLine(Order order, LadderGameUser gameUser, LadderConnectionLineConditional connectionLineConditional, final int maxHeight) {
+        ConnectPoints connectPoints = makeConnectPoints(order, connectionLineConditional, maxHeight);
         ladderLines.put(order, LadderLine.of(gameUser, connectPoints));
     }
 
