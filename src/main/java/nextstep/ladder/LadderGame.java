@@ -7,7 +7,8 @@ import nextstep.ladder.view.ResultView;
 public class LadderGame {
 
     public static void main(String... args) {
-        Ladder ladder = Ladder.of(InputView.scanPlayerNames(), InputView.scanLadderHeight());
+        Ladder ladder = Ladder.of(InputView.scanPlayerNames(),
+                InputView.scanResults(), InputView.scanLadderHeight());
 
         ResultView.printLadder(ladder);
     }
