@@ -71,6 +71,5 @@ public class OutputView {
         for (LadderGameUser user : allOfUsers) {
             System.out.printf("%s : %s%n", user.getUserName(), ladderGameResult.getPrizeOf(user));
         }
-        return;
     }
 }

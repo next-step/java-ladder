@@ -69,11 +69,11 @@ public class LadderGame {
         if (ladder.hasConnection(beforeOrder, point)) {
             return beforeOrder.next();
         }
-        boolean isEnableToMove = beforeOrder.before()
+        boolean isEnableToMoveLeft = beforeOrder.before()
                 .map(before -> ladder.hasConnection(before, point))
                 .orElse(false);
 
-        if (isEnableToMove) {
+        if (isEnableToMoveLeft) {
             return beforeOrder.before().get();
         }
         return beforeOrder;

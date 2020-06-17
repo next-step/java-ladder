@@ -32,12 +32,10 @@ public class Ladder {
     }
 
     public boolean hasConnection(final Order order, final Point point) {
-        LadderLine ladderLine = ladderLines.findLadderLineBy(order);
-        return ladderLine.connectedWith(point);
+        return ladderLines.hasConnection(order, point);
     }
 
     public boolean hasConnection(final int order, final int point) {
-        LadderLine ladderLine = ladderLines.findLadderLineBy(order);
-        return ladderLine.connectedWith(point);
+        return ladderLines.hasConnection(order, point);
     }
 }

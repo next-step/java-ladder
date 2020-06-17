@@ -44,11 +44,11 @@ public class LadderLines {
         return ladderLines.size();
     }
 
-    public LadderLine findLadderLineBy(final int order) {
-        return ladderLines.get(Order.of(order));
+    public boolean hasConnection(final Order order, final Point point) {
+        return ladderLines.get(order).connectedWith(point);
     }
 
-    public LadderLine findLadderLineBy(final Order order) {
-        return ladderLines.get(order);
+    public boolean hasConnection(final int order, final int point) {
+        return ladderLines.get(Order.of(order)).connectedWith(point);
     }
 }

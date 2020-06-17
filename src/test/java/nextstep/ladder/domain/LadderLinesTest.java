@@ -28,10 +28,10 @@ class LadderLinesTest {
         |        | ------ |
          */
         assertAll(
-                () -> assertThat(ladderLines.findLadderLineBy(1).connectedWith(1)).isTrue(),
-                () -> assertThat(ladderLines.findLadderLineBy(1).connectedWith(2)).isTrue(),
-                () -> assertThat(ladderLines.findLadderLineBy(1).connectedWith(3)).isFalse(),
-                () -> assertThat(ladderLines.findLadderLineBy(2).connectedWith(3)).isTrue()
+                () -> assertThat(ladderLines.hasConnection(1, 1)).isTrue(),
+                () -> assertThat(ladderLines.hasConnection(1, 2)).isTrue(),
+                () -> assertThat(ladderLines.hasConnection(1, 3)).isFalse(),
+                () -> assertThat(ladderLines.hasConnection(2, 3)).isTrue()
         );
     }
 
