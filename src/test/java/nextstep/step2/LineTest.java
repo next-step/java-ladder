@@ -1,7 +1,7 @@
 package nextstep.step2;
 
+import nextstep.step2.domain.Line;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -20,7 +20,6 @@ public class LineTest {
         List<Boolean> oneLayerLadder = line.getOneLayerLadder();
         assertThat(oneLayerLadder).hasSize(participantsCount);
     }
-
 
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5, 6})
