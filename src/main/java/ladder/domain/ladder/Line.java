@@ -8,6 +8,9 @@ import java.util.stream.IntStream;
 
 public class Line {
 
+    public static final int LEAST_POSITION = 0;
+    public static final int POINT_DISTANCE = 1;
+
     private final List<Point> points;
 
     private Line(List<Point> points) {
@@ -33,5 +36,13 @@ public class Line {
 
     public int size() {
         return points.size();
+    }
+
+    public int getNextPosition(int position) {
+        int nextPosition = position + points.get(position).getNextPosition();
+        if (position > LEAST_POSITION) {
+            nextPosition -= points.get(position - POINT_DISTANCE).getNextPosition();
+        }
+        return nextPosition;
     }
 }

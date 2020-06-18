@@ -4,6 +4,9 @@ import ladder.domain.strategy.LineStrategy;
 
 public class Point {
 
+    public static final int MOVABLE_POSITION = 1;
+    public static final int IMMOVABLE_POSITION = 0;
+
     private final boolean hasLine;
 
     private Point(boolean hasLine) {
@@ -27,5 +30,12 @@ public class Point {
 
     public boolean hasLine() {
         return hasLine;
+    }
+
+    public int getNextPosition(){
+        if (hasLine()) {
+            return MOVABLE_POSITION;
+        }
+        return IMMOVABLE_POSITION;
     }
 }

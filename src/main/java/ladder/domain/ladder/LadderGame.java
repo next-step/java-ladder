@@ -27,22 +27,8 @@ public class LadderGame {
 
     public int findResultPosition(int playerPosition) {
         for (int lineNumber = 0; lineNumber < ladder.height(); lineNumber++) {
-            playerPosition = getNextPosition(ladder.get(lineNumber), playerPosition);
+            playerPosition = ladder.get(lineNumber).getNextPosition(playerPosition);
         }
         return playerPosition;
-    }
-
-    private int getNextPosition(Line line, int playerPosition) {
-        if (hasLine(line.get(playerPosition))) {
-            return playerPosition + 1;
-        }
-        if (playerPosition > 0 && hasLine(line.get(playerPosition - 1))) {
-            return playerPosition - 1;
-        }
-        return playerPosition;
-    }
-
-    private boolean hasLine(Point point) {
-        return point.hasLine();
     }
 }
