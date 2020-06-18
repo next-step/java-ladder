@@ -7,7 +7,7 @@ import ladder.view.OutputView;
 import java.util.Map;
 
 public class Main {
-    private static final String GAME_END_KEYWORD = "all";
+    private static final String ALL_PLAYERS = "all";
 
     public static void main(String[] args) {
         Players players = new Players(InputView.printPlayers());
@@ -21,7 +21,7 @@ public class Main {
         while(true) {
             String name = InputView.printResult();
 
-            if(name.equals(GAME_END_KEYWORD)) {
+            if(name.equals(ALL_PLAYERS)) {
                 GameResult result = ladderGame.playAll();
                 OutputView.printAllReward(result);
                 break;
