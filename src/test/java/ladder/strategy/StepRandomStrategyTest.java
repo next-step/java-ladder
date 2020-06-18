@@ -1,6 +1,5 @@
 package ladder.strategy;
 
-import ladder.domain.ladder.FootStep;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,19 +17,18 @@ class StepRandomStrategyTest {
     @ParameterizedTest
     @MethodSource("countOfUserAndResult")
     @DisplayName("random 값이 항상 true를 반환 시, true가 연속되어 나타날 수 없다.")
-    void step_exception(int countOfUser, List<Boolean> expected) {
+    void step_exception(List<Boolean> expectedList) {
         StepStrategy stepStrategy = new StepRandomStrategy(new RandomReturnTrue());
-        FootStep footStep = FootStep.byStrategy(countOfUser, stepStrategy);
 
-        assertThat(footStep.getSteps()).isEqualTo(expected);
+        expectedList.forEach(expected -> assertThat(stepStrategy.nextStep()).isEqualTo(expected));
     }
 
     static Stream<Arguments> countOfUserAndResult() {
         return Stream.of(
-                arguments(2, Arrays.asList(true)),
-                arguments(3, Arrays.asList(true, false)),
-                arguments(4, Arrays.asList(true, false, true)),
-                arguments(5, Arrays.asList(true, false, true, false)));
+                arguments(Arrays.asList(true)),
+                arguments(Arrays.asList(true, false)),
+                arguments(Arrays.asList(true, false, true)),
+                arguments(Arrays.asList(true, false, true, false)));
     }
 
     private static class RandomReturnTrue extends Random {
