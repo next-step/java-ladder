@@ -1,7 +1,4 @@
-package laddergame.domain.player;
-
-import laddergame.domain.vo.Column;
-import laddergame.domain.vo.Height;
+package laddergame.domain.vo;
 
 import java.util.Objects;
 

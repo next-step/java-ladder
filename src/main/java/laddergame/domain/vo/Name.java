@@ -1,4 +1,4 @@
-package laddergame.domain.player;
+package laddergame.domain.vo;
 
 import java.util.Objects;
 

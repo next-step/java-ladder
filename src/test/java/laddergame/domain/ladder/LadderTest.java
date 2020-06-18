@@ -1,6 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.player.Position;
+import laddergame.domain.vo.Position;
 import laddergame.domain.vo.Height;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

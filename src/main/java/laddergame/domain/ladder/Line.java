@@ -1,6 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.player.Position;
+import laddergame.domain.vo.Position;
 import laddergame.domain.vo.Height;
 
 import java.util.Collections;

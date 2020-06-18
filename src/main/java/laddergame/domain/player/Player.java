@@ -1,5 +1,8 @@
 package laddergame.domain.player;
 
+import laddergame.domain.vo.Name;
+import laddergame.domain.vo.Position;
+
 public class Player {
     private final Name name;
     private final Position position;

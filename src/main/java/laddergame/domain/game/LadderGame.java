@@ -1,10 +1,9 @@
 package laddergame.domain.game;
 
 import laddergame.domain.ladder.Ladder;
-import laddergame.domain.player.Name;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
-import laddergame.domain.player.Position;
+import laddergame.domain.vo.Position;
 
 import java.util.HashMap;
 import java.util.Map;
