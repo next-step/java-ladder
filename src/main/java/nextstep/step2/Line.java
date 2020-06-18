@@ -6,8 +6,14 @@ import java.util.List;
 public class Line {
     private final List<Boolean> oneLayerLadder = new ArrayList<>();
     public Line(int size) {
-        for (int i = 0; i < size; i++) {
-            oneLayerLadder.add(true);
+        oneLayerLadder.add(0, RandomUtils.getRandomBoolean());
+        for (int i = 1; i < size; i++) {
+            Boolean beforeLine = oneLayerLadder.get(i - 1);
+            if (beforeLine) {
+                oneLayerLadder.add(false);
+            } else {
+                oneLayerLadder.add(RandomUtils.getRandomBoolean());
+            }
         }
     }
 
