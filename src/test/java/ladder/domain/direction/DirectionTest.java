@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -52,4 +53,29 @@ public class DirectionTest {
 
         assertThat(direction).isNotEqualTo(Direction.RIGHT);
     }
+
+    @DisplayName("오른쪽 방향을 지나면 위치는 +1이다")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10})
+    void right_pass(int position) {
+        Direction right = Direction.RIGHT;
+        assertThat(right.pass(position)).isEqualTo(position + 1);
+    }
+
+    @DisplayName("왼쪽 방향을 지나면 위치는 -1이다")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10})
+    void left_pass(int position) {
+        Direction right = Direction.LEFT;
+        assertThat(right.pass(position)).isEqualTo(position - 1);
+    }
+
+    @DisplayName("어느 방향도 아니면 위치는 제자리이다")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10})
+    void stay_pass(int position) {
+        Direction stay = Direction.STAY;
+        assertThat(stay.pass(position)).isEqualTo(position);
+    }
 }
+
