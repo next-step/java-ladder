@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
     private final List<Point> points;
@@ -11,22 +10,24 @@ public class Line {
         this.points = createLine(countOfPlayers, strategy);
     }
 
-    private List<Point> createLine(int countOfPlayers, PointGenerationStrategy strategy) {
-        List<Point> points = new ArrayList<>();
-        points.add(Point.of(false));
-
-        IntStream.range(1, countOfPlayers)
-                .forEach((i) -> points.add(decidePoint(points.get(i - 1), strategy)));
-
-        return points;
+    public int move(int position) {
+        return points.get(position).move();
     }
 
-    private Point decidePoint(Point point, PointGenerationStrategy strategy) {
-        if (point.isPoint()) {
-            return Point.of(false);
+    private List<Point> createLine(int countOfPlayers, PointGenerationStrategy strategy) {
+        List<Point> points = new ArrayList<>();
+
+        Point point = Point.first(strategy);
+        points.add(point);
+
+        for (int i = 1; i < countOfPlayers - 1; i++) {
+            point = point.next(strategy);
+            points.add(point);
         }
 
-        return Point.ofStrategy(strategy);
+        points.add(point.last());
+
+        return points;
     }
 
     public List<Point> getPoints() {

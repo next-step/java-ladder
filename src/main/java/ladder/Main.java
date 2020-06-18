@@ -1,19 +1,33 @@
 package ladder;
 
-import ladder.domain.Height;
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.RandomPointGenerationStrategy;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.Map;
+
 public class Main {
+    private static final String GAME_END_KEYWORD = "all";
+
     public static void main(String[] args) {
         Players players = new Players(InputView.printPlayers());
+        Rewards rewards = new Rewards(InputView.printRewards(), players.getPlayersCount());
         Height height = new Height(InputView.printHeight());
 
-        Ladder ladder = new Ladder(players, height, new RandomPointGenerationStrategy());
+        LadderGame ladderGame = LadderGame.init(players, rewards, height, new RandomPointGenerationStrategy());
 
-        OutputView.printResult(players, ladder);
+        OutputView.printResult(players, rewards, ladderGame.getLadder());
+
+        while(true) {
+            String name = InputView.printResult();
+
+            if(name.equals(GAME_END_KEYWORD)) {
+                GameResult result = ladderGame.playAll();
+                OutputView.printAllReward(result);
+                break;
+            }
+
+            OutputView.printReward(ladderGame.playOne(name));
+        }
     }
 }

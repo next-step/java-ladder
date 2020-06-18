@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -23,6 +24,15 @@ public class Players {
         if (Objects.isNull(names) || names.isEmpty()) {
             throw new PlayersNamesException();
         }
+    }
+
+    public int getPlayerPosition(String playerName) {
+        Optional<Player> playerOne = this.players
+                .stream()
+                .filter(player -> player.getName().equals(playerName))
+                .findFirst();
+
+        return this.players.indexOf(playerOne.orElseThrow(PlayerNameMismatchException::new));
     }
 
     public List<Player> getPlayers() {
