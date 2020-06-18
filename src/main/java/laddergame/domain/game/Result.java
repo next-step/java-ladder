@@ -10,7 +10,7 @@ public class Result {
 
     public Result(final String resultName, final int column) {
         validateNullOrEmptyName(resultName);
-        this.name = resultName;
+        this.name = resultName.trim();
         this.column = new Column(column);
     }
 
