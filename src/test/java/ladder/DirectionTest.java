@@ -53,4 +53,20 @@ public class DirectionTest {
 
         assertThat(result).isEqualTo(3);
     }
+
+    @DisplayName("Direiction에게 첫 번째 점의 방향을 요청 : 오른쪽 방향")
+    @Test
+    public void directionFirst_오른쪽() {
+        Direction direction = Direction.first(false);
+
+        assertThat(direction).isEqualTo(Direction.RIGHT);
+    }
+
+    @DisplayName("Direiction에게 첫 번째 점의 방향을 요청 : 아래 방향")
+    @Test
+    public void directionFirst_아래쪽() {
+        Direction direction = Direction.first(true);
+
+        assertThat(direction).isEqualTo(Direction.DOWN);
+    }
 }

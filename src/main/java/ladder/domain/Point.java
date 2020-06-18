@@ -14,7 +14,7 @@ public class Point {
     }
 
     public static Point drawFirstPoint(boolean isDown) {
-        return isDown ? new Point(MINIMUM_INDEX, Direction.DOWN) : new Point(MINIMUM_INDEX, Direction.RIGHT);
+        return new Point(MINIMUM_INDEX, Direction.first(isDown));
     }
 
     public Point drawLastPoint() {
