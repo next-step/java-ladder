@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Column;
 import laddergame.domain.vo.Position;
 import laddergame.domain.vo.Height;
 import org.junit.jupiter.api.DisplayName;
@@ -33,11 +34,11 @@ class LadderTest {
         );
     }
 
-    private static Stream<Arguments> provideBeforeAndAfterPosition() {
-        return Stream.of(Arguments.of(new Position(1, 1), new Position(2, 4)),
-                Arguments.of(new Position(2, 1), new Position(1, 4)),
-                Arguments.of(new Position(3, 1), new Position(4, 4)),
-                Arguments.of(new Position(4, 1), new Position(3, 4)));
+    private static Stream<Arguments> provideBeforeAndAfterColumn() {
+        return Stream.of(Arguments.of(new Column(1), new Column(2)),
+                Arguments.of(new Column(2), new Column(1)),
+                Arguments.of(new Column(3), new Column(4)),
+                Arguments.of(new Column(4), new Column(3)));
     }
 
     @DisplayName("현재 위치의 높이와 맞는 Line을 찾는다.")
@@ -53,13 +54,13 @@ class LadderTest {
 
     @DisplayName("사다리를 타고 나서 마지막 위치를 반환한다.")
     @ParameterizedTest
-    @MethodSource("provideBeforeAndAfterPosition")
-    void progressAllStep(Position before, Position after) {
+    @MethodSource("provideBeforeAndAfterColumn")
+    void progressAllStep(Column before, Column after) {
         Ladder ladder = new Ladder(new Height(3), 4, () -> true);
 
-        Position actualPosition = ladder.progressAllStep(before);
+        Column actualColumn = ladder.progressAllStep(before);
 
-        assertThat(actualPosition).isEqualTo(after);
+        assertThat(actualColumn).isEqualTo(after);
     }
 
     @DisplayName("맞지않는 높이로 Line을 찾으면 IllegalArgumentException throw")

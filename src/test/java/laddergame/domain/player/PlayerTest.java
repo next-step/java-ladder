@@ -1,5 +1,6 @@
 package laddergame.domain.player;
 
+import laddergame.domain.vo.Column;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,8 +19,7 @@ class PlayerTest {
 
         assertAll(
                 () -> assertThat(player.getName()).isEqualTo(name),
-                () -> assertThat(player.getCurrentHeight()).isEqualTo(1),
-                () -> assertThat(player.getCurrentColumn()).isEqualTo(column)
+                () -> assertThat(player.getColumn()).isEqualTo(new Column(column))
         );
     }
 }

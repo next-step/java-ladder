@@ -3,7 +3,7 @@ package laddergame.domain.game;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
-import laddergame.domain.vo.Position;
+import laddergame.domain.vo.Column;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +19,8 @@ public class LadderGame {
         Map<String, Result> resultMap = new HashMap<>();
 
         for (Player player : players.getPlayers()) {
-            Position afterMove = ladder.progressAllStep(player.getPosition());
-            resultMap.put(player.getName(), results.findByColumn(afterMove.getColumn()));
+            Column afterMoveColumn = ladder.progressAllStep(player.getColumn());
+            resultMap.put(player.getName(), results.findByColumn(afterMoveColumn.getColumn()));
         }
 
         return new GameResult(resultMap);

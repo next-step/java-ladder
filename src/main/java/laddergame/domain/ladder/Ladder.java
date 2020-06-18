@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Column;
 import laddergame.domain.vo.Position;
 import laddergame.domain.vo.Height;
 
@@ -29,14 +30,15 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public Position progressAllStep(Position position) {
+    public Column progressAllStep(Column column) {
+        Position position = new Position(column.getColumn());
 
         while (position.getHeight() <= ladderHeight.getHeight()) {
             Line currentLine = findCurrentLine(position);
             position = currentLine.movePosition(position);
         }
 
-        return position;
+        return position.column();
     }
 
     public Line findCurrentLine(Position position) {
