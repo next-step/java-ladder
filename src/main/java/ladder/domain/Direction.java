@@ -9,6 +9,10 @@ public class Direction {
     private final boolean right;
 
     public Direction(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
+        }
+
         this.left = left;
         this.right = right;
     }
