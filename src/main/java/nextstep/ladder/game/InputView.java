@@ -22,7 +22,7 @@ public class InputView {
 		String nameString = scanner.nextLine();
 
 		return Arrays.stream(nameString.split(PLAYER_NAME_DELIMITER))
-			.map(Player::ofPlayer)
+			.map(Player::ofName)
 			.collect(collectingAndThen(toList(), Players::ofPlayers));
 	}
 

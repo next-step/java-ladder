@@ -11,7 +11,7 @@ public class Player {
 		this.name = name;
 	}
 
-	public static Player ofPlayer(String name) {
+	public static Player ofName(String name) {
 		validateNotNull(name);
 		validateNameLength(name);
 		return new Player(name);
