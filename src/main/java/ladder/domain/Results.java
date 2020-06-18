@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,5 +27,9 @@ public class Results {
         if (results.size() != countOfPerson) {
             throw new IllegalArgumentException("게임 결과 수와 참가자 수가 일치하지 않습니다.");
         }
+    }
+
+    public List<Result> getResults() {
+        return Collections.unmodifiableList(results);
     }
 }

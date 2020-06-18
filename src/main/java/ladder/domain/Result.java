@@ -8,7 +8,10 @@ public class Result {
     }
 
     public static Result of(String result) {
-        return new Result(result);
+        return new Result(result.trim());
     }
 
+    public String getResult() {
+        return result;
+    }
 }
