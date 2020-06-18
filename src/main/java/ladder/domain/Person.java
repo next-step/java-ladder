@@ -11,7 +11,7 @@ public class Person {
         this.name = name;
     }
 
-    public static Person valueOf(String name) {
+    public static Person of(String name) {
         return new Person(name);
     }
 

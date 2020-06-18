@@ -29,7 +29,7 @@ public class ResultView {
     }
 
     private static void printLadderPoint(Line line) {
-        line.getPoints().stream()
+        line.getLine().stream()
                 .map(point -> drawLine(point))
                 .forEach(System.out::print);
     }
