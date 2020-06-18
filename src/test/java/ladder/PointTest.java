@@ -23,17 +23,17 @@ public class PointTest {
         );
     }
 
-    @DisplayName("Point 객체 생성 성공 테스트")
+    @DisplayName("Point 객체 생성 성공")
     @Test
-    public void makePointObject() {
+    public void makePoint_정상() {
         assertThatCode(() -> {
             new Point(0, Direction.RIGHT);
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("Point 객체 생성 실패 테스트(음수값)")
+    @DisplayName("Point 객체 생성 실패(음수값 인덱스)")
     @Test
-    public void throwExceptionOnMakingPointObject() {
+    public void makePoint_예외() {
         assertThatThrownBy(() -> {
             new Point(-3, Direction.LEFT);
         }).isInstanceOf(LadderBuildingException.class)
@@ -99,7 +99,7 @@ public class PointTest {
         assertThat(point.moveByDirection()).isEqualTo(index + 1);
     }
 
-    @DisplayName("Direction이 Leftt일때 MOVE하면 Index는 상승")
+    @DisplayName("Direction이 Left일때 MOVE하면 Index는 상승")
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 5})
     public void moveLeft(int index) {

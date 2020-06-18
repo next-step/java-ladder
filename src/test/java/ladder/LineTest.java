@@ -16,7 +16,7 @@ public class LineTest {
     @DisplayName("Line 객체 생성 테스트")
     @ParameterizedTest
     @ValueSource(ints = {2, 5, 10, 15})
-    public void makeLineObject(int playerCounts) {
+    public void makeLine_정상(int playerCounts) {
         assertThatCode(() -> {
             Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
         }).doesNotThrowAnyException();
@@ -25,17 +25,17 @@ public class LineTest {
     @DisplayName("PlayerCounts가 2 미만인 경우 객체 생성 에러 발생")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
-    public void throwExceptionOnMakingLineObject(int playerCounts) {
+    public void makeLine_예외(int playerCounts) {
         assertThatThrownBy(() -> {
             Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
         }).isInstanceOf(LadderBuildingException.class)
                 .hasMessageContaining(LadderBuildingException.INVALID_PLAYER_COUNTS);
     }
 
-    @DisplayName("Line 객체를 통해 그린 Line의 길이는 playerCounts과 동일함")
+    @DisplayName("Line 객체를 통해 그린 Line의 길이는 참가자의 수와 동일함")
     @ParameterizedTest
     @ValueSource(ints = {2, 5, 10, 15})
-    public void lineSizeTest(int playerCounts) {
+    public void lineSize_참가자수_동일(int playerCounts) {
         Line line = Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
 
         List<Direction> pointDirections = line.getPointDirections();
@@ -45,9 +45,8 @@ public class LineTest {
 
     /*
     |----|    |
-    형태의 1개 라인으로 테스트
+    형태의 1개 라인 테스트
      */
-
     @DisplayName("Line 객체의 한 Point의 인덱스 좌표를 받으면 방향에 따라 move시킨 뒤 인덱스 반환")
     @Test
     public void movePointOnLine() {

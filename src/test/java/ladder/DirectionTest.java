@@ -24,23 +24,33 @@ public class DirectionTest {
     @DisplayName("Direction Enum 객체 정상 생성 테스트")
     @ParameterizedTest
     @MethodSource("mockDirectionBuilder")
-    public void getDirection(int index, Direction expectedDirection) {
+    public void direction_정상_생성(int index, Direction expectedDirection) {
         Direction direction = Direction.values()[index];
 
         assertThat(direction).isEqualTo(expectedDirection);
     }
 
-    @DisplayName("Direction의 moveIndexByDirection 메소드를 통한 index 좌표 값 변화 테스트")
+    @DisplayName("Direction이 LEFT면 index의 값을 1 마이너스")
     @Test
-    public void moveIndexByDirection() {
-        int index = 3;
+    public void moveIndexByDirection_왼쪽() {
+        int result = Direction.LEFT.moveIndexByDirection(3);
 
-        int leftIndex = Direction.LEFT.moveIndexByDirection(index);
-        int rightIndex = Direction.RIGHT.moveIndexByDirection(index);
-        int downIndex = Direction.DOWN.moveIndexByDirection(index);
+        assertThat(result).isEqualTo(2);
+    }
 
-        assertThat(leftIndex).isEqualTo(2);
-        assertThat(rightIndex).isEqualTo(4);
-        assertThat(downIndex).isEqualTo(3);
+    @DisplayName("Direction이 RIGHT면 index의 값을 1 플러스")
+    @Test
+    public void moveIndexByDirection_오른쪽() {
+        int result = Direction.RIGHT.moveIndexByDirection(3);
+
+        assertThat(result).isEqualTo(4);
+    }
+
+    @DisplayName("Direction이 Down이면 index의 값 변화 없음")
+    @Test
+    public void moveIndexByDirection_아래쪽() {
+        int result = Direction.DOWN.moveIndexByDirection(3);
+
+        assertThat(result).isEqualTo(3);
     }
 }
