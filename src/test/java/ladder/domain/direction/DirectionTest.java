@@ -2,9 +2,13 @@ package ladder.domain.direction;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class DirectionTest {
 
@@ -18,16 +22,19 @@ public class DirectionTest {
     }
 
     @DisplayName("왼쪽의 다음 방향은 isNextRight 인자에 따라 제자리이거나 오른쪽이다")
-    @Test
-    void notRight_nextIsGivenValue() {
+    @ParameterizedTest
+    @MethodSource("notRight_nextIsGivenValueArguments")
+    void notRight_nextIsGivenValue(boolean isNextRight, Direction expected) {
         Direction left = Direction.LEFT;
+        Direction rightDirection = left.next(isNextRight);
 
-        Direction rightDirection = left.next(true);
-        Direction stayDirection = left.next(false);
+        assertThat(rightDirection).isEqualTo(expected);
+    }
 
-        assertAll(
-                () -> assertThat(rightDirection).isEqualTo(Direction.RIGHT),
-                () -> assertThat(stayDirection).isEqualTo(Direction.STAY));
+    public static Stream<Arguments> notRight_nextIsGivenValueArguments() {
+        return Stream.of(
+                Arguments.of(true, Direction.RIGHT),
+                Arguments.of(false, Direction.STAY));
     }
 
     @DisplayName("첫 번째 방향은 왼쪽일 수 없다")
