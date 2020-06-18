@@ -18,20 +18,11 @@ public class Point {
     }
 
     public Point drawLastPoint() {
-        return this.isConnected() ? new Point(this.index + NEXT_INDEX, Direction.LEFT)
-                : new Point(this.index + NEXT_INDEX, Direction.DOWN);
+        return new Point(this.index + NEXT_INDEX, this.direction.last());
     }
 
-    public Point drawMiddlePoint(boolean isDown) {
-        if (this.isConnected()) {
-            return new Point(this.index + NEXT_INDEX, Direction.LEFT);
-        }
-        return isDown ? new Point(this.index + NEXT_INDEX, Direction.DOWN)
-                : new Point(this.index + NEXT_INDEX, Direction.RIGHT);
-    }
-
-    private boolean isConnected() {
-        return direction == Direction.RIGHT;
+    public Point drawNextPoint(boolean isDown) {
+        return new Point(this.index + NEXT_INDEX, this.direction.next(isDown));
     }
 
     private void validateIndex(int index) {

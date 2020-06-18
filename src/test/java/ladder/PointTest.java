@@ -55,7 +55,7 @@ public class PointTest {
     public void pointLeftWhenLastPointRight() {
         Point lastPoint = new Point(0, Direction.RIGHT);
 
-        Point nextPoint = lastPoint.drawMiddlePoint(false);
+        Point nextPoint = lastPoint.drawNextPoint(false);
 
         assertThat(nextPoint.getDirection()).isEqualTo(Direction.LEFT);
     }
@@ -65,8 +65,8 @@ public class PointTest {
     public void pointRandomWhenLastPointNotRight() {
         Point lastPoint = new Point(0, Direction.DOWN);
 
-        Point nextDownPoint = lastPoint.drawMiddlePoint(true);
-        Point nextRightPoint = lastPoint.drawMiddlePoint(false);
+        Point nextDownPoint = lastPoint.drawNextPoint(true);
+        Point nextRightPoint = lastPoint.drawNextPoint(false);
 
         assertThat(nextDownPoint.getDirection()).isEqualTo(Direction.DOWN);
         assertThat(nextRightPoint.getDirection()).isEqualTo(Direction.RIGHT);

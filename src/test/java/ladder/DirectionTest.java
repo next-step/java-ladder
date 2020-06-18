@@ -92,4 +92,28 @@ public class DirectionTest {
 
         assertThat(lastDirection).isEqualTo(Direction.DOWN);
     }
+
+    @DisplayName("Direction에게 다음 중간 점의 방향을 요청 : 이전 점의 방향이 Right인 경우 어떤 경우에도 왼쪽 방향 반환")
+    @Test
+    public void directionNext_왼쪽() {
+        Direction lastDirection = Direction.RIGHT;
+
+        Direction nextDirection = lastDirection.next(true);
+        Direction nextDirection2 = lastDirection.next(false);
+
+        assertThat(nextDirection).isEqualTo(Direction.LEFT);
+        assertThat(nextDirection2).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("Direction에게 다음 중간 점의 방향을 요청 : 이전 점의 방향이 Right가 아니면 boolean에 따라 아래 혹은 오른쪽 반환")
+    @Test
+    public void directionNext_아래_혹은_오른쪽() {
+        Direction lastDirection = Direction.LEFT;
+
+        Direction nextDirection = lastDirection.next(true);
+        Direction nextDirection2 = lastDirection.next(false);
+
+        assertThat(nextDirection).isEqualTo(Direction.DOWN);
+        assertThat(nextDirection2).isEqualTo(Direction.RIGHT);
+    }
 }
