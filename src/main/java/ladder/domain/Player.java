@@ -18,13 +18,8 @@ public class Player {
         }
     }
 
-    @Override
-    public String toString() {
-        String space = "";
-        for (int i = this.name.length(); i < NAME_LIMIT; i++) {
-            space += " ";
-        }
-        return this.name + space;
+    public String getName() {
+        return this.name;
     }
 
     @Override

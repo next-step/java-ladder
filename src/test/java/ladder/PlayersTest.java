@@ -16,10 +16,4 @@ public class PlayersTest {
         assertThat(new Players(players).getPlayerCount()).isEqualTo(4);
     }
 
-    @Test
-    void displayPlayerName() {
-        String players = "iu,iu2,iu3,iu4";
-        System.out.println(new Players(players).getPlayerName());
-    }
-
 }

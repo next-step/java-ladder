@@ -21,9 +21,9 @@ public class Players {
         return players.size();
     }
 
-    public String getPlayerName() {
+    public List<String> getPlayerName() {
         return players.stream()
-                    .map(p -> p.toString())
-                    .collect(Collectors.joining());
+                    .map(p -> p.getName())
+                    .collect(Collectors.toList());
     }
 }

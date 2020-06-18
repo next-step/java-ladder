@@ -21,6 +21,8 @@ public class PlayerTest {
     @DisplayName("사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.")
     @Test
     void alidatePlayerName() {
-        assertThat(new Player("abc").toString().length()).isEqualTo(Player.NAME_LIMIT);
+        String name = String.format("%" + Player.NAME_LIMIT + "s",
+                            new Player("abc").getName());
+        assertThat(name.length()).isEqualTo(Player.NAME_LIMIT);
     }
 }

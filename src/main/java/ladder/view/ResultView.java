@@ -9,7 +9,9 @@ public class ResultView {
 
     public void displayLadderplayers(Players players) {
         System.out.println(LADDER_RESULT_INTRO_MESSAGE);
-        System.out.println(players.getPlayerName());
+        for (String name : players.getPlayerName()) {
+            System.out.println(String.format("%" + Player.NAME_LIMIT + "s",name));
+        }
     }
 
     public void displayLadder(Ladder ladder) {
