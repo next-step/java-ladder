@@ -69,4 +69,27 @@ public class DirectionTest {
 
         assertThat(direction).isEqualTo(Direction.DOWN);
     }
+
+    @DisplayName("Direction에게 마지막 점의 방향을 요청 : 이전 점의 방향이 Right인 경우 왼쪽 방향 반환")
+    @Test
+    public void directionLast_왼쪽() {
+        Direction beforeDirection = Direction.RIGHT;
+        Direction lastDirection = beforeDirection.last();
+
+        assertThat(lastDirection).isEqualTo(Direction.LEFT);
+    }
+
+    @DisplayName("Direction에게 마지막 점의 방향을 요청 : 이전 점의 방향이 Down이거나 Left인 경우 아래쪽 방향 반환")
+    @Test
+    public void directionLast_아래쪽() {
+        Direction beforeDirection = Direction.LEFT;
+        Direction lastDirection = beforeDirection.last();
+
+        assertThat(lastDirection).isEqualTo(Direction.DOWN);
+
+        beforeDirection = Direction.DOWN;
+        lastDirection = beforeDirection.last();
+
+        assertThat(lastDirection).isEqualTo(Direction.DOWN);
+    }
 }

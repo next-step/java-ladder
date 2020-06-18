@@ -20,4 +20,8 @@ public enum Direction {
     public int moveIndexByDirection(int index) {
         return this.moveIndexByDirection.apply(index);
     }
+
+    public Direction last() {
+        return this == RIGHT ? LEFT : DOWN;
+    }
 }
