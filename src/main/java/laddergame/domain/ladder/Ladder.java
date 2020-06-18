@@ -39,7 +39,7 @@ public class Ladder {
         return position;
     }
 
-    private Line findCurrentLine(Position position) {
+    public Line findCurrentLine(Position position) {
         return lines.stream()
                 .filter(line -> line.isSameHeight(position))
                 .findFirst()

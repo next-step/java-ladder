@@ -40,16 +40,15 @@ class LadderTest {
                 Arguments.of(new Position(4, 1), new Position(3, 4)));
     }
 
-    @DisplayName("맞지않는 높이로 Line을 찾으면 IllegalArgumentException throw")
+    @DisplayName("현재 위치의 높이와 맞는 Line을 찾는다.")
     @Test
-    void findLineByWrongHeight() {
+    void findCurrentLine() {
         Ladder ladder = new Ladder(new Height(3), 4, () -> true);
-        Position wrongPosition = new Position(1, 4);
+        Position position = new Position(1, 2);
 
-        assertThatThrownBy(() -> ladder.progressAllStep(wrongPosition))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("현재 높이에 맞는 사다리 한 라인이 존재하지 않습니다. - " +
-                        wrongPosition.getHeight());
+        Line findLine = ladder.findCurrentLine(position);
+
+        assertThat(findLine.getLineHeight()).isEqualTo(position.height());
     }
 
     @DisplayName("사다리를 타고 나서 마지막 위치를 반환한다.")
@@ -61,5 +60,17 @@ class LadderTest {
         Position actualPosition = ladder.progressAllStep(before);
 
         assertThat(actualPosition).isEqualTo(after);
+    }
+
+    @DisplayName("맞지않는 높이로 Line을 찾으면 IllegalArgumentException throw")
+    @Test
+    void findLineByWrongHeight() {
+        Ladder ladder = new Ladder(new Height(3), 4, () -> true);
+        Position position = new Position(1, 4);
+
+        assertThatThrownBy(() -> ladder.findCurrentLine(position))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("현재 높이에 맞는 사다리 한 라인이 존재하지 않습니다. - " +
+                        position.getHeight());
     }
 }
