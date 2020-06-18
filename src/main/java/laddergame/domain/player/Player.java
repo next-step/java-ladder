@@ -28,4 +28,8 @@ public class Player {
     public int getCurrentColumn() {
         return this.position.getColumn();
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }
