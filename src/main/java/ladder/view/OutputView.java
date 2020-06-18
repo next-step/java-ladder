@@ -2,8 +2,6 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.Map;
-
 public class OutputView {
     private static final String PRINT_RESULT_MESSAGE = "실행 결과";
     private static final String PLAYER_FORMAT = "%6s";

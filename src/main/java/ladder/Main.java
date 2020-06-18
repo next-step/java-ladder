@@ -4,8 +4,6 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.Map;
-
 public class Main {
     private static final String ALL_PLAYERS = "all";
 
