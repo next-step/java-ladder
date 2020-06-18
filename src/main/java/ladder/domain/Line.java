@@ -9,7 +9,7 @@ public class Line {
     public static final int RIGHT = 1;
     public static final int SAME = 0;
 
-    private List<Point> line;
+    private final List<Point> line;
 
     private Line(List<Point> line) {
         this.line = line;

@@ -1,9 +1,10 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class GameResult {
-    Map<Person, Result> gameResult;
+    private final Map<Person, Result> gameResult;
 
     private GameResult(Map<Person, Result> gameResult) {
         this.gameResult = gameResult;
@@ -14,7 +15,7 @@ public class GameResult {
     }
 
     public Map<Person, Result> getGameResult() {
-        return gameResult;
+        return Collections.unmodifiableMap(gameResult);
     }
 
     public String findResult(String name) {

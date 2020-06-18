@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private List<Line> ladder;
+    private final List<Line> ladder;
 
     private Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);

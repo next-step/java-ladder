@@ -3,7 +3,7 @@ package ladder.domain;
 public class Person {
     public static final int MAX_NAME_LENGTH = 5;
 
-    private String name;
+    private final String name;
 
     private Person(String name) {
         checkEmpty(name);

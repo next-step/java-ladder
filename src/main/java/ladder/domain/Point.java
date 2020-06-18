@@ -4,7 +4,7 @@ public class Point {
     private static final Point MOVABLE = new Point(true);
     private static final Point STOP = new Point(false);
 
-    private boolean point;
+    private final boolean point;
 
     private Point(boolean point) {
         this.point = point;
