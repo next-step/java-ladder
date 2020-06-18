@@ -46,4 +46,11 @@ public class Players {
 	public List<Player> getPlayers() {
 		return Collections.unmodifiableList(players);
 	}
+
+	public void printPlayers() {
+		players.forEach(
+			player -> System.out.printf("%-6s", player.getName())
+		);
+		System.out.println();
+	}
 }

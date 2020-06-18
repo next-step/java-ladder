@@ -16,10 +16,7 @@ public class OutputView {
 	}
 
 	private static void printPlayers(Players players) {
-		players.getPlayers().forEach(
-			player -> System.out.printf("%-6s", player.getName())
-		);
-		System.out.println();
+		players.printPlayers();
 	}
 
 	private static void printLines(Lines lines) {
@@ -32,11 +29,10 @@ public class OutputView {
 	}
 
 	private static void printPoints(Points points) {
-		points.getPoints()
-			.forEach(point -> {
-					System.out.print("|");
-					System.out.printf("%-5s", point.isConnectedToNextPoint() ? "-----" : "");
-				}
-			);
+		points.getPoints().forEach(point -> {
+				System.out.print("|");
+				System.out.printf("%-5s", point.isConnectedToNextPoint() ? "-----" : "");
+			}
+		);
 	}
 }
