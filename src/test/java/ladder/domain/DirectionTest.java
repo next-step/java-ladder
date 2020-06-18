@@ -10,14 +10,14 @@ public class DirectionTest {
 
     @Test
     void create() {
-        assertThatCode(() -> new Direction(true, false))
+        assertThatCode(() -> Direction.of(true, false))
                 .doesNotThrowAnyException();
     }
 
     @Test()
     public void create_invalid() {
         assertThatExceptionOfType(IllegalStateException.class)
-                .isThrownBy(() -> new Direction(true, true));
+                .isThrownBy(() -> Direction.of(true, true));
     }
 
 
