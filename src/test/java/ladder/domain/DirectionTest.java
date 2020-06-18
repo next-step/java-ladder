@@ -20,7 +20,6 @@ public class DirectionTest {
                 .isThrownBy(() -> Direction.of(true, true));
     }
 
-
     @Test
     void first() {
         Direction first = Direction.first(true);
@@ -37,6 +36,12 @@ public class DirectionTest {
     void next_true() {
         Direction next = Direction.first(false).next(true);
         assertThat(next.isRight()).isTrue();
+    }
+
+    @Test
+    void next_false() {
+        Direction next = Direction.first(true).next(false);
+        assertThat(next.isRight()).isFalse();
     }
 
     @Test
