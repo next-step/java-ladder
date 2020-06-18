@@ -51,13 +51,13 @@
 - Ladder: 사다리 판
     - [X] Height * Players 개의 Ladder를 생성할 수 있다.
 
-- Line: 사다리 게임 한 단계
+- LadderLine: 사다리 게임 한 단계
     - [X] Players 만큼 Point를 생성 할 수 있다. 
 
-- Point: Line의 좌표 값과 Direction
+- Point: LadderLine의 좌표 값과 Direction
     - [X] Direction에 따라 이동 한 뒤, 좌표값을 반환할 수 있다. (=move)
 
-- Direction: 다리의 방향(왼쪽, 오른쪽 방향 존재 여부)
+- Direction: 사다리 다리의 방향(왼쪽, 오른쪽 방향 존재 여부)
     - [X] 첫번째는 왼쪽 방향이 없는 상태로 Direction을 생성할 수 있다.
     - [X] RandomPointGenerationStrategy을 이용해 Direction을 생성할 수 있다.
     - [X] 마지막은 오른쪽 방향이 없는 상태로 Direction을 생성할 수 있다.
@@ -73,5 +73,5 @@
 
 - OutputView: 실행 결과 출력
     - [X] Players name을 출력할 수 있다.
-    - [X] Ladder의 Line을 `|-----|` 모양으로 출력할 수 있다.
+    - [X] Ladder의 LadderLine을 `|-----|` 모양으로 출력할 수 있다.
     - [X] LadderGame 결과를 출력할 수 있다. 
