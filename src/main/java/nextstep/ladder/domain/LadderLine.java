@@ -2,23 +2,25 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.vo.Point;
 
-public class LadderLine {
-    private final ConnectPoints connectPoints;
+import java.util.Set;
 
-    private LadderLine(final ConnectPoints connectPoints) {
-        this.connectPoints = connectPoints;
+public class LadderLine {
+    private final Set<Point> points;
+
+    private LadderLine(final Set<Point> points) {
+        this.points = points;
     }
 
-    public static LadderLine of(final ConnectPoints connectPoints) {
-        return new LadderLine(connectPoints);
+    public static LadderLine of(final Set<Point> points) {
+        return new LadderLine(points);
     }
 
     public boolean connectedWith(final int point) {
-        return connectPoints.has(Point.of(point));
+        return points.contains(Point.of(point));
     }
 
     public boolean connectedWith(final Point point) {
-        return connectPoints.has(point);
+        return points.contains(point);
     }
 
 }

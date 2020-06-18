@@ -50,7 +50,7 @@ class LadderGameTest {
     void result() {
         //given
         LadderGameUserStore ladderGameUsers = createLadderGameUsers();
-        Ladder ladder = Ladder.of(Point.of(3), ladderGameUsers, createLadderLines());
+        Ladder ladder = Ladder.of(3, ladderGameUsers, createLadderLines());
         LadderGamePrize prize = createPrize();
 
         //when

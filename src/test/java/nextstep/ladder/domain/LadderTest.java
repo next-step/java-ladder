@@ -18,7 +18,7 @@ class LadderTest {
     @Test
     void connect() {
         //given
-        Ladder ladder = Ladder.of(Point.of(3), createLadderGameUsers(), createLadderLines());
+        Ladder ladder = Ladder.of(3, createLadderGameUsers(), createLadderLines());
 
         //then
         assertAll(

@@ -5,22 +5,22 @@ import nextstep.ladder.domain.vo.Order;
 import nextstep.ladder.domain.vo.Point;
 
 public class Ladder {
-    private final Point maxPoint;
+    private final int maxHeight;
     private final LadderGameUserStore ladderGameUserStore;
     private final LadderLines ladderLines;
 
-    private Ladder(final Point maxPoint, final LadderGameUserStore userStore, final LadderLines ladderLines) {
-        this.maxPoint = maxPoint;
+    private Ladder(final int maxHeight, final LadderGameUserStore userStore, final LadderLines ladderLines) {
+        this.maxHeight = maxHeight;
         this.ladderGameUserStore = userStore;
         this.ladderLines = ladderLines;
     }
 
-    public static Ladder of(final Point maxHeight, final LadderGameUserStore userStore, final LadderLines ladderLines) {
+    public static Ladder of(final int maxHeight, final LadderGameUserStore userStore, final LadderLines ladderLines) {
         return new Ladder(maxHeight, userStore, ladderLines);
     }
 
-    public Point getMaxPoint() {
-        return maxPoint;
+    public int getMaxHeight() {
+        return maxHeight;
     }
 
     public int getNumberOfUsers() {

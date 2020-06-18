@@ -12,11 +12,11 @@ public class LadderLines {
     private final Map<Order, LadderLine> ladderLines = new HashMap<>();
 
     public void addLine(Order order, LadderConnectionConditional connectionConditional, final Point maxPoint) {
-        ConnectPoints connectPoints = makeConnectPoints(order, connectionConditional, maxPoint);
-        ladderLines.put(order, LadderLine.of(connectPoints));
+        Set<Point> points = makePoints(order, connectionConditional, maxPoint);
+        ladderLines.put(order, LadderLine.of(points));
     }
 
-    private ConnectPoints makeConnectPoints(final Order order, final LadderConnectionConditional connectionConditional, final Point maxPoint) {
+    private Set<Point> makePoints(final Order order, final LadderConnectionConditional connectionConditional, final Point maxPoint) {
         Set<Point> points = new HashSet<>();
         Point currentPoint = Point.INITIAL_POINT;
 
@@ -27,7 +27,7 @@ public class LadderLines {
             currentPoint = currentPoint.next();
         }
 
-        return ConnectPoints.of(points);
+        return points;
     }
 
     private boolean isEnableToStore(final Point maxPoint, final Set<Point> points) {

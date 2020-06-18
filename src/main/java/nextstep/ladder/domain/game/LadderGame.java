@@ -25,15 +25,14 @@ public class LadderGame {
 
     public Ladder createLadder(final LadderGameUserStore ladderGameUserStore, final int maxHeight) {
         LadderLines ladderLines = new LadderLines();
-        Point maxPoint = Point.of(maxHeight);
 
         for (int orderValue = 1; orderValue < ladderGameUserStore.count(); orderValue++) {
-            ladderLines.addLine(Order.of(orderValue), drawingMachine, maxPoint);
+            ladderLines.addLine(Order.of(orderValue), drawingMachine, Point.of(maxHeight));
         }
 
-        addLastEmptyLine(ladderGameUserStore, ladderLines, maxPoint);
+        addLastEmptyLine(ladderGameUserStore, ladderLines, Point.of(maxHeight));
 
-        return Ladder.of(maxPoint, ladderGameUserStore, ladderLines);
+        return Ladder.of(maxHeight, ladderGameUserStore, ladderLines);
     }
 
     private void addLastEmptyLine(final LadderGameUserStore ladderGameUserStore, final LadderLines ladderLines, final Point maxPoint) {
@@ -44,15 +43,15 @@ public class LadderGame {
         LadderGameUserStore ladderGameUserStore = ladder.getLadderGameUsers();
         Map<Point, LadderGameSnapshot> ladderResult = new HashMap<>();
         ladderResult.put(Point.ZERO_BASE_POINT, createInitialSnapshot(ladderGameUserStore));
-        final Point maxPoint = ladder.getMaxPoint();
+        final int maxHeight = ladder.getMaxHeight();
 
-        for (int point = 1, height = maxPoint.getPosition(); point <= height; point++) {
+        for (int point = 1; point <= maxHeight; point++) {
             LadderGameSnapshot beforeSnapshot = ladderResult.get(Point.of(point).before());
             Map<LadderGameUser, Order> currentSnapshot = createSnapshot(ladder, ladderGameUserStore, point, beforeSnapshot);
             //Snapshot 추가
             ladderResult.put(Point.of(point), new LadderGameSnapshot(currentSnapshot));
         }
-        return new LadderGameResult(ladderResult.get(maxPoint), prize);
+        return new LadderGameResult(ladderResult.get(Point.of(maxHeight)), prize);
     }
 
     private Map<LadderGameUser, Order> createSnapshot(final Ladder ladder, final LadderGameUserStore userStore, final int point, final LadderGameSnapshot beforeSnapshot) {

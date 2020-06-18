@@ -24,7 +24,7 @@ public class OutputView {
                 .forEach(userName -> System.out.printf("%s%s", userName, BLANK_INTERVAL));
         System.out.println();
 
-        for (int point = 1, height = ladder.getMaxPoint().getPosition(); point <= height; point++) {
+        for (int point = 1, height = ladder.getMaxHeight(); point <= height; point++) {
             System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, point));
         }
         prizes.findAllPrizes()
