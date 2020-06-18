@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.position;
 
 import java.util.stream.IntStream;
 

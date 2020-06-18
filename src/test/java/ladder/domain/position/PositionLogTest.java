@@ -1,6 +1,5 @@
-package ladder;
+package ladder.domain.position;
 
-import ladder.domain.*;
 import ladder.domain.line.LadderLine;
 import ladder.domain.line.LadderLines;
 import ladder.domain.point.DrawingPointStrategy;

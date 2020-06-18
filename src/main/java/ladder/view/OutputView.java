@@ -1,12 +1,12 @@
 package ladder.view;
 
-import ladder.domain.PositionLogs;
 import ladder.domain.line.LadderLine;
 import ladder.domain.line.LadderLines;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.point.LadderLinePoint;
 import ladder.domain.point.LadderLinePoints;
+import ladder.domain.position.PositionLogs;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
 
