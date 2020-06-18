@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.line.LadderLine;
+import ladder.domain.line.LadderLines;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

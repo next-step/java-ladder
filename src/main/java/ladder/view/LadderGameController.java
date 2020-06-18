@@ -2,6 +2,8 @@ package ladder.view;
 
 import ladder.application.LadderGame;
 import ladder.domain.*;
+import ladder.domain.line.LadderHeight;
+import ladder.domain.line.LadderLines;
 
 public class LadderGameController {
 

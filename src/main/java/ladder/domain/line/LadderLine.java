@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.line;
 
 import ladder.domain.point.DrawingPointStrategy;
 import ladder.domain.point.LadderLinePointPainter;

@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.line;
 
+import ladder.domain.Players;
 import ladder.domain.point.DrawingPointStrategy;
 import ladder.infra.domain.RandomDrawingPointStrategy;
 

@@ -1,6 +1,5 @@
-package ladder;
+package ladder.domain.line;
 
-import ladder.domain.LadderHeight;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

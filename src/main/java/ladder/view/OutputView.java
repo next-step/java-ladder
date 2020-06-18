@@ -1,6 +1,8 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.domain.line.LadderLine;
+import ladder.domain.line.LadderLines;
 import ladder.domain.point.LadderLinePoint;
 import ladder.domain.point.LadderLinePoints;
 

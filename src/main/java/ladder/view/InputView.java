@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.domain.line.LadderHeight;
 
 import java.util.Arrays;
 import java.util.List;

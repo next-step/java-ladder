@@ -1,6 +1,9 @@
 package ladder.application;
 
 import ladder.domain.*;
+import ladder.domain.line.LadderHeight;
+import ladder.domain.line.LadderLinePainter;
+import ladder.domain.line.LadderLines;
 
 public class LadderGame {
 
