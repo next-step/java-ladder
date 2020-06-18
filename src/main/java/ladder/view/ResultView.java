@@ -3,13 +3,11 @@ package ladder.view;
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
-import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.result.LadderResult;
 import ladder.domain.result.LadderResults;
 import ladder.domain.result.MatchResult;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class ResultView {
@@ -17,6 +15,7 @@ public class ResultView {
     public static final String COLUMN = "|";
     public static final String BLANK_LINE = "     ";
     public static final String LINE = "-----";
+    public static final String ALL = "all";
 
     public void printLadder(Players players, Ladder ladder, LadderResults ladderResults) {
         System.out.println("\n사다리 결과\n");
@@ -64,7 +63,7 @@ public class ResultView {
 
     public void printGameResult(String name, Players players, MatchResult matchResult) {
         System.out.println("\n실행결과");
-        if (name.equals("all")) {
+        if (name.equals(ALL)) {
             printAllResultPosition(players, matchResult);
             return;
         }

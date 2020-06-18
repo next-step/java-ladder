@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
+    public static final int LEAST_HEIGHT = 0;
+
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
@@ -22,7 +24,7 @@ public class Ladder {
     }
 
     private static void validate(int ladderHeight) {
-        if (ladderHeight < 0) {
+        if (ladderHeight < LEAST_HEIGHT) {
             throw new IllegalArgumentException("Ladder height must be positive.");
         }
     }
