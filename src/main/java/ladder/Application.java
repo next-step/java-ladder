@@ -1,8 +1,8 @@
 package ladder;
 
 import ladder.application.LadderGame;
-import ladder.domain.line.LadderLinePainter;
 import ladder.domain.PositionLogFactory;
+import ladder.domain.line.LadderLinePainter;
 import ladder.view.LadderGameController;
 
 public class Application {

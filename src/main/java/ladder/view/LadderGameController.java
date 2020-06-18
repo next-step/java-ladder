@@ -1,9 +1,11 @@
 package ladder.view;
 
 import ladder.application.LadderGame;
-import ladder.domain.*;
+import ladder.domain.PositionLogs;
+import ladder.domain.Prizes;
 import ladder.domain.line.LadderHeight;
 import ladder.domain.line.LadderLines;
+import ladder.domain.player.Players;
 
 public class LadderGameController {
 

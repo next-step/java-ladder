@@ -1,9 +1,11 @@
 package ladder.application;
 
-import ladder.domain.*;
+import ladder.domain.PositionLogFactory;
+import ladder.domain.PositionLogs;
 import ladder.domain.line.LadderHeight;
 import ladder.domain.line.LadderLinePainter;
 import ladder.domain.line.LadderLines;
+import ladder.domain.player.Players;
 
 public class LadderGame {
 

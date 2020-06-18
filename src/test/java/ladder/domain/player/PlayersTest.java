@@ -1,7 +1,5 @@
-package ladder;
+package ladder.domain.player;
 
-import ladder.domain.Player;
-import ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

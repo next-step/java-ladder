@@ -1,7 +1,10 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.Prize;
+import ladder.domain.Prizes;
 import ladder.domain.line.LadderHeight;
+import ladder.domain.player.Player;
+import ladder.domain.player.Players;
 
 import java.util.Arrays;
 import java.util.List;
