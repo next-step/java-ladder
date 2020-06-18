@@ -4,21 +4,26 @@ import java.util.List;
 
 public class Line {
 
-    private final Positions positions;
+    private final Points points;
 
-    private Line(Positions positions) {
-        this.positions = positions;
+    public Line(Points points) {
+        this.points = points;
     }
 
-    public List<Position> getPositions() {
-        return positions.getPositions();
+    public static Line init(int sizeOfPerson, DirectionPredicate predicate) {
+        Points points = Points.newInstance(sizeOfPerson, predicate);
+        return new Line(points);
     }
 
-    public static Line newInstance(int maxPosition, DirectionPredicate predicate) {
-        return new Line(Positions.newInstance(maxPosition, predicate));
+    public int move(int position) {
+        return points.move(position);
     }
 
-    public int sizeOfPositions(){
-        return positions.size();
+    public List<Point> getPoints() {
+        return points.getPoints();
+    }
+
+    public int sizeOfPositions() {
+        return points.size();
     }
 }

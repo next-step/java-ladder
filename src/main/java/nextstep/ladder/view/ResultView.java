@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.game.LadderGameResult;
-import nextstep.ladder.domain.game.Result;
 import nextstep.ladder.domain.ladder.Direction;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
@@ -41,9 +40,9 @@ public class ResultView {
 
     private static void printLadderLine(Line line, int height) {
         StringBuilder builder = new StringBuilder();
-        line.getPositions().forEach(position -> {
+        line.getPoints().forEach(point -> {
             builder.append(DEFAULT_HEIGHT);
-            String text = position.currentDirection().equals(Direction.RIGHT) ? DEFAULT_LINE : EMPTY_LINE;
+            String text = point.currentDirection().equals(Direction.RIGHT) ? DEFAULT_LINE : EMPTY_LINE;
             appendLine(builder, height, text);
         });
         System.out.println(builder.toString());

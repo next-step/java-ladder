@@ -22,8 +22,8 @@ public class Height {
     }
 
     private static void validate(int height) {
-        if(height < MINIMUM_HEIGHT) {
-            throw new IllegalArgumentException("높이가 0보다 작을 수 없습니다.");
+        if(height <= MINIMUM_HEIGHT) {
+            throw new IllegalArgumentException("높이가 1보다 작을 수 없습니다.");
         }
     }
 

@@ -1,67 +1,32 @@
 package nextstep.ladder.domain.ladder;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private static final int FIRST_LINE = 0;
+    private final int MINIMUM_LINE_SIZE = 1;
+    private final Lines lines;
 
-    private final List<Line> lines;
-    private final Map<Integer, Direction> directionMap;
-
-    public Ladder(Height height, int maxPosition, DirectionPredicate predicate) {
-        this.lines = createLines(height, maxPosition, predicate);
-        this.directionMap = convertLinesToDirectionMap();
-    }
-
-    private List<Line> createLines(Height height, int maxPosition, DirectionPredicate predicate) {
-        return IntStream.range(0, height.getHeight())
-                .unordered()
-                .mapToObj(integer -> Line.newInstance(maxPosition, predicate))
-                .collect(Collectors.toList());
-    }
-
-    private Map<Integer, Direction> convertLinesToDirectionMap() {
-        List<Direction> directions = lines.stream()
-                .flatMap(line -> line.getPositions().stream())
-                .map(Position::currentDirection)
-                .collect(Collectors.toList());
-
-        return IntStream.range(0, directions.size())
-                .boxed()
-                .collect(Collectors.toMap(Function.identity(), directions::get));
+    public Ladder(Height height, int sizeOfPerson, DirectionPredicate predicate) {
+        this.lines = new Lines(height, sizeOfPerson, predicate);
     }
 
     public List<Line> getLines() {
-        return lines;
+        return lines.getLines();
+    }
+
+    public int findDestinationPosition(int startPoint) {
+        return lines.move(startPoint);
     }
 
     public int getHeight() {
-        return lines.size();
+        return getLines().size();
     }
 
-    public Integer getMaxPosition() {
-        if (lines.size() > FIRST_LINE) {
-            return lines.get(FIRST_LINE).sizeOfPositions();
+    public int getMaxPoint() {
+        if (getLines().size() >= MINIMUM_LINE_SIZE) {
+            return getLines().get(MINIMUM_LINE_SIZE).sizeOfPositions();
         }
-        return null;
-    }
-
-    public int findDestinationPosition(int startPosition) {
-        int position = startPosition;
-        while (Objects.nonNull(directionMap.get(position))) {
-            Direction direction = directionMap.get(position);
-            position = nextPosition(position, direction);
-        }
-        return position % getMaxPosition();
-    }
-
-    private int nextPosition(int current, Direction next) {
-        return current + next.getDirection() + getMaxPosition();
+        throw new RuntimeException("Max Point is less than 1");
     }
 }

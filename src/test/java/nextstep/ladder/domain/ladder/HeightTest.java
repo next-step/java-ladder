@@ -2,6 +2,8 @@ package nextstep.ladder.domain.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -14,10 +16,12 @@ public class HeightTest {
         Height height = Height.from(5);
         assertThat(height).isEqualTo(Height.from(5));
     }
-    @Test
+
+    @ValueSource(ints = {-1, 0})
+    @ParameterizedTest
     @DisplayName("높이 생성 예외 테스트")
-    void exception(){
+    void exception(int height){
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> Height.from(-1));
+                .isThrownBy(() -> Height.from(height));
     }
 }
