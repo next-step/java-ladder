@@ -2,7 +2,8 @@ package nextstep.ladder.player;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+
+import nextstep.ladder.util.CustomCollectionUtils;
 
 public class Players {
 
@@ -19,7 +20,7 @@ public class Players {
 	}
 
 	private static void validatePlayerNumIsLargerThanZero(List<Player> players) {
-		if (Objects.isNull(players) || players.isEmpty()) {
+		if (CustomCollectionUtils.isNull(players) || CustomCollectionUtils.isEmpty(players)) {
 			throw new IllegalArgumentException(
 				"Players count should be larger than one. Otherwise, you can't play this game XD");
 		}
