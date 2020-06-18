@@ -9,14 +9,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderLinePointPainterTest {
+class PointPainterTest {
 
 	@DisplayName("주어진 수만큼 좌표를 그린다")
 	@ParameterizedTest
 	@ValueSource(ints = {5, 50})
-	void ladderLinePointsSize(int count) {
-		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(false));
-		LadderLinePoints points = pointsPainter.drawPoints(count);
+	void pointsSize(int count) {
+		PointPainter pointsPainter = new PointPainter(() -> Point.of(false));
+		Points points = pointsPainter.drawPoints(count);
 
 		assertThat(points.size()).isEqualTo(count);
 	}
@@ -24,8 +24,8 @@ class LadderLinePointPainterTest {
 	@DisplayName("좌표는 연속으로 연결되지 않는다")
 	@Test
 	void pointIsNotContinuouslyConnected() {
-		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(true));
-		List<LadderLinePoint> points = pointsPainter.drawPoints(100).getContent();
+		PointPainter pointsPainter = new PointPainter(() -> Point.of(true));
+		List<Point> points = pointsPainter.drawPoints(100).getContent();
 
 		boolean isContinuouslyConnected = false;
 
@@ -43,9 +43,9 @@ class LadderLinePointPainterTest {
 	@ParameterizedTest
 	@ValueSource(ints = {1, 2})
 	void lastPointIsNotConnectedToNext(int count) {
-		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(() -> LadderLinePoint.of(true));
-		LadderLinePoints points = pointsPainter.drawPoints(count);
-		LadderLinePoint point = points.getContent().get(points.size() - 1);
+		PointPainter pointsPainter = new PointPainter(() -> Point.of(true));
+		Points points = pointsPainter.drawPoints(count);
+		Point point = points.getContent().get(points.size() - 1);
 
 		assertThat(point.isConnectedToNextPoint()).isFalse();
 	}

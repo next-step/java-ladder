@@ -1,7 +1,7 @@
 package ladder.infra.domain;
 
 import ladder.domain.point.DrawingPointStrategy;
-import ladder.domain.point.LadderLinePoint;
+import ladder.domain.point.Point;
 
 import java.util.Random;
 
@@ -10,7 +10,7 @@ public class RandomDrawingPointStrategy implements DrawingPointStrategy {
 	private final Random random = new Random();
 
 	@Override
-	public LadderLinePoint drawPoint() {
-		return LadderLinePoint.of(random.nextBoolean());
+	public Point drawPoint() {
+		return Point.of(random.nextBoolean());
 	}
 }

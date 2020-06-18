@@ -1,23 +1,23 @@
 package ladder.domain.line;
 
 import ladder.domain.point.DrawingPointStrategy;
-import ladder.domain.point.LadderLinePointPainter;
-import ladder.domain.point.LadderLinePoints;
+import ladder.domain.point.PointPainter;
+import ladder.domain.point.Points;
 
 public class LadderLine {
 
-	private final LadderLinePoints ladderLinePoints;
+	private final Points points;
 
 	public LadderLine(int pointCount, DrawingPointStrategy drawingPointStrategy) {
-		LadderLinePointPainter pointsPainter = new LadderLinePointPainter(drawingPointStrategy);
-		this.ladderLinePoints = pointsPainter.drawPoints(pointCount);
+		PointPainter pointsPainter = new PointPainter(drawingPointStrategy);
+		this.points = pointsPainter.drawPoints(pointCount);
 	}
 
-	public LadderLinePoints getLadderLinePoints() {
-		return ladderLinePoints;
+	public Points getPoints() {
+		return points;
 	}
 
 	public int moveDownFrom(int position) {
-		return ladderLinePoints.moveSideFrom(position);
+		return points.moveSideFrom(position);
 	}
 }

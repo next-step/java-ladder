@@ -1,15 +1,15 @@
 package ladder.domain.point;
 
-public class LadderLinePoint {
+public class Point {
 
 	private final boolean connectedToNextPoint;
 
-	private LadderLinePoint(boolean connectedToNextPoint) {
+	private Point(boolean connectedToNextPoint) {
 		this.connectedToNextPoint = connectedToNextPoint;
 	}
 
-	public static LadderLinePoint of(boolean connectedToNextPoint) {
-		return new LadderLinePoint(connectedToNextPoint);
+	public static Point of(boolean connectedToNextPoint) {
+		return new Point(connectedToNextPoint);
 	}
 
 	public boolean isConnectedToNextPoint() {

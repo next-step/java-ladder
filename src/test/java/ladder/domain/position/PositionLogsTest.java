@@ -3,7 +3,7 @@ package ladder.domain.position;
 import ladder.domain.line.LadderLine;
 import ladder.domain.line.LadderLines;
 import ladder.domain.point.DrawingPointStrategy;
-import ladder.domain.point.LadderLinePoint;
+import ladder.domain.point.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -24,7 +24,7 @@ class PositionLogsTest {
     @ValueSource(ints = {0, 1, 2, 3})
     void moveDown(int logsIndex) {
         int pointCount = 4, lineCount = 5;
-        DrawingPointStrategy drawingPointStrategy = () -> LadderLinePoint.of(false);
+        DrawingPointStrategy drawingPointStrategy = () -> Point.of(false);
         LadderLines lines = IntStream.range(0, lineCount)
                 .mapToObj(i -> new LadderLine(pointCount, drawingPointStrategy))
                 .collect(collectingAndThen(toList(), LadderLines::new));
@@ -46,7 +46,7 @@ class PositionLogsTest {
     @CsvSource({"0, 1", "1, 0", "2, 3", "3, 2", "4, 4"})
     void getLastPosition(int initialPosition, int expected) {
         int pointCount = 5, lineCount = 3;
-        DrawingPointStrategy drawingPointStrategy = () -> LadderLinePoint.of(true);
+        DrawingPointStrategy drawingPointStrategy = () -> Point.of(true);
         LadderLines lines = IntStream.range(0, lineCount)
                 .mapToObj(i -> new LadderLine(pointCount, drawingPointStrategy))
                 .collect(collectingAndThen(toList(), LadderLines::new));

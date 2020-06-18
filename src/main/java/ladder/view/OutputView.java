@@ -4,8 +4,8 @@ import ladder.domain.line.LadderLine;
 import ladder.domain.line.LadderLines;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.domain.point.LadderLinePoint;
-import ladder.domain.point.LadderLinePoints;
+import ladder.domain.point.Point;
+import ladder.domain.point.Points;
 import ladder.domain.position.PositionLogs;
 import ladder.domain.prize.Prize;
 import ladder.domain.prize.Prizes;
@@ -36,13 +36,13 @@ public class OutputView {
 
 	private static void printLadderLines(LadderLines lines) {
 		for (LadderLine line : lines.getContent()) {
-			printLadderLinePoints(line.getLadderLinePoints());
+			printPoints(line.getPoints());
 			System.out.println();
 		}
 	}
 
-	private static void printLadderLinePoints(LadderLinePoints points) {
-		for (LadderLinePoint point : points.getContent()) {
+	private static void printPoints(Points points) {
+		for (Point point : points.getContent()) {
 			System.out.print("|");
 			System.out.printf("%-5s", point.isConnectedToNextPoint() ? "-----" : "");
 		}

@@ -3,17 +3,17 @@ package ladder.domain.point;
 import java.util.Collections;
 import java.util.List;
 
-public class LadderLinePoints {
+public class Points {
 
-	private final List<LadderLinePoint> points;
+	private final List<Point> points;
 
-	private LadderLinePoints(List<LadderLinePoint> points) {
+	private Points(List<Point> points) {
 		this.points = Collections.unmodifiableList(points);
 		validate();
 	}
 
-	public static LadderLinePoints of(List<LadderLinePoint> points) {
-		return new LadderLinePoints(points);
+	public static Points of(List<Point> points) {
+		return new Points(points);
 	}
 
 	private void validate() {
@@ -65,7 +65,7 @@ public class LadderLinePoints {
 		return points.size();
 	}
 
-	public List<LadderLinePoint> getContent() {
+	public List<Point> getContent() {
 		return points;
 	}
 }

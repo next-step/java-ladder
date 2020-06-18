@@ -3,7 +3,7 @@ package ladder.domain.position;
 import ladder.domain.line.LadderLine;
 import ladder.domain.line.LadderLines;
 import ladder.domain.point.DrawingPointStrategy;
-import ladder.domain.point.LadderLinePoint;
+import ladder.domain.point.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ class PositionLogTest {
     @Test
     void moveDown() {
         int pointCount = 3, lineCount = 4;
-        DrawingPointStrategy drawingPointStrategy = () -> LadderLinePoint.of(false);
+        DrawingPointStrategy drawingPointStrategy = () -> Point.of(false);
 
         LadderLines lines = IntStream.range(0, lineCount)
                 .mapToObj(i -> new LadderLine(pointCount, drawingPointStrategy))
