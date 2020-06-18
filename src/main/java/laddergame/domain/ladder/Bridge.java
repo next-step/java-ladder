@@ -14,16 +14,12 @@ public class Bridge {
         this.bridgePoint = new BridgePoint(leftColumn);
     }
 
-    public static Bridge createBridge(final boolean isConnected, final int leftColumn) {
-        return new Bridge(isConnected, leftColumn);
-    }
-
-    public static Bridge createNextBridge(final boolean isConnected, final Bridge before) {
-        if (before.isConnected()) {
-            return new Bridge(false, before.getRightColumn());
+    public Bridge createNextBridge(final boolean connection) {
+        if (isConnected()) {
+            return new Bridge(false, getRightColumn());
         }
 
-        return new Bridge(isConnected, before.getRightColumn());
+        return new Bridge(connection, getRightColumn());
     }
 
     public int getRightColumn() {
