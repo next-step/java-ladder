@@ -36,16 +36,16 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        ladder.getLines()
-                .forEach(line -> {
+        ladder.getLadderLines()
+                .forEach(ladderLine -> {
                     System.out.print(PRINT_POINT_FIRST);
-                    printLine(line);
+                    printLine(ladderLine);
                     System.out.println();
                 });
     }
 
-    private static void printLine(Line line) {
-        line.getPoints()
+    private static void printLine(LadderLine ladderLine) {
+        ladderLine.getPoints()
                 .forEach(point -> System.out.print(decidePoint(point)));
     }
 

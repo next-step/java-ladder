@@ -5,21 +5,21 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
 
     public Ladder(Players players, Height height, PointGenerationStrategy strategy) {
-        this.lines = createLadder(players, height, strategy);
+        this.ladderLines = createLadder(players, height, strategy);
     }
 
-    private List<Line> createLadder(Players players, Height height, PointGenerationStrategy strategy) {
+    private List<LadderLine> createLadder(Players players, Height height, PointGenerationStrategy strategy) {
         int countOfPlayers = players.getPlayersCount();
 
         return IntStream.range(0, height.getHeight())
-                .mapToObj(num -> new Line(countOfPlayers, strategy))
+                .mapToObj(num -> new LadderLine(countOfPlayers, strategy))
                 .collect(Collectors.toList());
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<LadderLine> getLadderLines() {
+        return ladderLines;
     }
 }

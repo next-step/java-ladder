@@ -21,6 +21,6 @@ class LadderTest {
 
         Ladder ladder = new Ladder(new Players(nameList), new Height(height), new RandomPointGenerationStrategy());
 
-        assertThat(ladder.getLines()).hasSize(height);
+        assertThat(ladder.getLadderLines()).hasSize(height);
     }
 }

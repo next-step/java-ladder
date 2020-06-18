@@ -3,10 +3,10 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+public class LadderLine {
     private final List<Point> points;
 
-    public Line(int countOfPlayers, PointGenerationStrategy strategy) {
+    public LadderLine(int countOfPlayers, PointGenerationStrategy strategy) {
         this.points = init(countOfPlayers, strategy);
     }
 
