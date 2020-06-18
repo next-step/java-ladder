@@ -81,7 +81,7 @@ class LineTest {
         assertThat(actualResult).isEqualTo(after);
     }
 
-    @DisplayName("인자로 받은 Position 의 높이와 열 번호를 보고 이동시킨다.")
+    @DisplayName("인자로 받은 Position 의 열 번호가 없는 번호일 때 IllegalArgumentException throw.")
     @Test
     void moveWrongPosition() {
         BridgeConnectGenerator bridgeConnectGenerator = new FixedConnectGenerator(Arrays.asList(true, false, false));
