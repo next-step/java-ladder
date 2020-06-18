@@ -7,5 +7,9 @@ public class Main {
 
         InputView.printMessage("최대 사다리 높이는 몇 개인가요?");
         int ladderHeight = InputView.inputLadderHeight();
+
+        Ladder ladder = new Ladder(participants, ladderHeight);
+        ResultView resultView = new ResultView(ladder.getNames(), ladder.getLadders());
+        resultView.displayLadder();
     }
 }
