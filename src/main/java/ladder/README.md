@@ -75,9 +75,11 @@
 8. __Results 게임 결과__
     - List<Result> 을 가지는 일급 컬렉션
     - 게임 결과 목록을 가진다.
+    - Result를 생성한다
+    - 결과 값이 사람 수와 같은지 체크한다.
 
 9. __Result__
-    - String result 를 가지는 유닛객체
+    - String result 를 가지는 결과 객체
     - 게임 결과를 가진다.
 
 10. __GameResult 게임 실행 결과__
