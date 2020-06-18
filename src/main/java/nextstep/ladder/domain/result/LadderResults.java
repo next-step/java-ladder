@@ -1,17 +1,18 @@
 package nextstep.ladder.domain.result;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Results {
-    private final List<Result> results;
+public class LadderResults {
+    private final List<LadderResult> ladderResults;
 
-    public Results(int playerCount, String[] resultArray) {
+    public LadderResults(int playerCount, String[] resultArray) {
         validateResults(playerCount, resultArray);
 
-        results = Arrays.stream(resultArray)
-                    .map(Result::new)
+        ladderResults = Arrays.stream(resultArray)
+                    .map(LadderResult::new)
                     .collect(Collectors.toList());
     }
 
@@ -21,7 +22,11 @@ public class Results {
         }
     }
 
-    public Result findResult(int index) {
-        return results.get(index);
+    public LadderResult find(int index) {
+        return ladderResults.get(index);
+    }
+
+    public List<LadderResult> getLadderResults() {
+        return Collections.unmodifiableList(ladderResults);
     }
 }
