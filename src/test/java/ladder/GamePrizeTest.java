@@ -15,7 +15,7 @@ class GamePrizeTest {
     @DisplayName("객체 정상 생성")
     @ParameterizedTest
     @ValueSource(strings = {"aa", "bb", "꽝", "5055"})
-    public void makeGamePrizeObject(String name) {
+    public void makeGamePrize_정상(String name) {
         assertThatCode(() -> {
             new GamePrize(name);
         }).doesNotThrowAnyException();
@@ -24,7 +24,7 @@ class GamePrizeTest {
     @DisplayName("객체 생성 실패 (객체 이름이 빈문자열 혹은 null)")
     @ParameterizedTest
     @NullAndEmptySource
-    public void throwExceptionOnMakingGamePrize(String name) {
+    public void makeGamePrize_예외(String name) {
         assertThatThrownBy(() -> {
             new GamePrize(name);
         }).isInstanceOf(LadderBuildingException.class)

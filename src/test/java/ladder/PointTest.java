@@ -23,17 +23,17 @@ public class PointTest {
         );
     }
 
-    @DisplayName("Point 객체 생성 성공 테스트")
+    @DisplayName("Point 객체 생성 성공")
     @Test
-    public void makePointObject() {
+    public void makePoint_정상() {
         assertThatCode(() -> {
             new Point(0, Direction.RIGHT);
         }).doesNotThrowAnyException();
     }
 
-    @DisplayName("Point 객체 생성 실패 테스트(음수값)")
+    @DisplayName("Point 객체 생성 실패(음수값 인덱스)")
     @Test
-    public void throwExceptionOnMakingPointObject() {
+    public void makePoint_예외() {
         assertThatThrownBy(() -> {
             new Point(-3, Direction.LEFT);
         }).isInstanceOf(LadderBuildingException.class)
@@ -55,7 +55,7 @@ public class PointTest {
     public void pointLeftWhenLastPointRight() {
         Point lastPoint = new Point(0, Direction.RIGHT);
 
-        Point nextPoint = Point.drawMiddlePoint(lastPoint, false);
+        Point nextPoint = lastPoint.drawNextPoint(false);
 
         assertThat(nextPoint.getDirection()).isEqualTo(Direction.LEFT);
     }
@@ -65,8 +65,8 @@ public class PointTest {
     public void pointRandomWhenLastPointNotRight() {
         Point lastPoint = new Point(0, Direction.DOWN);
 
-        Point nextDownPoint = Point.drawMiddlePoint(lastPoint, true);
-        Point nextRightPoint = Point.drawMiddlePoint(lastPoint, false);
+        Point nextDownPoint = lastPoint.drawNextPoint(true);
+        Point nextRightPoint = lastPoint.drawNextPoint(false);
 
         assertThat(nextDownPoint.getDirection()).isEqualTo(Direction.DOWN);
         assertThat(nextRightPoint.getDirection()).isEqualTo(Direction.RIGHT);
@@ -76,7 +76,7 @@ public class PointTest {
     @Test
     public void drawLastDownPoint() {
         Point lastLeftPoint = new Point(3, Direction.LEFT);
-        Point pointWithDownDirection = Point.drawLastPoint(lastLeftPoint);
+        Point pointWithDownDirection = lastLeftPoint.drawLastPoint();
 
         assertThat(pointWithDownDirection.getDirection()).isEqualTo(Direction.DOWN);
     }
@@ -85,7 +85,7 @@ public class PointTest {
     @Test
     public void drawLastLeftPoint() {
         Point lastRightPoint = new Point(3, Direction.RIGHT);
-        Point pointWithLeftDirection = Point.drawLastPoint(lastRightPoint);
+        Point pointWithLeftDirection = lastRightPoint.drawLastPoint();
 
         assertThat(pointWithLeftDirection.getDirection()).isEqualTo(Direction.LEFT);
     }
@@ -99,7 +99,7 @@ public class PointTest {
         assertThat(point.moveByDirection()).isEqualTo(index + 1);
     }
 
-    @DisplayName("Direction이 Leftt일때 MOVE하면 Index는 상승")
+    @DisplayName("Direction이 Left일때 MOVE하면 Index는 상승")
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 5})
     public void moveLeft(int index) {

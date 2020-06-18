@@ -16,7 +16,7 @@ public class PlayersGroupTest {
 
     @DisplayName("PlayersGroup 객체 생성 성공 테스트")
     @Test
-    public void makePlayersGroupObject() {
+    public void makePlayersGroup_정상() {
         assertThatCode(() -> {
             PlayersGroup.of(playerNames);
         }).doesNotThrowAnyException();
@@ -24,7 +24,7 @@ public class PlayersGroupTest {
 
     @DisplayName("PlayersGroup 객체 생성 실패 테스트(중복된 이름)")
     @Test
-    public void throwExceptionOnMakingPlayersGroup() {
+    public void makePlayersGroup_예외() {
         List<String> testNames = Arrays.asList("aa", "bb", "cc", "cc");
 
         assertThatThrownBy(() -> {

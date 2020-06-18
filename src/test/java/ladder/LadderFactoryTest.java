@@ -14,7 +14,7 @@ public class LadderFactoryTest {
     @DisplayName("LadderFactory 객체 정상 생성 테스트")
     @ParameterizedTest
     @ValueSource(ints = {5, 10, 15})
-    public void makeLadderFactoryObject(int ladderHeight) {
+    public void makeLadderFactory_정상(int ladderHeight) {
         assertThatCode(() -> {
             new LadderFactory(ladderHeight);
         }).doesNotThrowAnyException();
@@ -23,7 +23,7 @@ public class LadderFactoryTest {
     @DisplayName("LadderFactory 객체 정상 생성 실패 테스트(사다리 길이가 1 미만일 경우)")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
-    public void throwExceptionOnMakingLadderFactoryObject(int ladderHeight) {
+    public void makeLadderFactory_예외(int ladderHeight) {
         assertThatThrownBy(() -> {
             new LadderFactory(ladderHeight);
         }).isInstanceOf(LadderBuildingException.class)

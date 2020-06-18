@@ -25,7 +25,7 @@ public class LadderTest {
     @DisplayName("Ladder 객체 정상 생성 테스트")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 5, 10})
-    public void makeLadderObject(int ladderHeight) {
+    public void makeLadder_정상(int ladderHeight) {
         Ladder ladder = Ladder.buildLadder(playersGroup, ladderHeight, new RandomDrawingLineStrategy());
 
         assertThat(ladder.getLadderHeight())
@@ -48,7 +48,7 @@ public class LadderTest {
      */
     @DisplayName("사다리에서 시작 위치(한 점)의 좌표가 주어지면, 사다리를 타고 그 결과 좌표를 리턴함")
     @Test
-    public void climbLadder() {
+    public void climbLadder_결과값() {
         PlayersGroup playersGroup = PlayersGroup.of(Arrays.asList("aa", "bb", "cc"));
         DrawingLineStrategy drawingLineStrategy = new DrawingLineStrategy() {
             @Override

@@ -14,7 +14,7 @@ public class RandomDrawingLineStrategy implements DrawingLineStrategy {
     public List<Point> drawLine(int playerCounts) {
         List<Point> points = new ArrayList<>();
         drawFirstPoint(points);
-        drawMiddlePoints(playerCounts, points);
+        drawNextPoints(playerCounts, points);
         drawLastPoint(points);
         return points;
     }
@@ -26,13 +26,13 @@ public class RandomDrawingLineStrategy implements DrawingLineStrategy {
     private void drawLastPoint(List<Point> points) {
         int lastPointIndex = points.size() - INDEX_CONSTANT;
         Point lastPoint = points.get(lastPointIndex);
-        points.add(Point.drawLastPoint(lastPoint));
+        points.add(lastPoint.drawLastPoint());
     }
 
-    private void drawMiddlePoints(int playerCounts, List<Point> points) {
+    private void drawNextPoints(int playerCounts, List<Point> points) {
         for (int i = LOOP_ZERO; i < playerCounts - TWO; i++) {
             Point lastPoint = points.get(i);
-            Point nextPoint = Point.drawMiddlePoint(lastPoint, generateRandomBoolean());
+            Point nextPoint = lastPoint.drawNextPoint(generateRandomBoolean());
             points.add(nextPoint);
         }
     }

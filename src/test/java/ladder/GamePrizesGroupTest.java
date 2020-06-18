@@ -16,7 +16,7 @@ public class GamePrizesGroupTest {
 
     @DisplayName("객체 정상 생성 테스트")
     @Test
-    public void makeGamePrizesGroupObject() {
+    public void makeGamePrizesGroup_정상() {
         List<String> playerNames = Arrays.asList("aa", "bb");
         PlayersGroup playersGroup = PlayersGroup.of(playerNames);
         List<String> gamePrizeNames = Arrays.asList("꽝", "4444");
@@ -28,7 +28,7 @@ public class GamePrizesGroupTest {
 
     @DisplayName("객체 생성 실패 테스트(참가자 수와 실행 결과의 개수가 다를 때)")
     @Test
-    public void throwExceptionOnMakingGamePrizesGroupObject() {
+    public void makeGamePrizesGroup_예외() {
         List<String> playerNames = Arrays.asList("aa", "bb", "cc", "dd");
         PlayersGroup playersGroup = PlayersGroup.of(playerNames);
         List<String> gamePrizeNames = Arrays.asList("꽝", "4444");

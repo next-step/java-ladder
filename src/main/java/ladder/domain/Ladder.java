@@ -6,35 +6,35 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
 
-    private Ladder(List<Line> lines) {
-        this.lines = lines;
+    private Ladder(List<LadderLine> ladderLines) {
+        this.ladderLines = ladderLines;
     }
 
     public static Ladder buildLadder(PlayersGroup playersGroup, int ladderHeight,
                                      DrawingLineStrategy drawingLineStrategy) {
         int playerCounts = playersGroup.getPlayerCounts();
-        List<Line> ladder = Stream.generate(() -> Line.drawLine(playerCounts, drawingLineStrategy))
+        List<LadderLine> ladder = Stream.generate(() -> LadderLine.drawLine(playerCounts, drawingLineStrategy))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
         return new Ladder(ladder);
     }
 
     public int climb(int index) {
-        for (Line line : lines) {
-            index = line.movePointOnLine(index);
+        for (LadderLine ladderLine : ladderLines) {
+            index = ladderLine.movePointOnLine(index);
         }
         return index;
     }
 
     public List<List<Direction>> getLadderBluePrint() {
-        return lines.stream()
-                .map(Line::getPointDirections)
+        return ladderLines.stream()
+                .map(LadderLine::getPointDirections)
                 .collect(Collectors.toList());
     }
 
     public int getLadderHeight() {
-        return lines.size();
+        return ladderLines.size();
     }
 }
