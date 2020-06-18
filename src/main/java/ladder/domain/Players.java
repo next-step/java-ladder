@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -12,9 +13,10 @@ public class Players {
     List<Player> players = new ArrayList<>();
 
     public Players(String players) {
-        this.players = Arrays.stream(players.split(PLAYER_DELIMITER))
-                        .map(Player::new)
-                        .collect(Collectors.toList());
+        String[] playerArray = players.split(PLAYER_DELIMITER);
+        this.players = IntStream.range(0, playerArray.length)
+                .mapToObj(i -> new Player(playerArray[i], i))
+                .collect(Collectors.toList());
     }
 
     public int getPlayerCount() {

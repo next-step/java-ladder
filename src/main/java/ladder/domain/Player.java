@@ -5,11 +5,14 @@ import java.util.Objects;
 public class Player {
 
     public static final int NAME_LIMIT = 5;
-    private String name;
 
-    public Player(String name) {
+    private String name;
+    private Position position;
+
+    public Player(String name, int position) {
         nameValidate(name);
         this.name = name;
+        this.position = new Position(position);
     }
 
     private void nameValidate(String name) {
@@ -22,16 +25,18 @@ public class Player {
         return this.name;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        return Objects.equals(name, player.name) &&
+                Objects.equals(position, player.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, position);
     }
 }
