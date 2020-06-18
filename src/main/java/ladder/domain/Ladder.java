@@ -21,6 +21,14 @@ public class Ladder {
         return new Ladder(ladderHeight, countOfPerson);
     }
 
+    public int run(int personIndex) {
+        int finalPoint = personIndex;
+        for (Line line : ladder) {
+            finalPoint += line.runLine(finalPoint);
+        }
+        return finalPoint;
+    }
+
     public List<Line> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
@@ -30,5 +38,6 @@ public class Ladder {
             throw new IllegalArgumentException("사다리 길이가 0 이하 입니다.");
         }
     }
+
 
 }

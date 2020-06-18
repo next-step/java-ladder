@@ -32,4 +32,8 @@ public class Results {
     public List<Result> getResults() {
         return Collections.unmodifiableList(results);
     }
+
+    public Result find(int finalPoint) {
+        return results.get(finalPoint);
+    }
 }

@@ -5,20 +5,24 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private List<Point> points;
+    public static final int LEFT = -1;
+    public static final int RIGHT = 1;
+    public static final int SAME = 0;
 
-    private Line(List<Point> points) {
-        this.points = points;
+    private List<Point> line;
+
+    private Line(List<Point> line) {
+        this.line = line;
     }
 
     public static Line valueOf(int countOfPerson, PointGenerator pointGenerator) {
-        List<Point> points = new ArrayList<>();
+        List<Point> line = new ArrayList<>();
         Point point = Point.stop();
         while (countOfPerson > 0) {
-            point = addLine(points, pointGenerator, point);
+            point = addLine(line, pointGenerator, point);
             countOfPerson--;
         }
-        return new Line(points);
+        return new Line(line);
     }
 
     private static Point addLine(List<Point> points, PointGenerator pointGenerator, Point point) {
@@ -27,8 +31,29 @@ public class Line {
         return point;
     }
 
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
+    public List<Point> getLine() {
+        return Collections.unmodifiableList(line);
     }
 
+    public int runLine(int finalPoint) {
+        if (goLeft(finalPoint)) {
+            return LEFT;
+        }
+        if (isNotLastLine(finalPoint) && goRight(finalPoint)) {
+            return RIGHT;
+        }
+        return SAME;
+    }
+
+    private boolean isNotLastLine(int finalPoint) {
+        return finalPoint < line.size() - 1;
+    }
+
+    private boolean goLeft(int finalPoint) {
+        return line.get(finalPoint).isPoint();
+    }
+
+    private boolean goRight(int finalPoint) {
+        return line.get(finalPoint + 1).isPoint();
+    }
 }
