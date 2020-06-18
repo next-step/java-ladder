@@ -16,14 +16,6 @@ public class Player {
         return this.name.getName();
     }
 
-    public boolean isSameName(String name) {
-        return isSameName(new Name(name));
-    }
-
-    public boolean isSameName(Name name) {
-        return this.name.equals(name);
-    }
-
     public int getCurrentHeight() {
         return this.position.getHeight();
     }

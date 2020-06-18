@@ -22,13 +22,4 @@ class PlayerTest {
                 () -> assertThat(player.getCurrentColumn()).isEqualTo(column)
         );
     }
-
-    @DisplayName("같은 이름이면 true 반환")
-    @ParameterizedTest
-    @CsvSource({"pobi, true", "crong, fasle"})
-    void findByName(String name, boolean result) {
-        Player player = new Player("pobi", 1);
-
-        assertThat(player.isSameName(name)).isEqualTo(result);
-    }
 }
