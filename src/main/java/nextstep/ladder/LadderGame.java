@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.result.GameResult;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -11,5 +12,13 @@ public class LadderGame {
                 InputView.scanResults(), InputView.scanLadderHeight());
 
         ResultView.printLadder(ladder);
+
+        ResultView.printResults(ladder.getLadderResults());
+
+        GameResult gameResult = GameResult.of(ladder);
+
+        while(true) {
+            ResultView.printGameResult(gameResult, InputView.scanPlayerName());
+        }
     }
 }
