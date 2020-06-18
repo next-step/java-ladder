@@ -27,8 +27,24 @@ public class Line {
         }
     }
 
+    public int findNextPosition(int playerPosition) {
+        return isAfterLined(playerPosition) ? playerPosition + 1 : (isBeforeLined(playerPosition) ? playerPosition - 1 : playerPosition);
+    }
+
     private boolean isBeforeLined(int index) {
+        if(index == 0) {
+            return false;
+        }
+
         return points.get(index - 1);
+    }
+
+    private boolean isAfterLined(int index) {
+        if(index >= points.size()) {
+            return false;
+        }
+
+        return points.get(index);
     }
 
     public List<Boolean> getPoints() {
@@ -36,7 +52,7 @@ public class Line {
     }
 
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("    |");
+        StringBuilder stringBuilder = new StringBuilder(POINT_UNLINED);
 
         points.forEach(point -> {
             String append = point ? POINT_LINED : POINT_UNLINED;

@@ -28,4 +28,11 @@ public class NameTest {
         assertThat(new Name(name).toString().length())
                 .isEqualTo(NAME_UPPER_BOUND);
     }
+
+    @DisplayName("이름 비교 테스트")
+    @Test
+    void equals() {
+        assertThat(new Name("pobi"))
+                .isEqualTo(new Name("pobi"));
+    }
 }
