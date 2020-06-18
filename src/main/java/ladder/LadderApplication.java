@@ -23,8 +23,13 @@ public class LadderApplication {
         int ladderHeight = InputView.enterLadderHeight();
         Ladder ladder = Ladder.valueOf(ladderHeight, countOfPerson);
 
-        //결과 출력
+        //사다리 결과 출력
         ResultView.printLadder(participants, ladder, results);
+
+        GameResult gameResult = participants.runLadder(ladder, results);
+        ResultView.printResult(gameResult);
+
+
 
     }
 }

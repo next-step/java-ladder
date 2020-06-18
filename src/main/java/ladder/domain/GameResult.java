@@ -12,4 +12,19 @@ public class GameResult {
     public static GameResult valueOf(Map<Person, Result> gameResult) {
         return new GameResult(gameResult);
     }
+
+    public Map<Person, Result> getGameResult() {
+        return gameResult;
+    }
+
+    public String findResult(String name) {
+        for (Map.Entry<Person, Result> entry : gameResult.entrySet()) {
+            Person person = entry.getKey();
+            Result value = entry.getValue();
+            if (person.getName().equals(name)) {
+                return value.getResult();
+            }
+        }
+        return "찾는 결과 없음";
+    }
 }

@@ -9,7 +9,8 @@ public class ResultView {
     public static final String POINT_TRUE = "-----|";
     public static final String POINT_FALSE = "     |";
 
-    private ResultView() {}
+    private ResultView() {
+    }
 
     public static void printLadder(Participants participants, Ladder ladder, Results results) {
         System.out.println("\n사다리 결과\n");
@@ -45,5 +46,21 @@ public class ResultView {
         results.getResults().stream()
                 .map(result -> fillSpace(result.getResult()))
                 .forEach(System.out::print);
+        System.out.println();
+    }
+
+    public static void printResult(GameResult gameResult) {
+        String findName = InputView.enterCuriousResult();
+        System.out.println("\n실행 결과");
+        while (!findName.equals("all")) {
+            String findResult = gameResult.findResult(findName);
+            System.out.println(findResult);
+            findName = InputView.enterCuriousResult();
+        }
+
+        if (findName.toLowerCase().equals("all")) {
+            gameResult.getGameResult()
+                    .forEach((person, result) -> System.out.println(person.getName() + " : " + result.getResult()));
+        }
     }
 }
