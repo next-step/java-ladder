@@ -8,35 +8,11 @@ public class Points {
 	private final List<Point> points;
 
 	private Points(List<Point> points) {
-		this.points = Collections.unmodifiableList(points);
-		validate();
+		this.points = points;
 	}
 
 	public static Points of(List<Point> points) {
 		return new Points(points);
-	}
-
-	private void validate() {
-		validateNotLastIsConnected();
-		validateNotContinuouslyConnected();
-	}
-
-	private void validateNotLastIsConnected() {
-		if (canMoveToRight(points.size() - 1)) {
-			throw new IllegalArgumentException("마지막 좌표는 다음 좌표와 연결될 수 없습니다.");
-		}
-	}
-
-	private void validateNotContinuouslyConnected() {
-		for (int i = 0; i < points.size(); i++) {
-			validateNotContinuouslyConnected(i);
-		}
-	}
-
-	private void validateNotContinuouslyConnected(int position) {
-		if (canMoveToRight(position) && canMoveToLeft(position)) {
-			throw new IllegalArgumentException("좌표는 연속으로 연결될 수 없습니다.");
-		}
 	}
 
 	private void validateExistPosition(int position) {
@@ -48,17 +24,8 @@ public class Points {
 	public int moveSideFrom(int position) {
 		validateExistPosition(position);
 
-		return canMoveToRight(position) ? position + 1
-				: canMoveToLeft(position) ? position - 1
-				: position;
-	}
-
-	private boolean canMoveToRight(int position) {
-		return points.get(position).isConnectedToNextPoint();
-	}
-
-	private boolean canMoveToLeft(int position) {
-		return position > 0 && points.get(position - 1).isConnectedToNextPoint();
+		Point point = points.get(position);
+		return point.pass();
 	}
 
 	public int size() {
@@ -66,6 +33,6 @@ public class Points {
 	}
 
 	public List<Point> getContent() {
-		return points;
+		return Collections.unmodifiableList(points);
 	}
 }

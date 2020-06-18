@@ -2,8 +2,7 @@ package ladder.domain.position;
 
 import ladder.domain.line.LadderLine;
 import ladder.domain.line.LadderLines;
-import ladder.domain.point.DrawingPointStrategy;
-import ladder.domain.point.Point;
+import ladder.domain.point.PointPainter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,10 +29,10 @@ class PositionLogTest {
     @Test
     void moveDown() {
         int pointCount = 3, lineCount = 4;
-        DrawingPointStrategy drawingPointStrategy = () -> Point.of(false);
+        PointPainter pointPainter = new PointPainter(() -> false);
 
         LadderLines lines = IntStream.range(0, lineCount)
-                .mapToObj(i -> new LadderLine(pointCount, drawingPointStrategy))
+                .mapToObj(i -> new LadderLine(pointCount, pointPainter))
                 .collect(collectingAndThen(toList(), LadderLines::new));
 
         PositionLog positionLog = PositionLog.from(0);

@@ -1,8 +1,8 @@
 package ladder.domain.line;
 
+import ladder.domain.direction.RandomDirectionSelectStrategy;
 import ladder.domain.player.Players;
-import ladder.domain.point.DrawingPointStrategy;
-import ladder.infra.domain.RandomDrawingPointStrategy;
+import ladder.domain.point.PointPainter;
 
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -16,10 +16,10 @@ public class LadderLinePainter {
         validate(players, ladderHeight);
 
         int playersCount = players.size();
-        DrawingPointStrategy drawingPointStrategy = new RandomDrawingPointStrategy();
+        PointPainter pointPainter = new PointPainter(new RandomDirectionSelectStrategy());
 
         return IntStream.range(0, ladderHeight.getHeight())
-                .mapToObj(i -> new LadderLine(playersCount, drawingPointStrategy))
+                .mapToObj(i -> new LadderLine(playersCount, pointPainter))
                 .collect(collectingAndThen(toList(), LadderLines::new));
     }
 

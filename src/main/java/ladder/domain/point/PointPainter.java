@@ -1,33 +1,42 @@
 package ladder.domain.point;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.IntStream;
+import ladder.domain.direction.DirectionSelectStrategy;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PointPainter {
 
-	private final DrawingPointStrategy drawingPointStrategy;
+	private DirectionSelectStrategy directionSelectStrategy;
 
-	public PointPainter(DrawingPointStrategy drawingPointStrategy) {
-		this.drawingPointStrategy = drawingPointStrategy;
+	public PointPainter(DirectionSelectStrategy directionSelectStrategy) {
+		this.directionSelectStrategy = directionSelectStrategy;
 	}
 
 	public Points drawPoints(int count) {
-		AtomicBoolean isConnectedToPreceding = new AtomicBoolean(false);
+		List<Point> points = new ArrayList<>();
 
-		return IntStream.range(0, count)
-				.mapToObj(index -> drawPoint(index == count - 1, isConnectedToPreceding.get()))
-				.peek(point -> isConnectedToPreceding.set(point.isConnectedToNextPoint()))
-				.collect(collectingAndThen(toList(), Points::of));
+		drawFirstPoint(points);
+		drawBodyPoints(count, points);
+		drawLastPoint(points);
+
+		return Points.of(points);
 	}
 
-	private Point drawPoint(boolean isLastPoint, boolean isConnectedToPreceding) {
-		if (isLastPoint || isConnectedToPreceding) {
-			return Point.of(false);
-		}
+	private void drawFirstPoint(List<Point> points) {
+		Point point = Point.first(directionSelectStrategy.isRight());
+		points.add(point);
+	}
 
-		return drawingPointStrategy.drawPoint();
+	private void drawBodyPoints(int count, List<Point> points) {
+		for (int i = 1; i < count - 1; i++) {
+			Point point = points.get(i - 1);
+			points.add(point.next(directionSelectStrategy.isRight()));
+		}
+	}
+
+	private void drawLastPoint(List<Point> points) {
+		Point point = points.get(points.size() - 1);
+		points.add(point.last());
 	}
 }
