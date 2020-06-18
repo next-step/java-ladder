@@ -7,6 +7,8 @@ import laddergame.domain.ladder.Line;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -47,4 +49,13 @@ public class OutputView {
         return BRIDGE_DISCONNECT;
     }
 
+    public static void printResult(final Result result) {
+        System.out.println("실행 결과");
+        System.out.println(result.getName());
+    }
+
+
+    public static void printAllResult(final Set<Map.Entry<String, Result>> results) {
+        results.forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue().getName()));
+    }
 }

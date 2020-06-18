@@ -26,4 +26,10 @@ public class InputView {
 
         return SCANNER.nextLine().split(NAME_DELIMITER);
     }
+
+    public static String inputFindResultName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        return SCANNER.nextLine();
+    }
 }
