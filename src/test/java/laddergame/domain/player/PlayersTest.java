@@ -17,7 +17,7 @@ class PlayersTest {
                         .hasMessage("입력한 이름들이 Null 또는 빈 배열입니다."),
                 () -> assertThatThrownBy(() -> new Players(new String[0]))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage("입력한 이들이 Null 또는 빈 배열입니다.")
+                        .hasMessage("입력한 이름들이 Null 또는 빈 배열입니다.")
         );
 
     }
