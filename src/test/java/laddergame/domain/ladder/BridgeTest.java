@@ -23,26 +23,6 @@ class BridgeTest {
         assertThat(bridge.isConnected()).isEqualTo(isConnect);
     }
 
-    @DisplayName("두 인접 Bridge가 연속으로 연결되어있는지 확인")
-    @ParameterizedTest
-    @CsvSource({"true, true, true", "false, true, false", "true, false, false"})
-    void isContinuousBridge(boolean beforeConnection, boolean nextConnection, boolean result) {
-        Bridge before = new Bridge(beforeConnection, 1);
-        Bridge next = new Bridge(nextConnection, 2);
-
-        assertThat(Bridge.isContinuousBridge(before, next)).isEqualTo(result);
-    }
-
-    @DisplayName("두 Bridge가 인접 Bridge가 아니라면 연결 여부에 상관없이 false 반환")
-    @ParameterizedTest
-    @CsvSource({"true, true", "true, false", "false, true", "false, false"})
-    void isContinuousBridgeNotNext(boolean beforeConnection, boolean nextConnection) {
-        Bridge before = new Bridge(beforeConnection, 1);
-        Bridge next = new Bridge(nextConnection, 3);
-
-        assertThat(Bridge.isContinuousBridge(before, next)).isFalse();
-    }
-
     @DisplayName("인자로 받은 Column이 자신이 연결되어있는지 반환")
     @ParameterizedTest
     @CsvSource({"1, true", "4, false"})

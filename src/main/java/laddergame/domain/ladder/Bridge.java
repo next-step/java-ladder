@@ -26,22 +26,6 @@ public class Bridge {
         return new Bridge(isConnected, before.getRightColumn());
     }
 
-    public static boolean isContinuousBridge(Bridge before, Bridge next) {
-        if (before.getRightColumn() != next.getLeftColumn()) {
-            return false;
-        }
-
-        if (before.isConnected() && next.isConnected()) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public int getLeftColumn() {
-        return bridgePoint.getLeft();
-    }
-
     public int getRightColumn() {
         return bridgePoint.getRight();
     }
