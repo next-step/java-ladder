@@ -3,19 +3,10 @@ package nextstep.step2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
     private List<String> names;
-    private List<List<Boolean>> ladders;
-
-    public Ladder(String names) {
-        setNames(names);
-    }
-
-    public Ladder(int inputLadderHeight) {
-        setLadders(inputLadderHeight);
-    }
+    private List<Line> ladders;
 
     public Ladder(String names, int inputLadderHeight) {
         setNames(names);
@@ -31,7 +22,7 @@ public class Ladder {
     private void setLadders(int inputLadderHeight) {
         ladders = new ArrayList<>();
         for (int i = 0; i < inputLadderHeight; i++) {
-            ladders.add(names.stream().map(s -> true).collect(Collectors.toList()));
+            ladders.add(new Line(names.size()));
         }
     }
 
@@ -45,7 +36,7 @@ public class Ladder {
         return this.names;
     }
 
-    public List<List<Boolean>> getLadders() {
+    public List<Line> getLadders() {
         return ladders;
     }
 }
