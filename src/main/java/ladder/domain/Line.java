@@ -23,7 +23,7 @@ public class Line {
 
     public Draw getLastDraw() {
         return points.stream()
-                .reduce((f,s) -> s)
+                .reduce((beforeDraw, afterDraw) -> afterDraw)
                 .orElse(new Draw(RandomGenerator.getRandom()));
     }
 

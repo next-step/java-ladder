@@ -7,7 +7,7 @@ public class Draw {
     private boolean drawable;
 
     public Draw(Draw lastDraw) {
-        this.drawable = (lastDraw.getDrawableStatus()) ? false : RandomGenerator.getRandom() ;
+        this.drawable = (lastDraw.drawable) ? false : RandomGenerator.getRandom() ;
     }
 
     public Draw(boolean drawable) {

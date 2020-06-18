@@ -10,7 +10,7 @@ public class LadderTest {
 
     @DisplayName("사다리 높이 테스트")
     @Test
-    void LADDER_HEIGHT_SIZE_TEST() {
+    void getLadderHeightSize() {
         assertThat(new Ladder(5, 2).getLineHeight()).isEqualTo(5);
     }
 }

@@ -8,14 +8,14 @@ public class Player {
     private String name;
 
     public Player(String name) {
-        if (nameValidate(name)) {
-            throw new IllegalArgumentException("5자 이상");
-        }
+        nameValidate(name);
         this.name = name;
     }
 
-    private boolean nameValidate(String name) {
-        return name.length() > NAME_LIMIT;
+    private void nameValidate(String name) {
+        if (name.length() > NAME_LIMIT) {
+            throw new IllegalArgumentException("5자 이상");
+        }
     }
 
     @Override
