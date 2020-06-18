@@ -27,7 +27,7 @@ public class Participants {
     }
 
     public GameResult runLadder(Ladder ladder, Results results) {
-        Map<Person, Result> gameResult = new HashMap<>();
+        Map<Person, Result> gameResult = new LinkedHashMap<>();
         int personIndex = 0;
         for (Person person : participants) {
             int finalPoint = ladder.run(personIndex);
