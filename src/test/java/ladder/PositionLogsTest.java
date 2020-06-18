@@ -1,6 +1,8 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.domain.point.DrawingPointStrategy;
+import ladder.domain.point.LadderLinePoint;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

@@ -1,7 +1,7 @@
 package ladder.infra.domain;
 
-import ladder.domain.DrawingPointStrategy;
-import ladder.domain.LadderLinePoint;
+import ladder.domain.point.DrawingPointStrategy;
+import ladder.domain.point.LadderLinePoint;
 
 import java.util.Random;
 

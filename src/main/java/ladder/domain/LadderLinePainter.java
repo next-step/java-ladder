@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.point.DrawingPointStrategy;
 import ladder.infra.domain.RandomDrawingPointStrategy;
 
 import java.util.Objects;

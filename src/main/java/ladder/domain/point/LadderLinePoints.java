@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.point;
 
 import java.util.Collections;
 import java.util.List;

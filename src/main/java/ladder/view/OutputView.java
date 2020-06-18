@@ -1,6 +1,8 @@
 package ladder.view;
 
 import ladder.domain.*;
+import ladder.domain.point.LadderLinePoint;
+import ladder.domain.point.LadderLinePoints;
 
 import java.util.List;
 import java.util.Scanner;

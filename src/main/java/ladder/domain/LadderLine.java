@@ -1,5 +1,9 @@
 package ladder.domain;
 
+import ladder.domain.point.DrawingPointStrategy;
+import ladder.domain.point.LadderLinePointPainter;
+import ladder.domain.point.LadderLinePoints;
+
 public class LadderLine {
 
 	private final LadderLinePoints ladderLinePoints;
