@@ -54,7 +54,7 @@ public class ResultView {
 
         while (!findName.equals("all")) {
             String findResult = gameResult.findResult(findName);
-            System.out.println("\n실행 결과" + findResult);
+            System.out.println("\n실행 결과\n" + findResult);
             findName = InputView.enterCuriousResult();
         }
 
