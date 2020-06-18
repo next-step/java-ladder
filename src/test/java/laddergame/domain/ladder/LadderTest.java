@@ -49,7 +49,7 @@ class LadderTest {
 
         Line findLine = ladder.findCurrentLine(position);
 
-        assertThat(findLine.getLineHeight()).isEqualTo(position.height());
+        assertThat(findLine.getLineHeight()).isEqualTo(position.getHeight());
     }
 
     @DisplayName("사다리를 타고 나서 마지막 위치를 반환한다.")
@@ -72,6 +72,6 @@ class LadderTest {
         assertThatThrownBy(() -> ladder.findCurrentLine(position))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("현재 높이에 맞는 사다리 한 라인이 존재하지 않습니다. - " +
-                        position.getHeight());
+                        position.getHeight().getHeight());
     }
 }

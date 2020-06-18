@@ -1,5 +1,7 @@
 package laddergame.domain.player;
 
+import laddergame.domain.vo.Column;
+import laddergame.domain.vo.Height;
 import laddergame.domain.vo.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,8 +18,8 @@ class PositionTest {
     void startPosition(int column) {
         Position position = new Position(column);
 
-        assertThat(position.getHeight()).isEqualTo(1);
-        assertThat(position.getColumn()).isEqualTo(column);
+        assertThat(position.getHeight()).isEqualTo(new Height(1));
+        assertThat(position.getColumn()).isEqualTo(new Column(column));
     }
 
     @DisplayName("열번호가 1보다 작으면 IllegalArgumentExcetpion Throw")

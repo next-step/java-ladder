@@ -34,11 +34,11 @@ public class Line {
 
     private Bridge findBridge(Position position) {
         List<Bridge> findBridges = bridges.stream()
-                .filter(bridge -> bridge.isBridgeColumn(position.column()))
+                .filter(bridge -> bridge.isBridgeColumn(position.getColumn()))
                 .collect(Collectors.toList());
 
         if (findBridges.size() == 0) {
-            throw new IllegalArgumentException("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + position.getColumn());
+            throw new IllegalArgumentException("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + position.getColumn().getColumn());
         }
 
         return findBridges.stream()
@@ -48,7 +48,7 @@ public class Line {
     }
 
     public boolean isSameHeight(Position position) {
-        return lineHeight.equals(position.height());
+        return lineHeight.equals(position.getHeight());
     }
 
     public Height getLineHeight() {

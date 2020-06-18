@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Position {
     private static final int START_HEIGHT = 1;
-    private static final int MIN_COLUMN = 1;
     private final Height height;
     private final Column column;
 
@@ -18,19 +17,11 @@ public class Position {
         this.column = new Column(column);
     }
 
-    public int getHeight() {
-        return this.height.getHeight();
-    }
-
-    public int getColumn() {
-        return this.column.getColumn();
-    }
-
-    public Column column() {
+    public Column getColumn() {
         return this.column;
     }
 
-    public Height height() {
+    public Height getHeight() {
         return this.height;
     }
 

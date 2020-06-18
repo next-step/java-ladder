@@ -34,7 +34,7 @@ public class Bridge {
         if (!connection) {
             return position;
         }
-        if (bridgePoint.isLeftColumn(position.column())) {
+        if (bridgePoint.isLeftColumn(position.getColumn())) {
             return position.moveRight();
         }
 
