@@ -11,10 +11,13 @@ public class LadderResultsTest {
 
     @DisplayName("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)")
     @Test
-    void getPlayerCount() {
-        String reulsts = "꽝,꽝,5000원,5000";
+    void getResultCountTest() {
+        String reulstsString = "꽝,꽝,5000원,5000";
+        LadderResults ladderResults = new LadderResults(reulstsString);
+        LadderResult ladderResult = new LadderResult("꽝", 0);
 
-        assertThat(new LadderResults(reulsts).getResultCount()).isEqualTo(4);
+        assertThat(ladderResults.getResultCount()).isEqualTo(4);
+        assertThat(ladderResults.getResult(ladderResult)).isEqualTo(ladderResult);
     }
 
 }
