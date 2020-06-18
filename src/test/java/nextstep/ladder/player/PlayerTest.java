@@ -14,7 +14,7 @@ public class PlayerTest {
 	@ParameterizedTest
 	void 이름이_NULL_또는_EMPTY이면_오류를_반환한다(String name) {
 		assertThatThrownBy(
-			() -> Player.ofPlayer(name)
+			() -> Player.ofName(name)
 		).isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -23,7 +23,7 @@ public class PlayerTest {
 	@ParameterizedTest
 	void 플레이어를_생성할_때_이름이_6자를_초과하면_오류를_반환한다(String name) {
 		assertThatThrownBy(
-			() -> Player.ofPlayer(name)
+			() -> Player.ofName(name)
 		).isInstanceOf(IllegalArgumentException.class);
 	}
 }

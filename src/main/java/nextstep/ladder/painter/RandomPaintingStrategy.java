@@ -4,7 +4,7 @@ import java.util.Random;
 
 import nextstep.ladder.point.Point;
 
-public class RandomPaintingStrategyImpl implements PaintingStrategy {
+public class RandomPaintingStrategy implements PaintingStrategy {
 
 	private final Random random = new Random();
 

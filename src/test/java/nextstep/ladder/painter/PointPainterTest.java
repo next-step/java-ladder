@@ -16,11 +16,11 @@ import nextstep.ladder.point.Points;
 public class PointPainterTest {
 
 	PointPainter painter;
-	RandomPaintingStrategyImpl randomPaintingStrategy;
+	RandomPaintingStrategy randomPaintingStrategy;
 
 	@BeforeEach
 	void setUp() {
-		randomPaintingStrategy = new RandomPaintingStrategyImpl();
+		randomPaintingStrategy = new RandomPaintingStrategy();
 		painter = new PointPainter(randomPaintingStrategy);
 	}
 

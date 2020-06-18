@@ -1,12 +1,12 @@
 package nextstep.ladder;
 
 import nextstep.ladder.game.LadderGameController;
-import nextstep.ladder.painter.RandomPaintingStrategyImpl;
+import nextstep.ladder.painter.RandomPaintingStrategy;
 
 public class NextStepLadderGameApplication {
 
 	public static void main(String[] args) {
-		RandomPaintingStrategyImpl randomPaintingStrategy = new RandomPaintingStrategyImpl();
+		RandomPaintingStrategy randomPaintingStrategy = new RandomPaintingStrategy();
 		LadderGameController ladderGameController = new LadderGameController(randomPaintingStrategy);
 		ladderGameController.startGame();
 	}
