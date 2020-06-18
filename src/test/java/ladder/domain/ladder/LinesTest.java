@@ -1,15 +1,12 @@
 package ladder.domain.ladder;
 
+import ladder.domain.ladder.ladderInfo.LadderHeight;
 import ladder.domain.player.LadderPlayers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LinesTest {
@@ -19,14 +16,12 @@ public class LinesTest {
     void LinesCreateTest() {
         String[] playerNames = {"pobi","honux","po","bi"};
         LadderPlayers ladderPlayers = LadderPlayers.participate(playerNames);
-        LineCount lineCount = ladderPlayers.getRequestLineCount();
         LadderHeight ladderHeight = LadderHeight.inputHeight(5);
 
-        List<Line> lineList = Stream
-                    .generate(() -> Line.createLine(lineCount))
-                    .limit(ladderHeight.getHeight())
-                    .collect(collectingAndThen(toList(), Collections::unmodifiableList));
+        Lines lines = LinesCreator.create(ladderPlayers.getPlayerCount(), ladderHeight);
+        List<Line> lineList = lines.getLineList();
 
-        assertThat(lineList.size()).isEqualTo(5);
+        Lines newLines = new Lines(lineList, ladderPlayers.getPlayerCount());
+        assertThat(newLines.getLineList().size()).isEqualTo(5);
     }
 }

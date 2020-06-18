@@ -2,18 +2,33 @@ package ladder.domain.ladder;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Lines {
 
     private final List<Line> lines;
+    private int playerCount;
 
-    private Lines(final List<Line> lines){
+    public Lines(final List<Line> lines, int playerCount){
         validate(lines);
         this.lines = lines;
+        this.playerCount = playerCount;
     }
 
-    public static Lines create(final List<Line> lines) {
-        return new Lines(lines);
+    public LadderResults create() {
+        return new LadderResults(Stream.iterate(0, i -> i < playerCount, i -> i + 1)
+                .map(Position::new)
+                .collect(Collectors.toMap(Function.identity(), this::getResultPosition)));
+    }
+
+    public Position getResultPosition(Position startPosition) {
+        Position currentPosition = startPosition;
+        for (Line line : lines) {
+            currentPosition = line.move(currentPosition);
+        }
+        return currentPosition;
     }
 
     public List<Line> getLineList() {

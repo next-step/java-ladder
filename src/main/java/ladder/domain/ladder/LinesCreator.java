@@ -1,32 +1,22 @@
 package ladder.domain.ladder;
 
-import java.util.Collections;
+import ladder.domain.ladder.ladderInfo.LadderHeight;
+
 import java.util.List;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class LinesCreator {
-    private Lines lines;
 
-    private LinesCreator(LineCount lineCount, LadderHeight ladderHeight) {
-        this.lines = generateLadder(lineCount, ladderHeight);
+    public static Lines create(int playerCount, final LadderHeight ladderHeight) {
+        return createLadderLines(playerCount, ladderHeight);
     }
 
-    public static LinesCreator create(LineCount lineCount, final LadderHeight ladderHeight) {
-        return new LinesCreator(lineCount, ladderHeight);
-    }
-
-    private Lines generateLadder(LineCount lineCount, LadderHeight ladderMaxHeight) {
-        List<Line> lines = Stream
-                .generate(() -> Line.createLine(lineCount))
-                .limit(ladderMaxHeight.getHeight())
-                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
-        return Lines.create(lines);
-    }
-
-    public Lines getLines() {
-        return lines;
+    private static Lines createLadderLines(int playerCount, LadderHeight ladderMaxHeight) {
+        List<Line> lines = Stream.iterate(0, i -> i < ladderMaxHeight.getHeight(), i -> i + 1)
+                .map(i -> LineCreator.create(playerCount))
+                .collect(toList());
+        return new Lines(lines, playerCount);
     }
 }

@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.ladder.ladderInfo.LadderHeight;
 import ladder.domain.player.LadderPlayers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,8 +22,9 @@ public class LinesCreatorTest {
     void LadderCreator_성공_Test() {
         LadderPlayers ladderPlayers = LadderPlayers.participate(playerNames);
         LadderHeight ladderHeight = LadderHeight.inputHeight(5);
-        LineCount requestLineCount = ladderPlayers.getRequestLineCount();
-        LinesCreator linesCreator = LinesCreator.create(requestLineCount, ladderHeight);
-        assertThat(linesCreator).isNotNull();
+
+        Lines lines = LinesCreator.create(ladderPlayers.getPlayerCount(), ladderHeight);
+
+        assertThat(lines).isNotNull();
     }
 }
