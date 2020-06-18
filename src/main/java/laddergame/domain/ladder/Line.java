@@ -27,15 +27,31 @@ public class Line {
     }
 
     public Position movePosition(Position position) {
-        Bridge findBridge = bridges.stream()
-                .filter(bridge -> bridge.isBridgeColumn(position.column()))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+        Bridge findBridge = findBridge(position);
 
         return findBridge.movePositionColumn(position).moveDown();
     }
 
+    private Bridge findBridge(Position position) {
+        List<Bridge> findBridges = bridges.stream()
+                .filter(bridge -> bridge.isBridgeColumn(position.column()))
+                .collect(Collectors.toList());
+
+        if (findBridges.size() == 0) {
+            throw new IllegalArgumentException("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + position.getColumn());
+        }
+
+        return findBridges.stream()
+                .filter(Bridge::isConnected)
+                .findFirst()
+                .orElse(findBridges.get(0));
+    }
+
     public boolean isSameHeight(Position position) {
         return lineHeight.equals(position.height());
+    }
+
+    public Height getLineHeight() {
+        return lineHeight;
     }
 }

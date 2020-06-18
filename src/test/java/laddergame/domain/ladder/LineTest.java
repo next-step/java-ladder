@@ -80,4 +80,16 @@ class LineTest {
 
         assertThat(actualResult).isEqualTo(after);
     }
+
+    @DisplayName("인자로 받은 Position 의 높이와 열 번호를 보고 이동시킨다.")
+    @Test
+    void moveWrongPosition() {
+        BridgeConnectGenerator bridgeConnectGenerator = new FixedConnectGenerator(Arrays.asList(true, false, false));
+        Position wrongPosition = new Position(5, 1);
+        Line line = new Line(1, 4, bridgeConnectGenerator);
+
+        assertThatThrownBy(() -> line.movePosition(wrongPosition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + wrongPosition.getColumn());
+    }
 }
