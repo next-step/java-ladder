@@ -3,18 +3,18 @@ package ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Line {
+public class LadderLine {
 
     private final List<Point> points;
 
-    private Line(List<Point> points) {
+    private LadderLine(List<Point> points) {
         this.points = points;
     }
 
-    public static Line drawLine(int playerCounts, DrawingLineStrategy drawingLineStrategy) {
+    public static LadderLine drawLine(int playerCounts, DrawingLineStrategy drawingLineStrategy) {
         validatePlayerCounts(playerCounts);
         List<Point> points = drawingLineStrategy.drawLine(playerCounts);
-        return new Line(points);
+        return new LadderLine(points);
     }
 
     private static void validatePlayerCounts(int playerCounts) {

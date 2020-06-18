@@ -17,17 +17,17 @@ public class Point {
         return isDown ? new Point(MINIMUM_INDEX, Direction.DOWN) : new Point(MINIMUM_INDEX, Direction.RIGHT);
     }
 
-    public static Point drawMiddlePoint(Point lastPoint, boolean isDown) {
-        if (lastPoint.isConnected()) {
-            return new Point(lastPoint.index + NEXT_INDEX, Direction.LEFT);
-        }
-        return isDown ? new Point(lastPoint.index + NEXT_INDEX, Direction.DOWN)
-                : new Point(lastPoint.index + NEXT_INDEX, Direction.RIGHT);
+    public Point drawLastPoint() {
+        return this.isConnected() ? new Point(this.index + NEXT_INDEX, Direction.LEFT)
+                : new Point(this.index + NEXT_INDEX, Direction.DOWN);
     }
 
-    public static Point drawLastPoint(Point lastPoint) {
-        return lastPoint.isConnected() ? new Point(lastPoint.index + NEXT_INDEX, Direction.LEFT)
-                : new Point(lastPoint.index + NEXT_INDEX, Direction.DOWN);
+    public Point drawMiddlePoint(boolean isDown) {
+        if (this.isConnected()) {
+            return new Point(this.index + NEXT_INDEX, Direction.LEFT);
+        }
+        return isDown ? new Point(this.index + NEXT_INDEX, Direction.DOWN)
+                : new Point(this.index + NEXT_INDEX, Direction.RIGHT);
     }
 
     private boolean isConnected() {

@@ -11,14 +11,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LineTest {
+public class LadderLineTest {
 
     @DisplayName("Line 객체 생성 테스트")
     @ParameterizedTest
     @ValueSource(ints = {2, 5, 10, 15})
     public void makeLine_정상(int playerCounts) {
         assertThatCode(() -> {
-            Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
+            LadderLine.drawLine(playerCounts, new RandomDrawingLineStrategy());
         }).doesNotThrowAnyException();
     }
 
@@ -27,7 +27,7 @@ public class LineTest {
     @ValueSource(ints = {-1, 0})
     public void makeLine_예외(int playerCounts) {
         assertThatThrownBy(() -> {
-            Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
+            LadderLine.drawLine(playerCounts, new RandomDrawingLineStrategy());
         }).isInstanceOf(LadderBuildingException.class)
                 .hasMessageContaining(LadderBuildingException.INVALID_PLAYER_COUNTS);
     }
@@ -36,9 +36,9 @@ public class LineTest {
     @ParameterizedTest
     @ValueSource(ints = {2, 5, 10, 15})
     public void lineSize_참가자수_동일(int playerCounts) {
-        Line line = Line.drawLine(playerCounts, new RandomDrawingLineStrategy());
+        LadderLine ladderLine = LadderLine.drawLine(playerCounts, new RandomDrawingLineStrategy());
 
-        List<Direction> pointDirections = line.getPointDirections();
+        List<Direction> pointDirections = ladderLine.getPointDirections();
 
         assertThat(pointDirections.size()).isEqualTo(playerCounts);
     }
@@ -60,10 +60,10 @@ public class LineTest {
             }
         };
 
-        Line line = Line.drawLine(3, drawingLineStrategy);
+        LadderLine ladderLine = LadderLine.drawLine(3, drawingLineStrategy);
 
-        assertThat(line.movePointOnLine(0)).isEqualTo(1);
-        assertThat(line.movePointOnLine(1)).isEqualTo(0);
-        assertThat(line.movePointOnLine(2)).isEqualTo(2);
+        assertThat(ladderLine.movePointOnLine(0)).isEqualTo(1);
+        assertThat(ladderLine.movePointOnLine(1)).isEqualTo(0);
+        assertThat(ladderLine.movePointOnLine(2)).isEqualTo(2);
     }
 }

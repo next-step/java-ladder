@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DrawingLineStrategyTest {
+public class DrawingLadderLineStrategyTest {
 
     @DisplayName("Drawing 전략으로 Line을 그리면 그 너비는 게임 참가자의 수와 동일")
     @ParameterizedTest
