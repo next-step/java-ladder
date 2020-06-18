@@ -20,7 +20,7 @@ class StepRandomStrategyTest {
     @DisplayName("random 값이 항상 true를 반환 시, true가 연속되어 나타날 수 없다.")
     void step_exception(int countOfUser, List<Boolean> expected) {
         StepStrategy stepStrategy = new StepRandomStrategy(new RandomReturnTrue());
-        FootStep footStep = new FootStep(countOfUser, stepStrategy);
+        FootStep footStep = FootStep.byStrategy(countOfUser, stepStrategy);
 
         assertThat(footStep.getSteps()).isEqualTo(expected);
     }
@@ -30,8 +30,7 @@ class StepRandomStrategyTest {
                 arguments(2, Arrays.asList(true)),
                 arguments(3, Arrays.asList(true, false)),
                 arguments(4, Arrays.asList(true, false, true)),
-                arguments(5, Arrays.asList(true, false, true, false))
-        );
+                arguments(5, Arrays.asList(true, false, true, false)));
     }
 
     private static class RandomReturnTrue extends Random {

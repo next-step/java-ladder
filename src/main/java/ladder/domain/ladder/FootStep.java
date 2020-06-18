@@ -10,16 +10,24 @@ public class FootStep {
     private static final int MIN_COUNT_OF_USER = 2;
     private final List<Boolean> steps = new ArrayList<>();
 
-    public FootStep(int countOfUser) {
+    private FootStep(int countOfUser) {
         this(countOfUser, new StepRandomStrategy());
     }
 
-    public FootStep(int countOfUser, StepStrategy stepStrategy) {
+    private FootStep(int countOfUser, StepStrategy stepStrategy) {
         validate(countOfUser);
 
         for (int i = 1; i < countOfUser; i++) {
             steps.add(stepStrategy.nextStep());
         }
+    }
+
+    public static FootStep of(int countOfUser) {
+        return new FootStep(countOfUser);
+    }
+
+    public static FootStep byStrategy(int countOfUser, StepStrategy stepStrategy) {
+        return new FootStep(countOfUser, stepStrategy);
     }
 
     private void validate(int countOfUser) {
