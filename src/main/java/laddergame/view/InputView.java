@@ -20,4 +20,10 @@ public class InputView {
 
         return Integer.parseInt(SCANNER.nextLine());
     }
+
+    public static String[] inputExecuteResult() {
+        System.out.println("실행 결과 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        return SCANNER.nextLine().split(NAME_DELIMITER);
+    }
 }

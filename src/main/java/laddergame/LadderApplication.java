@@ -1,5 +1,6 @@
 package laddergame;
 
+import laddergame.domain.game.Results;
 import laddergame.domain.vo.Height;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RandomConnectGenerator;
@@ -12,10 +13,12 @@ public class LadderApplication {
         String[] names = InputView.inputPlayerNames();
         Players players = new Players(names);
 
-        Height ladderHeight = new Height(InputView.inputLadderHeight());
+        String[] executeResults = InputView.inputExecuteResult();
+        Results results = new Results(executeResults);
 
+        Height ladderHeight = new Height(InputView.inputLadderHeight());
         Ladder ladder = new Ladder(ladderHeight, names.length, new RandomConnectGenerator());
 
-        OutputView.printLadder(players, ladder);
+        OutputView.printLadder(players, ladder, results);
     }
 }

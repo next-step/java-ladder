@@ -25,6 +25,10 @@ public class Result {
         return column.equals(find);
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

@@ -32,4 +32,8 @@ public class Results {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("일치하는 열 번호가 없습니다. - " + findColumn));
     }
+
+    public List<Result> getResults() {
+        return results;
+    }
 }
