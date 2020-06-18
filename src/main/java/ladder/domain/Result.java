@@ -3,11 +3,11 @@ package ladder.domain;
 public class Result {
     private final String result;
 
-    public Result(String result) {
+    private Result(String result) {
         this.result = result;
     }
 
-    public static Result newInstance(String result) {
+    public static Result of(String result) {
         return new Result(result);
     }
 

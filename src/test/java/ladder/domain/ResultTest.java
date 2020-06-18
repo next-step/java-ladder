@@ -10,7 +10,7 @@ class ResultTest {
     @Test
     @DisplayName("결과를 생성한다")
     void of(){
-        assertThatCode(() -> Result.newInstance("꽝")).doesNotThrowAnyException();
+        assertThatCode(() -> Result.of("꽝")).doesNotThrowAnyException();
     }
 
 }

@@ -15,7 +15,7 @@ public class Results {
 
     public static Results valueOf(String enteredResults, int countOfPerson) {
         List<Result> results = Arrays.stream(enteredResults.split(SEPARATOR))
-                .map(Result::newInstance)
+                .map(Result::of)
                 .collect(Collectors.toList());
 
         checkResultSize(results, countOfPerson);
