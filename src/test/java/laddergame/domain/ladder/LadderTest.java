@@ -72,6 +72,6 @@ class LadderTest {
         assertThatThrownBy(() -> ladder.findCurrentLine(position))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("현재 높이에 맞는 사다리 한 라인이 존재하지 않습니다. - " +
-                        position.getHeight().getHeight());
+                        position.getHeight().toInt());
     }
 }

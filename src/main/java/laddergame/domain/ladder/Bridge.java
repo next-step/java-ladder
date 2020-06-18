@@ -42,7 +42,7 @@ public class Bridge {
     }
 
     public boolean isBridgeColumn(Column column) {
-        return bridgePoint.isBridgeColumn(column.getColumn());
+        return bridgePoint.isBridgeColumn(column.toInt());
     }
 
     @Override

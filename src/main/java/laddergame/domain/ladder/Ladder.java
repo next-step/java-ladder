@@ -14,7 +14,7 @@ public class Ladder {
 
     public Ladder(Height ladderHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
         this.ladderHeight = ladderHeight;
-        this.lines = createLines(ladderHeight.getHeight(), numberOfPlayer, connectGenerator);
+        this.lines = createLines(ladderHeight.toInt(), numberOfPlayer, connectGenerator);
     }
 
     private List<Line> createLines(int ladderHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
@@ -31,9 +31,9 @@ public class Ladder {
     }
 
     public Column progressAllStep(Column column) {
-        Position position = new Position(column.getColumn());
+        Position position = new Position(column.toInt());
 
-        while (position.getHeight().getHeight() <= ladderHeight.getHeight()) {
+        while (position.getHeight().toInt() <= ladderHeight.toInt()) {
             Line currentLine = findCurrentLine(position);
             position = currentLine.movePosition(position);
         }
@@ -46,6 +46,6 @@ public class Ladder {
                 .filter(line -> line.isSameHeight(position))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("현재 높이에 맞는 사다리 한 라인이 존재하지 않습니다. - " +
-                        position.getHeight().getHeight()));
+                        position.getHeight().toInt()));
     }
 }

@@ -26,15 +26,15 @@ public class Position {
     }
 
     public Position moveLeft() {
-        return new Position(column.getColumn() - 1, height.getHeight());
+        return new Position(column.toInt() - 1, height.toInt());
     }
 
     public Position moveRight() {
-        return new Position(column.getColumn() + 1, height.getHeight());
+        return new Position(column.toInt() + 1, height.toInt());
     }
 
     public Position moveDown() {
-        return new Position(column.getColumn(), height.getHeight() + 1);
+        return new Position(column.toInt(), height.toInt() + 1);
     }
 
     @Override

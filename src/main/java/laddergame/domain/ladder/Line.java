@@ -38,7 +38,7 @@ public class Line {
                 .collect(Collectors.toList());
 
         if (findBridges.size() == 0) {
-            throw new IllegalArgumentException("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + position.getColumn().getColumn());
+            throw new IllegalArgumentException("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + position.getColumn().toInt());
         }
 
         return findBridges.stream()

@@ -11,7 +11,7 @@ public class Column {
         this.column = column;
     }
 
-    public int getColumn() {
+    public int toInt() {
         return column;
     }
 
@@ -26,11 +26,11 @@ public class Column {
         if (this == o) return true;
         if (!(o instanceof Column)) return false;
         Column column1 = (Column) o;
-        return getColumn() == column1.getColumn();
+        return toInt() == column1.toInt();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getColumn());
+        return Objects.hash(toInt());
     }
 }

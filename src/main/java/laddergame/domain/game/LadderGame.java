@@ -20,7 +20,7 @@ public class LadderGame {
 
         for (Player player : players.getPlayers()) {
             Column afterMoveColumn = ladder.progressAllStep(player.getColumn());
-            resultMap.put(player.getName(), results.findByColumn(afterMoveColumn.getColumn()));
+            resultMap.put(player.getName(), results.findByColumn(afterMoveColumn.toInt()));
         }
 
         return new GameResult(resultMap);

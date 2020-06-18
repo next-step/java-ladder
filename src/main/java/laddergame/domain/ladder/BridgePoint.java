@@ -23,11 +23,11 @@ public class BridgePoint {
     }
 
     public int getLeft() {
-        return left.getColumn();
+        return left.toInt();
     }
 
     public int getRight() {
-        return right.getColumn();
+        return right.toInt();
     }
 
     public boolean isLeftColumn(final Column targetColumn) {

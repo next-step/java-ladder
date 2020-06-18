@@ -11,7 +11,7 @@ public class Height {
         this.height = height;
     }
 
-    public int getHeight() {
+    public int toInt() {
         return height;
     }
 
@@ -26,11 +26,11 @@ public class Height {
         if (this == o) return true;
         if (!(o instanceof Height)) return false;
         Height height1 = (Height) o;
-        return getHeight() == height1.getHeight();
+        return toInt() == height1.toInt();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getHeight());
+        return Objects.hash(toInt());
     }
 }
