@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Participants {
     public static final String SEPARATOR = ",";
 
-    private List<Person> participants;
+    private final List<Person> participants;
 
     private Participants(String nameOfPerson) {
         this.participants = Arrays.stream(nameOfPerson.split(SEPARATOR))
@@ -28,10 +28,12 @@ public class Participants {
 
     public GameResult runLadder(Ladder ladder, Results results) {
         Map<Person, Result> gameResult = new HashMap<>();
-        for (int personIndex = 0; personIndex < participants.size(); personIndex++) {
+        int personIndex = 0;
+        for (Person person : participants) {
             int finalPoint = ladder.run(personIndex);
             Result result = results.find(finalPoint);
-            gameResult.put(participants.get(personIndex), result);
+            gameResult.put(person, result);
+            personIndex++;
         }
         return GameResult.valueOf(gameResult);
     }

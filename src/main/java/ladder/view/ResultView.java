@@ -51,14 +51,15 @@ public class ResultView {
 
     public static void printResult(GameResult gameResult) {
         String findName = InputView.enterCuriousResult();
-        System.out.println("\n실행 결과");
+
         while (!findName.equals("all")) {
             String findResult = gameResult.findResult(findName);
-            System.out.println(findResult);
+            System.out.println("\n실행 결과" + findResult);
             findName = InputView.enterCuriousResult();
         }
 
         if (findName.toLowerCase().equals("all")) {
+            System.out.println("\n실행 결과");
             gameResult.getGameResult()
                     .forEach((person, result) -> System.out.println(person.getName() + " : " + result.getResult()));
         }

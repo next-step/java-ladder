@@ -28,8 +28,5 @@ public class LadderApplication {
 
         GameResult gameResult = participants.runLadder(ladder, results);
         ResultView.printResult(gameResult);
-
-
-
     }
 }
