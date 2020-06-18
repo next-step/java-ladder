@@ -1,14 +1,14 @@
 package ladder.view;
 
 import ladder.domain.PositionLogs;
-import ladder.domain.Prize;
-import ladder.domain.Prizes;
 import ladder.domain.line.LadderLine;
 import ladder.domain.line.LadderLines;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.point.LadderLinePoint;
 import ladder.domain.point.LadderLinePoints;
+import ladder.domain.prize.Prize;
+import ladder.domain.prize.Prizes;
 
 import java.util.List;
 import java.util.Scanner;
