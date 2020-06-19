@@ -22,9 +22,9 @@ public class Person {
     }
 
     private void checkEmpty(String name) {
-         if(name.isEmpty()){
-             throw new IllegalArgumentException("이름이 없거나 빈 값 입니다.");
-         }
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("이름이 없거나 빈 값 입니다.");
+        }
     }
 
     private void checkNameLength(String name) {
