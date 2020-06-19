@@ -5,6 +5,7 @@ import ladder.strategy.StepStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class FootStep {
     private static final int MIN_COUNT_OF_USER = 2;
@@ -17,9 +18,8 @@ public class FootStep {
     private FootStep(int countOfUser, StepStrategy stepStrategy) {
         validate(countOfUser);
 
-        for (int i = 1; i < countOfUser; i++) {
-            steps.add(stepStrategy.nextStep());
-        }
+        IntStream.range(1, countOfUser)
+                .forEach(i -> steps.add(stepStrategy.nextStep()));
     }
 
     public static FootStep of(int countOfUser) {
