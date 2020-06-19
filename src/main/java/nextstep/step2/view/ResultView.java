@@ -1,6 +1,7 @@
 package nextstep.step2.view;
 
 import nextstep.step2.domain.Line;
+import nextstep.step2.domain.Name;
 import nextstep.step2.domain.Names;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class ResultView {
     private static final String BLANK = "";
     private static final String FORMAT = "%5s";
 
-    private List<String> names;
+    private List<Name> names;
     private List<Line> ladders;
 
     public ResultView(Names names, List<Line> ladders) {
@@ -25,7 +26,7 @@ public class ResultView {
     }
 
     private void printNames() {
-        names.forEach(name -> System.out.printf("%-6s", name));
+        names.forEach(name -> System.out.printf("%-6s", name.getName()));
         System.out.println();
     }
 
