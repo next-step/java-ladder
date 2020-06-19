@@ -30,9 +30,9 @@ public class ResultView {
         return lineString;
     }
 
-    public void displayLadderReulst(LadderResults ladderResults) {
-        for (String resultInfo : ladderResults.resultInfo()) {
-            System.out.print(String.format("%" + Player.NAME_LIMIT + "s",resultInfo));
+    public void displayLadderReulst(Rewards rewards) {
+        for (String reward : rewards.rewardInfo()) {
+            System.out.print(String.format("%" + Player.NAME_LIMIT + "s",reward));
         }
         System.out.println();
     }

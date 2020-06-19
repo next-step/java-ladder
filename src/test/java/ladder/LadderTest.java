@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.*;
-import ladder.view.ResultView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,13 +23,13 @@ public class LadderTest {
         ladder.playLadderGame(players);
 
         String reulstsString = "꽝,꽝,5000원,5000";
-        LadderResults ladderResults = new LadderResults(reulstsString);
+        Rewards rewards = new Rewards(reulstsString);
 
         for(Position p : players.getPlayerResultPosition()) {
             int playerPositionIndex = players.getPlayerByPosition(Position.of(p.getIndex()))
                                         .getPosition()
                                         .getIndex();
-            int expectedPositionIndex =ladderResults.getResultByPositionIndex(p.getIndex())
+            int expectedPositionIndex = rewards.getResultByPositionIndex(p.getIndex())
                                         .getPosition()
                                         .getIndex();
             assertThat(playerPositionIndex).isEqualTo(expectedPositionIndex);

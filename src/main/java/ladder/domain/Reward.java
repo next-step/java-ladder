@@ -2,13 +2,13 @@ package ladder.domain;
 
 import java.util.Objects;
 
-public class LadderResult {
+public class Reward {
 
-    public String resultInfo;
+    public String rewardInfo;
     public Position position;
 
-    public LadderResult(String result, int position) {
-        this.resultInfo = result;
+    public Reward(String result, int position) {
+        this.rewardInfo = result;
         this.position = new Position(position);
     }
 
@@ -16,21 +16,21 @@ public class LadderResult {
         return position;
     }
 
-    public String getResultInfo() {
-        return resultInfo;
+    public String getRewardInfo() {
+        return rewardInfo;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderResult that = (LadderResult) o;
-        return Objects.equals(resultInfo, that.resultInfo) &&
+        Reward that = (Reward) o;
+        return Objects.equals(rewardInfo, that.rewardInfo) &&
                 Objects.equals(position, that.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(resultInfo, position);
+        return Objects.hash(rewardInfo, position);
     }
 }

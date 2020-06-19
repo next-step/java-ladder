@@ -7,10 +7,10 @@ public class LadderResultOutput {
 
     private Map<String, String> resultOutput = new HashMap<>();
 
-    public LadderResultOutput(Players players, LadderResults ladderResults) {
+    public LadderResultOutput(Players players, Rewards rewards) {
         for (Position position : players.getPlayerResultPosition()) {
             resultOutput.put(players.getPlayerByPosition(position).getName(),
-                    ladderResults.getResultByPositionIndex(position.getIndex()).getResultInfo());
+                    rewards.getResultByPositionIndex(position.getIndex()).getRewardInfo());
         }
     }
 

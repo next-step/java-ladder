@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Players;
-import ladder.domain.LadderResults;
+import ladder.domain.Rewards;
 
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class InputView {
     }
 
     public String displayLadderReulstInputUI() {
-        System.out.printf(RESULT_INPUT_MESSAGE, LadderResults.RESULT_DELIMITER);
+        System.out.printf(RESULT_INPUT_MESSAGE, Rewards.RESULT_DELIMITER);
         return sc.next();
     }
 

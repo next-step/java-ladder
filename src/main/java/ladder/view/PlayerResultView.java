@@ -32,8 +32,8 @@ public class PlayerResultView {
 
     private String displayPlayersResultAll() {
         StringBuilder sb = new StringBuilder();
-        ladderResultOutput.getResultOutput().forEach((name, resultInfo) -> {
-            sb.append(name + ":" + resultInfo + "\n");
+        ladderResultOutput.getResultOutput().forEach((name, reward) -> {
+            sb.append(name + ":" + reward + "\n");
         });
         return sb.toString();
     }

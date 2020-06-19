@@ -2,7 +2,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderResultOutput;
-import ladder.domain.LadderResults;
+import ladder.domain.Rewards;
 import ladder.domain.Players;
 import ladder.view.InputView;
 import ladder.view.PlayerResultView;
@@ -17,7 +17,7 @@ public class LadderGameApplication {
         Players players = new Players(inputPlayers);
 
         String reulstsString = inputView.displayLadderReulstInputUI();
-        LadderResults ladderResults = new LadderResults(reulstsString);
+        Rewards rewards = new Rewards(reulstsString);
 
         int ladderHeight = inputView.displayLadderHeightInputUI();
         ResultView resultView = new ResultView();
@@ -25,10 +25,10 @@ public class LadderGameApplication {
         resultView.displayLadderplayers(players);
         Ladder ladder = new Ladder(ladderHeight, players.getPlayerCount());
         resultView.displayLadder(ladder);
-        resultView.displayLadderReulst(ladderResults);
+        resultView.displayLadderReulst(rewards);
         ladder.playLadderGame(players);
 
-        new PlayerResultView(new LadderResultOutput(players, ladderResults)).displayPlayerResult();
+        new PlayerResultView(new LadderResultOutput(players, rewards)).displayPlayerResult();
 
     }
 

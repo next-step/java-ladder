@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.LadderResultOutput;
-import ladder.domain.LadderResults;
+import ladder.domain.Rewards;
 import ladder.domain.Players;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +12,8 @@ public class LadderResultOutputTest {
 
     Players players = new Players("iu,iu2,iu3,iu4");
     String reulstsString = "꽝1,꽝,5000원,5000";
-    LadderResults ladderResults = new LadderResults(reulstsString);
-    LadderResultOutput output = new LadderResultOutput(players, ladderResults);
+    Rewards rewards = new Rewards(reulstsString);
+    LadderResultOutput output = new LadderResultOutput(players, rewards);
 
     @Test
     void getResultTargetOutputTest() {
@@ -22,7 +22,7 @@ public class LadderResultOutputTest {
 
     @Test
     void getResultOutPutTest() {
-        output.getResultOutput().forEach((name, resultInfo) -> {
+        output.getResultOutput().forEach((name, rewardInfo) -> {
             assertThat(name).isEqualTo(players.getPlayerByName(name).getName());
         });
     }
