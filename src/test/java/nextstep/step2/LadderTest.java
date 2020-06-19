@@ -20,7 +20,7 @@ public class LadderTest {
         String names = "pobi,honux,crong,jk";
         Ladder ladder = new Ladder(names, inputLadderHeight);
         int joinedPeopleCount = ladder.getNames().getParticipantsCount();
-        List<Line> ladders = ladder.getLadders();
+        List<Line> ladders = ladder.getLadderLines().getLines();
         assertThat(ladders).hasSize(inputLadderHeight);
         ladders.forEach(line -> assertThat(line.getOneLayerLadder()).hasSize(joinedPeopleCount));
     }

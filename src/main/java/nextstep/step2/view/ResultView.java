@@ -1,6 +1,7 @@
 package nextstep.step2.view;
 
 import nextstep.step2.domain.Line;
+import nextstep.step2.domain.Lines;
 import nextstep.step2.domain.Name;
 import nextstep.step2.domain.Names;
 
@@ -13,11 +14,11 @@ public class ResultView {
     private static final String FORMAT = "%5s";
 
     private List<Name> names;
-    private List<Line> ladders;
+    private List<Line> lines;
 
-    public ResultView(Names names, List<Line> ladders) {
+    public ResultView(Names names, Lines lines) {
         this.names = names.getNames();
-        this.ladders = ladders;
+        this.lines = lines.getLines();
     }
 
     public void displayLadder() {
@@ -31,7 +32,7 @@ public class ResultView {
     }
 
     private void printLadders() {
-        ladders.forEach(line -> {
+        lines.forEach(line -> {
             line.getOneLayerLadder().forEach(this::printLine);
             System.out.println();
         });

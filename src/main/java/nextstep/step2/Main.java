@@ -13,7 +13,7 @@ public class Main {
         int ladderHeight = InputView.inputLadderHeight();
 
         Ladder ladder = new Ladder(participants, ladderHeight);
-        ResultView resultView = new ResultView(ladder.getNames(), ladder.getLadders());
+        ResultView resultView = new ResultView(ladder.getNames(), ladder.getLadderLines());
         resultView.displayLadder();
     }
 }
