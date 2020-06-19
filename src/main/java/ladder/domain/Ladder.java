@@ -30,11 +30,10 @@ public class Ladder {
         return lines.get(linePosition);
     }
 
-    public ResultPosition getResultPosition(Players players) {
+    public void playLadderGame(Players players) {
         for (int i = 0; i < lines.size(); i++) {
             players.move(lines.get(i));
         }
-        return new ResultPosition(players.getPlayerResultPosition());
     }
 
 }

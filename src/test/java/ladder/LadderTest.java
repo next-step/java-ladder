@@ -21,13 +21,13 @@ public class LadderTest {
 
         Players players = new Players("iu,iu2,iu3,iu4");
         Ladder ladder = new Ladder(3, players.getPlayerCount());
-        ResultPosition resultPosition = ladder.getResultPosition(players);
+        ladder.playLadderGame(players);
 
         String reulstsString = "꽝,꽝,5000원,5000";
         LadderResults ladderResults = new LadderResults(reulstsString);
 
-        for(Position p : resultPosition.test()) {
-            int playerPositionIndex = players.getPlayerByPosion(Position.of(p.getIndex()))
+        for(Position p : players.getPlayerResultPosition()) {
+            int playerPositionIndex = players.getPlayerByPosition(Position.of(p.getIndex()))
                                         .getPosition()
                                         .getIndex();
             int expectedPositionIndex =ladderResults.getResultByPositionIndex(p.getIndex())

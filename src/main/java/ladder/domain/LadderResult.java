@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class LadderResult {
 
-    public String result;
+    public String resultInfo;
     public Position position;
 
     public LadderResult(String result, int position) {
-        this.result = result;
+        this.resultInfo = result;
         this.position = new Position(position);
     }
 
@@ -16,17 +16,21 @@ public class LadderResult {
         return position;
     }
 
+    public String getResultInfo() {
+        return resultInfo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderResult that = (LadderResult) o;
-        return Objects.equals(result, that.result) &&
+        return Objects.equals(resultInfo, that.resultInfo) &&
                 Objects.equals(position, that.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(result, position);
+        return Objects.hash(resultInfo, position);
     }
 }

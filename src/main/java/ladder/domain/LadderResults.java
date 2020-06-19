@@ -36,4 +36,10 @@ public class LadderResults {
                       .orElseThrow(IllegalArgumentException::new);
     }
 
+    public List<String> resultInfo() {
+        return results.stream()
+                .map(LadderResult::getResultInfo)
+                .collect(Collectors.toList());
+    }
+
 }

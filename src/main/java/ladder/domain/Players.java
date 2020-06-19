@@ -46,7 +46,7 @@ public class Players {
         }
     }
 
-    public Player getPlayerByPosion(Position position) {
+    public Player getPlayerByPosition(Position position) {
         return players.stream()
                     .filter(p -> p.getPosition().equals(position))
                     .findFirst()

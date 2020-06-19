@@ -22,11 +22,18 @@ public class ResultView {
         System.out.println(uiBuilder.toString());
     }
 
-    private String drawLine(Line line){
+    private String drawLine(Line line) {
         String lineString = UI.find(Draw.of(false)).getString() + UI.find().getString();
         for (int i = 0; i < line.getDrawLineCount(); i++) {
             lineString += UI.find(line.getDrawByPosition(i)).getString() + UI.find().getString();
         }
         return lineString;
+    }
+
+    public void displayLadderReulst(LadderResults ladderResults) {
+        for (String resultInfo : ladderResults.resultInfo()) {
+            System.out.print(String.format("%" + Player.NAME_LIMIT + "s",resultInfo));
+        }
+        System.out.println();
     }
 }
