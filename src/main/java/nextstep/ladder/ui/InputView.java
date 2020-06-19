@@ -1,9 +1,9 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.Users;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -14,12 +14,14 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<User> insertUserLine() {
+    public static Users insertUserLine() {
         System.out.println(INPUT_USER_LINE_COMMENT);
         String userLineString = scanner.nextLine();
-        return Arrays.stream(userLineString.split(USER_DELIMITER))
-                .map(User::new)
-                .collect(Collectors.toList());
+        return new Users(
+                Arrays.stream(userLineString.split(USER_DELIMITER))
+                        .map(User::new)
+                        .collect(Collectors.toList())
+        );
     }
 
     public static int insertHeight() {

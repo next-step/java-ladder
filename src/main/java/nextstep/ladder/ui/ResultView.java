@@ -3,6 +3,7 @@ package nextstep.ladder.ui;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.Users;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ public class ResultView {
     private static final String RESULT_LADDER_OPEN = "-----|";
     private static final String RESULT_LADDER_CLOSE = "     |";
 
-    public static void printResult(List<User> users, Ladder ladder) {
+    public static void printResult(Users users, Ladder ladder) {
         System.out.println(RESULT_NOTICE_COMMENT);
 
         users.stream()
