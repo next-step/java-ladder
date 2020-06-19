@@ -2,6 +2,7 @@ package laddergame.view;
 
 import java.util.Map;
 import laddergame.model.Ladder;
+import laddergame.model.LadderResultMapper;
 import laddergame.model.Name;
 import laddergame.model.Names;
 
@@ -35,27 +36,30 @@ public class LadderGameView {
     System.out.println(sb);
   }
 
-  public static void printInputResultOfPlayerMsg() {
+  public static void printInputPlayerForResultMsg() {
     System.out.println("결과를 보고 싶은 사람은?");
   }
 
-  public static void printResult(Map<Name, Name> resultMap, Name playerName) {
+  public static void printResult(LadderResultMapper resultMap, Name playerName) {
     System.out.println(getResultMessage(resultMap, playerName));
   }
 
-  private static String getResultMessage(Map<Name, Name> resultMap, Name playerName) {
+  private static String getResultMessage(LadderResultMapper ladderResultMapper, Name playerName) {
     StringBuilder sb = new StringBuilder("실행 결과").append(NEWLINE);
 
     if (playerName.equals(ALL)) {
-      resultMap.keySet().forEach(key -> {
-        sb.append(key).append(COLON_WITH_WHITESPACE).append(resultMap.get(key)).append(NEWLINE);
+      ladderResultMapper.getEntrySet().forEach(resultEntry -> {
+        sb.append(resultEntry.getKey())
+            .append(COLON_WITH_WHITESPACE)
+            .append(resultEntry.getValue())
+            .append(NEWLINE);
       });
       return sb.toString();
     }
 
     try {
       sb.append(playerName.toString()).append(COLON_WITH_WHITESPACE)
-          .append(resultMap.get(playerName).toString());
+          .append(ladderResultMapper.getResultOf(playerName));
     } catch (NullPointerException e) {
       sb.append("없는 사람입니다.");
     }

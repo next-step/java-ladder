@@ -27,8 +27,8 @@ public class LadderGameInput {
     return value;
   }
 
-  public static String getResultOfPlayerInputWithPrintMsg() {
-    LadderGameView.printInputResultOfPlayerMsg();
+  public static String getPlayerForResultInputWithPrintMsg() {
+    LadderGameView.printInputPlayerForResultMsg();
 
     return scanner.nextLine();
   }

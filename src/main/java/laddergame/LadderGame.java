@@ -1,8 +1,7 @@
 package laddergame;
 
-import java.util.Map;
 import laddergame.model.Ladder;
-import laddergame.model.LadderResultPositions;
+import laddergame.model.LadderResultMapper;
 import laddergame.model.Name;
 import laddergame.model.Names;
 import laddergame.model.PositiveNumber;
@@ -26,15 +25,13 @@ public class LadderGame {
 
     LadderGameView.printLadder(players, ladder, results);
 
-    LadderResultPositions resultPositions = LadderResultPositions
-        .createByLadderWithCountOfPerson(ladder, players.getCountOfNames());
-    Map<Name, Name> resultMap = resultPositions.getMapOf(players, results);
+    LadderResultMapper ladderResultMapper = LadderResultMapper.createBy(ladder, players, results);
 
     while (true) {
-      Name resultOfPlayer = new Name(LadderGameInput.getResultOfPlayerInputWithPrintMsg());
-      LadderGameView.printResult(resultMap, resultOfPlayer);
+      Name playerForResult = new Name(LadderGameInput.getPlayerForResultInputWithPrintMsg());
+      LadderGameView.printResult(ladderResultMapper, playerForResult);
 
-      if (resultOfPlayer.equals(NAME_FOR_END)) {
+      if (playerForResult.equals(NAME_FOR_END)) {
         break;
       }
     }
