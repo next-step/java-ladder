@@ -18,4 +18,19 @@ public class Name {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Name)) return false;
+
+        Name name1 = (Name) o;
+
+        return getName() != null ? getName().equals(name1.getName()) : name1.getName() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getName() != null ? getName().hashCode() : 0;
+    }
 }
