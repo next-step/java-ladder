@@ -4,55 +4,66 @@ import step2.util.RandomGenerator;
 
 public class Point {
     private static final int FIRST_POSITION = 0;
-    private static final int ONE = 1;
+    private final static String EXIST_BAR_LINE = "|-----";
+    private final static String NORMAL_LINE = "|     ";
 
-    private final int currentPosition;
+    private final Position position;
     private final boolean leftLine;
     private final boolean rightLine;
 
-    private Point(int currentPosition, boolean leftLine, boolean rightLine){
-        this.currentPosition = currentPosition;
+    private Point(Position position, boolean leftLine, boolean rightLine){
+        this.position = position;
         this.leftLine = leftLine;
         this.rightLine = rightLine;
     }
 
-    public static Point first(){
-        return decidedRight(FIRST_POSITION, Boolean.FALSE);
+    public static Point of(int position, boolean leftLine, boolean rightLine){
+        return of(new Position(position), leftLine, rightLine);
     }
 
-    public static Point drawVertical(int currentPosition, Point currentLine) {
-        return decidedRight(currentPosition, currentLine.rightLine);
+    public static Point of(Position position, boolean leftLine, boolean rightLine){
+        return new Point(position, leftLine, rightLine);
     }
 
-    private static Point decidedRight(int currentPosition, boolean leftLine) {
+    public static Point first(boolean rightLine){
+        return of(FIRST_POSITION, false, rightLine);
+    }
+
+    public Point mid() {
+        return of(position.increase(), rightLine, decidedMidValue());
+    }
+
+    private boolean decidedMidValue() {
         boolean decidedBoolean = RandomGenerator.generate();
-        if (leftLine){
+        if (rightLine){
             decidedBoolean = false;
         }
-        return new Point(currentPosition, leftLine, decidedBoolean);
+        return decidedBoolean;
     }
 
-    public static Point last(Point ladderLine) {
-        return decidedLast(ladderLine.currentPosition + ONE, ladderLine.left());
+    public Point last() {
+        return of(position.increase(), leftLine, false);
     }
 
-    private static Point decidedLast(int currentPosition, Boolean leftLine) {
-        return new Point(currentPosition, leftLine, Boolean.FALSE);
+    public Position getPosition() {
+        return position;
     }
 
-    public boolean right(){
-        return rightLine;
-    }
-
-    public  boolean left(){
+    public boolean left(){
         return leftLine;
     }
 
-    public boolean isFirstLine(){
-        return currentPosition == FIRST_POSITION;
+    public boolean right() {
+        return rightLine;
     }
 
-    public boolean isLastLine(int countOfperson){
-        return currentPosition == countOfperson - ONE;
+    @Override
+    public String toString() {
+        if (rightLine){
+            return EXIST_BAR_LINE;
+        }
+        return NORMAL_LINE;
     }
+
+
 }
