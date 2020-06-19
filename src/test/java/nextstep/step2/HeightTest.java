@@ -23,6 +23,7 @@ public class HeightTest {
     @ValueSource(ints = {0,-1})
     void InvalidHeightTest(int ladderHeight){
         assertThatThrownBy(() -> Height.of(ladderHeight))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Height.LADDER_MINIMUM_EXCEPTION);
     }
 }

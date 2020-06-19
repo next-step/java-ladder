@@ -14,6 +14,7 @@ public class PersonTest {
     @ValueSource(strings = {"pobi123", "honux1", "crongi", "jklmnop"})
     void InvalidPerson(String name){
         assertThatThrownBy(() -> Person.of(name))
-        .isInstanceOf(IllegalArgumentException.class);
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(Person.NAME_LIMIT_EXCEPTION);
     }
 }

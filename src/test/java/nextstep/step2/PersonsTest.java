@@ -20,6 +20,7 @@ public class PersonsTest {
     @DisplayName("사람수 유효성 테스트 ")
     void countPersonExceptionTest(){
         assertThatThrownBy(() -> Persons.of("pobi"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Persons.LADDER_GAME_MINIMUM_EXCEPTION);
     }
 }
