@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,7 +30,10 @@ public class LadderResultMapper {
   }
 
   public Name getResultOf(Name playerName) {
-    return ladderResultMap.get(playerName);
+    Optional<Name> result = Optional.ofNullable(playerName);
+
+    return result.map(name -> ladderResultMap.get(name))
+        .orElseThrow(PlayerNotExistException::new);
   }
 
   public Set<Entry<Name, Name>> getEntrySet() {

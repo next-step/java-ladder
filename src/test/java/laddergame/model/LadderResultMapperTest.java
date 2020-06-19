@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -35,6 +36,23 @@ class LadderResultMapperTest {
         arguments(
             new Name("key1"),
             new Name("val1")
+        )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("providePlayerNameNotExist")
+  @DisplayName("존재하지 않는 경우")
+  void getResultOf_NotExist(Name playerName) {
+    assertThatExceptionOfType(PlayerNotExistException.class).isThrownBy(()->{
+      resultMap.getResultOf(playerName);
+    });
+  }
+
+  public static Stream<Arguments> providePlayerNameNotExist() {
+    return Stream.of(
+        arguments(
+            new Name("key0")
         )
     );
   }
