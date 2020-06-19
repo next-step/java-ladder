@@ -32,7 +32,7 @@
 - [ ] 사다리의 다리는 '|' 로 출력한다.
 
 ### ConvertUtil
-- [ ] 문자열을 쉽표(,) 기준으로 구분한다.
+- [X] 문자열을 쉽표(,) 기준으로 구분한다.
 - [ ] 빈 문자열이나 null 인 경우 IllegalArgument exception을 반환한다.
 
 ### InputView
