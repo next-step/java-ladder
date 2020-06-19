@@ -2,8 +2,6 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.Map;
-
 public class OutputView {
     private static final String PRINT_RESULT_MESSAGE = "실행 결과";
     private static final String PLAYER_FORMAT = "%6s";
@@ -38,16 +36,16 @@ public class OutputView {
     }
 
     private static void printLadder(Ladder ladder) {
-        ladder.getLines()
-                .forEach(line -> {
+        ladder.getLadderLines()
+                .forEach(ladderLine -> {
                     System.out.print(PRINT_POINT_FIRST);
-                    printLine(line);
+                    printLine(ladderLine);
                     System.out.println();
                 });
     }
 
-    private static void printLine(Line line) {
-        line.getPoints()
+    private static void printLine(LadderLine ladderLine) {
+        ladderLine.getPoints()
                 .forEach(point -> System.out.print(decidePoint(point)));
     }
 

@@ -19,8 +19,8 @@ public class LadderGame {
     public Reward playOne(String playerName) {
         int position = this.players.getPlayerPosition(playerName);
 
-        for (Line line : this.ladder.getLines()) {
-            position = line.move(position);
+        for (LadderLine ladderLine : this.ladder.getLadderLines()) {
+            position = ladderLine.move(position);
         }
 
         return this.rewards.getReward(position);

@@ -8,21 +8,29 @@ public class Direction {
     private final boolean left;
     private final boolean right;
 
-    public Direction(boolean left, boolean right) {
+    private Direction(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
+        }
+
         this.left = left;
         this.right = right;
     }
 
+    public static Direction of(boolean first, boolean second) {
+        return new Direction(first, second);
+    }
+
     public static Direction first(boolean right) {
-        return new Direction(FALSE, right);
+        return of(FALSE, right);
     }
 
     public Direction last() {
-        return new Direction(this.right, FALSE);
+        return of(this.right, FALSE);
     }
 
     public Direction next(boolean nextRight) {
-        return new Direction(this.right, nextRight);
+        return of(this.right, nextRight);
     }
 
     public Direction next(PointGenerationStrategy strategy) {

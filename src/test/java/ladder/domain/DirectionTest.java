@@ -3,16 +3,21 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("Direction 클래스 테스트")
 public class DirectionTest {
 
     @Test
     void create() {
-        assertThatCode(() -> new Direction(true, false))
+        assertThatCode(() -> Direction.of(true, false))
                 .doesNotThrowAnyException();
+    }
+
+    @Test()
+    public void create_invalid() {
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> Direction.of(true, true));
     }
 
     @Test
@@ -31,6 +36,12 @@ public class DirectionTest {
     void next_true() {
         Direction next = Direction.first(false).next(true);
         assertThat(next.isRight()).isTrue();
+    }
+
+    @Test
+    void next_false() {
+        Direction next = Direction.first(true).next(false);
+        assertThat(next.isRight()).isFalse();
     }
 
     @Test
