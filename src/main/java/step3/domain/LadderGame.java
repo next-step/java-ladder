@@ -1,15 +1,12 @@
 package step3.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class LadderGame {
+public final class LadderGame {
 
     public static final int SINGLE_PLAYER_STATUS = 1;
 
-    private static Players players;
-    private static WinningPrizes winningPrizes;
-    private static Ladders ladders = new Ladders();
+    private Players players;
+    private WinningPrizes winningPrizes;
+    private Ladders ladders = new Ladders();
 
     private LadderGame() {
         // block
@@ -24,46 +21,18 @@ public class LadderGame {
         }
         this.players = players;
         this.winningPrizes = winningPrizes;
-        laddersHeight(laddersHeight);
+        ladders.setLadders(laddersHeight, this, players);
     }
 
     public static LadderGame createLadder(Players players, WinningPrizes winningPrizes, int laddersHeight) {
         return new LadderGame(players, winningPrizes, laddersHeight);
     }
 
-    private void laddersHeight(int inputLadderHeight) {
-        List<Ladder> laddersToSet = new ArrayList<>();
-        // single play
-        if (players.size() == SINGLE_PLAYER_STATUS) {
-            laddersToSet.add(new Ladder(inputLadderHeight, false));
-            ladders.setLadderList(laddersToSet);
-            return;
-        }
-        // multi players
-        if (players.size() > SINGLE_PLAYER_STATUS) {
-            laddersToSet.add(new Ladder(inputLadderHeight, true));
-            setLddersHeightMorePlayer(inputLadderHeight, laddersToSet);
-            ladders.setLadderList(laddersToSet);
-            return;
-        }
-    }
-
-    private void setLddersHeightMorePlayer(int inputLadderHeight, List<Ladder> laddersToSet) {
-        Ladder beforLader = laddersToSet.get(0);
-        int playerSize = players.size();
-        for (int i = 1; i < playerSize - 1; i++) {
-            laddersToSet.add(new Ladder(inputLadderHeight, true, beforLader));
-            beforLader = laddersToSet.get(i);
-        }
-        laddersToSet.add(new Ladder(inputLadderHeight, false, beforLader));
-    }
-
     public MatchingResult calculateWinningPrizeLine() {
         // result
         CalculateLadder calculateLadder = new CalculateLadder(ladders);
         String[] winningPrize = calculateLadder.calculateWinningPrizeLine(winningPrizes);
-        MatchingResult matchingResult = MatchingResult.map(players, winningPrize);
-        return matchingResult;
+        return MatchingResult.map(players, winningPrize);
     }
 
     public Players getPlayers() {

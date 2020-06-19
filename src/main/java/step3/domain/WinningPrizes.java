@@ -4,7 +4,7 @@ import java.util.List;
 
 public class WinningPrizes {
 
-    List<String> winningPrizes;
+    private List<String> winningPrizes;
 
     public WinningPrizes(List<String> winningPrizes) {
         this.winningPrizes = winningPrizes;

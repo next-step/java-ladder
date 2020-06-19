@@ -1,11 +1,8 @@
 package step3.domain;
 
-import java.util.Arrays;
-
 public class CalculateLadder {
 
     private static Ladders ladders;
-    private int[] winningPrizeOrder;
 
     private CalculateLadder() {
         // block
@@ -13,7 +10,6 @@ public class CalculateLadder {
 
     public CalculateLadder(Ladders ladders) {
         this.ladders = ladders;
-        winningPrizeOrder = new int[ladders.getLadderList().size()];
     }
 
     public int[] calculte() {

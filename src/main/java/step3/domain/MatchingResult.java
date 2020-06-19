@@ -25,8 +25,9 @@ public class MatchingResult {
     }
 
     public String getMatchedWinningPrizeOrederByPlayerName(String winner) {
+
         for (Player player : matchingResult.keySet()) {
-            if (player.getPlayerName().equals(winner)) {
+            if (player.isPlayerName(winner)) {
                 return matchingResult.get(player);
             }
         }

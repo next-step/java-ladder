@@ -3,7 +3,7 @@ package step3.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,16 +14,12 @@ class LadderGameTest {
     @Test
     void setPlayerList() {
         // set players
-        List<Player> playerList = new ArrayList<>();
-        playerList.add(new Player("A"));
-        playerList.add(new Player("B"));
-        playerList.add(new Player("C"));
+        //List<Player> playerList = new ArrayList<>();
+        List<Player> playerList = Arrays.asList(new Player("A"),
+                new Player("B"), new Player("C"));
         Players players = new Players(playerList);
         // winning list
-        List<String> winningList = new ArrayList<>();
-        winningList.add("1");
-        winningList.add("2");
-        winningList.add("X");
+        List<String> winningList = Arrays.asList("1", "2", "X");
         WinningPrizes winningPrizes = new WinningPrizes(winningList);
         LadderGame ladderGame = LadderGame.createLadder(players, winningPrizes, 4);
         assertThat(ladderGame.getPlayers().size()).isEqualTo(3);

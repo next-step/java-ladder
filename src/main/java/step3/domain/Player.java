@@ -7,7 +7,6 @@ public class Player implements Comparator<Player> {
     public static final int PLAYER_NAME_LENGTH_LIMIT = 5;
 
     private String playerName;
-    private String gameResult;
 
     private Player() {
         // blocks
@@ -24,17 +23,8 @@ public class Player implements Comparator<Player> {
         return playerName;
     }
 
-    public void setGameResult(String gameResult) {
-        this.gameResult = gameResult;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format("%7s", playerName));
-        stringBuilder.append(" : ");
-        stringBuilder.append(String.format("%-7s", gameResult));
-        return stringBuilder.toString();
+    public boolean isPlayerName(String playerName) {
+        return this.playerName.equals(playerName);
     }
 
     @Override
