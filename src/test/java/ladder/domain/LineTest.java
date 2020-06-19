@@ -14,7 +14,9 @@ class LineTest {
     @Test
     @DisplayName("생성 테스트")
     void create() {
-        assertThatCode(() -> Line.valueOf(countOfPerson)).doesNotThrowAnyException();
+        Random random = new Random();
+        assertThatCode(() -> Line.valueOf(countOfPerson, random::nextBoolean))
+                .doesNotThrowAnyException();
     }
 
 }

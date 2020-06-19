@@ -17,10 +17,21 @@ class ParticipantsTest {
 
     @Test
     @DisplayName("참가자 수를 반환")
-    void tellCountOfPerson() {
+    void size() {
         Participants participants = Participants.valueOf(nameOfPerson);
         int countOfPerson = participants.size();
 
         assertThat(countOfPerson).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("사다리 실행 테스트")
+    void runLadder() {
+        Ladder ladder = Ladder.valueOf(3, 2);
+        Results results = Results.valueOf("꽝, 당첨", 2);
+        Participants participants = Participants.valueOf("ej, pobi");
+
+        assertThatCode(() -> participants.runLadder(ladder, results)).doesNotThrowAnyException();
+
     }
 }
