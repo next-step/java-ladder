@@ -33,7 +33,7 @@
 
 ### ConvertUtil
 - [X] 문자열을 쉽표(,) 기준으로 구분한다.
-- [ ] 빈 문자열이나 null 인 경우 IllegalArgument exception을 반환한다.
+- [X] 빈 문자열이나 null 인 경우 IllegalArgument exception을 반환한다.
 
 ### InputView
 - [ ] 참여할 사람 이름을 입력받아 문자열 그대로 반환한다.
