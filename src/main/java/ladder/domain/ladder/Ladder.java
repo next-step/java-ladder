@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -26,5 +27,12 @@ public class Ladder {
 
     public int getFootStepSize() {
         return footSteps.size();
+    }
+
+    @Override
+    public String toString() {
+        return this.footSteps.stream()
+                .map(FootStep::toString)
+                .collect(Collectors.joining());
     }
 }

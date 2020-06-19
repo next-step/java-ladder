@@ -5,6 +5,7 @@ import ladder.strategy.StepStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class FootStep {
@@ -38,5 +39,12 @@ public class FootStep {
 
     public List<Boolean> getSteps() {
         return steps;
+    }
+
+    @Override
+    public String toString() {
+        return this.steps.stream()
+                .map(b -> b ? "-----" : "     ")
+                .collect(Collectors.joining("|", "|", "|"));
     }
 }
