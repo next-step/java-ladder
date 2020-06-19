@@ -29,4 +29,11 @@ public class LadderResults {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    public LadderResult getResultByPositionIndex(int index) {
+        return results.stream()
+                      .filter(ladderResult -> ladderResult.getPosition().getIndex() == index)
+                      .findFirst()
+                      .orElseThrow(IllegalArgumentException::new);
+    }
+
 }

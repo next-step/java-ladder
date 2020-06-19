@@ -10,16 +10,16 @@ public class Ladder {
     private List<Line> lines = new ArrayList<>();
 
     public Ladder(int height, int countOfPerson) {
-        if(validate(height)) {
-            throw new IllegalArgumentException("높이값 오류");
-        }
+        validate(height);
         for (int i = 0; i < height; i++) {
             this.lines.add(new Line(countOfPerson));
         }
     }
 
-    private boolean validate(int height) {
-        return height < HEIGHT_MINIMUM_NUMER;
+    private void validate(int height) {
+        if (height < HEIGHT_MINIMUM_NUMER) {
+            throw new IllegalArgumentException("높이값 오류");
+        }
     }
 
     public int getLineHeight() {
@@ -28,6 +28,13 @@ public class Ladder {
 
     public Line getDrawLine(int linePosition) {
         return lines.get(linePosition);
+    }
+
+    public ResultPosition getResultPosition(Players players) {
+        for (int i = 0; i < lines.size(); i++) {
+            players.move(lines.get(i));
+        }
+        return new ResultPosition(players.getPlayerResultPosition());
     }
 
 }

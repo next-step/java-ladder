@@ -18,6 +18,17 @@ public class LadderResultsTest {
 
         assertThat(ladderResults.getResultCount()).isEqualTo(4);
         assertThat(ladderResults.getResult(ladderResult)).isEqualTo(ladderResult);
+
+    }
+
+    @DisplayName("ladderResult 객체 테스트")
+    @Test
+    void getResultByPositionIndexTest() {
+        String reulstsString = "1000";
+        LadderResults ladderResults = new LadderResults(reulstsString);
+        LadderResult ladderResult = new LadderResult("1000", 0);
+
+        assertThat(ladderResults.getResultByPositionIndex(0)).isEqualTo(ladderResult);
     }
 
 }

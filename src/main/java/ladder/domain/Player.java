@@ -25,6 +25,19 @@ public class Player {
         return this.name;
     }
 
+    public void move(boolean beforeLine, boolean afterLine) {
+        if (beforeLine) {
+            position.moveLeft();
+        }
+
+        if(afterLine) {
+            position.moveRight();
+        }
+    }
+
+    public Position getPosition() {
+        return this.position;
+    }
 
     @Override
     public boolean equals(Object o) {

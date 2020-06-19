@@ -18,6 +18,14 @@ public class Position {
         this.index++;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public static Position of(int index) {
+        return new Position(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

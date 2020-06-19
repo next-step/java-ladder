@@ -27,15 +27,4 @@ public class PlayerLogs {
                     .orElseThrow(IllegalArgumentException::new);
     }
 
-    public void test() {
-        playerLogs.stream().forEach(playerLog -> System.out.println(playerLog.getName() + "/" + playerLog.getPosition()));
-    }
-
-//    public Player getPlayerByName(String name) {
-//        return playerLogs.stream()
-//                .filter(playerLog -> playerLog.getPlayer().getName().equals(name))
-//                .findFirst()
-//                .map(PlayerLog::getPlayer)
-//                .orElseThrow(IllegalArgumentException::new);
-//    }
 }
