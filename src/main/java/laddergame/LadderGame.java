@@ -27,13 +27,12 @@ public class LadderGame {
 
     LadderResultMapper ladderResultMapper = LadderResultMapper.createBy(ladder, players, results);
 
-    while (true) {
-      Name playerForResult = new Name(LadderGameInput.getPlayerForResultInputWithPrintMsg());
-      LadderGameView.printResult(ladderResultMapper, playerForResult);
-
-      if (playerForResult.equals(NAME_FOR_END)) {
-        break;
-      }
+    for (Name playerForResult = new Name(LadderGameInput.getPlayerForResultInputWithPrintMsg());
+        !playerForResult.equals(NAME_FOR_END);
+        playerForResult = new Name(LadderGameInput.getPlayerForResultInputWithPrintMsg())) {
+      LadderGameView.printResultOf(ladderResultMapper, playerForResult);
     }
+
+    LadderGameView.printResultOfAll(ladderResultMapper);
   }
 }
