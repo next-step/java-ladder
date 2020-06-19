@@ -15,4 +15,8 @@ public class MatchResult {
     public LadderResult get(Player player) {
         return result.get(player);
     }
+
+    public int size() {
+        return result.size();
+    }
 }

@@ -3,34 +3,35 @@ package ladder.domain.ladder;
 import ladder.domain.player.Players;
 import ladder.domain.result.LadderResults;
 import ladder.domain.result.MatchResult;
-import ladder.domain.strategy.FalseLineStrategy;
+import ladder.domain.strategy.RandomLineStrategy;
 import ladder.domain.strategy.TrueLineStrategy;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class LadderGameTest {
 
-    @Test
-    void findAllResult() {
-        LadderGame ladderGame = new LadderGame(Ladder.of(5,5, new FalseLineStrategy()));
-        Players players = Players.of("a,b,c,d,e");
-        LadderResults ladderResults = LadderResults.of("1,2,3,4,5", players);
+    @ParameterizedTest
+    @DisplayName("모든 참가자의 결과 반환 객체 확인")
+    @CsvSource(value = {"2:2:a,b:1,2", "3:3:a,b,c:1,2,3", "5:5:a,b,c,d,e:1,2,3,4,5"}, delimiter = ':')
+    void findAllResultWithRandomStrategy(int countOfPerson, int ladderHeight, String playersInput, String resultInput) {
+        LadderGame ladderGame = new LadderGame(Ladder.of(countOfPerson, ladderHeight, new RandomLineStrategy()));
+        Players players = Players.of(playersInput);
+        LadderResults ladderResults = LadderResults.of(resultInput, players);
 
         MatchResult result = ladderGame.findAllPosition(players, ladderResults);
 
-        assertThat(result.get(players.get(0))).isEqualTo(ladderResults.get(0));
-        assertThat(result.get(players.get(1))).isEqualTo(ladderResults.get(1));
-        assertThat(result.get(players.get(2))).isEqualTo(ladderResults.get(2));
-        assertThat(result.get(players.get(3))).isEqualTo(ladderResults.get(3));
-        assertThat(result.get(players.get(4))).isEqualTo(ladderResults.get(4));
+        assertThat(result.size()).isEqualTo(countOfPerson);
     }
 
     @Test
+    @DisplayName("특정 참가자 한명의 결과값")
     void findOneResult() {
         LadderGame ladderGame = new LadderGame(Ladder.of(2,2, new TrueLineStrategy()));
         Players players = Players.of("a,b");
-        LadderResults ladderResults = LadderResults.of("1,2", players);
 
         int result = ladderGame.findResultPosition(0);
 
