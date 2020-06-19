@@ -24,7 +24,7 @@ public class InputView {
         );
     }
 
-    public static int insertHeight() {
+    public static int getHeight() {
         System.out.println(INPUT_HEIGHT_COMMENT);
         return Integer.parseInt(scanner.nextLine());
     }
