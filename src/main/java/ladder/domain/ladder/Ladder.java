@@ -1,5 +1,8 @@
 package ladder.domain.ladder;
 
+import ladder.domain.user.Name;
+import ladder.domain.user.User;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,12 +10,22 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
+    private List<User> users = new ArrayList<>();
     private List<FootStep> footSteps = new ArrayList<>();
 
-    private Ladder(int height, int countOfUser) {
+    private Ladder(int height, List<String> names) {
         validate(height);
+        createUsers(names);
+        createFootSteps(height);
+    }
+
+    private void createUsers(List<String> names) {
+        names.forEach(name -> users.add(User.of(Name.of(name))));
+    }
+
+    private void createFootSteps(int height) {
         IntStream.range(0, height)
-                .forEach(i -> this.footSteps.add(FootStep.of(countOfUser)));
+                .forEach(i -> this.footSteps.add(FootStep.of(getCountOfUsers())));
     }
 
     private void validate(int height) {
@@ -21,12 +34,16 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(int height, int countOfUser) {
-        return new Ladder(height, countOfUser);
+    public static Ladder of(int height, List<String> names) {
+        return new Ladder(height, names);
     }
 
     public int getFootStepSize() {
         return footSteps.size();
+    }
+
+    public int getCountOfUsers() {
+        return users.size();
     }
 
     @Override
