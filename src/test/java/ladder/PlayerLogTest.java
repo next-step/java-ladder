@@ -24,7 +24,8 @@ public class PlayerLogTest {
     void getPlayerByPositionTest() {
         String players = "iu,iu2,iu3,iu4";
         PlayerLogs playerLogs = new PlayerLogs(new Players(players).getPlayerLogs());
-        assertThat(playerLogs.getPlayerByPosition(new Position(0))).isEqualTo(new Player("iu", 0));
+        assertThat(playerLogs.getPlayerNameByPositionIndex(new Position(0).getIndex()))
+                .isEqualTo(new Player("iu", 0).getName());
     }
 
 

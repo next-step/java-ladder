@@ -2,19 +2,19 @@ package ladder.domain;
 
 public class PlayerLog {
 
-    private Player player;
-    private Position position;
+    private String name;
+    private int position;
 
-    public PlayerLog(Player player) {
-        this.player = player;
-        this.position = player.getPosition();
+    public PlayerLog(String name, int position) {
+        this.name = name;
+        this.position = position;
     }
 
-    public Player getPlayer() {
-        return this.player;
+    public String getName() {
+        return this.name;
     }
 
-    public Position getPosition() {
+    public int getPosition() {
         return this.position;
     }
 

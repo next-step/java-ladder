@@ -10,8 +10,9 @@ public class ResultView {
     public void displayLadderplayers(Players players) {
         System.out.println(LADDER_RESULT_INTRO_MESSAGE);
         for (String name : players.getPlayerName()) {
-            System.out.println(String.format("%" + Player.NAME_LIMIT + "s",name));
+            System.out.print(String.format("%" + Player.NAME_LIMIT + "s",name));
         }
+        System.out.println();
     }
 
     public void displayLadder(Ladder ladder) {
