@@ -28,7 +28,8 @@ public class LadderGameApplication {
         resultView.displayLadderReulst(rewards);
         ladder.playLadderGame(players);
 
-        new PlayerResultView(new LadderResultOutput(players, rewards)).displayPlayerResult();
+        new PlayerResultView(new LadderResultOutput(players, rewards))
+                .displayPlayerResult();
 
     }
 

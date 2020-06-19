@@ -8,9 +8,8 @@ public class LadderResultOutput {
     private Map<String, String> resultOutput = new HashMap<>();
 
     public LadderResultOutput(Players players, Rewards rewards) {
-        for (Position position : players.getPlayerResultPosition()) {
-            resultOutput.put(players.getPlayerByPosition(position).getName(),
-                    rewards.getResultByPositionIndex(position.getIndex()).getRewardInfo());
+        for (int i = 0; i < rewards.getResultCount(); i++) {
+            resultOutput.put(players.getPlayerName(i),rewards.getRewardInfo(i));
         }
     }
 

@@ -4,16 +4,10 @@ import java.util.Objects;
 
 public class Reward {
 
-    public String rewardInfo;
-    public Position position;
+    private String rewardInfo;
 
-    public Reward(String result, int position) {
+    public Reward(String result) {
         this.rewardInfo = result;
-        this.position = new Position(position);
-    }
-
-    public Position getPosition() {
-        return position;
     }
 
     public String getRewardInfo() {
@@ -25,12 +19,11 @@ public class Reward {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reward that = (Reward) o;
-        return Objects.equals(rewardInfo, that.rewardInfo) &&
-                Objects.equals(position, that.position);
+        return Objects.equals(rewardInfo, that.rewardInfo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rewardInfo, position);
+        return Objects.hash(rewardInfo);
     }
 }

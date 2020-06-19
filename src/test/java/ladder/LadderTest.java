@@ -24,15 +24,11 @@ public class LadderTest {
 
         String reulstsString = "꽝,꽝,5000원,5000";
         Rewards rewards = new Rewards(reulstsString);
+        LadderResultOutput output = new LadderResultOutput(players, rewards);
 
-        for(Position p : players.getPlayerResultPosition()) {
-            int playerPositionIndex = players.getPlayerByPosition(Position.of(p.getIndex()))
-                                        .getPosition()
-                                        .getIndex();
-            int expectedPositionIndex = rewards.getResultByPositionIndex(p.getIndex())
-                                        .getPosition()
-                                        .getIndex();
-            assertThat(playerPositionIndex).isEqualTo(expectedPositionIndex);
+        for (int i = 0; i < rewards.getResultCount(); i++) {
+            assertThat(output.getResultOutput().get(players.getPlayerName(i))).isEqualTo(rewards.getRewardInfo(i));
         }
+
     }
 }

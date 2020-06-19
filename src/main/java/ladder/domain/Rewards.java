@@ -14,7 +14,7 @@ public class Rewards {
     public Rewards(String ladderResults) {
         String[] resultArray = ladderResults.split(RESULT_DELIMITER);
         this.results = IntStream.range(0, resultArray.length)
-                        .mapToObj(i -> new Reward(resultArray[i], i))
+                        .mapToObj(i -> new Reward(resultArray[i]))
                         .collect(Collectors.toList());
     }
 
@@ -22,24 +22,8 @@ public class Rewards {
         return results.size();
     }
 
-    public Reward getResult(Reward selectorResult) {
-        return results.stream()
-                .filter(reward -> reward.equals(selectorResult))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
-    public Reward getResultByPositionIndex(int index) {
-        return results.stream()
-                      .filter(reward -> reward.getPosition().getIndex() == index)
-                      .findFirst()
-                      .orElseThrow(IllegalArgumentException::new);
-    }
-
-    public List<String> rewardInfo() {
-        return results.stream()
-                .map(Reward::getRewardInfo)
-                .collect(Collectors.toList());
+    public String getRewardInfo(int index) {
+        return results.get(index).getRewardInfo();
     }
 
 }

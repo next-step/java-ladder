@@ -9,8 +9,8 @@ public class ResultView {
 
     public void displayLadderplayers(Players players) {
         System.out.println(LADDER_RESULT_INTRO_MESSAGE);
-        for (String name : players.getPlayerName()) {
-            System.out.print(String.format("%" + Player.NAME_LIMIT + "s",name));
+        for (int i = 0; i < players.getPlayerCount(); i++) {
+            System.out.print(String.format("%" + Player.NAME_LIMIT + "s", players.getPlayerName(i)));
         }
         System.out.println();
     }
@@ -31,8 +31,8 @@ public class ResultView {
     }
 
     public void displayLadderReulst(Rewards rewards) {
-        for (String reward : rewards.rewardInfo()) {
-            System.out.print(String.format("%" + Player.NAME_LIMIT + "s",reward));
+        for (int i = 0; i < rewards.getResultCount(); i++) {
+            System.out.print(String.format("%" + Player.NAME_LIMIT + "s", rewards.getRewardInfo(i)));
         }
         System.out.println();
     }

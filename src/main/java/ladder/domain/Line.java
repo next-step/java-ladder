@@ -21,7 +21,7 @@ public class Line {
         return points.get(position);
     }
 
-    public Draw getLastDraw() {
+    private Draw getLastDraw() {
         return points.stream()
                 .reduce((beforeDraw, afterDraw) -> afterDraw)
                 .orElse(new Draw(RandomGenerator.getRandom()));

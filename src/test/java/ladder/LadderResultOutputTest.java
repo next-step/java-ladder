@@ -20,12 +20,6 @@ public class LadderResultOutputTest {
         assertThat(output.getResultTargetOutput("iu")).isEqualTo("꽝1");
     }
 
-    @Test
-    void getResultOutPutTest() {
-        output.getResultOutput().forEach((name, rewardInfo) -> {
-            assertThat(name).isEqualTo(players.getPlayerByName(name).getName());
-        });
-    }
 }
 
 
