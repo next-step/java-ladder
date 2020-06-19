@@ -22,12 +22,12 @@ public class RandomLadderGenerator implements LadderGenerator {
         List<Line> lines = new ArrayList<>();
 
         for (int i = Y_OFFSET; i < height; i++) {
-            lines.add(getNextLine(width));
+            lines.add(getNextLine());
         }
         return lines;
     }
 
-    private Line getNextLine(int width) {
+    private Line getNextLine() {
         List<Boolean> holders = new ArrayList<>();
         boolean exHolder = FIRST_HOLDER;
 
