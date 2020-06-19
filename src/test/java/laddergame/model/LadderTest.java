@@ -14,9 +14,9 @@ class LadderTest {
   @MethodSource("heightAndNamesProvider")
   void createByHeightAndNamesStrArr(PositiveNumber height, String namesStr) {
     String[] nameStrArr = namesStr.split(",");
-    Names names = Names.createBy(namesStr.split(","));
+    PlayerNames playerNames = PlayerNames.createBy(namesStr.split(","));
 
-    Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, names.getCountOfNames());
+    Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, playerNames.getCountOfNames());
 
     assertThat(ladder.getLines().size()).isEqualTo(height.getValue());
 

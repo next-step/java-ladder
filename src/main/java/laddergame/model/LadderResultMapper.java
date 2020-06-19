@@ -18,7 +18,7 @@ public class LadderResultMapper {
     this.ladderResultMap = ladderResultMap;
   }
 
-  public static LadderResultMapper createBy(Ladder ladder, Names players, Names results) {
+  public static LadderResultMapper createBy(Ladder ladder, PlayerNames players, ResultNames results) {
     return new LadderResultMapper(Stream.iterate(0, positionNum -> positionNum + 1)
         .limit(players.getCountOfNames())
         .collect(Collectors.toMap(

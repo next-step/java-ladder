@@ -3,8 +3,9 @@ package laddergame;
 import laddergame.model.Ladder;
 import laddergame.model.LadderResultMapper;
 import laddergame.model.Name;
-import laddergame.model.Names;
+import laddergame.model.PlayerNames;
 import laddergame.model.PositiveNumber;
+import laddergame.model.ResultNames;
 import laddergame.view.LadderGameInput;
 import laddergame.view.LadderGameView;
 
@@ -14,10 +15,10 @@ public class LadderGame {
 
   public static void main(String[] args) {
     String[] playerNames = LadderGameInput.getPlayerNamesInputWithPrintMsg();
-    Names players = Names.createBy(playerNames);
+    PlayerNames players = PlayerNames.createBy(playerNames);
 
     String[] resultNames = LadderGameInput.getResultNamesInputWithPrintMsg();
-    Names results = Names.createByNamesWithLength(resultNames, players.getCountOfNames());
+    ResultNames results = ResultNames.createByNamesWithLength(resultNames, players.getCountOfNames());
 
     PositiveNumber ladderHeight = new PositiveNumber(LadderGameInput.getHeightInputWithPrintMsg());
 

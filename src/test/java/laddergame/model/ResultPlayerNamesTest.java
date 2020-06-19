@@ -7,30 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class NamesTest {
-
-  @ParameterizedTest
-  @MethodSource("namesProvider")
-  @DisplayName("배열로 생성 테스트")
-  void createBy(List<String> nameStrList, String namesStr) {
-    Names namesCreatedByList = Names.createBy(nameStrList.toArray(new String[0]));
-    Names namesCreatedByStr = Names.createBy(namesStr.split(","));
-
-    assertThat(namesCreatedByList).isEqualTo(namesCreatedByStr);
-  }
-
-  public static Stream<Arguments> namesProvider() {
-    return Stream.of(
-        arguments(
-            Arrays.asList("test1", "test2", "test3", "test4"),
-            "test1, test2, test3, test4"
-        )
-    );
-  }
+class ResultPlayerNamesTest {
 
   @ParameterizedTest
   @MethodSource("namesProviderWithLength")
@@ -38,8 +20,8 @@ class NamesTest {
       int length) {
     String[] nameStrArray = nameList.toArray(new String[0]);
 
-    Names namesCreatedByList = Names.createByNamesWithLength(nameStrArray, length);
-    Names namesCreatedByStr = Names.createByNamesWithLength(namesStr.split(","), length);
+    ResultNames namesCreatedByList = ResultNames.createByNamesWithLength(nameStrArray, length);
+    ResultNames namesCreatedByStr = ResultNames.createByNamesWithLength(namesStr.split(","), length);
 
     assertThat(namesCreatedByList).isEqualTo(namesCreatedByStr);
   }
@@ -60,7 +42,7 @@ class NamesTest {
   void createByNamesWithLength_Wrong(List<String> nameStrList, int length) {
     String[] nameStrArray = nameStrList.toArray(new String[0]);
     assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-      Names.createByNamesWithLength(nameStrArray, length);
+      ResultNames.createByNamesWithLength(nameStrArray, length);
     });
   }
 

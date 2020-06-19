@@ -5,32 +5,22 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Names {
+public class ResultNames {
 
   private final List<Name> names;
 
-  public Names(List<Name> names) {
+  public ResultNames(List<Name> names) {
     this.names = names;
   }
 
-  public static Names createBy(String[] names) {
-    return new Names(Stream.of(names)
-        .map(s -> new Name(s.trim()))
-        .collect(Collectors.toList()));
-  }
-
-  public static Names createByNamesWithLength(String[] names, int length) {
+  public static ResultNames createByNamesWithLength(String[] names, int length) {
     if (names.length != length) {
       throw new IllegalArgumentException("입력 값의 길이가 지정된 길이와 다릅니다.");
     }
 
-    return new Names(Stream.of(names)
+    return new ResultNames(Stream.of(names)
         .map(Name::new)
         .collect(Collectors.toList()));
-  }
-
-  public int getCountOfNames() {
-    return names.size();
   }
 
   public Name getNameByIndex(int index) {
@@ -45,7 +35,7 @@ public class Names {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Names names1 = (Names) o;
+    ResultNames names1 = (ResultNames) o;
     return names.equals(names1.names);
   }
 

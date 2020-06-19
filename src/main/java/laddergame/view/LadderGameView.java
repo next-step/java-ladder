@@ -3,12 +3,12 @@ package laddergame.view;
 import laddergame.model.Ladder;
 import laddergame.model.LadderResultMapper;
 import laddergame.model.Name;
-import laddergame.model.Names;
+import laddergame.model.PlayerNames;
 import laddergame.model.PlayerNotExistException;
+import laddergame.model.ResultNames;
 
 public class LadderGameView {
 
-  private final static Name ALL = new Name("all");
   private final static String COLON_WITH_WHITESPACE = " : ";
   private final static String NEWLINE = "\n";
 
@@ -24,7 +24,7 @@ public class LadderGameView {
     System.out.println("최대 사다리 높이는 몇 개인가요?");
   }
 
-  public static void printLadder(Names players, Ladder ladder, Names results) {
+  public static void printLadder(PlayerNames players, Ladder ladder, ResultNames results) {
     StringBuilder sb = new StringBuilder("실행결과").append(NEWLINE);
 
     sb.append(players.toString()).append(NEWLINE);
@@ -56,12 +56,12 @@ public class LadderGameView {
   public static void printResultOfAll(LadderResultMapper ladderResultMapper) {
     StringBuilder sb = new StringBuilder("실행 결과").append(NEWLINE);
 
-      ladderResultMapper.getEntrySet().forEach(resultEntry -> {
-        sb.append(resultEntry.getKey())
-            .append(COLON_WITH_WHITESPACE)
-            .append(resultEntry.getValue())
-            .append(NEWLINE);
-      });
+    ladderResultMapper.getEntrySet().forEach(resultEntry -> {
+      sb.append(resultEntry.getKey())
+          .append(COLON_WITH_WHITESPACE)
+          .append(resultEntry.getValue())
+          .append(NEWLINE);
+    });
 
     System.out.println(sb);
   }

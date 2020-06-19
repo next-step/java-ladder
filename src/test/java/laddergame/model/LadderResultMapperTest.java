@@ -59,7 +59,7 @@ class LadderResultMapperTest {
 
   @ParameterizedTest
   @MethodSource("provideLadderPlayersResults")
-  void  createBy(Ladder ladder, Names players, Names results, Map<Name, Name> expected) {
+  void  createBy(Ladder ladder, PlayerNames players, ResultNames results, Map<Name, Name> expected) {
     LadderResultMapper resultMap = LadderResultMapper.createBy(ladder, players, results);
     System.out.println(resultMap);
     assertThat(resultMap.getEntrySet()).isEqualTo(expected.entrySet());
@@ -80,14 +80,14 @@ class LadderResultMapperTest {
                     new Point(true)
                 ))
             )),
-            new Names(
+            new PlayerNames(
                 Arrays.asList(
                     new Name("name1"),
                     new Name("name2"),
                     new Name("name3")
                 )
             ),
-            new Names(
+            new PlayerNames(
                 Arrays.asList(
                     new Name("res1"),
                     new Name("res2"),
