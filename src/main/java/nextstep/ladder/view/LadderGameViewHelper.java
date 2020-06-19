@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LadderGameViewHelper {
 
-    public static List<String> parseUserNameInput(String userNameInput) {
+    public static List<String> parseInputWithComma(String userNameInput) {
         validateUserNameInput(userNameInput);
         return Arrays.asList(userNameInput.split(LadderConstants.USER_NAME_SEPARATOR));
     }

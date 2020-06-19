@@ -18,7 +18,14 @@ public class LadderGameView {
         System.out.println(LadderConstants.USER_NAME_INPUT_MESSAGE);
         Scanner scanner = new Scanner(System.in);
         String userNameInput = scanner.nextLine();
-        return LadderGameViewHelper.parseUserNameInput(userNameInput);
+        return LadderGameViewHelper.parseInputWithComma(userNameInput);
+    }
+
+    public static List<String> inputExecutionResults() {
+        System.out.println(LadderConstants.EXECUTION_RESULT_INPUT_MESSAGE);
+        Scanner scanner = new Scanner(System.in);
+        String executionResult = scanner.nextLine();
+        return LadderGameViewHelper.parseInputWithComma(executionResult);
     }
 
     public static Integer inputLadderHeight() {
