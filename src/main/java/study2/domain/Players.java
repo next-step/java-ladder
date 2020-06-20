@@ -9,7 +9,7 @@ import org.junit.platform.commons.util.StringUtils;
 public class Players {
 
 	private static final String empty = " ";
-	List<Player> players;
+	private List<Player> players;
 
 	public Players(List<String> names) {
 		this.players = createPlayers(names);
