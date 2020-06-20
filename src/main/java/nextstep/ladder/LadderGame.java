@@ -17,7 +17,7 @@ public class LadderGame {
 
         GameResult gameResult = GameResult.of(ladder);
 
-        while(true) {
+        while (true) {
             ResultView.printGameResult(gameResult, InputView.scanPlayerName());
         }
     }

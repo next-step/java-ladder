@@ -21,7 +21,7 @@ public class Line {
     private void createLine(int playerCount) {
         boolean lined;
 
-        for(int i = 0; i < playerCount-1; i++) {
+        for (int i = 0; i < playerCount - 1; i++) {
             lined = (i == 0 || !isBeforeLined(i)) && liningStrategy.canDrawLine();
             points.add(i, lined);
         }
@@ -32,7 +32,7 @@ public class Line {
     }
 
     private boolean isBeforeLined(int index) {
-        if(index == 0) {
+        if (index == 0) {
             return false;
         }
 
@@ -40,7 +40,7 @@ public class Line {
     }
 
     private boolean isAfterLined(int index) {
-        if(index >= points.size()) {
+        if (index >= points.size()) {
             return false;
         }
 

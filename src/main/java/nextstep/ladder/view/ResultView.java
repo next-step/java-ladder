@@ -44,7 +44,7 @@ public class ResultView {
         System.out.println();
         System.out.println("실행결과");
 
-        if(playerName.equalsIgnoreCase("all")) {
+        if (playerName.equalsIgnoreCase("all")) {
             gameResult.getGameResults()
                     .forEach(ResultView::printGameResult);
         } else {

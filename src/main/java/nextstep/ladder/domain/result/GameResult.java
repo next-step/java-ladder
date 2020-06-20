@@ -14,7 +14,7 @@ public class GameResult {
     private final Map<Player, LadderResult> gameResults = new HashMap<>();
 
     private GameResult(Players players, Lines lines, LadderResults ladderResults) {
-        for(int i = 0; i < players.getPlayerCount(); i++) {
+        for (int i = 0; i < players.getPlayerCount(); i++) {
             gameResults.put(players.find(i), ladderResults.find(findLastPlayerPosition(lines, i)));
         }
     }
@@ -26,7 +26,7 @@ public class GameResult {
     private int findLastPlayerPosition(final Lines lines, final int playerPosition) {
         int position = playerPosition;
 
-        for(Line line : lines.getLines()) {
+        for (Line line : lines.getLines()) {
             position = line.findNextPosition(position);
         }
 

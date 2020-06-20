@@ -35,7 +35,7 @@ public class InputView {
         try {
             input = scanner.nextInt();
             scanner.nextLine();     // 버퍼에서 개행문자 제거
-        } catch(InputMismatchException e) {
+        } catch (InputMismatchException e) {
             scanner.nextLine();     // 버퍼에서 개행문자 제거
             System.out.println("숫자만 입력 가능합니다. 다시 입력해주세요.");
 

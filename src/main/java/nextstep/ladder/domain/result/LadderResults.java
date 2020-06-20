@@ -12,12 +12,12 @@ public class LadderResults {
         validateResults(playerCount, resultArray);
 
         ladderResults = Arrays.stream(resultArray)
-                    .map(LadderResult::new)
-                    .collect(Collectors.toList());
+                .map(LadderResult::new)
+                .collect(Collectors.toList());
     }
 
     private void validateResults(int playerCount, String[] results) {
-        if(playerCount != results.length) {
+        if (playerCount != results.length) {
             throw new IllegalArgumentException("실행결과 수는 플레이어 수와 같아야 합니다.");
         }
     }
