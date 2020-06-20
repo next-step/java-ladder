@@ -112,6 +112,18 @@ public class PointsTest {
 		);
 	}
 
+	public static Stream<Arguments> 입력된_좌표값이_현재_좌표개수보다_큰_모음() {
+		Points points = Points.ofPoints(Arrays.asList(
+			Point.ofPoint(false),
+			Point.ofPoint(false)
+		));
+		return Stream.of(
+			Arguments.of(points, 2),
+			Arguments.of(points, 10),
+			Arguments.of(points, 500)
+		);
+	}
+
 	@DisplayName("주어진 index 위치 값에서 왼쪽으로 이동이 가능한지 판별한다. 즉, n번째 좌표에서 n-1 좌표로 이동이 가능하다.")
 	@MethodSource("왼쪽으로_이동이_가능한_모음")
 	@ParameterizedTest
@@ -134,5 +146,14 @@ public class PointsTest {
 	void 좌표가_유지된다(Points points, int givenBeforePosition, int expectedAfterPosition) {
 		int movedPosition = points.movePosition(givenBeforePosition);
 		assertThat(movedPosition).isEqualTo(expectedAfterPosition);
+	}
+
+	@DisplayName("현재 주어진 좌표의 개수보다 입력된 좌표값이 더 큰 경우 오류를 반환한다.")
+	@MethodSource("입력된_좌표값이_현재_좌표개수보다_큰_모음")
+	@ParameterizedTest
+	void 주어진_좌표값은_좌표개수를_초과_못한다(Points points, int givenBeforePosition) {
+		assertThatThrownBy(
+			() -> points.movePosition(givenBeforePosition)
+		).isInstanceOf(IllegalArgumentException.class);
 	}
 }

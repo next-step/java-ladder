@@ -42,6 +42,7 @@ public class Points {
 	}
 
 	public int movePosition(int givenPosition) {
+		validateGivenPosition(givenPosition);
 		if (canMoveRight(givenPosition)) {
 			return givenPosition + 1;
 		}
@@ -49,6 +50,12 @@ public class Points {
 			return givenPosition - 1;
 		}
 		return givenPosition;
+	}
+
+	private void validateGivenPosition(int givenPosition) {
+		if (givenPosition >= points.size()) {
+			throw new IllegalArgumentException("your given position is out of bound to current list indexes.");
+		}
 	}
 
 	private boolean canMoveRight(int givenPosition) {
