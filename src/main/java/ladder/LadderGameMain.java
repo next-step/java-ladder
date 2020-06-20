@@ -11,6 +11,6 @@ public class LadderGameMain {
         LadderRequestDto ladderRequestDto = InputView.inputParameters();
         LadderResponseDto ladderResponseDto = LadderGameService.play(ladderRequestDto);
 
-        ResultView.print(ladderResponseDto);
+        ResultView.printLadder(ladderResponseDto);
     }
 }

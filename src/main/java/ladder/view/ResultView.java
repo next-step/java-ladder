@@ -6,8 +6,9 @@ import ladder.dto.LadderResponseDto;
 public class ResultView {
     private final static String PERSON_NAME_FORMAT = "%6s";
     private final static String NEW_LINE = System.lineSeparator();
+    private static final String INIT_LINE_SPACE = "      ";
 
-    public static void print(LadderResponseDto ladderResponseDto) {
+    public static void printLadder(LadderResponseDto ladderResponseDto) {
         arrangePersons(ladderResponseDto.getPersons());
         System.out.print(NEW_LINE);
         arrangeLadder(ladderResponseDto.getLadder());
@@ -29,9 +30,9 @@ public class ResultView {
 
     private static void arrangeLadder(Ladder ladder) {
         ladder.getLayers()
-              .stream()
-              .forEach(line -> {
-                  System.out.println(line.toString());
+              .forEach(layer -> {
+                  System.out.print(INIT_LINE_SPACE);
+                  System.out.println(layer.toString());
               });
     }
 
