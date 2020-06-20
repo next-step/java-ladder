@@ -1,19 +1,27 @@
 package nextstep.ladder.application;
 
+import nextstep.ladder.application.prize.Prizes;
+import nextstep.ladder.application.view.InputView;
 import nextstep.ladder.application.view.OutputView;
+import nextstep.ladder.domain.height.Height;
 import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.util.painter.PaintingStrategy;
 
 public class LadderGameController {
 
-	private final LadderGameService ladderGameService;
+	private final LadderGame ladderGame;
 
 	public LadderGameController(PaintingStrategy paintingStrategy) {
-		this.ladderGameService = new LadderGameService(paintingStrategy);
+		this.ladderGame = new LadderGame(paintingStrategy);
 	}
 
 	public void startGame() {
-		Ladder ladder = ladderGameService.getLadder();
+		Players players = InputView.getPlayers();
+		Height height = InputView.getHeights();
+		Prizes prizes = InputView.askPrizes();
+		Ladder ladder = ladderGame.start(players, height);
 		OutputView.printLadder(ladder);
+		OutputView.printPrizes(prizes);
 	}
 }
