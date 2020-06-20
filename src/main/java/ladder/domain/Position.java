@@ -3,9 +3,10 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
-    private static final int INCREASE_ONE = 1;
-    private static final int POSITION_ZERO = 0;
     public static final String POSITION_EXCEPTION = "위치값은 음수가 될 수 없습니다.";
+
+    private static final int INCREASE = 1;
+    private static final int INIT_POSITION = 0;
 
     private int position;
 
@@ -15,13 +16,13 @@ public class Position {
     }
 
     private void validatePosition(int position) {
-        if (position < POSITION_ZERO){
+        if (position < INIT_POSITION){
             throw new IllegalArgumentException(POSITION_EXCEPTION);
         }
     }
 
     public Position increase() {
-        return new Position(position + INCREASE_ONE);
+        return new Position(position + INCREASE);
     }
 
     @Override

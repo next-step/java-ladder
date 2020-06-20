@@ -11,9 +11,10 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class Persons {
+    public static final String LADDER_GAME_MINIMUM_EXCEPTION = "사다리 게임은 최소 2인 이상이 진행 가능합니다.";
+
     private static final int LADDER_GAME_MINIMUM_PLAYER = 2;
     private static final String PERSONS_NULL_EXCEPTION = "참여자를 빈값으로 입력할 수 없습니다.";
-    public static final String LADDER_GAME_MINIMUM_EXCEPTION = "사다리 게임은 최소 2인 이상이 진행 가능합니다.";
 
     private final List<Person> persons;
 
@@ -30,8 +31,8 @@ public class Persons {
                      .collect(collectingAndThen(toList(), Persons::convertObject));
     }
 
-    private static void validatePersonsNull(String Persons) {
-        if (Objects.isNull(Persons) || Persons.isEmpty()){
+    private static void validatePersonsNull(String persons) {
+        if (Objects.isNull(persons) || persons.isEmpty()){
             throw new IllegalArgumentException(PERSONS_NULL_EXCEPTION);
         }
     }

@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class LadderResults {
     public static final String LADDER_RESULTS_INVALID_EXCEPTION = "결과값은 참여자 숫자와 다를 수 없습니다.";
+
     private static final String LADDER_RESULTS_NULL_EXCEPTION = "결과값은 빈값으로 입력할 수 없습니다.";
 
     private final List<String> ladderResults;
