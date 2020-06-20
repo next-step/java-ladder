@@ -19,9 +19,7 @@ public class ResultView {
        persons.getPersons()
               .stream()
               .map(person -> formatWord(person.getName()))
-              .forEach(name -> {
-                  System.out.print(name);
-              });
+              .forEach(System.out::print);
     }
 
     private static String formatWord(String name) {
