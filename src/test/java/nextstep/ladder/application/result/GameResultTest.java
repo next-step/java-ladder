@@ -1,6 +1,7 @@
 package nextstep.ladder.application.result;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -80,6 +81,12 @@ public class GameResultTest {
 		//when
 		GameResult gameResult = GameResult.ofPlayersAndPrizes(newPlayers, prizes);
 		//then
-		assertThat(gameResult.getPlayerPrizes()).isNotEmpty();
+		assertAll(
+			() -> assertThat(gameResult.getPlayerPrizes()).isNotEmpty(),
+			() -> assertThat(gameResult.getPlayerPrizes().get(players.getPlayers().get(0)).getName()).isEqualTo("3000"),
+			() -> assertThat(gameResult.getPlayerPrizes().get(players.getPlayers().get(1)).getName()).isEqualTo("꽝"),
+			() -> assertThat(gameResult.getPlayerPrizes().get(players.getPlayers().get(2)).getName()).isEqualTo("꽝"),
+			() -> assertThat(gameResult.getPlayerPrizes().get(players.getPlayers().get(3)).getName()).isEqualTo("5000")
+		);
 	}
 }

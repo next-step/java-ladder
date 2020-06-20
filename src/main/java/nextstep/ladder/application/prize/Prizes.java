@@ -22,4 +22,8 @@ public class Prizes {
 		prizes.forEach(prize -> System.out.printf("%-6s", prize.getName()));
 		System.out.println();
 	}
+
+	public int prizeIndex(Prize prize) {
+		return prizes.indexOf(prize);
+	}
 }

@@ -70,4 +70,11 @@ public class Players {
 		});
 		return this;
 	}
+
+	public Player playerPrizeMapFactory(int prizeIndex) {
+		return players.stream()
+			.filter(player -> player.getPosition() == prizeIndex)
+			.reduce((a, b) -> b)
+			.orElseThrow(() -> new IllegalArgumentException("no user"));
+	}
 }
