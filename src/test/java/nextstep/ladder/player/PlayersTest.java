@@ -22,8 +22,8 @@ public class PlayersTest {
 	@DisplayName("참여하는 플레이어의 이름이 중복되면 오류를 반환한다.")
 	@Test
 	void 참여하는_플레이어의_이름이_중복되면_오류를_반환한다() {
-		List<Player> players = Arrays.asList(Player.ofName("pobi"), Player.ofName("Brian"),
-			Player.ofName("Brian"));
+		List<Player> players = Arrays.asList(Player.ofNameAndPosition("pobi", 0), Player.ofNameAndPosition("Brian", 1),
+			Player.ofNameAndPosition("Brian", 2));
 		assertThatThrownBy(
 			() -> Players.ofPlayers(players)
 		).isInstanceOf(IllegalArgumentException.class);

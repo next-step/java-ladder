@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import nextstep.ladder.height.Height;
 import nextstep.ladder.player.Player;
@@ -21,8 +22,11 @@ public class InputView {
 		System.out.println("참여할 플레이어 이름을 입력하세요. 선수 간에는 콤마(,)로 구분합니다.");
 		String nameString = scanner.nextLine();
 
+		AtomicInteger index = new AtomicInteger(0);
+
 		return Arrays.stream(nameString.split(PLAYER_NAME_DELIMITER))
-			.map(Player::ofName)
+			.map(name -> Player.ofNameAndPosition(name, index.get()))
+			.peek(player -> index.getAndIncrement())
 			.collect(collectingAndThen(toList(), Players::ofPlayers));
 	}
 
