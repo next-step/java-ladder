@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import ladder.util.StringUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ladder.domain.Persons;
@@ -32,6 +33,6 @@ public class PersonsTest {
     void inputPersonsNullTest(String inputPersons){
         assertThatThrownBy(() -> Persons.of(inputPersons))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Persons.PERSONS_NULL_EXCEPTION);
+                .hasMessage(StringUtil.SPLIT_WORDS_EXCEPTION);
     }
 }
