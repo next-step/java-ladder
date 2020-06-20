@@ -13,4 +13,9 @@ public class User {
     public static User of(final Name name) {
         return new User(name);
     }
+
+    @Override
+    public String toString() {
+        return name.toString();
+    }
 }

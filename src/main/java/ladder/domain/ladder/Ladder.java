@@ -20,7 +20,7 @@ public class Ladder {
     }
 
     private void createUsers(List<String> names) {
-        names.forEach(name -> users.add(User.of(Name.of(name))));
+        names.forEach(name -> users.add(User.of(Name.of(name.trim()))));
     }
 
     private void createFootSteps(int height) {
@@ -48,8 +48,13 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return this.footSteps.stream()
-                .map(FootStep::toString)
-                .collect(Collectors.joining());
+        return new StringBuilder()
+                .append(this.users.stream()
+                        .map(User::toString)
+                        .collect(Collectors.joining()))
+                .append("\n")
+                .append(this.footSteps.stream()
+                        .map(FootStep::toString)
+                        .collect(Collectors.joining("\n"))).toString();
     }
 }

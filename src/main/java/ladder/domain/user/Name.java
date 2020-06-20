@@ -26,4 +26,9 @@ public class Name {
             throw new IllegalArgumentException("이름은 최대 5글자까지 입력할 수 있습니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-6s", name);
+    }
 }
