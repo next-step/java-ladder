@@ -8,10 +8,10 @@ public class Name {
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
 
-    private final String name;
+    private final String value;
 
-    private Name(String name) {
-        this.name = Optional.ofNullable(name)
+    private Name(String value) {
+        this.value = Optional.ofNullable(value)
                 .map(String::trim)
                 .filter(this::isValidLength)
                 .orElseThrow(IllegalArgumentException::new);
@@ -26,13 +26,13 @@ public class Name {
     }
 
     public String getValue() {
-        return this.name;
+        return this.value;
     }
 
     @Override
     public String toString() {
         return "Name{" +
-                "name='" + name + '\'' +
+                "value='" + value + '\'' +
                 '}';
     }
 
@@ -41,11 +41,11 @@ public class Name {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Name name1 = (Name) o;
-        return Objects.equals(name, name1.name);
+        return Objects.equals(value, name1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(value);
     }
 }

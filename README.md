@@ -23,11 +23,14 @@
   - [x] Null 입력하면 오류가 발생한다
 - Players
   - [x] 2명 이상의 Player를 관리한다
+- Height
+  - [x] 1 이상의 사다리 높이를 가진다
 - LadderGame
   - [ ]
-- Height
+- Ladder
   - [ ]
-- Bridge
+- Pillar
   - [ ]
 - Line
   - [ ] 
+

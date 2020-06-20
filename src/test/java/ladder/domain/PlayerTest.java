@@ -15,13 +15,6 @@ class PlayerTest {
                 .isThrownBy(() -> Player.create(null));
     }
 
-    @DisplayName("null 입력 예외 발생")
-    @Test
-    void create() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> Player.create(null));
-    }
-
     @DisplayName("입력한 이름을 반환")
     @Test
     void getName() {
