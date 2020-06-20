@@ -16,22 +16,22 @@ public class LadderLine {
 
     public static LadderLine of(int countOfPerson, LineStrategy lineStrategy) {
         List<Point> points = new ArrayList<>();
-        initFirst(points, lineStrategy);
-        initBody(countOfPerson, points, lineStrategy);
-        initLast(points);
+        addFirstPoint(points, lineStrategy);
+        addMiddlePoint(countOfPerson, points, lineStrategy);
+        addLastPoint(points);
         return new LadderLine(points);
     }
 
-    private static void initFirst(List<Point> points, LineStrategy lineStrategy) {
+    private static void addFirstPoint(List<Point> points, LineStrategy lineStrategy) {
         Point point = Point.first(lineStrategy.hasLine());
         points.add(point);
     }
 
-    private static void initBody(int countOfPerson, List<Point> points, LineStrategy lineStrategy) {
+    private static void addMiddlePoint(int countOfPerson, List<Point> points, LineStrategy lineStrategy) {
         IntStream.range(1, countOfPerson - 1).forEach(i -> points.add(points.get(i - 1).next(lineStrategy)));
     }
 
-    private static void initLast(List<Point> points) {
+    private static void addLastPoint(List<Point> points) {
         points.add(points.get(points.size() - 1));
     }
 
