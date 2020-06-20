@@ -1,4 +1,4 @@
-package step2.domain;
+package ladder.domain;
 
 import java.util.Objects;
 

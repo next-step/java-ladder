@@ -1,12 +1,12 @@
-package nextstep.step2;
+package nextstep.ladder;
 
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import step2.domain.Layer;
-import step2.domain.Point;
+import ladder.domain.Layer;
+import ladder.domain.Point;
 
 import java.util.List;
 

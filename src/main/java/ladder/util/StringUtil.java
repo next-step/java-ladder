@@ -1,4 +1,4 @@
-package step2.util;
+package ladder.util;
 
 public class StringUtil {
     private static final String DELIMITER = ",";

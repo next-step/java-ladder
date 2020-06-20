@@ -1,6 +1,6 @@
-package step2.domain;
+package ladder.domain;
 
-import step2.util.RandomGenerator;
+import ladder.util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,6 +1,6 @@
-package step2.domain;
+package ladder.domain;
 
-import step2.util.RandomGenerator;
+import ladder.util.RandomGenerator;
 
 public class Point {
     private static final int FIRST_POSITION = 0;

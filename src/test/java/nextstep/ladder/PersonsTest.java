@@ -1,8 +1,8 @@
-package nextstep.step2;
+package nextstep.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import step2.domain.Persons;
+import ladder.domain.Persons;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -1,4 +1,4 @@
-package step2.util;
+package ladder.util;
 
 import java.util.Random;
 

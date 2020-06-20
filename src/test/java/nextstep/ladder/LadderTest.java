@@ -1,10 +1,10 @@
-package nextstep.step2;
+package nextstep.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import step2.domain.Height;
-import step2.domain.Ladder;
+import ladder.domain.Height;
+import ladder.domain.Ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

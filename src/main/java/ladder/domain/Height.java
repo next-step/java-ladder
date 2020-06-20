@@ -1,4 +1,4 @@
-package step2.domain;
+package ladder.domain;
 
 public class Height {
     public static final String LADDER_MINIMUM_EXCEPTION = "사다리 게임은 최소 높이가 0보다는 크게 지정해야 합니다.";

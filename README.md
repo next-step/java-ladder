@@ -8,7 +8,7 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
-## step2 TODO list
+## ladder TODO list
 * ~~사람 이름 5글자 까지 설정 가능~~
 * ~~사람 이름 쉼표(,)로 구분하여 입력받음~~
 * ~~입력받은 사람 수만큼 라인(Line) 생성~~

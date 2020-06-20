@@ -1,6 +1,6 @@
-package step2.domain;
+package ladder.domain;
 
-import step2.util.StringUtil;
+import ladder.util.StringUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
