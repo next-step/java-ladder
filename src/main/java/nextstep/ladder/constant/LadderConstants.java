@@ -7,6 +7,7 @@ public class LadderConstants {
     }
 
     public static final String PLAYER_NAME_ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE = "사다리 게임을 진행할 사람의 이름을 입력해주세요.";
+    public static final String EXECUTION_RESULT_ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE = "사다리 게임의 결과를 입력해주세요.";
     public static final int FIRST_MOUNTING_BLOCK_INDEX = 0;
     public static final String USER_NAME_INPUT_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     public static final String EXECUTION_RESULT_INPUT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
@@ -19,5 +20,6 @@ public class LadderConstants {
     public static final String INVALID_NULL_USER_NAME_EXCEPTION_MESSAGE = "사다리 게임에 참여할 사람을 입력해주세요.";
     public static final String USER_NAME_SEPARATOR = ",";
     public static final int MAXIMUM_USER_NAME_LENGTH = 5;
+    public static final int MAXIMUM_EXECUTION_RESULT_LENGTH = 5;
     public static final String INVALID_USER_NAME_EXCEPTION_MESSAGE = "이름은 길이는 최대 5글자 입니다.";
 }

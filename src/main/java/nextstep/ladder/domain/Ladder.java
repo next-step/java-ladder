@@ -8,19 +8,14 @@ public class Ladder {
     private Lines lines;
     private ExecutionResults executionResults;
 
-    private Ladder(List<String> userNames, int ladderHeight) {
+    private Ladder(List<String> userNames, List<String> executionResults, int ladderHeight) {
         this.players = Players.of(userNames);
-        this.lines = Lines.of(userNames.size(), ladderHeight);
-    }
-
-    private Ladder(List<String> userNames, int ladderHeight, List<String> executionResults) {
-        this.players = Players.of(userNames);
-        this.lines = Lines.of(userNames.size(), ladderHeight);
         this.executionResults = ExecutionResults.of(executionResults);
+        this.lines = Lines.of(userNames.size(), ladderHeight);
     }
 
-    public static Ladder of(List<String> userNames, Integer ladderHeight) {
-        return new Ladder(userNames, ladderHeight);
+    public static Ladder of(List<String> userNames, List<String> executionResult, Integer ladderHeight) {
+        return new Ladder(userNames, executionResult, ladderHeight);
     }
 
     public Players getPlayers() {
@@ -29,5 +24,9 @@ public class Ladder {
 
     public Lines getLines() {
         return this.lines;
+    }
+
+    public ExecutionResults getExecutionResults() {
+        return executionResults;
     }
 }

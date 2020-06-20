@@ -1,6 +1,8 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.constant.LadderConstants;
+import nextstep.ladder.domain.ExecutionResult;
+import nextstep.ladder.domain.ExecutionResults;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
@@ -42,6 +44,8 @@ public class LadderGameView {
         viewPlayers(players);
         Lines lines = ladder.getLines();
         viewLadder(lines);
+        ExecutionResults executionResults = ladder.getExecutionResults();
+        viewExecutionResults(executionResults);
     }
 
     private static void viewPlayers(Players players) {
@@ -58,7 +62,15 @@ public class LadderGameView {
         }
     }
 
-    public static void viewLine(List<MountingBlock> mountingBlocks) {
+    private static void viewExecutionResults(ExecutionResults executionResults) {
+        for (ExecutionResult executionResult : executionResults.getExecutionResults()) {
+            String leftPad = executionResult.convertExecutionResultWithLeftPad();
+            System.out.print(leftPad);
+        }
+        System.out.println();
+    }
+
+    private static void viewLine(List<MountingBlock> mountingBlocks) {
         drawFirstHeight();
         for (MountingBlock mountingBlock : mountingBlocks) {
             drawMountingBlock(mountingBlock.getMountingBlock());
