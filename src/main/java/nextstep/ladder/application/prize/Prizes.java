@@ -17,4 +17,9 @@ public class Prizes {
 	public List<Prize> getPrizes() {
 		return Collections.unmodifiableList(prizes);
 	}
+
+	public void printPrizes() {
+		prizes.forEach(prize -> System.out.printf("%-6s", prize.getName()));
+		System.out.println();
+	}
 }

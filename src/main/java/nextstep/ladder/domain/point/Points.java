@@ -66,4 +66,12 @@ public class Points {
 		int beforeGivenPosition = givenPosition - 1;
 		return givenPosition > 0 && points.get(beforeGivenPosition).isConnectedToNextPoint();
 	}
+
+	public void printPoints() {
+		points.forEach(point -> {
+				System.out.print("|");
+				System.out.printf("%-5s", point.isConnectedToNextPoint() ? "-----" : "");
+			}
+		);
+	}
 }

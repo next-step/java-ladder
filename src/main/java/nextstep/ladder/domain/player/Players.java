@@ -64,6 +64,7 @@ public class Players {
 
 	public Players determinePlayersPositionResult(Line line) {
 		this.players.forEach(player -> {
+			//TODO: code smell이 나는데 뭔가 어떻게 바꿔야 할 지 생각이 나지를 않는다.
 			int newPoint = line.getPoints().movePosition(player.getPosition());
 			player.updatePosition(newPoint);
 		});
