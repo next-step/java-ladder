@@ -1,6 +1,7 @@
 package nextstep.ladder.application.view;
 
 import nextstep.ladder.application.prize.Prizes;
+import nextstep.ladder.application.result.GameResult;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.player.Players;
@@ -30,5 +31,18 @@ public class OutputView {
 
 	public static void printPrizes(Prizes prizes) {
 		prizes.printPrizes();
+	}
+
+	public static void printPlayerResult(GameResult gameResult, Players players) {
+		String playerName = InputView.askPlayerName();
+		System.out.println(playerName);
+		if (playerName.equals("all")) {
+			printResults(gameResult);
+		}
+		gameResult.printPlayerResult(playerName, players);
+	}
+
+	public static void printResults(GameResult result) {
+		System.out.println(result.toString());
 	}
 }
