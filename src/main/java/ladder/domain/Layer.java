@@ -14,7 +14,7 @@ public class Layer {
     private static final int INDEX_ONE = 1;
     private static final int ONE = 1;
     private static final int MINIMUN_POINTS = 2;
-    private static final String INIT_LINE_SPACE = "      ";
+
 
     private List<Point> points;
 
@@ -64,9 +64,7 @@ public class Layer {
 
     @Override
     public String toString() {
-        System.out.print(INIT_LINE_SPACE);
         return points.stream()
-                     .limit(points.size())
                      .map(Point::toString)
                      .collect(Collectors.joining());
     }
