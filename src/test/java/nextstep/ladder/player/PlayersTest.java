@@ -28,4 +28,17 @@ public class PlayersTest {
 			() -> Players.ofPlayers(players)
 		).isInstanceOf(IllegalArgumentException.class);
 	}
+
+	@DisplayName("참여하는 플레이어의 수보다 플레이어의 인덱스가 더 높으면 오류를 반환한다.")
+	@Test
+	void 플레이어의_위치가_전체_플레이어의_인덱스를_넘어가면_오류를_반환한다() {
+		List<Player> players = Arrays.asList(
+			Player.ofNameAndPosition("jack", 0),
+			Player.ofNameAndPosition("pobi", 5),
+			Player.ofNameAndPosition("crong", 100)
+		);
+		assertThatThrownBy(
+			() -> Players.ofPlayers(players)
+		).isInstanceOf(IllegalArgumentException.class);
+	}
 }

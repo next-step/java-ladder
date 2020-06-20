@@ -36,6 +36,10 @@ public class Player {
 		return this.position;
 	}
 
+	public boolean validatePosition(int size) {
+		return ! (this.position > size);
+	}
+
 	public String getName() {
 		return name;
 	}

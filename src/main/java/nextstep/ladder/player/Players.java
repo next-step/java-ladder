@@ -16,6 +16,7 @@ public class Players {
 	public static Players ofPlayers(List<Player> players) {
 		validatePlayerNumIsLargerThanZero(players);
 		validatePlayerNameDistinct(players);
+		validatePlayerPositionNotExceedSize(players);
 		return new Players(players);
 	}
 
@@ -29,6 +30,12 @@ public class Players {
 	private static void validatePlayerNameDistinct(List<Player> players) {
 		if (getDistinctNameCount(players) != players.size()) {
 			throw new IllegalArgumentException("please double check whether player name is not distinct.");
+		}
+	}
+
+	private static void validatePlayerPositionNotExceedSize(List<Player> players) {
+		if (players.stream().anyMatch(player -> player.validatePosition(players.size()))) {
+			throw new IllegalArgumentException("please check your player position. It cannot exceed overall size.");
 		}
 	}
 
