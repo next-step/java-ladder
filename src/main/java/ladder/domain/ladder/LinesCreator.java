@@ -14,7 +14,8 @@ public class LinesCreator {
     }
 
     private static Lines createLadderLines(int playerCount, LadderHeight ladderMaxHeight) {
-        List<Line> lines = Stream.iterate(0, i -> i < ladderMaxHeight.getHeight(), i -> i + 1)
+        List<Line> lines = Stream.iterate(0, i -> i + 1)
+                .limit(ladderMaxHeight.getHeight())
                 .map(i -> LineCreator.create(playerCount))
                 .collect(toList());
         return new Lines(lines, playerCount);

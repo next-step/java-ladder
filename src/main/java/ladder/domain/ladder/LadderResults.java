@@ -11,7 +11,14 @@ public class LadderResults {
     }
 
     public Position getResultPosition(int position) {
+        validate(position);
         return results.get(new Position(position));
+    }
+
+    private void validate(int position) {
+        if(!results.containsKey(new Position(position))) {
+            throw new IllegalArgumentException("유효하지 않은 포지션을 입력했습니다.");
+        }
     }
 
 }

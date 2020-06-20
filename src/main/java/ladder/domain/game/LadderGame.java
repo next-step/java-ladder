@@ -13,7 +13,8 @@ public class LadderGame {
 
     public static LadderGameResults start(Lines lines, LadderPlayers ladderPlayers, LadderRewards ladderRewards) {
         LadderResults ladderResults = lines.create();
-        Map<LadderPlayer, LadderReward> matchResult = Stream.iterate(0, i -> i < ladderPlayers.getPlayerCount(), i -> i + 1)
+        Map<LadderPlayer, LadderReward> matchResult = Stream.iterate(0, i -> i + 1)
+                .limit(ladderPlayers.getPlayerCount())
                 .collect(Collectors.toMap(ladderPlayers::getLadderPlayer, i -> getLadderReward(ladderRewards, ladderResults, i)));
 
         return new LadderGameResults(matchResult);
@@ -22,4 +23,7 @@ public class LadderGame {
     private static LadderReward getLadderReward(LadderRewards ladderRewards, LadderResults ladderResults, Integer i) {
         return ladderRewards.getLadderReward(ladderResults.getResultPosition(i));
     }
+
+
+
 }
