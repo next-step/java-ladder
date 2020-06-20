@@ -5,9 +5,11 @@ import ladder.domain.strategy.LineStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Line {
+
+    public static final int LEAST_POSITION = 0;
+    public static final int POINT_DISTANCE = 1;
 
     private final List<Point> points;
 
@@ -16,20 +18,16 @@ public class Line {
     }
 
     public static Line of(int countOfPerson, LineStrategy lineStrategy) {
-        List<Point> points = new ArrayList<>();
-        IntStream.range(0, countOfPerson).forEach(i -> {
-            boolean hasPreviousLine = i != 0 && points.get(i - 1).hasLine();
-            boolean isLastPoint = i == countOfPerson - 1;
-            points.add(getPoint(lineStrategy, hasPreviousLine, isLastPoint));
-        });
-        return new Line(points);
+        return new Line(getPoints(countOfPerson, lineStrategy));
     }
 
-    private static Point getPoint(LineStrategy lineStrategy, boolean hasPreviousLine, boolean isLastPoint) {
-        if (isLastPoint) {
-            return new Point(false);
-        }
-        return Point.of(hasPreviousLine, lineStrategy);
+    private static List<Point> getPoints(int countOfPerson, LineStrategy lineStrategy) {
+        List<Point> points = new ArrayList<>();
+        points.add(Point.createFirstPoint(lineStrategy));
+        IntStream.range(1, countOfPerson - 1).forEach(i ->
+                points.add(Point.createMiddlePoint(points.get(i - 1), lineStrategy)));
+        points.add(Point.createLastPoint());
+        return points;
     }
 
     public Point get(int index) {
@@ -40,7 +38,11 @@ public class Line {
         return points.size();
     }
 
-    public Stream<Point> stream() {
-        return points.stream();
+    public int getNextPosition(int position) {
+        int nextPosition = position + points.get(position).getNextPosition();
+        if (position > LEAST_POSITION) {
+            nextPosition -= points.get(position - POINT_DISTANCE).getNextPosition();
+        }
+        return nextPosition;
     }
 }

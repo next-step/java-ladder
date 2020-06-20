@@ -15,4 +15,14 @@ class PlayerTest {
 
         assertThat(playerName).isEqualTo(name);
     }
+
+    @Test
+    void testEquals() {
+        String name = "test";
+
+        Player player1 = Player.of(name);
+        Player player2 = Player.of(name);
+
+        assertThat(player1).isEqualTo(player2);
+    }
 }

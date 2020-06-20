@@ -1,9 +1,10 @@
 package ladder.domain.player;
 
+import ladder.utils.StringUtils;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Players {
 
@@ -14,35 +15,24 @@ public class Players {
     }
 
     public static Players of(String input) {
-        validate(input);
-        return new Players(Arrays.stream(getNamesFrom(input))
+        StringUtils.validate(input);
+        return new Players(Arrays.stream(StringUtils.splitByComma(input))
                 .map(Player::of)
                 .collect(Collectors.toList()));
-    }
-
-    private static void validate(String input) {
-        if (isEmpty(input)) {
-            throw new IllegalArgumentException("There is no input. Please check your input.");
-        }
-    }
-
-    private static boolean isEmpty(String input) {
-        return input == null || input.isEmpty();
-    }
-
-    private static String[] getNamesFrom(String input) {
-        return input.trim().replaceAll(" ", "").split(",");
     }
 
     public Player get(int index) {
         return players.get(index);
     }
 
-    public int getCountOfPerson() {
-        return players.size();
+    public Player get(String name) {
+        return players.stream()
+                .filter(player -> player.isEqualName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("There are no participants with the same name."));
     }
 
-    public Stream<Player> stream() {
-        return players.stream();
+    public int getCountOfPerson() {
+        return players.size();
     }
 }

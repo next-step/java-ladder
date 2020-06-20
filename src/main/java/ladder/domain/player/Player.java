@@ -1,5 +1,9 @@
 package ladder.domain.player;
 
+import ladder.utils.StringUtils;
+
+import java.util.Objects;
+
 public class Player {
 
     private final String name;
@@ -9,17 +13,28 @@ public class Player {
     }
 
     public static Player of(String name) {
-        validate(name);
-        return new Player(name);
-    }
-
-    private static void validate(String name) {
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException("No name exception.");
-        }
+        StringUtils.validate(name);
+        return new Player(StringUtils.removeBlank(name));
     }
 
     public String getName() {
         return name;
+    }
+
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
