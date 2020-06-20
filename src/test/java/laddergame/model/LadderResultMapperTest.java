@@ -87,7 +87,7 @@ class LadderResultMapperTest {
                     new Name("name3")
                 )
             ),
-            new PlayerNames(
+            new ResultNames(
                 Arrays.asList(
                     new Name("res1"),
                     new Name("res2"),
