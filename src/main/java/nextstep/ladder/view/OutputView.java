@@ -1,4 +1,4 @@
-package nextstep.ladder.game;
+package nextstep.ladder.view;
 
 import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.line.Lines;

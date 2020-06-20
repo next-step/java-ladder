@@ -1,4 +1,4 @@
-package nextstep.ladder.game;
+package nextstep.ladder.view;
 
 import static java.util.stream.Collectors.*;
 

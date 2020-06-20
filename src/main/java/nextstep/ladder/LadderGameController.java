@@ -1,7 +1,9 @@
-package nextstep.ladder.game;
+package nextstep.ladder;
 
 import nextstep.ladder.ladder.Ladder;
 import nextstep.ladder.painter.PaintingStrategy;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.OutputView;
 
 public class LadderGameController {
 
