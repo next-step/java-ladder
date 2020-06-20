@@ -1,7 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.user.Name;
-import ladder.domain.user.User;
+import ladder.domain.user.LadderUsers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,22 +9,18 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
-    private List<User> users = new ArrayList<>();
+    private final LadderUsers users;
     private List<FootStep> footSteps = new ArrayList<>();
 
-    private Ladder(int height, List<String> names) {
+    private Ladder(int height, LadderUsers users) {
         validate(height);
-        createUsers(names);
+        this.users = users;
         createFootSteps(height);
-    }
-
-    private void createUsers(List<String> names) {
-        names.forEach(name -> users.add(User.of(Name.of(name.trim()))));
     }
 
     private void createFootSteps(int height) {
         IntStream.range(0, height)
-                .forEach(i -> this.footSteps.add(FootStep.of(getCountOfUsers())));
+                .forEach(i -> this.footSteps.add(FootStep.of(this.users.getCountOfUsers())));
     }
 
     private void validate(int height) {
@@ -34,24 +29,18 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(int height, List<String> names) {
-        return new Ladder(height, names);
+    public static Ladder of(int height, LadderUsers users) {
+        return new Ladder(height, users);
     }
 
     public int getFootStepSize() {
         return footSteps.size();
     }
 
-    public int getCountOfUsers() {
-        return users.size();
-    }
-
     @Override
     public String toString() {
         return new StringBuilder()
-                .append(this.users.stream()
-                        .map(User::toString)
-                        .collect(Collectors.joining()))
+                .append(this.users.toString())
                 .append("\n")
                 .append(this.footSteps.stream()
                         .map(FootStep::toString)
