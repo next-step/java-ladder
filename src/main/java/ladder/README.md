@@ -38,7 +38,7 @@ public class Line {
         [x] Member 는 게임에 참여하는 멤버
         [x] 이름의 최대 글자수는 다섯 글자이다.
     * Members
-        [x] Members 는 member 의 일급 컬렉션이다.
+        [x] Members 는 Member 의 일급 컬렉션이다.
     * LadderGame
         [x] LadderGame 은 사다리 게임 클래스이다.
         [x] 외부에서 입력되는 LadderHeight 을 받아서 Ladder 를 생성한다.
@@ -54,6 +54,16 @@ public class Line {
         [x] LadderBridge 는 enum class 이다.
         [x] Bridge 가 Exist 인지 Not Exist 인지 상태를 가지고 있다.
         [x] 이전 Bridge 에 따라, 현재 Bridge 를 만든다.
+    * LadderPole
+        [x] LadderPole 은 사다리의 세로 기둥이다.
+    * LadderGameInfo
+        [x] LadderGameInfo 는 Members 와 LadderGameRewards 를 가지고 있다.
+    * LadderGameReward
+        [x] LadderGameReword 는 게임 보상을 관리한다.
+    * LadderGameRewards
+        [x] LadderGameRewords 는 LadderGameReword 의 일급 컬렉션이다.
+    * LadderGameResult
+        [x] LadderGameResult 는 게임의 결과를 저장한다.
     
     
 * View
