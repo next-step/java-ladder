@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import ladder.domain.Person;
 
@@ -25,5 +26,14 @@ public class PersonTest {
     void validPerson(String name){
         assertThat(Person.of(name).getName())
                 .isEqualTo(name);
+    }
+
+    @ParameterizedTest
+    @DisplayName("사람이름 Null 체크")
+    @NullAndEmptySource
+    void validPersonName(String inputNullAndEmpty){
+        assertThatThrownBy(() -> Person.of(inputNullAndEmpty))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Person.NAME_NULL_EXCEPTION);
     }
 }
