@@ -3,9 +3,13 @@ package nextstep.ladder.application.view;
 import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
+import nextstep.ladder.application.prize.Prize;
+import nextstep.ladder.application.prize.Prizes;
 import nextstep.ladder.domain.height.Height;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
@@ -13,7 +17,7 @@ import nextstep.ladder.domain.player.Players;
 public class InputView {
 
 	private static final Scanner scanner = new Scanner(System.in);
-	private static final String PLAYER_NAME_DELIMITER = ",";
+	private static final String NAME_DELIMITER = ",";
 
 	private InputView() {
 	}
@@ -24,7 +28,7 @@ public class InputView {
 
 		AtomicInteger index = new AtomicInteger(0);
 
-		return Arrays.stream(nameString.split(PLAYER_NAME_DELIMITER))
+		return Arrays.stream(nameString.split(NAME_DELIMITER))
 			.map(name -> Player.ofNameAndPosition(name, index.get()))
 			.peek(player -> index.getAndIncrement())
 			.collect(collectingAndThen(toList(), Players::ofPlayers));
@@ -34,5 +38,15 @@ public class InputView {
 		System.out.println("최대 사다리 높이는 몇 개인가요?");
 		String heightString = scanner.nextLine();
 		return Height.ofHeight(heightString);
+	}
+
+	public static Prizes askPrizes() {
+		System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+		String prizeString = scanner.nextLine();
+
+		List<Prize> prizes = Arrays.stream(prizeString.split(NAME_DELIMITER))
+			.map(name -> Prize.ofName(name.trim()))
+			.collect(Collectors.toList());
+		return Prizes.ofPrizes(prizes);
 	}
 }

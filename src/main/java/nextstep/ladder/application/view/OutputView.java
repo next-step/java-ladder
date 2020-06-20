@@ -1,5 +1,6 @@
 package nextstep.ladder.application.view;
 
+import nextstep.ladder.application.prize.Prizes;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.player.Players;
@@ -29,10 +30,13 @@ public class OutputView {
 	}
 
 	private static void printPoints(Points points) {
-		points.getPoints().forEach(point -> {
-				System.out.print("|");
-				System.out.printf("%-5s", point.isConnectedToNextPoint() ? "-----" : "");
-			}
-		);
+		points.printPoints();
+	}
+
+	public static void printPrizes(Prizes prizes) {
+		prizes.getPrizes().forEach(prize -> {
+			System.out.printf("%-6s", prize.getName());
+		});
+		System.out.println();
 	}
 }
