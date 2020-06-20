@@ -77,4 +77,11 @@ public class Players {
 			.reduce((a, b) -> b)
 			.orElseThrow(() -> new IllegalArgumentException("no user"));
 	}
+
+	public Player findPlayerByName(String playerName) {
+		return players.stream()
+			.filter(player -> player.getName().equals(playerName))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+	}
 }
