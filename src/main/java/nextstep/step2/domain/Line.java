@@ -1,38 +1,23 @@
 package nextstep.step2.domain;
 
-import nextstep.step2.util.RandomUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> oneLayerLadder = new ArrayList<>();
+    private final List<LineConnection> oneLayerLadder = new ArrayList<>();
 
     public Line(int personOfCount) {
         setLadderLine(personOfCount);
     }
 
     private void setLadderLine(int personOfCount) {
-        oneLayerLadder.add(0, RandomUtils.getRandomBoolean());
-
-        for (int i = 1; i < personOfCount - 1; i++) {
-            setLine(oneLayerLadder.get(i - 1));
-        }
-
-        oneLayerLadder.add(false);
+        oneLayerLadder.add(LineConnection.connectFirstLadder());
+        IntStream.range(1, personOfCount - 1).forEach(i -> oneLayerLadder.add(LineConnection.connectLadder(oneLayerLadder.get(i - 1).isConnect())));
+        oneLayerLadder.add(LineConnection.connectLastLadder());
     }
 
-    public List<Boolean> getOneLayerLadder() {
+    public List<LineConnection> getOneLayerLadder() {
         return this.oneLayerLadder;
-    }
-
-    private void setLine(Boolean isTrue) {
-        if (isTrue) {
-            oneLayerLadder.add(false);
-
-            return;
-        }
-
-        oneLayerLadder.add(RandomUtils.getRandomBoolean());
     }
 }

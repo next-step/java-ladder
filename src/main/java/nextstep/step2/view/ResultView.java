@@ -1,9 +1,6 @@
 package nextstep.step2.view;
 
-import nextstep.step2.domain.Line;
-import nextstep.step2.domain.Lines;
-import nextstep.step2.domain.Name;
-import nextstep.step2.domain.Names;
+import nextstep.step2.domain.*;
 
 import java.util.List;
 
@@ -33,14 +30,14 @@ public class ResultView {
 
     private void printLadders() {
         lines.forEach(line -> {
-            line.getOneLayerLadder().forEach(this::printLine);
+            line.getOneLayerLadder().forEach(this::printOneLayerLadder);
             System.out.println();
         });
     }
 
-    private void printLine(Boolean existLine) {
+    private void printOneLayerLadder(LineConnection lineConnection) {
         System.out.print(BAR);
-        if (existLine) {
+        if (lineConnection.isConnect()) {
             System.out.printf(FORMAT, LINE);
 
             return;
