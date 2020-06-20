@@ -1,6 +1,7 @@
 package nextstep.ladder.application;
 
 import nextstep.ladder.application.prize.Prizes;
+import nextstep.ladder.application.result.GameResult;
 import nextstep.ladder.application.view.InputView;
 import nextstep.ladder.application.view.OutputView;
 import nextstep.ladder.domain.height.Height;
@@ -21,7 +22,9 @@ public class LadderGameController {
 		Height height = InputView.getHeights();
 		Prizes prizes = InputView.askPrizes();
 		Ladder ladder = ladderGame.start(players, height);
+		GameResult gameResult = ladderGame.play(prizes);
 		OutputView.printLadder(ladder);
 		OutputView.printPrizes(prizes);
+		OutputView.printPlayerResult(gameResult, players);
 	}
 }
