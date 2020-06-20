@@ -23,7 +23,16 @@ public class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "honux", "crong", "jk"} )
     void name_toString(String name) {
+        int NAME_UPPER_BOUND = 5;
+
         assertThat(new Name(name).toString().length())
-                .isEqualTo(Name.NAME_UPPER_BOUND);
+                .isEqualTo(NAME_UPPER_BOUND);
+    }
+
+    @DisplayName("이름 비교 테스트")
+    @Test
+    void equals() {
+        assertThat(new Name("pobi"))
+                .isEqualTo(new Name("pobi"));
     }
 }
