@@ -15,7 +15,7 @@ class NameTest {
     @ValueSource(strings = {" ", "123456"})
     @NullAndEmptySource
     @ParameterizedTest
-    public void valueOfExceptionThrown(String name) {
+    public void valueOfInvalidSize(String name) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Name.valueOf(name));
     }

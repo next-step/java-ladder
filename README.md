@@ -22,7 +22,12 @@
   - [x] Name을 설정 할 수 있다
   - [x] Null 입력하면 오류가 발생한다
 - Players
-  - [ ] 여러명의 Player를 관리한다
-  - [ ] Player가 한명도 없다 오류가 발생한다
+  - [x] 2명 이상의 Player를 관리한다
+- LadderGame
+  - [ ]
+- Height
+  - [ ]
+- Bridge
+  - [ ]
 - Line
   - [ ] 
