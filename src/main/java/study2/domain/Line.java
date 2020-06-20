@@ -1,6 +1,7 @@
 package study2.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -30,6 +31,6 @@ public class Line {
 	}
 
 	public List<Boolean> getLine() {
-		return points;
+		return Collections.unmodifiableList(points);
 	}
 }
