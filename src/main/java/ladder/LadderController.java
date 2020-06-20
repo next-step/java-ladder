@@ -21,12 +21,10 @@ public class LadderController {
         Ladder ladder = Ladder.of(players.getCountOfPerson(), height, new RandomLineStrategy());
         resultView.printLadder(players, ladder, ladderResults);
         MatchResult matchResult = new LadderGame(ladder).findAllPosition(players, ladderResults);
-        while (true) {
-            String name = inputView.inputName();
+        String name = "";
+        while (!name.equals(ResultView.ALL)) {
+            name = inputView.inputName();
             resultView.printGameResult(name, players, matchResult);
-            if (name.equals(ResultView.ALL)) {
-                return;
-            }
         }
     }
 
