@@ -11,6 +11,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 public class Persons {
+
     public static final String LADDER_GAME_MINIMUM_EXCEPTION = "사다리 게임은 최소 2인 이상이 진행 가능합니다.";
     public static final String PERSONS_NULL_EXCEPTION = "참여자를 빈값으로 입력할 수 없습니다.";
 

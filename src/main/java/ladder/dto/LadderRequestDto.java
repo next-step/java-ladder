@@ -1,6 +1,7 @@
 package ladder.dto;
 
 public class LadderRequestDto {
+
     private final String persons;
     private final String results;
     private final int height;

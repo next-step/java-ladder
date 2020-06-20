@@ -8,6 +8,7 @@ import ladder.dto.LadderRequestDto;
 import ladder.dto.LadderResponseDto;
 
 public class LadderGameService {
+
     public static LadderResponseDto play(LadderRequestDto ladderRequestDto) {
         Persons persons = Persons.of(ladderRequestDto.getPersons());
         LadderResults ladderResults = LadderResults.of(ladderRequestDto.getResults(), persons.count());

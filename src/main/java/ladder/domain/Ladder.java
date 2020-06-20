@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.collectingAndThen;
 
 public class Ladder {
+    
     private final List<Layer> layers;
 
     private Ladder(List<Layer> layers) {

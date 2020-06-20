@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Layer {
+
     public static final String MINIMUN_POINTS_EXCEPTION = "포인트가 2개보다 적으면 게임이 성립되지 않습니다.";
     public static final String CONNECTED_LINE_EXCEPTION = "가로라인은 겹치면 안됩니다.";
 
     private static final int INDEX_ONE = 1;
     private static final int ONE = 1;
     private static final int MINIMUN_POINTS = 2;
-
 
     private List<Point> points;
 

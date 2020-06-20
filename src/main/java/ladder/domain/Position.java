@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
+
     public static final String POSITION_EXCEPTION = "위치값은 음수가 될 수 없습니다.";
 
     private static final int INCREASE = 1;

@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.util.RandomGenerator;
 
 public class Point {
+
     private static final int FIRST_POSITION = 0;
     private final static String EXIST_BAR_LINE = "|-----";
     private final static String NORMAL_LINE = "|     ";

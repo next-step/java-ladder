@@ -4,6 +4,7 @@ import ladder.domain.*;
 import ladder.dto.LadderResponseDto;
 
 public class ResultView {
+
     private final static String PERSON_NAME_FORMAT = "%6s";
     private final static String NEW_LINE = System.lineSeparator();
     private static final String INIT_LINE_SPACE = "      ";

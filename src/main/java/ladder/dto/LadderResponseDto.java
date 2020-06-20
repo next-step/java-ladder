@@ -5,6 +5,7 @@ import ladder.domain.LadderResults;
 import ladder.domain.Persons;
 
 public class LadderResponseDto {
+
     private final Persons persons;
     private final Ladder ladder;
     private final LadderResults ladderResults;
