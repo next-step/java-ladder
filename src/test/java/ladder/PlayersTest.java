@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.Ladder;
 import ladder.domain.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,15 +12,9 @@ public class PlayersTest {
 
     @DisplayName("사람 이름은 쉼표(,)를 기준으로 구분한다.")
     @Test
-    void PLAYER_DELIMITER_TEST() {
+    void getPlayerCount() {
         String players = "iu,iu2,iu3,iu4";
         assertThat(new Players(players).getPlayerCount()).isEqualTo(4);
-    }
-
-    @Test
-    void PLAYER_NAME_OUTPUT_TEST() {
-        String players = "iu,iu2,iu3,iu4";
-        System.out.println(new Players(players).getPlayerName());
     }
 
 }

@@ -12,7 +12,7 @@ public class LineTest {
 
     @DisplayName("인원 수 사다리 라인 테스트")
     @Test
-    void LINE_DRAW_LINE_COUNT_TEST() {
+    void getLineCount() {
         int countOfPersion = 5;
         assertThat(new Line(countOfPersion).getLineCount()).isEqualTo(countOfPersion - 1) ;
     }

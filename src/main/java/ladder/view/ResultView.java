@@ -9,7 +9,10 @@ public class ResultView {
 
     public void displayLadderplayers(Players players) {
         System.out.println(LADDER_RESULT_INTRO_MESSAGE);
-        System.out.println(players.getPlayerName());
+        for (int i = 0; i < players.getPlayerCount(); i++) {
+            System.out.print(String.format("%" + Player.NAME_LIMIT + "s", players.getPlayerName(i)));
+        }
+        System.out.println();
     }
 
     public void displayLadder(Ladder ladder) {
@@ -19,11 +22,18 @@ public class ResultView {
         System.out.println(uiBuilder.toString());
     }
 
-    private String drawLine(Line line){
+    private String drawLine(Line line) {
         String lineString = UI.find(Draw.of(false)).getString() + UI.find().getString();
         for (int i = 0; i < line.getDrawLineCount(); i++) {
             lineString += UI.find(line.getDrawByPosition(i)).getString() + UI.find().getString();
         }
         return lineString;
+    }
+
+    public void displayLadderReulst(Rewards rewards) {
+        for (int i = 0; i < rewards.getResultCount(); i++) {
+            System.out.print(String.format("%" + Player.NAME_LIMIT + "s", rewards.getRewardInfo(i)));
+        }
+        System.out.println();
     }
 }

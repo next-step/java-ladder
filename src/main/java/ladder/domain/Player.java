@@ -5,26 +5,22 @@ import java.util.Objects;
 public class Player {
 
     public static final int NAME_LIMIT = 5;
+
     private String name;
 
     public Player(String name) {
-        if (nameValidate(name)) {
-            throw new IllegalArgumentException("5자 이상");
-        }
+        validate(name);
         this.name = name;
     }
 
-    private boolean nameValidate(String name) {
-        return name.length() > NAME_LIMIT;
+    private void validate(String name) {
+        if (name.length() > NAME_LIMIT) {
+            throw new IllegalArgumentException("5자 이상");
+        }
     }
 
-    @Override
-    public String toString() {
-        String space = "";
-        for (int i = this.name.length(); i < NAME_LIMIT; i++) {
-            space += " ";
-        }
-        return this.name + space;
+    public String getName() {
+        return this.name;
     }
 
     @Override
