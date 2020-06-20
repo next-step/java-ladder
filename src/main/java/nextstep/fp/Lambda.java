@@ -30,11 +30,11 @@ public class Lambda {
         return numbers.stream().filter(c::filter).reduce(0, Integer::sum);
     }
 
-    public static int sumAllEven(List<Integer> numbers, Conditional c) {
-        return numbers.stream().filter(c::filter).reduce(0, Integer::sum);
+    public static int sumAllEven(List<Integer> numbers) {
+        return sumAll(numbers, number -> (number % 2) == 0);
     }
 
-    public static int sumAllOverThree(List<Integer> numbers, Conditional c) {
-        return numbers.stream().filter(c::filter).reduce(0, Integer::sum);
+    public static int sumAllOverThree(List<Integer> numbers) {
+        return sumAll(numbers, number -> (number > 3));
     }
 }
