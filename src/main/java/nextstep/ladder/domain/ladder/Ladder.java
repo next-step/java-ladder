@@ -35,6 +35,17 @@ public class Ladder {
 			.collect(collectingAndThen(toList(), Lines::ofLines));
 	}
 
+	public Players determinePlayersPositionResult() {
+		this.lines.getLines().forEach(line -> {
+			this.players.getPlayers().stream()
+				.forEach(player -> {
+					int newPoint = line.getPoints().movePosition(player.getPosition());
+					player.updatePosition(newPoint);
+				});
+		});
+		return this.players;
+	}
+
 	public Players getPlayers() {
 		return players;
 	}
