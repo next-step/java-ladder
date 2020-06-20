@@ -19,7 +19,7 @@ public class Persons {
     private final List<Person> persons;
 
     private Persons(List<Person> persons) {
-        checkCountPerson(persons.size());
+        checkCountPerson(persons);
         this.persons = persons;
     }
 
@@ -41,8 +41,8 @@ public class Persons {
         return new Persons(persons);
     }
 
-    private static void checkCountPerson(int countOfperson) {
-        if (countOfperson < LADDER_GAME_MINIMUM_PLAYER){
+    private static void checkCountPerson(List<Person> persons) {
+        if (persons.size() < LADDER_GAME_MINIMUM_PLAYER){
             throw new IllegalArgumentException(LADDER_GAME_MINIMUM_EXCEPTION);
         }
     }
