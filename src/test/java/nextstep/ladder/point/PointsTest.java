@@ -64,4 +64,75 @@ public class PointsTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("illegal input that tries to connect points continuously.");
 	}
+
+	public static Stream<Arguments> 왼쪽으로_이동이_가능한_모음() {
+		Points points = Points.ofPoints(Arrays.asList(
+			Point.ofPoint(false),
+			Point.ofPoint(true),
+			Point.ofPoint(false),
+			Point.ofPoint(true),
+			Point.ofPoint(false),
+			Point.ofPoint(true),
+			Point.ofPoint(false)
+		));
+		return Stream.of(
+			Arguments.of(points, 2, 1),
+			Arguments.of(points, 4, 3),
+			Arguments.of(points, 6, 5)
+		);
+	}
+
+	public static Stream<Arguments> 오른쪽으로_이동이_가능한_모음() {
+		Points points = Points.ofPoints(Arrays.asList(
+			Point.ofPoint(false),
+			Point.ofPoint(true),
+			Point.ofPoint(false),
+			Point.ofPoint(true),
+			Point.ofPoint(false),
+			Point.ofPoint(true),
+			Point.ofPoint(false)
+		));
+		return Stream.of(
+			Arguments.of(points, 1, 2),
+			Arguments.of(points, 3, 4),
+			Arguments.of(points, 5, 6)
+		);
+	}
+
+	public static Stream<Arguments> 좌표가_유지되는_모음() {
+		Points points = Points.ofPoints(Arrays.asList(
+			Point.ofPoint(false),
+			Point.ofPoint(false),
+			Point.ofPoint(false)
+		));
+		return Stream.of(
+			Arguments.of(points, 0, 0),
+			Arguments.of(points, 1, 1),
+			Arguments.of(points, 2, 2)
+		);
+	}
+
+	@DisplayName("주어진 index 위치 값에서 왼쪽으로 이동이 가능한지 판별한다. 즉, n번째 좌표에서 n-1 좌표로 이동이 가능하다.")
+	@MethodSource("왼쪽으로_이동이_가능한_모음")
+	@ParameterizedTest
+	void 왼쪽으로_이동이_가능하다(Points points, int givenBeforePosition, int expectedAfterPosition) {
+		int movedPosition = points.movePosition(givenBeforePosition);
+		assertThat(movedPosition).isEqualTo(expectedAfterPosition);
+	}
+
+	@DisplayName("주어진 index 위치 값에서 오른쪽으로 이동이 가능한지 판별한다. 즉, n번째 좌표에서 n+1 좌표로 이동이 가능하다.")
+	@MethodSource("오른쪽으로_이동이_가능한_모음")
+	@ParameterizedTest
+	void 오른쪽으로_이동이_가능하다(Points points, int givenBeforePosition, int expectedAfterPosition) {
+		int movedPosition = points.movePosition(givenBeforePosition);
+		assertThat(movedPosition).isEqualTo(expectedAfterPosition);
+	}
+
+	@DisplayName("연결되지 않은 좌표 값을 지나면 좌표가 변동되지 않는다. 즉, n번쨰 좌표에서 n번쨰 좌표로 위치가 유지된다.")
+	@MethodSource("좌표가_유지되는_모음")
+	@ParameterizedTest
+	void 좌표가_유지된다(Points points, int givenBeforePosition, int expectedAfterPosition) {
+		int movedPosition = points.movePosition(givenBeforePosition);
+		assertThat(movedPosition).isEqualTo(expectedAfterPosition);
+	}
 }
