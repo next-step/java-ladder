@@ -23,7 +23,7 @@ public class LadderResultMapper {
         .limit(players.getCountOfNames())
         .collect(Collectors.toMap(
             players::getNameByIndex,
-            positionNum -> results.getNameByIndex(ladder.getResultPosition(positionNum)),
+            positionNum -> results.getNameByIndex(ladder.findResultPositionOf(positionNum)),
             (x, y) -> x,
             LinkedHashMap::new
         )));

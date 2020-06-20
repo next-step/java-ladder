@@ -24,7 +24,7 @@ public class Ladder {
 
   }
 
-  public int getResultPosition(int startPosition) {
+  public int findResultPositionOf(int startPosition) {
     Position position = new Position(new NaturalNumber(startPosition));
 
     lines.forEach(position::movePositionBy);
