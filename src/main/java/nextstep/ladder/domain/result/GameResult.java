@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.result;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
@@ -22,12 +23,14 @@ public class GameResult {
         return new GameResult(ladder.getPlayers(), ladder.getLines(), ladder.getLadderResults());
     }
 
-    private int findLastPlayerPosition(Lines lines, int playerPosition) {
-        for(int i = 0; i < lines.getLines().size(); i++) {
-            playerPosition = lines.getLines().get(i).findNextPosition(playerPosition);
+    private int findLastPlayerPosition(final Lines lines, final int playerPosition) {
+        int position = playerPosition;
+
+        for(Line line : lines.getLines()) {
+            position = line.findNextPosition(position);
         }
 
-        return playerPosition;
+        return position;
     }
 
     public LadderResult getResult(Player player) {
