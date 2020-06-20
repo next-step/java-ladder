@@ -27,9 +27,7 @@ public class Ladder {
   public int getResultPosition(int startPosition) {
     Position position = new Position(new NaturalNumber(startPosition));
 
-    lines.forEach(line -> position.movePositions(
-        line.hasRungLeft(position),
-        line.hasRungRight(position)));
+    lines.forEach(position::movePositionBy);
 
     return position.getValue();
   }

@@ -10,16 +10,6 @@ public class Position {
     this.value = value;
   }
 
-   public void movePositions(boolean canMoveLeft, boolean canMoveRight) {
-    if (canMoveLeft) {
-      moveLeft();
-      return;
-    }
-    if (canMoveRight) {
-      moveRight();
-    }
-  }
-
   public int getValue() {
     return value.getValue();
   }
@@ -54,5 +44,16 @@ public class Position {
     return "Position{" +
         "value=" + value +
         '}';
+  }
+
+  public void movePositionBy(Line line) {
+    if (line.hasRungLeft(this)) {
+      moveLeft();
+      return;
+    }
+
+    if (line.hasRungRight(this)) {
+      moveRight();
+    }
   }
 }

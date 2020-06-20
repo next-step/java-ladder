@@ -14,9 +14,8 @@ class PositionTest {
 
   @ParameterizedTest
   @MethodSource("providePositionWithLine")
-  void movePositionsTest(Position position, boolean canMoveLeft, boolean canMoveRight,
-      Position expected) {
-    position.movePositions(canMoveLeft, canMoveRight);
+  void movePositionBy(Position position, Line line, Position expected) {
+    position.movePositionBy(line);
     assertThat(position).isEqualTo(expected);
   }
 
@@ -24,14 +23,18 @@ class PositionTest {
     return Stream.of(
         arguments(
             new Position(new NaturalNumber(0)),
-            false,
-            true,
+            new Line(Arrays.asList(
+                new Point(false),
+                new Point(true)
+            )),
             new Position(new NaturalNumber(1))
         ),
         arguments(
             new Position(new NaturalNumber(1)),
-            true,
-            false,
+            new Line(Arrays.asList(
+                new Point(false),
+                new Point(true)
+            )),
             new Position(new NaturalNumber(0))
         )
     );
