@@ -46,19 +46,43 @@ class DirectionTest {
     @DisplayName("첫번째 Point의 Direction 생성 테스트")
     public void generateDirectionOfFirstPoint() {
         Direction first = Direction.first(true);
-        assertThat(first.isLeft()).isFalse();
+        assertThat(first).isEqualTo(Direction.of(false, true));
     }
 
     @Test
     @DisplayName("마지막 Point의 Direction 생성 테스트")
     public void generateDirectionOfLastPoint() {
         Direction last = Direction.first(true).last();
-        assertThat(last.isRight()).isFalse();
+        assertThat(last).isEqualTo(Direction.of(true, false));
     }
 
     @Test
     @DisplayName("같은 방향을 가진 Direction객체의 HashCode 테스트")
     public void testHashCode() {
         assertThat(Direction.of(false, true).hashCode()).isEqualTo(Direction.of(false, true).hashCode());
+    }
+
+    @Test
+    @DisplayName("오른쪽 방향 Direction 이 index를 증가 시키는지 테스트")
+    public void increaseIndexWhenRightDirection() {
+        int index = 0;
+        Direction direction = Direction.of(false, true);
+        assertThat(direction.getNextIndex(index)).isEqualTo(index + Direction.DISTANCE);
+    }
+
+    @Test
+    @DisplayName("왼쪽 방향 Direction 이 index를 감소 시키는지 테스트")
+    public void decreaseIndexWhenLeftDirection() {
+        int index = 1;
+        Direction direction = Direction.of(true, false);
+        assertThat(direction.getNextIndex(index)).isEqualTo(index - Direction.DISTANCE);
+    }
+
+    @Test
+    @DisplayName("무방향 Direction 이 index를 그대로 반환하는 테스트")
+    public void doNothingWhenNoneDirection() {
+        int index = 0;
+        Direction direction = Direction.of(false, false);
+        assertThat(direction.getNextIndex(index)).isEqualTo(index);
     }
 }
