@@ -4,15 +4,13 @@ import java.util.Random;
 
 public class RandomGenerator {
 
-	Random random = new Random();
-	private boolean randomValue;
+	private static boolean randomValue;
 		
-	// Q 이렇게사용하는건 어떻게 생각하시나요?	
 	public RandomGenerator() {
-		this.randomValue = random.nextBoolean();
+		this.randomValue = new Random().nextBoolean();
 	}
 	
-	public boolean getRandom() {
+	public static boolean getRandom() {
 		return randomValue;
 	}
 	

@@ -10,14 +10,15 @@ import study2.domain.Height;
 
 class HeightTest {
 	
-	Height height;
-	Height height1;
+	private Height height;
+	private Height height1;
 	
 	@Test
 	@DisplayName("사다리의 높이 검증하는 테스트 메소드")
 	void 사다리의_높이는_1보다_커야된다() {
+		int 사다리의_최소_높이 = 0;
 		
-		assertThatThrownBy(() -> height = new Height(0))
+		assertThatThrownBy(() -> height = new Height(사다리의_최소_높이))
 		.isInstanceOf(IllegalArgumentException.class);
 		
 	}

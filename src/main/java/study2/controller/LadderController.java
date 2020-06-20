@@ -11,14 +11,11 @@ public class LadderController {
 		
 		InputView inputview = new InputView();
 		
-		Players players = new Players(inputview.participateName());
+		Players players = new Players(inputview.getParticipantNames());
 		Height height = new Height(inputview.InputHeight());
 		
 		Ladder ladder = new Ladder(players, height);
 		
-		ResultView resultView = new ResultView(players, ladder);
-		
-		
+		ResultView resultView = new ResultView(players, ladder);		
 	}
-	
 }

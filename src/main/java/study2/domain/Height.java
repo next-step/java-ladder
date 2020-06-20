@@ -1,28 +1,25 @@
 package study2.domain;
 
 public class Height {
-
+	// 코드 포맷팅 완료하였습니다.
 	private int height;
-	
+	private static final int MINIMUN_LADDER_HEIGHT = 1;
+
 	public Height(int height) {
-		heightLimitation(height);		
+		validateHeight(height);
 		this.height = height;
 	}
-	private void heightLimitation(int height) {
-		if(height < 1) {
+
+	private void validateHeight(int height) {
+		if (height < MINIMUN_LADDER_HEIGHT) {
 			throw new IllegalArgumentException("사다리의 높이가 1보다 커야합니다.");
 		}
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
-		
-	// Question 	
-	// 이클립스를 사용중입니다.
-	// hashCode와 equals 메소드를 자동완성하면
-	// Intelli J와 코드가 조금 다른거같은데 혹시 아시나요?
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -30,16 +27,18 @@ public class Height {
 		result = prime * result + height;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)	return true;
-		if (obj == null)	return false;
-		if (getClass() != obj.getClass())	return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
 		Height other = (Height) obj;
-		if (height != other.height)		return false;
+		if (height != other.height)
+			return false;
 		return true;
 	}
-	
-	
-	
 }
