@@ -10,25 +10,34 @@ public class Line {
     private static final String POINT_LINED = "-----|";
     private static final String POINT_UNLINED = "     |";
 
-    private final List<Boolean> points = new ArrayList<>();
     private final LiningStrategy liningStrategy;
+    private final List<Boolean> points;
 
     public Line(LiningStrategy liningStrategy, int playerCount) {
         this.liningStrategy = liningStrategy;
-        createLine(playerCount);
+        this.points = createPoints(playerCount);
     }
 
-    private void createLine(int playerCount) {
+    private List<Boolean> createPoints(int playerCount) {
+        List<Boolean> points = new ArrayList<>();
         boolean lined;
 
         for (int i = 0; i < playerCount - 1; i++) {
-            lined = (i == 0 || !isBeforeLined(i)) && liningStrategy.canDrawLine();
+            lined = (i == 0 || !points.get(i-1)) && liningStrategy.canDrawLine();
             points.add(i, lined);
         }
+
+        return points;
     }
 
     public int findNextPosition(int playerPosition) {
-        return isAfterLined(playerPosition) ? playerPosition + 1 : (isBeforeLined(playerPosition) ? playerPosition - 1 : playerPosition);
+        if (isAfterLined(playerPosition)) {
+            return playerPosition + 1;
+        } else if (isBeforeLined(playerPosition)) {
+            return playerPosition - 1;
+        }
+
+        return playerPosition;
     }
 
     private boolean isBeforeLined(int index) {
