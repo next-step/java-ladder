@@ -29,7 +29,7 @@ public class LadderGameRewords {
 
     public static LadderGameRewords create(final String[] rewordArray) {
         List<LadderGameReword> rewords = Arrays.stream(rewordArray)
-            .map(LadderGameReword::of)
+            .map(LadderGameReword::create)
             .collect(Collectors.toList());
 
         return create(rewords);

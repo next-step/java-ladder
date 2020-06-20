@@ -17,12 +17,6 @@ public class Ladder {
         this.lines = lines;
     }
 
-    private void validate(final List<LadderLine> lines) {
-        if (Objects.isNull(lines) || lines.isEmpty()) {
-            throw new IllegalArgumentException("사다리 라인은 하나 이상이어야 합니다.");
-        }
-    }
-
     public static Ladder create(int memberCount, int ladderHeight) {
         List<LadderLine> lines = Stream.generate(() -> LadderLine.create(memberCount))
             .limit(ladderHeight)
@@ -31,6 +25,11 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    private void validate(final List<LadderLine> lines) {
+        if (Objects.isNull(lines) || lines.isEmpty()) {
+            throw new IllegalArgumentException("사다리 라인은 하나 이상이어야 합니다.");
+        }
+    }
 
     public LadderPoles proceedAll() {
         List<LadderPole> ladderPoles = IntStream.range(ZERO, getPoleCount())
