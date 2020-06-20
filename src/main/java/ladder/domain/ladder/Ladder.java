@@ -39,11 +39,10 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return new StringBuilder()
-                .append(this.users.toString())
-                .append("\n")
-                .append(this.footSteps.stream()
+        return this.users.toString() +
+                "\n" +
+                this.footSteps.stream()
                         .map(FootStep::toString)
-                        .collect(Collectors.joining("\n"))).toString();
+                        .collect(Collectors.joining("\n"));
     }
 }
