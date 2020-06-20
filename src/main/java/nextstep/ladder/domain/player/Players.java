@@ -3,6 +3,7 @@ package nextstep.ladder.domain.player;
 import java.util.Collections;
 import java.util.List;
 
+import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.util.CustomCollectionUtils;
 
 public class Players {
@@ -59,5 +60,13 @@ public class Players {
 			player -> System.out.printf("%-6s", player.getName())
 		);
 		System.out.println();
+	}
+
+	public Players determinePlayersPositionResult(Line line) {
+		this.players.forEach(player -> {
+			int newPoint = line.getPoints().movePosition(player.getPosition());
+			player.updatePosition(newPoint);
+		});
+		return this;
 	}
 }

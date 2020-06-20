@@ -3,6 +3,8 @@ package nextstep.ladder.domain.line;
 import java.util.Collections;
 import java.util.List;
 
+import nextstep.ladder.domain.player.Players;
+
 public class Lines {
 
 	private final List<Line> lines;
@@ -21,5 +23,10 @@ public class Lines {
 
 	public List<Line> getLines() {
 		return Collections.unmodifiableList(lines);
+	}
+
+	public Players determinePlayersPositionResult(Players players) {
+		this.lines.forEach(players::determinePlayersPositionResult);
+		return players;
 	}
 }

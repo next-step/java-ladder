@@ -12,7 +12,7 @@ import nextstep.ladder.util.painter.PaintingStrategy;
 
 public class Ladder {
 
-	private final Players players;
+	private Players players;
 	private final Lines lines;
 	private final PaintingStrategy paintingStrategy;
 
@@ -36,13 +36,8 @@ public class Ladder {
 	}
 
 	public Players determinePlayersPositionResult() {
-		this.lines.getLines().forEach(line -> {
-			this.players.getPlayers().stream()
-				.forEach(player -> {
-					int newPoint = line.getPoints().movePosition(player.getPosition());
-					player.updatePosition(newPoint);
-				});
-		});
+		Players updatedPlayers = this.lines.determinePlayersPositionResult(this.players);
+		this.players = updatedPlayers;
 		return this.players;
 	}
 
