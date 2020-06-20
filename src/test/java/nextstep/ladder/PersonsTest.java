@@ -3,6 +3,8 @@ package nextstep.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ladder.domain.Persons;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,5 +24,14 @@ public class PersonsTest {
         assertThatThrownBy(() -> Persons.of("pobi"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Persons.LADDER_GAME_MINIMUM_EXCEPTION);
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력값 null 또는 비어있을 경우 테스트 ")
+    @NullAndEmptySource
+    void inputPersonsNullTest(String inputPersons){
+        assertThatThrownBy(() -> Persons.of(inputPersons))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Persons.PERSONS_NULL_EXCEPTION);
     }
 }
