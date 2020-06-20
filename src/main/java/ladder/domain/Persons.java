@@ -25,20 +25,15 @@ public class Persons {
 
     public static Persons of(String persons){
         validatePersonsNull(persons);
-        return Arrays.asList(StringUtil.split(persons))
-                     .stream()
+        return Arrays.stream(StringUtil.split(persons))
                      .map(Person::of)
-                     .collect(collectingAndThen(toList(), Persons::convertObject));
+                     .collect(collectingAndThen(toList(), Persons::new));
     }
 
     private static void validatePersonsNull(String persons) {
         if (Objects.isNull(persons) || persons.isEmpty()){
             throw new IllegalArgumentException(PERSONS_NULL_EXCEPTION);
         }
-    }
-
-    private static Persons convertObject(List<Person> persons){
-        return new Persons(persons);
     }
 
     private static void checkCountPerson(List<Person> persons) {
