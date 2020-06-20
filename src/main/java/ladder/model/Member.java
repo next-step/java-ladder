@@ -34,8 +34,29 @@ public class Member {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Member)) {
+            return false;
+        }
+        Member member = (Member) o;
+        return Objects.equals(getName(), member.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }

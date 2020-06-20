@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 public class Ladder {
 
+    private static final int ZERO = 0;
     private final List<LadderLine> lines;
 
     public Ladder(List<LadderLine> lines) {
@@ -28,6 +29,32 @@ public class Ladder {
             .collect(Collectors.toList());
 
         return new Ladder(lines);
+    }
+
+
+    public LadderPoles proceedAll() {
+        List<LadderPole> ladderPoles = IntStream.range(ZERO, getPoleCount())
+            .mapToObj(i -> proceed(LadderPole.create(i)))
+            .collect(Collectors.toList());
+
+        return LadderPoles.create(ladderPoles);
+    }
+
+    private int getPoleCount() {
+        return lines.stream()
+            .findAny()
+            .orElseThrow(() -> new RuntimeException("사다리 라인이 존재하지 않습니다."))
+            .poleCount();
+    }
+
+    public LadderPole proceed(final LadderPole ladderPole) {
+        LadderPole preLadderPole = LadderPole.create(ladderPole);
+
+        for (LadderLine line : lines) {
+            preLadderPole = line.moveLadderPole(preLadderPole);
+        }
+
+        return preLadderPole;
     }
 
     public List<LadderLine> getLines() {

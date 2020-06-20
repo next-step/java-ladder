@@ -39,6 +39,24 @@ public class LadderLine {
         }
     }
 
+    public LadderPole moveLadderPole(final LadderPole ladderPole) {
+        int polePosition = ladderPole.toInt();
+
+        if (polePosition != 0 && bridges.get(polePosition - 1) == LadderBridge.EXIST) {
+            return LadderPole.create(polePosition - 1);
+        }
+
+        if (polePosition != bridges.size() && bridges.get(polePosition) == LadderBridge.EXIST) {
+            return LadderPole.create(polePosition + 1);
+        }
+
+        return LadderPole.create(polePosition);
+    }
+
+    public int poleCount() {
+        return bridges.size() + 1;
+    }
+
     public List<LadderBridge> getBridges() {
         return bridges;
     }

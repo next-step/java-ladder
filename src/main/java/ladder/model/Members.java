@@ -42,7 +42,7 @@ public class Members {
         return members.size();
     }
 
-    public List<Member> getMembers() {
-        return members;
+    public Member get(final int index) {
+        return members.get(index);
     }
 }
