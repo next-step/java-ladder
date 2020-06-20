@@ -8,6 +8,9 @@ public class Line {
 
 	private Points points;
 
+	protected Line() {
+	}
+
 	private Line(int playerCount, PaintingStrategy paintingStrategy) {
 		PointPainter painter = new PointPainter(paintingStrategy);
 		this.points = painter.drawPoints(playerCount);
