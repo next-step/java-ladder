@@ -53,13 +53,10 @@ class LineTest {
   @ParameterizedTest
   @MethodSource("lineWithPositionProvider")
   @DisplayName("좌우에 다리가 있는지 확인")
-  void leftAndRightPointHasRung(Line line, List<Boolean> leftExpected,
-      List<Boolean> rightExpected) {
+  void hasRungAt(Line line, List<Boolean> expected) {
     for (int i = 0; i < line.getPoints().size(); i++) {
-      assertThat(line.hasRungLeft(new Position(new NaturalNumber(i))))
-          .isEqualTo(leftExpected.get(i));
-      assertThat(line.hasRungRight(new Position(new NaturalNumber(i))))
-          .isEqualTo(rightExpected.get(i));
+      assertThat(line.hasRungAt(i))
+          .isEqualTo(expected.get(i));
     }
   }
 
@@ -71,9 +68,6 @@ class LineTest {
                     new Point(false),
                     new Point(false)
                 )
-            ),
-            Arrays.asList(
-                false, false
             ),
             Arrays.asList(
                 false, false
@@ -89,9 +83,6 @@ class LineTest {
             ),
             Arrays.asList(
                 false, true, true
-            ),
-            Arrays.asList(
-                true, true, false
             )
         )
     );

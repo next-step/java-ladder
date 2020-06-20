@@ -34,13 +34,9 @@ public class Line {
     return Collections.unmodifiableList(points);
   }
 
-  public boolean hasRungLeft(Position position) {
-    return points.get(position.getValue()).isRungCreated();
-  }
-
-  public boolean hasRungRight(Position position) {
-    if (position.getValue() < points.size() - 1) {
-      return points.get(position.getValue() + 1).isRungCreated();
+  public boolean hasRungAt(int index) {
+    if (index < points.size()) {
+      return points.get(index).isRungCreated();
     }
 
     return false;

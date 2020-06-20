@@ -47,12 +47,18 @@ public class Position {
   }
 
   public void movePositionBy(Line line) {
-    if (line.hasRungLeft(this)) {
+    /**
+     * point로 line 사이를 이어준다.
+     * cur 기준 point 위치는 다음과 같다.
+     * left == line[cur]
+     * right == right[cur+1]
+     */
+    if (line.hasRungAt(getValue())) {
       moveLeft();
       return;
     }
 
-    if (line.hasRungRight(this)) {
+    if (line.hasRungAt(getValue() + 1)) {
       moveRight();
     }
   }
