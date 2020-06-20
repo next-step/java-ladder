@@ -24,7 +24,7 @@ public class InputView {
 		return Arrays.asList(name);
 	}
 
-	public int InputHeight() {
+	public int inputHeight() {
 		System.out.println(HEIGHT_MESSAGES);
 		
 		return scanner.nextInt();

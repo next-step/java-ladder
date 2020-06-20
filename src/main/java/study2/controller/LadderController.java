@@ -12,7 +12,7 @@ public class LadderController {
 		InputView inputview = new InputView();
 		
 		Players players = new Players(inputview.getParticipantNames());
-		Height height = new Height(inputview.InputHeight());
+		Height height = new Height(inputview.inputHeight());
 		
 		Ladder ladder = new Ladder(players, height);
 		

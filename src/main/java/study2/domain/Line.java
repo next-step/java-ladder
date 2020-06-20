@@ -9,10 +9,10 @@ public class Line {
 	private List<Boolean> points;
 
 	public Line(int PlayerNumbers, boolean anyValue) {
-		this.points = makeLine(PlayerNumbers, anyValue);
+		this.points = createPoints(PlayerNumbers, anyValue);
 	}
 
-	private List<Boolean> makeLine(int playerNumbers, boolean anyValue) {
+	private List<Boolean> createPoints(int playerNumbers, boolean anyValue) {
 		points = new ArrayList<>();
 
 		points.add(anyValue); // 첫번째 값은 무조건 false
