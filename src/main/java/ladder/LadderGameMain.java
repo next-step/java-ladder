@@ -1,6 +1,5 @@
 package ladder;
 
-import ladder.domain.*;
 import ladder.dto.LadderRequestDto;
 import ladder.dto.LadderResponseDto;
 import ladder.view.InputView;

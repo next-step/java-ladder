@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.util.StringUtil;
+
 import java.util.Objects;
 
 public class Person {
@@ -12,12 +14,10 @@ public class Person {
     private final String name;
 
     private Person(String name) {
-        validateNameNull(name);
+        StringUtil.validateNull(name, NAME_NULL_EXCEPTION);
         validateNameLimit(name);
         this.name = name;
     }
-
-
 
     private void validateNameLimit(String name) {
         if (name.length() > NAME_LIMIT){
