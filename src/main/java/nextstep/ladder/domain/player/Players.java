@@ -34,7 +34,7 @@ public class Players {
 	}
 
 	private static void validatePlayerPositionNotExceedSize(List<Player> players) {
-		if (players.stream().anyMatch(player -> player.validatePosition(players.size()))) {
+		if (players.stream().anyMatch(player -> ! player.validatePosition(players.size()))) {
 			throw new IllegalArgumentException("please check your player position. It cannot exceed overall size.");
 		}
 	}
