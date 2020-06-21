@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 
 public class FootStep {
     private static final int MIN_COUNT_OF_USER = 2;
+
     private final List<Boolean> steps = new ArrayList<>();
 
     private FootStep(int countOfUser) {

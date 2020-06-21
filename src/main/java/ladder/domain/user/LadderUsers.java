@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class LadderUsers {
     public static final int MIN_USER_SIZE = 2;
+
     private List<User> users = new ArrayList<>();
 
     public LadderUsers(List<String> names) {

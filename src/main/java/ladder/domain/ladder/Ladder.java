@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
+
     private final LadderUsers users;
     private List<FootStep> footSteps = new ArrayList<>();
 
