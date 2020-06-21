@@ -10,14 +10,14 @@ import study2.domain.Players;
 
 public class ResultView {
 
-	private static final String EXECUTEMESSAGE = "실행결과";
+	private static final String EXECUTE_MESSAGE = "실행결과";
 	private static final String COLUMN = "     |";
 	private static final String ROW = "-----|";
 	private static final String NAMES_FORMAT = "%6s";
 
 	public ResultView(Players players, Ladder ladder) {
 
-		System.out.println(EXECUTEMESSAGE);
+		System.out.println(EXECUTE_MESSAGE);
 		viewPlayerList(players);
 		viewRowAndColumn(ladder);
 	}
