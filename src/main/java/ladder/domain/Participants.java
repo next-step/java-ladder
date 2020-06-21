@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Participants {
-    public static final String SEPARATOR = ",";
+    private static final String SEPARATOR = ",";
 
     private final List<Person> participants;
 

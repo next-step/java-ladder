@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    public static final int LEFT = -1;
-    public static final int RIGHT = 1;
-    public static final int SAME = 0;
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
+    private static final int SAME = 0;
 
     private final List<Point> line;
 
