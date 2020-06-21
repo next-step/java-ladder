@@ -19,8 +19,8 @@ public class Users {
         return users.stream();
     }
 
-    public List<User> getUsers() {
-        return users;
+    public User getUser(int index) {
+        return users.get(index);
     }
 
     public int getUserIndex(String name) {
