@@ -11,4 +11,8 @@ public class XAxis {
     public static XAxis of(int xAxis) {
         return new XAxis(xAxis);
     }
+
+    public XAxis move(int xAxis) {
+        return XAxis.of(this.xAxis + xAxis);
+    }
 }

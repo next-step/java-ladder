@@ -14,15 +14,18 @@ public class Point {
         return new Point(xAxis, yAxis);
     }
 
-    public void moveToRight() {
-
+    public Point moveToRight() {
+        XAxis xAxis = this.xAxis.move(1);
+        return Point.of(xAxis, this.yAxis);
     }
 
-    public void moveToLeft() {
-
+    public Point moveToLeft() {
+        XAxis xAxis = this.xAxis.move(-1);
+        return Point.of(xAxis, this.yAxis);
     }
 
-    public void moveToDown() {
-
+    public Point moveToDown() {
+        YAxis yAxis = this.yAxis.move(1);
+        return Point.of(this.xAxis, yAxis);
     }
 }

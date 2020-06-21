@@ -5,6 +5,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -19,10 +20,13 @@ public class Players {
 
         Players players = new Players();
 
-        playerNames.forEach(name -> {
-            PlayerName playerName = PlayerName.of(name);
-            players.addToPlayers(Player.of(playerName));
+        IntStream.range(0, playerNames.size()).forEach(i -> {
+            PlayerName playerName = PlayerName.of(playerNames.get(i));
+            PlayerIndex playerIndex = PlayerIndex.of(i);
+
+            players.addToPlayers(Player.of(playerName, playerIndex));
         });
+
         return players;
     }
 

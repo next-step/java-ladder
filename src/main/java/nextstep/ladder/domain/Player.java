@@ -3,13 +3,15 @@ package nextstep.ladder.domain;
 public class Player {
 
     private PlayerName playerName;
+    private PlayerIndex playerIndex;
 
-    private Player(PlayerName playerName) {
+    private Player(PlayerName playerName, PlayerIndex playerIndex) {
         this.playerName = playerName;
+        this.playerIndex = playerIndex;
     }
 
-    public static Player of(PlayerName playerName) {
-        return new Player(playerName);
+    public static Player of(PlayerName playerName, PlayerIndex playerIndex) {
+        return new Player(playerName, playerIndex);
     }
 
     public PlayerName convertPlayerNameWithLeftPad() {

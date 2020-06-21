@@ -12,7 +12,7 @@ public class YAxis {
         return new YAxis(yAxis);
     }
 
-    public void move() {
-
+    public YAxis move(int yAxis) {
+        return YAxis.of(this.yAxis + yAxis);
     }
 }
