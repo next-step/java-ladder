@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import nextstep.ladder.constant.LadderConstants;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
+
 public class PlayerName {
 
     private String playerName;
@@ -33,5 +35,25 @@ public class PlayerName {
     @Override
     public String toString() {
         return this.playerName;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.playerName);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        PlayerName playerName = (PlayerName) obj;
+        return Objects.equals(playerName.playerName, this.playerName);
     }
 }

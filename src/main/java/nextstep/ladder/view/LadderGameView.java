@@ -95,7 +95,9 @@ public class LadderGameView {
         System.out.print(LadderConstants.BLANK_MOUNTING_BLOCK);
     }
 
-    public static void inputExecutionResultPlayer() {
-        System.out.println();
+    public static String inputExecutionResultPlayer() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(LadderConstants.WHAT_YOU_WANT_TO_SEE_PLAYER_EXECUTION_RESULT);
+        return scanner.nextLine();
     }
 }
