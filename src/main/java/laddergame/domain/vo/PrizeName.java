@@ -7,7 +7,7 @@ public class PrizeName {
 
     public PrizeName(final String prizeName) {
         validateNullOrEmpty(prizeName);
-        this.name = prizeName;
+        this.name = prizeName.trim();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class PrizeName {
     }
 
     private void validateNullOrEmpty(String prizeName) {
-        if (Objects.isNull(prizeName) || prizeName.isEmpty()) {
+        if (Objects.isNull(prizeName) || prizeName.trim().isEmpty()) {
             throw new IllegalArgumentException("당첨 결과명은 Null 이나 공백일 수 없습니다.");
         }
     }

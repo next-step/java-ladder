@@ -10,7 +10,7 @@ public class Prize {
     private final Column column;
 
     public Prize(final String prizeName, final int column) {
-        this.prizeName = new PrizeName(prizeName.trim());
+        this.prizeName = new PrizeName(prizeName);
         this.column = new Column(column);
     }
 
