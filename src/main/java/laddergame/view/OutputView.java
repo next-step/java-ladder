@@ -23,9 +23,7 @@ public class OutputView {
     public static void printPlayers(Players players) {
         System.out.println("실행 결과");
 
-        System.out.println(players.getPlayers().stream()
-                .map(Player::getName)
-                .collect(Collectors.joining(NAME_JOIN_DELIMITER)));
+        System.out.println(String.join(NAME_JOIN_DELIMITER, players.getPlayerNames()));
     }
 
     public static void printLadder(Ladder ladder) {
