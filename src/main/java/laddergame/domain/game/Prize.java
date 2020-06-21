@@ -1,23 +1,17 @@
 package laddergame.domain.game;
 
 import laddergame.domain.vo.Column;
+import laddergame.domain.vo.PrizeName;
 
 import java.util.Objects;
 
 public class Prize {
-    private final String name;
+    private final PrizeName prizeName;
     private final Column column;
 
-    public Prize(final String resultName, final int column) {
-        validateNullOrEmptyName(resultName);
-        this.name = resultName.trim();
+    public Prize(final String prizeName, final int column) {
+        this.prizeName = new PrizeName(prizeName.trim());
         this.column = new Column(column);
-    }
-
-    private void validateNullOrEmptyName(final String resultName) {
-        if (Objects.isNull(resultName) || resultName.isEmpty()) {
-            throw new IllegalArgumentException("실행 결과는 Null 또는 공백일 수 없습니다.");
-        }
     }
 
     public boolean isSameColumn(final int findColumn) {
@@ -26,7 +20,7 @@ public class Prize {
     }
 
     public String getName() {
-        return name;
+        return prizeName.getName();
     }
 
     @Override
@@ -34,12 +28,12 @@ public class Prize {
         if (this == o) return true;
         if (!(o instanceof Prize)) return false;
         Prize prize = (Prize) o;
-        return Objects.equals(name, prize.name) &&
+        return Objects.equals(prizeName, prize.prizeName) &&
                 Objects.equals(column, prize.column);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, column);
+        return Objects.hash(prizeName, column);
     }
 }
