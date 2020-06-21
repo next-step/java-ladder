@@ -1,6 +1,5 @@
-package ladder.domain.user;
+package ladder.domain.play;
 
-import ladder.domain.user.LadderUsers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,15 +14,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class LadderUsersTest {
+class ItemsTest {
     @ParameterizedTest
     @MethodSource("userListByOnePerson")
     @NullAndEmptySource
-    @DisplayName("사다리 참여자 생성 시 User의 List는 두명 이상이어야 한다.")
-    void validate_user_list(List<String> names) {
-        assertThatThrownBy(() -> LadderUsers.of(names))
+    @DisplayName("사다리 참여자 생성 시 참여 갯수는 두 개 이상이어야 한다.")
+    void validate_user_list(List<String> items) {
+        assertThatThrownBy(() -> Items.of(items))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("사다리 게임의 참여자는 " + LadderUsers.MIN_USER_SIZE + "명 이상이어야 합니다.");
+                .hasMessage("입력 값은 " + Items.MIN_ITEM_SIZE + "개 이상이어야 합니다.");
     }
 
     static Stream<Arguments> userListByOnePerson() {
@@ -32,9 +31,9 @@ class LadderUsersTest {
 
     @ParameterizedTest
     @MethodSource("userListByTwoMorePerson")
-    @DisplayName("사다리 참여자 생성 시 User의 List는 두명 이상인 경우 정상 생성된다.")
-    void create_ladder_users(List<String> names) {
-        assertThat(LadderUsers.of(names)).isNotNull();
+    @DisplayName("사다리 참여자 생성 시 참여 갯수가 두 개 이상인 경우 정상 생성된다.")
+    void create_ladder_items(List<String> items) {
+        assertThat(Items.of(items)).isNotNull();
     }
 
     static Stream<Arguments> userListByTwoMorePerson() {

@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.domain.user.LadderUsers;
+import ladder.domain.play.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,18 +10,18 @@ import java.util.stream.IntStream;
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
 
-    private final LadderUsers users;
+    private final Items items;
     private List<FootStep> footSteps = new ArrayList<>();
 
-    private Ladder(int height, LadderUsers users) {
+    private Ladder(int height, Items items) {
         validate(height);
-        this.users = users;
+        this.items = items;
         createFootSteps(height);
     }
 
     private void createFootSteps(int height) {
         IntStream.range(0, height)
-                .forEach(i -> this.footSteps.add(FootStep.of(this.users.getCountOfUsers())));
+                .forEach(i -> this.footSteps.add(FootStep.of(this.items.getCountOfItems())));
     }
 
     private void validate(int height) {
@@ -30,8 +30,8 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(int height, LadderUsers users) {
-        return new Ladder(height, users);
+    public static Ladder of(int height, Items items) {
+        return new Ladder(height, items);
     }
 
     public int getFootStepSize() {
@@ -40,7 +40,7 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return this.users.toString() +
+        return this.items.toString() +
                 "\n" +
                 this.footSteps.stream()
                         .map(FootStep::toString)
