@@ -11,8 +11,7 @@ public class Ladder {
 
     private Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
-        Random random = new Random();
-        this.ladder = Stream.generate(() -> Line.valueOf(countOfPerson, random::nextBoolean))
+        this.ladder = Stream.generate(() -> Line.valueOf(countOfPerson, new LadderPointGenerator()))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }
