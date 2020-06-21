@@ -3,6 +3,7 @@ package ladder.domain.ladder;
 import ladder.domain.strategy.LineStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -32,10 +33,14 @@ public class LadderLine {
     }
 
     private static void addLastPoint(List<Point> points) {
-        points.add(points.get(points.size() - 1));
+        points.add(points.get(points.size() - 1).last());
     }
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

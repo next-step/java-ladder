@@ -7,6 +7,7 @@ import ladder.domain.result.LadderResults;
 import ladder.domain.result.MatchResult;
 import ladder.domain.strategy.LineStrategy;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,5 +54,9 @@ public class Ladder {
             playerPosition = line.move(playerPosition);
         }
         return playerPosition;
+    }
+
+    public List<LadderLine> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

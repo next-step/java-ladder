@@ -51,6 +51,10 @@ public class Direction {
         return index;
     }
 
+    public boolean hasRightLine() {
+        return hasRightLine;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
