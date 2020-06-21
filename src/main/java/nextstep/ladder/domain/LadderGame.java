@@ -12,5 +12,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(new RandomLadderGenerator(users.size(), InputView.getHeight()));
 
         ResultView.printResult(users, prices, ladder);
+
+        String resultQuery = InputView.getResultQuery();
     }
 }
