@@ -28,6 +28,10 @@ public class Items {
         return items.size();
     }
 
+    public boolean sameSize(Items items) {
+        return this.getCountOfItems() == items.getCountOfItems();
+    }
+
     @Override
     public String toString() {
         return this.items.stream()

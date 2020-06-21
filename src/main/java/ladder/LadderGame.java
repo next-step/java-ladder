@@ -13,8 +13,8 @@ public class LadderGame {
         List<String> names = ConvertUtils.split(InputView.doInputParticipants());
         int height = InputView.doInputLadderHeight();
 
-        Items items = Items.of(names);
-        Ladder ladder = Ladder.of(height, items);
+        Items players = Items.of(names);
+        Ladder ladder = Ladder.of(height, players);
         ResultView.printResult(ladder);
     }
 }
