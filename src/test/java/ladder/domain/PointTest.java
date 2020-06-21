@@ -13,26 +13,38 @@ class PointTest {
     @Test
     @DisplayName("생성 테스트")
     void of() {
-        assertThatCode(() -> Point.movable()).doesNotThrowAnyException();
-        assertThat(Point.movable() == Point.movable()).isTrue();
+        assertThatCode(() -> Point.first(true)).doesNotThrowAnyException();
     }
 
-    @ParameterizedTest
-    @ValueSource(booleans = {true, false})
-    @DisplayName("이 전 값이 true이면 false를 반환한다")
-    void checkLineOverlap(boolean random) {
-        Point point = Point.movable();
-        point = point.checkOverlap(random);
 
-        assertThat(point.isPoint()).isFalse();
-    }
     @Test
-    @DisplayName("이 전 값이 false인 경우 인자 값에 따라 결과가 반환 된다.")
-    void checkLineOverlap() {
-        Point point = Point.stop();
+    public void first() {
+        assertThat(Point.first(true).move()).isEqualTo(1);
+        assertThat(Point.first(false).move()).isEqualTo(0);
+    }
 
-        assertThat(point.checkOverlap(true).isPoint()).isTrue();
-        assertThat(point.checkOverlap(false).isPoint()).isFalse();
+    @Test
+    public void next_stay() {
+        Point second = Point.first(false).next(false);
+        assertThat(second.move()).isEqualTo(1);
+    }
+
+    @Test
+    public void next_left() {
+        Point second = Point.first(true).next(false);
+        assertThat(second.move()).isEqualTo(0);
+    }
+
+    @Test
+    public void next_right() {
+        Point second = Point.first(false).next(true);
+        assertThat(second.move()).isEqualTo(2);
+    }
+
+    @Test
+    public void next() {
+        Point second = Point.first(true).next();
+        assertThat(second.move()).isEqualTo(0);
     }
 
 }

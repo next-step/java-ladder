@@ -1,31 +1,52 @@
 package ladder.domain;
 
 public class Point {
-    private static final Point MOVABLE = new Point(true);
-    private static final Point STOP = new Point(false);
 
-    private final boolean point;
+    private final int index;
+    private final Direction direction;
 
-    private Point(boolean point) {
-        this.point = point;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point movable() {
-        return MOVABLE;
+    public static Point first(boolean point) {
+        return new Point(0, Direction.first(point));
     }
 
-    public static Point stop() {
-        return STOP;
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 
-    public Point checkOverlap(boolean point) {
-        if (this.point || !point) {
-            return STOP;
+    public Point next() {
+        return new Point(this.index + 1, direction.next());
+    }
+
+    public Point next(boolean point) {
+        return new Point(this.index + 1, direction.next(point));
+    }
+
+    public int move() {
+        System.out.println("is left? " + direction.isLeft());
+        System.out.println("is right? " + direction.isRight());
+
+        if (direction.isRight()) {
+            return index + 1;
         }
-        return MOVABLE;
+
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+
+        return this.index;
     }
 
-    public boolean isPoint() {
-        return point;
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 }
