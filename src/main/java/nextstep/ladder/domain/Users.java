@@ -21,4 +21,11 @@ public class Users {
     public List<User> getUsers() {
         return users;
     }
+
+    public User getUser(String name) {
+        return users.stream()
+                .filter(user -> user.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("User is not found"));
+    }
 }
