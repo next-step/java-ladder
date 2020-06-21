@@ -25,7 +25,9 @@ public class LadderApplication {
 
         GameResult gameResult = ladderGame.startGame(players, prizes);
 
-        OutputView.printLadder(players, ladder, prizes);
+        OutputView.printPlayers(players);
+        OutputView.printLadder(ladder);
+        OutputView.printPrizes(prizes);
 
         while (true) {
             String findName = InputView.inputFindResultName();

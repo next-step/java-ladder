@@ -20,16 +20,20 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(Players players, Ladder ladder, Prizes prizes) {
+    public static void printPlayers(Players players) {
         System.out.println("실행 결과");
 
         System.out.println(players.getPlayers().stream()
                 .map(Player::getName)
                 .collect(Collectors.joining(NAME_JOIN_DELIMITER)));
+    }
 
+    public static void printLadder(Ladder ladder) {
         ladder.getLines()
                 .forEach(OutputView::printLine);
+    }
 
+    public static void printPrizes(Prizes prizes) {
         System.out.println(prizes.getPrizes().stream()
                 .map(Prize::getName)
                 .collect(Collectors.joining(NAME_JOIN_DELIMITER)));
