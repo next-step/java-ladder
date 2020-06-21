@@ -7,7 +7,7 @@ public class LadderGame {
     public static void main(String[] argv) {
         Users users = InputView.insertUserLine();
 
-        String priceString = InputView.getPrices();
+        Prices prices = InputView.getPrices();
 
         Ladder ladder = new Ladder(new RandomLadderGenerator(users.size(), InputView.getHeight()));
 

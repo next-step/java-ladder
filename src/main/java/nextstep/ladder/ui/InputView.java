@@ -1,5 +1,7 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.domain.Price;
+import nextstep.ladder.domain.Prices;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
 
@@ -12,6 +14,7 @@ public class InputView {
     private static final String INPUT_HEIGHT_COMMENT = "최대 사다리 높이는 몇 개인가요?";
     private static final String INPUT_PRICE_COMMENT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String USER_DELIMITER = ",";
+    private static final String PRICE_DELIMITER = ",";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -30,8 +33,13 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static String getPrices() {
+    public static Prices getPrices() {
         System.out.println(INPUT_PRICE_COMMENT);
-        return scanner.nextLine();
+        String priceString = scanner.nextLine();
+        return new Prices(
+                Arrays.stream(priceString.split(PRICE_DELIMITER))
+                .map(Price::new)
+                .collect(Collectors.toList())
+        );
     }
 }
