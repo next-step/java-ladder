@@ -1,5 +1,6 @@
 package laddergame.domain.game;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,6 +34,6 @@ public class Prizes {
     }
 
     public List<Prize> getPrizes() {
-        return prizes;
+        return Collections.unmodifiableList(prizes);
     }
 }
