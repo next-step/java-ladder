@@ -14,7 +14,7 @@ public class Prices {
         return prices.stream();
     }
 
-    public Price getMoney(int userIndex) {
-        return prices.get(userIndex);
+    public Price getPrice(int index) {
+        return prices.get(index);
     }
 }
