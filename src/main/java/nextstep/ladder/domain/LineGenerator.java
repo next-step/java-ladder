@@ -15,8 +15,11 @@ public class LineGenerator {
     public Line generateLine(int countOfPerson) {
         List<MountingBlock> mountingBlocks = new ArrayList<>();
 
+        addToMountingBlocks(mountingBlocks, false);
         addToMountingBlocks(mountingBlocks, mountingBlockGenerator.generateMountingBlock());
         IntStream.range(1, getCountOfLine(countOfPerson)).forEach(i -> makeLine(mountingBlocks, i));
+        addToMountingBlocks(mountingBlocks, false);
+
         return Line.of(mountingBlocks);
     }
 

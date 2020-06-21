@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class LadderGameView {
 
@@ -73,10 +74,10 @@ public class LadderGameView {
 
     private static void viewLine(List<MountingBlock> mountingBlocks) {
         drawFirstHeight();
-        for (MountingBlock mountingBlock : mountingBlocks) {
-            drawMountingBlock(mountingBlock.getMountingBlock());
+        IntStream.range(1, mountingBlocks.size() - 1).forEach(i -> {
+            drawMountingBlock(mountingBlocks.get(i).getMountingBlock());
             System.out.print(LadderConstants.SHAPE_OF_HEIGHT);
-        }
+        });
 
         System.out.println();
     }
