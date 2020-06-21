@@ -11,7 +11,7 @@ public class Position {
 
     private int position;
 
-    public Position(int position) {
+    private Position(int position) {
         validatePosition(position);
         this.position = position;
     }
@@ -23,7 +23,11 @@ public class Position {
     }
 
     public Position increase() {
-        return new Position(position + INCREASE);
+        return of(position + INCREASE);
+    }
+
+    public static Position of(int position){
+        return new Position(position);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.util.RandomGenerator;
+import ladder.domain.moveStrategy.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 public class Layer {
 
     public static final String MINIMUN_POINTS_EXCEPTION = "포인트가 2개보다 적으면 게임이 성립되지 않습니다.";
-    public static final String CONNECTED_LINE_EXCEPTION = "가로라인은 겹치면 안됩니다.";
 
     private static final int INDEX_ONE = 1;
     private static final int ONE = 1;
@@ -27,27 +26,30 @@ public class Layer {
         if (points.size() < MINIMUN_POINTS){
             throw new IllegalArgumentException(MINIMUN_POINTS_EXCEPTION);
         }
-
-        if (points.stream().anyMatch(point -> point.left() && point.right())){
-            throw new IllegalArgumentException(CONNECTED_LINE_EXCEPTION);
-        }
     }
 
     private static Layer createLine(int countOfperson) {
         List<Point> points = new ArrayList<>();
-        Point point = Point.first(RandomGenerator.generate());
+        Point point = Point.first(new RandomGenerator());
         points.add(point);
 
-        int lastPointIndex = countOfperson - ONE;
-        for (int i = INDEX_ONE; i < lastPointIndex; i++){
-            point = point.mid();
-            points.add(point);
-        }
+        List<Point> midPoints = makeMidPoints(countOfperson, point);
+        points.addAll(midPoints);
 
         Point lastPoint = point.last();
         points.add(lastPoint);
 
         return new Layer(points);
+    }
+
+    private static List<Point> makeMidPoints(int countOfperson, Point point) {
+        List<Point> midPoints = new ArrayList<>();
+        int lastPointIndex = countOfperson - ONE;
+        for (int i = INDEX_ONE; i < lastPointIndex; i++){
+            point = point.mid();
+            midPoints.add(point);
+        }
+        return midPoints;
     }
 
     public static Layer of(int countOfPerson) {
