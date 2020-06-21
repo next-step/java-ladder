@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Column;
 import laddergame.domain.vo.Position;
 import laddergame.domain.vo.Height;
 
@@ -33,14 +34,24 @@ public class Line {
     }
 
     private Bridge findBridge(Position position) {
+        List<Bridge> findBridges = findSameColumnBridges(position.getColumn());
+
+        return findConnectedBridge(findBridges);
+    }
+
+    private List<Bridge> findSameColumnBridges(Column column) {
         List<Bridge> findBridges = bridges.stream()
-                .filter(bridge -> bridge.isBridgeColumn(position.getColumn()))
+                .filter(bridge -> bridge.isBridgeColumn(column))
                 .collect(Collectors.toList());
 
         if (findBridges.isEmpty()) {
-            throw new IllegalArgumentException("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + position.getColumn().toInt());
+            throw new IllegalArgumentException("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + column.toInt());
         }
 
+        return findBridges;
+    }
+
+    private Bridge findConnectedBridge(List<Bridge> findBridges) {
         return findBridges.stream()
                 .filter(Bridge::isConnected)
                 .findFirst()
