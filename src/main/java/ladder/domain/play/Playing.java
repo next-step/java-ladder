@@ -19,4 +19,16 @@ public class Playing {
     public static Playing of(Items players, Items results) {
         return new Playing(players, results);
     }
+
+    public int getCountOfPlayers() {
+        return players.getCountOfItems();
+    }
+
+    public Items getPlayers() {
+        return players;
+    }
+
+    public Items getResults() {
+        return results;
+    }
 }

@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.play.Items;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,18 +8,16 @@ import java.util.stream.IntStream;
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
 
-    private final Items items;
     private List<FootStep> footSteps = new ArrayList<>();
 
-    private Ladder(int height, Items items) {
+    private Ladder(int height, int countOfPlayers) {
         validate(height);
-        this.items = items;
-        createFootSteps(height);
+        createFootSteps(height, countOfPlayers);
     }
 
-    private void createFootSteps(int height) {
+    private void createFootSteps(int height, int countOfPlayers) {
         IntStream.range(0, height)
-                .forEach(i -> this.footSteps.add(FootStep.of(this.items.getCountOfItems())));
+                .forEach(i -> this.footSteps.add(FootStep.of(countOfPlayers)));
     }
 
     private void validate(int height) {
@@ -30,8 +26,8 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(int height, Items items) {
-        return new Ladder(height, items);
+    public static Ladder of(int height, int countOfPlayers) {
+        return new Ladder(height, countOfPlayers);
     }
 
     public int getFootStepSize() {
@@ -40,10 +36,8 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return this.items.toString() +
-                "\n" +
-                this.footSteps.stream()
-                        .map(FootStep::toString)
-                        .collect(Collectors.joining("\n"));
+        return this.footSteps.stream()
+                .map(FootStep::toString)
+                .collect(Collectors.joining("\n"));
     }
 }

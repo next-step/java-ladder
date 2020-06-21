@@ -1,14 +1,14 @@
 package ladder.view;
 
-import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Game;
 
 public class ResultView {
-    public static void printResult(Ladder ladder) {
+    public static void printResult(Game game) {
         System.out.println("실행 결과");
-        printLadder(ladder);
+        printLadder(game);
     }
 
-    private static void printLadder(Ladder ladder) {
-        System.out.println(ladder.toString());
+    private static void printLadder(Game game) {
+        System.out.println(game.toString());
     }
 }
