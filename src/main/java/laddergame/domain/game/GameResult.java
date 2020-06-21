@@ -2,13 +2,13 @@ package laddergame.domain.game;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.Set;
+import java.util.Objects;
 
 public class GameResult {
     private final Map<String, Prize> winningResults;
 
     public GameResult(final Map<String, Prize> winningResults) {
-        this.winningResults = winningResults;
+        this.winningResults = Objects.requireNonNull(winningResults, "게임 결과를 찾을 수 없습니다.");
     }
 
     public Prize findByName(final String name) {
