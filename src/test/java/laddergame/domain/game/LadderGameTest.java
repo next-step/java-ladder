@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderGameTest {
 
@@ -19,6 +18,6 @@ class LadderGameTest {
         Ladder ladder = new Ladder(new Height(3), 3, () -> true);
         LadderGame ladderGame = new LadderGame(ladder);
 
-        assertThat(ladderGame.generateGameResult(players, results)).isInstanceOf(GameResult.class);
+        assertThat(ladderGame.startGame(players, results)).isInstanceOf(GameResult.class);
     }
 }

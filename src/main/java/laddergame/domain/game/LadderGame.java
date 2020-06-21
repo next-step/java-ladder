@@ -15,7 +15,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public GameResult generateGameResult(Players players, Results results) {
+    public GameResult startGame(Players players, Results results) {
         Map<String, Result> resultMap = new HashMap<>();
 
         for (Player player : players.getPlayers()) {

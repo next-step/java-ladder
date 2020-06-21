@@ -23,7 +23,7 @@ public class LadderApplication {
 
         LadderGame ladderGame = new LadderGame(ladder);
 
-        GameResult gameResult = ladderGame.generateGameResult(players, results);
+        GameResult gameResult = ladderGame.startGame(players, results);
 
         OutputView.printLadder(players, ladder, results);
 
