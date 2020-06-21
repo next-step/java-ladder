@@ -18,4 +18,11 @@ public class Player {
         String playerNameWithPadding = playerName.convertUserNameWithLeftPad();
         return PlayerName.playerNameWithPadding(playerNameWithPadding);
     }
+
+    public Point point() {
+        XAxis xAxis = this.playerIndex.xAxis();
+        YAxis yAxis = YAxis.of(0);
+
+        return Point.of(xAxis, yAxis);
+    }
 }

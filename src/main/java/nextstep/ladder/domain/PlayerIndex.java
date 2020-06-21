@@ -11,4 +11,8 @@ public class PlayerIndex {
     public static PlayerIndex of(int playerIndex) {
         return new PlayerIndex(playerIndex);
     }
+
+    public XAxis xAxis() {
+        return XAxis.of(this.playerIndex);
+    }
 }

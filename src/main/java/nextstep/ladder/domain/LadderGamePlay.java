@@ -14,6 +14,8 @@ public class LadderGamePlay {
 
     public ExecutionResult playLadderGame(Player player) {
 
+        Point point = player.point();
+
 
 
         return null;
