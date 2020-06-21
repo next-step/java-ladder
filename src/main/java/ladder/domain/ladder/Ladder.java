@@ -48,7 +48,7 @@ public class Ladder {
         return new MatchResult(result);
     }
 
-    public int findResultPosition(int playerPosition) {
+    private int findResultPosition(int playerPosition) {
         for (LadderLine line : lines) {
             playerPosition = line.move(playerPosition);
         }
