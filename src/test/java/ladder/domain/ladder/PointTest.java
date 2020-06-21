@@ -49,4 +49,10 @@ class PointTest {
         Point second = Point.first(true).last();
         assertThat(second.move()).isEqualTo(0);
     }
+
+    @Test
+    public void testIsConnectedNextPoint() {
+        Point point = Point.first(true);
+        assertThat(point.isConnectedNextPoint()).isEqualTo(true);
+    }
 }

@@ -23,7 +23,17 @@ class LadderTest {
 
         Ladder ladder = Ladder.of(5, ladderHeight, new TrueLineStrategy());
 
-        assertThat(ladder).isInstanceOf(Ladder.class);
+        assertThat(ladder.getLines().size()).isEqualTo(ladderHeight);
+    }
+
+    @Test
+    @DisplayName("참가자가 2인 미만 때 예외 발생")
+    void throwExceptionWhenNotEnoughPlayers() {
+        int countOfPerson = -1;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Ladder.of(countOfPerson, 5, new TrueLineStrategy());
+        }).withMessageMatching("Ladder width must be larger than 1.");
     }
 
     @Test

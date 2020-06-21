@@ -32,7 +32,7 @@ class DirectionTest {
     @DisplayName("오른쪽으로 연결된 Point 의 Direction 생성 테스트")
     public void generateDirectionWithRightLine() {
         Direction next = Direction.of(true, false).next(true);
-        assertThat(next).isEqualTo(Direction.of(false, true));
+        assertThat(next.hasRightLine()).isEqualTo(true);
     }
 
     @Test

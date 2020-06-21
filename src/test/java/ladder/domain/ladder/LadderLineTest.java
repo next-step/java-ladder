@@ -15,6 +15,7 @@ class LadderLineTest {
     public void generateLadderLine() {
         int countOfPerson = 5;
         LadderLine line = LadderLine.of(countOfPerson, new RandomLineStrategy());
+        assertThat(line.getPoints().size()).isEqualTo(countOfPerson);
     }
 
     @Test
