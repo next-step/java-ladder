@@ -28,4 +28,12 @@ public class Point {
         YAxis yAxis = this.yAxis.move(1);
         return Point.of(this.xAxis, yAxis);
     }
+
+    public XAxis getxAxis() {
+        return this.xAxis;
+    }
+
+    public YAxis getyAxis() {
+        return this.yAxis;
+    }
 }

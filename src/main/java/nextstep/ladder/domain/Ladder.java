@@ -30,6 +30,10 @@ public class Ladder {
         }
     }
 
+    public Point playLadderGame(Point point) {
+        return this.lines.move(point);
+    }
+
     public Players getPlayers() {
         return this.players;
     }

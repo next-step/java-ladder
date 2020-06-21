@@ -31,4 +31,14 @@ public class Lines {
     public List<Line> getLines() {
         return this.lines;
     }
+
+    public Point move(Point point) {
+
+        for (Line line : this.lines) {
+            point = line.moveLeftOrRight(point);
+            point = point.moveToDown();
+        }
+
+        return point;
+    }
 }

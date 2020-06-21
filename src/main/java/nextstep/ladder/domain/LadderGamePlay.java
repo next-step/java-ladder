@@ -16,8 +16,8 @@ public class LadderGamePlay {
 
         Point point = player.point();
 
-
-
+        Point result = ladder.playLadderGame(point);
+        System.out.println(result.getxAxis() + " " + result.getyAxis());
         return null;
     }
 }

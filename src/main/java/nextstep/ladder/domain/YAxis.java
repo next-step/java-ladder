@@ -15,4 +15,9 @@ public class YAxis {
     public YAxis move(int yAxis) {
         return YAxis.of(this.yAxis + yAxis);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.yAxis);
+    }
 }

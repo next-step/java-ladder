@@ -23,4 +23,5 @@ public class LadderConstants {
     public static final int MAXIMUM_EXECUTION_RESULT_LENGTH = 5;
     public static final String INVALID_USER_NAME_EXCEPTION_MESSAGE = "이름은 길이는 최대 5글자 입니다.";
     public static final String INVALID_USER_NAMES_AND_EXECUTION_RESULTS = "결과 입력은 입력한 사용자 개수와 같아야 합니다.";
+    public static final String WHAT_YOU_WANT_TO_SEE_PLAYER_EXECUTION_RESULT = "결과를 보고싶은 사람은?";
 }

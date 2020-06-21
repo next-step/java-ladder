@@ -15,4 +15,13 @@ public class XAxis {
     public XAxis move(int xAxis) {
         return XAxis.of(this.xAxis + xAxis);
     }
+
+    public int getxAxis() {
+        return this.xAxis;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.xAxis);
+    }
 }

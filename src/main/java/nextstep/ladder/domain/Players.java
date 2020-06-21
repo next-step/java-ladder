@@ -22,7 +22,7 @@ public class Players {
 
         IntStream.range(0, playerNames.size()).forEach(i -> {
             PlayerName playerName = PlayerName.of(playerNames.get(i));
-            PlayerIndex playerIndex = PlayerIndex.of(i);
+            PlayerIndex playerIndex = PlayerIndex.of(i + 1);
 
             players.addToPlayers(Player.of(playerName, playerIndex));
         });
