@@ -18,8 +18,8 @@ public class Point {
         return STOP;
     }
 
-    public Point checkOverlap(boolean random) {
-        if (point || !random) {
+    public Point checkOverlap(boolean point) {
+        if (this.point || !point) {
             return STOP;
         }
         return MOVABLE;
