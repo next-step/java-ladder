@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import ladder.domain.Point;
 import ladder.domain.RandomGenerator;
 
@@ -5,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderLine {
+
     private final List<Point> points;
 
     public LadderLine(List<Point> points) {
