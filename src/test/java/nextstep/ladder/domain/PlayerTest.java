@@ -16,7 +16,7 @@ public class PlayerTest {
     @ParameterizedTest
     @MethodSource("providePlayerName")
     void playerConstructorTest(final PlayerName playerName, final PlayerName expected) {
-        Player player = Player.of(playerName, PlayerIndex.of(0));
+        Player player = Player.of(playerName, PlayerIndex.of(1));
         PlayerName result = player.convertPlayerNameWithLeftPad();
         assertThat(result.toString()).isEqualTo(expected.toString());
     }
