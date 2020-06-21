@@ -1,5 +1,6 @@
 package laddergame.domain.game;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,8 +16,8 @@ public class GameResult {
         return winningResults.get(name);
     }
 
-    public Set<Map.Entry<String, Prize>> findAll() {
-        return winningResults.entrySet();
+    public Map<String, Prize> findAll() {
+        return Collections.unmodifiableMap(winningResults);
     }
 
     private void validateFindName(final String name) {

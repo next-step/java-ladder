@@ -55,7 +55,7 @@ public class OutputView {
     }
 
 
-    public static void printAllResult(final Set<Map.Entry<String, Prize>> results) {
-        results.forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue().getName()));
+    public static void printAllResult(final Map<String, Prize> results) {
+        results.forEach((key, value) -> System.out.println(key + " : " + value.getName()));
     }
 }
