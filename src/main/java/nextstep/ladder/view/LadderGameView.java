@@ -8,6 +8,7 @@ import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.MountingBlock;
 import nextstep.ladder.domain.Player;
+import nextstep.ladder.domain.PlayerName;
 import nextstep.ladder.domain.Players;
 import org.apache.commons.lang3.StringUtils;
 
@@ -50,7 +51,7 @@ public class LadderGameView {
 
     private static void viewPlayers(Players players) {
         for (Player player : players.getPlayers()) {
-            String leftPad = player.convertUserNameWithLeftPad();
+            PlayerName leftPad = player.convertPlayerNameWithLeftPad();
             System.out.print(leftPad);
         }
         System.out.println();

@@ -11,4 +11,8 @@ public class YAxis {
     public static YAxis of(int yAxis) {
         return new YAxis(yAxis);
     }
+
+    public void move() {
+
+    }
 }

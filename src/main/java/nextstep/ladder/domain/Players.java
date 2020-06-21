@@ -18,7 +18,11 @@ public class Players {
         validatePlayerNames(playerNames);
 
         Players players = new Players();
-        playerNames.forEach(playerName -> players.addToPlayers(Player.of(playerName)));
+
+        playerNames.forEach(name -> {
+            PlayerName playerName = PlayerName.of(name);
+            players.addToPlayers(Player.of(playerName));
+        });
         return players;
     }
 

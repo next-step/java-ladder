@@ -13,4 +13,16 @@ public class Point {
     public static Point of(XAxis xAxis, YAxis yAxis) {
         return new Point(xAxis, yAxis);
     }
+
+    public void moveToRight() {
+
+    }
+
+    public void moveToLeft() {
+
+    }
+
+    public void moveToDown() {
+
+    }
 }
