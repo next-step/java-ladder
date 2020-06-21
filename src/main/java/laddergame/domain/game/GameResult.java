@@ -4,23 +4,23 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameResult {
-    private final Map<String, Result> resultMap;
+    private final Map<String, Result> winningResults;
 
-    public GameResult(final Map<String, Result> resultMap) {
-        this.resultMap = resultMap;
+    public GameResult(final Map<String, Result> winningResults) {
+        this.winningResults = winningResults;
     }
 
     public Result findByName(final String name) {
         validateFindName(name);
-        return resultMap.get(name);
+        return winningResults.get(name);
     }
 
     public Set<Map.Entry<String, Result>> findAll() {
-        return resultMap.entrySet();
+        return winningResults.entrySet();
     }
 
     private void validateFindName(final String name) {
-        if (!resultMap.containsKey(name)) {
+        if (!winningResults.containsKey(name)) {
             throw new IllegalArgumentException("존재하지않는 이름입니다. - " + name);
         }
     }
