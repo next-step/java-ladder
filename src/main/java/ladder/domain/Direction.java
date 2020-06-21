@@ -1,7 +1,6 @@
 package ladder.domain;
 
 public class Direction {
-    private static final PointGenerator POINT_GENERATOR = new LadderPointGenerator();
     private final boolean left;
     private final boolean right;
 
@@ -25,7 +24,7 @@ public class Direction {
         if (this.right) {
             return next(false);
         }
-        return new Direction(this.right, POINT_GENERATOR.generate());
+        return new Direction(this.right, new LadderPointGenerator().generate());
     }
 
     public Direction next(boolean nextRight) {
