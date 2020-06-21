@@ -58,10 +58,8 @@ public class ResultView {
             findName = InputView.enterCuriousResult();
         }
 
-        if (findName.toLowerCase().equals("all")) {
-            System.out.println("\n실행 결과");
-            gameResult.getGameResult()
-                    .forEach((person, result) -> System.out.println(person.getName() + " : " + result.getResult()));
-        }
+        System.out.println("\n실행 결과");
+        gameResult.getGameResult()
+                .forEach((person, result) -> System.out.println(person.getName() + " : " + result.getResult()));
     }
 }
