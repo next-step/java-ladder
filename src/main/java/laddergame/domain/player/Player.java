@@ -20,4 +20,8 @@ public class Player {
     public Column getColumn() {
         return column;
     }
+
+    public boolean isSameName(final String name) {
+        return this.name.isSameName(name);
+    }
 }

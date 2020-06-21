@@ -1,6 +1,7 @@
 package laddergame.domain.player;
 
 import laddergame.domain.vo.Column;
+import laddergame.domain.vo.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,5 +22,14 @@ class PlayerTest {
                 () -> assertThat(player.getName()).isEqualTo(name),
                 () -> assertThat(player.getColumn()).isEqualTo(new Column(column))
         );
+    }
+
+    @DisplayName("인자로 받은 String이 자신의 이름과 같은지 비교")
+    @ParameterizedTest
+    @CsvSource({"pobi, true", "crong, false"})
+    void isSameName(String sameName, boolean result) {
+        Player player = new Player("pobi", 1);
+
+        assertThat(player.isSameName(sameName)).isEqualTo(result);
     }
 }

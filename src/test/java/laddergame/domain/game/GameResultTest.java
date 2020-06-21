@@ -1,5 +1,6 @@
 package laddergame.domain.game;
 
+import laddergame.domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,17 +19,17 @@ class GameResultTest {
     private static Stream<Arguments> provideNameAndResult() {
         return Stream.of(Arguments.of("pobi", new Prize("꽝", 2)),
                 Arguments.of("crong", new Prize("2000", 1)),
-                Arguments.of("horong", new Prize("꽝", 3)));
+                Arguments.of("horox", new Prize("꽝", 3)));
     }
 
-    private static Map<String, Prize> createResultMap() {
-        Map<String, Prize> resultMap = new HashMap<>();
+    private static Map<Player, Prize> createResultMap() {
+        Map<Player, Prize> results = new HashMap<>();
 
-        resultMap.put("pobi", new Prize("꽝", 2));
-        resultMap.put("crong", new Prize("2000", 1));
-        resultMap.put("horong", new Prize("꽝", 3));
+        results.put(new Player("pobi", 1), new Prize("꽝", 2));
+        results.put(new Player("crong", 2), new Prize("2000", 1));
+        results.put(new Player("horox", 3), new Prize("꽝", 3));
 
-        return resultMap;
+        return results;
     }
 
     @DisplayName("이름으로 결과를 찾는다.")
