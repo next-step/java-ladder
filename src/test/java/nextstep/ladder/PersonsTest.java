@@ -33,6 +33,6 @@ public class PersonsTest {
     void inputPersonsNullTest(String inputPersons){
         assertThatThrownBy(() -> Persons.of(inputPersons))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(StringUtil.SPLIT_WORDS_EXCEPTION);
+                .hasMessage(StringUtil.EMPTY_WORDS_EXCEPTION);
     }
 }

@@ -32,16 +32,4 @@ public class LayerTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(Layer.MINIMUN_POINTS_EXCEPTION);
     }
-
-    @Test
-    @DisplayName("사다리 한개 높이 예외처리 테스트2 - 가로라인 겹치면 예외처리")
-    void validateLayerTest2(){
-        Point first = Point.of(0,false,true);
-        Point next = Point.of(1,true,true);
-        Point last = Point.of(2,true,false);
-        List<Point> points = Lists.list(first, next, last);
-        assertThatThrownBy(() -> Layer.of(points))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Layer.CONNECTED_LINE_EXCEPTION);
-    }
 }
