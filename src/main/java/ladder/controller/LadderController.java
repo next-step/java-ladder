@@ -23,13 +23,20 @@ public class LadderController {
         ResultView.print(ladder, ladderPlayers, ladderRewards);
 
         LadderGameResults results = LadderGame.start(ladder, ladderPlayers, ladderRewards);
-        while (true) {
+
+        Boolean stopFlag = true;
+        while (stopFlag) {
             LadderPlayer ladderPlayer = InputView.inputTargetPlayer();
-            if (ALL.equals(ladderPlayer.getPlayerName().toLowerCase())) {
-                ResultView.printAllResult(results);
-                break;
-            }
-            ResultView.printResult(ladderPlayer, results);
+            stopFlag = checkAllPlayer(ladderPlayer, results);
         }
+    }
+
+    private static Boolean checkAllPlayer(LadderPlayer ladderPlayer, LadderGameResults results) {
+        if (ALL.equals(ladderPlayer.getPlayerName().toLowerCase())) {
+            ResultView.printAllResult(results);
+            return false;
+        }
+        ResultView.printResult(ladderPlayer, results);
+        return true;
     }
 }
