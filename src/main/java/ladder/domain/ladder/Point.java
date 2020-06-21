@@ -4,38 +4,35 @@ import ladder.domain.strategy.LineStrategy;
 
 public class Point {
 
-    public static final int MOVABLE_POSITION = 1;
-    public static final int IMMOVABLE_POSITION = 0;
+    private final int index;
+    private final Direction direction;
 
-    private final boolean hasLine;
-
-    private Point(boolean hasLine) {
-        this.hasLine = hasLine;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point createFirstPoint(LineStrategy lineStrategy) {
-        return new Point(lineStrategy.hasLine());
+    public int move() {
+        return direction.getNextIndex(index);
     }
 
-    public static Point createMiddlePoint(Point previousPoint, LineStrategy lineStrategy) {
-        if (previousPoint.hasLine()) {
-            return new Point(false);
-        }
-        return new Point(lineStrategy.hasLine());
+    public Point next(LineStrategy lineStrategy) {
+        return new Point(index + 1, direction.next(lineStrategy));
     }
 
-    public static Point createLastPoint() {
-        return new Point(false);
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
     }
 
-    public boolean hasLine() {
-        return hasLine;
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 
-    public int getNextPosition(){
-        if (hasLine()) {
-            return MOVABLE_POSITION;
-        }
-        return IMMOVABLE_POSITION;
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public boolean isConnectedNextPoint() {
+        return direction.hasRightLine();
     }
 }

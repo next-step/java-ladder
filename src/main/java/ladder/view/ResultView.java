@@ -1,7 +1,6 @@
 package ladder.view;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
 import ladder.domain.ladder.Point;
 import ladder.domain.player.Players;
 import ladder.domain.result.LadderResult;
