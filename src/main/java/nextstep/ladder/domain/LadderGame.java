@@ -14,5 +14,9 @@ public class LadderGame {
         ResultView.printResult(users, prices, ladder);
 
         String resultQuery = InputView.getResultQuery();
+
+        int userIndex = users.getUserIndex(resultQuery);
+        int gameResult = ladder.getGameResult(userIndex);
+        ResultView.printGameResult(prices.getMoney(gameResult));
     }
 }

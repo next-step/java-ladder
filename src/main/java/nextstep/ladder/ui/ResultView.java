@@ -11,6 +11,7 @@ public class ResultView {
     private static final String RESULT_PRICE_NAME_FORMAT = "%-5s ";
     private static final String RESULT_LADDER_OPEN = "-----|";
     private static final String RESULT_LADDER_CLOSE = "     |";
+    private static final String GAME_RESULT_COMMENT = "실행 결과\n";
 
     public static void printResult(Users users, Prices prices, Ladder ladder) {
         System.out.println(LADDER_RESULT_COMMENT);
@@ -25,6 +26,8 @@ public class ResultView {
 
         prices.stream()
                 .forEach(price -> System.out.print(String.format(RESULT_PRICE_NAME_FORMAT, price.getMoney())));
+
+        System.out.print("\n");
     }
 
     private static String getLineString(Line line) {
@@ -32,5 +35,10 @@ public class ResultView {
                 .map(b -> b ? RESULT_LADDER_OPEN : RESULT_LADDER_CLOSE)
                 .collect(Collectors.toList());
         return String.join("", lineShapes);
+    }
+
+    public static void printGameResult(Price price) {
+        System.out.println(GAME_RESULT_COMMENT);
+        System.out.println(price.getMoney());
     }
 }
