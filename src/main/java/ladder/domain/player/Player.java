@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -18,13 +18,6 @@ public class Player {
 
     public Name getName() {
         return this.name;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "name=" + name +
-                '}';
     }
 
     @Override

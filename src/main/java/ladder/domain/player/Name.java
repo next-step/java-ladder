@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -31,9 +31,7 @@ public class Name {
 
     @Override
     public String toString() {
-        return "Name{" +
-                "value='" + value + '\'' +
-                '}';
+        return value;
     }
 
     @Override

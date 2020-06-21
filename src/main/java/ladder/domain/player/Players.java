@@ -1,7 +1,8 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -16,10 +17,21 @@ public class Players {
     }
 
     private boolean isValidCount(List<Player> player) {
-        return player.size() > MIN_COUNT;
+        return MIN_COUNT <= player.size();
     }
 
     public static Players create(List<Player> players) {
         return new Players(players);
+    }
+
+    public int getCount() {
+        return players.size();
+    }
+
+    public List<String> getNames() {
+        return players.stream()
+                .map(Player::getName)
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 }
