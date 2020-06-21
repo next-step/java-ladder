@@ -1,16 +1,13 @@
 package ladder;
 
-import ladder.domain.GameResult;
-import ladder.domain.Ladder;
-import ladder.domain.Participants;
-import ladder.domain.Results;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderApplication {
 
     public static void main(String[] args) {
-        //참가자 생성
+        // 참가자 생성
         String nameOfPerson = InputView.enterNameOfPerson();
         Participants participants = Participants.valueOf(nameOfPerson);
         int countOfPerson = participants.size();
@@ -22,11 +19,11 @@ public class LadderApplication {
         // 사다리 생성
         int ladderHeight = InputView.enterLadderHeight();
         Ladder ladder = Ladder.valueOf(ladderHeight, countOfPerson);
-
-        //사다리 결과 출력
         ResultView.printLadder(participants, ladder, results);
 
-        GameResult gameResult = participants.runLadder(ladder, results);
+        // 사다리 게임 실행
+        GameConsole gameConsole = GameConsole.valueOf(participants, ladder);
+        GameResult gameResult = gameConsole.runLadder(results);
         ResultView.printResult(gameResult);
     }
 }

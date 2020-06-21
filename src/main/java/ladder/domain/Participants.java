@@ -26,15 +26,5 @@ public class Participants {
         return Collections.unmodifiableList(participants);
     }
 
-    public GameResult runLadder(Ladder ladder, Results results) {
-        Map<Person, Result> gameResult = new LinkedHashMap<>();
-        int personIndex = 0;
-        for (Person person : participants) {
-            int finalPoint = ladder.run(personIndex);
-            Result result = results.find(finalPoint);
-            gameResult.put(person, result);
-            personIndex++;
-        }
-        return GameResult.valueOf(gameResult);
-    }
+
 }
