@@ -32,8 +32,4 @@ public class Point {
     public XAxis getxAxis() {
         return this.xAxis;
     }
-
-    public YAxis getyAxis() {
-        return this.yAxis;
-    }
 }

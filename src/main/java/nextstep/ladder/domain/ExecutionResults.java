@@ -35,4 +35,9 @@ public class ExecutionResults {
     public List<ExecutionResult> getExecutionResults() {
         return this.executionResults;
     }
+
+    public ExecutionResult getExecutionResult(Point point) {
+        XAxis xAxis = point.getxAxis();
+        return this.executionResults.get(xAxis.getxAxis() - 1);
+    }
 }

@@ -12,12 +12,9 @@ public class LadderGamePlay {
         return new LadderGamePlay(ladder);
     }
 
-    public ExecutionResult playLadderGame(Player player) {
-
+    public ExecutionResult playLadderGame(Player player, ExecutionResults executionResults) {
         Point point = player.point();
-
         Point result = ladder.playLadderGame(point);
-        System.out.println(result.getxAxis() + " " + result.getyAxis());
-        return null;
+        return executionResults.getExecutionResult(result);
     }
 }

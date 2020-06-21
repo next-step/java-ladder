@@ -19,10 +19,19 @@ public class Player {
         return PlayerName.playerNameWithPadding(playerNameWithPadding);
     }
 
+    public boolean isEqualWithPlayerName(PlayerName playerName) {
+        return playerName.equals(this.playerName);
+    }
+
     public Point point() {
         XAxis xAxis = this.playerIndex.xAxis();
         YAxis yAxis = YAxis.of(0);
 
         return Point.of(xAxis, yAxis);
+    }
+
+    @Override
+    public String toString() {
+        return this.playerName.toString();
     }
 }

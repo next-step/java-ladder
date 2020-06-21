@@ -18,4 +18,9 @@ public class ExecutionResult {
     public String convertExecutionResultWithLeftPad() {
         return StringUtils.leftPad(this.executionResult, LadderConstants.MAXIMUM_EXECUTION_RESULT_LENGTH + 1);
     }
+
+    @Override
+    public String toString() {
+        return this.executionResult;
+    }
 }

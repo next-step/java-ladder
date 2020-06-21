@@ -22,6 +22,7 @@ public class LadderGameView {
         System.out.println(LadderConstants.USER_NAME_INPUT_MESSAGE);
         Scanner scanner = new Scanner(System.in);
         String userNameInput = scanner.nextLine();
+        System.out.println();
         return LadderGameViewHelper.parseInputWithComma(userNameInput);
     }
 
@@ -29,17 +30,20 @@ public class LadderGameView {
         System.out.println(LadderConstants.EXECUTION_RESULT_INPUT_MESSAGE);
         Scanner scanner = new Scanner(System.in);
         String executionResult = scanner.nextLine();
+        System.out.println();
         return LadderGameViewHelper.parseInputWithComma(executionResult);
     }
 
     public static Integer inputLadderHeight() {
         System.out.println(LadderConstants.LADDER_HEIGHT_INPUT_MESSAGE);
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        int result = scanner.nextInt();
+        System.out.println();
+        return result;
     }
 
     public static void viewLadderShape(Ladder ladder) {
-        System.out.println(LadderConstants.EXECUTION_RESULT_MESSAGE);
+        System.out.println(LadderConstants.EXECUTION_LADDER_RESULT_MESSAGE);
         System.out.println();
 
         Players players = ladder.getPlayers();
@@ -48,6 +52,7 @@ public class LadderGameView {
         viewLadder(lines);
         ExecutionResults executionResults = ladder.getExecutionResults();
         viewExecutionResults(executionResults);
+        System.out.println();
     }
 
     private static void viewPlayers(Players players) {
@@ -99,5 +104,16 @@ public class LadderGameView {
         Scanner scanner = new Scanner(System.in);
         System.out.println(LadderConstants.WHAT_YOU_WANT_TO_SEE_PLAYER_EXECUTION_RESULT);
         return scanner.nextLine();
+    }
+
+    public static void viewExecutionResult(ExecutionResult executionResult) {
+        System.out.println();
+        System.out.println(LadderConstants.EXECUTION_RESULT_MESSAGE);
+        System.out.println(executionResult);
+        System.out.println();
+    }
+
+    public static void viewAllExecutionResult(Player player, ExecutionResult executionResult) {
+        System.out.println(player + " : " + executionResult);
     }
 }

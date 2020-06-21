@@ -5,7 +5,9 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Players {
 
@@ -32,6 +34,13 @@ public class Players {
 
     public List<Player> getPlayers() {
         return this.players;
+    }
+
+    public Player getPlayer(PlayerName name) {
+        return this.players.stream()
+                .filter(player -> player.isEqualWithPlayerName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(LadderConstants.INVALID_USER_NAME_IN_EXECUTION_RESULTS));
     }
 
     private void addToPlayers(Player player) {
