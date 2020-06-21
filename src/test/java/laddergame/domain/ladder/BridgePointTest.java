@@ -1,5 +1,6 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Column;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,6 +28,6 @@ class BridgePointTest {
     void isBridgeColumn(int expectColumn, boolean result) {
         BridgePoint bridgePoint = new BridgePoint(1);
 
-        assertThat(bridgePoint.isBridgeColumn(expectColumn)).isEqualTo(result);
+        assertThat(bridgePoint.isBridgeColumn(new Column(expectColumn))).isEqualTo(result);
     }
 }

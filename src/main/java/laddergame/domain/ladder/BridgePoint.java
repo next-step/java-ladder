@@ -13,21 +13,20 @@ public class BridgePoint {
         this.right = new Column(leftColumn + 1);
     }
 
-    public boolean isBridgeColumn(final int targetColumn) {
-        Column target = new Column(targetColumn);
-        if (isLeftColumn(target) || isRightColumn(target)) {
+    public boolean isBridgeColumn(final Column targetColumn) {
+        if (isLeftColumn(targetColumn) || isRightColumn(targetColumn)) {
             return true;
         }
 
         return false;
     }
 
-    public int getLeft() {
-        return left.toInt();
+    public Column getLeft() {
+        return left;
     }
 
-    public int getRight() {
-        return right.toInt();
+    public Column getRight() {
+        return right;
     }
 
     public boolean isLeftColumn(final Column targetColumn) {
@@ -43,8 +42,8 @@ public class BridgePoint {
         if (this == o) return true;
         if (!(o instanceof BridgePoint)) return false;
         BridgePoint that = (BridgePoint) o;
-        return getLeft() == that.getLeft() &&
-                getRight() == that.getRight();
+        return Objects.equals(getLeft(), that.getLeft()) &&
+                Objects.equals(getRight(), that.getRight());
     }
 
     @Override

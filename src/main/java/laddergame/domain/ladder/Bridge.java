@@ -16,13 +16,13 @@ public class Bridge {
 
     public Bridge createNextBridge(final boolean connection) {
         if (isConnected()) {
-            return new Bridge(false, getRightColumn());
+            return new Bridge(false, getRightColumn().toInt());
         }
 
-        return new Bridge(connection, getRightColumn());
+        return new Bridge(connection, getRightColumn().toInt());
     }
 
-    public int getRightColumn() {
+    public Column getRightColumn() {
         return bridgePoint.getRight();
     }
 
@@ -42,7 +42,7 @@ public class Bridge {
     }
 
     public boolean isBridgeColumn(Column column) {
-        return bridgePoint.isBridgeColumn(column.toInt());
+        return bridgePoint.isBridgeColumn(column);
     }
 
     @Override
