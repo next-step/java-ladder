@@ -1,8 +1,6 @@
 package laddergame.domain.game;
 
-import laddergame.domain.ladder.Ladder;
-import laddergame.domain.player.Players;
-import laddergame.domain.vo.Height;
+import laddergame.domain.game.dto.GameInfoDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +11,10 @@ class LadderGameTest {
     @DisplayName("사다리 게임을 실행하고 GameResult를 반환한다.")
     @Test
     void generateGameResult() {
-        Players players = new Players(new String[]{"pobi", "crong", "horox"});
-        Prizes prizes = new Prizes(new String[]{"꽝", "2000", "꽝"});
-        Ladder ladder = new Ladder(new Height(3), 3, () -> true);
-        LadderGame ladderGame = new LadderGame(ladder);
+        GameInfoDto gameInfoDto = new GameInfoDto(new String[]{"pobi", "crong", "horox"}, new String[]{"꽝", "2000", "꽝"},
+                3);
+        LadderGame ladderGame = new LadderGame(gameInfoDto, () -> true);
 
-        assertThat(ladderGame.startGame(players, prizes)).isInstanceOf(GameResult.class);
+        assertThat(ladderGame.startGame(gameInfoDto.getPlayers(), gameInfoDto.getPrizes())).isInstanceOf(GameResult.class);
     }
 }

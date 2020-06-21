@@ -1,5 +1,7 @@
 package laddergame.view;
 
+import laddergame.domain.game.dto.GameInfoDto;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -31,5 +33,13 @@ public class InputView {
         System.out.println("결과를 보고 싶은 사람은?");
 
         return SCANNER.nextLine();
+    }
+
+    public static GameInfoDto inputGameInfos() {
+        String[] playerNames = inputPlayerNames();
+        String[] executeResults = inputExecuteResult();
+        int ladderHeight = inputLadderHeight();
+
+        return new GameInfoDto(playerNames, executeResults, ladderHeight);
     }
 }

@@ -31,6 +31,10 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
+    public int getNumberOfPlayers() {
+        return players.size();
+    }
+
     private void validateNames(final String[] names) {
         if (Objects.isNull(names) || names.length == 0) {
             throw new IllegalArgumentException("입력한 이름들이 Null 또는 빈 배열입니다.");
