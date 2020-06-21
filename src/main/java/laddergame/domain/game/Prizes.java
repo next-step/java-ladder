@@ -1,5 +1,7 @@
 package laddergame.domain.game;
 
+import laddergame.domain.vo.Column;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -26,11 +28,11 @@ public class Prizes {
         }
     }
 
-    public Prize findByColumn(final int findColumn) {
+    public Prize findByColumn(final Column findColumn) {
         return prizes.stream()
                 .filter(result -> result.isSameColumn(findColumn))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("일치하는 열 번호가 없습니다. - " + findColumn));
+                .orElseThrow(() -> new IllegalArgumentException("일치하는 열 번호가 없습니다. - " + findColumn.toInt()));
     }
 
     public List<Prize> getPrizes() {

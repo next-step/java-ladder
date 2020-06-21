@@ -14,9 +14,8 @@ public class Prize {
         this.column = new Column(column);
     }
 
-    public boolean isSameColumn(final int findColumn) {
-        Column find = new Column(findColumn);
-        return column.equals(find);
+    public boolean isSameColumn(final Column findColumn) {
+        return column.equals(findColumn);
     }
 
     public String getName() {

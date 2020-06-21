@@ -1,5 +1,6 @@
 package laddergame.domain.game;
 
+import laddergame.domain.vo.Column;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +29,7 @@ class PrizesTest {
     @DisplayName("인자로 받은 열 번호와 일치하는 Result를 반환한다.")
     @Test
     void findByColumn() {
-        int findColumn = 2;
+        Column findColumn = new Column(2);
         String[] resultNames = new String[]{"꽝", "2000", "꽝"};
         Prizes prizes = new Prizes(resultNames);
 
@@ -45,7 +46,7 @@ class PrizesTest {
         String[] resultNames = new String[]{"꽝", "2000", "꽝"};
         Prizes prizes = new Prizes(resultNames);
 
-        assertThatThrownBy(() -> prizes.findByColumn(findColumn))
+        assertThatThrownBy(() -> prizes.findByColumn(new Column(findColumn)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("일치하는 열 번호가 없습니다. - " + findColumn);
     }
