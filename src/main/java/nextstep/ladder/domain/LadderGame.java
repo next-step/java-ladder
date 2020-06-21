@@ -3,6 +3,9 @@ package nextstep.ladder.domain;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class LadderGame {
     public static void main(String[] argv) {
         Users users = InputView.insertUserLine();
@@ -13,10 +16,16 @@ public class LadderGame {
 
         ResultView.printResult(users, prices, ladder);
 
-        String resultQuery = InputView.getResultQuery();
+        Prices result = new Prices(
+                IntStream
+                        .range(0, users.size())
+                        .map(ladder::getGameResult)
+                        .mapToObj(prices::getPrice)
+                        .collect(Collectors.toList())
+        );
 
-        int userIndex = users.getUserIndex(resultQuery);
-        int gameResult = ladder.getGameResult(userIndex);
-        ResultView.printGameResult(prices.getMoney(gameResult));
+        String resultQuery = InputView.getResultQuery();
+        int resultIndex = users.getUserIndex(resultQuery);
+        ResultView.printGameResult(result.getPrice(resultIndex));
     }
 }
