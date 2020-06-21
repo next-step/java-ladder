@@ -1,9 +1,6 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,10 +8,11 @@ import java.util.stream.Collectors;
 public class ResultView {
     private static final String RESULT_NOTICE_COMMENT = "실행결과\n";
     private static final String RESULT_USER_NAME_FORMAT = "%5s ";
+    private static final String RESULT_PRICE_NAME_FORMAT = "%-5s ";
     private static final String RESULT_LADDER_OPEN = "-----|";
     private static final String RESULT_LADDER_CLOSE = "     |";
 
-    public static void printResult(Users users, Ladder ladder) {
+    public static void printResult(Users users, Prices prices, Ladder ladder) {
         System.out.println(RESULT_NOTICE_COMMENT);
 
         users.stream()
@@ -24,6 +22,9 @@ public class ResultView {
 
         ladder.getLines().stream()
                 .forEach(line -> System.out.println(getLineString(line)));
+
+        prices.stream()
+                .forEach(price -> System.out.print(String.format(RESULT_PRICE_NAME_FORMAT, price.getMoney())));
     }
 
     private static String getLineString(Line line) {
