@@ -1,7 +1,7 @@
 package laddergame.view;
 
 import laddergame.domain.game.Prize;
-import laddergame.domain.game.Results;
+import laddergame.domain.game.Prizes;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
 import laddergame.domain.player.Player;
@@ -20,7 +20,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(Players players, Ladder ladder, Results results) {
+    public static void printLadder(Players players, Ladder ladder, Prizes prizes) {
         System.out.println("실행 결과");
 
         System.out.println(players.getPlayers().stream()
@@ -30,7 +30,7 @@ public class OutputView {
         ladder.getLines()
                 .forEach(OutputView::printLine);
 
-        System.out.println(results.getPrizes().stream()
+        System.out.println(prizes.getPrizes().stream()
                 .map(Prize::getName)
                 .collect(Collectors.joining(NAME_JOIN_DELIMITER)));
     }

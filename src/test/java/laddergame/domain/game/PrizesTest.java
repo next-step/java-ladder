@@ -9,16 +9,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ResultsTest {
+class PrizesTest {
 
     @DisplayName("Result 리스트로 만들 String 배열이 Null 또는 길이가 0 이면 IllegalArgumentException throw")
     @Test
     void validateCreateResults() {
         assertAll(
-                () -> assertThatThrownBy(() -> new Results(null))
+                () -> assertThatThrownBy(() -> new Prizes(null))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage("입력한 실행 결과들이 Null 또는 빈 배열입니다."),
-                () -> assertThatThrownBy(() -> new Results(new String[0]))
+                () -> assertThatThrownBy(() -> new Prizes(new String[0]))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage("입력한 실행 결과들이 Null 또는 빈 배열입니다.")
         );
@@ -30,9 +30,9 @@ class ResultsTest {
     void findByColumn() {
         int findColumn = 2;
         String[] resultNames = new String[]{"꽝", "2000", "꽝"};
-        Results results = new Results(resultNames);
+        Prizes prizes = new Prizes(resultNames);
 
-        Prize findPrize = results.findByColumn(findColumn);
+        Prize findPrize = prizes.findByColumn(findColumn);
         Prize expectedPrize = new Prize("2000", 2);
 
         assertThat(findPrize).isEqualTo(expectedPrize);
@@ -43,9 +43,9 @@ class ResultsTest {
     @ValueSource(ints = {4, 5, 6})
     void findByColumnFailsThrowException(int findColumn) {
         String[] resultNames = new String[]{"꽝", "2000", "꽝"};
-        Results results = new Results(resultNames);
+        Prizes prizes = new Prizes(resultNames);
 
-        assertThatThrownBy(() -> results.findByColumn(findColumn))
+        assertThatThrownBy(() -> prizes.findByColumn(findColumn))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("일치하는 열 번호가 없습니다. - " + findColumn);
     }

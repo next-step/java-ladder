@@ -15,12 +15,12 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public GameResult startGame(Players players, Results results) {
+    public GameResult startGame(Players players, Prizes prizes) {
         Map<String, Prize> resultMap = new HashMap<>();
 
         for (Player player : players.getPlayers()) {
             Column afterMoveColumn = ladder.progressAllStep(player.getColumn());
-            resultMap.put(player.getName(), results.findByColumn(afterMoveColumn.toInt()));
+            resultMap.put(player.getName(), prizes.findByColumn(afterMoveColumn.toInt()));
         }
 
         return new GameResult(resultMap);

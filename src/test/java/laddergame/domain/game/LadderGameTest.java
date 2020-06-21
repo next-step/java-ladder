@@ -14,10 +14,10 @@ class LadderGameTest {
     @Test
     void generateGameResult() {
         Players players = new Players(new String[]{"pobi", "crong", "horox"});
-        Results results = new Results(new String[]{"꽝", "2000", "꽝"});
+        Prizes prizes = new Prizes(new String[]{"꽝", "2000", "꽝"});
         Ladder ladder = new Ladder(new Height(3), 3, () -> true);
         LadderGame ladderGame = new LadderGame(ladder);
 
-        assertThat(ladderGame.startGame(players, results)).isInstanceOf(GameResult.class);
+        assertThat(ladderGame.startGame(players, prizes)).isInstanceOf(GameResult.class);
     }
 }

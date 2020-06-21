@@ -5,10 +5,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Results {
+public class Prizes {
     private final List<Prize> prizes;
 
-    public Results(final String[] resultNames) {
+    public Prizes(final String[] resultNames) {
         validateResultNames(resultNames);
         prizes = createResults(resultNames);
     }
