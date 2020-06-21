@@ -45,7 +45,7 @@ public class InputView {
     }
 
     public static String getResultQuery() {
-        System.out.println(INPUT_PRICE_COMMENT);
+        System.out.println(INPUT_RESULT_QUERY_COMMENT);
         return scanner.nextLine();
     }
 }
