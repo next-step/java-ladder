@@ -22,12 +22,24 @@ public class Line {
     }
 
     private static List<Point> getPoints(int countOfPerson, LineStrategy lineStrategy) {
-        List<Point> points = new ArrayList<>();
-        points.add(Point.createFirstPoint(lineStrategy));
-        IntStream.range(1, countOfPerson - 1).forEach(i ->
-                points.add(Point.createMiddlePoint(points.get(i - 1), lineStrategy)));
-        points.add(Point.createLastPoint());
+        List<Point> points = new ArrayList<>();;
+        addFirstPoint(lineStrategy, points);
+        addMiddlePoint(countOfPerson, lineStrategy, points);
+        addLastPoint(points);
         return points;
+    }
+
+    private static void addFirstPoint(LineStrategy lineStrategy, List<Point> points) {
+//        points.add(Point.createFirstPoint(lineStrategy));
+    }
+
+    private static void addMiddlePoint(int countOfPerson, LineStrategy lineStrategy, List<Point> points) {
+//        IntStream.range(1, countOfPerson - 1).forEach(i ->
+//                points.add(Point.createMiddlePoint(points.get(i - 1), lineStrategy)));
+    }
+
+    private static void addLastPoint(List<Point> points) {
+        //points.add(Point.createLastPoint());
     }
 
     public Point get(int index) {
@@ -39,10 +51,10 @@ public class Line {
     }
 
     public int getNextPosition(int position) {
-        int nextPosition = position + points.get(position).getNextPosition();
+//        int nextPosition = position + points.get(position).getNextPosition();
         if (position > LEAST_POSITION) {
-            nextPosition -= points.get(position - POINT_DISTANCE).getNextPosition();
+//            nextPosition -= points.get(position - POINT_DISTANCE).getNextPosition();
         }
-        return nextPosition;
+        return 0;
     }
 }

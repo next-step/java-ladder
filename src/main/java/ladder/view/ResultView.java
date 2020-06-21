@@ -55,9 +55,9 @@ public class ResultView {
     }
 
     private String getLine(Point point) {
-        if (point.hasLine()) {
-            return LINE;
-        }
+//        if (point.hasLine()) {
+//            return LINE;
+//        }
         return BLANK_LINE;
     }
 
