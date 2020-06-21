@@ -10,7 +10,11 @@ public class Ladder {
     }
 
     public int getGameResult(int x) {
-        return 0;
+        int result = x;
+        for (Line line : lines) {
+            result += line.getDirection(result).getValue();
+        }
+        return result;
     }
 
     public List<Line> getLines() {

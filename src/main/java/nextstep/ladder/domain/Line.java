@@ -38,4 +38,14 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public Direction getDirection(int x) {
+        if (points.get(x)) {
+            return Direction.LEFT;
+        }
+        if (x + 1 < points.size() && points.get(x + 1)) {
+            return Direction.RIGHT;
+        }
+        return Direction.CENTER;
+    }
 }
