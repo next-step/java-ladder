@@ -19,7 +19,7 @@ public class LadderController {
         int height = inputView.inputHeight();
         Ladder ladder = Ladder.of(players.getCountOfPerson(), height, new RandomLineStrategy());
         resultView.printLadder(players, ladder, ladderResults);
-        MatchResult matchResult = new LadderGame(ladder).findAllPosition(players, ladderResults);
+        MatchResult matchResult = ladder.getGameResult(players, ladderResults);
         String name = "";
         while (!name.equals(ResultView.ALL)) {
             name = inputView.inputName();
