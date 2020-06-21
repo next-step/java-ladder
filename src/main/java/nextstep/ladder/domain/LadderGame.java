@@ -16,7 +16,7 @@ public class LadderGame {
 
         ResultView.printResult(users, prices, ladder);
 
-        Prices result = new Prices(
+        Prices resultPrices = new Prices(
                 IntStream
                         .range(0, users.size())
                         .map(ladder::getGameResult)
@@ -25,7 +25,6 @@ public class LadderGame {
         );
 
         String resultQuery = InputView.getResultQuery();
-        int resultIndex = users.getUserIndex(resultQuery);
-        ResultView.printGameResult(result.getPrice(resultIndex));
+        ResultView.printGameResult(resultQuery, users, resultPrices);
     }
 }
