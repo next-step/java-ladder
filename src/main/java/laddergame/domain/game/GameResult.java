@@ -4,18 +4,18 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameResult {
-    private final Map<String, Result> winningResults;
+    private final Map<String, Prize> winningResults;
 
-    public GameResult(final Map<String, Result> winningResults) {
+    public GameResult(final Map<String, Prize> winningResults) {
         this.winningResults = winningResults;
     }
 
-    public Result findByName(final String name) {
+    public Prize findByName(final String name) {
         validateFindName(name);
         return winningResults.get(name);
     }
 
-    public Set<Map.Entry<String, Result>> findAll() {
+    public Set<Map.Entry<String, Prize>> findAll() {
         return winningResults.entrySet();
     }
 

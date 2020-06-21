@@ -16,7 +16,7 @@ public class LadderGame {
     }
 
     public GameResult startGame(Players players, Results results) {
-        Map<String, Result> resultMap = new HashMap<>();
+        Map<String, Prize> resultMap = new HashMap<>();
 
         for (Player player : players.getPlayers()) {
             Column afterMoveColumn = ladder.progressAllStep(player.getColumn());

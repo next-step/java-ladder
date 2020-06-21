@@ -1,6 +1,6 @@
 package laddergame.view;
 
-import laddergame.domain.game.Result;
+import laddergame.domain.game.Prize;
 import laddergame.domain.game.Results;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
@@ -30,8 +30,8 @@ public class OutputView {
         ladder.getLines()
                 .forEach(OutputView::printLine);
 
-        System.out.println(results.getResults().stream()
-                .map(Result::getName)
+        System.out.println(results.getPrizes().stream()
+                .map(Prize::getName)
                 .collect(Collectors.joining(NAME_JOIN_DELIMITER)));
     }
 
@@ -49,13 +49,13 @@ public class OutputView {
         return BRIDGE_DISCONNECT;
     }
 
-    public static void printResult(final Result result) {
+    public static void printResult(final Prize prize) {
         System.out.println("실행 결과");
-        System.out.println(result.getName());
+        System.out.println(prize.getName());
     }
 
 
-    public static void printAllResult(final Set<Map.Entry<String, Result>> results) {
+    public static void printAllResult(final Set<Map.Entry<String, Prize>> results) {
         results.forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue().getName()));
     }
 }

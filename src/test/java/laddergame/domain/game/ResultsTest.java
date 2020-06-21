@@ -32,10 +32,10 @@ class ResultsTest {
         String[] resultNames = new String[]{"꽝", "2000", "꽝"};
         Results results = new Results(resultNames);
 
-        Result findResult = results.findByColumn(findColumn);
-        Result expectedResult = new Result("2000", 2);
+        Prize findPrize = results.findByColumn(findColumn);
+        Prize expectedPrize = new Prize("2000", 2);
 
-        assertThat(findResult).isEqualTo(expectedResult);
+        assertThat(findPrize).isEqualTo(expectedPrize);
     }
 
     @DisplayName("인자로 받은 열 번호와 일치하는 Result가 없다면 IllegalArgumentsException throw")

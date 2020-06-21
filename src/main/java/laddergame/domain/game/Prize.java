@@ -4,11 +4,11 @@ import laddergame.domain.vo.Column;
 
 import java.util.Objects;
 
-public class Result {
+public class Prize {
     private final String name;
     private final Column column;
 
-    public Result(final String resultName, final int column) {
+    public Prize(final String resultName, final int column) {
         validateNullOrEmptyName(resultName);
         this.name = resultName.trim();
         this.column = new Column(column);
@@ -32,10 +32,10 @@ public class Result {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (!(o instanceof Result)) return false;
-        Result result = (Result) o;
-        return Objects.equals(name, result.name) &&
-                Objects.equals(column, result.column);
+        if (!(o instanceof Prize)) return false;
+        Prize prize = (Prize) o;
+        return Objects.equals(name, prize.name) &&
+                Objects.equals(column, prize.column);
     }
 
     @Override

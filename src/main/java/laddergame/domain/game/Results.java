@@ -1,22 +1,21 @@
 package laddergame.domain.game;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Results {
-    private final List<Result> results;
+    private final List<Prize> prizes;
 
     public Results(final String[] resultNames) {
         validateResultNames(resultNames);
-        results = createResults(resultNames);
+        prizes = createResults(resultNames);
     }
 
-    private List<Result> createResults(final String[] resultNames) {
+    private List<Prize> createResults(final String[] resultNames) {
         return IntStream.range(0, resultNames.length)
-                .mapToObj(column -> new Result(resultNames[column], column + 1))
+                .mapToObj(column -> new Prize(resultNames[column], column + 1))
                 .collect(Collectors.toList());
     }
 
@@ -26,14 +25,14 @@ public class Results {
         }
     }
 
-    public Result findByColumn(final int findColumn) {
-        return results.stream()
+    public Prize findByColumn(final int findColumn) {
+        return prizes.stream()
                 .filter(result -> result.isSameColumn(findColumn))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("일치하는 열 번호가 없습니다. - " + findColumn));
     }
 
-    public List<Result> getResults() {
-        return results;
+    public List<Prize> getPrizes() {
+        return prizes;
     }
 }
