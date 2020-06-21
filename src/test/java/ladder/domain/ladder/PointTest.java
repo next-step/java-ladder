@@ -1,14 +1,9 @@
 package ladder.domain.ladder;
 
-import ladder.domain.strategy.FalseLineStrategy;
-import ladder.domain.strategy.LineStrategy;
 import ladder.domain.strategy.RandomLineStrategy;
-import ladder.domain.strategy.TrueLineStrategy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class PointTest {
 

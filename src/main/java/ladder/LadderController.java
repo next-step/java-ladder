@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.LadderGame;
 import ladder.domain.player.Players;
 import ladder.domain.result.LadderResults;
 import ladder.domain.result.MatchResult;
