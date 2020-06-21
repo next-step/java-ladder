@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class InputView {
     private static final String INPUT_USER_LINE_COMMENT = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String INPUT_HEIGHT_COMMENT = "최대 사다리 높이는 몇 개인가요?";
+    private static final String INPUT_PRICE_COMMENT = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     private static final String USER_DELIMITER = ",";
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -27,5 +28,10 @@ public class InputView {
     public static int getHeight() {
         System.out.println(INPUT_HEIGHT_COMMENT);
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static String getPrices() {
+        System.out.println(INPUT_PRICE_COMMENT);
+        return scanner.nextLine();
     }
 }
