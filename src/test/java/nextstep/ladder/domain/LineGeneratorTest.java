@@ -42,8 +42,8 @@ public class LineGeneratorTest {
     private static Stream<Arguments> provideLines() {
 
         return Stream.of(
-                Arguments.of(4, new LinkedList<>(Arrays.asList(Boolean.TRUE, Boolean.FALSE)), Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.FALSE)),
-                Arguments.of(3, new LinkedList<>(Arrays.asList(Boolean.FALSE, Boolean.TRUE)), Arrays.asList(Boolean.FALSE, Boolean.TRUE))
+                Arguments.of(4, new LinkedList<>(Arrays.asList(Boolean.TRUE, Boolean.FALSE)), Arrays.asList(Boolean.FALSE, Boolean.TRUE, Boolean.FALSE, Boolean.FALSE, Boolean.FALSE)),
+                Arguments.of(3, new LinkedList<>(Arrays.asList(Boolean.FALSE, Boolean.TRUE)), Arrays.asList(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE))
         );
     }
 }
