@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.dto.LadderRequestDto;
+import ladder.domain.LadderSetting;
 
 import java.util.Scanner;
 
@@ -26,11 +26,11 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static LadderRequestDto inputParameters() {
+    public static LadderSetting inputParameters() {
         String persons = inputPersons();
         String results = inputResults();
         int ladderHeight = inputHeight();
 
-        return new LadderRequestDto(persons, results, ladderHeight);
+        return new LadderSetting(persons, results, ladderHeight);
     }
 }

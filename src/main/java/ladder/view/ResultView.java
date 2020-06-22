@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
-import ladder.dto.LadderResponseDto;
+import ladder.domain.LadderGameInfo;
 
 public class ResultView {
 
@@ -9,11 +9,11 @@ public class ResultView {
     private final static String NEW_LINE = System.lineSeparator();
     private static final String INIT_LINE_SPACE = "      ";
 
-    public static void printLadder(LadderResponseDto ladderResponseDto) {
-        arrangePersons(ladderResponseDto.getPersons());
+    public static void printLadder(LadderGameInfo ladderGameInfo) {
+        arrangePersons(ladderGameInfo.getPersons());
         System.out.print(NEW_LINE);
-        arrangeLadder(ladderResponseDto.getLadder());
-        arrangeResults(ladderResponseDto.getLadderResults());
+        arrangeLadder(ladderGameInfo.getLadder());
+        arrangeResults(ladderGameInfo.getPrizes());
     }
 
     private static void arrangePersons(Persons persons){
@@ -35,8 +35,8 @@ public class ResultView {
               });
     }
 
-    private static void arrangeResults(LadderResults ladderResults) {
-        ladderResults.getLadderResults()
+    private static void arrangeResults(Prizes prizes) {
+        prizes.getPrizes()
                      .stream()
                      .map(result -> formatWord(result))
                      .forEach(result -> System.out.print(result));
