@@ -1,8 +1,12 @@
 package laddergame.domain.player;
 
+import laddergame.domain.vo.Name;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,7 +25,7 @@ class NameTest {
 
     @DisplayName("이름이 Null 또는 공백일때 IllegalArgumentException Throw")
     @ParameterizedTest
-    @EmptySource
+    @NullAndEmptySource
     void nullOrEmptyThrowException(String expectName) {
         assertThatThrownBy(() -> new Name(expectName))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -35,5 +39,14 @@ class NameTest {
         assertThatThrownBy(() -> new Name(expectName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 5글자를 넘을 수 없습니다. - " + expectName);
+    }
+
+    @DisplayName("인자로 받은 String이 자신의 값과 같은지 비교")
+    @ParameterizedTest
+    @CsvSource({"pobi, true", "crong, false"})
+    void isSameName(String sameName, boolean result) {
+        Name name = new Name("pobi");
+
+        assertThat(name.isSameName(sameName)).isEqualTo(result);
     }
 }

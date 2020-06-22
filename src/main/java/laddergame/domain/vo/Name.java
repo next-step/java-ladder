@@ -1,4 +1,4 @@
-package laddergame.domain.player;
+package laddergame.domain.vo;
 
 import java.util.Objects;
 
@@ -14,6 +14,10 @@ public class Name {
 
     public String getName() {
         return this.name;
+    }
+
+    public boolean isSameName(final String name) {
+        return this.name.equals(name);
     }
 
     private void validateNullOrEmpty(String name) {

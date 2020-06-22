@@ -1,4 +1,4 @@
-package laddergame.domain.ladder;
+package laddergame.domain.vo;
 
 import laddergame.domain.vo.Column;
 import org.assertj.core.api.Assertions;

@@ -1,5 +1,8 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Position;
+import laddergame.domain.vo.Column;
+
 import java.util.Objects;
 
 public class Bridge {
@@ -11,40 +14,35 @@ public class Bridge {
         this.bridgePoint = new BridgePoint(leftColumn);
     }
 
-    public static Bridge createBridge(final boolean isConnected, final int leftColumn) {
-        return new Bridge(isConnected, leftColumn);
-    }
-
-    public static Bridge createNextBridge(final boolean isConnected, final Bridge before) {
-        if (before.isConnected()) {
-            return new Bridge(false, before.getRightColumn());
+    public Bridge createNextBridge(final boolean connection) {
+        if (isConnected()) {
+            return new Bridge(false, getRightColumn().toInt());
         }
 
-        return new Bridge(isConnected, before.getRightColumn());
+        return new Bridge(connection, getRightColumn().toInt());
     }
 
-    public static boolean isContinuousBridge(Bridge before, Bridge next) {
-        if (before.getRightColumn() != next.getLeftColumn()) {
-            return false;
-        }
-
-        if (before.isConnected() && next.isConnected()) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public int getLeftColumn() {
-        return bridgePoint.getLeft();
-    }
-
-    public int getRightColumn() {
+    public Column getRightColumn() {
         return bridgePoint.getRight();
     }
 
     public boolean isConnected() {
         return connection;
+    }
+
+    public Position movePositionColumn(Position position) {
+        if (!connection) {
+            return position;
+        }
+        if (bridgePoint.isLeftColumn(position.getColumn())) {
+            return position.moveRight();
+        }
+
+        return position.moveLeft();
+    }
+
+    public boolean isBridgeColumn(Column column) {
+        return bridgePoint.isBridgeColumn(column);
     }
 
     @Override

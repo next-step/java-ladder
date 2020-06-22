@@ -1,10 +1,14 @@
 package laddergame.view;
 
+import laddergame.domain.game.Prize;
+import laddergame.domain.game.Prizes;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.Line;
 import laddergame.domain.player.Player;
 import laddergame.domain.player.Players;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -16,15 +20,21 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(Players players, Ladder ladder) {
+    public static void printPlayers(Players players) {
         System.out.println("실행 결과");
 
-        System.out.println(players.getPlayers().stream()
-                .map(Player::getName)
-                .collect(Collectors.joining(NAME_JOIN_DELIMITER)));
+        System.out.println(String.join(NAME_JOIN_DELIMITER, players.getPlayerNames()));
+    }
 
+    public static void printLadder(Ladder ladder) {
         ladder.getLines()
                 .forEach(OutputView::printLine);
+    }
+
+    public static void printPrizes(Prizes prizes) {
+        System.out.println(prizes.getPrizes().stream()
+                .map(Prize::getName)
+                .collect(Collectors.joining(NAME_JOIN_DELIMITER)));
     }
 
     private static void printLine(Line line) {
@@ -41,4 +51,13 @@ public class OutputView {
         return BRIDGE_DISCONNECT;
     }
 
+    public static void printResult(final Prize prize) {
+        System.out.println("실행 결과");
+        System.out.println(prize.getName());
+    }
+
+
+    public static void printAllResult(final Map<Player, Prize> results) {
+        results.forEach((key, value) -> System.out.println(key.getName() + " : " + value.getName()));
+    }
 }

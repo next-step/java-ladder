@@ -1,5 +1,9 @@
 package laddergame;
 
+import laddergame.domain.game.GameResult;
+import laddergame.domain.game.LadderGame;
+import laddergame.domain.game.Prizes;
+import laddergame.domain.game.dto.GameInfoDto;
 import laddergame.domain.vo.Height;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RandomConnectGenerator;
@@ -9,13 +13,26 @@ import laddergame.view.OutputView;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        String[] names = InputView.inputPlayerNames();
-        Players players = new Players(names);
+        GameInfoDto gameInfoDto = InputView.inputGameInfos();
 
-        Height ladderHeight = new Height(InputView.inputLadderHeight());
+        LadderGame ladderGame = new LadderGame(gameInfoDto, new RandomConnectGenerator());
 
-        Ladder ladder = new Ladder(ladderHeight, names.length, new RandomConnectGenerator());
+        OutputView.printPlayers(gameInfoDto.getPlayers());
+        OutputView.printLadder(ladderGame.getLadder());
+        OutputView.printPrizes(gameInfoDto.getPrizes());
 
-        OutputView.printLadder(players, ladder);
+        GameResult gameResult = ladderGame.startGame(gameInfoDto.getPlayers(), gameInfoDto.getPrizes());
+
+        while (true) {
+            String findName = InputView.inputFindResultName();
+
+            if (findName.equals("all")) {
+                break;
+            }
+
+            OutputView.printResult(gameResult.findByName(findName));
+        }
+
+        OutputView.printAllResult(gameResult.findAll());
     }
 }

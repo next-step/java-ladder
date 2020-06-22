@@ -1,13 +1,19 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.vo.Column;
+import laddergame.domain.vo.Position;
+import laddergame.domain.vo.Height;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
+    private final Height lineHeight;
     private final List<Bridge> bridges;
 
-    public Line(int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
+    public Line(int lineHeight, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
+        this.lineHeight = new Height(lineHeight);
         this.bridges = BridgeGenerator.generate(numberOfPlayer, connectGenerator);
     }
 
@@ -19,5 +25,44 @@ public class Line {
         return bridges.stream()
                 .map(Bridge::isConnected)
                 .collect(Collectors.toList());
+    }
+
+    public Position movePosition(Position position) {
+        Bridge findBridge = findBridge(position);
+
+        return findBridge.movePositionColumn(position).moveDown();
+    }
+
+    private Bridge findBridge(Position position) {
+        List<Bridge> findBridges = findSameColumnBridges(position.getColumn());
+
+        return findConnectedBridge(findBridges);
+    }
+
+    private List<Bridge> findSameColumnBridges(Column column) {
+        List<Bridge> findBridges = bridges.stream()
+                .filter(bridge -> bridge.isBridgeColumn(column))
+                .collect(Collectors.toList());
+
+        if (findBridges.isEmpty()) {
+            throw new IllegalArgumentException("현재 위치 열 번호에 맞는 Bridge를 찾을 수 없습니다. - " + column.toInt());
+        }
+
+        return findBridges;
+    }
+
+    private Bridge findConnectedBridge(List<Bridge> findBridges) {
+        return findBridges.stream()
+                .filter(Bridge::isConnected)
+                .findFirst()
+                .orElse(findBridges.get(0));
+    }
+
+    public boolean isSameHeight(Position position) {
+        return lineHeight.equals(position.getHeight());
+    }
+
+    public Height getLineHeight() {
+        return lineHeight;
     }
 }

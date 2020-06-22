@@ -12,18 +12,16 @@ public class BridgeGenerator {
             return Arrays.asList(new Bridge(false, MIN_PLAYER));
         }
 
-        Bridge firstBridge = Bridge.createBridge(connectGenerator.generateConnectionState(), MIN_PLAYER);
+        List<Bridge> bridges = new ArrayList<>();
+        bridges.add(new Bridge(connectGenerator.generateConnectionState(), MIN_PLAYER));
 
-        return new ArrayList<>(generateLastBridges(firstBridge, numberOfPlayer, connectGenerator));
+        return generateLastBridges(bridges, numberOfPlayer, connectGenerator);
     }
 
-    private static List<Bridge> generateLastBridges(Bridge firstBridge, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
-        List<Bridge> bridges = new ArrayList<>();
-        bridges.add(firstBridge);
-
+    private static List<Bridge> generateLastBridges(List<Bridge> bridges, int numberOfPlayer, BridgeConnectGenerator connectGenerator) {
         for (int beforeIndex = 0; beforeIndex < numberOfPlayer - 2; beforeIndex++) {
             Bridge beforeBridge = bridges.get(beforeIndex);
-            bridges.add(Bridge.createNextBridge(connectGenerator.generateConnectionState(), beforeBridge));
+            bridges.add(beforeBridge.createNextBridge(connectGenerator.generateConnectionState()));
         }
 
         return bridges;
