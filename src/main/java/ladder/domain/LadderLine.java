@@ -20,7 +20,7 @@ public class LadderLine {
     }
 
     private static Point initFirst(List<Point> points) {
-        Point point = Point.first(new LadderPointGenerator().generate());
+        Point point = Point.first(new RandomPointGenerator().generate());
         points.add(point);
         return point;
     }

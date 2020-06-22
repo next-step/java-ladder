@@ -28,7 +28,7 @@ public class Direction {
         if (this.right) {
             return next(false);
         }
-        return new Direction(this.right, new LadderPointGenerator().generate());
+        return new Direction(this.right, new RandomPointGenerator().generate());
     }
 
     public Direction next(boolean nextRight) {
