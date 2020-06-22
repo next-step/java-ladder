@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.result;
+
+import ladder.domain.participants.Person;
 
 import java.util.Collections;
 import java.util.Map;
@@ -23,6 +25,6 @@ public class GameResult {
                 .filter(result -> result.getKey().getName().equals(name))
                 .map(result -> result.getValue().getResult())
                 .findFirst()
-                .orElse("없는 참가자 입니다.");
+                .orElseGet(() -> "없는 참가자 입니다.");
     }
 }

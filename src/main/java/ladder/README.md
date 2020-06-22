@@ -1,4 +1,28 @@
-# 사다리 게임
+# 사다리 (리팩토링)
+## 추가로 제공되는 객체 설계 힌트를 참고해 철저하게 TDD로 재구현해 본다.
+### 사다리 리팩토링 힌트
+
+0. LadderPointGenerator
+- generatePoint : random.nextBoolean 생성
+
+1. LadderLine 
+    - 사다리 라인(LadderLine)은 사다리의 한 가로 라인을 가진다.
+    - 첫 라인, 마지막 라인, 중간 라인을 분리하여 기능 구현한다.
+
+2. Point
+    - 현재 위치 값인 인덱스와 방향을 가진다
+    
+3. Direction
+    - left, right 값을 가지는 방향 클래스 
+    - 현재 포인트에서 다음 포인트를 생성한다. 
+    - firstLine (false, generate())
+    - nextLine (this.right, generate())
+    - lastLine (this.right, false)
+    - next(nextRight) : right, nextRight
+    - right, left가 모두 true일 경우 IllegalStateException
+ 
+----
+
 ## todo
 1. 참여할 사람 이름을 입력 받는다 (문자열)    
     1. 쉼표를 기준으로 참여자를 구한다     
@@ -92,6 +116,8 @@
     - Map<Person,Result>를 가지는 일급 컬렉션
     - 전체 게임 결과를 가진다 
     
+11. __GameConsole 게임 실행__
+    - 사다리 게임을 실행하는 역할을 맡는다
 
 자바 8의 스트림과 람다를 적용해 프로그래밍한다.  
 규칙 6: 모든 엔티티를 작게 유지한다.

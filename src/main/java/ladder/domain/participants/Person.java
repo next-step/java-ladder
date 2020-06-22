@@ -1,9 +1,9 @@
-package ladder.domain;
+package ladder.domain.participants;
 
 import java.util.Objects;
 
 public class Person {
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 

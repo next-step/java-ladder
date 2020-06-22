@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.result;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Results {
-    public static final String SEPARATOR = ",";
+    private static final String SEPARATOR = ",";
 
     private final List<Result> results;
 

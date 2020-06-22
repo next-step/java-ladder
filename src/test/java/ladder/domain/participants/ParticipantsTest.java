@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder.domain.participants;
 
+import ladder.domain.participants.Participants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,14 +25,5 @@ class ParticipantsTest {
         assertThat(countOfPerson).isEqualTo(3);
     }
 
-    @Test
-    @DisplayName("사다리 실행 테스트")
-    void runLadder() {
-        Ladder ladder = Ladder.valueOf(3, 2);
-        Results results = Results.valueOf("꽝, 당첨", 2);
-        Participants participants = Participants.valueOf("ej, pobi");
 
-        assertThatCode(() -> participants.runLadder(ladder, results)).doesNotThrowAnyException();
-
-    }
 }

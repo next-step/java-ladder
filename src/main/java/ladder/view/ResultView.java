@@ -1,6 +1,13 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.ladder.Direction;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderLine;
+import ladder.domain.participants.Participants;
+import ladder.domain.result.GameResult;
+import ladder.domain.result.Results;
+
+import java.util.stream.IntStream;
 
 import static ladder.utils.LadderUtil.fillSpace;
 
@@ -15,7 +22,7 @@ public class ResultView {
     public static void printLadder(Participants participants, Ladder ladder, Results results) {
         System.out.println("\n사다리 결과\n");
         printParticipants(participants);
-        for (Line line : ladder.getLadder()) {
+        for (LadderLine line : ladder.getLadder()) {
             printLadderPoint(line);
             System.out.println();
         }
@@ -23,20 +30,20 @@ public class ResultView {
     }
 
     private static void printParticipants(Participants participants) {
-        participants.getParticipants().stream()
-                .map(person -> fillSpace(person.getName()))
+        IntStream.range(0, participants.size())
+                .mapToObj(i -> fillSpace(participants.tellPersonName(i)))
                 .forEach(System.out::print);
         System.out.println();
     }
 
-    private static void printLadderPoint(Line line) {
-        line.getLine().stream()
-                .map(point -> drawLine(point))
+    private static void printLadderPoint(LadderLine ladderLine) {
+        ladderLine.getPoints().stream()
+                .map(point -> drawLine(point.getDirection()))
                 .forEach(System.out::print);
     }
 
-    private static String drawLine(Point point) {
-        if (point.isPoint()) {
+    private static String drawLine(Direction direction) {
+        if (direction.isLeft()) {
             return POINT_TRUE;
         }
         return POINT_FALSE;
@@ -58,10 +65,8 @@ public class ResultView {
             findName = InputView.enterCuriousResult();
         }
 
-        if (findName.toLowerCase().equals("all")) {
-            System.out.println("\n실행 결과");
-            gameResult.getGameResult()
-                    .forEach((person, result) -> System.out.println(person.getName() + " : " + result.getResult()));
-        }
+        System.out.println("\n실행 결과");
+        gameResult.getGameResult()
+                .forEach((person, result) -> System.out.println(person.getName() + " : " + result.getResult()));
     }
 }

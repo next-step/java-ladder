@@ -1,18 +1,16 @@
-package ladder.domain;
+package ladder.domain.ladder;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private final List<Line> ladder;
+    private final List<LadderLine> ladder;
 
     private Ladder(int ladderHeight, int countOfPerson) {
         checkLadderHeight(ladderHeight);
-        Random random = new Random();
-        this.ladder = Stream.generate(() -> Line.valueOf(countOfPerson, random::nextBoolean))
+        this.ladder = Stream.generate(() -> LadderLine.init(countOfPerson))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }
@@ -22,14 +20,14 @@ public class Ladder {
     }
 
     public int run(int personIndex) {
-        int finalPoint = personIndex;
-        for (Line line : ladder) {
-            finalPoint += line.runLine(finalPoint);
+        int position = personIndex;
+        for (LadderLine line : ladder) {
+            position = line.move(position);
         }
-        return finalPoint;
+        return position;
     }
 
-    public List<Line> getLadder() {
+    public List<LadderLine> getLadder() {
         return Collections.unmodifiableList(ladder);
     }
 
