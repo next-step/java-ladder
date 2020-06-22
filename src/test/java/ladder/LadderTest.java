@@ -21,29 +21,24 @@ public class LadderTest {
 
         Players players = new Players("iu,iu2,iu3,iu4");
         Ladder ladder = new Ladder(3, players.getPlayerCount());
+        String reulstsString = "1,2,3,4";
+        Rewards rewards = new Rewards(reulstsString);
+        LadderResultOutput output = ladder.playLadderGame(players, rewards);
 
-//        for (int i = 0; i < ladder.getLineHeight(); i++) {
-//            LadderLine ladderLine = ladder.getDrawLine(i);
-//            System.out.println(ladder.getDrawLine(i));
-//            for (int j =0; j < ladderLine.getLineSize(); j++) {
-//                ladderLine.move(j);
-//            }
-//        }
+        for (int i = 0; i < rewards.getResultCount(); i++) {
+            assertThat(output.getResultTargetOutput(players.getPlayerName(i))).isNotNull();
+        }
 
-//        ladder.playLadderGame(players);
-//
-//        String reulstsString = "꽝,꽝,5000원,5000";
-//        Rewards rewards = new Rewards(reulstsString);
-//        LadderResultOutput output = new LadderResultOutput(players, rewards);
-//
-//        for (int i = 0; i < rewards.getResultCount(); i++) {
-//            assertThat(output.getResultOutput().get(players.getPlayerName(i))).isEqualTo(rewards.getRewardInfo(i));
-//        }
+        StringBuilder sb = new StringBuilder();
+        output.getResultOutput().forEach((name, reward) -> {
+            sb.append(name + ":" + reward + "\n");
+        });
+        System.out.println(sb.toString());
 
     }
 
 
-    @DisplayName("사다리 타기 결과 테스트")
+    @DisplayName("사다리 타기 출력")
     @Test
     void displayLadderUiTest() {
 
@@ -56,38 +51,3 @@ public class LadderTest {
         rv.displayLadder(ladder);
     }
 }
-
-/**
- *
- * {
- *    "points="[
- *       "Point"      {
- *          index=0,
- *          "direction=Direction"{
- *             "left=false",
- *             "right=true"
- *          }
- *       },
- *       "Point"      {
- *          index=1,
- *          "direction=Direction"{
- *             "left=true",
- *             "right=false"
- *          }
- *       },
- *       "Point"      {
- *          index=2,
- *          "direction=Direction"{
- *             "left=false",
- *             "right=false"
- *          }
- *       },
- *       "Point"      {
- *          index=3,
- *          "direction=Direction"{
- *             "left=false",
- *             "right=false"
- *          }
- *       }
- *    ]
- * }*/

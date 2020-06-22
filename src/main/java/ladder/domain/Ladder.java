@@ -30,10 +30,20 @@ public class Ladder {
         return lines.get(linePosition);
     }
 
-//    public void playLadderGame(Players players) {
-//        for (int i = 0; i < lines.size(); i++) {
-//            players.move(lines.get(i));
-//        }
-//    }
+    public LadderResultOutput playLadderGame(Players players, Rewards rewards) {
+        LadderResultOutput output =  new LadderResultOutput();
+        for( int i = 0; i < players.getPlayerCount(); i++) {
+            output.addResult(players.getPlayerName(i),
+                        rewards.getRewardInfo(getPlayerResultPosition(i)));
+        }
+        return output;
+    }
+
+    private int getPlayerResultPosition(int position) {
+        for (int i = 0; i < getLineHeight(); i++) {
+            position = lines.get(i).move(position);
+        }
+        return position;
+    }
 
 }

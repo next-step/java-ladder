@@ -1,16 +1,14 @@
 package ladder.domain;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderResultOutput {
 
-    private Map<String, String> resultOutput = new HashMap<>();
+    private Map<String, String> resultOutput = new LinkedHashMap<>();
 
-    public LadderResultOutput(Players players, Rewards rewards) {
-        for (int i = 0; i < rewards.getResultCount(); i++) {
-            resultOutput.put(players.getPlayerName(i),rewards.getRewardInfo(i));
-        }
+    public void addResult(String name, String RewardInfo) {
+        resultOutput.put(name, RewardInfo);
     }
 
     public String getResultTargetOutput(String input) {
