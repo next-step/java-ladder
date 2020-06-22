@@ -13,7 +13,13 @@ public class Point {
     }
 
     public int move() {
-        return direction.getNextIndex(index);
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+        if (direction.isRight()) {
+            return index + 1;
+        }
+        return index;
     }
 
     public Point next(LineStrategy lineStrategy) {

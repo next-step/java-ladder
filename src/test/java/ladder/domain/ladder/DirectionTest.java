@@ -61,28 +61,4 @@ class DirectionTest {
     public void testHashCode() {
         assertThat(Direction.of(false, true).hashCode()).isEqualTo(Direction.of(false, true).hashCode());
     }
-
-    @Test
-    @DisplayName("오른쪽 방향 Direction 이 index를 증가 시키는지 테스트")
-    public void increaseIndexWhenRightDirection() {
-        int index = 0;
-        Direction direction = Direction.of(false, true);
-        assertThat(direction.getNextIndex(index)).isEqualTo(index + Direction.DISTANCE);
-    }
-
-    @Test
-    @DisplayName("왼쪽 방향 Direction 이 index를 감소 시키는지 테스트")
-    public void decreaseIndexWhenLeftDirection() {
-        int index = 1;
-        Direction direction = Direction.of(true, false);
-        assertThat(direction.getNextIndex(index)).isEqualTo(index - Direction.DISTANCE);
-    }
-
-    @Test
-    @DisplayName("무방향 Direction 이 index를 그대로 반환하는 테스트")
-    public void doNothingWhenNoneDirection() {
-        int index = 0;
-        Direction direction = Direction.of(false, false);
-        assertThat(direction.getNextIndex(index)).isEqualTo(index);
-    }
 }

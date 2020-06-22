@@ -8,8 +8,6 @@ import static java.lang.Boolean.FALSE;
 
 public class Direction {
 
-    public static final int DISTANCE = 1;
-
     private final boolean left;
     private final boolean right;
 
@@ -41,14 +39,8 @@ public class Direction {
         return of(this.right, FALSE);
     }
 
-    public int getNextIndex(int index) {
-        if (left) {
-            return index - DISTANCE;
-        }
-        if (right) {
-            return index + DISTANCE;
-        }
-        return index;
+    public boolean isLeft() {
+        return left;
     }
 
     public boolean isRight() {
