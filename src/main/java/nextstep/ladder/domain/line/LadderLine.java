@@ -45,8 +45,12 @@ public class LadderLine {
 
     @Override
     public String toString() {
-        return "LadderLine{" +
-                "points=" + points +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder("    |");
+
+        points.stream()
+                .limit(points.size()-1)
+                .forEach(stringBuilder::append);
+
+        return stringBuilder.toString();
     }
 }
