@@ -46,10 +46,4 @@ public class LadderLine {
         return Collections.unmodifiableList(points);
     }
 
-    @Override
-    public String toString() {
-        return "LadderLine{" +
-                "points=" + points +
-                '}';
-    }
 }
