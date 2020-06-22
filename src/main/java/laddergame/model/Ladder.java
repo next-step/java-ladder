@@ -1,37 +1,38 @@
 package laddergame.model;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
 
   private final List<Line> lines;
-  private final Players players;
 
-  public Ladder(List<Line> lines, Players players) {
+  public Ladder(List<Line> lines) {
     this.lines = lines;
-    this.players = players;
   }
 
-  public static Ladder createByHeightAndNamesStrArr(int height, String[] nameStrArr) {
-    if (height <= 0) {
-      throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
-    }
+  public static Ladder createByHeightAndCountOfPerson(
+      PositiveNumber height, int countOfPerson) {
 
-    List<Line> lines = new ArrayList<>();
+    List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson(countOfPerson))
+        .limit(height.getValue()).collect(
+            Collectors.toList());
 
-    for (int i = 0; i < height; i++) {
-      lines.add(Line.createByCountOfPerson(nameStrArr.length));
-    }
+    return new Ladder(lines);
 
-    return new Ladder(lines, Players.createByNameStrArr(nameStrArr));
+  }
+
+  public int findResultPositionOf(int startPosition) {
+    Position position = new Position(new NaturalNumber(startPosition));
+
+    lines.forEach(position::movePositionBy);
+
+    return position.getValue();
   }
 
   public List<Line> getLines() {
-    return lines;
-  }
-
-  public Players getPlayers() {
-    return players;
+    return Collections.unmodifiableList(lines);
   }
 }
