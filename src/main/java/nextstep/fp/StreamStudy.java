@@ -29,10 +29,10 @@ public class StreamStudy {
 
         System.out.println(words.stream()
                                 .filter(word -> word.length() > 12)
+                                .map(String::toLowerCase)
                                 .sorted()
                                 .distinct()
                                 .limit(100)
-                                .map(String::toLowerCase)
                                 .collect(Collectors.joining(", ")));
 
     }
