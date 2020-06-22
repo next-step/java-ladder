@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LadderLine {
@@ -12,14 +13,14 @@ public class LadderLine {
 
     public static LadderLine init(int sizeOfPerson) {
         List<Point> points = new ArrayList<>();
-        Point point = initFirst(points, new LadderPointGenerator());
+        Point point = initFirst(points);
         point = initBody(sizeOfPerson, points, point);
         initLast(points, point);
         return new LadderLine(points);
     }
 
-    private static Point initFirst(List<Point> points, PointGenerator generator) {
-        Point point = Point.first(generator.generate());
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(new LadderPointGenerator().generate());
         points.add(point);
         return point;
     }
@@ -39,6 +40,10 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override

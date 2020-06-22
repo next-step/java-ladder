@@ -9,13 +9,12 @@ public class ResultView {
     public static final String POINT_TRUE = "-----|";
     public static final String POINT_FALSE = "     |";
 
-    private ResultView() {
-    }
+    private ResultView() {}
 
     public static void printLadder(Participants participants, Ladder ladder, Results results) {
         System.out.println("\n사다리 결과\n");
         printParticipants(participants);
-        for (Line line : ladder.getLadder()) {
+        for (LadderLine line : ladder.getLadder()) {
             printLadderPoint(line);
             System.out.println();
         }
@@ -29,14 +28,14 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLadderPoint(Line line) {
-        line.getLine().stream()
-                .map(point -> drawLine(point))
+    private static void printLadderPoint(LadderLine ladderLine) {
+        ladderLine.getPoints().stream()
+                .map(point -> drawLine(point.getDirection()))
                 .forEach(System.out::print);
     }
 
-    private static String drawLine(Point point) {
-        if (point.isPoint()) {
+    private static String drawLine(Direction direction) {
+        if (direction.isLeft()) {
             return POINT_TRUE;
         }
         return POINT_FALSE;

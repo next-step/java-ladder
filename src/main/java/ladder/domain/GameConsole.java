@@ -21,8 +21,8 @@ public class GameConsole {
         Map<Person, Result> gameResult = new LinkedHashMap<>();
         int personIndex = 0;
         for (Person person : participants.getParticipants()) {
-            int finalPoint = ladder.run(personIndex);
-            Result result = results.find(finalPoint);
+            int position = ladder.run(personIndex);
+            Result result = results.find(position);
             gameResult.put(person, result);
             personIndex++;
         }
