@@ -9,6 +9,14 @@ public class Ladder {
         this.lines = ladderGenerator.generate();
     }
 
+    public int getGameResult(int x) {
+        int result = x;
+        for (Line line : lines) {
+            result += line.getDirection(result).getValue();
+        }
+        return result;
+    }
+
     public List<Line> getLines() {
         return lines;
     }

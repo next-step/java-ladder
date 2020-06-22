@@ -3,16 +3,28 @@ package nextstep.ladder.domain;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
-import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     public static void main(String[] argv) {
-        List<User> userList = InputView.insertUserLine();
+        Users users = InputView.insertUserLine();
 
-        int height = InputView.insertHeight();
+        Prices prices = InputView.getPrices();
 
-        Ladder ladder = new Ladder(new RandomLadderGenerator(userList.size(), height));
+        Ladder ladder = new Ladder(new RandomLadderGenerator(users.size(), InputView.getHeight()));
 
-        ResultView.printResult(userList, ladder);
+        ResultView.printResult(users, prices, ladder);
+
+        Prices resultPrices = new Prices(
+                IntStream
+                        .range(0, users.size())
+                        .map(ladder::getGameResult)
+                        .mapToObj(prices::getPrice)
+                        .collect(Collectors.toList())
+        );
+
+        String resultQuery = InputView.getResultQuery();
+        ResultView.printGameResult(resultQuery, users, resultPrices);
     }
 }
