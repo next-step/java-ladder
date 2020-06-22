@@ -15,22 +15,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class FootStepTest {
+class LineTest {
     @ParameterizedTest(name = "input = {0}")
     @ValueSource(ints = {2, 3})
     @DisplayName("디딤대는 사람 수 만큼 생성된다.")
-    void make_footStep(int countOfUser) {
-        FootStep footStep = FootStep.of(countOfUser);
-        assertThat(footStep.getSteps().size()).isEqualTo(countOfUser - 1);
+    void make_line(int countOfUser) {
+        Line line = Line.of(countOfUser);
+        assertThat(line.getSteps().size()).isEqualTo(countOfUser - 1);
     }
 
     @ParameterizedTest(name = "input = {0}")
     @ValueSource(ints = {0, 1})
-    @DisplayName("FootStep 생성 시 countOfUser은 1 이상이어야 한다.")
+    @DisplayName("Line 생성 시 countOfUser은 1 이상이어야 한다.")
     void validate_countOfUser(int countOfUser) {
-        assertThatThrownBy(() -> FootStep.of(countOfUser))
+        assertThatThrownBy(() -> Line.of(countOfUser))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("FootStep을 생성할 수 없습니다.");
+                .hasMessage("Line을 생성할 수 없습니다.");
     }
 
     private static class StepStrategyTest implements StepStrategy {
@@ -49,12 +49,12 @@ class FootStepTest {
 
     @ParameterizedTest
     @MethodSource("countOfUserAndResult")
-    @DisplayName("FootStep의 true/false는 외부에서 전략을 주입받아 결정된다.")
+    @DisplayName("Line의 true/false는 외부에서 전략을 주입받아 결정된다.")
     void strategy_true_or_false(int countOfUser, List<Boolean> expected) {
         StepStrategy stepStrategy = new StepStrategyTest(expected);
-        FootStep footStep = FootStep.byStrategy(countOfUser, stepStrategy);
+        Line line = Line.byStrategy(countOfUser, stepStrategy);
 
-        assertThat(footStep.getSteps()).isEqualTo(expected);
+        assertThat(line.getSteps()).isEqualTo(expected);
     }
 
     static Stream<Arguments> countOfUserAndResult() {

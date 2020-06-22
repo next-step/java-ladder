@@ -20,7 +20,7 @@ class LadderTest {
     @DisplayName("입력받은 이름과 사다리 높이로 Ladder 생성")
     void create_ladder(int height, int countOfPlayers) {
         Ladder ladder = Ladder.of(height, countOfPlayers);
-        assertThat(ladder.getFootStepSize()).isEqualTo(height);
+        assertThat(ladder.getLineSize()).isEqualTo(height);
     }
 
     static Stream<Arguments> heightAndCountOfPlayers() {

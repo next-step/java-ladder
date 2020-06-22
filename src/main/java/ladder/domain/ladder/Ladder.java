@@ -8,16 +8,16 @@ import java.util.stream.IntStream;
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
 
-    private List<FootStep> footSteps = new ArrayList<>();
+    private List<Line> lines = new ArrayList<>();
 
     private Ladder(int height, int countOfPlayers) {
         validate(height);
-        createFootSteps(height, countOfPlayers);
+        createLines(height, countOfPlayers);
     }
 
-    private void createFootSteps(int height, int countOfPlayers) {
+    private void createLines(int height, int countOfPlayers) {
         IntStream.range(0, height)
-                .forEach(i -> this.footSteps.add(FootStep.of(countOfPlayers)));
+                .forEach(i -> this.lines.add(Line.of(countOfPlayers)));
     }
 
     private void validate(int height) {
@@ -30,14 +30,14 @@ public class Ladder {
         return new Ladder(height, countOfPlayers);
     }
 
-    public int getFootStepSize() {
-        return footSteps.size();
+    public int getLineSize() {
+        return lines.size();
     }
 
     @Override
     public String toString() {
-        return this.footSteps.stream()
-                .map(FootStep::toString)
+        return this.lines.stream()
+                .map(Line::toString)
                 .collect(Collectors.joining("\n"));
     }
 }
