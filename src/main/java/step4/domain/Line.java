@@ -1,7 +1,5 @@
 package step4.domain;
 
-import step4.domain.PointStep;
-
 import java.util.Random;
 
 public class Line {
