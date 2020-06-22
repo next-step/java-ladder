@@ -21,7 +21,7 @@ public class Player {
         return column;
     }
 
-    public boolean isSameName(final String name) {
-        return this.name.isSameName(name);
+    public boolean isSameName(final Name name) {
+        return this.name.equals(name);
     }
 }

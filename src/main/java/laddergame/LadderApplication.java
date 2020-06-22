@@ -8,6 +8,7 @@ import laddergame.domain.vo.Height;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.ladder.RandomConnectGenerator;
 import laddergame.domain.player.Players;
+import laddergame.domain.vo.Name;
 import laddergame.view.InputView;
 import laddergame.view.OutputView;
 
@@ -24,7 +25,7 @@ public class LadderApplication {
         GameResult gameResult = ladderGame.startGame(gameInfoDto.getPlayers(), gameInfoDto.getPrizes());
 
         while (true) {
-            String findName = InputView.inputFindResultName();
+            Name findName = new Name(InputView.inputFindResultName());
 
             if (findName.equals("all")) {
                 break;
