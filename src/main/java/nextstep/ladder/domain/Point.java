@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Point {
 
     private XAxis xAxis;
@@ -31,5 +33,26 @@ public class Point {
 
     public XAxis getxAxis() {
         return this.xAxis;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.xAxis, this.yAxis);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Point point = (Point) obj;
+        return Objects.equals(point.xAxis, this.xAxis) &&
+                Objects.equals(point.yAxis, this.yAxis);
     }
 }

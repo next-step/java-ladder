@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class YAxis {
 
     private int yAxis;
@@ -19,5 +21,25 @@ public class YAxis {
     @Override
     public String toString() {
         return String.valueOf(this.yAxis);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.yAxis);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        YAxis yAxis = (YAxis) obj;
+        return Objects.equals(yAxis.yAxis, this.yAxis);
     }
 }
