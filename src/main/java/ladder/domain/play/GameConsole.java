@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.play;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.participants.Participants;
@@ -24,7 +24,7 @@ public class GameConsole {
     }
 
 
-    public GameResult runLadder(Results results) {
+    public GameResult run(Results results) {
         Map<Person, Result> gameResult = new LinkedHashMap<>();
         int personIndex = 0;
         for (Person person : participants.getParticipants()) {

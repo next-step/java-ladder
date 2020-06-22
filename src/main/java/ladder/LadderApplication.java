@@ -2,7 +2,7 @@ package ladder;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.participants.Participants;
-import ladder.domain.GameConsole;
+import ladder.domain.play.GameConsole;
 import ladder.domain.result.GameResult;
 import ladder.domain.result.Results;
 import ladder.view.InputView;
@@ -27,7 +27,7 @@ public class LadderApplication {
 
         // 사다리 게임 실행
         GameConsole gameConsole = GameConsole.valueOf(participants, ladder);
-        GameResult gameResult = gameConsole.runLadder(results);
+        GameResult gameResult = gameConsole.run(results);
         ResultView.printResult(gameResult);
     }
 }

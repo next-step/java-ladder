@@ -1,7 +1,8 @@
-package ladder.domain;
+package ladder.domain.play;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.participants.Participants;
+import ladder.domain.play.GameConsole;
 import ladder.domain.result.Results;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class GameConsoleTest {
         Results results = Results.valueOf("꽝, 당첨", 2);
 
         GameConsole gameConsole = GameConsole.valueOf(participants, ladder);
-        assertThatCode(() -> gameConsole.runLadder(results)).doesNotThrowAnyException();
+        assertThatCode(() -> gameConsole.run(results)).doesNotThrowAnyException();
 
     }
 }
