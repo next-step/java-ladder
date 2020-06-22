@@ -24,9 +24,8 @@
 - [X] 참여자와 결과 객체의 갯수는 동일해야한다.
 
 ### Point :: 사다리 각 층의 지점
-- [ ] Point는 양 방향의 스텝의 유/무에 따라 true/false 를 가진다.
-- [ ] 첫번째 Point 의 left 는 반드시 false 이다.
-- [ ] 마지막 Point 의 right 는 반드시 false 이다.
+- [X] Point는 양 방향의 스텝의 유/무에 따라 true/false 를 가진다.
+- [X] before/after은 동시에 true일 수 없다. (라인을 기준으로 양방향으로 가로 라인이 존재할 수 없다.)
 
 ### Line :: 사다리 라인
 - [X] User 객체 수 만큼 생성된다.
