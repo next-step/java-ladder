@@ -26,6 +26,7 @@
 ### Point :: 사다리 각 층의 지점
 - [X] Point는 양 방향의 스텝의 유/무에 따라 true/false 를 가진다.
 - [X] before/after은 동시에 true일 수 없다. (라인을 기준으로 양방향으로 가로 라인이 존재할 수 없다.)
+- [X] Point 현재 상태에 따라 Movement 객체를 반환한다. (이동 방향을 알 수 있다.)
 
 ### Line :: 사다리 라인
 - [X] User 객체 수 만큼 생성된다.
@@ -50,6 +51,7 @@
 
 ### Movement :: 이동 객체 (enum)
 - [X] 이동 객체는 좌/우/전진에 대한 상태 값을 가진다.
+- [X] left/right 상태에 따라 Movement 반환한다.
 
 ### ConvertUtil
 - [X] 문자열을 쉽표(,) 기준으로 구분한다.

@@ -1,25 +1,27 @@
 package ladder.domain.ladder;
 
+import ladder.domain.result.Movement;
+
 import java.util.Objects;
 
 public class Point {
-    private final boolean before;
-    private final boolean after;
+    private final boolean left;
+    private final boolean right;
 
-    private Point(boolean before, boolean after) {
-        isNotBothTrue(before, after);
-        this.before = before;
-        this.after = after;
+    private Point(boolean left, boolean right) {
+        isNotBothTrue(left, right);
+        this.left = left;
+        this.right = right;
     }
 
-    private void isNotBothTrue(boolean before, boolean after) {
-        if (before && after) {
+    private void isNotBothTrue(boolean left, boolean right) {
+        if (left && right) {
             throw new IllegalArgumentException("Point 전/후로 가로 라인이 존재할 수 없습니다.");
         }
     }
 
-    public static Point of(boolean before, boolean after) {
-        return new Point(before, after);
+    public static Point of(boolean left, boolean right) {
+        return new Point(left, right);
     }
 
     @Override
@@ -27,21 +29,25 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return before == point.before &&
-                after == point.after;
+        return left == point.left &&
+                right == point.right;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(before, after);
+        return Objects.hash(left, right);
     }
 
     @Override
     public String toString() {
-        return convertLine(before) + "|";
+        return convertLine(left) + "|";
     }
 
     private String convertLine(boolean target) {
         return target ? "-----" : "     ";
+    }
+
+    public Movement move() {
+        return Movement.valueBy(left, right);
     }
 }
