@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class Line {
     private static final int MIN_COUNT_OF_USER = 2;
 
-    private final List<Boolean> steps = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     private Line(int countOfUser) {
         this(countOfUser, new StepRandomStrategy());
@@ -21,7 +21,7 @@ public class Line {
         validate(countOfUser);
 
         IntStream.range(1, countOfUser)
-                .forEach(i -> steps.add(stepStrategy.nextStep()));
+                .forEach(i -> points.add(stepStrategy.nextStep()));
     }
 
     public static Line of(int countOfUser) {
@@ -38,13 +38,13 @@ public class Line {
         }
     }
 
-    public List<Boolean> getSteps() {
-        return steps;
+    public List<Boolean> getPoints() {
+        return points;
     }
 
     @Override
     public String toString() {
-        return this.steps.stream()
+        return this.points.stream()
                 .map(b -> b ? "-----" : "     ")
                 .collect(Collectors.joining("|", "|", "|"));
     }

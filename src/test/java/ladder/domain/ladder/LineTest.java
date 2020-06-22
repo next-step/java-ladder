@@ -21,7 +21,7 @@ class LineTest {
     @DisplayName("디딤대는 사람 수 만큼 생성된다.")
     void make_line(int countOfUser) {
         Line line = Line.of(countOfUser);
-        assertThat(line.getSteps().size()).isEqualTo(countOfUser - 1);
+        assertThat(line.getPoints().size()).isEqualTo(countOfUser - 1);
     }
 
     @ParameterizedTest(name = "input = {0}")
@@ -54,7 +54,7 @@ class LineTest {
         StepStrategy stepStrategy = new StepStrategyTest(expected);
         Line line = Line.byStrategy(countOfUser, stepStrategy);
 
-        assertThat(line.getSteps()).isEqualTo(expected);
+        assertThat(line.getPoints()).isEqualTo(expected);
     }
 
     static Stream<Arguments> countOfUserAndResult() {
