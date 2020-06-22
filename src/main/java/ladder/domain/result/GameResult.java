@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.result;
+
+import ladder.domain.participants.Person;
 
 import java.util.Collections;
 import java.util.Map;

@@ -1,6 +1,11 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.ladder.Direction;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderLine;
+import ladder.domain.participants.Participants;
+import ladder.domain.result.GameResult;
+import ladder.domain.result.Results;
 
 import static ladder.utils.LadderUtil.fillSpace;
 
