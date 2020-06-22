@@ -4,23 +4,23 @@ import java.util.List;
 
 public class LadderGameResult {
 
-    private final LadderGameInfo ladderGameInfo;
+    private final LadderSetting ladderSetting;
     private final Ladder ladder;
 
-    public LadderGameResult(LadderGameInfo ladderGameInfo, Ladder ladder) {
-        this.ladderGameInfo = ladderGameInfo;
+    public LadderGameResult(LadderSetting ladderSetting, Ladder ladder) {
+        this.ladderSetting = ladderSetting;
         this.ladder = ladder;
-    }
-
-    public List<Person> getPersons(){
-        return ladderGameInfo.getPersons();
-    }
-
-    public List<String> getPrizes(){
-        return ladderGameInfo.getPrizes();
     }
 
     public Ladder getLadder() {
         return ladder;
+    }
+
+    public List<Person> getPersons(){
+        return ladderSetting.getPersons();
+    }
+
+    public List<String> getPrizes(){
+        return ladderSetting.getPrizes();
     }
 }

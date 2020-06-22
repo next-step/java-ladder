@@ -2,14 +2,15 @@ package ladder;
 
 import ladder.domain.*;
 
+import java.util.List;
+
 public class LadderGame {
 
     public static LadderGameResult draw(LadderSetting ladderSetting) {
-        Persons persons = Persons.of(ladderSetting.getPersons());
-        Prizes prizes = Prizes.of(ladderSetting.getResults());
+        List<Person> persons = ladderSetting.getPersons();
         Height height = Height.of(ladderSetting.getHeight());
-        Ladder ladder = Ladder.create(height, persons.count());
+        Ladder ladder = Ladder.create(height, persons.size());
 
-        return new LadderGameResult(LadderGameInfo.of(persons, prizes), ladder);
+        return new LadderGameResult(ladderSetting, ladder);
     }
 }

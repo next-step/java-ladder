@@ -1,23 +1,23 @@
 package ladder.domain;
 
+import java.util.List;
+
 public class LadderSetting {
 
-    private final String persons;
-    private final String results;
+    private final LadderGameInfo ladderGameInfo;
     private final int height;
 
-    public LadderSetting(String persons, String results, int height) {
-        this.persons = persons;
-        this.results = results;
+    public LadderSetting(LadderGameInfo ladderGameInfo, int height) {
+        this.ladderGameInfo = ladderGameInfo;
         this.height = height;
     }
 
-    public String getPersons() {
-        return persons;
+    public List<Person> getPersons() {
+        return ladderGameInfo.getPersons();
     }
 
-    public String getResults() {
-        return results;
+    public List<String> getPrizes() {
+        return ladderGameInfo.getPrizes();
     }
 
     public int getHeight() {
