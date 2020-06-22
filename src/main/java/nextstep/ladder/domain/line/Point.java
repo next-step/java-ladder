@@ -13,9 +13,6 @@ public class Point {
     }
 
     public int move() {
-//        System.out.println("is left? " + direction.isLeft());
-//        System.out.println("is right? " + direction.isRight());
-
         if (direction.isRight()) {
             return index + 1;
         }
@@ -42,14 +39,6 @@ public class Point {
     public static Point first(Boolean right) {
         return new Point(0, Direction.first(right));
     }
-
-//    @Override
-//    public String toString() {
-//        return "Point{" +
-//                "index=" + index +
-//                ", direction=" + direction +
-//                '}';
-//    }
 
     @Override
     public String toString() {

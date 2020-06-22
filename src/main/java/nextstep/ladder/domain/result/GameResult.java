@@ -2,8 +2,6 @@ package nextstep.ladder.domain.result;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.line.LadderLines;
-import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 
