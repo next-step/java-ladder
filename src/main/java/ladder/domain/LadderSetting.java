@@ -1,12 +1,12 @@
-package ladder.dto;
+package ladder.domain;
 
-public class LadderRequestDto {
+public class LadderSetting {
 
     private final String persons;
     private final String results;
     private final int height;
 
-    public LadderRequestDto(String persons, String results, int height) {
+    public LadderSetting(String persons, String results, int height) {
         this.persons = persons;
         this.results = results;
         this.height = height;
