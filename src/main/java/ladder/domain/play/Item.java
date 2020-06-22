@@ -29,6 +29,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("%-6s", input);
+        return String.format("%6s", input);
     }
 }
