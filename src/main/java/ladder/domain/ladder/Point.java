@@ -1,5 +1,7 @@
 package ladder.domain.ladder;
 
+import java.util.Objects;
+
 public class Point {
     private final boolean before;
     private final boolean after;
@@ -18,5 +20,28 @@ public class Point {
 
     public static Point of(boolean before, boolean after) {
         return new Point(before, after);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return before == point.before &&
+                after == point.after;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(before, after);
+    }
+
+    @Override
+    public String toString() {
+        return convertLine(before) + "|";
+    }
+
+    private String convertLine(boolean target) {
+        return target ? "-----" : "     ";
     }
 }

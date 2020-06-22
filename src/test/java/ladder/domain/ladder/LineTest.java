@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.strategy.StepStrategy;
+import ladder.strategy.PointStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -21,7 +21,7 @@ class LineTest {
     @DisplayName("디딤대는 사람 수 만큼 생성된다.")
     void make_line(int countOfUser) {
         Line line = Line.of(countOfUser);
-        assertThat(line.getPoints().size()).isEqualTo(countOfUser - 1);
+        assertThat(line.getPoints().size()).isEqualTo(countOfUser);
     }
 
     @ParameterizedTest(name = "input = {0}")
@@ -33,38 +33,35 @@ class LineTest {
                 .hasMessage("Line을 생성할 수 없습니다.");
     }
 
-    private static class StepStrategyTest implements StepStrategy {
-        private final List<Boolean> results;
+    private static class PointStrategyTest implements PointStrategy {
+        private final List<Point> results;
         private int index = 0;
 
-        StepStrategyTest(final List<Boolean> results) {
+        PointStrategyTest(final List<Point> results) {
             this.results = results;
         }
 
         @Override
-        public Boolean nextStep() {
+        public Point nextPoint() {
             return results.get(index++);
         }
     }
 
     @ParameterizedTest
-    @MethodSource("countOfUserAndResult")
-    @DisplayName("Line의 true/false는 외부에서 전략을 주입받아 결정된다.")
-    void strategy_true_or_false(int countOfUser, List<Boolean> expected) {
-        StepStrategy stepStrategy = new StepStrategyTest(expected);
-        Line line = Line.byStrategy(countOfUser, stepStrategy);
+    @MethodSource("countOfUserAndResult2")
+    @DisplayName("Line의 Point List는 외부에서 전략을 주입받아 결정된다.")
+    void strategy_point(int countOfUser, List<Point> expected) {
+        PointStrategy pointStrategy = new PointStrategyTest(expected);
+        Line line = Line.byStrategy(countOfUser, pointStrategy);
 
         assertThat(line.getPoints()).isEqualTo(expected);
     }
 
-    static Stream<Arguments> countOfUserAndResult() {
+    static Stream<Arguments> countOfUserAndResult2() {
         return Stream.of(
-                arguments(2, Arrays.asList(true)),
-                arguments(2, Arrays.asList(false)),
-                arguments(3, Arrays.asList(true, false)),
-                arguments(3, Arrays.asList(false, true)),
-                arguments(4, Arrays.asList(true, false, false)),
-                arguments(4, Arrays.asList(false, false, true)),
-                arguments(4, Arrays.asList(false, true, false)));
+                arguments(2, Arrays.asList(Point.of(false, true), Point.of(true, false))),
+                arguments(2, Arrays.asList(Point.of(false, false), Point.of(false, false))),
+                arguments(3, Arrays.asList(Point.of(false, true), Point.of(true, false), Point.of(false, false))),
+                arguments(3, Arrays.asList(Point.of(false, false), Point.of(false, true), Point.of(true, false))));
     }
 }

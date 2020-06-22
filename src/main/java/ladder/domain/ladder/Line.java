@@ -1,7 +1,7 @@
 package ladder.domain.ladder;
 
-import ladder.strategy.StepRandomStrategy;
-import ladder.strategy.StepStrategy;
+import ladder.strategy.PointRandomStrategy;
+import ladder.strategy.PointStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,25 +11,25 @@ import java.util.stream.IntStream;
 public class Line {
     private static final int MIN_COUNT_OF_USER = 2;
 
-    private final List<Boolean> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     private Line(int countOfUser) {
-        this(countOfUser, new StepRandomStrategy());
+        this(countOfUser, new PointRandomStrategy(countOfUser));
     }
 
-    private Line(int countOfUser, StepStrategy stepStrategy) {
+    private Line(int countOfUser, PointStrategy pointStrategy) {
         validate(countOfUser);
 
-        IntStream.range(1, countOfUser)
-                .forEach(i -> points.add(stepStrategy.nextStep()));
+        IntStream.range(0, countOfUser)
+                .forEach(i -> points.add(pointStrategy.nextPoint()));
     }
 
     public static Line of(int countOfUser) {
         return new Line(countOfUser);
     }
 
-    public static Line byStrategy(int countOfUser, StepStrategy stepStrategy) {
-        return new Line(countOfUser, stepStrategy);
+    public static Line byStrategy(int countOfUser, PointStrategy pointStrategy) {
+        return new Line(countOfUser, pointStrategy);
     }
 
     private void validate(int countOfUser) {
@@ -38,14 +38,14 @@ public class Line {
         }
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 
     @Override
     public String toString() {
         return this.points.stream()
-                .map(b -> b ? "-----" : "     ")
-                .collect(Collectors.joining("|", "|", "|"));
+                .map(Point::toString)
+                .collect(Collectors.joining());
     }
 }
