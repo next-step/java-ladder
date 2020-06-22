@@ -31,15 +31,17 @@ public class ResultView {
     }
 
     private static void printLine(Line line) {
-        line.getLengths().stream()
+        line.getConnects().stream()
                 .map(ResultView::convertLineFormat)
                 .forEach(System.out::print);
 
         printNewLine();
     }
 
-    private static String convertLineFormat(int length) {
-        return String.format(LINE_FORMAT, String.join(EMPTY_DELIMITER, Collections.nCopies(length, LINE_POINT)));
+    private static String convertLineFormat(boolean isConnect) {
+        return String.format(
+                LINE_FORMAT,
+                String.join(EMPTY_DELIMITER, Collections.nCopies(isConnect ? 5 : 0, LINE_POINT)));
     }
 
     private static void printNewLine() {

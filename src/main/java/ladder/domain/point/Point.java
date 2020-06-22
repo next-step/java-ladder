@@ -3,30 +3,26 @@ package ladder.domain.point;
 import java.util.Objects;
 
 public class Point {
+    
+    private static final Point CONNECT = new Point(true);
+    private static final Point DISCONNECT = new Point(false);
 
-    private static final Point ZERO = new Point(0);
-    private static final Point FIVE = new Point(5);
+    private final boolean connect;
 
-    private final int count;
-
-    private Point(int count) {
-        this.count = count;
+    public Point(boolean connect) {
+        this.connect = connect;
     }
 
-    public static Point five() {
-        return FIVE;
+    public static Point connect() {
+        return CONNECT;
     }
 
-    public static Point zero() {
-        return ZERO;
+    public static Point disconnect() {
+        return DISCONNECT;
     }
 
-    public boolean isEmpty() {
-        return ZERO.equals(this);
-    }
-
-    public int getCount() {
-        return count;
+    public boolean isConnect() {
+        return CONNECT.equals(this);
     }
 
     @Override
@@ -34,11 +30,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return count == point.count;
+        return connect == point.connect;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(count);
+        return Objects.hash(connect);
     }
 }

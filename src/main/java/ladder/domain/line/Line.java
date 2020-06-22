@@ -17,7 +17,7 @@ public class Line {
     public Line(int countOfPlayer, PointGenerator pointGenerator) {
         validateArguments(countOfPlayer, pointGenerator);
 
-        points.add(Point.zero());
+        points.add(Point.disconnect());
         points.addAll(generatePoints(countOfPlayer, pointGenerator));
     }
 
@@ -41,9 +41,9 @@ public class Line {
         return new Line(countOfPlayer, pointGenerator);
     }
 
-    public List<Integer> getLengths() {
+    public List<Boolean> getConnects() {
         return points.stream()
-                .map(Point::getCount)
+                .map(Point::isConnect)
                 .collect(Collectors.toList());
     }
 }

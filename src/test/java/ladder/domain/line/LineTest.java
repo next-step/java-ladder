@@ -28,35 +28,35 @@ class LineTest {
 
     @DisplayName("입력 플레이어 수만큼 point를 생성 반환")
     @Test
-    void getLengths() {
+    void getConnects() {
         Line line = Line.create(10, new RandomPointGenerator());
 
-        assertThat(line.getLengths()).hasSize(10);
+        assertThat(line.getConnects()).hasSize(10);
     }
 
-    @DisplayName("첫번쨰 포인트 개수는 포인트 생성기와 상관 없이 무조건 0")
+    @DisplayName("첫번쨰 포인트는 연결되지 않음")
     @Test
-    void getLengthsFirstIndex() {
-        Line line = Line.create(10, Point::five);
+    void getConnectsFirstIndex() {
+        Line line = Line.create(10, Point::connect);
 
-        assertThat(line.getLengths().get(0)).isEqualTo(0);
+        assertThat(line.getConnects().get(0)).isFalse();
     }
 
-    @DisplayName("포인트가 모두 존재하지 않는 경우")
+    @DisplayName("포인트가 모두 연결되지 않는 경우")
     @Test
-    void getLengthsZero() {
-        Line line = Line.create(10, Point::zero);
-        List<Integer> lenghts = line.getLengths();
-        lenghts.remove(0);
-        lenghts.forEach(length -> assertThat(length).isEqualTo(0));
+    void connectAll() {
+        Line line = Line.create(10, Point::disconnect);
+        List<Boolean> connects = line.getConnects();
+        connects.remove(0);
+        connects.forEach(isConnect -> assertThat(isConnect).isFalse());
     }
 
-    @DisplayName("포인트가 모두 존재하는 경우")
+    @DisplayName("포인트가 모두 연결된 경우")
     @Test
-    void getLengthsFive() {
-        Line line = Line.create(10, Point::five);
-        List<Integer> lenghts = line.getLengths();
-        lenghts.remove(0);
-        lenghts.forEach(length -> assertThat(length).isEqualTo(5));
+    void disconnectAll() {
+        Line line = Line.create(10, Point::connect);
+        List<Boolean> connects = line.getConnects();
+        connects.remove(0);
+        connects.forEach(isConnect -> assertThat(isConnect).isTrue());
     }
 }

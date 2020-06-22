@@ -7,27 +7,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
-    @DisplayName("zero는 개수가 존재하지 않음")
+    @DisplayName("연결된 포인트는 true 상태값을 가짐")
     @Test
-    void isEmptyZero() {
-        assertThat(Point.zero().isEmpty()).isTrue();
+    void connect() {
+        assertThat(Point.connect().isConnect()).isTrue();
     }
 
-    @DisplayName("five는 개수가 존재함")
+    @DisplayName("연결 해제된 포인트는 false 상태값을 가짐")
     @Test
-    void isEmptyFive() {
-        assertThat(Point.five().isEmpty()).isFalse();
-    }
-
-    @DisplayName("zero는 0개를 반환")
-    @Test
-    void getCountZero() {
-        assertThat(Point.zero().getCount()).isEqualTo(0);
-    }
-
-    @DisplayName("five는 5개를 반환")
-    @Test
-    void getCountFive() {
-        assertThat(Point.five().getCount()).isEqualTo(5);
+    void unconnect() {
+        assertThat(Point.disconnect().isConnect()).isFalse();
     }
 }
