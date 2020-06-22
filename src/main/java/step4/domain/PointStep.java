@@ -5,10 +5,20 @@ public enum PointStep {
     RIGHT("RIGHT"),
     NONE("PASS");
 
-    public String Direction;
+    private String direction;
 
     PointStep(String direction) {
-        Direction = direction;
+        this.direction = direction;
+    }
+
+    public int getStepLocationLR() {
+        if (this.equals(PointStep.RIGHT) ) {
+            return 1;
+        }
+        if (this.equals(PointStep.LEFT)) {
+            return -1;
+        }
+        return 0;
     }
 
 }

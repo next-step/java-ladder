@@ -2,7 +2,7 @@ package step4.domain;
 
 public class CalculateLadder {
 
-    private static Ladders ladders;
+    private Ladders ladders;
 
     private CalculateLadder() {
         // block
@@ -14,9 +14,9 @@ public class CalculateLadder {
 
     public int[] calculte() {
         // int[x][y]
-        int ladderSize = ladders.getLadderList().size();
-        int lineSize = ladders.getLadderList().get(0).getLineCount();
-        markingPointStep();
+        int ladderSize = ladders.getSize();
+        int lineSize = ladders.getLineSize();
+        ladders.markingPointStep();
         int[] result = new int[ladderSize];
         int stepLocation = 0;
         int lineLocation = 0;
@@ -32,64 +32,12 @@ public class CalculateLadder {
     private int getStepLocation(int lineSize, int stepLocation, int lineLocation) {
         while (lineLocation < lineSize) {
             PointStep pointStep = ladders.getLadderList().get(stepLocation).getLines().get(lineLocation).getPointStep();
-            stepLocation += getStepLocationLR(pointStep);
+            stepLocation += pointStep.getStepLocationLR();
             lineLocation++;
         }
         return stepLocation;
     }
 
-    private int getStepLocationLR(PointStep pointStep) {
-        if (pointStep.equals(PointStep.RIGHT)) {
-            return 1;
-        }
-        if (pointStep.equals(PointStep.LEFT)) {
-            return -1;
-        }
-        return 0;
-    }
-
-    private void markingPointStep() {
-        int laddersCount = ladders.getLadderList().size();
-
-        for (int i = 0; i < laddersCount; i++) {
-            Ladder ladder = ladders.getLadderList().get(i);
-            if (i == 0) {
-                markingFirstLineWithoutLeftDirection(i, ladder);
-            }
-            if (i >= 1) {
-                Ladder beforeLadder = ladders.getLadderList().get(i - 1);
-                markingLine(laddersCount, i, ladder, beforeLadder);
-            }
-        }
-    }
-
-    private void markingLine(int laddersCount, int i, Ladder ladder, Ladder beforeLadder) {
-        for (int j = 0; j < ladder.getLineCount(); j++) {
-            Line line = ladder.getLines().get(j);
-            Line beforeLine = beforeLadder.getLines().get(j);
-            if (i != laddersCount) {
-                line.setPointSetp(PointStep.RIGHT, line.isCanStepable());
-            }
-            if (beforeLine.isCanStepable()) {
-                line.setPointSetp(PointStep.LEFT);
-            }
-            if (!beforeLine.isCanStepable() && !line.isCanStepable()) {
-                line.setPointSetp(PointStep.NONE);
-            }
-            if (beforeLine.isCanStepable() && !line.isCanStepable()) {
-                line.setPointSetp(PointStep.LEFT);
-            }
-        }
-    }
-
-    private void markingFirstLineWithoutLeftDirection(int i, Ladder ladder) {
-        for (int j = 0; j < ladder.getLineCount(); j++) {
-            Line line = ladder.getLines().get(j);
-            PointStep pointStep = line.isCanStepable() ? PointStep.RIGHT :
-                    PointStep.NONE;
-            line.setPointSetp(pointStep);
-        }
-    }
 
     public String[] calculateWinningPrizeLine(WinningPrizes winningPrizes) {
         // calculate Point

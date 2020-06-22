@@ -21,7 +21,7 @@ public final class LadderGame {
         }
         this.players = players;
         this.winningPrizes = winningPrizes;
-        ladders.setLadders(laddersHeight, this, players);
+        ladders.setLadders(laddersHeight, players);
     }
 
     public static LadderGame createLadder(Players players, WinningPrizes winningPrizes, int laddersHeight) {

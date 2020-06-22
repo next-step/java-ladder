@@ -25,13 +25,11 @@ public class MatchingResult {
     }
 
     public String getMatchedWinningPrizeOrederByPlayerName(String winner) {
-
-        for (Player player : matchingResult.keySet()) {
-            if (player.isPlayerName(winner)) {
-                return matchingResult.get(player);
-            }
-        }
-        throw new IllegalArgumentException();
+        return matchingResult.keySet().stream()
+                .filter(player -> player.isPlayerName(winner))
+                .map(player -> player.getPlayerName())
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public Iterator<Player> getIterator() {
