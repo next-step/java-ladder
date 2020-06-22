@@ -9,21 +9,24 @@ import java.util.List;
 public class Line {
     private final List<Boolean> points;
 
-    public Line(int countOfPerson) {
-        this(countOfPerson, new RandomPointGenerator());
+    private Line(int countOfPerson, PointGenerator pointGenerator) {
+        this.points = createPoints(countOfPerson, pointGenerator);
     }
 
-    public Line(int countOfPerson, PointGenerator pointGenerator) {
-        this.points = createPoints(countOfPerson, pointGenerator);
+    public static Line of(int countOfPerson) {
+        return new Line(countOfPerson, new RandomPointGenerator());
+    }
+
+    public static Line of(int countOfPerson, PointGenerator pointGenerator) {
+        return new Line(countOfPerson, pointGenerator);
     }
 
     private List<Boolean> createPoints(int length, PointGenerator pointGenerator) {
         List<Boolean> points = new ArrayList<>();
         points.add(pointGenerator.isConnect(false));
-        for (int i = 1; i < length; i++) {
+        for (int i = 1; i < length - 1; i++) {
             points.add(pointGenerator.isConnect(points.get(i - 1)));
         }
-
         return points;
     }
 
