@@ -26,12 +26,10 @@ public class GameConsole {
 
     public GameResult run(Results results) {
         Map<Person, Result> gameResult = new LinkedHashMap<>();
-        int personIndex = 0;
-        for (Person person : participants.getParticipants()) {
+        for (int personIndex = 0; personIndex < participants.size(); personIndex++) {
             int position = ladder.run(personIndex);
             Result result = results.find(position);
-            gameResult.put(person, result);
-            personIndex++;
+            gameResult.put(participants.getPerson(personIndex), result);
         }
         return GameResult.valueOf(gameResult);
     }

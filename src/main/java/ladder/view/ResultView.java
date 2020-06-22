@@ -7,6 +7,8 @@ import ladder.domain.participants.Participants;
 import ladder.domain.result.GameResult;
 import ladder.domain.result.Results;
 
+import java.util.stream.IntStream;
+
 import static ladder.utils.LadderUtil.fillSpace;
 
 public class ResultView {
@@ -14,7 +16,8 @@ public class ResultView {
     public static final String POINT_TRUE = "-----|";
     public static final String POINT_FALSE = "     |";
 
-    private ResultView() {}
+    private ResultView() {
+    }
 
     public static void printLadder(Participants participants, Ladder ladder, Results results) {
         System.out.println("\n사다리 결과\n");
@@ -27,8 +30,8 @@ public class ResultView {
     }
 
     private static void printParticipants(Participants participants) {
-        participants.getParticipants().stream()
-                .map(person -> fillSpace(person.getName()))
+        IntStream.range(0, participants.size())
+                .mapToObj(i -> fillSpace(participants.tellPersonName(i)))
                 .forEach(System.out::print);
         System.out.println();
     }
