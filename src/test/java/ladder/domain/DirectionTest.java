@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class DirectionTest {
     @Test
@@ -24,9 +25,10 @@ public class DirectionTest {
     @DisplayName("이 전 값이 true이면 false를 반환한다. (라인 중복 방지) ")
     public void next_random_true() {
         Direction next = Direction.first(true).next();
-
-        assertThat(next.isLeft()).isTrue();
-        assertThat(next.isRight()).isFalse();
+        assertAll(
+                () -> assertThat(next.isLeft()).isTrue(),
+                () -> assertThat(next.isRight()).isFalse()
+        );
     }
 
     @Test

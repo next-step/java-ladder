@@ -14,16 +14,12 @@ public class Point {
         return new Point(0, Direction.first(point));
     }
 
-    public Point last() {
-        return new Point(index + 1, direction.last());
-    }
-
     public Point next() {
         return new Point(this.index + 1, direction.next());
     }
 
-    public Point next(boolean point) {
-        return new Point(this.index + 1, direction.next(point));
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 
     public int move() {
