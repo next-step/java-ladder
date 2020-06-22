@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.Point;
-import ladder.domain.RandomGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +13,10 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public int getLineSize() {
+        return points.size();
     }
 
     public static LadderLine init(int sizeOfPerson) {

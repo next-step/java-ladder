@@ -7,12 +7,12 @@ public class Ladder {
 
     private static final int HEIGHT_MINIMUM_NUMER = 1;
 
-    private List<Line> lines = new ArrayList<>();
+    private List<LadderLine> lines = new ArrayList<>();
 
     public Ladder(int height, int countOfPerson) {
         validate(height);
         for (int i = 0; i < height; i++) {
-            this.lines.add(new Line(countOfPerson));
+            this.lines.add(LadderLine.init(countOfPerson));
         }
     }
 
@@ -26,14 +26,14 @@ public class Ladder {
         return this.lines.size();
     }
 
-    public Line getDrawLine(int linePosition) {
+    public LadderLine getDrawLine(int linePosition) {
         return lines.get(linePosition);
     }
 
-    public void playLadderGame(Players players) {
-        for (int i = 0; i < lines.size(); i++) {
-            players.move(lines.get(i));
-        }
-    }
+//    public void playLadderGame(Players players) {
+//        for (int i = 0; i < lines.size(); i++) {
+//            players.move(lines.get(i));
+//        }
+//    }
 
 }

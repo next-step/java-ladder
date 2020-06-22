@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,18 +23,6 @@ public class Players {
 
     public String getPlayerName(int index) {
         return players.get(index).getName();
-    }
-
-    public void move(Line line) {
-        for (int i = 0; i < line.getDrawLineCount(); i++) {
-            swapPlayerPosition(line.getDrawByPosition(i), i);
-        }
-    }
-
-    private void swapPlayerPosition(Draw draw, int position) {
-        if (draw.getDrawableStatus()) {
-            Collections.swap(players, position, position + 1);
-        }
     }
 
 }
