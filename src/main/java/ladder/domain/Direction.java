@@ -15,7 +15,6 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public boolean isRight() {
