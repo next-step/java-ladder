@@ -34,8 +34,8 @@ public class Direction {
         return next(lineStrategy.hasLine());
     }
 
-    public static Direction of(boolean first, boolean second) {
-        return new Direction(first, second);
+    public static Direction of(boolean left, boolean right) {
+        return new Direction(left, right);
     }
 
     public static Direction first(boolean right) {
