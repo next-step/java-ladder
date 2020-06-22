@@ -1,8 +1,10 @@
 package ladder.domain;
 
 public class Point {
-
+    private static final int NEXT = 1;
+    private static final int PREV = -1;
     private final int index;
+
     private final Direction direction;
 
     public Point(int index, Direction direction) {
@@ -15,20 +17,20 @@ public class Point {
     }
 
     public Point next() {
-        return new Point(this.index + 1, direction.next());
+        return new Point(this.index + NEXT, direction.next());
     }
 
     public Point last() {
-        return new Point(index + 1, direction.last());
+        return new Point(index + NEXT, direction.last());
     }
 
     public int move() {
         if (direction.isRight()) {
-            return index + 1;
+            return index + NEXT;
         }
 
         if (direction.isLeft()) {
-            return index - 1;
+            return index + PREV;
         }
 
         return this.index;
