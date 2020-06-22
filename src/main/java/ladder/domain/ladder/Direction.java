@@ -10,20 +10,20 @@ public class Direction {
 
     public static final int DISTANCE = 1;
 
-    private final boolean hasLeftLine;
-    private final boolean hasRightLine;
+    private final boolean left;
+    private final boolean right;
 
-    private Direction(boolean hasLeftLine, boolean hasRightLine) {
-        this.hasLeftLine = hasLeftLine;
-        this.hasRightLine = hasRightLine;
+    private Direction(boolean left, boolean right) {
+        this.left = left;
+        this.right = right;
     }
 
     public Direction next(boolean nextRight) {
-        return of(this.hasRightLine, nextRight);
+        return of(this.right, nextRight);
     }
 
     public Direction next(LineStrategy lineStrategy) {
-        if (this.hasRightLine) {
+        if (this.right) {
             return next(FALSE);
         }
         return next(lineStrategy.hasLine());
@@ -38,21 +38,21 @@ public class Direction {
     }
 
     public Direction last() {
-        return of(this.hasRightLine, FALSE);
+        return of(this.right, FALSE);
     }
 
     public int getNextIndex(int index) {
-        if (hasLeftLine) {
+        if (left) {
             return index - DISTANCE;
         }
-        if (hasRightLine) {
+        if (right) {
             return index + DISTANCE;
         }
         return index;
     }
 
-    public boolean hasRightLine() {
-        return hasRightLine;
+    public boolean isRight() {
+        return right;
     }
 
     @Override
@@ -60,12 +60,12 @@ public class Direction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Direction direction = (Direction) o;
-        return hasLeftLine == direction.hasLeftLine &&
-                hasRightLine == direction.hasRightLine;
+        return left == direction.left &&
+                right == direction.right;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(hasLeftLine, hasRightLine);
+        return Objects.hash(left, right);
     }
 }

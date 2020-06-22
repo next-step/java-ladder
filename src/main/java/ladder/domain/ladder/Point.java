@@ -33,6 +33,6 @@ public class Point {
     }
 
     public boolean isConnectedNextPoint() {
-        return direction.hasRightLine();
+        return direction.isRight();
     }
 }
