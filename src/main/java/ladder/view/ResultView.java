@@ -28,10 +28,7 @@ public class ResultView {
 
     private String drawLine(LadderLine ladderLine) {
         String lineString = UI.find(LADDER_EMPTY).getString();
-        int tempStatus = 0;
         for (int i = 0; i < ladderLine.getLineSize() - 1; i++) {
-            System.out.println("i::::" + i);
-            System.out.println("ladderLine.move(i)::::" + ladderLine.move(i));
             lineString += UI.find(LADDER_VERTICAL).getString();
             lineString += UI.find((i < ladderLine.move(i))
                                     ? LADDER_HORIZONTAL : LADDER_EMPTY).getString();
