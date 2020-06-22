@@ -12,8 +12,15 @@ public class Direction {
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
+        validate(left, right);
         this.left = left;
         this.right = right;
+    }
+
+    private void validate(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("Cannot have both directions.");
+        }
     }
 
     public Direction next(boolean nextRight) {
