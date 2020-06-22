@@ -5,19 +5,23 @@ public class Direction {
     private final boolean right;
 
     private Direction(boolean left, boolean right) {
+        checkOverlap(left, right);
         this.left = left;
         this.right = right;
     }
 
     public static Direction of(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalStateException();
-        }
         return new Direction(left, right);
     }
 
     public static Direction first(boolean right) {
         return new Direction(false, right);
+    }
+
+    private static void checkOverlap(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
+        }
     }
 
     public Direction next() {
