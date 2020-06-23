@@ -42,7 +42,7 @@ class ValidatorTest {
     void checkUserNameLength_성공(String names, int namesSize) {
         assertThat(validator.checkUserNameLength(LadderUtils.splitString(names)).size()).isEqualTo(namesSize);
         assertThat(validator.checkUserNameLength(LadderUtils.splitString(names))).isNotEmpty();
-        assertThat(validator.checkUserNameLength(LadderUtils.splitString(names)).get(0)).isInstanceOf(User.class);
+        assertThat(validator.checkUserNameLength(LadderUtils.splitString(names)).get(0)).isInstanceOf(String.class);
     }
 
     @DisplayName("유저이름 길이 체크 - 실패")
@@ -58,7 +58,7 @@ class ValidatorTest {
     @ParameterizedTest
     @CsvSource(delimiter = ':', value = {"name1,name2,name3:100,꽝,5000","name1,name2:꽝,5000"})
     void checkPlayResult_성공(String names, String results) {
-        List<User> userNames = validator.checkUserNameLength(LadderUtils.splitString(names));
+        List<String> userNames = validator.checkUserNameLength(LadderUtils.splitString(names));
         List<String> playResult = LadderUtils.splitString(results);
 
         assertThat(validator.checkPlayResult(userNames, playResult)).isEqualTo(playResult);
@@ -68,7 +68,7 @@ class ValidatorTest {
     @ParameterizedTest
     @CsvSource(delimiter = ':', value = {"name1,name2,name3:100,,5000","name1,name2:,꽝"})
     void checkPlayResult_실패1(String names, String results) {
-        List<User> userNames = validator.checkUserNameLength(LadderUtils.splitString(names));
+        List<String> userNames = validator.checkUserNameLength(LadderUtils.splitString(names));
         List<String> playResult = LadderUtils.splitString(results);
 
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -80,7 +80,7 @@ class ValidatorTest {
     @ParameterizedTest
     @CsvSource(delimiter = ':', value = {"name1,name2,name3:100,5000","name1,name2:꽝"})
     void checkPlayResult_실패2(String names, String results) {
-        List<User> userNames = validator.checkUserNameLength(LadderUtils.splitString(names));
+        List<String> userNames = validator.checkUserNameLength(LadderUtils.splitString(names));
         List<String> playResult = LadderUtils.splitString(results);
 
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -93,8 +93,9 @@ class ValidatorTest {
     @ValueSource(strings = {"a","b","c","all"})
     void checkUserNameForResult_성공(String name) {
         Map<String, User> resultMap = new HashMap<>();
-        resultMap.put("a", new User("a"));
-        resultMap.put("b", new User("b"));
+        resultMap.put("a", new User("a", "1등"));
+        resultMap.put("b", new User("b", "2등"));
+        resultMap.put("c", new User("c", "3등"));
 
         assertThat(validator.checkUserNameForResult(name, resultMap)).isEqualTo(name);
     }
@@ -104,8 +105,8 @@ class ValidatorTest {
     @ValueSource(strings = {"e","f","g"})
     void checkUserNameForResult_실패(String name) {
         Map<String, User> resultMap = new HashMap<>();
-        resultMap.put("a", new User("a"));
-        resultMap.put("b", new User("b"));
+        resultMap.put("a", new User("a", "1등"));
+        resultMap.put("b", new User("b", "2등"));
 
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> validator.checkUserNameForResult(name, resultMap))
