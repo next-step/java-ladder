@@ -52,10 +52,19 @@ public class Direction {
     }
 
     public Direction last() {
-        if (rightLine){
-            return dicideLeft();
+        return of(rightLine, false);
+    }
+
+    public int move() {
+        if (leftLine) {
+            return -1;
         }
-        return of(false, false);
+
+        if (rightLine) {
+            return 1;
+        }
+
+        return 0;
     }
 
     @Override
