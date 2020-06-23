@@ -38,7 +38,8 @@ public class ResultView {
 
     private void printLine(LadderLine line) {
         System.out.print(BLANK_LINE);
-        line.getPoints().forEach(point -> System.out.print(COLUMN + getLine(point)));
+        line.getPoints()
+                .forEach(point -> System.out.print(COLUMN + getLine(point)));
         System.out.println();
     }
 
