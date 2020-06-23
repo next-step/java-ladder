@@ -1,9 +1,7 @@
 package nextstep.step3;
 
 import nextstep.step3.domain.Ladder;
-import nextstep.step3.domain.LadderGenerator;
 import nextstep.step3.domain.User;
-import nextstep.step3.utils.LadderUtils;
 import nextstep.step3.view.InputView;
 import nextstep.step3.view.ResultView;
 
@@ -16,16 +14,15 @@ public class LadderGameStarter {
         ResultView resultView = new ResultView();
         Validator validator = new Validator();
 
-        List<User> users = validator.checkUserNameLength(inputView.getUserNames());
-        List<String> playResult = validator.checkPlayResult(users, inputView.getPlayResult());
+        List<String> userNames = validator.checkUserNameLength(inputView.getUserNames());
+        List<String> playResult = validator.checkPlayResult(userNames, inputView.getPlayResult());
         int ladderHeight = validator.checkLadderHeight(inputView.getLadderHeight());
 
-        LadderGenerator ladderGenerator = new LadderGenerator(users.size(), ladderHeight);
-        Ladder ladder = ladderGenerator.getLadder();
-        resultView.showLadderResult(users, ladder);
+        Ladder ladder = new Ladder(userNames.size(), ladderHeight);
+        resultView.showLadderResult(userNames, ladder);
         resultView.showPlayResult(playResult);
 
-        Map<String, User> resultMap =  LadderUtils.getMappingResult(users, playResult, ladder.getLadderGameResult());
+        Map<String, User> resultMap =  ladder.getLadderGameResult(userNames, playResult);
 
         while (true) {
             String userName = validator.checkUserNameForResult(inputView.getUserNameForResult(), resultMap);
