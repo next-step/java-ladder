@@ -39,10 +39,10 @@ public class Lambda {
         return sum(numbers, number -> number > 3);
     }
 
-    private static int sum(List<Integer> numbers, Conditional c) {
+    private static int sum(List<Integer> numbers, Conditional sumCondition) {
         int total = 0;
         for (int number : numbers) {
-            if (c.test(number)) {
+            if (sumCondition.test(number)) {
                 total += number;
             }
         }
