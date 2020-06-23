@@ -29,4 +29,21 @@ public class LadderGameReword {
     public String toString() {
         return reword;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof LadderGameReword)) {
+            return false;
+        }
+        LadderGameReword that = (LadderGameReword) o;
+        return Objects.equals(getReword(), that.getReword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getReword());
+    }
 }

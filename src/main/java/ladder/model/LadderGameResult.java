@@ -3,6 +3,7 @@ package ladder.model;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -29,5 +30,22 @@ public class LadderGameResult {
 
     public Map<Member, LadderGameReword> getResult() {
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof LadderGameResult)) {
+            return false;
+        }
+        LadderGameResult that = (LadderGameResult) o;
+        return Objects.equals(getResult(), that.getResult());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getResult());
     }
 }

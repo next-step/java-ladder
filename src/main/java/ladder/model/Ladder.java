@@ -26,6 +26,10 @@ public class Ladder {
         return new Ladder(lines);
     }
 
+    public static Ladder create(final List<LadderLine> ladderLines) {
+        return new Ladder(ladderLines);
+    }
+
     private void validate(final List<LadderLine> lines) {
         if (Objects.isNull(lines) || lines.isEmpty()) {
             throw new IllegalArgumentException("사다리 라인은 하나 이상이어야 합니다.");

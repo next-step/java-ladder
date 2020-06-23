@@ -46,4 +46,21 @@ public class LadderGameRewords {
     public LadderGameReword get(int index) {
         return ladderGameRewords.get(index);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof LadderGameRewords)) {
+            return false;
+        }
+        LadderGameRewords that = (LadderGameRewords) o;
+        return Objects.equals(ladderGameRewords, that.ladderGameRewords);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ladderGameRewords);
+    }
 }
