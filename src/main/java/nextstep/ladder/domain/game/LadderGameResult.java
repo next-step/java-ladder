@@ -19,6 +19,15 @@ public class LadderGameResult {
     private final LadderGamePrize ladderGamePrize;
 
     public LadderGameResult(final Ladder ladder, final LadderGameUserStorage users, final int maxPoint, LadderGamePrize prize) {
+        Map<Point, LadderProcessSnapshot> ladderResult = init(ladder, users, maxPoint);
+        this.ladderProcessSnapshot = ladderResult.get(Point.of(maxPoint));
+        this.ladderGamePrize = prize;
+        if (ladderProcessSnapshot.count() != ladderGamePrize.count()) {
+            throw new IllegalArgumentException("사용자와 상품은 일치해야합니다");
+        }
+    }
+
+    private Map<Point, LadderProcessSnapshot> init(final Ladder ladder, final LadderGameUserStorage users, final int maxPoint) {
         Map<Point, LadderProcessSnapshot> ladderResult = new HashMap<>();
         ladderResult.put(Point.ZERO_BASE_POINT, createInitialSnapshot(users));
         for (int point = 1; point <= maxPoint; point++) {
@@ -26,12 +35,7 @@ public class LadderGameResult {
             LadderProcessSnapshot currentSnapshot = createSnapshot(ladder, users, point, beforeSnapshot);
             ladderResult.put(Point.of(point), currentSnapshot);
         }
-
-        this.ladderProcessSnapshot = ladderResult.get(Point.of(maxPoint));
-        this.ladderGamePrize = prize;
-        if (ladderProcessSnapshot.count() != ladderGamePrize.count()) {
-            throw new IllegalArgumentException("사용자와 상품은 일치해야합니다");
-        }
+        return ladderResult;
     }
 
     private LadderProcessSnapshot createInitialSnapshot(final LadderGameUserStorage ladderGameUserStorage) {
