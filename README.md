@@ -19,6 +19,12 @@
 - [X] Item의 List는 null이면 안된다.
 - [X] Item은 2개 이상이어야한다.
 
+### Players :: 사다리 참여자 객체
+- [ ] Items 객체를 가진다.
+
+### Results :: 결과 값 객체
+- [ ] Items 객체를 가진다.
+
 ### Playing :: 게임 참여 객체
 - [X] 게임 참여 객체는 Players(참여자), Results(결과) 객체를 가진다.
 - [X] 참여자와 결과 객체의 갯수는 동일해야한다.
