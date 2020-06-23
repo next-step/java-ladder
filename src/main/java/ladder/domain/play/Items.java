@@ -3,6 +3,7 @@ package ladder.domain.play;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Items {
     public static final int MIN_ITEM_SIZE = 2;
@@ -41,5 +42,16 @@ public class Items {
         return this.items.stream()
                 .map(Item::toString)
                 .collect(Collectors.joining());
+    }
+
+    public int findIndexBy(String name) {
+        return IntStream.range(0, items.size())
+                .filter(i -> items.get(i).same(name))
+                .findFirst()
+                .getAsInt();
+    }
+
+    public int size() {
+        return items.size();
     }
 }

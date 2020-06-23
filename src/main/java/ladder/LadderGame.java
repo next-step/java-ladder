@@ -11,10 +11,16 @@ public class LadderGame {
     public static void main(String[] args) {
         Items players = Items.of(ConvertUtils.split(InputView.doInputParticipants()));
         Items results = Items.of(ConvertUtils.split(InputView.doInputResults()));
+        Playing playing = Playing.of(players, results);
         int height = InputView.doInputLadderHeight();
 
-        Game game = Game.play(Playing.of(players, results), height);
-        String targetPlayer = InputView.doInputWantToSeeResult();
+        Game game = Game.play(playing, height);
+
+        String targetPlayer = "";
         ResultView.printResult(game);
+        while (!targetPlayer.equals("all")) {
+            targetPlayer = InputView.doInputWantToSeeResult();
+            ResultView.printResults(game.makeResult(playing.findPlayerIndexBy(targetPlayer)));
+        }
     }
 }

@@ -27,8 +27,16 @@ public class Item {
         return new Item(input);
     }
 
+    public String getInput() {
+        return input;
+    }
+
     @Override
     public String toString() {
         return String.format("%6s", input);
+    }
+
+    public boolean same(String name) {
+        return this.input.equals(name);
     }
 }

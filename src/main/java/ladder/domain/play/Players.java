@@ -1,5 +1,10 @@
 package ladder.domain.play;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class Players {
     private final Items players;
 
@@ -13,6 +18,16 @@ public class Players {
 
     public Item get(int index) {
         return this.players.get(index);
+    }
+
+    public List<Integer> findIndexBy(String name) {
+        if (name.equals("all")) {
+            return IntStream.range(0, players.size())
+                    .boxed()
+                    .collect(Collectors.toList());
+        }
+
+        return Arrays.asList(players.findIndexBy(name));
     }
 
     public int getCountOf() {

@@ -1,5 +1,8 @@
 package ladder.domain.play;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Playing {
     private final Players players;
     private final Results results;
@@ -38,5 +41,12 @@ public class Playing {
 
     public Results getResults() {
         return results;
+    }
+
+    public List<Integer> findPlayerIndexBy(String name) {
+        List<Integer> indexes = new ArrayList<>();
+        indexes.addAll(players.findIndexBy(name));
+
+        return indexes;
     }
 }
