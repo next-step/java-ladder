@@ -43,7 +43,7 @@ public class LadderGameRewords {
         return ladderGameRewords.size();
     }
 
-    public LadderGameReword get(int i) {
+    public LadderGameReword getLadderGameReword(int i) {
         return ladderGameRewords.get(i);
     }
 }

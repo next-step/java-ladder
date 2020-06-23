@@ -40,6 +40,6 @@ public class LadderGameInfo {
     }
 
     public LadderGameReword getOriginLadderGameReword(final int index) {
-        return ladderGameRewords.get(index);
+        return ladderGameRewords.getLadderGameReword(index);
     }
 }
