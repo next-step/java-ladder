@@ -17,15 +17,4 @@ public class LadderUtils {
     public static boolean isBlank(String result) {
         return result == null || result.replace(" ", "").length() == 0;
     }
-
-    public static Map<String, User> getMappingResult(List<User> users, List<String> playResult, List<Integer> ladderGameResult) {
-        Map<String, User> resultMap = new HashMap<>();
-        for (int i = 0; i < users.size(); i++) {
-            User user = users.get(i);
-            String result = playResult.get(ladderGameResult.get(i));
-            user.setResult(result);
-            resultMap.put(user.getUserName(), user);
-        }
-        return resultMap;
-    }
 }
