@@ -1,7 +1,6 @@
 package nextstep.step3.domain;
 
-import nextstep.step3.domain.strategy.Position;
-import nextstep.step3.domain.strategy.RandomDrawLineStrategy;
+import nextstep.step3.domain.strategy.DrawLineStrategy;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +11,8 @@ import java.util.stream.Stream;
 public class Ladder {
     private List<Line> lines;
 
-    public Ladder(int userCount, int ladderHeight) {
-        this.lines = Stream.generate(() -> new Line(userCount, new RandomDrawLineStrategy()))
+    public Ladder(int userCount, int ladderHeight, DrawLineStrategy drawLineStrategy) {
+        this.lines = Stream.generate(() -> new Line(userCount, drawLineStrategy))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }

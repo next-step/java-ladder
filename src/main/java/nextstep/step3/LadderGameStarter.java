@@ -2,6 +2,7 @@ package nextstep.step3;
 
 import nextstep.step3.domain.Ladder;
 import nextstep.step3.domain.User;
+import nextstep.step3.domain.strategy.RandomDrawLineStrategy;
 import nextstep.step3.view.InputView;
 import nextstep.step3.view.ResultView;
 
@@ -18,7 +19,7 @@ public class LadderGameStarter {
         List<String> playResult = validator.checkPlayResult(userNames, inputView.getPlayResult());
         int ladderHeight = validator.checkLadderHeight(inputView.getLadderHeight());
 
-        Ladder ladder = new Ladder(userNames.size(), ladderHeight);
+        Ladder ladder = new Ladder(userNames.size(), ladderHeight, new RandomDrawLineStrategy());
         resultView.showLadderResult(userNames, ladder);
         resultView.showPlayResult(playResult);
 
