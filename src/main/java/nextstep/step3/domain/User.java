@@ -2,18 +2,18 @@ package nextstep.step3.domain;
 
 public class User {
     private String userName;
-    private int destinationIndex;
+    private String result;
 
-    public User(String userName, int destinationIndex) {
+    public User(String userName, String result) {
         this.userName = userName;
-        this.destinationIndex = destinationIndex;
+        this.result = result;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public int getDestinationIndex() {
-        return destinationIndex;
+    public String getResult() {
+        return result;
     }
 }

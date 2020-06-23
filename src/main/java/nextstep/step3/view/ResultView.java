@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ResultView {
 
-    public void showLadderResult(List<User> users, Ladder ladder) {
+    public void showLadderResult(List<String> users, Ladder ladder) {
         System.out.println();
         System.out.println(LadderStringResource.LADDER_RESULT_TEXT);
         System.out.println();
@@ -19,8 +19,8 @@ public class ResultView {
         printLadderLine(ladder.getLines());
     }
 
-    private void printUserName(List<User> users) {
-        users.forEach(user -> System.out.printf("%-6s", user.getUserName()));
+    private void printUserName(List<String> users) {
+        users.forEach(user -> System.out.printf("%-6s", user));
     }
 
     private void printLadderLine(List<Line> lines) {

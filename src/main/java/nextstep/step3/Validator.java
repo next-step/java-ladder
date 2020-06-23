@@ -18,8 +18,8 @@ public class Validator {
         return ladderHeight;
     }
 
-    public List<User> checkUserNameLength(List<String> userNames) {
-        return userNames.stream().map(this::checkUserName).map(User::new).collect(Collectors.toList());
+    public List<String> checkUserNameLength(List<String> userNames) {
+        return userNames.stream().map(this::checkUserName).collect(Collectors.toList());
     }
 
     private String checkUserName(String userName) {
@@ -29,7 +29,7 @@ public class Validator {
         return userName;
     }
 
-    public List<String> checkPlayResult(List<User> userNames, List<String> playResult) {
+    public List<String> checkPlayResult(List<String> userNames, List<String> playResult) {
         if (userNames.size() != playResult.size()) {
             throw new IllegalArgumentException(LadderStringResource.PLAY_RESULT_LENGTH_EXCEPTION);
         }
