@@ -48,4 +48,7 @@ public class ResultView {
 			System.out.print(COLUMN);
 		}
 	}
+	public void executeResult(String[] executeString) {
+		
+	}
 }
