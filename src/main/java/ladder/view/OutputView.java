@@ -40,7 +40,7 @@ public class OutputView {
 
     private static String getHorizonLine(Ladder ladder, int heightIndex) {
         StringBuilder horizonLine = new StringBuilder();
-        horizonLine.append(getShortLine(false));
+        horizonLine.append("    ");
         for (int i = 0; i < ladder.getShortLineCountInHorizonLine(heightIndex); i++) {
             horizonLine.append(LADDER_VERTICAL_STRING);
             horizonLine.append(getShortLine(ladder.isEnabledShortLineOfRight(heightIndex, i)));
