@@ -4,7 +4,7 @@ import nextstep.ladder.domain.game.LadderGame;
 import nextstep.ladder.domain.game.LadderGamePrize;
 import nextstep.ladder.domain.game.LadderGameResult;
 import nextstep.ladder.domain.user.LadderGameUser;
-import nextstep.ladder.domain.user.LadderGameUserStore;
+import nextstep.ladder.domain.user.LadderGameUserStorage;
 import nextstep.ladder.domain.vo.Order;
 import nextstep.ladder.domain.vo.Point;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +25,7 @@ class LadderGameTest {
     @Test
     void createLadder() {
         //given
-        LadderGameUserStore users = createLadderGameUsers();
+        LadderGameUserStorage users = createLadderGameUsers();
         int maxHeight = 3;
 
         //when
@@ -49,7 +49,7 @@ class LadderGameTest {
     @Test
     void result() {
         //given
-        LadderGameUserStore ladderGameUsers = createLadderGameUsers();
+        LadderGameUserStorage ladderGameUsers = createLadderGameUsers();
         Ladder ladder = Ladder.of(3, ladderGameUsers, createLadderLines());
         LadderGamePrize prize = createPrize();
 
@@ -65,11 +65,11 @@ class LadderGameTest {
 
     }
 
-    private LadderGameUserStore createLadderGameUsers() {
+    private LadderGameUserStorage createLadderGameUsers() {
         LadderGameUser user1 = new LadderGameUser("abc");
         LadderGameUser user2 = new LadderGameUser("def");
         LadderGameUser user3 = new LadderGameUser("ghi");
-        return new LadderGameUserStore(Arrays.asList(user1, user2, user3));
+        return new LadderGameUserStorage(Arrays.asList(user1, user2, user3));
     }
 
     private LadderLines createLadderLines() {

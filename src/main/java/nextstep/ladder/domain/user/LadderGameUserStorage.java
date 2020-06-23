@@ -3,10 +3,10 @@ package nextstep.ladder.domain.user;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class LadderGameUserStore {
+public class LadderGameUserStorage {
     private final List<LadderGameUser> ladderGameUsers;
 
-    public LadderGameUserStore(final List<LadderGameUser> ladderGameUsers) {
+    public LadderGameUserStorage(final List<LadderGameUser> ladderGameUsers) {
         this.ladderGameUsers = ladderGameUsers;
         validateUserNames(this.ladderGameUsers);
     }

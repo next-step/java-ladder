@@ -4,7 +4,7 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.game.LadderGamePrize;
 import nextstep.ladder.domain.game.LadderGameResult;
 import nextstep.ladder.domain.user.LadderGameUser;
-import nextstep.ladder.domain.user.LadderGameUserStore;
+import nextstep.ladder.domain.user.LadderGameUserStorage;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class OutputView {
         return ladder.hasConnection(order, point);
     }
 
-    public static void printPrize(final LadderGameUserStore userStore, final String resultUser, final LadderGameResult ladderGameResult) {
+    public static void printPrize(final LadderGameUserStorage userStore, final String resultUser, final LadderGameResult ladderGameResult) {
         System.out.println(LADDER_OUTPUT_START_MESSAGE);
         if (ALL_USER.equals(resultUser)) {
             printAllResult(userStore, ladderGameResult);
@@ -66,7 +66,7 @@ public class OutputView {
                 .ifPresent(user -> System.out.printf("%s : %s", user.getUserName(), ladderGameResult.getPrizeOf(user)));
     }
 
-    private static void printAllResult(final LadderGameUserStore userStore, final LadderGameResult ladderGameResult) {
+    private static void printAllResult(final LadderGameUserStorage userStore, final LadderGameResult ladderGameResult) {
         List<LadderGameUser> allOfUsers = userStore.findAll();
         for (LadderGameUser user : allOfUsers) {
             System.out.printf("%s : %s%n", user.getUserName(), ladderGameResult.getPrizeOf(user));

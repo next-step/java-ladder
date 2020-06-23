@@ -1,21 +1,21 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.user.LadderGameUserStore;
+import nextstep.ladder.domain.user.LadderGameUserStorage;
 import nextstep.ladder.domain.vo.Order;
 import nextstep.ladder.domain.vo.Point;
 
 public class Ladder {
     private final int maxHeight;
-    private final LadderGameUserStore ladderGameUserStore;
+    private final LadderGameUserStorage ladderGameUserStorage;
     private final LadderLines ladderLines;
 
-    private Ladder(final int maxHeight, final LadderGameUserStore userStore, final LadderLines ladderLines) {
+    private Ladder(final int maxHeight, final LadderGameUserStorage userStore, final LadderLines ladderLines) {
         this.maxHeight = maxHeight;
-        this.ladderGameUserStore = userStore;
+        this.ladderGameUserStorage = userStore;
         this.ladderLines = ladderLines;
     }
 
-    public static Ladder of(final int maxHeight, final LadderGameUserStore userStore, final LadderLines ladderLines) {
+    public static Ladder of(final int maxHeight, final LadderGameUserStorage userStore, final LadderLines ladderLines) {
         return new Ladder(maxHeight, userStore, ladderLines);
     }
 
@@ -27,8 +27,8 @@ public class Ladder {
         return ladderLines.count();
     }
 
-    public LadderGameUserStore getLadderGameUsers() {
-        return ladderGameUserStore;
+    public LadderGameUserStorage getLadderGameUsers() {
+        return ladderGameUserStorage;
     }
 
     public boolean hasConnection(final Order order, final Point point) {

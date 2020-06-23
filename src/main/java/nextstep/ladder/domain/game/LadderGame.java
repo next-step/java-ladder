@@ -4,7 +4,7 @@ import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderConnectionConditional;
 import nextstep.ladder.domain.LadderLines;
 import nextstep.ladder.domain.user.LadderGameUser;
-import nextstep.ladder.domain.user.LadderGameUserStore;
+import nextstep.ladder.domain.user.LadderGameUserStorage;
 import nextstep.ladder.domain.vo.Order;
 import nextstep.ladder.domain.vo.Point;
 
@@ -17,44 +17,44 @@ import static java.util.stream.Collectors.toMap;
 
 public class LadderGame {
     private static final int FIRST_ORDER_NUMBER = 1;
-    private final LadderConnectionConditional drawingMachine;
+    private final LadderConnectionConditional conditional;
 
-    public LadderGame(LadderConnectionConditional drawingMachine) {
-        this.drawingMachine = drawingMachine;
+    public LadderGame(LadderConnectionConditional conditional) {
+        this.conditional = conditional;
     }
 
-    public Ladder createLadder(final LadderGameUserStore ladderGameUserStore, final int maxHeight) {
+    public Ladder createLadder(final LadderGameUserStorage ladderGameUserStorage, final int maxHeight) {
         LadderLines ladderLines = new LadderLines();
 
-        for (int orderValue = 1; orderValue < ladderGameUserStore.count(); orderValue++) {
-            ladderLines.addLine(Order.of(orderValue), drawingMachine, Point.of(maxHeight));
+        for (int orderValue = 1; orderValue < ladderGameUserStorage.count(); orderValue++) {
+            ladderLines.addLine(Order.of(orderValue), conditional, Point.of(maxHeight));
         }
 
-        addLastEmptyLine(ladderGameUserStore, ladderLines, Point.of(maxHeight));
+        addLastEmptyLine(ladderGameUserStorage, ladderLines, Point.of(maxHeight));
 
-        return Ladder.of(maxHeight, ladderGameUserStore, ladderLines);
+        return Ladder.of(maxHeight, ladderGameUserStorage, ladderLines);
     }
 
-    private void addLastEmptyLine(final LadderGameUserStore ladderGameUserStore, final LadderLines ladderLines, final Point maxPoint) {
-        ladderLines.addLine(Order.of(ladderGameUserStore.count()), () -> false, maxPoint);
+    private void addLastEmptyLine(final LadderGameUserStorage ladderGameUserStorage, final LadderLines ladderLines, final Point maxPoint) {
+        ladderLines.addLine(Order.of(ladderGameUserStorage.count()), () -> false, maxPoint);
     }
 
     public LadderGameResult execute(final Ladder ladder, final LadderGamePrize prize) {
-        LadderGameUserStore ladderGameUserStore = ladder.getLadderGameUsers();
+        LadderGameUserStorage ladderGameUserStorage = ladder.getLadderGameUsers();
         Map<Point, LadderGameSnapshot> ladderResult = new HashMap<>();
-        ladderResult.put(Point.ZERO_BASE_POINT, createInitialSnapshot(ladderGameUserStore));
+        ladderResult.put(Point.ZERO_BASE_POINT, createInitialSnapshot(ladderGameUserStorage));
         final int maxHeight = ladder.getMaxHeight();
 
         for (int point = 1; point <= maxHeight; point++) {
             LadderGameSnapshot beforeSnapshot = ladderResult.get(Point.of(point).before());
-            Map<LadderGameUser, Order> currentSnapshot = createSnapshot(ladder, ladderGameUserStore, point, beforeSnapshot);
+            Map<LadderGameUser, Order> currentSnapshot = createSnapshot(ladder, ladderGameUserStorage, point, beforeSnapshot);
             //Snapshot 추가
             ladderResult.put(Point.of(point), new LadderGameSnapshot(currentSnapshot));
         }
         return new LadderGameResult(ladderResult.get(Point.of(maxHeight)), prize);
     }
 
-    private Map<LadderGameUser, Order> createSnapshot(final Ladder ladder, final LadderGameUserStore userStore, final int point, final LadderGameSnapshot beforeSnapshot) {
+    private Map<LadderGameUser, Order> createSnapshot(final Ladder ladder, final LadderGameUserStorage userStore, final int point, final LadderGameSnapshot beforeSnapshot) {
         Map<LadderGameUser, Order> currentSnapshot = new HashMap<>();
         for (LadderGameUser ladderGameUser : userStore.findAll()) {
             Order beforeOrder = beforeSnapshot.findOrderOf(ladderGameUser);
@@ -78,9 +78,9 @@ public class LadderGame {
         return beforeOrder;
     }
 
-    private LadderGameSnapshot createInitialSnapshot(final LadderGameUserStore ladderGameUserStore) {
+    private LadderGameSnapshot createInitialSnapshot(final LadderGameUserStorage ladderGameUserStorage) {
         final AtomicInteger orderValue = new AtomicInteger(FIRST_ORDER_NUMBER);
-        return ladderGameUserStore.findAll().stream()
+        return ladderGameUserStorage.findAll().stream()
                 .collect(collectingAndThen(
                         toMap(user -> user, a -> Order.of(orderValue.getAndIncrement())), LadderGameSnapshot::new
                 ));

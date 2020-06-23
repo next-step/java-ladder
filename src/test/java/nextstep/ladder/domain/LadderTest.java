@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.user.LadderGameUser;
-import nextstep.ladder.domain.user.LadderGameUserStore;
+import nextstep.ladder.domain.user.LadderGameUserStorage;
 import nextstep.ladder.domain.vo.Order;
 import nextstep.ladder.domain.vo.Point;
 import org.junit.jupiter.api.DisplayName;
@@ -29,11 +29,11 @@ class LadderTest {
         );
     }
 
-    private LadderGameUserStore createLadderGameUsers() {
+    private LadderGameUserStorage createLadderGameUsers() {
         LadderGameUser user1 = new LadderGameUser("abc");
         LadderGameUser user2 = new LadderGameUser("def");
         LadderGameUser user3 = new LadderGameUser("ghi");
-        return new LadderGameUserStore(Arrays.asList(user1, user2, user3));
+        return new LadderGameUserStorage(Arrays.asList(user1, user2, user3));
     }
 
     private LadderLines createLadderLines() {
