@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class User {
-    private static final int NAME_LENGTH_LIMIT = 5;
+    public static final int NAME_LENGTH_LIMIT = 5;
     private final String name;
 
     private User(String name) {
