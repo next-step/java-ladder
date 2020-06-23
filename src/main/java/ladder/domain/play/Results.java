@@ -1,16 +1,18 @@
 package ladder.domain.play;
 
-import java.util.List;
-
 public class Results {
     private final Items results;
 
-    private Results(List<String> results) {
-        this.results = Items.of(results);
+    private Results(Items results) {
+        this.results = results;
     }
 
-    public static Results of(List<String> results) {
-        return new Results(results);
+    public static Results of(Items items) {
+        return new Results(items);
+    }
+
+    public Item get(int index) {
+        return results.get(index);
     }
 
     @Override

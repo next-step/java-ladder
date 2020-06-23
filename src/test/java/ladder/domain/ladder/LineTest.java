@@ -48,7 +48,7 @@ class LineTest {
     }
 
     @ParameterizedTest
-    @MethodSource("countOfUserAndResult2")
+    @MethodSource("countOfUserAndResult")
     @DisplayName("Line의 Point List는 외부에서 전략을 주입받아 결정된다.")
     void strategy_point(int countOfUser, List<Point> expected) {
         PointStrategy pointStrategy = new PointStrategyTest(expected);
@@ -57,7 +57,7 @@ class LineTest {
         assertThat(line.getPoints()).isEqualTo(expected);
     }
 
-    static Stream<Arguments> countOfUserAndResult2() {
+    static Stream<Arguments> countOfUserAndResult() {
         return Stream.of(
                 arguments(2, Arrays.asList(Point.of(false, true), Point.of(true, false))),
                 arguments(2, Arrays.asList(Point.of(false, false), Point.of(false, false))),

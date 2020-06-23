@@ -11,6 +11,10 @@ public enum Movement {
         this.position = position;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public static Movement valueBy(boolean left, boolean right) {
         if (left && !right) {
             return LEFT;

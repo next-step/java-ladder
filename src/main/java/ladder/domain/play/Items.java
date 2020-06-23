@@ -32,6 +32,10 @@ public class Items {
         return this.getCountOfItems() == items.getCountOfItems();
     }
 
+    public Item get(int index) {
+        return items.get(index);
+    }
+
     @Override
     public String toString() {
         return this.items.stream()
