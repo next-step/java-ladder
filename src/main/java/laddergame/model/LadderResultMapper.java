@@ -12,9 +12,9 @@ import java.util.stream.Stream;
 
 public class LadderResultMapper {
 
-  private final Map<Name, Name> ladderResultMap;
+  private final Map<PlayerName, ResultName> ladderResultMap;
 
-  public LadderResultMapper(Map<Name, Name> ladderResultMap) {
+  public LadderResultMapper(Map<PlayerName, ResultName> ladderResultMap) {
     this.ladderResultMap = ladderResultMap;
   }
 
@@ -29,14 +29,14 @@ public class LadderResultMapper {
         )));
   }
 
-  public Name getResultOf(Name playerName) {
-    Optional<Name> result = Optional.ofNullable(playerName);
+  public ResultName getResultOf(PlayerName playerName) {
+    Optional<PlayerName> result = Optional.ofNullable(playerName);
 
     return result.map(name -> ladderResultMap.get(name))
         .orElseThrow(PlayerNotExistException::new);
   }
 
-  public Set<Entry<Name, Name>> getEntrySet() {
+  public Set<Entry<PlayerName, ResultName>> getEntrySet() {
     return Collections.unmodifiableSet(ladderResultMap.entrySet());
   }
 

@@ -19,23 +19,23 @@ class LadderResultMapperTest {
 
   @BeforeEach
   void setUp() {
-    resultMap = new LadderResultMapper(new LinkedHashMap<Name, Name>() {{
-      put(new Name("key1"), new Name("val1"));
-      put(new Name("key2"), new Name("val2"));
+    resultMap = new LadderResultMapper(new LinkedHashMap<PlayerName, ResultName>() {{
+      put(PlayerName.createBy("key1"), ResultName.createBy("val1"));
+      put(PlayerName.createBy("key2"), ResultName.createBy("val2"));
     }});
   }
 
   @ParameterizedTest
   @MethodSource("providePlayerName")
-  void getResultOf(Name playerName, Name expected) {
+  void getResultOf(PlayerName playerName, ResultName expected) {
     assertThat(resultMap.getResultOf(playerName)).isEqualTo(expected);
   }
 
   public static Stream<Arguments> providePlayerName() {
     return Stream.of(
         arguments(
-            new Name("key1"),
-            new Name("val1")
+            PlayerName.createBy("key1"),
+            ResultName.createBy("val1")
         )
     );
   }
@@ -43,8 +43,8 @@ class LadderResultMapperTest {
   @ParameterizedTest
   @MethodSource("providePlayerNameNotExist")
   @DisplayName("존재하지 않는 경우")
-  void getResultOf_NotExist(Name playerName) {
-    assertThatExceptionOfType(PlayerNotExistException.class).isThrownBy(()->{
+  void getResultOf_NotExist(PlayerName playerName) {
+    assertThatExceptionOfType(PlayerNotExistException.class).isThrownBy(() -> {
       resultMap.getResultOf(playerName);
     });
   }
@@ -52,14 +52,14 @@ class LadderResultMapperTest {
   public static Stream<Arguments> providePlayerNameNotExist() {
     return Stream.of(
         arguments(
-            new Name("key0")
+            PlayerName.createBy("key0")
         )
     );
   }
 
   @ParameterizedTest
   @MethodSource("provideLadderPlayersResults")
-  void  createBy(Ladder ladder, PlayerNames players, ResultNames results, Map<Name, Name> expected) {
+  void createBy(Ladder ladder, PlayerNames players, ResultNames results, Map<PlayerNames, ResultNames> expected) {
     LadderResultMapper resultMap = LadderResultMapper.createBy(ladder, players, results);
     System.out.println(resultMap);
     assertThat(resultMap.getEntrySet()).isEqualTo(expected.entrySet());
@@ -82,22 +82,22 @@ class LadderResultMapperTest {
             )),
             new PlayerNames(
                 Arrays.asList(
-                    new Name("name1"),
-                    new Name("name2"),
-                    new Name("name3")
+                    PlayerName.createBy("name1"),
+                    PlayerName.createBy("name2"),
+                    PlayerName.createBy("name3")
                 )
             ),
             new ResultNames(
                 Arrays.asList(
-                    new Name("res1"),
-                    new Name("res2"),
-                    new Name("res3")
+                    ResultName.createBy("res1"),
+                    ResultName.createBy("res2"),
+                    ResultName.createBy("res3")
                 )
             ),
-            new LinkedHashMap<Name, Name>() {{
-              put(new Name("name1"), new Name("res3"));
-              put(new Name("name2"), new Name("res1"));
-              put(new Name("name3"), new Name("res2"));
+            new LinkedHashMap<PlayerName, ResultName>() {{
+              put(PlayerName.createBy("name1"), ResultName.createBy("res3"));
+              put(PlayerName.createBy("name2"), ResultName.createBy("res1"));
+              put(PlayerName.createBy("name3"), ResultName.createBy("res2"));
             }}
         )
     );

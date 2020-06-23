@@ -7,15 +7,15 @@ import java.util.stream.Stream;
 
 public class PlayerNames {
 
-  private final List<Name> names;
+  private final List<PlayerName> names;
 
-  public PlayerNames(List<Name> names) {
+  public PlayerNames(List<PlayerName> names) {
     this.names = names;
   }
 
   public static PlayerNames createBy(String[] names) {
     return new PlayerNames(Stream.of(names)
-        .map(s -> new Name(s.trim()))
+        .map(PlayerName::createBy)
         .collect(Collectors.toList()));
   }
 
@@ -23,7 +23,7 @@ public class PlayerNames {
     return names.size();
   }
 
-  public Name getNameByIndex(int index) {
+  public PlayerName getNameByIndex(int index) {
     return names.get(index);
   }
 
@@ -47,7 +47,7 @@ public class PlayerNames {
   @Override
   public String toString() {
     return names.stream()
-        .map(Name::toString)
+        .map(PlayerName::toString)
         .reduce("", String::concat);
   }
 }

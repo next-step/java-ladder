@@ -2,7 +2,7 @@ package laddergame.view;
 
 import laddergame.model.Ladder;
 import laddergame.model.LadderResultMapper;
-import laddergame.model.Name;
+import laddergame.model.PlayerName;
 import laddergame.model.PlayerNames;
 import laddergame.model.PlayerNotExistException;
 import laddergame.model.ResultNames;
@@ -40,7 +40,7 @@ public class LadderGameView {
     System.out.println("결과를 보고 싶은 사람은?");
   }
 
-  public static void printResultOf(LadderResultMapper ladderResultMapper, Name playerName) {
+  public static void printResultOf(LadderResultMapper ladderResultMapper, PlayerName playerName) {
     StringBuilder sb = new StringBuilder("실행 결과").append(NEWLINE);
 
     try {

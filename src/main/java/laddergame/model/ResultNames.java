@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 
 public class ResultNames {
 
-  private final List<Name> names;
+  private final List<ResultName> names;
 
-  public ResultNames(List<Name> names) {
+  public ResultNames(List<ResultName> names) {
     this.names = names;
   }
 
@@ -19,11 +19,11 @@ public class ResultNames {
     }
 
     return new ResultNames(Stream.of(names)
-        .map(Name::new)
+        .map(ResultName::createBy)
         .collect(Collectors.toList()));
   }
 
-  public Name getNameByIndex(int index) {
+  public ResultName getNameByIndex(int index) {
     return names.get(index);
   }
 
@@ -47,7 +47,7 @@ public class ResultNames {
   @Override
   public String toString() {
     return names.stream()
-        .map(Name::toString)
+        .map(ResultName::toString)
         .reduce("", String::concat);
   }
 }
