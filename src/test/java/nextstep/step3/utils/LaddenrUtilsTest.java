@@ -25,9 +25,16 @@ class LadderUtilsTest {
 
     @DisplayName("문자열 공백 체크")
     @ParameterizedTest
-    @CsvSource(delimiter = ':', value = {":true", "value:false", " :true"})
-    void isBlank(String input, boolean result) {
-        assertThat(LadderUtils.isBlank(input)).isEqualTo(result);
+    @CsvSource({",","''","' '"})
+    void isBlank_True(String input) {
+        assertThat(LadderUtils.isBlank(input)).isTrue();
+    }
+
+    @DisplayName("문자열 공백 체크")
+    @ParameterizedTest
+    @CsvSource({"A"," B"," C "})
+    void isBlank_False(String input) {
+        assertThat(LadderUtils.isBlank(input)).isFalse();
     }
 
     @DisplayName("사다리 결과 조합 체크")
