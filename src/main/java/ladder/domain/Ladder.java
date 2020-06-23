@@ -5,26 +5,17 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private static final int MIN_HEIGHT = 2;
     private static final int MIN_START_POSITION_COUNT = 2;
 
     private final List<HorizonLine> horizonLines = new ArrayList<>();
 
-    public Ladder(int height, int positionCount) {
+    public Ladder(LadderHeight height, int positionCount) {
        this(height, positionCount, () -> new Random().nextBoolean());
     }
 
-    public Ladder(int height, int positionCount, ShortLineEnableJudge shortLineEnableJudge) {
-        validateMinHeight(height);
+    public Ladder(LadderHeight height, int positionCount, ShortLineEnableJudge shortLineEnableJudge) {
         validateMinPositionCount(positionCount);
         createHorizonLine(height, positionCount, shortLineEnableJudge);
-    }
-
-
-    public void validateMinHeight(int height) {
-        if (height < MIN_HEIGHT) {
-            throw new IllegalArgumentException("사다리 높이는 2이상 이어야 합니다.");
-        }
     }
 
     public void validateMinPositionCount(int positionCount) {
@@ -37,8 +28,8 @@ public class Ladder {
         return horizonLines.size();
     }
 
-    private void createHorizonLine(int height, int statPositionCount, ShortLineEnableJudge shortLineEnableJudge) {
-        for (int i = 0; i < height; i++) {
+    private void createHorizonLine(LadderHeight height, int statPositionCount, ShortLineEnableJudge shortLineEnableJudge) {
+        for (int i = 0; i < height.get(); i++) {
             horizonLines.add(new HorizonLine(statPositionCount, shortLineEnableJudge));
         }
     }
