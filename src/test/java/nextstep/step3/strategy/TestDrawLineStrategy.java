@@ -1,4 +1,6 @@
-package nextstep.step3.domain.strategy;
+package nextstep.step3.strategy;
+
+import nextstep.step3.domain.strategy.DrawLineStrategy;
 
 import java.util.List;
 
