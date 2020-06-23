@@ -1,16 +1,19 @@
 package ladder;
 
 import ladder.domain.*;
-
 import java.util.List;
 
 public class LadderGame {
 
-    public static LadderGameResult draw(LadderSetting ladderSetting) {
-        List<Person> persons = ladderSetting.getPersons();
-        Height height = Height.of(ladderSetting.getHeight());
+    public static LadderResult draw(LadderGameInfo ladderGameInfo) {
+        List<Person> persons = ladderGameInfo.getPersons();
+        Height height = Height.of(ladderGameInfo.getHeight());
         Ladder ladder = Ladder.create(height, persons.size());
 
-        return new LadderGameResult(ladderSetting, ladder);
+        return new LadderResult(ladderGameInfo, ladder);
+    }
+
+    public static ResultPrize play(LadderResult ladderGameResult) {
+        return new ResultPrize(ladderGameResult.findResult());
     }
 }
