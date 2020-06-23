@@ -15,7 +15,7 @@ public class LadderUtils {
     }
 
     public static boolean isBlank(String result) {
-        return result == null || result.length() == 0;
+        return result == null || result.replace(" ", "").length() == 0;
     }
 
     public static Map<String, User> getMappingResult(List<User> users, List<String> playResult, List<Integer> ladderGameResult) {
