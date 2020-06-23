@@ -18,8 +18,8 @@ public class Ladder {
         addLastEmptyLine(numberOfUsers, Point.of(maxHeight));
     }
 
-    private void addLine(Order order, LadderConnectionConditional connectionConditional, final Point maxPoint) {
-        Set<Point> points = makePoints(order, connectionConditional, maxPoint);
+    private void addLine(Order order, LadderConnectionConditional conditional, final Point maxPoint) {
+        Set<Point> points = makePoints(order, conditional, maxPoint);
         ladderLines.put(order, LadderLine.of(points));
     }
 
@@ -56,6 +56,6 @@ public class Ladder {
     }
 
     public boolean hasConnection(final int order, final int point) {
-        return ladderLines.get(Order.of(order)).connectedWith(point);
+        return hasConnection(Order.of(order), Point.of(point));
     }
 }

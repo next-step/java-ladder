@@ -65,9 +65,9 @@ class LadderGameTest {
 
         //then
         assertAll(
-                () -> assertThat(result.getPrizeOf(users.findByUserName("abc").get())).isEqualTo("당첨"),
-                () -> assertThat(result.getPrizeOf(users.findByUserName("def").get())).isEqualTo("꽝"),
-                () -> assertThat(result.getPrizeOf(users.findByUserName("ghi").get())).isEqualTo("꽝")
+                () -> assertThat(result.getPrizeOf(users.findByUserName("abc"))).isEqualTo("당첨"),
+                () -> assertThat(result.getPrizeOf(users.findByUserName("def"))).isEqualTo("꽝"),
+                () -> assertThat(result.getPrizeOf(users.findByUserName("ghi"))).isEqualTo("꽝")
         );
 
     }

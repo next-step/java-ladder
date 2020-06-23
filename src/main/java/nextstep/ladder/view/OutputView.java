@@ -62,8 +62,8 @@ public class OutputView {
             printAllResult(userStore, ladderGameResult);
             return;
         }
-        userStore.findByUserName(resultUser)
-                .ifPresent(user -> System.out.printf("%s : %s", user.getUserName(), ladderGameResult.getPrizeOf(user)));
+        LadderGameUser user = userStore.findByUserName(resultUser);
+        System.out.printf("%s : %s", user.getUserName(), ladderGameResult.getPrizeOf(user));
     }
 
     private static void printAllResult(final LadderGameUserStorage userStore, final LadderGameResult ladderGameResult) {

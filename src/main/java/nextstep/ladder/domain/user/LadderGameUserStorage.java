@@ -22,10 +22,11 @@ public class LadderGameUserStorage {
         return Collections.unmodifiableList(ladderGameUsers);
     }
 
-    public Optional<LadderGameUser> findByUserName(final String userName) {
+    public LadderGameUser findByUserName(final String userName) {
         return ladderGameUsers.stream()
                 .filter(user -> user.getUserName().equals(userName))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("%s에 해당하는 사용자는 없습니다", userName)));
     }
 
     public List<String> getLadderGameUserNames() {

@@ -5,10 +5,10 @@ import nextstep.ladder.domain.vo.Order;
 
 import java.util.Map;
 
-public class LadderGameSnapshot {
+public class LadderProcessSnapshot {
     private final Map<LadderGameUser, Order> snapshot;
 
-    public LadderGameSnapshot(final Map<LadderGameUser, Order> snapshot) {
+    public LadderProcessSnapshot(final Map<LadderGameUser, Order> snapshot) {
         this.snapshot = snapshot;
     }
 
