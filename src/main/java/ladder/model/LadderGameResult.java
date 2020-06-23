@@ -18,7 +18,7 @@ public class LadderGameResult {
     public static LadderGameResult create(final Members members, final LadderGameRewords ladderGameRewords) {
         Map<Member, LadderGameReword> ladderGameResult = IntStream.range(ZERO, members.count())
             .boxed()
-            .collect(Collectors.toMap(members::get, ladderGameRewords::getLadderGameReword, (item1, item2) -> item1, LinkedHashMap::new));
+            .collect(Collectors.toMap(members::get, ladderGameRewords::get, (item1, item2) -> item1, LinkedHashMap::new));
 
         return new LadderGameResult(ladderGameResult);
     }
