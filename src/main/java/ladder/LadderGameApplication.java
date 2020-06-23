@@ -26,10 +26,8 @@ public class LadderGameApplication {
         Ladder ladder = new Ladder(ladderHeight, players.getPlayerCount());
         resultView.displayLadder(ladder);
         resultView.displayLadderReulst(rewards);
-        ladder.playLadderGame(players);
 
-        new PlayerResultView(new LadderResultOutput(players, rewards))
-                .displayPlayerResult();
+        new PlayerResultView(ladder.playLadderGame(players, rewards)).displayPlayerResult();
 
     }
 

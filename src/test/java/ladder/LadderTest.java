@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.view.ResultView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,15 +21,33 @@ public class LadderTest {
 
         Players players = new Players("iu,iu2,iu3,iu4");
         Ladder ladder = new Ladder(3, players.getPlayerCount());
-        ladder.playLadderGame(players);
-
-        String reulstsString = "꽝,꽝,5000원,5000";
+        String reulstsString = "1,2,3,4";
         Rewards rewards = new Rewards(reulstsString);
-        LadderResultOutput output = new LadderResultOutput(players, rewards);
+        LadderResultOutput output = ladder.playLadderGame(players, rewards);
 
         for (int i = 0; i < rewards.getResultCount(); i++) {
-            assertThat(output.getResultOutput().get(players.getPlayerName(i))).isEqualTo(rewards.getRewardInfo(i));
+            assertThat(output.getResultTargetOutput(players.getPlayerName(i))).isNotNull();
         }
 
+        StringBuilder sb = new StringBuilder();
+        output.getResultOutput().forEach((name, reward) -> {
+            sb.append(name + ":" + reward + "\n");
+        });
+        System.out.println(sb.toString());
+
+    }
+
+
+    @DisplayName("사다리 타기 출력")
+    @Test
+    void displayLadderUiTest() {
+
+        Players players = new Players("iu,iu2,iu3,iu4");
+        Ladder ladder = new Ladder(3, players.getPlayerCount());
+        for (int i = 0; i < ladder.getLineHeight(); i++) {
+            System.out.println(ladder.getDrawLine(i));
+        }
+        ResultView rv = new ResultView();
+        rv.displayLadder(ladder);
     }
 }

@@ -8,37 +8,27 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum UI {
-    HORIZONTAL("-----", true),
-    EMPTY("     ", false),
-    VERTICAL("|", true);
+    HORIZONTAL("-----"),
+    EMPTY("     "),
+    VERTICAL("|");
 
     private String stringUi;
-    private boolean drawable;
 
-    private UI(String stringUi, boolean drawable) {
+    private UI(String stringUi) {
         this.stringUi = stringUi;
-        this.drawable = drawable;
     }
 
-    private static Map<Draw, UI> STRINGS = Collections
+    private static Map<String, UI> STRINGS = Collections
                                         .unmodifiableMap(Stream.of(values())
-                                        .filter(i -> !i.toString().equals("VERTICAL"))
-                                        .collect(Collectors.toMap(ui -> Draw.of(ui.getDrawableStatus()), Function.identity())));
+                                        .collect(Collectors.toMap(UI::toString, Function.identity())));
 
-    public static UI find(Draw draw) {
-        return Optional.ofNullable(STRINGS.get(draw)).orElse(VERTICAL);
-    }
-
-    public static UI find() {
-        return VERTICAL;
+    public static UI find(String uiString) {
+        return Optional.ofNullable(STRINGS.get(uiString)).orElse(VERTICAL);
     }
 
     public String getString() {
         return stringUi;
     }
 
-    private boolean getDrawableStatus() {
-        return drawable;
-    }
 
 }

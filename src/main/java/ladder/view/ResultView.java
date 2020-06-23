@@ -5,6 +5,10 @@ import ladder.domain.*;
 public class ResultView {
 
     private static final String LADDER_RESULT_INTRO_MESSAGE = "실행결과";
+    public static final String LADDER_HORIZONTAL = "HORIZONTAL";
+    public static final String LADDER_EMPTY = "EMPTY";
+    public static final String LADDER_VERTICAL = "VERTICAL";
+
     private StringBuilder uiBuilder = new StringBuilder();
 
     public void displayLadderplayers(Players players) {
@@ -22,11 +26,14 @@ public class ResultView {
         System.out.println(uiBuilder.toString());
     }
 
-    private String drawLine(Line line) {
-        String lineString = UI.find(Draw.of(false)).getString() + UI.find().getString();
-        for (int i = 0; i < line.getDrawLineCount(); i++) {
-            lineString += UI.find(line.getDrawByPosition(i)).getString() + UI.find().getString();
+    private String drawLine(LadderLine ladderLine) {
+        String lineString = UI.find(LADDER_EMPTY).getString();
+        for (int i = 0; i < ladderLine.getLineSize() - 1; i++) {
+            lineString += UI.find(LADDER_VERTICAL).getString();
+            lineString += UI.find((i < ladderLine.move(i))
+                                    ? LADDER_HORIZONTAL : LADDER_EMPTY).getString();
         }
+        lineString += UI.find(LADDER_VERTICAL).getString();
         return lineString;
     }
 
