@@ -1,6 +1,4 @@
-package nextstep.step3.domain.strategy;
-
-import nextstep.step3.domain.Line;
+package nextstep.step3.domain;
 
 public class Position {
     private int breath;

@@ -16,4 +16,10 @@ public class User {
     public String getResult() {
         return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        User objUser = (User) obj;
+        return this.userName.equals(objUser.userName) && this.result.equals(objUser.result);
+    }
 }
