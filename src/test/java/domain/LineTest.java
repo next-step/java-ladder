@@ -2,6 +2,7 @@ package domain;
 
 import generator.FalsePointGenerator;
 import generator.RandomPointGenerator;
+import generator.TruePointGenerator;
 import org.junit.jupiter.api.Test;
 import view.OutputView;
 
@@ -34,5 +35,32 @@ public class LineTest {
         boolean result = new RandomPointGenerator().isConnect(true);
 
         assertFalse(result);
+    }
+
+    @Test
+    void 앞뒤_point가_false면_인덱스는_그대로다() {
+        // |     |     |
+        Line line = Line.of(3, new FalsePointGenerator());
+        int nextPointIndex = line.nextPointIndex(1);
+
+        assertEquals(nextPointIndex, 1);
+    }
+
+    @Test
+    void true가_인덱스_하나앞에_있으면_인덱스가_줄어든다() {
+        // |-----|     |
+        Line line = Line.of(3, new TruePointGenerator());
+        int nextPointIndex = line.nextPointIndex(1);
+
+        assertEquals(nextPointIndex, 0);
+    }
+
+    @Test
+    void true가_인덱스_하나뒤에_있으면_인덱스가_커진다() {
+        // |-----|     |-----|
+        Line line = Line.of(4, new TruePointGenerator());
+        int nextPointIndex = line.nextPointIndex(2);
+
+        assertEquals(nextPointIndex, 3);
     }
 }

@@ -18,4 +18,15 @@ public class Ladder {
     public List<Line> getLines() {
         return lines;
     }
+
+
+    public int getLadderResultIndex(int playerIndex) {
+        int point = playerIndex;
+
+        for (int i = 0; i < lines.size(); i++) {
+            point = lines.get(i).nextPointIndex(point);
+        }
+
+        return point;
+    }
 }

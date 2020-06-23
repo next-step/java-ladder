@@ -1,7 +1,6 @@
 package view;
 
 import domain.Ladder;
-import domain.LadderGameResult;
 import domain.Players;
 
 import java.util.Arrays;
@@ -9,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    private static final int TO_BE_REMOVED_LAST_POINT = 1;
     private static final String DEFAULT_NAME = "     ";
     private static final int MAX_SPACE_SIZE = 5;
 
@@ -30,11 +30,12 @@ public class OutputView {
     }
 
     public static String getLineText(List<Boolean> points) {
-        return FIRST_SPACE.concat(
-                LINE.concat(points.stream()
+        return FIRST_SPACE.concat(LINE)
+                .concat(points.stream()
+                        .limit(points.size() - TO_BE_REMOVED_LAST_POINT)
                         .map(point -> point ? CONNECT : NOT_CONNECT)
                         .collect(Collectors.joining(LINE)))
-                        .concat(LINE));
+                .concat(LINE);
     }
 
     public static String get5SpaceTexts(String[] text) {

@@ -1,5 +1,4 @@
 import domain.Ladder;
-import domain.LadderGameResult;
 import domain.Players;
 import view.InputView;
 import view.OutputView;

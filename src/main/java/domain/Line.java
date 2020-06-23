@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    private final int FIRST_INDEX = 0;
+    private final boolean FINAL_FLAG = false;
     private final List<Boolean> points;
 
     private Line(int countOfPerson, PointGenerator pointGenerator) {
@@ -27,6 +29,7 @@ public class Line {
         for (int i = 1; i < length - 1; i++) {
             points.add(pointGenerator.isConnect(points.get(i - 1)));
         }
+        points.add(FINAL_FLAG);
         return points;
     }
 
@@ -36,5 +39,17 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public int nextPointIndex(int index) {
+        if (index == FIRST_INDEX) {
+            return points.get(index) ? ++index : index;
+        }
+
+        if (points.get(index) == true) {
+            return ++index;
+        }
+
+        return points.get(index - 1) ? --index : index;
     }
 }
