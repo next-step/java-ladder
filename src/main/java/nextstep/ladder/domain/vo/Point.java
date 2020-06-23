@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.vo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Point {
     private static final Map<Integer, Point> CACHE = new HashMap<>();
+    public static final Point ZERO_BASE_POINT = Point.of(0);
     public static final Point INITIAL_POINT = Point.of(1);
 
     private final int position;
@@ -18,12 +19,27 @@ public class Point {
         return CACHE.computeIfAbsent(position, p -> new Point(position));
     }
 
-    public Point add() {
+    public Point next() {
         return Point.of(position + 1);
+    }
+
+    public Point before() {
+        if (this.position <= 0) {
+            throw new IllegalArgumentException(String.format("%d positon은 존재하지 않습니다.", this.position - 1));
+        }
+        return Point.of(this.position - 1);
     }
 
     public boolean isUnderThan(final Point point) {
         return this.position < point.position;
+    }
+
+    public boolean isUnderThanAndEquals(final Point point) {
+        return isUnderThan(point) || equals(point);
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

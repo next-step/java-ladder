@@ -1,43 +1,50 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Order;
-import nextstep.ladder.domain.Point;
+import nextstep.ladder.domain.game.LadderGamePrize;
+import nextstep.ladder.domain.game.LadderGameResult;
+import nextstep.ladder.domain.user.LadderGameUser;
+import nextstep.ladder.domain.user.LadderGameUserStorage;
 
-import java.util.stream.IntStream;
+import java.util.List;
 
 public class OutputView {
     private static final String VERTICAL_LADDER_LINE = "|";
     private static final String LADDER_CONNECTION_LINE = "-----";
     private static final String BLANK_INTERVAL = "     ";
 
+    private static final String ALL_USER = "all";
+    private static final String LADDER_OUTPUT_START_MESSAGE = "실행결과";
+
     private OutputView() {
     }
 
-    public static void drawLadder(Ladder ladder) {
-        IntStream.rangeClosed(1, ladder.getNumberOfUser())
-                .forEach(index -> System.out.printf(String.format("%5s ", ladder.findLadderLineByOrder(Order.of(index)).getLadderGameUser())));
+    public static void drawLadder(Ladder ladder, LadderGameUserStorage users, int maxPoint, LadderGamePrize prizes) {
+        users.getLadderGameUserNames()
+                .forEach(userName -> System.out.printf("%s%s", userName, BLANK_INTERVAL));
         System.out.println();
 
-        for (int currentPosition = 1; currentPosition <= ladder.getMaxHeight(); currentPosition++) {
-            System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, currentPosition));
+        for (int point = 1, height = maxPoint; point <= height; point++) {
+            System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, users, point));
         }
-
+        prizes.findAllPrizes()
+                .forEach(prize -> System.out.printf("%s%s", prize, BLANK_INTERVAL));
+        System.out.println();
     }
 
-    private static String drawLadderLine(final Ladder ladder, final int currentPosition) {
+    private static String drawLadderLine(final Ladder ladder, final LadderGameUserStorage users, final int point) {
         StringBuilder ladderLine = new StringBuilder();
-        for (int currentUser = 1, count = ladder.getNumberOfUser(); currentUser <= count; currentUser++) {
+        for (int order = 1, count = users.count(); order < count; order++) {
             ladderLine.append(VERTICAL_LADDER_LINE);
-            ladderLine.append(drawConnectionLine(ladder, currentPosition, currentUser));
+            ladderLine.append(drawConnectionLine(ladder, point, order));
         }
         ladderLine.append(VERTICAL_LADDER_LINE);
         return ladderLine.toString();
     }
 
-    private static String drawConnectionLine(final Ladder ladder, final int currentPosition, final int currentUser) {
+    private static String drawConnectionLine(final Ladder ladder, final int point, final int order) {
         StringBuilder connectionLine = new StringBuilder();
-        if (isConnected(ladder, currentPosition, currentUser)) {
+        if (isConnected(ladder, point, order)) {
             connectionLine.append(LADDER_CONNECTION_LINE);
         } else {
             connectionLine.append(BLANK_INTERVAL);
@@ -45,7 +52,24 @@ public class OutputView {
         return connectionLine.toString();
     }
 
-    private static boolean isConnected(final Ladder ladder, final int currentPosition, final int currentUser) {
-        return ladder.findLadderLineByOrder(Order.of(currentUser)).connectedWith(Point.of(currentPosition));
+    private static boolean isConnected(final Ladder ladder, final int point, final int order) {
+        return ladder.hasConnection(order, point);
+    }
+
+    public static void printPrize(final LadderGameUserStorage userStore, final String resultUser, final LadderGameResult ladderGameResult) {
+        System.out.println(LADDER_OUTPUT_START_MESSAGE);
+        if (ALL_USER.equals(resultUser)) {
+            printAllResult(userStore, ladderGameResult);
+            return;
+        }
+        LadderGameUser user = userStore.findByUserName(resultUser);
+        System.out.printf("%s : %s", user.getUserName(), ladderGameResult.getPrizeOf(user));
+    }
+
+    private static void printAllResult(final LadderGameUserStorage userStore, final LadderGameResult ladderGameResult) {
+        List<LadderGameUser> allOfUsers = userStore.findAll();
+        for (LadderGameUser user : allOfUsers) {
+            System.out.printf("%s : %s%n", user.getUserName(), ladderGameResult.getPrizeOf(user));
+        }
     }
 }

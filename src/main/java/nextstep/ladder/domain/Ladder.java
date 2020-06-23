@@ -1,63 +1,61 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
+import nextstep.ladder.domain.vo.Order;
+import nextstep.ladder.domain.vo.Point;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Ladder {
-    private final int maxHeight;
-    private final Map<Order, LadderBaseLine> ladderBaseLines = new HashMap<>();
+    private final Map<Order, LadderLine> ladderLines = new HashMap<>();
 
-    public Ladder(final int maxHeight) {
-        this.maxHeight = maxHeight;
+    public Ladder(final int numberOfUsers, final LadderConnectionConditional conditional, final int maxHeight) {
+        for (int orderValue = 1; orderValue < numberOfUsers; orderValue++) {
+            addLine(Order.of(orderValue), conditional, Point.of(maxHeight));
+        }
+        addLastEmptyLine(numberOfUsers, Point.of(maxHeight));
     }
 
-    public void drawLine(LadderGameUser ladderGameUser, LadderLineDrawingMachine drawingMachine) {
-        ConnectPoints connectPoints = makeConnectPoints(drawingMachine, ladderGameUser.getOrder());
-        ladderBaseLines.put(ladderGameUser.getOrder(), new LadderBaseLine(ladderGameUser, connectPoints));
+    private void addLine(Order order, LadderConnectionConditional conditional, final Point maxPoint) {
+        Set<Point> points = makePoints(order, conditional, maxPoint);
+        ladderLines.put(order, LadderLine.of(points));
     }
 
-    private ConnectPoints makeConnectPoints(LadderLineDrawingMachine drawingMachine, Order order) {
+    private void addLastEmptyLine(final int numberOfUsers, final Point maxPoint) {
+        addLine(Order.of(numberOfUsers), () -> false, maxPoint);
+    }
+
+    private Set<Point> makePoints(final Order order, final LadderConnectionConditional connectionConditional, final Point maxPoint) {
         Set<Point> points = new HashSet<>();
         Point currentPoint = Point.INITIAL_POINT;
-        Point maxPoint = Point.of(maxHeight);
 
-        while (currentPoint.isUnderThan(maxPoint) || currentPoint.equals(maxPoint)) {
-            if (enoughToDrawLine(points.size()) && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
+        while (currentPoint.isUnderThanAndEquals(maxPoint) && isEnableToStore(maxPoint, points)) {
+            if (connectionConditional.isEnough() && canConnect(order, currentPoint)) {
                 points.add(currentPoint);
             }
-            currentPoint = currentPoint.add();
+            currentPoint = currentPoint.next();
         }
 
-        return ConnectPoints.of(Collections.unmodifiableSet(points), maxHeight);
+        return points;
     }
 
-    /**
-     * indent 규칙을 지키려다보니 파라미터가 너무 많아졌습니다 ㅠㅠ
-     **/
-    private void attemptToAddPoint(final LadderLineDrawingMachine drawingMachine, final Order order, final Set<Point> points, final Point currentPoint) {
-        if (enoughToDrawLine(points.size()) && canConnect(order, currentPoint) && drawingMachine.isEnough()) {
-            points.add(currentPoint);
-        }
+    private boolean isEnableToStore(final Point maxPoint, final Set<Point> points) {
+        return points.size() < maxPoint.getPosition() - 1;
     }
 
     private boolean canConnect(Order order, Point point) {
         return order.before()
-                .map(before -> !ladderBaseLines.get(before).connectedWith(point))
+                .map(beforeOrder -> !ladderLines.get(beforeOrder).connectedWith(point))
                 .orElse(true);
     }
 
-    private boolean enoughToDrawLine(final int size) {
-        return size < this.maxHeight - 1;
+    public boolean hasConnection(final Order order, final Point point) {
+        return ladderLines.get(order).connectedWith(point);
     }
 
-    public LadderBaseLine findLadderLineByOrder(Order order) {
-        return ladderBaseLines.get(order);
-    }
-
-    public int getMaxHeight() {
-        return maxHeight;
-    }
-
-    public int getNumberOfUser() {
-        return ladderBaseLines.size();
+    public boolean hasConnection(final int order, final int point) {
+        return hasConnection(Order.of(order), Point.of(point));
     }
 }

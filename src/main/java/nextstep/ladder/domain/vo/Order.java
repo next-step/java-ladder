@@ -1,12 +1,14 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.vo;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
 public class Order {
+    private static final Map<Integer, Order> CACHE = new HashMap<>();
     private static final int FIRST_ORDER_NUM = 1;
-    public static final Order FIRST_ORDER = Order.of(FIRST_ORDER_NUM);
     private final int num;
 
     private Order(final int num) {
@@ -14,7 +16,11 @@ public class Order {
     }
 
     public static Order of(final int num) {
-        return new Order(num);
+        return CACHE.computeIfAbsent(num, Order::new);
+    }
+
+    public Order next() {
+        return Order.of(this.num + 1);
     }
 
     public Optional<Order> before() {
@@ -22,10 +28,6 @@ public class Order {
             return Optional.empty();
         }
         return Optional.of(Order.of(this.num - 1));
-    }
-
-    public Order next() {
-        return Order.of(num + 1);
     }
 
     @Override
@@ -40,4 +42,10 @@ public class Order {
     public int hashCode() {
         return Objects.hash(num);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(num);
+    }
+
 }
