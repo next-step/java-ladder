@@ -44,7 +44,7 @@ public class LadderLine {
     }
 
     public int poleCount() {
-        return bridges.size() + 1;
+        return bridges.size() + ONE;
     }
 
     public List<LadderBridge> getBridges() {
