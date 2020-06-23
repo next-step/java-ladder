@@ -14,6 +14,7 @@ public class LadderGame {
         int height = InputView.doInputLadderHeight();
 
         Game game = Game.play(Playing.of(players, results), height);
+        String targetPlayer = InputView.doInputWantToSeeResult();
         ResultView.printResult(game);
     }
 }
