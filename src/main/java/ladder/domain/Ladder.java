@@ -23,4 +23,12 @@ public class Ladder {
                      .limit(height.getHeight())
                      .collect(collectingAndThen(Collectors.toList(),Ladder::new));
     }
+
+    public int getPrizeIndex(int personIndex) {
+        int prizeIndex = personIndex;
+        for (Layer layer : layers){
+            prizeIndex = layer.move(prizeIndex);
+        }
+        return prizeIndex;
+    }
 }
