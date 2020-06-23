@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
@@ -45,10 +47,13 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return numbers.stream()
+
+        return Optional.ofNullable(numbers)
+            .orElseGet(() -> new ArrayList<>())
+            .stream()
             .filter(number -> number > 3)
             .map(number -> number * 2)
             .reduce(Integer::sum)
-            .get();
+            .orElse(0);
     }
 }
