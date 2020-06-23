@@ -6,7 +6,6 @@ import nextstep.ladder.domain.game.LadderGameResult;
 import nextstep.ladder.domain.user.LadderGameUser;
 import nextstep.ladder.domain.user.LadderGameUserStorage;
 import nextstep.ladder.domain.vo.Order;
-import nextstep.ladder.domain.vo.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,12 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("항상 true를 반환하는 라이너로 게임진행")
 class LadderGameTest {
-    LadderGame ladderGame = new LadderGame(() -> true);
 
     @DisplayName("항상 true를 반환하는 드로잉머신으로 사다리리를 생성하는 테스트")
     @Test
     void createLadder() {
         //given
+        LadderGame ladderGame = new LadderGame(() -> true);
         LadderGameUserStorage users = createLadderGameUsers();
         int maxHeight = 3;
 
@@ -49,18 +48,26 @@ class LadderGameTest {
     @Test
     void result() {
         //given
-        LadderGameUserStorage ladderGameUsers = createLadderGameUsers();
-        Ladder ladder = Ladder.of(3, ladderGameUsers, createLadderLines());
+        LadderGameUserStorage users = createLadderGameUsers();
+        Ladder ladder = new Ladder(3, new TestConditional(), 3);
         LadderGamePrize prize = createPrize();
+        LadderGame ladderGame = new LadderGame(new TestConditional());
 
+        /*
+        abc def ghi
+        |---|   |
+        |   |---|
+        |---|   |
+        꽝   꽝   당첨
+         */
         //when
-        LadderGameResult result = ladderGame.execute(ladder, prize);
+        LadderGameResult result = ladderGame.execute(ladder, users, 3, prize);
 
         //then
         assertAll(
-                () -> assertThat(result.getPrizeOf(ladderGameUsers.findByUserName("abc").get())).isEqualTo("꽝"),
-                () -> assertThat(result.getPrizeOf(ladderGameUsers.findByUserName("def").get())).isEqualTo("당첨"),
-                () -> assertThat(result.getPrizeOf(ladderGameUsers.findByUserName("ghi").get())).isEqualTo("꽝")
+                () -> assertThat(result.getPrizeOf(users.findByUserName("abc").get())).isEqualTo("당첨"),
+                () -> assertThat(result.getPrizeOf(users.findByUserName("def").get())).isEqualTo("꽝"),
+                () -> assertThat(result.getPrizeOf(users.findByUserName("ghi").get())).isEqualTo("꽝")
         );
 
     }
@@ -72,19 +79,6 @@ class LadderGameTest {
         return new LadderGameUserStorage(Arrays.asList(user1, user2, user3));
     }
 
-    private LadderLines createLadderLines() {
-        /*
-        | ------ |        |
-        | ------ |        |
-        |        | ------ |
-         */
-        LadderLines ladderLines = new LadderLines();
-        ladderLines.addLine(Order.of(1), () -> true, Point.of(3));
-        ladderLines.addLine(Order.of(2), () -> true, Point.of(3));
-        ladderLines.addLine(Order.of(3), () -> false, Point.of(3));
-        return ladderLines;
-    }
-
     private LadderGamePrize createPrize() {
         Map<Order, String> prizes = new HashMap<>();
         prizes.put(Order.of(1), "꽝");
@@ -93,5 +87,14 @@ class LadderGameTest {
         return new LadderGamePrize(prizes);
     }
 
+    static class TestConditional implements LadderConnectionConditional {
+        static boolean flag = false;
+
+        @Override
+        public boolean isEnough() {
+            flag = !flag;
+            return flag;
+        }
+    }
 
 }

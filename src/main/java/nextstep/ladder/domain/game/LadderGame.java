@@ -2,7 +2,6 @@ package nextstep.ladder.domain.game;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderConnectionConditional;
-import nextstep.ladder.domain.LadderLines;
 import nextstep.ladder.domain.user.LadderGameUser;
 import nextstep.ladder.domain.user.LadderGameUserStorage;
 import nextstep.ladder.domain.vo.Order;
@@ -24,34 +23,21 @@ public class LadderGame {
     }
 
     public Ladder createLadder(final LadderGameUserStorage ladderGameUserStorage, final int maxHeight) {
-        LadderLines ladderLines = new LadderLines();
-
-        for (int orderValue = 1; orderValue < ladderGameUserStorage.count(); orderValue++) {
-            ladderLines.addLine(Order.of(orderValue), conditional, Point.of(maxHeight));
-        }
-
-        addLastEmptyLine(ladderGameUserStorage, ladderLines, Point.of(maxHeight));
-
-        return Ladder.of(maxHeight, ladderGameUserStorage, ladderLines);
+        return new Ladder(ladderGameUserStorage.count(), conditional, maxHeight);
     }
 
-    private void addLastEmptyLine(final LadderGameUserStorage ladderGameUserStorage, final LadderLines ladderLines, final Point maxPoint) {
-        ladderLines.addLine(Order.of(ladderGameUserStorage.count()), () -> false, maxPoint);
-    }
-
-    public LadderGameResult execute(final Ladder ladder, final LadderGamePrize prize) {
-        LadderGameUserStorage ladderGameUserStorage = ladder.getLadderGameUsers();
+    public LadderGameResult execute(final Ladder ladder, final LadderGameUserStorage users,
+                                    final int maxPoint, final LadderGamePrize prize) {
         Map<Point, LadderGameSnapshot> ladderResult = new HashMap<>();
-        ladderResult.put(Point.ZERO_BASE_POINT, createInitialSnapshot(ladderGameUserStorage));
-        final int maxHeight = ladder.getMaxHeight();
+        ladderResult.put(Point.ZERO_BASE_POINT, createInitialSnapshot(users));
 
-        for (int point = 1; point <= maxHeight; point++) {
+        for (int point = 1; point <= maxPoint; point++) {
             LadderGameSnapshot beforeSnapshot = ladderResult.get(Point.of(point).before());
-            Map<LadderGameUser, Order> currentSnapshot = createSnapshot(ladder, ladderGameUserStorage, point, beforeSnapshot);
+            Map<LadderGameUser, Order> currentSnapshot = createSnapshot(ladder, users, point, beforeSnapshot);
             //Snapshot 추가
             ladderResult.put(Point.of(point), new LadderGameSnapshot(currentSnapshot));
         }
-        return new LadderGameResult(ladderResult.get(Point.of(maxHeight)), prize);
+        return new LadderGameResult(ladderResult.get(Point.of(maxPoint)), prize);
     }
 
     private Map<LadderGameUser, Order> createSnapshot(final Ladder ladder, final LadderGameUserStorage userStore, final int point, final LadderGameSnapshot beforeSnapshot) {

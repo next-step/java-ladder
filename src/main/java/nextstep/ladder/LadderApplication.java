@@ -11,16 +11,16 @@ import nextstep.ladder.view.OutputView;
 
 public class LadderApplication {
     public static void main(String[] args) {
-        LadderGameUserStorage ladderGameUserStorage = InputView.askParticipantsName();
+        LadderGameUserStorage users = InputView.askParticipantsName();
         int maxPoint = InputView.askMaximumLadderHeight();
 
         LadderGame ladderGame = new LadderGame(new RandomLadderConnection());
         LadderGamePrize ladderGamePrize = InputView.askLadderGamePrize();
-        Ladder ladder = ladderGame.createLadder(ladderGameUserStorage, maxPoint);
-        OutputView.drawLadder(ladder, ladderGamePrize);
+        Ladder ladder = ladderGame.createLadder(users, maxPoint);
+        OutputView.drawLadder(ladder, users, maxPoint, ladderGamePrize);
 
-        LadderGameResult ladderGameResult = ladderGame.execute(ladder, ladderGamePrize);
+        LadderGameResult ladderGameResult = ladderGame.execute(ladder, users, maxPoint, ladderGamePrize);
         String resultUser = InputView.askResultUser();
-        OutputView.printPrize(ladderGameUserStorage, resultUser, ladderGameResult);
+        OutputView.printPrize(users, resultUser, ladderGameResult);
     }
 }

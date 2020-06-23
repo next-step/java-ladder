@@ -19,22 +19,22 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void drawLadder(Ladder ladder, LadderGamePrize prizes) {
-        ladder.getLadderGameUsers().getLadderGameUserNames()
+    public static void drawLadder(Ladder ladder, LadderGameUserStorage users, int maxPoint, LadderGamePrize prizes) {
+        users.getLadderGameUserNames()
                 .forEach(userName -> System.out.printf("%s%s", userName, BLANK_INTERVAL));
         System.out.println();
 
-        for (int point = 1, height = ladder.getMaxHeight(); point <= height; point++) {
-            System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, point));
+        for (int point = 1, height = maxPoint; point <= height; point++) {
+            System.out.println(BLANK_INTERVAL + drawLadderLine(ladder, users, point));
         }
         prizes.findAllPrizes()
                 .forEach(prize -> System.out.printf("%s%s", prize, BLANK_INTERVAL));
         System.out.println();
     }
 
-    private static String drawLadderLine(final Ladder ladder, final int point) {
+    private static String drawLadderLine(final Ladder ladder, final LadderGameUserStorage users, final int point) {
         StringBuilder ladderLine = new StringBuilder();
-        for (int order = 1, count = ladder.getNumberOfUsers(); order < count; order++) {
+        for (int order = 1, count = users.count(); order < count; order++) {
             ladderLine.append(VERTICAL_LADDER_LINE);
             ladderLine.append(drawConnectionLine(ladder, point, order));
         }
