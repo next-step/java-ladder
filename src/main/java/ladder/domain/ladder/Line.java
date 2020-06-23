@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private static final int MIN_COUNT_OF_USER = 2;
+    private static final int MIN_COUNT_OF_LINE = 2;
 
     private List<Point> points = new ArrayList<>();
 
@@ -33,7 +33,7 @@ public class Line {
     }
 
     private void validate(int countOfUser) {
-        if (countOfUser < MIN_COUNT_OF_USER) {
+        if (countOfUser < MIN_COUNT_OF_LINE) {
             throw new IllegalArgumentException("Line을 생성할 수 없습니다.");
         }
     }
