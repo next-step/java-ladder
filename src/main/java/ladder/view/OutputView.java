@@ -24,7 +24,7 @@ public class OutputView {
     public static void printUsers(List<User> users) {
         String text = users.stream().map(User::getName)
                 .reduce(EMPTY, (userName1, userName2) -> {
-                    if(userName1.equals(EMPTY)) {
+                    if (userName1.equals(EMPTY)) {
                         return String.format(FIRST_USER_STRING_FORMAT, userName2);
                     }
                     return userName1 + SPACE + String.format(NORMAL_USER_STRING_FORMAT, userName2);
@@ -33,7 +33,7 @@ public class OutputView {
     }
 
     public static void printLadder(Ladder ladder) {
-        for(int i = 0 ; i < ladder.getHeight() ; i++) {
+        for (int i = 0 ; i < ladder.getHeight() ; i++) {
             System.out.println(getHorizonLine(ladder, i));
         }
     }

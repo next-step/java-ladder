@@ -27,13 +27,13 @@ public class User {
     }
 
     private void validateNameLength(String name) {
-        if(name.length() > NAME_LENGTH_LIMIT) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("입력된 이름이 제한 길이를 초과 합니다.");
         }
     }
 
     private void validateNullOrEmpty(String name) {
-        if(name == null || name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("입력된 이름이 null 또는 빈 값 입니다.");
         }
     }
