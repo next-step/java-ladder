@@ -49,7 +49,7 @@ class LadderGameTest {
     void result() {
         //given
         LadderGameUserStorage users = createLadderGameUsers();
-        Ladder ladder = new Ladder(3, new TestConditional(), 3);
+        Ladder ladder = Ladder.of(3, new TestConditional(), 3);
         LadderGamePrize prize = createPrize();
         LadderGame ladderGame = new LadderGame(new TestConditional());
 

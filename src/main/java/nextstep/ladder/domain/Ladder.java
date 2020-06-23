@@ -8,28 +8,37 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static nextstep.ladder.domain.vo.Point.INITIAL_POINT;
+
 public class Ladder {
     private final Map<Order, LadderLine> ladderLines = new HashMap<>();
 
-    public Ladder(final int numberOfUsers, final LadderConnectionConditional conditional, final int maxHeight) {
-        for (int orderValue = 1; orderValue < numberOfUsers; orderValue++) {
-            addLine(Order.of(orderValue), conditional, Point.of(maxHeight));
-        }
-        addLastEmptyLine(numberOfUsers, Point.of(maxHeight));
+    private Ladder(final int numberOfUsers, final LadderConnectionConditional conditional, final int maxPoint) {
+        init(numberOfUsers, conditional, maxPoint);
     }
 
-    private void addLine(Order order, LadderConnectionConditional conditional, final Point maxPoint) {
-        Set<Point> points = makePoints(order, conditional, maxPoint);
-        ladderLines.put(order, LadderLine.of(points));
+    public static Ladder of(final int numberOfUsers, final LadderConnectionConditional conditional, final int maxPoint) {
+        return new Ladder(numberOfUsers, conditional, maxPoint);
+    }
+
+    private void init(final int numberOfUsers, final LadderConnectionConditional conditional, final int maxPoint) {
+        for (int orderValue = 1; orderValue < numberOfUsers; orderValue++) {
+            Order order = Order.of(orderValue);
+            Set<Point> points = makePoints(order, conditional, Point.of(maxPoint));
+            ladderLines.put(order, LadderLine.of(points));
+        }
+        addLastEmptyLine(numberOfUsers, Point.of(maxPoint));
     }
 
     private void addLastEmptyLine(final int numberOfUsers, final Point maxPoint) {
-        addLine(Order.of(numberOfUsers), () -> false, maxPoint);
+        Order order = Order.of(numberOfUsers);
+        Set<Point> points = makePoints(order, () -> false, maxPoint);
+        ladderLines.put(order, LadderLine.of(points));
     }
 
     private Set<Point> makePoints(final Order order, final LadderConnectionConditional connectionConditional, final Point maxPoint) {
         Set<Point> points = new HashSet<>();
-        Point currentPoint = Point.INITIAL_POINT;
+        Point currentPoint = INITIAL_POINT;
 
         while (currentPoint.isUnderThanAndEquals(maxPoint) && isEnableToStore(maxPoint, points)) {
             if (connectionConditional.isEnough() && canConnect(order, currentPoint)) {

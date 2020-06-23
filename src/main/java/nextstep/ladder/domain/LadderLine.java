@@ -15,10 +15,6 @@ public class LadderLine {
         return new LadderLine(points);
     }
 
-    public boolean connectedWith(final int point) {
-        return connectedWith(Point.of(point));
-    }
-
     public boolean connectedWith(final Point point) {
         return points.contains(point);
     }
