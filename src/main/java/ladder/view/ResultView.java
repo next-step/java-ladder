@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Line;
+import ladder.domain.ladder.LadderLine;
 import ladder.domain.ladder.Point;
 import ladder.domain.player.Players;
 import ladder.domain.result.LadderResult;
@@ -33,15 +33,12 @@ public class ResultView {
     }
 
     private void printLadder(Ladder ladder) {
-        IntStream.range(0, ladder.height())
-                .mapToObj(ladder::get)
-                .forEach(this::printLine);
+        ladder.getLines().forEach(this::printLine);
     }
 
-    private void printLine(Line line) {
+    private void printLine(LadderLine line) {
         System.out.print(BLANK_LINE);
-        IntStream.range(0, line.size())
-                .mapToObj(line::get)
+        line.getPoints()
                 .forEach(point -> System.out.print(COLUMN + getLine(point)));
         System.out.println();
     }
@@ -55,7 +52,7 @@ public class ResultView {
     }
 
     private String getLine(Point point) {
-        if (point.hasLine()) {
+        if (point.isConnectedNextPoint()) {
             return LINE;
         }
         return BLANK_LINE;
