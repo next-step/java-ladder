@@ -25,7 +25,7 @@ public class HorizonLine {
         return shortLines.size();
     }
 
-    public boolean isEnabledShortLineOfLeft(int position) {
+    protected boolean isEnabledShortLineOfLeft(int position) {
         validatePositionRange(position);
         final int shortLineIndex = position - 1;
         if (shortLineIndex < 0) {
@@ -34,7 +34,7 @@ public class HorizonLine {
         return shortLines.get(shortLineIndex);
     }
 
-    public boolean isEnabledShortLineOfRight(int position) {
+    protected boolean isEnabledShortLineOfRight(int position) {
         validatePositionRange(position);
         final int shortLineIndex = position;
         if (shortLineIndex >= shortLines.size()) {
