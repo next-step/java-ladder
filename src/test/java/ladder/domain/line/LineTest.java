@@ -31,32 +31,35 @@ class LineTest {
     void getConnects() {
         Line line = Line.create(10, new RandomPointGenerator());
 
-        assertThat(line.getConnects()).hasSize(10);
+        assertThat(line.getPoints()).hasSize(10);
     }
 
-    @DisplayName("첫번쨰 포인트는 연결되지 않음")
+    @DisplayName("첫번째 포인트는 움직일 수 없음")
     @Test
-    void getConnectsFirstIndex() {
-        Line line = Line.create(10, Point::connect);
+    void getPointsFirstIndex() {
+        Line line = Line.create(10, Point::first);
 
-        assertThat(line.getConnects().get(0)).isFalse();
+        assertThat(line.getPoints().get(0).isMovable()).isFalse();
     }
 
-    @DisplayName("포인트가 모두 연결되지 않는 경우")
+
+    @DisplayName("모든 포인트가 움직일 수 없는 경우")
     @Test
-    void connectAll() {
-        Line line = Line.create(10, Point::disconnect);
-        List<Boolean> connects = line.getConnects();
-        connects.remove(0);
-        connects.forEach(isConnect -> assertThat(isConnect).isFalse());
+    void getPointsNotMove() {
+        Line line = Line.create(2, Point::first);
+        List<Point> points = line.getPoints();
+
+        assertThat(points.get(0).isMovable()).isFalse();
+        assertThat(points.get(1).isMovable()).isFalse();
     }
 
-    @DisplayName("포인트가 모두 연결된 경우")
+    @DisplayName("모든 포인트가 움직일 수 있는 경우")
     @Test
-    void disconnectAll() {
-        Line line = Line.create(10, Point::connect);
-        List<Boolean> connects = line.getConnects();
-        connects.remove(0);
-        connects.forEach(isConnect -> assertThat(isConnect).isTrue());
+    void getPointsMoveAll() {
+        Line line = Line.create(2, () -> Point.create(0, true));
+        List<Point> points = line.getPoints();
+
+        assertThat(points.get(0).isMovable()).isFalse();
+        assertThat(points.get(1).isMovable()).isTrue();
     }
 }

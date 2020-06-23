@@ -4,6 +4,7 @@ import ladder.domain.point.Point;
 import ladder.domain.point.PointGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,7 +18,7 @@ public class Line {
     public Line(int countOfPlayer, PointGenerator pointGenerator) {
         validateArguments(countOfPlayer, pointGenerator);
 
-        points.add(Point.disconnect());
+        points.add(Point.first());
         points.addAll(generatePoints(countOfPlayer, pointGenerator));
     }
 
@@ -41,9 +42,7 @@ public class Line {
         return new Line(countOfPlayer, pointGenerator);
     }
 
-    public List<Boolean> getConnects() {
-        return points.stream()
-                .map(Point::isConnect)
-                .collect(Collectors.toList());
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

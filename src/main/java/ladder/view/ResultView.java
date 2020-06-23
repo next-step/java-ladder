@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.line.Line;
 import ladder.domain.line.Lines;
 import ladder.domain.player.Players;
+import ladder.domain.point.Point;
 
 import java.util.Collections;
 
@@ -31,17 +32,17 @@ public class ResultView {
     }
 
     private static void printLine(Line line) {
-        line.getConnects().stream()
+        line.getPoints().stream()
                 .map(ResultView::convertLineFormat)
                 .forEach(System.out::print);
 
         printNewLine();
     }
 
-    private static String convertLineFormat(boolean isConnect) {
+    private static String convertLineFormat(Point point) {
         return String.format(
                 LINE_FORMAT,
-                String.join(EMPTY_DELIMITER, Collections.nCopies(isConnect ? 5 : 0, LINE_POINT)));
+                String.join(EMPTY_DELIMITER, Collections.nCopies(point.isMovable() ? 5 : 0, LINE_POINT)));
     }
 
     private static void printNewLine() {
