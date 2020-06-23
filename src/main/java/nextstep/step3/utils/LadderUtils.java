@@ -1,11 +1,7 @@
 package nextstep.step3.utils;
 
-import nextstep.step3.domain.User;
-
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LadderUtils {
     private static final String DELIMITER = ",";
