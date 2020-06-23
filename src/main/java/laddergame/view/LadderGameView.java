@@ -10,7 +10,7 @@ import laddergame.model.ResultNames;
 public class LadderGameView {
 
   private final static String COLON_WITH_WHITESPACE = " : ";
-  private final static String NEWLINE = "\n";
+  private final static String NEWLINE = System.lineSeparator();
 
   public static void printInputPlayerNamesMsg() {
     System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
