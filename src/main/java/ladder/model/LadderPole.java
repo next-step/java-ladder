@@ -30,7 +30,7 @@ public class LadderPole {
             return LadderPole.create(polePosition + 1);
         }
 
-        return LadderPole.create(polePosition);
+        return this;
     }
 
     public int getPolePosition() {
