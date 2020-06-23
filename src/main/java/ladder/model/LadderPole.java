@@ -1,5 +1,7 @@
 package ladder.model;
 
+import java.util.List;
+
 public class LadderPole {
 
     private final int polePosition;
@@ -19,7 +21,19 @@ public class LadderPole {
         return new LadderPole(ladderPole.polePosition);
     }
 
-    public int toInt() {
+    public LadderPole move(final List<LadderBridge> bridges) {
+        if (polePosition != 0 && bridges.get(polePosition - 1) == LadderBridge.EXIST) {
+            return LadderPole.create(polePosition - 1);
+        }
+
+        if (polePosition != bridges.size() && bridges.get(polePosition) == LadderBridge.EXIST) {
+            return LadderPole.create(polePosition + 1);
+        }
+
+        return LadderPole.create(polePosition);
+    }
+
+    public int getPolePosition() {
         return polePosition;
     }
 }

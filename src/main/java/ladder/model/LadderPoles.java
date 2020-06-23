@@ -40,7 +40,7 @@ public class LadderPoles {
         }
 
         List<LadderGameReword> mappedLadderGameRewords = ladderPoles.stream()
-            .map(pole -> ladderGameRewords.get(pole.toInt()))
+            .map(pole -> ladderGameRewords.get(pole.getPolePosition()))
             .collect(Collectors.toList());
 
         return LadderGameRewords.create(mappedLadderGameRewords);
