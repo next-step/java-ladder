@@ -29,7 +29,7 @@ class PlayerTest {
     @CsvSource({"pobi, true", "crong, false"})
     void isSameName(String sameName, boolean result) {
         Player player = new Player("pobi", 1);
-
-        assertThat(player.isSameName(sameName)).isEqualTo(result);
+        Name name = new Name(sameName);
+        assertThat(player.isSameName(name)).isEqualTo(result);
     }
 }

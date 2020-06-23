@@ -16,10 +16,6 @@ public class Name {
         return this.name;
     }
 
-    public boolean isSameName(final String name) {
-        return this.name.equals(name);
-    }
-
     private void validateNullOrEmpty(String name) {
         if (Objects.isNull(name) || name.trim().isEmpty()) {
             throw new IllegalArgumentException("이름은 Null 이나 공백일 수 없습니다.");

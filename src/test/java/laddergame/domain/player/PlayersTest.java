@@ -36,4 +36,14 @@ class PlayersTest {
 
         assertThat(actualNames).isEqualTo(expectedNames);
     }
+
+    @DisplayName("중복 이름 존재시 IllegalArgumentException throw")
+    @Test
+    void validateDuplicateNames() {
+        String[] duplicatedNames = {"pobi", "crong", "crong", "horox"};
+
+        assertThatThrownBy(() -> new Players(duplicatedNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복되는 이름이 존재합니다. - " + Arrays.toString(duplicatedNames));
+    }
 }
