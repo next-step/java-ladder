@@ -4,19 +4,19 @@ public class Playing {
     private final Players players;
     private final Results results;
 
-    private Playing(Items players, Items results) {
+    private Playing(Players players, Results results) {
         mustBeSameSize(players, results);
-        this.players = Players.of(players);
-        this.results = Results.of(results);
+        this.players = players;
+        this.results = results;
     }
 
-    private void mustBeSameSize(Items players, Items results) {
+    private void mustBeSameSize(Players players, Results results) {
         if (!players.sameSize(results)) {
             throw new IllegalArgumentException("참여자 갯수와 결과 갯수가 동일해야 합니다.");
         }
     }
 
-    public static Playing of(Items players, Items results) {
+    public static Playing of(Players players, Results results) {
         return new Playing(players, results);
     }
 

@@ -1,14 +1,16 @@
 package ladder.domain.play;
 
+import java.util.List;
+
 public class Players {
     private final Items players;
 
-    private Players(Items players) {
-        this.players = players;
+    private Players(List<String> players) {
+        this.players = Items.of(players);
     }
 
-    public static Players of(Items items) {
-        return new Players(items);
+    public static Players of(List<String> players) {
+        return new Players(players);
     }
 
     public int getCountOf() {
