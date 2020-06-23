@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 public class Ladder {
 
     private static final int ZERO = 0;
+
     private final List<LadderLine> lines;
 
     public Ladder(List<LadderLine> lines) {
