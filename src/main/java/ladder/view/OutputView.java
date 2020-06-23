@@ -1,8 +1,8 @@
 package ladder.view;
 
 
-import ladder.Ladder;
-import ladder.User;
+import ladder.domain.Ladder;
+import ladder.domain.User;
 
 import java.util.List;
 

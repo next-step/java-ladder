@@ -1,5 +1,6 @@
-package ladder;
+package ladder.domain;
 
+import ladder.domain.HorizonLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
