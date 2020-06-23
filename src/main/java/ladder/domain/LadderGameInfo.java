@@ -4,32 +4,27 @@ import java.util.List;
 
 public class LadderGameInfo {
 
-    public static final String LADDER_RESULTS_INVALID_EXCEPTION = "결과값은 참여자 숫자와 다를 수 없습니다.";
+    private final LadderGameSetting ladderGameSetting;
+    private final int height;
 
-    private final Persons persons;
-    private final Prizes prizes;
-
-    private LadderGameInfo(Persons persons, Prizes prizes) {
-        validateGameInfo(persons,prizes);
-        this.persons = persons;
-        this.prizes = prizes;
-    }
-
-    private void validateGameInfo(Persons persons, Prizes prizes) {
-        if (persons.count() != prizes.count()){
-            throw new IllegalArgumentException(LADDER_RESULTS_INVALID_EXCEPTION);
-        }
-    }
-
-    public static LadderGameInfo of(Persons persons, Prizes prizes){
-        return new LadderGameInfo(persons, prizes);
+    public LadderGameInfo(LadderGameSetting ladderGameSetting, int height) {
+        this.ladderGameSetting = ladderGameSetting;
+        this.height = height;
     }
 
     public List<Person> getPersons() {
-        return persons.getPersons();
+        return ladderGameSetting.getPersons();
     }
 
     public List<String> getPrizes() {
-        return prizes.getPrizes();
+        return ladderGameSetting.getPrizes();
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public String getPrize(int prizeIndex) {
+        return getPrizes().get(prizeIndex);
     }
 }
