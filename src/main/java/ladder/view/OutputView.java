@@ -1,22 +1,15 @@
 package ladder.view;
 
-import java.util.Scanner;
-import java.util.function.Function;
-import ladder.model.Ladder;
-import ladder.model.LadderBridge;
-import ladder.model.LadderGame;
-
-
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import ladder.model.LadderBridge;
 import ladder.model.LadderGameMemberResult;
-import ladder.model.LadderGameResult;
 import ladder.model.LadderLine;
 import ladder.model.LadderPoleInfo;
-import ladder.model.Member;
-import ladder.model.Members;
 import ladder.model.dto.LadderGameResultDto;
 
 public class OutputView {

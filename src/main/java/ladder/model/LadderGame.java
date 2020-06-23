@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.model.dto.LadderGameInfo;
+
 public class LadderGame {
 
     private final LadderGameInfo ladderGameInfo;

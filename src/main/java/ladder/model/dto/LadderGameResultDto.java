@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.model.Ladder;
 import ladder.model.LadderGame;
-import ladder.model.LadderGameInfo;
 import ladder.model.LadderLine;
 import ladder.model.LadderPoleInfo;
 
 public class LadderGameResultDto {
 
     private static final int ZERO = 0;
+
     private final List<LadderPoleInfo> ladderPoleInfos;
     private final List<LadderLine> ladderLines;
 

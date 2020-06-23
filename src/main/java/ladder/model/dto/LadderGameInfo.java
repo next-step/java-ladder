@@ -1,6 +1,12 @@
-package ladder.model;
+package ladder.model.dto;
 
 import java.util.Objects;
+import ladder.model.LadderGameResult;
+import ladder.model.LadderGameReword;
+import ladder.model.LadderGameRewords;
+import ladder.model.LadderPoles;
+import ladder.model.Member;
+import ladder.model.Members;
 
 public class LadderGameInfo {
 

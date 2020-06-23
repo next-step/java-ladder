@@ -2,12 +2,11 @@ package ladder;
 
 import ladder.model.Ladder;
 import ladder.model.LadderGame;
-import ladder.model.LadderGameInfo;
+import ladder.model.dto.LadderGameInfo;
 import ladder.model.LadderGameMemberResult;
 import ladder.model.LadderGameResult;
 import ladder.model.LadderGameRewords;
 import ladder.model.LadderHeight;
-import ladder.model.LadderPoleInfo;
 import ladder.model.Members;
 import ladder.model.dto.LadderGameResultDto;
 import ladder.view.InputView;
@@ -30,7 +29,6 @@ public class Main {
         OutputView.printResult(LadderGameResultDto.create(ladderGame));
 
         LadderGameResult ladderGameResult = ladderGame.start();
-
         OutputView.printLadderGameResult(LadderGameMemberResult.create(ladderGameResult));
     }
 }
