@@ -3,6 +3,8 @@ package ladder.view;
 import ladder.domain.line.Height;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
+import ladder.domain.reward.Reward;
+import ladder.domain.reward.Rewards;
 import ladder.utils.NameSplitter;
 
 import java.util.Scanner;
@@ -20,6 +22,14 @@ public class InputView {
         return NameSplitter.split(scanner.nextLine()).stream()
                 .map(Player::create)
                 .collect(collectingAndThen(toList(), Players::create));
+    }
+
+    public static Rewards readRewards(Players players) {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+
+        return NameSplitter.split(scanner.nextLine()).stream()
+                .map(Reward::create)
+                .collect(collectingAndThen(toList(), rewards -> Rewards.create(rewards, players)));
     }
 
     public static Height readHeight() {

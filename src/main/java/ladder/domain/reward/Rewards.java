@@ -1,9 +1,11 @@
 package ladder.domain.reward;
 
+import ladder.domain.player.Name;
 import ladder.domain.player.Players;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Rewards {
 
@@ -23,4 +25,10 @@ public class Rewards {
         return new Rewards(rewards, players);
     }
 
+    public List<String> getNames() {
+        return rewards.stream()
+                .map(Reward::getName)
+                .map(Name::getValue)
+                .collect(Collectors.toList());
+    }
 }

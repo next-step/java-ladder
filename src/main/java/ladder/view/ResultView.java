@@ -4,6 +4,7 @@ import ladder.domain.line.Line;
 import ladder.domain.line.Lines;
 import ladder.domain.player.Players;
 import ladder.domain.point.Point;
+import ladder.domain.reward.Rewards;
 
 import java.util.Collections;
 
@@ -47,5 +48,13 @@ public class ResultView {
 
     private static void printNewLine() {
         System.out.println();
+    }
+
+    public static void printRewards(Rewards rewards) {
+        rewards.getNames().stream()
+                .map(ResultView::convertNameFormat)
+                .forEach(System.out::print);
+
+        printNewLine();
     }
 }
