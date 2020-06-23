@@ -1,13 +1,13 @@
 package ladder.domain.play;
 
 public class Playing {
-    private final Items players;
-    private final Items results;
+    private final Players players;
+    private final Results results;
 
     private Playing(Items players, Items results) {
         mustBeSameSize(players, results);
-        this.players = players;
-        this.results = results;
+        this.players = Players.of(players);
+        this.results = Results.of(results);
     }
 
     private void mustBeSameSize(Items players, Items results) {
@@ -21,14 +21,14 @@ public class Playing {
     }
 
     public int getCountOfPlayers() {
-        return players.getCountOfItems();
+        return players.getCountOf();
     }
 
-    public Items getPlayers() {
+    public Players getPlayers() {
         return players;
     }
 
-    public Items getResults() {
+    public Results getResults() {
         return results;
     }
 }
