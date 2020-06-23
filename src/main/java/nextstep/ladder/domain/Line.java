@@ -15,6 +15,22 @@ public class Line {
     }
 
     public List<MountingBlock> getMountingBlocks() {
-        return mountingBlocks;
+        return this.mountingBlocks;
+    }
+
+    public Point moveLeftOrRight(Point point) {
+
+        XAxis xAxis = point.getxAxis();
+        int xValue = xAxis.getxAxis();
+
+        if (this.mountingBlocks.get(xValue).getMountingBlock()) {
+            return point.moveToRight();
+        }
+
+        if (this.mountingBlocks.get(xValue - 1).getMountingBlock()) {
+            return point.moveToLeft();
+        }
+
+        return point;
     }
 }

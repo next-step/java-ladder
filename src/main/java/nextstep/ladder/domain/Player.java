@@ -1,28 +1,37 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.constant.LadderConstants;
-import org.apache.commons.lang3.StringUtils;
-
 public class Player {
 
-    private String userName;
+    private PlayerName playerName;
+    private PlayerIndex playerIndex;
 
-    private Player(String userName) {
-        this.userName = userName;
+    private Player(PlayerName playerName, PlayerIndex playerIndex) {
+        this.playerName = playerName;
+        this.playerIndex = playerIndex;
     }
 
-    public static Player of(String userName) {
-        validateUserName(userName);
-        return new Player(userName);
+    public static Player of(PlayerName playerName, PlayerIndex playerIndex) {
+        return new Player(playerName, playerIndex);
     }
 
-    public String convertUserNameWithLeftPad() {
-        return StringUtils.leftPad(this.userName, LadderConstants.MAXIMUM_USER_NAME_LENGTH + 1);
+    public PlayerName convertPlayerNameWithLeftPad() {
+        String playerNameWithPadding = playerName.convertUserNameWithLeftPad();
+        return PlayerName.playerNameWithPadding(playerNameWithPadding);
     }
-    
-    private static void validateUserName(String userName) {
-        if (userName.length() > LadderConstants.MAXIMUM_USER_NAME_LENGTH) {
-            throw new IllegalArgumentException(LadderConstants.INVALID_USER_NAME_EXCEPTION_MESSAGE);
-        }
+
+    public boolean isEqualWithPlayerName(PlayerName playerName) {
+        return playerName.equals(this.playerName);
+    }
+
+    public Point point() {
+        XAxis xAxis = this.playerIndex.xAxis();
+        YAxis yAxis = YAxis.of(0);
+
+        return Point.of(xAxis, yAxis);
+    }
+
+    @Override
+    public String toString() {
+        return this.playerName.toString();
     }
 }

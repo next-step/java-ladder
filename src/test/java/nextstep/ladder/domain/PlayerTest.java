@@ -15,10 +15,10 @@ public class PlayerTest {
     @DisplayName("사용자 생성 테스트 :: 정상 테스트")
     @ParameterizedTest
     @MethodSource("providePlayerName")
-    void playerConstructorTest(final String playerName, final String expected) {
-        Player player = Player.of(playerName);
-        String result = player.convertUserNameWithLeftPad();
-        assertThat(result).isEqualTo(expected);
+    void playerConstructorTest(final PlayerName playerName, final PlayerName expected) {
+        Player player = Player.of(playerName, PlayerIndex.of(1));
+        PlayerName result = player.convertPlayerNameWithLeftPad();
+        assertThat(result.toString()).isEqualTo(expected.toString());
     }
 
     @DisplayName("사용자 생성 테스트 :: 예외 테스트")
@@ -26,11 +26,11 @@ public class PlayerTest {
     @MethodSource("provideLongPlayerName")
     void playerConstructorExceptionTest(final String playerName) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Player.of(playerName));
+                .isThrownBy(() -> PlayerName.of(playerName));
     }
 
     private static Stream<Arguments> providePlayerName() {
-        return Stream.of(Arguments.of("aaa", "   aaa"));
+        return Stream.of(Arguments.of(PlayerName.of("aaa"), PlayerName.playerNameWithPadding("   aaa")));
     }
 
     private static Stream<Arguments> provideLongPlayerName() {
