@@ -56,7 +56,7 @@ public class LadderGameView {
   public static void printResultOfAll(LadderResultMapper ladderResultMapper) {
     StringBuilder sb = new StringBuilder("실행 결과").append(NEWLINE);
 
-    ladderResultMapper.getEntrySet().forEach(resultEntry -> {
+    ladderResultMapper.getResults().forEach(resultEntry -> {
       sb.append(resultEntry.getKey())
           .append(COLON_WITH_WHITESPACE)
           .append(resultEntry.getValue())

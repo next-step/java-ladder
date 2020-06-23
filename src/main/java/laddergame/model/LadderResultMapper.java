@@ -36,7 +36,7 @@ public class LadderResultMapper {
         .orElseThrow(PlayerNotExistException::new);
   }
 
-  public Set<Entry<PlayerName, ResultName>> getEntrySet() {
+  public Set<Entry<PlayerName, ResultName>> getResults() {
     return Collections.unmodifiableSet(ladderResultMap.entrySet());
   }
 

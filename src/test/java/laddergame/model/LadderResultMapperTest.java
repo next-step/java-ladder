@@ -62,7 +62,7 @@ class LadderResultMapperTest {
   void createBy(Ladder ladder, PlayerNames players, ResultNames results, Map<PlayerNames, ResultNames> expected) {
     LadderResultMapper resultMap = LadderResultMapper.createBy(ladder, players, results);
     System.out.println(resultMap);
-    assertThat(resultMap.getEntrySet()).isEqualTo(expected.entrySet());
+    assertThat(resultMap.getResults()).isEqualTo(expected.entrySet());
   }
 
   public static Stream<Arguments> provideLadderPlayersResults() {
