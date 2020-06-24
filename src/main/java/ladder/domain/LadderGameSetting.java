@@ -32,4 +32,8 @@ public class LadderGameSetting {
     public List<String> getPrizes() {
         return prizes.getPrizes();
     }
+
+    public String prize(int prizeIndex) {
+        return prizes.findPrize(prizeIndex);
+    }
 }

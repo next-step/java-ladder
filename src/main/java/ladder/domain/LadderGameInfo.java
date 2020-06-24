@@ -25,6 +25,6 @@ public class LadderGameInfo {
     }
 
     public String getPrize(int prizeIndex) {
-        return getPrizes().get(prizeIndex);
+        return ladderGameSetting.prize(prizeIndex);
     }
 }

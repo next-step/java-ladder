@@ -40,4 +40,8 @@ public class Prizes {
     public int count(){
         return prizes.size();
     }
+
+    public String findPrize(int prizeIndex) {
+        return prizes.get(prizeIndex);
+    }
 }
