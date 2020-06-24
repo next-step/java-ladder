@@ -8,12 +8,12 @@ public class Position {
     }
 
     public void movePosition(Line line) {
-        if (breath < line.getPoints().size() && line.getPoints().get(breath)) {
+        if (breath < line.getPointsSize() && line.getPoint(breath)) {
             ++breath;
             return;
         }
 
-        if (breath > 0 && line.getPoints().get(breath - 1)) {
+        if (breath > 0 && line.getPoint(breath - 1)) {
             --breath;
         }
     }
