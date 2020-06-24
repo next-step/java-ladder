@@ -1,10 +1,7 @@
 package ladder.view;
 
 import ladder.domain.ladder.Game;
-import ladder.domain.play.Item;
-
-import java.util.Map;
-import java.util.stream.Collectors;
+import ladder.domain.result.Results;
 
 public class ResultView {
     public static void printResult(Game game) {
@@ -16,17 +13,7 @@ public class ResultView {
         System.out.println(game.toString());
     }
 
-    public static void printResults(Map<Item, Item> results) {
-        int size = results.size();
-        if (size == 1) {
-            System.out.println(results.entrySet().stream()
-                    .map(itemItemEntry -> itemItemEntry.getValue().getInput())
-                    .collect(Collectors.joining()));
-            return;
-        }
-
-        System.out.println(results.entrySet().stream()
-                .map(itemItemEntry -> itemItemEntry.getKey().getInput() + " : " + itemItemEntry.getValue().getInput())
-                .collect(Collectors.joining("\n")));
+    public static void printResults(Results results) {
+        System.out.println(results.toString());
     }
 }

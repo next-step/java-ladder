@@ -2,6 +2,7 @@ package ladder.domain.ladder;
 
 import ladder.domain.play.Item;
 import ladder.domain.play.Playing;
+import ladder.domain.result.Results;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Game {
         return new Game(playing, height);
     }
 
-    public Map<Item, Item> makeResult(List<Integer> indexes) {
+    public Results makeResult(List<Integer> indexes) {
         Map<Item, Item> results = new HashMap<>();
         for (Integer index : indexes) {
             Item player = playing.getPlayersBy(index);
@@ -28,7 +29,7 @@ public class Game {
             results.put(player, result);
         }
 
-        return results;
+        return Results.of(results);
     }
 
     @Override
