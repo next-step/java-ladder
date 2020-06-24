@@ -11,22 +11,22 @@ public class Members {
 
     private final List<Member> members;
 
-    public Members(final List<Member> members) {
-        validate(members);
+    private Members(final List<Member> members) {
         this.members = members;
     }
 
-    private void validate(final List<Member> members) {
-        if (Objects.isNull(members) || members.isEmpty()) {
+    public static Members create(final String inputMembers) {
+        validate(inputMembers);
+        return create(inputMembers.split(COMMA_DELIMITER));
+    }
+
+    private static void validate(final String inputMembers) {
+        if (Objects.isNull(inputMembers) || inputMembers.isEmpty()) {
             throw new IllegalArgumentException("사다리 게임에 참여하는 사람이 없습니다.");
         }
     }
 
-    public static Members create(String inputMembers) {
-        return create(inputMembers.split(COMMA_DELIMITER));
-    }
-
-    public static Members create(final String[] memberNames) {
+    private static Members create(final String[] memberNames) {
         List<Member> members = Arrays.stream(memberNames)
             .map(Member::create)
             .collect(Collectors.toList());
@@ -34,7 +34,7 @@ public class Members {
         return Members.create(members);
     }
 
-    public static Members create(final List<Member> members) {
+    private static Members create(final List<Member> members) {
         return new Members(members);
     }
 
@@ -42,7 +42,7 @@ public class Members {
         return members.size();
     }
 
-    public List<Member> getMembers() {
-        return members;
+    public Member get(final int index) {
+        return members.get(index);
     }
 }

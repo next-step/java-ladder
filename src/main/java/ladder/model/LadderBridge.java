@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
+import ladder.utils.RandomGenerator;
 
 public enum LadderBridge {
     EXIST,
     NOT_EXIST;
 
     private static final List<LadderBridge> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int VALUES_SIZE = VALUES.size();
-    private static final Random RANDOM = new Random();
+
+    public static final int VALUES_SIZE = VALUES.size();
 
     public static LadderBridge makeLadderBridgeByPreBridge(final LadderBridge preBridge) {
         return Optional.ofNullable(preBridge)
@@ -22,6 +22,6 @@ public enum LadderBridge {
     }
 
     public static LadderBridge randomBridge() {
-        return VALUES.get(RANDOM.nextInt(VALUES_SIZE));
+        return VALUES.get(RandomGenerator.create());
     }
 }
