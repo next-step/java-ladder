@@ -12,9 +12,14 @@ Ladder
 - [ ] 사다리의 높이를 입력받는다
 
 Line
-- [ ] 라인이 겹쳐지면 그릴 수 없다
-- [ ] 라인은 랜덤으로 생성된다
+- [x] 첫번째 라인은 랜덤으로 생성
+- [x] 첫번째 라인이 true이면 두번째 라인은 false
+- [x] 두번째 라인이 false이면 세번째 라인은 true 혹은 false
+
+Lines 
 
 Point
 - [ ] boolean 값 입력 
 - [ ] 랜덤한 boolean 값 생성
+
+
