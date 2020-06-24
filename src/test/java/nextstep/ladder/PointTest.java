@@ -45,4 +45,16 @@ public class PointTest {
         assertThat(lastPoint.getPosition()).isEqualTo(Position.of(3));
         assertThat(lastPoint.getDirection().rightLine()).isFalse();
     }
+
+    @Test
+    @DisplayName("move 메소드 의도대로 작동하는지 테스트")
+    void moveTest() {
+        Point point1 = Point.of(0, false, true);
+        Point point2 = Point.of(1, true, false);
+        Point point3 = Point.of(3, false, false);
+
+        assertThat(point1.move()).isEqualTo(1);
+        assertThat(point2.move()).isEqualTo(0);
+        assertThat(point3.move()).isEqualTo(3);
+    }
 }
