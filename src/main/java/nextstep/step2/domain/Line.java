@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final int FIRST_INDEX = 0;
     private Random random = new Random();
     private List<Boolean> points = new ArrayList<>();
 
@@ -17,7 +18,9 @@ public class Line {
     }
 
     private boolean isAbleDrawLine(int idx) {
-        if(idx == 0) return random.nextBoolean();
+        if(idx == FIRST_INDEX) {
+            return random.nextBoolean();
+        }
         return !points.get(idx - 1) && random.nextBoolean();
     }
 
