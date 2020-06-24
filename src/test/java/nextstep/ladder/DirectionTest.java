@@ -13,7 +13,7 @@ public class DirectionTest {
     @Test
     @DisplayName("가로라인 겹치면 예외처리")
     void validateDirectionTest(){
-        assertThatThrownBy(() -> new Direction(true,true))
+        assertThatThrownBy(() -> Direction.of(true,true))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Direction.CONNECTED_LINE_EXCEPTION);
     }

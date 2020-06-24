@@ -12,7 +12,7 @@ public class Direction {
     private final boolean leftLine;
     private final boolean rightLine;
 
-    public Direction(boolean leftLine, boolean rightLine) {
+    private Direction(boolean leftLine, boolean rightLine) {
         validateDirection(leftLine, rightLine);
         this.leftLine = leftLine;
         this.rightLine = rightLine;
@@ -44,18 +44,27 @@ public class Direction {
     }
 
     private Direction dicideLeft() {
-        return new Direction(true, false);
+        return of(true, false);
     }
 
     public static Direction decideRight(Shift moveStrategy) {
-        return new Direction(false, moveStrategy.next());
+        return of(false, moveStrategy.next());
     }
 
     public Direction last() {
-        if (rightLine){
-            return dicideLeft();
+        return of(rightLine, false);
+    }
+
+    public int move() {
+        if (leftLine) {
+            return -1;
         }
-        return new Direction(false, false);
+
+        if (rightLine) {
+            return 1;
+        }
+
+        return 0;
     }
 
     @Override
