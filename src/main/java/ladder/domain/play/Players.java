@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
+    public static final String PLAYERS_ALL = "all";
+
     private final Items players;
 
     private Players(Items players) {
@@ -21,7 +23,7 @@ public class Players {
     }
 
     public List<Integer> findIndexBy(String name) {
-        if (name.equals("all")) {
+        if (name.equals(PLAYERS_ALL)) {
             return IntStream.range(0, players.size())
                     .boxed()
                     .collect(Collectors.toList());

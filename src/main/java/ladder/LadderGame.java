@@ -2,6 +2,7 @@ package ladder;
 
 import ladder.domain.ladder.Game;
 import ladder.domain.play.Items;
+import ladder.domain.play.Players;
 import ladder.domain.play.Playing;
 import ladder.util.ConvertUtils;
 import ladder.view.InputView;
@@ -18,7 +19,7 @@ public class LadderGame {
 
         String targetPlayer = "";
         ResultView.printResult(game);
-        while (!targetPlayer.equals("all")) {
+        while (!Players.PLAYERS_ALL.equals(targetPlayer)) {
             targetPlayer = InputView.doInputWantToSeeResult();
             ResultView.printResults(game.makeResult(playing.findPlayerIndexBy(targetPlayer)));
         }
