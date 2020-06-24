@@ -1,5 +1,7 @@
 package ladder.domain.play;
 
+import java.util.Objects;
+
 public class Item {
     private static final int MAX_LENGTH = 5;
 
@@ -31,12 +33,25 @@ public class Item {
         return input;
     }
 
+    public boolean same(String name) {
+        return this.input.equals(name);
+    }
+
     @Override
     public String toString() {
         return String.format("%6s", input);
     }
 
-    public boolean same(String name) {
-        return this.input.equals(name);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(input, item.input);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(input);
     }
 }

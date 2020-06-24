@@ -45,10 +45,18 @@ public class Items {
     }
 
     public int findIndexBy(String name) {
+        validateContains(name);
+
         return IntStream.range(0, items.size())
                 .filter(i -> items.get(i).same(name))
                 .findFirst()
                 .getAsInt();
+    }
+
+    private void validateContains(String name) {
+        if (!items.contains(Item.of(name))) {
+            throw new IllegalArgumentException("유효하지 않은 값입니다.");
+        }
     }
 
     public int size() {

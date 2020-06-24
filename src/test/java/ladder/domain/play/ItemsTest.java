@@ -39,4 +39,33 @@ class ItemsTest {
     static Stream<Arguments> userListByTwoMorePerson() {
         return Stream.of(arguments(Arrays.asList("pobi", "honux")));
     }
+
+    @ParameterizedTest
+    @MethodSource("indexSuccessCase")
+    @DisplayName("Items에서 index 구하기")
+    void find_by_index(List<String> names, String name, int index) {
+        Items items = Items.of(names);
+        assertThat(items.findIndexBy(name)).isEqualTo(index);
+    }
+
+    static Stream<Arguments> indexSuccessCase() {
+        return Stream.of(
+                arguments(Arrays.asList("pobi", "honux"), "pobi", 0),
+                arguments(Arrays.asList("pobi", "honux"), "honux", 1));
+    }
+
+    @ParameterizedTest
+    @MethodSource("indexFailCase")
+    @DisplayName("Items에서 요청 값이 없는 경우 유효성 검증")
+    void not_find_by_index(List<String> names, String name) {
+        Items items = Items.of(names);
+        assertThatThrownBy(() -> items.findIndexBy(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("유효하지 않은 값입니다.");
+    }
+
+    static Stream<Arguments> indexFailCase() {
+        return Stream.of(
+                arguments(Arrays.asList("pobi", "honux"), "crong"));
+    }
 }
