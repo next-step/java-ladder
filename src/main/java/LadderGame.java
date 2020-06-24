@@ -1,4 +1,5 @@
 import domain.Ladder;
+import domain.LadderResult;
 import domain.Players;
 import view.InputView;
 import view.OutputView;
@@ -12,5 +13,9 @@ public class LadderGame {
         Ladder ladder = new Ladder(players.countOfPlayers(), InputView.inputLadderHeight());
 
         OutputView.printResult(players, ladder, results);
+
+        String who = InputView.inputWho();
+
+        OutputView.printWhoResult(who, LadderResult.of(players, results, ladder));
     }
 }

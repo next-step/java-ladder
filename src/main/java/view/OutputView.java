@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderResult;
 import domain.Players;
 
 import java.util.Arrays;
@@ -49,5 +50,11 @@ public class OutputView {
         int afterBlank = MAX_SPACE_SIZE - beforeBlank - text.length();
 
         return DEFAULT_NAME.substring(0, beforeBlank) + text + DEFAULT_NAME.substring(0, afterBlank);
+    }
+
+    public static void printWhoResult(String who, LadderResult ladderResult) {
+        System.out.println("실행결과");
+
+        System.out.println(ladderResult.getResult(who));
     }
 }

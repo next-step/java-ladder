@@ -29,4 +29,8 @@ public class Players {
     public String[] getPlayerNames() {
         return playerNames;
     }
+
+    public String getPlayer(int index) {
+        return playerNames[index];
+    }
 }
