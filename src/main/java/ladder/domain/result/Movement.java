@@ -11,8 +11,8 @@ public enum Movement {
         this.position = position;
     }
 
-    public int getPosition() {
-        return position;
+    public int move(int position) {
+        return position + this.position;
     }
 
     public static Movement valueBy(boolean left, boolean right) {

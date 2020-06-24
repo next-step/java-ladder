@@ -34,8 +34,12 @@ public class Ladder {
         return lines.size();
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public Integer makeResult(Integer index) {
+        for (Line line : lines) {
+            index = line.move(index).move(index);
+        }
+
+        return index;
     }
 
     @Override

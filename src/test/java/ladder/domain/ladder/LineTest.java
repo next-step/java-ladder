@@ -21,7 +21,7 @@ class LineTest {
     @DisplayName("디딤대는 사람 수 만큼 생성된다.")
     void make_line(int countOfUser) {
         Line line = Line.of(countOfUser);
-        assertThat(line.getPoints().size()).isEqualTo(countOfUser);
+        assertThat(line.size()).isEqualTo(countOfUser);
     }
 
     @ParameterizedTest(name = "input = {0}")

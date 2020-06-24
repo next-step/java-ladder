@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import ladder.domain.result.Movement;
 import ladder.strategy.PointRandomStrategy;
 import ladder.strategy.PointStrategy;
 
@@ -38,8 +39,16 @@ public class Line {
         }
     }
 
+    public int size() {
+        return points.size();
+    }
+
     public List<Point> getPoints() {
         return points;
+    }
+
+    public Movement move(int index) {
+        return points.get(index).move();
     }
 
     @Override

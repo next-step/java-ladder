@@ -24,19 +24,11 @@ public class Game {
         Map<Item, Item> results = new HashMap<>();
         for (Integer index : indexes) {
             Item player = playing.getPlayersBy(index);
-            Item result = makeResult(index);
+            Item result = playing.getResultsBy(ladder.makeResult(index));
             results.put(player, result);
         }
 
         return results;
-    }
-
-    private Item makeResult(Integer index) {
-        for (Line line : ladder.getLines()) {
-            index += line.getPoints().get(index).move().getPosition();
-        }
-
-        return playing.getResultsBy(index);
     }
 
     @Override
