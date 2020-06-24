@@ -10,8 +10,8 @@ import ladder.view.ResultView;
 public class LadderGame {
     public static void main(String[] args) {
         Items players = Items.of(ConvertUtils.split(InputView.doInputParticipants()));
-        Items results = Items.of(ConvertUtils.split(InputView.doInputResults()));
-        Playing playing = Playing.of(players, results);
+        Items prizes = Items.of(ConvertUtils.split(InputView.doInputPrizes()));
+        Playing playing = Playing.of(players, prizes);
         int height = InputView.doInputLadderHeight();
 
         Game game = Game.play(playing, height);

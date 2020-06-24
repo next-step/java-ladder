@@ -13,15 +13,15 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class PlayingTest {
     @ParameterizedTest
-    @MethodSource("playersAndResults")
+    @MethodSource("playersAndPrizes")
     @DisplayName("참여자 갯수와 결과 갯수가 동일하지 않은 경우 Playing 객체를 생성할 수 없다.")
-    void must_be_same_size(Items players, Items results) {
-        assertThatThrownBy(() -> Playing.of(players, results))
+    void must_be_same_size(Items players, Items prizes) {
+        assertThatThrownBy(() -> Playing.of(players, prizes))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("참여자 갯수와 결과 갯수가 동일해야 합니다.");
     }
 
-    static Stream<Arguments> playersAndResults() {
+    static Stream<Arguments> playersAndPrizes() {
         return Stream.of(
                 arguments(Items.of(Arrays.asList("pobi", "honux")), Items.of(Arrays.asList("pobi", "honux", "crong"))),
                 arguments(Items.of(Arrays.asList("pobi", "honux", "crong")), Items.of(Arrays.asList("pobi", "honux", "crong", "jk"))));

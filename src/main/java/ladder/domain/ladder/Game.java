@@ -45,6 +45,6 @@ public class Game {
                 "\n" +
                 this.ladder.toString() +
                 "\n" +
-                this.playing.getResults().toString();
+                this.playing.getPrizes().toString();
     }
 }

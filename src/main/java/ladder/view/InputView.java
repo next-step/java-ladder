@@ -10,7 +10,7 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String doInputResults() {
+    public static String doInputPrizes() {
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         return scanner.nextLine();
     }

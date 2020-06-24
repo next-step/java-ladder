@@ -5,22 +5,22 @@ import java.util.List;
 
 public class Playing {
     private final Players players;
-    private final Results results;
+    private final Prizes prizes;
 
-    private Playing(Items players, Items results) {
-        mustBeSameSize(players, results);
+    private Playing(Items players, Items prizes) {
+        mustBeSameSize(players, prizes);
         this.players = Players.of(players);
-        this.results = Results.of(results);
+        this.prizes = Prizes.of(prizes);
     }
 
-    private void mustBeSameSize(Items players, Items results) {
-        if (!players.sameSize(results)) {
+    private void mustBeSameSize(Items players, Items prizes) {
+        if (!players.sameSize(prizes)) {
             throw new IllegalArgumentException("참여자 갯수와 결과 갯수가 동일해야 합니다.");
         }
     }
 
-    public static Playing of(Items players, Items results) {
-        return new Playing(players, results);
+    public static Playing of(Items players, Items prizes) {
+        return new Playing(players, prizes);
     }
 
     public int getCountOfPlayers() {
@@ -32,15 +32,15 @@ public class Playing {
     }
 
     public Item getResultsBy(int index) {
-        return results.get(index);
+        return prizes.get(index);
     }
 
     public Players getPlayers() {
         return players;
     }
 
-    public Results getResults() {
-        return results;
+    public Prizes getPrizes() {
+        return prizes;
     }
 
     public List<Integer> findPlayerIndexBy(String name) {
