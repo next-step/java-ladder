@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class LadderResult {
     private final String result;
 
-    public LadderResult(String result) {
+    private LadderResult(String result) {
         this.result = result;
     }
 
