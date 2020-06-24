@@ -21,7 +21,7 @@ public class LadderGame {
         ResultView.printResult(game);
         while (!Players.PLAYERS_ALL.equals(targetPlayer)) {
             targetPlayer = InputView.doInputWantToSeeResult();
-            ResultView.printResults(game.makeResult(playing.findPlayerIndexBy(targetPlayer)));
+            ResultView.printResults(game.makeResult(targetPlayer));
         }
     }
 }
