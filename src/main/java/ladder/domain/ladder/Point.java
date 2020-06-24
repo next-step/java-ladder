@@ -24,6 +24,10 @@ public class Point {
         return new Point(left, right);
     }
 
+    public Movement move() {
+        return Movement.valueBy(left, right);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,9 +49,5 @@ public class Point {
 
     private String convertLine(boolean target) {
         return target ? "-----" : "     ";
-    }
-
-    public Movement move() {
-        return Movement.valueBy(left, right);
     }
 }

@@ -37,13 +37,6 @@ public class Items {
         return items.get(index);
     }
 
-    @Override
-    public String toString() {
-        return this.items.stream()
-                .map(Item::toString)
-                .collect(Collectors.joining());
-    }
-
     public int findIndexBy(String name) {
         validateContains(name);
 
@@ -61,5 +54,12 @@ public class Items {
 
     public int size() {
         return items.size();
+    }
+
+    @Override
+    public String toString() {
+        return this.items.stream()
+                .map(Item::toString)
+                .collect(Collectors.joining());
     }
 }

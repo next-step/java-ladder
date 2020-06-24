@@ -15,15 +15,15 @@ public class Ladder {
         createLines(height, countOfPlayers);
     }
 
-    private void createLines(int height, int countOfPlayers) {
-        IntStream.range(0, height)
-                .forEach(i -> this.lines.add(Line.of(countOfPlayers)));
-    }
-
     private void validate(int height) {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 " + MIN_HEIGHT + "이상의 값이어야 합니다.");
         }
+    }
+
+    private void createLines(int height, int countOfPlayers) {
+        IntStream.range(0, height)
+                .forEach(i -> this.lines.add(Line.of(countOfPlayers)));
     }
 
     public static Ladder of(int height, int countOfPlayers) {
