@@ -19,9 +19,18 @@ public final class LadderGame {
         if (players.size() != winningPrizes.size()) {
             throw new IllegalArgumentException("Unmatched with player and winningPrize count.");
         }
+        
         this.players = players;
         this.winningPrizes = winningPrizes;
+        
+        // 사다리 세팅
+        
         ladders.setLadders(laddersHeight, players);
+        
+        
+        
+        
+        
     }
 
     public static LadderGame createLadder(Players players, WinningPrizes winningPrizes, int laddersHeight) {

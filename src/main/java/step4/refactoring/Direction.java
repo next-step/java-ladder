@@ -1,5 +1,7 @@
 package step4.refactoring;
 
+import step4.strategy.LineStrategy;
+
 import java.util.Objects;
 
 import static java.lang.Boolean.FALSE;
@@ -15,7 +17,6 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-        System.out.println(this);
     }
 
     public boolean isRight() {
@@ -30,11 +31,11 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(LineStrategy lineStrategy) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(generatePoint());
+        return next(lineStrategy.hasLine());
     }
 
     public static Direction of(boolean first, boolean second) {

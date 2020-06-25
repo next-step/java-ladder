@@ -1,16 +1,21 @@
 package step4.view;
 
-import step4.domain.*;
+import step4.domain.MatchingResult;
+import step4.domain.Player;
+import step4.domain.Players;
+import step4.domain.WinningPrizes;
+import step4.refactoring.Ladder;
+import step4.refactoring.Point;
 
 import java.util.Iterator;
 import java.util.List;
 
 public class OutputView {
 
-    public static void output(LadderGame ladderGame) {
-        outputPlayer(ladderGame.getPlayers());
-        outputLadder(ladderGame.getLadders());
-        winningPrize(ladderGame.getWinningPrizes());
+    public static void output(Players players, WinningPrizes winningPrizes, step4.refactoring.Ladder ladder) {
+        outputPlayer(players);
+        outputLadder(ladder);
+        winningPrize(winningPrizes);
     }
 
     public static void outputPlayer(Players players) {
@@ -22,37 +27,23 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    public static void outputLadder(Ladders ladders) {
+    public static void outputLadder(Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
-        int stepCount = 0;
-
-        // step
-        if (!ladders.getLadderList().isEmpty()) {
-            stepCount = ladders.getLadderList().get(0).getLineCount();
-            for (int i = 0; i < stepCount; i++) {
-                printStepLine(ladders.getLadderList(), stringBuilder, i);
-                stringBuilder.append("\n\r");
-            }
-        }
+        ladder.getLines().forEach(ladderLine -> {
+                    outputLadderPoint(ladderLine.getPoints());
+                }
+        );
         System.out.println(stringBuilder);
     }
 
-    private static void printStepLine(List<Ladder> ladderList, StringBuilder stringBuilder, int i) {
-        int lastLadderLocation = ladderList.size();
-        ladderList.forEach(
-                ladder -> {
-                    ladder = removeSide(i, ladder, lastLadderLocation);
-                    stringBuilder.append(ladder.getLines().get(i).isCanStepable() ? "|-----" : "|     ");
-                }
-        );
+    private static void outputLadderPoint(List<Point> points) {
+        points.forEach(point -> System.out.print(hasLine(point)));
+        System.out.println();
     }
 
-    private static Ladder removeSide(int i, Ladder ladder, int lastLadderLocation) {
-        if (i == lastLadderLocation) {
-            ladder.getLines().get(i).removeDirection(PointStep.RIGHT);
-        }
-        return ladder;
-    }
+    private static String hasLine(Point point) {
+        return point.isRight() ? "|-----" : "|     ";
+     }
 
     public static void winningPrize(WinningPrizes winningPrize) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -81,17 +72,17 @@ public class OutputView {
 
     private static void resultView(String winner, MatchingResult matchingResult) {
         if (!winner.equals("all")) {
-            winner(matchingResult.getMatchedWinningPrizeOrederByPlayerName(winner), winner);
+            winner(winner, matchingResult.getMatchedWinningPrizeOrederByPlayerName(winner));
             return;
         }
         Iterator<Player> playerIterator = matchingResult.getIterator();
         while (playerIterator.hasNext()) {
             Player player = playerIterator.next();
-            winner(matchingResult.getMatchedWinningPrizeOrederByPlayerName(player.getPlayerName()), player.getPlayerName());
+            winner(player.getPlayerName(), matchingResult.getMatchedWinningPrizeOrederByPlayerName(player.getPlayerName()));
         }
     }
 
-    private static void winner(String winningPrize, String player) {
+    private static void winner(String player, String winningPrize) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format("%-6s", player));
         stringBuilder.append(" : ");

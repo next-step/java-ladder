@@ -42,7 +42,7 @@ class CalculateLadderTest {
                 Arrays.asList("1등", "2등", "3등"));
         // add
         LadderGame ladderGame = LadderGame.createLadder(players, winningPrizes, 4);
-        ladders.setLadders(4, ladderGame,players);
+//        ladders.setLadders(4, ladderGame,players);
 
         // calc
         CalculateLadder calculateLadder = new CalculateLadder(ladders);
@@ -67,7 +67,7 @@ class CalculateLadderTest {
                 Arrays.asList("1등", "2등", "3등"));
         // add
         LadderGame ladderGame = LadderGame.createLadder(players, winningPrizes, 4);
-        ladders.setLadders(4, ladderGame,players);
+        // ladders.setLadders(4, ladderGame,players);
         CalculateLadder calculateLadder = new CalculateLadder(ladders);
         // calc
         String[] winningPrize = calculateLadder.calculateWinningPrizeLine(winningPrizes);

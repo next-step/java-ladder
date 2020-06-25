@@ -1,11 +1,10 @@
 package step4.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
 
-    private List<Player> playerList = new ArrayList<>();
+    private List<Player> playerList;
 
     public Players(List<Player> playerList) {
         this.playerList = playerList;

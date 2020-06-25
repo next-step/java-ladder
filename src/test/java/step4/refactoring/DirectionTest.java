@@ -1,13 +1,11 @@
 package step4.refactoring;
 
 import org.junit.jupiter.api.Test;
+import step4.strategy.LineStrategy;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class DirectionTest {
     @Test
@@ -17,7 +15,7 @@ class DirectionTest {
 
     @Test
     public void init_invalid() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
+        assertThatIllegalStateException().isThrownBy(() -> {
                     Direction.of(TRUE, TRUE);
                 }
         );
@@ -26,14 +24,24 @@ class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(new LineStrategy() {
+            @Override
+            public boolean hasLine() {
+                return true;
+            }
+        });
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
 
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            Direction.first(FALSE).next(new LineStrategy() {
+                @Override
+                public boolean hasLine() {
+                    return false;
+                }
+            });
         }
     }
 

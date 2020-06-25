@@ -1,6 +1,7 @@
 package step4.refactoring;
 
 import org.junit.jupiter.api.Test;
+import step4.strategy.LineStrategy;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -33,7 +34,12 @@ class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(new LineStrategy() {
+            @Override
+            public boolean hasLine() {
+                return true;
+            }
+        });
         assertThat(second.move()).isEqualTo(0);
     }
 }

@@ -1,5 +1,7 @@
 package step4.refactoring;
 
+import step4.strategy.LineStrategy;
+
 public class Point {
 
     private final int index;
@@ -11,8 +13,6 @@ public class Point {
     }
 
     public int move() {
-        System.out.println("is left? " + direction.isLeft());
-        System.out.println("is right? " + direction.isRight());
 
         if (direction.isRight()) {
             return index + 1;
@@ -25,8 +25,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
+    public Point next(LineStrategy lineStrategy) {
+        return new Point(index + 1, direction.next(lineStrategy));
     }
 
     public Point next(Boolean right) {
@@ -39,6 +39,14 @@ public class Point {
 
     public static Point first(Boolean right) {
         return new Point(0, Direction.first(right));
+    }
+
+    public boolean isLeft() {
+        return direction.isLeft();
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 
     @Override

@@ -8,7 +8,7 @@ public class MatchingResult {
 
     Map<step4.domain.Player, String> matchingResult;
 
-    private MatchingResult(HashMap<Player, String> matchingResult) {
+    public MatchingResult(HashMap<Player, String> matchingResult) {
         this.matchingResult = matchingResult;
     }
 
@@ -25,11 +25,10 @@ public class MatchingResult {
     }
 
     public String getMatchedWinningPrizeOrederByPlayerName(String winner) {
-        return matchingResult.keySet().stream()
-                .filter(player -> player.isPlayerName(winner))
-                .map(player -> player.getPlayerName())
+        return matchingResult.get(matchingResult.keySet().stream()
+                .filter(player -> player.getPlayerName().equals(winner))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException()));
     }
 
     public Iterator<Player> getIterator() {
