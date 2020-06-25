@@ -1,6 +1,8 @@
 package nextstep.ladder;
 
+import nextstep.ladder.mock.LadderMock;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ladder.domain.Height;
@@ -19,5 +21,14 @@ public class LadderTest {
         assertThat(ladder.getLayers()).hasSize(height);
         //사다리 포인트 정보는 사람수와 같음
         assertThat(ladder.getLayers().get(0).getPoints()).hasSize(countOfperson);
+    }
+
+    @Test
+    @DisplayName("보상 위치값 가져오기 메소드 정상 작동하는지 테스트 ")
+    void prizeIndexMethodTest() {
+        LadderMock ladderMock = new LadderMock();
+        assertThat(ladderMock.ladder.getPrizeIndex(0)).isEqualTo(2);
+        assertThat(ladderMock.ladder.getPrizeIndex(1)).isEqualTo(0);
+        assertThat(ladderMock.ladder.getPrizeIndex(2)).isEqualTo(1);
     }
 }
