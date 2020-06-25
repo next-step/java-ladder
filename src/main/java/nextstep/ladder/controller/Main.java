@@ -1,5 +1,9 @@
 package nextstep.ladder.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import nextstep.ladder.domain.GameUsers;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -11,10 +15,12 @@ public class Main {
         ResultView resultView = new ResultView();
 
         String[] userNames = inputView.inputUserNames();
+        GameUsers gameUsers = new GameUsers(userNames);
+
         Integer ladderHeight = inputView.inputLadderHeight();
 
-        Ladder ladder = new Ladder(ladderHeight, userNames.length);
+        Ladder ladder = new Ladder(ladderHeight, gameUsers.getUserCount());
 
-        resultView.printResult(userNames, ladder.getLadder());
+        resultView.printResult(gameUsers.getUserNames(), ladder.getLadder());
     }
 }

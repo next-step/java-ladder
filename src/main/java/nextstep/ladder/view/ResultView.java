@@ -1,6 +1,5 @@
 package nextstep.ladder.view;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ResultView {
@@ -10,8 +9,8 @@ public class ResultView {
     private static final String NON_HORIZONTAL = "     ";
 
 
-    public void printUserNames(String[] userNames) {
-        Arrays.stream(userNames)
+    public void printUserNames(List<String> userNames) {
+        userNames.stream()
             .forEach(userName -> System.out.printf("%-6s", userName));
         System.out.println();
     }
@@ -34,7 +33,7 @@ public class ResultView {
         System.out.print(NON_HORIZONTAL);
     }
 
-    public void printResult(String[] userNames, List<List<Boolean>> ladder) {
+    public void printResult(List<String> userNames, List<List<Boolean>> ladder) {
         printUserNames(userNames);
         printLadder(ladder);
     }
