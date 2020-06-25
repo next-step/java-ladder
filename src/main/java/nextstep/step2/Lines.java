@@ -9,7 +9,6 @@ public class Lines {
     private final List<Line> lines;
 
     public static Lines of(int numberOfPeople) {
-        checkNegative(numberOfPeople);
         return new Lines(numberOfPeople);
     }
 
@@ -19,12 +18,6 @@ public class Lines {
 
     public List<Line> createLines(int numberOfPeople) {
         return addLine(new ArrayList<>(), numberOfPeople);
-    }
-
-    private static void checkNegative(int numberOfPeople) {
-        if(numberOfPeople <= 0) {
-            throw new IllegalArgumentException(Error.NOT_ALLOW_LESS_THAN_ZERO);
-        }
     }
 
     private Lines(int numberOfPeople) {

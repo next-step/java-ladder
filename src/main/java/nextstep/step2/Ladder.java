@@ -14,6 +14,8 @@ public class Ladder {
     private final List<Lines> ladder;
 
     public Ladder(int numberOfPeople, int height) {
+        checkNegative(numberOfPeople);
+        checkNegative(height);
         this.numberOfPeople = numberOfPeople;
         this.height = height;
         this.ladder = createLadder();
@@ -27,5 +29,11 @@ public class Ladder {
 
     public List<Lines> getLadder() {
         return Collections.unmodifiableList(ladder);
+    }
+
+    private void checkNegative(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException(Error.NOT_ALLOW_LESS_THAN_ZERO);
+        }
     }
 }

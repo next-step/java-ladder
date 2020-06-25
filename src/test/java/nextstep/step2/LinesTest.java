@@ -18,13 +18,4 @@ public class LinesTest {
         List<Line> newLines = lines.createLines(10);
         assertThat(newLines.size()).isEqualTo(9);
     }
-
-    @Test
-    void checkIfInputIsValid() {
-        assertThatThrownBy(() -> Lines.of(-1))
-                .isInstanceOf(IllegalArgumentException.class);
-
-        assertThatThrownBy(() -> Lines.of(0))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

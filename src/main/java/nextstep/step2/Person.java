@@ -11,11 +11,18 @@ public class Person {
     }
 
     private Person(String name) {
+        checkEmpty(name);
         this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    private void checkEmpty(String name) {
+        if(name.isEmpty()) {
+            throw new IllegalArgumentException(Error.NOT_ALLOW_EMPTY_STRING);
+        }
     }
 
     @Override
