@@ -21,4 +21,8 @@ public class Ladder {
                 .mapToObj(index -> Lines.of(numberOfPeople))
                 .collect(Collectors.toList());
     }
+
+    public List<Lines> getLadder() {
+        return ladder;
+    }
 }

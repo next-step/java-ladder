@@ -1,11 +1,7 @@
 package nextstep.step2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Lines {
 
@@ -32,6 +28,9 @@ public class Lines {
         return lines;
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
 
     @Override
     public String toString() {
@@ -39,4 +38,5 @@ public class Lines {
                 ", lines=" + lines +
                 '}';
     }
+
 }

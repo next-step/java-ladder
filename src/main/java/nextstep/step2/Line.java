@@ -5,6 +5,11 @@ import java.util.Random;
 
 import static java.lang.Boolean.*;
 
+/**
+ * Builder, enum 사용
+ * ResponseEntity 만들어보기
+ * */
+
 public final class Line {
 
     private static final Random RANDOM = new Random();
@@ -29,7 +34,7 @@ public final class Line {
         return random();
     }
 
-    private boolean isTrue() {
+    public boolean isTrue() {
         return line == true;
     }
 
