@@ -2,9 +2,7 @@ package ladder.domain;
 
 import ladder.util.StringUtil;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -40,5 +38,16 @@ public class Persons {
 
     public List<Person> getPersons() {
         return Collections.unmodifiableList(persons);
+    }
+
+    public Map<String, String> prizeResult(Ladder ladder, Prizes prizes) {
+        Map<String, String> result = new LinkedHashMap<>();
+        int personIndex = 0;
+        for (Person person : persons){
+            int prizeIndex = ladder.getPrizeIndex(personIndex);
+            result.put(person.getName(), prizes.getPrizeValue(prizeIndex));
+            personIndex++;
+        }
+        return result;
     }
 }

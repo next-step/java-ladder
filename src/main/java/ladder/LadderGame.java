@@ -14,6 +14,6 @@ public class LadderGame {
     }
 
     public static ResultPrize play(LadderResult ladderGameResult) {
-        return new ResultPrize(ladderGameResult.findResult());
+        return ResultPrize.of(ladderGameResult);
     }
 }
