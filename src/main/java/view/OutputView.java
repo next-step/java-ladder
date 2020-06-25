@@ -3,6 +3,7 @@ package view;
 import domain.Ladder;
 import domain.LadderResult;
 import domain.Players;
+import domain.Point;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,11 +31,11 @@ public class OutputView {
         System.out.println(get5SpaceTexts(results));
     }
 
-    public static String getLineText(List<Boolean> points) {
+    public static String getLineText(List<Point> points) {
         return FIRST_SPACE.concat(LINE)
                 .concat(points.stream()
                         .limit(points.size() - TO_BE_REMOVED_LAST_POINT)
-                        .map(point -> point ? CONNECT : NOT_CONNECT)
+                        .map(point -> point.isNextConnect() ? CONNECT : NOT_CONNECT)
                         .collect(Collectors.joining(LINE)))
                 .concat(LINE);
     }

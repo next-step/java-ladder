@@ -11,4 +11,9 @@ public class RandomPointGenerator implements PointGenerator {
 
         return new Random().nextBoolean();
     }
+
+    @Override
+    public boolean random() {
+        return new Random().nextBoolean();
+    }
 }

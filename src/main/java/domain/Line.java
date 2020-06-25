@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final int FIRST_INDEX = 0;
-    private final boolean FINAL_FLAG = false;
-    private final List<Boolean> points;
+    private final List<Point> points;
 
     private Line(int countOfPerson, PointGenerator pointGenerator) {
         this.points = createPoints(countOfPerson, pointGenerator);
@@ -23,13 +21,16 @@ public class Line {
         return new Line(countOfPerson, pointGenerator);
     }
 
-    private List<Boolean> createPoints(int length, PointGenerator pointGenerator) {
-        List<Boolean> points = new ArrayList<>();
-        points.add(pointGenerator.isConnect(false));
+    private List<Point> createPoints(int length, PointGenerator pointGenerator) {
+        List<Point> points = new ArrayList<>();
+        points.add(Point.createFirst(pointGenerator.random()));
+
         for (int i = 1; i < length - 1; i++) {
-            points.add(pointGenerator.isConnect(points.get(i - 1)));
+            points.add(Point.of(points.get(i - 1), pointGenerator.random()));
         }
-        points.add(FINAL_FLAG);
+
+        points.add(Point.createLast(points.get(points.size() - 1)));
+
         return points;
     }
 
@@ -37,19 +38,11 @@ public class Line {
         return points.size();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 
     public int nextPointIndex(int index) {
-        if (index == FIRST_INDEX) {
-            return points.get(index) ? ++index : index;
-        }
-
-        if (points.get(index) == true) {
-            return ++index;
-        }
-
-        return points.get(index - 1) ? --index : index;
+        return points.get(index).nextIndex(index);
     }
 }

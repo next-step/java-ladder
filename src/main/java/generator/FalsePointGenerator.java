@@ -5,4 +5,9 @@ public class FalsePointGenerator implements PointGenerator {
     public boolean isConnect(boolean previousPoint) {
         return Boolean.FALSE;
     }
+
+    @Override
+    public boolean random() {
+        return false;
+    }
 }

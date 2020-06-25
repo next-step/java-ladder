@@ -9,4 +9,9 @@ public class TruePointGenerator implements PointGenerator {
 
         return Boolean.TRUE;
     }
+
+    @Override
+    public boolean random() {
+        return false;
+    }
 }
