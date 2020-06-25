@@ -17,6 +17,5 @@ public class PrizesTest {
         assertThatThrownBy(() -> Prizes.of(inputNull))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Prizes.LADDER_RESULTS_NULL_EXCEPTION);
-
     }
 }
