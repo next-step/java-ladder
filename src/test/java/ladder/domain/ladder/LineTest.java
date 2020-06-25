@@ -1,6 +1,6 @@
 package ladder.domain.ladder;
 
-import ladder.strategy.PointStrategy;
+import ladder.strategy.StepStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -33,16 +33,16 @@ class LineTest {
                 .hasMessage("Line을 생성할 수 없습니다.");
     }
 
-    private static class PointStrategyTest implements PointStrategy {
-        private final List<Point> results;
+    private static class StepStrategyTest implements StepStrategy {
+        private final List<Boolean> results;
         private int index = 0;
 
-        PointStrategyTest(final List<Point> results) {
+        StepStrategyTest(final List<Boolean> results) {
             this.results = results;
         }
 
         @Override
-        public Point nextPoint() {
+        public Boolean nextStep() {
             return results.get(index++);
         }
     }
@@ -50,18 +50,18 @@ class LineTest {
     @ParameterizedTest
     @MethodSource("countOfUserAndResult")
     @DisplayName("Line의 Point List는 외부에서 전략을 주입받아 결정된다.")
-    void strategy_point(int countOfUser, List<Point> expected) {
-        PointStrategy pointStrategy = new PointStrategyTest(expected);
-        Line line = Line.byStrategy(countOfUser, pointStrategy);
+    void strategy_point(int countOfUser, List<Boolean> booleans, List<Point> expected) {
+        StepStrategy stepStrategy = new StepStrategyTest(booleans);
+        Line line = Line.byStrategy(countOfUser, stepStrategy);
 
         assertThat(line.getPoints()).isEqualTo(expected);
     }
 
     static Stream<Arguments> countOfUserAndResult() {
         return Stream.of(
-                arguments(2, Arrays.asList(Point.of(false, true), Point.of(true, false))),
-                arguments(2, Arrays.asList(Point.of(false, false), Point.of(false, false))),
-                arguments(3, Arrays.asList(Point.of(false, true), Point.of(true, false), Point.of(false, false))),
-                arguments(3, Arrays.asList(Point.of(false, false), Point.of(false, true), Point.of(true, false))));
+                arguments(2, Arrays.asList(true), Arrays.asList(Point.of(false, true), Point.of(true, false))),
+                arguments(2, Arrays.asList(false), Arrays.asList(Point.of(false, false), Point.of(false, false))),
+                arguments(3, Arrays.asList(true, false), Arrays.asList(Point.of(false, true), Point.of(true, false), Point.of(false, false))),
+                arguments(3, Arrays.asList(false, true), Arrays.asList(Point.of(false, false), Point.of(false, true), Point.of(true, false))));
     }
 }

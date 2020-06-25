@@ -1,8 +1,8 @@
 package ladder.domain.ladder;
 
 import ladder.domain.result.Movement;
-import ladder.strategy.PointRandomStrategy;
-import ladder.strategy.PointStrategy;
+import ladder.strategy.StepRandomStrategy;
+import ladder.strategy.StepStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +13,26 @@ public class Line {
     private static final int MIN_COUNT_OF_LINE = 2;
 
     private List<Point> points = new ArrayList<>();
+    private boolean beforeStep = false;
 
     private Line(int countOfUser) {
-        this(countOfUser, new PointRandomStrategy(countOfUser));
+        this(countOfUser, new StepRandomStrategy());
     }
 
-    private Line(int countOfUser, PointStrategy pointStrategy) {
+    private Line(int countOfUser, StepStrategy stepStrategy) {
+        PointCreator pointCreator = new PointCreator(countOfUser - 1, stepStrategy);
         validate(countOfUser);
 
         IntStream.range(0, countOfUser)
-                .forEach(i -> points.add(pointStrategy.nextPoint()));
+                .forEach(i -> points.add(pointCreator.nextPoint(i)));
     }
 
     public static Line of(int countOfUser) {
         return new Line(countOfUser);
     }
 
-    public static Line byStrategy(int countOfUser, PointStrategy pointStrategy) {
-        return new Line(countOfUser, pointStrategy);
+    public static Line byStrategy(int countOfUser, StepStrategy stepStrategy) {
+        return new Line(countOfUser, stepStrategy);
     }
 
     private void validate(int countOfUser) {
