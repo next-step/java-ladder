@@ -72,7 +72,4 @@ public class Direction {
                 '}';
     }
 
-
-
-
 }

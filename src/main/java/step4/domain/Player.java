@@ -23,10 +23,6 @@ public class Player implements Comparator<Player> {
         return playerName;
     }
 
-    public boolean isPlayerName(String playerName) {
-        return this.playerName.equals(playerName);
-    }
-
     @Override
     public int compare(Player o1, Player o2) {
         return o2.getPlayerName().compareTo(o1.getPlayerName());

@@ -12,14 +12,6 @@ public class MatchingResult {
         this.matchingResult = matchingResult;
     }
 
-    public static MatchingResult map(Players players, String[] winningPrize) {
-        HashMap<Player, String> matchingResult = new HashMap<>();
-        for (int i = 0; i < players.size(); i++) {
-            matchingResult.put(players.get(i), winningPrize[i]);
-        }
-        return new MatchingResult(matchingResult);
-    }
-
     public int size() {
         return matchingResult.size();
     }

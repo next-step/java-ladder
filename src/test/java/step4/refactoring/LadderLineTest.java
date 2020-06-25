@@ -3,8 +3,6 @@ package step4.refactoring;
 import org.junit.jupiter.api.Test;
 import step4.strategy.LineStrategy;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class LadderLineTest {
     @Test
     public void init() {
