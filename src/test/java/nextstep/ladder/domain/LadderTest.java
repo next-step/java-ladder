@@ -12,7 +12,7 @@ class LadderTest {
     @Test
     void createLadder() {
         //given
-        Ladder ladder = new Ladder(3, () -> true, 3);
+        Ladder ladder = Ladder.of(3, () -> true, 3);
 
         //then
         /*

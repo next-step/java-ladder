@@ -12,13 +12,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toMap;
+import static nextstep.ladder.domain.vo.Point.ZERO_BASE_POINT;
 
 public class LadderGameResult {
     private static final int FIRST_ORDER_NUMBER = 1;
     private final LadderProcessSnapshot ladderProcessSnapshot;
     private final LadderGamePrize ladderGamePrize;
 
-    public LadderGameResult(final Ladder ladder, final LadderGameUserStorage users, final int maxPoint, LadderGamePrize prize) {
+    private LadderGameResult(final Ladder ladder, final LadderGameUserStorage users, final int maxPoint, LadderGamePrize prize) {
         Map<Point, LadderProcessSnapshot> ladderResult = init(ladder, users, maxPoint);
         this.ladderProcessSnapshot = ladderResult.get(Point.of(maxPoint));
         this.ladderGamePrize = prize;
@@ -27,9 +28,13 @@ public class LadderGameResult {
         }
     }
 
+    public static LadderGameResult of(final Ladder ladder, final LadderGameUserStorage users, final int maxPoint, LadderGamePrize prize) {
+        return new LadderGameResult(ladder, users, maxPoint, prize);
+    }
+
     private Map<Point, LadderProcessSnapshot> init(final Ladder ladder, final LadderGameUserStorage users, final int maxPoint) {
         Map<Point, LadderProcessSnapshot> ladderResult = new HashMap<>();
-        ladderResult.put(Point.ZERO_BASE_POINT, createInitialSnapshot(users));
+        ladderResult.put(ZERO_BASE_POINT, createInitialSnapshot(users));
         for (int point = 1; point <= maxPoint; point++) {
             LadderProcessSnapshot beforeSnapshot = ladderResult.get(Point.of(point).before());
             LadderProcessSnapshot currentSnapshot = createSnapshot(ladder, users, point, beforeSnapshot);

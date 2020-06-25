@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Point {
     private static final Map<Integer, Point> CACHE = new HashMap<>();
+
     public static final Point ZERO_BASE_POINT = Point.of(0);
     public static final Point INITIAL_POINT = Point.of(1);
 

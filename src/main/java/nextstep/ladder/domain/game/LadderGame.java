@@ -12,11 +12,11 @@ public class LadderGame {
     }
 
     public Ladder createLadder(final LadderGameUserStorage ladderGameUserStorage, final int maxHeight) {
-        return new Ladder(ladderGameUserStorage.count(), conditional, maxHeight);
+        return Ladder.of(ladderGameUserStorage.count(), conditional, maxHeight);
     }
 
     public LadderGameResult execute(final Ladder ladder, final LadderGameUserStorage users,
                                     final int maxPoint, final LadderGamePrize prize) {
-        return new LadderGameResult(ladder, users, maxPoint, prize);
+        return LadderGameResult.of(ladder, users, maxPoint, prize);
     }
 }
