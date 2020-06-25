@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderGameSetting {
 
@@ -33,7 +34,7 @@ public class LadderGameSetting {
         return prizes.getPrizes();
     }
 
-    public String prize(int prizeIndex) {
-        return prizes.findPrize(prizeIndex);
+    public Map<String, String> findPrize(Ladder ladder) {
+        return persons.prizeResult(ladder, prizes);
     }
 }

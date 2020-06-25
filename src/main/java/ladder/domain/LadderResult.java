@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,13 +26,6 @@ public class LadderResult {
     }
 
     public Map<String, String> findResult(){
-        Map<String, String> result = new LinkedHashMap<>();
-        int personIndex = 0;
-        for (Person person : getPersons()){
-            int prizeIndex = ladder.getPrizeIndex(personIndex);
-            result.put(person.getName(), ladderGameInfo.getPrize(prizeIndex));
-            personIndex++;
-        }
-        return result;
+        return ladderGameInfo.result(ladder);
     }
 }
