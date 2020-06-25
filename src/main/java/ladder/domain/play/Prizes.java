@@ -1,22 +1,13 @@
 package ladder.domain.play;
 
-public class Prizes {
-    private final Items prizes;
+import java.util.List;
 
-    private Prizes(Items prizes) {
-        this.prizes = prizes;
+public class Prizes extends Items {
+    private Prizes(List<String> items) {
+        super(items);
     }
 
-    public static Prizes of(Items items) {
-        return new Prizes(items);
-    }
-
-    public Item get(int index) {
-        return prizes.get(index);
-    }
-
-    @Override
-    public String toString() {
-        return prizes.toString();
+    public static Prizes of(List<String> prizes) {
+        return new Prizes(prizes);
     }
 }

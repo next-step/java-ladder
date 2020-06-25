@@ -1,17 +1,17 @@
 package ladder;
 
 import ladder.domain.ladder.Game;
-import ladder.domain.play.Items;
 import ladder.domain.play.Players;
 import ladder.domain.play.Playing;
+import ladder.domain.play.Prizes;
 import ladder.util.ConvertUtils;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
 public class LadderGame {
     public static void main(String[] args) {
-        Items players = Items.of(ConvertUtils.split(InputView.doInputParticipants()));
-        Items prizes = Items.of(ConvertUtils.split(InputView.doInputPrizes()));
+        Players players = Players.of(ConvertUtils.split(InputView.doInputParticipants()));
+        Prizes prizes = Prizes.of(ConvertUtils.split(InputView.doInputPrizes()));
         Playing playing = Playing.of(players, prizes);
         int height = InputView.doInputLadderHeight();
 

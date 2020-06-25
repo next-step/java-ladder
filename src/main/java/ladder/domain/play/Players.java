@@ -5,39 +5,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Players {
+public class Players extends Items {
     public static final String PLAYERS_ALL = "all";
 
-    private final Items players;
-
-    private Players(Items players) {
-        this.players = players;
+    private Players(List<String> items) {
+        super(items);
     }
 
-    public static Players of(Items items) {
-        return new Players(items);
+    public static Players of(List<String> names) {
+        return new Players(names);
     }
 
-    public Item get(int index) {
-        return this.players.get(index);
-    }
-
-    public List<Integer> findIndexBy(String name) {
+    public List<Integer> findIndexesBy(String name) {
         if (name.equals(PLAYERS_ALL)) {
-            return IntStream.range(0, players.size())
+            return IntStream.range(0, this.size())
                     .boxed()
                     .collect(Collectors.toList());
         }
 
-        return Arrays.asList(players.findIndexBy(name));
-    }
-
-    public int getCountOf() {
-        return players.getCountOfItems();
-    }
-
-    @Override
-    public String toString() {
-        return players.toString();
+        return Arrays.asList(super.findIndexBy(name));
     }
 }

@@ -25,12 +25,12 @@ public class Items {
         return new Items(items);
     }
 
-    public int getCountOfItems() {
+    public int getCountOf() {
         return items.size();
     }
 
     public boolean sameSize(Items items) {
-        return this.getCountOfItems() == items.getCountOfItems();
+        return this.getCountOf() == items.getCountOf();
     }
 
     public Item get(int index) {

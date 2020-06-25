@@ -7,10 +7,10 @@ public class Playing {
     private final Players players;
     private final Prizes prizes;
 
-    private Playing(Items players, Items prizes) {
+    private Playing(Players players, Prizes prizes) {
         mustBeSameSize(players, prizes);
-        this.players = Players.of(players);
-        this.prizes = Prizes.of(prizes);
+        this.players = players;
+        this.prizes = prizes;
     }
 
     private void mustBeSameSize(Items players, Items prizes) {
@@ -19,7 +19,7 @@ public class Playing {
         }
     }
 
-    public static Playing of(Items players, Items prizes) {
+    public static Playing of(Players players, Prizes prizes) {
         return new Playing(players, prizes);
     }
 
@@ -45,7 +45,7 @@ public class Playing {
 
     public List<Integer> findPlayerIndexBy(String name) {
         List<Integer> indexes = new ArrayList<>();
-        indexes.addAll(players.findIndexBy(name));
+        indexes.addAll(players.findIndexesBy(name));
 
         return indexes;
     }
