@@ -33,10 +33,10 @@ public class RandomGenerableStrategy implements GenerableStrategy {
         if (hasCurrentLadder == false) {
             return;
         }
-        if (previousPosition < 0 || ladders.get(previousPosition)) {
+        if (previousPosition >= 0 && ladders.get(previousPosition)) {
             return;
         }
-        if (nextPosition > ladders.size() - 1 || ladders.get(nextPosition)) {
+        if (nextPosition < ladders.size() - 1 && ladders.get(nextPosition)) {
             return;
         }
 
