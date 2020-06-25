@@ -1,9 +1,8 @@
 package nextstep.step4;
 
-import nextstep.step3.Validator;
-import nextstep.step3.domain.User;
-import nextstep.step3.resource.LadderStringResource;
-import nextstep.step3.utils.LadderUtils;
+import nextstep.step4.domain.User;
+import nextstep.step4.resource.LadderStringResource;
+import nextstep.step4.utils.LadderUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -19,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 @DisplayName("Validator 테스트")
 class ValidatorTest {
 
-    private nextstep.step3.Validator validator = new Validator();
+    private Validator validator = new Validator();
 
     @DisplayName("사다리 높이 체크 - 성공")
     @ParameterizedTest
