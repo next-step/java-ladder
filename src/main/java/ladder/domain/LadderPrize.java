@@ -4,19 +4,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class LadderResult {
+public class LadderPrize {
     private final String result;
 
-    private LadderResult(String result) {
+    private LadderPrize(String result) {
         this.result = result;
     }
 
-    public static LadderResult of(String result) {
-        return new LadderResult(result);
+    public static LadderPrize of(String result) {
+        return new LadderPrize(result);
     }
 
-    public static List<LadderResult> of(List<String> result) {
-        return result.stream().map(LadderResult::new).collect(Collectors.toList());
+    public static List<LadderPrize> of(List<String> result) {
+        return result.stream().map(LadderPrize::new).collect(Collectors.toList());
     }
 
     @Override
@@ -28,7 +28,7 @@ public class LadderResult {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderResult that = (LadderResult) o;
+        LadderPrize that = (LadderPrize) o;
         return Objects.equals(result, that.result);
     }
 
