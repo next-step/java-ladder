@@ -30,6 +30,10 @@ public class Line extends Generating{
         return ladders.size();
     }
 
+    public List<Boolean> getLine() {
+        return ladders;
+    }
+
     @Override
     public String toString() {
         return "Line{" +

@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
     private ArrayList<Line> ladder;
@@ -15,6 +16,12 @@ public class Ladder {
 
     public int getLadderHeight() {
         return ladder.size();
+    }
+
+    public List<List<Boolean>> getLadder() {
+        ArrayList<List<Boolean>> result = new ArrayList<>();
+        ladder.forEach(line -> result.add(line.getLine()));
+        return result;
     }
 
     @Override

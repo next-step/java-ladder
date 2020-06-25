@@ -18,7 +18,7 @@ public class InputView {
         return scanner.nextLine().split(COMMA);
     }
 
-    public Integer inputMaximumLadderHeight() {
+    public Integer inputLadderHeight() {
         System.out.print(MESSAGE_INPUT_MAXIMUM_LADDER_HEIGHT);
         return Integer.valueOf(scanner.nextLine());
     }
