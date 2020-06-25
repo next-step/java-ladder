@@ -14,6 +14,10 @@ public class Ladder {
         this.layers = layers;
     }
 
+    public static Ladder of(List<Layer> layers) {
+        return new Ladder(layers);
+    }
+
     public List<Layer> getLayers() {
         return layers;
     }
