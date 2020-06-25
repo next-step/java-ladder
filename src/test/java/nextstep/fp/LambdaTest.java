@@ -18,6 +18,8 @@ public class LambdaTest {
 
     @Test
     public void printAllOld() throws Exception {
+        numbers.forEach(System.out::println);
+
         Lambda.printAllOld(numbers);
     }
 
