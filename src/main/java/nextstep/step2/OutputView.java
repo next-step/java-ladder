@@ -13,18 +13,29 @@ public class OutputView {
     private static final String LINE_BREAKER = "\n";
 
     public static void draw(Ladder ladder, People people) {
+        printPeople(people);
+        printLadder(ladder);
+    }
+
+    private static void printLadder(Ladder ladder) {
+        ladder.getLadder().forEach(lines -> {
+            print(INITIAL_EMPTY);
+            printLines(lines);
+            print(LAST_PARTITION);
+        });
+    }
+
+    private static void printLines(Lines lines) {
+        lines.getLines().forEach(line -> {
+            printLine(line);
+        });
+    }
+
+    private static void printPeople(People people) {
         print(RESULT_MESSAGE);
         people.getPeople()
                 .forEach(person -> print(person.getName() + "  "));
         print(LINE_BREAKER);
-
-        ladder.getLadder().forEach(lines -> {
-            print(INITIAL_EMPTY);
-            lines.getLines().forEach(line -> {
-                printLine(line);
-            });
-            print(LAST_PARTITION);
-        });
     }
 
     private static void printLine(Line line) {

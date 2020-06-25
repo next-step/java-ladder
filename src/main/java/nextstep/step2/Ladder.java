@@ -1,10 +1,13 @@
 package nextstep.step2;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+
+    private static final int ZERO = 0;
 
     private final int numberOfPeople;
     private final int height;
@@ -17,12 +20,12 @@ public class Ladder {
     }
 
     public List<Lines> createLadder() {
-        return IntStream.range(0,height)
+        return IntStream.range(ZERO,height)
                 .mapToObj(index -> Lines.of(numberOfPeople))
                 .collect(Collectors.toList());
     }
 
     public List<Lines> getLadder() {
-        return ladder;
+        return Collections.unmodifiableList(ladder);
     }
 }
