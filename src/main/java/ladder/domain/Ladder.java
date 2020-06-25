@@ -18,7 +18,7 @@ public class Ladder {
         createHorizonLine(height, startPositionCount, shortLineEnableJudge);
     }
 
-    public void validateMinPositionCount(int startPositionCount) {
+    private void validateMinPositionCount(int startPositionCount) {
         if (startPositionCount < MIN_START_POSITION_COUNT) {
             throw new IllegalArgumentException("사다리를 시작하기 위해서는 2명 이상의 사용자가 필요합니다.");
         }
@@ -44,5 +44,41 @@ public class Ladder {
 
     public int getShortLineCountInHorizonLine(int heightIndex) {
         return horizonLines.get(heightIndex).getShortLineCount();
+    }
+
+    public boolean equalStartPositionCount(int count) {
+        int startPositionCount = getStartPositionCount();
+        return startPositionCount == count;
+    }
+
+    public int play(int startPositionIndex) {
+        for (int i = 0; i < getHeight(); i++) {
+            startPositionIndex = moveShortLine(i, startPositionIndex);
+        }
+        return startPositionIndex;
+    }
+
+    public List<Integer> playAll() {
+        List<Integer> resultIndex = new ArrayList<>();
+        for (int i = 0 ; i < getStartPositionCount() ; i++) {
+            resultIndex.add(play(i));
+        }
+        return resultIndex;
+    }
+
+    private int getStartPositionCount() {
+        HorizonLine firstHorizonLine = horizonLines.get(0);
+        return firstHorizonLine.getShortLineCount() + 1;
+    }
+
+    private int moveShortLine(int height, int currentPosition) {
+        int nextVerticalLinePosition = currentPosition;
+        if(isEnabledShortLineOfLeft(height, nextVerticalLinePosition)) {
+            return -- nextVerticalLinePosition;
+        }
+        if(isEnabledShortLineOfRight(height, nextVerticalLinePosition)) {
+            return ++ nextVerticalLinePosition;
+        }
+        return currentPosition;
     }
 }

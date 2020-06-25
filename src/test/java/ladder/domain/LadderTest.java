@@ -1,8 +1,9 @@
 package ladder.domain;
 
-import ladder.domain.Ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -57,5 +58,25 @@ public class LadderTest {
 
         assertThat(ladder.isEnabledShortLineOfLeft(0, 0)).isFalse();
         assertThat(ladder.isEnabledShortLineOfLeft(1, 1)).isTrue();
+    }
+
+    @DisplayName("게임을 진행하고 최종 사다리 위치 index 를 리턴한다.")
+    @Test
+    public void playTest() {
+        List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
+        Ladder ladder = new Ladder(LadderHeight.of(3), users.size(), () -> true);
+
+        assertThat(ladder.play(3)).isEqualTo(2);
+    }
+
+    @DisplayName("모든 startPosition에 대해서 게임을 진행하고 사다리 위치 index 들을 리턴한다.")
+    @Test
+    public void playTestAll() {
+        List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
+        Ladder ladder = new Ladder(LadderHeight.of(3), users.size(), () -> true);
+
+        List<Integer> result = ladder.playAll();
+
+        assertThat(result).containsSequence(1, 0, 3, 2);
     }
 }
