@@ -2,6 +2,8 @@ package ladder.domain;
 
 import ladder.util.StringUtil;
 
+import java.util.Objects;
+
 public class Person {
 
     public static final String NAME_LIMIT_EXCEPTION = "이름은 최대 5글자까지만 입력 가능합니다.";
@@ -29,5 +31,18 @@ public class Person {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
