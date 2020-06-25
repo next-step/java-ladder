@@ -1,4 +1,4 @@
-package nextstep.step2;
+package nextstep.step2.exception;
 
 public class Error {
 

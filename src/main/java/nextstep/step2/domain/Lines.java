@@ -1,4 +1,4 @@
-package nextstep.step2;
+package nextstep.step2.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;

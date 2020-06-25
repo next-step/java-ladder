@@ -1,5 +1,6 @@
 package nextstep.step2;
 
+import nextstep.step2.domain.Line;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,5 +1,7 @@
 package nextstep.step2;
 
+import nextstep.step2.domain.Ladder;
+import nextstep.step2.domain.Lines;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

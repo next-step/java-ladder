@@ -1,4 +1,6 @@
-package nextstep.step2;
+package nextstep.step2.domain;
+
+import nextstep.step2.exception.Error;
 
 import java.util.Collections;
 import java.util.List;

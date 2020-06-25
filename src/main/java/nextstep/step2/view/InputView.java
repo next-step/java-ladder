@@ -1,4 +1,6 @@
-package nextstep.step2;
+package nextstep.step2.view;
+
+import nextstep.step2.domain.People;
 
 import java.util.Scanner;
 

@@ -1,6 +1,9 @@
-package nextstep.step2;
+package nextstep.step2.view;
 
-import java.util.List;
+import nextstep.step2.domain.Ladder;
+import nextstep.step2.domain.Line;
+import nextstep.step2.domain.Lines;
+import nextstep.step2.domain.People;
 
 public class OutputView {
 

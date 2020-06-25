@@ -1,5 +1,6 @@
 package nextstep.step2;
 
+import nextstep.step2.domain.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
