@@ -7,7 +7,7 @@ public class LadderUtils {
     private static final String DELIMITER = ",";
 
     public static List<String> splitString(String inputStr) {
-        return Arrays.asList(inputStr.split(DELIMITER));
+        return Arrays.asList(inputStr.replace(" ","").split(DELIMITER));
     }
 
     public static boolean isBlank(String result) {

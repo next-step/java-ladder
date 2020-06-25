@@ -27,6 +27,7 @@ public class InputView {
     }
 
     public String getUserNameForResult() {
+        System.out.println();
         System.out.println(LadderStringResource.GET_USER_NAME_FOR_RESULT);
         return scanner.nextLine();
     }

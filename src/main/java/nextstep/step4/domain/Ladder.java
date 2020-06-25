@@ -1,24 +1,17 @@
 package nextstep.step4.domain;
 
 import nextstep.step4.domain.strategy.DrawLineStrategy;
+import nextstep.step4.resource.LadderStringResource;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.*;
 
 public class Ladder {
-    private List<Line> lines;
+    private List<LadderLine> lines = new ArrayList<>();
 
     public Ladder(int userCount, int ladderHeight, DrawLineStrategy drawLineStrategy) {
-        this.lines = Stream.generate(() -> new Line(userCount, drawLineStrategy))
-                .limit(ladderHeight)
-                .collect(Collectors.toList());
-    }
-
-    public List<Line> getLines() {
-        return lines;
+        for(int i=0; i<ladderHeight; i++){
+            lines.add(new LadderLine(userCount, drawLineStrategy));
+        }
     }
 
     public Map<String, User> getLadderGameResult(List<String> userNames, List<String> playResult) {
@@ -31,12 +24,14 @@ public class Ladder {
         return resultMap;
     }
 
-    private int play(int startBreathPosition) {
-        Position position = new Position(startBreathPosition);
-        for(Line line : lines) {
-            position.movePosition(line);
+    private int play(int idx) {
+        for(LadderLine line : lines) {
+            idx = line.move(idx);
         }
-        return position.getBreath();
+        return idx;
     }
 
+    public List<LadderLine> getLines() {
+        return lines;
+    }
 }

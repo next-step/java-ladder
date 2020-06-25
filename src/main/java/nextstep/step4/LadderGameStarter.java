@@ -18,7 +18,6 @@ public class LadderGameStarter {
         List<String> userNames = validator.checkUserNameLength(inputView.getUserNames());
         List<String> playResult = validator.checkPlayResult(userNames, inputView.getPlayResult());
         int ladderHeight = validator.checkLadderHeight(inputView.getLadderHeight());
-
         Ladder ladder = new Ladder(userNames.size(), ladderHeight, new RandomDrawLineStrategy());
         resultView.showLadderResult(userNames, ladder);
         resultView.showPlayResult(playResult);
