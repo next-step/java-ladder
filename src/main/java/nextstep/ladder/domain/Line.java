@@ -75,6 +75,10 @@ public class Line {
         return false;
     }
 
+    public List<Boolean> getLine() {
+        return ladders;
+    }
+
     @Override
     public String toString() {
         return "Line{" +
