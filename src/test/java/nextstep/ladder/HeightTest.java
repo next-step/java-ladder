@@ -15,7 +15,7 @@ public class HeightTest {
     @ValueSource(ints = {4,6,7,8,10})
     void countHeightTest(int ladderHeight){
         Height height = Height.of(ladderHeight);
-        assertThat(height.getHeight()).isEqualTo(ladderHeight);
+        assertThat(height).isEqualTo(Height.of(ladderHeight));
     }
 
     @ParameterizedTest
