@@ -1,0 +1,16 @@
+package ladder.model;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThatCode;
+
+class LadderGameTest {
+
+    @DisplayName("사다리 게임 생성 테스트")
+    @Test
+    public void createLadderTest() {
+        assertThatCode(() -> LadderGame.create(Members.create(new String[]{"pobi", "krong", "yong"}), LadderHeight.create(4)))
+                .doesNotThrowAnyException();
+    }
+}
