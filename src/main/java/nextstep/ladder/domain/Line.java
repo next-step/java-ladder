@@ -13,7 +13,6 @@ public class Line extends Generating{
         if (length < 1) {
             throw new IllegalArgumentException(INVALID_LINE_LENGTH);
         }
-        // 초기화
         ladders = new ArrayList<>();
         initialize(length);
         ladders = generate(length);
