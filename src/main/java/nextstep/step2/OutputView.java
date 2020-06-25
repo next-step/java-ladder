@@ -11,6 +11,7 @@ public class OutputView {
     private static final String LINE = "-----";
     private static final String EMPTY_LINE = "     ";
     private static final String LINE_BREAKER = "\n";
+    private static final String SPACE = "  ";
 
     public static void draw(Ladder ladder, People people) {
         printPeople(people);
@@ -26,25 +27,27 @@ public class OutputView {
     }
 
     private static void printLines(Lines lines) {
-        lines.getLines().forEach(line -> {
-            printLine(line);
-        });
+        lines.getLines()
+                .forEach(line -> printLine(line));
     }
 
     private static void printPeople(People people) {
         print(RESULT_MESSAGE);
         people.getPeople()
-                .forEach(person -> print(person.getName() + "  "));
+            .forEach(person -> print(person.getName() + SPACE));
         print(LINE_BREAKER);
     }
 
     private static void printLine(Line line) {
         print(PARTITION);
+        print(printLineIfTrue(line));
+    }
+
+    private static String printLineIfTrue(Line line) {
         if (line.isTrue()) {
-            print(LINE);
-        } else {
-            print(EMPTY_LINE);
+            return LINE;
         }
+        return EMPTY_LINE;
     }
 
     private static void print(String message) {
