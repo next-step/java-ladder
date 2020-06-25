@@ -1,21 +1,16 @@
 package domain;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
-    private static final int NAME_MAX_LENGTH = 5;
-    private final String[] playerNames;
+    private final List<Player> players;
 
     private Players(String[] playerNames) {
-        long validPlayers = Arrays.stream(playerNames)
-                .filter(playerName -> playerName.length() <= NAME_MAX_LENGTH)
-                .count();
-
-        if (playerNames.length != validPlayers) {
-            throw new IllegalArgumentException();
-        }
-
-        this.playerNames = playerNames;
+        this.players = Arrays.stream(playerNames)
+                .map(Player::of)
+                .collect(Collectors.toList());
     }
 
     public static Players of(String[] playerNames) {
@@ -23,14 +18,16 @@ public class Players {
     }
 
     public int countOfPlayers() {
-        return playerNames.length;
+        return players.size();
     }
 
     public String[] getPlayerNames() {
-        return playerNames;
+        return players.stream()
+                .map(Player::getPlayerName)
+                .toArray(size -> new String[size]);
     }
 
-    public String getPlayer(int index) {
-        return playerNames[index];
+    public String getPlayerName(int index) {
+        return players.get(index).getPlayerName();
     }
 }

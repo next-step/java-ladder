@@ -17,7 +17,7 @@ public class MatchingResult {
     public LadderResult map(Players players, String[] results) {
         Map<String, String> ladderResult = new HashMap<>();
         for (int i = 0; i < players.countOfPlayers(); i++) {
-            ladderResult.put(players.getPlayer(i), results[matchingResult.get(i)]);
+            ladderResult.put(players.getPlayerName(i), results[matchingResult.get(i)]);
         }
 
         return LadderResult.of(ladderResult);
