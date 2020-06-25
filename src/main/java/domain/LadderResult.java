@@ -1,39 +1,32 @@
 package domain;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderResult {
     private static final String ALL = "all";
-    private Map<String, String> radderResults;
+    private final Map<String, String> ladderResult;
 
-    private LadderResult(Players players, String[] results, Ladder ladder) {
-        radderResults = new HashMap<>();
-
-        for (int i = 0; i < players.countOfPlayers(); i++) {
-            String playerName = players.getPlayer(i);
-            String result = results[ladder.getLadderResultIndex(i)];
-            radderResults.put(playerName, result);
-        }
+    private LadderResult(Map<String, String> ladderResult) {
+        this.ladderResult = ladderResult;
     }
 
-    public static LadderResult of(Players players, String[] results, Ladder ladder) {
-        return new LadderResult(players, results, ladder);
+    public static LadderResult of(Map<String, String> ladderResult) {
+        return new LadderResult(ladderResult);
     }
 
     public String getResult(String who) {
         if (ALL.equals(who)) {
-            return radderResults.entrySet()
+            return ladderResult.entrySet()
                     .stream()
                     .map(entry -> entry.getKey() + " : " + entry.getValue())
                     .collect(Collectors.joining("\n"));
         }
 
-        if(!radderResults.containsKey(who)) {
+        if (!ladderResult.containsKey(who)) {
             throw new IllegalArgumentException();
         }
 
-        return radderResults.get(who);
+        return ladderResult.get(who);
     }
 }
