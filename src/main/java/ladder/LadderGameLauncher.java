@@ -9,11 +9,11 @@ import ladder.view.ResultView;
 public class LadderGameLauncher {
     public static void main(String[] args) {
         LadderGameInfo ladderGameInfo = InputView.inputParameters();
-        LadderResult ladderGameResult = LadderGame.draw(ladderGameInfo);
+        LadderResult drawnladder = LadderGame.draw(ladderGameInfo);
 
-        ResultView.printLadder(ladderGameResult);
+        ResultView.printLadder(drawnladder);
 
-        ResultPrize resultPrize = LadderGame.play(ladderGameResult);
+        ResultPrize resultPrize = LadderGame.play(drawnladder);
         ResultView.printResultofPerson(resultPrize);
     }
 }
