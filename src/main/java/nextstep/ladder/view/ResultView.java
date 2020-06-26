@@ -15,13 +15,15 @@ public class ResultView {
     }
 
     private void printLadder(List<List<Boolean>> ladder) {
-        ladder.forEach(line -> {
-            line.forEach(point -> {
-                System.out.print(VERTICAL);
-                printHorizontal(point);
-            });
-            System.out.println(VERTICAL);
+        ladder.forEach(this::printHorizontalLine);
+    }
+
+    private void printHorizontalLine(List<Boolean> line) {
+        line.forEach(point -> {
+            System.out.print(VERTICAL);
+            printHorizontal(point);
         });
+        System.out.println(VERTICAL);
     }
 
     private void printHorizontal(Boolean hasLadder) {
