@@ -52,7 +52,7 @@ public class ParticipantsTest {
         Ladder ladder = new Ladder(LadderHeight.of(3), 4);
         Participants participants = Participants.of(users, ladder);
 
-        User user = participants.getUser(0);
+        User user = participants.get(0);
 
         assertThat(user).isEqualTo(users.get(0));
     }
@@ -65,7 +65,7 @@ public class ParticipantsTest {
         Participants participants = Participants.of(users, ladder);
 
         assertThatThrownBy(() -> {
-            participants.getUser(6);
+            participants.get(6);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
