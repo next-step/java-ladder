@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line extends LineGenerating {
@@ -25,7 +26,9 @@ public class Line extends LineGenerating {
     }
 
     public List<Boolean> getLine() {
-        return ladders;
+        List<Boolean> deepCopiedLadders = new ArrayList<>();
+        deepCopiedLadders.addAll(ladders);
+        return deepCopiedLadders;
     }
 
     @Override
