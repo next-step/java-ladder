@@ -5,7 +5,7 @@ import java.util.List;
 
 public class HorizonLine {
 
-    private List<Boolean> shortLines = new ArrayList<>();
+    private final List<Boolean> shortLines = new ArrayList<>();
 
     public HorizonLine(int positionCount, ShortLineEnableJudge judge) {
         validateMinimumPosition(positionCount);
