@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.line;
 
 import nextstep.ladder.domain.line.Direction;
 import nextstep.ladder.generator.RandomPointGenerator;
