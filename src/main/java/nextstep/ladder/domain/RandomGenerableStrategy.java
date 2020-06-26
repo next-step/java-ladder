@@ -14,44 +14,44 @@ public class RandomGenerableStrategy implements GenerableStrategy {
 
     @Override
     public List<Boolean> generate(int length) {
-        List<Boolean> ladders = new ArrayList<>();
+        List<Boolean> points = new ArrayList<>();
         for (int i = 0; i < length; ++i) {
-            ladders.add(false);
+            points.add(false);
         }
 
         for (int i = 0; i < length; ++i) {
-            putLadder(ladders, i);
+            putPoint(points, i);
         }
-        return ladders;
+        return points;
     }
 
-    private void putLadder(List<Boolean> ladders, int currentPosition) {
+    private void putPoint(List<Boolean> points, int currentPosition) {
         Boolean hasCurrentLadder = random.nextBoolean();
 
         if (!hasCurrentLadder) {
             return;
         }
-        if (hasPreviousPositionLadder(ladders, currentPosition)) {
+        if (hasPreviousPositionPoint(points, currentPosition)) {
             return;
         }
-        if (hasNextPositionLadder(ladders, currentPosition)) {
+        if (hasNextPositionPoint(points, currentPosition)) {
             return;
         }
 
-        ladders.set(currentPosition, true);
+        points.set(currentPosition, true);
     }
 
-    private boolean hasPreviousPositionLadder(List<Boolean> ladders, int currentPosition) {
+    private boolean hasPreviousPositionPoint(List<Boolean> points, int currentPosition) {
         int previousPosition = currentPosition - 1;
-        if (previousPosition >= 0 && ladders.get(previousPosition)) {
+        if (previousPosition >= 0 && points.get(previousPosition)) {
             return true;
         }
         return false;
     }
 
-    private boolean hasNextPositionLadder(List<Boolean> ladders, int currentPosition) {
+    private boolean hasNextPositionPoint(List<Boolean> points, int currentPosition) {
         int nextPosition = currentPosition + 1;
-        if (nextPosition < ladders.size() - 1 && ladders.get(nextPosition)) {
+        if (nextPosition < points.size() - 1 && points.get(nextPosition)) {
             return true;
         }
         return false;

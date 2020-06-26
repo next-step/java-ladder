@@ -1,8 +1,5 @@
 package nextstep.ladder.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import nextstep.ladder.domain.GameUsers;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.view.InputView;
