@@ -51,14 +51,14 @@ public class Ladder {
         return startPositionCount == count;
     }
 
-    public int play(int startPositionIndex) {
+    protected int play(int startPositionIndex) {
         for (int i = 0; i < getHeight(); i++) {
             startPositionIndex = moveShortLine(i, startPositionIndex);
         }
         return startPositionIndex;
     }
 
-    public List<Integer> playAll() {
+    protected List<Integer> playAll() {
         List<Integer> resultIndex = new ArrayList<>();
         for (int i = 0 ; i < getStartPositionCount() ; i++) {
             resultIndex.add(play(i));
