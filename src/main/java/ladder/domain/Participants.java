@@ -35,4 +35,9 @@ public class Participants {
         }
         return participants.get(startPosition);
     }
+
+    public List<User> getUserAll() {
+        return participants;
+    }
+
 }

@@ -58,13 +58,24 @@ public class ParticipantsTest {
     }
 
     @DisplayName("사다리 범위를 벗어나는 startPosition 을 입력하면 IllegalArgument 예외가 발생한다.")
+    @Test
     public void getUserOutRange() {
         List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
-        Ladder ladder = new Ladder(LadderHeight.of(3), 3);
+        Ladder ladder = new Ladder(LadderHeight.of(4), 4);
         Participants participants = Participants.of(users, ladder);
 
         assertThatThrownBy(() -> {
             participants.getUser(6);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("모든 참가자를 가져온다.")
+    @Test
+    public void getUserAllTest() {
+        List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
+        Ladder ladder = new Ladder(LadderHeight.of(4), 4);
+        Participants participants = Participants.of(users, ladder);
+
+        assertThat(participants.getUserAll()).containsAll(users);
     }
 }
