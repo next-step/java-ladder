@@ -1,4 +1,4 @@
-package nextstep.ladder.mock;
+package nextstep.ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.Layer;
@@ -7,11 +7,11 @@ import ladder.domain.Prizes;
 import org.assertj.core.util.Lists;
 import java.util.List;
 
-public class LadderMock {
+public class LadderDummy {
     public Ladder ladder;
     public Prizes prizes;
 
-    public LadderMock(){
+    public LadderDummy(){
         Point topPoint1 = Point.of(0, false, true);
         Point topPoint2 = Point.of(1, true, false);
         Point topPoint3 = Point.of(2, false, false);
