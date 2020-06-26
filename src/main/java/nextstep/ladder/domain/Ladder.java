@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -20,9 +21,9 @@ public class Ladder {
     }
 
     public List<List<Boolean>> getLadder() {
-        List<List<Boolean>> result = new ArrayList<>();
-        ladder.forEach(line -> result.add(line.getLine()));
-        return result;
+        return ladder.stream()
+            .map(Line::getLine)
+            .collect(Collectors.toList());
     }
 
     @Override
