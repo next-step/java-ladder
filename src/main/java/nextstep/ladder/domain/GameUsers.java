@@ -14,7 +14,8 @@ public class GameUsers {
         validUserCount(userNames);
         this.users = new ArrayList<>();
         Arrays.stream(userNames)
-            .forEach(userName -> users.add(new User(userName)));
+            .map(User::new)
+            .collect(Collectors.toList());
     }
 
     private void validUserCount(String[] userNames) {
