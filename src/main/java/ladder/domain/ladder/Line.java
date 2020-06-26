@@ -13,7 +13,6 @@ public class Line {
     private static final int MIN_COUNT_OF_LINE = 2;
 
     private List<Point> points = new ArrayList<>();
-    private boolean beforeStep = false;
 
     private Line(int countOfUser) {
         this(countOfUser, new StepRandomStrategy());
