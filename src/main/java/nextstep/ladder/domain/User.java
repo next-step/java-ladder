@@ -18,7 +18,7 @@ public class User {
             throw new IllegalArgumentException(INVALID_USER_NAME_LENGTH);
         }
         name = name.trim();
-        if (name.length() < 5) {
+        if (name.length() < 1 || name.length() > 5) {
             throw new IllegalArgumentException(INVALID_USER_NAME_LENGTH);
         }
     }
