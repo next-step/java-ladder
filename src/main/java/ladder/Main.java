@@ -13,15 +13,16 @@ public class Main {
         int height = InputView.inputHeight();
 
         Ladder ladder = new Ladder(LadderHeight.of(height), users.size());
+        LadderPrizes ladderResult = LadderPrizes.of(ladderPrizes, ladder);
         Participants participants = Participants.of(users, ladder);
-        OutputView.printLadder(participants, ladder, ladderPrizes);
+
+        OutputView.printLadder(participants, ladder, ladderResult);
 
         LadderGame ladderGame = new LadderGame(participants, ladder);
 
         String name = InputView.inputUserNameToShowLadderResult();
-
         List<Integer> ladderPrizesIndex = ladderGame.play(name);
-        OutputView.printLadderResult(ladderPrizesIndex, ladderPrizes, participants);
+        OutputView.printLadderResult(participants, LadderPrizes.convert(ladderPrizesIndex, ladderResult));
 
     }
 }
