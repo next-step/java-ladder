@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ladder.domain.Point;
 import ladder.domain.Position;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,15 +48,11 @@ public class PointTest {
         assertThat(lastPoint.getDirection().rightLine()).isFalse();
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("move 메소드 의도대로 작동하는지 테스트")
-    void moveTest() {
-        Point point1 = Point.of(0, false, true);
-        Point point2 = Point.of(1, true, false);
-        Point point3 = Point.of(3, false, false);
-
-        assertThat(point1.move()).isEqualTo(1);
-        assertThat(point2.move()).isEqualTo(0);
-        assertThat(point3.move()).isEqualTo(3);
+    @CsvSource(value = {"false:false:0", "true:false:-1", "false:true:1"}, delimiter = ':')
+    void moveTest(boolean left, boolean right, int position) {
+        Point point = Point.of(0, left, right);
+        assertThat(point.move()).isEqualTo(position);
     }
 }
