@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.generator.LadderPointGenerator;
+
 public class Point {
     private static final String POINT_LINED = "-----|";
     private static final String POINT_UNLINED = "     |";
@@ -24,8 +26,8 @@ public class Point {
         return this.index;
     }
 
-    public Point next() {
-        return new Point(index + 1, direction.next());
+    public Point next(LadderPointGenerator ladderPointGenerator) {
+        return new Point(index + 1, direction.next(ladderPointGenerator));
     }
 
     public Point next(Boolean right) {

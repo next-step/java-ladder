@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Point;
+import nextstep.ladder.generator.RandomPointGenerator;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -34,7 +35,7 @@ public class PointTest {
 
     @Test
     public void next() {
-        Point second = Point.first(TRUE).next();
+        Point second = Point.first(TRUE).next(new RandomPointGenerator());
         assertThat(second.move()).isEqualTo(0);
     }
 }

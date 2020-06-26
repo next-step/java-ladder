@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Direction;
+import nextstep.ladder.generator.RandomPointGenerator;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.Boolean.FALSE;
@@ -24,7 +25,7 @@ public class DirectionTest {
 
     @Test
     public void next_random_true() {
-        Direction next = Direction.first(TRUE).next();
+        Direction next = Direction.first(TRUE).next(new RandomPointGenerator());
 
         assertThat(next)
                 .isEqualTo(Direction.of(TRUE, FALSE));
@@ -33,7 +34,7 @@ public class DirectionTest {
     @Test
     public void next_random_false() {
         for (int i = 0; i < 100; i++) {
-            Direction.first(FALSE).next();
+            Direction.first(FALSE).next(new RandomPointGenerator());
         }
     }
 

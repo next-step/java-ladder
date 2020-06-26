@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.generator.LadderPointGenerator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,8 +10,8 @@ import java.util.stream.Stream;
 public class LadderLines {
     private final List<LadderLine> ladderLines;
 
-    public LadderLines(int playerCount, int ladderHeight) {
-        ladderLines = Stream.generate(() -> LadderLine.init(playerCount))
+    public LadderLines(int playerCount, int ladderHeight, LadderPointGenerator ladderPointGenerator) {
+        ladderLines = Stream.generate(() -> LadderLine.init(playerCount, ladderPointGenerator))
                 .limit(ladderHeight)
                 .collect(Collectors.toList());
     }

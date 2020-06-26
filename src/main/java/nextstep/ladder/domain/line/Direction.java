@@ -12,7 +12,7 @@ public class Direction {
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Direction 생성 시 양 방향이 true면 안됩니다.(사다리 라인은 연속해서 나올 수 없습니다.)");
         }
 
         this.left = left;
@@ -31,11 +31,11 @@ public class Direction {
         return of(this.right, nextRight);
     }
 
-    public Direction next() {
+    public Direction next(LadderPointGenerator ladderPointGenerator) {
         if (this.right) {
             return next(FALSE);
         }
-        return next(LadderPointGenerator.generatePoint());
+        return next(ladderPointGenerator.generatePoint());
     }
 
     public static Direction of(boolean first, boolean second) {

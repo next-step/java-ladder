@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.line.LadderLines;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.result.LadderResults;
+import nextstep.ladder.generator.RandomPointGenerator;
 
 public class Ladder {
     private final Players players;
@@ -18,7 +19,7 @@ public class Ladder {
     private Ladder(String[] playerNames, String[] ladderResults, int ladderHeight) {
         this(new Players(playerNames),
                 new LadderResults(playerNames.length, ladderResults),
-                new LadderLines(playerNames.length, ladderHeight));
+                new LadderLines(playerNames.length, ladderHeight, new RandomPointGenerator()));
     }
 
     public static Ladder of(String[] playerNames, String[] ladderResults, int ladderHeight) {
