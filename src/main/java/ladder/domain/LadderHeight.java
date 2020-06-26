@@ -18,7 +18,7 @@ public class LadderHeight {
         return height;
     }
 
-    public void validateMinHeight(int height) {
+    private void validateMinHeight(int height) {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 2이상 이어야 합니다.");
         }
