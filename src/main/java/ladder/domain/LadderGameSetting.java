@@ -26,12 +26,12 @@ public class LadderGameSetting {
         return new LadderGameSetting(persons, prizes);
     }
 
-    public List<Person> getPersons() {
-        return persons.getPersons();
+    public Persons getPersons() {
+        return persons;
     }
 
-    public List<String> getPrizes() {
-        return prizes.getPrizes();
+    public Prizes getPrizes() {
+        return prizes;
     }
 
     public Map<String, String> findPrize(Ladder ladder) {

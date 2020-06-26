@@ -41,7 +41,7 @@ public class Prizes {
         return prizes.size();
     }
 
-    public String getPrizeValue(int prizeIndex) {
-        return prizes.get(prizeIndex);
+    public String getPrizeValue(int prizeLocation) {
+        return prizes.get(prizeLocation);
     }
 }

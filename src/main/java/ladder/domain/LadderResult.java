@@ -17,11 +17,11 @@ public class LadderResult {
         return ladder;
     }
 
-    public List<Person> getPersons(){
+    public Persons getPersons(){
         return ladderGameInfo.getPersons();
     }
 
-    public List<String> getPrizes(){
+    public Prizes getPrizes(){
         return ladderGameInfo.getPrizes();
     }
 

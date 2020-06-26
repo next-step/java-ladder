@@ -25,8 +25,9 @@ public class ResultView {
         System.out.print(NEW_LINE);
     }
 
-    private static void arrangePersons(List<Person> persons){
-       persons.stream()
+    private static void arrangePersons(Persons persons){
+       persons.getPersons()
+              .stream()
               .map(person -> formatWord(person.getName()))
               .forEach(System.out::print);
     }
@@ -43,8 +44,9 @@ public class ResultView {
               });
     }
 
-    private static void arrangeResults(List<String> prizes) {
-        prizes.stream()
+    private static void arrangeResults(Prizes prizes) {
+        prizes.getPrizes()
+              .stream()
               .map(result -> formatWord(result))
               .forEach(result -> System.out.print(result));
     }

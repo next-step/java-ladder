@@ -17,8 +17,11 @@ public class LadderGameSettingTest {
         Persons persons = Persons.of("참여자1,참여자2,참여자3,참여자4");
         Prizes prizes = Prizes.of("보상1,보상2,보상3,보상4");
         assertThat(LadderGameSetting.of(persons,prizes)).isExactlyInstanceOf(LadderGameSetting.class);
-        assertThat(LadderGameSetting.of(persons,prizes).getPersons()).hasSize(4);
-        assertThat(LadderGameSetting.of(persons,prizes).getPrizes()).hasSize(4);
+
+        Persons setPersons = LadderGameSetting.of(persons,prizes).getPersons();
+        Prizes setPrizes = LadderGameSetting.of(persons,prizes).getPrizes();
+        assertThat(setPersons.count()).isEqualTo(4);
+        assertThat(setPrizes.count()).isEqualTo(4);
     }
 
     @Test
