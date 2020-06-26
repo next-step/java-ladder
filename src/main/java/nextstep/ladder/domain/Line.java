@@ -76,7 +76,9 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        return ladders;
+        List<Boolean> deepCopiedLadders = new ArrayList<>();
+        deepCopiedLadders.addAll(ladders);
+        return deepCopiedLadders;
     }
 
     @Override
