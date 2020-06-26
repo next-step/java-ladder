@@ -30,10 +30,6 @@ public class Point {
         return new Point(index + 1, direction.next(ladderPointGenerator));
     }
 
-    public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
-    }
-
     public Point last() {
         return new Point(index + 1, direction.last());
     }
