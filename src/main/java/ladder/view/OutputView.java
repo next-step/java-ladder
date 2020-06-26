@@ -1,10 +1,7 @@
 package ladder.view;
 
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderPrize;
-import ladder.domain.Participants;
-import ladder.domain.User;
+import ladder.domain.*;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ public class OutputView {
     private static final String LADDER_HORIZON_STRING = "-";
     private static final String EMPTY = "";
     private static final String SPACE = " ";
+    private static final String COLON = ":";
 
     private static final String LEFT_GRAVITY_STRING_FORMAT = "%-" + User.NAME_LENGTH_LIMIT + "s";
     private static final String RiGHT_GRAVITY_STRING_FORMAT = "%" + User.NAME_LENGTH_LIMIT + "s";
@@ -41,7 +39,7 @@ public class OutputView {
         System.out.println(text);
     }
 
-    public static void printLadder(Participants participants, Ladder ladder, List<LadderPrize> ladderPrizes) {
+    public static void printLadder(Participants participants, Ladder ladder, LadderPrizes ladderPrizes) {
         printLadderTitle();
         printUsers(participants.getUserAll());
         printLadderSkeleton(ladder);
@@ -73,21 +71,26 @@ public class OutputView {
         return shortLine.toString();
     }
 
-    private static void printLadderPrizes(List<LadderPrize> ladderPrizes) {
-        String text = ladderPrizes.stream().map(LadderPrize::toString)
-                .reduce(EMPTY, (s1, s2) -> s1 + SPACE + String.format(LEFT_GRAVITY_STRING_FORMAT, s2)).trim();
-        System.out.println(text);
+    private static void printLadderPrizes(LadderPrizes ladderPrizes) {
+        StringBuilder ladderPrizesText = new StringBuilder();
+        for (int i = 0 ; i < ladderPrizes.size() ; i++ )
+        {
+            ladderPrizesText
+                    .append(String.format(LEFT_GRAVITY_STRING_FORMAT, ladderPrizes.get(i)))
+                    .append(SPACE);
+        }
+        System.out.println(ladderPrizesText.toString());
     }
 
-    public static void printLadderResult(List<Integer> ladderPrizesIndex, List<LadderPrize> ladderPrizes, Participants participants) {
+    public static void printLadderResult(Participants participants, LadderPrizes ladderPrizes) {
         printResultTitle();
 
-        if(ladderPrizesIndex.size() == 1) {
-            System.out.println(ladderPrizes.get(ladderPrizesIndex.get(0)));
+        if(ladderPrizes.size() == 1) {
+            System.out.println(ladderPrizes.get(0));
         }
         else {
-            for (int i = 0 ; i < ladderPrizesIndex.size() ; i++) {
-                System.out.println(participants.getUser(i).toString() + ":" + ladderPrizes.get(ladderPrizesIndex.get(i)));
+            for (int i = 0; i < ladderPrizes.size() ; i++) {
+                System.out.println(participants.get(i).toString() + SPACE + COLON + SPACE + ladderPrizes.get(i));
             }
         }
     }
