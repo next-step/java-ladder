@@ -9,27 +9,27 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Validator {
-    private final int MAX_USER_NAME_LENGH = 5;
+    private static final int MAX_USER_NAME_LENGH = 5;
 
-    public int checkLadderHeight(int ladderHeight) {
+    public static int checkLadderHeight(int ladderHeight) {
         if (ladderHeight <= 0) {
             throw new IllegalArgumentException(LadderStringResource.LADDER_HEIGHT_EXCEPTION_TEXT);
         }
         return ladderHeight;
     }
 
-    public List<String> checkUserNameLength(List<String> userNames) {
-        return userNames.stream().map(this::checkUserName).collect(Collectors.toList());
+    public static List<String> checkUserNameLength(List<String> userNames) {
+        return userNames.stream().map(Validator::checkUserName).collect(Collectors.toList());
     }
 
-    private String checkUserName(String userName) {
+    private static String checkUserName(String userName) {
         if (userName.length() > MAX_USER_NAME_LENGH) {
             throw new IllegalArgumentException(LadderStringResource.USER_NAME_EXCEPTION_TEXT);
         }
         return userName;
     }
 
-    public List<String> checkPlayResult(List<String> userNames, List<String> playResult) {
+    public static List<String> checkPlayResult(List<String> userNames, List<String> playResult) {
         if (userNames.size() != playResult.size()) {
             throw new IllegalArgumentException(LadderStringResource.PLAY_RESULT_LENGTH_EXCEPTION);
         }
@@ -38,7 +38,7 @@ public class Validator {
         return playResult;
     }
 
-    private void checkResultBlank(List<String> playResult) {
+    private static void checkResultBlank(List<String> playResult) {
         for (String s : playResult) {
             if (LadderUtils.isBlank(s)) {
                 throw new IllegalArgumentException(LadderStringResource.PLAY_RESULT_BLANK_EXCEPTION);
@@ -46,7 +46,7 @@ public class Validator {
         }
     }
 
-    public String checkUserNameForResult(String userName, Map<String, User> resultMap) {
+    public static String checkUserNameForResult(String userName, Map<String, User> resultMap) {
         if (!resultMap.containsKey(userName) && !userName.equals("all")) {
             throw new IllegalArgumentException(LadderStringResource.USER_NAME_FOR_RESULT_EXCEPTION);
         }

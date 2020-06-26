@@ -9,13 +9,10 @@ public class LadderLine {
     private List<Point> points;
     private DrawLineStrategy drawLineStrategy;
 
-    public List<Point> getPoints() {
-        return points;
-    }
-
     public LadderLine(int userCount, DrawLineStrategy drawLineStrategy) {
         this.drawLineStrategy = drawLineStrategy;
         points = new ArrayList<>();
+
         Point point = initFirstPoint(points);
         point = initBodyPoint(userCount, points, point);
         initLastPoint(points, point);
@@ -42,5 +39,9 @@ public class LadderLine {
 
     public int move(int position) {
         return points.get(position).move();
+    }
+
+    public List<Point> getPoints() {
+        return points;
     }
 }
