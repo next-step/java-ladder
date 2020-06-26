@@ -11,14 +11,14 @@ public class GameUsers {
     private List<User> users;
 
     public GameUsers(String[] userNames) {
+        validUserCount(userNames);
         this.users = new ArrayList<>();
         Arrays.stream(userNames)
             .forEach(userName -> users.add(new User(userName)));
-        validUserCount();
     }
 
-    private void validUserCount() {
-        if(users.size() < 2) {
+    private void validUserCount(String[] userNames) {
+        if (userNames == null || userNames.length < 2) {
             throw new IllegalArgumentException(INVALID_USER_COUNT);
         }
     }
