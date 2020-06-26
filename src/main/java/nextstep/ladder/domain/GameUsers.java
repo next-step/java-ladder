@@ -12,8 +12,7 @@ public class GameUsers {
 
     public GameUsers(String[] userNames) {
         validUserCount(userNames);
-        this.users = new ArrayList<>();
-        Arrays.stream(userNames)
+        this.users = Arrays.stream(userNames)
             .map(User::new)
             .collect(Collectors.toList());
     }
