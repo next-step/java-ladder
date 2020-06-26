@@ -29,6 +29,7 @@ public class LadderLine {
         for (int i = 1; i < sizeOfPerson - 1; i++) {
             Point newPoint = point.next(ladderPointGenerator);
             points.add(newPoint);
+            point = newPoint;
         }
         return point;
     }
