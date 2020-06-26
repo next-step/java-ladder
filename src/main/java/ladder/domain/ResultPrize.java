@@ -10,8 +10,8 @@ public class ResultPrize {
         this.result = result;
     }
 
-    public static ResultPrize of(LadderResult ladderGameResult) {
-        return new ResultPrize(ladderGameResult.findResult());
+    public static ResultPrize of(Map<String, String> result) {
+        return new ResultPrize(result);
     }
 
     public Map<String, String> getResult() {

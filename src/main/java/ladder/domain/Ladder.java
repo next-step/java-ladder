@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,11 +30,17 @@ public class Ladder {
                      .collect(collectingAndThen(Collectors.toList(),Ladder::new));
     }
 
-    public int getPrizeIndex(int personIndex) {
-        int prizeIndex = personIndex;
+    public int findPrizePosition(int personPosition) {
+        int prizePosition = personPosition;
         for (Layer layer : layers){
-            prizeIndex = layer.move(prizeIndex);
+            prizePosition = layer.move(prizePosition);
         }
-        return prizeIndex;
+        return prizePosition;
+    }
+
+    public Map<String, String> findPrize(LadderGameSetting ladderGameSetting) {
+        Persons persons = ladderGameSetting.getPersons();
+        Prizes prizes = ladderGameSetting.getPrizes();
+        return persons.prizeResult(this, prizes);
     }
 }

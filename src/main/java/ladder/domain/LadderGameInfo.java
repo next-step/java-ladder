@@ -13,11 +13,11 @@ public class LadderGameInfo {
         this.height = height;
     }
 
-    public List<Person> getPersons() {
+    public Persons getPersons() {
         return ladderGameSetting.getPersons();
     }
 
-    public List<String> getPrizes() {
+    public Prizes getPrizes() {
         return ladderGameSetting.getPrizes();
     }
 
@@ -26,6 +26,6 @@ public class LadderGameInfo {
     }
 
     public Map<String, String> result(Ladder ladder) {
-        return ladderGameSetting.findPrize(ladder);
+        return ladder.findPrize(ladderGameSetting);
     }
 }
