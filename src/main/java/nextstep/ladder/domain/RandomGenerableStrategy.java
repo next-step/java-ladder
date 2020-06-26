@@ -27,18 +27,33 @@ public class RandomGenerableStrategy implements GenerableStrategy {
 
     private void putLadder(List<Boolean> ladders, int currentPosition) {
         Boolean hasCurrentLadder = random.nextBoolean();
-        int previousPosition = currentPosition - 1;
-        int nextPosition = currentPosition + 1;
-        if (hasCurrentLadder == false) {
+
+        if (!hasCurrentLadder) {
             return;
         }
-        if (previousPosition >= 0 && ladders.get(previousPosition)) {
+        if (hasPreviousPositionLadder(ladders, currentPosition)) {
             return;
         }
-        if (nextPosition < ladders.size() - 1 && ladders.get(nextPosition)) {
+        if (hasNextPositionLadder(ladders, currentPosition)) {
             return;
         }
 
         ladders.set(currentPosition, true);
+    }
+
+    private boolean hasPreviousPositionLadder(List<Boolean> ladders, int currentPosition) {
+        int previousPosition = currentPosition - 1;
+        if (previousPosition >= 0 && ladders.get(previousPosition)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasNextPositionLadder(List<Boolean> ladders, int currentPosition) {
+        int nextPosition = currentPosition + 1;
+        if (nextPosition < ladders.size() - 1 && ladders.get(nextPosition)) {
+            return true;
+        }
+        return false;
     }
 }
