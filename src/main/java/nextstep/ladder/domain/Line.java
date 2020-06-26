@@ -10,9 +10,7 @@ public class Line extends LineGenerating {
 
     public Line(int length, GenerableStrategy generableStrategy) {
         super(generableStrategy);
-        if (length < 1) {
-            throw new IllegalArgumentException(INVALID_LINE_LENGTH);
-        }
+        validateLength(length);
         ladders = new ArrayList<>();
         initialize(length);
         ladders = generate(length);
@@ -21,6 +19,12 @@ public class Line extends LineGenerating {
     private void initialize(int length) {
         for (int i = 0; i < length; ++i) {
             ladders.add(false);
+        }
+    }
+
+    private void validateLength(int length) {
+        if (length < 1) {
+            throw new IllegalArgumentException(INVALID_LINE_LENGTH);
         }
     }
 
