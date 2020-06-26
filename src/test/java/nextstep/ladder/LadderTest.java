@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import nextstep.ladder.mock.LadderMock;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,9 +25,9 @@ public class LadderTest {
     @Test
     @DisplayName("보상 위치값 가져오기 메소드 정상 작동하는지 테스트 ")
     void prizeIndexMethodTest() {
-        LadderMock ladderMock = new LadderMock();
-        assertThat(ladderMock.ladder.getPrizeIndex(0)).isEqualTo(2);
-        assertThat(ladderMock.ladder.getPrizeIndex(1)).isEqualTo(0);
-        assertThat(ladderMock.ladder.getPrizeIndex(2)).isEqualTo(1);
+        LadderDummy ladderDummy = new LadderDummy();
+        assertThat(ladderDummy.ladder.findPrizePosition(0)).isEqualTo(2);
+        assertThat(ladderDummy.ladder.findPrizePosition(1)).isEqualTo(0);
+        assertThat(ladderDummy.ladder.findPrizePosition(2)).isEqualTo(1);
     }
 }

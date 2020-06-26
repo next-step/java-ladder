@@ -2,15 +2,11 @@ package nextstep.ladder;
 
 import ladder.domain.*;
 import ladder.util.StringUtil;
-import nextstep.ladder.mock.LadderMock;
-import org.assertj.core.util.Lists;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,11 +41,11 @@ public class PersonsTest {
     @Test
     @DisplayName("사람별 보상값 정상적으로 가져오는지 테스트")
     void prizeResultTest() {
-        LadderMock ladderMock = new LadderMock();
+        LadderDummy ladderDummy = new LadderDummy();
         Persons persons = Persons.of("pobi,hpnux,jk");
-        Map<String, String> result = persons.prizeResult(ladderMock.ladder, ladderMock.prizes);
-        assertThat(result.get("pobi")).isEqualTo(ladderMock.prizes.getPrizeValue(2));
-        assertThat(result.get("hpnux")).isEqualTo(ladderMock.prizes.getPrizeValue(0));
-        assertThat(result.get("jk")).isEqualTo(ladderMock.prizes.getPrizeValue(1));
+        Map<String, String> result = persons.prizeResult(ladderDummy.ladder, ladderDummy.prizes);
+        assertThat(result.get("pobi")).isEqualTo(ladderDummy.prizes.getPrizeValue(2));
+        assertThat(result.get("hpnux")).isEqualTo(ladderDummy.prizes.getPrizeValue(0));
+        assertThat(result.get("jk")).isEqualTo(ladderDummy.prizes.getPrizeValue(1));
     }
 }
