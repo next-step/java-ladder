@@ -42,11 +42,10 @@ public class Persons {
 
     public Map<String, String> prizeResult(Ladder ladder, Prizes prizes) {
         Map<String, String> result = new LinkedHashMap<>();
-        int personIndex = 0;
-        for (Person person : persons){
-            int prizeIndex = ladder.getPrizeIndex(personIndex);
-            result.put(person.getName(), prizes.getPrizeValue(prizeIndex));
-            personIndex++;
+        for (int position = 0; position < persons.size(); position++){
+            Person person = persons.get(position);
+            int prizeLocation = ladder.findPrizePosition(position);
+            result.put(person.getName(), prizes.getPrizeValue(prizeLocation));
         }
         return result;
     }
