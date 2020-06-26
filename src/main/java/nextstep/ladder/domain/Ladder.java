@@ -8,11 +8,11 @@ public class Ladder {
 
     private List<Line> ladder;
 
-    public Ladder(int height, int countOfPerson) {
+    public Ladder(int height, int countOfPerson, GenerableStrategy generableStrategy) {
         ladder = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(countOfPerson - 1, new RandomGenerableStrategy()));
+            ladder.add(new Line(countOfPerson - 1, generableStrategy));
         }
     }
 

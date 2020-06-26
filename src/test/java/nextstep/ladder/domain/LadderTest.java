@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
@@ -13,7 +14,8 @@ class LadderTest {
         int countOfPerson = 5;
 
         //when
-        Ladder ladder = new Ladder(height,countOfPerson);
+        Ladder ladder = new Ladder(height, countOfPerson,
+            length -> Arrays.asList(true, false, true, false, true));
 
         //then
         System.out.println(ladder);

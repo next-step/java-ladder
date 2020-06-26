@@ -2,6 +2,7 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.GameUsers;
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.RandomGenerableStrategy;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -16,7 +17,7 @@ public class Main {
 
         Integer ladderHeight = inputView.inputLadderHeight();
 
-        Ladder ladder = new Ladder(ladderHeight, gameUsers.getUserCount());
+        Ladder ladder = new Ladder(ladderHeight, gameUsers.getUserCount(), new RandomGenerableStrategy());
 
         resultView.printResult(gameUsers.getUserNames(), ladder.getLadder());
     }
