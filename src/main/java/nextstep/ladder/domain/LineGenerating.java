@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 
-public class Generating {
+public class LineGenerating {
 
     public static final String INVALID_PARAMETER_GENERABLE_STRATEGY = "generableStrategy cannot be null";
 
@@ -12,7 +12,7 @@ public class Generating {
         return generableStrategy.generate(length);
     }
 
-    public Generating(GenerableStrategy generableStrategy) {
+    public LineGenerating(GenerableStrategy generableStrategy) {
         if (generableStrategy == null) {
             throw new IllegalArgumentException(INVALID_PARAMETER_GENERABLE_STRATEGY);
         }
