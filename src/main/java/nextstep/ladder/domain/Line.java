@@ -10,7 +10,7 @@ public class Line {
 
     public Line(int length, GenerableStrategy generableStrategy) {
         validateLength(length);
-        points = generableStrategy.generate(length);
+        points = makePoints(length, generableStrategy);
     }
 
     private void validateLength(int length) {
@@ -27,6 +27,52 @@ public class Line {
         List<Boolean> deepCopiedPoints = new ArrayList<>();
         deepCopiedPoints.addAll(points);
         return deepCopiedPoints;
+    }
+
+    private List<Boolean> makePoints(int length, GenerableStrategy generableStrategy) {
+        List<Boolean> points = initializePoints(length);
+
+        for (int current = 0; current < length; current++) {
+            Boolean hasPoint = generableStrategy.generate();
+            if (hasPoint && canBePoint(points, current)) {
+                points.set(current, true);
+            }
+        }
+        return points;
+    }
+
+    private List<Boolean> initializePoints(int length) {
+        List<Boolean> points = new ArrayList<>();
+        for (int i = 0; i < length; ++i) {
+            points.add(false);
+        }
+        return points;
+    }
+
+    private boolean canBePoint(List<Boolean> points, int currentPosition) {
+        if (hasPreviousPositionPoint(points, currentPosition)) {
+            return false;
+        }
+        if (hasNextPositionPoint(points, currentPosition)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean hasPreviousPositionPoint(List<Boolean> points, int currentPosition) {
+        int previousPosition = currentPosition - 1;
+        if (previousPosition >= 0 && points.get(previousPosition)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasNextPositionPoint(List<Boolean> points, int currentPosition) {
+        int nextPosition = currentPosition + 1;
+        if (nextPosition < points.size() - 1 && points.get(nextPosition)) {
+            return true;
+        }
+        return false;
     }
 
     @Override

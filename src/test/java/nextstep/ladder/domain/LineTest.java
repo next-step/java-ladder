@@ -13,10 +13,11 @@ class LineTest {
         int length = 5;
 
         //when
-        Line line = new Line(length, line1 -> Arrays.asList(true, false, true, false, true));
+        Line line = new Line(length, () -> true);
 
         //then
         System.out.println(line);
         assertThat(line.getLadderLength()).isEqualTo(length);
+        assertThat(line.getLine()).isEqualTo(Arrays.asList(true, false, true, false, true));
     }
 }
