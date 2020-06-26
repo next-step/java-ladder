@@ -16,7 +16,7 @@ public class UserTest {
     public void getNameTest() {
         String name = "test";
 
-        assertThat(User.of(name).getName()).isEqualTo(name);
+        assertThat(User.of(name).toString()).isEqualTo(name);
     }
 
     @DisplayName("입력받는 이름이 5글자를 초과하면 IllegalArgumetException 아 발생한다.")

@@ -22,10 +22,6 @@ public class User {
         return names.stream().map(User::new).collect(Collectors.toList());
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void validateNameLength(String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("입력된 이름이 제한 길이를 초과 합니다.");
@@ -49,5 +45,11 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
