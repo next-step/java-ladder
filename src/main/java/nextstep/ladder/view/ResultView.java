@@ -10,8 +10,7 @@ public class ResultView {
 
 
     public void printUserNames(List<String> userNames) {
-        userNames.stream()
-            .forEach(userName -> System.out.printf("%-6s", userName));
+        userNames.forEach(userName -> System.out.printf("%-6s", userName));
         System.out.println();
     }
 
