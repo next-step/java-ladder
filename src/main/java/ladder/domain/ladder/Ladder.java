@@ -1,7 +1,5 @@
 package ladder.domain.ladder;
 
-import ladder.domain.user.LadderUsers;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,18 +7,12 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
-    private final LadderUsers users;
-    private List<FootStep> footSteps = new ArrayList<>();
 
-    private Ladder(int height, LadderUsers users) {
+    private List<Line> lines = new ArrayList<>();
+
+    private Ladder(int height, int countOfPlayers) {
         validate(height);
-        this.users = users;
-        createFootSteps(height);
-    }
-
-    private void createFootSteps(int height) {
-        IntStream.range(0, height)
-                .forEach(i -> this.footSteps.add(FootStep.of(this.users.getCountOfUsers())));
+        createLines(height, countOfPlayers);
     }
 
     private void validate(int height) {
@@ -29,20 +21,31 @@ public class Ladder {
         }
     }
 
-    public static Ladder of(int height, LadderUsers users) {
-        return new Ladder(height, users);
+    private void createLines(int height, int countOfPlayers) {
+        IntStream.range(0, height)
+                .forEach(i -> this.lines.add(Line.of(countOfPlayers)));
     }
 
-    public int getFootStepSize() {
-        return footSteps.size();
+    public static Ladder of(int height, int countOfPlayers) {
+        return new Ladder(height, countOfPlayers);
+    }
+
+    public int getLineSize() {
+        return lines.size();
+    }
+
+    public Integer makeResult(Integer index) {
+        for (Line line : lines) {
+            index = line.move(index).move(index);
+        }
+
+        return index;
     }
 
     @Override
     public String toString() {
-        return this.users.toString() +
-                "\n" +
-                this.footSteps.stream()
-                        .map(FootStep::toString)
-                        .collect(Collectors.joining("\n"));
+        return this.lines.stream()
+                .map(Line::toString)
+                .collect(Collectors.joining("\n"));
     }
 }
