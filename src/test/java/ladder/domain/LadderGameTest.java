@@ -6,45 +6,31 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-
 public class LadderGameTest {
 
-    @DisplayName("LadderGame 이 정상적으로 생성된다")
+    @DisplayName("모든 사용자의 실행결과가 리턴된다")
     @Test
-    public void createTest() {
+    public void playAllTest() {
         List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
-        List<LadderResult> ladderResults = LadderResult.of(List.of("꽝","5000","꽝","3000"));
-        Ladder ladder = new Ladder(LadderHeight.of(5), users.size());
+        Ladder ladder = new Ladder(LadderHeight.of(3), 4, () -> true);
+        LadderGame ladderGame = new LadderGame(Participants.of(users, ladder), ladder);
 
-        LadderGame ladderGame = new LadderGame(users, ladderResults, ladder);
+        List<Integer> result = ladderGame.play("all");
 
-        assertThat(ladderGame).isNotNull();
+        Assertions.assertThat(result.size()).isEqualTo(4);
+        Assertions.assertThat(result).containsSequence(1,0,3,2);
     }
 
-
-    @DisplayName("사용자와 사다리 결과의 수가 다를 때 예외를 발생한다.")
+    @DisplayName("입력한 사용자의 실행 결과가 리턴된다.")
     @Test
-    public void differentUserCountAndResultCount() {
+    public void playOnlyOneTest() {
         List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
-        List<LadderResult> ladderResults = LadderResult.of(List.of("꽝","5000","꽝"));
-        Ladder ladder = new Ladder(LadderHeight.of(5), users.size());
+        Ladder ladder = new Ladder(LadderHeight.of(3), 4, () -> true);
+        LadderGame ladderGame = new LadderGame(Participants.of(users, ladder), ladder);
 
-        assertThatThrownBy(() -> {
-            new LadderGame(users, ladderResults, ladder);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
+        List<Integer> result = ladderGame.play("pobi");
 
-    @DisplayName("게인을 진행하고 검사결과를 리턴한다.")
-    @Test
-    public void gameStartTest() {
-        List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
-        List<LadderResult> ladderResults = LadderResult.of(List.of("꽝","5000","꽝","3000"));
-        Ladder ladder = new Ladder(LadderHeight.of(3), users.size(), () -> true);
-        LadderGame ladderGame = new LadderGame(users, ladderResults, ladder);
-
-        LadderResult result = ladderGame.gameStart(User.of("pobi"));
-
-        assertThat(result).isEqualTo(LadderResult.of("5000"));
+        Assertions.assertThat(result.size()).isEqualTo(1);
+        Assertions.assertThat(result).containsSequence(1);
     }
 }
