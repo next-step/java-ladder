@@ -16,6 +16,14 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
+    public int getPointsSize() {
+        return points.size();
+    }
+
+    public boolean getPoint(int index) {
+        return points.get(index);
+    }
+
     public List<Boolean> getPoints() {
         return points;
     }

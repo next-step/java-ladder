@@ -1,4 +1,4 @@
-package nextstep.step3.domain;
+package nextstep.step4.domain;
 
 import java.util.Objects;
 
