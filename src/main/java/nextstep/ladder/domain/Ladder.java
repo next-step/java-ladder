@@ -1,25 +1,25 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.line.LadderLines;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.result.LadderResults;
-import nextstep.ladder.strategy.RandomStrategy;
+import nextstep.ladder.generator.RandomPointGenerator;
 
 public class Ladder {
     private final Players players;
-    private final Lines lines;
+    private final LadderLines ladderLines;
     private final LadderResults ladderResults;
 
-    private Ladder(Players players, LadderResults ladderResults, Lines lines) {
+    private Ladder(Players players, LadderResults ladderResults, LadderLines ladderLines) {
         this.players = players;
         this.ladderResults = ladderResults;
-        this.lines = lines;
+        this.ladderLines = ladderLines;
     }
 
     private Ladder(String[] playerNames, String[] ladderResults, int ladderHeight) {
         this(new Players(playerNames),
                 new LadderResults(playerNames.length, ladderResults),
-                new Lines(new RandomStrategy(), playerNames.length, ladderHeight));
+                new LadderLines(playerNames.length, ladderHeight, new RandomPointGenerator()));
     }
 
     public static Ladder of(String[] playerNames, String[] ladderResults, int ladderHeight) {
@@ -34,7 +34,7 @@ public class Ladder {
         return ladderResults;
     }
 
-    public Lines getLines() {
-        return lines;
+    public LadderLines getLadderLines() {
+        return ladderLines;
     }
 }

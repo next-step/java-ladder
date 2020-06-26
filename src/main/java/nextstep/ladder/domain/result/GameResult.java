@@ -1,8 +1,7 @@
 package nextstep.ladder.domain.result;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.line.Line;
-import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.line.LadderLines;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 
@@ -13,24 +12,14 @@ import java.util.Map;
 public class GameResult {
     private final Map<Player, LadderResult> gameResults = new HashMap<>();
 
-    private GameResult(Players players, Lines lines, LadderResults ladderResults) {
+    private GameResult(Players players, LadderLines ladderLines, LadderResults ladderResults) {
         for (int i = 0; i < players.getPlayerCount(); i++) {
-            gameResults.put(players.find(i), ladderResults.find(findLastPlayerPosition(lines, i)));
+            gameResults.put(players.find(i), ladderResults.find(ladderLines.findLastPlayerPosition(i)));
         }
     }
 
     public static GameResult of(Ladder ladder) {
-        return new GameResult(ladder.getPlayers(), ladder.getLines(), ladder.getLadderResults());
-    }
-
-    private int findLastPlayerPosition(final Lines lines, final int playerPosition) {
-        int position = playerPosition;
-
-        for (Line line : lines.getLines()) {
-            position = line.findNextPosition(position);
-        }
-
-        return position;
+        return new GameResult(ladder.getPlayers(), ladder.getLadderLines(), ladder.getLadderResults());
     }
 
     public LadderResult getResult(Player player) {

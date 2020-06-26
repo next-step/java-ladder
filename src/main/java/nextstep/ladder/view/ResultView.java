@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.line.LadderLines;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.result.GameResult;
@@ -17,7 +17,7 @@ public class ResultView {
 
         printPlayers(ladder.getPlayers());
 
-        printLines(ladder.getLines());
+        printLadderLines(ladder.getLadderLines());
     }
 
     private static void printPlayers(Players players) {
@@ -29,8 +29,8 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLines(Lines lines) {
-        lines.getLines().forEach(System.out::println);
+    private static void printLadderLines(LadderLines ladderLines) {
+        ladderLines.getLadderLines().forEach(System.out::println);
     }
 
     public static void printResults(LadderResults ladderResults) {
