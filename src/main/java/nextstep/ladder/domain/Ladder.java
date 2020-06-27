@@ -10,6 +10,9 @@ public class Ladder {
 
     private final List<Line> lines;
 
+    private static final int FIRST = 1;
+    private static final int MINIMUM_USER_COUNT = 2;
+
     public Ladder(int height, int countOfPerson) {
         validationCheck(height, countOfPerson);
         this.height = height;
@@ -17,18 +20,18 @@ public class Ladder {
     }
 
     private void validationCheck(int height, int countOfPerson) {
-        if (height < 1) {
+        if (height < FIRST) {
             throw new IllegalArgumentException("높이는 0 보다 커야 합니다.");
         }
 
-        if (countOfPerson < 2) {
+        if (countOfPerson < MINIMUM_USER_COUNT) {
             throw new IllegalArgumentException("사용자 수는 1 보다 커야 합니다.");
         }
     }
 
     private List<Line> createLines(int height, int countOfPerson) {
-        return IntStream.rangeClosed(1, countOfPerson)
-                .mapToObj(index -> Line.of(height))
+        return IntStream.rangeClosed(FIRST, height)
+                .mapToObj(index -> Line.of(countOfPerson))
                 .collect(Collectors.toList());
     }
 
