@@ -32,7 +32,7 @@ public class Direction {
         if (this.right) {
             return next(FALSE);
         }
-        return next(randomPoint());
+        return next(RandomGenerator.getRandom());
     }
 
     public static Direction of(boolean first, boolean second) {

@@ -6,29 +6,41 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Line {
-	private List<Boolean> points = new ArrayList<>();
-
+	List<Point> points = new ArrayList<>();
+	
 	public Line(int PlayerNumbers, boolean anyValue) {
 		initLine(PlayerNumbers, anyValue);
 	}
 
-	private List<Boolean> initLine(int playerNumbers, boolean anyValue) {
-		points.add(anyValue); // 첫번째 값은 무조건 false
-
-		IntStream.range(1, playerNumbers)
-		.forEach(i -> points.add(randomPoint(points.get(i - 1))));
-
+	private List<Point> initLine(int playerNumbers, boolean anyValue) {
+		
+		
+		Point point = new Point(0, new Direction(anyValue, RandomGenerator.getRandom()));
+		
+		points.add(point);
+		
+		for( int i = 1; i< playerNumbers-1; i++) {
+			point = point.next();
+			points.add(point);
+		}
+		
+		points.add(point.last());
+		
+		for(int i=0; i<points.size(); i++) {
+			System.out.println(points.get(i).toString());
+		}
 		return points;
 	}
 
-	private Boolean randomPoint(Boolean point) {
+	/*TODO
+	 * private Boolean randomPoint(Boolean point) {
 		if (point) {
 			return false;
 		}
 		return new RandomGenerator().getRandom();
-	}
+	}*/
 
-	public List<Boolean> getLine() {
+	public List<Point> getLine() {
 		return Collections.unmodifiableList(points);
 	}
 }
