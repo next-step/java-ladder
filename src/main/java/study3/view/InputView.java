@@ -12,6 +12,7 @@ public class InputView {
 	private static final int NAME_LENGTH_LIMIT = 5;
 	private static final String NAME_LENGTH_LIMIT_MESSAGE = "이름은 최대 5자 입니다.";
 	private static final String EXECUTE_RESULT_MESSAGE = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+	private static final String WANT_RESULT = "결과를 보고싶은 사람은?";
 	
 	public List<String> getParticipantNames() {
 		System.out.println(PARTICIPATE_MESSAGES);
@@ -35,6 +36,11 @@ public class InputView {
 	public String getExecuteResult() {
 		System.out.println(EXECUTE_RESULT_MESSAGE);
 		
+		return scanner.nextLine();
+	}
+
+	public String wantResult() {
+		System.out.println(WANT_RESULT);
 		return scanner.nextLine();
 	}
 

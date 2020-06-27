@@ -15,7 +15,8 @@ public class ResultView {
 	private static final String COLUMN = "|-----";
 	private static final String ROW = "|     ";
 	private static final String NAMES_FORMAT = "%6s";
-	private static final String EXECUTE_FORMAT = "%6";
+	private static final String BLANK = "    ";
+	
 
 	public ResultView(Players players, Ladder ladder) {
 
@@ -25,6 +26,7 @@ public class ResultView {
 	}
 
 	private void viewPlayerList(Players players) {
+		
 		players.getPlayers().forEach(
 				player -> System.out.print(
 						String.format(NAMES_FORMAT, player.getPlayerName())));
@@ -38,14 +40,16 @@ public class ResultView {
 			System.out.println(i+"번째 레더" + ladder.getLadder().get(i).getLine());
 		}*/
 
-		
-		ladder.getLadder().forEach(line -> choiceRowOrColum(line));
-		System.out.println();
+		ladder.getLadder().forEach(line -> 	{
+			System.out.print(BLANK);
+			choiceRowOrColum(line);
+			});
 	}
 
 	private void choiceRowOrColum(Line line) {
 		line.getLine().stream()
-		.forEach(point -> printBarAndColumn(getPointDirection(point)));
+		.forEach(point -> 
+				printBarAndColumn(getPointDirection(point)));
 		System.out.println();
 	}
 	
@@ -64,8 +68,16 @@ public class ResultView {
 			System.out.print(COLUMN);
 		}
 	}
-	public void executeResult(String executeString) {
-		System.out.print(String.format(NAMES_FORMAT, 
-				executeString));
+	public String executeResult(String executeString) {
+		
+		String[] resultString = executeString
+							.replace(" ", "")
+							.split(",");
+		
+		for(int i=0; i<resultString.length; i++) {
+			System.out.print(BLANK +resultString[i] );
+		}
+		System.out.println();
+		return executeString;
 	}
-}
+}	
