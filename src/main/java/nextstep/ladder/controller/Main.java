@@ -22,5 +22,8 @@ public class Main {
         resultView.printLadder(gameUsers.getUserNames(), ladder.getLadder(), results);
 
         gameUsers.run(ladder);
+
+        String resultUser = inputView.inputResultUser();
+
     }
 }

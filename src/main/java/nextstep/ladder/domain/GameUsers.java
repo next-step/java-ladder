@@ -34,6 +34,12 @@ public class GameUsers {
             .collect(Collectors.toList());
     }
 
+    public List<Integer> getUserPositions() {
+        return users.stream()
+            .map(User::getCurrentPosition)
+            .collect(Collectors.toList());
+    }
+
     public void run(Ladder ladder) {
         users.stream()
             .forEach(ladder::move);
