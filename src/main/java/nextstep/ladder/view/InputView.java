@@ -22,11 +22,13 @@ public class InputView {
         String[] split = input.split(",");
         userNames = Arrays.stream(split)
                 .collect(Collectors.toList());
+        System.out.println();
     }
 
     public void inputHeight(){
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         ladderHeight = sc.nextInt();
+        System.out.println();
     }
 
     public List<String> getUserNames() {
