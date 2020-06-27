@@ -20,5 +20,7 @@ public class Main {
         Ladder ladder = new Ladder(ladderHeight, gameUsers.getUserCount(), new RandomGenerableStrategy());
 
         resultView.printResult(gameUsers.getUserNames(), ladder.getLadder());
+
+        gameUsers.run(ladder);
     }
 }

@@ -26,6 +26,12 @@ public class Ladder {
             .collect(Collectors.toList());
     }
 
+    public void move(User user) {
+        ladder.stream()
+            .sequential()
+            .forEach(line -> line.move(user));
+    }
+
     @Override
     public String toString() {
         return "Ladder{" +
