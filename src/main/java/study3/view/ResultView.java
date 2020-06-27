@@ -68,7 +68,7 @@ public class ResultView {
 			System.out.print(COLUMN);
 		}
 	}
-	public String executeResult(String executeString) {
+	public String[] executeResult(String executeString) {
 		
 		String[] resultString = executeString
 							.replace(" ", "")
@@ -78,6 +78,6 @@ public class ResultView {
 			System.out.print(BLANK +resultString[i] );
 		}
 		System.out.println();
-		return executeString;
+		return resultString;
 	}
 }	

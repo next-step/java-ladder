@@ -4,17 +4,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Results {
-	private Map<String, String> results = new HashMap<>();
+	private Map<Player, String> resultMap = new HashMap<>();
 	
-	public Results() {
-		this.results = results;
+	public Results(Map<Player, String> resultMap) {
+		this.resultMap = resultMap;
 	}
 	
-	public Map<String, String> getResult() {
-		return results;
+	public Map<Player, String> getResult() {
+		return resultMap;
 	}
 	
-	private static Results of() {
+	private static Results of(Players players, Ladder ladder, String[] resultSlapOrMoney) {
+		return new Results(playGame(players, ladder, resultSlapOrMoney));
+	}
+
+	private static Map<Player, String> playGame(Players players, Ladder ladder, String[] resultSlapOrMoney) {
 		
+		int numberOfPlayer = players.getPlayersCount();
+		
+		for(int i=0; i < numberOfPlayer; i++) {
+			
+			Player SigleplayerName = players.getPlayers().get(i);
+			String resultReward = findFinalPosition(SigleplayerName);
+			
+			resultMap.put(getPlayerName, );
+		}
+		
+		return null;
+	}
+
+	private static String findFinalPosition(String SigleplayerName) {
+
+		int finalPostion = 
+		
+		return null;
 	}
 }
