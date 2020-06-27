@@ -25,18 +25,19 @@ public class GameResult {
 		return prizes.getPrizes().stream()
 			.collect(Collectors.toMap(
 				prize -> players.playerPrizeMapFactory(prizes.prizeIndex(prize)),
-				Function.identity()
-			));
+				Function.identity()));
 	}
 
 	public Map<Player, Prize> getPlayerPrizes() {
 		return playerPrizes;
 	}
 
-	public void printPlayerResult(String name, Players players) {
+	public String printPlayerResult(String name, Players players) {
+		StringBuilder builder = new StringBuilder();
 		Player targetPlayer = players.findPlayerByName(name);
 		if (playerPrizes.containsKey(targetPlayer)) {
-			System.out.println("실행 결과\n" + playerPrizes.get(targetPlayer).getName());
+			builder.append("실행 결과\n").append(playerPrizes.get(targetPlayer).getName());
 		}
+		return builder.toString();
 	}
 }
