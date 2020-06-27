@@ -8,7 +8,6 @@ public class ResultView {
     private static final String HORIZONTAL = "-----";
     private static final String NON_HORIZONTAL = "     ";
 
-
     public void printUserNames(List<String> userNames) {
         userNames.forEach(userName -> System.out.printf("%-6s", userName));
         System.out.println();

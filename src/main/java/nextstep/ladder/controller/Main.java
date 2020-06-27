@@ -14,7 +14,7 @@ public class Main {
 
         String[] userNames = inputView.inputUserNames();
         GameUsers gameUsers = new GameUsers(userNames);
-
+        String[] results = inputView.inputResult();
         Integer ladderHeight = inputView.inputLadderHeight();
 
         Ladder ladder = new Ladder(ladderHeight, gameUsers.getUserCount(), new RandomGenerableStrategy());
