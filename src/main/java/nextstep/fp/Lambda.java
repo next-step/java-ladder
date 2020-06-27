@@ -32,27 +32,17 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sum(numbers, number -> {
-            if (number % 2 == 0) {
-                return true;
-            }
-            return false;
-        });
+        return sum(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sum(numbers, number -> {
-            if (number > 3) {
-                return true;
-            }
-            return false;
-        });
+        return sum(numbers, number -> number > 3);
     }
 
-    private static int sum(List<Integer> numbers, Conditional c) {
+    private static int sum(List<Integer> numbers, Conditional sumCondition) {
         int total = 0;
         for (int number : numbers) {
-            if (c.test(number)) {
+            if (sumCondition.test(number)) {
                 total += number;
             }
         }

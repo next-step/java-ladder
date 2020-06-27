@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -44,5 +45,20 @@ public class StreamStudyTest {
         numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
         assertThat(sum).isEqualTo(36);
+    }
+
+    @DisplayName("parameter가 null인 케이스")
+    @Test
+    public void sumOverThreeAndDouble_null_parameter() throws Exception {
+        long sum = StreamStudy.sumOverThreeAndDouble(null);
+        assertThat(sum).isEqualTo(0L);
+    }
+
+    @DisplayName("3이하의 숫자들만 있는 케이스")
+    @Test
+    public void sumOverThreeAndDouble_below_three() throws Exception {
+        numbers = Arrays.asList(1, 2, 3, 1, 2, 3);
+        long sum = StreamStudy.sumOverThreeAndDouble(numbers);
+        assertThat(sum).isEqualTo(0L);
     }
 }
