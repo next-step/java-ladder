@@ -19,7 +19,6 @@ public class OutputView {
 
 	private static void printPlayers(Players players) {
 		System.out.println(players.printPlayers());
-		System.out.println();
 	}
 
 	private static void printLines(Lines lines) {
@@ -27,7 +26,7 @@ public class OutputView {
 	}
 
 	public static void printPoints(Points points) {
-		points.printPoints();
+		System.out.println(points.printPoints());
 	}
 
 	public static void printPrizes(Prizes prizes) {

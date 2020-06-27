@@ -67,11 +67,12 @@ public class Points {
 		return givenPosition > 0 && points.get(beforeGivenPosition).isConnectedToNextPoint();
 	}
 
-	public void printPoints() {
+	public String printPoints() {
+		StringBuilder builder = new StringBuilder();
 		points.forEach(point -> {
-				System.out.print("|");
-				System.out.printf("%-5s", point.isConnectedToNextPoint() ? "-----" : "");
-			}
-		);
+			builder.append("|");
+			builder.append(String.format("%-5s", point.isConnectedToNextPoint() ? "-----" : ""));
+		});
+		return builder.toString();
 	}
 }

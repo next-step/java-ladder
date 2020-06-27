@@ -33,11 +33,6 @@ public class Lines {
 	}
 
 	public void printLines() {
-		lines.forEach(
-			line -> {
-				printPoints(line.getPoints());
-				System.out.println();
-			}
-		);
+		lines.forEach(line -> printPoints(line.getPoints()));
 	}
 }
