@@ -22,7 +22,7 @@ public class ResultView {
     }
 
     private static void arrangeLadder(Ladder ladder) {
-        System.out.println(ladder.toString());
+        System.out.print(ladder.toString());
     }
 
     private static void arrangeResults(Prizes prizes) {
