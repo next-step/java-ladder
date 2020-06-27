@@ -25,7 +25,7 @@ public class LadderGameInfo {
         return height;
     }
 
-    public Map<String, String> result(Ladder ladder) {
+    public List<ResultPrize> result(Ladder ladder) {
         return ladder.findPrize(ladderGameSetting);
     }
 }

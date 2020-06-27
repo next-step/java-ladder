@@ -25,7 +25,7 @@ public class LadderResult {
         return ladderGameInfo.getPrizes();
     }
 
-    public Map<String, String> findResult(){
+    public List<ResultPrize> findResult(){
         return ladderGameInfo.result(ladder);
     }
 }

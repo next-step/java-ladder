@@ -1,20 +1,28 @@
 package ladder.domain;
 
-import java.util.Map;
-
 public class ResultPrize {
 
-    private final Map<String, String> result;
+    private final String personName;
+    private final String prizeValue;
 
-    private ResultPrize(Map<String, String> result) {
-        this.result = result;
+    private ResultPrize(String personName, String prizeValue) {
+        this.personName = personName;
+        this.prizeValue = prizeValue;
     }
 
-    public static ResultPrize of(Map<String, String> result) {
-        return new ResultPrize(result);
+    public static ResultPrize of(String personName, String prizeValue) {
+        return new ResultPrize(personName, prizeValue);
     }
 
-    public Map<String, String> getResult() {
-        return result;
+    public String getPersonName() {
+        return personName;
+    }
+
+    public String getPrizeValue() {
+        return prizeValue;
+    }
+
+    public boolean checkEqaulName(String resultName) {
+        return personName.equals(resultName);
     }
 }

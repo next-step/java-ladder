@@ -34,7 +34,15 @@ public class LadderGameSetting {
         return prizes;
     }
 
-    public Map<String, String> findPrize(Ladder ladder) {
-        return persons.prizeResult(ladder, prizes);
+    public int getPersonsCount(){
+        return persons.count();
+    }
+
+   public String getPersonName(int position){
+        return persons.getPersonName(position);
+   }
+
+    public String getPrizeValue(int prizeLocation) {
+        return prizes.getPrizeValue(prizeLocation);
     }
 }

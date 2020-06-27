@@ -13,7 +13,7 @@ public class LadderGame {
         return new LadderResult(ladderGameInfo, ladder);
     }
 
-    public static ResultPrize play(LadderResult drawnladder) {
-        return ResultPrize.of(drawnladder.findResult());
+    public static List<ResultPrize> play(LadderResult drawnladder) {
+        return drawnladder.findResult();
     }
 }
