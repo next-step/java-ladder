@@ -30,7 +30,8 @@ public class OutputView {
 	}
 
 	public static void printPrizes(Prizes prizes) {
-		prizes.printPrizes();
+		System.out.println(prizes.printPrizes());
+		System.out.println();
 	}
 
 	public static void printPlayerResult(GameResult gameResult, Players players) {

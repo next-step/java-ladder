@@ -18,9 +18,12 @@ public class Prizes {
 		return Collections.unmodifiableList(prizes);
 	}
 
-	public void printPrizes() {
-		prizes.forEach(prize -> System.out.printf("%-6s", prize.getName()));
-		System.out.println();
+	public String printPrizes() {
+		StringBuilder builder = new StringBuilder();
+		prizes.forEach(prize ->
+			builder.append(String.format("%-6s", prize.getName()))
+		);
+		return builder.toString();
 	}
 
 	public int prizeIndex(Prize prize) {
