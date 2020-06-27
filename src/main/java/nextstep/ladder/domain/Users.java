@@ -18,7 +18,17 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
+    public int getUserCount() {
+        return users.size();
+    }
+
     public List<User> getUsers() {
         return Collections.unmodifiableList(users);
+    }
+
+    public List<String> getUserNames(){
+        return users.stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
     }
 }
