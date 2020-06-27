@@ -19,11 +19,17 @@ public class Line {
     }
 
     private Line(int countOfUser, StepStrategy stepStrategy) {
-        PointCreator pointCreator = new PointCreator(countOfUser - 1, stepStrategy);
         validate(countOfUser);
 
+        PointCreator pointCreator = new PointCreator(countOfUser - 1, stepStrategy);
         IntStream.range(0, countOfUser)
                 .forEach(i -> points.add(pointCreator.nextPoint(i)));
+    }
+
+    private void validate(int countOfUser) {
+        if (countOfUser < MIN_COUNT_OF_LINE) {
+            throw new IllegalArgumentException("Line을 생성할 수 없습니다.");
+        }
     }
 
     public static Line of(int countOfUser) {
@@ -32,12 +38,6 @@ public class Line {
 
     public static Line byStrategy(int countOfUser, StepStrategy stepStrategy) {
         return new Line(countOfUser, stepStrategy);
-    }
-
-    private void validate(int countOfUser) {
-        if (countOfUser < MIN_COUNT_OF_LINE) {
-            throw new IllegalArgumentException("Line을 생성할 수 없습니다.");
-        }
     }
 
     public int size() {

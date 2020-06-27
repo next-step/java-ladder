@@ -21,7 +21,7 @@ public class Game {
         return new Game(playing, height);
     }
 
-    public Results makeResult(String targetPlayer) {
+    public Results makeResults(String targetPlayer) {
         List<Integer> indexes = playing.findPlayerIndexBy(targetPlayer);
 
         return makeResults(indexes);
@@ -32,7 +32,7 @@ public class Game {
 
         for (Integer index : indexes) {
             Item player = playing.getPlayersBy(index);
-            Item result = playing.getResultsBy(ladder.makeResult(index));
+            Item result = playing.getResultsBy(ladder.move(index));
             results.put(player, result);
         }
 

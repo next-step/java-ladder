@@ -22,7 +22,7 @@ public class LadderGame {
         ResultView.printResult(game);
         while (!Players.PLAYERS_ALL.equals(targetPlayer)) {
             targetPlayer = InputView.doInputWantToSeeResult();
-            ResultView.printResults(game.makeResult(targetPlayer));
+            ResultView.printResults(game.makeResults(targetPlayer));
         }
     }
 }
