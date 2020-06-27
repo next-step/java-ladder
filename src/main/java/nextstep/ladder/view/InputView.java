@@ -25,7 +25,7 @@ public class InputView {
     }
 
     public String[] inputResult() {
-        System.out.println(MESSAGE_INPUT_RESULT);
+        System.out.print(MESSAGE_INPUT_RESULT);
         return scanner.nextLine().split(COMMA);
     }
 }
