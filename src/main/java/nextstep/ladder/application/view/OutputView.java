@@ -18,7 +18,8 @@ public class OutputView {
 	}
 
 	private static void printPlayers(Players players) {
-		players.printPlayers();
+		System.out.println(players.printPlayers());
+		System.out.println();
 	}
 
 	private static void printLines(Lines lines) {

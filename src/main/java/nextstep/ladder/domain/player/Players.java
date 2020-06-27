@@ -55,11 +55,10 @@ public class Players {
 		return Collections.unmodifiableList(players);
 	}
 
-	public void printPlayers() {
-		players.forEach(
-			player -> System.out.printf("%-6s", player.getName())
-		);
-		System.out.println();
+	public String printPlayers() {
+		StringBuilder builder = new StringBuilder();
+		players.forEach(player -> builder.append(String.format("%-6s", player.getName())));
+		return builder.toString();
 	}
 
 	public Players determinePlayersPositionResult(Line line) {
