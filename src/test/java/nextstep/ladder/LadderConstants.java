@@ -7,11 +7,11 @@ import ladder.domain.Prizes;
 import org.assertj.core.util.Lists;
 import java.util.List;
 
-public class LadderDummy {
+public class LadderConstants {
     public Ladder ladder;
     public Prizes prizes;
 
-    public LadderDummy(){
+    public LadderConstants(){
         Point topPoint1 = Point.of(0, false, true);
         Point topPoint2 = Point.of(1, true, false);
         Point topPoint3 = Point.of(2, false, false);
@@ -25,6 +25,6 @@ public class LadderDummy {
 
         List<Layer> layers = Lists.list(top, bottom);
         ladder = Ladder.of(layers);
-        prizes = Prizes.of("보상1, 보상2, 보상3");
+        prizes = Prizes.of("보상1,보상2,보상3");
     }
 }
