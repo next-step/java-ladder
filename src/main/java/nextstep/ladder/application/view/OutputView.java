@@ -12,6 +12,8 @@ public class OutputView {
 	private OutputView() {
 	}
 
+	private static final String ALL_KEYWORD = "all";
+
 	public static void printLadder(Ladder ladder) {
 		printPlayers(ladder.getPlayers());
 		printLines(ladder.getLines());
@@ -37,7 +39,7 @@ public class OutputView {
 	public static void printPlayerResult(GameResult gameResult, Players players) {
 		String playerName = InputView.askPlayerName();
 		System.out.println(playerName);
-		if (playerName.equals("all")) {
+		if (playerName.equals(ALL_KEYWORD)) {
 			printResults(gameResult);
 		}
 		gameResult.printPlayerResult(playerName, players);
