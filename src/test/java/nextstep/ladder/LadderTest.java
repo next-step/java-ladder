@@ -1,11 +1,12 @@
 package nextstep.ladder;
 
+import ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import ladder.domain.Height;
-import ladder.domain.Ladder;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,5 +30,23 @@ public class LadderTest {
         assertThat(ladderConstants.ladder.findPrizePosition(0)).isEqualTo(2);
         assertThat(ladderConstants.ladder.findPrizePosition(1)).isEqualTo(0);
         assertThat(ladderConstants.ladder.findPrizePosition(2)).isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @DisplayName("사람별 보상값 정상적으로 가져오는지 테스트")
+    @CsvSource(value = {"pobi:보상3","honux:보상1","jk:보상2"}, delimiter = ':')
+    void prizeResultTest(String targetName, String targetPrize) {
+        Persons persons = Persons.of("pobi,honux,jk");
+        LadderConstants ladderConstants = new LadderConstants();
+        LadderGameSetting ladderGameSetting = LadderGameSetting.of(persons, ladderConstants.prizes);
+        List<ResultPrize> resultPrizes = ladderConstants.ladder.findPrize(ladderGameSetting);
+
+        String prizeValue = resultPrizes.stream()
+                .filter(resultPrize -> resultPrize.checkEqaulName(targetName))
+                .map(resultPrize -> resultPrize.getPrizeValue())
+                .findAny()
+                .orElse("");
+
+        assertThat(prizeValue).isEqualTo(targetPrize);
     }
 }
