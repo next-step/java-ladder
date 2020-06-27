@@ -1,5 +1,7 @@
 package study3.domain;
 
+import java.util.Collections;
+
 public class Point {
 	private final int index;
     private final Direction direction;
@@ -38,6 +40,9 @@ public class Point {
 
     public static Point first(Boolean right) {
         return new Point(0, Direction.first(right));
+    }
+    public Direction getDirection() {
+    	return this.direction;
     }
 
     @Override

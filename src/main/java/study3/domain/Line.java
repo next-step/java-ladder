@@ -19,7 +19,6 @@ public class Line {
 		
 		points.add(point);
 		
-		System.out.println(" player 수"+playerNumbers);
 		for( int i = 1; i< playerNumbers-1; i++) {
 			point = point.next();
 			points.add(point);
@@ -30,6 +29,7 @@ public class Line {
 		for(int i=0; i<points.size(); i++) {
 			System.out.println(i +"값 "+points.get(i).toString());
 		}
+		
 		return points;
 	}
 

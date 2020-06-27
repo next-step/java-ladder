@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import study3.domain.Point;
 import study3.domain.Ladder;
 import study3.domain.Line;
 import study3.domain.Players;
@@ -36,8 +37,18 @@ public class ResultView {
 	}
 
 	private void choiceRowOrColum(Line line) {
-		line.getLine().stream().forEach(s -> printBarAndColumn(s));
+		line.getLine().stream()
+		.forEach(point -> printBarAndColumn(getPointDirection(point)));
 		System.out.println();
+	}
+	
+	private boolean getPointDirection(Point point) {
+		if(point.getDirection().isRight()) {
+			return false;
+		}
+		
+		return true;
+		
 	}
 
 	private void printBarAndColumn(Boolean point) {
