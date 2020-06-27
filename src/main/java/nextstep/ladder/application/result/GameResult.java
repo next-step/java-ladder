@@ -1,6 +1,5 @@
 package nextstep.ladder.application.result;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -39,16 +38,5 @@ public class GameResult {
 		if (playerPrizes.containsKey(targetPlayer)) {
 			System.out.println("실행 결과\n" + playerPrizes.get(targetPlayer).getName());
 		}
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder("실행 결과\n");
-		Iterator<Map.Entry<Player, Prize>> playerPrize = this.playerPrizes.entrySet().stream().iterator();
-		while (playerPrize.hasNext()) {
-			Map.Entry<Player, Prize> entry = playerPrize.next();
-			stringBuilder.append(entry.getKey().getName() + ":" + entry.getValue().getName() + "\n");
-		}
-		return stringBuilder.toString();
 	}
 }

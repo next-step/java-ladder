@@ -1,9 +1,14 @@
 package nextstep.ladder.application.view;
 
+import java.util.Iterator;
+import java.util.Map;
+
+import nextstep.ladder.application.prize.Prize;
 import nextstep.ladder.application.prize.Prizes;
 import nextstep.ladder.application.result.GameResult;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.domain.point.Points;
 
@@ -46,6 +51,12 @@ public class OutputView {
 	}
 
 	public static void printResults(GameResult result) {
-		System.out.println(result.toString());
+		StringBuilder stringBuilder = new StringBuilder("실행 결과\n");
+		Iterator<Map.Entry<Player, Prize>> playerPrize = result.getPlayerPrizes().entrySet().stream().iterator();
+		while (playerPrize.hasNext()) {
+			Map.Entry<Player, Prize> entry = playerPrize.next();
+			stringBuilder.append(entry.getKey().getName()).append(":").append(entry.getValue().getName()).append("\n");
+		}
+		System.out.println(stringBuilder.toString());
 	}
 }
