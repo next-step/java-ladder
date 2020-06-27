@@ -23,4 +23,8 @@ public class Line {
 	public Points getPoints() {
 		return points;
 	}
+
+	public int movePosition(int position) {
+		return points.movePosition(position);
+	}
 }
