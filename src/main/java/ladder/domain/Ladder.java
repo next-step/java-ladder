@@ -1,15 +1,17 @@
 package ladder.domain;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.collectingAndThen;
 
 public class Ladder {
-    
+
+    private static final String INIT_LINE_SPACE = "      ";
+    private static final String NEW_LINE = System.lineSeparator();
+
     private final List<Layer> layers;
 
     private Ladder(List<Layer> layers) {
@@ -38,9 +40,26 @@ public class Ladder {
         return prizePosition;
     }
 
-    public Map<String, String> findPrize(LadderGameSetting ladderGameSetting) {
-        Persons persons = ladderGameSetting.getPersons();
-        Prizes prizes = ladderGameSetting.getPrizes();
-        return persons.prizeResult(this, prizes);
+    public List<ResultPrize> findPrize(LadderGameSetting ladderGameSetting) {
+        List<ResultPrize> results = new ArrayList<>();
+        int personsCount = ladderGameSetting.getPersonsCount();
+        for (int position = 0; position < personsCount; position++){
+            int prizeLocation = findPrizePosition(position);
+            String personName = ladderGameSetting.getPersonName(position);
+            String prizeValue = ladderGameSetting.getPrizeValue(prizeLocation);
+            results.add(ResultPrize.of(personName, prizeValue));
+        }
+        return results;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Layer layer : layers){
+            stringBuilder.append(INIT_LINE_SPACE);
+            stringBuilder.append(layer.toString());
+            stringBuilder.append(NEW_LINE);
+        }
+        return stringBuilder.toString();
     }
 }
