@@ -1,16 +1,22 @@
 package study3.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExecuteResult {
 
-	String[] excuteResult;
-	
+	private final String executeReuslt;
+
 	public ExecuteResult(String executeResult) {
-		this.excuteResult = executeResult.replace(" ", "").split(",");
+				
+		this.executeReuslt = executeResult;		
+	}
+
+	public String getExecuteResult() {
+		return executeReuslt;
 	}
 	
-	public String[] getExecuteResult() {
-		return excuteResult;
-	}
 }

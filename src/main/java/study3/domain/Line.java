@@ -13,9 +13,9 @@ public class Line {
 	}
 
 	private List<Point> initLine(int playerNumbers, boolean anyValue) {
-		
-		
+				
 		Point point = new Point(0, new Direction(anyValue, new RandomGenerator().getRandom()));
+		
 		
 		points.add(point);
 		
@@ -26,9 +26,10 @@ public class Line {
 		
 		points.add(point.last());
 		
-		for(int i=0; i<points.size(); i++) {
+		/* TODO 잘 출력하는지 체크 
+		 * for(int i=0; i<points.size(); i++) {
 			System.out.println(i +"값 "+points.get(i).toString());
-		}
+		}*/
 		
 		return points;
 	}

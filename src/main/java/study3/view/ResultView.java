@@ -12,9 +12,10 @@ import study3.domain.Players;
 public class ResultView {
 
 	private static final String EXECUTE_MESSAGE = "실행결과";
-	private static final String COLUMN = "     |";
-	private static final String ROW = "-----|";
+	private static final String COLUMN = "|-----";
+	private static final String ROW = "|     ";
 	private static final String NAMES_FORMAT = "%6s";
+	private static final String EXECUTE_FORMAT = "%6";
 
 	public ResultView(Players players, Ladder ladder) {
 
@@ -31,7 +32,13 @@ public class ResultView {
 	}
 
 	private void viewRowAndColumn(Ladder ladder) {
+		
+		/* TODO : 레더 출력
+		 * for(int i=0; i<ladder.getLadder().size(); i++) {
+			System.out.println(i+"번째 레더" + ladder.getLadder().get(i).getLine());
+		}*/
 
+		
 		ladder.getLadder().forEach(line -> choiceRowOrColum(line));
 		System.out.println();
 	}
@@ -45,10 +52,8 @@ public class ResultView {
 	private boolean getPointDirection(Point point) {
 		if(point.getDirection().isRight()) {
 			return false;
-		}
-		
-		return true;
-		
+		}		
+		return true;		
 	}
 
 	private void printBarAndColumn(Boolean point) {
@@ -59,7 +64,8 @@ public class ResultView {
 			System.out.print(COLUMN);
 		}
 	}
-	public void executeResult(String[] executeString) {
-		
+	public void executeResult(String executeString) {
+		System.out.print(String.format(NAMES_FORMAT, 
+				executeString));
 	}
 }
