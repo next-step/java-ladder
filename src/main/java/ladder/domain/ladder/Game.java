@@ -12,12 +12,12 @@ public class Game {
     private final Playing playing;
     private final Ladder ladder;
 
-    private Game(Playing playing, int height) {
+    private Game(Playing playing, Height height) {
         this.playing = playing;
         this.ladder = Ladder.of(height, playing.getCountOfPlayers());
     }
 
-    public static Game play(Playing playing, int height) {
+    public static Game play(Playing playing, Height height) {
         return new Game(playing, height);
     }
 
