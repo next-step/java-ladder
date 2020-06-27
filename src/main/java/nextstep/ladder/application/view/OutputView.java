@@ -47,7 +47,7 @@ public class OutputView {
 		if (playerName.equals(ALL_KEYWORD)) {
 			printResults(gameResult);
 		}
-		gameResult.printPlayerResult(playerName, players);
+		System.out.println(gameResult.printPlayerResult(playerName, players));
 	}
 
 	public static void printResults(GameResult result) {
