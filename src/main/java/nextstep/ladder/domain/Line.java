@@ -11,15 +11,19 @@ public class Line {
         createPoints(countOfPerson, strategy);
     }
 
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    public static Line of(int countOfPerson) {
+        return new Line(countOfPerson, new RandomPointStrategy());
+    }
+
     private void createPoints(int countOfPerson, GeneratePointStrategy strategy) {
         points.add(false);
 
         for (int i = 1; i < countOfPerson; i++) {
             points.add(strategy.isLine(points.get(i - 1)));
         }
-    }
-
-    public List<Boolean> getPoints() {
-        return Collections.unmodifiableList(points);
     }
 }
