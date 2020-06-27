@@ -24,7 +24,7 @@ public class LineTest {
 
     @DisplayName("Line 생성 시 point 는 true 가 연속으로 생성될 수 없다")
     @Test
-    void test(){
+    void lineDuplicateTruePointTest(){
         // given
         int countOfPerson = 3;
         Line line = new Line(countOfPerson, new RandomPointStrategy());
