@@ -25,9 +25,9 @@ public class LadderTest {
     @Test
     @DisplayName("보상 위치값 가져오기 메소드 정상 작동하는지 테스트 ")
     void prizeIndexMethodTest() {
-        LadderDummy ladderDummy = new LadderDummy();
-        assertThat(ladderDummy.ladder.findPrizePosition(0)).isEqualTo(2);
-        assertThat(ladderDummy.ladder.findPrizePosition(1)).isEqualTo(0);
-        assertThat(ladderDummy.ladder.findPrizePosition(2)).isEqualTo(1);
+        LadderConstants ladderConstants = new LadderConstants();
+        assertThat(ladderConstants.ladder.findPrizePosition(0)).isEqualTo(2);
+        assertThat(ladderConstants.ladder.findPrizePosition(1)).isEqualTo(0);
+        assertThat(ladderConstants.ladder.findPrizePosition(2)).isEqualTo(1);
     }
 }

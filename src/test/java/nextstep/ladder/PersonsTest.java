@@ -5,9 +5,10 @@ import ladder.util.StringUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import java.util.Map;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -38,14 +39,23 @@ public class PersonsTest {
                 .hasMessage(StringUtil.EMPTY_WORDS_EXCEPTION);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("사람별 보상값 정상적으로 가져오는지 테스트")
-    void prizeResultTest() {
-        LadderDummy ladderDummy = new LadderDummy();
-        Persons persons = Persons.of("pobi,hpnux,jk");
-        Map<String, String> result = persons.prizeResult(ladderDummy.ladder, ladderDummy.prizes);
-        assertThat(result.get("pobi")).isEqualTo(ladderDummy.prizes.getPrizeValue(2));
-        assertThat(result.get("hpnux")).isEqualTo(ladderDummy.prizes.getPrizeValue(0));
-        assertThat(result.get("jk")).isEqualTo(ladderDummy.prizes.getPrizeValue(1));
+    @CsvSource(value = {"pobi:보상3","honux:보상1","jk:보상2"}, delimiter = ':')
+    void prizeResultTest(String targetName, String targetPrize) {
+        Persons persons = Persons.of("pobi,honux,jk");
+        LadderConstants ladderConstants = new LadderConstants();
+        LadderGameSetting ladderGameSetting = LadderGameSetting.of(persons, ladderConstants.prizes);
+        List<ResultPrize> resultPrizes = ladderConstants.ladder.findPrize(ladderGameSetting);
+
+        String prizeValue = resultPrizes.stream()
+                                    .filter(resultPrize -> resultPrize.checkEqaulName(targetName))
+                                    .map(resultPrize -> resultPrize.getPrizeValue())
+                                    .findAny()
+                                    .orElse("");
+
+        assertThat(prizeValue).isEqualTo(targetPrize);
+
+
     }
 }
