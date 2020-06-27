@@ -1,8 +1,5 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.Map;
-
 public class LadderGameSetting {
 
     public static final String LADDER_RESULTS_INVALID_EXCEPTION = "결과값은 참여자 숫자와 다를 수 없습니다.";
