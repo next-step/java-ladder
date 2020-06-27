@@ -22,7 +22,7 @@ public class OutputView {
 	}
 
 	private static void printLines(Lines lines) {
-		lines.printLines();
+		lines.getLines().forEach(line -> printPoints(line.getPoints()));
 	}
 
 	public static void printPoints(Points points) {

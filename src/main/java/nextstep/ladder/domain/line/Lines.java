@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.line;
 
-import static nextstep.ladder.application.view.OutputView.*;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -30,9 +28,5 @@ public class Lines {
 	public Players determinePlayersPositionResult(Players players) {
 		this.lines.forEach(players::determinePlayersPositionResult);
 		return players;
-	}
-
-	public void printLines() {
-		lines.forEach(line -> printPoints(line.getPoints()));
 	}
 }
