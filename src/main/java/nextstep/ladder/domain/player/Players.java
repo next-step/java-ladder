@@ -3,6 +3,8 @@ package nextstep.ladder.domain.player;
 import java.util.Collections;
 import java.util.List;
 
+import nextstep.ladder.application.prize.Prize;
+import nextstep.ladder.application.prize.Prizes;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.util.CustomCollectionUtils;
 
@@ -70,10 +72,18 @@ public class Players {
 		return this;
 	}
 
-	public Player playerPrizeMapFactory(int prizeIndex) {
+	// public Player playerPrizeMapFactory(int prizeIndex) {
+	// 	return players.stream()
+	// 		.filter(player -> player.getCurrentPosition().getPosition() == prizeIndex)
+	// 		.reduce((a, b) -> b)
+	// 		.orElseThrow(() -> new IllegalArgumentException("no user"));
+	// }
+
+	public Player playerPrizeMapFactory(Prizes prizes, Prize prize) {
 		return players.stream()
-			.filter(player -> player.getCurrentPosition().getPosition() == prizeIndex)
-			.reduce((a, b) -> b)
+			.filter(player -> player.getCurrentPosition().getPosition() == prizes.prizeIndex(prize))
+			.findFirst()
+			.map(player -> player.updatePrize(prize))
 			.orElseThrow(() -> new IllegalArgumentException("no user"));
 	}
 
@@ -82,5 +92,12 @@ public class Players {
 			.filter(player -> player.getName().equals(playerName))
 			.findFirst()
 			.orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+	}
+
+	public StringBuilder printResults() {
+		StringBuilder stringBuilder = new StringBuilder();
+		players.forEach(
+			player -> stringBuilder.append(player.getName()).append(":").append(player.getPrize().getName()));
+		return stringBuilder;
 	}
 }

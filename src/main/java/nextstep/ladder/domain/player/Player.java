@@ -2,11 +2,14 @@ package nextstep.ladder.domain.player;
 
 import java.util.Objects;
 
+import nextstep.ladder.application.prize.Prize;
+
 public class Player {
 
 	private static final int MAXIMUM_NAME_LENGTH = 5;
 	private String name;
 	private Position currentPosition;
+	private Prize prize;
 
 	private Player(String name, Position position) {
 		this.name = name;
@@ -47,5 +50,14 @@ public class Player {
 
 	public Position getCurrentPosition() {
 		return currentPosition;
+	}
+
+	public Prize getPrize() {
+		return prize;
+	}
+
+	public Player updatePrize(Prize prize) {
+		this.prize = prize;
+		return this;
 	}
 }
