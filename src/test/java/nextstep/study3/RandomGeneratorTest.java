@@ -20,5 +20,4 @@ class RandomGeneratorTest {
 		assertThat(trueOrfalse).isNotNull()
 								.isTrue();
 	}
-
 }

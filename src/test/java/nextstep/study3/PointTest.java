@@ -14,6 +14,5 @@ class PointTest {
 	@DisplayName("인덱스 검증 메소드")
     public void 우측으로_한칸움직이면_move의_인덱스가_하나늘어난다() {
         assertThat(new Point(0, new Direction(false, true)).move()).isEqualTo(1);
-    }
-	
+    }	
 }

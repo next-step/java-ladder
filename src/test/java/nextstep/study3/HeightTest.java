@@ -19,10 +19,8 @@ class HeightTest {
 		int 사다리의_최소_높이 = 0;
 		
 		assertThatThrownBy(() -> height = new Height(사다리의_최소_높이))
-		.isInstanceOf(IllegalArgumentException.class);
-		
-	}
-	
+		.isInstanceOf(IllegalArgumentException.class);		
+	}	
 	
 	@Test
 	@DisplayName("사다리의 높이가 같은지 검증")
