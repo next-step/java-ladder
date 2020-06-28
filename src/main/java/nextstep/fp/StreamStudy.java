@@ -24,7 +24,7 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        words.stream().sorted(Comparator.comparingInt(String::length)).forEach(System.out::println);
+        words.stream().sorted(Comparator.comparingInt(String::length)).limit(100).forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
