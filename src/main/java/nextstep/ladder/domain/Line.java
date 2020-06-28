@@ -2,12 +2,13 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
 
     private static final String INVALID_LINE_LENGTH = "Line 길이는 2이상으로 생성 할 수 있습니다.";
     private static final String INVALID_LINE_POSITION = "Line 범위를 넘어선 위치는 확인할 수 없습니다.";
-    private List<Boolean> points;
+    private List<Point> points;
 
     public Line(int length, GenerableStrategy generableStrategy) {
         validateLength(length);
@@ -25,37 +26,17 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        return new ArrayList<>(points);
+        return points.stream()
+            .map(Point::hasPoint)
+            .collect(Collectors.toList());
     }
 
-    private List<Boolean> makePoints(int length, GenerableStrategy generableStrategy) {
-        initializePoints(length);
-
-        for (int current = 0; current < length; current++) {
-            Boolean hasPoint = generableStrategy.generate();
-            if (hasPoint && canBePoint(current)) {
-                points.set(current, true);
-            }
-        }
-        return points;
-    }
-
-    private List<Boolean> initializePoints(int length) {
+    private List<Point> makePoints(int length, GenerableStrategy generableStrategy) {
         points = new ArrayList<>();
-        for (int i = 0; i < length; ++i) {
-            points.add(false);
+        for (int currentPosition = 0; currentPosition < length; currentPosition++) {
+            points.add(Point.makePointInLine(currentPosition, this, generableStrategy));
         }
         return points;
-    }
-
-    private boolean canBePoint(int currentPosition) {
-        if (hasPreviousPositionPoint(currentPosition)) {
-            return false;
-        }
-        if (hasNextPositionPoint(currentPosition)) {
-            return false;
-        }
-        return true;
     }
 
     private boolean isInLine(int position) {
@@ -65,17 +46,17 @@ public class Line {
         return false;
     }
 
-    private boolean hasPreviousPositionPoint(int currentPosition) {
+    public boolean hasPreviousPositionPoint(int currentPosition) {
         int previousPosition = currentPosition - 1;
-        if (isInLine(previousPosition) && points.get(previousPosition)) {
+        if (isInLine(previousPosition) && points.get(previousPosition).hasPoint()) {
             return true;
         }
         return false;
     }
 
-    private boolean hasNextPositionPoint(int currentPosition) {
+    public boolean hasNextPositionPoint(int currentPosition) {
         int nextPosition = currentPosition + 1;
-        if (isInLine(nextPosition) && points.get(nextPosition)) {
+        if (isInLine(nextPosition) && points.get(nextPosition).hasPoint()) {
             return true;
         }
         return false;
