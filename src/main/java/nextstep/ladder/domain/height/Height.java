@@ -8,7 +8,6 @@ public class Height {
 	private final static int MAXIMUM_HEIGHT_THRESHOLD = 5;
 	private final int heightValue;
 
-	//constructor logic
 	private Height(final int heightValue) {
 		this.heightValue = heightValue;
 	}
@@ -20,7 +19,6 @@ public class Height {
 		return new Height(heightValue);
 	}
 
-	//validation logic
 	private static void validateHeightValueInRange(final int heightValue) {
 		if (heightValue < MINIMUM_HEIGHT_THRESHOLD || heightValue > MAXIMUM_HEIGHT_THRESHOLD) {
 			throw new IllegalArgumentException("The minimum threshold of height is 1. check your input again.");
@@ -33,12 +31,10 @@ public class Height {
 		}
 	}
 
-	//converter logic
 	private static int convertValueStringToInt(String heightValueString) {
 		return Integer.parseInt(heightValueString);
 	}
 
-	//getter
 	public int getHeightValue() {
 		return heightValue;
 	}

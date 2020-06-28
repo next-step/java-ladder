@@ -17,7 +17,8 @@ public class Players {
 	public static Players ofPlayers(List<Player> players) {
 		validatePlayerNumIsLargerThanZero(players);
 		validatePlayerNameDistinct(players);
-		validatePlayerPositionNotExceedSize(players);
+		// validatePlayerPositionNotExceedSize(players);
+		validatePlayerCurrentPositionNotExceedSize(players);
 		return new Players(players);
 	}
 
@@ -34,8 +35,8 @@ public class Players {
 		}
 	}
 
-	private static void validatePlayerPositionNotExceedSize(List<Player> players) {
-		if (players.stream().anyMatch(player -> ! player.validatePosition(players.size()))) {
+	private static void validatePlayerCurrentPositionNotExceedSize(List<Player> players) {
+		if (players.stream().anyMatch(player -> ! player.validateCurrentPosition(players.size()))) {
 			throw new IllegalArgumentException("please check your player position. It cannot exceed overall size.");
 		}
 	}
@@ -61,17 +62,17 @@ public class Players {
 		return builder.toString();
 	}
 
-	public Players determinePlayersPositionResult(Line line) {
+	public Players determinePlayersCurrentPositionResult(Line line) {
 		this.players.forEach(player -> {
-			int newPoint = line.movePosition(player.getPosition());
-			player.updatePosition(newPoint);
+			Position newPoint = line.movePosition(player.getCurrentPosition());
+			player.updateCurrentPosition(newPoint);
 		});
 		return this;
 	}
 
 	public Player playerPrizeMapFactory(int prizeIndex) {
 		return players.stream()
-			.filter(player -> player.getPosition() == prizeIndex)
+			.filter(player -> player.getCurrentPosition().getPosition() == prizeIndex)
 			.reduce((a, b) -> b)
 			.orElseThrow(() -> new IllegalArgumentException("no user"));
 	}

@@ -2,6 +2,8 @@ package nextstep.ladder.domain.point;
 
 import java.util.List;
 
+import nextstep.ladder.domain.player.Position;
+
 public class Points {
 
 	private final List<Point> points;
@@ -52,6 +54,16 @@ public class Points {
 		return givenPosition;
 	}
 
+	public Position movePosition(Position givenPosition) {
+		if (canMoveRight(givenPosition)) {
+			return givenPosition.moveOneStepFurther();
+		}
+		if (canMoveLeft(givenPosition)) {
+			return givenPosition.moveOneStepBack();
+		}
+		return givenPosition;
+	}
+
 	private void validateGivenPosition(int givenPosition) {
 		if (givenPosition >= points.size()) {
 			throw new IllegalArgumentException("your given position is out of bound to current list indexes.");
@@ -65,6 +77,16 @@ public class Points {
 	private boolean canMoveLeft(int givenPosition) {
 		int beforeGivenPosition = givenPosition - 1;
 		return givenPosition > 0 && points.get(beforeGivenPosition).isConnectedToNextPoint();
+	}
+
+	private boolean canMoveRight(Position givenPosition) {
+		return points.get(givenPosition.getPosition()).isConnectedToNextPoint();
+	}
+
+	private boolean canMoveLeft(Position givenPosition) {
+		int currentPosition = givenPosition.getPosition();
+		int beforeGivenPosition = currentPosition - 1;
+		return currentPosition > 0 && points.get(beforeGivenPosition).isConnectedToNextPoint();
 	}
 
 	public String printPoints() {

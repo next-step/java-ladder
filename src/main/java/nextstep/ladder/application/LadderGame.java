@@ -21,8 +21,13 @@ public class LadderGame {
 		return this.ladder;
 	}
 
+	// public GameResult play(Prizes prizes) {
+	// 	Players players = this.ladder.determinePlayersPositionResult();
+	// 	return GameResult.ofPlayersAndPrizes(players, prizes);
+	// }
+
 	public GameResult play(Prizes prizes) {
-		Players players = this.ladder.determinePlayersPositionResult();
+		Players players = this.ladder.determinePlayersCurrentPositionResult();
 		return GameResult.ofPlayersAndPrizes(players, prizes);
 	}
 }

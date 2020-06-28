@@ -6,17 +6,18 @@ public class Player {
 
 	private static final int MAXIMUM_NAME_LENGTH = 5;
 	private String name;
-	private int position;
+	private Position currentPosition;
 
-	private Player(String name, int position) {
+	private Player(String name, Position position) {
 		this.name = name;
-		this.position = position;
+		this.currentPosition = position;
 	}
 
-	public static Player ofNameAndPosition(String name, int position) {
+	public static Player ofNameAndPositionAndSize(String name, int position, int size) {
 		validateNotNull(name);
 		validateNameLength(name);
-		return new Player(name, position);
+		Position currentPosition = Position.ofPosition(position, size);
+		return new Player(name, currentPosition);
 	}
 
 	private static void validateNotNull(String name) {
@@ -31,20 +32,20 @@ public class Player {
 		}
 	}
 
-	public int updatePosition(int position) {
-		this.position = position;
-		return this.position;
+	public Position updateCurrentPosition(Position position) {
+		this.currentPosition.updatePosition(position);
+		return this.currentPosition;
 	}
 
-	public boolean validatePosition(int size) {
-		return ! (this.position >= size);
+	public boolean validateCurrentPosition(int size) {
+		return this.currentPosition.validatePosition(size);
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public int getPosition() {
-		return position;
+	public Position getCurrentPosition() {
+		return currentPosition;
 	}
 }

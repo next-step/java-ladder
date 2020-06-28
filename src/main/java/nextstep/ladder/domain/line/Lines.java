@@ -25,8 +25,8 @@ public class Lines {
 		return Collections.unmodifiableList(lines);
 	}
 
-	public Players determinePlayersPositionResult(Players players) {
-		this.lines.forEach(players::determinePlayersPositionResult);
+	public Players determinePlayersCurrentPositionResult(Players players) {
+		this.lines.forEach(players::determinePlayersCurrentPositionResult);
 		return players;
 	}
 }

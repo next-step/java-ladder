@@ -25,11 +25,13 @@ public class InputView {
 	public static Players getPlayers() {
 		System.out.println("참여할 플레이어 이름을 입력하세요. 선수 간에는 콤마(,)로 구분합니다.");
 		String nameString = scanner.nextLine();
+		String[] nameArray = nameString.split(NAME_DELIMITER);
+		int nameSize = nameArray.length;
 
 		AtomicInteger index = new AtomicInteger(0);
 
-		return Arrays.stream(nameString.split(NAME_DELIMITER))
-			.map(name -> Player.ofNameAndPosition(name, index.get()))
+		return Arrays.stream(nameArray)
+			.map(name -> Player.ofNameAndPositionAndSize(name, index.get(), nameSize))
 			.peek(player -> index.getAndIncrement())
 			.collect(collectingAndThen(toList(), Players::ofPlayers));
 	}

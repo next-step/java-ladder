@@ -35,8 +35,8 @@ public class Ladder {
 			.collect(collectingAndThen(toList(), Lines::ofLines));
 	}
 
-	public Players determinePlayersPositionResult() {
-		Players updatedPlayers = this.lines.determinePlayersPositionResult(this.players);
+	public Players determinePlayersCurrentPositionResult() {
+		Players updatedPlayers = this.lines.determinePlayersCurrentPositionResult(this.players);
 		this.players = updatedPlayers;
 		return this.players;
 	}
