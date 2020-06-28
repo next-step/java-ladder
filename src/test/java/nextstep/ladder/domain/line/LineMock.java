@@ -4,10 +4,8 @@ import nextstep.ladder.domain.point.Points;
 
 public class LineMock extends Line {
 
-	private Points points;
-
 	private LineMock(Points points) {
-		this.points = points;
+		super.points = points;
 	}
 
 	public static LineMock ofPoints(Points points) {
@@ -16,6 +14,6 @@ public class LineMock extends Line {
 
 	@Override
 	public Points getPoints() {
-		return points;
+		return super.points;
 	}
 }

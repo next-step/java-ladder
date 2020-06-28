@@ -14,8 +14,9 @@ public class PlayerTest {
 	@NullAndEmptySource
 	@ParameterizedTest
 	void 이름이_NULL_또는_EMPTY이면_오류를_반환한다(String name) {
+		int playerSize = 1;
 		assertThatThrownBy(
-			() -> Player.ofNameAndPosition(name, 0)
+			() -> Player.ofNameAndPositionAndSize(name, 0, playerSize)
 		).isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -23,8 +24,9 @@ public class PlayerTest {
 	@CsvSource({"abcdef", "123456", "sigridrabbe", "brianthebest", "honuxlovespobi"})
 	@ParameterizedTest
 	void 플레이어를_생성할_때_이름이_6자를_초과하면_오류를_반환한다(String name) {
+		int playerSize = 1;
 		assertThatThrownBy(
-			() -> Player.ofNameAndPosition(name, 0)
+			() -> Player.ofNameAndPositionAndSize(name, 0, playerSize)
 		).isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -33,7 +35,8 @@ public class PlayerTest {
 	@ParameterizedTest
 	void 생성한_플레이어의_위치가_출력된다(int position) {
 		String name = "brian";
-		assertThat(Player.ofNameAndPosition(name, position).getPosition())
-			.isEqualTo(position);
+		int playerSize = 10;
+		assertThat(Player.ofNameAndPositionAndSize(name, position, playerSize).getCurrentPosition().getPosition())
+			.isEqualTo(Position.ofPosition(position, playerSize).getPosition());
 	}
 }

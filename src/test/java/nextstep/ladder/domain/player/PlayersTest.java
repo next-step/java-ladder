@@ -22,8 +22,11 @@ public class PlayersTest {
 	@DisplayName("참여하는 플레이어의 이름이 중복되면 오류를 반환한다.")
 	@Test
 	void 참여하는_플레이어의_이름이_중복되면_오류를_반환한다() {
-		List<Player> players = Arrays.asList(Player.ofNameAndPosition("pobi", 0), Player.ofNameAndPosition("Brian", 1),
-			Player.ofNameAndPosition("Brian", 2));
+		int playerSize = 3;
+		List<Player> players = Arrays.asList(Player.ofNameAndPositionAndSize("pobi", 0, playerSize),
+			Player.ofNameAndPositionAndSize("Brian", 1, playerSize),
+			Player.ofNameAndPositionAndSize("Brian", 2, playerSize)
+		);
 		assertThatThrownBy(
 			() -> Players.ofPlayers(players)
 		).isInstanceOf(IllegalArgumentException.class);
@@ -32,13 +35,9 @@ public class PlayersTest {
 	@DisplayName("참여하는 플레이어의 수보다 플레이어의 인덱스가 더 높으면 오류를 반환한다.")
 	@Test
 	void 플레이어의_위치가_전체_플레이어의_인덱스를_넘어가면_오류를_반환한다() {
-		List<Player> players = Arrays.asList(
-			Player.ofNameAndPosition("jack", 0),
-			Player.ofNameAndPosition("pobi", 5),
-			Player.ofNameAndPosition("crong", 100)
-		);
+		int playersSize = 3;
 		assertThatThrownBy(
-			() -> Players.ofPlayers(players)
+			() -> Player.ofNameAndPositionAndSize("pobi", 5, playersSize)
 		).isInstanceOf(IllegalArgumentException.class);
 	}
 }

@@ -52,12 +52,13 @@ public class GameResultTest {
 
 		List<Line> line = Arrays.asList(firstLine, secondLine, thirdLine);
 		Lines lines = Lines.ofLines(line);
+		int playersSize = 4;
 
 		Players players = Players.ofPlayers(Arrays.asList(
-			Player.ofNameAndPosition("Brian", 0),
-			Player.ofNameAndPosition("Alex", 1),
-			Player.ofNameAndPosition("Ever", 2),
-			Player.ofNameAndPosition("Jin", 3))
+			Player.ofNameAndPositionAndSize("Brian", 0, playersSize),
+			Player.ofNameAndPositionAndSize("Alex", 1, playersSize),
+			Player.ofNameAndPositionAndSize("Ever", 2, playersSize),
+			Player.ofNameAndPositionAndSize("Jin", 3, playersSize))
 		);
 
 		Prizes prizes = Prizes.ofPrizes(Arrays.asList(
@@ -77,7 +78,7 @@ public class GameResultTest {
 	@ParameterizedTest
 	void 사용자와_상금의_인덱스를_비교하여_반환한다(Lines lines, Players players, Prizes prizes) {
 		//given
-		Players newPlayers = lines.determinePlayersPositionResult(players);
+		Players newPlayers = lines.determinePlayersCurrentPositionResult(players);
 		//when
 		GameResult gameResult = GameResult.ofPlayersAndPrizes(newPlayers, prizes);
 		//then
