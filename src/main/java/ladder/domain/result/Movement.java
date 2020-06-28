@@ -18,7 +18,9 @@ public enum Movement {
     public static Movement valueBy(boolean left, boolean right) {
         if (left && !right) {
             return LEFT;
-        } else if (!left && right) {
+        }
+
+        if (!left && right) {
             return RIGHT;
         }
 
