@@ -7,6 +7,7 @@ import study3.domain.Height;
 import study3.domain.Ladder;
 import study3.domain.Players;
 import study3.domain.Results;
+import study3.domain.Rewards;
 import study3.view.InputView;
 import study3.view.ResultView;
 
@@ -27,9 +28,9 @@ public class LadderController {
 		
 		ResultView resultView = new ResultView(players, ladder);
 		
-		List<String> Rewards = resultView.executeResult(executeResult.getExecuteResult());
+		Rewards rewards = resultView.executeResult(executeResult.getExecuteResult());
 		
-		//Results results = new Results(players, ladder, Rewards);
+		Results results = new Results(players, ladder, rewards);
 		
 		while(true) {
 			String resultName = inputview.wantResult();

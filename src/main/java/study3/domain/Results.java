@@ -11,31 +11,31 @@ public class Results {
 	public Results(Map<Player, Reward> resultMap) {
 		this.resultMap = resultMap;
 	}
-	
-	public Map<Player, Reward> getResult() {
-		return resultMap;
+			
+	public Results(Players players, Ladder ladder, Rewards rewards) {
+		
 	}
-	
-	private static Results of(Players players, Ladder ladder, Rewards rewards) {
+
+	private Results of(Players players, Ladder ladder, Rewards rewards) {
 		return new Results(playGame(players, ladder, rewards));
 	}
 
-	private static Map<Player, Reward> playGame(Players players, Ladder ladder, Rewards rewards) {
+	private Map<Player, Reward> playGame(Players players, Ladder ladder, Rewards rewards) {
 		
 		int numberOfPlayer = players.getPlayersCount();
 		
 		for(int i=0; i < numberOfPlayer; i++) {
 			
 			Player siglePlayerName = players.getPlayers().get(i);
-			Reward singleReward = findFinalPosition(siglePlayerName, ladder.getLadder());
+			Reward singleReward = findFinalPosition(siglePlayerName, ladder.getLadder(), rewards);
 			
-		//	resultMap.put(siglePlayerName, singleReward);
+			resultMap.put(siglePlayerName, singleReward);
 		}
 		
 		return null;
 	}
 
-	private static Reward findFinalPosition(Player siglePlayerName,List<Line> ladder) {
+	private static Reward findFinalPosition(Player siglePlayerName,List<Line> ladder, Rewards rewards) {
 		
 		int position = Players.findPlayersIndex(siglePlayerName);
 		
@@ -44,7 +44,7 @@ public class Results {
 			System.out.println("포지션"+position);
 		}
 		
-		return null;
+		return rewards.getReward(position);
 	}
 	
 	public Map<Player, Reward> getResults() {

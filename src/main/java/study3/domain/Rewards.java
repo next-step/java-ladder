@@ -17,4 +17,7 @@ public class Rewards {
 				.map(Reward::new)
 				.collect(Collectors.toList());
 	}
+	public Reward getReward(int position) {
+		return this.rewards.get(position);
+	}
 }

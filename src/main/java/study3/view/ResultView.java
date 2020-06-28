@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import study3.domain.Point;
+import study3.domain.Reward;
+import study3.domain.Rewards;
 import study3.domain.Ladder;
 import study3.domain.Line;
 import study3.domain.Players;
@@ -69,7 +71,7 @@ public class ResultView {
 			System.out.print(COLUMN);
 		}
 	}
-	public List<String> executeResult(String executeString) {
+	public Rewards executeResult(String executeString) {
 		
 			Arrays.stream(executeString.replace(" ", "")
 				.split(","))
@@ -78,7 +80,9 @@ public class ResultView {
 			});		
 		
 		System.out.println();
-		return Arrays.stream(executeString.replace(" ", "")
-				.split(",")).collect(Collectors.toList());
+		return new Rewards (
+				Arrays.stream(executeString.replace(" ", "")
+				.split(","))
+				.collect(Collectors.toList()));
 	}
 }	
