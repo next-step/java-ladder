@@ -83,11 +83,15 @@ public class GameResultTest {
 		GameResult gameResult = GameResult.ofPlayersAndPrizes(newPlayers, prizes);
 		//then
 		assertAll(
-			() -> assertThat(gameResult.getPlayerPrizes()).isNotEmpty(),
-			() -> assertThat(gameResult.getPlayerPrizes().get(players.getPlayers().get(0)).getName()).isEqualTo("3000"),
-			() -> assertThat(gameResult.getPlayerPrizes().get(players.getPlayers().get(1)).getName()).isEqualTo("꽝"),
-			() -> assertThat(gameResult.getPlayerPrizes().get(players.getPlayers().get(2)).getName()).isEqualTo("꽝"),
-			() -> assertThat(gameResult.getPlayerPrizes().get(players.getPlayers().get(3)).getName()).isEqualTo("5000")
+			() -> assertThat(gameResult.getPlayersAfterPlayingLadderGame()).isNotNull(),
+			() -> assertThat(gameResult.getPlayersAfterPlayingLadderGame()
+				.findPlayerByName("Brian").getPrize().getName()).isEqualTo("3000"),
+			() -> assertThat(gameResult.getPlayersAfterPlayingLadderGame()
+				.findPlayerByName("Alex").getPrize().getName()).isEqualTo("꽝"),
+			() -> assertThat(gameResult.getPlayersAfterPlayingLadderGame()
+				.findPlayerByName("Ever").getPrize().getName()).isEqualTo("꽝"),
+			() -> assertThat(gameResult.getPlayersAfterPlayingLadderGame()
+				.findPlayerByName("Jin").getPrize().getName()).isEqualTo("5000")
 		);
 	}
 }
