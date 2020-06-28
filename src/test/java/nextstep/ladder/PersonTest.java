@@ -24,8 +24,9 @@ public class PersonTest {
     @DisplayName("사람이름 5자 이하 입력시 정상여부 체크")
     @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
     void validPerson(String name){
-        assertThat(Person.of(name).getName())
-                .isEqualTo(name);
+        Person person = Person.of(name);
+        assertThat(person)
+                .isEqualTo(Person.of(name));
     }
 
     @ParameterizedTest

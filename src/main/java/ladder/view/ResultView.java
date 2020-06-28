@@ -4,78 +4,52 @@ import ladder.domain.*;
 import ladder.domain.LadderResult;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 public class ResultView {
     private static final String DEFAULT = "";
     private static final String ALL = "all";
-    private static final String PERSON_NAME_FORMAT = "%6s";
-    private static final String NEW_LINE = System.lineSeparator();
-    private static final String INIT_LINE_SPACE = "      ";
     private static final String NAME_NOT_FOUND = "없는 이름입니다.";
     private static final String NAME_AND_PRIZE_DELIMITER = " : ";
 
     public static void printLadder(LadderResult ladderGameResult) {
         arrangePersons(ladderGameResult.getPersons());
-        System.out.print(NEW_LINE);
         arrangeLadder(ladderGameResult.getLadder());
         arrangeResults(ladderGameResult.getPrizes());
-        System.out.print(NEW_LINE);
     }
 
-    private static void arrangePersons(List<Person> persons){
-       persons.stream()
-              .map(person -> formatWord(person.getName()))
-              .forEach(System.out::print);
-    }
-
-    private static String formatWord(String name) {
-        return String.format(PERSON_NAME_FORMAT, name);
+    private static void arrangePersons(Persons persons){
+        System.out.println(persons.toString());
     }
 
     private static void arrangeLadder(Ladder ladder) {
-        ladder.getLayers()
-              .forEach(layer -> {
-                  System.out.print(INIT_LINE_SPACE);
-                  System.out.println(layer.toString());
-              });
+        System.out.print(ladder.toString());
     }
 
-    private static void arrangeResults(List<String> prizes) {
-        prizes.stream()
-              .map(result -> formatWord(result))
-              .forEach(result -> System.out.print(result));
+    private static void arrangeResults(Prizes prizes) {
+        System.out.println(prizes.toString());
     }
 
-    public static void printResultofPerson(ResultPrize resultPrize){
-        Map<String, String> resultMap = resultPrize.getResult();
+    public static void printResultofPerson(List<ResultPrize> resultPrizes){
         String resultName = DEFAULT;
 
         while (!ALL.equals(resultName)){
             resultName = InputView.inputResult();
-            System.out.println(getPrizeByName(resultMap, resultName));
+            System.out.println(getPrizeByName(resultPrizes, resultName));
         }
-        resultPrize.getResult()
-                   .forEach((name, prize) -> {
-                    System.out.println(name + NAME_AND_PRIZE_DELIMITER + prize);
+        resultPrizes.forEach(resultPrize -> {
+            System.out.println(resultPrize.getPersonName() + NAME_AND_PRIZE_DELIMITER + resultPrize.getPrizeValue());
                    });
 
     }
 
-    private static String getPrizeByName(Map<String, String> resultMap, String resultName) {
+    private static String getPrizeByName(List<ResultPrize> resultPrizes, String resultName) {
         String name = DEFAULT;
         if (!ALL.equals(resultName)) {
-            name = nameNullCheck(resultMap.get(resultName));
-        }
-        return name;
-    }
-
-    private static String nameNullCheck(String name) {
-        if (name == null){
-            System.out.println(NAME_NOT_FOUND);
-            name = DEFAULT;
+            name = resultPrizes.stream()
+                    .filter(resultPrize -> resultPrize.checkEqaulName(resultName))
+                    .map(resultPrize -> resultPrize.getPrizeValue())
+                    .findAny()
+                    .orElse(NAME_NOT_FOUND);
         }
         return name;
     }

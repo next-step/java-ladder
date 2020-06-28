@@ -2,7 +2,6 @@ package nextstep.ladder;
 
 import ladder.domain.Prizes;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
@@ -17,6 +16,5 @@ public class PrizesTest {
         assertThatThrownBy(() -> Prizes.of(inputNull))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Prizes.LADDER_RESULTS_NULL_EXCEPTION);
-
     }
 }

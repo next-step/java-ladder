@@ -11,6 +11,8 @@ public class Prizes {
 
     public static final String LADDER_RESULTS_NULL_EXCEPTION = "결과값은 빈값으로 입력할 수 없습니다.";
 
+    private static final String PRIZE_VALUE_FORMAT = "%6s";
+
     private final List<String> prizes;
 
     private Prizes(List<String> prizes) {
@@ -39,5 +41,20 @@ public class Prizes {
 
     public int count(){
         return prizes.size();
+    }
+
+    public String getPrizeValue(int prizeLocation) {
+        return prizes.get(prizeLocation);
+    }
+
+    private static String formatWord(String name) {
+        return String.format(PRIZE_VALUE_FORMAT, name);
+    }
+
+    @Override
+    public String toString() {
+        return prizes.stream()
+                     .map(result -> formatWord(result))
+                     .collect(Collectors.joining());
     }
 }

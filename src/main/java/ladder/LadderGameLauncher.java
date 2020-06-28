@@ -6,14 +6,16 @@ import ladder.domain.ResultPrize;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
+import java.util.List;
+
 public class LadderGameLauncher {
     public static void main(String[] args) {
         LadderGameInfo ladderGameInfo = InputView.inputParameters();
-        LadderResult ladderGameResult = LadderGame.draw(ladderGameInfo);
+        LadderResult drawnladder = LadderGame.draw(ladderGameInfo);
 
-        ResultView.printLadder(ladderGameResult);
+        ResultView.printLadder(drawnladder);
 
-        ResultPrize resultPrize = LadderGame.play(ladderGameResult);
-        ResultView.printResultofPerson(resultPrize);
+        List<ResultPrize> resultPrizes = LadderGame.play(drawnladder);
+        ResultView.printResultofPerson(resultPrizes);
     }
 }

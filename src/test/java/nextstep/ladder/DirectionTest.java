@@ -27,4 +27,12 @@ public class DirectionTest {
         assertThat(Direction.decideRight(new BooleanGenerator(true)))
                 .isEqualTo(Direction.of(false,true));
     }
+
+    @Test
+    @DisplayName("라인 방향에 따라 포지션 값에 전달할 이동 값(숫자) 전달하는 메소드 테스트")
+    void moveMethodTest() {
+        assertThat(Direction.of(true, false).move()).isEqualTo(-1);
+        assertThat(Direction.of(false, true).move()).isEqualTo(1);
+        assertThat(Direction.of(false, false).move()).isEqualTo(0);
+    }
 }

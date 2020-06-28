@@ -1,9 +1,9 @@
 package nextstep.ladder;
 
+import ladder.domain.*;
 import ladder.util.StringUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ladder.domain.Persons;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 

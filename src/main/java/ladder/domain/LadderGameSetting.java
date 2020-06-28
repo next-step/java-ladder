@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import java.util.List;
-
 public class LadderGameSetting {
 
     public static final String LADDER_RESULTS_INVALID_EXCEPTION = "결과값은 참여자 숫자와 다를 수 없습니다.";
@@ -25,11 +23,23 @@ public class LadderGameSetting {
         return new LadderGameSetting(persons, prizes);
     }
 
-    public List<Person> getPersons() {
-        return persons.getPersons();
+    public Persons getPersons() {
+        return persons;
     }
 
-    public List<String> getPrizes() {
-        return prizes.getPrizes();
+    public Prizes getPrizes() {
+        return prizes;
+    }
+
+    public int getPersonsCount(){
+        return persons.count();
+    }
+
+   public String getPersonName(int position){
+        return persons.getPersonName(position);
+   }
+
+    public String getPrizeValue(int prizeLocation) {
+        return prizes.getPrizeValue(prizeLocation);
     }
 }

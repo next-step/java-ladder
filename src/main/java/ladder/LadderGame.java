@@ -6,14 +6,14 @@ import java.util.List;
 public class LadderGame {
 
     public static LadderResult draw(LadderGameInfo ladderGameInfo) {
-        List<Person> persons = ladderGameInfo.getPersons();
+        Persons persons = ladderGameInfo.getPersons();
         Height height = Height.of(ladderGameInfo.getHeight());
-        Ladder ladder = Ladder.create(height, persons.size());
+        Ladder ladder = Ladder.create(height, persons.count());
 
         return new LadderResult(ladderGameInfo, ladder);
     }
 
-    public static ResultPrize play(LadderResult ladderGameResult) {
-        return new ResultPrize(ladderGameResult.findResult());
+    public static List<ResultPrize> play(LadderResult drawnladder) {
+        return drawnladder.findResult();
     }
 }

@@ -2,8 +2,6 @@ package ladder.domain;
 
 import ladder.domain.moveStrategy.Shift;
 
-import java.util.List;
-
 public class Point {
 
     private static final int FIRST_POSITION = 0;

@@ -12,11 +12,11 @@ public class LadderGameInfo {
         this.height = height;
     }
 
-    public List<Person> getPersons() {
+    public Persons getPersons() {
         return ladderGameSetting.getPersons();
     }
 
-    public List<String> getPrizes() {
+    public Prizes getPrizes() {
         return ladderGameSetting.getPrizes();
     }
 
@@ -24,7 +24,7 @@ public class LadderGameInfo {
         return height;
     }
 
-    public String getPrize(int prizeIndex) {
-        return getPrizes().get(prizeIndex);
+    public List<ResultPrize> result(Ladder ladder) {
+        return ladder.findPrize(ladderGameSetting);
     }
 }
