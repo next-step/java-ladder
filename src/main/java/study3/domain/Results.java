@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Results {
+	
+	private Players players;
+	private Ladder ladder;
+	private Rewards rewards;
+	
 	private Map<Player, Reward> resultMap = new HashMap<>();
 	
 	public Results(Map<Player, Reward> resultMap) {
@@ -13,7 +18,9 @@ public class Results {
 	}
 			
 	public Results(Players players, Ladder ladder, Rewards rewards) {
-		
+		this.players = players;
+		this.ladder = ladder;
+		this.rewards = rewards;
 	}
 
 	private Results of(Players players, Ladder ladder, Rewards rewards) {
@@ -32,7 +39,7 @@ public class Results {
 			resultMap.put(siglePlayerName, singleReward);
 		}
 		
-		return null;
+		return resultMap;
 	}
 
 	private static Reward findFinalPosition(Player siglePlayerName,List<Line> ladder, Rewards rewards) {
