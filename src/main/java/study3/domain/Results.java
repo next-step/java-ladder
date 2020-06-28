@@ -1,40 +1,41 @@
 package study3.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Results {
-	private Map<Player, String> resultMap = new HashMap<>();
+	private Map<Player, Reward> resultMap = new HashMap<>();
 	
-	public Results(Map<Player, String> resultMap) {
+	public Results(Map<Player, Reward> resultMap) {
 		this.resultMap = resultMap;
 	}
 	
-	public Map<Player, String> getResult() {
+	public Map<Player, Reward> getResult() {
 		return resultMap;
 	}
 	
-	private static Results of(Players players, Ladder ladder, String[] resultSlapOrMoney) {
-		return new Results(playGame(players, ladder, resultSlapOrMoney));
+	private static Results of(Players players, Ladder ladder, Rewards rewards) {
+		return new Results(playGame(players, ladder, rewards));
 	}
 
-	private static Map<Player, String> playGame(Players players, Ladder ladder, String[] resultSlapOrMoney) {
+	private static Map<Player, Reward> playGame(Players players, Ladder ladder, Rewards rewards) {
 		
 		int numberOfPlayer = players.getPlayersCount();
 		
 		for(int i=0; i < numberOfPlayer; i++) {
 			
 			Player siglePlayerName = players.getPlayers().get(i);
-			String resultReward = findFinalPosition(siglePlayerName, ladder.getLadder());
+			Reward singleReward = findFinalPosition(siglePlayerName, ladder.getLadder());
 			
-		//	resultMap.put(siglePlayerName, resultReward);
+		//	resultMap.put(siglePlayerName, singleReward);
 		}
 		
 		return null;
 	}
 
-	private static String findFinalPosition(Player siglePlayerName,List<Line> ladder) {
+	private static Reward findFinalPosition(Player siglePlayerName,List<Line> ladder) {
 		
 		int position = Players.findPlayersIndex(siglePlayerName);
 		
@@ -45,6 +46,9 @@ public class Results {
 		
 		return null;
 	}
-
+	
+	public Map<Player, Reward> getResults() {
+		return Collections.unmodifiableMap(resultMap);
+	}
 	
 }

@@ -27,9 +27,9 @@ public class LadderController {
 		
 		ResultView resultView = new ResultView(players, ladder);
 		
-		String[] resultSlapOrMoney = resultView.executeResult(executeResult.getExecuteResult());
+		List<String> Rewards = resultView.executeResult(executeResult.getExecuteResult());
 		
-		Results results = new Results(players, ladder, resultSlapOrMoney);
+		//Results results = new Results(players, ladder, Rewards);
 		
 		while(true) {
 			String resultName = inputview.wantResult();

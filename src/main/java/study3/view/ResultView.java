@@ -3,6 +3,7 @@ package study3.view;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import study3.domain.Point;
 import study3.domain.Ladder;
@@ -68,16 +69,16 @@ public class ResultView {
 			System.out.print(COLUMN);
 		}
 	}
-	public String[] executeResult(String executeString) {
+	public List<String> executeResult(String executeString) {
 		
-		String[] resultString = executeString
-							.replace(" ", "")
-							.split(",");
+			Arrays.stream(executeString.replace(" ", "")
+				.split(","))
+			.forEach(s-> {
+				System.out.print(BLANK + s);
+			});		
 		
-		for(int i=0; i<resultString.length; i++) {
-			System.out.print(BLANK +resultString[i] );
-		}
 		System.out.println();
-		return resultString;
+		return Arrays.stream(executeString.replace(" ", "")
+				.split(",")).collect(Collectors.toList());
 	}
 }	
