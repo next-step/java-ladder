@@ -8,8 +8,8 @@ import org.junit.platform.commons.util.StringUtils;
 
 public class Players {
 
-	private List<Player> players;
-
+	private static List<Player> players;
+	
 	public Players(List<String> names) {
 		this.players = createPlayers(names);
 	}
@@ -36,5 +36,9 @@ public class Players {
 
 		// TODO .collect(Collectors.joining(String.join("", Collections.nCopies(4,
 		// empty))));
+	}
+	
+	public static int findPlayersIndex(Player siglePlayerName) {
+		return players.indexOf(siglePlayerName);
 	}
 }

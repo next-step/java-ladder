@@ -1,6 +1,7 @@
 package study3.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Results {
@@ -24,19 +25,26 @@ public class Results {
 		
 		for(int i=0; i < numberOfPlayer; i++) {
 			
-			Player SigleplayerName = players.getPlayers().get(i);
-			String resultReward = findFinalPosition(SigleplayerName);
+			Player siglePlayerName = players.getPlayers().get(i);
+			String resultReward = findFinalPosition(siglePlayerName, ladder.getLadder());
 			
-			resultMap.put(getPlayerName, );
+		//	resultMap.put(siglePlayerName, resultReward);
 		}
 		
 		return null;
 	}
 
-	private static String findFinalPosition(String SigleplayerName) {
-
-		int finalPostion = 
+	private static String findFinalPosition(Player siglePlayerName,List<Line> ladder) {
+		
+		int position = Players.findPlayersIndex(siglePlayerName);
+		
+		for(Line line : ladder) {
+			position = line.move(position);
+			System.out.println("포지션"+position);
+		}
 		
 		return null;
 	}
+
+	
 }
