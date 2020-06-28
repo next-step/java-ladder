@@ -24,6 +24,6 @@ public class Main {
         gameUsers.run(ladder);
 
         String resultUser = inputView.inputResultUser();
-
+        resultView.printResult(gameUsers.getGameResult(results), resultUser);
     }
 }

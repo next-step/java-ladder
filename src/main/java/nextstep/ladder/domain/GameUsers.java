@@ -1,13 +1,17 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class GameUsers {
 
     private static final String INVALID_USER_COUNT = "사다리 게임에 참여하는 사람은 최소 2명 이상이어야합니다.";
+    private static final String INVALID_RESULT = "실행결과는 참여할 사람의 수만큼 입력되어야합니다.";
+
     private List<User> users;
 
     public GameUsers(String[] userNames) {
@@ -34,10 +38,14 @@ public class GameUsers {
             .collect(Collectors.toList());
     }
 
-    public List<Integer> getUserPositions() {
-        return users.stream()
-            .map(User::getCurrentPosition)
-            .collect(Collectors.toList());
+    public Map<String, String> getGameResult(String[] results) {
+        if (results == null || results.length != users.size()) {
+            throw new IllegalArgumentException(INVALID_RESULT);
+        }
+        Map<String, String> resultMap = new HashMap<>();
+        users.stream()
+            .forEach(user -> resultMap.put(user.getName(), results[user.getCurrentPosition()]));
+        return resultMap;
     }
 
     public void run(Ladder ladder) {
