@@ -26,10 +26,10 @@ public class Line {
 		
 		points.add(point.last());
 		
-		 //TODO 잘 출력하는지 체크 
-		  for(int i=0; i<points.size(); i++) {
+		/* TODO 잘 출력하는지 체크
+		 *  for(int i=0; i<points.size(); i++) {
 			System.out.println(i +"값 "+points.get(i).toString());
-		}
+		}*/
 		
 		return points;
 	}

@@ -23,7 +23,7 @@ public class Results {
 		this.rewards = rewards;
 	}
 
-	public static Results of(Players players, Ladder ladder, Rewards rewards) {
+	public static Results ofAll(Players players, Ladder ladder, Rewards rewards) {
 		return new Results(playGame(players, ladder, rewards));
 	}
 
@@ -48,7 +48,7 @@ public class Results {
 		
 		for(Line line : ladder) {
 			position = line.move(position);
-			System.out.println("포지션"+position);
+			
 		}
 		
 		return rewards.getReward(position);

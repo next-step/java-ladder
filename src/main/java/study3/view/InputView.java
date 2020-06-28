@@ -40,7 +40,9 @@ public class InputView {
 	}
 
 	public String wantResult() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println(WANT_RESULT);
+		
 		return scanner.nextLine();
 	}
 

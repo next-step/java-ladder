@@ -1,5 +1,7 @@
 package study3.view;
 
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +13,7 @@ import study3.domain.Reward;
 import study3.domain.Rewards;
 import study3.domain.Ladder;
 import study3.domain.Line;
+import study3.domain.Player;
 import study3.domain.Players;
 
 public class ResultView {
@@ -91,6 +94,14 @@ public class ResultView {
 	public void allRewardPrint(Results results) {
 		System.out.println(EXECUTE_MESSAGE);
 		results.getResults()
-			.forEach((key, value) -> System.out.println(key + COLON + value.getReward()));
+			.forEach((key, value) -> System.out.println(key.getPlayerName() + COLON + value.getReward()));
+	}
+
+	public void SingleRewardPrint(Results results, String resultNames) {
+		Player samePlayer = results.getResults().keySet().stream()
+				.filter(player -> player.isEqual(resultNames))
+				.findFirst()
+				.orElseThrow(() -> new IllegalArgumentException());
+		System.out.println(results.getResults().get(samePlayer).getReward());
 	}
 }	

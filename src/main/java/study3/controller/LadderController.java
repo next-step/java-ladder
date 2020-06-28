@@ -13,33 +13,34 @@ import study3.view.ResultView;
 
 public class LadderController {
 	private static final String WANT_ALL = "all";
+
 	public static void main(String[] args) {
-		
-		
+
 		InputView inputview = new InputView();
-		
+
 		Players players = new Players(inputview.getParticipantNames());
-		
+
 		ExecuteResult executeResult = new ExecuteResult(inputview.getExecuteResult());
-		
+
 		Height height = new Height(inputview.inputHeight());
-		
+
 		Ladder ladder = new Ladder(players, height);
-		
+
 		ResultView resultView = new ResultView(players, ladder);
-		
+
 		Rewards rewards = resultView.executeResult(executeResult.getExecuteResult());
-		
+
 		// TODO Results results = new Results(players, ladder, rewards);
-		
-		
-		while(true) {
+
+		while (true) {
 			String resultName = inputview.wantResult();
-			
-			if(WANT_ALL.equals(resultName)) {
-				Results results = Results.of(players, ladder, rewards);
+
+			Results results = Results.ofAll(players, ladder, rewards);
+			if (resultName.equals(WANT_ALL)) {
 				resultView.allRewardPrint(results);
+				break;
 			}
+			resultView.SingleRewardPrint(results, resultName);
 		}
 	}
 }
