@@ -25,9 +25,7 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        List<Boolean> deepCopiedPoints = new ArrayList<>();
-        deepCopiedPoints.addAll(points);
-        return deepCopiedPoints;
+        return new ArrayList<>(points);
     }
 
     private List<Boolean> makePoints(int length, GenerableStrategy generableStrategy) {
