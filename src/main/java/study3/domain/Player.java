@@ -28,12 +28,9 @@ public class Player {
 
 	public String getPlayerName() {
 		return name;
-	}
-	
+	}	
 	
 	public boolean isEqual(String resultName) {
 		return resultName.equals(this.getPlayerName());
-	}
-	
-	
+	}	
 }

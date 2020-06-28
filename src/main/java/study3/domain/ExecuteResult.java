@@ -10,8 +10,7 @@ public class ExecuteResult {
 
 	private final String executeReuslt;
 
-	public ExecuteResult(String executeResult) {
-				
+	public ExecuteResult(String executeResult) {				
 		this.executeReuslt = executeResult;		
 	}
 

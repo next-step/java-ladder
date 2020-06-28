@@ -47,15 +47,12 @@ public class Results {
 		int position = Players.findPlayersIndex(siglePlayerName);
 		
 		for(Line line : ladder) {
-			position = line.move(position);
-			
-		}
-		
+			position = line.move(position);			
+		}		
 		return rewards.getReward(position);
 	}
 	
 	public Map<Player, Reward> getResults() {
 		return Collections.unmodifiableMap(resultMap);
-	}
-	
+	}	
 }
