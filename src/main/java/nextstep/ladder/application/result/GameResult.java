@@ -1,43 +1,43 @@
 package nextstep.ladder.application.result;
 
-import java.util.Map;
-import java.util.function.Function;
+import static java.util.stream.Collectors.*;
+
 import java.util.stream.Collectors;
 
-import nextstep.ladder.application.prize.Prize;
 import nextstep.ladder.application.prize.Prizes;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 
 public class GameResult {
 
-	private final Map<Player, Prize> playerPrizes;
+	private final Players playersAfterPlayingLadderGame;
 
 	private GameResult(Players players, Prizes prizes) {
-		this.playerPrizes = playerPrizeMapFactory(players, prizes);
+		this.playersAfterPlayingLadderGame = playerPlayingResultFactory(players, prizes);
 	}
 
 	public static GameResult ofPlayersAndPrizes(Players players, Prizes prizes) {
 		return new GameResult(players, prizes);
 	}
 
-	private Map<Player, Prize> playerPrizeMapFactory(Players players, Prizes prizes) {
+	private Players playerPlayingResultFactory(Players players, Prizes prizes) {
 		return prizes.getPrizes().stream()
-			.collect(Collectors.toMap(
-				prize -> players.playerPrizeMapFactory(prizes.prizeIndex(prize)),
-				Function.identity()));
+			.map(prize -> players.playerPrizeMapFactory(prizes, prize))
+			.collect(collectingAndThen(Collectors.toList(), Players::ofPlayers));
 	}
 
-	public Map<Player, Prize> getPlayerPrizes() {
-		return playerPrizes;
+	public Players getPlayersAfterPlayingLadderGame() {
+		return playersAfterPlayingLadderGame;
 	}
 
 	public String printPlayerResult(String name, Players players) {
-		StringBuilder builder = new StringBuilder();
+		StringBuilder builder = new StringBuilder("실행 결과\n");
 		Player targetPlayer = players.findPlayerByName(name);
-		if (playerPrizes.containsKey(targetPlayer)) {
-			builder.append("실행 결과\n").append(playerPrizes.get(targetPlayer).getName());
-		}
+		builder.append(targetPlayer.getPrize().getName());
 		return builder.toString();
+	}
+
+	public String printResults() {
+		return playersAfterPlayingLadderGame.printResults().toString();
 	}
 }
