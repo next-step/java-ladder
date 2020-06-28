@@ -12,7 +12,7 @@ import study3.view.InputView;
 import study3.view.ResultView;
 
 public class LadderController {
-	private static final String WANT_ALL = "ALL";
+	private static final String WANT_ALL = "all";
 	public static void main(String[] args) {
 		
 		
@@ -30,13 +30,15 @@ public class LadderController {
 		
 		Rewards rewards = resultView.executeResult(executeResult.getExecuteResult());
 		
-		Results results = new Results(players, ladder, rewards);
+		// TODO Results results = new Results(players, ladder, rewards);
+		
 		
 		while(true) {
 			String resultName = inputview.wantResult();
 			
 			if(WANT_ALL.equals(resultName)) {
-				
+				Results results = Results.of(players, ladder, rewards);
+				resultView.allRewardPrint(results);
 			}
 		}
 	}

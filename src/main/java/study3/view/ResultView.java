@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import study3.domain.Point;
+import study3.domain.Results;
 import study3.domain.Reward;
 import study3.domain.Rewards;
 import study3.domain.Ladder;
@@ -14,16 +15,17 @@ import study3.domain.Players;
 
 public class ResultView {
 
-	private static final String EXECUTE_MESSAGE = "실행결과";
+	private static final String LADDER_EXECUTE_MESSAGE = "사다리 결과";
 	private static final String COLUMN = "|-----";
 	private static final String ROW = "|     ";
 	private static final String NAMES_FORMAT = "%6s";
 	private static final String BLANK = "    ";
-	
+	private static final String EXECUTE_MESSAGE = "실행 결과";
+	private static final String COLON = ":";
 
 	public ResultView(Players players, Ladder ladder) {
 
-		System.out.println(EXECUTE_MESSAGE);
+		System.out.println(LADDER_EXECUTE_MESSAGE);
 		viewPlayerList(players);
 		viewRowAndColumn(ladder);
 	}
@@ -84,5 +86,11 @@ public class ResultView {
 				Arrays.stream(executeString.replace(" ", "")
 				.split(","))
 				.collect(Collectors.toList()));
+	}
+
+	public void allRewardPrint(Results results) {
+		System.out.println(EXECUTE_MESSAGE);
+		results.getResults()
+			.forEach((key, value) -> System.out.println(key + COLON + value.getReward()));
 	}
 }	

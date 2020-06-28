@@ -11,7 +11,7 @@ public class Results {
 	private Ladder ladder;
 	private Rewards rewards;
 	
-	private Map<Player, Reward> resultMap = new HashMap<>();
+	private static Map<Player, Reward> resultMap = new HashMap<>();
 	
 	public Results(Map<Player, Reward> resultMap) {
 		this.resultMap = resultMap;
@@ -23,11 +23,11 @@ public class Results {
 		this.rewards = rewards;
 	}
 
-	private Results of(Players players, Ladder ladder, Rewards rewards) {
+	public static Results of(Players players, Ladder ladder, Rewards rewards) {
 		return new Results(playGame(players, ladder, rewards));
 	}
 
-	private Map<Player, Reward> playGame(Players players, Ladder ladder, Rewards rewards) {
+	private static Map<Player, Reward> playGame(Players players, Ladder ladder, Rewards rewards) {
 		
 		int numberOfPlayer = players.getPlayersCount();
 		
