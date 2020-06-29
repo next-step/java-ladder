@@ -19,25 +19,16 @@ public class Point {
         return hasPoint;
     }
 
-    public boolean canBePointInPosition(int currentPosition, Line line) {
-        if (!hasPoint) {
-            return false;
-        }
-        if (line.hasPreviousPositionPoint(currentPosition)) {
-            return false;
-        }
-        if (line.hasNextPositionPoint(currentPosition)) {
-            return false;
-        }
-        return true;
-    }
-
     public static Point makePointInLine(int position, Line line,
         GenerableStrategy generableStrategy) {
         Point point = new Point(position, generableStrategy.generate());
-        if (point.canBePointInPosition(position, line)) {
+        if (line.canBePointInPosition(point)) {
             return point;
         }
         return new Point(position);
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
