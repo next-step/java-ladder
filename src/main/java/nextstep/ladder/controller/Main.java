@@ -1,5 +1,6 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.domain.GameResult;
 import nextstep.ladder.domain.GameUsers;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.RandomGenerableStrategy;
@@ -25,6 +26,7 @@ public class Main {
         gameUsers.run(ladder);
 
         String resultUser = inputView.inputResultUser();
-        resultView.printResult(gameUsers.getGameResult(new Results(results)), resultUser);
+        GameResult gameResult = gameUsers.getGameResult(new Results(results));
+        resultView.printResult(gameResult.toStringList(resultUser));
     }
 }

@@ -37,11 +37,10 @@ public class GameUsers {
             .collect(Collectors.toList());
     }
 
-    public Map<String, String> getGameResult(Results results) {
+    public GameResult getGameResult(Results results) {
         results.validate(users.size());
 
-        return new GameResult(new ArrayList<>(users), results)
-            .getData();
+        return new GameResult(new ArrayList<>(users), results);
     }
 
     public void run(Ladder ladder) {
