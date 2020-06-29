@@ -5,9 +5,9 @@ public class Point {
     private final int position;
     private final boolean hasPoint;
 
-    public Point(int position, GenerableStrategy generableStrategy) {
+    public Point(int position, boolean hasPoint) {
         this.position = position;
-        this.hasPoint = generableStrategy.generate();
+        this.hasPoint = hasPoint;
     }
 
     private Point(int position) {
@@ -34,7 +34,7 @@ public class Point {
 
     public static Point makePointInLine(int position, Line line,
         GenerableStrategy generableStrategy) {
-        Point point = new Point(position, generableStrategy);
+        Point point = new Point(position, generableStrategy.generate());
         if (point.canBePointInPosition(position, line)) {
             return point;
         }

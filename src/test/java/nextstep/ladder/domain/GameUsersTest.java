@@ -15,11 +15,10 @@ class GameUsersTest {
         GameUsers gameUsers = new GameUsers(new String[]{"a", "b", "c"});
 
         //when
-        Map<String, String> resultMap = gameUsers.getGameResult(new Results(new String[]{"3","2","1"}));
+        GameResult gameResult = gameUsers.getGameResult(new Results(new String[]{"3","2","1"}));
 
         //then
-        assertThat(resultMap.get("a")).isEqualTo("3");
-        assertThat(resultMap.get("b")).isEqualTo("2");
-        assertThat(resultMap.get("c")).isEqualTo("1");
+        assertThat(gameResult.toStringList("all"))
+            .isEqualTo(Arrays.asList(new String[]{"a : 3", "b : 2", "c : 1"}));
     }
 }
