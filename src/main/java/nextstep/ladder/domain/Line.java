@@ -40,7 +40,7 @@ public class Line {
     }
 
     private boolean isInLine(int position) {
-        if (position >= 0 && position <= points.size() - 1) {
+        if (position >= 0 && position < points.size()) {
             return true;
         }
         return false;
