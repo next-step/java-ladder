@@ -73,11 +73,11 @@ public class Ladder {
 
     private int moveShortLine(int height, int currentPosition) {
         int nextVerticalLinePosition = currentPosition;
-        if(isEnabledShortLineOfLeft(height, nextVerticalLinePosition)) {
-            return -- nextVerticalLinePosition;
+        if (isEnabledShortLineOfLeft(height, nextVerticalLinePosition)) {
+            return --nextVerticalLinePosition;
         }
-        if(isEnabledShortLineOfRight(height, nextVerticalLinePosition)) {
-            return ++ nextVerticalLinePosition;
+        if (isEnabledShortLineOfRight(height, nextVerticalLinePosition)) {
+            return ++nextVerticalLinePosition;
         }
         return currentPosition;
     }
