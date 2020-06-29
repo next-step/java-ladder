@@ -1,10 +1,11 @@
 package ladder.view;
 
 import ladder.domain.line.Height;
+import ladder.domain.player.Name;
 import ladder.domain.player.Player;
 import ladder.domain.player.Players;
-import ladder.domain.reward.Reward;
-import ladder.domain.reward.Rewards;
+import ladder.domain.result.Reward;
+import ladder.domain.result.Rewards;
 import ladder.utils.NameSplitter;
 
 import java.util.Scanner;
@@ -36,5 +37,11 @@ public class InputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
 
         return Height.valueOf(Integer.parseInt(scanner.nextLine()));
+    }
+
+    public static Player readMatchPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+
+        return Player.create(Name.valueOf(scanner.nextLine()));
     }
 }

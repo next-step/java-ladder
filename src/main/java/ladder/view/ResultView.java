@@ -2,10 +2,14 @@ package ladder.view;
 
 import ladder.domain.line.Line;
 import ladder.domain.line.Lines;
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.point.Point;
-import ladder.domain.reward.Rewards;
+import ladder.domain.result.MatchResult;
+import ladder.domain.result.Reward;
+import ladder.domain.result.Rewards;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 
 public class ResultView {
@@ -56,5 +60,18 @@ public class ResultView {
                 .forEach(System.out::print);
 
         printNewLine();
+    }
+
+    public static void printMatchResult(Player player, MatchResult matchResult) {
+        System.out.println("실행 결과");
+
+        if (Player.all().equals(player)) {
+            matchResult.getAllPlayer().forEach((k, v) -> System.out.println(
+                    MessageFormat.format("{0}:{1}", k.getName(), v.getName())));
+            return;
+        }
+
+        Reward matchReward = matchResult.findPlayer(player);
+        System.out.println(matchReward.getName());
     }
 }
