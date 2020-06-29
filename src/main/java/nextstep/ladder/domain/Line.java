@@ -48,10 +48,11 @@ public class Line {
 
     public boolean hasPreviousPositionPoint(int currentPosition) {
         int previousPosition = currentPosition - 1;
-        if (isInLine(previousPosition) && points.get(previousPosition).hasPoint()) {
-            return true;
+        if (!isInLine(previousPosition)) {
+            return false;
         }
-        return false;
+        Point previousPoint = points.get(previousPosition);
+        return previousPoint.hasPoint();
     }
 
     public boolean hasNextPositionPoint(int currentPosition) {
