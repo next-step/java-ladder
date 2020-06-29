@@ -56,10 +56,28 @@ class LineTest {
     @DisplayName("모든 포인트가 움직일 수 있는 경우")
     @Test
     void getPointsMoveAll() {
-        Line line = Line.create(2, () -> Point.create(0, true));
+        Line line = Line.create(2, () -> Point.create(true));
         List<Point> points = line.getPoints();
 
         assertThat(points.get(0).isMovable()).isFalse();
         assertThat(points.get(1).isMovable()).isTrue();
+    }
+
+    @DisplayName("사다리 오른쪽으로 움직이면 Position 1이 증가")
+    @Test
+    void moveRight() {
+        Line line = Line.create(2, () -> Point.create(true));
+        Position position = line.move(Position.valueOf(0));
+
+        assertThat(position).isEqualTo(Position.valueOf(1));
+    }
+
+    @DisplayName("사다리 왼쪽으로 움직이면 Position 1이 감소")
+    @Test
+    void moveLeft() {
+        Line line = Line.create(2, () -> Point.create(true));
+        Position position = line.move(Position.valueOf(1));
+
+        assertThat(position).isEqualTo(Position.valueOf(0));
     }
 }

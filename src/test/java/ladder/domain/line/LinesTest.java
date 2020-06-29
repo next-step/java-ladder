@@ -1,11 +1,13 @@
 package ladder.domain.line;
 
 import ladder.domain.data.LineData;
+import ladder.domain.point.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
 
 class LinesTest {
 
@@ -23,5 +25,14 @@ class LinesTest {
 
         assertThatThrownBy(() -> lines.getLines().remove(0))
                 .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @DisplayName("라인의 마지막 위치 Position 반환")
+    @Test
+    void calculateEndPosition() {
+        Lines lines = Lines.create(LineData.makeCustom(2, () -> Point.create(true)));
+
+        assertThat(lines.calculateEndPosition(0)).isEqualTo(Position.valueOf(0));
+        assertThat(lines.calculateEndPosition(1)).isEqualTo(Position.valueOf(1));
     }
 }

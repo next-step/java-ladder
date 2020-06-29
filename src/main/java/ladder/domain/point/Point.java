@@ -4,18 +4,16 @@ import java.util.Objects;
 
 public class Point {
 
-    private static final Point FIRST = Point.create(0, false);
+    private static final Point FIRST = Point.create(false);
 
-    private final int index;
     private final boolean movable;
 
-    public Point(int index, boolean movable) {
-        this.index = index;
+    public Point(boolean movable) {
         this.movable = movable;
     }
 
-    public static Point create(int index, boolean movable) {
-        return new Point(index, movable);
+    public static Point create(boolean movable) {
+        return new Point(movable);
     }
 
     public static Point first() {
@@ -31,12 +29,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return index == point.index &&
-                movable == point.movable;
+        return movable == point.movable;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, movable);
+        return Objects.hash(movable);
     }
 }

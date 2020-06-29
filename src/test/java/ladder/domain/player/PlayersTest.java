@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class PlayersTest {
 
@@ -21,5 +22,19 @@ public class PlayersTest {
     void createInvalidCount() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Players.create(PlayerData.make(1)));
+    }
+
+    @DisplayName("리스트의 길이보다 작으면 True를 반환")
+    @Test
+    void hasIndexTrue() {
+        Players players = Players.create(PlayerData.make(10));
+        assertThat(players.hasIndex(9)).isTrue();
+    }
+
+    @DisplayName("리스트의 길이보다 크거나 같으면 False를 반환")
+    @Test
+    void hasIndexFalse() {
+        Players players = Players.create(PlayerData.make(10));
+        assertThat(players.hasIndex(10)).isFalse();
     }
 }

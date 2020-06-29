@@ -45,4 +45,32 @@ public class Line {
     public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public Position move(Position position) {
+        if (canMoveRight(position)) {
+            return position.right();
+        }
+
+        if (canMoveLeft(position)) {
+            return position.left();
+        }
+
+        return position;
+    }
+
+    private boolean canMoveRight(Position position) {
+        return !isLastPosition(position) && points.get(position.getValue() + 1).isMovable();
+    }
+
+    private boolean canMoveLeft(Position position) {
+        return !isFirstPosition(position) && points.get(position.getValue()).isMovable();
+    }
+
+    private boolean isLastPosition(Position position) {
+        return position.getValue() == points.size() - 1;
+    }
+
+    private boolean isFirstPosition(Position position) {
+        return position.getValue() == 0;
+    }
 }

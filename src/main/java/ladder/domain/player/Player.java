@@ -5,6 +5,8 @@ import java.util.Optional;
 
 public class Player {
 
+    private static final Player ALL = Player.create(Name.valueOf("all"));
+
     private final Name name;
 
     private Player(Name name) {
@@ -14,6 +16,10 @@ public class Player {
 
     public static Player create(Name name) {
         return new Player(name);
+    }
+
+    public static Player all() {
+        return ALL;
     }
 
     public Name getName() {
