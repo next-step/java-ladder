@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.game.LadderGameController;
-import nextstep.ladder.painter.RandomPaintingStrategy;
+import nextstep.ladder.application.LadderGameController;
+import nextstep.ladder.util.painter.RandomPaintingStrategy;
 
 public class NextStepLadderGameApplication {
 
