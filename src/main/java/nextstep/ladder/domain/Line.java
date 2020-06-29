@@ -64,17 +64,7 @@ public class Line {
         return false;
     }
 
-    private boolean isValidPosition(int position) {
-        if (position < 0 || position > points.size()) {
-            return false;
-        }
-        return true;
-    }
-
     public void move(User user) {
-        if (!isValidPosition(user.getCurrentPosition())) {
-            throw new IllegalArgumentException(INVALID_LINE_POSITION);
-        }
         if (hasPreviousPositionPoint(user.getCurrentPosition())) {
             user.moveLeft();
             return;
