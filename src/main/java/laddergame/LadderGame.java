@@ -26,7 +26,7 @@ public class LadderGame {
 
     LadderGameView.printLadder2(players, ladder, results);
 
-    LadderResultMapper ladderResultMapper = LadderResultMapper.createBy(ladder, players, results);
+    LadderResultMapper ladderResultMapper = LadderResultMapper.createBy2(ladder, players, results);
 
     for (PlayerName playerForResult = PlayerName.createBy(LadderGameInput.getPlayerForResultInputWithPrintMsg());
         !playerForResult.equals(NAME_FOR_END);

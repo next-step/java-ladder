@@ -14,17 +14,6 @@ public class Ladder {
     this.lines = lines;
   }
 
-  public static Ladder createByHeightAndCountOfPerson(
-      PositiveNumber height, int countOfPerson) {
-
-    List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson(countOfPerson))
-        .limit(height.getValue()).collect(
-            Collectors.toList());
-
-    return new Ladder(lines);
-
-  }
-
   public static Ladder createByHeightAndCountOfPerson2(
       PositiveNumber height, int countOfPerson) {
 

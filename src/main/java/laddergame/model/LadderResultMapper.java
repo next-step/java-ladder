@@ -18,12 +18,12 @@ public class LadderResultMapper {
     this.ladderResultMap = ladderResultMap;
   }
 
-  public static LadderResultMapper createBy(Ladder ladder, PlayerNames players, ResultNames results) {
+  public static LadderResultMapper createBy2(Ladder ladder, PlayerNames players, ResultNames results) {
     return new LadderResultMapper(Stream.iterate(0, positionNum -> positionNum + 1)
         .limit(players.getCountOfNames())
         .collect(Collectors.toMap(
             players::getNameByIndex,// TODO : 포지션 필요한지 고려
-            positionNum -> results.getNameByIndex(ladder.findResultPositionOf(positionNum)),
+            positionNum -> results.getNameByIndex(ladder.findResultPositionOf2(positionNum)),
             (x, y) -> x,
             LinkedHashMap::new
         )));

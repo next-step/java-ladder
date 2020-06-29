@@ -58,27 +58,64 @@ class LadderResultMapperTest {
   }
 
   @ParameterizedTest
-  @MethodSource("provideLadderPlayersResults")
-  void createBy(Ladder ladder, PlayerNames players, ResultNames results, Map<PlayerNames, ResultNames> expected) {
-    LadderResultMapper resultMap = LadderResultMapper.createBy(ladder, players, results);
+  @MethodSource("provideLadderPlayersResults2")
+  void createBy2(Ladder ladder, PlayerNames players, ResultNames results,
+      Map<PlayerNames, ResultNames> expected) {
+    LadderResultMapper resultMap = LadderResultMapper.createBy2(ladder, players, results);
     System.out.println(resultMap);
     assertThat(resultMap.getResults()).isEqualTo(expected.entrySet());
   }
 
-  public static Stream<Arguments> provideLadderPlayersResults() {
+  public static Stream<Arguments> provideLadderPlayersResults2() {
+    Point point0_1 = new Point(0);
+    Point point1_0 = point0_1.createNextWithLinkedBy(true);
+    Point point1_2 = new Point(1);
+    Point point2_1 = point1_2.createNextWithLinkedBy(true);
+//    Point point3 = point2.createNextWithLinkedBy(true);
+//
     return Stream.of(
         arguments(
             new Ladder(Arrays.asList(
-                new Line(Arrays.asList(
-                    new Point(false),
-                    new Point(true),
-                    new Point(false)
-                )),
-                new Line(Arrays.asList(
-                    new Point(false),
-                    new Point(false),
-                    new Point(true)
-                ))
+                new Line(
+                    Arrays.asList(
+                        new Point(0),
+                        new Point(1)
+                    )
+                )
+            )),
+            new PlayerNames(
+                Arrays.asList(
+                    PlayerName.createBy("name1"),
+                    PlayerName.createBy("name2")
+                )
+            ),
+            new ResultNames(
+                Arrays.asList(
+                    ResultName.createBy("res1"),
+                    ResultName.createBy("res2")
+                )
+            ),
+            new LinkedHashMap<PlayerName, ResultName>() {{
+              put(PlayerName.createBy("name1"), ResultName.createBy("res1"));
+              put(PlayerName.createBy("name2"), ResultName.createBy("res2"));
+            }}
+        ),
+        arguments(
+            new Ladder(Arrays.asList(
+                new Line(
+                    Arrays.asList(
+                        point0_1,
+                        point1_0,
+                        new Point(2)
+                    )
+                ),
+                new Line(
+                    Arrays.asList(
+                        new Point(0),
+                        point1_2,
+                        point2_1
+                    )
+                )
             )),
             new PlayerNames(
                 Arrays.asList(
