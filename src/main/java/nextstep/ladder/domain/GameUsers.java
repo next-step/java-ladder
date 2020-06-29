@@ -16,9 +16,9 @@ public class GameUsers {
 
     public GameUsers(String[] userNames) {
         validUserCount(userNames);
-        AtomicInteger position = new AtomicInteger();
+        Position position = new Position();
         this.users = Arrays.stream(userNames)
-            .map(userName -> new User(userName, position.getAndIncrement()))
+            .map(userName -> new User(userName, position.postIncrease()))
             .collect(Collectors.toList());
     }
 
