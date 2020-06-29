@@ -5,19 +5,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Point {
 
-  private static final String RUNG_EXIST = "-----|";
-  private static final String RUNG_NOT_EXIST = "     |";
-
-  private boolean rungCreated;
-
-  private int position;
+  private final int position;
   private Point linkedPoint;
 
-
-  public Point(boolean rungCreated) {
-    this.rungCreated = rungCreated;
-  }
-  
   //TODO : 빌더
   public Point(int position) {
     this.position = position;
@@ -41,47 +31,8 @@ public class Point {
     return position;
   }
 
-  public static Point createNonDuplicatedRungWith(Point target) {
-    if (target.isRungCreated()) {
-      return new Point(false);
-    }
-    return new Point(ThreadLocalRandom.current().nextBoolean());
-  }
-
-  public boolean isRungCreated() {
-    return rungCreated;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Point point = (Point) o;
-    return rungCreated == point.rungCreated &&
-        position == point.position &&
-        linkedPoint.equals(point.linkedPoint);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(rungCreated, position, linkedPoint);
-  }
-
-  @Override
-  public String toString() {
-    return rungCreated ? RUNG_EXIST : RUNG_NOT_EXIST;
-  }
-
   public boolean hasLinkedPoint() {
-    if (linkedPoint != null) {
-      return true;
-    }
-
-    return false;
+    return linkedPoint != null;
   }
 
   public Point createNext() {
@@ -101,5 +52,31 @@ public class Point {
     }
 
     return next;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Point point = (Point) o;
+    return position == point.position &&
+        Objects.equals(linkedPoint, point.linkedPoint);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(position, linkedPoint);
+  }
+
+  @Override
+  public String toString() {
+    return "Point{" +
+        "position=" + position +
+        ", linkedPoint=" + getNextPosition() +
+        '}';
   }
 }

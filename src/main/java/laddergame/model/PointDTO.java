@@ -2,8 +2,8 @@ package laddergame.model;
 
 public class PointDTO {
 
-  private int position;
-  private int nextPosition;
+  private final int position;
+  private final int nextPosition;
 
   private PointDTO(int position, int nextPosition) {
     this.position = position;

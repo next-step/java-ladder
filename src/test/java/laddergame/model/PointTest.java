@@ -4,35 +4,11 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class PointTest {
-
-  @ParameterizedTest
-  @CsvSource({
-      "true",
-      "false"
-  })
-  void isLineCreated(boolean rungCreated) {
-    Point point = new Point(rungCreated);
-
-    assertThat(point.isRungCreated()).isEqualTo(rungCreated);
-  }
-
-  @Test
-  void createNonDuplicatedRungWith() {
-    Point pointHasRung = new Point(true);
-    Point pointNotHasRung = new Point(false);
-
-    for (int i = 0; i < 1000; i++) {
-      assertThat(Point.createNonDuplicatedRungWith(pointHasRung).isRungCreated()).isFalse();
-      System.out.print(Point.createNonDuplicatedRungWith(pointNotHasRung).isRungCreated() + "||");
-    }
-  }
 
   @ParameterizedTest
   @MethodSource("providePoint")

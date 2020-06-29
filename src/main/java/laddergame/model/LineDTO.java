@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class LineDTO {
 
-  List<PointDTO> pointDTOs;
+  final List<PointDTO> pointDTOs;
 
   private LineDTO(List<PointDTO> pointDTOs) {
     this.pointDTOs = pointDTOs;

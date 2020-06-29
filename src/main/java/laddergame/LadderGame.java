@@ -22,11 +22,11 @@ public class LadderGame {
 
     PositiveNumber ladderHeight = new PositiveNumber(LadderGameInput.getHeightInputWithPrintMsg());
 
-    Ladder ladder = Ladder.createByHeightAndCountOfPerson2(ladderHeight, players.getCountOfNames());
+    Ladder ladder = Ladder.createByHeightAndCountOfPerson(ladderHeight, players.getCountOfNames());
 
     LadderGameView.printLadder2(players, ladder, results);
 
-    LadderResultMapper ladderResultMapper = LadderResultMapper.createBy2(ladder, players, results);
+    LadderResultMapper ladderResultMapper = LadderResultMapper.createBy(ladder, players, results);
 
     for (PlayerName playerForResult = PlayerName.createBy(LadderGameInput.getPlayerForResultInputWithPrintMsg());
         !playerForResult.equals(NAME_FOR_END);

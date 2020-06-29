@@ -14,10 +14,10 @@ public class Ladder {
     this.lines = lines;
   }
 
-  public static Ladder createByHeightAndCountOfPerson2(
+  public static Ladder createByHeightAndCountOfPerson(
       PositiveNumber height, int countOfPerson) {
 
-    List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson2(countOfPerson))
+    List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson(countOfPerson))
         .limit(height.getValue())
         .collect(Collectors.toList());
 
@@ -25,14 +25,6 @@ public class Ladder {
   }
 
   public int findResultPositionOf(int startPosition) {
-    Position position = new Position(new NaturalNumber(startPosition));
-
-    lines.forEach(position::movePositionBy);
-
-    return position.getValue();
-  }
-
-  public int findResultPositionOf2(int startPosition) {
 
     AtomicInteger position = new AtomicInteger(startPosition);
 

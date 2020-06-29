@@ -15,13 +15,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LadderTest {
 
   @ParameterizedTest
-  @MethodSource("createByHeightAndCountOfPerson2")
+  @MethodSource("createByHeightAndCountOfPerson")
   @DisplayName("사다리 생성 테스트")
-  void createByHeightAndCountOfPerson2(PositiveNumber height, String namesStr) {
+  void createByHeightAndCountOfPerson(PositiveNumber height, String namesStr) {
     String[] nameStrArr = namesStr.split(",");
     PlayerNames playerNames = PlayerNames.createBy(namesStr.split(","));
 
-    Ladder ladder = Ladder.createByHeightAndCountOfPerson2(height, playerNames.getCountOfNames());
+    Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, playerNames.getCountOfNames());
 
     assertThat(ladder.getLines().size()).isEqualTo(height.getValue());
 
@@ -31,7 +31,7 @@ class LadderTest {
     System.out.println(ladder);
   }
 
-  public static Stream<Arguments> createByHeightAndCountOfPerson2() {
+  public static Stream<Arguments> createByHeightAndCountOfPerson() {
     return Stream.of(
         arguments(
             new PositiveNumber(1),
@@ -49,15 +49,14 @@ class LadderTest {
   }
 
   @ParameterizedTest
-  @MethodSource("findResultPositionOf2")
+  @MethodSource("findResultPositionOf")
   @DisplayName("결과 찾기 테스트")
-  void findResultPositionOf2(Ladder ladder, Map<Integer, Integer> resultMap) {
-    resultMap.entrySet().forEach(entry -> {
-      assertThat(ladder.findResultPositionOf2(entry.getKey())).isEqualTo(entry.getValue());
-    });
+  void findResultPositionOf(Ladder ladder, Map<Integer, Integer> resultMap) {
+    resultMap
+        .forEach((key, value) -> assertThat(ladder.findResultPositionOf(key)).isEqualTo(value));
   }
 
-  static Stream<Arguments> findResultPositionOf2() {
+  static Stream<Arguments> findResultPositionOf() {
     Point point0_1 = new Point(0);
     Point point1_0 = point0_1.createNextWithLinkedBy(true);
     Point point1_2 = new Point(1);

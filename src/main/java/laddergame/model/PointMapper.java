@@ -1,7 +1,5 @@
 package laddergame.model;
 
-import laddergame.model.PointDTO;
-
 public class PointMapper {
 
   private static final String RUNG_EXIST = "-----|";
@@ -12,7 +10,6 @@ public class PointMapper {
   public PointMapper(PointDTO pointDTO) {
     this.pointDTO = pointDTO;
   }
-
 
   public String getResult() {
     if (pointDTO.hasLeft()) {
