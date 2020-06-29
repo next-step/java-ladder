@@ -1,12 +1,22 @@
 import domain.Ladder;
+import domain.LadderResult;
+import domain.MatchingResult;
+import domain.Players;
 import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
     public static void main(String[] args) {
-        String[] personNames = InputView.inputPersonNames();
-        int height = InputView.inputLadderHeight();
+        Players players = InputView.inputPersonNames();
+        String[] results = InputView.inputResults();
 
-        OutputView.printResult(new Ladder(personNames, height));
+        Ladder ladder = new Ladder(players.countOfPlayers(), InputView.inputLadderHeight());
+        OutputView.printResult(players, ladder, results);
+
+        MatchingResult matchingResult = ladder.play();
+        LadderResult ladderResult = matchingResult.map(players, results);
+
+        String who = InputView.inputWho();
+        OutputView.printWhoResult(who, ladderResult);
     }
 }

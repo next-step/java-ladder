@@ -1,32 +1,43 @@
 package domain;
 
-import java.util.Arrays;
+import generator.RandomPointGenerator;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private List<Person> players;
-    private List<Line> lines;
+    private final List<Line> lines;
 
-    public Ladder(String[] players, int height) {
-        this.players = Arrays.stream(players)
-                .map(Person::new)
-                .collect(Collectors.toList());
-
+    public Ladder(int countOfPlayer, int height) {
         this.lines = IntStream.range(0, height)
-                .mapToObj(i -> new Line(players.length))
+                .mapToObj(i -> Line.of(countOfPlayer, new RandomPointGenerator()))
                 .collect(Collectors.toList());
-    }
-
-
-    public String getPlayerNames() {
-        return players.stream()
-                .map(Person::toString)
-                .collect(Collectors.joining());
     }
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public MatchingResult play() {
+        int personSize = lines.get(0).getPersonSize();
+        Map<Integer, Integer> matchingResult = new HashMap<>();
+        for (int i = 0; i < personSize ; i++) {
+            matchingResult.put(i, getLadderResultIndex(i));
+        }
+
+        return MatchingResult.of(matchingResult);
+    }
+
+    public int getLadderResultIndex(int playerIndex) {
+        int point = playerIndex;
+
+        for (Line line : lines) {
+            point = line.nextPointIndex(point);
+        }
+
+        return point;
     }
 }

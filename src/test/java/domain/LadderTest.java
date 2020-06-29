@@ -1,20 +1,26 @@
 package domain;
 
-import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LadderTest {
 
     @Test
-    public void 플레이어_이름과_높이를_입력하여_게임을_만든다() {
-        new Ladder(new String[]{"abc", "aaaa", "bcdef"}, 3);
+    public void 사람이름은_5글자를_넘으면_안된다() {
+        String IllegalName = "abcdef";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            Players.of(new String[] {IllegalName});
+        });
     }
 
     @Test
-    public void 플레이어_이름을_가져온다() {
-        Ladder ladder = new Ladder(new String[]{"abc", "aaaa", "bcdef"}, 3);
+    public void 플레이어_이름을_입력하여_만든다() {
+        Players players = Players.of(new String[]{"abc", "aaaa", "bcdef"});
 
-        assertThat(ladder.getPlayerNames()).isEqualTo(" abc aaaa bcdef");
+        assertEquals(players.countOfPlayers(), 3);
     }
 }
