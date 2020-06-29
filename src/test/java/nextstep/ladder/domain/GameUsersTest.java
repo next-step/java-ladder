@@ -15,7 +15,7 @@ class GameUsersTest {
         GameUsers gameUsers = new GameUsers(new String[]{"a", "b", "c"});
 
         //when
-        Map<String, String> resultMap = gameUsers.getGameResult(new String[]{"3","2","1"});
+        Map<String, String> resultMap = gameUsers.getGameResult(new Results(new String[]{"3","2","1"}));
 
         //then
         assertThat(resultMap.get("a")).isEqualTo("3");
