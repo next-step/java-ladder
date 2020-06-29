@@ -15,7 +15,7 @@ public class LadderGame {
     }
 
     public List<Integer> play(String name) {
-        if(name.toLowerCase().equals(ALL)) {
+        if (ALL.equalsIgnoreCase(name)) {
             return ladder.playAll();
         }
         int startPosition = participants.getStartPosition(User.of(name));
