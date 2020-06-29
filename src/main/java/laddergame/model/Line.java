@@ -30,6 +30,17 @@ public class Line {
             .collect(Collectors.toList()));
   }
 
+  public static Line createByCountOfPerson2(int countOfPerson) {
+    return new Line(
+        Stream.iterate(new Point(0), Point::createNext)
+            .limit(countOfPerson)
+            .collect(Collectors.toList()));
+  }
+
+  public int getNextPositionAt(int index) {
+    return points.get(index).getNextPosition();
+  }
+
   public List<Point> getPoints() {
     return Collections.unmodifiableList(points);
   }

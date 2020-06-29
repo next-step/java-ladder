@@ -25,6 +25,7 @@ public class Point {
   public Point(int position, Point linkedPoint) {
     this.position = position;
     this.linkedPoint = linkedPoint;
+    linkedPoint.linkedPoint = this.linkedPoint;
   }
 
   public int getPosition() {
