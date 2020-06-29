@@ -1,7 +1,7 @@
 package ladder.domain.data;
 
 import ladder.domain.player.Name;
-import ladder.domain.reward.Reward;
+import ladder.domain.result.Reward;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,5 +1,6 @@
-package ladder.domain.reward;
+package ladder.domain.result;
 
+import ladder.domain.line.Position;
 import ladder.domain.player.Name;
 import ladder.domain.player.Players;
 
@@ -30,5 +31,9 @@ public class Rewards {
                 .map(Reward::getName)
                 .map(Name::getValue)
                 .collect(Collectors.toList());
+    }
+
+    public Reward findReward(Position position) {
+        return rewards.get(position.getValue());
     }
 }

@@ -1,4 +1,4 @@
-package ladder.domain.reward;
+package ladder.domain.result;
 
 import ladder.domain.data.PlayerData;
 import ladder.domain.data.RewardData;
