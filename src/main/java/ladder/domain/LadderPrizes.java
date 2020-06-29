@@ -14,7 +14,7 @@ public class LadderPrizes {
     }
 
     private LadderPrizes(List<LadderPrize> ladderPrizes) {
-        this.ladderPrizes =  Collections.unmodifiableList(ladderPrizes);
+        this.ladderPrizes = Collections.unmodifiableList(ladderPrizes);
     }
 
     public static LadderPrizes of(List<LadderPrize> ladderPrizes, Ladder ladder) {
