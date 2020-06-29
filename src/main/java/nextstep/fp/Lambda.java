@@ -28,4 +28,17 @@ public class Lambda {
                 .sum();
     }
 
+    public static int sumAllEven(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .mapToInt(Integer::valueOf)
+                .sum();
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+                .filter(conditional::test)
+                .mapToInt(Integer::valueOf)
+                .sum();
+    }
 }
