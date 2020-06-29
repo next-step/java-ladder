@@ -22,7 +22,7 @@ public class LadderResultMapper {
     return new LadderResultMapper(Stream.iterate(0, positionNum -> positionNum + 1)
         .limit(players.getCountOfNames())
         .collect(Collectors.toMap(
-            players::getNameByIndex,
+            players::getNameByIndex,// TODO : 포지션 필요한지 고려
             positionNum -> results.getNameByIndex(ladder.findResultPositionOf(positionNum)),
             (x, y) -> x,
             LinkedHashMap::new

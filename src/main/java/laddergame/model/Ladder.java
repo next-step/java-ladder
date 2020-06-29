@@ -56,6 +56,12 @@ public class Ladder {
     return Collections.unmodifiableList(lines);
   }
 
+  public List<LineDTO> getLineDTOs() {
+    return lines.stream()
+        .map(LineDTO::createBy)
+        .collect(Collectors.toList());
+  }
+
   @Override
   public String toString() {
     return "Ladder{" +

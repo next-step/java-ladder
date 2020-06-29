@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -135,5 +136,56 @@ class LadderTest {
             }}
         )
     );
+  }
+
+  @ParameterizedTest
+  @MethodSource("provideLadder")
+  void getLineDTOs(Ladder ladder) {
+    StringBuilder sb = new StringBuilder();
+
+    ladder.getLineDTOs().forEach(lineDTO -> {
+      sb.append(lineDTO.getLineWithMappedPoint())
+          .append(System.lineSeparator());
+    });
+
+    System.out.println(sb);
+  }
+
+  static Stream<Arguments> provideLadder() {
+    Point point0_1 = new Point(0);
+    Point point1_0 = point0_1.createNextWithLinkedBy(true);
+    Point point1_2 = new Point(1);
+    Point point2_1 = point1_2.createNextWithLinkedBy(true);
+//    Point point3 = point2.createNextWithLinkedBy(true);
+//
+    return Stream.of(
+        arguments(
+            new Ladder(Arrays.asList(
+                new Line(
+                    Arrays.asList(
+                        new Point(0),
+                        new Point(1)
+                    )
+                )
+            ))
+        ),
+        arguments(
+            new Ladder(Arrays.asList(
+                new Line(
+                    Arrays.asList(
+                        point0_1,
+                        point1_0,
+                        new Point(2)
+                    )
+                ),
+                new Line(
+                    Arrays.asList(
+                        new Point(0),
+                        point1_2,
+                        point2_1
+                    )
+                )
+            ))
+        ));
   }
 }

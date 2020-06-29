@@ -17,7 +17,8 @@ public class Point {
   public Point(boolean rungCreated) {
     this.rungCreated = rungCreated;
   }
-
+  
+  //TODO : 빌더
   public Point(int position) {
     this.position = position;
   }
