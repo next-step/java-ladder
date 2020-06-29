@@ -3,18 +3,21 @@ package nextstep.ladder.domain;
 public class User {
     private final String name;
 
+    private static final String NULL_OR_EMPTY_EXCEPTION_MESSAGE = "Null 혹은 공백을 입력할 수 없습니다.";
+    private static final String NAME_LENGTH_EXCEPTION_MESSAGE = "이름은 최대 5자를 넘길 수 없습니다.";
+
     public User(String name) {
         validationCheck(name);
         this.name = name;
     }
 
     private void validationCheck(String name) {
-        if (name == null || name.replaceAll(" ", "").length() == 0) {
-            throw new IllegalArgumentException("Null 혹은 공백을 입력할 수 없습니다.");
+        if (name == null || name.trim().length() == 0) {
+            throw new IllegalArgumentException(NULL_OR_EMPTY_EXCEPTION_MESSAGE);
         }
 
         if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 최대 5자를 넘길 수 없습니다.");
+            throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE);
         }
     }
 
