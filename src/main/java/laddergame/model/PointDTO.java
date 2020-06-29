@@ -10,16 +10,8 @@ public class PointDTO {
     this.nextPosition = nextPosition;
   }
 
-  public static PointDTO createBy(Point point) {
-    return new PointDTO(point.getPosition(), point.getNextPosition());
-  }
-
-  public int getPosition() {
-    return position;
-  }
-
-  public int getNextPosition() {
-    return nextPosition;
+  public static PointDTO createBy(Point basicPoint) {
+    return new PointDTO(basicPoint.getPosition(), basicPoint.getNextPosition());
   }
 
   public boolean hasLeft() {

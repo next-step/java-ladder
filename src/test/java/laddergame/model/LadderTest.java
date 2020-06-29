@@ -18,16 +18,12 @@ class LadderTest {
   @MethodSource("createByHeightAndCountOfPerson")
   @DisplayName("사다리 생성 테스트")
   void createByHeightAndCountOfPerson(PositiveNumber height, String namesStr) {
-    String[] nameStrArr = namesStr.split(",");
     PlayerNames playerNames = PlayerNames.createBy(namesStr.split(","));
 
     Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, playerNames.getCountOfNames());
 
-    assertThat(ladder.getLines().size()).isEqualTo(height.getValue());
+    assertThat(ladder.getLineDTOs().size()).isEqualTo(height.getValue());
 
-    for (Line line : ladder.getLines()) {
-      assertThat(line.getPoints().size()).isEqualTo(nameStrArr.length);
-    }
     System.out.println(ladder);
   }
 
@@ -57,10 +53,10 @@ class LadderTest {
   }
 
   static Stream<Arguments> findResultPositionOf() {
-    Point point0_1 = new Point(0);
-    Point point1_0 = point0_1.createNextWithLinkedBy(true);
-    Point point1_2 = new Point(1);
-    Point point2_1 = point1_2.createNextWithLinkedBy(true);
+    BasicPoint basicPoint0_1 = new BasicPoint(0);
+    LinkablePoint basicPoint1_0 = basicPoint0_1.createNextWithLinkedBy(true);
+    BasicPoint basicPoint1_2 = new BasicPoint(1);
+    LinkablePoint basicPoint2_1 = basicPoint1_2.createNextWithLinkedBy(true);
 //    Point point3 = point2.createNextWithLinkedBy(true);
 //
     return Stream.of(
@@ -68,8 +64,8 @@ class LadderTest {
             new Ladder(Arrays.asList(
                 new Line(
                     Arrays.asList(
-                        new Point(0),
-                        new Point(1)
+                        new BasicPoint(0),
+                        new BasicPoint(1)
                     )
                 )
             )),
@@ -82,16 +78,16 @@ class LadderTest {
             new Ladder(Arrays.asList(
                 new Line(
                     Arrays.asList(
-                        point0_1,
-                        point1_0,
-                        new Point(2)
+                        basicPoint0_1,
+                        basicPoint1_0,
+                        new BasicPoint(2)
                     )
                 ),
                 new Line(
                     Arrays.asList(
-                        new Point(0),
-                        point1_2,
-                        point2_1
+                        new BasicPoint(0),
+                        basicPoint1_2,
+                        basicPoint2_1
                     )
                 )
             )),
@@ -118,10 +114,10 @@ class LadderTest {
   }
 
   static Stream<Arguments> provideLadder() {
-    Point point0_1 = new Point(0);
-    Point point1_0 = point0_1.createNextWithLinkedBy(true);
-    Point point1_2 = new Point(1);
-    Point point2_1 = point1_2.createNextWithLinkedBy(true);
+    BasicPoint basicPoint0_1 = new BasicPoint(0);
+    LinkablePoint basicPoint1_0 = basicPoint0_1.createNextWithLinkedBy(true);
+    BasicPoint basicPoint1_2 = new BasicPoint(1);
+    LinkablePoint basicPoint2_1 = basicPoint1_2.createNextWithLinkedBy(true);
 //    Point point3 = point2.createNextWithLinkedBy(true);
 //
     return Stream.of(
@@ -129,8 +125,8 @@ class LadderTest {
             new Ladder(Arrays.asList(
                 new Line(
                     Arrays.asList(
-                        new Point(0),
-                        new Point(1)
+                        new BasicPoint(0),
+                        new BasicPoint(1)
                     )
                 )
             ))
@@ -139,16 +135,16 @@ class LadderTest {
             new Ladder(Arrays.asList(
                 new Line(
                     Arrays.asList(
-                        point0_1,
-                        point1_0,
-                        new Point(2)
+                        basicPoint0_1,
+                        basicPoint1_0,
+                        new BasicPoint(2)
                     )
                 ),
                 new Line(
                     Arrays.asList(
-                        new Point(0),
-                        point1_2,
-                        point2_1
+                        new BasicPoint(0),
+                        basicPoint1_2,
+                        basicPoint2_1
                     )
                 )
             ))

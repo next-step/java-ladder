@@ -1,6 +1,5 @@
 package laddergame.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -31,10 +30,6 @@ public class Ladder {
     lines.forEach(line -> position.set(line.getNextPositionAt(position.get())));
 
     return position.get();
-  }
-
-  public List<Line> getLines() {
-    return Collections.unmodifiableList(lines);
   }
 
   public List<LineDTO> getLineDTOs() {

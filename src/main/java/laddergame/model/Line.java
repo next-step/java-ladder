@@ -15,7 +15,7 @@ public class Line {
 
   public static Line createByCountOfPerson(int countOfPerson) {
     return new Line(
-        Stream.iterate(new Point(0), Point::createNext)
+        Stream.iterate(BasicPoint.create(0), basicPoint -> basicPoint.createNext())
             .limit(countOfPerson)
             .collect(Collectors.toList()));
   }
@@ -30,8 +30,8 @@ public class Line {
 
   @Override
   public String toString() {
-    return points.stream()
-        .map(Point::toString)
-        .reduce("", String::concat);
+    return "Line{" +
+        "basicPoints=" + points +
+        '}';
   }
 }

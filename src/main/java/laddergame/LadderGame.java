@@ -24,7 +24,7 @@ public class LadderGame {
 
     Ladder ladder = Ladder.createByHeightAndCountOfPerson(ladderHeight, players.getCountOfNames());
 
-    LadderGameView.printLadder2(players, ladder, results);
+    LadderGameView.printLadder(players, ladder, results);
 
     LadderResultMapper ladderResultMapper = LadderResultMapper.createBy(ladder, players, results);
 

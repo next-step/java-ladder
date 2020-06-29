@@ -29,18 +29,6 @@ public class LadderGameView {
 
     sb.append(players.toString()).append(NEWLINE);
 
-    ladder.getLines().forEach(line -> sb.append(line).append(NEWLINE));
-
-    sb.append(results.toString());
-
-    System.out.println(sb);
-  }
-
-  public static void printLadder2(PlayerNames players, Ladder ladder, ResultNames results) {
-    StringBuilder sb = new StringBuilder("실행결과").append(NEWLINE);
-
-    sb.append(players.toString()).append(NEWLINE);
-
     ladder.getLineDTOs().forEach(lineDTO -> {
       sb.append(lineDTO.getLineWithMappedPoint())
           .append(NEWLINE);
