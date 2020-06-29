@@ -64,17 +64,17 @@ public class Line {
         return false;
     }
 
-    public void move(User user) {
-        if (hasPreviousPositionPoint(user.getCurrentPosition())) {
-            user.moveLeft();
-            return;
-        }
-
-        if (hasNextPositionPoint(user.getCurrentPosition() - 1)) {
-            user.moveRight();
-            return;
-        }
-    }
+//    public void move(User user) {
+//        if (hasPreviousPositionPoint(user.getCurrentPosition())) {
+//            user.moveLeft();
+//            return;
+//        }
+//
+//        if (hasNextPositionPoint(user.getCurrentPosition() - 1)) {
+//            user.moveRight();
+//            return;
+//        }
+//    }
 
     public boolean canBePointInPosition(Point point) {
         if (!point.hasPoint()) {

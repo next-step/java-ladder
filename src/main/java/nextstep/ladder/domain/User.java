@@ -59,6 +59,18 @@ public class User {
             currentPosition.equals(user.currentPosition);
     }
 
+    public void climb(Line line) {
+        if (line.hasPreviousPositionPoint(getCurrentPosition())) {
+            moveLeft();
+            return;
+        }
+
+        if (line.hasNextPositionPoint(getCurrentPosition() - 1)) {
+            moveRight();
+            return;
+        }
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(name, currentPosition);

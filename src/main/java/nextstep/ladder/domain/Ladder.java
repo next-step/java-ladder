@@ -29,7 +29,7 @@ public class Ladder {
     public void move(User user) {
         ladder.stream()
             .sequential()
-            .forEach(line -> line.move(user));
+            .forEach(line -> user.climb(line));
     }
 
     @Override
