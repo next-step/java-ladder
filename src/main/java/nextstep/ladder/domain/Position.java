@@ -31,4 +31,11 @@ public class Position {
     public int getValue() {
         return value;
     }
+
+    public boolean canBeDecrease() {
+        if (value - 1 >= 0) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -7,12 +7,12 @@ public class User {
     private static final String INVALID_USER_NAME_LENGTH = "사다리 게임에 참여하는 사람에 이름을 최대 5글자까지 부여할 수 있습니다.";
 
     private String name;
-    private Integer currentPosition;
+    private Position currentPosition;
 
-    public User(String name, Integer currentPosition) {
+    public User(String name, int currentPosition) {
         validateName(name);
         this.name = name;
-        this.currentPosition = currentPosition;
+        this.currentPosition = new Position(currentPosition);
     }
 
     private void validateName(String name) {
@@ -30,20 +30,20 @@ public class User {
     }
 
     public Boolean moveLeft() {
-        if (currentPosition - 1 >= 0) {
-            currentPosition--;
+        if (currentPosition.canBeDecrease()) {
+            currentPosition.postDecrease();
             return true;
         }
         return false;
     }
 
     public Boolean moveRight() {
-        currentPosition++;
+        currentPosition.postIncrease();
         return true;
     }
 
     public Integer getCurrentPosition() {
-        return currentPosition;
+        return currentPosition.getValue();
     }
 
     @Override

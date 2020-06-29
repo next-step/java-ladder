@@ -39,13 +39,6 @@ public class Line {
         return points;
     }
 
-    private boolean isInLine(int position) {
-        if (position >= 0 && position < points.size()) {
-            return true;
-        }
-        return false;
-    }
-
     public boolean hasPreviousPositionPoint(int currentPosition) {
         int previousPosition = currentPosition - 1;
         return hasPoint(previousPosition);
@@ -64,7 +57,14 @@ public class Line {
         return point.hasPoint();
     }
 
-    private boolean isValidPositionInLine(int position) {
+    private boolean isInLine(int position) {
+        if (position >= 0 && position < points.size()) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isValidPosition(int position) {
         if (position < 0 || position > points.size()) {
             return false;
         }
@@ -72,7 +72,7 @@ public class Line {
     }
 
     public void move(User user) {
-        if (!isValidPositionInLine(user.getCurrentPosition())) {
+        if (!isValidPosition(user.getCurrentPosition())) {
             throw new IllegalArgumentException(INVALID_LINE_POSITION);
         }
         if (hasPreviousPositionPoint(user.getCurrentPosition())) {
@@ -84,6 +84,19 @@ public class Line {
             user.moveRight();
             return;
         }
+    }
+
+    public boolean canBePointInPosition(Point point) {
+        if (!point.hasPoint()) {
+            return false;
+        }
+        if (hasPreviousPositionPoint(point.getPosition())) {
+            return false;
+        }
+        if (hasNextPositionPoint(point.getPosition())) {
+            return false;
+        }
+        return true;
     }
 
     @Override
