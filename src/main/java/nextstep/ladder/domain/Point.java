@@ -31,4 +31,12 @@ public class Point {
     public int getPosition() {
         return position;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+            "position=" + position +
+            ", hasPoint=" + hasPoint +
+            '}';
+    }
 }

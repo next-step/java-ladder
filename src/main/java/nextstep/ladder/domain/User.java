@@ -46,19 +46,6 @@ public class User {
         return currentPosition.getValue();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        User user = (User) o;
-        return name.equals(user.name) &&
-            currentPosition.equals(user.currentPosition);
-    }
-
     public void climb(Line line) {
         if (line.hasPreviousPositionPoint(getCurrentPosition())) {
             moveLeft();
@@ -72,15 +59,28 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, currentPosition);
-    }
-
-    @Override
     public String toString() {
         return "User{" +
             "name='" + name + '\'' +
             ", currentPosition=" + currentPosition +
             '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return name.equals(user.name) &&
+            currentPosition.equals(user.currentPosition);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, currentPosition);
     }
 }
