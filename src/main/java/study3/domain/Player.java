@@ -8,11 +8,11 @@ public class Player {
 	private static final String NAME_IS_NULL = "이름이 널입니다.";
 	
 	public Player(String name) {
-		nameLimiation(name);
+		validateName(name);
 		this.name = name;
 	}
 
-	private void nameLimiation(String name) {
+	private void validateName(String name) {
 
 		if (name.length() > 5) {
 			throw new IllegalArgumentException(NAME_LIMIT);
@@ -22,7 +22,7 @@ public class Player {
 			throw new IllegalArgumentException(LEAST_NAME_LIMIT);
 		}
 		if(name == null) {
-			throw new NullPointerException(NAME_IS_NULL);
+			throw new IllegalArgumentException(NAME_IS_NULL);
 		}
 	}
 

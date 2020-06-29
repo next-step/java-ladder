@@ -11,9 +11,9 @@ public class Results {
 	private Ladder ladder;
 	private Rewards rewards;
 	
-	private static Map<Player, Reward> resultMap = new HashMap<>();
+	private static Map<Player, String> resultMap = new HashMap<>();
 	
-	public Results(Map<Player, Reward> resultMap) {
+	public Results(Map<Player, String> resultMap) {
 		this.resultMap = resultMap;
 	}
 			
@@ -27,14 +27,14 @@ public class Results {
 		return new Results(playGame(players, ladder, rewards));
 	}
 
-	private static Map<Player, Reward> playGame(Players players, Ladder ladder, Rewards rewards) {
+	private static Map<Player, String> playGame(Players players, Ladder ladder, Rewards rewards) {
 		
 		int numberOfPlayer = players.getPlayersCount();
 		
 		for(int i=0; i < numberOfPlayer; i++) {
 			
 			Player siglePlayerName = players.getPlayers().get(i);
-			Reward singleReward = findFinalPosition(siglePlayerName, ladder.getLadder(), rewards);
+			String singleReward = findFinalPosition(siglePlayerName, ladder.getLadder(), rewards);
 			
 			resultMap.put(siglePlayerName, singleReward);
 		}
@@ -42,7 +42,7 @@ public class Results {
 		return resultMap;
 	}
 
-	private static Reward findFinalPosition(Player siglePlayerName,List<Line> ladder, Rewards rewards) {
+	private static String findFinalPosition(Player siglePlayerName,List<Line> ladder, Rewards rewards) {
 		
 		int position = Players.findPlayersIndex(siglePlayerName);
 		
@@ -52,7 +52,7 @@ public class Results {
 		return rewards.getReward(position);
 	}
 	
-	public Map<Player, Reward> getResults() {
+	public Map<Player, String> getResults() {
 		return Collections.unmodifiableMap(resultMap);
 	}	
 }

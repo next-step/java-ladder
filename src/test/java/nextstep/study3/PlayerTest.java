@@ -11,13 +11,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import study2.domain.Player;
-import study2.domain.Players;
+import study3.domain.Player;
+import study3.domain.Players;
 
 class PlayerTest {
 
-	Player player;
-	Players players;
+	private Player player;
+	private Players players;
 
 	@Test
 	@DisplayName("이름 길이 테스트")
@@ -27,16 +27,14 @@ class PlayerTest {
 	}
 
 	@ParameterizedTest
-	@DisplayName("플레이어들은 최소 1명이상입니다.")
+	@DisplayName("이름의 validation테스트")
 	@MethodSource("blankStrings")
 	void 플레이어_체크_테스트(String testString) {
-		// 이부분에서 nullPointerException과
-		// IllegalArgumentExcpetion에 대한 분기처리를 어떻게 할 수 있나요?
 		assertThatThrownBy(() -> player = new Player(testString))
 									.isInstanceOf(IllegalArgumentException.class);
 	}
 	
 	static Stream<String> blankStrings() {
-		return Stream.of("", " ", null);
+		return Stream.of("", " ", null, "asfasdfasdafsd");
 	}
 }

@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import study3.domain.Point;
 import study3.domain.Results;
-import study3.domain.Reward;
 import study3.domain.Rewards;
 import study3.domain.Ladder;
 import study3.domain.Line;
@@ -26,46 +25,39 @@ public class ResultView {
 	private static final String EXECUTE_MESSAGE = "실행 결과";
 	private static final String COLON = ":";
 
-	public ResultView(Players players, Ladder ladder) {
-
+	public ResultView() {
 		System.out.println(LADDER_EXECUTE_MESSAGE);
-		viewPlayerList(players);
-		viewRowAndColumn(ladder);
 	}
+	
+	public void viewPlayerList(Players players) {
 
-	private void viewPlayerList(Players players) {
-		
-		players.getPlayers().forEach(
-				player -> System.out.print(
-						String.format(NAMES_FORMAT, player.getPlayerName())));
+		players.getPlayers().forEach(player -> System.out.print(String.format(NAMES_FORMAT, player.getPlayerName())));
 		System.out.println();
 	}
 
-	private void viewRowAndColumn(Ladder ladder) {
-		
+	public void viewRowAndColumn(Ladder ladder) {
+
 		/* TODO : 레더 출력
 		 * for(int i=0; i<ladder.getLadder().size(); i++) {
 			System.out.println(i+"번째 레더" + ladder.getLadder().get(i).getLine());
 		}*/
 
-		ladder.getLadder().forEach(line -> 	{
+		ladder.getLadder().forEach(line -> {
 			System.out.print(BLANK);
 			choiceRowOrColum(line);
-			});
+		});
 	}
 
 	private void choiceRowOrColum(Line line) {
-		line.getLine().stream()
-		.forEach(point -> 
-				printBarAndColumn(getPointDirection(point)));
+		line.getLine().stream().forEach(point -> printBarAndColumn(getPointDirection(point)));
 		System.out.println();
 	}
-	
+
 	private boolean getPointDirection(Point point) {
-		if(point.getDirection().isRight()) {
+		if (point.getDirection().isRight()) {
 			return false;
-		}		
-		return true;		
+		}
+		return true;
 	}
 
 	private void printBarAndColumn(Boolean point) {
@@ -76,32 +68,31 @@ public class ResultView {
 			System.out.print(COLUMN);
 		}
 	}
-	public Rewards executeResult(String executeString) {
-		
-			Arrays.stream(executeString.replace(" ", "")
-				.split(","))
-			.forEach(s-> {
-				System.out.print(BLANK + s);
-			});		
-		
+
+	public void executeResult(String executeString) {
+
+		Arrays.stream(executeString.replace(" ", "")
+				.split(",")).forEach(s -> {
+			System.out.print(BLANK + s);
+		});
+
 		System.out.println();
-		return new Rewards (
-				Arrays.stream(executeString.replace(" ", "")
-				.split(","))
-				.collect(Collectors.toList()));
 	}
 
 	public void allRewardPrint(Results results) {
 		System.out.println(EXECUTE_MESSAGE);
 		results.getResults()
-			.forEach((key, value) -> System.out.println(key.getPlayerName() + COLON + value.getReward()));
+				.forEach((key, value) -> System.out.println(key.getPlayerName() + COLON + value));
 	}
 
 	public void SingleRewardPrint(Results results, String resultNames) {
-		Player samePlayer = results.getResults().keySet().stream()
-				.filter(player -> player.isEqual(resultNames))
-				.findFirst()
-				.orElseThrow(() -> new IllegalArgumentException());
-		System.out.println(results.getResults().get(samePlayer).getReward());
+		Player samePlayer = results.getResults().keySet()
+				.stream().filter(player -> player.isEqual(resultNames))
+				.findFirst().orElseThrow(() -> new IllegalArgumentException());
+
+		// Question!
+		// 아래 코드에서 디미터 법칙(?)을 위반 하고 있는것 같은데 ( 디미터 법칙은 모듈은 자신이 조작하는 객체의 속사정을 몰라야 한다는 법칙이다....)
+		// 혹시 힌트나 좋은 의견 있으신가요?
+		System.out.println(results.getResults().get(samePlayer));
 	}
-}	
+}

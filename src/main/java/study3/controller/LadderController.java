@@ -2,7 +2,7 @@ package study3.controller;
 
 import java.util.List;
 
-import study3.domain.ExecuteResult;
+import study3.domain.LadderExecuteResult;
 import study3.domain.Height;
 import study3.domain.Ladder;
 import study3.domain.Players;
@@ -20,17 +20,20 @@ public class LadderController {
 
 		Players players = new Players(inputview.getParticipantNames());
 
-		ExecuteResult executeResult = new ExecuteResult(inputview.getExecuteResult());
+		LadderExecuteResult executeResult = new LadderExecuteResult(inputview.getExecuteResult());
 
 		Height height = new Height(inputview.inputHeight());
 
 		Ladder ladder = new Ladder(players, height);
 
-		ResultView resultView = new ResultView(players, ladder);
-
-		Rewards rewards = resultView.executeResult(executeResult.getExecuteResult());
-
-		// TODO Results results = new Results(players, ladder, rewards);
+		ResultView resultView = new ResultView();
+		resultView.viewPlayerList(players); // players 출력
+		resultView.viewRowAndColumn(ladder); // 사다리 출력
+		
+		String inputExecute = executeResult.getExecuteResult();
+		resultView.executeResult(inputExecute);
+		
+		Rewards rewards = LadderExecuteResult.executeReward(inputExecute);
 
 		while (true) {
 			String resultName = inputview.wantResult();

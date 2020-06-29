@@ -6,11 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ExecuteResult {
+public class LadderExecuteResult {
 
 	private final String executeReuslt;
 
-	public ExecuteResult(String executeResult) {				
+	public LadderExecuteResult(String executeResult) {				
 		this.executeReuslt = executeResult;		
 	}
 
@@ -18,4 +18,10 @@ public class ExecuteResult {
 		return executeReuslt;
 	}
 	
+	public static Rewards executeReward(String executeString) {
+		return new Rewards (
+				Arrays.stream(executeString.replace(" ", "")
+				.split(","))
+				.collect(Collectors.toList()));
+	}
 }

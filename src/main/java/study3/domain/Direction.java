@@ -9,7 +9,7 @@ public class Direction {
     
     public Direction(boolean left, boolean right) {
     	if (left && right) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("요구사항  : 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다");
         }
     	
     	this.left = left;

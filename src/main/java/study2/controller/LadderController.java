@@ -1,6 +1,6 @@
 package study2.controller;
 
-import study2.domain.ExecuteResult;
+import study2.domain.LadderExecuteResult;
 import study2.domain.Height;
 import study2.domain.Ladder;
 import study2.domain.Players;
@@ -13,14 +13,11 @@ public class LadderController {
 		InputView inputview = new InputView();
 		
 		Players players = new Players(inputview.getParticipantNames());
-		
-		ExecuteResult excuteResult = new ExecuteResult(inputview.getExecuteResult());
-		
+				
 		Height height = new Height(inputview.inputHeight());
 		
 		Ladder ladder = new Ladder(players, height);
 		
 		ResultView resultView = new ResultView(players, ladder);
-		resultView.executeResult(excuteResult.getExecuteResult());
 	}
 }
