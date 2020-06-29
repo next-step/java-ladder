@@ -18,7 +18,7 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    public int getUserCount() {
+    public int getCount() {
         return users.size();
     }
 
@@ -26,7 +26,7 @@ public class Users {
         return Collections.unmodifiableList(users);
     }
 
-    public List<String> getUserNames(){
+    public List<String> getNames(){
         return users.stream()
                 .map(User::getName)
                 .collect(Collectors.toList());
