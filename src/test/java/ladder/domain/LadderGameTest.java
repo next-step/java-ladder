@@ -8,12 +8,14 @@ import java.util.List;
 
 public class LadderGameTest {
 
+    private Participants defaultParticipants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+    private LadderPrizes defaultLadderPrizes = LadderPrizes.of(List.of("꽝", "5000", "꽝", "3000"));
+
     @DisplayName("모든 사용자의 실행결과가 리턴된다")
     @Test
     public void playAllTest() {
-        List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
-        Ladder ladder = new Ladder(LadderHeight.of(3), 4, () -> true);
-        LadderGame ladderGame = new LadderGame(Participants.of(users, ladder), ladder);
+        Ladder ladder = new Ladder(LadderHeight.of(3), defaultParticipants, defaultLadderPrizes, () -> true);
+        LadderGame ladderGame = new LadderGame(defaultParticipants, ladder);
 
         List<Integer> result = ladderGame.play("all");
 
@@ -24,9 +26,8 @@ public class LadderGameTest {
     @DisplayName("입력한 사용자의 실행 결과가 리턴된다.")
     @Test
     public void playOnlyOneTest() {
-        List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
-        Ladder ladder = new Ladder(LadderHeight.of(3), 4, () -> true);
-        LadderGame ladderGame = new LadderGame(Participants.of(users, ladder), ladder);
+        Ladder ladder = new Ladder(LadderHeight.of(3), defaultParticipants, defaultLadderPrizes, () -> true);
+        LadderGame ladderGame = new LadderGame(defaultParticipants, ladder);
 
         List<Integer> result = ladderGame.play("pobi");
 

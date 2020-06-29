@@ -13,13 +13,7 @@ public class LadderPrizeTest {
     @Test
     public void createTest() {
         LadderPrize ladderPrize = LadderPrize.of("꽝");
-        List<LadderPrize> ladderPrizes = LadderPrize.of(List.of("꽝", "10000"));
-
         assertThat(ladderPrize.toString()).isEqualTo("꽝");
-
-        assertThat(ladderPrizes.size()).isEqualTo(2);
-        assertThat(ladderPrizes.get(0).toString()).isEqualTo("꽝");
-        assertThat(ladderPrizes.get(1).toString()).isEqualTo("10000");
     }
 
 }

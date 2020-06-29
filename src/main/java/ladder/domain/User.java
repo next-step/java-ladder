@@ -18,10 +18,6 @@ public class User {
         return new User(name);
     }
 
-    public static List<User> of(List<String> names) {
-        return names.stream().map(User::new).collect(Collectors.toList());
-    }
-
     private void validateNameLength(String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("입력된 이름이 제한 길이를 초과 합니다.");

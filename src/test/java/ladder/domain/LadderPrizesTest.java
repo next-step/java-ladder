@@ -9,41 +9,26 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LadderPrizesTest {
 
-    @DisplayName("LadderResult 가 정상적으로 생성된다")
-    public void createTest() {
-        List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
-        Ladder ladder = new Ladder(LadderHeight.of(3), 4);
-
-        List<LadderPrize> ladderPrizes = LadderPrize.of(List.of("꽝", "5000", "꽝", "3000"));
-
-        LadderPrizes ladderResult = LadderPrizes.of(ladderPrizes, ladder);
-
-        assertThat(ladderResult).isNotNull();
-    }
-
-    @DisplayName("사다리의 StartPosition 개수와 사다리 결과 개수가 다르면 IllegalArgument 예외가 발생한다")
+    @DisplayName("LadderPrizes 가 정상적으로 생성된다")
     @Test
-    public void validateCountTest() {
-        List<LadderPrize> ladderPrizes = LadderPrize.of(List.of("꽝", "5000", "꽝"));
-        Ladder ladder = new Ladder(LadderHeight.of(3), 4, () -> true);
+    public void createTest() {
+        LadderPrizes ladderPrizes = LadderPrizes.of(List.of("꽝", "5000", "꽝", "3000"));
 
-        assertThatThrownBy(() -> {
-            LadderPrizes.of(ladderPrizes, ladder);
-        }).isInstanceOf(IllegalArgumentException.class);
+        assertThat(ladderPrizes).isNotNull();
+        assertThat(ladderPrizes.size()).isEqualTo(4);
     }
 
     @DisplayName("게임 결과를 LadderPrize List 로 변환한다.")
     @Test
     public void getLadderPrizeTest() {
-        List<User> users = User.of(List.of("pobi", "honux", "crong", "jk"));
-        List<LadderPrize> ladderPrizes = LadderPrize.of(List.of("꽝", "5000", "꽝", "3000"));
-        Ladder ladder = new Ladder(LadderHeight.of(3), 4, () -> true);
-        LadderPrizes ladderResult = LadderPrizes.of(ladderPrizes, ladder);
+        Participants participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+        LadderPrizes ladderPrizes = LadderPrizes.of(List.of("꽝", "5000", "꽝", "3000"));
+        Ladder ladder = new Ladder(LadderHeight.of(3), participants, ladderPrizes, () -> true);
 
-        LadderGame ladderGame = new LadderGame(Participants.of(users, ladder), ladder);
+        LadderGame ladderGame = new LadderGame(participants, ladder);
         List<Integer> resultsAfterGame = ladderGame.play("all");
 
-        LadderPrizes ladderPrizesAfterGame = LadderPrizes.convert(resultsAfterGame, ladderResult);
+        LadderPrizes ladderPrizesAfterGame = LadderPrizes.convert(resultsAfterGame, ladderPrizes);
 
         assertThat(ladderPrizesAfterGame.get(0)).isEqualTo(LadderPrize.of("5000"));
         assertThat(ladderPrizesAfterGame.get(1)).isEqualTo(LadderPrize.of("꽝"));

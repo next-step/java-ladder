@@ -33,11 +33,8 @@ public class UserTest {
     @Test
     public void crateUserTest() {
         String name = "test";
-        String name1 = "test1";
-        String name2 = "test2";
 
         assertThat(User.of(name)).isNotNull();
-        assertThat(User.of(List.of(name, name1, name2))).containsOnly(User.of(name), User.of(name1), User.of(name2));
     }
 
 }

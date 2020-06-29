@@ -2,20 +2,19 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
 
     private final List<User> participants;
 
-    private Participants(List<User> users, Ladder ladder) {
-        if(!ladder.equalStartPositionCount(users.size())) {
-            throw new IllegalArgumentException("사용자의 수와 사다리의 StatPosition 수가 다릅니다.");
-        }
+    private Participants(List<User> users) {
         participants = Collections.unmodifiableList(users);
     }
 
-    public static Participants of(List<User> users, Ladder ladder) {
-        return new Participants(users, ladder);
+    public static Participants of(List<String> names) {
+        List<User> users = names.stream().map(User::of).collect(Collectors.toList());
+        return new Participants(users);
     }
 
     public int getStartPosition(User user) {
@@ -40,4 +39,7 @@ public class Participants {
         return participants;
     }
 
+    public int size() {
+        return participants.size();
+    }
 }
