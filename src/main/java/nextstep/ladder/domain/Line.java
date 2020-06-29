@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class Line {
 
     private static final String INVALID_LINE_LENGTH = "Line 길이는 2이상으로 생성 할 수 있습니다.";
-    private static final String INVALID_LINE_POSITION = "Line 범위를 넘어선 위치는 확인할 수 없습니다.";
     private List<Point> points;
 
     public Line(int length, GenerableStrategy generableStrategy) {
