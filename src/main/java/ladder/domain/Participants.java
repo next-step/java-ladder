@@ -30,7 +30,7 @@ public class Participants {
     }
 
     public User get(int startPosition) {
-        if(startPosition < 0 || startPosition > participants.size()) {
+        if (startPosition < 0 || startPosition > participants.size()) {
             throw new IllegalArgumentException("입력된 startPosition은 사디리 올바른 statPosition이 아닙니다.");
         }
         return participants.get(startPosition);
