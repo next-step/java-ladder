@@ -16,7 +16,10 @@ public class LadderGame {
 
         UsersPrize usersPrize = new UsersPrize(users, prizes, ladder);
 
-        String resultQuery = InputView.getResultQuery();
-        ResultView.printGameResult(resultQuery, usersPrize);
+        while(true) {
+            if (ResultView.printGameResult(InputView.getResultQuery(), usersPrize)) {
+                break;
+            }
+        }
     }
 }

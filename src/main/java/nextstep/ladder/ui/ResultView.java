@@ -43,15 +43,16 @@ public class ResultView {
         return String.join("", lineShapes);
     }
 
-    public static void printGameResult(String resultQuery, UsersPrize usersPrize) {
+    public static boolean printGameResult(String resultQuery, UsersPrize usersPrize) {
         System.out.println(GAME_RESULT_COMMENT);
 
         if (resultQuery.equals("all")) {
             printAllGameResult(usersPrize);
-            return;
+            return true;
         }
 
         System.out.println(usersPrize.getPrize(resultQuery));
+        return false;
     }
 
     public static void printAllGameResult(UsersPrize usersPrize) {
