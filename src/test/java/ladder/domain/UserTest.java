@@ -15,12 +15,6 @@ public class UserTest {
 
     @BeforeEach
     public void setUp() {
-
-    }
-
-    @DisplayName("생성자를 통한 user클래스 생성")
-    @Test
-    public void createUser() {
         user = new User("pobi");
     }
 
@@ -37,5 +31,11 @@ public class UserTest {
     public void createUserWithEmptyNull(String inputText) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> user = new User(inputText));
+    }
+
+    @Test
+    public void printUser(){
+        user = new User("po");
+        System.out.println(user);
     }
 }
