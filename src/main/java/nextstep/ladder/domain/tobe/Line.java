@@ -8,12 +8,20 @@ public class Line {
     private final List<Direction> directions;
 
     public Line(int width, LineCreateStrategy lineCreateStrategy) {
+        validateWidth(width);
+
         directions = new ArrayList<>();
         directions.add(lineCreateStrategy.first());
         for (int i = MIN_WIDTH; i < width; i++) {
             directions.add(lineCreateStrategy.body());
         }
         directions.add(lineCreateStrategy.last());
+    }
+
+    private void validateWidth(int width) {
+        if (width < MIN_WIDTH) {
+            throw new IllegalArgumentException("width is must more than " + MIN_WIDTH);
+        }
     }
 
     public List<Direction> getDirections() {

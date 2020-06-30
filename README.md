@@ -78,7 +78,7 @@
     - List<Point> 사다리의 세로줄
     - [X] width를 입력받아 길이만큼 Direction 배열이 생성된다
     - [X] LineCreateStrategy interface를 주입받아 생성
-    - [ ] 생성 시에 width < 2 이라면 예외 발생
+    - [X] 생성 시에 width < 2 이라면 예외 발생
     - [ ] 양쪽으로 연결될 수 없음
     - [ ] 첫번째 x 좌표는 오른쪽으로 연결되면 예외 발생
     - [ ] 마지막 x 좌표는 왼쪽으로 연결되면 예외 발생
