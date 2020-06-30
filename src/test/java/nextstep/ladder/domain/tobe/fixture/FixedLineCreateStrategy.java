@@ -1,4 +1,7 @@
-package nextstep.ladder.domain.tobe;
+package nextstep.ladder.domain.tobe.fixture;
+
+import nextstep.ladder.domain.tobe.Direction;
+import nextstep.ladder.domain.tobe.LineCreateStrategy;
 
 import java.util.Arrays;
 import java.util.List;
