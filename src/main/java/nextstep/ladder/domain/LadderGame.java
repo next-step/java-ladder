@@ -11,8 +11,7 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
     public static void main(String[] argv) {
-        Users users = InputView.insertUserLine();
-
+        Users users = InputView.getUsers();
         Prizes prizes = InputView.getPrices();
 
         Ladder ladder = new Ladder(InputView.getHeight(), users.size(), new RandomLineCreateStrategy());

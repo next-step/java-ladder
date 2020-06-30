@@ -19,7 +19,7 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static Users insertUserLine() {
+    public static Users getUsers() {
         System.out.println(INPUT_USER_LINE_COMMENT);
         String userLineString = scanner.nextLine();
         return new Users(
