@@ -2,6 +2,11 @@ package nextstep.ladder.domain.tobe;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -50,5 +55,22 @@ class LineTest {
             new Line(5, new RightConnectLineCreateStrategy());
         }).isInstanceOf(IllegalDirectionException.class)
                 .hasMessage("last cannot be connected to right");
+    }
+
+    @DisplayName("특정 x 좌표에서의 다음 x 좌표를 반환한다")
+    @ParameterizedTest
+    @MethodSource("source_move_updateIndexOfPoint")
+    public void move_updateIndexOfPoint(Point point, int expected) {
+        Line line = new Line(4, new FixedLineCreateStrategy());
+        line.move(point);
+        assertThat(point.getIndex()).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> source_move_updateIndexOfPoint() {
+        return Stream.of(
+                Arguments.of(new Point(0), 1),
+                Arguments.of(new Point(1), 0),
+                Arguments.of(new Point(2), 3),
+                Arguments.of(new Point(3), 2));
     }
 }

@@ -82,7 +82,7 @@
     - [X] 양쪽으로 연결될 수 없음
     - [X] 첫번째 x 좌표는 왼쪽으로 연결되면 예외 발생
     - [X] 마지막 x 좌표는 오른쪽으로 연결되면 예외 발생
-    - [ ] 특정 x 좌표에서의 다음 x 좌표를 반환한다
+    - [X] 특정 x 좌표에서의 다음 x 좌표를 반환한다
 - RandomLineCreateStrategy
     - [ ] first 메소드는 CENTOR or RIGHT
     - [ ] body 메소드는 LEFT or CENTOR or RIGHT

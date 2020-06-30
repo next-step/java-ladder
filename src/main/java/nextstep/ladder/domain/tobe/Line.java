@@ -46,6 +46,11 @@ public class Line {
                 });
     }
 
+    public void move(Point point) {
+        Direction direction = directions.get(point.getIndex());
+        point.move(direction);
+    }
+
     public List<Direction> getDirections() {
         return directions;
     }

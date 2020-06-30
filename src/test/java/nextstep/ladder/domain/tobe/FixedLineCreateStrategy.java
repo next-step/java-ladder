@@ -1,19 +1,37 @@
 package nextstep.ladder.domain.tobe;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class FixedLineCreateStrategy implements LineCreateStrategy {
+
+    /*
+    |-----|     |-----|
+    |     |-----|     |
+    |-----|     |     |
+    |     |-----|     |
+    |-----|     |-----|
+     */
+    private List<Direction> cachedDirection = Arrays.asList(
+            Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT,
+            Direction.CENTER, Direction.RIGHT, Direction.LEFT, Direction.CENTER,
+            Direction.RIGHT, Direction.LEFT, Direction.CENTER, Direction.CENTER,
+            Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT
+    );
+    private int index = 0;
 
     @Override
     public Direction first() {
-        return Direction.CENTER;
+        return cachedDirection.get(index++);
     }
 
     @Override
     public Direction body(Direction exDirection) {
-        return Direction.CENTER;
+        return cachedDirection.get(index++);
     }
 
     @Override
     public Direction last(Direction exDirection) {
-        return Direction.CENTER;
+        return cachedDirection.get(index++);
     }
 }
