@@ -12,7 +12,8 @@ public class LadderPrizesTest {
     @DisplayName("LadderPrizes 가 정상적으로 생성된다")
     @Test
     public void createTest() {
-        LadderPrizes ladderPrizes = LadderPrizes.of(List.of("꽝", "5000", "꽝", "3000"));
+        Participants participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+        LadderPrizes ladderPrizes = LadderPrizes.of(participants, List.of("꽝", "5000", "꽝", "3000"));
 
         assertThat(ladderPrizes).isNotNull();
         assertThat(ladderPrizes.size()).isEqualTo(4);
@@ -22,8 +23,8 @@ public class LadderPrizesTest {
     @Test
     public void getLadderPrizeTest() {
         Participants participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
-        LadderPrizes ladderPrizes = LadderPrizes.of(List.of("꽝", "5000", "꽝", "3000"));
-        Ladder ladder = new Ladder(LadderHeight.of(3), participants, ladderPrizes, () -> true);
+        LadderPrizes ladderPrizes = LadderPrizes.of(participants, List.of("꽝", "5000", "꽝", "3000"));
+        Ladder ladder = new Ladder(LadderHeight.of(3), participants, () -> true);
 
         LadderGame ladderGame = new LadderGame(participants, ladder);
         List<Integer> resultsAfterGame = ladderGame.play("all");
@@ -36,4 +37,13 @@ public class LadderPrizesTest {
         assertThat(ladderPrizesAfterGame.get(3)).isEqualTo(LadderPrize.of("꽝"));
     }
 
+    @DisplayName("사용자의 수와 Prizes의 수가 다르면 IllegalArgument 예외가 발생한다.")
+    @Test
+    public void countSameParticipantsAndPrizesTest() {
+        Participants participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+
+        assertThatThrownBy(() -> {
+            LadderPrizes.of(participants, List.of("꽝"));
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

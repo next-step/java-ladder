@@ -9,28 +9,20 @@ public class Ladder {
 
     private final List<HorizonLine> horizonLines = new ArrayList<>();
 
-    public Ladder(LadderHeight height, Participants participants, LadderPrizes ladderPrizes) {
-       this(height, participants, ladderPrizes, () -> new Random().nextBoolean());
+    public Ladder(LadderHeight height, Participants participants) {
+       this(height, participants, () -> new Random().nextBoolean());
     }
 
     public Ladder(LadderHeight height,
                   Participants participants,
-                  LadderPrizes ladderPrizes,
                   ShortLineEnableJudge shortLineEnableJudge) {
         validateMinPositionCount(participants.size());
-        validateSameCount(participants, ladderPrizes);
         createHorizonLine(height, participants.size(), shortLineEnableJudge);
     }
 
     private void validateMinPositionCount(int startPositionCount) {
         if (startPositionCount < MIN_START_POSITION_COUNT) {
             throw new IllegalArgumentException("사다리를 시작하기 위해서는 2명 이상의 사용자가 필요합니다.");
-        }
-    }
-
-    private void validateSameCount(Participants participants, LadderPrizes ladderPrizes) {
-        if (participants.size() != ladderPrizes.size()) {
-            throw new IllegalArgumentException("사다리 게임에 참여자의 수와 사다리 결과 수가 다릅니다.");
         }
     }
 
