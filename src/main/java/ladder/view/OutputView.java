@@ -20,7 +20,6 @@ public class OutputView {
 
     private static void printResultTitle() {
         System.out.println(OUTPUT_TITLE);
-        System.out.println();
     }
 
     private static void printLadderTitle() {
@@ -93,5 +92,6 @@ public class OutputView {
                 System.out.println(participants.get(i).toString() + SPACE + COLON + SPACE + ladderPrizes.get(i));
             }
         }
+        System.out.println();
     }
 }
