@@ -19,6 +19,7 @@ public class FixedLineCreateStrategy implements LineCreateStrategy {
             Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT,
             Direction.CENTER, Direction.RIGHT, Direction.LEFT, Direction.CENTER,
             Direction.RIGHT, Direction.LEFT, Direction.CENTER, Direction.CENTER,
+            Direction.CENTER, Direction.RIGHT, Direction.LEFT, Direction.CENTER,
             Direction.RIGHT, Direction.LEFT, Direction.RIGHT, Direction.LEFT
     );
     private int index = 0;
