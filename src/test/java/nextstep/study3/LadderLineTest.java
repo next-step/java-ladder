@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 import study3.domain.Line;
 
 class LadderLineTest {
-	
-	
-	
+		
 	@Test
 	@DisplayName("라인메소드 initLine 검증")
     public void init() {
