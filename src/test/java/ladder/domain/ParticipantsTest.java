@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class ParticipantsTest {
 
     private Participants defaultParticipants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
-    private LadderPrizes defaultLadderPrizes = LadderPrizes.of(List.of("꽝", "5000", "꽝", "3000"));
 
     @DisplayName("User들의 statPosition을 얻을 수 있다.")
     @Test
