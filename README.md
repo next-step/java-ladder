@@ -44,31 +44,56 @@
 * 책임주도설계
   * 책임: 사다리게임을 해라
     * LadderGame
-    * 이름을 입력 받아라
-      * InputView
-    * USER를 만들어라
-      * User
+    * 이름을 입력 받아 User를 생성해라
+      * User, Users
+    * 상품을 입력 받아 Prize를 생성해라
+      * Prize, Prizes
     * 사다리를 만들어라
-      * LadderGenerator
-        * RandomLadderGenerator
       * Ladder
         * List<Line> lineList
       * Line
-        * List<Boolean> points
+        * List<Direction> directions
+      * LineCreateStrategy
+        * RandomLineCreateStrategy
     * 사다리타기를 진행해라
+      * Point
+        * void move(Direction direction)
+      * Line
+        * void move(Point point)
       * Ladder
-        * int getGameResult(int x)
-      * Price
-        * int getPrice(int x)
-    * 사다리를 출력하라
-      * OutputView
+        * int getLastPosition(Point point)
+    * 사다리타기의 결과를 출력하라
+      * UsersPrize
+        * Prize getPrize(User user)
       
 * TDD
-  * User
-    * 이름은 5자 이하여야 한다
-    * 이름은 5자 보다 크면 예외 발생
-  * Ladder
-    * 각 x좌표에 대해서 올바른 결과 x좌료를 반환해야 한다
-  * Line
-    * 사다리가 연속으로 연결될 수 없다.
-    * 0번 위치에 사다리가 연결될 수 없다
+- Point
+    - 사다리 세로줄에서의 각 x 좌표 점
+    - [X] 이동방향(Direction)에 대해 (-1,0,+1) 만큼 이동한다
+- Direction
+    - 이동 방향 (-1,0,+1)
+    - [X] 테스트가 깨지지 않도록 값에 대한 테스트
+- Line
+    - List<Point> 사다리의 세로줄
+    - [X] width를 입력받아 길이만큼 Direction 배열이 생성된다
+    - [X] LineCreateStrategy interface를 주입받아 생성
+    - [X] 생성 시에 width < 2 이라면 예외 발생
+    - [X] 양쪽으로 연결될 수 없음
+    - [X] 첫번째 x 좌표는 왼쪽으로 연결되면 예외 발생
+    - [X] 마지막 x 좌표는 오른쪽으로 연결되면 예외 발생
+    - [X] 특정 x 좌표에서의 다음 x 좌표를 반환한다
+- RandomLineCreateStrategy
+    - 랜덤요소가 있는 로직은 테스트를 불안정 하게 하여 제외함
+    - [X] 이전 direction이 RIGHT 였다면 LEFT를 반환
+- Ladder
+    - List<Line> 을 가지고 있는 가로세로 연결된 사다리
+    - [X] height를 입력받아 높이만큼 Line 배열이 생성된다
+    - [X] 생성 시에 height < 1 이라면 예외 발생
+    - [X] 특정 시작점에서의 결과 도착점을 반환한다
+- User, Users
+    - [X] 이름의 길이를 입력 받아 생성
+    - [X] 이름의 길이가 5자 초과하면 예외 발생
+- Prize, Prizes
+    - [X] '꽝' 혹은 숫자가 들어 와야 한다
+- UsersPrize
+    - [X] 유저, 결과 상품 리스트를 가져올 수 있다

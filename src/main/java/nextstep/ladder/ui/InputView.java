@@ -1,9 +1,9 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Price;
-import nextstep.ladder.domain.Prices;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.prizes.Prize;
+import nextstep.ladder.domain.prizes.Prizes;
+import nextstep.ladder.domain.users.User;
+import nextstep.ladder.domain.users.Users;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -19,7 +19,7 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static Users insertUserLine() {
+    public static Users getUsers() {
         System.out.println(INPUT_USER_LINE_COMMENT);
         String userLineString = scanner.nextLine();
         return new Users(
@@ -34,13 +34,13 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static Prices getPrices() {
+    public static Prizes getPrices() {
         System.out.println(INPUT_PRICE_COMMENT);
         String priceString = scanner.nextLine();
-        return new Prices(
+        return new Prizes(
                 Arrays.stream(priceString.split(PRICE_DELIMITER))
-                .map(Price::new)
-                .collect(Collectors.toList())
+                        .map(Prize::new)
+                        .collect(Collectors.toList())
         );
     }
 

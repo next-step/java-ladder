@@ -1,7 +1,6 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.users;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Users {
@@ -21,13 +20,5 @@ public class Users {
 
     public User getUser(int index) {
         return users.get(index);
-    }
-
-    public int getUserIndex(String name) {
-        return IntStream
-                .range(0, users.size())
-                .filter(i -> users.get(i).getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("User is not found"));
     }
 }

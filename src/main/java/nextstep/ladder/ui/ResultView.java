@@ -1,10 +1,14 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.prizes.Prizes;
+import nextstep.ladder.domain.users.Users;
+import nextstep.ladder.domain.result.UsersPrize;
+import nextstep.ladder.common.Direction;
+import nextstep.ladder.domain.ladders.Ladder;
+import nextstep.ladder.domain.ladders.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class ResultView {
     private static final String LADDER_RESULT_COMMENT = "사다리 결과\n";
@@ -15,7 +19,7 @@ public class ResultView {
     private static final String GAME_RESULT_COMMENT = "실행 결과";
     private static final String USER_NAME_AND_PRIZE_FORMAT = "%s : %s";
 
-    public static void printResult(Users users, Prices prices, Ladder ladder) {
+    public static void printResult(Users users, Prizes prizes, Ladder ladder) {
         System.out.println(LADDER_RESULT_COMMENT);
 
         users.stream()
@@ -26,35 +30,36 @@ public class ResultView {
         ladder.getLines().stream()
                 .forEach(line -> System.out.println(getLineString(line)));
 
-        prices.stream()
-                .forEach(price -> System.out.print(String.format(RESULT_PRICE_NAME_FORMAT, price.getMoney())));
+        prizes.stream()
+                .forEach(price -> System.out.print(String.format(RESULT_PRICE_NAME_FORMAT, price.getPrize())));
 
         System.out.print("\n");
     }
 
     private static String getLineString(Line line) {
-        List<String> lineShapes = line.getPoints().stream()
-                .map(b -> b ? RESULT_LADDER_OPEN : RESULT_LADDER_CLOSE)
+        List<String> lineShapes = line.getDirections().stream()
+                .map(d -> d == Direction.LEFT ? RESULT_LADDER_OPEN : RESULT_LADDER_CLOSE)
                 .collect(Collectors.toList());
         return String.join("", lineShapes);
     }
 
-    public static void printGameResult(String resultQuery, Users users, Prices resultPrices) {
+    public static boolean printGameResult(String resultQuery, UsersPrize usersPrize) {
         System.out.println(GAME_RESULT_COMMENT);
 
         if (resultQuery.equals("all")) {
-            printAllGameResult(users, resultPrices);
-            return;
+            printAllGameResult(usersPrize);
+            return true;
         }
 
-        System.out.println(resultPrices.getPrice(users.getUserIndex(resultQuery)));
+        System.out.println(usersPrize.getPrize(resultQuery));
+        return false;
     }
 
-    public static void printAllGameResult(Users users, Prices prices) {
-        IntStream
-                .range(0, users.size())
-                .forEach(i -> {
-                    System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, users.getUser(i).getName(), prices.getPrice(i).getMoney()));
-                });
+    public static void printAllGameResult(UsersPrize usersPrize) {
+        usersPrize.getPrizeMap()
+                .entrySet()
+                .forEach(e ->
+                        System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, e.getKey(), e.getValue().getPrize()))
+                );
     }
 }

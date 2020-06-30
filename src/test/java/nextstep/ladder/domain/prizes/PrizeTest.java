@@ -1,21 +1,21 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.prizes;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("상품 생성 테스트")
-class PriceTest {
+class PrizeTest {
 
     @DisplayName("올바른 상품 입력값 ")
     @ParameterizedTest
     @CsvSource(value = {"꽝", "5000", "3000"})
     public void create_validPrice_shouldSuccess(String param) {
-        Price price = new Price(param);
-        assertThat(price.getMoney()).isEqualTo(param);
+        Prize prize = new Prize(param);
+        assertThat(prize.getPrize()).isEqualTo(param);
     }
 
     @DisplayName("꽝이나 숫자 형식이 아니라면 예외 발생")
@@ -23,7 +23,7 @@ class PriceTest {
     @CsvSource(value = {"꽝!", "01sa", "jk"})
     public void create_invalidPrice_shouldFail(String param) {
         assertThatThrownBy(() -> {
-            Price price = new Price(param);
+            Prize prize = new Prize(param);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

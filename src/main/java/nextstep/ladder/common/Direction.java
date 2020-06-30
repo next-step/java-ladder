@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.common;
 
 public enum Direction {
     LEFT(-1),

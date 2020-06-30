@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.users;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,20 +10,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("참여자 생성 테스트")
 class UserTest {
 
-    @DisplayName("이름은 5자 이하여야 한다")
+    @DisplayName("이름의 길이를 입력 받아 생성")
     @ParameterizedTest
-    @CsvSource("pobi,honux,crong,jk")
-    public void create_nameUnder5_shouldSuccess(String name) {
+    @CsvSource(value = {"pobi", "honux", "crong", "jk"}, delimiter = ',')
+    public void getName_ReturnName(String name) {
         User user = new User(name);
         assertThat(user.getName()).isEqualTo(name);
     }
 
-    @DisplayName("이름은 5자 보다 크면 예외 발생")
+    @DisplayName("이름의 길이가 5자 초과하면 예외 발생")
     @ParameterizedTest
-    @CsvSource("pobi56,honux678,crong6789,jk3456")
-    public void create_nameOver5_shouldFail(String name) {
+    @CsvSource(value = {"pobi56", "honux678", "crong6789", "jk3456"}, delimiter = ',')
+    public void create_WithNameLengthMoreThan5_ExceptionThrown(String name) {
         assertThatThrownBy(() -> {
-            User user = new User(name);
+            new User(name);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
