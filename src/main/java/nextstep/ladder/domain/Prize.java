@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Prize {
@@ -19,5 +20,20 @@ public class Prize {
 
     public String getPrize() {
         return prize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Prize prize1 = (Prize) o;
+
+        return this.prize.equals(prize1.getPrize());
+    }
+
+    @Override
+    public int hashCode() {
+        return prize != null ? prize.hashCode() : 0;
     }
 }
