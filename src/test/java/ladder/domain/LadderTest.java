@@ -10,21 +10,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderTest {
 
-    private Participants defaultParticipants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+    private final Participants defaultParticipants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+    private final Ladder defaultLadder = new Ladder(LadderHeight.of(3), defaultParticipants, () -> true);
 
     @DisplayName("높이만큼 HorizonLine 을 가진다.")
     @Test
     public void hasHorizonLineTest() {
-        Ladder ladder = new Ladder(LadderHeight.of(5), defaultParticipants);
-
-        assertThat(ladder.getHeight()).isEqualTo(5);
+        assertThat(defaultLadder.getHeight()).isEqualTo(3);
     }
 
     @DisplayName("최소 높이 보다 작은 높이가 입력되면 IllegalArgumentException 이 발생한다.")
     @Test
     public void createLessThanMinHeight() {
         assertThatThrownBy(() -> {
-            Ladder ladder = new Ladder(LadderHeight.of(1), defaultParticipants);
+            new Ladder(LadderHeight.of(1), defaultParticipants);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -41,45 +40,35 @@ public class LadderTest {
     @DisplayName("가로라인의 짧은 라인(ShortLine)는 (입렫된 사용자의 수 - 1) 개까지 만든다.")
     @Test
     public void createShortLineInHorizonLine() {
-        Ladder ladder = new Ladder(LadderHeight.of(3), defaultParticipants);
-
-        assertThat(ladder.getShortLineCountInHorizonLine(0)).isEqualTo(3);
-        assertThat(ladder.getShortLineCountInHorizonLine(1)).isEqualTo(3);
-        assertThat(ladder.getShortLineCountInHorizonLine(2)).isEqualTo(3);
+        assertThat(defaultLadder.getShortLineCountInHorizonLine(0)).isEqualTo(3);
+        assertThat(defaultLadder.getShortLineCountInHorizonLine(1)).isEqualTo(3);
+        assertThat(defaultLadder.getShortLineCountInHorizonLine(2)).isEqualTo(3);
     }
 
     @DisplayName("입력되는 Horizon Line 높이와 사다리 시작점에서 오른쪽에 ShortLine 의 유무를 알 수 있다.")
     @Test
     public void isEnabledShortLineOfRightTest() {
-        Ladder ladder = new Ladder(LadderHeight.of(3), defaultParticipants, () -> true);
-
-        assertThat(ladder.isEnabledShortLineOfRight(0, 0)).isTrue();
-        assertThat(ladder.isEnabledShortLineOfRight(1, 1)).isFalse();
+        assertThat(defaultLadder.isEnabledShortLineOfRight(0, 0)).isTrue();
+        assertThat(defaultLadder.isEnabledShortLineOfRight(1, 1)).isFalse();
     }
 
     @DisplayName("입력되는 Horizon Line 높이와 사다리 시작점에서 왼쪽에 ShortLine 의 유무를 알 수 있다.")
     @Test
     public void isEnabledShortLineOfLeftTest() {
-        Ladder ladder = new Ladder(LadderHeight.of(3), defaultParticipants, () -> true);
-
-        assertThat(ladder.isEnabledShortLineOfLeft(0, 0)).isFalse();
-        assertThat(ladder.isEnabledShortLineOfLeft(1, 1)).isTrue();
+        assertThat(defaultLadder.isEnabledShortLineOfLeft(0, 0)).isFalse();
+        assertThat(defaultLadder.isEnabledShortLineOfLeft(1, 1)).isTrue();
     }
 
     @DisplayName("게임을 진행하고 최종 사다리 위치 index 를 리턴한다.")
     @Test
     public void playTest() {
-        Ladder ladder = new Ladder(LadderHeight.of(3), defaultParticipants, () -> true);
-
-        assertThat(ladder.play(3)).isEqualTo(2);
+        assertThat(defaultLadder.play(3)).isEqualTo(2);
     }
 
     @DisplayName("모든 startPosition에 대해서 게임을 진행하고 사다리 위치 index 들을 리턴한다.")
     @Test
     public void playTestAll() {
-        Ladder ladder = new Ladder(LadderHeight.of(3), defaultParticipants, () -> true);
-
-        List<Integer> result = ladder.playAll();
+        List<Integer> result = defaultLadder.playAll();
 
         assertThat(result).containsSequence(1, 0, 3, 2);
     }
