@@ -9,12 +9,12 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LadderPrizesTest {
 
+    private final Participants participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+    private final LadderPrizes ladderPrizes = LadderPrizes.of(participants, List.of("꽝", "5000", "꽝", "3000"));
+
     @DisplayName("LadderPrizes 가 정상적으로 생성된다")
     @Test
     public void createTest() {
-        Participants participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
-        LadderPrizes ladderPrizes = LadderPrizes.of(participants, List.of("꽝", "5000", "꽝", "3000"));
-
         assertThat(ladderPrizes).isNotNull();
         assertThat(ladderPrizes.size()).isEqualTo(4);
     }
@@ -22,8 +22,6 @@ public class LadderPrizesTest {
     @DisplayName("게임 결과를 LadderPrize List 로 변환한다.")
     @Test
     public void getLadderPrizeTest() {
-        Participants participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
-        LadderPrizes ladderPrizes = LadderPrizes.of(participants, List.of("꽝", "5000", "꽝", "3000"));
         Ladder ladder = new Ladder(LadderHeight.of(3), participants, () -> true);
 
         LadderGame ladderGame = new LadderGame(participants, ladder);
