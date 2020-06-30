@@ -1,5 +1,9 @@
 package nextstep.ladder.domain.tobe;
 
+import nextstep.ladder.domain.tobe.fixture.FixedLineCreateStrategy;
+import nextstep.ladder.domain.tobe.fixture.LeftConnectLineCreateStrategy;
+import nextstep.ladder.domain.tobe.fixture.RightConnectLineCreateStrategy;
+import nextstep.ladder.domain.tobe.fixture.SeriesConnectLineCreateStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

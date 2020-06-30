@@ -84,9 +84,8 @@
     - [X] 마지막 x 좌표는 오른쪽으로 연결되면 예외 발생
     - [X] 특정 x 좌표에서의 다음 x 좌표를 반환한다
 - RandomLineCreateStrategy
-    - [ ] first 메소드는 CENTOR or RIGHT
-    - [ ] body 메소드는 LEFT or CENTOR or RIGHT
-    - [ ] last 메소드는 LEFT or CENTOR
+    - 랜덤요소가 있는 로직은 테스트를 불안정 하게 하여 제외함
+    - [X] 이전 direction이 RIGHT 였다면 LEFT를 반환
 - Ladder
     - List<Line> 을 가지고 있는 가로세로 연결된 사다리
     - [ ] height를 입력받아 높이만큼 Line 배열이 생성된다
