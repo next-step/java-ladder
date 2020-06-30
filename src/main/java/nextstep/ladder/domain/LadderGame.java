@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.tobe.Ladder;
+import nextstep.ladder.domain.tobe.Point;
+import nextstep.ladder.domain.tobe.RandomLineCreateStrategy;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
@@ -12,14 +15,16 @@ public class LadderGame {
 
         Prices prices = InputView.getPrices();
 
-        Ladder ladder = new Ladder(new RandomLadderGenerator(users.size(), InputView.getHeight()));
+        Ladder ladder = new Ladder(InputView.getHeight(), users.size(), new RandomLineCreateStrategy());
 
         ResultView.printResult(users, prices, ladder);
 
         Prices resultPrices = new Prices(
                 IntStream
                         .range(0, users.size())
-                        .map(ladder::getGameResult)
+                        .map(i ->
+                            ladder.getLastPosition(new Point(i))
+                        )
                         .mapToObj(prices::getPrice)
                         .collect(Collectors.toList())
         );

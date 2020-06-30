@@ -1,6 +1,9 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.tobe.Direction;
+import nextstep.ladder.domain.tobe.Ladder;
+import nextstep.ladder.domain.tobe.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,8 +36,8 @@ public class ResultView {
     }
 
     private static String getLineString(Line line) {
-        List<String> lineShapes = line.getPoints().stream()
-                .map(b -> b ? RESULT_LADDER_OPEN : RESULT_LADDER_CLOSE)
+        List<String> lineShapes = line.getDirections().stream()
+                .map(d -> d == Direction.LEFT ? RESULT_LADDER_OPEN : RESULT_LADDER_CLOSE)
                 .collect(Collectors.toList());
         return String.join("", lineShapes);
     }
@@ -47,7 +50,7 @@ public class ResultView {
             return;
         }
 
-        System.out.println(resultPrices.getPrice(users.getUserIndex(resultQuery)));
+        System.out.println(resultPrices.getPrice(users.getUserIndex(resultQuery)).getMoney());
     }
 
     public static void printAllGameResult(Users users, Prices prices) {
