@@ -45,5 +45,10 @@ class BasicPointTest {
 
   @Test
   void createNext() {
+    LinkablePoint linkedPoint = BasicPoint.create(0).createNextWithLinkedBy(true);
+
+    assertThat(linkedPoint.createNext().getNextPosition())
+        .isEqualTo(linkedPoint.createNext().getPosition());
+
   }
 }
