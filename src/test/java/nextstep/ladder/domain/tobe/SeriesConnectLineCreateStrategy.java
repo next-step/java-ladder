@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.tobe;
 
-public class FixedLineCreateStrategy implements LineCreateStrategy {
+public class SeriesConnectLineCreateStrategy implements LineCreateStrategy {
 
     @Override
     public Direction first() {
@@ -9,7 +9,7 @@ public class FixedLineCreateStrategy implements LineCreateStrategy {
 
     @Override
     public Direction body(Direction exDirection) {
-        return Direction.CENTER;
+        return Direction.LEFT;
     }
 
     @Override

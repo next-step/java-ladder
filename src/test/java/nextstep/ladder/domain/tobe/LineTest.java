@@ -21,7 +21,34 @@ class LineTest {
     @Test
     public void create_WidthLessThan2_ExceptionThrown() {
         assertThatThrownBy(() -> {
-            Line line = new Line(1, new FixedLineCreateStrategy());
+            new Line(1, new FixedLineCreateStrategy());
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("양쪽으로 연결될 수 없음")
+    @Test
+    public void create_ConnectBothDirection_ExceptionThrown() {
+        assertThatThrownBy(() -> {
+            new Line(5, new SeriesConnectLineCreateStrategy());
+        }).isInstanceOf(IllegalDirectionException.class)
+                .hasMessage("Directions cannot be connected in series");
+    }
+
+    @DisplayName("첫번째 x 좌표는 왼쪽으로 연결되면 예외 발생")
+    @Test
+    public void create_FirstDirectionIsLeft_ExceptionThrown() {
+        assertThatThrownBy(() -> {
+            new Line(5, new LeftConnectLineCreateStrategy());
+        }).isInstanceOf(IllegalDirectionException.class)
+                .hasMessage("first cannot be connected to left");
+    }
+
+    @DisplayName("마지막 x 좌표는 오른쪽으로 연결되면 예외 발생")
+    @Test
+    public void create_LastDirectionIsRight_ExceptionThrown() {
+        assertThatThrownBy(() -> {
+            new Line(5, new RightConnectLineCreateStrategy());
+        }).isInstanceOf(IllegalDirectionException.class)
+                .hasMessage("last cannot be connected to right");
     }
 }
