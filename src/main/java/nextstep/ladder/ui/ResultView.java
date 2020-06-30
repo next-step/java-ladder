@@ -1,13 +1,14 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.*;
+import nextstep.ladder.domain.Prizes;
+import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.UsersPrize;
 import nextstep.ladder.domain.tobe.Direction;
 import nextstep.ladder.domain.tobe.Ladder;
 import nextstep.ladder.domain.tobe.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class ResultView {
     private static final String LADDER_RESULT_COMMENT = "사다리 결과\n";
@@ -57,7 +58,7 @@ public class ResultView {
         usersPrize.getPrizeMap()
                 .entrySet()
                 .forEach(e ->
-                    System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, e.getKey(), e.getValue().getPrize()))
+                        System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, e.getKey(), e.getValue().getPrize()))
                 );
     }
 }

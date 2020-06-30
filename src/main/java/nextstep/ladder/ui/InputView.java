@@ -39,8 +39,8 @@ public class InputView {
         String priceString = scanner.nextLine();
         return new Prizes(
                 Arrays.stream(priceString.split(PRICE_DELIMITER))
-                .map(Prize::new)
-                .collect(Collectors.toList())
+                        .map(Prize::new)
+                        .collect(Collectors.toList())
         );
     }
 
