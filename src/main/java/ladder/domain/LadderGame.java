@@ -21,4 +21,8 @@ public class LadderGame {
         int startPosition = participants.getStartPosition(User.of(name));
         return Collections.singletonList(ladder.play(startPosition));
     }
+
+    public boolean isFinishGame(String name) {
+        return ALL.equalsIgnoreCase(name);
+    }
 }
