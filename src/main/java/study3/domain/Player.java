@@ -14,15 +14,15 @@ public class Player {
 
 	private void validateName(String name) {
 
+		if(name == null) {
+			throw new IllegalArgumentException(NAME_IS_NULL);
+		}
 		if (name.length() > 5) {
 			throw new IllegalArgumentException(NAME_LIMIT);
 		}
 
 		if ("".equals(name) || " ".equals(name)) {
 			throw new IllegalArgumentException(LEAST_NAME_LIMIT);
-		}
-		if(name == null) {
-			throw new IllegalArgumentException(NAME_IS_NULL);
 		}
 	}
 
