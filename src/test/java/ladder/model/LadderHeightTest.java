@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LadderHeightTest {
+@DisplayName("사다리 높이 입력 테스트")
+public class LadderHeightTest {
 
     @DisplayName("사다리 높이 생성 테스트")
     @Test

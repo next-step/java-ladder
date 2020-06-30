@@ -8,7 +8,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("사다리 라인(가로) 테스트")
 public class LadderLineTest {
+
     @DisplayName("라인 생성 테스트")
     @Test
     public void createLadderLineTests() {

@@ -1,3 +1,4 @@
+
 package ladder.model;
 
 import org.junit.jupiter.api.DisplayName;
@@ -8,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+@DisplayName("사다리 게임 참여자 테스트")
 public class MemberTest {
 
     @DisplayName("참여자 생성 테스트")
@@ -34,5 +36,4 @@ public class MemberTest {
                 .isThrownBy(() -> Member.create(name))
                 .withMessageContaining("사다리 게임에 참여하는 사람의 이름은 빈 공백이 될 수 없습니다.");
     }
-
 }

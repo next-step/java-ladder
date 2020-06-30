@@ -61,3 +61,51 @@ public class Line {
     * OutputView
 
 * Main
+
+## Step 3
+### 기능 요구 사항
+* 사다리 실행 결과를 출력해야 한다.
+* 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다
+
+### 힌트
+* 각 로직을 구현하기 위해 필요한 데이터를 가지는 객체를 분리하기 위해 노력해본다. 로직 구현에 필요한 데이터를 가지는 객체를 잘 분리하면 의외로 쉽게 문제를 해결할 수 있다.
+* 각 객체가 2개 이하의 인스턴스 변수만을 가지도록 구현해 본다.
+
+* Model
+    * Membern
+        [x] Member 는 게임에 참여하는 멤버
+        [x] 이름의 최대 글자수는 다섯 글자이다.
+    * Members
+        [x] Members 는 Member 의 일급 컬렉션이다.
+    * LadderGame
+        [x] LadderGame 은 사다리 게임 클래스이다.
+        [x] 외부에서 입력되는 LadderHeight 을 받아서 Ladder 를 생성한다.
+    * LadderHeight
+        [x] LadderHeight 는 외부에서 입력되는 숫자로 LadderHeight 를 생성한다. 
+    * Ladder
+        [x] Ladder 는 사다리 클래스이다.
+        [x] Line 을 가지고 있다.
+    * LadderLine
+        [x] LadderLine 은 사다리의 한 라인을 의미하는 클래스이다.
+        [x] LadderBridge 를 가지고 있다. 
+    * LadderBridge
+        [x] LadderBridge 는 enum class 이다.
+        [x] Bridge 가 Exist 인지 Not Exist 인지 상태를 가지고 있다.
+        [x] 이전 Bridge 에 따라, 현재 Bridge 를 만든다.
+    * LadderPole
+        [x] LadderPole 은 사다리의 세로 기둥이다.
+    * LadderGameInfo
+        [x] LadderGameInfo 는 Members 와 LadderGameRewards 를 가지고 있다.
+    * LadderGameReward
+        [x] LadderGameReword 는 게임 보상을 관리한다.
+    * LadderGameRewards
+        [x] LadderGameRewords 는 LadderGameReword 의 일급 컬렉션이다.
+    * LadderGameResult
+        [x] LadderGameResult 는 게임의 결과를 저장한다.
+    
+    
+* View
+    * InputView
+    * OutputView
+
+* Main
