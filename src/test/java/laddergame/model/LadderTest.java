@@ -17,7 +17,7 @@ class LadderTest {
   @ParameterizedTest
   @MethodSource("createByHeightAndCountOfPerson")
   @DisplayName("사다리 생성 테스트")
-  void createByHeightAndCountOfPerson(PositiveNumber height, String namesStr) {
+  void createByHeightAndCountOfPerson(Height height, String namesStr) {
     PlayerNames playerNames = PlayerNames.createBy(namesStr.split(","));
 
     Ladder ladder = Ladder.createByHeightAndCountOfPerson(height, playerNames.getCountOfNames());
@@ -30,15 +30,15 @@ class LadderTest {
   public static Stream<Arguments> createByHeightAndCountOfPerson() {
     return Stream.of(
         arguments(
-            new PositiveNumber(1),
+            new Height(1),
             "test1, test2, test3, test4"
         ),
         arguments(
-            new PositiveNumber(5),
+            new Height(5),
             "test1, test2, test3, test4"
         ),
         arguments(
-            new PositiveNumber(5),
+            new Height(5),
             "test1, test2, test3, test4, test5, test6, test7"
         )
     );
