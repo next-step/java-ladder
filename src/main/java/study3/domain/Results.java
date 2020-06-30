@@ -8,7 +8,7 @@ import java.util.Map;
 public class Results {
 	
 	private Players players;
-	private Ladder ladder;
+	private LadderLine ladder;
 	private Rewards rewards;
 	
 	private static Map<Player, String> resultMap = new HashMap<>();
@@ -17,17 +17,17 @@ public class Results {
 		this.resultMap = resultMap;
 	}
 			
-	public Results(Players players, Ladder ladder, Rewards rewards) {
+	public Results(Players players, LadderLine ladder, Rewards rewards) {
 		this.players = players;
 		this.ladder = ladder;
 		this.rewards = rewards;
 	}
 
-	public static Results ofAll(Players players, Ladder ladder, Rewards rewards) {
+	public static Results ofAll(Players players, LadderLine ladder, Rewards rewards) {
 		return new Results(playGame(players, ladder, rewards));
 	}
 
-	private static Map<Player, String> playGame(Players players, Ladder ladder, Rewards rewards) {
+	private static Map<Player, String> playGame(Players players, LadderLine ladder, Rewards rewards) {
 		
 		int numberOfPlayer = players.getPlayersCount();
 		

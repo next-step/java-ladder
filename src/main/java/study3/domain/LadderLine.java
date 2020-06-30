@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Ladder {
+public class LadderLine {
 
 	private List<Line> lines;
 
-	public Ladder(Players players, Height height) {
+	public LadderLine(Players players, Height height) {
 		this.lines = createLadder(players, height);
 	}
 
