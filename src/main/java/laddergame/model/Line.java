@@ -20,7 +20,7 @@ public class Line {
             .collect(Collectors.toList()));
   }
 
-  public int getNextPositionAt(int index) {
+  public Position getNextPositionAt(int index) {
     return points.get(index).getNextPosition();
   }
 

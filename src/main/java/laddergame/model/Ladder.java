@@ -22,11 +22,11 @@ public class Ladder {
     return new Ladder(lines);
   }
 
-  public int findResultPositionOf(int startPosition) {
+  public Position findResultPositionOf(Position startPosition) {
 
-    final int[] positionHolder = {startPosition};
+    final Position[] positionHolder = {startPosition};
 
-    lines.forEach(line -> positionHolder[0] = line.getNextPositionAt(positionHolder[0]));
+    lines.forEach(line -> positionHolder[0] = line.getNextPositionAt(positionHolder[0].getValue()));
 
     return positionHolder[0];
   }

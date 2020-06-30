@@ -25,7 +25,7 @@ class LineTest {
   @DisplayName("이어진 지점 찾기 테스트")
   void getNextPositionAt(Line line, Map<Integer, Integer> resultMap) {
     resultMap.forEach((key, value) -> {
-      assertThat(line.getNextPositionAt(key)).isEqualTo(value);
+      assertThat(line.getNextPositionAt(key)).isEqualTo(new Position(value));
     });
   }
 

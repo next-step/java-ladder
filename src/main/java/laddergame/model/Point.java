@@ -2,9 +2,9 @@ package laddergame.model;
 
 public interface Point {
 
-  int getPosition();
+  Position getPosition();
 
-  int getNextPosition();
+  Position getNextPosition();
 
   boolean isEmpty();
 }

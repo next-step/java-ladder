@@ -49,7 +49,7 @@ class LadderTest {
   @DisplayName("결과 찾기 테스트")
   void findResultPositionOf(Ladder ladder, Map<Integer, Integer> resultMap) {
     resultMap
-        .forEach((key, value) -> assertThat(ladder.findResultPositionOf(key)).isEqualTo(value));
+        .forEach((key, value) -> assertThat(ladder.findResultPositionOf(new Position(key))).isEqualTo(new Position(value)));
   }
 
   static Stream<Arguments> findResultPositionOf() {

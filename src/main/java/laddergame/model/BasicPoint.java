@@ -5,25 +5,25 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class BasicPoint implements LinkablePoint {
 
-  private final int position;
+  private final Position position;
   private Point linkedBasicPoint;
 
-  private BasicPoint(int position) {
+  private BasicPoint(Position position) {
     this.position = position;
     linkedBasicPoint = new EmptyPoint(position);
   }
 
   public static LinkablePoint create(int position) {
-    return new BasicPoint(position);
+    return new BasicPoint(new Position(position));
   }
 
   @Override
-  public int getPosition() {
+  public Position getPosition() {
     return position;
   }
 
   @Override
-  public int getNextPosition() {
+  public Position getNextPosition() {
     return linkedBasicPoint.getPosition();
 
   }
@@ -40,12 +40,12 @@ public class BasicPoint implements LinkablePoint {
       return createNextWithLinkedBy(ThreadLocalRandom.current().nextBoolean());
     }
 
-    return new BasicPoint(position + 1);
+    return BasicPoint.create(position.getValue() + 1);
   }
 
   @Override
   public LinkablePoint createNextWithLinkedBy(boolean isLinked) {
-    BasicPoint next = new BasicPoint(position + 1);
+    BasicPoint next = new BasicPoint(new Position(position.getValue() + 1));
 
     if (isLinked) {
       this.linkedBasicPoint = next;

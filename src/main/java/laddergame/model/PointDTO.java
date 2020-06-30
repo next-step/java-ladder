@@ -2,10 +2,10 @@ package laddergame.model;
 
 public class PointDTO {
 
-  private final int position;
-  private final int nextPosition;
+  private final Position position;
+  private final Position nextPosition;
 
-  private PointDTO(int position, int nextPosition) {
+  private PointDTO(Position position, Position nextPosition) {
     this.position = position;
     this.nextPosition = nextPosition;
   }
@@ -15,7 +15,7 @@ public class PointDTO {
   }
 
   public boolean hasLeft() {
-    return nextPosition < position;
+    return nextPosition.getValue() < position.getValue();
   }
 
   @Override

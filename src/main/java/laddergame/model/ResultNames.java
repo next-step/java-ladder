@@ -23,8 +23,8 @@ public class ResultNames {
         .collect(Collectors.toList()));
   }
 
-  public ResultName getNameByIndex(int index) {
-    return names.get(index);
+  public ResultName getNameByIndex(Position index) {
+    return names.get(index.getValue());
   }
 
   @Override
