@@ -56,11 +56,6 @@ public class Ladder {
         return horizonLines.get(heightIndex).getShortLineCount();
     }
 
-    protected boolean equalStartPositionCount(int count) {
-        int startPositionCount = getStartPositionCount();
-        return startPositionCount == count;
-    }
-
     protected int play(int startPositionIndex) {
         for (int i = 0; i < getHeight(); i++) {
             startPositionIndex = moveShortLine(i, startPositionIndex);
