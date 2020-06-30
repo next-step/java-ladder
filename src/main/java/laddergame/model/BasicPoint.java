@@ -8,7 +8,7 @@ public class BasicPoint implements LinkablePoint {
   private final int position;
   private Point linkedBasicPoint;
 
-  public BasicPoint(int position) {
+  private BasicPoint(int position) {
     this.position = position;
     linkedBasicPoint = new EmptyPoint(position);
   }

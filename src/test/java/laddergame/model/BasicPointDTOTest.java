@@ -26,14 +26,14 @@ public class BasicPointDTOTest {
   }
 
   private static void initPointDTOTest() {
-    point0_1 = new BasicPoint(0);
-    point1 = new BasicPoint(1);
+    point0_1 = BasicPoint.create(0);
+    point1 = BasicPoint.create(1);
     point1_0 = point0_1.createNextWithLinkedBy(true);
-    point2 = new BasicPoint(2);
-    point3 = new BasicPoint(3);
-    point4 = new BasicPoint(4);
-    point5 = new BasicPoint(5);
-    point6 = new BasicPoint(6);
+    point2 = BasicPoint.create(2);
+    point3 = BasicPoint.create(3);
+    point4 = BasicPoint.create(4);
+    point5 = BasicPoint.create(5);
+    point6 = BasicPoint.create(6);
   }
 
   @Test

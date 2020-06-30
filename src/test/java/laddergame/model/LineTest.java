@@ -30,15 +30,15 @@ class LineTest {
   }
 
   public static Stream<Arguments> provideLine() {
-    BasicPoint basicPoint1 = new BasicPoint(0);
+    LinkablePoint basicPoint1 = BasicPoint.create(0);
     LinkablePoint basicPoint2 = basicPoint1.createNextWithLinkedBy(true);
 //
     return Stream.of(
         arguments(
             new Line(
                 Arrays.asList(
-                    new BasicPoint(0),
-                    new BasicPoint(1)
+                    BasicPoint.create(0),
+                    BasicPoint.create(1)
                 )
             ),
             new HashMap<Integer, Integer>() {{
@@ -51,7 +51,7 @@ class LineTest {
                 Arrays.asList(
                     basicPoint1,
                     basicPoint2,
-                    new BasicPoint(2)
+                    BasicPoint.create(2)
                 )
             ),
             new HashMap<Integer, Integer>() {{

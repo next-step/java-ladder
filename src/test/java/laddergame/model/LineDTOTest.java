@@ -20,10 +20,10 @@ class LineDTOTest {
   }
 
   static Stream<Arguments> DTO변환테스트() {
-    BasicPoint basicPoint0 = new BasicPoint(0);
+    LinkablePoint basicPoint0 = BasicPoint.create(0);
     LinkablePoint basicPoint1 = basicPoint0.createNextWithLinkedBy(true);
-    BasicPoint basicPoint2 = new BasicPoint(2);
-    BasicPoint basicPoint3 = new BasicPoint(3);
+    LinkablePoint basicPoint2 = BasicPoint.create(2);
+    LinkablePoint basicPoint3 = BasicPoint.create(3);
     LinkablePoint basicPoint4 = basicPoint3.createNextWithLinkedBy(true);
 
     return Stream.of(

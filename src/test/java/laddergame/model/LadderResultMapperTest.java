@@ -67,9 +67,9 @@ class LadderResultMapperTest {
   }
 
   public static Stream<Arguments> provideLadderPlayersResults2() {
-    BasicPoint basicPoint0_1 = new BasicPoint(0);
+    LinkablePoint basicPoint0_1 = BasicPoint.create(0);
     LinkablePoint basicPoint1_0 = basicPoint0_1.createNextWithLinkedBy(true);
-    BasicPoint basicPoint1_2 = new BasicPoint(1);
+    LinkablePoint basicPoint1_2 = BasicPoint.create(1);
     LinkablePoint basicPoint2_1 = basicPoint1_2.createNextWithLinkedBy(true);
 //    Point point3 = point2.createNextWithLinkedBy(true);
 //
@@ -78,8 +78,8 @@ class LadderResultMapperTest {
             new Ladder(Arrays.asList(
                 new Line(
                     Arrays.asList(
-                        new BasicPoint(0),
-                        new BasicPoint(1)
+                        BasicPoint.create(0),
+                        BasicPoint.create(1)
                     )
                 )
             )),
@@ -106,12 +106,12 @@ class LadderResultMapperTest {
                     Arrays.asList(
                         basicPoint0_1,
                         basicPoint1_0,
-                        new BasicPoint(2)
+                        BasicPoint.create(2)
                     )
                 ),
                 new Line(
                     Arrays.asList(
-                        new BasicPoint(0),
+                        BasicPoint.create(0),
                         basicPoint1_2,
                         basicPoint2_1
                     )
