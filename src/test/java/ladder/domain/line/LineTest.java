@@ -28,35 +28,56 @@ class LineTest {
 
     @DisplayName("입력 플레이어 수만큼 point를 생성 반환")
     @Test
-    void getLengths() {
+    void getConnects() {
         Line line = Line.create(10, new RandomPointGenerator());
 
-        assertThat(line.getLengths()).hasSize(10);
+        assertThat(line.getPoints()).hasSize(10);
     }
 
-    @DisplayName("첫번쨰 포인트 개수는 포인트 생성기와 상관 없이 무조건 0")
+    @DisplayName("첫번째 포인트는 움직일 수 없음")
     @Test
-    void getLengthsFirstIndex() {
-        Line line = Line.create(10, Point::five);
+    void getPointsFirstIndex() {
+        Line line = Line.create(10, Point::first);
 
-        assertThat(line.getLengths().get(0)).isEqualTo(0);
+        assertThat(line.getPoints().get(0).isMovable()).isFalse();
     }
 
-    @DisplayName("포인트가 모두 존재하지 않는 경우")
+
+    @DisplayName("모든 포인트가 움직일 수 없는 경우")
     @Test
-    void getLengthsZero() {
-        Line line = Line.create(10, Point::zero);
-        List<Integer> lenghts = line.getLengths();
-        lenghts.remove(0);
-        lenghts.forEach(length -> assertThat(length).isEqualTo(0));
+    void getPointsNotMove() {
+        Line line = Line.create(2, Point::first);
+        List<Point> points = line.getPoints();
+
+        assertThat(points.get(0).isMovable()).isFalse();
+        assertThat(points.get(1).isMovable()).isFalse();
     }
 
-    @DisplayName("포인트가 모두 존재하는 경우")
+    @DisplayName("모든 포인트가 움직일 수 있는 경우")
     @Test
-    void getLengthsFive() {
-        Line line = Line.create(10, Point::five);
-        List<Integer> lenghts = line.getLengths();
-        lenghts.remove(0);
-        lenghts.forEach(length -> assertThat(length).isEqualTo(5));
+    void getPointsMoveAll() {
+        Line line = Line.create(2, () -> Point.create(true));
+        List<Point> points = line.getPoints();
+
+        assertThat(points.get(0).isMovable()).isFalse();
+        assertThat(points.get(1).isMovable()).isTrue();
+    }
+
+    @DisplayName("사다리 오른쪽으로 움직이면 Position 1이 증가")
+    @Test
+    void moveRight() {
+        Line line = Line.create(2, () -> Point.create(true));
+        Position position = line.move(Position.valueOf(0));
+
+        assertThat(position).isEqualTo(Position.valueOf(1));
+    }
+
+    @DisplayName("사다리 왼쪽으로 움직이면 Position 1이 감소")
+    @Test
+    void moveLeft() {
+        Line line = Line.create(2, () -> Point.create(true));
+        Position position = line.move(Position.valueOf(1));
+
+        assertThat(position).isEqualTo(Position.valueOf(0));
     }
 }

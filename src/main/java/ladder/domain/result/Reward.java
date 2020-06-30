@@ -1,25 +1,21 @@
-package ladder.domain.player;
+package ladder.domain.result;
+
+import ladder.domain.player.Name;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public class Player {
-
-    private static final Player ALL = Player.create(Name.valueOf("all"));
+public class Reward {
 
     private final Name name;
 
-    private Player(Name name) {
+    private Reward(Name name) {
         this.name = Optional.ofNullable(name)
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public static Player create(Name name) {
-        return new Player(name);
-    }
-
-    public static Player all() {
-        return ALL;
+    public static Reward create(Name name) {
+        return new Reward(name);
     }
 
     public Name getName() {
@@ -30,8 +26,8 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        Reward reward = (Reward) o;
+        return Objects.equals(name, reward.name);
     }
 
     @Override

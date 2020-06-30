@@ -6,7 +6,7 @@ public class RandomPointGenerator implements PointGenerator {
 
     private static final Random random = new Random();
 
-    private Point prevPoint = Point.zero();
+    private Point prevPoint = Point.first();
 
     public RandomPointGenerator() {
     }
@@ -18,10 +18,10 @@ public class RandomPointGenerator implements PointGenerator {
     }
 
     private Point generate() {
-        if (prevPoint.isEmpty()) {
-            return random.nextBoolean() ? Point.five() : Point.zero();
+        if (!prevPoint.isMovable()) {
+            return Point.create(random.nextBoolean());
         }
 
-        return Point.zero();
+        return Point.create(false);
     }
 }

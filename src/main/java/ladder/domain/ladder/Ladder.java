@@ -3,9 +3,12 @@ package ladder.domain.ladder;
 import ladder.domain.line.Height;
 import ladder.domain.line.Line;
 import ladder.domain.line.Lines;
+import ladder.domain.line.Position;
+import ladder.domain.player.Player;
 import ladder.domain.player.Players;
 import ladder.domain.point.RandomPointGenerator;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -16,6 +19,8 @@ public class Ladder {
 
     private final Players players;
     private final Lines lines;
+
+    private int startIndex = 0;
 
     private Ladder(Players players, Height height) {
         this.players = Optional.ofNullable(players)
@@ -38,5 +43,17 @@ public class Ladder {
 
     public Lines getLines() {
         return lines;
+    }
+
+    public boolean hasNext() {
+        return players.hasIndex(startIndex);
+    }
+
+    public LadderMatch start() {
+        Player player = players.getPlayer(startIndex);
+        Position position = lines.calculateEndPosition(startIndex);
+        startIndex++;
+
+        return LadderMatch.create(player, position);
     }
 }

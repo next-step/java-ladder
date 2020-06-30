@@ -28,4 +28,14 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    public Position calculateEndPosition(int startIndex) {
+        Position position = Position.valueOf(startIndex);
+
+        for (Line line: lines) {
+            position = line.move(position);
+        }
+
+        return position;
+    }
 }

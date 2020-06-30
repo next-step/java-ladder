@@ -4,29 +4,24 @@ import java.util.Objects;
 
 public class Point {
 
-    private static final Point ZERO = new Point(0);
-    private static final Point FIVE = new Point(5);
+    private static final Point FIRST = Point.create(false);
 
-    private final int count;
+    private final boolean movable;
 
-    private Point(int count) {
-        this.count = count;
+    public Point(boolean movable) {
+        this.movable = movable;
     }
 
-    public static Point five() {
-        return FIVE;
+    public static Point create(boolean movable) {
+        return new Point(movable);
     }
 
-    public static Point zero() {
-        return ZERO;
+    public static Point first() {
+        return FIRST;
     }
 
-    public boolean isEmpty() {
-        return ZERO.equals(this);
-    }
-
-    public int getCount() {
-        return count;
+    public boolean isMovable() {
+        return movable;
     }
 
     @Override
@@ -34,11 +29,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return count == point.count;
+        return movable == point.movable;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(count);
+        return Objects.hash(movable);
     }
 }

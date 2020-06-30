@@ -4,6 +4,7 @@ import ladder.domain.point.Point;
 import ladder.domain.point.PointGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,7 +18,7 @@ public class Line {
     public Line(int countOfPlayer, PointGenerator pointGenerator) {
         validateArguments(countOfPlayer, pointGenerator);
 
-        points.add(Point.zero());
+        points.add(Point.first());
         points.addAll(generatePoints(countOfPlayer, pointGenerator));
     }
 
@@ -41,9 +42,35 @@ public class Line {
         return new Line(countOfPlayer, pointGenerator);
     }
 
-    public List<Integer> getLengths() {
-        return points.stream()
-                .map(Point::getCount)
-                .collect(Collectors.toList());
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    public Position move(Position position) {
+        if (canMoveRight(position)) {
+            return position.right();
+        }
+
+        if (canMoveLeft(position)) {
+            return position.left();
+        }
+
+        return position;
+    }
+
+    private boolean canMoveRight(Position position) {
+        return !isLastPosition(position) && points.get(position.getValue() + 1).isMovable();
+    }
+
+    private boolean canMoveLeft(Position position) {
+        return !isFirstPosition(position) && points.get(position.getValue()).isMovable();
+    }
+
+    private boolean isLastPosition(Position position) {
+        return position.getValue() == points.size() - 1;
+    }
+
+    private boolean isFirstPosition(Position position) {
+        return position.getValue() == 0;
     }
 }

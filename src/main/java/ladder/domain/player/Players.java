@@ -34,4 +34,12 @@ public class Players {
                 .map(Name::getValue)
                 .collect(Collectors.toList());
     }
+
+    public boolean hasIndex(int index) {
+        return index < players.size();
+    }
+
+    public Player getPlayer(int index) {
+        return players.get(index);
+    }
 }
