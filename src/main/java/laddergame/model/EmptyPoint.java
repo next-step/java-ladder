@@ -17,4 +17,9 @@ public class EmptyPoint implements Point {
   public int getNextPosition() {
     return position;
   }
+
+  @Override
+  public boolean isEmpty() {
+    return true;
+  }
 }

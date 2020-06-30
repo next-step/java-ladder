@@ -25,15 +25,22 @@ public class BasicPoint implements LinkablePoint {
   @Override
   public int getNextPosition() {
     return linkedBasicPoint.getPosition();
+
   }
 
   @Override
+  public boolean isEmpty() {
+    return false;
+  }
+
+
+  @Override
   public LinkablePoint createNext() {
-    if (linkedBasicPoint != null) {
-      return new BasicPoint(position + 1);
+    if (linkedBasicPoint.isEmpty()) {
+      return createNextWithLinkedBy(ThreadLocalRandom.current().nextBoolean());
     }
 
-    return createNextWithLinkedBy(ThreadLocalRandom.current().nextBoolean());
+    return new BasicPoint(position + 1);
   }
 
   @Override
