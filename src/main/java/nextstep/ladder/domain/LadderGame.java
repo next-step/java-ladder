@@ -13,23 +13,23 @@ public class LadderGame {
     public static void main(String[] argv) {
         Users users = InputView.insertUserLine();
 
-        Prices prices = InputView.getPrices();
+        Prizes prizes = InputView.getPrices();
 
         Ladder ladder = new Ladder(InputView.getHeight(), users.size(), new RandomLineCreateStrategy());
 
-        ResultView.printResult(users, prices, ladder);
+        ResultView.printResult(users, prizes, ladder);
 
-        Prices resultPrices = new Prices(
+        Prizes resultPrizes = new Prizes(
                 IntStream
                         .range(0, users.size())
                         .map(i ->
                             ladder.getLastPosition(new Point(i))
                         )
-                        .mapToObj(prices::getPrice)
+                        .mapToObj(prizes::getPrice)
                         .collect(Collectors.toList())
         );
 
         String resultQuery = InputView.getResultQuery();
-        ResultView.printGameResult(resultQuery, users, resultPrices);
+        ResultView.printGameResult(resultQuery, users, resultPrizes);
     }
 }

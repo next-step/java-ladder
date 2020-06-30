@@ -1,7 +1,7 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Price;
-import nextstep.ladder.domain.Prices;
+import nextstep.ladder.domain.Prize;
+import nextstep.ladder.domain.Prizes;
 import nextstep.ladder.domain.User;
 import nextstep.ladder.domain.Users;
 
@@ -34,12 +34,12 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public static Prices getPrices() {
+    public static Prizes getPrices() {
         System.out.println(INPUT_PRICE_COMMENT);
         String priceString = scanner.nextLine();
-        return new Prices(
+        return new Prizes(
                 Arrays.stream(priceString.split(PRICE_DELIMITER))
-                .map(Price::new)
+                .map(Prize::new)
                 .collect(Collectors.toList())
         );
     }

@@ -18,7 +18,7 @@ public class ResultView {
     private static final String GAME_RESULT_COMMENT = "실행 결과";
     private static final String USER_NAME_AND_PRIZE_FORMAT = "%s : %s";
 
-    public static void printResult(Users users, Prices prices, Ladder ladder) {
+    public static void printResult(Users users, Prizes prizes, Ladder ladder) {
         System.out.println(LADDER_RESULT_COMMENT);
 
         users.stream()
@@ -29,8 +29,8 @@ public class ResultView {
         ladder.getLines().stream()
                 .forEach(line -> System.out.println(getLineString(line)));
 
-        prices.stream()
-                .forEach(price -> System.out.print(String.format(RESULT_PRICE_NAME_FORMAT, price.getMoney())));
+        prizes.stream()
+                .forEach(price -> System.out.print(String.format(RESULT_PRICE_NAME_FORMAT, price.getPrize())));
 
         System.out.print("\n");
     }
@@ -42,22 +42,22 @@ public class ResultView {
         return String.join("", lineShapes);
     }
 
-    public static void printGameResult(String resultQuery, Users users, Prices resultPrices) {
+    public static void printGameResult(String resultQuery, Users users, Prizes resultPrizes) {
         System.out.println(GAME_RESULT_COMMENT);
 
         if (resultQuery.equals("all")) {
-            printAllGameResult(users, resultPrices);
+            printAllGameResult(users, resultPrizes);
             return;
         }
 
-        System.out.println(resultPrices.getPrice(users.getUserIndex(resultQuery)).getMoney());
+        System.out.println(resultPrizes.getPrice(users.getUserIndex(resultQuery)).getPrize());
     }
 
-    public static void printAllGameResult(Users users, Prices prices) {
+    public static void printAllGameResult(Users users, Prizes prizes) {
         IntStream
                 .range(0, users.size())
                 .forEach(i -> {
-                    System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, users.getUser(i).getName(), prices.getPrice(i).getMoney()));
+                    System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, users.getUser(i).getName(), prizes.getPrice(i).getPrize()));
                 });
     }
 }
