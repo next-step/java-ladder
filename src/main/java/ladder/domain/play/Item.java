@@ -7,20 +7,20 @@ public class Item {
 
     private final String input;
 
-    private Item(final String input) {
+    Item(final String input) {
         isNotNullOrEmpty(input);
         validateMaxLength(input);
-        this.input = input;
+        this.input = input.trim();
     }
 
     private void isNotNullOrEmpty(String input) {
-        if (input == null || input.isEmpty()) {
+        if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("입력 값은 null 이거나 빈 문자열일 수 없습니다.");
         }
     }
 
     private void validateMaxLength(String input) {
-        if (input.length() > MAX_LENGTH) {
+        if (input.trim().length() > MAX_LENGTH) {
             throw new IllegalArgumentException("입력 값은 최대 5글자까지 입력할 수 있습니다.");
         }
     }

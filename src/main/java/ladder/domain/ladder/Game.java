@@ -1,7 +1,8 @@
 package ladder.domain.ladder;
 
-import ladder.domain.play.Item;
+import ladder.domain.play.Player;
 import ladder.domain.play.Playing;
+import ladder.domain.play.Prize;
 import ladder.domain.result.Results;
 
 import java.util.HashMap;
@@ -28,12 +29,12 @@ public class Game {
     }
 
     private Results makeResults(List<Integer> indexes) {
-        Map<Item, Item> results = new HashMap<>();
+        Map<Player, Prize> results = new HashMap<>();
 
         for (Integer index : indexes) {
-            Item player = playing.getPlayersBy(index);
-            Item result = playing.getResultsBy(ladder.move(index));
-            results.put(player, result);
+            Player player = playing.getPlayersBy(index);
+            Prize prize = playing.getResultsBy(ladder.move(index));
+            results.put(player, prize);
         }
 
         return Results.of(results);

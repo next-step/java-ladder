@@ -8,12 +8,16 @@ import java.util.stream.IntStream;
 public class Players extends Items {
     public static final String PLAYERS_ALL = "all";
 
-    private Players(List<String> items) {
+    private Players(List<Player> items) {
         super(items);
     }
 
     public static Players of(List<String> names) {
-        return new Players(names);
+        List<Player> items = names.stream()
+                .map(Player::of)
+                .collect(Collectors.toList());
+
+        return new Players(items);
     }
 
     public List<Integer> findIndexesBy(String name) {
@@ -23,6 +27,17 @@ public class Players extends Items {
                     .collect(Collectors.toList());
         }
 
-        return Arrays.asList(super.findIndexBy(name));
+        return Arrays.asList(findIndexBy(name));
+    }
+
+    @Override
+    void validateContains(String name) {
+        if (!items.contains(Player.of(name))) {
+            throw new IllegalArgumentException("유효하지 않은 값입니다.");
+        }
+    }
+
+    public Player get(int index) {
+        return (Player) super.items.get(index);
     }
 }
