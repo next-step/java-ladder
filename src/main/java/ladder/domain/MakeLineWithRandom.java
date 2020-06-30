@@ -7,7 +7,7 @@ public class MakeLineWithRandom implements MakeLine {
 
     private Random random;
 
-    public MakeLineWithRandom(){
+    public MakeLineWithRandom() {
         random = new Random();
     }
 
