@@ -64,7 +64,6 @@
         * int getLastPosition(Point point)
     * 사다리타기의 결과를 출력하라
       * UsersPrize
-        * void add(User user, Prize prize)
         * Prize getPrize(User user)
       
 * TDD
@@ -97,4 +96,4 @@
 - Prize, Prizes
     - [X] '꽝' 혹은 숫자가 들어 와야 한다
 - UsersPrize
-    - [X] 추가한 유저, 결과 상품 리스트를 가져올 수 있다
+    - [X] 유저, 결과 상품 리스트를 가져올 수 있다
