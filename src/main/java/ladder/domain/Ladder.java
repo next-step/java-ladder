@@ -29,7 +29,7 @@ public class Ladder {
     }
 
     private void validateSameCount(Participants participants, LadderPrizes ladderPrizes) {
-        if(participants.size() != ladderPrizes.size()) {
+        if (participants.size() != ladderPrizes.size()) {
             throw new IllegalArgumentException("사다리 게임에 참여자의 수와 사다리 결과 수가 다릅니다.");
         }
     }

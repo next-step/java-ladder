@@ -29,7 +29,7 @@ public class Lambda {
     public static int sumAll(List<Integer> numbers, Conditional conditional) {
         int total = 0;
         for (int number : numbers) {
-            if(conditional.filter(number)) {
+            if (conditional.filter(number)) {
                 total += number;
             }
         }
