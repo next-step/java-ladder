@@ -18,14 +18,11 @@ public class Participants {
     }
 
     public int getStartPosition(User user) {
-        int startPosition = 0;
-        for (User participant : participants) {
-            if(participant.equals(user)) {
-                return startPosition;
-            }
-            startPosition++;
+        int index = participants.indexOf(user);
+        if(index == -1) {
+            throw new IllegalArgumentException("입력하신 사용자는 사다리 게임 참가자가 아닙니다.");
         }
-        throw new IllegalArgumentException("입력하신 사용자는 사다리 게임 참가자가 아닙니다.");
+        return index;
     }
 
     public User get(int startPosition) {
