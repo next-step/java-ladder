@@ -1,11 +1,11 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Prizes;
-import nextstep.ladder.domain.Users;
-import nextstep.ladder.domain.UsersPrize;
-import nextstep.ladder.domain.tobe.Direction;
-import nextstep.ladder.domain.tobe.Ladder;
-import nextstep.ladder.domain.tobe.Line;
+import nextstep.ladder.domain.prizes.Prizes;
+import nextstep.ladder.domain.users.Users;
+import nextstep.ladder.domain.result.UsersPrize;
+import nextstep.ladder.common.Direction;
+import nextstep.ladder.domain.ladders.Ladder;
+import nextstep.ladder.domain.ladders.Line;
 
 import java.util.List;
 import java.util.stream.Collectors;

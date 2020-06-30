@@ -1,9 +1,9 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.domain.Prize;
-import nextstep.ladder.domain.Prizes;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.prizes.Prize;
+import nextstep.ladder.domain.prizes.Prizes;
+import nextstep.ladder.domain.users.User;
+import nextstep.ladder.domain.users.Users;
 
 import java.util.Arrays;
 import java.util.Scanner;
