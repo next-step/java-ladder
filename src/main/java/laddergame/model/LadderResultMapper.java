@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,7 +17,8 @@ public class LadderResultMapper {
     this.ladderResultMap = ladderResultMap;
   }
 
-  public static LadderResultMapper createBy(Ladder ladder, PlayerNames players, ResultNames results) {
+  public static LadderResultMapper createBy(Ladder ladder, PlayerNames players,
+      ResultNames results) {
     return new LadderResultMapper(Stream.iterate(0, positionNum -> positionNum + 1)
         .limit(players.getCountOfNames())
         .collect(Collectors.toMap(
@@ -30,10 +30,13 @@ public class LadderResultMapper {
   }
 
   public ResultName getResultOf(PlayerName playerName) {
-    Optional<PlayerName> result = Optional.ofNullable(playerName);
+    ResultName resultName = ladderResultMap.get(playerName);
 
-    return result.map(ladderResultMap::get)
-        .orElseThrow(PlayerNotExistException::new);
+    if (resultName == null) {
+      throw new PlayerNotExistException();
+    }
+
+    return resultName;
   }
 
   public Set<Entry<PlayerName, ResultName>> getResults() {
