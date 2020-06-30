@@ -6,13 +6,11 @@ import java.util.Random;
 
 public class RandomLineCreateStrategy implements LineCreateStrategy {
     private static final Random RAND = new Random();
-    private static final List<Direction> cachedFirstDirections = Arrays.asList(Direction.CENTER, Direction.RIGHT);
-    private static final List<Direction> cachedBodyDirections = Arrays.asList(Direction.values());
-    private static final List<Direction> cachedLastDirections = Arrays.asList(Direction.LEFT, Direction.CENTER);
+    private static final List<Direction> cachedDirections = Arrays.asList(Direction.CENTER, Direction.RIGHT);
 
     @Override
     public Direction first() {
-        return cachedFirstDirections.get(RAND.nextInt(cachedFirstDirections.size()));
+        return cachedDirections.get(RAND.nextInt(cachedDirections.size()));
     }
 
     @Override
@@ -20,7 +18,7 @@ public class RandomLineCreateStrategy implements LineCreateStrategy {
         if (exDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }
-        return cachedBodyDirections.get(RAND.nextInt(cachedBodyDirections.size()));
+        return cachedDirections.get(RAND.nextInt(cachedDirections.size()));
     }
 
     @Override
@@ -28,6 +26,6 @@ public class RandomLineCreateStrategy implements LineCreateStrategy {
         if (exDirection == Direction.RIGHT) {
             return Direction.LEFT;
         }
-        return cachedLastDirections.get(RAND.nextInt(cachedLastDirections.size()));
+        return Direction.CENTER;
     }
 }
