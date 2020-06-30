@@ -18,22 +18,14 @@ public class User {
         return new User(name);
     }
 
-    public static List<User> of(List<String> names) {
-        return names.stream().map(User::new).collect(Collectors.toList());
-    }
-
-    public String getName() {
-        return name;
-    }
-
     private void validateNameLength(String name) {
-        if(name.length() > NAME_LENGTH_LIMIT) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("입력된 이름이 제한 길이를 초과 합니다.");
         }
     }
 
     private void validateNullOrEmpty(String name) {
-        if(name == null || name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("입력된 이름이 null 또는 빈 값 입니다.");
         }
     }
@@ -49,5 +41,11 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

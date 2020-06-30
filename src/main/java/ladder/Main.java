@@ -1,7 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.User;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -9,12 +8,18 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<User> users = User.of(InputView.inputUser());
-        int ladderHeight = InputView.inputHeight();
-        Ladder ladder = new Ladder(ladderHeight, users.size());
+        Participants participants = Participants.of(InputView.inputUser());
+        LadderPrizes ladderPrizes = LadderPrizes.of(InputView.inputLadderResult());
+        int height = InputView.inputHeight();
+        Ladder ladder = new Ladder(LadderHeight.of(height), participants, ladderPrizes);
+        OutputView.printLadder(participants, ladder, ladderPrizes);
 
-        OutputView.printTitle();
-        OutputView.printUsers(users);
-        OutputView.printLadder(ladder);
+        LadderGame ladderGame = new LadderGame(participants, ladder);
+        String name;
+        do {
+            name = InputView.inputUserNameToShowLadderResult();
+            List<Integer> ladderPrizesIndex = ladderGame.play(name);
+            OutputView.printLadderResult(participants, LadderPrizes.convert(ladderPrizesIndex, ladderPrizes));
+        } while (!ladderGame.isFinishGame(name));
     }
 }

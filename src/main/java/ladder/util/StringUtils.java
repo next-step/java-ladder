@@ -11,7 +11,7 @@ public class StringUtils {
     }
 
     private static void validateNullOrEmpty(String text) {
-        if(text == null || text.isEmpty()) {
+        if (text == null || text.isEmpty()) {
             throw new IllegalArgumentException("입력된 텍스트가 비어있거나 NULL 입니다.");
         }
     }
