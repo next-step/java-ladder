@@ -42,22 +42,22 @@ public class ResultView {
         return String.join("", lineShapes);
     }
 
-    public static void printGameResult(String resultQuery, Users users, Prizes resultPrizes) {
+    public static void printGameResult(String resultQuery, UsersPrize usersPrize) {
         System.out.println(GAME_RESULT_COMMENT);
 
         if (resultQuery.equals("all")) {
-            printAllGameResult(users, resultPrizes);
+            printAllGameResult(usersPrize);
             return;
         }
 
-        System.out.println(resultPrizes.getPrice(users.getUserIndex(resultQuery)).getPrize());
+        System.out.println(usersPrize.getPrize(resultQuery));
     }
 
-    public static void printAllGameResult(Users users, Prizes prizes) {
-        IntStream
-                .range(0, users.size())
-                .forEach(i -> {
-                    System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, users.getUser(i).getName(), prizes.getPrice(i).getPrize()));
-                });
+    public static void printAllGameResult(UsersPrize usersPrize) {
+        usersPrize.getPrizeMap()
+                .entrySet()
+                .forEach(e ->
+                    System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, e.getKey(), e.getValue()))
+                );
     }
 }

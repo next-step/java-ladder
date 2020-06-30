@@ -6,7 +6,6 @@ import nextstep.ladder.domain.tobe.RandomLineCreateStrategy;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
@@ -18,17 +17,15 @@ public class LadderGame {
 
         ResultView.printResult(users, prizes, ladder);
 
-        Prizes resultPrizes = new Prizes(
-                IntStream
-                        .range(0, users.size())
-                        .map(i ->
-                            ladder.getLastPosition(new Point(i))
-                        )
-                        .mapToObj(prizes::getPrice)
-                        .collect(Collectors.toList())
-        );
+        UsersPrize usersPrize = new UsersPrize();
+        IntStream
+                .range(0, users.size())
+                .forEach(i -> {
+                    int lastPosition = ladder.getLastPosition(new Point(i));
+                    usersPrize.add(users.getUser(i), prizes.getPrice(lastPosition));
+                });
 
         String resultQuery = InputView.getResultQuery();
-        ResultView.printGameResult(resultQuery, users, resultPrizes);
+        ResultView.printGameResult(resultQuery, usersPrize);
     }
 }

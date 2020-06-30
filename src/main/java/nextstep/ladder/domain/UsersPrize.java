@@ -20,4 +20,8 @@ public class UsersPrize {
         }
         return prizeMap.get(userName);
     }
+
+    public Map<String, Prize> getPrizeMap() {
+        return prizeMap;
+    }
 }
