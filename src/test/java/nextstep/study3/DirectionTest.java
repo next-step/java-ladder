@@ -32,4 +32,26 @@ class DirectionTest {
         Direction next = Direction.first(TRUE).next();
         assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
     }
+	
+	@Test
+	@DisplayName("첫번째 이동한거나 두번쨰 이동한거나 한번이동한거는 같다 ")
+    public void next_false() {
+        Direction next = Direction.of(FALSE, TRUE).next(FALSE);
+        assertThat(next).isEqualTo(Direction.of(TRUE, FALSE));
+    }
+	
+	@Test
+	@DisplayName("right가 True면 left는 무조건 false")
+    public void first() {
+        Direction first = Direction.first(TRUE);
+        assertThat(first.isLeft()).isEqualTo(FALSE);
+    }
+	
+	@Test
+	@DisplayName("마지막 right는 무조건 false여야 한다.")
+    public void last() {
+        Direction last = Direction.first(TRUE).last();
+        assertThat(last).isEqualTo(Direction.of(TRUE, FALSE));
+    }
 }
+
