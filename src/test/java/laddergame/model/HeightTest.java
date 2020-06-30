@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class PositiveNumberTest {
+class HeightTest {
 
   @ParameterizedTest
   @CsvSource({
@@ -17,7 +17,7 @@ class PositiveNumberTest {
   @DisplayName("1보다 작은 경우")
   void init_expectedThrowIllegalArgumentException(int value) {
     assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-      new PositiveNumber(value);
+      new Height(value);
     });
   }
 
@@ -27,6 +27,6 @@ class PositiveNumberTest {
       "1"
   })
   void getValue(int value) {
-    assertThat(new PositiveNumber(value)).isEqualTo(new PositiveNumber(value));
+    assertThat(new Height(value)).isEqualTo(new Height(value));
   }
 }

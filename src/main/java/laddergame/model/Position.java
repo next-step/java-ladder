@@ -4,22 +4,18 @@ import java.util.Objects;
 
 public class Position {
 
-  private NaturalNumber value;
+  private final int value;
 
-  public Position(NaturalNumber value) {
+  public Position(int value) {
+    if (value < 0) {
+      throw new IllegalArgumentException("Position은 0보다 작을 수 없습니다. value : " + value);
+    }
+
     this.value = value;
   }
 
   public int getValue() {
-    return value.getValue();
-  }
-
-  public void moveLeft() {
-    this.value = value.minusOne();
-  }
-
-  public void moveRight() {
-    this.value = value.plusOne();
+    return value;
   }
 
   @Override
@@ -31,7 +27,7 @@ public class Position {
       return false;
     }
     Position position = (Position) o;
-    return value.equals(position.value);
+    return value == position.value;
   }
 
   @Override
@@ -41,25 +37,6 @@ public class Position {
 
   @Override
   public String toString() {
-    return "Position{" +
-        "value=" + value +
-        '}';
-  }
-
-  public void movePositionBy(Line line) {
-    /**
-     * point로 line 사이를 이어준다.
-     * cur 기준 point 위치는 다음과 같다.
-     * left == line[cur]
-     * right == right[cur+1]
-     */
-    if (line.hasRungAt(getValue())) {
-      moveLeft();
-      return;
-    }
-
-    if (line.hasRungAt(getValue() + 1)) {
-      moveRight();
-    }
+    return String.valueOf(value);
   }
 }

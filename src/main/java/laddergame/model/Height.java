@@ -2,13 +2,12 @@ package laddergame.model;
 
 import java.util.Objects;
 
-public class NaturalNumber {
-
+public class Height {
   private final int value;
 
-  public NaturalNumber(int value) {
-    if (value < 0) {
-      throw new IllegalArgumentException("NaturalNumber는 0보다 작을 수 없습니다. value : " + value);
+  public Height(int value) {
+    if (value < 1) {
+      throw new IllegalArgumentException("사다리 높이는 1보다 작을 수 없습니다. value : " + value);
     }
 
     this.value = value;
@@ -16,14 +15,6 @@ public class NaturalNumber {
 
   public int getValue() {
     return value;
-  }
-
-  public NaturalNumber plusOne() {
-    return new NaturalNumber(value+1);
-  }
-
-  public NaturalNumber minusOne() {
-    return new NaturalNumber(value-1);
   }
 
   @Override
@@ -34,7 +25,7 @@ public class NaturalNumber {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NaturalNumber that = (NaturalNumber) o;
+    Height that = (Height) o;
     return value == that.value;
   }
 
@@ -45,10 +36,6 @@ public class NaturalNumber {
 
   @Override
   public String toString() {
-    return "NaturalNumber{" +
-        "value=" + value +
-        '}';
+    return String.valueOf(value);
   }
 }
-
-

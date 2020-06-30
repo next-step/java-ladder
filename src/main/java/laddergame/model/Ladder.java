@@ -1,6 +1,5 @@
 package laddergame.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,25 +13,34 @@ public class Ladder {
   }
 
   public static Ladder createByHeightAndCountOfPerson(
-      PositiveNumber height, int countOfPerson) {
+      Height height, int countOfPerson) {
 
     List<Line> lines = Stream.generate(() -> Line.createByCountOfPerson(countOfPerson))
-        .limit(height.getValue()).collect(
-            Collectors.toList());
+        .limit(height.getValue())
+        .collect(Collectors.toList());
 
     return new Ladder(lines);
-
   }
 
-  public int findResultPositionOf(int startPosition) {
-    Position position = new Position(new NaturalNumber(startPosition));
+  public Position findResultPositionOf(Position startPosition) {
 
-    lines.forEach(position::movePositionBy);
+    final Position[] positionHolder = {startPosition};
 
-    return position.getValue();
+    lines.forEach(line -> positionHolder[0] = line.getNextPositionAt(positionHolder[0].getValue()));
+
+    return positionHolder[0];
   }
 
-  public List<Line> getLines() {
-    return Collections.unmodifiableList(lines);
+  public List<LineDTO> getLineDTOs() {
+    return lines.stream()
+        .map(LineDTO::createBy)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public String toString() {
+    return "Ladder{" +
+        "lines=" + lines +
+        '}';
   }
 }

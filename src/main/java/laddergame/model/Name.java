@@ -12,6 +12,10 @@ public class Name {
   public Name(String value) {
     value = value.trim();
 
+    if(value == null || value.isEmpty()) {
+      throw new IllegalArgumentException("이름이 입력되지 않았습니다.");
+    }
+
     if (MAX_LENGTH < value.length()) {
       throw new IllegalArgumentException("이름이 5글자 초과 value : " + value);
     }

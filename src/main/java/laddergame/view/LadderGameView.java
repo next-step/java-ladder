@@ -2,7 +2,7 @@ package laddergame.view;
 
 import laddergame.model.Ladder;
 import laddergame.model.LadderResultMapper;
-import laddergame.model.Name;
+import laddergame.model.PlayerName;
 import laddergame.model.PlayerNames;
 import laddergame.model.PlayerNotExistException;
 import laddergame.model.ResultNames;
@@ -10,7 +10,7 @@ import laddergame.model.ResultNames;
 public class LadderGameView {
 
   private final static String COLON_WITH_WHITESPACE = " : ";
-  private final static String NEWLINE = "\n";
+  private final static String NEWLINE = System.lineSeparator();
 
   public static void printInputPlayerNamesMsg() {
     System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
@@ -29,7 +29,10 @@ public class LadderGameView {
 
     sb.append(players.toString()).append(NEWLINE);
 
-    ladder.getLines().forEach(line -> sb.append(line).append(NEWLINE));
+    ladder.getLineDTOs().forEach(lineDTO -> {
+      sb.append(lineDTO.getLineWithMappedPoint())
+          .append(NEWLINE);
+    });
 
     sb.append(results.toString());
 
@@ -40,7 +43,7 @@ public class LadderGameView {
     System.out.println("결과를 보고 싶은 사람은?");
   }
 
-  public static void printResultOf(LadderResultMapper ladderResultMapper, Name playerName) {
+  public static void printResultOf(LadderResultMapper ladderResultMapper, PlayerName playerName) {
     StringBuilder sb = new StringBuilder("실행 결과").append(NEWLINE);
 
     try {
@@ -56,7 +59,7 @@ public class LadderGameView {
   public static void printResultOfAll(LadderResultMapper ladderResultMapper) {
     StringBuilder sb = new StringBuilder("실행 결과").append(NEWLINE);
 
-    ladderResultMapper.getEntrySet().forEach(resultEntry -> {
+    ladderResultMapper.getResults().forEach(resultEntry -> {
       sb.append(resultEntry.getKey())
           .append(COLON_WITH_WHITESPACE)
           .append(resultEntry.getValue())
