@@ -14,8 +14,7 @@ class UsersPrizeTest {
     @CsvSource(value = {"pobi,꽝", "honux,3000", "crong,꽝", "jk,5000"}, delimiter = ',')
     public void add_WithUserAndPrize_IsSuccess(String userName, String prize) {
         UsersPrize usersPrize = new UsersPrize();
-        Prize expected = new Prize(prize);
-        usersPrize.add(new User(userName), expected);
-        assertThat(usersPrize.getPrize(userName)).isEqualTo(expected);
+        usersPrize.add(new User(userName), new Prize(prize));
+        assertThat(usersPrize.getPrize(userName)).isEqualTo(prize);
     }
 }

@@ -57,7 +57,7 @@ public class ResultView {
         usersPrize.getPrizeMap()
                 .entrySet()
                 .forEach(e ->
-                    System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, e.getKey(), e.getValue()))
+                    System.out.println(String.format(USER_NAME_AND_PRIZE_FORMAT, e.getKey(), e.getValue().getPrize()))
                 );
     }
 }

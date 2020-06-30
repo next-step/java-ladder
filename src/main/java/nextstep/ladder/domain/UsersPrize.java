@@ -14,11 +14,11 @@ public class UsersPrize {
         prizeMap.put(user.getName(), prize);
     }
 
-    public Prize getPrize(String userName) {
+    public String getPrize(String userName) {
         if (!prizeMap.containsKey(userName)) {
             throw new NotFoundUserException("userName is not found");
         }
-        return prizeMap.get(userName);
+        return prizeMap.get(userName).getPrize();
     }
 
     public Map<String, Prize> getPrizeMap() {
