@@ -36,7 +36,10 @@ public class Position {
         if(horizonLine.isEnabledShortLineOfLeft(index)) {
             return left();
         }
-        return right();
+        if(horizonLine.isEnabledShortLineOfRight(index)) {
+            return right();
+        }
+        return this;
     }
 
     private Position left() {
