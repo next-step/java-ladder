@@ -20,10 +20,10 @@ public class DirectionTest {
 	@DisplayName("마지막 좌표는 오른쪽으로 이동할 수 없고, 왼쪽이나 제자리로만 이동 가능하다.")
 	@Test
 	void 마지막_좌표는_왼쪽이나_제자리로만_이동_가능하다() {
-		Direction directionNotConnected = Direction.last(false);
+		Direction directionNotConnected = Direction.last(Direction.of(false, false));
 		assertThat(directionNotConnected).isNotEqualTo(Direction.RIGHT);
 
-		Direction directionConnected = Direction.last(true);
+		Direction directionConnected = Direction.last(Direction.of(true, false));
 		assertThat(directionConnected).isNotEqualTo(Direction.RIGHT);
 	}
 

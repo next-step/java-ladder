@@ -37,8 +37,8 @@ public enum Direction {
 		return Direction.STAY;
 	}
 
-	public static Direction last(boolean isConnectedToBeforePoint) {
-		if (isConnectedToBeforePoint) {
+	public static Direction last(Direction lastDirection) {
+		if (lastDirection == Direction.RIGHT) {
 			return Direction.LEFT;
 		}
 		return Direction.STAY;
