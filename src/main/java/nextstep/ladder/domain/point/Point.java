@@ -4,16 +4,7 @@ import nextstep.ladder.domain.direction.Direction;
 
 public class Point {
 
-	private boolean isConnectedToNextPoint;
 	private Direction direction;
-
-	private Point(boolean isConnectedToNextPoint) {
-		this.isConnectedToNextPoint = isConnectedToNextPoint;
-	}
-
-	public static Point ofPoint(boolean isConnectedToNextPoint) {
-		return new Point(isConnectedToNextPoint);
-	}
 
 	private Point(Direction direction) {
 		this.direction = direction;
@@ -23,14 +14,12 @@ public class Point {
 		return new Point(direction);
 	}
 
-	public void validateNotConnectedIfLastPoint() {
-		if (isConnectedToNextPoint) {
-			throw new IllegalArgumentException("last point should not be connected to the next point.");
-		}
+	public boolean canMoveRight() {
+		return direction == Direction.RIGHT;
 	}
 
-	public boolean isConnectedToNextPoint() {
-		return direction == Direction.RIGHT;
+	public boolean canMoveLeft() {
+		return direction == Direction.LEFT;
 	}
 
 	public Point last(boolean isConnectedToBeforePoint) {
