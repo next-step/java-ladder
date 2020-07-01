@@ -72,13 +72,6 @@ public class Players {
 		return this;
 	}
 
-	// public Player playerPrizeMapFactory(int prizeIndex) {
-	// 	return players.stream()
-	// 		.filter(player -> player.getCurrentPosition().getPosition() == prizeIndex)
-	// 		.reduce((a, b) -> b)
-	// 		.orElseThrow(() -> new IllegalArgumentException("no user"));
-	// }
-
 	public Player playerPrizeMapFactory(Prizes prizes, Prize prize) {
 		return players.stream()
 			.filter(player -> player.getCurrentPosition().getPosition() == prizes.prizeIndex(prize))
