@@ -3,7 +3,7 @@ package ladder;
 import ladder.model.Ladder;
 import ladder.model.LadderGame;
 import ladder.model.dto.LadderGameInfo;
-import ladder.model.LadderGameMemberResult;
+import ladder.model.dto.LadderGameMemberResult;
 import ladder.model.LadderGameResult;
 import ladder.model.LadderGameRewords;
 import ladder.model.LadderHeight;
