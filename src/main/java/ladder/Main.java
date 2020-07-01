@@ -4,7 +4,7 @@ import ladder.model.Ladder;
 import ladder.model.LadderGame;
 import ladder.model.dto.LadderGameInfo;
 import ladder.model.LadderGameMemberResult;
-import ladder.model.LadderGameResult;
+import ladder.view.LadderGameResult;
 import ladder.model.LadderGameRewords;
 import ladder.model.LadderHeight;
 import ladder.model.Members;
