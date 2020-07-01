@@ -4,4 +4,6 @@ import nextstep.ladder.domain.point.Point;
 
 public interface PaintingStrategy {
 	Point drawPoint();
+
+	boolean isRight();
 }

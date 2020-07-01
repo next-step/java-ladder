@@ -12,4 +12,9 @@ public class RandomPaintingStrategy implements PaintingStrategy {
 	public Point drawPoint() {
 		return Point.ofPoint(random.nextBoolean());
 	}
+
+	@Override
+	public boolean isRight() {
+		return random.nextBoolean();
+	}
 }
