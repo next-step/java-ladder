@@ -26,4 +26,23 @@ public class DirectionTest {
 		Direction directionConnected = Direction.last(true);
 		assertThat(directionConnected).isNotEqualTo(Direction.RIGHT);
 	}
+
+	@DisplayName("현재 포인트가 오른쪽으로 이동하는 경우, 다음 포인트는 왼쪽으로만 이동할 수 있다.")
+	@Test
+	void 오른쪽으로_이동하면_다음에는_왼쪽_이동만_가능하다() {
+		Direction direction = Direction.of(false, true);
+		Direction next = direction.next(true);
+		assertThat(next).isEqualTo(Direction.LEFT);
+	}
+
+	@DisplayName("현재 포인트가 왼쪽으로 이동하는 경우, 다음 포인트는 오른쪽 방향 또는 제자리로만 이동할 수 있다.")
+	@Test
+	void 왼쪽으로_이동하면_다음에는_오른쪽_이동만_가능하다() {
+		Direction direction = Direction.of(true, false);
+		Direction next = direction.next(true);
+		assertThat(next).isEqualTo(Direction.RIGHT);
+
+		Direction directionStay = direction.next(false);
+		assertThat(directionStay).isEqualTo(Direction.STAY);
+	}
 }
