@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HorizonLine {
+    private final static int LEFT_SHORT_LINE = -1;
+    private final static int RIGHT_SHORT_LINE = 0;
 
     private final List<Boolean> shortLines = new ArrayList<>();
 
@@ -27,7 +29,7 @@ public class HorizonLine {
 
     protected boolean isEnabledShortLineOfLeft(int position) {
         validatePositionRange(position);
-        final int shortLineIndex = position - 1;
+        final int shortLineIndex = position + LEFT_SHORT_LINE;
         if (shortLineIndex < 0) {
             return false;
         }
@@ -36,7 +38,7 @@ public class HorizonLine {
 
     protected boolean isEnabledShortLineOfRight(int position) {
         validatePositionRange(position);
-        final int shortLineIndex = position;
+        final int shortLineIndex = position + RIGHT_SHORT_LINE;
         if (shortLineIndex >= shortLines.size()) {
             return false;
         }
