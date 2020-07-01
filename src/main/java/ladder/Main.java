@@ -18,8 +18,8 @@ public class Main {
         String name;
         do {
             name = InputView.inputUserNameToShowLadderResult();
-            List<Integer> ladderPrizesIndex = ladderGame.play(name);
-            OutputView.printLadderResult(participants, LadderPrizes.convert(ladderPrizesIndex, ladderPrizes));
+            List<Position> ladderPrizesPosition = ladderGame.play(name);
+            OutputView.printLadderResult(participants, LadderPrizes.convert(ladderPrizesPosition, ladderPrizes));
         } while (!ladderGame.isFinishGame(name));
     }
 }

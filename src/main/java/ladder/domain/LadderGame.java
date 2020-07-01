@@ -14,11 +14,11 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public List<Integer> play(String name) {
+    public List<Position> play(String name) {
         if (ALL.equalsIgnoreCase(name)) {
             return ladder.playAll();
         }
-        int startPosition = participants.getStartPosition(User.of(name));
+        Position startPosition = participants.getStartPosition(User.of(name));
         return Collections.singletonList(ladder.play(startPosition));
     }
 

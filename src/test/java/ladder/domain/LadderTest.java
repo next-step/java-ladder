@@ -62,14 +62,14 @@ public class LadderTest {
     @DisplayName("게임을 진행하고 최종 사다리 위치 index 를 리턴한다.")
     @Test
     public void playTest() {
-        assertThat(defaultLadder.play(3)).isEqualTo(2);
+        assertThat(defaultLadder.play(Position.of(3))).isEqualTo(Position.of(2));
     }
 
     @DisplayName("모든 startPosition에 대해서 게임을 진행하고 사다리 위치 index 들을 리턴한다.")
     @Test
     public void playTestAll() {
-        List<Integer> result = defaultLadder.playAll();
+        List<Position> result = defaultLadder.playAll();
 
-        assertThat(result).containsSequence(1, 0, 3, 2);
+        assertThat(result).containsSequence(Position.of(1), Position.of(0), Position.of(3), Position.of(2));
     }
 }

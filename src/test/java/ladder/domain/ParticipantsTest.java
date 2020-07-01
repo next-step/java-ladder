@@ -15,9 +15,9 @@ public class ParticipantsTest {
     @DisplayName("User들의 statPosition을 얻을 수 있다.")
     @Test
     public void getStartPositionTest() {
-        int startPosition = defaultParticipants.getStartPosition(User.of("pobi"));
+        Position startPosition = defaultParticipants.getStartPosition(User.of("pobi"));
 
-        assertThat(startPosition).isEqualTo(0);
+        assertThat(startPosition).isEqualTo(Position.of(0));
     }
 
     @DisplayName("참가자가 아닌 User 일 경우 IllegalArgumet Exception을 발생한다.")

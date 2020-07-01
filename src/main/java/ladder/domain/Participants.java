@@ -17,12 +17,12 @@ public class Participants {
         return new Participants(users);
     }
 
-    public int getStartPosition(User user) {
+    public Position getStartPosition(User user) {
         int index = participants.indexOf(user);
         if (index == -1) {
             throw new IllegalArgumentException("입력하신 사용자는 사다리 게임 참가자가 아닙니다.");
         }
-        return index;
+        return Position.of(index);
     }
 
     public User get(int startPosition) {

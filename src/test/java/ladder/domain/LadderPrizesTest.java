@@ -25,14 +25,14 @@ public class LadderPrizesTest {
         Ladder ladder = new Ladder(LadderHeight.of(3), participants, () -> true);
 
         LadderGame ladderGame = new LadderGame(participants, ladder);
-        List<Integer> resultsAfterGame = ladderGame.play("all");
+        List<Position> resultsAfterGame = ladderGame.play("all");
 
         LadderPrizes ladderPrizesAfterGame = LadderPrizes.convert(resultsAfterGame, ladderPrizes);
 
-        assertThat(ladderPrizesAfterGame.get(0)).isEqualTo(LadderPrize.of("5000"));
-        assertThat(ladderPrizesAfterGame.get(1)).isEqualTo(LadderPrize.of("꽝"));
-        assertThat(ladderPrizesAfterGame.get(2)).isEqualTo(LadderPrize.of("3000"));
-        assertThat(ladderPrizesAfterGame.get(3)).isEqualTo(LadderPrize.of("꽝"));
+        assertThat(ladderPrizesAfterGame.get(Position.of(0))).isEqualTo(LadderPrize.of("5000"));
+        assertThat(ladderPrizesAfterGame.get(Position.of(1))).isEqualTo(LadderPrize.of("꽝"));
+        assertThat(ladderPrizesAfterGame.get(Position.of(2))).isEqualTo(LadderPrize.of("3000"));
+        assertThat(ladderPrizesAfterGame.get(Position.of(3))).isEqualTo(LadderPrize.of("꽝"));
     }
 
     @DisplayName("사용자의 수와 Prizes의 수가 다르면 IllegalArgument 예외가 발생한다.")

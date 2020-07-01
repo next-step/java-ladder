@@ -17,19 +17,19 @@ public class LadderGameTest {
     @DisplayName("모든 사용자의 실행결과가 리턴된다")
     @Test
     public void playAllTest() {
-        List<Integer> result = ladderGame.play("all");
+        List<Position> result = ladderGame.play("all");
 
         assertThat(result.size()).isEqualTo(4);
-        assertThat(result).containsSequence(1,0,3,2);
+        assertThat(result).containsSequence(Position.of(1),Position.of(0),Position.of(3),Position.of(2));
     }
 
     @DisplayName("입력한 사용자의 실행 결과가 리턴된다.")
     @Test
     public void playOnlyOneTest() {
-        List<Integer> result = ladderGame.play("pobi");
+        List<Position> result = ladderGame.play("pobi");
 
         assertThat(result.size()).isEqualTo(1);
-        assertThat(result).containsSequence(1);
+        assertThat(result).containsSequence(Position.of(1));
     }
 
     @DisplayName("all 을 입력하면 게임이 종료여부가 true가 나온다.")

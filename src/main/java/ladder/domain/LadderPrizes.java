@@ -28,15 +28,15 @@ public class LadderPrizes {
         return new LadderPrizes(participants, ladderPrizes);
     }
 
-    public static LadderPrizes convert(List<Integer> resultAfterPlay, LadderPrizes fromLadderPrizes) {
+    public static LadderPrizes convert(List<Position> resultAfterPlay, LadderPrizes fromLadderPrizes) {
         List<LadderPrize> ladderPrizesConverted = resultAfterPlay.stream()
                 .map(fromLadderPrizes::get)
                 .collect(Collectors.toList());
         return new LadderPrizes(ladderPrizesConverted);
     }
 
-    public LadderPrize get(int index) {
-        return ladderPrizes.get(index);
+    public LadderPrize get(Position position) {
+        return ladderPrizes.get(position.get());
     }
 
     public int size() {

@@ -48,17 +48,17 @@ public class Ladder {
         return horizonLines.get(heightIndex).getShortLineCount();
     }
 
-    protected int play(int startPositionIndex) {
+    protected Position play(Position startPosition) {
         for (int i = 0; i < getHeight(); i++) {
-            startPositionIndex = moveShortLine(i, startPositionIndex);
+            startPosition = startPosition.next(horizonLines.get(i));
         }
-        return startPositionIndex;
+        return startPosition;
     }
 
-    protected List<Integer> playAll() {
-        List<Integer> resultIndex = new ArrayList<>();
+    protected List<Position> playAll() {
+        List<Position> resultIndex = new ArrayList<>();
         for (int i = 0 ; i < getStartPositionCount() ; i++) {
-            resultIndex.add(play(i));
+            resultIndex.add(play(Position.of(i)));
         }
         return resultIndex;
     }
@@ -68,14 +68,4 @@ public class Ladder {
         return firstHorizonLine.getShortLineCount() + 1;
     }
 
-    private int moveShortLine(int height, int currentPosition) {
-        int nextVerticalLinePosition = currentPosition;
-        if (isEnabledShortLineOfLeft(height, nextVerticalLinePosition)) {
-            return --nextVerticalLinePosition;
-        }
-        if (isEnabledShortLineOfRight(height, nextVerticalLinePosition)) {
-            return ++nextVerticalLinePosition;
-        }
-        return currentPosition;
-    }
 }
