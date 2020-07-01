@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
 
 import java.util.List;
 
@@ -21,12 +22,12 @@ public class ResultView {
     }
 
     private void printPoints(Line line) {
-        line.getPoints().forEach(isLine -> System.out.print(findLine(isLine)));
+        line.getPoints().forEach(point -> System.out.print(findLine(point)));
         System.out.println();
     }
 
-    private String findLine(Boolean isLine) {
-        if (isLine) {
+    private String findLine(Point point) {
+        if (point.isLine()) {
             return STRAIGHT_LINE;
         }
 
