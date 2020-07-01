@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.exception.LadderHeightOutOfRangeException;
+
 public class LadderHeight {
 
     private static final int ZERO = 0;
@@ -8,7 +10,7 @@ public class LadderHeight {
 
     private LadderHeight(final int height) {
         if (height <= ZERO) {
-            throw new IllegalArgumentException("사다리의 높이는 최소 1 이상 입니다.");
+            throw new LadderHeightOutOfRangeException();
         }
 
         this.height = height;

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import ladder.exception.LadderRewardsException;
 
 public class LadderGameRewords {
 
@@ -19,7 +20,7 @@ public class LadderGameRewords {
 
     private void validate(final List<LadderGameReword> ladderGameRewords) {
         if (Objects.isNull(ladderGameRewords) || ladderGameRewords.isEmpty()) {
-            throw new IllegalArgumentException("결과값은 NULL 이 될 수 없습니다.");
+            throw new LadderRewardsException();
         }
     }
 
