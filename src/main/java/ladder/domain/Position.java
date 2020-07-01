@@ -32,7 +32,7 @@ public class Position {
         return Objects.hash(index);
     }
 
-    public Position next(HorizonLine horizonLine) {
+    protected Position next(HorizonLine horizonLine) {
         if(horizonLine.isEnabledShortLineOfLeft(index)) {
             return left();
         }
