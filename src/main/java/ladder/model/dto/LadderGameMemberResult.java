@@ -10,7 +10,7 @@ import ladder.model.Member;
 public class LadderGameMemberResult {
 
     private static final String MEMBER_REWORD_DELIMITER = " : ";
-    private static final String NEW_LINE = "\n";
+    private static final String NEW_LINE = System.getProperty("line.separator");
     private static final String LADDER_GAME_ALL_MEMBER_RESULT_KEYWORD = "all";
 
     private final Map<Member, LadderGameReword> result;
