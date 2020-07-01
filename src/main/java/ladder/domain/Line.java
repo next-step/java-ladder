@@ -19,7 +19,7 @@ public class Line {
     public Line(int size, MakeLine makeLine) {
 
         boolean beforeLine = false;
-        for (int index = 0; index < size; index++) {
+        for (int index = 0; index < size - 1; index++) {
             Boolean line = makeLine.createLine(beforeLine);
             beforeLine = line;
             lineRow.add(line);
@@ -30,11 +30,14 @@ public class Line {
         return lineRow;
     }
 
-
     @Override
     public String toString() {
+        if (lineRow.isEmpty()) {
+            return LINE_DEFAULT + DELIMITER;
+        }
+
         return this.lineRow.stream()
                 .map(line -> line ? LINE : LINE_DEFAULT)
-                .collect(Collectors.joining(DELIMITER, LINE_DEFAULT+DELIMITER, DELIMITER));
+                .collect(Collectors.joining(DELIMITER, LINE_DEFAULT + DELIMITER, DELIMITER));
     }
 }
