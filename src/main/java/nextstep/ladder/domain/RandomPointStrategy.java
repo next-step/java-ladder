@@ -22,10 +22,11 @@ public class RandomPointStrategy implements GeneratePointStrategy {
         points.add(point);
 
         for (int i = 1; i < countOfPerson - 1; i++) {
-            points.add(point.next(random.nextBoolean()));
+            point = point.next(random.nextBoolean());
+            points.add(point);
         }
 
-        points.add(point.last(random.nextBoolean()));
+        points.add(point.last());
 
         return points;
     }

@@ -24,7 +24,7 @@ public class Point {
         return new Point(false, isLine);
     }
 
-    public Point last(boolean isLine){
+    public Point last(){
         return new Point(right, false);
     }
 
