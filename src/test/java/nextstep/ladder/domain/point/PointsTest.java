@@ -25,7 +25,7 @@ public class PointsTest {
 			Point.ofPoint(Direction.of(false, true)),
 			Point.ofPoint(Direction.of(true, false)),
 			Point.ofPoint(Direction.of(false, true)),
-			Point.ofPoint(Direction.last(true))
+			Point.ofPoint(Direction.last(Direction.of(false, true)))
 		));
 
 		return Stream.of(
@@ -52,7 +52,7 @@ public class PointsTest {
 			Point.ofPoint(Direction.of(false, true)),
 			Point.ofPoint(Direction.of(true, false)),
 			Point.ofPoint(Direction.of(false, true)),
-			Point.ofPoint(Direction.last(true))
+			Point.ofPoint(Direction.last(Direction.of(false, true)))
 		));
 		return Stream.of(
 			Arguments.of(
@@ -74,7 +74,7 @@ public class PointsTest {
 		Points points = Points.ofPoints(Arrays.asList(
 			Point.ofPoint(Direction.first(false)),
 			Point.ofPoint(Direction.of(false, false)),
-			Point.ofPoint(Direction.last(false))
+			Point.ofPoint(Direction.last(Direction.of(false, false)))
 		));
 		return Stream.of(
 			Arguments.of(points,
@@ -93,7 +93,7 @@ public class PointsTest {
 	public static Stream<Arguments> 입력된_좌표값이_현재_좌표개수보다_큰_모음() {
 		Points points = Points.ofPoints(Arrays.asList(
 			Point.ofPoint(Direction.first(false)),
-			Point.ofPoint(Direction.last(false))
+			Point.ofPoint(Direction.last(Direction.of(false, false)))
 		));
 		return Stream.of(
 			Arguments.of(points, 2),
@@ -108,7 +108,7 @@ public class PointsTest {
 		Direction firstDirection = Direction.first(true);
 		Direction secondDirection = firstDirection.next(true);
 		Direction thirdDirection = secondDirection.next(true);
-		Direction lastDirection = Direction.last(true);
+		Direction lastDirection = Direction.last(Direction.of(true, false));
 
 		List<Point> points = Arrays.asList(
 			Point.ofPoint(firstDirection),
