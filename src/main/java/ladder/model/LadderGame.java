@@ -1,7 +1,6 @@
 package ladder.model;
 
 import ladder.model.dto.LadderGameInfo;
-import ladder.view.LadderGameResult;
 
 public class LadderGame {
 

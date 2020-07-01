@@ -3,7 +3,6 @@ package ladder.model;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import ladder.view.LadderGameResult;
 
 public class LadderGameMemberResult {
 

@@ -1,7 +1,7 @@
 package ladder.model.dto;
 
 import java.util.Objects;
-import ladder.view.LadderGameResult;
+import ladder.model.LadderGameResult;
 import ladder.model.LadderGameReword;
 import ladder.model.LadderGameRewords;
 import ladder.model.LadderPoles;

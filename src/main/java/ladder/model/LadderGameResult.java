@@ -1,4 +1,4 @@
-package ladder.view;
+package ladder.model;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -6,10 +6,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import ladder.model.LadderGameReword;
-import ladder.model.LadderGameRewords;
-import ladder.model.Member;
-import ladder.model.Members;
 
 public class LadderGameResult {
 
