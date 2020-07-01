@@ -27,11 +27,11 @@ public class Playing {
         return players.getCountOf();
     }
 
-    public Item getPlayersBy(int index) {
+    public Player getPlayersBy(int index) {
         return players.get(index);
     }
 
-    public Item getResultsBy(int index) {
+    public Prize getResultsBy(int index) {
         return prizes.get(index);
     }
 

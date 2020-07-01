@@ -1,6 +1,7 @@
 package ladder.domain.result;
 
-import ladder.domain.play.Item;
+import ladder.domain.play.Player;
+import ladder.domain.play.Prize;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,13 +9,13 @@ import java.util.stream.Collectors;
 public class Results {
     public static final int PRINT_ONE_LINE_SIZE = 1;
 
-    private Map<Item, Item> results;
+    private Map<Player, Prize> results;
 
-    public Results(Map<Item, Item> results) {
+    private Results(Map<Player, Prize> results) {
         this.results = results;
     }
 
-    public static Results of(Map<Item, Item> results) {
+    public static Results of(Map<Player, Prize> results) {
         return new Results(results);
     }
 
