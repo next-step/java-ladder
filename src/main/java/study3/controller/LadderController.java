@@ -2,8 +2,8 @@ package study3.controller;
 
 import java.util.List;
 
+import study3.domain.Ladder;
 import study3.domain.LadderExecuteResult;
-import study3.domain.LadderLine;
 import study3.domain.Height;
 import study3.domain.Players;
 import study3.domain.Results;
@@ -24,7 +24,7 @@ public class LadderController {
 
 		Height height = new Height(inputview.inputHeight());
 
-		LadderLine ladder = new LadderLine(players, height);
+		Ladder ladder = new Ladder(players, height);
 
 		ResultView resultView = new ResultView();
 		resultView.viewPlayerList(players); // players 출력
