@@ -15,8 +15,7 @@ class LadderTest {
 
     @BeforeEach
     public void setUp(){
-        ladder = new Ladder();
-        ladder.createLadder(5,4);
+        ladder = new Ladder(5,4);
     }
 
     @DisplayName("사다리 결과값 찍어보기")
