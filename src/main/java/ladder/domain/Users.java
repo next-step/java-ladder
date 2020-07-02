@@ -6,10 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ladder.utils.InputUtils.BLANK;
+import static ladder.utils.InputUtils.COMMA;
+
 
 public class Users {
-    private final static String BLANK = " ";
-    private static final String COMMA = ",";
 
     private List<User> users;
 

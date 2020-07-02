@@ -36,6 +36,7 @@ class LineTest {
         lines.add(makeLineWithRandom.createLine(false));
         lines.add(makeLineWithRandom.createLine(true));
 
+
     }
 
     @DisplayName("Line출력")

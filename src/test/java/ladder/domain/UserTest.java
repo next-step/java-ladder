@@ -36,6 +36,7 @@ public class UserTest {
     @Test
     public void printUser(){
         user = new User("po");
-        System.out.println(user);
+        assertThat(user.toString()).isEqualTo("   po");
+
     }
 }
