@@ -13,22 +13,22 @@ public class Points {
 	}
 
 	public static Points ofPoints(List<Point> pointsList) {
-		validateLastPointNotConnected(pointsList);
+		// validateLastPointNotConnected(pointsList);
 		validateNotConnectedContinuously(pointsList);
 		return new Points(pointsList);
 	}
 
-	private static void validateLastPointNotConnected(List<Point> pointList) {
-		Point lastPoint = pointList.stream()
-			.reduce((first, second) -> second)
-			.orElseThrow(() -> new IllegalArgumentException("why last point is null?"));
-		lastPoint.validateNotConnectedIfLastPoint();
-	}
+	// private static void validateLastPointNotConnected(List<Point> pointList) {
+	// 	Point lastPoint = pointList.stream()
+	// 		.reduce((first, second) -> second)
+	// 		.orElseThrow(() -> new IllegalArgumentException("why last point is null?"));
+	// 	lastPoint.validateNotConnectedIfLastPoint();
+	// }
 
 	private static void validateNotConnectedContinuously(List<Point> pointList) {
 		pointList.stream()
 			.reduce((lastElement, nextElement) -> {
-				if (lastElement.isConnectedToNextPoint() && nextElement.isConnectedToNextPoint()) {
+				if (lastElement.canMoveRight() && nextElement.canMoveRight()) {
 					throw new IllegalArgumentException("illegal input that tries to connect points continuously.");
 				}
 				return nextElement;
@@ -41,17 +41,6 @@ public class Points {
 
 	public int getSize() {
 		return points.size();
-	}
-
-	public int movePosition(int givenPosition) {
-		validateGivenPosition(givenPosition);
-		if (canMoveRight(givenPosition)) {
-			return givenPosition + 1;
-		}
-		if (canMoveLeft(givenPosition)) {
-			return givenPosition - 1;
-		}
-		return givenPosition;
 	}
 
 	public Position movePosition(Position givenPosition) {
@@ -71,29 +60,28 @@ public class Points {
 	}
 
 	private boolean canMoveRight(int givenPosition) {
-		return points.get(givenPosition).isConnectedToNextPoint();
+		return points.get(givenPosition).canMoveRight();
 	}
 
 	private boolean canMoveLeft(int givenPosition) {
 		int beforeGivenPosition = givenPosition - 1;
-		return givenPosition > 0 && points.get(beforeGivenPosition).isConnectedToNextPoint();
+		return givenPosition > 0 && points.get(beforeGivenPosition).canMoveRight();
 	}
 
 	private boolean canMoveRight(Position givenPosition) {
-		return points.get(givenPosition.getPosition()).isConnectedToNextPoint();
+		return points.get(givenPosition.getPosition()).canMoveRight();
 	}
 
 	private boolean canMoveLeft(Position givenPosition) {
 		int currentPosition = givenPosition.getPosition();
-		int beforeGivenPosition = currentPosition - 1;
-		return currentPosition > 0 && points.get(beforeGivenPosition).isConnectedToNextPoint();
+		return currentPosition > 0 && points.get(currentPosition).canMoveLeft();
 	}
 
 	public String printPoints() {
 		StringBuilder builder = new StringBuilder();
 		points.forEach(point -> {
 			builder.append("|");
-			builder.append(String.format("%-5s", point.isConnectedToNextPoint() ? "-----" : ""));
+			builder.append(String.format("%-5s", point.canMoveRight() ? "-----" : ""));
 		});
 		return builder.toString();
 	}

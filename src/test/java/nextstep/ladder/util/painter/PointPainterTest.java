@@ -39,7 +39,7 @@ public class PointPainterTest {
 		AtomicBoolean isContinuouslyConnected = new AtomicBoolean(false);
 		points.getPoints().stream()
 			.reduce((previous, next) -> {
-				if (previous.isConnectedToNextPoint() && next.isConnectedToNextPoint()) {
+				if (previous.canMoveRight() && next.canMoveRight()) {
 					isContinuouslyConnected.set(true);
 				}
 				return next;
@@ -52,6 +52,6 @@ public class PointPainterTest {
 	void 마지막_좌표는_다음_좌표와_연결되지_않는다() {
 		Points points = painter.drawPoints(100);
 		Point point = points.getPoints().get(points.getSize() - 1);
-		assertThat(point.isConnectedToNextPoint()).isEqualTo(false);
+		assertThat(point.canMoveRight()).isEqualTo(false);
 	}
 }
