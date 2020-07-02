@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ParticipantsTest {
 
-    private Participants defaultParticipants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+    private Participants defaultParticipants;
+
+    @BeforeEach
+    public void setup() {
+        defaultParticipants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+    }
 
     @DisplayName("User들의 statPosition을 얻을 수 있다.")
     @Test

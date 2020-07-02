@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +10,14 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LadderPrizesTest {
 
-    private final Participants participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
-    private final LadderPrizes ladderPrizes = LadderPrizes.of(participants, List.of("꽝", "5000", "꽝", "3000"));
+    private Participants participants;
+    private LadderPrizes ladderPrizes;
+
+    @BeforeEach
+    public void setup() {
+        participants = Participants.of(List.of("pobi", "honux", "crong", "jk"));
+        ladderPrizes = LadderPrizes.of(participants, List.of("꽝", "5000", "꽝", "3000"));
+    }
 
     @DisplayName("LadderPrizes 가 정상적으로 생성된다")
     @Test
