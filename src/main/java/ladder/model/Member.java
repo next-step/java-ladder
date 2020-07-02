@@ -13,6 +13,10 @@ public class Member {
         this.name = name;
     }
 
+    public static Member create(final String name) {
+        return new Member(name);
+    }
+
     private void validate(final String name) {
         validateNullOrEmpty(name);
         validateLengthLimit(name);
@@ -30,8 +34,8 @@ public class Member {
         }
     }
 
-    public static Member create(final String name) {
-        return new Member(name);
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -39,4 +43,20 @@ public class Member {
         return name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Member)) {
+            return false;
+        }
+        Member member = (Member) o;
+        return Objects.equals(getName(), member.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
 }

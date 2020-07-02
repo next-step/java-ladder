@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ public class LadderLine {
 
     private final List<LadderBridge> bridges;
 
-    private LadderLine(final List<LadderBridge> bridges) {
+    public LadderLine(final List<LadderBridge> bridges) {
         validate(bridges);
         this.bridges = bridges;
     }
@@ -19,6 +20,10 @@ public class LadderLine {
         if (Objects.isNull(bridges) || bridges.isEmpty()) {
             throw new IllegalArgumentException("사다리 브릿지는 하나 이상이어야 합니다.");
         }
+    }
+
+    public static LadderLine create(final LadderBridge... bridges) {
+        return new LadderLine(Arrays.asList(bridges));
     }
 
     public static LadderLine create(final int memberCount) {
@@ -36,6 +41,14 @@ public class LadderLine {
         if (memberCount <= 0) {
             throw new IllegalArgumentException("참여하는 멤버는 1명 이상이어야 합니다.");
         }
+    }
+
+    public LadderPole moveLadderPole(final LadderPole ladderPole) {
+        return ladderPole.move(bridges);
+    }
+
+    public int poleCount() {
+        return bridges.size() + ONE;
     }
 
     public List<LadderBridge> getBridges() {

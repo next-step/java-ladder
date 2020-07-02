@@ -1,23 +1,29 @@
 package ladder.model;
 
+import ladder.model.dto.LadderGameInfo;
+
 public class LadderGame {
-    private final Members members;
+    private final LadderGameInfo ladderGameInfo;
     private final Ladder ladder;
 
-    public LadderGame(Members members, Ladder ladder) {
-        this.members = members;
+    private LadderGame(final LadderGameInfo ladderGameInfo, final Ladder ladder) {
+        this.ladderGameInfo = ladderGameInfo;
         this.ladder = ladder;
     }
 
-    public static LadderGame create(final Members members, final LadderHeight ladderHeight) {
-        return new LadderGame(members, Ladder.create(members.count(), ladderHeight.getHeight()));
+    public static LadderGame create(final LadderGameInfo ladderGameInfo, final Ladder ladder) {
+        return new LadderGame(ladderGameInfo, ladder);
     }
 
-    public Members getMembers() {
-        return members;
+    public LadderGameInfo getLadderGameInfo() {
+        return ladderGameInfo;
     }
 
     public Ladder getLadder() {
         return ladder;
+    }
+
+    public LadderGameResult start() {
+        return ladderGameInfo.makeGameResult(ladder.proceedAll());
     }
 }
