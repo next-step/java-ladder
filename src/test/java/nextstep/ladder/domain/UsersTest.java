@@ -18,6 +18,6 @@ class UsersTest {
         Users users = new Users(names);
 
         // then
-        assertThat(users.getUsers()).hasSize(StringParser.splitNames(names).size());
+        assertThat(users.getUsers()).hasSize(StringParser.splits(names).size());
     }
 }
