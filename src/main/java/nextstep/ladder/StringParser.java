@@ -8,7 +8,7 @@ public class StringParser {
 
     private static final String NUMBER_FORMAT_EXCEPTION_MESSAGE = "숫자로 변환할 수 없는 문자입니다.";
 
-    public static List<String> splitNames(String input){
+    public static List<String> splits(String input){
         return Arrays.stream(input.split(","))
                 .collect(Collectors.toList());
     }
