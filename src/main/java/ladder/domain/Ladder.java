@@ -38,8 +38,8 @@ public class Ladder {
         }
     }
 
-    public boolean isEnabledShortLineOfRight(int heightIndex, int startPosition) {
-        return horizonLines.get(heightIndex).isEnabledShortLineOfRight(startPosition);
+    public boolean isEnabledShortLineOfRight(int heightIndex, Position position) {
+        return horizonLines.get(heightIndex).isEnabledShortLineOfRight(position);
     }
 
     public int getShortLineCountInHorizonLine(int heightIndex) {

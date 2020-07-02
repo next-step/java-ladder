@@ -56,7 +56,7 @@ public class OutputView {
         horizonLine.append("    ");
         for (int i = 0; i < ladder.getShortLineCountInHorizonLine(heightIndex); i++) {
             horizonLine.append(LADDER_VERTICAL_STRING);
-            horizonLine.append(getShortLine(ladder.isEnabledShortLineOfRight(heightIndex, i)));
+            horizonLine.append(getShortLine(ladder.isEnabledShortLineOfRight(heightIndex, Position.of(i))));
         }
         horizonLine.append(LADDER_VERTICAL_STRING);
         return horizonLine.toString();

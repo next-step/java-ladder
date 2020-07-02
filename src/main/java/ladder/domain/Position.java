@@ -33,10 +33,10 @@ public class Position {
     }
 
     protected Position next(HorizonLine horizonLine) {
-        if (horizonLine.isEnabledShortLineOfLeft(index)) {
+        if (horizonLine.isEnabledShortLineOfLeft(this)) {
             return left();
         }
-        if (horizonLine.isEnabledShortLineOfRight(index)) {
+        if (horizonLine.isEnabledShortLineOfRight(this)) {
             return right();
         }
         return this;

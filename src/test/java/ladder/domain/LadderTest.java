@@ -48,8 +48,8 @@ public class LadderTest {
     @DisplayName("입력되는 Horizon Line 높이와 사다리 시작점에서 오른쪽에 ShortLine 의 유무를 알 수 있다.")
     @Test
     public void isEnabledShortLineOfRightTest() {
-        assertThat(defaultLadder.isEnabledShortLineOfRight(0, 0)).isTrue();
-        assertThat(defaultLadder.isEnabledShortLineOfRight(1, 1)).isFalse();
+        assertThat(defaultLadder.isEnabledShortLineOfRight(0, Position.of(0))).isTrue();
+        assertThat(defaultLadder.isEnabledShortLineOfRight(1, Position.of(1))).isFalse();
     }
 
     @DisplayName("게임을 진행하고 최종 사다리 위치 index 를 리턴한다.")

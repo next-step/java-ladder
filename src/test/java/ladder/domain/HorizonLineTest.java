@@ -22,25 +22,25 @@ public class HorizonLineTest {
     public void validateContinuousShortLine() {
         HorizonLine horizonLine = new HorizonLine(5, () -> true);
 
-        assertThat(horizonLine.isEnabledShortLineOfRight(0)).isEqualTo(true);
-        assertThat(horizonLine.isEnabledShortLineOfRight(1)).isEqualTo(false);
-        assertThat(horizonLine.isEnabledShortLineOfRight(2)).isEqualTo(true);
-        assertThat(horizonLine.isEnabledShortLineOfRight(3)).isEqualTo(false);
-        assertThat(horizonLine.isEnabledShortLineOfRight(4)).isEqualTo(false);
+        assertThat(horizonLine.isEnabledShortLineOfRight(Position.of(0))).isEqualTo(true);
+        assertThat(horizonLine.isEnabledShortLineOfRight(Position.of(1))).isEqualTo(false);
+        assertThat(horizonLine.isEnabledShortLineOfRight(Position.of(2))).isEqualTo(true);
+        assertThat(horizonLine.isEnabledShortLineOfRight(Position.of(3))).isEqualTo(false);
+        assertThat(horizonLine.isEnabledShortLineOfRight(Position.of(4))).isEqualTo(false);
     }
 
     @DisplayName("입력된 포지션의 왼쪽의 짧은 라인의 유무를 알수 있다.")
     @Test
     public void isEnabledShortLineOfLeftTest() {
         HorizonLine horizonLine = new HorizonLine(2, () -> true);
-        assertThat(horizonLine.isEnabledShortLineOfLeft(1)).isEqualTo(true);
+        assertThat(horizonLine.isEnabledShortLineOfLeft(Position.of(1))).isEqualTo(true);
     }
 
     @DisplayName("입력된 포지션의 오른쪽의 짧은 라인의 유무를 알수 있다.")
     @Test
     public void isEnabledShortLineOfRightTest() {
         HorizonLine horizonLine = new HorizonLine(3, () -> true);
-        assertThat(horizonLine.isEnabledShortLineOfRight(1)).isEqualTo(false);
+        assertThat(horizonLine.isEnabledShortLineOfRight(Position.of(1))).isEqualTo(false);
     }
 
     @DisplayName("좌우 짧은 라인의 유무를 알기 위해 입력되는 포지션이 총 포지션을 벗어날 경우 IllegalArgument 오류 발생한다.")
@@ -48,7 +48,7 @@ public class HorizonLineTest {
     public void validatePositionRangeTest() {
         HorizonLine horizonLine = new HorizonLine(5, () -> true);
         assertThatThrownBy(()-> {
-            horizonLine.isEnabledShortLineOfRight(5);
+            horizonLine.isEnabledShortLineOfRight(Position.of(5));
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
