@@ -42,11 +42,11 @@ public class Results {
 		return resultMap;
 	}
 
-	private static String findFinalPosition(Player siglePlayerName,List<Line> ladder, Rewards rewards) {
+	private static String findFinalPosition(Player siglePlayerName,List<LadderLine> ladder, Rewards rewards) {
 		
 		int position = Players.findPlayersIndex(siglePlayerName);
 		
-		for(Line line : ladder) {
+		for(LadderLine line : ladder) {
 			position = line.move(position);			
 		}		
 		return rewards.getReward(position);

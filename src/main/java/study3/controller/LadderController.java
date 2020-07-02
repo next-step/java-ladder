@@ -2,9 +2,9 @@ package study3.controller;
 
 import java.util.List;
 
+import study3.domain.Ladder;
 import study3.domain.LadderExecuteResult;
 import study3.domain.Height;
-import study3.domain.Ladder;
 import study3.domain.Players;
 import study3.domain.Results;
 import study3.domain.Rewards;

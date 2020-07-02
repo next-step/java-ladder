@@ -11,7 +11,7 @@ import study3.domain.Point;
 import study3.domain.Results;
 import study3.domain.Rewards;
 import study3.domain.Ladder;
-import study3.domain.Line;
+import study3.domain.LadderLine;
 import study3.domain.Player;
 import study3.domain.Players;
 
@@ -48,7 +48,7 @@ public class ResultView {
 		});
 	}
 
-	private void choiceRowOrColum(Line line) {
+	private void choiceRowOrColum(LadderLine line) {
 		line.getLine().stream().forEach(point -> printBarAndColumn(getPointDirection(point)));
 		System.out.println();
 	}

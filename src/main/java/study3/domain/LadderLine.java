@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Line {
+public class LadderLine {
 	List<Point> points = new ArrayList<>();
 	
-	public Line(int PlayerNumbers, boolean anyValue) {
+	public LadderLine(int PlayerNumbers, boolean anyValue) {
 		initLine(PlayerNumbers, anyValue);
 	}
 
