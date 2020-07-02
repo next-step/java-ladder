@@ -19,7 +19,9 @@ class MakeLineWithRandomTest {
     @DisplayName("이전값이 true이면 그다음값은 무조건 false")
     @Test
     void createLine() {
-        Boolean line = makeLineWithRandom.createLine(true);
+        Boolean line = makeLineWithRandom.createLine();
         assertThat(line).isEqualTo(false);
     }
+
+
 }

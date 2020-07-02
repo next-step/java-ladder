@@ -15,13 +15,13 @@ class LadderTest {
     private Ladder ladder;
 
     @BeforeEach
-    public void setUp(){
-        ladder = new Ladder(5,4);
+    public void setUp() {
+        ladder = new Ladder(5, 4);
     }
 
     @DisplayName("사다리 결과값 찍어보기")
     @Test
-    public void printLadder(){
+    public void printLadder() {
         //assertThat(ladder.toString()).isEqualTo()
         System.out.println(ladder);
     }

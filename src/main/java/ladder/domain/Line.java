@@ -18,11 +18,8 @@ public class Line {
 
     public Line(int size, MakeLine makeLine) {
 
-        boolean beforeLine = false;
         for (int index = 0; index < size - 1; index++) {
-            Boolean line = makeLine.createLine(beforeLine);
-            beforeLine = line;
-            lineRow.add(line);
+            lineRow.add(makeLine.createLine());
         }
     }
 

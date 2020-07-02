@@ -1,23 +1,27 @@
 package ladder.domain;
 
-import java.util.List;
 import java.util.Random;
 
 public class MakeLineWithRandom implements MakeLine {
 
     private Random random;
+    private Boolean beforeLine = false;
 
     public MakeLineWithRandom() {
         random = new Random();
     }
 
     @Override
-    public Boolean createLine(Boolean beforeLine) {
+    public Boolean createLine() {
 
-        if (beforeLine) {
-            return false;
-        }
-        return random.nextBoolean();
+        this.beforeLine = checkBeforeLine();
+        return this.beforeLine;
+
+    }
+
+    private Boolean checkBeforeLine() {
+
+        return beforeLine ? false : random.nextBoolean();
 
     }
 }

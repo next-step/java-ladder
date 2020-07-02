@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface MakeLine {
 
-    Boolean createLine(Boolean beforeLine);
+    Boolean createLine();
 
 }
