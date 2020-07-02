@@ -36,7 +36,6 @@ public class LineTest {
 
             if (isLine) {
                 boolean previous = points.get(i - 1).isLine();
-
                 assertThat(previous).isFalse();
             }
         }

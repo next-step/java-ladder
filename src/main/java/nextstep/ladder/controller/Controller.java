@@ -4,6 +4,8 @@ import nextstep.ladder.StringParser;
 import nextstep.ladder.domain.GameResult;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Rewards;
+import nextstep.ladder.domain.Ladder;
+
 import nextstep.ladder.domain.Users;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;

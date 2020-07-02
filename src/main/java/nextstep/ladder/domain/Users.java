@@ -1,8 +1,10 @@
 package nextstep.ladder.domain;
 
+
 import nextstep.ladder.StringParser;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

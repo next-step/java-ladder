@@ -27,6 +27,7 @@ public class User {
         return position;
     }
 
+
     public String getName() {
         return name;
     }

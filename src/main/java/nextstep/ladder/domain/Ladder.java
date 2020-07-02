@@ -1,9 +1,11 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,9 +23,11 @@ public class Ladder {
     public Ladder(int height, int countOfPerson) {
         validateHeight(height);
         validateCountOfPerson(countOfPerson);
+
         this.height = height;
         this.lines = createLines(height, countOfPerson);
     }
+
 
     private void validateCountOfPerson(int countOfPerson) {
         if (countOfPerson < MINIMUM_USER_COUNT) {
