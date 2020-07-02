@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 
 public class Users {
-
     private final static String BLANK = " ";
     private static final String COMMA = ",";
+
     private List<User> users;
 
     public Users(String usersName) {

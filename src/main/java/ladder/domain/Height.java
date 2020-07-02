@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class Height {
-
     private final static int MINIMUN_HEIGHT = 0;
+
     private int height;
 
     public Height(int inputHeight) {

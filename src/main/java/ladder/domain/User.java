@@ -5,9 +5,9 @@ import ladder.utils.InputUtils;
 import java.util.Collections;
 
 public class User {
-
     private final static int MAX_NAME_LENGTH = 5;
     private final static String BLANK = " ";
+
     private String name;
 
     public User(String inputName) {

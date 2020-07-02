@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-
     private static final String LINE = "-----";
     private static final String LINE_DEFAULT = "     ";
     private static final String DELIMITER = "|";
+
     private List<Boolean> lineRow = new ArrayList<Boolean>();
 
     public Line(int size) {
