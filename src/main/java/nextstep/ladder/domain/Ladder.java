@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -39,6 +41,21 @@ public class Ladder {
         return IntStream.rangeClosed(FIRST, height)
                 .mapToObj(index -> Line.of(countOfPerson))
                 .collect(Collectors.toList());
+    }
+
+    public Map<String, String> play(Users users, Rewards results) {
+        Map<String, String> map = new HashMap<>();
+
+        for (User user : users.getUsers()) {
+            int position = user.getPosition();
+
+            for (Line line : lines) {
+                position += line.move(position);
+            }
+            map.put(user.getName(), results.findReward(position));
+        }
+
+        return map;
     }
 
     public int getHeight() {

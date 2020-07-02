@@ -17,4 +17,8 @@ public class Line {
     public static Line of(int countOfPerson) {
         return new Line(new RandomPointStrategy(countOfPerson));
     }
+
+    public int move(int position) {
+        return points.get(position).move();
+    }
 }
