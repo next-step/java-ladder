@@ -8,6 +8,7 @@ public class Ladder {
     private static final int MIN_START_POSITION_COUNT = 2;
 
     private final List<HorizonLine> horizonLines = new ArrayList<>();
+    private final int positionCount;
 
     public Ladder(LadderHeight height, Participants participants) {
        this(height, participants, () -> new Random().nextBoolean());
@@ -17,7 +18,8 @@ public class Ladder {
                   Participants participants,
                   ShortLineEnableJudge shortLineEnableJudge) {
         validateMinPositionCount(participants.size());
-        createHorizonLine(height, participants.size(), shortLineEnableJudge);
+        this.positionCount = participants.size();
+        createHorizonLine(height, positionCount, shortLineEnableJudge);
     }
 
     private void validateMinPositionCount(int startPositionCount) {
@@ -53,15 +55,10 @@ public class Ladder {
 
     protected List<Position> playAll() {
         List<Position> resultIndex = new ArrayList<>();
-        for (int i = 0 ; i < getStartPositionCount() ; i++) {
+        for (int i = 0; i < positionCount ; i++) {
             resultIndex.add(play(Position.of(i)));
         }
         return resultIndex;
-    }
-
-    private int getStartPositionCount() {
-        HorizonLine firstHorizonLine = horizonLines.get(0);
-        return firstHorizonLine.getShortLineCount() + 1;
     }
 
 }
