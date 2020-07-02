@@ -37,7 +37,7 @@ public class Point {
     }
 
     public boolean isLine(){
-        return right;
+        return left;
     }
 
     public int move(){
