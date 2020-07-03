@@ -7,9 +7,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.model.LadderBridge;
-import ladder.model.LadderGameMemberResult;
 import ladder.model.LadderLine;
 import ladder.model.LadderPoleInfo;
+import ladder.model.dto.LadderGameMemberResult;
 import ladder.model.dto.LadderGameResultDto;
 
 public class OutputView {

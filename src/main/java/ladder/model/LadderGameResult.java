@@ -29,7 +29,7 @@ public class LadderGameResult {
     }
 
     public Map<Member, LadderGameReword> getResult() {
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 
     @Override
