@@ -8,29 +8,23 @@ public class Ladder {
     private static final int MIN_START_POSITION_COUNT = 2;
 
     private final List<HorizonLine> horizonLines = new ArrayList<>();
+    private final int positionCount;
 
-    public Ladder(LadderHeight height, Participants participants, LadderPrizes ladderPrizes) {
-       this(height, participants, ladderPrizes, () -> new Random().nextBoolean());
+    public Ladder(LadderHeight height, Participants participants) {
+       this(height, participants, () -> new Random().nextBoolean());
     }
 
     public Ladder(LadderHeight height,
                   Participants participants,
-                  LadderPrizes ladderPrizes,
                   ShortLineEnableJudge shortLineEnableJudge) {
         validateMinPositionCount(participants.size());
-        validateSameCount(participants, ladderPrizes);
-        createHorizonLine(height, participants.size(), shortLineEnableJudge);
+        this.positionCount = participants.size();
+        createHorizonLine(height, positionCount, shortLineEnableJudge);
     }
 
     private void validateMinPositionCount(int startPositionCount) {
         if (startPositionCount < MIN_START_POSITION_COUNT) {
             throw new IllegalArgumentException("사다리를 시작하기 위해서는 2명 이상의 사용자가 필요합니다.");
-        }
-    }
-
-    private void validateSameCount(Participants participants, LadderPrizes ladderPrizes) {
-        if(participants.size() != ladderPrizes.size()) {
-            throw new IllegalArgumentException("사다리 게임에 참여자의 수와 사다리 결과 수가 다릅니다.");
         }
     }
 
@@ -44,51 +38,27 @@ public class Ladder {
         }
     }
 
-    public boolean isEnabledShortLineOfRight(int heightIndex, int  startPosition) {
-        return horizonLines.get(heightIndex).isEnabledShortLineOfRight(startPosition);
-    }
-
-    public boolean isEnabledShortLineOfLeft(int heightIndex, int startPosition) {
-        return horizonLines.get(heightIndex).isEnabledShortLineOfLeft(startPosition);
+    public boolean isEnabledShortLineOfRight(int heightIndex, Position position) {
+        return horizonLines.get(heightIndex).isEnabledShortLineOfRight(position);
     }
 
     public int getShortLineCountInHorizonLine(int heightIndex) {
         return horizonLines.get(heightIndex).getShortLineCount();
     }
 
-    protected boolean equalStartPositionCount(int count) {
-        int startPositionCount = getStartPositionCount();
-        return startPositionCount == count;
-    }
-
-    protected int play(int startPositionIndex) {
+    protected Position play(Position startPosition) {
         for (int i = 0; i < getHeight(); i++) {
-            startPositionIndex = moveShortLine(i, startPositionIndex);
+            startPosition = startPosition.next(horizonLines.get(i));
         }
-        return startPositionIndex;
+        return startPosition;
     }
 
-    protected List<Integer> playAll() {
-        List<Integer> resultIndex = new ArrayList<>();
-        for (int i = 0 ; i < getStartPositionCount() ; i++) {
-            resultIndex.add(play(i));
+    protected List<Position> playAll() {
+        List<Position> resultIndex = new ArrayList<>();
+        for (int i = 0; i < positionCount ; i++) {
+            resultIndex.add(play(Position.of(i)));
         }
         return resultIndex;
     }
 
-    private int getStartPositionCount() {
-        HorizonLine firstHorizonLine = horizonLines.get(0);
-        return firstHorizonLine.getShortLineCount() + 1;
-    }
-
-    private int moveShortLine(int height, int currentPosition) {
-        int nextVerticalLinePosition = currentPosition;
-        if (isEnabledShortLineOfLeft(height, nextVerticalLinePosition)) {
-            return --nextVerticalLinePosition;
-        }
-        if (isEnabledShortLineOfRight(height, nextVerticalLinePosition)) {
-            return ++nextVerticalLinePosition;
-        }
-        return currentPosition;
-    }
 }

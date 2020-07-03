@@ -56,7 +56,7 @@ public class OutputView {
         horizonLine.append("    ");
         for (int i = 0; i < ladder.getShortLineCountInHorizonLine(heightIndex); i++) {
             horizonLine.append(LADDER_VERTICAL_STRING);
-            horizonLine.append(getShortLine(ladder.isEnabledShortLineOfRight(heightIndex, i)));
+            horizonLine.append(getShortLine(ladder.isEnabledShortLineOfRight(heightIndex, Position.of(i))));
         }
         horizonLine.append(LADDER_VERTICAL_STRING);
         return horizonLine.toString();
@@ -72,10 +72,9 @@ public class OutputView {
 
     private static void printLadderPrizes(LadderPrizes ladderPrizes) {
         StringBuilder ladderPrizesText = new StringBuilder();
-        for (int i = 0 ; i < ladderPrizes.size() ; i++ )
-        {
+        for (int i = 0 ; i < ladderPrizes.size() ; i++ ) {
             ladderPrizesText
-                    .append(String.format(LEFT_GRAVITY_STRING_FORMAT, ladderPrizes.get(i)))
+                    .append(String.format(LEFT_GRAVITY_STRING_FORMAT, ladderPrizes.get(Position.of(i))))
                     .append(SPACE);
         }
         System.out.println(ladderPrizesText.toString());
@@ -83,15 +82,22 @@ public class OutputView {
 
     public static void printLadderResult(Participants participants, LadderPrizes ladderPrizes) {
         printResultTitle();
+        if (ladderPrizes.size() == 1) {
+            printLadderPrizeOne(ladderPrizes.get(Position.of(0)));
+            return;
+        }
+        printLadderPrizesALL(participants, ladderPrizes);
+    }
 
-        if(ladderPrizes.size() == 1) {
-            System.out.println(ladderPrizes.get(0));
+    private static void printLadderPrizesALL(Participants participants, LadderPrizes ladderPrizes) {
+        for (int i = 0; i < ladderPrizes.size() ; i++) {
+            System.out.println(participants.get(i).toString() + SPACE + COLON + SPACE + ladderPrizes.get(Position.of(i)));
         }
-        else {
-            for (int i = 0; i < ladderPrizes.size() ; i++) {
-                System.out.println(participants.get(i).toString() + SPACE + COLON + SPACE + ladderPrizes.get(i));
-            }
-        }
+        System.out.println();
+    }
+
+    private static void printLadderPrizeOne(LadderPrize ladderPrize) {
+        System.out.println(ladderPrize);
         System.out.println();
     }
 }
