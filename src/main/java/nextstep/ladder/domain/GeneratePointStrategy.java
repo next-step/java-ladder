@@ -1,6 +1,10 @@
 package nextstep.ladder.domain;
 
+
+import java.util.List;
+
 public interface GeneratePointStrategy {
 
-    boolean isLine(boolean previousPoint);
+    List<Point> generate();
+
 }

@@ -13,13 +13,13 @@ class UserTest {
     @ParameterizedTest
     @NullAndEmptySource
     void nameNullOrEmptyTest(String name){
-        assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("이름이 5자를 넘을 시 예외발생")
     @ParameterizedTest
     @ValueSource(strings = {"ironman", "batman", "superman"})
     void nameLengthTest(String name){
-        assertThatThrownBy(() -> new User(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new User(name, 0)).isInstanceOf(IllegalArgumentException.class);
     }
 }

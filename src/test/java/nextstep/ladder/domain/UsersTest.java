@@ -1,10 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.StringParser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,12 +12,12 @@ class UsersTest {
     @Test
     void createUsersTest() {
         // given
-        List<String> names = Arrays.asList("a", "b", "c");
+        String names = "a,b,c";
 
         // when
         Users users = new Users(names);
 
         // then
-        assertThat(users.getUsers()).hasSize(names.size());
+        assertThat(users.getUsers()).hasSize(StringParser.splits(names).size());
     }
 }

@@ -1,29 +1,24 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points;
 
-    public Line(int countOfPerson, GeneratePointStrategy strategy) {
-        createPoints(countOfPerson, strategy);
+    public Line(GeneratePointStrategy strategy) {
+        this.points = strategy.generate();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
 
     public static Line of(int countOfPerson) {
-        return new Line(countOfPerson, new RandomPointStrategy());
+        return new Line(new RandomPointStrategy(countOfPerson));
     }
 
-    private void createPoints(int countOfPerson, GeneratePointStrategy strategy) {
-        points.add(false);
-
-        for (int i = 1; i < countOfPerson; i++) {
-            points.add(strategy.isLine(points.get(i - 1)));
-        }
+    public int move(int position) {
+        return points.get(position).move();
     }
 }

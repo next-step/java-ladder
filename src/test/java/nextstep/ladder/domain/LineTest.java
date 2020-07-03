@@ -16,7 +16,7 @@ public class LineTest {
     @ValueSource(ints = {3, 4, 5})
     void linePointCountTest(int countOfPerson){
         // when
-        Line line = new Line(countOfPerson, (point) -> true);
+        Line line = new Line(new RandomPointStrategy(countOfPerson));
 
         // then
         assertThat(line.getPoints()).hasSize(countOfPerson);
@@ -27,16 +27,15 @@ public class LineTest {
     void lineDuplicateTruePointTest(){
         // given
         int countOfPerson = 3;
-        Line line = new Line(countOfPerson, new RandomPointStrategy());
-        List<Boolean> points = line.getPoints();
+        Line line = new Line(new RandomPointStrategy(countOfPerson));
+        List<Point> points = line.getPoints();
 
         // when
         for (int i = 0; i < points.size(); i++) {
-            boolean isLine = points.get(i);
+            boolean isLine = points.get(i).isLine();
 
             if (isLine) {
-                boolean previous = points.get(i - 1);
-
+                boolean previous = points.get(i - 1).isLine();
                 assertThat(previous).isFalse();
             }
         }
