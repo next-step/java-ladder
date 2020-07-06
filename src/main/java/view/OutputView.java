@@ -1,9 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.LadderResult;
-import domain.Players;
-import domain.Point;
+import domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +32,7 @@ public class OutputView {
         return FIRST_SPACE.concat(LINE)
                 .concat(points.stream()
                         .limit(points.size() - TO_BE_REMOVED_LAST_POINT)
-                        .map(point -> point.isNextConnect() ? CONNECT : NOT_CONNECT)
+                        .map(point -> point.isRight() ? CONNECT : NOT_CONNECT)
                         .collect(Collectors.joining(LINE)))
                 .concat(LINE);
     }

@@ -23,13 +23,11 @@ public class Line {
 
     private List<Point> createPoints(int length, PointGenerator pointGenerator) {
         List<Point> points = new ArrayList<>();
-        points.add(Point.createFirst(pointGenerator.random()));
-
+        points.add(Point.first(pointGenerator.random()));
         for (int i = 1; i < length - 1; i++) {
-            points.add(Point.of(points.get(i - 1), pointGenerator.random()));
+            points.add(points.get(i-1).next(pointGenerator));
         }
-
-        points.add(Point.createLast(points.get(points.size() - 1)));
+        points.add(points.get(points.size() - 1).last());
 
         return points;
     }
@@ -43,6 +41,6 @@ public class Line {
     }
 
     public int nextPointIndex(int index) {
-        return points.get(index).nextIndex(index);
+        return points.get(index).move(index);
     }
 }

@@ -2,7 +2,7 @@ package generator;
 
 public class TruePointGenerator implements PointGenerator {
     @Override
-    public boolean isConnect(boolean previousPoint) {
+    public boolean next(boolean previousPoint) {
         if (previousPoint) {
             return false;
         }
@@ -12,6 +12,6 @@ public class TruePointGenerator implements PointGenerator {
 
     @Override
     public boolean random() {
-        return false;
+        return Boolean.TRUE;
     }
 }
