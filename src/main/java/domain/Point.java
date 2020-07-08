@@ -2,63 +2,40 @@ package domain;
 
 import generator.PointGenerator;
 
-import java.util.Objects;
-
 public class Point {
-    private final boolean left;
-    private final boolean right;
+    private final int index;
+    private final Direction direction;
 
-    private Point(boolean left, boolean right) {
-        if (left && right) {
-            throw new IllegalArgumentException();
-        }
-        this.left = left;
-        this.right = right;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point of(boolean left, boolean right) {
-        return new Point(left, right);
-    }
-
-    public Point next(PointGenerator pointGenerator) {
-        return Point.of(this.right, pointGenerator.next(this.right));
-    }
-
-    public static Point first(boolean right) {
-        return of(false, right);
-    }
-
-    public Point last() {
-        return of(this.right, false);
-    }
-
-    public boolean isRight() {
-        return this.right;
-    }
-
-    public int move(int index) {
-        if (right) {
-            ++index;
+    public int move() {
+        if (direction.isRight()) {
+            return index + 1;
         }
 
-        if (left) {
-            --index;
+        if (direction.isLeft()) {
+            return index -1;
         }
 
         return index;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return left == point.left &&
-                right == point.right;
+    public Point next(PointGenerator pointGenerator) {
+        return new Point(index+1, direction.next(pointGenerator));
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(left, right);
+    public Point last() {
+        return new Point(index+1, direction.last());
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 }

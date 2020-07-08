@@ -41,6 +41,6 @@ public class Line {
     }
 
     public int nextPointIndex(int index) {
-        return points.get(index).move(index);
+        return points.get(index).move();
     }
 }

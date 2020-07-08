@@ -23,9 +23,9 @@ public class LineTest {
 
     @Test
     void falseGenerator() {
-        Point next = Point.of(false, true).next(new FalsePointGenerator());
+        Direction next = Direction.of(false, true).next(new FalsePointGenerator());
 
-        assertEquals(next, Point.of(true, false));
+        assertEquals(next, Direction.of(true, false));
     }
 
     @Test
