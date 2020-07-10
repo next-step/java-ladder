@@ -12,9 +12,7 @@ public class LadderTest {
     public void 사람이름은_5글자를_넘으면_안된다() {
         String IllegalName = "abcdef";
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            Players.of(new String[] {IllegalName});
-        });
+        assertThrows(IllegalArgumentException.class, () -> Players.of(new String[] {IllegalName}));
     }
 
     @Test

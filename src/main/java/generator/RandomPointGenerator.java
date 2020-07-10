@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class RandomPointGenerator implements PointGenerator {
     @Override
-    public boolean isConnect(boolean previousPoint) {
+    public boolean next(boolean previousPoint) {
         if (previousPoint) {
-            return false;
+            return Boolean.FALSE;
         }
 
         return new Random().nextBoolean();

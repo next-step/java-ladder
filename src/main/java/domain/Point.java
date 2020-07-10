@@ -1,39 +1,41 @@
 package domain;
 
+import generator.PointGenerator;
+
 public class Point {
-    private final boolean left;
-    private final boolean right;
+    private final int index;
+    private final Direction direction;
 
-    private Point(boolean left, boolean right) {
-        this.left = left;
-        this.right = right;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point of(Point before, boolean point) {
-        return new Point(before.right, point);
-    }
-
-    public static Point createFirst(boolean point) {
-        return new Point(false, point);
-    }
-
-    public static Point createLast(Point before) {
-        return new Point(before.right, false);
-    }
-
-    public int nextIndex(int index) {
-        if(left) {
-            --index;
+    public int move() {
+        if (direction.isRight()) {
+            return index + 1;
         }
 
-        if(right) {
-            ++index;
+        if (direction.isLeft()) {
+            return index -1;
         }
 
         return index;
     }
 
-    public boolean isNextConnect() {
-        return right;
+    public Point next(PointGenerator pointGenerator) {
+        return new Point(index+1, direction.next(pointGenerator));
+    }
+
+    public Point last() {
+        return new Point(index+1, direction.last());
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    public boolean isRight() {
+        return direction.isRight();
     }
 }
