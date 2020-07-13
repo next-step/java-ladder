@@ -29,13 +29,6 @@ public class LineTest {
     }
 
     @Test
-    public void 이전_포인트가_연결이면_다음은_연결되지않는다() {
-        boolean result = new RandomPointGenerator().next(true);
-
-        assertFalse(result);
-    }
-
-    @Test
     void 앞뒤_point가_false면_인덱스는_그대로다() {
         // |     |     |
         Line line = Line.of(3, new FalsePointGenerator());
