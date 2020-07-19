@@ -1,7 +1,5 @@
 package domain;
 
-import generator.PointGenerator;
-
 import java.util.Objects;
 
 public class Direction {
@@ -20,15 +18,15 @@ public class Direction {
         return new Direction(left, right);
     }
 
-    public Direction next(boolean next) {
+    private Direction next(boolean next) {
         return Direction.of(this.right, next);
     }
 
-    public Direction next(PointGenerator pointGenerator) {
+    public Direction next(LadderLevel ladderLevel) {
         if (this.right) {
             return next(Boolean.FALSE);
         }
-        return next(pointGenerator.random());
+        return next(ladderLevel.random());
     }
 
     public static Direction first(boolean right) {

@@ -1,7 +1,5 @@
 package domain;
 
-import generator.RandomPointGenerator;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +9,9 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(int countOfPlayer, int height) {
-        this.lines = IntStream.range(0, height)
-                .mapToObj(i -> Line.of(countOfPlayer, new RandomPointGenerator()))
+    public Ladder(int countOfPlayer, LadderLevel ladderLevel) {
+        this.lines = IntStream.range(0, ladderLevel.getHeight())
+                .mapToObj(i -> Line.of(countOfPlayer, ladderLevel))
                 .collect(Collectors.toList());
     }
 

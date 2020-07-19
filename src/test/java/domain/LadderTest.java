@@ -21,4 +21,11 @@ public class LadderTest {
 
         assertEquals(players.countOfPlayers(), 3);
     }
+
+    @Test
+    void 복잡도를_입력하여_사다리를_만든다() {
+        Ladder ladder = new Ladder(5, LadderLevel.HIGH);
+
+        assertEquals(ladder.getLines().size(), LadderLevel.HIGH.getHeight());
+    }
 }
