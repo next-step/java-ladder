@@ -10,7 +10,7 @@ public class LadderGame {
         Players players = InputView.inputPersonNames();
         String[] results = InputView.inputResults();
 
-        Ladder ladder = new Ladder(players.countOfPlayers(), InputView.inputLadderHeight());
+        Ladder ladder = new Ladder(players.countOfPlayers(), InputView.inputLadderLevel());
         OutputView.printResult(players, ladder, results);
 
         MatchingResult matchingResult = ladder.play();

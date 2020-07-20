@@ -1,7 +1,5 @@
 package domain;
 
-import generator.PointGenerator;
-
 public class Point {
     private final int index;
     private final Direction direction;
@@ -17,18 +15,18 @@ public class Point {
         }
 
         if (direction.isLeft()) {
-            return index -1;
+            return index - 1;
         }
 
         return index;
     }
 
-    public Point next(PointGenerator pointGenerator) {
-        return new Point(index+1, direction.next(pointGenerator));
+    public Point next(LadderLevel ladderLevel) {
+        return new Point(index + 1, direction.next(ladderLevel));
     }
 
     public Point last() {
-        return new Point(index+1, direction.last());
+        return new Point(index + 1, direction.last());
     }
 
     public static Point first(Boolean right) {
