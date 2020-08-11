@@ -26,6 +26,7 @@ public class StreamStudy {
         List<String> words = splitByPatten(readFromResourceFile(), WORD_SPLIT_PATTERN);
 
         words.stream()
+                .map(String::toLowerCase)
                 .distinct()
                 .sorted(Comparator.comparing(String::length).reversed())
                 .limit(100)
