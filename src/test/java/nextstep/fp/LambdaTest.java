@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -16,36 +17,73 @@ public class LambdaTest {
         numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     }
 
+    @DisplayName("전체를 출력한다 (기존)")
     @Test
-    public void printAllOld() throws Exception {
+    public void printAllOld() {
         Lambda.printAllOld(numbers);
     }
 
+    @DisplayName("전체를 출력한다 (람다를 이용하여 개선)")
     @Test
-    public void printAllLambda() throws Exception {
+    public void printAllLambda() {
         Lambda.printAllLambda(numbers);
     }
 
+    @DisplayName("Thread 를 이용해 콘솔 출력")
     @Test
-    public void runThread() throws Exception {
+    public void runThread() {
         Lambda.runThread();
     }
 
+    @DisplayName("전체 총 합이 올바른지 확인")
     @Test
-    public void sumAll() throws Exception {
+    public void sumAll() {
+        // given
+        int expected = 21;
+
+        // when
         int sum = Lambda.sumAll(numbers);
-        assertThat(sum).isEqualTo(21);
+
+        // then
+        assertThat(sum).isEqualTo(expected);
     }
 
+    @DisplayName("전체 총 합이 올바른지 확인 (reduce 활용)")
     @Test
-    public void sumAllEven() throws Exception {
+    public void sumAllUsingReduce() {
+        // given
+        int expected = 21;
+
+        // when
+        int sum = Lambda.sumAllUsingReduce(numbers);
+
+        // then
+        assertThat(sum).isEqualTo(expected);
+    }
+
+    @DisplayName("짝수 총 합이 올바른지 확인")
+    @Test
+    public void sumAllEven() {
+        // given
+        int expected = 12;
+
+        // when
         int sum = Lambda.sumAllEven(numbers);
-        assertThat(sum).isEqualTo(12);
+
+        // then
+        assertThat(sum).isEqualTo(expected);
     }
 
+    @DisplayName("3이상 되는 숫자들의 총 합이 올바른지 확인")
     @Test
-    public void sumAllOverThree() throws Exception {
+    public void sumAllOverThree() {
+        // given
+        int expected = 15;
+
+        // when
         int sum = Lambda.sumAllOverThree(numbers);
-        assertThat(sum).isEqualTo(15);
+
+        // then
+        assertThat(sum).isEqualTo(expected);
     }
 }
