@@ -1,31 +1,24 @@
 package nextstep.fp;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
+    @DisplayName("자동차가 이동하는지 확인한다 (람다를 이용해 중복제거)")
     @Test
     public void 이동() {
         Car car = new Car("pobi", 0);
-        Car actual = car.move(new MoveStrategy() {
-            @Override
-            public boolean isMovable() {
-                return true;
-            }
-        });
+        Car actual = car.move(() -> true);
         assertThat(actual).isEqualTo(new Car("pobi", 1));
     }
 
+    @DisplayName("자동차가 정지하는지 확인한다 (람다를 이용해 중복제거)")
     @Test
     public void 정지() {
         Car car = new Car("pobi", 0);
-        Car actual = car.move(new MoveStrategy() {
-            @Override
-            public boolean isMovable() {
-                return false;
-            }
-        });
+        Car actual = car.move(() -> false);
         assertThat(actual).isEqualTo(new Car("pobi", 0));
     }
 }
