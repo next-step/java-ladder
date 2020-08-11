@@ -28,7 +28,7 @@ public class Lambda {
     public static int sumAllUsingReduce(List<Integer> numbers) {
         return numbers
                 .stream()
-                .reduce(0, (a, b) -> Integer.sum(a, b));
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
