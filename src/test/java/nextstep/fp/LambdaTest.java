@@ -48,6 +48,19 @@ public class LambdaTest {
         assertThat(sum).isEqualTo(expected);
     }
 
+    @DisplayName("전체 총 합이 올바른지 확인 (reduce 활용)")
+    @Test
+    public void sumAllUsingReduce() {
+        // given
+        int expected = 21;
+
+        // when
+        int sum = Lambda.sumAllUsingReduce(numbers);
+
+        // then
+        assertThat(sum).isEqualTo(expected);
+    }
+
     @DisplayName("짝수 총 합이 올바른지 확인")
     @Test
     public void sumAllEven() {
