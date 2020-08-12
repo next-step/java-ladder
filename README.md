@@ -221,3 +221,7 @@ public int sumAll(List<Integer> numbers) {
 * Arrays.stream()을 이용해 배열을 stream으로 생성할 수 있다.
 * 일치하는 값 하나를 추출할 때 findFirst() 메소드를 활용 가능하다.
 * Optional의 orElseThrow() 메소드 활용해 구현한다.
+
+### Step1 리뷰 사항
+* [x] [fix01][Lambda.java] stream 가독성을 위해 단계별로 구분해보기 
+
