@@ -30,8 +30,11 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
         List<String> wordTop100 = words.stream()
+                                       .filter(w -> 12 < w.length())
+                                       .distinct()
                                        .sorted(comparingInt(String::length).reversed())
                                        .limit(100)
+                                       .map(String::toLowerCase)
                                        .collect(toList())
             ;
         System.out.println(wordTop100);
