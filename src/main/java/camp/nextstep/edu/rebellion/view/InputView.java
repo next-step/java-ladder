@@ -5,6 +5,16 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    public static String getPlayers() {
+        System.out.println("참여할 사람 이름을 입력해주세요 (쉽표로 구분) ");
+        return getLine();
+    }
+
+    public static int getRows() {
+        System.out.println("최대 사다리 높이를 입력해 주세요 ");
+        return getInt();
+    }
+
     private InputView() {}
 
     private static int getInt() {
