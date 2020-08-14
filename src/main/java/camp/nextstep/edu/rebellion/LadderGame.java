@@ -18,14 +18,14 @@ public class LadderGame {
                 int up = (i - 1) < 0 ? 0 : (i - 1);
                 int next = (j + 1);
 
-                Point u = ladder[up][j];
+                Point u = ladder[up][j]; //
                 Point c = ladder[i][j];
                 Point n = ladder[i][next];
 
                 if (!c.prev
                         && !c.next
                         && !n.prev
-                        & !u.next) {
+                        && !u.next) {
                     c.next = true;
                     n.prev = true;
                 }
@@ -51,7 +51,30 @@ public class LadderGame {
     }
 
     public static class Point {
+        private int x;
+        private int y;
         private boolean prev;
         private boolean next;
     }
 }
+
+/*
+Row 는 Point 를 가지고 있다
+Rows 는 무슨 역할을 할까??
+
+좌표에 있는 점의 상태를 알려줌
+Rows.getPointStatus(row, col);
+
+해당 row에 있는 점의 상태를 알려줌
+Row.getPoint(col);
+
+Ladder
+ - make
+ - run
+ - draw
+
+LadderGame
+ - 사용자 입력
+ - 결과 출력
+
+ */
