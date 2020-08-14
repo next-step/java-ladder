@@ -12,6 +12,10 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void checkLength(String name) {
         if (StringUtil.isEmpty(name) || MAX_NAME_LENGTH < name.length()) {
             throw new IllegalArgumentException("참가자의 이름은 최대 5글자 입니다 " + name);

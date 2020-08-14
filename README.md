@@ -225,7 +225,7 @@ public int sumAll(List<Integer> numbers) {
 ### Step1 리뷰 사항
 * [x] [fix01][Lambda.java] stream 가독성을 위해 단계별로 구분해보기 
 
-# 2단계 - 사다리(생성)
+# 2단계 - 사다리(생성) 
 ### 기능 요구사항
 * 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다. 사다리를 출력할 때 사람 이름도 같이 출력한다.
 * 사람 이름은 쉼표(,)를 기준으로 구분한다.
@@ -271,3 +271,7 @@ public class Line {
 }
 </code></pre>
 * 위와 같이 Line 객체를 추가하면 ArrayList<ArrayList<Boolean>> 코드를 ArrayList<Line>과 같이 구현하는 것이 가능해 진다.
+
+##### Method 규칙 
+* 객체를 새로 만드는 건 generate, 있는 것들을 조합하는건 make
+* 상태를 만나는 건 meet, 조건(true/false)를 만나는건 is
