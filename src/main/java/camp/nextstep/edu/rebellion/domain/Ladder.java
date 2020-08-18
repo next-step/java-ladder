@@ -42,13 +42,13 @@ public class Ladder {
 
     private Row pick(int ordinal) {
         return this.rows
-                .get(Math.max(ordinal-1, INIT_INDEX));
+                .get(Math.max(ordinal, INIT_INDEX));
     }
 
     private List<Row> generateRows(int sizeOfRows, int sizeOfPoints) {
         List<Row> rows = new ArrayList<>();
         IntStream
-                .range(0, sizeOfRows)
+                .range(INIT_INDEX, sizeOfRows)
                 .forEach(r -> rows.add(new Row(sizeOfPoints)));
         return rows;
     }

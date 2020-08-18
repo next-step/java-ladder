@@ -9,14 +9,14 @@ public class Row {
     private final List<Point> points;
 
     public Row (int sizeOfPoints) {
-        points = generateCols(sizeOfPoints);
+        this.points = generateCols(sizeOfPoints);
     }
 
     public void mark(int ordinal) {
         Point cur = getCurrent(ordinal);
         Point next = getNext(ordinal);
 
-        if (!canMakeHorizonLine(cur, next)) {
+        if (!isAlreadyExistsHorizonLine(cur, next)) {
             return;
         }
 
@@ -37,7 +37,7 @@ public class Row {
         return points.get(ordinal + 1);
     }
 
-    private boolean canMakeHorizonLine(Point cur, Point next) {
+    private boolean isAlreadyExistsHorizonLine(Point cur, Point next) {
         return cur.canMark() && !next.hasPrev();
     }
 

@@ -1,27 +1,50 @@
 package camp.nextstep.edu.rebellion.view;
 
 import camp.nextstep.edu.rebellion.domain.Ladder;
+import camp.nextstep.edu.rebellion.domain.Player;
+import camp.nextstep.edu.rebellion.domain.Players;
 import camp.nextstep.edu.rebellion.domain.Row;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class ResultView {
-    public static void printLadder (Ladder ladder) {
-        int rows = ladder.getSizeOfRows();
+    private static final String LADDER_PIPE = "|";
+    private static final String LADDER_HORIZON_LINE = "-----";
+    private static final String LADDER_HORIZON_EMPTY = "     ";
+    private static final String ENTER = "\n";
+
+    public static void printPlayers(Players players) {
+        System.out.println(
+                players.getPlayers()
+                .stream()
+                .map(Player::getName)
+                .collect(Collectors.joining(LADDER_HORIZON_EMPTY)));
+    }
+
+    public static void printLadder(Ladder ladder) {
+        StringBuilder output = new StringBuilder();
         int cols = ladder.getSizeOfPoints();
 
-        System.out.println("rows :\t" + rows + " cols :\t" + cols);
+        ladder.getRows()
+                .forEach(row -> {
+                    output.append(generatePrintingRow(row, cols - 1));
+                    output.append(LADDER_PIPE);
+                    output.append(ENTER);
+                });
+        System.out.println(output.toString());
+    }
 
-        for (int i = 0; i < rows; i++) {
-            Row row = ladder.getRows().get(i);
-            for (int j = 0; j < cols-1; j++) {
-                System.out.print("|");
-                if (row.hasHorizonLine(j)) {
-                    System.out.print("-----");
-                } else {
-                    System.out.print("     ");
-                }
-            }
-            System.out.print("|");
-            System.out.println();
-        }
+    private static String generatePrintingRow(Row row, int cols) {
+        StringBuilder output = new StringBuilder();
+        IntStream
+                .range(0, cols)
+                .forEach(col -> {
+                    output.append(LADDER_PIPE);
+                    output.append(row.hasHorizonLine(col) ?
+                            LADDER_HORIZON_LINE :
+                            LADDER_HORIZON_EMPTY);
+                });
+        return output.toString();
     }
 }
