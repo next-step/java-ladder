@@ -13,7 +13,7 @@ class LinkingRuleBaseGeneratePoints {
         List<Point> pointList = IntStream.range(0, maxPointCount)
                                          .mapToObj(Point::new)
                                          .collect(toList());
-        for (int i = 1; i < pointList.size(); i+=2) {
+        for (int i = 1; i < pointList.size(); ++i) {
             linkingPoint(rule, pointList, i);
         }
 

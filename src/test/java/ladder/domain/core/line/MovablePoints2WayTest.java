@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MovableLine2WayTest {
+class MovablePoints2WayTest {
     @DisplayName("2개 라인 1개 연결 움직임 테스트")
     @Test
     void moveTest_01() {
@@ -18,8 +18,8 @@ class MovableLine2WayTest {
             |     |
          */
         final int maxPointCount = 2;
-        MovableLine line1 = MovableLine.create(()-> true, maxPointCount);
-        MovableLine line2 = MovableLine.create(()-> false, maxPointCount);
+        MovablePoints line1 = MovablePoints.of(()-> true, maxPointCount);
+        MovablePoints line2 = MovablePoints.of(()-> false, maxPointCount);
 
         assertThat(line1.move(1)).isEqualTo(0);
         assertThat(line2.move(0)).isEqualTo(0);
@@ -34,8 +34,8 @@ class MovableLine2WayTest {
             |-----|
          */
         final int maxPointCount = 2;
-        MovableLine line1 = MovableLine.create(()-> true, maxPointCount);
-        MovableLine line2 = MovableLine.create(()-> true, maxPointCount);
+        MovablePoints line1 = MovablePoints.of(()-> true, maxPointCount);
+        MovablePoints line2 = MovablePoints.of(()-> true, maxPointCount);
 
         assertThat(line1.move(1)).isEqualTo(0);
         assertThat(line2.move(0)).isEqualTo(1);
@@ -51,12 +51,12 @@ class MovableLine2WayTest {
             |-----|
          */
         final int maxPointCount = 2;
-        List<MovableLine> lines = Arrays.asList(
-            MovableLine.create(()-> true, maxPointCount),
-            MovableLine.create(()-> false, maxPointCount),
-            MovableLine.create(()-> true, maxPointCount)
+        List<MovablePoints> lines = Arrays.asList(
+            MovablePoints.of(()-> true, maxPointCount),
+            MovablePoints.of(()-> false, maxPointCount),
+            MovablePoints.of(()-> true, maxPointCount)
         ) ;
-        List<Integer> result = MovableLines.getLinePathResult(lines, 1);
+        List<Integer> result = MovableLines.getLineByPointIndexPathResult(lines, 1);
         assertThat(result).containsExactly(0,0,1);
     }
 
@@ -71,12 +71,12 @@ class MovableLine2WayTest {
          */
         final int maxPointCount = 2;
 
-        List<MovableLine> lines = Arrays.asList(
-            MovableLine.create(()-> true, maxPointCount),
-            MovableLine.create(()-> true, maxPointCount),
-            MovableLine.create(()-> true, maxPointCount)
+        List<MovablePoints> lines = Arrays.asList(
+            MovablePoints.of(()-> true, maxPointCount),
+            MovablePoints.of(()-> true, maxPointCount),
+            MovablePoints.of(()-> true, maxPointCount)
         ) ;
-        List<Integer> result = MovableLines.getLinePathResult(lines, 1);
+        List<Integer> result = MovableLines.getLineByPointIndexPathResult(lines, 1);
         assertThat(result).containsExactly(0,1,0);
     }
 

@@ -1,4 +1,4 @@
-package ladder.domain.core;
+package ladder.domain.core.line;
 
 import java.util.Objects;
 
@@ -24,6 +24,10 @@ class Participant {
         if (null == name || "".equals(name.trim())){
             throw new IllegalArgumentException(ERROR_MESSAGE_REQUIRED_NAME);
         }
+    }
+
+    String getName() {
+        return name;
     }
 
     @Override

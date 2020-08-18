@@ -3,7 +3,7 @@ package ladder.domain.core.line;
 import java.util.Objects;
 
 class Point implements Comparable<Point> {
-    Point nextPoint;
+    private Point nextPoint;
     private final int index;
 
     Point(int index) {
@@ -33,7 +33,7 @@ class Point implements Comparable<Point> {
     }
 
     boolean isNotEmpty() {
-        return !empty.equals(this);
+        return isNotEquals(empty);
     }
 
     boolean isNotEquals(Point otherPoint){
@@ -42,6 +42,13 @@ class Point implements Comparable<Point> {
 
     public int getIndex() {
         return index;
+    }
+
+    public boolean hasLink(){
+        if (isEmptyNextPoint()) {
+            return false;
+        }
+        return 0 > compareTo(linkingPoint());
     }
 
     @Override

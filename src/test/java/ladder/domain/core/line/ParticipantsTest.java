@@ -1,7 +1,10 @@
-package ladder.domain.core;
+package ladder.domain.core.line;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import ladder.domain.core.line.Participant;
+import ladder.domain.core.line.Participants;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
