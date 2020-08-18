@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Row {
-    private final int INIT_INDEX = 0;
+    private final static int INIT_INDEX = 0;
+
     private final List<Point> points;
 
     public Row (int sizeOfPoints) {

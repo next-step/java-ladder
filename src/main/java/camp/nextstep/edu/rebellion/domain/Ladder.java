@@ -6,19 +6,14 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final int INIT_INDEX = 0;
-    private final int sizeOfRows;
+    private final static int INIT_INDEX = 0;
+
     private final int sizeOfPoints;
     private final List<Row> rows;
 
     public Ladder(int sizeOfRows, int sizeOfPoints) {
-        this.sizeOfRows = sizeOfRows;
         this.sizeOfPoints = sizeOfPoints;
         this.rows = generateRows(sizeOfRows, sizeOfPoints);
-    }
-
-    public int getSizeOfRows() {
-        return sizeOfRows;
     }
 
     public int getSizeOfPoints() {
