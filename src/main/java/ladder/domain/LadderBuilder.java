@@ -9,8 +9,8 @@ import ladder.domain.core.line.MovableLines;
 import ladder.domain.core.line.ParticipantsLine;
 
 public class LadderBuilder {
-    public static final String ERROR_MSG_PARTICIPANTS_LINE = "참가자 신청을 먼저 진행해 주세요.";
-    public static final String ERROR_MSG_MOVABLE_LINE = "참가자 신청을 먼저 신청후에 사다리 정보를 설정해 주세요.";
+    static final String ERROR_MSG_PARTICIPANTS_LINE = "참가자 신청을 먼저 진행해 주세요.";
+    static final String ERROR_MSG_MOVABLE_LINE = "참가자 신청을 먼저 신청후에 사다리 정보를 설정해 주세요.";
     private List<Line> ladder;
     private int numberOfParticipants;
 

@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 import static ladder.domain.core.line.Participant.verifyBlankName;
 
-public class Participants {
+class Participants {
     private static final String SEPARATOR = ",";
     private final List<Participant> participants;
 

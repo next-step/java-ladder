@@ -3,9 +3,9 @@ package ladder.domain.core.line;
 import java.util.Objects;
 
 class Participant {
-    public static final String ERROR_MESSAGE_REQUIRED_NAME = "참여하는 사람의 이름을 지정해 주세요.";
-    public static final String ERROR_MESSAGE_SUITABLE_NAME = "참여하는 사람의 이름은 알파벳(a-z), 숫자(0-9)포함 5글자 입니다.";
-    public static final String REGEX_SUITABLE_NAME = "[a-z][a-z0-9]{0,4}";
+    static final String ERROR_MESSAGE_REQUIRED_NAME = "참여하는 사람의 이름을 지정해 주세요.";
+    static final String ERROR_MESSAGE_SUITABLE_NAME = "참여하는 사람의 이름은 알파벳(a-z), 숫자(0-9)포함 5글자 입니다.";
+    static final String REGEX_SUITABLE_NAME = "[a-z][a-z0-9]{0,4}";
     private final String name;
 
     Participant(String name) {
