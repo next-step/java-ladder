@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,13 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(word -> word.length() > 12) // 12자가 넘는 단어
+                .distinct() // 중복 제거
+                .limit(100) // 100개 로 제한
+                .sorted(Comparator.comparing(String::length)) // 문자열 길이로 정렬
+                .map(String::toLowerCase) // 문자 소문자로 변경
+                .forEach(System.out::println); // 출력
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -39,6 +46,10 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return sumAll(
+                numbers.stream()
+                        .filter(number -> number > 3)
+                        .collect(Collectors.toList())
+        ) * 2;
     }
 }
