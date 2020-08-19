@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import ladder.ui.result.DisplayResult;
+import ladder.ui.result.DisplayResults;
+import ladder.ui.result.MovablePointsDisplayResult;
 
-import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 public class MovableLines implements Line {
@@ -37,10 +38,16 @@ public class MovableLines implements Line {
         return result;
     }
 
+    List<MovablePointsDisplayResult> collectMovablePointsDisplayResultList() {
+        return lines.stream()
+                    .map(MovablePoints::collectLinkState)
+                    .map(MovablePointsDisplayResult::new)
+                    .collect(toList())
+            ;
+    }
+
     @Override
     public DisplayResult toDisplayResult() {
-        return () -> lines.stream()
-                          .map(l -> l.toDisplayResult().toDisplay())
-                          .collect(joining("\n"));
+        return new DisplayResults(collectMovablePointsDisplayResultList());
     }
 }

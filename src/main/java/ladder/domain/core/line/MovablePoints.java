@@ -3,12 +3,10 @@ package ladder.domain.core.line;
 import java.util.List;
 
 import ladder.domain.core.rule.PointLinkingRule;
-import ladder.ui.result.DisplayResult;
-import ladder.ui.result.MovableLineDisplayResult;
 
 import static java.util.stream.Collectors.toList;
 
-class MovablePoints implements Line {
+class MovablePoints {
     private final List<Point> points;
 
     MovablePoints(List<Point> points) {
@@ -49,10 +47,5 @@ class MovablePoints implements Line {
         return points.stream()
                      .map(Point::hasLink)
                      .collect(toList());
-    }
-
-    @Override
-    public DisplayResult toDisplayResult() {
-        return new MovableLineDisplayResult(collectLinkState());
     }
 }

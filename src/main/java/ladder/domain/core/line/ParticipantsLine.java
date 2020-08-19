@@ -1,8 +1,7 @@
 package ladder.domain.core.line;
 
-import java.util.stream.Collectors;
-
 import ladder.ui.result.DisplayResult;
+import ladder.ui.result.NamesDisplayResult;
 
 public class ParticipantsLine implements Line {
     private final Participants participants;
@@ -31,10 +30,6 @@ public class ParticipantsLine implements Line {
 
     @Override
     public DisplayResult toDisplayResult() {
-        return () -> participants.names()
-                                 .stream()
-                                 .map(n -> String.format("%6s",n))
-                                 .collect(Collectors.joining(""));
-
+        return new NamesDisplayResult(participants.names());
     }
 }
