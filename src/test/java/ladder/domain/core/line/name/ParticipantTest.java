@@ -1,4 +1,4 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.name;
 
 import java.util.Set;
 
@@ -6,8 +6,11 @@ import org.assertj.core.util.Sets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.core.line.BaseName.ERROR_MESSAGE_REQUIRED_NAME;
-import static ladder.domain.core.line.Participant.*;
+import ladder.domain.core.line.name.BaseName;
+import ladder.domain.core.line.name.Participant;
+
+import static ladder.domain.core.line.name.BaseName.ERROR_MESSAGE_REQUIRED_NAME;
+import static ladder.domain.core.line.name.Participant.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

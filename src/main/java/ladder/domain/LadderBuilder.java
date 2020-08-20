@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import ladder.domain.core.line.Line;
-import ladder.domain.core.line.MovableLines;
-import ladder.domain.core.line.ParticipantsLine;
+import ladder.domain.core.line.move.MovableLine;
+import ladder.domain.core.line.name.ParticipantsLine;
 
 public class LadderBuilder {
     static final String ERROR_MSG_PARTICIPANTS_LINE = "참가자 신청을 먼저 진행해 주세요.";
@@ -33,7 +33,7 @@ public class LadderBuilder {
         if (1 != ladder.size()) {
             throw new IllegalArgumentException(ERROR_MSG_MOVABLE_LINE);
         }
-        ladder.add(MovableLines.of(ladderHeight, numberOfParticipants));
+        ladder.add(MovableLine.of(ladderHeight, numberOfParticipants));
         return this;
     }
 

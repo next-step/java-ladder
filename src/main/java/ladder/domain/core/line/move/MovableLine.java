@@ -1,28 +1,29 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.move;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+import ladder.domain.core.line.Line;
 import ladder.ui.result.DisplayResult;
 import ladder.ui.result.DisplayResults;
 import ladder.ui.result.MovablePointsDisplayResult;
 
 import static java.util.stream.Collectors.toList;
 
-public class MovableLines implements Line {
+public class MovableLine implements Line {
     private final List<MovablePoints> lines;
 
-    MovableLines(List<MovablePoints> lines) {
+    MovableLine(List<MovablePoints> lines) {
         this.lines = lines;
     }
 
-    public static MovableLines of(int height, final int maxPointCount){
+    public static MovableLine of(int height, final int maxPointCount){
         List<MovablePoints> movablePoints = Stream.generate(() -> MovablePoints.of(maxPointCount))
                                                   .limit(height)
                                                   .collect(toList());
-        return new MovableLines(Collections.unmodifiableList(movablePoints));
+        return new MovableLine(Collections.unmodifiableList(movablePoints));
     }
 
     static List<Integer> getLineByPointIndexPathResult(List<MovablePoints> lines, int startIndex) {

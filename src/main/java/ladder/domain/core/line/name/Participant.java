@@ -1,4 +1,4 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.name;
 
 import java.util.Objects;
 

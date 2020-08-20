@@ -1,9 +1,10 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.move;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import ladder.ui.LadderDisplay;
+import ladder.domain.core.line.move.MovablePoints;
+import ladder.domain.core.line.move.Point;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

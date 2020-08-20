@@ -1,4 +1,4 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.move;
 
 import java.util.Collections;
 import java.util.List;

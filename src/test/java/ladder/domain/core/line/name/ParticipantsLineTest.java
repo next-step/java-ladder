@@ -1,7 +1,11 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.name;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import ladder.domain.core.line.name.BaseName;
+import ladder.domain.core.line.name.Participant;
+import ladder.domain.core.line.name.ParticipantsLine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;

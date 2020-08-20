@@ -1,14 +1,15 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.name;
 
 import java.util.List;
 import java.util.stream.Stream;
 
+import ladder.domain.core.line.Line;
 import ladder.ui.result.DisplayResult;
 import ladder.ui.result.NamesDisplayResult;
 
 import static java.util.stream.Collectors.toList;
-import static ladder.domain.core.line.BaseName.verifyBlankName;
-import static ladder.domain.core.line.ParticipantsLine.ParticipantNames.participantNames;
+import static ladder.domain.core.line.name.BaseName.verifyBlankName;
+import static ladder.domain.core.line.name.ParticipantsLine.ParticipantNames.participantNames;
 
 public class ParticipantsLine implements Line {
 
