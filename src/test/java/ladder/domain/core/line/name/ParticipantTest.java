@@ -33,7 +33,7 @@ class ParticipantTest {
 
     @DisplayName("참여하는 사람에 이름을 알파벳(a-z), 숫자(0-9)포함 5글자  부여")
     @Test
-    void maxLengthNameTest () {
+    void suitableNameTest () {
         assertThatIllegalArgumentException()
             .isThrownBy(() -> new Participant("1"))
             .withMessage(ERROR_MESSAGE_SUITABLE_NAME);

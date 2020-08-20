@@ -15,12 +15,11 @@ public class ParticipantsLine implements Line {
 
     private final ParticipantNames names;
 
-    public ParticipantsLine(ParticipantNames names) {
+    ParticipantsLine(ParticipantNames names) {
         this.names = names;
     }
 
     public static ParticipantsLine of(String participants) {
-
         return new ParticipantsLine(participantNames(participants));
     }
 
@@ -40,7 +39,7 @@ public class ParticipantsLine implements Line {
 
     @Override
     public DisplayResult toDisplayResult() {
-        return new NamesDisplayResult(names.names());
+        return new NamesDisplayResult(names);
     }
 
     static class ParticipantNames extends Names<Participant> {

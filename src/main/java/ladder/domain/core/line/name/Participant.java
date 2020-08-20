@@ -8,7 +8,6 @@ final class Participant extends BaseName {
 
     Participant(String name) {
         super(name);
-        verifyBlankName(name);
         verifySuitableName(name);
     }
 

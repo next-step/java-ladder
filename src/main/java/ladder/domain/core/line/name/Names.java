@@ -4,7 +4,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-abstract class Names<T extends BaseName> {
+public abstract class Names<T extends BaseName> {
 
     private final List<T> names;
 
@@ -20,7 +20,7 @@ abstract class Names<T extends BaseName> {
         return names.size();
     }
 
-    List<String> names(){
+    public List<String> getPrimitiveNames(){
         return names.stream()
                     .map(BaseName::getName)
                     .collect(toList());
