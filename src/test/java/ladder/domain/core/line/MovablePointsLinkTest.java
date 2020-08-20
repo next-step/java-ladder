@@ -32,14 +32,4 @@ class MovablePointsLinkTest {
         assertThat(line.collectLinkState()).containsExactly(false, false, false, false, false);
     }
 
-    @Test
-    void name() {
-        Participants participants = new Participants("a,b,c,d,e");
-        ParticipantsLine participantsLine = new ParticipantsLine(participants);
-        participants.getCount();
-        MovableLines movableLines = MovableLines.of(5, participants.getCount());
-
-        LadderDisplay.display(participantsLine.toDisplayResult());
-        LadderDisplay.display(movableLines.toDisplayResult());
-    }
 }
