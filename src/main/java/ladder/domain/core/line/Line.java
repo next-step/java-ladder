@@ -9,6 +9,10 @@ public interface Line {
         throw new UnsupportedOperationException();
     }
 
+    default int indexOf(int index) {
+        throw new UnsupportedOperationException();
+    }
+
     default String getResult(int index) {
         throw new UnsupportedOperationException();
     }

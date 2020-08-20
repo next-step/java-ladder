@@ -6,11 +6,8 @@ import org.assertj.core.util.Sets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import ladder.domain.core.line.name.BaseName;
-import ladder.domain.core.line.name.Participant;
-
 import static ladder.domain.core.line.name.BaseName.ERROR_MESSAGE_REQUIRED_NAME;
-import static ladder.domain.core.line.name.Participant.*;
+import static ladder.domain.core.line.name.Participant.ERROR_MESSAGE_SUITABLE_NAME;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
