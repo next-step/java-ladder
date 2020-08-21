@@ -85,8 +85,9 @@ class Point implements Comparable<Point> {
 
     @Override
     public String toString() {
-        return "Point{" +
-            "index=" + index +
+        return index == EMPTY_INDEX ? "Empty{i=-1}"
+            : "Point{" +
+            "i=" + index +
             '}';
     }
 }

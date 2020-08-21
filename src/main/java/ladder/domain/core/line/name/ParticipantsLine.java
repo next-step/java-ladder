@@ -38,6 +38,16 @@ public class ParticipantsLine implements Line {
     }
 
     @Override
+    public int getWidth() {
+        return names.getCount();
+    }
+
+    @Override
+    public Names<? extends BaseName> getNames() {
+        return names;
+    }
+
+    @Override
     public DisplayResult toDisplayResult() {
         return new NamesDisplayResult(names);
     }

@@ -28,6 +28,11 @@ public class LadderResultLine implements Line {
     }
 
     @Override
+    public int getWidth() {
+        return names.getCount();
+    }
+
+    @Override
     public DisplayResult toDisplayResult() {
         return new NamesDisplayResult(names);
     }

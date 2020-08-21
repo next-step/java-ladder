@@ -43,8 +43,8 @@ class MovablePoints {
     int move(int prevIndex){
         Point currentPoint = getPointByIndex(prevIndex);
         Point linkingPoint = currentPoint.linkingPoint();
-
-        System.out.println(currentPoint + ", " + linkingPoint);
+// [debug] 사다리 타기 진행시 각 위치 정보 표시
+//        System.out.println(currentPoint + ", " + linkingPoint);
         if (currentPoint.isNotEmpty() && linkingPoint.isNotEmpty()) {
             return linkingPoint.getIndex();
         }

@@ -1,6 +1,8 @@
 package ladder.domain.core.line;
 
 
+import ladder.domain.core.line.name.BaseName;
+import ladder.domain.core.line.name.Names;
 import ladder.ui.result.DisplayResult;
 
 public interface Line {
@@ -14,6 +16,12 @@ public interface Line {
     }
 
     default String getResult(int index) {
+        throw new UnsupportedOperationException();
+    }
+
+    int getWidth();
+
+    default Names<? extends BaseName> getNames(){
         throw new UnsupportedOperationException();
     }
 

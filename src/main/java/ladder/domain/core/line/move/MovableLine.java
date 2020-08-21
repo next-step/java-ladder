@@ -18,9 +18,11 @@ public class MovableLine implements Line {
     static final int MAX_HEIGHT = 10;
     static final String ERROR_MSG_OUT_OF_RANGE_HEIGHT = String.format("사다리 높이는 %d이상 %d이하로 설정되어야 합니다.", MIN_HEIGHT, MAX_HEIGHT);
     private final List<MovablePoints> lines;
+    private final int maxPointCount;
 
-    MovableLine(List<MovablePoints> lines) {
+    MovableLine(List<MovablePoints> lines, int maxPointCount) {
         this.lines = lines;
+        this.maxPointCount = maxPointCount;
     }
 
     public static MovableLine of(int height, final int maxPointCount){
@@ -28,7 +30,7 @@ public class MovableLine implements Line {
         List<MovablePoints> movablePoints = Stream.generate(() -> MovablePoints.of(maxPointCount))
                                                   .limit(height)
                                                   .collect(toList());
-        return new MovableLine(Collections.unmodifiableList(movablePoints));
+        return new MovableLine(Collections.unmodifiableList(movablePoints), maxPointCount);
     }
 
     private static void verifyHeight(int height) {
@@ -58,10 +60,18 @@ public class MovableLine implements Line {
 
     @Override
     public int indexOf(int index) {
-        return getLineByPointIndexPathResult(lines, index)
+        List<Integer> lineByPointIndexPathResult = getLineByPointIndexPathResult(lines, index);
+        int lastIndex = lineByPointIndexPathResult.size() - 1;
+        return lineByPointIndexPathResult
             .stream()
+            .skip(lastIndex)
             .findAny()
             .orElse(ERROR_INDEX_CODE);
+    }
+
+    @Override
+    public int getWidth() {
+        return maxPointCount;
     }
 
     @Override
