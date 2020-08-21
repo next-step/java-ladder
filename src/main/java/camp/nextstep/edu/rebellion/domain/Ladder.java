@@ -37,7 +37,11 @@ public class Ladder {
 
     private Row pick(int ordinal) {
         return this.rows
-                .get(Math.max(ordinal, INIT_INDEX));
+                .get(getPositiveOrdinal(ordinal));
+    }
+
+    private int getPositiveOrdinal(int ordinal) {
+        return ordinal < 0 ? INIT_INDEX : ordinal;
     }
 
     private List<Row> generateRows(int sizeOfRows, int sizeOfPoints) {

@@ -277,9 +277,9 @@ public class Line {
 * 상태를 만나는 건 meet, 조건(true/false)를 만나는건 is
 
 ### Step2 리뷰사항
-* [ ] [fix01][StringUtil.java] 자연스럽게 위에서 아래로 읽히도록 코드 가독성 개선해보기 
-* [ ] [fix02][InputView.java] 클래스, 상수, 전역변수, 생성자, 메소드 순서로 만들어 보기  
-* [ ] [fix03][Ladder.java] Max 말고 if 사용하기 (가독성 개선)  
+* [x] [fix01][StringUtil.java] 자연스럽게 위에서 아래로 읽히도록 코드 가독성 개선해보기 
+* [x] [fix02][InputView.java] 클래스, 상수, 전역변수, 생성자, 메소드 순서로 만들어 보기  
+* [x] [fix03][Ladder.java] Max 말고 if 사용하기 (가독성 개선)  
 * [ ] [fix04][AlwaysDrawingRule.java] 랜덤하게 사다리가 그려지도록 개선하기
 
 # 3단계 - 사다리(게임 실행)
