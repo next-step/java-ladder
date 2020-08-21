@@ -1,6 +1,5 @@
 package ladder.domain.core.line.move;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -39,15 +38,23 @@ public class MovableLine implements Line {
         }
     }
 
-    static List<Integer> getLineByPointIndexPathResult(List<MovablePoints> lines, int startIndex) {
-        int size = lines.size();
-        List<Integer> result = new ArrayList<>(size);
-        result.add(lines.get(0).move(startIndex));
-        for (int i = 1; size > i; ++i) {
-            MovablePoints line = lines.get(i);
-            result.add(line.move(result.get(i - 1)));
-        }
-        return result;
+    static List<Integer> getLineByPointIndexPathResult(List<MovablePoints> lines, final int startIndex) {
+//        AS-IS
+//        int size = lines.size();
+//        List<Integer> result = new ArrayList<>(size);
+//        result.add(lines.get(0).move(startIndex));
+//        for (int i = 1; size > i; ++i) {
+//            MovablePoints line = lines.get(i);
+//            result.add(line.move(result.get(i - 1)));
+//        }
+//        return result;
+
+//        TO-BE
+        final MovingStatefulOperation<MovablePoints, Integer> movingStatefulOperation = new MovingStatefulOperation<>(lines);
+        return movingStatefulOperation.first((e) -> e.move(startIndex))
+                                      .otherwise(MovablePoints::move)
+                                      .states()
+            ;
     }
 
     List<MovablePointsDisplayResult> collectMovablePointsDisplayResultList() {

@@ -12,35 +12,19 @@ import static java.util.stream.Collectors.joining;
 
 public class Ladder implements DisplayResult {
     private static final String COMMAND_KEYWORD = "all";
-    private List<Line> ladder;
-    private int state;
+    private final LadderStatefulOperation ladderStatefulOperation;
 
     Ladder(List<Line> ladder) {
-        this.ladder = ladder;
+        ladderStatefulOperation = new LadderStatefulOperation(ladder);
     }
 
     public static Ladder create(LadderBaseInputData ladderBaseInputData){
         return LadderBuilder.create(ladderBaseInputData);
     }
 
-    Ladder participant(String participant){
-        state = ladder.get(0).indexOf(participant);
-        return this;
-    }
-
-    Ladder movable(){
-        state = ladder.get(1).indexOf(state);
-        return this;
-    }
-
-    String result(){
-        return ladder.get(2).getResult(state);
-    }
-
     String ride(String participant){
-        return participant(participant)
-            .movable()
-            .result();
+         return ladderStatefulOperation.prepar(participant)
+                                       .result(Line::getResult);
     }
 
     public Ladder ridingLoop(Supplier<String> participantSupplier, Consumer<String> displayRidingResult){
@@ -52,9 +36,7 @@ public class Ladder implements DisplayResult {
     }
 
     public void orAllLadderRidingResult(Consumer<String> displayRidingResult){
-        String result = ladder.get(0)
-                               .getNames()
-                               .getPrimitiveNames()
+        String result = ladderStatefulOperation.participants()
                                .stream()
                                .map(p -> String.format("%s : %s", p, ride(p)))
                                .collect(joining("\n"));
@@ -67,7 +49,9 @@ public class Ladder implements DisplayResult {
 
     @Override
     public String toDisplay() {
-        return ladder.stream()
+        return ladderStatefulOperation
+            .lines()
+            .stream()
             .map(l -> l.toDisplayResult().toDisplay())
             .collect(joining("\n"));
     }
