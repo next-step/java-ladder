@@ -23,7 +23,7 @@ public class LadderLine implements Printable {
         return new LadderLine(line);
     }
 
-    public int countOfPerson() {
+    public int countOfPoint() {
         return line.countOfPoint();
     }
 

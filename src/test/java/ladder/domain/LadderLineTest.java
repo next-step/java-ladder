@@ -19,7 +19,7 @@ public class LadderLineTest {
         // when
         LadderLine ladderLine = LadderLine.of(countOfPerson, testStrategy);
         // then
-        assertThat(ladderLine.countOfPerson()).isEqualTo(countOfPerson);
+        assertThat(ladderLine.countOfPoint()).isEqualTo(countOfPerson);
     }
 
     @ParameterizedTest
