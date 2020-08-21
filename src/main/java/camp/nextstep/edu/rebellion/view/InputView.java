@@ -17,6 +17,11 @@ public class InputView {
         return getInt();
     }
 
+    public static String getPlayerOrCommandForResult() {
+        System.out.println("결과를 보고싶은 참여자를 입력해 주세요 (전체보기 : all) ");
+        return getLine();
+    }
+
     private static int getInt() {
         if (SCANNER.hasNextInt()) {
             return SCANNER.nextInt();

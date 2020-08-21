@@ -24,6 +24,7 @@ public class LadderGame {
         return ladder;
     }
 
+    // Players 를 가지고 있으니 Ladder 에 run 을 이용하여 경기 결과를 생성하는 역할을 하도록 함
     private void draw(int positionOfRow, DrawingRule drawingRule) {
         IntStream
                 .range(INIT_INDEX, players.getCountOfPlayers() - 1)

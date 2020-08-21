@@ -30,6 +30,15 @@ public class Row {
         return cur.hasNext() && next.hasPrev();
     }
 
+    public int getNextPathOrdinal(int ordinal) {
+        Point cur = getCurrent(ordinal);
+        if (cur.hasPrev()) {
+            return ordinal - 1;
+        }
+
+        return ordinal + 1;
+    }
+
     private Point getCurrent(int ordinal) {
         return points.get(ordinal);
     }
