@@ -1,6 +1,5 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.move;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -67,12 +66,8 @@ class MovablePoints3WayTest {
             |-----|     |
          */
         final int maxPointCount = 3;
-        List<MovablePoints> lines = Arrays.asList(
-            MovablePoints.of(()-> true, maxPointCount),
-            MovablePoints.ofCustomLink(maxPointCount, 1),
-            MovablePoints.of(()-> true, maxPointCount)
-        ) ;
-        List<Integer> result = MovableLines.getLineByPointIndexPathResult(lines, 0);
+        List<MovablePoints> lines = MovableLineTestData.pointsType01(maxPointCount);
+        List<Integer> result = MovableLine.getLineByPointIndexPathResult(lines, 0);
         assertThat(result).containsExactly(1,2,2);
     }
 
@@ -86,12 +81,8 @@ class MovablePoints3WayTest {
             |-----|     |
          */
         final int maxPointCount = 3;
-        List<MovablePoints> lines = Arrays.asList(
-            MovablePoints.of(()-> true, maxPointCount),
-            MovablePoints.ofCustomLink(maxPointCount, 1),
-            MovablePoints.of(()-> true, maxPointCount)
-        ) ;
-        List<Integer> result = MovableLines.getLineByPointIndexPathResult(lines, 1);
+        List<MovablePoints> lines = MovableLineTestData.pointsType01(maxPointCount);
+        List<Integer> result = MovableLine.getLineByPointIndexPathResult(lines, 1);
         assertThat(result).containsExactly(0,0,1);
     }
 
@@ -105,12 +96,8 @@ class MovablePoints3WayTest {
             |-----|     |
          */
         final int maxPointCount = 3;
-        List<MovablePoints> lines = Arrays.asList(
-            MovablePoints.of(()-> true, maxPointCount),
-            MovablePoints.ofCustomLink(maxPointCount, 1),
-            MovablePoints.of(()-> true, maxPointCount)
-        ) ;
-        List<Integer> result = MovableLines.getLineByPointIndexPathResult(lines, 2);
+        List<MovablePoints> lines = MovableLineTestData.pointsType01(maxPointCount);
+        List<Integer> result = MovableLine.getLineByPointIndexPathResult(lines, 2);
         assertThat(result).containsExactly(2, 1, 0);
     }
 

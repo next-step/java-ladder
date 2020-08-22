@@ -1,24 +1,30 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.move;
 
 import java.util.Objects;
 
 class Point implements Comparable<Point> {
-    private Point nextPoint;
     private final int index;
+    private Point nextPoint;
 
     Point(int index) {
         this.index = index;
         nextPoint = empty();
     }
 
-    private static final Point empty = new Point(-1);
+    Point(int index, Point nextPoint) {
+        this.nextPoint = nextPoint;
+        this.index = index;
+    }
+
+    public static final int EMPTY_INDEX = -1;
+    private static final Point empty = new Point(EMPTY_INDEX, null);
 
     static Point empty() {
         return empty;
     }
 
     void link(Point otherPoint) {
-        if (isEmptyNextPoint() && isNotEquals(otherPoint)) {
+        if (isNotLinkNextPoint() && isNotEquals(otherPoint)) {
             this.nextPoint = otherPoint;
             otherPoint.link(this);
         }
@@ -28,12 +34,16 @@ class Point implements Comparable<Point> {
         return nextPoint;
     }
 
-    boolean isEmptyNextPoint() {
-        return empty.equals(nextPoint);
+    boolean isNullNextPoint() {
+        return null == nextPoint;
+    }
+
+    boolean isNotLinkNextPoint() {
+        return isNullNextPoint() || empty.equals(nextPoint);
     }
 
     boolean isNotEmpty() {
-        return isNotEquals(empty);
+        return index != EMPTY_INDEX && isNotEquals(empty);
     }
 
     boolean isNotEquals(Point otherPoint){
@@ -45,7 +55,7 @@ class Point implements Comparable<Point> {
     }
 
     public boolean hasLink(){
-        if (isEmptyNextPoint()) {
+        if (isNotLinkNextPoint()) {
             return false;
         }
         return 0 > compareTo(linkingPoint());
@@ -75,8 +85,9 @@ class Point implements Comparable<Point> {
 
     @Override
     public String toString() {
-        return "Point{" +
-            "index=" + index +
+        return index == EMPTY_INDEX ? "Empty{i=-1}"
+            : "Point{" +
+            "i=" + index +
             '}';
     }
 }

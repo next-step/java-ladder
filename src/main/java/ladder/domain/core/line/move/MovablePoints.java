@@ -1,14 +1,13 @@
-package ladder.domain.core.line;
+package ladder.domain.core.line.move;
 
 import java.util.List;
 
 import ladder.domain.core.rule.PointLinkingRule;
-import ladder.ui.result.DisplayResult;
-import ladder.ui.result.MovableLineDisplayResult;
 
 import static java.util.stream.Collectors.toList;
 
-class MovablePoints implements Line {
+class MovablePoints {
+    static final String ERROR_MSG_OUT_OF_RANGE_INDEX = "잘못된 index 입니다.";
     private final List<Point> points;
 
     MovablePoints(List<Point> points) {
@@ -30,16 +29,23 @@ class MovablePoints implements Line {
         return new MovablePoints(points);
     }
 
-    Point getPoint(int index){
-        if (0 > index || points.size() < index){
-            return Point.empty();
-        }
+    Point getPointByIndex(int index){
+        verifyIndex(index);
         return points.get(index);
     }
 
+    private void verifyIndex(int index) {
+        if (0 > index || points.size() < index){
+            throw new IllegalArgumentException(ERROR_MSG_OUT_OF_RANGE_INDEX);
+        }
+    }
+
     int move(int prevIndex){
-        Point linkingPoint = getPoint(prevIndex).linkingPoint();
-        if (linkingPoint.isNotEmpty()) {
+        Point currentPoint = getPointByIndex(prevIndex);
+        Point linkingPoint = currentPoint.linkingPoint();
+// [debug] 사다리 타기 진행시 각 위치 정보 표시
+//        System.out.println(currentPoint + ", " + linkingPoint);
+        if (currentPoint.isNotEmpty() && linkingPoint.isNotEmpty()) {
             return linkingPoint.getIndex();
         }
         return prevIndex;
@@ -49,10 +55,5 @@ class MovablePoints implements Line {
         return points.stream()
                      .map(Point::hasLink)
                      .collect(toList());
-    }
-
-    @Override
-    public DisplayResult toDisplayResult() {
-        return new MovableLineDisplayResult(collectLinkState());
     }
 }
