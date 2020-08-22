@@ -16,6 +16,10 @@ public class Line {
         }
     }
 
+    public int move(int position) {
+        return points[position];
+    }
+
     public void drawsFrom(int position) {
         points[position] = position + 1;
         points[position + 1] = position;
