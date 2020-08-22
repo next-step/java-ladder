@@ -3,12 +3,12 @@ package ladder.domain;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static ladder.domain.LadderMessage.BLANK_NAME_MESSAGE;
+import static ladder.domain.LadderMessage.NAME_LENGTH_MESSAGE;
 
 public class Person implements Printable {
 
     public static final int MAX_NAME_LENGTH = 5;
-    public static final String BLANK_NAME_MESSAGE = "The person name cannot be blank";
-    public static final String NAME_LENGTH_MESSAGE = "The person name can only be %s characters or less";
 
     private final String name;
 

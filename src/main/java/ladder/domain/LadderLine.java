@@ -11,7 +11,7 @@ public class LadderLine implements Printable {
 
     private final Line line;
 
-    public LadderLine(Line line) {
+    private LadderLine(Line line) {
         this.line = line;
     }
 

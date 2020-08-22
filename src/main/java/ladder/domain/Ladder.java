@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static ladder.domain.LadderMessage.LADDER_HEIGHT_MESSAGE;
 
 public class Ladder implements Printable {
-
-    public static final String LADDER_HEIGHT_MESSAGE = "The ladder height must be greater than zero";
 
     private final List<LadderLine> ladderLines = new ArrayList<>();
 

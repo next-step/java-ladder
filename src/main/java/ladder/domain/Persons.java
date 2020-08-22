@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static ladder.domain.LadderMessage.BLANK_TEXT_MESSAGE;
 
 public class Persons implements Iterable<Person>, Printable {
 
     public static final String PERSON_NAME_DELIMITER = ",";
-    public static final String BLANK_TEXT_MESSAGE = "The text cannot be blank";
 
     private final List<Person> persons;
 
-    public Persons(List<Person> persons) {
+    private Persons(List<Person> persons) {
         this.persons = persons;
     }
 

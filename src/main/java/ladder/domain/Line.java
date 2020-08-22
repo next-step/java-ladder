@@ -1,10 +1,9 @@
 package ladder.domain;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static ladder.domain.LadderMessage.LINE_LENGTH_MESSAGE;
 
 public class Line {
-
-    public static final String LINE_LENGTH_MESSAGE = "The line length must be greater than zero";
 
     private final int[] points;
 
