@@ -35,6 +35,14 @@ public class Ladder {
         return Collections.unmodifiableList(rows);
     }
 
+    public int getFinalPosition(int startingPoint) {
+        int finalPosition = startingPoint;
+        for (Row r : rows) {
+            finalPosition = r.getNextPathOrdinal(finalPosition);
+        }
+        return finalPosition;
+    }
+
     private Row pick(int ordinal) {
         return this.rows
                 .get(getPositiveOrdinal(ordinal));

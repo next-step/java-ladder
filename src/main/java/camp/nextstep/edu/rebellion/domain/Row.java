@@ -36,7 +36,11 @@ public class Row {
             return ordinal - 1;
         }
 
-        return ordinal + 1;
+        if (cur.hasNext()) {
+            return ordinal + 1;
+        }
+
+        return ordinal;
     }
 
     private Point getCurrent(int ordinal) {

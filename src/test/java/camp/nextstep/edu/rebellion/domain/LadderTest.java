@@ -1,5 +1,6 @@
 package camp.nextstep.edu.rebellion.domain;
 
+import camp.nextstep.edu.rebellion.view.ResultView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,5 +63,56 @@ class LadderTest {
         Row row = ladder.getRows().get(SECOND_ROW);
         assertThat(row.hasHorizonLine(FIRST_POINT)).isFalse();
         assertThat(row.hasHorizonLine(SECOND_POINT)).isTrue();
+    }
+
+    @DisplayName("사다리 타기 최종 위치가 잘 반환 되는지 확인 (선이 하나도 없을 때)")
+    @Test
+    public void getFinalPositionEmptyLineTest() {
+         /*
+        아래와 같은 사다리가 생성 됨
+        A     B     C
+        |     |     |
+        |     |     |
+        |     |     |
+         */
+        // given
+        int startingA = 0;
+        int startingB = 1;
+        int startingC = 2;
+
+        // when & then
+        assertAll(
+                () -> assertThat(ladder.getFinalPosition(startingA)).isEqualTo(0),
+                () -> assertThat(ladder.getFinalPosition(startingB)).isEqualTo(1),
+                () -> assertThat(ladder.getFinalPosition(startingC)).isEqualTo(2)
+        );
+    }
+
+    @DisplayName("사다리 타기 최종 위치가 잘 반환 되는지 확인 (선이 있을 때)")
+    @Test
+    public void getFinalPositionTest() {
+        // given
+        int startingA = 0;
+        int startingB = 1;
+        int startingC = 2;
+
+        ladder.drawLine(0,0);
+        ladder.drawLine(1,1);
+        ladder.drawLine(2,0);
+        /*
+        아래와 같은 사다리가 생성 됨
+        A     B     C
+        |-----|     |
+        |     |-----|
+        |-----|     |
+        0     1     2
+        */
+
+        // when & then
+        assertAll(
+                () -> assertThat(ladder.getFinalPosition(startingA)).isEqualTo(2),
+                () -> assertThat(ladder.getFinalPosition(startingB)).isEqualTo(1),
+                () -> assertThat(ladder.getFinalPosition(startingC)).isEqualTo(0)
+        );
     }
 }
