@@ -35,4 +35,18 @@ class RowTest {
         // then
         assertThat(row.hasHorizonLine(0)).isTrue();
     }
+
+    @DisplayName("입력한 위치에 line 이 있을 경우 다음 위치를 제대로 가져오는 지 확인")
+    @Test
+    public void nextPathOrdinalTest() {
+        // given
+        int sizeOfPoints = 5;
+        Row row = new Row(5);
+
+        // when
+        row.mark(0);
+
+        // then
+        assertThat(row.getNextPathOrdinal(0)).isEqualTo(1);
+    }
 }
