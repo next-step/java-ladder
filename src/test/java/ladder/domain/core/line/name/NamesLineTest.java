@@ -28,9 +28,9 @@ class NamesLineTest {
     @DisplayName("잘못된 이름이 있는 경우 예외 처리")
     @Test
     void suitableNameCheckTest() {
-        assertThatIllegalArgumentException(() -> ParticipantsLine.of("123"), Participant.ERROR_MESSAGE_SUITABLE_NAME);
-        assertThatIllegalArgumentException(() -> ParticipantsLine.of("a12345"), Participant.ERROR_MESSAGE_SUITABLE_NAME);
-        assertThatIllegalArgumentException(() -> LadderResultLine.of("a12345"), LadderResult.ERROR_MESSAGE_MAX_LEN_NAME);
+        assertThatIllegalArgumentException(() -> ParticipantsLine.of("123"), BaseName.ERROR_MESSAGE_SUITABLE_NAME);
+        assertThatIllegalArgumentException(() -> ParticipantsLine.of("a12345"), BaseName.ERROR_MESSAGE_SUITABLE_NAME);
+        assertThatIllegalArgumentException(() -> LadderResultLine.of("a12345"), BaseName.ERROR_MESSAGE_MAX_LEN_NAME);
     }
 
     @DisplayName("참가자들는 쉼표를 기준으로 구분함")
