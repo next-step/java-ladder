@@ -1,25 +1,18 @@
 package ladder.domain.core.line.name;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 import ladder.domain.core.line.Line;
 import ladder.ui.result.DisplayResult;
 import ladder.ui.result.NamesDisplayResult;
 
-import static java.util.stream.Collectors.toList;
-import static ladder.domain.core.line.name.Name.verifyBlankName;
-import static ladder.domain.core.line.name.LadderResultLine.LadderResulNames.ladderResulNames;
-
 public class LadderResultLine implements Line {
-    private final LadderResulNames names;
+    private final Names names;
 
-    LadderResultLine(LadderResulNames names) {
+    LadderResultLine(Names names) {
         this.names = names;
     }
 
     public static LadderResultLine of(String ladderResults) {
-        return new LadderResultLine(ladderResulNames(ladderResults));
+        return new LadderResultLine(Names.ofLadderResults(ladderResults));
     }
 
     @Override
@@ -37,21 +30,4 @@ public class LadderResultLine implements Line {
         return new NamesDisplayResult(names);
     }
 
-    static class LadderResulNames extends Names<LadderResult> {
-        private static final String SEPARATOR = ",";
-
-        LadderResulNames(List<LadderResult> names) {
-            super(names);
-        }
-
-        static LadderResulNames ladderResulNames(String ladderResults) {
-            verifyBlankName(ladderResults);
-
-            List<LadderResult> ladderResultList = Stream.of(ladderResults.split(SEPARATOR))
-                                                      .map(LadderResult::new)
-                                                      .collect(toList())
-                ;
-            return new LadderResulNames(ladderResultList);
-        }
-    }
 }

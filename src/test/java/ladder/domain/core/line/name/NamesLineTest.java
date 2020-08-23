@@ -36,7 +36,7 @@ class NamesLineTest {
     @DisplayName("참가자들는 쉼표를 기준으로 구분함")
     @Test
     void participantsTest() {
-        assertThat(ParticipantsLine.of("pobi,honux,crong,jk").getNumberOfParticipants()).isEqualTo(4);
+        assertThat(ParticipantsLine.of("pobi,honux,crong,jk").getWidth()).isEqualTo(4);
     }
 
     @DisplayName("index 혹은 이름 기준으로 값 확인")
