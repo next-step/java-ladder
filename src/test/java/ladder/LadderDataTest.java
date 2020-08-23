@@ -38,6 +38,14 @@ public class LadderDataTest {
     }
 
     @Test
+    public void inputLongNames() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            LadderData ladderData = new LadderData(when("abcdef,abcde,12345", 5));
+            ladderData.inputNames();
+        });
+    }
+
+    @Test
     public void inputMoreThanOneName() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             LadderData ladderData = new LadderData(when("pobi", 5));
