@@ -6,7 +6,7 @@ import org.assertj.core.util.Sets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.core.line.name.BaseName.ERROR_MESSAGE_REQUIRED_NAME;
+import static ladder.domain.core.line.name.Name.ERROR_MESSAGE_REQUIRED_NAME;
 import static ladder.domain.core.line.name.Participant.ERROR_MESSAGE_SUITABLE_NAME;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -43,15 +43,15 @@ class ParticipantTest {
     @DisplayName("이름 비교 테스트")
     @Test
     void nameTest() {
-        BaseName n1 = new Participant("a");
-        BaseName n2 = new Participant("b");
+        Name n1 = new Participant("a");
+        Name n2 = new Participant("b");
         assertThat(n1.equals(n2)).isFalse();
     }
 
     @DisplayName("이름 중복 확인")
     @Test
     void name() {
-        Set<BaseName> s = Sets.newLinkedHashSet(new Participant("a"), new Participant("b"), new Participant("b"));
+        Set<Name> s = Sets.newLinkedHashSet(new Participant("a"), new Participant("b"), new Participant("b"));
         assertThat(s.size()).isEqualTo(2);
     }
 }

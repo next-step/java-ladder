@@ -3,7 +3,7 @@ package ladder.domain.core.line.name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static ladder.domain.core.line.name.BaseName.ERROR_MESSAGE_REQUIRED_NAME;
+import static ladder.domain.core.line.name.Name.ERROR_MESSAGE_REQUIRED_NAME;
 import static ladder.domain.core.line.name.LadderResult.ERROR_MESSAGE_MAX_LEN_NAME;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

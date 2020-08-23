@@ -2,7 +2,7 @@ package ladder.domain.core.line.name;
 
 import java.util.Objects;
 
-final class Participant extends BaseName {
+final class Participant extends Name {
     Participant(String name) {
         super(name);
         verifySuitableName(name);

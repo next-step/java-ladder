@@ -4,13 +4,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ladder.domain.core.line.name.BaseName;
+import ladder.domain.core.line.name.Name;
 import ladder.domain.core.line.name.Names;
 
 public class NamesDisplayResult implements DisplayResult{
     private final List<String> names;
 
-    public NamesDisplayResult(Names<? extends BaseName> name) {
+    public NamesDisplayResult(Names<? extends Name> name) {
         this.names = Collections.unmodifiableList(name.getPrimitiveNames());
     }
 

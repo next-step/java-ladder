@@ -8,7 +8,7 @@ import ladder.ui.result.DisplayResult;
 import ladder.ui.result.NamesDisplayResult;
 
 import static java.util.stream.Collectors.toList;
-import static ladder.domain.core.line.name.BaseName.verifyBlankName;
+import static ladder.domain.core.line.name.Name.verifyBlankName;
 import static ladder.domain.core.line.name.ParticipantsLine.ParticipantNames.participantNames;
 
 public class ParticipantsLine implements Line {
@@ -43,7 +43,7 @@ public class ParticipantsLine implements Line {
     }
 
     @Override
-    public Names<? extends BaseName> getNames() {
+    public Names<? extends Name> getNames() {
         return names;
     }
 
