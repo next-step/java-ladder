@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import ladder.domain.core.line.Line;
+
 public abstract class StatefulOperation<T, V> {
     private final List<T> targets;
     private final List<V> states;
