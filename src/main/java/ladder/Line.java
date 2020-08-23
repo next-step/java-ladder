@@ -18,8 +18,15 @@ public class Line {
 
     public void makeRow() {
         for (int i = 1; i < personCount; i++) {
-            points.add(LineType.of(RANDOM_INSTANCE.nextBoolean()));
+            points.add(nextPoint(points.get(i - 1)));
         }
+    }
+
+    private LineType nextPoint(LineType lineType) {
+        if (lineType == LineType.TRUE) {
+            return LineType.FALSE;
+        }
+        return LineType.of(RANDOM_INSTANCE.nextBoolean());
     }
 
     public void printRow() {
