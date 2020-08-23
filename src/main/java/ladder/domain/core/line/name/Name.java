@@ -14,10 +14,14 @@ final class Name {
 
     @SafeVarargs
     Name(String name, Consumer<String>... consumers) {
-        Stream.of(consumers).forEach(c -> c.accept(name));
-//        verifyBlankName(name);
+//        AS-IS
 //        verifySuitableName(name);
 //        verifyMaxLength(name);
+//        verifyBlankName(name);
+//
+//        TO-BE
+        Stream.of(consumers)
+              .forEach(c -> c.accept(name));
         this.name = name;
     }
 
