@@ -1,4 +1,4 @@
-package camp.nextstep.edu.rebellion.domain;
+package camp.nextstep.edu.rebellion.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.Collections;

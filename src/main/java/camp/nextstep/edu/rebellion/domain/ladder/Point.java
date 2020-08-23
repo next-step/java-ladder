@@ -1,4 +1,4 @@
-package camp.nextstep.edu.rebellion.domain;
+package camp.nextstep.edu.rebellion.domain.ladder;
 
 public class Point {
     private boolean prev;

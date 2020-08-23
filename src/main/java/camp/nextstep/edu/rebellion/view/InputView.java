@@ -12,6 +12,11 @@ public class InputView {
         return getLine();
     }
 
+    public static String getRewards() {
+        System.out.println("당첨 결과를 입력해 주세요 (쉼표로 구분) ");
+        return getLine();
+    }
+
     public static int getRows() {
         System.out.println("최대 사다리 높이를 입력해 주세요 ");
         return getInt();

@@ -1,11 +1,11 @@
 package camp.nextstep.edu.rebellion.domain;
 
+import camp.nextstep.edu.rebellion.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayersTest {
     @DisplayName("입력 값을 바탕으로 참가자가 잘 생성 되는지 확인")

@@ -1,11 +1,11 @@
 package camp.nextstep.edu.rebellion.domain;
 
+import camp.nextstep.edu.rebellion.domain.ladder.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RowTest {
     @DisplayName("입력한 Point 의 개수를 가진 Row 가 생성 되는지 확인")

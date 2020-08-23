@@ -1,6 +1,7 @@
 package camp.nextstep.edu.rebellion.domain;
 
-import camp.nextstep.edu.rebellion.view.ResultView;
+import camp.nextstep.edu.rebellion.domain.ladder.Ladder;
+import camp.nextstep.edu.rebellion.domain.ladder.Row;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
