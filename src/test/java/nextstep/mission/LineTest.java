@@ -25,6 +25,11 @@ public class LineTest {
         List<Boolean> points = Line.createPoints(4);
 
         assertThat(points).hasSize(4);
-        assertThat(points.get(3)).isFalse();
+        assertThat(points.get(0)).isFalse();
+    }
+
+    @Test
+    void toText() {
+        assertThat(new Line(Arrays.asList(true, false, true, false)).toText()).isEqualTo("-----|     |-----|     |");
     }
 }

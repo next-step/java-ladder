@@ -1,9 +1,6 @@
 package nextstep.mission;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -43,9 +40,12 @@ public class Line {
     }
 
     public static List<Boolean> createPoints(int size) {
-        List<Boolean> result = IntStream.range(0, size - 1)
+        List<Boolean> result = new ArrayList<>();
+        result.add(false);
+
+        result.addAll(IntStream.range(0, size - 1)
                 .mapToObj((value) -> new Random().nextBoolean())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
 
         IntStream.range(0, result.size() - 1)
                 .forEach(index -> {
@@ -53,7 +53,6 @@ public class Line {
                         result.set(index, false);
                 });
 
-        result.add(false);
 
         return result;
     }
@@ -64,5 +63,12 @@ public class Line {
                     if (points.get(index) == true && points.get(index + 1) == true)
                         throw new IllegalArgumentException("선은 겹칠수 없습니다.");
                 });
+    }
+
+    public String toText() {
+        return points.stream()
+                .limit(points.size())
+                .map(value -> value ? "-----" : "     ")
+                .collect(Collectors.joining("|")) + "|";
     }
 }
