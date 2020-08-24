@@ -1,39 +1,20 @@
 package nextstep.ladder;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Horizon {
 
-  private final List<String> points;
-
-  public Horizon(List<String> points) {
-    this.points = points;
-  }
+  private final List<Boolean> points;
 
   public Horizon(int countOfPerson) {
-    points = new ArrayList<>();
-    for (int i = 0; i < countOfPoint(countOfPerson); i++) {
-      points.add(point(i));
-    }
+    points = RandomBooleans.form(countOfPerson);
   }
 
-  private static int countOfPoint(int countOfPerson) {
-    return countOfPerson + (countOfPerson - 1);
+  public String asString() {
+    return points.stream()
+        .map(b -> b ? "---------" : "         ")
+        .collect(Collectors.joining("|", "|", "|"));
   }
 
-  private static String point(int position) {
-    return position % 2 == 0
-        ? "|"
-        : "---------";
-  }
-
-  public List<String> getPoints() {
-    return Collections.unmodifiableList(points);
-  }
-
-  public static Horizon of(List<String> points) {
-    return new Horizon(points);
-  }
 }

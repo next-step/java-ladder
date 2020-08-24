@@ -46,29 +46,4 @@ class LineTest {
     }
   }
 
-  @Test
-  void rectangleWithHorizon() {
-    List<Horizon> square = Arrays.asList(
-        Horizon.of(Arrays.asList("|", "---------", "|")),
-        Horizon.of(Arrays.asList("|", "         ", "|")),
-        Horizon.of(Arrays.asList("|", "         ", "|")),
-        Horizon.of(Arrays.asList("|", "         ", "|")),
-        Horizon.of(Arrays.asList("|", "         ", "|")),
-        Horizon.of(Arrays.asList("|", "---------", "|"))
-    );
-    for (Horizon x : square) {
-      for (String point : x.getPoints()) {
-        System.out.print(point);
-      }
-      System.out.print("\n");
-    }
-  }
-
-  @Test
-  void oneHorizonByCount() {
-    Horizon horizon = new Horizon(3);
-    for (String point : horizon.getPoints()) {
-      System.out.print(point);
-    }
-  }
 }
