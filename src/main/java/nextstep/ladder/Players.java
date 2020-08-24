@@ -1,6 +1,8 @@
 package nextstep.ladder;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
 
@@ -24,10 +26,18 @@ public class Players {
     return ladderHeight;
   }
 
-
-
   public static Players valueOf(List<String> playerNames, int ladderHeight) {
     return new Players(playerNames, ladderHeight);
   }
+
+  public static Players valueOf(String playerNames, int ladderHeight) {
+    return new Players(namesToList(playerNames), ladderHeight);
+  }
+
+  private static List<String> namesToList(String playerNames) {
+    return Arrays.stream(playerNames.split(","))
+        .collect(Collectors.toList());
+  }
+
 
 }

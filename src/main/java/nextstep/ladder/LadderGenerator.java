@@ -12,4 +12,12 @@ public class LadderGenerator {
     }
     return ladder;
   }
+
+  public static Ladder generateLadder(Players players) {
+    List<Horizon> ladder = new ArrayList<>();
+    for (int i = 0; i < players.getLadderHeight(); i++) {
+      ladder.add(new Horizon(players.countOfPerson()));
+    }
+    return new Ladder(ladder);
+  }
 }

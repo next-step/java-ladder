@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class ViewInput {
 
@@ -17,15 +14,10 @@ public class ViewInput {
   }
 
   public Players ready() {
-    List<String> playerNames = namesToList();
+    String playerNames = playerNames();
     int ladderHeight = ladderHeight();
 
     return Players.valueOf(playerNames, ladderHeight);
-  }
-
-  private List<String> namesToList() {
-    return Arrays.stream(playerNames().split(","))
-        .collect(Collectors.toList());
   }
 
   private String playerNames() {

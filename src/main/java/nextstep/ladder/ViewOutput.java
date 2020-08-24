@@ -5,6 +5,19 @@ import java.util.stream.Collectors;
 
 public class ViewOutput {
 
+  public static void render(Players players, Ladder ladder) {
+    System.out.println("\n사다리 결과");
+    printPlayers(players);
+    printLadder(ladder);
+  }
+
+  static void printLadder(Ladder ladder) {
+    ladder.getHorizons().stream()
+        .forEach(horizon -> System.out.printf("%4s%s%n","", horizon));
+  }
+
+
+  ///--- Use List
   public static void render(Players players, List<Horizon> ladder) {
     System.out.println("\n사다리 결과");
     printPlayers(players);
@@ -13,7 +26,7 @@ public class ViewOutput {
 
   static void printPlayers(Players players) {
     System.out.println(players.getPlayerNames().stream()
-        .map(name -> center(name))
+        .map(ViewOutput::center)
         .collect(Collectors.joining("", "\n", "")));
   }
 
