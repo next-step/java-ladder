@@ -5,16 +5,24 @@ import java.util.stream.Collectors;
 
 public class Horizon {
 
+  private static final String AIR = "         ";
+  private static final String BRIDGE = "---------";
+  private static final String PIER = "|";
+
   private final List<Boolean> points;
 
   public Horizon(int countOfPerson) {
-    points = RandomBooleans.form(countOfPerson);
+    points = HorizonGenerator.form(countOfPerson);
   }
 
   public String asString() {
     return points.stream()
-        .map(b -> b ? "---------" : "         ")
-        .collect(Collectors.joining("|", "|", "|"));
+        .map(this::render)
+        .collect(Collectors.joining(PIER, PIER, PIER));
+  }
+
+  public String render(boolean hasBridge) {
+    return hasBridge ? BRIDGE : AIR;
   }
 
 }

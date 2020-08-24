@@ -13,8 +13,17 @@ public class LadderGeneratorTest {
   }
 
   @Test
-  void render() {
+  void renderFor4Person() {
     List<Horizon> ladder = LadderGenerator.generate(4);
+
+    for (Horizon horizon : ladder) {
+      System.out.println(horizon.asString());
+    }
+  }
+
+  @Test
+  void renderFor10Person() {
+    List<Horizon> ladder = LadderGenerator.generate(10);
 
     for (Horizon horizon : ladder) {
       System.out.println(horizon.asString());
