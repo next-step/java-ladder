@@ -1,4 +1,4 @@
-package camp.nextstep.edu.rebellion.domain;
+package camp.nextstep.edu.rebellion.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,9 +35,21 @@ public class Ladder {
         return Collections.unmodifiableList(rows);
     }
 
+    public int getFinalPosition(int startingPoint) {
+        int finalPosition = startingPoint;
+        for (Row r : rows) {
+            finalPosition = r.getNextPathOrdinal(finalPosition);
+        }
+        return finalPosition;
+    }
+
     private Row pick(int ordinal) {
         return this.rows
-                .get(Math.max(ordinal, INIT_INDEX));
+                .get(getPositiveOrdinal(ordinal));
+    }
+
+    private int getPositiveOrdinal(int ordinal) {
+        return ordinal < 0 ? INIT_INDEX : ordinal;
     }
 
     private List<Row> generateRows(int sizeOfRows, int sizeOfPoints) {

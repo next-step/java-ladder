@@ -5,8 +5,15 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    private InputView() {}
+
     public static String getPlayers() {
         System.out.println("참여할 사람 이름을 입력해주세요 (쉽표로 구분) ");
+        return getLine();
+    }
+
+    public static String getRewards() {
+        System.out.println("당첨 결과를 입력해 주세요 (쉼표로 구분) ");
         return getLine();
     }
 
@@ -15,7 +22,10 @@ public class InputView {
         return getInt();
     }
 
-    private InputView() {}
+    public static String getPlayerOrCommandForResult() {
+        System.out.println("결과를 보고싶은 참여자를 입력해 주세요 (전체보기 : all) ");
+        return getLine();
+    }
 
     private static int getInt() {
         if (SCANNER.hasNextInt()) {

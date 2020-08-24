@@ -1,4 +1,4 @@
-package camp.nextstep.edu.rebellion.domain;
+package camp.nextstep.edu.rebellion.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,19 @@ public class Row {
         Point cur = getCurrent(ordinal);
         Point next = getNext(ordinal);
         return cur.hasNext() && next.hasPrev();
+    }
+
+    public int getNextPathOrdinal(int ordinal) {
+        Point cur = getCurrent(ordinal);
+        if (cur.hasPrev()) {
+            return ordinal - 1;
+        }
+
+        if (cur.hasNext()) {
+            return ordinal + 1;
+        }
+
+        return ordinal;
     }
 
     private Point getCurrent(int ordinal) {

@@ -10,8 +10,8 @@ public class StringUtil {
 
     private StringUtil(){}
 
-    public static boolean isEmpty(String str) {
-        return null == str || EMPTY.equals(str);
+    public static List<String> convertList(String str) {
+        return convertList(str, DEFAULT_SPLIT_DELIMITER);
     }
 
     public static List<String> convertList(String str, String delimiter) {
@@ -21,7 +21,7 @@ public class StringUtil {
         return Arrays.asList(str.trim().split(delimiter));
     }
 
-    public static List<String> convertList(String str) {
-        return convertList(str, DEFAULT_SPLIT_DELIMITER);
+    public static boolean isEmpty(String str) {
+        return null == str || EMPTY.equals(str);
     }
 }

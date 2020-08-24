@@ -1,10 +1,10 @@
 package camp.nextstep.edu.rebellion.domain;
 
+import camp.nextstep.edu.rebellion.domain.ladder.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
     @DisplayName("최초 생성 시 mark 할 수 있는지 여부 확인")
