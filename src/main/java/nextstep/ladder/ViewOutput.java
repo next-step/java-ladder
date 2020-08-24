@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class ViewOutput {
 
   public static void render(Players players, List<Horizon> ladder) {
+    System.out.println("\n사다리 결과");
     printPlayers(players);
     printLadder(ladder);
   }
