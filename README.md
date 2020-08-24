@@ -7,3 +7,19 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## STEP01 
+### TODO
+
+**람다**
+ - 익명 클래스를 람다로 전환한다.
+ - 람다를 활용해 중복을 제거한다.
+
+**스트림**
+ - map, reduce, filter등 다양한 stream method를 실습해본다.
+
+**Optional**
+ - Optional을 활용해 조건에 따라 반환하는 로직을 실습해본다.
+ - Optional에서 값을 반환하는 로직을 실습해본다.
+ - Optional에서 Exception 처리하는 로직을 실습해본다.
+
