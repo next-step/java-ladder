@@ -12,12 +12,26 @@ public class ViewOutput {
 
   static void printPlayers(Players players) {
     System.out.println(players.getPlayerNames().stream()
-        .collect(Collectors.joining(" ")));
+        .map(name -> center(name))
+        .collect(Collectors.joining("")));
   }
 
   static void printLadder(List<Horizon> ladder) {
     for (Horizon horizon : ladder) {
-      System.out.println(horizon.asString());
+      System.out.println(String.format("%4s%s","", horizon.asString()));
     }
+  }
+
+  static String center(String text) {
+    int emptyCount = 9 - text.length();
+
+    int lpad = emptyCount / 2;
+    int rpad = emptyCount - lpad;
+
+    return String.format("%s%s%s", padding(lpad), text, padding(rpad));
+  }
+
+  private static String padding(int length) {
+    return String.format("%" + length + "s", "");
   }
 }

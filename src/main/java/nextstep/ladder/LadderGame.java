@@ -14,6 +14,6 @@ public class LadderGame {
 
     List<Horizon> ladder = LadderGenerator.generate(players);
     ViewOutput.render(players, ladder);
-
+//[   pcs     papa     make     some     noise  ]
   }
 }
