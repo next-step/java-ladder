@@ -13,7 +13,7 @@ public class ViewOutput {
   static void printPlayers(Players players) {
     System.out.println(players.getPlayerNames().stream()
         .map(name -> center(name))
-        .collect(Collectors.joining("")));
+        .collect(Collectors.joining("", "\n", "")));
   }
 
   static void printLadder(List<Horizon> ladder) {
