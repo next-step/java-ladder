@@ -20,6 +20,6 @@
 
 **Optional**
  - [x] Optional을 활용해 조건에 따라 반환하는 로직을 실습해본다.
- - [ ] Optional에서 값을 반환하는 로직을 실습해본다.
+ - [x] Optional에서 값을 반환하는 로직을 실습해본다.
  - [ ] Optional에서 Exception 처리하는 로직을 실습해본다.
 
