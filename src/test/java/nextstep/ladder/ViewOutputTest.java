@@ -3,7 +3,6 @@ package nextstep.ladder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ViewOutputTest {
@@ -17,7 +16,7 @@ class ViewOutputTest {
   @Test
   void printLadder() {
     Players players = Players.valueOf(Arrays.asList("make", "some"), 1);
-    List<Horizon> ladder = LadderGenerator.generate(players);
+    Ladder ladder = LadderGenerator.generate(players);
     ViewOutput.printLadder(ladder);
   }
 
@@ -28,4 +27,3 @@ class ViewOutputTest {
   }
 
 }
-

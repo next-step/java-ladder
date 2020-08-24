@@ -11,34 +11,19 @@ public class ViewOutput {
     printLadder(ladder);
   }
 
-  static void printLadder(Ladder ladder) {
-    ladder.getHorizons().stream()
-        .forEach(horizon -> System.out.printf("%4s%s%n","", horizon));
-  }
-
-
-  ///--- Use List
-  public static void render(Players players, List<Horizon> ladder) {
-    System.out.println("\n사다리 결과");
-    printPlayers(players);
-    printLadder(ladder);
-  }
-
   static void printPlayers(Players players) {
     System.out.println(players.getPlayerNames().stream()
         .map(ViewOutput::center)
         .collect(Collectors.joining("", "\n", "")));
   }
 
-  static void printLadder(List<Horizon> ladder) {
-    for (Horizon horizon : ladder) {
-      System.out.println(String.format("%4s%s","", horizon));
-    }
+  static void printLadder(Ladder ladder) {
+    ladder.getHorizons().stream()
+        .forEach(horizon -> System.out.printf("%4s%s%n","", horizon));
   }
 
   static String center(String text) {
     int emptyCount = 9 - text.length();
-
     int lpad = emptyCount / 2;
     int rpad = emptyCount - lpad;
 

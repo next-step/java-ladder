@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class LadderGame {
@@ -11,10 +10,7 @@ public class LadderGame {
     ViewInput viewInput = new ViewInput(scanner);
     Players players = viewInput.ready();
 
-//    List<Horizon> ladder = LadderGenerator.generate(players);
-//    ViewOutput.render(players, ladder);
-
-    Ladder ladder1 = LadderGenerator.generateLadder(players);
-    ViewOutput.render(players, ladder1);
+    Ladder ladder = LadderGenerator.generate(players);
+    ViewOutput.render(players, ladder);
   }
 }

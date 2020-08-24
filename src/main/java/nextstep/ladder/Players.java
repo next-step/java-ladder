@@ -39,5 +39,4 @@ public class Players {
         .collect(Collectors.toList());
   }
 
-
 }
