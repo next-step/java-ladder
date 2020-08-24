@@ -24,4 +24,17 @@
  - [x] Optional에서 Exception 처리하는 로직을 실습해본다.
  
  - [x] ComputerStore의 getVersionOptional 로직 완성. (여러 단계의 객체탐색을 if중첩문 -> Optional 체이닝으로 구현)
-
+ 
+ - **step01 pr :** https://github.com/next-step/java-ladder/pull/555
+ ## STEP02
+ ### TODO
+ - [ ] 참여할 사람 이름을 입력 받는다.(이름은 쉼표(,)로 구분)
+ - [ ] 사람의 이름은 최대 5글자 까지 입력받을 수 있다.
+ - [ ] 사다리의 폭은 사람 이름의 최대(5자) 기준 이다.
+ - [ ] 사다리의 라인이 겹치지 않도록 해야 한다. (ex - |-----|-----| 모양과 같으면 어느 방향으로 이동할지 알 수 없음.)
+ - [ ] 최대 사다리 높이를 입력받는다.
+ - [ ] 사람 이름과 사다리를 출력한다.
+ 
+ ### Programing needs
+  - JAVA8의 스트림과 람다를 적용해 프로그래밍 하기.
+  - Entity를 가능한 작게 유지한다.
