@@ -34,7 +34,9 @@ public class HorizonGeneratorTest {
 
   @Test
   void createBooleansBy2People() {
-    assertThat(HorizonGenerator.form(2)).isEqualTo(Arrays.asList(true));
+    assertThat(HorizonGenerator.form(2))
+        .isIn(Arrays.asList(true),
+            Arrays.asList(false));
   }
 
   @Test

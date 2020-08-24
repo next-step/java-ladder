@@ -45,7 +45,7 @@ public class HorizonGenerator {
 
   static void leastOneIsTrue(List<Boolean> bridges) {
     if (bridges.stream().noneMatch(b -> b)) {
-      int index = random.ints(0, bridges.size() + 1)
+      int index = random.ints(0, bridges.size())
           .findFirst().getAsInt();
       bridges.set(index, true);
     }
