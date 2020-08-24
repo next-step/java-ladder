@@ -19,7 +19,7 @@ public class LadderGeneratorTest {
     List<Horizon> ladder = LadderGenerator.generate(Players.valueOf(Arrays.asList("make", "some", "noise"), 4));
 
     for (Horizon horizon : ladder) {
-      System.out.println(horizon.asString());
+      System.out.println(horizon);
     }
   }
 
@@ -28,7 +28,7 @@ public class LadderGeneratorTest {
     List<Horizon> ladder = LadderGenerator.generate(Players.valueOf(Arrays.asList("player1", "player2", "player3", "player4", "player5"), 4));
 
     for (Horizon horizon : ladder) {
-      System.out.println(horizon.asString());
+      System.out.println(horizon);
     }
   }
 }

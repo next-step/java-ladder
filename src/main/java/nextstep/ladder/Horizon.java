@@ -15,14 +15,14 @@ public class Horizon {
     points = HorizonGenerator.form(countOfPerson);
   }
 
-  public String asString() {
-    return points.stream()
-        .map(this::render)
-        .collect(Collectors.joining(PIER, PIER, PIER));
-  }
-
   public String render(boolean hasBridge) {
     return hasBridge ? BRIDGE : AIR;
   }
 
+  @Override
+  public String toString() {
+    return points.stream()
+        .map(this::render)
+        .collect(Collectors.joining(PIER, PIER, PIER));
+  }
 }

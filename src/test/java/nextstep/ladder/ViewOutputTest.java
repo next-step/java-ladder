@@ -25,7 +25,6 @@ class ViewOutputTest {
   void printCenter() {
     assertThat(ViewOutput.center("abc")).isEqualTo("   abc   ");
     assertThat(ViewOutput.center("abcd")).isEqualTo("  abcd   ");
-
   }
 
 }

@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class LadderGame {
 
-
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
@@ -14,6 +13,5 @@ public class LadderGame {
 
     List<Horizon> ladder = LadderGenerator.generate(players);
     ViewOutput.render(players, ladder);
-//[   pcs     papa     make     some     noise  ]
   }
 }

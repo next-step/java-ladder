@@ -18,7 +18,7 @@ public class ViewOutput {
 
   static void printLadder(List<Horizon> ladder) {
     for (Horizon horizon : ladder) {
-      System.out.println(String.format("%4s%s","", horizon.asString()));
+      System.out.println(String.format("%4s%s","", horizon));
     }
   }
 

@@ -11,7 +11,7 @@ public class HorizonTest {
   void createHorizon() {
     Horizon horizon = new Horizon(3);
 
-    assertThat(horizon.asString())
+    assertThat(horizon.toString())
         .isIn(Arrays.asList("|--------|        |", "|        |--------|"));
   }
 }
