@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.domain.element.Persons;
+import ladder.domain.line.DrawStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,5 +34,22 @@ public class LadderTest {
         assertThat(ladder.print()).isEqualTo(
                 String.join(System.lineSeparator(), lines)
         );
+    }
+
+    /**
+     * 사다리 결과 테스트
+     * |-----|
+     * |-----|
+     */
+    @Test
+    @DisplayName("결과 테스트")
+    void testLineDown() {
+        // given
+        Persons persons = Persons.fromText("pobi,honux");
+        // when
+        Ladder ladder = new Ladder(persons, 2, testStrategy);
+        // then
+        assertThat(ladder.lineDown(persons.get("pobi"))).isEqualTo(0);
+        assertThat(ladder.lineDown(persons.get("honux"))).isEqualTo(1);
     }
 }
