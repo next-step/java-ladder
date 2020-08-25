@@ -28,21 +28,10 @@ public class Lambda {
         }).start();
     }
 
-    public static int sumAll(List<Integer> numbers) {
-        return sumWithCondition(numbers, number -> true);
-    }
-
-    public static int sumAllEven(List<Integer> numbers) {
-        return sumWithCondition(numbers, number -> number % 2 == 0);
-    }
-
-    public static int sumAllOverThree(List<Integer> numbers) {
-        return sumWithCondition(numbers, number -> number > 3);
-    }
-
-    private static int sumWithCondition(List<Integer> numbers, Conditional condition) {
+    public static int sumAll(List<Integer> numbers, Conditional condition) {
         return numbers.stream()
                 .filter(condition::test)
                 .reduce(0, Integer::sum);
     }
+
 }
