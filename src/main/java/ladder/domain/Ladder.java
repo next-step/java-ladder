@@ -23,8 +23,8 @@ public class Ladder implements DisplayResult {
     }
 
     String ride(String participant){
-         return ladderStatefulOperation.prepar(participant)
-                                       .result(Line::getResult);
+        return ladderStatefulOperation.prepar(participant)
+                                      .result(Line::getResult);
     }
 
     public Ladder ridingLoop(Supplier<String> participantSupplier, Consumer<String> displayRidingResult){

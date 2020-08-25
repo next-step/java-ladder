@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import ladder.domain.core.line.Line;
-
 public abstract class StatefulOperation<T, V> {
     private final List<T> targets;
     private final List<V> states;
@@ -25,7 +23,7 @@ public abstract class StatefulOperation<T, V> {
         return Collections.unmodifiableList(targets);
     }
 
-    protected T getCurrentTargetElement() {
+    protected T currentTargetElement() {
         return targets.get(stateSize());
     }
 
@@ -34,11 +32,11 @@ public abstract class StatefulOperation<T, V> {
     }
 
     protected void addState(Function<T, V> stateFunction) {
-        this.states.add(stateFunction.apply(getCurrentTargetElement()));
+        this.states.add(stateFunction.apply(currentTargetElement()));
     }
 
     protected void addState(BiFunction<T, V, V> stateFunction) {
-        this.states.add(stateFunction.apply(getCurrentTargetElement(), prevState()));
+        this.states.add(stateFunction.apply(currentTargetElement(), prevState()));
     }
 
     public List<V> states() {

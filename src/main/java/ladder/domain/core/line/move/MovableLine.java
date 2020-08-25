@@ -38,7 +38,7 @@ public class MovableLine implements Line {
         }
     }
 
-    static List<Integer> getLineByPointIndexPathResult(List<MovablePoints> lines, final int startIndex) {
+    static List<Integer> findByMovingPointToStartIndex(List<MovablePoints> lines, final int startIndex) {
         final MovingStatefulOperation<MovablePoints, Integer> movingStatefulOperation = new MovingStatefulOperation<>(lines);
         return movingStatefulOperation.first((e) -> e.move(startIndex))
                                       .otherwise(MovablePoints::move)
@@ -56,7 +56,7 @@ public class MovableLine implements Line {
 
     @Override
     public int indexOf(int index) {
-        List<Integer> lineByPointIndexPathResult = getLineByPointIndexPathResult(lines, index);
+        List<Integer> lineByPointIndexPathResult = findByMovingPointToStartIndex(lines, index);
         int lastIndex = lineByPointIndexPathResult.size() - 1;
         return lineByPointIndexPathResult
             .stream()

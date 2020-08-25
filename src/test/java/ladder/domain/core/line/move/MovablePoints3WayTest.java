@@ -67,7 +67,7 @@ class MovablePoints3WayTest {
          */
         final int maxPointCount = 3;
         List<MovablePoints> lines = MovableLineTestData.pointsType01(maxPointCount);
-        List<Integer> result = MovableLine.getLineByPointIndexPathResult(lines, 0);
+        List<Integer> result = MovableLine.findByMovingPointToStartIndex(lines, 0);
         assertThat(result).containsExactly(1,2,2);
     }
 
@@ -82,7 +82,7 @@ class MovablePoints3WayTest {
          */
         final int maxPointCount = 3;
         List<MovablePoints> lines = MovableLineTestData.pointsType01(maxPointCount);
-        List<Integer> result = MovableLine.getLineByPointIndexPathResult(lines, 1);
+        List<Integer> result = MovableLine.findByMovingPointToStartIndex(lines, 1);
         assertThat(result).containsExactly(0,0,1);
     }
 
@@ -97,7 +97,7 @@ class MovablePoints3WayTest {
          */
         final int maxPointCount = 3;
         List<MovablePoints> lines = MovableLineTestData.pointsType01(maxPointCount);
-        List<Integer> result = MovableLine.getLineByPointIndexPathResult(lines, 2);
+        List<Integer> result = MovableLine.findByMovingPointToStartIndex(lines, 2);
         assertThat(result).containsExactly(2, 1, 0);
     }
 

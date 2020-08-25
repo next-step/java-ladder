@@ -22,7 +22,7 @@ class LadderStatefulOperation extends StatefulOperation<Line, Integer> {
     }
 
     <T> T result(BiFunction<Line, Integer, T> f) {
-        return f.apply(getCurrentTargetElement(), prevState());
+        return f.apply(currentTargetElement(), prevState());
     }
 
     List<String> participants(){
