@@ -19,7 +19,7 @@ public class Ladder {
         int nameLength = ladderData.getNames().length();
 
         for (int i = 0; i < ladderData.getHeight(); i++) {
-            Line line = new Line(nameLength);
+            Line line = new Line(nameLength, () -> RandomSingleton.getInstance().nextBoolean());
             lineList.add(line);
         }
     }

@@ -1,5 +1,3 @@
-package ladder;
-
 import ladder.domain.Ladder;
 import ladder.domain.LadderData;
 import ladder.ui.Input;

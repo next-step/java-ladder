@@ -2,17 +2,18 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Line {
 
-    private final Random RANDOM_INSTANCE = new Random();
+    private final NextPointRule nextPointRule;
 
     private final List<LineType> points = new ArrayList<>();
 
-    public Line(int personCount) {
+    public Line(int personCount, NextPointRule nextPointRule) {
+
         points.add(LineType.FALSE);
+        this.nextPointRule = nextPointRule;
 
         for (int i = 1; i < personCount; i++) {
             points.add(nextPoint(points.get(i - 1)));
@@ -23,7 +24,7 @@ public class Line {
         if (lineType == LineType.TRUE) {
             return LineType.FALSE;
         }
-        return LineType.of(RANDOM_INSTANCE.nextBoolean());
+        return LineType.of(nextPointRule.createNextPoint());
     }
 
     public List<String> getLineList() {
