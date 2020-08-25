@@ -52,7 +52,8 @@ public class Ladder implements DisplayResult {
         return ladderStatefulOperation
             .lines()
             .stream()
-            .map(l -> l.toDisplayResult().toDisplay())
+            .map(Line::toDisplayResult)
+            .map(DisplayResult::toDisplay)
             .collect(joining("\n"));
     }
 }
