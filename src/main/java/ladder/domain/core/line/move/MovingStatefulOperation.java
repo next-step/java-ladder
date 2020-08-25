@@ -19,13 +19,17 @@ final class MovingStatefulOperation<T, V> extends StatefulOperation<T, V> {
         }
     }
 
-    MovingStatefulOperation<T, V> first(Function<T, V> stateFunction) {
+    MovingStatefulOperation<T, V> saveIndexAfterMoved(Function<T, V> stateFunction) {
         addState(stateFunction);
         return this;
     }
 
-    MovingStatefulOperation<T, V> otherwise(BiFunction<T, V, V> f) {
+    MovingStatefulOperation<T, V> saveEachIndexAfterMoved(BiFunction<T, V, V> f) {
         each(f);
         return this;
+    }
+
+    List<V> toSavedIndexList(){
+        return states();
     }
 }

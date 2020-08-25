@@ -40,9 +40,9 @@ public class MovableLine implements Line {
 
     static List<Integer> findByMovingPointToStartIndex(List<MovablePoints> lines, final int startIndex) {
         final MovingStatefulOperation<MovablePoints, Integer> movingStatefulOperation = new MovingStatefulOperation<>(lines);
-        return movingStatefulOperation.first((e) -> e.move(startIndex))
-                                      .otherwise(MovablePoints::move)
-                                      .states()
+        return movingStatefulOperation.saveIndexAfterMoved((e) -> e.move(startIndex))
+                                      .saveEachIndexAfterMoved(MovablePoints::move)
+                                      .toSavedIndexList()
             ;
     }
 

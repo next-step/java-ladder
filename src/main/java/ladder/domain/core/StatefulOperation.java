@@ -39,7 +39,7 @@ public abstract class StatefulOperation<T, V> {
         this.states.add(stateFunction.apply(currentTargetElement(), prevState()));
     }
 
-    public List<V> states() {
+    protected List<V> states() {
         return Collections.unmodifiableList(states);
     }
 
