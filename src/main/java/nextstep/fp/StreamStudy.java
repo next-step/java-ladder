@@ -10,16 +10,19 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
+    private static final int NUMBER_TWELVE = 12;
+    private static final int NUMBER_TWO = 2;
+    private static final int NUMBER_ZERO = 0;
+    private static final int NUMBER_THREE = 3;
+
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        long count = 0;
-        for (String w : words) {
-            if (w.length() > 12) count++;
-        }
-        return count;
+        return words.stream()
+                .filter(word -> word.length() > NUMBER_TWELVE)
+                .count();
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -31,14 +34,21 @@ public class StreamStudy {
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream()
+                .map(x -> NUMBER_TWO * x)
+                .collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .reduce(NUMBER_ZERO, (x, y) -> x + y);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(number -> number > NUMBER_THREE)
+                .map(number -> number * NUMBER_TWO )
+                .reduce(NUMBER_ZERO, (x, y) -> x + y);
     }
+    
 }
