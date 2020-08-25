@@ -11,6 +11,10 @@ public class LadderUsers {
         this.users = users;
     }
 
+    public int getUserNumber() {
+        return users.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
