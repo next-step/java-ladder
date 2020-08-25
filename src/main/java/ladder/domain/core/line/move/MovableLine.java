@@ -46,14 +46,6 @@ public class MovableLine implements Line {
             ;
     }
 
-    List<MovablePointsDisplayResult> collectMovablePointsDisplayResultList() {
-        return lines.stream()
-                    .map(MovablePoints::collectLinkState)
-                    .map(MovablePointsDisplayResult::new)
-                    .collect(toList())
-            ;
-    }
-
     @Override
     public int indexOf(int index) {
         List<Integer> lineByPointIndexPathResult = findByMovingPointToStartIndex(lines, index);
@@ -72,6 +64,10 @@ public class MovableLine implements Line {
 
     @Override
     public DisplayResult toDisplayResult() {
-        return new DisplayResults(collectMovablePointsDisplayResultList());
+        final List<MovablePointsDisplayResult> movablePointsDisplayResults = lines.stream()
+                                                        .map(MovablePoints::collectLinkState)
+                                                        .map(MovablePointsDisplayResult::new)
+                                                        .collect(toList());
+        return new DisplayResults(movablePointsDisplayResults);
     }
 }
