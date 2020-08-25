@@ -16,13 +16,9 @@ public class StreamStudy {
         .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
     List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-    long count = 0;
-    for (String w : words) {
-      if (w.length() > 12) {
-        count++;
-      }
-    }
-    return count;
+    return words.stream()
+        .filter(word -> word.length() > 12)
+        .count();
   }
 
   public static void printLongestWordTop100() throws IOException {
@@ -30,7 +26,6 @@ public class StreamStudy {
         .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
     List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-    // TODO 이 부분에 구현한다.
     words.stream()
         .filter(w -> w.length() > 12)
         .sorted(Comparator.comparingInt(String::length).reversed())
