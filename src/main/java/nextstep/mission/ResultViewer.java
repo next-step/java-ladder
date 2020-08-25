@@ -12,8 +12,9 @@ public class ResultViewer {
     public static final void showResult(List<Participant> participants, Ladder ladder) {
         System.out.println(participantsToString(participants));
 
-        while (ladder.hasNext()) {
-            System.out.println(ResultViewer.lineToString(ladder.getLine()));
+        LadderReader ladderReader = new LadderReader(ladder);
+        while (ladderReader.hasNext()) {
+            System.out.println(ResultViewer.lineToString(ladderReader.getLine()));
         }
     }
 

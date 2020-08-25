@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderTest {
+public class LadderReaderTest {
 
     public static final int HEIGHT = 5;
     public static final List<Participant> PARTICIPANTS = Arrays.asList(
@@ -18,33 +18,31 @@ public class LadderTest {
             new Participant("user4")
     );
 
-    private Ladder ladder;
+    private LadderReader ladderReader;
 
     @BeforeEach
     public void init() {
-        ladder = Ladder.make(
-                PARTICIPANTS, HEIGHT
-        );
-    }
-
-    @Test
-    void make() {
-        assertThat(ladder).isEqualTo(Ladder.make(
+        ladderReader = new LadderReader(Ladder.make(
                 PARTICIPANTS, HEIGHT
         ));
     }
 
     @Test
-    void getHeight() {
-        assertThat(HEIGHT).isEqualTo(ladder.getHeight());
+    void hasNext() {
+        int count = 0;
+
+        while (ladderReader.hasNext()) {
+            ladderReader.getLine();
+            count++;
+        }
+
+        assertThat(count).isEqualTo(HEIGHT);
     }
 
     @Test
     void getLine() {
-        assertThat(ladder.getLine(0)).isNotNull();
-        assertThat(ladder.getLine(1)).isNotNull();
-        assertThat(ladder.getLine(2)).isNotNull();
-        assertThat(ladder.getLine(3)).isNotNull();
-        assertThat(ladder.getLine(4)).isNotNull();
+        while (ladderReader.hasNext()) {
+            assertThat(ladderReader.getLine()).isNotNull();
+        }
     }
 }
