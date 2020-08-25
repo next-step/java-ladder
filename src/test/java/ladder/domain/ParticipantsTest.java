@@ -22,9 +22,9 @@ public class ParticipantsTest {
 
     @DisplayName("참가자 생성 - 참가자 1명인 경우, 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"nana", "나나"})
+    @ValueSource(strings = {"", "nana", "나나"})
     void of_name_is_one(String input) {
-        String expectedExceptionMessage = LadderExceptionMessage.PARTICIPANT_NAME_IS_ONE;
+        String expectedExceptionMessage = LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE;
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Participants.of(input))
@@ -33,7 +33,7 @@ public class ParticipantsTest {
 
     @DisplayName("참가자 생성 - 5자 이상 이름 입력 시, 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"dundun,tt", "홍,안녕하세요"})
+    @ValueSource(strings = {"dundun,tt", "홍,안녕하세요빰빰"})
     void of_name_too_long(String input) {
         String expectedExceptionMessage = LadderExceptionMessage.PARTICIPANT_NAME_TOO_LONG;
 
