@@ -9,7 +9,21 @@ public class ResultViewer {
     public static final String NO_LINE = "     ";
     public static final String LINE_SHAPE = "|";
 
-    public static final String lineToWrite(Line line) {
+    public static final void showResult(List<Participant> participants, Ladder ladder) {
+        System.out.println(participantsToString(participants));
+
+        while (ladder.hasNext()) {
+            System.out.println(ResultViewer.lineToString(ladder.getLine()));
+        }
+    }
+
+    public static final String participantsToString(List<Participant> participants) {
+        return participants.stream()
+                .map(participant -> String.format("%6s", participant))
+                .collect(Collectors.joining());
+    }
+
+    public static final String lineToString(Line line) {
         List<Boolean> points = line.getPoints();
         return points.stream()
                 .limit(points.size())

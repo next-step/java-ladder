@@ -11,15 +11,9 @@ public class Main {
         int height = InputScanner.printMessageAndGetHeight("최대 사다리 높이는 몇 개인가요?");
         System.out.println();
 
-        Ladder make = Ladder.make(participants, height);
+        Ladder ladder = Ladder.make(participants, height);
         System.out.println("실행 결과");
 
-        participants.stream()
-                .forEach(participant -> System.out.printf("%6s", participant));
-
-        System.out.printf("\n");
-        while (make.hasNext()) {
-            System.out.println(ResultViewer.lineToWrite(make.getLine()));
-        }
+        ResultViewer.showResult(participants, ladder);
     }
 }
