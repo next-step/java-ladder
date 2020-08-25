@@ -14,9 +14,9 @@ public class ParticipantTest {
 
     @Test
     void constructorThrow() {
-        assertThatThrownBy(() -> new Participant(null));
-        assertThatThrownBy(() -> new Participant(""));
-        assertThatThrownBy(() -> new Participant(" "));
-        assertThatThrownBy(() -> new Participant("123456"));
+        assertThatThrownBy(() -> new Participant(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Participant("")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Participant(" ")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Participant("123456")).isInstanceOf(IllegalArgumentException.class);
     }
 }
