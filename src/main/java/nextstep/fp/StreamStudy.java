@@ -31,6 +31,7 @@ public class StreamStudy {
                 .filter(it -> it.length() > 12)
                 .distinct()
                 .sorted((x, y) -> (x.length() - y.length()) * -1)
+                .limit(100)
                 .map(String::toLowerCase)
                 .forEach(System.out::println);
     }
