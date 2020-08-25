@@ -1,10 +1,10 @@
-package ladder.domain;
+package ladder.util;
 
 import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static ladder.domain.LadderMessage.BLANK_TEXT_MESSAGE;
+import static ladder.domain.common.LadderMessage.BLANK_TEXT_MESSAGE;
 
 public class CommaSplitter {
 
