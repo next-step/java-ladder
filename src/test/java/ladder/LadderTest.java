@@ -6,21 +6,34 @@ import ladder.ui.Input;
 import ladder.ui.Output;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LadderTest {
 
     @Test
     public void ladderTest() {
 
-        LadderData ladderData = new LadderData(when("pobi,honux,crong,jk", 5), output());
+
+        String names = "pobi,honux,crong,jk";
+        int height = 5;
+
+        LadderData ladderData = new LadderData(when(names, height), output());
         ladderData.inputNames();
         ladderData.inputHeight();
 
         Ladder ladder = new Ladder(ladderData);
-//        ladder.makeLadder();
-        ladder.getParticipants();
-        ladder.getLadderString();
+
+        List<String> nameList = Arrays.asList(names.split(","));
+
+        for (int i = 0; i < nameList.size(); i++) {
+            assertEquals(nameList.get(i), ladder.getParticipants().get(i));
+        }
+
+        assertEquals(ladder.getLadderString().size(), height);
     }
 
     private Input when(String names, int height) {

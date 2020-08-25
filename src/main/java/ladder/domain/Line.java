@@ -10,10 +10,8 @@ public class Line {
     private final Random RANDOM_INSTANCE = new Random();
 
     private final List<LineType> points = new ArrayList<>();
-    private final int personCount;
 
     public Line(int personCount) {
-        this.personCount = personCount;
         points.add(LineType.FALSE);
 
         for (int i = 1; i < personCount; i++) {
