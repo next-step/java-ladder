@@ -43,7 +43,6 @@ public class Lambda {
     private static int sumWithCondition(List<Integer> numbers, Conditional condition) {
         return numbers.stream()
                 .filter(condition::test)
-                .mapToInt(Integer::intValue)
-                .sum();
+                .reduce(0, Integer::sum);
     }
 }
