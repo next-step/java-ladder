@@ -1,4 +1,6 @@
-package ladder.domain;
+package ladder.domain.line;
+
+import ladder.domain.common.Printable;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,6 +23,10 @@ public class LadderLine implements Printable {
             drawStrategy.draw(i, line::drawsFrom);
         }
         return new LadderLine(line);
+    }
+
+    public int move(int position) {
+        return line.move(position);
     }
 
     public int countOfPoint() {

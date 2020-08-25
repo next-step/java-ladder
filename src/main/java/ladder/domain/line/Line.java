@@ -1,7 +1,7 @@
-package ladder.domain;
+package ladder.domain.line;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static ladder.domain.LadderMessage.LINE_LENGTH_MESSAGE;
+import static ladder.domain.common.LadderMessage.LINE_LENGTH_MESSAGE;
 
 public class Line {
 
