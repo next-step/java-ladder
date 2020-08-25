@@ -8,6 +8,6 @@ public class LineTest {
     @Test
     public void lineTest() {
         Line line = new Line(4);
-        line.printRow();
+        line.getLineList();
     }
 }

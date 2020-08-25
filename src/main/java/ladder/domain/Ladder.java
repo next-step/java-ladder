@@ -1,8 +1,8 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
 
@@ -11,9 +11,10 @@ public class Ladder {
 
     public Ladder(LadderData ladderData) {
         this.ladderData = ladderData;
+        makeLadder();
     }
 
-    public void makeLadder() {
+    private void makeLadder() {
 
         int nameLength = ladderData.getNames().length();
 
@@ -23,10 +24,17 @@ public class Ladder {
         }
     }
 
-    public void printLadder() {
-        Arrays.stream(ladderData.getNames().getNameArray())
-                .forEach(name -> System.out.print(name + "\t"));
-        System.out.println();
-        lineList.forEach(Line::printRow);
+    public List<String> getParticipants() {
+        return ladderData.getNames().getNameList();
+    }
+
+    public List<String> getLadderString() {
+        return lineList.stream()
+                .map(line -> lineToString(line.getLineList()))
+                .collect(Collectors.toList());
+    }
+
+    private String lineToString(List<String> line) {
+        return String.join("", line);
     }
 }

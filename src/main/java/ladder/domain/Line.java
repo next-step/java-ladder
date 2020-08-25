@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Line {
 
@@ -27,8 +28,9 @@ public class Line {
         return LineType.of(RANDOM_INSTANCE.nextBoolean());
     }
 
-    public void printRow() {
-        points.forEach(lineType -> System.out.print(lineType.printLine()));
-        System.out.println();
+    public List<String> getLineList() {
+        return points.stream()
+                .map(LineType::lineString)
+                .collect(Collectors.toList());
     }
 }

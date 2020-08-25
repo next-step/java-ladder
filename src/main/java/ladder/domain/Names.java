@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Names {
 
@@ -11,16 +12,16 @@ public class Names {
     private static final String ERR_MORE_THEN_ONE_NAME = "이름은 2개 이상 입력해주세요.";
     private static final String ERR_TOO_LONG_NAME = "한 사람당 이름은 5자까지만 입력해주세요.";
 
-    private final String[] nameArray;
+    private final List<String> nameArray;
 
     public Names(String nameStr) {
-        this.nameArray = splitInputName(nameStr);
+        this.nameArray = splitNameToList(nameStr);
     }
 
-    private String[] splitInputName(String inputNames) {
+    private List<String> splitNameToList(String nameStr) {
 
-        verifyEmptyName(inputNames);
-        String[] names = inputNames.split(DELIMITER);
+        verifyEmptyName(nameStr);
+        List<String> names = Arrays.asList(nameStr.split(DELIMITER));
 
         verifyNameCount(names);
         verifyNameLength(names);
@@ -28,34 +29,34 @@ public class Names {
         return names;
     }
 
-    private void verifyEmptyName(String inputNames) {
-        if (inputNames == null || inputNames.isEmpty()) {
+    private void verifyEmptyName(String nameStr) {
+        if (nameStr == null || nameStr.isEmpty()) {
             throw new IllegalArgumentException(ERR_MORE_THEN_ONE_NAME);
         }
     }
 
-    private void verifyNameLength(String[] names) {
+    private void verifyNameLength(List<String> names) {
         if (hasLongName(names)) {
             throw new IllegalArgumentException(ERR_TOO_LONG_NAME);
         }
     }
 
-    private boolean hasLongName(String[] names) {
-        return Arrays.stream(names)
+    private boolean hasLongName(List<String> names) {
+        return names.stream()
                 .anyMatch(name -> name.length() > MAXIMUM_NAME_LENGTH);
     }
 
-    private void verifyNameCount(String[] names) {
-        if (names.length <= MINIMUM_NAME_LENGTH) {
+    private void verifyNameCount(List<String> names) {
+        if (names.size() <= MINIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(ERR_MORE_THEN_ONE_NAME);
         }
     }
 
     public int length() {
-        return nameArray.length;
+        return nameArray.size();
     }
 
-    public String[] getNameArray() {
+    public List<String> getNameList() {
         return nameArray;
     }
 }

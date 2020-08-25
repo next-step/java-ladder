@@ -18,7 +18,7 @@ public enum LineType {
         return LineType.FALSE;
     }
 
-    public String printLine() {
+    public String lineString() {
         return line;
     }
 }

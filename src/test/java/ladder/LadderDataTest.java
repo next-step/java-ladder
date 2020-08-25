@@ -4,6 +4,8 @@ import ladder.domain.LadderData;
 import ladder.ui.Input;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,12 +24,12 @@ public class LadderDataTest {
         assertEquals(ladderData.getHeight(), height);
 
         String[] nameArray = names.split(",");
-        String[] nameArrayFromLadderData = ladderData.getNames().getNameArray();
+        List<String> nameList = ladderData.getNames().getNameList();
 
-        assertEquals(nameArray.length, nameArrayFromLadderData.length);
+        assertEquals(nameArray.length, nameList.size());
         
         for (int i = 0; i < nameArray.length; i++) {
-            assertEquals(nameArray[i], nameArrayFromLadderData[i]);
+            assertEquals(nameArray[i], nameList.get(i));
         }
     }
 
