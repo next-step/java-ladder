@@ -1,14 +1,19 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Persons;
+import ladder.domain.LadderGame;
+import ladder.domain.common.Printable;
 
 public class LadderResultView {
-    public static void printPersonWithLadder(Persons persons, Ladder ladder) {
+    public static void printPersonWithLadder(LadderGame ladderGame) {
+        System.out.println();
+        System.out.println("사다리 결과");
+        System.out.println();
+        System.out.println(ladderGame.print());
+    }
+
+    public static void printLadderGameResult(Printable printableResult) {
         System.out.println();
         System.out.println("실행결과");
-        System.out.println();
-        System.out.println(persons.print());
-        System.out.println(ladder.print());
+        System.out.println(printableResult.print());
     }
 }
