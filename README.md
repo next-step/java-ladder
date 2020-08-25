@@ -18,7 +18,7 @@
     * [ ] 세로라인 : (|)로 참가자수만큼 출력
 
 #### domain
-* [ ] 사다리 게임 참가자 생성 (participant)
+* [ ] 사다리 게임 참가자 생성 (Participant)
     * [ ] 이름 쉼표(,)로 split
     * [ ] 참가자 이름 5자 제한 
 * [ ] 사다리 생성 (Ladder - List<Line>)
