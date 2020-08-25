@@ -9,16 +9,10 @@ public class Line {
 
     public Line(List<Boolean> points) {
         validate(points);
-
         this.points = points;
     }
-
     public Line(int size) {
-        List<Boolean> points = createPoints(size);
-
-        validate(points);
-
-        this.points = points;
+        this(createPoints(size));
     }
 
     @Override
