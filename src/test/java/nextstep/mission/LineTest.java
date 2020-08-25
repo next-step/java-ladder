@@ -27,9 +27,4 @@ public class LineTest {
         assertThat(points).hasSize(4);
         assertThat(points.get(0)).isFalse();
     }
-
-    @Test
-    void toText() {
-        assertThat(new Line(Arrays.asList(true, false, true, false)).toText()).isEqualTo("-----|     |-----|     |");
-    }
 }

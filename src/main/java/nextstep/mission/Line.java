@@ -15,6 +15,10 @@ public class Line {
         this(createPoints(size));
     }
 
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
     public static List<Boolean> createPoints(int size) {
         List<Boolean> result = new ArrayList<>();
         result.add(false);
@@ -39,13 +43,6 @@ public class Line {
                     if (points.get(index) == true && points.get(index + 1) == true)
                         throw new IllegalArgumentException("선은 겹칠수 없습니다.");
                 });
-    }
-
-    public String toText() {
-        return points.stream()
-                .limit(points.size())
-                .map(value -> value ? "-----" : "     ")
-                .collect(Collectors.joining("|")) + "|";
     }
 
     @Override

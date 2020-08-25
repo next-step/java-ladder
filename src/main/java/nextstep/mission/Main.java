@@ -1,6 +1,7 @@
 package nextstep.mission;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class Main {
 
         System.out.printf("\n");
         while (make.hasNext()) {
-            System.out.println(make.getLine().toText());
+            System.out.println(ResultViewer.lineToWrite(make.getLine()));
         }
     }
 }
