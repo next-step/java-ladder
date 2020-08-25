@@ -19,19 +19,6 @@ public class Ladder {
         this.cursor = 0;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(participants, ladder.participants);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(participants);
-    }
-
     public static Ladder make(List<Participant> participants, int height) {
         return new Ladder(participants, height);
     }
@@ -46,4 +33,18 @@ public class Ladder {
 
         return this.lines.get(this.cursor++);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(participants, ladder.participants);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(participants);
+    }
+
 }

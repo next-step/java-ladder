@@ -15,24 +15,6 @@ public class Line {
         this(createPoints(size));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
-    }
-
-    @Override
-    public String toString() {
-        return Arrays.toString(points.toArray());
-    }
-
     public static List<Boolean> createPoints(int size) {
         List<Boolean> result = new ArrayList<>();
         result.add(false);
@@ -64,5 +46,23 @@ public class Line {
                 .limit(points.size())
                 .map(value -> value ? "-----" : "     ")
                 .collect(Collectors.joining("|")) + "|";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(points.toArray());
     }
 }
