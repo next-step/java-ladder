@@ -7,3 +7,34 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 2단계 - 사다리(생성) 기능 목록
+#### view
+* [ ] 참가자 이름 입력 
+* [ ] 참가자 이름 출력
+* [ ] 사다리 높이 입력
+* [ ] 사다리 출력 
+    * [ ] 가로라인 : (-)로 혹은 공백으로, 폭 넓게 출력 (참가자 이름 최대 5자 고려)
+    * [ ] 세로라인 : (|)로 참가자수만큼 출력
+
+#### domain
+* [ ] 사다리 게임 참가자 생성 (participant)
+    * [ ] 사다리 게임 참가자 이름 5자 제한
+* [ ] 사다리 생성 (Ladder - List<Line>)
+    * [ ] 전체 사다리 : 참가자 인원수 * 사다리 높이  
+    * [ ] 가로라인 : size : 참가자 인원수, 각 좌표값은 이동여부 (left/ right) 값을 가진다. 
+    * [ ] 첫번째 참가자 - right : 랜덤 생성, left : 무조건 false
+    * [ ] 마지막 참가자 - right : 무조건 false, left : 앞 참가자의 right값이 true이면 true
+    * [ ] 그 외 참가자 - right : 앞 참가자의 right값이 true인 경우 false/false인 경우 랜덤 생성, left : 앞 참가자의 right값이 true인 경우 true
+    
+* ex) 참가자 5명, 사다리 4인 경우 (참가자별로 가지는 좌표의 방향값이 다르다.)
+* A     B     C     D     E
+* . <-> .     . <-> .     .   첫번째 라인 
+* .     . <-> .     . <-> .   두번째 라인
+* . <-> .     .     .     .   세번째 라인
+* . <-> .     .     . <-> .   네번째 라인
+* A의 첫번째 라인은 right = true(Random 생성), left = (첫번째 라인이므로 무조건) false
+* B의 첫번째 라인은 right = (연속생성 불가하므로 무조건) false, left = (A의 right가 true이므로) true 
+* C의 첫번째 라인은 right = true(B의 right가 false이므로 Random 생성), left = (B의 right가 false이므로) false 
+* D의 첫번째 라인은 right = (연속생성 불가하므로 무조건) false, left = (C의 right가 true이므로) true
+* E의 첫번째 라인은 right = (마지막 라인이므로 무조건) false, left = (D의 right가 false이므로) false 
