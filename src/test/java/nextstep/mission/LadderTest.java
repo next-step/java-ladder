@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class LadderTest {
 
@@ -29,9 +30,9 @@ public class LadderTest {
 
     @Test
     void make() {
-        assertThat(ladder).isEqualTo(Ladder.make(
+        assertThatCode(() -> Ladder.make(
                 PARTICIPANTS, HEIGHT
-        ));
+        )).doesNotThrowAnyException();
     }
 
     @Test
