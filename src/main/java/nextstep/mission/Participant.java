@@ -8,11 +8,13 @@ public class Participant {
     private String name;
 
     public Participant(String name) {
-        if (StringUtils.isBlank(name))
+        if (StringUtils.isBlank(name)) {
             throw new IllegalArgumentException("사용자 이름값은 null 이거나 빈 문자를 허용하지 않습니다.");
+        }
 
-        if (name.length() > NAME_MAX_LENGTH)
+        if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("사용자 이름 길이는 5를 초과할 수 없습니다.");
+        }
 
         this.name = name;
     }
