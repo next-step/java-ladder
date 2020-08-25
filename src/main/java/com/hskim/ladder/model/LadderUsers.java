@@ -2,6 +2,7 @@ package com.hskim.ladder.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LadderUsers {
 
@@ -13,6 +14,13 @@ public class LadderUsers {
 
     public int getUserNumber() {
         return users.size();
+    }
+
+    public List<String> getUserNames() {
+        return users.stream()
+                .map(User::getUserName)
+                .map(UserName::getName)
+                .collect(Collectors.toList());
     }
 
     @Override

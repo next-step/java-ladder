@@ -1,16 +1,14 @@
 package com.hskim.ladder.model;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class LadderLineIterator implements LineIterator {
+public class LadderLineIterator implements Iterator {
     private static final int START_INDEX = 0;
+
     private int size;
     private int counter = START_INDEX;
-
-    public LadderLineIterator(LadderUsers ladderUsers) {
-        this.size = ladderUsers.getUserNumber();
-    }
 
     public LadderLineIterator(int size) {
         this.size = size;
@@ -21,22 +19,18 @@ public class LadderLineIterator implements LineIterator {
         this.counter = counter;
     }
 
-    @Override
     public int getSize() {
         return size;
     }
 
-    @Override
     public boolean isTargetCounter(List<Integer> targets) {
         return targets.contains(counter);
     }
 
-    @Override
     public boolean isOnStartIndex() {
         return counter == START_INDEX;
     }
 
-    @Override
     public boolean isOnLastIndex() {
         return counter == size;
     }

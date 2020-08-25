@@ -18,6 +18,10 @@ public class User {
                 .collect(Collectors.toList());
     }
 
+    public UserName getUserName() {
+        return userName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
