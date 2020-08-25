@@ -15,17 +15,16 @@ public class Ladder {
 
     public void makeLadder() {
 
-        int nameLength = ladderData.getNames().length;
+        int nameLength = ladderData.getNames().length();
 
         for (int i = 0; i < ladderData.getHeight(); i++) {
             Line line = new Line(nameLength);
-            line.makeRow();
             lineList.add(line);
         }
     }
 
     public void printLadder() {
-        Arrays.stream(ladderData.getNames())
+        Arrays.stream(ladderData.getNames().getNameArray())
                 .forEach(name -> System.out.print(name + "\t"));
         System.out.println();
         lineList.forEach(Line::printRow);

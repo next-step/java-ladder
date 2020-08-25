@@ -14,9 +14,7 @@ public class Line {
     public Line(int personCount) {
         this.personCount = personCount;
         points.add(LineType.FALSE);
-    }
 
-    public void makeRow() {
         for (int i = 1; i < personCount; i++) {
             points.add(nextPoint(points.get(i - 1)));
         }
