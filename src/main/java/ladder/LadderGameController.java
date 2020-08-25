@@ -9,5 +9,6 @@ public class LadderGameController {
         String names = InputView.scanParticipantNames();
 
         Participants participants = Participants.of(names);
+        int ladderHeight = InputView.scanLadderHeight();
     }
 }
