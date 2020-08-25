@@ -1,11 +1,11 @@
-package nextstep.ladder;
+package nextstep.ladder.study;
 
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class LineTest {
+class LineRenderingTest {
 
   private List<String> vline;
   private List<String> hline;

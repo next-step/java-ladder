@@ -1,13 +1,14 @@
-package nextstep.ladder;
+package nextstep.ladder.biz;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import nextstep.ladder.biz.LineGenerator;
 import org.junit.jupiter.api.Test;
 
-public class HorizonGeneratorTest {
+public class LineGeneratorTest {
 
   @Test
   void create() {
@@ -19,13 +20,13 @@ public class HorizonGeneratorTest {
 
   @Test
   void nextBoolean() {
-    assertThat(HorizonGenerator.nextBoolean(true)).isEqualTo(false);
+    assertThat(LineGenerator.nextBoolean(true)).isEqualTo(false);
   }
 
   @Test
   void leastOneIsTrue() {
     List<Boolean> bridges = Arrays.asList(false, false);
-    HorizonGenerator.leastOneIsTrue(bridges);
+    LineGenerator.leastOneIsTrue(bridges);
 
     assertThat(bridges)
         .isIn(Arrays.asList(true, false),
@@ -34,14 +35,14 @@ public class HorizonGeneratorTest {
 
   @Test
   void createBooleansBy2People() {
-    assertThat(HorizonGenerator.form(2))
+    assertThat(LineGenerator.form(2))
         .isIn(Arrays.asList(true),
             Arrays.asList(false));
   }
 
   @Test
   void createBooleansBy3People() {
-    List<Boolean> bridges = HorizonGenerator.form(3);
+    List<Boolean> bridges = LineGenerator.form(3);
     assertThat(bridges)
         .isIn(Arrays.asList(true, false),
             Arrays.asList(false, true));

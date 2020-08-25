@@ -1,12 +1,13 @@
-package nextstep.ladder;
+package nextstep.ladder.biz;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class HorizonGenerator {
+public class LineGenerator {
 
+  public static final int TWO_PERSON = 2;
   private static final Random random = new Random();
 
   public static List<Boolean> form(int countOfPerson) {
@@ -21,7 +22,7 @@ public class HorizonGenerator {
   }
 
   private static boolean isTwoPerson(int countOfPerson) {
-    return countOfPerson == 2;
+    return countOfPerson == TWO_PERSON;
   }
 
   private static List<Boolean> createPoints(int countOfPerson) {
