@@ -17,7 +17,8 @@ public class LineTest {
 
     @Test
     void constructorThrow() {
-        assertThatThrownBy(() -> new Line(Arrays.asList(true, true, true, false)));
+        assertThatThrownBy(() -> new Line(Arrays.asList(true, true, true, false)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
