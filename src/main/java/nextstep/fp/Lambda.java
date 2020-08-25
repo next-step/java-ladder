@@ -3,12 +3,15 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
+
+    private static final int DIVIDING_VALUE = 2;
+    private static final int NUMBER_ZERO = 0;
+    private static final int NUMBER_THREE = 3;
+
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
 
-        for (int number : numbers) {
-            System.out.println(number);
-        }
+        numbers.forEach(System.out::println);
     }
 
     public static void printAllLambda(List<Integer> numbers) {
@@ -18,39 +21,26 @@ public class Lambda {
     }
 
     public static void runThread() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello from thread");
-            }
-        }).start();
+        new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sum(numbers, number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sum(numbers, number -> (number % DIVIDING_VALUE == NUMBER_ZERO));
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sum(numbers, number -> (number > NUMBER_THREE));
     }
+
+    private static int sum(List<Integer> number, Conditional conditional) {
+        return number.stream()
+                .filter(conditional::condition)
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
 }
