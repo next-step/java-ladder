@@ -11,16 +11,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
 
+    private LadderResultView ladderResultView = new LadderResultView();
+
     @DisplayName("라인 출력 테스트")
     @RepeatedTest(10)
     void printLine() {
         // given
         Line line = new Line(new LadderLineIterator(9), new RandomRowIndexMaker());
-        LadderResultView ladderResultView = new LadderResultView();
 
         // when
         ladderResultView.printLine(line.getLadderPoints());
-        System.out.println();
     }
 
     @DisplayName("라인 생성 테스트")
