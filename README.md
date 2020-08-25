@@ -335,3 +335,419 @@ jk : 5000
 * 로직 구현에 필요한 데이터를 가지는 객체를 잘 분리하면 의외로 쉽게 문제를 해결할 수 있다.
 * 각 객체가 2개 이하의 인스턴스 변수만을 가지도록 구현해 본다.   
  
+### Step3 리뷰 사항 
+* [ ] [fix01][Ladder.java] 과도한 stream 사용을 지양할 것
+
+### 아이템45. 스트림은 주의해서 사용하라
+* 스트림은 다량의 데이터 처리 작업을 위해 jdk 1.8 부터 도입되었다. 스트림은 데이터 원소의 유무한 시퀀스를 뜻하며, 스트림 파이프라인은 이 원소들로 수행하는 연산 단계를 표현한다.
+* 스트림은 어디로부터 만들 수 있는데, 가장 많이 쓰이는 곳은 컬렉션, 배열, 파일, 정규표현식 패턴 매처, 난수 생성기 등이 있다.
+* 스트림은 메소드 연쇄를 지원하는 fluent API 이다.
+
+#### 45-1. 스트림 파이프라인
+* 스트림 파이프라인은 시작에서 종단 연산으로 끝나며, 그 사이에 하나 이상의 중간연산이 있을 수 있다. 중간연산은 스트림을 변환한다.
+* 스트림 파이프라인은 지연 평가되며, 평가는 종단 연산이 호출될 때 이루어지며, 종단 연산에 쓰이지 않는 데이터 원소는 계산에 쓰이지 않는다. 이것은 무한 스트림을 다룰 수 있게 해주는 열쇠이다.
+
+#### 45-2. 스트림을 과하게 쓰면 오히려 읽기 힘들다
+* 먼저 스트림을 쓰지 않은 예제 코드이다.
+<pre><code>
+public class Anagrams {
+    public static void main(String[] args) throws IOException {
+        File dictionary = new File(args[0]);
+        int minGroupSize = Integer.parseInt(args[1]);
+
+        Map<String, Set<String>> groups = new HashMap<>();
+        try (Scanner s = new Scanner(dictionary)) {
+            while (s.hasNext()) {
+                String word = s.next();
+                groups.computeIfAbsent(alphabetize(word), (unused) -> new TreeSet<>())
+                    .add(word);
+            }
+        }
+
+        for (Set<String> group : groups.values())
+            if (group.size() >= minGroupSize)
+                System.out.println(group.size() + ": " + group);
+    }
+
+    private static String alphabetize(String s) {
+        char[] a = s.toCharArray();
+        Arrays.sort(a);
+        return new String(a);
+    }
+}
+</code></pre>
+* 스트림을 사용하여 라인수는 조금 짧아졌지만, 읽기 힘들정도로 과하게 사용한 예제이다.
+<pre><code>
+public class Anagrams {
+    public static void main(String[] args) throws IOException {
+        Path dictionary = Paths.get(args[0]);
+        int minGroupSize = Integer.parseInt(args[1]);
+
+        try (Stream<String> words = Files.lines(dictionary)) {
+            words.collect(groupingBy(word -> word.chars().sorted()
+                            .collect(StringBuilder::new,
+                                    (sb, c) -> sb.append((char) c),
+                                    StringBuilder::append).toString()))
+                    .values().stream()
+                    .filter(group -> group.size() >= minGroupSize)
+                    .map(group -> group.size() + ": " + group)
+                    .forEach(System.out::println);
+        }
+    }
+}
+</code></pre>
+* 뭐든 stream으로 푸는 것보다 적절히 분리하여(도우미 메소드. ex. alphabetize) 짧으면서도 명확하게 스트림을 사용하는 것이 좋다. 특히 람다에서는 타입이름이 생략되므로 매개변수 이름을 잘 지어서 가독성을 유지해야한다.
+<pre><code>
+try (Stream<String> words = Files.lines(dictionary)) {
+    words.collect(groupingBy(word -> alphabetize(word)))
+            .values().stream()
+            .filter(group -> group.size() >= minGroupSize)
+            .forEach(group -> System.out.println(group.size() + ": " + group));
+}
+</code></pre>
+* 또한 스트림은 기본 타입 중에 int, long, double 만 지원한다. (char용 스트림은 없으니 쓰지말자)
+
+#### 45-3. 코드블록 vs 람다블록
+* 코드블록에서는 지역변수를 읽고 수정할 수 있으나, 람다 블록에서는 final 변수이거나 사실상 final 변수인 것만 읽을 수 있고(클로저, Variable capture), 지역변수를 수정하는 것은 불가능하다.
+<pre><code>
+ex. stream + lambda 에서 순차증가하는 방법
+// 배열 이용. 멀티스레드에선 안전X
+int[] count = {0};
+IntStream.range(0, 1000000).forEach((i) -> {
+	count[0]++;
+	System.out.println(count[0]);
+});
+
+// Atomic Reference 이용. 권장
+AtomicInteger count = new AtomicInteger();
+IntStream.range(0, 1000000).forEach((i) -> {
+	System.out.println(count.incrementAndGet());
+});
+</code></pre>
+* 코드블록에서는 return, break, continue 문으로 바깥을 종료시키거나 건너뛰거나 하는 행위를 할 수 있지만, 람다에서는 아무것도 할 수 없다.
+
+#### 45-4. 스트림을 사용하면 좋은 상황과 나쁜 상황
+##### 45-4-1. 좋은 상황
+* 원소들의 시퀀스를 일관되게 변환한다.
+* 원소들의 시퀀스를 필터링한다.
+* 원소들의 시퀀스를 하나의 연산을 사용해 결합한다.
+* 원소들의 시퀀스를 컬렉션에 모은다.
+* 원소들의 시퀀스에서 특정 조건을 만족하는 원소를 찾는다.
+
+##### 45-4-2. 나쁜 상황
+* 스트림 파이프라인이 여러 연산단계로 구성될 때, 각 단계의 값들을 동시에 접근하고자 할때
+* 스트림 파이프라인은 연산이 지나가면 원래값을 잃는 구조이기 때문이다.
+* cf. 매핑객체를 이용하면 방법이 있으나 지저분해짐
+
+출처: https://sjh836.tistory.com/173
+
+# 4단계 - 사다리(리팩토링)
+### 기능 요구사항
+* 기능 요구사항 3단계와 같다.
+* 추가로 제공되는 객체 설계 힌트를 참고해 철저하게 TDD로 재구현해 본다.
+
+### 객체 추출 힌트
+* 사다리 한 Line 추상화
+* 사다리 게임에서 한 Line을 LadderLine으로 이름을 붙이고 다음과 같이 구현
+* 사다리 Line의 모든 Point 초기화와 이동을 담당
+<pre><code>
+import java.util.ArrayList;
+import java.util.List;
+
+import static codesquad.LadderPointGenerator.generatePoint;
+
+public class LadderLine {
+    private final List<Point> points;
+
+    public LadderLine(List<Point> points) {
+        this.points = points;
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
+    }
+
+    public static LadderLine init(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(sizeOfPerson, points, point);
+        initLast(points, point);
+        return new LadderLine(points);
+    }
+
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
+        }
+        return point;
+    }
+
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(generatePoint());
+        points.add(point);
+        return point;
+    }
+
+    @Override
+    public String toString() {
+        return "LadderLine{" +
+                "points=" + points +
+                '}';
+    }
+}
+</code></pre>
+
+* LadderLine에 대한 테스트 코드는 다음과 같다.
+<pre><code>
+public class LadderLineTest {
+    @Test
+    public void init() {
+        int sizeOfPerson = 5;
+        System.out.println(LadderLine.init(sizeOfPerson));
+    }
+
+    @Test
+    public void move() {
+        LadderLine line = LadderLine.init(2);
+        System.out.println("ladder result : " + line.move(0));
+    }
+}
+</code></pre>
+
+* LadderLine의 두 점과 현재 위치를 Point로 추상화
+* LadderLine에서 위치와 각 점의 방향을 관리
+<pre><code>
+public class Point {
+    private final int index;
+    private final Direction direction;
+
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
+    }
+
+    public int move() {
+        System.out.println("is left? " + direction.isLeft());
+        System.out.println("is right? " + direction.isRight());
+
+        if (direction.isRight()) {
+            return index + 1;
+        }
+
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+
+        return this.index;
+    }
+
+    public Point next() {
+        return new Point(index + 1, direction.next());
+    }
+
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
+    }
+		
+    public Point last() {
+        return new Point(index + 1, direction.last());
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
+    }
+}
+</code></pre>
+
+* Point에 대한 테스트 코드는 다음과 같다.
+<pre><code>
+import org.junit.Test;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+public class PointTest {
+    @Test
+    public void first() {
+        assertThat(Point.first(TRUE).move(), is(1));
+        assertThat(Point.first(FALSE).move(), is(0));
+    }
+
+    @Test
+    public void next_stay() {
+        Point second = Point.first(FALSE).next(FALSE);
+        assertThat(second.move(), is(1));
+    }
+
+    @Test
+    public void next_left() {
+        Point second = Point.first(TRUE).next(FALSE);
+        assertThat(second.move(), is(0));
+    }
+
+    @Test
+    public void next_right() {
+        Point second = Point.first(FALSE).next(TRUE);
+        assertThat(second.move(), is(2));
+    }
+
+    @Test
+    public void next() {
+        Point second = Point.first(TRUE).next();
+        assertThat(second.move(), is(0));
+    }
+}
+</code></pre>
+
+* 각 Point의 좌/우 방향을 Direction으로 추상화
+* 각 Point의 좌/우 방향 정보를 가진다.
+* 현재 Point에서 다음 Point를 생성하는 역할
+<pre><code>
+import java.util.Objects;
+
+import static codesquad.LadderPointGenerator.generatePoint;
+import static java.lang.Boolean.FALSE;
+
+public class Direction {
+    private final boolean left;
+    private final boolean right;
+
+    private Direction(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalStateException();
+        }
+
+        this.left = left;
+        this.right = right;
+        System.out.println(this);
+    }
+
+    public boolean isRight() {
+        return this.right;
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
+    public Direction next(boolean nextRight) {
+        return of(this.right, nextRight);
+    }
+
+    public Direction next() {
+        if (this.right) {
+            return next(FALSE);
+        }
+        return next(generatePoint());
+    }
+
+    public static Direction of(boolean first, boolean second) {
+        return new Direction(first, second);
+    }
+
+    public static Direction first(boolean right) {
+        return of(FALSE, right);
+    }
+		
+    public Direction last() {
+        return of(this.right, FALSE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction pair = (Direction) o;
+        return left == pair.left &&
+                right == pair.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
+}
+</code></pre>
+
+* Direction에 대한 테스트 코드는 다음과 같다.
+<pre><code>
+import org.junit.Test;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+public class DirectionTest {
+    @Test
+    public void init() {
+        assertThat(Direction.of(true, false), is(Direction.of(true, false)));
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void init_invalid() {
+        Direction.of(TRUE, TRUE);
+    }
+
+    @Test
+    public void next_random_true() {
+        Direction next = Direction.first(TRUE).next();
+        assertThat(next, is(Direction.of(TRUE, FALSE)));
+    }
+
+    @Test
+    public void next_random_false() {
+        for (int i = 0; i < 100; i++) {
+            Direction.first(FALSE).next();
+        }
+    }
+
+    @Test
+    public void next_true() {
+        Direction next = Direction.of(TRUE, FALSE).next(TRUE);
+        assertThat(next, is(Direction.of(FALSE, TRUE)));
+    }
+
+    @Test
+    public void next_false() {
+        Direction next = Direction.of(FALSE, TRUE).next(FALSE);
+        assertThat(next, is(Direction.of(TRUE, FALSE)));
+    }
+
+    @Test
+    public void first() {
+        Direction first = Direction.first(TRUE);
+        assertThat(first.isLeft(), is(FALSE));
+    }
+
+    @Test
+    public void last() {
+        Direction last = Direction.first(TRUE).last();
+        assertThat(last, is(Direction.of(TRUE, FALSE)));
+    }
+}
+</code></pre>
