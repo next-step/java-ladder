@@ -1,5 +1,8 @@
 package ladder;
 
+import ladder.domain.Ladder;
+import ladder.domain.LadderData;
+import ladder.ui.Input;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {

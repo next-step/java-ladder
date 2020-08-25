@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.domain.LadderData;
+import ladder.ui.Input;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;

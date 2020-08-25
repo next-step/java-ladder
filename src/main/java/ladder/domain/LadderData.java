@@ -1,4 +1,6 @@
-package ladder;
+package ladder.domain;
+
+import ladder.ui.Input;
 
 public class LadderData {
 

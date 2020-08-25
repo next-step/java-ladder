@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.domain.Line;
 import org.junit.jupiter.api.Test;
 
 public class LineTest {
