@@ -11,8 +11,12 @@ public class Participants {
 
     private List<String> names;
 
-    public Participants(List<String> names) {
+    private Participants(List<String> names) {
         this.names = names;
+    }
+
+    public List<String> getNames() {
+        return names;
     }
 
     public static Participants of(String input) {

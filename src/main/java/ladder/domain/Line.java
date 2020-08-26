@@ -16,7 +16,7 @@ public class Line {
         return new Line(points);
     }
 
-    public static Line init(boolean right) {
+    private static Line init(boolean right) {
         List<Point> points = new ArrayList<>();
         points.add(Point.getFirst(right));
 

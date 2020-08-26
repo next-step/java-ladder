@@ -14,5 +14,7 @@ public class LadderGameController {
         int ladderHeight = InputView.scanLadderHeight();
 
         Ladder ladder = Ladder.of(ladderHeight, participants, new LineRandomGenerator());
+
+        OutputView.printResult(participants, ladder);
     }
 }
