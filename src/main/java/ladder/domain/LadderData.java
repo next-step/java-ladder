@@ -3,37 +3,34 @@ package ladder.domain;
 import ladder.ui.Input;
 import ladder.ui.Output;
 
+import java.util.List;
+
 public class LadderData {
 
-    public static final String MSG_INPUT_PARTICIPANTS = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
-    public static final String MSG_INPUT_LADDER_SIZE = "최대 사다리 높이는 몇 개인가요?";
-
-    private final Input input;
-    private final Output output;
+    private static final String MSG_INPUT_PARTICIPANTS = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String MSG_INPUT_LADDER_SIZE = "최대 사다리 높이는 몇 개인가요?";
 
     private Participant participant;
     private int height;
 
     public LadderData(Input input, Output output) {
-        this.input = input;
-        this.output = output;
-        inputNames();
-        inputHeight();
+        inputNames(input, output);
+        inputHeight(input, output);
     }
 
-    public void inputNames() {
+    private void inputNames(Input input, Output output) {
         output.print(MSG_INPUT_PARTICIPANTS);
         String inputNames = input.nextLine();
         participant = new Participant(inputNames);
     }
 
-    public void inputHeight() {
+    private void inputHeight(Input input, Output output) {
         output.print(MSG_INPUT_LADDER_SIZE);
         height = input.nextInt();
     }
 
-    public Participant getNames() {
-        return participant;
+    public List<String> getNames() {
+        return participant.getNames();
     }
 
     public int getHeight() {

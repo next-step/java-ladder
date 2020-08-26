@@ -52,10 +52,6 @@ public class Participant {
         }
     }
 
-    public int length() {
-        return names.size();
-    }
-
     public List<String> getNames() {
         return names;
     }

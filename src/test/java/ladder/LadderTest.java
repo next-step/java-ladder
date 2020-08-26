@@ -21,8 +21,8 @@ public class LadderTest {
         int height = 5;
 
         LadderData ladderData = new LadderData(when(names, height), output());
-        ladderData.inputNames();
-        ladderData.inputHeight();
+//        ladderData.inputNames();
+//        ladderData.inputHeight();
 
         Ladder ladder = new Ladder(ladderData);
 

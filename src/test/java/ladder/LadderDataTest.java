@@ -19,13 +19,10 @@ public class LadderDataTest {
         int height = 5;
 
         LadderData ladderData = new LadderData(when(names, height), output());
-        ladderData.inputNames();
-        ladderData.inputHeight();
-
         assertEquals(ladderData.getHeight(), height);
 
         String[] nameArray = names.split(",");
-        List<String> nameList = ladderData.getNames().getNames();
+        List<String> nameList = ladderData.getNames();
 
         assertEquals(nameArray.length, nameList.size());
         
@@ -36,26 +33,23 @@ public class LadderDataTest {
 
     @Test
     public void inputNullNames() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            LadderData ladderData = new LadderData(when(null, 5), output());
-            ladderData.inputNames();
-        });
+        assertThatIllegalArgumentException().isThrownBy(() ->
+            new LadderData(when(null, 5), output())
+        );
     }
 
     @Test
     public void inputLongNames() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            LadderData ladderData = new LadderData(when("abcdef,abcde,12345", 5), output());
-            ladderData.inputNames();
-        });
+        assertThatIllegalArgumentException().isThrownBy(() ->
+            new LadderData(when("abcdef,abcde,12345", 5), output())
+        );
     }
 
     @Test
     public void inputMoreThanOneName() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            LadderData ladderData = new LadderData(when("pobi", 5), output());
-            ladderData.inputNames();
-        });
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new LadderData(when("pobi", 5), output())
+        );
     }
 
     private Input when(String names, int height) {
