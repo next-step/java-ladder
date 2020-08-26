@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class Line {
     private List<Points> points;
@@ -10,19 +10,21 @@ public class Line {
         this.points = points;
     }
 
-    public static Line create(List<Points> points) {
+    public static Line of(List<Points> points) {
         return new Line(points);
     }
 
     public int getSize() {
-        return 0;
+        return points.size();
     }
 
-    public static List<Boolean> getConnection(Line line) {
-        return null;
+    public List<Boolean> getConnection() {
+        return points.stream()
+                .map(Points::isRight)
+                .collect(Collectors.toList());
     }
 
-    public Stream<Points> stream() {
-        return null;
+    public List<Points> getPoints() {
+        return points;
     }
 }

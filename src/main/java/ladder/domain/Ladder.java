@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Ladder {
     private List<Line> lines;
@@ -21,8 +20,8 @@ public class Ladder {
         return new Ladder(lines);
     }
 
-    public Stream<Line> stream() {
-        return null;
+    public List<Line> getLines() {
+        return lines;
     }
 
 }
