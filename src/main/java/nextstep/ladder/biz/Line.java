@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Line {
 
-  private final List<Boolean> points;
+  private final List<Point> points;
 
   public Line(int countOfPerson) {
     points = LineGenerator.form(countOfPerson);
   }
 
-  public List<Boolean> getLine() {
+  public List<Point> getLine() {
     return points;
   }
 

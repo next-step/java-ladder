@@ -20,31 +20,31 @@ public class LineGeneratorTest {
 
   @Test
   void nextBoolean() {
-    assertThat(LineGenerator.nextBoolean(true)).isEqualTo(false);
+    assertThat(LineGenerator.nextBoolean(Point.of(true))).isEqualTo(Point.of(false));
   }
 
   @Test
   void leastOneIsTrue() {
-    List<Boolean> bridges = Arrays.asList(false, false);
-    LineGenerator.leastOneIsTrue(bridges);
+    List<Point> line = Arrays.asList(Point.of(false), Point.of(false));
+    LineGenerator.leastOneIsTrue(line);
 
-    assertThat(bridges)
-        .isIn(Arrays.asList(true, false),
-            Arrays.asList(false, true));
+    assertThat(line)
+        .isIn(Arrays.asList(Point.of(true), Point.of(false)),
+            Arrays.asList(Point.of(false), Point.of(true)));
   }
 
   @Test
   void createBooleansBy2People() {
     assertThat(LineGenerator.form(2))
-        .isIn(Arrays.asList(true),
-            Arrays.asList(false));
+        .isIn(Arrays.asList(Point.of(true)),
+            Arrays.asList(Point.of(false)));
   }
 
   @Test
   void createBooleansBy3People() {
-    List<Boolean> bridges = LineGenerator.form(3);
-    assertThat(bridges)
-        .isIn(Arrays.asList(true, false),
-            Arrays.asList(false, true));
+    List<Point> line = LineGenerator.form(3);
+    assertThat(line)
+        .isIn(Arrays.asList(Point.of(true), Point.of(false)),
+            Arrays.asList(Point.of(false), Point.of(true)));
   }
 }

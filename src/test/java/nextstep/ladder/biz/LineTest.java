@@ -20,6 +20,7 @@ public class LineTest {
     Line points = new Line(3);
 
     assertThat(points.getLine())
-        .isIn(Arrays.asList(Arrays.asList(true, false), Arrays.asList(false, true)));
+        .isIn(Arrays.asList(Arrays.asList(Point.of(true), Point.of(false)),
+                Arrays.asList(Point.of(false), Point.of(true))));
   }
 }

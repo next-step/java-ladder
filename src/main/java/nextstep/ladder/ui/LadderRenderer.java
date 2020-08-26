@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import nextstep.ladder.biz.Ladder;
 import nextstep.ladder.biz.Line;
+import nextstep.ladder.biz.Point;
 
 public class LadderRenderer implements Renderer {
 
@@ -31,18 +32,18 @@ public class LadderRenderer implements Renderer {
     }
   }
 
-  private void renderLadder(Line points) {
-    System.out.printf("%4s%s\n", "", pointToBridge(points.getLine()));
+  private void renderLadder(Line line) {
+    System.out.printf("%4s%s\n", "", pointToBridge(line.getLine()));
   }
 
-  private String pointToBridge(List<Boolean> points) {
+  private String pointToBridge(List<Point> points) {
     return points.stream()
         .map(this::toBridge)
         .collect(Collectors.joining(PIER, PIER, PIER));
   }
 
-  private String toBridge(boolean hasBridge) {
-    return hasBridge ? BRIDGE : AIR;
+  private String toBridge(Point point) {
+    return point.hasPoint() ? BRIDGE : AIR;
   }
 
   private void renderPlayers(List<String> playerNames) {
