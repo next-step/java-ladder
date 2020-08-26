@@ -6,3 +6,4 @@
     2. nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현한다. 요구사항은 다음과 같다.
 4. 요구사항 1 - Optional을 활용해 조건에 따른 반환
 5. 요구사항 2 - Optional에서 값을 반환
+6. 요구사항 3 - Optional에서 exception 처리
