@@ -7,18 +7,26 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class LadderTest {
     private static final LineGenerator LINE_RANDOM_GENERATOR = new LineRandomGenerator();
     private static final LineGenerator LINE_REPEAT_GENERATOR = new LineRepeatGenerator();
 
     @DisplayName("사다리 전체(Lines) 생성 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"tt,lala:4", "dd,momo,coco:5", "nana,toto,dodo,coco,lulu:10"}, delimiter = ':')
+    @CsvSource(value = {"dd,momo:1", "tt,lala:4", "dd,momo,coco:5", "nana,toto,dodo,coco,lulu:10"}, delimiter = ':')
     void Lines_of(String participant, int ladderHeight) {
-        Ladder ladder = Ladder.of(ladderHeight, Participants.of(participant), LINE_REPEAT_GENERATOR);
+        Ladder ladder = Ladder.of(ladderHeight, Participants.of(participant), LINE_RANDOM_GENERATOR);
 
-        ladder.getLines()
-                .stream()
+        List<Line> lines = ladder.getLines();
+
+        assertThat(lines).hasSize(ladderHeight);
+        printLadderResult(lines);
+    }
+
+    private void printLadderResult(List<Line> lines) {
+        lines.stream()
                 .map(Line::getPoints)
                 .map(line -> line.stream()
                         .map(Point::isRight)
