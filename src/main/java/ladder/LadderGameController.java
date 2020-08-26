@@ -13,6 +13,6 @@ public class LadderGameController {
         Participants participants = Participants.of(names);
         int ladderHeight = InputView.scanLadderHeight();
 
-        Ladder ladder = Ladder.of(ladderHeight, new LineRandomGenerator(participants));
+        Ladder ladder = Ladder.of(ladderHeight, participants, new LineRandomGenerator());
     }
 }

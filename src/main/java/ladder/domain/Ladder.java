@@ -10,11 +10,11 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(int ladderHeight, LineRandomGenerator lineRandomGenerator) {
+    public static Ladder of(int ladderHeight, Participants participant, LineGenerator lineGenerator) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < ladderHeight; i++) {
-            Line line = lineRandomGenerator.create();
+            Line line = Line.create(participant, lineGenerator);
             lines.add(line);
         }
         return new Ladder(lines);
