@@ -23,7 +23,7 @@ public class Line {
         return points;
     }
 
-    public static List<Boolean> createPoints(int size) {
+    private static List<Boolean> createPoints(int size) {
         List<Boolean> result = new ArrayList<>(Arrays.asList(false));
         RandomPoint randomPoint = new RandomPoint(false);
 
@@ -41,6 +41,10 @@ public class Line {
     private void validPoint(Boolean point1, Boolean point2) {
         if (point1 == true && point2 == true)
             throw new IllegalArgumentException("선은 겹칠수 없습니다.");
+    }
+
+    public boolean checkSize(int size) {
+        return this.points.size() == size;
     }
 
     @Override

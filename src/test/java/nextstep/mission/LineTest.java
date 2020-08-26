@@ -16,16 +16,13 @@ public class LineTest {
     }
 
     @Test
-    void constructorThrow() {
-        assertThatThrownBy(() -> new Line(Arrays.asList(true, true, true, false)))
-                .isInstanceOf(IllegalArgumentException.class);
+    void constructorWithSize() {
+        assertThat(new Line(4).checkSize(4)).isTrue();
     }
 
     @Test
-    void createPoints() {
-        List<Boolean> points = Line.createPoints(4);
-
-        assertThat(points).hasSize(4);
-        assertThat(points.get(0)).isFalse();
+    void constructorThrow() {
+        assertThatThrownBy(() -> new Line(Arrays.asList(true, true, true, false)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
