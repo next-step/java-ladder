@@ -6,21 +6,22 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    private final NextPointRule nextPointRule;
-
     private final List<LineType> points = new ArrayList<>();
 
     public Line(int personCount, NextPointRule nextPointRule) {
 
         points.add(LineType.FALSE);
-        this.nextPointRule = nextPointRule;
 
         for (int i = 1; i < personCount; i++) {
-            points.add(nextPoint(points.get(i - 1)));
+            points.add(nextPoint(prevPoint(i), nextPointRule));
         }
     }
 
-    private LineType nextPoint(LineType lineType) {
+    private LineType prevPoint(int index) {
+        return points.get(index - 1);
+    }
+
+    private LineType nextPoint(LineType lineType, NextPointRule nextPointRule) {
         if (lineType == LineType.TRUE) {
             return LineType.FALSE;
         }

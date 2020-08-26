@@ -29,8 +29,12 @@ public class LadderData {
         height = input.nextInt();
     }
 
-    public List<String> getNames() {
+    public List<String> getParticipantNames() {
         return participant.getNames();
+    }
+
+    public int getParticipantsCount() {
+        return participant.getNames().size();
     }
 
     public int getHeight() {

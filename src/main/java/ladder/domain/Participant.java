@@ -21,6 +21,7 @@ public class Participant {
     private List<String> splitNameToList(String nameStr) {
 
         verifyEmptyName(nameStr);
+
         List<String> names = Arrays.asList(nameStr.split(DELIMITER));
 
         verifyNameCount(names);
