@@ -1,5 +1,5 @@
 package nextstep.fp;
 
 public interface Conditional {
-    public boolean test();
+    public boolean test(int number);
 }
