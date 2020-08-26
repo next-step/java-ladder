@@ -45,7 +45,7 @@ public class LadderLine {
 
     @Override
     public String toString() {
-        return "LadderLine{" +
+        return "LadderLine {" +
                 "points=" + points +
                 '}';
     }

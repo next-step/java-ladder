@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final static int INIT_INDEX = 0;
+    private static final int INIT_INDEX = 0;
 
     private final int sizeOfPoints;
     private final List<Row> rows;

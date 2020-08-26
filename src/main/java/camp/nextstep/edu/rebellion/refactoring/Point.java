@@ -42,7 +42,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point{" +
+        return "Point {" +
                 "index=" + index +
                 ", direction=" + direction +
                 '}';

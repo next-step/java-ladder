@@ -66,7 +66,7 @@ public class Direction {
 
     @Override
     public String toString() {
-        return "Direction{" +
+        return "Direction {" +
                 "left=" + left +
                 ", right=" + right +
                 '}';
