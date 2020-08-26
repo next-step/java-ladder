@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,9 +15,10 @@ public class LineTest {
 
     private static Stream<Arguments> makeLineCreateData() {
         return Stream.of(
-                Arguments.of(Arrays.asList(new Points()), 1),
-                Arguments.of(Arrays.asList(new Points(), new Points(), new Points()), 3),
-                Arguments.of(Arrays.asList(new Points(), new Points(), new Points(), new Points(), new Points()), 5)
+                Arguments.of(Arrays.asList(Points.getFirst(true)), 1),
+                Arguments.of(Arrays.asList(Points.getFirst(true), Points.of(true, false), Points.of(false, false)), 3),
+                Arguments.of(Arrays.asList(Points.getFirst(true), Points.of(true, false), Points.of(false, false)
+                        , Points.of(false, true), Points.of(true, false)), 5)
         );
     }
 
@@ -26,10 +26,11 @@ public class LineTest {
     @ParameterizedTest
     @MethodSource("makeLineCreateData")
     void create(List<Points> points, int participantNumber) {
-        Line line = Line.create(points);
+        Line line = Line.of(points);
 
-        boolean actual = line.stream()
-                .anyMatch(point -> point.isRight() == point.isLeft());
+        boolean actual = line.getPoints()
+                .stream()
+                .anyMatch(point -> point.isRight() && point.isLeft());
 
         // 참가자 수 만큼 생성되었는지 확인
         assertThat(line.getSize()).isEqualTo(participantNumber);

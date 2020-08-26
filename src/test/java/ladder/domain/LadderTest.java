@@ -11,21 +11,23 @@ public class LadderTest {
 
     @DisplayName("사다리 전체(Lines) 생성 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"3:4", "2:5", "5:10"})
+    @CsvSource(value = {"3:4", "2:5", "5:10"}, delimiter = ':')
     void Lines_of(int participantCount, int ladderHeight) {
         Ladder ladder = Ladder.of(ladderHeight, new LineRandomGenerator(participantCount));
 
-        ladder.stream()
+        ladder.getLines()
+                .stream()
                 .map(Line::getConnection)
                 .map(this::makeStringForView)
                 .forEach(System.out::println);
+
+        System.out.println();
     }
 
     private String makeStringForView(List<Boolean> connection) {
-        String result = connection.stream()
+        return connection.stream()
                 .map(bol -> bol ? "-----" : "     ")
                 .map(line -> "|" + line)
                 .collect(Collectors.joining());
-        return result + "|";
     }
 }
