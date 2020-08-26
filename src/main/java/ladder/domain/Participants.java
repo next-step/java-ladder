@@ -54,7 +54,7 @@ public class Participants {
         return names.size();
     }
 
-    public boolean isShortage() {
+    boolean isShortage() {
         return names.size() <= 1;
     }
 }
