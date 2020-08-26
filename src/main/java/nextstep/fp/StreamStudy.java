@@ -31,14 +31,14 @@ public class StreamStudy {
 		List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
 		// TODO 이 부분에 구현한다.
-		String result = words.stream()
-							 .filter(word -> word.length() > 12)
-							 .sorted(Comparator.comparing(String::length).reversed())
-							 .limit(100)
-							 .distinct()
-							 .map(String::toLowerCase)
-							 .collect(Collectors.joining("\n"));
-		System.out.println(result);
+		words.stream()
+			 .filter(word -> word.length() > 12)
+			 .sorted(Comparator.comparing(String::length).reversed())
+			 .limit(100)
+			 .distinct()
+			 .map(String::toLowerCase)
+			 .forEach(System.out::println);
+
 	}
 
 	public static List<Integer> doubleNumbers(List<Integer> numbers) {
