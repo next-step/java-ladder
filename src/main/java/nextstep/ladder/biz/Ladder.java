@@ -15,7 +15,7 @@ public class Ladder {
     return Collections.unmodifiableList(lines);
   }
 
-  public int ladderHeight() {
+  int ladderHeight() {
     return lines.size();
   }
 

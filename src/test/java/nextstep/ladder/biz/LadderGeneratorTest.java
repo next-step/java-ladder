@@ -15,10 +15,18 @@ public class LadderGeneratorTest {
   }
 
   @Test
-  void createAsLadder() {
+  void given4Height_whenCreate_thenHeightIs4() {
     assertThat(ladder.ladderHeight())
         .as("사다리 높이")
         .isEqualTo(4);
+  }
+
+  @Test
+  void given3Person_whenCreate_thenPointIs2() {
+    ladder.getLines().stream()
+        .forEach(line -> assertThat(line.pointOfCount())
+            .as("사다리 폭")
+            .isEqualTo(2));
   }
 
   @Test

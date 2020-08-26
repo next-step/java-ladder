@@ -14,7 +14,7 @@ public class Line {
     return points;
   }
 
-  public int pointOfCount() {
+  int pointOfCount() {
     return points.size();
   }
 

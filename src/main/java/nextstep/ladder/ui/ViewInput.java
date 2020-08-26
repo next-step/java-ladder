@@ -26,25 +26,25 @@ public class ViewInput {
   }
 
   private List<String> namesToList() {
-    return Arrays.stream(playerNames().split(","))
+    return Arrays.stream(askPlayerNames().split(","))
         .collect(Collectors.toList());
   }
 
   public int requestLadderHeight() {
-    int ladderHeight = ladderHeight();
+    int ladderHeight = askLadderHeight();
     while (ladderHeight < 1) {
-      ladderHeight = ladderHeight();
+      ladderHeight = askLadderHeight();
     }
 
     return ladderHeight;
   }
 
-  private String playerNames() {
+  private String askPlayerNames() {
     System.out.println(SCRIPT_PLAYER_NAMES);
     return scanner.next();
   }
 
-  private int ladderHeight() {
+  private int askLadderHeight() {
     System.out.println(SCRIPT_LADDER_HEIGHT);
     return scanner.nextInt();
   }
