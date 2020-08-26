@@ -6,7 +6,7 @@ public class RandomSingleton {
 
     private final static Random RANDOM_INSTANCE = new Random();
 
-    public static Random getInstance() {
-        return RANDOM_INSTANCE;
+    public static boolean nextBoolean() {
+        return RANDOM_INSTANCE.nextBoolean();
     }
 }
