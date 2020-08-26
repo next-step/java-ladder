@@ -4,15 +4,17 @@ import java.util.Random;
 
 public class RandomPoint {
 
-    static final Random DICE = new Random();
+    private static final Random DICE = new Random();
 
-    boolean store;
+    private static boolean store;
 
-    public RandomPoint(boolean init) {
-        store = init;
+    private RandomPoint() {}
+
+    public static void reset() {
+        store = DICE.nextBoolean();
     }
 
-    public boolean next() {
+    public static boolean next() {
         if (store) {
             store = false;
             return false;

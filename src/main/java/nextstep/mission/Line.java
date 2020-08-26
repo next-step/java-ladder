@@ -1,11 +1,9 @@
 package nextstep.mission;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Line {
     private List<Boolean> points;
@@ -25,10 +23,11 @@ public class Line {
 
     private static List<Boolean> createPoints(int size) {
         List<Boolean> result = new ArrayList<>(Arrays.asList(false));
-        RandomPoint randomPoint = new RandomPoint(false);
 
-        result.addAll(IntStream.range(1, size)
-                .mapToObj((value) -> randomPoint.next())
+        RandomPoint.reset();
+
+        result.addAll(Stream.generate(RandomPoint::next)
+                .limit(size - 1)
                 .collect(Collectors.toList()));
         return result;
     }
