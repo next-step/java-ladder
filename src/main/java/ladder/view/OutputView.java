@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Participants;
+import ladder.domain.Point;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,9 +26,16 @@ public class OutputView {
     private static void printLadder(Ladder ladder) {
         ladder.getLines()
                 .stream()
-                .map(Line::getConnection)
+                .map(OutputView::getConnection)
                 .map(OutputView::toLineString)
                 .forEach(System.out::println);
+    }
+
+    public static List<Boolean> getConnection(Line line) {
+        return line.getPoints()
+                .stream()
+                .map(Point::isRight)
+                .collect(Collectors.toList());
     }
 
     private static String toLineString(List<Boolean> connection) {

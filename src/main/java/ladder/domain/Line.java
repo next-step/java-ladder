@@ -46,18 +46,12 @@ public class Line {
         points.add(last);
     }
 
-    public int getSize() {
-        return points.size();
-    }
-
-    public List<Boolean> getConnection() {
-        return points.stream()
-                .map(Point::isRight)
-                .collect(Collectors.toList());
-    }
-
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int getSize() {
+        return points.size();
     }
 
     private Point getFirst() {
