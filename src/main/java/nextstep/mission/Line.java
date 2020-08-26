@@ -1,6 +1,9 @@
 package nextstep.mission;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -56,25 +59,5 @@ public class Line {
     @Override
     public String toString() {
         return Arrays.toString(points.toArray());
-    }
-}
-
-class RandomPoint {
-    static final Random DICE = new Random();
-    boolean store;
-
-    public RandomPoint(boolean init) {
-        store = init;
-    }
-
-    public boolean next() {
-        if (store) {
-            store = false;
-            return false;
-        }
-
-        store = DICE.nextBoolean();
-
-        return store;
     }
 }
