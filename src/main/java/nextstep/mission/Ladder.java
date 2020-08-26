@@ -26,8 +26,9 @@ public class Ladder {
     }
 
     public Line getLine(int index) {
-        if (this.lines.size() - 1 < index)
+        if (this.lines.size() - 1 < index) {
             return null;
+        }
 
         return this.lines.get(index);
     }
