@@ -19,7 +19,10 @@ public class LadderTest {
 
         ladder.getLines()
                 .stream()
-                .map(Line::getConnection)
+                .map(Line::getPoints)
+                .map(line -> line.stream()
+                        .map(Point::isRight)
+                        .collect(Collectors.toList()))
                 .map(this::makeStringForView)
                 .forEach(System.out::println);
 
