@@ -1,11 +1,8 @@
 package camp.nextstep.edu.rebellion.refactoring;
 
 import camp.nextstep.edu.rebellion.domain.player.Players;
-import camp.nextstep.edu.rebellion.domain.reward.RewardResult;
-import camp.nextstep.edu.rebellion.domain.reward.RewardResults;
 import camp.nextstep.edu.rebellion.domain.reward.Rewards;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGame {
@@ -21,12 +18,16 @@ public class LadderGame {
         this.ladder = new Ladder(rows, players.getCountOfPlayers());
     }
 
-    public RewardResults run(String name) {
+    public MovedPositions run(String name) {
+        // 별도의 결과를 전달하는 객체를 만듬
+        // Rewards 의존성은 제거
+        // 이름과 최종 포지션만 가지고 있는 객체
+        // ResultGenerator 에서 RewardResults 를 생성 하는 역할을 위임
         return players.getPlayers()
                 .stream()
                 .filter(p -> COMMAND_ALL.equals(name) || p.match(name))
-                .map(p -> new RewardResult(p.getName(), ladder.getFinalPosition(p.getPosition())))
+                .map(p -> new MovedPosition(p.getName(), ladder.getFinalPosition(p.getPosition())))
                 .collect(Collectors.collectingAndThen(Collectors.toList(),
-                        RewardResults::new));
+                        MovedPositions::new));
     }
 }
