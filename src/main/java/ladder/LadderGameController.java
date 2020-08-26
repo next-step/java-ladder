@@ -4,6 +4,7 @@ import ladder.domain.Ladder;
 import ladder.domain.LineRandomGenerator;
 import ladder.domain.Participants;
 import ladder.view.InputView;
+import ladder.view.OutputView;
 
 public class LadderGameController {
 
