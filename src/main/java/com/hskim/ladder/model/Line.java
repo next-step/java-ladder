@@ -3,8 +3,6 @@ package com.hskim.ladder.model;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -12,12 +10,6 @@ public class Line {
 
     public Line(LadderLineIterator iterator, RowIndexMaker rowIndexMaker) {
         makePoints(iterator, rowIndexMaker);
-    }
-
-    public static List<Line> makeLinesFromLineNum(int lineNum, int userNum, RowIndexMaker rowIndexMaker) {
-        return IntStream.range(0, lineNum)
-                .mapToObj(i -> new Line(new LadderLineIterator(userNum), rowIndexMaker))
-                .collect(Collectors.toList());
     }
 
     private void makePoints(LadderLineIterator iterator, RowIndexMaker rowIndexMaker) {

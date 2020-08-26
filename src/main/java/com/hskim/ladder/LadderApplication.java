@@ -4,6 +4,7 @@ import com.hskim.ladder.model.Ladder;
 import com.hskim.ladder.model.LadderHeight;
 import com.hskim.ladder.model.LadderUsers;
 import com.hskim.ladder.model.Line;
+import com.hskim.ladder.model.Lines;
 import com.hskim.ladder.model.RandomRowIndexMaker;
 import com.hskim.ladder.model.User;
 import com.hskim.ladder.model.UserName;
@@ -24,7 +25,7 @@ public class LadderApplication {
 
         ladderInputView.printLadderHeightPhrase();
         LadderHeight ladderHeight = new LadderHeight(ladderInputView.getLadderHeight());
-        List<Line> lines = Line.makeLinesFromLineNum(ladderHeight.getLineNum(),
+        Lines lines = Lines.of(ladderHeight.getLineNum(),
                 ladderUsers.getUserNumber(), new RandomRowIndexMaker());
         Ladder ladder = new Ladder(ladderHeight, ladderUsers, lines);
 

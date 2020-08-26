@@ -34,7 +34,7 @@ public class LadderTest {
         return ladderUsers;
     }
 
-    private List<Line> getMockLines() {
-        return Line.makeLinesFromLineNum(5, 5, (bound) -> Arrays.asList(1, 3));
+    private Lines getMockLines() {
+        return Lines.of(5, 5, (bound) -> Arrays.asList(1, 3));
     }
 }

@@ -8,16 +8,17 @@ public class Ladder {
 
     private LadderHeight ladderHeight;
     private LadderUsers ladderUsers;
-    private List<Line> lines;
+    private Lines lines;
 
-    public Ladder(LadderHeight ladderHeight, LadderUsers ladderUsers, List<Line> lines) {
+    public Ladder(LadderHeight ladderHeight, LadderUsers ladderUsers, Lines lines) {
         this.ladderHeight = ladderHeight;
         this.ladderUsers = ladderUsers;
         this.lines = lines;
     }
 
     public List<List<LadderPoint>> getAllPoints() {
-        return lines.stream()
+        return lines.getLines()
+                .stream()
                 .map(Line::getLadderPoints)
                 .collect(Collectors.toList());
     }
