@@ -13,7 +13,7 @@ public class Application {
         LadderData ladderData = new LadderData(new ScannerInput(), output);
 
         Ladder ladder = new Ladder(ladderData);
-        output.print(ladder.getParticipants());
+        output.print(ladder.getNames());
         output.printMultiLine(ladder.getLadderString());
     }
 

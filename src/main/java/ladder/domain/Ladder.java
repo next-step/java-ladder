@@ -1,31 +1,26 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
 
     private final LadderData ladderData;
-    private final List<Line> lineList = new ArrayList<>();
+    private final List<Line> lineList;
 
     public Ladder(LadderData ladderData) {
         this.ladderData = ladderData;
-        makeLadder();
-    }
-
-    private void makeLadder() {
-
         int nameLength = ladderData.getNames().length();
 
-        for (int i = 0; i < ladderData.getHeight(); i++) {
-            Line line = new Line(nameLength, RandomSingleton::nextBoolean);
-            lineList.add(line);
-        }
+        lineList = Stream.iterate(0, i -> i + 1)
+                .limit(ladderData.getHeight())
+                .map(i -> new Line(nameLength, RandomSingleton::nextBoolean))
+                .collect(Collectors.toList());
     }
 
-    public List<String> getParticipants() {
-        return ladderData.getNames().getNameList();
+    public List<String> getNames() {
+        return ladderData.getNames().getNames();
     }
 
     public List<String> getLadderString() {

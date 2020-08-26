@@ -25,7 +25,7 @@ public class LadderDataTest {
         assertEquals(ladderData.getHeight(), height);
 
         String[] nameArray = names.split(",");
-        List<String> nameList = ladderData.getNames().getNameList();
+        List<String> nameList = ladderData.getNames().getNames();
 
         assertEquals(nameArray.length, nameList.size());
         

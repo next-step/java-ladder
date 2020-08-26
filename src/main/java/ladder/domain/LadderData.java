@@ -11,7 +11,7 @@ public class LadderData {
     private final Input input;
     private final Output output;
 
-    private Names names;
+    private Participant participant;
     private int height;
 
     public LadderData(Input input, Output output) {
@@ -24,7 +24,7 @@ public class LadderData {
     public void inputNames() {
         output.print(MSG_INPUT_PARTICIPANTS);
         String inputNames = input.nextLine();
-        names = new Names(inputNames);
+        participant = new Participant(inputNames);
     }
 
     public void inputHeight() {
@@ -32,8 +32,8 @@ public class LadderData {
         height = input.nextInt();
     }
 
-    public Names getNames() {
-        return names;
+    public Participant getNames() {
+        return participant;
     }
 
     public int getHeight() {

@@ -6,7 +6,6 @@ import ladder.ui.Input;
 import ladder.ui.Output;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class LadderTest {
         List<String> nameList = Arrays.asList(names.split(","));
 
         for (int i = 0; i < nameList.size(); i++) {
-            assertEquals(nameList.get(i), ladder.getParticipants().get(i));
+            assertEquals(nameList.get(i), ladder.getNames().get(i));
         }
 
         assertEquals(ladder.getLadderString().size(), height);

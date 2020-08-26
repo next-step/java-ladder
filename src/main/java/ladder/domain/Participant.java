@@ -3,7 +3,7 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 
-public class Names {
+public class Participant {
 
     private static final String DELIMITER = ",";
     private static final int MAXIMUM_NAME_LENGTH = 5;
@@ -12,10 +12,10 @@ public class Names {
     private static final String ERR_MORE_THEN_ONE_NAME = "이름은 2개 이상 입력해주세요.";
     private static final String ERR_TOO_LONG_NAME = "한 사람당 이름은 5자까지만 입력해주세요.";
 
-    private final List<String> nameArray;
+    private final List<String> names;
 
-    public Names(String nameStr) {
-        this.nameArray = splitNameToList(nameStr);
+    public Participant(String nameStr) {
+        this.names = splitNameToList(nameStr);
     }
 
     private List<String> splitNameToList(String nameStr) {
@@ -53,10 +53,10 @@ public class Names {
     }
 
     public int length() {
-        return nameArray.size();
+        return names.size();
     }
 
-    public List<String> getNameList() {
-        return nameArray;
+    public List<String> getNames() {
+        return names;
     }
 }
