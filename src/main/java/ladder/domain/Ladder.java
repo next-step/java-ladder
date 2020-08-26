@@ -7,15 +7,14 @@ import java.util.stream.Stream;
 public class Ladder {
 
     private final LadderData ladderData;
-    private final List<Line> lineList;
+    private final List<Line> lines;
 
     public Ladder(LadderData ladderData) {
         this.ladderData = ladderData;
         int nameLength = ladderData.getNames().length();
 
-        lineList = Stream.iterate(0, i -> i + 1)
+        lines = Stream.generate(() -> new Line(nameLength, RandomSingleton::nextBoolean))
                 .limit(ladderData.getHeight())
-                .map(i -> new Line(nameLength, RandomSingleton::nextBoolean))
                 .collect(Collectors.toList());
     }
 
@@ -24,7 +23,7 @@ public class Ladder {
     }
 
     public List<String> getLadderString() {
-        return lineList.stream()
+        return lines.stream()
                 .map(line -> lineToString(line.getLineList()))
                 .collect(Collectors.toList());
     }
