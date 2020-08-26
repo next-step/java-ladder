@@ -1,45 +1,54 @@
 package ladder.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class LineRandomGenerator {
     private static final Random random = new Random();
+
     private Participants participant;
 
     public LineRandomGenerator(Participants participant) {
         this.participant = participant;
     }
 
-    private boolean getRandom() {
+    private boolean getRandomRight() {
         return random.nextBoolean();
     }
 
     public Line create() {
-        List<Points> points;
         if (participant.isShortage()) {
-            points = Collections.singletonList(Points.getFirst(false));
-            return Line.of(points);
+            return Line.init(false);
         }
 
-        points = makeRandomPoints();
-
+        List<Point> points = makeRandomPoints();
         return Line.of(points);
     }
 
-    private List<Points> makeRandomPoints() {
-        List<Points> points = new ArrayList<>();
-        points.add(Points.getFirst(getRandom()));
+    private List<Point> makeRandomPoints() {
+        List<Point> points = new ArrayList<>();
 
-        for (int i = 0; i < participantCount - 2; i++) {
-            Points old = points.get(i);
-            Points next = Points.next(old, getRandom());
-
-            points.add(next);
-        }
-        Points last = Points.getLast(points.get(participantCount - 2).isRight());
-        points.add(last);
+        Point firstPoint = Point.getFirst(getRandomRight());
+        points.add(firstPoint);
+        points.addAll(makeNextPoints(firstPoint));
 
         return points;
+    }
+
+    private List<Point> makeNextPoints(Point firstPoint) {
+        List<Point> nextPoints = new ArrayList<>();
+
+        for (int i = 1, size = participant.getNumber(); i < size - 1; i++) {
+            Point next = Point.next(firstPoint, getRandomRight());
+            nextPoints.add(next);
+
+            firstPoint = next;
+        }
+        Point last = Point.getLast(firstPoint.isRight());
+        nextPoints.add(last);
+
+        return nextPoints;
     }
 
 }

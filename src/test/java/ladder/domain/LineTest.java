@@ -15,17 +15,17 @@ public class LineTest {
 
     private static Stream<Arguments> makeLineCreateData() {
         return Stream.of(
-                Arguments.of(Arrays.asList(Points.getFirst(true)), 1),
-                Arguments.of(Arrays.asList(Points.getFirst(true), Points.of(true, false), Points.of(false, false)), 3),
-                Arguments.of(Arrays.asList(Points.getFirst(true), Points.of(true, false), Points.of(false, false)
-                        , Points.of(false, true), Points.of(true, false)), 5)
+                Arguments.of(Arrays.asList(Point.getFirst(true)), 1),
+                Arguments.of(Arrays.asList(Point.getFirst(true), Point.of(true, false), Point.getLast(false)), 3),
+                Arguments.of(Arrays.asList(Point.getFirst(true), Point.of(true, false), Point.of(false, false)
+                        , Point.of(false, true), Point.getLast(true)), 5)
         );
     }
 
     @DisplayName("Line 생성 테스트")
     @ParameterizedTest
     @MethodSource("makeLineCreateData")
-    void create(List<Points> points, int participantNumber) {
+    void create(List<Point> points, int participantNumber) {
         Line line = Line.of(points);
 
         boolean actual = line.getPoints()

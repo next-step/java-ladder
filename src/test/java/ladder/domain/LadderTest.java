@@ -11,7 +11,7 @@ public class LadderTest {
 
     @DisplayName("사다리 전체(Lines) 생성 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"3:4", "2:5", "5:10"}, delimiter = ':')
+    @CsvSource(value = {"tt,lala:4", "dd,momo,coco:5", "nana,toto,dodo,coco,lulu:10"}, delimiter = ':')
     void Lines_of(String participantCount, int ladderHeight) {
         Ladder ladder = Ladder.of(ladderHeight, new LineRandomGenerator(Participants.of(participantCount)));
 
