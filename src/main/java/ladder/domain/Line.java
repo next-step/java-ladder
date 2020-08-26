@@ -4,8 +4,14 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Line {
-    public static Line create(int participantCount) {
-        return null;
+    private List<Points> points;
+
+    public Line(List<Points> points) {
+        this.points = points;
+    }
+
+    public static Line create(List<Points> points) {
+        return new Line(points);
     }
 
     public int getSize() {

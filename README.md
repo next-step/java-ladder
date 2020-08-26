@@ -22,7 +22,7 @@
     * [X] 이름 쉼표(,)로 split
     * [X] 참가자 이름 5자 제한 
 * [ ] 사다리 생성 (Ladder - List<Line>)
-    * [ ] 전체 사다리 : 참가자 인원수 * 사다리 높이  
+    * [X] 전체 사다리 : 참가자 인원수 * 사다리 높이  
     * [ ] 가로 라인 생성 - size : 참가자 인원수, 각 좌표값은 이동여부 (left/ right) 값을 가진다. 
     * 첫번째 참가자 - right : 랜덤 생성, left : 무조건 false
     * 마지막 참가자 - right : 무조건 false, left : 앞 참가자의 right값이 true이면 true
