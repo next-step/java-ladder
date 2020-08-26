@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.element;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class PersonsTest {
         // when
         Persons persons = Persons.fromText(String.join(",", names));
         // then
-        for (Person person : persons) {
+        for (Persons.Person person : persons) {
             assertThat(names).contains(person.getName());
         }
     }
@@ -38,5 +38,32 @@ public class PersonsTest {
         Persons persons = Persons.fromText(String.join(",", names));
         // then
         assertThat(persons.size()).isEqualTo(names.length);
+    }
+
+    @Test
+    @DisplayName("이름으로 person 객체 정상적으로 가져오는지 확인")
+    void testPersonByName() {
+        // given
+        String[] names = { "pobi","honux","crong","jk" };
+        // when
+        Persons persons = Persons.fromText(String.join(",", names));
+        // then
+        for (String name : names) {
+            assertThat(persons.get(name).getName()).isEqualTo(name);
+        }
+    }
+
+    @Test
+    @DisplayName("정상 수행 후 person 확인")
+    void testGetPersonByIndex() {
+        // given
+        String[] names = { "pobi","honux","crong","jk" };
+        // when
+        Persons persons = Persons.fromText(String.join(",", names));
+        // then
+        for (int i = 0; i < names.length; i++) {
+            Persons.Person person = persons.get(i);
+            assertThat(person.getName()).isEqualTo(names[i]);
+        }
     }
 }

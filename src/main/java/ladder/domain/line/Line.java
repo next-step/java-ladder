@@ -1,7 +1,7 @@
-package ladder.domain;
+package ladder.domain.line;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static ladder.domain.LadderMessage.LINE_LENGTH_MESSAGE;
+import static ladder.domain.common.LadderMessage.LINE_LENGTH_MESSAGE;
 
 public class Line {
 
@@ -14,6 +14,10 @@ public class Line {
         for (int i = 0; i < points.length; i++) {
             points[i] = i;
         }
+    }
+
+    public int move(int position) {
+        return points[position];
     }
 
     public void drawsFrom(int position) {
