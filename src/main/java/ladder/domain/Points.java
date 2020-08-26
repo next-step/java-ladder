@@ -9,6 +9,14 @@ public class Points {
         this.right = right;
     }
 
+    public boolean isRight() {
+        return this.right;
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
     public static Points of(boolean left, boolean right) {
         return new Points(left, right);
     }
@@ -28,11 +36,4 @@ public class Points {
         return new Points(false, right);
     }
 
-    public boolean isRight() {
-        return this.right;
-    }
-
-    public boolean isLeft() {
-        return this.left;
-    }
 }

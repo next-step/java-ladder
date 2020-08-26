@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Line {
     private List<Points> points;
 
-    public Line(List<Points> points) {
+    private Line(List<Points> points) {
         this.points = points;
     }
 

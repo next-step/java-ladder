@@ -49,4 +49,8 @@ public class Participants {
     public int getNumber() {
         return names.size();
     }
+
+    public boolean isShortage() {
+        return names.size() <= 1;
+    }
 }

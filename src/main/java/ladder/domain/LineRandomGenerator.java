@@ -1,16 +1,13 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class LineRandomGenerator {
     private static final Random random = new Random();
-    private int participantCount;
+    private Participants participant;
 
-    public LineRandomGenerator(int participantCount) {
-        this.participantCount = participantCount;
+    public LineRandomGenerator(Participants participant) {
+        this.participant = participant;
     }
 
     private boolean getRandom() {
@@ -18,13 +15,21 @@ public class LineRandomGenerator {
     }
 
     public Line create() {
-        List<Points> points = new ArrayList<>();
-
-        if (participantCount <= 1) {
-            return Line.of(Arrays.asList(Points.getFirst(false)));
+        List<Points> points;
+        if (participant.isShortage()) {
+            points = Collections.singletonList(Points.getFirst(false));
+            return Line.of(points);
         }
 
+        points = makeRandomPoints();
+
+        return Line.of(points);
+    }
+
+    private List<Points> makeRandomPoints() {
+        List<Points> points = new ArrayList<>();
         points.add(Points.getFirst(getRandom()));
+
         for (int i = 0; i < participantCount - 2; i++) {
             Points old = points.get(i);
             Points next = Points.next(old, getRandom());
@@ -34,7 +39,7 @@ public class LineRandomGenerator {
         Points last = Points.getLast(points.get(participantCount - 2).isRight());
         points.add(last);
 
-        return Line.of(points);
+        return points;
     }
 
 }
