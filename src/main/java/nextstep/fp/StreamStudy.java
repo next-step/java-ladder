@@ -31,8 +31,8 @@ public class StreamStudy {
         words.stream()
                 .filter(word -> word.length() > 12) // 12자가 넘는 단어
                 .distinct() // 중복 제거
+                .sorted(Comparator.comparing(String::length).reversed()) // 문자열 길이로 정렬
                 .limit(100) // 100개 로 제한
-                .sorted(Comparator.comparing(String::length)) // 문자열 길이로 정렬
                 .map(String::toLowerCase) // 문자 소문자로 변경
                 .forEach(System.out::println); // 출력
     }
@@ -46,10 +46,9 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return sumAll(
-                numbers.stream()
-                        .filter(number -> number > 3)
-                        .collect(Collectors.toList())
-        ) * 2;
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .mapToInt(Integer::intValue)
+                .reduce(0, Integer::sum) * 2;
     }
 }
