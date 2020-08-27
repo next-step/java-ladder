@@ -4,17 +4,17 @@ import java.util.function.Function;
 
 public enum Direction {
 
-	LEFT(integer -> integer - 1),
-	RIGHT(integer -> integer + 1),
-	DOWN(integer -> integer);
+	LEFT(Coordinate::decreaseCoordinate),
+	RIGHT(Coordinate::increaseCoordinate),
+	DOWN(Coordinate::keepCoordinate);
 
-	private Function<Integer, Integer> computeNextCoordinate;
+	private Function<Coordinate, Coordinate> computeNextCoordinate;
 
-	Direction(Function<Integer, Integer> computeNextCoordinate) {
+	Direction(Function<Coordinate, Coordinate> computeNextCoordinate) {
 		this.computeNextCoordinate = computeNextCoordinate;
 	}
 
-	public Integer getNextCoordinate(Integer coordinate) {
+	public Coordinate getNextCoordinate(Coordinate coordinate) {
 		return computeNextCoordinate.apply(coordinate);
 	}
 }

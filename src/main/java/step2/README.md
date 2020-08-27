@@ -15,4 +15,6 @@
 ### Domain
 1. 좌표 클래스 작성 후 실행 결과 예시로 기대 대로 동작하는지 테스트
     * Direction class (가로 영역 내에서 어디로 이동해야 하는지 나타내는 enum 클래스)
-    * Point class (가로 영역의 좌표와 다음 Point의 방향을 지니는 사다리 | 모양 단위 클래스)
+    * Point class (가로 영역의 좌표와 다음 Point의 방향을 지니는 사다리 | 모양에 해당하는 단위 클래스)
+    * Coordinate class (좌표는 최소 0부터 시작하므로 primitive type int를 감쌀 Wrapper Class)
+

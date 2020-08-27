@@ -1,6 +1,6 @@
 package step2;
 
-public class LadderMain {
+public class LadderGame {
 
 	public static void main(String[] args) {
 
