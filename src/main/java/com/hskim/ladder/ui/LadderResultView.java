@@ -18,7 +18,7 @@ public class LadderResultView {
 
     public void printLine(List<LadderPoint> ladderPoints) {
         ladderPoints.stream()
-                .map(ladderPoint -> ladderPoint.toString(pointStringMap.get(ladderPoint)))
+                .map(ladderPoint -> ladderPoint.getPrintString(pointStringMap.get(ladderPoint)))
                 .forEach(System.out::print);
     }
 

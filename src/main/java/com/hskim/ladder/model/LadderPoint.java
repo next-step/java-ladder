@@ -11,12 +11,7 @@ public enum LadderPoint {
         this.width = width;
     }
 
-    public String toString(String symbol) {
+    public String getPrintString(String symbol) {
         return new String(new char[width]).replace("\0", symbol);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }
