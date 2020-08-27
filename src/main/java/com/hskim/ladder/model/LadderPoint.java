@@ -5,7 +5,7 @@ public enum LadderPoint {
     COLUMN(1),
     ROW(5);
 
-    private int width;
+    private final int width;
 
     LadderPoint(int width) {
         this.width = width;

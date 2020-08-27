@@ -9,7 +9,7 @@ public class User {
     private static final String EXCEED_NAME_LENGTH_LIMIT = "유저 이름은 " + NAME_LENGTH_LIMIT + "자를 초과할 수 없습니다.";
     private static final String EMPTY_NAME = "유저 이름은 공백이 될 수 없습니다.";
 
-    private String name;
+    private final String name;
 
     public User(String name) {
         validateNameLength(name);

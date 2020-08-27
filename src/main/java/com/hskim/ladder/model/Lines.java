@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class Lines {
 
-    private List<Line> lines;
+    private final List<Line> lines;
 
     private Lines(List<Line> lines) {
         this.lines = lines;
