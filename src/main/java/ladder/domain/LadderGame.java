@@ -12,14 +12,12 @@ public class LadderGame implements Printable {
     private final Ladder ladder;
     private final Prizes prizes;
 
-
     public LadderGame(Persons persons, Ladder ladder, Prizes prizes) {
         checkArgument(persons.size() == prizes.size(), PERSON_PRIZE_SIZE_MESSAGE);
 
         this.persons = persons;
         this.ladder = ladder;
         this.prizes = prizes;
-
     }
 
     public Prize getResult(String name) {
