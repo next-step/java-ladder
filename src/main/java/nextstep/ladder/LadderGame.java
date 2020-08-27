@@ -17,6 +17,7 @@ public class LadderGame {
     ViewInput viewInput = new ViewInput(scanner);
     List<String> playerNames = viewInput.requestPlayerNames();
     int ladderHeight = viewInput.requestLadderHeight();
+    List<String> winningContents = viewInput.requestWinningContents();
 
     // 사다리 데이터 생성
     Ladder ladder = LadderGenerator.generate(playerNames.size(), ladderHeight);
