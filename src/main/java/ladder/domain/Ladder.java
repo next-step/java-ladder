@@ -19,12 +19,12 @@ public class Ladder implements DisplayResult {
     }
 
     public static Ladder create(LadderBaseInputData ladderBaseInputData){
-        return LadderBuilder.create(ladderBaseInputData);
+        return LineTransformationForLadder.create(ladderBaseInputData);
     }
 
     String ride(String participant){
-         return ladderStatefulOperation.prepar(participant)
-                                       .result(Line::getResult);
+        return ladderStatefulOperation.prepar(participant)
+                                      .result(Line::getResult);
     }
 
     public Ladder ridingLoop(Supplier<String> participantSupplier, Consumer<String> displayRidingResult){
@@ -52,7 +52,8 @@ public class Ladder implements DisplayResult {
         return ladderStatefulOperation
             .lines()
             .stream()
-            .map(l -> l.toDisplayResult().toDisplay())
+            .map(Line::toDisplayResult)
+            .map(DisplayResult::toDisplay)
             .collect(joining("\n"));
     }
 }

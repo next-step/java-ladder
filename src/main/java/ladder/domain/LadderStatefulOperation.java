@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import ladder.domain.core.StatefulOperation;
 import ladder.domain.core.line.Line;
@@ -13,13 +14,15 @@ class LadderStatefulOperation extends StatefulOperation<Line, Integer> {
 
     LadderStatefulOperation prepar(String participant) {
         clearState();
-        addState((e) -> e.indexOf(participant));
-        addState(Line::indexOf);
+        final Function<Line, Integer> participantLine = (e) -> e.indexOf(participant);
+        final BiFunction<Line, Integer, Integer> movableLine = Line::indexOf;
+        addState(participantLine);
+        addState(movableLine);
         return this;
     }
 
     <T> T result(BiFunction<Line, Integer, T> f) {
-        return f.apply(getCurrentTargetElement(), prevState());
+        return f.apply(currentTargetElement(), prevState());
     }
 
     List<String> participants(){

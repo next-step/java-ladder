@@ -1,35 +1,24 @@
 package ladder.domain.core.line.name;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 import ladder.domain.core.line.Line;
 import ladder.ui.result.DisplayResult;
 import ladder.ui.result.NamesDisplayResult;
 
-import static java.util.stream.Collectors.toList;
-import static ladder.domain.core.line.name.BaseName.verifyBlankName;
-import static ladder.domain.core.line.name.ParticipantsLine.ParticipantNames.participantNames;
-
 public class ParticipantsLine implements Line {
 
-    private final ParticipantNames names;
+    private final Names names;
 
-    ParticipantsLine(ParticipantNames names) {
+    ParticipantsLine(Names names) {
         this.names = names;
     }
 
     public static ParticipantsLine of(String participants) {
-        return new ParticipantsLine(participantNames(participants));
-    }
-
-    public int getNumberOfParticipants(){
-        return names.getCount();
+        return new ParticipantsLine(Names.ofParticipants(participants));
     }
 
     @Override
     public int indexOf(String name) {
-        return names.indexOf(new Participant(name));
+        return names.indexOf(new Name(name));
     }
 
     @Override
@@ -43,30 +32,12 @@ public class ParticipantsLine implements Line {
     }
 
     @Override
-    public Names<? extends BaseName> getNames() {
+    public Names getNames() {
         return names;
     }
 
     @Override
     public DisplayResult toDisplayResult() {
         return new NamesDisplayResult(names);
-    }
-
-    static class ParticipantNames extends Names<Participant> {
-        private static final String SEPARATOR = ",";
-
-        ParticipantNames(List<Participant> names) {
-            super(names);
-        }
-
-        static ParticipantNames participantNames(String participants){
-            verifyBlankName(participants);
-
-            List<Participant> participantList = Stream.of(participants.split(SEPARATOR))
-                                                      .map(Participant::new)
-                                                      .collect(toList())
-                ;
-            return new ParticipantNames(participantList);
-        }
     }
 }

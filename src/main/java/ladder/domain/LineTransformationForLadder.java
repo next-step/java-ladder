@@ -10,7 +10,7 @@ import ladder.domain.core.line.name.LadderResultLine;
 import ladder.domain.core.line.name.ParticipantsLine;
 import ladder.ui.LadderBaseInputData;
 
-class LadderBuilder {
+class LineTransformationForLadder {
     static final String ERROR_MSG_PARTICIPANTS_LINE = "참가자 신청을 먼저 진행해 주세요.";
     static final String ERROR_MSG_MOVABLE_LINE = "참가자 신청을 먼저 신청후에 사다리 높이 정보를 설정해 주세요.";
     static final String ERROR_MSG_LADDER_RESULT_LINE = "참가자, 사다리 높이 정보를 먼저 신청후에 사다리 결과 정보를 설정해 주세요.";
@@ -19,13 +19,13 @@ class LadderBuilder {
     private final List<Line> ladder;
     private int numberOfParticipants;
 
-    LadderBuilder() {
+    LineTransformationForLadder() {
         ladder = new ArrayList<>(LADDER_SIZE);
         numberOfParticipants = 0;
     }
 
     static Ladder create(LadderBaseInputData ladderBaseInputData) {
-        return new LadderBuilder()
+        return new LineTransformationForLadder()
             .participantsLine(ladderBaseInputData.getParticipants())
             .movableLine(ladderBaseInputData.getLadderHeight())
             .ladderResultLine(ladderBaseInputData.getLadderResult())
@@ -33,17 +33,17 @@ class LadderBuilder {
             ;
     }
 
-    LadderBuilder participantsLine(String participants) {
+    LineTransformationForLadder participantsLine(String participants) {
         if (0 != ladder.size()) {
             throw new IllegalArgumentException(ERROR_MSG_PARTICIPANTS_LINE);
         }
         ParticipantsLine participantsLine = ParticipantsLine.of(participants);
-        numberOfParticipants = participantsLine.getNumberOfParticipants();
+        numberOfParticipants = participantsLine.getWidth();
         ladder.add(participantsLine);
         return this;
     }
 
-    LadderBuilder movableLine(int ladderHeight) {
+    LineTransformationForLadder movableLine(int ladderHeight) {
         if (1 != ladder.size()) {
             throw new IllegalArgumentException(ERROR_MSG_MOVABLE_LINE);
         }
@@ -51,7 +51,7 @@ class LadderBuilder {
         return this;
     }
 
-    LadderBuilder ladderResultLine(String ladderResults) {
+    LineTransformationForLadder ladderResultLine(String ladderResults) {
         if (2 != ladder.size()) {
             throw new IllegalArgumentException(ERROR_MSG_LADDER_RESULT_LINE);
         }

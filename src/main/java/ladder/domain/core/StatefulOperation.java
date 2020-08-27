@@ -23,7 +23,7 @@ public abstract class StatefulOperation<T, V> {
         return Collections.unmodifiableList(targets);
     }
 
-    protected T getCurrentTargetElement() {
+    protected T currentTargetElement() {
         return targets.get(stateSize());
     }
 
@@ -32,14 +32,14 @@ public abstract class StatefulOperation<T, V> {
     }
 
     protected void addState(Function<T, V> stateFunction) {
-        this.states.add(stateFunction.apply(getCurrentTargetElement()));
+        this.states.add(stateFunction.apply(currentTargetElement()));
     }
 
     protected void addState(BiFunction<T, V, V> stateFunction) {
-        this.states.add(stateFunction.apply(getCurrentTargetElement(), prevState()));
+        this.states.add(stateFunction.apply(currentTargetElement(), prevState()));
     }
 
-    public List<V> states() {
+    protected List<V> states() {
         return Collections.unmodifiableList(states);
     }
 

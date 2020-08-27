@@ -56,7 +56,7 @@ class MovablePoints2WayTest {
             MovablePoints.of(()-> false, maxPointCount),
             MovablePoints.of(()-> true, maxPointCount)
         ) ;
-        List<Integer> result = MovableLine.getLineByPointIndexPathResult(lines, 1);
+        List<Integer> result = MovableLine.findByMovingPointToStartIndex(lines, 1);
         assertThat(result).containsExactly(0,0,1);
     }
 
@@ -76,7 +76,7 @@ class MovablePoints2WayTest {
             MovablePoints.of(()-> true, maxPointCount),
             MovablePoints.of(()-> true, maxPointCount)
         ) ;
-        List<Integer> result = MovableLine.getLineByPointIndexPathResult(lines, 1);
+        List<Integer> result = MovableLine.findByMovingPointToStartIndex(lines, 1);
         assertThat(result).containsExactly(0,1,0);
     }
 

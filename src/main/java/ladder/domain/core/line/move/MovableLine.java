@@ -38,36 +38,17 @@ public class MovableLine implements Line {
         }
     }
 
-    static List<Integer> getLineByPointIndexPathResult(List<MovablePoints> lines, final int startIndex) {
-//        AS-IS
-//        int size = lines.size();
-//        List<Integer> result = new ArrayList<>(size);
-//        result.add(lines.get(0).move(startIndex));
-//        for (int i = 1; size > i; ++i) {
-//            MovablePoints line = lines.get(i);
-//            result.add(line.move(result.get(i - 1)));
-//        }
-//        return result;
-
-//        TO-BE
+    static List<Integer> findByMovingPointToStartIndex(List<MovablePoints> lines, final int startIndex) {
         final MovingStatefulOperation<MovablePoints, Integer> movingStatefulOperation = new MovingStatefulOperation<>(lines);
-        return movingStatefulOperation.first((e) -> e.move(startIndex))
-                                      .otherwise(MovablePoints::move)
-                                      .states()
-            ;
-    }
-
-    List<MovablePointsDisplayResult> collectMovablePointsDisplayResultList() {
-        return lines.stream()
-                    .map(MovablePoints::collectLinkState)
-                    .map(MovablePointsDisplayResult::new)
-                    .collect(toList())
+        return movingStatefulOperation.saveIndexAfterMoved((e) -> e.move(startIndex))
+                                      .saveEachIndexAfterMoved(MovablePoints::move)
+                                      .toSavedIndexList()
             ;
     }
 
     @Override
     public int indexOf(int index) {
-        List<Integer> lineByPointIndexPathResult = getLineByPointIndexPathResult(lines, index);
+        List<Integer> lineByPointIndexPathResult = findByMovingPointToStartIndex(lines, index);
         int lastIndex = lineByPointIndexPathResult.size() - 1;
         return lineByPointIndexPathResult
             .stream()
@@ -83,6 +64,10 @@ public class MovableLine implements Line {
 
     @Override
     public DisplayResult toDisplayResult() {
-        return new DisplayResults(collectMovablePointsDisplayResultList());
+        final List<MovablePointsDisplayResult> movablePointsDisplayResults = lines.stream()
+                                                        .map(MovablePoints::collectLinkState)
+                                                        .map(MovablePointsDisplayResult::new)
+                                                        .collect(toList());
+        return new DisplayResults(movablePointsDisplayResults);
     }
 }
