@@ -14,11 +14,15 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public int getHeight() {
-        return this.lines.size();
+    public boolean checkHeight(int height) {
+        return this.lines.size() == height;
     }
 
     public Line getLine(int position) {
+        if (this.lines.size() < position + 1) {
+            return null;
+        }
+
         return this.lines.get(position);
     }
 }

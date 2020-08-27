@@ -16,15 +16,11 @@ public class Ladder {
         return new Ladder(participants, height);
     }
 
-    public int getHeight() {
-        return this.lines.getHeight();
+    public boolean checkHeight(int height) {
+        return this.lines.checkHeight(height);
     }
 
     public Line getLine(int index) {
-        if (this.lines.getHeight() - 1 < index) {
-            return null;
-        }
-
         return this.lines.getLine(index);
     }
 

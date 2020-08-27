@@ -11,14 +11,10 @@ public class LadderReader {
     }
 
     public boolean hasNext() {
-        return this.cursor < this.ladder.getHeight();
+        return !this.ladder.checkHeight(this.cursor);
     }
 
     public Line getLine() {
-        if (!hasNext()) {
-            return null;
-        }
-
         return ladder.getLine(this.cursor++);
     }
 }
