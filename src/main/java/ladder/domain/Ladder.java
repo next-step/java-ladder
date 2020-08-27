@@ -1,7 +1,8 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private List<Line> lines;
@@ -11,12 +12,11 @@ public class Ladder {
     }
 
     public static Ladder of(int ladderHeight, Participants participant, LineGenerator lineGenerator) {
-        List<Line> lines = new ArrayList<>();
+        List<Line> lines = Stream.iterate(0, line -> line + 1)
+                .limit(ladderHeight)
+                .map(line -> Line.create(participant, lineGenerator))
+                .collect(Collectors.toList());
 
-        for (int i = 0; i < ladderHeight; i++) {
-            Line line = Line.create(participant, lineGenerator);
-            lines.add(line);
-        }
         return new Ladder(lines);
     }
 

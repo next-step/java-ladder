@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,8 +23,8 @@ public class ParticipantsTest {
     }
 
     @DisplayName("참가자 생성 - 참가자 이름을 입력하지 않은 경우, 테스트")
-    @Test
-    @ValueSource(strings = {""})
+    @ParameterizedTest
+    @NullAndEmptySource
     void of_name_is_one(String input) {
         String expectedExceptionMessage = LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE;
 
