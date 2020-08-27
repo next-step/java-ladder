@@ -27,7 +27,7 @@ public class Participants {
     }
 
     private static List<Name> splitBy(String input, String delimiter) {
-        if (input == null) {
+        if (input == null || input.length() == 0) {
             throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
         }
 
