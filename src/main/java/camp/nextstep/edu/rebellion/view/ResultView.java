@@ -1,7 +1,5 @@
 package camp.nextstep.edu.rebellion.view;
 
-import camp.nextstep.edu.rebellion.domain.ladder.Ladder;
-import camp.nextstep.edu.rebellion.domain.ladder.Row;
 import camp.nextstep.edu.rebellion.domain.player.Player;
 import camp.nextstep.edu.rebellion.domain.player.Players;
 import camp.nextstep.edu.rebellion.domain.reward.Reward;
@@ -18,7 +16,7 @@ public class ResultView {
     private static final String REWARD_TITLE = "실행결과";
     private static final String ENTER = "\n";
 
-    public static void printAll(Players players, Rewards rewards, Ladder ladder) {
+    public static void printAll(Players players, Rewards rewards, PrintableLadder ladder) {
         printPlayers(players);
         printLadder(ladder);
         printRewards(rewards);
@@ -48,11 +46,11 @@ public class ResultView {
                         .collect(Collectors.joining(LADDER_HORIZON_EMPTY)));
     }
 
-    private static void printLadder(Ladder ladder) {
+    private static void printLadder(PrintableLadder ladder) {
         StringBuilder output = new StringBuilder();
         int cols = ladder.getSizeOfPoints();
 
-        ladder.getRows()
+        ladder.getLines()
                 .forEach(row -> {
                     output.append(generatePrintingRow(row, cols - 1));
                     output.append(LADDER_PIPE);
@@ -61,7 +59,7 @@ public class ResultView {
         System.out.print(output.toString());
     }
 
-    private static String generatePrintingRow(Row row, int cols) {
+    private static String generatePrintingRow(PrintableHorizonLineResolver row, int cols) {
         StringBuilder output = new StringBuilder();
         IntStream
                 .range(0, cols)
