@@ -4,51 +4,38 @@ import ladder.exception.LadderExceptionMessage;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participants {
     private static final String DELIMITER = ",";
-    private static final int NAME_MAX_LENGTH = 5;
     private static final int PARTICIPANTS_MIN_COUNT = 1;
 
-    private List<String> names;
+    private List<Name> names;
 
-    private Participants(List<String> names) {
+    private Participants(List<Name> names) {
         this.names = names;
     }
 
-    public List<String> getNames() {
+    public List<Name> getNames() {
         return names;
     }
 
     public static Participants of(String input) {
-        List<String> names = splitBy(input, DELIMITER);
-
-        validate(names);
+        List<Name> names = splitBy(input, DELIMITER);
 
         return new Participants(names);
     }
 
-    private static void validate(List<String> names) {
-        if (names.size() <= PARTICIPANTS_MIN_COUNT) {
-            throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
-        }
-
-        boolean hasLongName = names.stream()
-                .anyMatch(name -> name.length() > NAME_MAX_LENGTH);
-
-        if (hasLongName) {
-            throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NAME_TOO_LONG);
-        }
-    }
-
-    private static List<String> splitBy(String input, String delimiter) {
+    private static List<Name> splitBy(String input, String delimiter) {
         if (input == null) {
             throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
         }
 
-        return Arrays.asList(input
+        return Arrays.stream(input
                 .trim()
-                .split(delimiter));
+                .split(delimiter))
+                .map(Name::from)
+                .collect(Collectors.toList());
     }
 
     public int getNumber() {
@@ -56,6 +43,6 @@ public class Participants {
     }
 
     boolean isShortage() {
-        return names.size() <= 1;
+        return names.size() <= PARTICIPANTS_MIN_COUNT;
     }
 }

@@ -48,7 +48,7 @@ public class OutputView {
     private static void printParticipants(Participants participants) {
         String names = participants.getNames()
                 .stream()
-                .map(name -> name + repeat(" ", NAME_LENGTH_WIDTH - name.length()))
+                .map(name -> name.toString() + repeat(" ", NAME_LENGTH_WIDTH - name.length()))
                 .collect(Collectors.joining());
 
         System.out.println(names);
