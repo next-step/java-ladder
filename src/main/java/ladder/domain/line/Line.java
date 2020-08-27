@@ -3,11 +3,8 @@ package ladder.domain.line;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.ToString;
-
 import ladder.domain.util.RandomUtils;
 
-@ToString
 public class Line {
 	private final List<Boolean> points;
 	private int currentIndex = -1;
@@ -45,7 +42,7 @@ public class Line {
 
 	private List<Boolean> initPoints(int count) {
 		List<Boolean> points = new ArrayList<>(count);
-		points.add(0, Boolean.FALSE);
+		points.add(0, RandomUtils.booleanValue());
 
 		return points;
 	}
