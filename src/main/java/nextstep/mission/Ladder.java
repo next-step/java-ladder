@@ -1,36 +1,31 @@
 package nextstep.mission;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
 
-    private List<Participant> participants;
-    private List<Line> lines;
+    private Participants participants;
+    private Lines lines;
 
-    private Ladder(List<Participant> participants, int height) {
+    private Ladder(Participants participants, int height) {
         this.participants = participants;
-        this.lines = Stream.generate(() -> new Line(participants.size()))
-                .limit(height)
-                .collect(Collectors.toList());
+        this.lines = new Lines(participants.size(), height);
     }
 
-    public static Ladder make(List<Participant> participants, int height) {
+    public static Ladder make(Participants participants, int height) {
         return new Ladder(participants, height);
     }
 
     public int getHeight() {
-        return this.lines.size();
+        return this.lines.getHeight();
     }
 
     public Line getLine(int index) {
-        if (this.lines.size() - 1 < index) {
+        if (this.lines.getHeight() - 1 < index) {
             return null;
         }
 
-        return this.lines.get(index);
+        return this.lines.getLine(index);
     }
 
     @Override
