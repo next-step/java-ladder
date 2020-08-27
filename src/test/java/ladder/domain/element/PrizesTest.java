@@ -24,7 +24,7 @@ public class PrizesTest {
         // when
         Prizes prizes = Prizes.fromText(String.join(",", results));
         // then
-        for (Prizes.Prize prize : prizes) {
+        for (Prize prize : prizes) {
             assertThat(results).contains(prize.getName());
         }
     }
@@ -49,7 +49,7 @@ public class PrizesTest {
         Prizes prizes = Prizes.fromText(String.join(",", results));
         // then
         for (int i = 0; i < results.length; i++) {
-            Prizes.Prize prize = prizes.get(i);
+            Prize prize = prizes.get(i);
             assertThat(prize.getName()).isEqualTo(results[i]);
         }
     }

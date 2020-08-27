@@ -1,9 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.element.LadderPrize;
-import ladder.domain.element.LadderPrizes;
-import ladder.domain.element.Persons;
-import ladder.domain.element.Prizes;
+import ladder.domain.element.*;
 import ladder.domain.line.DrawStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,7 +42,7 @@ public class LadderGameTest {
         LadderPrizes ladderPrizes = ladderGame.getAllResult();
         // then
         for (LadderPrize ladderPrize : ladderPrizes) {
-            Persons.Person person = ladderPrize.getPerson();
+            Person person = ladderPrize.getPerson();
             assertThat(ladderPrize.getPrize().getName()).isEqualTo(prizeMap.get(person.getName()));
         }
     }
@@ -59,7 +56,7 @@ public class LadderGameTest {
         Ladder ladder = new Ladder(persons, 1, (index, indexConsumer) -> indexConsumer.accept(index));
         LadderGame ladderGame = new LadderGame(persons, ladder, prizes);
         // when
-        Prizes.Prize prize = ladderGame.getResult("a");
+        Prize prize = ladderGame.getResult("a");
         // then
         assertThat(prize).isEqualTo(prizes.get(1));
     }

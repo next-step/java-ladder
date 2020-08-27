@@ -1,10 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.common.Printable;
-import ladder.domain.element.LadderPrize;
-import ladder.domain.element.LadderPrizes;
-import ladder.domain.element.Persons;
-import ladder.domain.element.Prizes;
+import ladder.domain.element.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static ladder.domain.common.LadderMessage.PERSON_PRIZE_SIZE_MESSAGE;
@@ -25,7 +22,7 @@ public class LadderGame implements Printable {
 
     }
 
-    public Prizes.Prize getResult(String name) {
+    public Prize getResult(String name) {
         return prizes.get(ladder.lineDown(persons.get(name)));
     }
 

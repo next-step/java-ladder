@@ -3,6 +3,7 @@ package ladder.domain.command;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.element.Persons;
+import ladder.domain.element.Prize;
 import ladder.domain.element.Prizes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class PersonResultCommandTest {
         Ladder ladder = new Ladder(persons, 1, (index, indexConsumer) -> indexConsumer.accept(index));
         LadderGame ladderGame = new LadderGame(persons, ladder, prizes);
         // when
-        Prizes.Prize prize = new PersonResultCommand().showResult(ladderGame, "a");
+        Prize prize = new PersonResultCommand().showResult(ladderGame, "a");
         // then
         assertThat(prize).isEqualTo(prizes.get(1));
     }

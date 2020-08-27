@@ -1,7 +1,7 @@
 package ladder.domain.command;
 
 import ladder.domain.LadderGame;
-import ladder.domain.element.Prizes;
+import ladder.domain.element.Prize;
 
 public class PersonResultCommand implements LadderResultCommand {
     @Override
@@ -10,7 +10,7 @@ public class PersonResultCommand implements LadderResultCommand {
     }
 
     @Override
-    public Prizes.Prize showResult(LadderGame ladderGame, String command) {
+    public Prize showResult(LadderGame ladderGame, String command) {
         return ladderGame.getResult(command);
     }
 }
