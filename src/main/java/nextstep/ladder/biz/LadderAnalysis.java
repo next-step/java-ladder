@@ -16,4 +16,10 @@ public class LadderAnalysis {
     }
     return index;
   }
+
+  public void stat(Chessmen chessmen) {
+    for (Line line : ladder.getLines()) {
+      LineAnalysis.stat(line, chessmen);
+    }
+  }
 }

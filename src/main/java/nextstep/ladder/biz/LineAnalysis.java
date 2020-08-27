@@ -13,4 +13,10 @@ public class LineAnalysis {
       chessmen.down(point);
     }
   }
+
+  public static void stat(Line line, Chessmen chessmen) {
+    for (Point point : line.getLine()) {
+      chessmen.down(point);
+    }
+  }
 }
