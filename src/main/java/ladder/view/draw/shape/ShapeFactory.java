@@ -9,17 +9,13 @@ import ladder.domain.line.Line;
 
 @NoArgsConstructor
 public class ShapeFactory {
-	private static final String WIDTH_CONNECTION = "-";
-	private static final String WIDTH_WHITE_SPACE = " ";
-	private static final String NEW_LINE = "\n";
-
 	private static final Shape WIDTH_CONNECTION_DRAW_SHAPE = () -> IntStream.range(0, Shape.WIDTH_LINE_COUNT)
-																			.mapToObj(i -> WIDTH_CONNECTION)
+																			.mapToObj(i -> Shape.WIDTH_CONNECTION)
 																			.collect(Collectors.joining());
 	private static final Shape WIDTH_WHITE_SPACE_DRAW_SHAPE = () -> IntStream.range(0, Shape.WIDTH_LINE_COUNT)
-																			 .mapToObj(i -> WIDTH_WHITE_SPACE)
+																			 .mapToObj(i -> Shape.WIDTH_WHITE_SPACE)
 																			 .collect(Collectors.joining());
-	private static final Shape NEW_LINE_DRAW_SHAPE = () -> NEW_LINE;
+	private static final Shape NEW_LINE_DRAW_SHAPE = () -> Shape.NEW_LINE;
 
 	public static Shape getBy(Line line) {
 		if (!line.hasNext()) {
