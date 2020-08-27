@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.exception.LadderExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -20,9 +21,9 @@ public class ParticipantsTest {
         assertThat(participants.getNumber()).isEqualTo(expectedNumber);
     }
 
-    @DisplayName("참가자 생성 - 참가자 1명인 경우, 테스트")
-    @ParameterizedTest
-    @ValueSource(strings = {"", "nana", "나나"})
+    @DisplayName("참가자 생성 - 참가자 이름을 입력하지 않은 경우, 테스트")
+    @Test
+    @ValueSource(strings = {""})
     void of_name_is_one(String input) {
         String expectedExceptionMessage = LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE;
 
