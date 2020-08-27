@@ -10,6 +10,7 @@ public class ViewInput {
   public static final String SCRIPT_PLAYER_NAMES = "\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
   public static final String SCRIPT_LADDER_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
   public static final String SCRIPT_WINNING_CONTENTS = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+  public static final String SCRIPT_PLAYER_WINNING = "\n결과를 보고 싶은 사람은?";
 
   private Scanner scanner;
 
@@ -66,6 +67,11 @@ public class ViewInput {
 
   private String askWinningContents() {
     System.out.println(SCRIPT_WINNING_CONTENTS);
+    return scanner.next();
+  }
+
+  public String requestPlayerWinning() {
+    System.out.println(SCRIPT_PLAYER_WINNING);
     return scanner.next();
   }
 
