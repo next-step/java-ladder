@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Participant {
 
@@ -22,7 +23,9 @@ public class Participant {
 
         verifyEmptyName(nameStr);
 
-        List<String> names = Arrays.asList(nameStr.split(DELIMITER));
+        List<String> names = Arrays.stream(nameStr.split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList());
 
         verifyNameCount(names);
         verifyNameLength(names);

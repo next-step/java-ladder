@@ -69,19 +69,13 @@ public class LadderDataTest {
     private Output output() {
         return new Output() {
             @Override
-            public void print(String line) {
-
-            }
+            public void print(String line) { }
 
             @Override
-            public void print(List<String> lineList) {
-
-            }
+            public void print(List<String> lineList) { }
 
             @Override
-            public void printMultiLine(List<String> lineList) {
-
-            }
+            public void printMultiLine(List<String> lineList) { }
         };
     }
 }
