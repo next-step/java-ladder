@@ -29,9 +29,9 @@ public class Point {
         return new Point(left, false);
     }
 
-    public static Point next(Point old, boolean right) {
-        if (old.isRight()) {
-            return new Point(old.isRight(), false);
+    public static Point next(Point previous, boolean right) {
+        if (previous.isRight()) {
+            return new Point(previous.isRight(), false);
         }
         return new Point(false, right);
     }
