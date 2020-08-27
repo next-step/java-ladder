@@ -25,9 +25,9 @@ public class CustomLadderGame extends LadderGame {
     }
 
     private void make(DrawingRule drawingRule) {
-        IntStream
-                .range(INIT_INDEX, rows)
-                .forEach(row -> draw(row, drawingRule));
+        for (int row = 0; row < rows; row++) {
+            draw(row, drawingRule);
+        }
     }
 
     private void draw(int positionOfRow, DrawingRule drawingRule) {
