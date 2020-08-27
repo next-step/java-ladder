@@ -20,9 +20,14 @@ public class LadderApplication {
 
         ladderInputView.printLadderHeightPhrase();
         LadderHeight ladderHeight = new LadderHeight(ladderInputView.getLadderHeight());
+
         Lines lines = Lines.of(ladderHeight.getLineNum(),
                 ladderUsers.getUserNumber(), new RandomRowIndexMaker());
-        Ladder ladder = new Ladder(ladderHeight, ladderUsers, lines);
+
+        Ladder ladder = new Ladder.LadderBuilder(lines)
+                .setLadderHeight(ladderHeight)
+                .setLadderUsers(ladderUsers)
+                .build();
 
         ladderResultView.printResultPhrase();
         ladderResultView.printUserNames(ladderUsers.getUserNames());

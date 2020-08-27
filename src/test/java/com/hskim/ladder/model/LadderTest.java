@@ -26,6 +26,24 @@ public class LadderTest {
         assertThat(ladder).isEqualTo(expected);
     }
 
+    @DisplayName("생성 테스트 - 빌더이용")
+    @Test
+    void create_use_builder() {
+        // given
+        Ladder ladder = new Ladder.LadderBuilder(getMockLines())
+                .setLadderUsers(getMockLadderUsers())
+                .setLadderHeight(new LadderHeight(5))
+                .build();
+
+        // when
+        Ladder expected = new Ladder(new LadderHeight(5),
+                        getMockLadderUsers(),
+                        getMockLines());
+
+        // then
+        assertThat(ladder).isEqualTo(expected);
+    }
+
     private LadderUsers getMockLadderUsers() {
         LadderUsers ladderUsers = new LadderUsers(User.makeUserFromNames(
                 Arrays.asList("test1", "test2", "test3", "test4")));
