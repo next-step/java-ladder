@@ -10,6 +10,10 @@ public class Line {
     points = LineGenerator.form(countOfPerson);
   }
 
+  public Line(List<Point> points) {
+    this.points = points;
+  }
+
   public List<Point> getLine() {
     return points;
   }
