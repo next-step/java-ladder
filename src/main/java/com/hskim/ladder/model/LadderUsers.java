@@ -18,8 +18,7 @@ public class LadderUsers {
 
     public List<String> getUserNames() {
         return users.stream()
-                .map(User::getUserName)
-                .map(UserName::getName)
+                .map(User::getName)
                 .collect(Collectors.toList());
     }
 

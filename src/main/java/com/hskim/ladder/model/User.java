@@ -5,21 +5,35 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class User {
+    private static final int NAME_LENGTH_LIMIT = 5;
+    private static final String EXCEED_NAME_LENGTH_LIMIT = "유저 이름은 " + NAME_LENGTH_LIMIT + "자를 초과할 수 없습니다.";
+    private static final String EMPTY_NAME = "유저 이름은 공백이 될 수 없습니다.";
 
-    private UserName userName;
+    private String name;
 
-    public User(UserName userName) {
-        this.userName = userName;
+    public User(String name) {
+        validateNameLength(name);
+        this.name = name;
     }
 
-    public static List<User> makeUsersFromNames(List<UserName> userNames) {
-        return userNames.stream()
+    private void validateNameLength(String name) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException(EXCEED_NAME_LENGTH_LIMIT);
+        }
+
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_NAME);
+        }
+    }
+
+    public static List<User> makeUserFromNames(List<String> names) {
+        return names.stream()
                 .map(User::new)
                 .collect(Collectors.toList());
     }
 
-    public UserName getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -27,11 +41,11 @@ public class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(userName, user.userName);
+        return Objects.equals(name, user.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName);
+        return Objects.hash(name);
     }
 }

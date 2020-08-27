@@ -23,10 +23,9 @@ public class LadderUsersTest {
 
     private List<User> makeMockUsers() {
         return Stream.of(
-                new UserName("test1"),
-                new UserName("test2"),
-                new UserName("test3"))
-                .map(User::new)
+                new User("test1"),
+                new User("test2"),
+                new User("test3"))
                 .collect(Collectors.toList());
     }
 }

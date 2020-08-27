@@ -14,4 +14,9 @@ public enum LadderPoint {
     public String toString(String symbol) {
         return new String(new char[width]).replace("\0", symbol);
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
