@@ -1,4 +1,6 @@
-package nextstep.mission;
+package nextstep.mission.view;
+
+import nextstep.mission.domain.Participant;
 
 import java.util.Arrays;
 import java.util.List;

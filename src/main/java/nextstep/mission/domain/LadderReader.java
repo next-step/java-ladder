@@ -1,11 +1,11 @@
-package nextstep.mission;
+package nextstep.mission.domain;
 
 public class LadderReader {
 
     private Ladder ladder;
     private int cursor;
 
-    LadderReader(Ladder ladder) {
+    public LadderReader(Ladder ladder) {
         this.ladder = ladder;
         this.cursor = 0;
     }
@@ -15,8 +15,9 @@ public class LadderReader {
     }
 
     public Line getLine() {
-        if (!hasNext())
+        if (!hasNext()) {
             return null;
+        }
 
         return ladder.getLine(this.cursor++);
     }

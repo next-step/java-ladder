@@ -1,4 +1,4 @@
-package nextstep.mission;
+package nextstep.mission.domain;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,10 +1,13 @@
-package nextstep.mission;
+package nextstep.mission.domain;
 
+import nextstep.mission.domain.Ladder;
+import nextstep.mission.domain.LadderReader;
+import nextstep.mission.domain.Participant;
+import nextstep.mission.domain.Participants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

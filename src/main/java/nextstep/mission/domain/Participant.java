@@ -1,4 +1,6 @@
-package nextstep.mission;
+package nextstep.mission.domain;
+
+import nextstep.mission.lib.StringUtils;
 
 import java.util.Objects;
 

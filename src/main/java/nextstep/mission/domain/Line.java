@@ -1,4 +1,4 @@
-package nextstep.mission;
+package nextstep.mission.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -38,8 +38,9 @@ public class Line {
     }
 
     private void validPoint(Boolean point1, Boolean point2) {
-        if (point1 == true && point2 == true)
+        if (point1 == true && point2 == true) {
             throw new IllegalArgumentException("선은 겹칠수 없습니다.");
+        }
     }
 
     public boolean checkSize(int size) {

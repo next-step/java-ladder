@@ -1,4 +1,4 @@
-package nextstep.mission;
+package nextstep.mission.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;

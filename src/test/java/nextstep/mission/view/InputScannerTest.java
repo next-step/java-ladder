@@ -1,5 +1,6 @@
-package nextstep.mission;
+package nextstep.mission.view;
 
+import nextstep.mission.domain.Participant;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
