@@ -28,18 +28,18 @@ public class Point {
     return new Point(hasPoint, position);
   }
 
-  public int decide(int index) {
-    int left = index - 1;
+  public int decide(int location) {
+    int left = location - 1;
 
-    if (position == index) {
-      return point ? index + 1 : index;
+    if (position == location) {
+      return point ? location + 1 : location;
     }
 
     if (position == left) {
-      return point ? index -1 : index;
+      return point ? location -1 : location;
     }
 
-    return index;
+    return location;
   }
 
   @Override

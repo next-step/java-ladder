@@ -8,10 +8,9 @@ public class LineAnalysis {
     this.line = line;
   }
 
-  public int stat(int index) {
+  public void stat(Chessmen chessmen) {
     for (Point point : line.getLine()) {
-      index = point.decide(index);
+      chessmen.down(point);
     }
-    return index;
   }
 }
