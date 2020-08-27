@@ -56,7 +56,7 @@ public class Line {
 
 	private void addTrueIfItsAllFalse(List<Boolean> points) {
 		boolean allFalse = points.stream()
-								 .allMatch(point -> !point);
+								 .noneMatch(point -> point);
 		if (allFalse) {
 			int index = RandomUtils.intValue(points.size());
 			points.set(index, Boolean.TRUE);
