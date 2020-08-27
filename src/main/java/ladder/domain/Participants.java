@@ -8,6 +8,7 @@ import java.util.List;
 public class Participants {
     private static final String DELIMITER = ",";
     private static final int NAME_MAX_LENGTH = 5;
+    private static final int PARTICIPANTS_MIN_COUNT = 1;
 
     private List<String> names;
 
@@ -28,7 +29,7 @@ public class Participants {
     }
 
     private static void validate(List<String> names) {
-        if (names.size() <= 1) {
+        if (names.size() <= PARTICIPANTS_MIN_COUNT) {
             throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
         }
 
