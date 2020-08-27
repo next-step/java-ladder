@@ -13,4 +13,6 @@ public final class LadderMessage {
     public static final String BLANK_TEXT_MESSAGE = "The text cannot be blank";
 
     public static final String PERSON_PRIZE_SIZE_MESSAGE = "Person and result size are different";
+
+    public static final String UNEXPECTED_ERROR_MESSAGE = "Unexpected error occurred";
 }

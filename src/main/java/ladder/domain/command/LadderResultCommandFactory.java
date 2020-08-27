@@ -5,6 +5,8 @@ import ladder.domain.element.Persons;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ladder.domain.common.LadderMessage.UNEXPECTED_ERROR_MESSAGE;
+
 public class LadderResultCommandFactory {
 
     private static final List<LadderResultCommand> commands = new ArrayList<>();
@@ -18,6 +20,6 @@ public class LadderResultCommandFactory {
         return commands.stream()
                 .filter(ladderCommand -> ladderCommand.match(persons, command))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(UNEXPECTED_ERROR_MESSAGE));
     }
 }
