@@ -39,7 +39,7 @@ public class Line {
 			boolean point = makePoint(result.get(i - 1));
 			result.add(point);
 		}
-		validateLine(result);
+		addTrueIfItsAllFalse(result);
 		return result;
 	}
 
@@ -54,7 +54,7 @@ public class Line {
 		return previousPoint.equals(Boolean.FALSE) ? RandomUtils.booleanValue() : Boolean.FALSE;
 	}
 
-	private void validateLine(List<Boolean> points) {
+	private void addTrueIfItsAllFalse(List<Boolean> points) {
 		boolean allFalse = points.stream()
 								 .allMatch(point -> !point);
 		if (allFalse) {
