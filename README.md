@@ -39,3 +39,19 @@
 * C의 첫번째 라인은 right = true(B의 right가 false이므로 Random 생성), left = (B의 right가 false이므로) false 
 * D의 첫번째 라인은 right = (연속생성 불가하므로 무조건) false, left = (C의 right가 true이므로) true
 * E의 첫번째 라인은 right = (마지막 라인이므로 무조건) false, left = (D의 right가 false이므로) false 
+
+## 3단계 - 사다리(게임 실행) 기능 목록
+#### view
+* [ ] 실행 결과 입력 
+* [ ] 실행 결과 보고 싶은 대상 입력 
+* [ ] 실행 결과 출력 
+    * [ ] 사다리 하단에 순서대로 출력 
+    * [ ] 한 사람 결과 출력 
+    * [ ] 전체 결과 출력 
+
+
+#### domain
+* [ ] 입력한 실행 결과 개수와 인원수 일치 여부 
+* [ ] 실행 결과 생성
+    * [ ] 전체 결과 생성 
+    * [ ] 한 사람 결과 생성
