@@ -40,7 +40,9 @@ public class OutputView {
 
     private static String toLineString(List<Boolean> connection) {
         return connection.stream()
-                .map(connect -> connect ? HORIZONTAL_LINE : HORIZONTAL_BLANK)
+                .map(connect -> Boolean.TRUE.equals(connect)
+                                ? HORIZONTAL_LINE
+                                : HORIZONTAL_BLANK)
                 .map(line -> VERTICAL_LINE + line)
                 .collect(Collectors.joining());
     }
