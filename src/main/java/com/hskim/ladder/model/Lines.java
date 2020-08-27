@@ -19,8 +19,10 @@ public class Lines {
                 .collect(Collectors.toList()));
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<List<LadderPoint>> getLines() {
+        return lines.stream()
+                .map(Line::getLadderPoints)
+                .collect(Collectors.toList());
     }
 
     @Override

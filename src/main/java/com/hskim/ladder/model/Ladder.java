@@ -17,10 +17,7 @@ public class Ladder {
     }
 
     public List<List<LadderPoint>> getAllPoints() {
-        return lines.getLines()
-                .stream()
-                .map(Line::getLadderPoints)
-                .collect(Collectors.toList());
+        return lines.getLines();
     }
 
     @Override
