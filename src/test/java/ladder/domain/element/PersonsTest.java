@@ -41,6 +41,17 @@ public class PersonsTest {
     }
 
     @Test
+    @DisplayName("Persons exists 확인")
+    void testPersonExists() {
+        // given
+        String[] names = { "pobi","honux","crong","jk" };
+        // when
+        Persons persons = Persons.fromText(String.join(",", names));
+        // then
+        assertThat(persons.exists("pobi")).isTrue();
+    }
+
+    @Test
     @DisplayName("이름으로 person 객체 정상적으로 가져오는지 확인")
     void testPersonByName() {
         // given

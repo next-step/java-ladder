@@ -33,6 +33,10 @@ public class Persons implements Iterable<Person>, Printable {
                 .orElseThrow(() -> new PersonNameNotFoundException(name));
     }
 
+    public boolean exists(String name) {
+        return persons.contains(get(name));
+    }
+
     public int size() {
         return persons.size();
     }
