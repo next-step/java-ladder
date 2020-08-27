@@ -39,6 +39,18 @@ public class LineAnalysisTest {
     assertThat(analysis.stat(2)).isEqualTo(2);
   }
 
+
+  @DisplayName("|        |--------|")
+  @Test
+  void pierWithBridgeWith() {
+    Line line = new Line(Arrays.asList(Point.of(false, 0), Point.of(true, 1)));
+
+    LineAnalysis analysis = new LineAnalysis(line);
+    assertThat(analysis.stat(0)).isEqualTo(0);
+    assertThat(analysis.stat(1)).isEqualTo(2);
+    assertThat(analysis.stat(2)).isEqualTo(1);
+  }
+
   @DisplayName("|--------|        |--------|")
   @Test
   void bridgeWithPierWithBridge() {

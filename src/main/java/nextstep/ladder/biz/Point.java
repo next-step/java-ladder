@@ -20,10 +20,6 @@ public class Point {
     return point;
   }
 
-  public int getPosition() {
-    return position;
-  }
-
   public static Point of(boolean hasPoint) {
     return new Point(hasPoint);
   }
@@ -34,7 +30,6 @@ public class Point {
 
   public int decide(int index) {
     int left = index - 1;
-    int right = index + 1;
 
     if (position == index) {
       return point ? index + 1 : index;
@@ -42,10 +37,6 @@ public class Point {
 
     if (position == left) {
       return point ? index -1 : index;
-    }
-
-    if (position == right) {
-      return point ? index + 1 : index;
     }
 
     return index;

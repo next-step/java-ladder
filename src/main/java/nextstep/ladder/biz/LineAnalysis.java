@@ -10,13 +10,7 @@ public class LineAnalysis {
 
   public int stat(int index) {
     for (Point point : line.getLine()) {
-      if (index == point.getPosition() && point.hasPoint()) {
-        return index + 1;
-      }
-
-      if ((index-1) == point.getPosition() && point.hasPoint()) {
-        return index - 1;
-      }
+      index = point.decide(index);
     }
     return index;
   }

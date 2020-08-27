@@ -12,7 +12,7 @@ public class LineGenerator {
 
   public static List<Point> form(int countOfPerson) {
     if (isTwoPerson(countOfPerson)) {
-      return Arrays.asList(nextBoolean(Point.of(false)));
+      return Arrays.asList(nextBoolean(Point.of(false), 0));
     }
 
     List<Point> points = createPoints(countOfPerson);
@@ -30,18 +30,18 @@ public class LineGenerator {
     List<Point> line = new ArrayList<>();
     Point previous = Point.of(false);
     for (int i = 0; i < bridgeOfCount; i++) {
-      previous = nextBoolean(previous);
+      previous = nextBoolean(previous, i);
       line.add(previous);
     }
 
     return line;
   }
 
-  static Point nextBoolean(Point previous) {
+  static Point nextBoolean(Point previous, int position) {
     if (previous.hasPoint()) {
-      return Point.of(false);
+      return Point.of(false, position);
     }
-    return Point.of(random.nextBoolean());
+    return Point.of(random.nextBoolean(), position);
   }
 
   static void leastOneIsTrue(List<Point> bridges) {
