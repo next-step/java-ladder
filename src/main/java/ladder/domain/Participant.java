@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Participant {
     private Name name;
     private int order;
@@ -14,7 +17,7 @@ public class Participant {
         return new Participant(name, order);
     }
 
-    public Name getName() {
+    Name getName() {
         return name;
     }
 
@@ -22,20 +25,24 @@ public class Participant {
         return order;
     }
 
-    public void calculateResult(Ladder ladder) {
+    int calculateResult(Ladder ladder) {
+        int result = order;
+
         ladder.getLines()
-                .forEach(this::calculateOrder);
+                .forEach(line -> calculateOrder(line, result));
+
+        return result;
     }
 
-    private void calculateOrder(Line line) {
-        Point point = line.getPoints().get(order);
+    private void calculateOrder(Line line, int result) {
+        Point point = line.getPoints().get(result);
 
         if (point.isRight()) {
-            order++;
+            result++;
         }
 
         if (point.isLeft()) {
-            order--;
+            result--;
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.*;
 
 public class Participants {
     private static final String DELIMITER = ",";
@@ -29,7 +29,7 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public static Participants of(String input) {
+    public static Participants from(String input) {
         if (StringUtils.isEmpty(input)) {
             throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
         }
@@ -53,9 +53,12 @@ public class Participants {
         return participants.size() <= PARTICIPANTS_MIN_COUNT;
     }
 
-    public void calculateResult(Ladder ladder) {
-        participants
-                .forEach(participant -> participant.calculateResult(ladder));
+    public LadderGameResult calculateResult(Ladder ladder, LadderResult ladderResult) {
+        return participants
+                .stream()
+                .collect(collectingAndThen(toMap(Participant::getName
+                                                , participant -> participant.calculateResult(ladder))
+                        , resultByName -> LadderGameResult.of(resultByName, ladderResult)));
     }
 
     public Map<Name, Integer> getResult() {

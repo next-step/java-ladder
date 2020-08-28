@@ -75,24 +75,24 @@ public final class OutputView {
                 .collect(Collectors.joining(""));
     }
 
-    public static void printLadderResult(LadderResult ladderResult, Participants participants, String wishParticipantName) {
+    public static void printLadderResult(LadderGameResult ladderGameResult, String wishParticipantName) {
         System.out.println(LADDER_RESULT_MESSAGE);
 
         if (PARTICIPANTS_ALL.equalsIgnoreCase(wishParticipantName)) {
-            printLadderAllResult(ladderResult, participants);
+            printLadderAllResult(ladderGameResult);
             return;
         }
 
-        int order = participants.getResultBy(wishParticipantName);
-        System.out.println(ladderResult.getResultBy(order));
+        String result = ladderGameResult.getBy(wishParticipantName);
+        System.out.println(result);
     }
 
-    private static void printLadderAllResult(LadderResult ladderResult, Participants participants) {
-        Map<Name, Integer> resultByParticipant = participants.getResult();
+    private static void printLadderAllResult(LadderGameResult ladderGameResult) {
+        Map<Name, String> resultByParticipant = ladderGameResult.getResult();
 
         resultByParticipant.keySet()
                 .stream()
-                .map(key -> key.toString() + " : " + ladderResult.getResultBy(resultByParticipant.get(key)))
+                .map(key -> key.toString() + " : " + resultByParticipant.get(key))
                 .forEach(System.out::println);
     }
 }

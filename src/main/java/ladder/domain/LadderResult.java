@@ -38,8 +38,7 @@ public class LadderResult {
     }
 
     public String getResultBy(int index) {
-        return Optional.ofNullable(results.get(index))
-                .orElseThrow(() -> new IllegalArgumentException(""));
+        return results.get(index);
     }
 
     @Override
