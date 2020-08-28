@@ -1,5 +1,6 @@
 package ladder.domain.ladder;
 
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import lombok.AllArgsConstructor;
 public class Names {
 
 	private static final String DELIMITER = ",";
+	private static final String TO_STRING_DELIMITER = "  ";
 	private final List<Name> names;
 
 	public static Names of(List<Name> names) {
@@ -34,10 +36,11 @@ public class Names {
 							  .collect(toList()));
 	}
 
-	public List<String> getNames() {
+	@Override
+	public String toString() {
 		return names.stream()
-					.map(name -> name.getName())
-					.collect(toList());
+					.map(Name::getName)
+					.collect(joining(TO_STRING_DELIMITER));
 	}
 
 	public int getSize() {

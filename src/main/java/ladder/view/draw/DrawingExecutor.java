@@ -8,24 +8,17 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import ladder.domain.ladder.Ladder;
-import ladder.domain.ladder.Names;
 import ladder.domain.line.Line;
 import ladder.view.draw.shape.Shape;
 import ladder.view.draw.shape.ShapeFactory;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DrawingExecutor {
-	private static final String DELIMITER = "  ";
-	private static final Drawer<Names> NAMES_DRAWER = (names) -> names.getNames()
-																	  .stream()
-																	  .collect(joining(DELIMITER));
-	private static final Drawer<Ladder> LADDER_DRAWER = (ladder) -> drawLadder(ladder);
 
 	public static void drawResult(DrawArgument argument) {
-		String namesDrawing = NAMES_DRAWER.execute(argument.getNames());
-		String ladderDrawing = LADDER_DRAWER.execute(argument.getLadder());
+		String ladderDrawing = drawLadder(argument.getLadder());
 
-		System.out.println(String.format("%s\n%s", namesDrawing, ladderDrawing));
+		System.out.println(String.format("%s\n%s", argument.getNames(), ladderDrawing));
 	}
 
 
