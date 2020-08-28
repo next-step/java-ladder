@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.LadderExceptionMessage;
+import ladder.util.StringUtils;
 
 import java.util.Objects;
 
@@ -20,6 +21,10 @@ public class Name {
     }
 
     private static void validate(String name) {
+        if (StringUtils.isEmpty(name)) {
+            throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NAME_NEED_MORE_THAN_ONE);
+        }
+
         if (name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NAME_TOO_LONG);
         }
