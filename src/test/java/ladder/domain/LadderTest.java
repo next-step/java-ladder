@@ -17,7 +17,7 @@ public class LadderTest {
     @ParameterizedTest
     @CsvSource(value = {"dd,momo:1", "tt,lala:4", "dd,momo,coco:5", "nana,toto,dodo,coco,lulu:10"}, delimiter = ':')
     void Lines_of(String participant, int ladderHeight) {
-        Ladder ladder = Ladder.of(ladderHeight, Participants.of(participant), LINE_RANDOM_GENERATOR);
+        Ladder ladder = Ladder.of(ladderHeight, Participants.from(participant), LINE_RANDOM_GENERATOR);
 
         List<Line> lines = ladder.getLines();
 

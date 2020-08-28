@@ -17,7 +17,7 @@ public class LadderResultTest {
     @ParameterizedTest
     @MethodSource("makeLadderResultData")
     void from(String names, String input, String... inputs) {
-        Participants participants = Participants.of(names);
+        Participants participants = Participants.from(names);
         LadderResult ladderResult = LadderResult.of(participants, input);
 
         assertThat(ladderResult).isEqualTo(new LadderResult(inputs));
@@ -35,7 +35,7 @@ public class LadderResultTest {
     @ParameterizedTest
     @MethodSource("makeLadderResultInvalidData")
     void from_shortage_ladder_result(String names, String input) {
-        Participants participants = Participants.of(names);
+        Participants participants = Participants.from(names);
         String exceptionMessage = LadderExceptionMessage.INVALID_LADDER_RESULT_COUNT;
 
         assertThatIllegalArgumentException()
@@ -55,7 +55,7 @@ public class LadderResultTest {
     @ParameterizedTest
     @MethodSource("makeGetResultByData")
     void getResultBy(String names, String results, int index, String expectedResult) {
-        Participants participants = Participants.of(names);
+        Participants participants = Participants.from(names);
         LadderResult ladderResult = LadderResult.of(participants, results);
 
         String actual = ladderResult.getResultBy(index);
@@ -66,7 +66,7 @@ public class LadderResultTest {
     private static Stream<Arguments> makeGetResultByData() {
         return Stream.of(
                 Arguments.of("p1,p2,p3", "츄러스,마카롱,콘치즈", 1, "마카롱"),
-                Arguments.of("p1,p2,p3,p4,p5,p6", "1,2,3,4,5,6", 7, null),
+                Arguments.of("p1,p2,p3,p4,p5,p6", "1,2,3,4,5,6", 5, "6"),
                 Arguments.of("p1,p2,p3,p4", "프레첼,호떡,붕어빵,국화빵", 0, "프레첼")
         );
     }
