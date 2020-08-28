@@ -20,6 +20,6 @@ public class LadderGameController {
 
         Ladder ladder = Ladder.of(ladderHeight, participants, new LineRandomGenerator());
 
-        OutputView.printResult(participants, ladder);
+        OutputView.printLadder(participants, ladder, ladderResult);
     }
 }

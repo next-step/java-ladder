@@ -1,17 +1,14 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Participants;
-import ladder.domain.Point;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public final class OutputView {
-    private static final int NAME_LENGTH_WIDTH = 6;
-    private static final String RESULT_MESSAGE = "\n실행결과\n";
+    private static final int STRING_MAX_LENGTH = 6;
+    private static final String SHOW_LADDER_MESSAGE = "\n사다리 결과\n";
     private static final String HORIZONTAL_LINE = "-----";
     private static final String HORIZONTAL_BLANK = "     ";
     private static final String VERTICAL_LINE = "|";
@@ -19,11 +16,21 @@ public final class OutputView {
     private OutputView() {
     }
 
-    public static void printResult(Participants participants, Ladder ladder) {
-        System.out.println(RESULT_MESSAGE);
+    public static void printLadder(Participants participants, Ladder ladder, LadderResult ladderResult) {
+        System.out.println(SHOW_LADDER_MESSAGE);
 
         printParticipants(participants);
         printLadder(ladder);
+        printLadderResult(ladderResult);
+    }
+
+    private static void printLadderResult(LadderResult ladderResult) {
+        ladderResult.getResults()
+                .stream()
+                .map(result -> result + repeat(" ", STRING_MAX_LENGTH - result.length()))
+                .forEach(System.out::print);
+
+        System.out.println();
     }
 
     private static void printLadder(Ladder ladder) {
@@ -53,7 +60,7 @@ public final class OutputView {
     private static void printParticipants(Participants participants) {
         String names = participants.getNames()
                 .stream()
-                .map(name -> name.toString() + repeat(" ", NAME_LENGTH_WIDTH - name.length()))
+                .map(name -> name.toString() + repeat(" ", STRING_MAX_LENGTH - name.length()))
                 .collect(Collectors.joining());
 
         System.out.println(names);

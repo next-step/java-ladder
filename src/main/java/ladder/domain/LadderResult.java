@@ -36,6 +36,10 @@ public class LadderResult {
                 .collect(Collectors.toList());
     }
 
+    public List<String> getResults() {
+        return results;
+    }
+
     public String getResultBy(int index) {
         return "";
     }
