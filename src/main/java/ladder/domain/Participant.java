@@ -21,10 +21,6 @@ public class Participant {
         return name;
     }
 
-    int getOrder() {
-        return order;
-    }
-
     int calculateResult(Ladder ladder) {
         int result = order;
 

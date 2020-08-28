@@ -61,15 +61,4 @@ public class Participants {
                         , resultByName -> LadderGameResult.of(resultByName, ladderResult)));
     }
 
-    public Map<Name, Integer> getResult() {
-        return participants.stream()
-                .collect(toMap(Participant::getName, Participant::getOrder));
-    }
-
-    public int getResultBy(String wishParticipant) {
-        Name wishParticipantName = Name.from(wishParticipant);
-
-        return Optional.ofNullable(getResult().get(wishParticipantName))
-                .orElseThrow(() -> new IllegalArgumentException(LadderExceptionMessage.INVALID_PARTICIPANT));
-    }
 }
