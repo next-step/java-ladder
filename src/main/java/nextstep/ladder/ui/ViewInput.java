@@ -1,5 +1,8 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.Prize;
+import nextstep.ladder.biz.Chessmen;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +15,7 @@ public class ViewInput {
   public static final String SCRIPT_LADDER_HEIGHT = "\n최대 사다리 높이는 몇 개인가요?";
   public static final String SCRIPT_WINNING_CONTENTS = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
   public static final String SCRIPT_PLAYER_WINNING = "\n결과를 보고 싶은 사람은?";
+  public static final String SCRIPT_RESULT = "실행 결과";
 
   private Scanner scanner;
 
@@ -30,7 +34,7 @@ public class ViewInput {
 
   private List<String> namesToList() {
     return Arrays.stream(askPlayerNames().split(","))
-        .collect(Collectors.toList());
+            .collect(Collectors.toList());
   }
 
   private String askPlayerNames() {
@@ -68,7 +72,7 @@ public class ViewInput {
 
   private List<String> prizesToList() {
     return Arrays.stream(askWinningContents().split(DELIMITER))
-        .collect(Collectors.toList());
+            .collect(Collectors.toList());
   }
 
   private String askWinningContents() {
@@ -81,4 +85,15 @@ public class ViewInput {
     return scanner.next();
   }
 
+  public static void printIndividual(Prize prize) {
+    System.out.println(SCRIPT_RESULT);
+    System.out.println(prize);
+  }
+
+  public static void printFinal(List<Chessmen> chessPieces, List<Prize> prizes) {
+    System.out.println("실행 결과");
+    chessPieces.forEach(chessmen ->
+            System.out.println(chessmen + ": " + prizes.get(chessmen.getLocation()))
+    );
+  }
 }

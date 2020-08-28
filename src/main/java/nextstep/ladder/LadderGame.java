@@ -15,6 +15,7 @@ import nextstep.ladder.ui.ViewOutput;
 
 public class LadderGame {
   private static final Player ALL_PLAYERS = new Player("all", -1);
+  private static final Player NONE_PLAYER = new Player("nobody", -1);
 
   private final ViewInput viewInput;
 
@@ -50,23 +51,44 @@ public class LadderGame {
     LadderAnalysis ladderAnalysis = new LadderAnalysis(ladder);
 
     Player play = responseNameOfWinners(players);
-
-    if (play == ALL_PLAYERS) {
-      players.stream()
-              .map(Player::asChessmen)
-              .forEach(chessmen -> {
-                ladderAnalysis.stat(chessmen);
-                System.out.println(chessmen + ": " + prizes.get(chessmen.getLocation()));
-              });
-      return;
+    if (isIndividual(play)) {
+      announceIndividual(players, ladder, prizes, ladderAnalysis, play);
     }
 
-    Chessmen chessmen = play.asChessmen();
-    ladderAnalysis.stat(chessmen);
-    System.out.println("실행 결과");
-    System.out.println(prizes.get(chessmen.getLocation()));
+    if (isAllPlayers(play)) {
+      announceAllPlayers(players, prizes, ladderAnalysis);
+    }
+  }
+
+  private boolean isIndividual(Player play) {
+    return play != ALL_PLAYERS;
+  }
+
+  private void announceIndividual(List<Player> players, Ladder ladder, List<Prize> prizes, LadderAnalysis ladderAnalysis, Player play) {
+    if (existPlayer(play)) {
+      Chessmen chessmen = play.asChessmen();
+      ladderAnalysis.stat(chessmen);
+      ViewInput.printIndividual(prizes.get(chessmen.getLocation()));
+    }
 
     announce(players, ladder, prizes);
+  }
+
+  private boolean existPlayer(Player play) {
+    return play != NONE_PLAYER;
+  }
+
+  private boolean isAllPlayers(Player play) {
+    return play == ALL_PLAYERS;
+  }
+
+  private void announceAllPlayers(List<Player> players, List<Prize> prizes, LadderAnalysis ladderAnalysis) {
+    List<Chessmen> chessPieces = players.stream()
+            .map(Player::asChessmen)
+            .collect(Collectors.toList());
+    chessPieces.forEach(chessmen -> ladderAnalysis.stat(chessmen));
+
+    ViewInput.printFinal(chessPieces, prizes);
   }
 
   private Player responseNameOfWinners(List<Player> players) {
@@ -74,7 +96,7 @@ public class LadderGame {
     return players.stream()
             .filter(player -> player.match(playName))
             .findFirst()
-            .orElseGet(() -> playName.equals("all") ? ALL_PLAYERS : null);
+            .orElseGet(() -> playName.equals("all") ? ALL_PLAYERS : NONE_PLAYER);
 
   }
 
@@ -90,7 +112,7 @@ public class LadderGame {
     Ladder ladder = LadderGenerator.generate(players.size(), ladderHeight);
 
     // 출력
-    ViewOutput.print(new LadderRenderer(players, ladder));
+    ViewOutput.printLadder(new LadderRenderer(players, ladder));
 
     // 발표
     ladderGame.announce(players, ladder, prizes);
