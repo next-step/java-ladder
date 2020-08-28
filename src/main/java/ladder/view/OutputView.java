@@ -9,12 +9,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class OutputView {
+public final class OutputView {
     private static final int NAME_LENGTH_WIDTH = 6;
     private static final String RESULT_MESSAGE = "\n실행결과\n";
     private static final String HORIZONTAL_LINE = "-----";
     private static final String HORIZONTAL_BLANK = "     ";
     private static final String VERTICAL_LINE = "|";
+
+    private OutputView() {
+    }
 
     public static void printResult(Participants participants, Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
