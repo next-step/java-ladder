@@ -3,22 +3,26 @@ package ladder.domain;
 import ladder.exception.LadderExceptionMessage;
 import ladder.util.StringUtils;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Participants {
     private static final String DELIMITER = ",";
     private static final int PARTICIPANTS_MIN_COUNT = 1;
 
-    private List<Name> names;
+    private List<Participant> participants;
+    private static AtomicInteger participantsNumber = new AtomicInteger(0);
 
-    private Participants(List<Name> names) {
-        this.names = names;
+    private Participants(List<Participant> participants) {
+        this.participants = participants;
     }
 
     public List<Name> getNames() {
-        return names;
+        return participants.stream()
+                .map(Participant::getName)
+                .collect(Collectors.toList());
     }
 
     public static Participants of(String input) {
@@ -26,22 +30,27 @@ public class Participants {
             throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
         }
 
-        List<Name> names = splitBy(input, DELIMITER);
+        List<Participant> participant = splitBy(input);
 
-        return new Participants(names);
+        return new Participants(participant);
     }
 
-    private static List<Name> splitBy(String input, String delimiter) {
-        return Arrays.stream(StringUtils.split(input, delimiter))
-                .map(Name::from)
+    private static List<Participant> splitBy(String input) {
+        return Stream.of(StringUtils.split(input, DELIMITER))
+                .map(name -> Participant.of(name, participantsNumber.getAndAdd(1)))
                 .collect(Collectors.toList());
     }
 
     public int getNumber() {
-        return names.size();
+        return participants.size();
     }
 
     boolean isShortage() {
-        return names.size() <= PARTICIPANTS_MIN_COUNT;
+        return participants.size() <= PARTICIPANTS_MIN_COUNT;
+    }
+
+    public void calculateResult(Ladder ladder) {
+        participants
+                .forEach(participant -> participant.calculateResult(ladder));
     }
 }
