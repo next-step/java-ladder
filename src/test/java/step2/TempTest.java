@@ -3,8 +3,8 @@ package step2;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import step2.domain.Coordinate;
-import step2.domain.Direction;
-import step2.domain.Point;
+import step2.domain.direction.Direction;
+import step2.domain.point.Point;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class TempTest {
 
 		Integer lineIndex = startIndex;
 
-		for(int i = 0 ; i < ladder.size() ; i ++) {
+		for (int i = 0 ; i < ladder.size() ; i ++) {
 			List<Point> line = ladder.get(i);
 			Point point = line.get(lineIndex);
 			System.out.println(String.format(message, i, lineIndex));

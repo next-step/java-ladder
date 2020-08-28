@@ -17,4 +17,12 @@
     * Direction class (가로 영역 내에서 어디로 이동해야 하는지 나타내는 enum 클래스)
     * Point class (가로 영역의 좌표와 다음 Point의 방향을 지니는 사다리 | 모양에 해당하는 단위 클래스)
     * Coordinate class (좌표는 최소 0부터 시작하므로 primitive type int를 감쌀 Wrapper Class)
-
+2. 가로 축을 나타내는 좌표 클래스의 일급 컬렉션 작성
+    * 생성 책임에 가로 라인이 겹치지 않게 하는 것이 필요함
+        * 왼쪽부터 오른쪽으로 생성한다고 했을 때
+            * 이전이 Right였으면 무조건 Left
+            * 이전이 Left였으면 무조건 !Left
+            * 이전이 Down이였으면 Don't !Left
+    * Point 생성 책임을 지닌 클래스 생성
+    * Line 생성 책임을 지닌 클래스 생성
+    * 랜덤한 Direction을 생성하기 위해 Random 객체 사용이 필요하나, 테스트가 용이하게 random성을 가지는 부분을 따로 분리할 것.

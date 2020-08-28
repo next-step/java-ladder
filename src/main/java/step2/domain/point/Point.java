@@ -1,4 +1,7 @@
-package step2.domain;
+package step2.domain.point;
+
+import step2.domain.Coordinate;
+import step2.domain.direction.Direction;
 
 import java.util.Objects;
 
@@ -14,6 +17,18 @@ public class Point {
 
 	public Coordinate goNextPoint() {
 		return direction.getNextCoordinate(coordinate);
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+	public boolean isRightDirection() {
+		return direction == Direction.RIGHT;
+	}
+
+	public boolean isLeftDirection() {
+		return direction == Direction.LEFT;
 	}
 
 	@Override

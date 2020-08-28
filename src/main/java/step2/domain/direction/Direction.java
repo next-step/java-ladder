@@ -1,4 +1,6 @@
-package step2.domain;
+package step2.domain.direction;
+
+import step2.domain.Coordinate;
 
 import java.util.function.Function;
 
@@ -8,7 +10,7 @@ public enum Direction {
 	RIGHT(Coordinate::increaseCoordinate),
 	DOWN(Coordinate::keepCoordinate);
 
-	private Function<Coordinate, Coordinate> computeNextCoordinate;
+	private final Function<Coordinate, Coordinate> computeNextCoordinate;
 
 	Direction(Function<Coordinate, Coordinate> computeNextCoordinate) {
 		this.computeNextCoordinate = computeNextCoordinate;
