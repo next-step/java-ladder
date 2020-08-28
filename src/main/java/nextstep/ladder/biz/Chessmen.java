@@ -1,10 +1,18 @@
 package nextstep.ladder.biz;
 
+import nextstep.ladder.Player;
+
 import java.util.Objects;
 
 public class Chessmen {
 
+    private Player player;
     private int location;
+
+    public Chessmen(Player player) {
+        this(player.getLocation());
+        this.player = player;
+    }
 
     public Chessmen(int location) {
         if (isOnLadder(location)) {
@@ -48,6 +56,9 @@ public class Chessmen {
     public static Chessmen location(int value) {
         return new Chessmen(value);
     }
+    public static Chessmen of(Player player) {
+        return new Chessmen(player);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -68,8 +79,6 @@ public class Chessmen {
 
     @Override
     public String toString() {
-        return "Chessmen{" +
-                "location=" + location +
-                '}';
+        return player.getName() + "[" + player.getLocation() + "]";
     }
 }

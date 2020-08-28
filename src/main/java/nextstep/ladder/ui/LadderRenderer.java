@@ -2,6 +2,8 @@ package nextstep.ladder.ui;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import nextstep.ladder.Player;
 import nextstep.ladder.biz.Ladder;
 import nextstep.ladder.biz.Line;
 import nextstep.ladder.biz.Point;
@@ -12,10 +14,10 @@ public class LadderRenderer implements Renderer {
   private static final String BRIDGE = "--------";
   private static final String PIER = "|";
 
-  private List<String> playerNames;
+  private List<Player> playerNames;
   private Ladder ladder;
 
-  public LadderRenderer(List<String> playerNames, Ladder ladder) {
+  public LadderRenderer(List<Player> playerNames, Ladder ladder) {
     this.playerNames = playerNames;
     this.ladder = ladder;
   }
@@ -46,8 +48,9 @@ public class LadderRenderer implements Renderer {
     return point.hasPoint() ? BRIDGE : AIR;
   }
 
-  private void renderPlayers(List<String> playerNames) {
+  private void renderPlayers(List<Player> playerNames) {
     System.out.println(playerNames.stream()
+        .map(Player::getName)
         .map(LadderRenderer::center)
         .collect(Collectors.joining("", "\n", "")));
   }
