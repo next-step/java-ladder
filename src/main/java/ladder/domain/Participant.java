@@ -1,20 +1,17 @@
 package ladder.domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Participant {
     private Name name;
-    private int order;
+    private int index;
 
-    public Participant(Name name, int order) {
-        this.order = order;
+    public Participant(Name name, int index) {
+        this.index = index;
         this.name = name;
     }
 
-    public static Participant of(String nameInput, int order) {
+    public static Participant of(String nameInput, int index) {
         Name name = Name.from(nameInput);
-        return new Participant(name, order);
+        return new Participant(name, index);
     }
 
     Name getName() {
@@ -22,7 +19,7 @@ public class Participant {
     }
 
     int calculateResult(Ladder ladder) {
-        int result = order;
+        int result = index;
 
         ladder.getLines()
                 .forEach(line -> calculateOrder(line, result));

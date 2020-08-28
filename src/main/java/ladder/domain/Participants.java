@@ -3,10 +3,8 @@ package ladder.domain;
 import ladder.exception.LadderExceptionMessage;
 import ladder.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,7 +15,6 @@ public class Participants {
     private static final int PARTICIPANTS_MIN_COUNT = 1;
 
     private List<Participant> participants;
-    private static AtomicInteger participantsNumber = new AtomicInteger(0);
 
     private Participants(List<Participant> participants) {
         this.participants = participants;
@@ -40,8 +37,11 @@ public class Participants {
     }
 
     private static List<Participant> splitBy(String input) {
-        return Stream.of(StringUtils.split(input, DELIMITER))
-                .map(name -> Participant.of(name, participantsNumber.getAndAdd(1)))
+        List<String> names = Arrays.asList(StringUtils.split(input, DELIMITER));
+
+        return Stream.iterate(0, index -> index = index + 1)
+                .limit(names.size())
+                .map(index -> Participant.of(names.get(index), index))
                 .collect(Collectors.toList());
     }
 
@@ -57,7 +57,7 @@ public class Participants {
         return participants
                 .stream()
                 .collect(collectingAndThen(toMap(Participant::getName
-                                                , participant -> participant.calculateResult(ladder))
+                        , participant -> participant.calculateResult(ladder))
                         , resultByName -> LadderGameResult.of(resultByName, ladderResult)));
     }
 
