@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Prizes implements Iterable<Prizes.Prize>, Printable {
+public class Prizes implements Iterable<Prize>, Printable {
 
     private final List<Prize> prizes;
 
@@ -43,12 +43,5 @@ public class Prizes implements Iterable<Prizes.Prize>, Printable {
         return prizes.stream()
                 .map(Prize::print)
                 .collect(Collectors.joining(" "));
-    }
-
-    static public class Prize extends LadderElement {
-
-        public Prize(String name) {
-            super(name);
-        }
     }
 }

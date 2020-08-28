@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.common.Printable;
+import ladder.domain.element.Person;
 import ladder.domain.element.Persons;
 import ladder.domain.line.DrawStrategy;
 import ladder.domain.line.LadderLine;
@@ -17,7 +18,7 @@ import static ladder.domain.common.LadderMessage.LADDER_HEIGHT_MESSAGE;
 public class Ladder implements Printable {
 
     private final List<LadderLine> ladderLines = new ArrayList<>();
-    private final Map<Persons.Person, Integer> personMap = new HashMap<>();
+    private final Map<Person, Integer> personMap = new HashMap<>();
 
     public Ladder(Persons persons, int height, DrawStrategy drawStrategy) {
         checkArgument(height > 0, LADDER_HEIGHT_MESSAGE);
@@ -31,7 +32,7 @@ public class Ladder implements Printable {
         }
     }
 
-    public int lineDown(Persons.Person person) {
+    public int lineDown(Person person) {
         int startPosition = personMap.get(person);
         for (LadderLine ladderLine : ladderLines) {
             startPosition = ladderLine.move(startPosition);

@@ -1,10 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.common.Printable;
-import ladder.domain.element.LadderPrize;
-import ladder.domain.element.LadderPrizes;
-import ladder.domain.element.Persons;
-import ladder.domain.element.Prizes;
+import ladder.domain.element.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static ladder.domain.common.LadderMessage.PERSON_PRIZE_SIZE_MESSAGE;
@@ -15,17 +12,15 @@ public class LadderGame implements Printable {
     private final Ladder ladder;
     private final Prizes prizes;
 
-
     public LadderGame(Persons persons, Ladder ladder, Prizes prizes) {
         checkArgument(persons.size() == prizes.size(), PERSON_PRIZE_SIZE_MESSAGE);
 
         this.persons = persons;
         this.ladder = ladder;
         this.prizes = prizes;
-
     }
 
-    public Prizes.Prize getResult(String name) {
+    public Prize getResult(String name) {
         return prizes.get(ladder.lineDown(persons.get(name)));
     }
 

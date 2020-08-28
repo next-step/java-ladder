@@ -4,19 +4,19 @@ import ladder.domain.common.Printable;
 
 public class LadderPrize implements Printable {
 
-    private final Persons.Person person;
-    private final Prizes.Prize prize;
+    private final Person person;
+    private final Prize prize;
 
-    public LadderPrize(Persons.Person person, Prizes.Prize prize) {
+    public LadderPrize(Person person, Prize prize) {
         this.person = person;
         this.prize = prize;
     }
 
-    public Persons.Person getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public Prizes.Prize getPrize() {
+    public Prize getPrize() {
         return prize;
     }
 

@@ -25,7 +25,7 @@ public class LadderMain {
         LadderResultView.printPersonWithLadder(ladderGame);
         while (true) {
             String name = LadderInputView.wantToSeePersonName();
-            LadderResultCommand ladderResultCommand = LadderResultCommandFactory.ladderResultCommand(name);
+            LadderResultCommand ladderResultCommand = LadderResultCommandFactory.ladderResultCommand(persons, name);
             LadderResultView.printLadderGameResult(ladderResultCommand.showResult(ladderGame, name));
         }
         // result end

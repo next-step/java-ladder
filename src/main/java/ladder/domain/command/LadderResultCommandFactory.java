@@ -1,7 +1,11 @@
 package ladder.domain.command;
 
+import ladder.domain.element.Persons;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static ladder.domain.common.LadderMessage.UNEXPECTED_ERROR_MESSAGE;
 
 public class LadderResultCommandFactory {
 
@@ -12,10 +16,10 @@ public class LadderResultCommandFactory {
         commands.add(new PersonResultCommand());
     }
 
-    public static LadderResultCommand ladderResultCommand(String command) {
+    public static LadderResultCommand ladderResultCommand(Persons persons, String command) {
         return commands.stream()
-                .filter(ladderCommand -> ladderCommand.match(command))
+                .filter(ladderCommand -> ladderCommand.match(persons, command))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(UNEXPECTED_ERROR_MESSAGE));
     }
 }

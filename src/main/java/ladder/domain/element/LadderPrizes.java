@@ -2,6 +2,7 @@ package ladder.domain.element;
 
 import ladder.domain.common.Printable;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +23,7 @@ public class LadderPrizes implements Iterable<LadderPrize>, Printable {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
+    @Nonnull
     @Override
     public Iterator<LadderPrize> iterator() {
         return ladderPrizes.iterator();

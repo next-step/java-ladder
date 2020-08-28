@@ -24,7 +24,7 @@ public class PersonsTest {
         // when
         Persons persons = Persons.fromText(String.join(",", names));
         // then
-        for (Persons.Person person : persons) {
+        for (Person person : persons) {
             assertThat(names).contains(person.getName());
         }
     }
@@ -38,6 +38,17 @@ public class PersonsTest {
         Persons persons = Persons.fromText(String.join(",", names));
         // then
         assertThat(persons.size()).isEqualTo(names.length);
+    }
+
+    @Test
+    @DisplayName("Persons exists 확인")
+    void testPersonExists() {
+        // given
+        String[] names = { "pobi","honux","crong","jk" };
+        // when
+        Persons persons = Persons.fromText(String.join(",", names));
+        // then
+        assertThat(persons.exists("pobi")).isTrue();
     }
 
     @Test
@@ -62,7 +73,7 @@ public class PersonsTest {
         Persons persons = Persons.fromText(String.join(",", names));
         // then
         for (int i = 0; i < names.length; i++) {
-            Persons.Person person = persons.get(i);
+            Person person = persons.get(i);
             assertThat(person.getName()).isEqualTo(names[i]);
         }
     }

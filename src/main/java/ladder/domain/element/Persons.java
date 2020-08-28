@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Persons implements Iterable<Persons.Person>, Printable {
+public class Persons implements Iterable<Person>, Printable {
 
     private final List<Person> persons;
     private final Map<String, Person> nameMap = new HashMap<>();
@@ -33,6 +33,10 @@ public class Persons implements Iterable<Persons.Person>, Printable {
                 .orElseThrow(() -> new PersonNameNotFoundException(name));
     }
 
+    public boolean exists(String name) {
+        return persons.contains(get(name));
+    }
+
     public int size() {
         return persons.size();
     }
@@ -48,12 +52,5 @@ public class Persons implements Iterable<Persons.Person>, Printable {
         return persons.stream()
                 .map(Person::print)
                 .collect(Collectors.joining(" "));
-    }
-
-    public static class Person extends LadderElement {
-
-        public Person(String name) {
-            super(name);
-        }
     }
 }
