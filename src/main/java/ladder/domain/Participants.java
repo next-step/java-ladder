@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.exception.LadderExceptionMessage;
+import ladder.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,19 +22,17 @@ public class Participants {
     }
 
     public static Participants of(String input) {
+        if (StringUtils.isEmpty(input)) {
+            throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
+        }
+
         List<Name> names = splitBy(input, DELIMITER);
 
         return new Participants(names);
     }
 
     private static List<Name> splitBy(String input, String delimiter) {
-        if (input == null || input.length() == 0) {
-            throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
-        }
-
-        return Arrays.stream(input
-                .trim()
-                .split(delimiter))
+        return Arrays.stream(StringUtils.split(input, delimiter))
                 .map(Name::from)
                 .collect(Collectors.toList());
     }

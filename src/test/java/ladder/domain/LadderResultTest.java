@@ -25,9 +25,9 @@ public class LadderResultTest {
 
     private static Stream<Arguments> makeLadderResultData() {
         return Stream.of(
-                Arguments.of("p1,p2,p3", "삼겹살,김밥,아이스크림", "삼겹살", "김밥", "아이스크림"),
-                Arguments.of("p1,p2,p3,p4,p5", "광, 꼴찌,꽝,1등, 2등", "광", "꼴찌", "꽝", "1등", "2등"),
-                Arguments.of("p1,p2", "1000, 2000", "1000", "2000")
+                Arguments.of("p1,p2,p3", "삼겹살,김밥,아이스크림", new String[]{"삼겹살", "김밥", "아이스크림"}),
+                Arguments.of("p1,p2,p3,p4,p5", "광, 꼴찌,꽝,1등, 2등", new String[]{"광", " 꼴찌", "꽝", "1등", " 2등"}),
+                Arguments.of("p1,p2", "1000, 2000", new String[]{"1000", " 2000"})
         );
     }
 
