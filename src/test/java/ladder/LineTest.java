@@ -1,0 +1,55 @@
+package ladder;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+
+class LineTest {
+
+    @Test
+    @DisplayName("Line 생성 테스트")
+    public void createLine() {
+        // given
+        MakingStepCondition condition = () -> true;
+        Line expected = new Line(Arrays.asList(true, false, true, false));
+
+        // when
+        Line line = new Line(5, condition);
+
+        // then
+        assertThat(line).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("두 위치 사이에 다리가 있는 경우")
+    public void canSwapLocation() {
+        // given
+        Line line = new Line(Arrays.asList(true, false));
+
+        // when
+        boolean result = line.canSwapLocation(0, 1);
+
+        // then
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("두 위치 사이에 다리가 없는 경우")
+    public void canSwapLocation_no_step() {
+        // given
+        Line line = new Line(Arrays.asList(true, false));
+
+        // when
+        boolean result = line.canSwapLocation(1, 2);
+
+        // then
+        assertThat(result).isEqualTo(false);
+    }
+
+
+
+}
