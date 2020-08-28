@@ -41,7 +41,7 @@ public class LadderResult {
     }
 
     public String getResultBy(int index) {
-        return "";
+        return results.get(index);
     }
 
     @Override
