@@ -10,7 +10,7 @@ public class LadderResult {
 
     }
 
-    public static LadderResult from(String input) {
+    public static LadderResult of(Participants participants, String input) {
         return null;
     }
 
