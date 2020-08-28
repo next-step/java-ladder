@@ -17,14 +17,12 @@ public class LadderGameController {
 
         int ladderHeight = InputView.scanLadderHeight();
         Ladder ladder = Ladder.of(ladderHeight, participants, new LineRandomGenerator());
-
         OutputView.printLadder(participants, ladder, ladderResult);
 
         participants.calculateResult(ladder);
-
         for (int i = 0; i < 3; i++) {
             String wishParticipantName = InputView.scanWishParticipantName();
-
+            OutputView.printLadderResult(ladderResult, participants, wishParticipantName);
         }
     }
 }

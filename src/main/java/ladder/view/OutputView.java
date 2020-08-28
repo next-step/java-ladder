@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,6 +13,8 @@ public final class OutputView {
     private static final String HORIZONTAL_LINE = "-----";
     private static final String HORIZONTAL_BLANK = "     ";
     private static final String VERTICAL_LINE = "|";
+    private static final String PARTICIPANTS_ALL = "ALL";
+    private static final String LADDER_RESULT_MESSAGE = "실행 결과";
 
     private OutputView() {
     }
@@ -51,8 +54,8 @@ public final class OutputView {
     private static String toLineString(List<Boolean> connection) {
         return connection.stream()
                 .map(connect -> Boolean.TRUE.equals(connect)
-                                ? HORIZONTAL_LINE
-                                : HORIZONTAL_BLANK)
+                        ? HORIZONTAL_LINE
+                        : HORIZONTAL_BLANK)
                 .map(line -> VERTICAL_LINE + line)
                 .collect(Collectors.joining());
     }
@@ -70,5 +73,26 @@ public final class OutputView {
         return IntStream.range(0, length)
                 .mapToObj(i -> string)
                 .collect(Collectors.joining(""));
+    }
+
+    public static void printLadderResult(LadderResult ladderResult, Participants participants, String wishParticipantName) {
+        System.out.println(LADDER_RESULT_MESSAGE);
+
+        if (PARTICIPANTS_ALL.equalsIgnoreCase(wishParticipantName)) {
+            printLadderAllResult(ladderResult, participants);
+            return ;
+        }
+
+        int order = participants.getResultBy(wishParticipantName);
+        System.out.println(ladderResult.getResultBy(order));
+    }
+
+    private static void printLadderAllResult(LadderResult ladderResult, Participants participants) {
+        Map<Name, Integer> resultByParticipant = participants.getResult();
+
+        resultByParticipant.entrySet()
+                .stream()
+                .map(key -> key.toString() + " : " + ladderResult.getResultBy(resultByParticipant.get(key)))
+                .forEach(System.out::println);
     }
 }

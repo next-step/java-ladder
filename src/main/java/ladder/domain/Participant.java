@@ -18,6 +18,10 @@ public class Participant {
         return name;
     }
 
+    int getOrder() {
+        return order;
+    }
+
     public void calculateResult(Ladder ladder) {
         ladder.getLines()
                 .forEach(this::calculateOrder);

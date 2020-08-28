@@ -3,10 +3,15 @@ package ladder.domain;
 import ladder.exception.LadderExceptionMessage;
 import ladder.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toMap;
 
 public class Participants {
     private static final String DELIMITER = ",";
@@ -52,5 +57,17 @@ public class Participants {
     public void calculateResult(Ladder ladder) {
         participants
                 .forEach(participant -> participant.calculateResult(ladder));
+    }
+
+    public Map<Name, Integer> getResult() {
+        return participants.stream()
+                .collect(toMap(Participant::getName, Participant::getOrder));
+    }
+
+    public int getResultBy(String wishParticipant) {
+        Name wishParticipantName = Name.from(wishParticipant);
+
+        return Optional.ofNullable(getResult().get(wishParticipantName))
+                .orElseThrow(() -> new IllegalArgumentException(LadderExceptionMessage.INVALID_PARTICIPANT));
     }
 }
