@@ -22,6 +22,11 @@ public class InputView {
         return getInt();
     }
 
+    public static int getGameMode() {
+        System.out.println("사다리 게임 모드를 입력해 주세요 (1: Step4 버전, 2: 기존버전) ");
+        return getInt();
+    }
+
     public static String getPlayerOrCommandForResult() {
         System.out.println("결과를 보고싶은 참여자를 입력해 주세요 (전체보기 : all) ");
         return getLine();

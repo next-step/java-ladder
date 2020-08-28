@@ -1,10 +1,12 @@
-package camp.nextstep.edu.rebellion.domain.ladder;
+package camp.nextstep.edu.rebellion.game.custom;
+
+import camp.nextstep.edu.rebellion.view.PrintableHorizonLineResolver;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Row {
+public class Row implements PrintableHorizonLineResolver {
     private final static int INIT_INDEX = 0;
 
     private final List<Point> points;
@@ -24,12 +26,6 @@ public class Row {
         makeHorizonLine(cur, next);
     }
 
-    public boolean hasHorizonLine(int ordinal) {
-        Point cur = getCurrent(ordinal);
-        Point next = getNext(ordinal);
-        return cur.hasNext() && next.hasPrev();
-    }
-
     public int getNextPathOrdinal(int ordinal) {
         Point cur = getCurrent(ordinal);
         if (cur.hasPrev()) {
@@ -41,6 +37,13 @@ public class Row {
         }
 
         return ordinal;
+    }
+
+    @Override
+    public boolean hasHorizonLine(int ordinal) {
+        Point cur = getCurrent(ordinal);
+        Point next = getNext(ordinal);
+        return cur.hasNext() && next.hasPrev();
     }
 
     private Point getCurrent(int ordinal) {

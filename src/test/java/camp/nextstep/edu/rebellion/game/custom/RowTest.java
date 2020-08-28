@@ -1,6 +1,6 @@
-package camp.nextstep.edu.rebellion.domain;
+package camp.nextstep.edu.rebellion.game.custom;
 
-import camp.nextstep.edu.rebellion.domain.ladder.Row;
+import camp.nextstep.edu.rebellion.game.custom.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

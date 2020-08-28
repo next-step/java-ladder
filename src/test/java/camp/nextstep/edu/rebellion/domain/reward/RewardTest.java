@@ -1,4 +1,4 @@
-package camp.nextstep.edu.rebellion.domain;
+package camp.nextstep.edu.rebellion.domain.reward;
 
 import camp.nextstep.edu.rebellion.domain.reward.Reward;
 import org.junit.jupiter.api.DisplayName;

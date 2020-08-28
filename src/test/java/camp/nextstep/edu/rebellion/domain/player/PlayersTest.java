@@ -1,4 +1,4 @@
-package camp.nextstep.edu.rebellion.domain;
+package camp.nextstep.edu.rebellion.domain.player;
 
 import camp.nextstep.edu.rebellion.domain.player.Players;
 import org.junit.jupiter.api.DisplayName;

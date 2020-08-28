@@ -1,11 +1,13 @@
-package camp.nextstep.edu.rebellion.domain;
+package camp.nextstep.edu.rebellion.game.custom;
 
-import camp.nextstep.edu.rebellion.domain.ladder.Ladder;
-import camp.nextstep.edu.rebellion.domain.ladder.Row;
+import camp.nextstep.edu.rebellion.domain.position.MovedPositions;
+import camp.nextstep.edu.rebellion.game.custom.Ladder;
+import camp.nextstep.edu.rebellion.game.custom.Row;
 import camp.nextstep.edu.rebellion.domain.player.Players;
 import camp.nextstep.edu.rebellion.domain.reward.RewardResults;
 import camp.nextstep.edu.rebellion.domain.reward.Rewards;
 import camp.nextstep.edu.rebellion.domain.rule.AlwaysDrawingRule;
+import camp.nextstep.edu.rebellion.game.custom.CustomLadderGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderGameTest {
+class CustomLadderGameTest {
     private static final int FIRST_POINT = 0;
     private static final int SECOND_POINT = 1;
 
@@ -26,10 +28,10 @@ class LadderGameTest {
         Players players = new Players("A,B,C");
         Rewards rewards = new Rewards("1등,2등,꽝");
         int rows = 5;
-        LadderGame ladderGame = new LadderGame(players, rewards, rows);
+        CustomLadderGame customLadderGame = new CustomLadderGame(players, rows, new AlwaysDrawingRule());
 
         // when
-        Ladder ladder = ladderGame.make(new AlwaysDrawingRule());
+        Ladder ladder = customLadderGame.getLadder();
 
         /*
         아래와 같은 사다리가 생성 됨
@@ -57,10 +59,10 @@ class LadderGameTest {
         Players players = new Players("A,B,C");
         Rewards rewards = new Rewards("1등,2등,꽝");
         int rows = 5;
-        LadderGame ladderGame = new LadderGame(players, rewards, rows);
+        CustomLadderGame customLadderGame = new CustomLadderGame(players, rows, () -> false);
 
         // when
-        Ladder ladder = ladderGame.make(() -> false);
+        Ladder ladder = customLadderGame.getLadder();
 
         // then
         assertAll(
@@ -71,29 +73,13 @@ class LadderGameTest {
         );
     }
 
-    @DisplayName("참가자 수와 당첨결과 수가 일치 하지 않을 경우 사다리 게임 생성 안됨")
-    @Test
-    public void ladderGameThrownTest() {
-        // given
-        Players players = new Players("A,B,C");
-        Rewards rewards = new Rewards("꽝");
-        int rows = 5;
-
-        // when & then
-        assertThatThrownBy(() -> new LadderGame(players, rewards, rows))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("참가자 수와 당첨결과 수가 일치하지 않습니다");
-    }
-
     @DisplayName("사다리 게임실행 결과가 잘 나오는지 확인 (이름으로 검색)")
     @Test
     public void runTest() {
         // given
         Players players = new Players("A,B,C");
-        Rewards rewards = new Rewards("1등,2등,꽝");
         int rows = 5;
-        LadderGame ladderGame = new LadderGame(players, rewards, rows);
-        ladderGame.make(new AlwaysDrawingRule());
+        CustomLadderGame customLadderGame = new CustomLadderGame(players, rows, new AlwaysDrawingRule());
         /*
         아래와 같은 사다리가 생성 됨
         A     B     C
@@ -102,16 +88,17 @@ class LadderGameTest {
         |-----|     |
         |     |-----|
         |-----|     |
+        P0    P1    P2
          */
 
         // when
-        RewardResults results = ladderGame.run("A");
+        MovedPositions positions = customLadderGame.run("A");
 
         // then
         assertAll(
-                () -> assertThat(results.getRewardResults()).hasSize(1),
-                () -> assertThat(results.getRewardResults().get(0).getName()).isEqualTo("A"),
-                () -> assertThat(results.getRewardResults().get(0).getReward()).isEqualTo("1등")
+                () -> assertThat(positions.getPositions()).hasSize(1),
+                () -> assertThat(positions.getPositions().get(0).getName()).isEqualTo("A"),
+                () -> assertThat(positions.getPositions().get(0).getFinalPosition()).isEqualTo(0)
         );
     }
 
@@ -120,10 +107,8 @@ class LadderGameTest {
     public void runAllTest() {
         // given
         Players players = new Players("A,B,C");
-        Rewards rewards = new Rewards("1등,2등,꽝");
         int rows = 5;
-        LadderGame ladderGame = new LadderGame(players, rewards, rows);
-        ladderGame.make(new AlwaysDrawingRule());
+        CustomLadderGame customLadderGame = new CustomLadderGame(players, rows, new AlwaysDrawingRule());
         /*
         아래와 같은 사다리가 생성 됨
         A     B     C
@@ -135,17 +120,17 @@ class LadderGameTest {
          */
 
         // when
-        RewardResults results = ladderGame.run("all");
+        MovedPositions positions = customLadderGame.run("all");
 
         // then
         assertAll(
-                () -> assertThat(results.getRewardResults()).hasSize(3),
-                () -> assertThat(results.getRewardResults().get(0).getName()).isEqualTo("A"),
-                () -> assertThat(results.getRewardResults().get(0).getReward()).isEqualTo("1등"),
-                () -> assertThat(results.getRewardResults().get(1).getName()).isEqualTo("B"),
-                () -> assertThat(results.getRewardResults().get(1).getReward()).isEqualTo("꽝"),
-                () -> assertThat(results.getRewardResults().get(2).getName()).isEqualTo("C"),
-                () -> assertThat(results.getRewardResults().get(2).getReward()).isEqualTo("2등")
+                () -> assertThat(positions.getPositions()).hasSize(3),
+                () -> assertThat(positions.getPositions().get(0).getName()).isEqualTo("A"),
+                () -> assertThat(positions.getPositions().get(0).getFinalPosition()).isEqualTo(0),
+                () -> assertThat(positions.getPositions().get(1).getName()).isEqualTo("B"),
+                () -> assertThat(positions.getPositions().get(1).getFinalPosition()).isEqualTo(2),
+                () -> assertThat(positions.getPositions().get(2).getName()).isEqualTo("C"),
+                () -> assertThat(positions.getPositions().get(2).getFinalPosition()).isEqualTo(1)
         );
     }
 
