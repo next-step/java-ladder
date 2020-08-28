@@ -30,11 +30,11 @@ public class Participant {
     private void calculateOrder(Line line) {
         Point point = line.getPoints().get(order);
 
-        if(point.isRight()) {
+        if (point.isRight()) {
             order++;
         }
 
-        if(point.isLeft()) {
+        if (point.isLeft()) {
             order--;
         }
     }
