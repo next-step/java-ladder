@@ -36,8 +36,8 @@ public class LadderGame {
     return viewInput.requestLadderHeight();
   }
 
-  private List<Prize> responsePrizes() {
-    return mapToPrizes(viewInput.requestPrizes());
+  private List<Prize> responsePrizes(int countOfPrize) {
+    return mapToPrizes(viewInput.requestPrizes(countOfPrize));
   }
 
   public static List<Prize> mapToPrizes(List<String> prizes) {
@@ -84,7 +84,7 @@ public class LadderGame {
     LadderGame ladderGame = new LadderGame();
     List<Player> players = ladderGame.responsePlayer();
     int ladderHeight = ladderGame.responseLadderHeight();
-    List<Prize> prizes = ladderGame.responsePrizes();
+    List<Prize> prizes = ladderGame.responsePrizes(players.size());
 
     // 사다리 데이터 생성
     Ladder ladder = LadderGenerator.generate(players.size(), ladderHeight);

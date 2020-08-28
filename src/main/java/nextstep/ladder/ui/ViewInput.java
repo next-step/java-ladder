@@ -52,16 +52,21 @@ public class ViewInput {
     return scanner.nextInt();
   }
 
-  public List<String> requestPrizes() {
-    List<String> names = contentsToList();
-    while (names.size() < 2) {
-      names = namesToList();
+  public List<String> requestPrizes(int countOfPrize) {
+    List<String> prizes = prizesToList();
+
+    while (nonCountOfPrize(countOfPrize, prizes)) {
+      prizes = prizesToList();
     }
 
-    return names;
+    return prizes;
   }
 
-  private List<String> contentsToList() {
+  private boolean nonCountOfPrize(int countOfPrize, List<String> prizes) {
+    return prizes.size() != countOfPrize;
+  }
+
+  private List<String> prizesToList() {
     return Arrays.stream(askWinningContents().split(DELIMITER))
         .collect(Collectors.toList());
   }
