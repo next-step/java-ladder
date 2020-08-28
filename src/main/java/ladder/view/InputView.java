@@ -21,7 +21,7 @@ public final class InputView {
     public static int scanLadderHeight() {
         System.out.println(LADDER_HEIGHT_MESSAGE);
 
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static String scanLadderResult() {

@@ -3,10 +3,7 @@ package ladder.domain;
 import ladder.exception.LadderExceptionMessage;
 import ladder.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LadderResult {
@@ -41,7 +38,8 @@ public class LadderResult {
     }
 
     public String getResultBy(int index) {
-        return results.get(index);
+        return Optional.ofNullable(results.get(index))
+                .orElseThrow(() -> new IllegalArgumentException(""));
     }
 
     @Override

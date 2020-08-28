@@ -80,7 +80,7 @@ public final class OutputView {
 
         if (PARTICIPANTS_ALL.equalsIgnoreCase(wishParticipantName)) {
             printLadderAllResult(ladderResult, participants);
-            return ;
+            return;
         }
 
         int order = participants.getResultBy(wishParticipantName);
@@ -90,7 +90,7 @@ public final class OutputView {
     private static void printLadderAllResult(LadderResult ladderResult, Participants participants) {
         Map<Name, Integer> resultByParticipant = participants.getResult();
 
-        resultByParticipant.entrySet()
+        resultByParticipant.keySet()
                 .stream()
                 .map(key -> key.toString() + " : " + ladderResult.getResultBy(resultByParticipant.get(key)))
                 .forEach(System.out::println);
