@@ -12,7 +12,7 @@ public class LineGenerator {
 
   public static List<Point> form(int countOfPerson) {
     if (isTwoPerson(countOfPerson)) {
-      return Arrays.asList(nextBoolean(Point.of(false), 0));
+      return Arrays.asList(nextPoint(Point.of(false), 0));
     }
 
     List<Point> points = createPoints(countOfPerson);
@@ -30,14 +30,14 @@ public class LineGenerator {
     List<Point> line = new ArrayList<>();
     Point previous = Point.of(false);
     for (int i = 0; i < bridgeOfCount; i++) {
-      previous = nextBoolean(previous, i);
+      previous = nextPoint(previous, i);
       line.add(previous);
     }
 
     return line;
   }
 
-  static Point nextBoolean(Point previous, int position) {
+  static Point nextPoint(Point previous, int position) {
     if (previous.hasPoint()) {
       return Point.of(false, position);
     }
@@ -48,7 +48,7 @@ public class LineGenerator {
     if (bridges.stream().noneMatch(b -> b.hasPoint())) {
       int index = random.ints(0, bridges.size())
           .findFirst().getAsInt();
-      bridges.set(index, Point.of(true));
+      bridges.set(index, Point.of(true, index));
     }
   }
 }

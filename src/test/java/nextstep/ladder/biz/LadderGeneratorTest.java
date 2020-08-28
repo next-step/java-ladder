@@ -24,7 +24,7 @@ public class LadderGeneratorTest {
   @Test
   void given3Person_whenCreate_thenPointIs2() {
     ladder.getLines().stream()
-        .forEach(line -> assertThat(line.pointOfCount())
+        .forEach(line -> assertThat(line.getPoints().size())
             .as("사다리 폭")
             .isEqualTo(2));
   }

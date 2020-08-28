@@ -8,18 +8,9 @@ public class LadderAnalysis {
     this.ladder = ladder;
   }
 
-  public int stat(int index) {
-    for (Line line : ladder.getLines()) {
-      for (Point point : line.getLine()) {
-
-      }
-    }
-    return index;
-  }
-
   public void stat(Chessmen chessmen) {
     for (Line line : ladder.getLines()) {
-      LineAnalysis.stat(line, chessmen);
+      LineAnalysis.stat(line.selectableLine(chessmen), chessmen);
     }
   }
 }

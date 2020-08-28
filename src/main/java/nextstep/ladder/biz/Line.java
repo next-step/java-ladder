@@ -14,18 +14,26 @@ public class Line {
     this.points = points;
   }
 
-  public List<Point> getLine() {
+  public List<Point> getPoints() {
     return points;
   }
 
-  int pointOfCount() {
-    return points.size();
+  public Line selectableLine(Chessmen chessmen) {
+    if (chessmen.getLocation() == 0) {
+      return new Line(points.subList(0, 1));
+    }
+
+    if (chessmen.getLocation() == points.size()) {
+      return new Line(points.subList(chessmen.getLocation() - 1, chessmen.getLocation()));
+    }
+
+    return new Line(points.subList(chessmen.getLocation() - 1, chessmen.getLocation() + 1));
   }
 
   @Override
   public String toString() {
     return "Line{" +
-        "points=" + points +
-        '}';
+            "points=" + points +
+            '}';
   }
 }

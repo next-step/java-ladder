@@ -7,10 +7,6 @@ public class Point {
   private final boolean point;
   private int position;
 
-  Point(boolean point) {
-    this.point = point;
-  }
-
   Point(boolean point, int position) {
     this.point = point;
     this.position = position;
@@ -21,25 +17,19 @@ public class Point {
   }
 
   public static Point of(boolean hasPoint) {
-    return new Point(hasPoint);
+    return new Point(hasPoint, 0);
   }
 
   public static Point of(boolean hasPoint, int position) {
     return new Point(hasPoint, position);
   }
 
-  public int decide(int location) {
-    int left = location - 1;
-
-    if (position == location) {
-      return point ? location + 1 : location;
+  public void move(Chessmen chessmen) {
+    if (chessmen.isHere(position)) {
+      chessmen.moveRight();
+    } else if (chessmen.isLeft(position)) {
+      chessmen.moveLeft();
     }
-
-    if (position == left) {
-      return point ? location -1 : location;
-    }
-
-    return location;
   }
 
   @Override
@@ -52,7 +42,7 @@ public class Point {
     }
     Point point1 = (Point) o;
     return point == point1.point &&
-        position == point1.position;
+            position == point1.position;
   }
 
   @Override
@@ -63,8 +53,12 @@ public class Point {
   @Override
   public String toString() {
     return "Point{" +
-        "point=" + point +
-        ", position=" + position +
-        '}';
+            "point=" + point +
+            ", position=" + position +
+            '}';
+  }
+
+  public Point createNextPoint(boolean hasPoint) {
+    return new Point(hasPoint, position + 1);
   }
 }

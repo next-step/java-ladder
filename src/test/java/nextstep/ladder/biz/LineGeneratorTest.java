@@ -19,7 +19,7 @@ public class LineGeneratorTest {
 
   @Test
   void nextBoolean() {
-    assertThat(LineGenerator.nextBoolean(Point.of(true), 0)).isEqualTo(Point.of(false, 0));
+    assertThat(LineGenerator.nextPoint(Point.of(true), 1)).isEqualTo(Point.of(false, 1));
   }
 
   @Test
