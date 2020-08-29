@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Ladder {
     private static final int MIN_WIDTH = 1;
     private static final int MIN_COUNT_OF_POINTS = 2;
+
     private final List<Line> lines;
 
     public Ladder(List<Line> lines) {

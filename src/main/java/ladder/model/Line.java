@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 public class Line {
     private static final int MIN_INDEX = 0;
     private static final int STEP_INTERVAL = 1;
+
     private final int size;
     private final List<Boolean> steps;
 
