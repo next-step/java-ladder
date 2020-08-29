@@ -34,7 +34,7 @@ class LadderGameResultTest {
         return Stream.of(
                 Arguments.of("tt,dd", "1등,2등","tt", "1등"),
                 Arguments.of("nana,toto,dodo", "1등,2등,3등", "toto", "2등"),
-                Arguments.of("coco,momo,lulu,lala", "1등,2등,3등,4등", "lala", "4등")
+                Arguments.of("coco,momo,lulu,lala", "1등,2등,3등,4등", "lala", "1등")
         );
     }
 }
