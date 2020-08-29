@@ -14,7 +14,7 @@ public class Users {
     public static Users of(List<String> userNames) {
         List<User> userList = userNames.stream()
                                     .map(User::new)
-                                    .collect(Collectors.toList());;
+                                    .collect(Collectors.toList());
         return new Users(userList);
     }
 
