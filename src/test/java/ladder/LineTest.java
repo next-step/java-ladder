@@ -16,7 +16,7 @@ class LineTest {
     @DisplayName("Line 생성 테스트")
     public void createLine() {
         // given
-        MakingStepCondition condition = () -> true;
+        LadderGenerateStrategy condition = () -> true;
         Line expected = new Line(Arrays.asList(true, false, true, false));
 
         // when
@@ -44,7 +44,7 @@ class LineTest {
         Line line = new Line(Arrays.asList(true, false));
 
         // when
-        boolean result = line.canSwapLocation(0, 1);
+        boolean result = line.hasStepBetween(0, 1);
 
         // then
         assertThat(result).isEqualTo(true);
@@ -57,7 +57,7 @@ class LineTest {
         Line line = new Line(Arrays.asList(true, false));
 
         // when
-        boolean result = line.canSwapLocation(1, 2);
+        boolean result = line.hasStepBetween(1, 2);
 
         // then
         assertThat(result).isEqualTo(false);
