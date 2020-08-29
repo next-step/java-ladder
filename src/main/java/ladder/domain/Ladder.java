@@ -11,7 +11,7 @@ public class Ladder {
 
     public Ladder(LadderData ladderData) {
         this.ladderData = ladderData;
-        int nameLength = ladderData.getParticipantsCount();
+        int nameLength = ladderData.getPlayerCount();
 
         lines = Stream.generate(() -> new Line(nameLength, RandomSingleton::nextBoolean))
                 .limit(ladderData.getHeight())
@@ -19,7 +19,7 @@ public class Ladder {
     }
 
     public List<String> getNames() {
-        return ladderData.getParticipantNames();
+        return ladderData.getPlayerNames();
     }
 
     public List<String> getLadderString() {
