@@ -17,7 +17,7 @@ public class LineTest {
     public void allTrueLineTest(int personCount) {
 
         Line line = new Line(personCount, () -> true);
-        assertEquals(line.getLineList().size(), personCount);
+        assertEquals(line.getPoints().size(), personCount);
 
         List<String> lineList = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class LineTest {
             lineList.add(LineType.FALSE.lineString());
         }
 
-        verifyList(lineList, line.getLineList());
+        verifyList(lineList, line.getPoints());
     }
 
     @ParameterizedTest
@@ -39,7 +39,7 @@ public class LineTest {
     public void allFalseLineTest(int personCount) {
 
         Line line = new Line(personCount, () -> false);
-        assertEquals(line.getLineList().size(), personCount);
+        assertEquals(line.getPoints().size(), personCount);
 
         List<String> lineList = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class LineTest {
             lineList.add(LineType.FALSE.lineString());
         }
 
-        verifyList(lineList, line.getLineList());
+        verifyList(lineList, line.getPoints());
     }
 
     private void verifyList(List<String> lineList1, List<String> lineList2) {

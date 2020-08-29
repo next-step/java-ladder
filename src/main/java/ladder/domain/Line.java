@@ -13,7 +13,7 @@ public class Line {
         points.add(LineType.FALSE);
 
         for (int i = 1; i < personCount; i++) {
-            points.add(nextPoint(prevPoint(i), nextPointRule));
+            points.add(setNextPoint(prevPoint(i), nextPointRule));
         }
     }
 
@@ -21,16 +21,27 @@ public class Line {
         return points.get(index - 1);
     }
 
-    private LineType nextPoint(LineType lineType, NextPointRule nextPointRule) {
+    private LineType setNextPoint(LineType lineType, NextPointRule nextPointRule) {
         if (lineType == LineType.TRUE) {
             return LineType.FALSE;
         }
         return LineType.of(nextPointRule.createNextPoint());
     }
 
-    public List<String> getLineList() {
+    public List<String> getPoints() {
         return points.stream()
                 .map(LineType::lineString)
                 .collect(Collectors.toList());
+    }
+
+    public boolean hasLeftBar(int index) {
+        return points.get(index) == LineType.TRUE;
+    }
+
+    public boolean hasRightBar(int index) {
+        if (index >= points.size()) {
+            return false;
+        }
+        return points.get(index + 1) == LineType.TRUE;
     }
 }

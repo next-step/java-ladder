@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Reward {
 
-    private List<String> rewards;
+    private final List<String> rewards;
 
     public Reward(String rewardStr) {
         rewards = StringUtils.splitStringToList(rewardStr);
@@ -14,5 +14,9 @@ public class Reward {
 
     public List<String> getRewards() {
         return rewards;
+    }
+
+    public String getReward(int rewardIndex) {
+        return rewards.get(rewardIndex);
     }
 }

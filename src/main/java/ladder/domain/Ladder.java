@@ -8,6 +8,7 @@ public class Ladder {
 
     private final LadderData ladderData;
     private final List<Line> lines;
+    private final LadderResult ladderResult;
 
     public Ladder(LadderData ladderData) {
         this.ladderData = ladderData;
@@ -16,6 +17,8 @@ public class Ladder {
         lines = Stream.generate(() -> new Line(nameLength, RandomSingleton::nextBoolean))
                 .limit(ladderData.getHeight())
                 .collect(Collectors.toList());
+
+        ladderResult = new LadderResult(ladderData, lines);
     }
 
     public List<String> getNames() {
@@ -24,11 +27,17 @@ public class Ladder {
 
     public List<String> getLadderString() {
         return lines.stream()
-                .map(line -> lineToString(line.getLineList()))
+                .map(line -> lineToString(line.getPoints()))
                 .collect(Collectors.toList());
     }
 
     private String lineToString(List<String> line) {
         return String.join("", line);
+    }
+
+    public String searchReward(String playerName) {
+        int playerIndex = ladderData.getPlayerIndex(playerName);
+        int rewardIndex = ladderResult.searchRewardIndex(playerIndex);
+        return ladderData.getReward(rewardIndex);
     }
 }

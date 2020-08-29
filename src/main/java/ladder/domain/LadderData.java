@@ -47,4 +47,12 @@ public class LadderData {
     public int getHeight() {
         return height;
     }
+
+    public int getPlayerIndex(String playerName) {
+        return player.getPlayerIndex(playerName);
+    }
+
+    public String getReward(int rewardIndex) {
+        return reward.getReward(rewardIndex);
+    }
 }
