@@ -1,8 +1,10 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class Ladder {
     private List<Line> lines;
@@ -12,12 +14,9 @@ public class Ladder {
     }
 
     public static Ladder of(int ladderHeight, Participants participant, LineGenerator lineGenerator) {
-        List<Line> lines = Stream.iterate(0, line -> line + 1)
+        return Stream.generate(() -> Line.create(participant, lineGenerator))
                 .limit(ladderHeight)
-                .map(line -> Line.create(participant, lineGenerator))
-                .collect(Collectors.toList());
-
-        return new Ladder(lines);
+                .collect(collectingAndThen(toList(), Ladder::new));
     }
 
     public List<Line> getLines() {
