@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.LadderExceptionMessage;
 import ladder.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,12 +38,16 @@ public class Participants {
     }
 
     private static List<Participant> splitBy(String input) {
+        List<Participant> participants = new ArrayList<>();
         List<String> names = Arrays.asList(StringUtils.split(input, DELIMITER));
 
-        return Stream.iterate(0, index -> index = index + 1)
-                .limit(names.size())
-                .map(index -> Participant.of(names.get(index), index))
-                .collect(Collectors.toList());
+        for (int index = 0; index < names.size(); index++) {
+            String name = names.get(index);
+            Participant participant = Participant.of(name, index);
+            participants.add(participant);
+        }
+
+        return participants;
     }
 
     public int getNumber() {
