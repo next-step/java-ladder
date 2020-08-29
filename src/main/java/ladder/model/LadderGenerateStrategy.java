@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 @FunctionalInterface
 public interface LadderGenerateStrategy {

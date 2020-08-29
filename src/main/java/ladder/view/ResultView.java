@@ -1,4 +1,6 @@
-package ladder;
+package ladder.view;
+
+import ladder.model.Line;
 
 import java.util.List;
 
