@@ -10,16 +10,16 @@ public class LadderGameController {
         String names = InputView.scanParticipantNames();
         Participants participants = Participants.from(names);
 
-        LadderResult ladderResult = LadderResult.of(participants, InputView.scanLadderResult());
+        LadderReward ladderReward = LadderReward.of(participants, InputView.scanLadderReward());
 
         int ladderHeight = InputView.scanLadderHeight();
         Ladder ladder = Ladder.of(ladderHeight, participants, new LineRandomGenerator());
-        OutputView.printLadder(participants, ladder, ladderResult);
+        OutputView.printLadder(participants, ladder, ladderReward);
 
-        LadderGameResult ladderGameResult = participants.calculateResult(ladder, ladderResult);
+        LadderGameResult ladderGameResult = participants.calculateResult(ladder, ladderReward);
         for (int i = 0; i < 3; i++) {
             String wishParticipantName = InputView.scanWishParticipantName();
-            OutputView.printLadderResult(ladderGameResult, wishParticipantName);
+            OutputView.printLadderReward(ladderGameResult, wishParticipantName);
         }
     }
 }

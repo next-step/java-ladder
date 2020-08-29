@@ -53,12 +53,12 @@ public class Participants {
         return participants.size() <= PARTICIPANTS_MIN_COUNT;
     }
 
-    public LadderGameResult calculateResult(Ladder ladder, LadderResult ladderResult) {
+    public LadderGameResult calculateResult(Ladder ladder, LadderReward ladderReward) {
         return participants
                 .stream()
                 .collect(collectingAndThen(toMap(Participant::getName
                         , participant -> participant.calculateResult(ladder))
-                        , resultByName -> LadderGameResult.of(resultByName, ladderResult)));
+                        , resultByName -> LadderGameResult.of(resultByName, ladderReward)));
     }
 
 }

@@ -22,10 +22,10 @@ public class LadderTest {
         List<Line> lines = ladder.getLines();
 
         assertThat(lines).hasSize(ladderHeight);
-        printLadderResult(lines);
+        printLadder(lines);
     }
 
-    private void printLadderResult(List<Line> lines) {
+    private void printLadder(List<Line> lines) {
         lines.stream()
                 .map(Line::getPoints)
                 .map(line -> line.stream()

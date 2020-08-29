@@ -51,7 +51,7 @@
 
 
 #### domain
-* [X] 입력된 실행 결과에 따라 LadderResult 생성
+* [X] 입력된 실행 결과에 따라 LadderReward 생성
     * [X] 실행 결과 쉼표(,)로 split
     * [X] 입력한 실행 결과 개수와 인원수 일치 여부 
 * [X] 실행 결과 생성

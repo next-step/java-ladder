@@ -6,26 +6,26 @@ import ladder.util.StringUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class LadderResult {
+public class LadderReward {
     private static final String DELIMITER = ",";
     private List<String> results;
 
-    private LadderResult(List<String> results) {
+    private LadderReward(List<String> results) {
         this.results = results;
     }
 
-    public LadderResult(String... inputs) {
+    public LadderReward(String... inputs) {
         this.results = new ArrayList<>(Arrays.asList(inputs));
     }
 
-    public static LadderResult of(Participants participants, String resultInput) {
+    public static LadderReward of(Participants participants, String resultInput) {
         List<String> results = splitBy(resultInput, DELIMITER);
 
         if (StringUtils.isEmpty(resultInput) || participants.getNumber() != results.size()) {
             throw new IllegalArgumentException(LadderExceptionMessage.INVALID_LADDER_RESULT_COUNT);
         }
 
-        return new LadderResult(results);
+        return new LadderReward(results);
     }
 
     private static List<String> splitBy(String input, String delimiter) {
@@ -45,7 +45,7 @@ public class LadderResult {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LadderResult that = (LadderResult) o;
+        LadderReward that = (LadderReward) o;
         return results.equals(that.results);
     }
 

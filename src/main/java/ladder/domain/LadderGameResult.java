@@ -12,10 +12,10 @@ public class LadderGameResult {
         this.result = result;
     }
 
-    public static LadderGameResult of(Map<Name, Integer> resultByName, LadderResult ladderResult) {
+    public static LadderGameResult of(Map<Name, Integer> resultByName, LadderReward ladderReward) {
         Map<Name, String> result = resultByName.keySet()
                 .stream()
-                .collect(toMap(Function.identity(), key -> ladderResult.getResultBy(resultByName.get(key))));
+                .collect(toMap(Function.identity(), key -> ladderReward.getResultBy(resultByName.get(key))));
 
         return new LadderGameResult(result);
     }

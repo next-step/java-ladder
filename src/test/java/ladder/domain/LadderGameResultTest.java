@@ -16,17 +16,17 @@ class LadderGameResultTest {
     @DisplayName("LadderGameResult 테스트")
     @ParameterizedTest
     @MethodSource("makeGetResultByData")
-    void getResultBy(String participantNames, String ladderResultInput, String checkParticipant, String expectedResult) {
+    void getResultBy(String participantNames, String ladderRewardInput, String checkParticipant, String expectedResult) {
         Participants participants = Participants.from(participantNames);
-        LadderResult ladderResult = LadderResult.of(participants, ladderResultInput);
+        LadderReward ladderReward = LadderReward.of(participants, ladderRewardInput);
         Ladder ladder = Ladder.of(4, participants, new LineRepeatGenerator());
 
-        LadderGameResult ladderGameResult = participants.calculateResult(ladder, ladderResult);
+        LadderGameResult ladderGameResult = participants.calculateResult(ladder, ladderReward);
         Map<Name, String> actualResult = ladderGameResult.getResult();
 
         assertThat(ladderGameResult).isNotNull();
         assertThat(actualResult.size()).isEqualTo(participants.getNumber());
-        assertThat(actualResult.values()).containsAll(Arrays.asList(ladderResultInput.split(",")));
+        assertThat(actualResult.values()).containsAll(Arrays.asList(ladderRewardInput.split(",")));
         assertThat(ladderGameResult.getBy(checkParticipant)).isEqualTo(expectedResult);
     }
 

@@ -19,16 +19,16 @@ public final class OutputView {
     private OutputView() {
     }
 
-    public static void printLadder(Participants participants, Ladder ladder, LadderResult ladderResult) {
+    public static void printLadder(Participants participants, Ladder ladder, LadderReward ladderReward) {
         System.out.println(SHOW_LADDER_MESSAGE);
 
         printParticipants(participants);
         printLadder(ladder);
-        printLadderResult(ladderResult);
+        printLadderReward(ladderReward);
     }
 
-    private static void printLadderResult(LadderResult ladderResult) {
-        ladderResult.getResults()
+    private static void printLadderReward(LadderReward ladderReward) {
+        ladderReward.getResults()
                 .stream()
                 .map(result -> result + repeat(" ", STRING_MAX_LENGTH - result.length()))
                 .forEach(System.out::print);
@@ -75,7 +75,7 @@ public final class OutputView {
                 .collect(Collectors.joining(""));
     }
 
-    public static void printLadderResult(LadderGameResult ladderGameResult, String wishParticipantName) {
+    public static void printLadderReward(LadderGameResult ladderGameResult, String wishParticipantName) {
         System.out.println(LADDER_RESULT_MESSAGE);
 
         if (PARTICIPANTS_ALL.equalsIgnoreCase(wishParticipantName)) {
