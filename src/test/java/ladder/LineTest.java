@@ -4,8 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 
 class LineTest {
@@ -18,10 +20,21 @@ class LineTest {
         Line expected = new Line(Arrays.asList(true, false, true, false));
 
         // when
-        Line line = new Line(5, condition);
+        Line line = new Line(4, condition);
 
         // then
         assertThat(line).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Line 생성 실패 테스트")
+    public void createLine_fail() {
+        // given
+        List<Boolean> invalidInput = Arrays.asList(true, true, true, false);
+
+        // when
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Line(invalidInput));
     }
 
     @Test

@@ -13,8 +13,8 @@ public class Line {
 
     private List<Boolean> steps = new ArrayList<>();
 
-    public Line(int countOfPerson, MakingStepCondition condition) {
-        size = countOfPerson - 1;
+    public Line(int size, MakingStepCondition condition) {
+        this.size = size;
 
         for (int i = MIN_INDEX; i < size; i++) {
             Boolean point = !hasBeforeStep(i) && condition.canMakeStep();
@@ -33,7 +33,9 @@ public class Line {
     }
 
     private void validateLine() {
-        boolean hasInvalidStep = IntStream.of(size - 1).anyMatch(i -> steps.get(i) && hasBeforeStep(i));
+        boolean hasInvalidStep = IntStream.range(MIN_INDEX, size)
+                .anyMatch(i -> steps.get(i) && hasBeforeStep(i));
+
         if (hasInvalidStep) {
             throw new IllegalArgumentException("인접한 사다리 다리가 있습니다.");
         }
@@ -60,4 +62,5 @@ public class Line {
     public int hashCode() {
         return Objects.hash(size, steps);
     }
+
 }
