@@ -4,7 +4,7 @@ import java.util.*;
 
 public class LadderResult {
 
-    public static final String ERR_INVALID_PLAYER_INDEX = "참여자의 인덱스가 정확하지 않습니다.";
+    private static final String ERR_INVALID_PLAYER_INDEX = "참여자의 인덱스가 정확하지 않습니다.";
 
     private final Map<Integer, Integer> result;
 

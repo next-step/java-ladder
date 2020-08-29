@@ -31,7 +31,7 @@ public class LineTest {
             lineList.add(LineType.FALSE.lineString());
         }
 
-        verifyList(lineList, line.getPoints());
+        assertEquals(lineList, line.getPoints());
     }
 
     @ParameterizedTest
@@ -47,16 +47,6 @@ public class LineTest {
             lineList.add(LineType.FALSE.lineString());
         }
 
-        verifyList(lineList, line.getPoints());
-    }
-
-    private void verifyList(List<String> lineList1, List<String> lineList2) {
-
-        assertEquals(lineList1.size(), lineList2.size());
-
-        for (int i = 0; i < lineList1.size(); i++) {
-            assertEquals(lineList1.get(i), lineList2.get(i));
-        }
-
+        assertEquals(lineList, line.getPoints());
     }
 }

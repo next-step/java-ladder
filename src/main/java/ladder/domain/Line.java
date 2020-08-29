@@ -39,7 +39,7 @@ public class Line {
     }
 
     public boolean hasRightBar(int index) {
-        if (index >= points.size()) {
+        if (index + 1 >= points.size()) {
             return false;
         }
         return points.get(index + 1) == LineType.TRUE;

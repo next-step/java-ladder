@@ -55,4 +55,8 @@ public class LadderData {
     public String getReward(int rewardIndex) {
         return reward.getReward(rewardIndex);
     }
+
+    public List<String> getRewards() {
+        return reward.getRewards();
+    }
 }

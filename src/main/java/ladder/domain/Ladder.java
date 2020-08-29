@@ -25,6 +25,10 @@ public class Ladder {
         return ladderData.getPlayerNames();
     }
 
+    public List<String> getRewards() {
+        return ladderData.getRewards();
+    }
+
     public List<String> getLadderString() {
         return lines.stream()
                 .map(line -> lineToString(line.getPoints()))
@@ -36,8 +40,22 @@ public class Ladder {
     }
 
     public String searchReward(String playerName) {
-        int playerIndex = ladderData.getPlayerIndex(playerName);
-        int rewardIndex = ladderResult.searchRewardIndex(playerIndex);
-        return ladderData.getReward(rewardIndex);
+        return ladderData.getReward(getRewardIndex(playerName));
+    }
+
+    private int getRewardIndex(String playerName) {
+        return ladderResult.searchRewardIndex(
+                ladderData.getPlayerIndex(playerName));
+    }
+
+    public List<String> searchAllReward() {
+        return ladderData.getPlayerNames()
+                .stream()
+                .map(this::playerAndReward)
+                .collect(Collectors.toList());
+    }
+
+    private String playerAndReward(String playerName) {
+        return playerName + " : " + searchReward(playerName);
     }
 }
