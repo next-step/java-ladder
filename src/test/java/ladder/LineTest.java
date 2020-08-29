@@ -63,6 +63,4 @@ class LineTest {
         assertThat(result).isEqualTo(false);
     }
 
-
-
 }

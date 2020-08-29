@@ -9,8 +9,8 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## 구현 기능
-- [ ] 사다리 게임에 참여하는 사람(User)을 구현한다.
-  - [ ] 이름이 5자 이하
+- [X] 사다리 게임에 참여하는 사람(User)을 구현한다.
+  - [X] 이름이 5자 이하
 - [ ] 사다리 높이와 사람 인원수에 맞게 사다리를 만든다.
   - [ ] 사다리는 Line 리스트를 갖고 있다.
   - [X] Line을 구현한다.

@@ -17,7 +17,7 @@ public class Line {
         this.size = size;
 
         for (int i = MIN_INDEX; i < size; i++) {
-            Boolean point = !hasBeforeStep(i) && condition.canMakeStep();
+            Boolean point = !hasBeforeStep(i) && condition.makeStep();
             steps.add(point);
         }
     }
