@@ -1,60 +1,66 @@
 package ladder.domain;
 
 import ladder.exception.LadderExceptionMessage;
+import ladder.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 public class Participants {
     private static final String DELIMITER = ",";
-    private static final int NAME_MAX_LENGTH = 5;
+    private static final int PARTICIPANTS_MIN_COUNT = 1;
 
-    private List<String> names;
+    private List<Participant> participants;
 
-    private Participants(List<String> names) {
-        this.names = names;
+    private Participants(List<Participant> participants) {
+        this.participants = participants;
     }
 
-    public List<String> getNames() {
-        return names;
+    public List<Name> getNames() {
+        return participants.stream()
+                .map(Participant::getName)
+                .collect(Collectors.toList());
     }
 
-    public static Participants of(String input) {
-        List<String> names = splitBy(input, DELIMITER);
-
-        validate(names);
-
-        return new Participants(names);
-    }
-
-    private static void validate(List<String> names) {
-        if (names.size() <= 1) {
+    public static Participants from(String input) {
+        if (StringUtils.isEmpty(input)) {
             throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
         }
 
-        boolean hasLongName = names.stream()
-                .anyMatch(name -> name.length() > NAME_MAX_LENGTH);
+        List<Participant> participant = splitBy(input);
 
-        if (hasLongName) {
-            throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NAME_TOO_LONG);
-        }
+        return new Participants(participant);
     }
 
-    private static List<String> splitBy(String input, String delimiter) {
-        if (input == null) {
-            throw new IllegalArgumentException(LadderExceptionMessage.PARTICIPANT_NEED_MORE_THAN_ONE);
+    private static List<Participant> splitBy(String input) {
+        List<Participant> participants = new ArrayList<>();
+        List<String> names = Arrays.asList(StringUtils.split(input, DELIMITER));
+
+        for (int index = 0; index < names.size(); index++) {
+            String name = names.get(index);
+            Participant participant = Participant.of(name, index);
+            participants.add(participant);
         }
 
-        return Arrays.asList(input
-                .trim()
-                .split(delimiter));
+        return participants;
     }
 
     public int getNumber() {
-        return names.size();
+        return participants.size();
     }
 
     boolean isShortage() {
-        return names.size() <= 1;
+        return participants.size() <= PARTICIPANTS_MIN_COUNT;
     }
+
+    public LadderGameResult calculateResult(Ladder ladder, LadderReward ladderReward) {
+        return participants.stream()
+                .collect(collectingAndThen(toMap(Participant::getName, ladder::getFinalIndex)
+                        , resultByName -> LadderGameResult.of(resultByName, ladderReward)));
+    }
+
 }

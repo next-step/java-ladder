@@ -1,8 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LineRandomGenerator;
-import ladder.domain.Participants;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -10,12 +8,18 @@ public class LadderGameController {
 
     public static void main(String[] args) {
         String names = InputView.scanParticipantNames();
+        Participants participants = Participants.from(names);
 
-        Participants participants = Participants.of(names);
+        LadderReward ladderReward = LadderReward.of(participants, InputView.scanLadderReward());
+
         int ladderHeight = InputView.scanLadderHeight();
-
         Ladder ladder = Ladder.of(ladderHeight, participants, new LineRandomGenerator());
+        OutputView.printLadder(participants, ladder, ladderReward);
 
-        OutputView.printResult(participants, ladder);
+        LadderGameResult ladderGameResult = participants.calculateResult(ladder, ladderReward);
+        for (int i = 0; i < 3; i++) {
+            String wishParticipantName = InputView.scanWishParticipantName();
+            OutputView.printLadderReward(ladderGameResult, wishParticipantName);
+        }
     }
 }

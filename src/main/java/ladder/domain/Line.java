@@ -3,7 +3,6 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Line {
     private List<Point> points;
@@ -57,5 +56,19 @@ public class Line {
     private Point getFirst() {
         return Optional.ofNullable(points.get(0))
                 .orElseGet(() -> Point.of(false, false));
+    }
+
+    public int calculateNextIndex(int index) {
+        Point point = points.get(index);
+
+        if (point.isRight()) {
+            index++;
+        }
+
+        if (point.isLeft()) {
+            index--;
+        }
+
+        return index;
     }
 }

@@ -37,13 +37,13 @@ public class PointTest {
     @DisplayName("이전 Point 이용해 다음 Point 생성 테스트")
     @ParameterizedTest
     @MethodSource("makePointNextData")
-    void next(boolean oldLeft, boolean oldRight, boolean right, boolean expectRight) {
-        Point old = Point.of(oldLeft, oldRight);
+    void next(boolean previousLeft, boolean previousRight, boolean right, boolean expectRight) {
+        Point previous = Point.of(previousLeft, previousRight);
 
-        Point actual = Point.next(old, right);
+        Point actual = Point.next(previous, right);
 
         assertThat(actual).isNotNull();
-        assertThat(actual.isLeft()).isEqualTo(oldRight);
+        assertThat(actual.isLeft()).isEqualTo(previousRight);
         assertThat(actual.isRight()).isEqualTo(expectRight);
     }
 
