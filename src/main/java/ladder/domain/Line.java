@@ -57,4 +57,18 @@ public class Line {
         return Optional.ofNullable(points.get(0))
                 .orElseGet(() -> Point.of(false, false));
     }
+
+    public int calculateNextIndex(int index) {
+        Point point = points.get(index);
+
+        if (point.isRight()) {
+            index++;
+        }
+
+        if (point.isLeft()) {
+            index--;
+        }
+
+        return index;
+    }
 }

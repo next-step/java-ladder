@@ -2,10 +2,10 @@ package ladder.domain;
 
 public class Participant {
     private Name name;
-    private int index;
+    private int startIndex;
 
-    public Participant(Name name, int index) {
-        this.index = index;
+    private Participant(Name name, int startIndex) {
+        this.startIndex = startIndex;
         this.name = name;
     }
 
@@ -14,28 +14,12 @@ public class Participant {
         return new Participant(name, index);
     }
 
-    Name getName() {
+    public Name getName() {
         return name;
     }
 
-    int calculateResult(Ladder ladder) {
-        int result = index;
-
-        ladder.getLines()
-                .forEach(line -> calculateOrder(line, result));
-
-        return result;
+    public int getStartIndex() {
+        return startIndex;
     }
 
-    private void calculateOrder(Line line, int result) {
-        Point point = line.getPoints().get(result);
-
-        if (point.isRight()) {
-            result++;
-        }
-
-        if (point.isLeft()) {
-            result--;
-        }
-    }
 }

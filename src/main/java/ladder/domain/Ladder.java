@@ -23,4 +23,13 @@ public class Ladder {
         return lines;
     }
 
+    public int getFinalIndex(Participant participant) {
+        int index = participant.getStartIndex();
+
+        for (Line line : lines) {
+            index = line.calculateNextIndex(index);
+        }
+
+        return index;
+    }
 }

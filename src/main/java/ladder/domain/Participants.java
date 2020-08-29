@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -59,10 +58,8 @@ public class Participants {
     }
 
     public LadderGameResult calculateResult(Ladder ladder, LadderReward ladderReward) {
-        return participants
-                .stream()
-                .collect(collectingAndThen(toMap(Participant::getName
-                        , participant -> participant.calculateResult(ladder))
+        return participants.stream()
+                .collect(collectingAndThen(toMap(Participant::getName, ladder::getFinalIndex)
                         , resultByName -> LadderGameResult.of(resultByName, ladderReward)));
     }
 
