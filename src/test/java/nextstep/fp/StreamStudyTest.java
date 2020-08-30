@@ -18,23 +18,27 @@ public class StreamStudyTest {
     }
 
     @Test
+    @DisplayName("단어의 길이가 12자가 넘는 개수를 출력")
     public void countWords() throws Exception {
         long result = StreamStudy.countWords();
         System.out.println("result : " + result);
     }
 
     @Test
+    @DisplayName("12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 출력")
     public void printLongestWordTop100() throws Exception {
         StreamStudy.printLongestWordTop100();
     }
 
     @Test
+    @DisplayName("숫자의 2배를 출력")
     public void map() throws Exception {
         List<Integer> doubleNumbers = StreamStudy.doubleNumbers(numbers);
         doubleNumbers.forEach(System.out::println);
     }
 
     @Test
+    @DisplayName("숫자의 총 합을 출력")
     public void sumAll() throws Exception {
         long sum = StreamStudy.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
