@@ -3,12 +3,14 @@ package ladder;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
+import ladder.domain.playing.Direction;
 
 public class LineTest {
 
@@ -29,4 +31,33 @@ public class LineTest {
 
 		assertThat(ladder).isNotNull();
 	}
+
+	@Test
+	public void directionGettingTest() {
+		Line line = Line.of(Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
+
+		assertThat(line.getDirectionFrom(0)).isEqualTo(Direction.RIGHT);
+		assertThat(line.getDirectionFrom(1)).isEqualTo(Direction.LEFT);
+		assertThat(line.getDirectionFrom(2)).isEqualTo(Direction.RIGHT);
+		assertThat(line.getDirectionFrom(3)).isEqualTo(Direction.LEFT);
+	}
+
+	@Test
+	public void nextPointTest() {
+		Line line = Line.of(Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
+
+		assertThat(line.next()).isEqualTo(Boolean.TRUE);
+		assertThat(line.next()).isEqualTo(Boolean.FALSE);
+		assertThat(line.next()).isEqualTo(Boolean.TRUE);
+		assertThat(line.next()).isEqualTo(Boolean.FALSE);
+	}
+
+	@Test
+	public void widthTest() {
+		Line line = Line.of(Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
+
+		assertThat(line.getWidth()).isEqualTo(5);
+	}
+
+
 }
