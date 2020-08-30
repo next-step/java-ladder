@@ -8,19 +8,36 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Names;
 import ladder.domain.line.Line;
+import ladder.domain.playing.Winnings;
 import ladder.view.draw.shape.Shape;
 import ladder.view.draw.shape.ShapeFactory;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DrawingExecutor {
 
-	public static void drawResult(DrawArgument argument) {
+	public static void drawResult(LadderDrawingArgument argument) {
 		String ladderDrawing = drawLadder(argument.getLadder());
 
-		System.out.println(String.format("%s\n%s", argument.getNames(), ladderDrawing));
+		System.out.println(String.format("%s\n%s\n%s",
+										 argument.getNames(),
+										 ladderDrawing,
+										 argument.getWinnings()));
 	}
 
+	public static void drawWinningResult(ResultDrawingArgument argument) {
+		Winnings winnings = argument.getWinnings();
+		Names names = argument.getNames();
+
+		if (argument.getShowSize() == 1) {
+			System.out.println(winnings);
+			return;
+		}
+		System.out.println("실행결과\n" + IntStream.range(0, winnings.getSize())
+											   .mapToObj(i -> names.getNameOf(i) + " : " + winnings.getWinningOf(i))
+											   .collect(joining("\n")));
+	}
 
 	private static String drawLadder(Ladder ladder) {
 		int height = ladder.getHeight();
