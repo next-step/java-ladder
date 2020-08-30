@@ -3,7 +3,7 @@ package nextstep.fp;
 import java.util.List;
 
 public class Lambda {
-    private static final Integer INTEGER_ZERO = 0;
+    public static final Integer INTEGER_ZERO = 0;
 
     public static void printAllOld(List<Integer> numbers) {
         System.out.println("printAllOld");
