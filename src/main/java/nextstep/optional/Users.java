@@ -14,10 +14,9 @@ public class Users {
             new User("honux", 45));
 
     User getUser(String name) {
-        Optional<User> maybeUser = users.stream()
+        return users.stream()
                 .filter(user -> user.matchName(name))
-                .findFirst();
-
-        return maybeUser.orElse(DEFAULT_USER);
+                .findFirst()
+                .orElse(DEFAULT_USER);
     }
 }
