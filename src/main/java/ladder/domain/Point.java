@@ -5,28 +5,20 @@ public enum Point {
     TRUE ("-----|"),
     FALSE("     |");
 
-    private final String line;
-    private final Direction direction;
+    private final String bar;
 
-    Point(String line) {
-        this.line = line;
-        direction = Direction.of(this);
+    Point(String bar) {
+        this.bar = bar;
     }
 
     public static Point of(boolean pointType) {
-
         if (pointType) {
             return Point.TRUE;
         }
-
         return Point.FALSE;
     }
 
-    public String lineString() {
-        return line;
-    }
-
-    public int move() {
-        return direction.move();
+    public String getBar() {
+        return bar;
     }
 }

@@ -26,7 +26,7 @@ public class LadderTest {
         List<String> nameList = Arrays.asList(names.split(","));
 
         assertThat(nameList.equals(ladder.getNames())).isTrue();
-        assertEquals(ladder.getLadderString().size(), height);
+        assertEquals(ladder.getLadderLinesString().size(), height);
 
         assertEquals(ladder.getRewards(), nameList);
 

@@ -1,25 +1,25 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
 
     private final LadderData ladderData;
-    private final List<Line> lines;
+    private final LadderLine ladderLine;
     private final LadderResult ladderResult;
 
     public Ladder(LadderData ladderData) {
         this.ladderData = ladderData;
-        int nameLength = ladderData.getPlayerCount();
+        this.ladderLine = new LadderLine(ladderData.getPlayerCount(), ladderData.getHeight());
+        this.ladderResult = new LadderResult();
+        setLadderResultData();
+    }
 
-        lines = Stream.generate(() -> new Line(nameLength, RandomSingleton::nextBoolean))
-                .limit(ladderData.getHeight())
-                .collect(Collectors.toList());
-
-        ladderResult = new LadderResult(ladderData.getPlayerCount(), lines);
+    private void setLadderResultData() {
+        for (int player = 0; player < ladderData.getPlayerCount(); player++) {
+            ladderResult.put(player, ladderLine.getResultOf(player));
+        }
     }
 
     public List<String> getNames() {
@@ -30,14 +30,8 @@ public class Ladder {
         return ladderData.getRewards();
     }
 
-    public List<String> getLadderString() {
-        return lines.stream()
-                .map(line -> lineToString(line.getPoints()))
-                .collect(Collectors.toList());
-    }
-
-    private String lineToString(List<String> line) {
-        return String.join("", line);
+    public List<String> getLadderLinesString() {
+        return ladderLine.toStringList();
     }
 
     public String searchReward(String playerName) {

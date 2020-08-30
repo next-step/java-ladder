@@ -24,11 +24,11 @@ public class LineTest {
         for (int i = 0; i < personCount; i++) {
 
             if (i % 2 != 0) {
-                lineList.add(Point.TRUE.lineString());
+                lineList.add(Point.TRUE.getBar());
                 continue;
             }
 
-            lineList.add(Point.FALSE.lineString());
+            lineList.add(Point.FALSE.getBar());
         }
 
         assertEquals(lineList, line.getPoints());
@@ -44,7 +44,7 @@ public class LineTest {
         List<String> lineList = new ArrayList<>();
 
         for (int i = 0; i < personCount; i++) {
-            lineList.add(Point.FALSE.lineString());
+            lineList.add(Point.FALSE.getBar());
         }
 
         assertEquals(lineList, line.getPoints());

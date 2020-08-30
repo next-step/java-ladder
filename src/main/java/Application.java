@@ -54,7 +54,7 @@ public class Application {
 
     private static void printLadder(Output output, Ladder ladder) {
         output.print(ladder.getNames());
-        output.printMultiLine(ladder.getLadderString());
+        output.printMultiLine(ladder.getLadderLinesString());
         output.print(ladder.getRewards());
     }
 

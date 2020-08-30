@@ -8,24 +8,12 @@ public class LadderResult {
 
     private final Map<Integer, Integer> resultData;
 
-    public LadderResult(int playerCount, List<Line> lines) {
-
+    public LadderResult() {
         resultData = new HashMap<>();
-
-        for (int playerIndex = 0; playerIndex < playerCount; playerIndex++) {
-            resultData.put(playerIndex, followLadder(playerIndex, lines));
-        }
     }
 
-    private int followLadder(int startIndex, List<Line> lines) {
-
-        int currentIndex = startIndex;
-
-        for (Line line : lines) {
-            currentIndex = line.move(currentIndex);
-        }
-
-        return currentIndex;
+    public void put(int playerIndex, int rewardIndex) {
+        resultData.put(playerIndex, rewardIndex);
     }
 
     public int searchRewardIndex(int playerIndex) {

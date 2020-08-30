@@ -13,15 +13,15 @@ public class Line {
         points.add(Point.FALSE);
 
         for (int i = 1; i < personCount; i++) {
-            points.add(setNextPoint(prevPoint(i), nextPointRule));
+            points.add(nextPoint(getPrevPoint(i), nextPointRule));
         }
     }
 
-    private Point prevPoint(int index) {
+    private Point getPrevPoint(int index) {
         return points.get(index - 1);
     }
 
-    private Point setNextPoint(Point point, NextPointRule nextPointRule) {
+    private Point nextPoint(Point point, NextPointRule nextPointRule) {
         if (point == Point.TRUE) {
             return Point.FALSE;
         }
@@ -30,7 +30,7 @@ public class Line {
 
     public List<String> getPoints() {
         return points.stream()
-                .map(Point::lineString)
+                .map(Point::getBar)
                 .collect(Collectors.toList());
     }
 
