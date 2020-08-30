@@ -1,5 +1,8 @@
 package ladder.domain.ladder;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class Name {
 
 	private static final int NAME_MAX_LENGTH = 5;
@@ -18,7 +21,8 @@ public class Name {
 		return new Name(name);
 	}
 
-	String getName() {
+	@Override
+	public String toString() {
 		return this.name;
 	}
 }
