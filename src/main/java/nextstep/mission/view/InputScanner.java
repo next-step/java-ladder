@@ -1,6 +1,7 @@
 package nextstep.mission.view;
 
 import nextstep.mission.domain.Participant;
+import nextstep.mission.domain.Participants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,15 @@ public class InputScanner {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String DELIMITER = ",";
+
+    public static String printMessageAndSelectResult(String message) {
+        System.out.println(message);
+        return selectResult();
+    }
+
+    public static String selectResult() {
+        return SCANNER.next();
+    }
 
     public static List<String> printMessageAndGetResults(String message) {
         System.out.println(message);
@@ -26,19 +36,21 @@ public class InputScanner {
                 .collect(Collectors.toList());
     }
 
-    public static List<Participant> printMessageAndGetUsers(String message) {
+    public static Participants printMessageAndGetUsers(String message) {
         System.out.println(message);
         return getUsers();
     }
 
-    public static List<Participant> getUsers() {
+    public static Participants getUsers() {
         return getUsers(SCANNER.next());
     }
 
-    public static List<Participant> getUsers(String text) {
-        return Arrays.stream(text.split(DELIMITER))
-                .map(Participant::new)
-                .collect(Collectors.toList());
+    public static Participants getUsers(String text) {
+        return new Participants(
+                Arrays.stream(text.split(DELIMITER))
+                        .map(Participant::new)
+                        .collect(Collectors.toList())
+        );
     }
 
     public static int printMessageAndGetHeight(String message) {

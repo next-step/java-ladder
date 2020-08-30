@@ -1,6 +1,6 @@
 package nextstep.mission.view;
 
-import nextstep.mission.domain.Participant;
+import nextstep.mission.domain.Participants;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,15 +11,13 @@ public class InputScannerTest {
 
     @Test
     void getUsers() {
-        List<Participant> users = InputScanner.getUsers("user1,user2,user3,user4");
+        Participants users = InputScanner.getUsers("user1,user2,user3,user4");
 
-        assertThat(users).hasSize(4);
-        assertThat(users).containsExactly(
-                new Participant("user1"),
-                new Participant("user2"),
-                new Participant("user3"),
-                new Participant("user4")
-        );
+        assertThat(users.size()).isEqualTo(4);
+        assertThat(users.contains("user1")).isTrue();
+        assertThat(users.contains("user2")).isTrue();
+        assertThat(users.contains("user3")).isTrue();
+        assertThat(users.contains("user4")).isTrue();
     }
 
     @Test

@@ -50,6 +50,20 @@ public class Line {
         return this.points.size() == size;
     }
 
+    public int move(int currentPosition) {
+        boolean right = currentPosition + 1 == this.points.size() ? false : points.get(currentPosition + 1);
+
+        if (right)
+            return currentPosition + 1;
+
+        boolean left = currentPosition == 0 ? false : points.get(currentPosition);
+
+        if (left)
+            return currentPosition - 1;
+
+        return currentPosition;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,4 +81,5 @@ public class Line {
     public String toString() {
         return Arrays.toString(points.toArray());
     }
+
 }

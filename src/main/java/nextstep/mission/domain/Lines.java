@@ -25,4 +25,14 @@ public class Lines {
 
         return this.lines.get(position);
     }
+
+    public int getResultPosition(int startPosition) {
+        int position = getLine(0).move(startPosition);
+
+        for (int index = 1; index < lines.size(); index++) {
+            position = getLine(index).move(position);
+        }
+
+        return position;
+    }
 }

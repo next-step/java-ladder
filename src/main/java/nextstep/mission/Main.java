@@ -1,7 +1,6 @@
 package nextstep.mission;
 
 import nextstep.mission.domain.Ladder;
-import nextstep.mission.domain.Participant;
 import nextstep.mission.domain.Participants;
 import nextstep.mission.view.InputScanner;
 import nextstep.mission.view.ResultViewer;
@@ -11,7 +10,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        List<Participant> participants = InputScanner.printMessageAndGetUsers("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        Participants participants = InputScanner.printMessageAndGetUsers("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         System.out.println();
 
         int height = InputScanner.printMessageAndGetHeight("최대 사다리 높이는 몇 개인가요?");
@@ -20,9 +19,22 @@ public class Main {
         List<String> results = InputScanner.printMessageAndGetResults("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         System.out.println();
 
-        Ladder ladder = Ladder.make(new Participants(participants), height);
+        Ladder ladder = Ladder.make(participants, height);
+        System.out.println("실행 결과");
+        System.out.println();
+
+        ResultViewer.showLadder(participants, ladder, results);
+
+        String select1 = InputScanner.printMessageAndSelectResult("결과를 보고 싶은 사람은?");
+        System.out.println();
         System.out.println("실행 결과");
 
-        ResultViewer.showResult(participants, ladder);
+        ResultViewer.showSelectResult(participants, ladder, results, select1);
+
+        String select2 = InputScanner.printMessageAndSelectResult("결과를 보고 싶은 사람은?");
+        System.out.println();
+        System.out.println("실행 결과");
+
+        ResultViewer.showSelectResult(participants, ladder, results, select2);
     }
 }
