@@ -8,7 +8,6 @@ public class Coordinate {
 
 	public static final Coordinate LINE_START_COORDINATE = new Coordinate(0);
 	private static final Coordinate COORDINATE_ONE = new Coordinate(1);
-
 	private static final String PLEASE_INPUT_OVER_OR_EQUAL_MIN_COORDINATE = "%d 보다 작은 수를 좌표 값으로 설정할 수 없습니다.";
 	private static final int MIN_COORDINATE = 0;
 
