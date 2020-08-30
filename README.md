@@ -13,3 +13,12 @@
 
 - [X] 람다 실습 1 - 익명 클래스를 람다로 전환
 - [X] 람다 실습 2 - 람다를 활용해 중복 제거
+
+- [X] 스트림 map, reduce, filter 실습 1
+    * 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구함
+- [X] 스트림 map, reduce, filter 실습 2
+    * 12자가 넘는 단어 중 길이가 긴 순서로 100개의 단어를 출력
+    
+- [X] 실습 1 - Optional을 활용해 조건에 따른 반환 (isPresent() 활용)
+- [X] 실습 2 - Optional에서 값을 반환 (orElse() 활용)
+- [X] 실습 2 - Optional에서 exception 처리 (orElseThrow() 활용)
