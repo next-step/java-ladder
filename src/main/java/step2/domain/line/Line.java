@@ -14,11 +14,12 @@ public class Line {
 
 	private final LinkedList<Point> points;
 
-	public Line() {
+	Line() {
 		this.points = new LinkedList<>();
 	}
 
-	public Line(LinkedList<Point> points) {
+	//ForTest
+	Line(LinkedList<Point> points) {
 		validatePoints(points);
 		this.points = points;
 	}

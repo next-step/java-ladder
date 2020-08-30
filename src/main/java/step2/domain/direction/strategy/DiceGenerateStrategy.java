@@ -45,26 +45,11 @@ public class DiceGenerateStrategy implements DirectionGenerateStrategy {
         return diceSupplier.getAsInt();
     }
 
-    private Predicate<Direction> predicateNotLeft() {
-        return direction -> direction != Direction.LEFT;
-    }
-
-    private Predicate<Direction> predicateNotRight() {
-        return direction -> direction != Direction.RIGHT;
-    }
-
     private Direction getRandomDirectionByFilteringPredicate(Predicate<Direction> filterCondition) {
         return Arrays.stream(Direction.values())
                 .filter(filterCondition)
                 .min(Comparator.comparingInt(direction -> rollDice()))
                 .get();
-    }
-
-    private Predicate<Direction> validateByNextPoint(Direction now) {
-        if(now == Direction.RIGHT) {
-            return direction -> direction == Direction.LEFT;
-        }
-        return direction -> direction != Direction.LEFT;
     }
 
     @Override
