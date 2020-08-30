@@ -1,21 +1,21 @@
 package ladder.domain;
 
-public enum LineType {
+public enum Point {
 
     TRUE ("-----|"),
     FALSE("     |");
 
     private final String line;
 
-    LineType(String line) {
+    Point(String line) {
         this.line = line;
     }
 
-    public static LineType of(boolean lineType) {
-        if (lineType) {
-            return LineType.TRUE;
+    public static Point of(boolean pointType) {
+        if (pointType) {
+            return Point.TRUE;
         }
-        return LineType.FALSE;
+        return Point.FALSE;
     }
 
     public String lineString() {

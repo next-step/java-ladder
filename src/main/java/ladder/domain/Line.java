@@ -6,43 +6,43 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<LineType> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Line(int personCount, NextPointRule nextPointRule) {
 
-        points.add(LineType.FALSE);
+        points.add(Point.FALSE);
 
         for (int i = 1; i < personCount; i++) {
             points.add(setNextPoint(prevPoint(i), nextPointRule));
         }
     }
 
-    private LineType prevPoint(int index) {
+    private Point prevPoint(int index) {
         return points.get(index - 1);
     }
 
-    private LineType setNextPoint(LineType lineType, NextPointRule nextPointRule) {
-        if (lineType == LineType.TRUE) {
-            return LineType.FALSE;
+    private Point setNextPoint(Point point, NextPointRule nextPointRule) {
+        if (point == Point.TRUE) {
+            return Point.FALSE;
         }
-        return LineType.of(nextPointRule.createNextPoint());
+        return Point.of(nextPointRule.createNextPoint());
     }
 
     public List<String> getPoints() {
         return points.stream()
-                .map(LineType::lineString)
+                .map(Point::lineString)
                 .collect(Collectors.toList());
     }
 
     private boolean hasLeftBar(int index) {
-        return points.get(index) == LineType.TRUE;
+        return points.get(index) == Point.TRUE;
     }
 
     private boolean hasRightBar(int index) {
         if (index + 1 >= points.size()) {
             return false;
         }
-        return points.get(index + 1) == LineType.TRUE;
+        return points.get(index + 1) == Point.TRUE;
     }
 
     public int move(int currentIndex) {
