@@ -21,4 +21,17 @@ public class InputScannerTest {
                 new Participant("user4")
         );
     }
+
+    @Test
+    void getResults() {
+        List<String> results = InputScanner.getResults("꽝,5000,꽝,3000");
+
+        assertThat(results).hasSize(4);
+        assertThat(results).containsExactly(
+                "꽝",
+                "5000",
+                "꽝",
+                "3000"
+        );
+    }
 }
