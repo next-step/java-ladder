@@ -52,4 +52,5 @@ public class StreamStudy {
                 .mapToLong(number -> number * 2)
                 .reduce(0, Long::sum);
     }
+
 }
