@@ -34,14 +34,35 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    public boolean hasLeftBar(int index) {
+    private boolean hasLeftBar(int index) {
         return points.get(index) == LineType.TRUE;
     }
 
-    public boolean hasRightBar(int index) {
+    private boolean hasRightBar(int index) {
         if (index + 1 >= points.size()) {
             return false;
         }
         return points.get(index + 1) == LineType.TRUE;
+    }
+
+    public int move(int currentIndex) {
+
+        if (hasLeftBar(currentIndex)) {
+            return moveLeft(currentIndex);
+        }
+
+        if (hasRightBar(currentIndex)) {
+            return moveRight(currentIndex);
+        }
+
+        return currentIndex;
+    }
+
+    private int moveLeft(int currentIndex) {
+        return currentIndex - 1;
+    }
+
+    private int moveRight(int currentIndex) {
+        return currentIndex + 1;
     }
 }

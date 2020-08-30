@@ -13,8 +13,6 @@ public class Application {
 
     private static final String EXIT_COMMAND = "exit";
     private static final String SEARCH_ALL_PLAYER = "all";
-    private static final int RUN_CODE = 0;
-    private static final int EXIT_CODE = -1;
 
     public static void main(String[] args) {
 
@@ -25,33 +23,33 @@ public class Application {
         Ladder ladder = new Ladder(ladderData);
         printLadder(output, ladder);
 
-        int code = RUN_CODE;
+        boolean isRun = true;
 
-        while(code == RUN_CODE) {
-            code = runOutputPrint(input, output, ladder);
+        while(isRun) {
+            isRun = runOutputPrint(input, output, ladder);
         }
     }
 
-    private static int runOutputPrint(Input input, Output output, Ladder ladder) {
+    private static boolean runOutputPrint(Input input, Output output, Ladder ladder) {
 
         input.nextLine();
         output.print(MSG_SEARCH_PLAYER_REWARD);
         String playerName = input.nextLine();
 
         if (playerName.equals(EXIT_COMMAND)) {
-            return EXIT_CODE;
+            return false;
         }
 
         if (playerName.equals(SEARCH_ALL_PLAYER)) {
             output.print(MSG_SEARCH_REWARD_RESULT);
             output.printMultiLine(ladder.searchAllReward());
-            return RUN_CODE;
+            return true;
         }
 
         output.print(MSG_SEARCH_REWARD_RESULT);
         output.print(ladder.searchReward(playerName));
 
-        return RUN_CODE;
+        return true;
     }
 
     private static void printLadder(Output output, Ladder ladder) {
