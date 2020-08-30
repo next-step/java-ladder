@@ -19,7 +19,7 @@ public class Ladder {
                 .limit(ladderData.getHeight())
                 .collect(Collectors.toList());
 
-        ladderResult = new LadderResult(ladderData, lines);
+        ladderResult = new LadderResult(ladderData.getPlayerCount(), lines);
     }
 
     public List<String> getNames() {

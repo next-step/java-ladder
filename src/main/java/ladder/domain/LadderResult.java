@@ -8,11 +8,11 @@ public class LadderResult {
 
     private final Map<Integer, Integer> resultData;
 
-    public LadderResult(LadderData ladderData, List<Line> lines) {
+    public LadderResult(int playerCount, List<Line> lines) {
 
         resultData = new HashMap<>();
 
-        for (int playerIndex = 0; playerIndex < ladderData.getPlayerCount(); playerIndex++) {
+        for (int playerIndex = 0; playerIndex < playerCount; playerIndex++) {
             resultData.put(playerIndex, followLadder(playerIndex, lines));
         }
     }

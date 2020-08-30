@@ -25,7 +25,7 @@ public class LadderResultTest {
                 .limit(height)
                 .collect(Collectors.toList());
 
-        LadderResult ladderResult = new LadderResult(ladderData, lines);
+        LadderResult ladderResult = new LadderResult(ladderData.getPlayerCount(), lines);
 
         int[] data = new int[] { 1, 0, 3, 2, 4 };
 
