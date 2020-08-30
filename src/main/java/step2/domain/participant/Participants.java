@@ -2,9 +2,7 @@ package step2.domain.participant;
 
 import step2.exception.LadderGameException;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -16,7 +14,7 @@ public class Participants {
 
 	private final Map<String, Participant> participants;
 
-	public Participants(Participant[] participants) {
+	public Participants(List<Participant> participants) {
 		this.participants = createParticipants(participants);
 	}
 
@@ -24,14 +22,18 @@ public class Participants {
 		return participants.size();
 	}
 
-	private Map<String, Participant> createParticipants(Participant[] participants) {
-		if(participants.length < MIN_PARTICIPANT_COUNT) {
+	public Map<String, Participant> getParticipants() {
+		return participants;
+	}
+
+	private Map<String, Participant> createParticipants(List<Participant> participants) {
+		if(participants.size() < MIN_PARTICIPANT_COUNT) {
 			throw new LadderGameException(String.format(PARTICIPANT_SHOULD_EQUAL_OR_OVER_N, MIN_PARTICIPANT_COUNT));
 		}
 
 		try {
-			return Arrays.stream(participants)
-						.collect(Collectors.toUnmodifiableMap(Participant::getName, Function.identity()));
+			return participants.stream()
+						.collect(Collectors.toMap(Participant::getName, Function.identity(), (participant, participant2) -> participant, LinkedHashMap::new));
 		} catch (IllegalStateException e) {
 			throw new LadderGameException(PLEASE_INPUT_NOT_DUPLICATE_PARTICIPANT, e);
 		}

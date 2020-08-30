@@ -13,6 +13,10 @@ public class Ladder {
 		this.lines = lines;
 	}
 
+	public List<Line> getLines() {
+		return lines;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

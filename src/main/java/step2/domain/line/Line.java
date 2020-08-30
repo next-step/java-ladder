@@ -35,6 +35,10 @@ public class Line {
 		return points.getLast();
 	}
 
+	public LinkedList<Point> getPoints() {
+		return points;
+	}
+
 	private void validatePoints(List<Point> points) {
 		Point now = points.get(START_INDEX);
 

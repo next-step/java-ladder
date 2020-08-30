@@ -36,7 +36,7 @@ class LineGeneratorTest {
 	@Test
 	void exceptionTest() {
 		Participant solo = new Participant("solo", new Coordinate(0));
-		Participants soloParticipants = new Participants(new Participant[]{solo});
+		Participants soloParticipants = new Participants(List.of(solo));
 		assertThrows(LadderGameException.class, () -> lineGenerator.generateLine(soloParticipants));
 	}
 
@@ -53,8 +53,8 @@ class LineGeneratorTest {
 		Participant participant4 = new Participant("d", three);
 		Participant participant5 = new Participant("e", four);
 
-		Participants participants1 = new Participants(new Participant[]{participant1, participant2, participant3, participant4});
-		Participants participants2 = new Participants(new Participant[]{participant1, participant2, participant3, participant4, participant5});
+		Participants participants1 = new Participants(List.of(participant1, participant2, participant3, participant4));
+		Participants participants2 = new Participants(List.of(participant1, participant2, participant3, participant4, participant5));
 
 		List<Point> points = List.of(
 											new Point(zero, Direction.RIGHT),

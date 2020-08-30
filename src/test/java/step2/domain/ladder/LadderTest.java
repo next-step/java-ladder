@@ -23,7 +23,7 @@ class LadderTest {
 		LineGenerator lineGenerator = new LineGenerator(new PointGenerator(new DiceGenerateStrategy(() -> 1)));
 		Participant participant = new Participant("a", new Coordinate(0));
 		Participant participant2 = new Participant("b", new Coordinate(1));
-		Participants participants = new Participants(new Participant[]{participant, participant2});
+		Participants participants = new Participants(List.of(participant, participant2));
 		assertThat(new Ladder(List.of(lineGenerator.generateLine(participants)))).isEqualTo(new Ladder(List.of(lineGenerator.generateLine(participants))));
 	}
 

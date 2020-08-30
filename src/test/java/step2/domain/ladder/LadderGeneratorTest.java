@@ -23,7 +23,7 @@ class LadderGeneratorTest {
 	void generateLadder() {
 		Participant participant1 = new Participant("a", new Coordinate(0));
 		Participant participant2 = new Participant("b", new Coordinate(1));
-		Participants participants = new Participants(new Participant[]{participant1, participant2});
+		Participants participants = new Participants(List.of(participant1, participant2));
 		LadderHeight ladderHeight = new LadderHeight(1);
 		GameConstructData constructData = new GameConstructData(participants, ladderHeight);
 
