@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -40,6 +41,7 @@ public class StreamStudyTest {
     }
 
     @Test
+    @DisplayName("3보다 큰 숫자를 2배 한 후 모든 값의 합")
     public void sumOverThreeAndDouble() throws Exception {
         numbers = Arrays.asList(3, 1, 6, 2, 4, 8);
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
