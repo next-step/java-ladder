@@ -5,7 +5,11 @@ import laddergame.domain.participant.Participants;
 import laddergame.domain.point.Point;
 import laddergame.domain.point.PointGenerator;
 
+import java.util.stream.IntStream;
+
 public class LineGenerator {
+
+	private static final int SECOND_POINT_INDEX = 1;
 
 	private final PointGenerator pointGenerator;
 
@@ -22,10 +26,9 @@ public class LineGenerator {
 		Line newLine = new Line();
 
 		newLine.addPoint(pointGenerator.generateLineStartPoint());
-		for (int i = 1; i < lastIndexOfLine; i++) {
-			Point newPoint = pointGenerator.generateNextPoint(newLine.getLastPoint(), new Coordinate(i));
-			newLine.addPoint(newPoint);
-		}
+		IntStream.range(SECOND_POINT_INDEX, lastIndexOfLine)
+				.mapToObj(index -> pointGenerator.generateNextPoint(newLine.getLastPoint(), new Coordinate(index)))
+				.forEach(newLine::addPoint);
 		newLine.addPoint(pointGenerator.generateLineEndPoint(newLine.getLastPoint(), new Coordinate(lastIndexOfLine)));
 
 		return newLine;

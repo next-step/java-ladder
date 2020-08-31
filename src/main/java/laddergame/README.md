@@ -11,4 +11,10 @@
 
 ## Feature List
 0. 패키지 명 변경 (step2 -> laddergame)
+1. 코드리뷰 사항 반영
+    * enum ordinal 사용 제거
+    * 인터페이스의 default 메소드로 빠져있던 Predicate 메소드 구현체로 이동 (코드 읽을때 왔다 갔다 거림 최소화)
+    * for문 썼다가 IntStream 썼다가 한 로직 IntStream으로 통일
+    
+
 

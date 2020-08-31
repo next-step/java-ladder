@@ -37,7 +37,7 @@ public class DiceGenerateStrategy implements DirectionGenerateStrategy {
         return Arrays.stream(Direction.values())
                 .filter(predicateNotRight())
                 .filter(validateByNextPoint(previous))
-                .min(Comparator.comparingInt(Enum::ordinal))
+                .findFirst()
                 .get();
     }
 
@@ -50,6 +50,21 @@ public class DiceGenerateStrategy implements DirectionGenerateStrategy {
                 .filter(filterCondition)
                 .min(Comparator.comparingInt(direction -> rollDice()))
                 .get();
+    }
+
+    private Predicate<Direction> predicateNotLeft() {
+        return direction -> direction != Direction.LEFT;
+    }
+
+    private Predicate<Direction> predicateNotRight() {
+        return direction -> direction != Direction.RIGHT;
+    }
+
+    private Predicate<Direction> validateByNextPoint(Direction now) {
+        if(now == Direction.RIGHT) {
+            return direction -> direction == Direction.LEFT;
+        }
+        return direction -> direction != Direction.LEFT;
     }
 
     @Override
