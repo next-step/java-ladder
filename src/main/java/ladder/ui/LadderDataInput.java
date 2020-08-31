@@ -1,11 +1,13 @@
-package ladder.domain;
+package ladder.ui;
 
+import ladder.domain.Player;
+import ladder.domain.Reward;
 import ladder.ui.Input;
 import ladder.ui.Output;
 
 import java.util.List;
 
-public class LadderData {
+public class LadderDataInput {
 
     private static final String MSG_INPUT_PLAYER_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String MSG_INPUT_REWARD = "실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -15,7 +17,7 @@ public class LadderData {
     private int height;
     private Reward reward;
 
-    public LadderData(Input input, Output output) {
+    public LadderDataInput(Input input, Output output) {
         inputNames(input, output);
         inputReword(input, output);
         inputHeight(input, output);

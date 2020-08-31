@@ -1,6 +1,4 @@
 import ladder.controller.LadderController;
-import ladder.domain.Ladder;
-import ladder.domain.LadderData;
 import ladder.ui.Input;
 import ladder.ui.Output;
 

@@ -3,7 +3,7 @@ package ladder;
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderData;
+import ladder.ui.LadderDataInput;
 import ladder.domain.LadderFactory;
 import ladder.ui.Input;
 import ladder.ui.Output;
@@ -18,7 +18,7 @@ public class LadderFactoryTest {
         Input input = WhenUtils.input("a,b,c", 5);
         Output output = WhenUtils.output();
 
-        assertThat(LadderFactory.of(new LadderData(input, output)))
+        assertThat(LadderFactory.of(new LadderDataInput(input, output)))
             .isInstanceOf(Ladder.class);
     }
 }

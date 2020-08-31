@@ -1,7 +1,12 @@
 package ladder.domain;
 
+import ladder.ui.LadderDataInput;
+
 public class LadderFactory {
-    public static Ladder of(LadderData ladderData) {
-        return new Ladder(ladderData);
+
+    private LadderFactory() { }
+
+    public static Ladder of(LadderDataInput ladderDataInput) {
+        return new Ladder(ladderDataInput);
     }
 }

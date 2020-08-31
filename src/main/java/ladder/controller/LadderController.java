@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderData;
+import ladder.ui.LadderDataInput;
 import ladder.domain.LadderFactory;
 import ladder.ui.Input;
 import ladder.ui.Output;
@@ -23,7 +23,7 @@ public class LadderController {
         this.input = builder.getInput();
         this.output = builder.getOutput();
 
-        ladder = LadderFactory.of(new LadderData(input, output));
+        ladder = LadderFactory.of(new LadderDataInput(input, output));
     }
 
     public static LadderControllerBuilder builder() {

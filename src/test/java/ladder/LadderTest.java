@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderData;
+import ladder.ui.LadderDataInput;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class LadderTest {
         String names = "pobi,honux,crong,jk";
         int height = 5;
 
-        LadderData ladderData = new LadderData(WhenUtils.input(names, height), WhenUtils.output());
+        LadderDataInput ladderData = new LadderDataInput(WhenUtils.input(names, height), WhenUtils.output());
         Ladder ladder = new Ladder(ladderData);
 
         List<String> nameList = Arrays.asList(names.split(","));
