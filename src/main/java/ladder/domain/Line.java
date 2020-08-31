@@ -11,15 +11,11 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(List<Point> points) {
-        return new Line(points);
-    }
-
     private static Line init(boolean right) {
         List<Point> points = new ArrayList<>();
         points.add(Point.getFirst(right));
 
-        return Line.of(points);
+        return new Line(points);
     }
 
     public static Line create(Participants participant, LineGenerator lineGenerator) {
@@ -27,21 +23,28 @@ public class Line {
             return Line.init(false);
         }
 
-        Line line = Line.init(lineGenerator.getRight());
-        line.makeNextPoints(participant, lineGenerator);
-        return line;
+        List<Point> points = new ArrayList<>();
+        Point point = init(points, lineGenerator.getRight());
+        makeNextPoints(points, point, lineGenerator, participant.getNumber());
+
+        return new Line(points);
     }
 
-    private void makeNextPoints(Participants participant, LineGenerator lineGenerator) {
-        Point firstPoint = getFirst();
+    private static Point init(List<Point> points, boolean right) {
+        Point point = Point.getFirst(right);
+        points.add(point);
 
-        for (int i = 1, size = participant.getNumber(); i < size - 1; i++) {
-            Point next = Point.next(firstPoint, lineGenerator.getRight());
-            points.add(next);
+        return point;
+    }
 
-            firstPoint = next;
+    private static void makeNextPoints(List<Point> points, Point point,
+                                       LineGenerator lineGenerator, int participantNumber) {
+        for (int i = 1; i < participantNumber - 1; i++) {
+            point = point.next(lineGenerator.getRight());
+            points.add(point);
         }
-        Point last = Point.getLast(firstPoint.isRight());
+
+        Point last = Point.getLast(participantNumber - 1, point.isRight());
         points.add(last);
     }
 
@@ -53,22 +56,7 @@ public class Line {
         return points.size();
     }
 
-    private Point getFirst() {
-        return Optional.ofNullable(points.get(0))
-                .orElseGet(() -> Point.of(false, false));
-    }
-
     public int calculateNextIndex(int index) {
-        Point point = points.get(index);
-
-        if (point.isRight()) {
-            index++;
-        }
-
-        if (point.isLeft()) {
-            index--;
-        }
-
-        return index;
+        return points.get(index).move();
     }
 }

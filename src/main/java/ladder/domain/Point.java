@@ -1,10 +1,14 @@
 package ladder.domain;
 
 public class Point {
+    private static final int FIRST_INDEX = 0;
+
+    private int index;
     private boolean left;
     private boolean right;
 
-    private Point(boolean left, boolean right) {
+    private Point(int index, boolean left, boolean right) {
+        this.index = index;
         this.left = left;
         this.right = right;
     }
@@ -17,26 +21,37 @@ public class Point {
         return this.left;
     }
 
-    public static Point of(boolean left, boolean right) {
-        return new Point(left, right);
+    // 테스트용
+    public static Point of(int index, boolean left, boolean right) {
+        return new Point(index, left, right);
     }
 
     public static Point getFirst(boolean right) {
-        return new Point(false, right);
+        return new Point(FIRST_INDEX,false, right);
     }
 
-    public static Point getLast(boolean left) {
-        return new Point(left, false);
+    public static Point getLast(int index, boolean left) {
+        return new Point(index, left, false);
     }
 
-    public static Point next(Point previous, boolean right) {
-        if (previous.isRight()) {
-            return new Point(previous.isRight(), false);
+    public Point next(boolean nextRight) {
+        if(Boolean.TRUE.equals(this.right)) {
+            return new Point(index + 1, this.right, false);
         }
-        return new Point(false, right);
+        return new Point(index + 1, false, nextRight);
     }
 
-    public int move(int index) {
-        return 0;
+    public int move() {
+        int nextIndex = index;
+
+        if (this.right) {
+            nextIndex++;
+        }
+
+        if (this.left) {
+            nextIndex--;
+        }
+
+        return nextIndex;
     }
 }
