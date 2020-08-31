@@ -5,6 +5,7 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderGameController {
+    private static final String ALL = "all";
 
     public static void main(String[] args) {
         String names = InputView.scanParticipantNames();
@@ -17,8 +18,14 @@ public class LadderGameController {
         OutputView.printLadder(participants, ladder, ladderReward);
 
         LadderGameResult ladderGameResult = participants.calculateResult(ladder, ladderReward);
-        for (int i = 0; i < 3; i++) {
-            String wishParticipantName = InputView.scanWishParticipantName();
+        showGameResult(ladderGameResult);
+    }
+
+    private static void showGameResult(LadderGameResult ladderGameResult) {
+        String wishParticipantName = "";
+
+        while (!ALL.equals(wishParticipantName)) {
+            wishParticipantName = InputView.scanWishParticipantName();
             OutputView.printLadderReward(ladderGameResult, wishParticipantName);
         }
     }
