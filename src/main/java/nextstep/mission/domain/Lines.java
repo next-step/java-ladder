@@ -27,10 +27,10 @@ public class Lines {
     }
 
     public int getResultPosition(int startPosition) {
-        int position = getLine(0).move(startPosition);
+        int position = getLine(0).nextPosition(startPosition);
 
         for (int index = 1; index < lines.size(); index++) {
-            position = getLine(index).move(position);
+            position = getLine(index).nextPosition(position);
         }
 
         return position;

@@ -53,15 +53,21 @@ public class Line {
     public int move(int currentPosition) {
         boolean right = currentPosition + 1 == this.points.size() ? false : points.get(currentPosition + 1);
 
-        if (right)
-            return currentPosition + 1;
+        if (right) {
+            return 1;
+        }
 
         boolean left = currentPosition == 0 ? false : points.get(currentPosition);
 
-        if (left)
-            return currentPosition - 1;
+        if (left) {
+            return -1;
+        }
 
-        return currentPosition;
+        return 0;
+    }
+
+    public int nextPosition(int currentPosition) {
+        return currentPosition + move(currentPosition);
     }
 
     @Override

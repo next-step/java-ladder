@@ -1,6 +1,5 @@
 package nextstep.mission.domain;
 
-import nextstep.mission.domain.Line;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -28,10 +27,23 @@ public class LineTest {
 
     @Test
     void move() {
-        Line line = new Line(Arrays.asList(false, true, false, true));
+        Line line = new Line(Arrays.asList(false, true, false, false, false, true));
         assertThat(line.move(0)).isEqualTo(1);
-        assertThat(line.move(1)).isEqualTo(0);
-        assertThat(line.move(2)).isEqualTo(3);
-        assertThat(line.move(3)).isEqualTo(2);
+        assertThat(line.move(1)).isEqualTo(-1);
+        assertThat(line.move(2)).isEqualTo(0);
+        assertThat(line.move(3)).isEqualTo(0);
+        assertThat(line.move(4)).isEqualTo(1);
+        assertThat(line.move(5)).isEqualTo(-1);
+    }
+
+    @Test
+    void nextPosition() {
+        Line line = new Line(Arrays.asList(false, true, false, false, false, true));
+        assertThat(line.nextPosition(0)).isEqualTo(1);
+        assertThat(line.nextPosition(1)).isEqualTo(0);
+        assertThat(line.nextPosition(2)).isEqualTo(2);
+        assertThat(line.nextPosition(3)).isEqualTo(3);
+        assertThat(line.nextPosition(4)).isEqualTo(5);
+        assertThat(line.nextPosition(5)).isEqualTo(4);
     }
 }

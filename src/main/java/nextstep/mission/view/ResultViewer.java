@@ -48,7 +48,6 @@ public class ResultViewer {
 
     public static final void showResultAll(Participants participants, Ladder ladder, List<String> results) {
         System.out.println(selectAllResult(participants, ladder, results));
-
     }
 
     public static final String selectAllResult(Participants participants, Ladder ladder, List<String> results) {
