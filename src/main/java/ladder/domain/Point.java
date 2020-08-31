@@ -36,4 +36,7 @@ public class Point {
         return new Point(false, right);
     }
 
+    public int move(int index) {
+        return 0;
+    }
 }
