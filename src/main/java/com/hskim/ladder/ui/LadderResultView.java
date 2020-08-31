@@ -8,7 +8,8 @@ import java.util.Map;
 
 public class LadderResultView {
     private static final String RESULT_PHRASE = "실행결과";
-    private static final String ALIGN_FORMAT = "%5s ";
+    private static final String USER_ALIGN_FORMAT = "%5s ";
+    private static final String REWARD_ALIGN_FORMAT = "%-5s ";
     private static final String NEW_LINE = System.lineSeparator();
     private static final Map<LadderPoint, String> pointStringMap = ImmutableMap.of(
             LadderPoint.BLANK, " ",
@@ -29,7 +30,7 @@ public class LadderResultView {
     public void printUserNames(List<String> userNames) {
         System.out.print(NEW_LINE);
         userNames.forEach(userName -> {
-            System.out.print(String.format(ALIGN_FORMAT, userName));
+            System.out.print(String.format(USER_ALIGN_FORMAT, userName));
         });
         System.out.print(NEW_LINE);
     }
@@ -39,6 +40,12 @@ public class LadderResultView {
             printLine(ladderPoints);
             System.out.print(NEW_LINE);
         });
+    }
 
+    public void printRewards(List<String> rewardNames) {
+        rewardNames.forEach(rewardName -> {
+            System.out.print(String.format(REWARD_ALIGN_FORMAT, rewardName));
+        });
+        System.out.print(NEW_LINE);
     }
 }

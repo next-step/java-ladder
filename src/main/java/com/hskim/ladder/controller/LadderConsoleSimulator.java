@@ -5,6 +5,8 @@ import com.hskim.ladder.model.LadderHeight;
 import com.hskim.ladder.model.LadderUsers;
 import com.hskim.ladder.model.Lines;
 import com.hskim.ladder.model.RandomRowIndexMaker;
+import com.hskim.ladder.model.Reward;
+import com.hskim.ladder.model.Rewards;
 import com.hskim.ladder.model.RowIndexMaker;
 import com.hskim.ladder.model.User;
 import com.hskim.ladder.ui.LadderInputView;
@@ -17,6 +19,7 @@ public class LadderConsoleSimulator {
     private final LadderResultView ladderResultView;
     private LadderUsers ladderUsers;
     private Ladder ladder;
+    private Rewards rewards;
 
     public LadderConsoleSimulator(LadderInputView ladderInputView, LadderResultView ladderResultView) {
         this.ladderInputView = ladderInputView;
@@ -29,7 +32,7 @@ public class LadderConsoleSimulator {
 
     private LadderUsers getLadderUsersFromInput() {
         ladderInputView.printParticipantsPhrase();
-        return new LadderUsers(User.makeUserFromNames(ladderInputView.getUserNames()));
+        return new LadderUsers(User.makeUsersFromNames(ladderInputView.getUserInputs()));
     }
 
     public void createLadder() {
@@ -48,9 +51,21 @@ public class LadderConsoleSimulator {
         return new LadderHeight(ladderInputView.getLadderHeight());
     }
 
+    public void setRewards() {
+        rewards = getRewardsFromInput();
+    }
+
+    private Rewards getRewardsFromInput() {
+        ladderInputView.printRewardPhrase();
+        return new Rewards(Reward.makeRewardsFromNames(ladderInputView.getUserInputs()), ladderUsers);
+    }
+
     public void printInitStatus() {
         ladderResultView.printResultPhrase();
         ladderResultView.printUserNames(ladderUsers.getUserNames());
         ladderResultView.printLines(ladder.getAllPoints());
+        ladderResultView.printRewards(rewards.getAllRewardNames());
     }
+
+
 }

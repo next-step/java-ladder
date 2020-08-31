@@ -22,6 +22,10 @@ public class LadderUsers {
                 .collect(Collectors.toList());
     }
 
+    public boolean isEqualSize(int size) {
+        return users.size() == size;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
