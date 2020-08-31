@@ -11,6 +11,7 @@ public class Participants {
 	private static final int MIN_PARTICIPANT_COUNT = 2;
 	private static final String PARTICIPANT_SHOULD_EQUAL_OR_OVER_N = "참가자 수는 %d명 이상이어야 합니다.";
 	private static final String PLEASE_INPUT_NOT_DUPLICATE_PARTICIPANT = "중복되지 않은 참가자를 입력해주세요.";
+	private static final String PLEASE_INPUT_PARTICIPANT_NAME = "게임 참가자의 이름을 입력해주세요.";
 
 	private final Map<String, Participant> participants;
 
@@ -22,8 +23,13 @@ public class Participants {
 		return participants.size();
 	}
 
-	public Map<String, Participant> getParticipants() {
-		return participants;
+	public Collection<Participant> getParticipants() {
+		return participants.values();
+	}
+
+	public Participant getCoordinateByName(String name) {
+		return Optional.ofNullable(participants.get(name))
+						.orElseThrow(() -> new LadderGameException(PLEASE_INPUT_PARTICIPANT_NAME));
 	}
 
 	private Map<String, Participant> createParticipants(List<Participant> participants) {

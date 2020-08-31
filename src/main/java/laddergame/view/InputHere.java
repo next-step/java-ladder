@@ -4,7 +4,8 @@ import laddergame.domain.Coordinate;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
-import laddergame.dto.GameConstructData;
+import laddergame.domain.result.Prizes;
+import laddergame.dto.GameCriteria;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -16,26 +17,41 @@ import static laddergame.util.StringUtil.splitByDelimiter;
 
 public class InputHere {
 
+	private static final int START_INDEX = 0;
 	private static final String INPUT_SHOULD_INTEGER = "자연수로 입력 해 주세요.";
 	private static final String PLEASE_INPUT_PARTICIPANTS_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+	private static final String PLEASE_INPUT_PRIZES = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
 	private static final String PLEASE_INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
+	private static final String PLEASE_INPUT_NAME_WANT_SHOW_RESULT = "결과를 보고 싶은 사람은?";
 	private static final Scanner SCANNER = new Scanner(System.in);
 
 	private InputHere() {}
 
-	public static GameConstructData getGameConstructData() {
+	public static GameCriteria getGameCriteria() {
 		Participants participants = getParticipants();
+		Prizes prizes = getPrizes(participants.getParticipantsCount());
 		LadderHeight ladderHeight = getLadderHeight();
-		return new GameConstructData(participants, ladderHeight);
+		return new GameCriteria(participants, prizes, ladderHeight);
+	}
+
+	public static String getNameWantShowResult() {
+		System.out.println(PLEASE_INPUT_NAME_WANT_SHOW_RESULT);
+		return getStringValue();
 	}
 
 	private static Participants getParticipants() {
 		System.out.println(PLEASE_INPUT_PARTICIPANTS_NAME);
 		String[] names = getStringArray();
-		List<Participant> participants = IntStream.range(0, names.length)
+		List<Participant> participants = IntStream.range(START_INDEX, names.length)
 											.mapToObj(index -> new Participant(names[index], new Coordinate(index)))
 											.collect(Collectors.toUnmodifiableList());
 		return new Participants(participants);
+	}
+
+	private static Prizes getPrizes(int participantsCount) {
+		System.out.println(PLEASE_INPUT_PRIZES);
+		String[] names = getStringArray();
+		return new Prizes(names, participantsCount);
 	}
 
 	private static LadderHeight getLadderHeight() {
