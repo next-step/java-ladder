@@ -21,6 +21,7 @@ public class LineTest {
 
         // when
         ladderResultView.printLine(line.getLadderPoints());
+        System.out.println();
     }
 
     @DisplayName("라인 생성 테스트")
@@ -41,6 +42,7 @@ public class LineTest {
         LadderResultView ladderResultView = new LadderResultView();
 
         // when
+        System.out.println();
         ladderResultView.printLine(line.getLadderPoints());
     }
 }

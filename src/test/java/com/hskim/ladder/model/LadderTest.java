@@ -45,7 +45,7 @@ public class LadderTest {
     }
 
     private LadderUsers getMockLadderUsers() {
-        LadderUsers ladderUsers = new LadderUsers(User.makeUserFromNames(
+        LadderUsers ladderUsers = new LadderUsers(User.makeUsersFromNames(
                 Arrays.asList("test1", "test2", "test3", "test4")));
 
         return ladderUsers;
