@@ -34,16 +34,20 @@ public class Line {
 		return points.get(++currentIndex);
 	}
 
-	public Direction getDirectionFrom(int width) {
+	public int move(int width) {
+		Direction direction = this.getDirectionFrom(width);
+		return direction.move(width);
+	}
+
+	private Direction getDirectionFrom(int width) {
 		if (width != points.size() && points.get(width)) {
 			return Direction.RIGHT;
 		}
 		if (width > 0 && points.get(width - 1)) {
 			return Direction.LEFT;
 		}
-		return Direction.STRAIGHT;
+		return Direction.NONE;
 	}
-
 
 	private static List<Boolean> makePoints(int countOfPerson) {
 		List<Boolean> result = initPoints(countOfPerson);
