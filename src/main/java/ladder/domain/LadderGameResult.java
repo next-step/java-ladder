@@ -1,11 +1,14 @@
 package ladder.domain;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 import static java.util.stream.Collectors.toMap;
 
 public class LadderGameResult {
+    private static final String INVALID_PARTICIPANT_MESSAGE = "존재하지 않는 참가자입니다.";
+
     private Map<Name, String> result;
 
     private LadderGameResult(Map<Name, String> result) {
@@ -23,7 +26,8 @@ public class LadderGameResult {
     public String getBy(String wishParticipant) {
         Name wishParticipantName = Name.from(wishParticipant);
 
-        return result.get(wishParticipantName);
+        return Optional.ofNullable(result.get(wishParticipantName))
+                .orElse(INVALID_PARTICIPANT_MESSAGE);
     }
 
     public Map<Name, String> getResult() {
