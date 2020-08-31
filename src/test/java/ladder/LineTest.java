@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.line.Line;
-import ladder.domain.playing.Direction;
 
 public class LineTest {
 
@@ -30,16 +29,6 @@ public class LineTest {
 										   .collect(toList()));
 
 		assertThat(ladder).isNotNull();
-	}
-
-	@Test
-	public void directionGettingTest() {
-		Line line = Line.of(Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
-
-		assertThat(line.getDirectionFrom(0)).isEqualTo(Direction.RIGHT);
-		assertThat(line.getDirectionFrom(1)).isEqualTo(Direction.LEFT);
-		assertThat(line.getDirectionFrom(2)).isEqualTo(Direction.RIGHT);
-		assertThat(line.getDirectionFrom(3)).isEqualTo(Direction.LEFT);
 	}
 
 	@Test
