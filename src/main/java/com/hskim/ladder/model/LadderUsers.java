@@ -26,6 +26,10 @@ public class LadderUsers {
         return users.size() == size;
     }
 
+    public boolean contains(User user) {
+        return users.contains(user);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

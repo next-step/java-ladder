@@ -12,8 +12,13 @@ import com.hskim.ladder.model.User;
 import com.hskim.ladder.ui.LadderInputView;
 import com.hskim.ladder.ui.LadderResultView;
 
+import java.util.Collections;
+import java.util.Map;
+
 public class LadderConsoleSimulator {
     private static final RowIndexMaker LADDER_MAKE_POLICY = new RandomRowIndexMaker();
+    private static final String INVALID_RESULT_USER = "참여자에 포함되어 있지 않은 유저입니다.";
+    private static final String ALL_USER_RESULT_INPUT = "all";
 
     private final LadderInputView ladderInputView;
     private final LadderResultView ladderResultView;
@@ -61,11 +66,43 @@ public class LadderConsoleSimulator {
     }
 
     public void printInitStatus() {
-        ladderResultView.printResultPhrase();
+        ladderResultView.printLadderResultPhrase();
         ladderResultView.printUserNames(ladderUsers.getUserNames());
         ladderResultView.printLines(ladder.getAllPoints());
         ladderResultView.printRewards(rewards.getAllRewardNames());
     }
 
+    public void simulate() {
+        while (true) {
+            String resultUserName = getResultUserName();
+            ladderResultView.printSimulateResult(getResultMap(resultUserName));
+        }
+    }
 
+    private String getResultUserName() {
+        ladderInputView.printResultUserPhrase();
+        String resultUserName = ladderInputView.getResultUserName();
+
+        if(resultUserName.equals(ALL_USER_RESULT_INPUT)) {
+            return resultUserName;
+        }
+
+        try {
+            validateResultUser(resultUserName);
+        } catch (Exception e) {
+            System.out.println(INVALID_RESULT_USER);
+        }
+
+        return resultUserName;
+    }
+
+    private void validateResultUser(String resultUserName) {
+        if (!ladderUsers.contains(new User(resultUserName))) {
+            throw new IllegalArgumentException(INVALID_RESULT_USER);
+        }
+    }
+
+    private Map<String, String> getResultMap(String resultUserName) {
+        return Collections.emptyMap();
+    }
 }

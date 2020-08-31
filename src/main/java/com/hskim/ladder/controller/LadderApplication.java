@@ -14,5 +14,6 @@ public class LadderApplication {
         ladderConsoleSimulator.setRewards();
         ladderConsoleSimulator.createLadder();
         ladderConsoleSimulator.printInitStatus();
+        ladderConsoleSimulator.simulate();
     }
 }
