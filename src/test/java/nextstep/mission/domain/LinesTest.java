@@ -3,19 +3,12 @@ package nextstep.mission.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LinesTest {
 
     @Test
     void constructor() {
         assertThat(new Lines(1, 10)).isNotNull();
-    }
-
-    @Test
-    void constructorThrowException() {
-        assertThatThrownBy(() -> assertThat(new Lines(0, 10)).isEqualTo(new Lines(0, 10)))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

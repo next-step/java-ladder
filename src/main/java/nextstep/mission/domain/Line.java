@@ -1,17 +1,15 @@
 package nextstep.mission.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Line {
-    private List<Boolean> points;
+    private List<Point> points;
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         validate(points);
         this.points = points;
     }
@@ -20,28 +18,23 @@ public class Line {
         this(createPoints(size));
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
 
-    private static List<Boolean> createPoints(int size) {
-        List<Boolean> result = new ArrayList<>(Arrays.asList(false));
-
-        RandomPoint.reset();
-
-        result.addAll(Stream.generate(RandomPoint::next)
-                .limit(size - 1)
-                .collect(Collectors.toList()));
-        return result;
+    private static List<Point> createPoints(int size) {
+        return IntStream.range(0, size)
+                .mapToObj(RandomPoint::next)
+                .collect(Collectors.toList());
     }
 
-    private void validate(List<Boolean> points) {
+    private void validate(List<Point> points) {
         IntStream.range(0, points.size() - 1)
                 .forEach(index -> validPoint(points.get(index), points.get(index + 1)));
     }
 
-    private void validPoint(Boolean point1, Boolean point2) {
-        if (point1 == true && point2 == true) {
+    private void validPoint(Point point1, Point point2) {
+        if (point1.equals(Point.of(true)) && point2.equals(Point.of(true))) {
             throw new IllegalArgumentException("선은 겹칠수 없습니다.");
         }
     }
@@ -51,19 +44,25 @@ public class Line {
     }
 
     public int move(int currentPosition) {
-        boolean right = currentPosition + 1 == this.points.size() ? false : points.get(currentPosition + 1);
+        Point current = getPoint(currentPosition);
+        Point next = getPoint(currentPosition + 1);
 
-        if (right) {
+        if (current.isRight(next)) {
             return 1;
         }
 
-        boolean left = currentPosition == 0 ? false : points.get(currentPosition);
-
-        if (left) {
+        if (current.toBoolean()) {
             return -1;
         }
 
         return 0;
+    }
+
+    public Point getPoint(int position) {
+        if (position < 0 || points.size() <= position)
+            return null;
+
+        return points.get(position);
     }
 
     public int nextPosition(int currentPosition) {

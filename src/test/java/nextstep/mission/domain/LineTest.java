@@ -11,7 +11,23 @@ public class LineTest {
 
     @Test
     void constructor() {
-        assertThat(new Line(Arrays.asList(true, false, true, false))).isEqualTo(new Line(Arrays.asList(true, false, true, false)));
+        assertThat(new Line(
+                Arrays.asList(
+                        Point.of(true),
+                        Point.of(false),
+                        Point.of(true),
+                        Point.of(false)
+                )
+        )).isEqualTo(
+                new Line(
+                        Arrays.asList(
+                                Point.of(true),
+                                Point.of(false),
+                                Point.of(true),
+                                Point.of(false)
+                        )
+                )
+        );
     }
 
     @Test
@@ -21,13 +37,27 @@ public class LineTest {
 
     @Test
     void constructorThrow() {
-        assertThatThrownBy(() -> new Line(Arrays.asList(true, true, true, false)))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Line(
+                Arrays.asList(
+                        Point.of(true),
+                        Point.of(true)
+                )
+        )).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void move() {
-        Line line = new Line(Arrays.asList(false, true, false, false, false, true));
+        Line line = new Line(
+                Arrays.asList(
+                        Point.of(false),
+                        Point.of(true),
+                        Point.of(false),
+                        Point.of(false),
+                        Point.of(false),
+                        Point.of(true)
+                )
+        );
+
         assertThat(line.move(0)).isEqualTo(1);
         assertThat(line.move(1)).isEqualTo(-1);
         assertThat(line.move(2)).isEqualTo(0);
@@ -38,7 +68,17 @@ public class LineTest {
 
     @Test
     void nextPosition() {
-        Line line = new Line(Arrays.asList(false, true, false, false, false, true));
+        Line line = new Line(
+                Arrays.asList(
+                        Point.of(false),
+                        Point.of(true),
+                        Point.of(false),
+                        Point.of(false),
+                        Point.of(false),
+                        Point.of(true)
+                )
+        );
+
         assertThat(line.nextPosition(0)).isEqualTo(1);
         assertThat(line.nextPosition(1)).isEqualTo(0);
         assertThat(line.nextPosition(2)).isEqualTo(2);

@@ -10,18 +10,13 @@ public class RandomPoint {
 
     private RandomPoint() {}
 
-    public static void reset() {
-        store = DICE.nextBoolean();
-    }
-
-    public static boolean next() {
-        if (store) {
+    public static Point next(int index) {
+        if (index == 0 || store) {
             store = false;
-            return false;
+            return Point.of(false);
         }
 
         store = DICE.nextBoolean();
-
-        return store;
+        return Point.of(store);
     }
 }
