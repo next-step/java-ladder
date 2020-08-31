@@ -19,7 +19,7 @@ class LadderGameResultTest {
     void getResultBy(String participantNames, String ladderRewardInput, String checkParticipant, String expectedResult) {
         Participants participants = Participants.from(participantNames);
         LadderReward ladderReward = LadderReward.of(participants, ladderRewardInput);
-        Ladder ladder = Ladder.of(4, participants, new LineRepeatGenerator());
+        Ladder ladder = Ladder.of(4, participants, new LineRepeatGenerator(true));
 
         LadderGameResult ladderGameResult = participants.calculateResult(ladder, ladderReward);
         Map<Name, String> actualResult = ladderGameResult.getResult();

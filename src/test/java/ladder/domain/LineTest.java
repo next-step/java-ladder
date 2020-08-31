@@ -18,31 +18,28 @@ public class LineTest {
 
     private static Stream<Arguments> makeLineCreateData() {
         return Stream.of(
-                Arguments.of(Arrays.asList(Point.getFirst(true))
-                        , 1, false),
-                Arguments.of(Arrays.asList(Point.getFirst(true), Point.of(true, false), Point.getLast(false))
-                        , 3, false),
-                Arguments.of(Arrays.asList(Point.getFirst(true), Point.of(true, false)
-                        , Point.of(false, false), Point.of(false, true), Point.getLast(true))
-                        , 5, false),
-                Arguments.of(Arrays.asList(Point.getFirst(true), Point.of(true, true)
-                        , Point.of(true, false), Point.getLast(false))
-                        , 4, true)
+                Arguments.of("p1,p2", false, new LineRepeatGenerator(true)),
+                Arguments.of("p1,p2,p3", false, new LineRepeatGenerator(false)),
+                Arguments.of("p1,p2,p3,p4", false, new LineRandomGenerator()),
+                Arguments.of("p1,p2,p3,p4,p5,p6,p7", false, new LineRandomGenerator()),
+                Arguments.of("p1,p2,p3,p4", false, new LineFixGenerator(true))
         );
     }
 
     @DisplayName("Line 생성 테스트")
     @ParameterizedTest
     @MethodSource("makeLineCreateData")
-    void create(List<Point> points, int expectedParticipantNumber, boolean expectedResult) {
-        Line line = Line.of(points);
+    void create(String participantNames, boolean expectedResult, LineGenerator lineGenerator) {
+        Participants participants = Participants.from(participantNames);
+        Line line = Line.create(participants, lineGenerator);
+        List<Point> points = line.getPoints();
 
-        boolean actual = line.getPoints()
+        boolean actual = points.subList(1, points.size() - 1)
                 .stream()
                 .anyMatch(point -> point.isRight() && point.isLeft());
 
         // 참가자 수 만큼 생성되었는지 확인
-        assertThat(line.getSize()).isEqualTo(expectedParticipantNumber);
+        assertThat(line.getSize()).isEqualTo(participants.getNumber());
         // 연속되지 않게 생성되었는지 확인
         assertThat(actual).isEqualTo(expectedResult);
     }
@@ -50,8 +47,9 @@ public class LineTest {
     @DisplayName("Line 특정 인덱스를 기준으로 다음 인덱스 계산 테스트")
     @ParameterizedTest
     @MethodSource("makeCalculateNextIndexData")
-    void calculateNextIndex(List<Point> points, List<Integer> expectedResult) {
-        Line line = Line.of(points);
+    void calculateNextIndex(String expectedParticipantNumber, boolean lineGeneratorOrder, List<Integer> expectedResult) {
+        Participants participants = Participants.from(expectedParticipantNumber);
+        Line line = Line.create(participants, new LineRepeatGenerator(lineGeneratorOrder));
 
         for (int index = 0; index < expectedResult.size(); index++) {
             int actualNextIndex = line.calculateNextIndex(index);
@@ -63,11 +61,8 @@ public class LineTest {
 
     private static Stream<Arguments> makeCalculateNextIndexData() {
         return Stream.of(
-                Arguments.of(Arrays.asList(Point.of(false, true), Point.of(true, false)
-                        , Point.of(false, true), Point.of(true, false))
-                        , Arrays.asList(1, 0, 3, 2)),
-                Arguments.of(Arrays.asList(Point.of(false, false), Point.of(false, false))
-                        , Arrays.asList(0, 1))
+                Arguments.of("p1,p2,p3,p4", true, Arrays.asList(0, 2, 1, 3)),
+                Arguments.of("p1,p2,p3,p4,p5", false, Arrays.asList(1, 0, 3, 2, 4))
         );
     }
 }

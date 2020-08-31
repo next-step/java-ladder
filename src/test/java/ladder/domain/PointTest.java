@@ -28,7 +28,7 @@ public class PointTest {
     @ParameterizedTest
     @ValueSource(strings = {"true", "false"})
     void getLast(boolean left) {
-        Point point = Point.getLast(left);
+        Point point = Point.getLast(3, left);
 
         assertThat(point).isNotNull();
         assertThat(point.isLeft()).isEqualTo(left);
@@ -39,9 +39,9 @@ public class PointTest {
     @ParameterizedTest
     @MethodSource("makePointNextData")
     void next(boolean previousLeft, boolean previousRight, boolean right, boolean expectRight) {
-        Point previous = Point.of(previousLeft, previousRight);
+        Point previous = Point.of(1, previousLeft, previousRight);
 
-        Point actual = Point.next(previous, right);
+        Point actual = previous.next(right);
 
         assertThat(actual).isNotNull();
         assertThat(actual.isLeft()).isEqualTo(previousRight);
@@ -61,8 +61,8 @@ public class PointTest {
     @ParameterizedTest
     @CsvSource(value = {"30:true:false:29", "0:false:true:1", "7:true:true:7"}, delimiter = ':')
     void move(int startIndex, boolean left, boolean right, int expectedIndex) {
-        Point point = Point.of(left, right);
-        int actualIndex = point.move(startIndex);
+        Point point = Point.of(startIndex, left, right);
+        int actualIndex = point.move();
 
         assertThat(actualIndex).isEqualTo(expectedIndex);
     }
