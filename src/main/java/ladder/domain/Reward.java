@@ -6,17 +6,17 @@ import java.util.List;
 
 public class Reward {
 
-    private final List<String> rewards;
+    private final List<String> names;
 
     public Reward(String rewardStr) {
-        rewards = StringUtils.splitStringToList(rewardStr);
+        names = StringUtils.splitStringToList(rewardStr);
     }
 
-    public List<String> getRewards() {
-        return rewards;
+    public List<String> getNames() {
+        return names;
     }
 
-    public String getReward(int rewardIndex) {
-        return rewards.get(rewardIndex);
+    public String get(int rewardIndex) {
+        return names.get(rewardIndex);
     }
 }

@@ -44,4 +44,8 @@ public class Player {
 
         return index;
     }
+
+    public int getPlayerCount() {
+        return names.size();
+    }
 }

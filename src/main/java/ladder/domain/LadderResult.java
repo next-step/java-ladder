@@ -16,6 +16,10 @@ public class LadderResult {
         resultData.put(playerIndex, rewardIndex);
     }
 
+    public void freezeData() {
+        Collections.unmodifiableMap(resultData);
+    }
+
     public int searchRewardIndex(int playerIndex) {
         return Optional.ofNullable(resultData.get(playerIndex))
                 .orElseThrow(() -> new IllegalArgumentException(ERR_INVALID_PLAYER_INDEX));

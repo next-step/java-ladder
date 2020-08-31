@@ -1,11 +1,11 @@
 package ladder;
 
-import ladder.domain.LadderData;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+
+import ladder.domain.LadderData;
+
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,19 +27,11 @@ public class LadderDataTest {
 
         for (int i = 0; i < nameArray.length; i++) {
             assertEquals(nameArray[i], nameList.get(i));
+            assertEquals(ladderData.getPlayerIndex(nameArray[i]), i);
+            assertEquals(ladderData.getReward().get(i), nameArray[i]);
         }
 
-        assertEquals(ladderData.getPlayerIndex("pobi"), 0);
-        assertEquals(ladderData.getPlayerIndex("honux"), 1);
-        assertEquals(ladderData.getPlayerIndex("crong"), 2);
-        assertEquals(ladderData.getPlayerIndex("jk"), 3);
-
-        assertEquals(ladderData.getReward(0), "pobi");
-        assertEquals(ladderData.getReward(1), "honux");
-        assertEquals(ladderData.getReward(2), "crong");
-        assertEquals(ladderData.getReward(3), "jk");
-
-        assertThat(ladderData.getRewards().equals(nameList)).isTrue();
+        assertEquals(ladderData.getReward().getNames(), nameList);
     }
 
     @Test

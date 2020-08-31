@@ -18,6 +18,7 @@ public class Application {
 
         Input input = new ScannerInput();
         Output output = new StandardOutput();
+
         LadderData ladderData = new LadderData(input, output);
 
         Ladder ladder = new Ladder(ladderData);
@@ -55,7 +56,7 @@ public class Application {
     private static void printLadder(Output output, Ladder ladder) {
         output.print(ladder.getNames());
         output.printMultiLine(ladder.getLadderLinesString());
-        output.print(ladder.getRewards());
+        output.print(ladder.getRewardNames());
     }
 
     private static class ScannerInput implements Input {

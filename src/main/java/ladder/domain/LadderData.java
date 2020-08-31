@@ -52,11 +52,11 @@ public class LadderData {
         return player.getPlayerIndex(playerName);
     }
 
-    public String getReward(int rewardIndex) {
-        return reward.getReward(rewardIndex);
+    public Reward getReward() {
+        return reward;
     }
 
-    public List<String> getRewards() {
-        return reward.getRewards();
+    public Player getPlayer() {
+        return player;
     }
 }

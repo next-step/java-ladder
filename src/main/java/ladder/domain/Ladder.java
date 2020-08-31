@@ -5,29 +5,32 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final LadderData ladderData;
+    private final Player player;
+    private final Reward reward;
     private final LadderLine ladderLine;
     private final LadderResult ladderResult;
 
     public Ladder(LadderData ladderData) {
-        this.ladderData = ladderData;
+        this.player = ladderData.getPlayer();
+        this.reward = ladderData.getReward();
         this.ladderLine = new LadderLine(ladderData.getPlayerCount(), ladderData.getHeight());
         this.ladderResult = new LadderResult();
         setLadderResultData();
     }
 
     private void setLadderResultData() {
-        for (int player = 0; player < ladderData.getPlayerCount(); player++) {
-            ladderResult.put(player, ladderLine.getResultOf(player));
+        for (int playerIndex = 0; playerIndex < player.getPlayerCount(); playerIndex++) {
+            ladderResult.put(playerIndex, ladderLine.getResultOf(playerIndex));
         }
+        ladderResult.freezeData();
     }
 
     public List<String> getNames() {
-        return ladderData.getPlayerNames();
+        return player.getNames();
     }
 
-    public List<String> getRewards() {
-        return ladderData.getRewards();
+    public List<String> getRewardNames() {
+        return reward.getNames();
     }
 
     public List<String> getLadderLinesString() {
@@ -35,22 +38,22 @@ public class Ladder {
     }
 
     public String searchReward(String playerName) {
-        return ladderData.getReward(getRewardIndex(playerName));
+        return reward.get(getRewardIndex(playerName));
     }
 
     private int getRewardIndex(String playerName) {
         return ladderResult.searchRewardIndex(
-                ladderData.getPlayerIndex(playerName));
+                player.getPlayerIndex(playerName));
     }
 
     public List<String> searchAllReward() {
-        return ladderData.getPlayerNames()
+        return player.getNames()
                 .stream()
-                .map(this::playerAndReward)
+                .map(this::playerAndRewardToString)
                 .collect(Collectors.toList());
     }
 
-    private String playerAndReward(String playerName) {
+    private String playerAndRewardToString(String playerName) {
         return playerName + " : " + searchReward(playerName);
     }
 }

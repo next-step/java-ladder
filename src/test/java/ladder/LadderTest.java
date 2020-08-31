@@ -28,7 +28,7 @@ public class LadderTest {
         assertThat(nameList.equals(ladder.getNames())).isTrue();
         assertEquals(ladder.getLadderLinesString().size(), height);
 
-        assertEquals(ladder.getRewards(), nameList);
+        assertEquals(ladder.getRewardNames(), nameList);
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> ladder.searchReward("a"));
