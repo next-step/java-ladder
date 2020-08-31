@@ -3,18 +3,12 @@ package ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ladder.ui.LadderDataInput;
-
 public class Ladder {
 
     private final Player player;
     private final Reward reward;
     private final LadderLine ladderLine;
     private final LadderResult ladderResult;
-
-    public Ladder(LadderDataInput ladderData) {
-        this(ladderData.getPlayer(), ladderData.getReward(), ladderData.getHeight());
-    }
 
     public Ladder(Player player, Reward reward, int height) {
         this.player = player;

@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.domain.LadderFactory;
 import ladder.ui.LadderDataInput;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +21,8 @@ public class LadderTest {
         String names = "pobi,honux,crong,jk";
         int height = 5;
 
-        LadderDataInput ladderData = new LadderDataInput(WhenUtils.input(names, height), WhenUtils.output());
-        Ladder ladder = new Ladder(ladderData);
+        LadderDataInput ladderDataInput = new LadderDataInput(WhenUtils.input(names, height), WhenUtils.output());
+        Ladder ladder = LadderFactory.of(ladderDataInput);
 
         List<String> nameList = Arrays.asList(names.split(","));
 
@@ -37,6 +38,6 @@ public class LadderTest {
             assertTrue(nameList.contains(ladder.searchReward(name)));
         }
 
-        assertEquals(ladder.searchAllReward().size(), ladderData.getPlayerCount());
+        assertEquals(ladder.searchAllReward().size(), ladderDataInput.getPlayerCount());
     }
 }
