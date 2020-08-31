@@ -11,9 +11,13 @@ public class Ladder {
     private final LadderResult ladderResult;
 
     public Ladder(LadderData ladderData) {
-        this.player = ladderData.getPlayer();
-        this.reward = ladderData.getReward();
-        this.ladderLine = new LadderLine(ladderData.getPlayerCount(), ladderData.getHeight());
+        this(ladderData.getPlayer(), ladderData.getReward(), ladderData.getHeight());
+    }
+
+    public Ladder(Player player, Reward reward, int height) {
+        this.player = player;
+        this.reward = reward;
+        this.ladderLine = new LadderLine(player.getPlayerCount(), height);
         this.ladderResult = new LadderResult();
         setLadderResultData();
     }

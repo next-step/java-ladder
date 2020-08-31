@@ -8,12 +8,12 @@ public class Line {
 
     private final List<Point> points = new ArrayList<>();
 
-    public Line(int personCount, NextPointRule nextPointRule) {
+    public Line(int personCount, PointCreator pointCreator) {
 
         points.add(Point.FALSE);
 
         for (int i = 1; i < personCount; i++) {
-            points.add(nextPoint(getPrevPoint(i), nextPointRule));
+            points.add(nextPoint(getPrevPoint(i), pointCreator));
         }
     }
 
@@ -21,11 +21,11 @@ public class Line {
         return points.get(index - 1);
     }
 
-    private Point nextPoint(Point point, NextPointRule nextPointRule) {
+    private Point nextPoint(Point point, PointCreator pointCreator) {
         if (point == Point.TRUE) {
             return Point.FALSE;
         }
-        return Point.of(nextPointRule.createNextPoint());
+        return Point.of(pointCreator.create());
     }
 
     public List<String> getPoints() {
