@@ -9,7 +9,6 @@ import ladder.domain.ladder.LadderArgument;
 import ladder.domain.ladder.LadderFactory;
 import ladder.domain.ladder.Name;
 import ladder.domain.ladder.Names;
-import ladder.domain.playing.LadderGame;
 import ladder.domain.playing.Winnings;
 import ladder.view.draw.DrawingExecutor;
 import ladder.view.draw.LadderDrawingArgument;
@@ -30,7 +29,7 @@ public class LadderApplication {
 		List<Integer> resultNameIndexes = names.getIndexesOf(Name.of(InputView.inputResult()));
 		ResultDrawingArgument resultDrawingArgument =
 				ResultDrawingArgument.of(Winnings.of(resultNameIndexes.stream()
-																	  .map(i -> winnings.getWinningOf(LadderGame.play(i, ladder)))
+																	  .map(i -> winnings.getWinningOf(ladder.play(i)))
 																	  .collect(toList())),
 										 names);
 		DrawingExecutor.drawWinningResult(resultDrawingArgument);
