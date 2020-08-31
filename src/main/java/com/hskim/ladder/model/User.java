@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class User {
     private static final int NAME_LENGTH_LIMIT = 5;
-    private static final String EXCEED_NAME_LENGTH_LIMIT = "유저 이름은 " + NAME_LENGTH_LIMIT + "자를 초과할 수 없습니다.";
+    private static final String EXCEED_NAME_LENGTH_LIMIT = "유저 이름은 5자를 초과할 수 없습니다."; // 5자 == NAME_LENGTH_LIMIT
     private static final String EMPTY_NAME = "유저 이름은 공백이 될 수 없습니다.";
 
     private final String name;
@@ -26,7 +26,7 @@ public class User {
         }
     }
 
-    public static List<User> makeUserFromNames(List<String> names) {
+    public static List<User> makeUsersFromNames(List<String> names) {
         return names.stream()
                 .map(User::new)
                 .collect(Collectors.toList());
