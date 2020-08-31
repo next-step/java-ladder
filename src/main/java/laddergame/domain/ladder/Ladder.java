@@ -1,6 +1,8 @@
 package laddergame.domain.ladder;
 
+import laddergame.domain.Coordinate;
 import laddergame.domain.line.Line;
+import laddergame.domain.participant.Participant;
 
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +17,14 @@ public class Ladder {
 
 	public List<Line> getLines() {
 		return lines;
+	}
+
+	public Coordinate playGame(Participant participant) {
+		Coordinate nowCoordinate = participant.getStartCoordinate();
+		for (Line line : lines) {
+			nowCoordinate = line.getNextLineCoordinate(nowCoordinate);
+		}
+		return nowCoordinate;
 	}
 
 	@Override

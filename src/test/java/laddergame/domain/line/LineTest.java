@@ -43,4 +43,14 @@ class LineTest {
 		assertThrows(LadderGameException.class, () -> line.addPoint(new Point(new Coordinate(1), Direction.RIGHT)));
 	}
 
+	@DisplayName("Direction에 맞는 다음 가로축 좌표를 가져오나 테스트")
+	@Test
+	void getNextLineCoordinate() {
+		Line line = new Line();
+		Coordinate secondCoordinate = new Coordinate(1);
+		line.addPoint(new Point(LINE_START_COORDINATE, Direction.RIGHT));
+		line.addPoint(new Point(secondCoordinate, Direction.LEFT));
+		assertThat(line.getNextLineCoordinate(LINE_START_COORDINATE)).isEqualTo(secondCoordinate);
+	}
+
 }

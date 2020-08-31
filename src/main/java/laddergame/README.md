@@ -15,6 +15,8 @@
     * enum ordinal 사용 제거
     * 인터페이스의 default 메소드로 빠져있던 Predicate 메소드 구현체로 이동 (코드 읽을때 왔다 갔다 거림 최소화)
     * for문 썼다가 IntStream 썼다가 한 로직 IntStream으로 통일
-    
+2. Prizes 패키지 작성
+    * 생성 할 때 Participants의 수와 사다리 타기 결과의 수가 동일한지 체크 필요
+3. Ladder, Line에 게임 진행에 필요한 메소드 추가
 
 
