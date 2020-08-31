@@ -1,20 +1,32 @@
 package ladder.domain;
 
+import ladder.exception.LadderExceptionMessage;
+
+import java.util.Objects;
+
 public class Direction {
     private final boolean left;
     private final boolean right;
 
-    public Direction(boolean left, boolean right) {
+    private Direction(boolean left, boolean right) {
         this.left = left;
         this.right = right;
     }
 
+    public static Direction of(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException(LadderExceptionMessage.INVALID_LINE_DIRECTION_INPUT);
+        }
+
+        return new Direction(left, right);
+    }
+
     public static Direction getFirst(boolean right) {
-        return new Direction(false, right);
+        return Direction.of(false, right);
     }
 
     public static Direction getLast(boolean left) {
-        return new Direction(left, false);
+        return Direction.of(left, false);
     }
 
     public boolean isLeft() {
@@ -27,8 +39,22 @@ public class Direction {
 
     public Direction next(boolean right) {
         if (isRight()) {
-            return new Direction(isRight(), false);
+            return Direction.of(isRight(), false);
         }
-        return new Direction(false, right);
+        return Direction.of(false, right);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left &&
+                right == direction.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }

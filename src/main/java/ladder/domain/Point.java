@@ -21,7 +21,7 @@ public class Point {
 
     // 테스트용
     public static Point of(int index, boolean left, boolean right) {
-        Direction direction = new Direction(left, right);
+        Direction direction = Direction.of(left, right);
 
         return new Point(index, direction);
     }
