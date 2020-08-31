@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 public enum Direction {
 	LEFT(width -> width - 1),
 	RIGHT(width -> width + 1),
-	STRAIGHT(width -> width);
+	NONE(width -> width);
 
 	private final UnaryOperator<Integer> movingOperator;
 
