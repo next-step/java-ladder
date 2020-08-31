@@ -32,7 +32,7 @@ public class LadderConsoleSimulator {
     }
 
     public void recruitParticipants() {
-        ladderUsers = getLadderUsersFromInput();
+        this.ladderUsers = getLadderUsersFromInput();
     }
 
     private LadderUsers getLadderUsersFromInput() {
@@ -45,9 +45,8 @@ public class LadderConsoleSimulator {
         Lines lines = Lines.of(ladderHeight.getLineNum(),
                 ladderUsers.getUserNumber(), LADDER_MAKE_POLICY);
 
-        ladder = new Ladder.LadderBuilder(lines)
+        this.ladder = new Ladder.LadderBuilder(lines)
                 .setLadderHeight(ladderHeight)
-                .setLadderUsers(ladderUsers)
                 .build();
     }
 

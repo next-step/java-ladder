@@ -7,11 +7,9 @@ public class Ladder {
 
     private Lines lines;
     private LadderHeight ladderHeight;
-    private LadderUsers ladderUsers;
 
-    public Ladder(LadderHeight ladderHeight, LadderUsers ladderUsers, Lines lines) {
+    public Ladder(LadderHeight ladderHeight, Lines lines) {
         this.ladderHeight = ladderHeight;
-        this.ladderUsers = ladderUsers;
         this.lines = lines;
     }
 
@@ -22,15 +20,9 @@ public class Ladder {
     public static class LadderBuilder {
         private Lines lines;
         private LadderHeight ladderHeight;
-        private LadderUsers ladderUsers;
 
         public LadderBuilder(Lines lines) {
             this.lines = lines;
-        }
-
-        public LadderBuilder setLadderUsers(LadderUsers ladderUsers) {
-            this.ladderUsers = ladderUsers;
-            return this;
         }
 
         public LadderBuilder setLadderHeight(LadderHeight ladderHeight) {
@@ -42,7 +34,6 @@ public class Ladder {
             Ladder ladder = new Ladder();
             ladder.lines = lines;
             ladder.ladderHeight = ladderHeight;
-            ladder.ladderUsers = ladderUsers;
             return ladder;
         }
     }
@@ -57,12 +48,11 @@ public class Ladder {
         if (!(o instanceof Ladder)) return false;
         Ladder ladder = (Ladder) o;
         return Objects.equals(ladderHeight, ladder.ladderHeight) &&
-                Objects.equals(ladderUsers, ladder.ladderUsers) &&
                 Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderHeight, ladderUsers, lines);
+        return Objects.hash(ladderHeight, lines);
     }
 }

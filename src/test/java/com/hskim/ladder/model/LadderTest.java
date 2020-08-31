@@ -14,12 +14,10 @@ public class LadderTest {
     void create() {
         // given
         Ladder ladder = new Ladder(new LadderHeight(5),
-                getMockLadderUsers(),
                 getMockLines());
 
         // when
         Ladder expected = new Ladder(new LadderHeight(5),
-                getMockLadderUsers(),
                 getMockLines());
 
         // then
@@ -31,24 +29,15 @@ public class LadderTest {
     void create_use_builder() {
         // given
         Ladder ladder = new Ladder.LadderBuilder(getMockLines())
-                .setLadderUsers(getMockLadderUsers())
                 .setLadderHeight(new LadderHeight(5))
                 .build();
 
         // when
         Ladder expected = new Ladder(new LadderHeight(5),
-                        getMockLadderUsers(),
                         getMockLines());
 
         // then
         assertThat(ladder).isEqualTo(expected);
-    }
-
-    private LadderUsers getMockLadderUsers() {
-        LadderUsers ladderUsers = new LadderUsers(User.makeUsersFromNames(
-                Arrays.asList("test1", "test2", "test3", "test4")));
-
-        return ladderUsers;
     }
 
     private Lines getMockLines() {
