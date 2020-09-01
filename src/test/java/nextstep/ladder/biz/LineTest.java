@@ -43,45 +43,47 @@ public class LineTest {
   void selectableLine() {
     Line line = new Line(3);
 
-    assertThat(line.selectableLine(Chessmen.location(0)).getPoints())
+    assertThat(line.selectableLine(Chessmen.of(new Player("name0", 0))).getPoints())
             .isIn(ONE_TURE_POINTS_OF_FIRST_LINE, ONE_FALSE_POINTS_OF_FIRST_LINE);
 
-    List<Point> points = line.selectableLine(Chessmen.location(1)).getPoints();
+    List<Point> points = line.selectableLine(Chessmen.of(new Player("name1", 1))).getPoints();
     assertThat(points)
             .isIn(POINTS_CASE1_1X2, POINTS_CASE2_1X2);
 
-    assertThat(line.selectableLine(Chessmen.location(2)).getPoints())
+    assertThat(line.selectableLine(Chessmen.of(new Player("name2", 2))).getPoints())
             .isIn(ONE_TURE_POINTS_OF_SECOND_LINE, ONE_FALSE_POINTS_OF_SECOND_LINE);
   }
 
 
+  @DisplayName("||--------|")
   @Test
   void moveRightOnOneBridge() {
     Line line = new Line(ONE_TURE_POINTS_OF_FIRST_LINE);
     assertThat(line.cast(Chessmen.of(new Player("name", 0))))
-            .isEqualTo(Chessmen.of(new Player("name", 1)));
+            .isEqualTo(Chessmen.of(new Player("name", 0), 1));
   }
 
+  @DisplayName("|--------||")
   @Test
   void moveLeftOnOneBridge() {
     Line line = new Line(ONE_TURE_POINTS_OF_FIRST_LINE);
     assertThat(line.cast(Chessmen.of(new Player("name", 1))))
-            .isEqualTo(Chessmen.of(new Player("name", 0)));
+            .isEqualTo(Chessmen.of(new Player("name", 1), 0));
   }
 
-  @DisplayName("|----|    |")
+  @DisplayName("|----||    |")
   @Test
   void moveLeftOnTwoBridge() {
     Line line = new Line(POINTS_CASE1_1X2);
     assertThat(line.cast(Chessmen.of(new Player("name", 1))))
-            .isEqualTo(Chessmen.of(new Player("name", 0)));
+            .isEqualTo(Chessmen.of(new Player("name", 1), 0));
   }
 
-  @DisplayName("|    |----|")
+  @DisplayName("|    ||----|")
   @Test
   void moveRightOnTwoBridge() {
     Line line = new Line(POINTS_CASE2_1X2);
     assertThat(line.cast(Chessmen.of(new Player("name", 1))))
-            .isEqualTo(Chessmen.of(new Player("name", 2)));
+            .isEqualTo(Chessmen.of(new Player("name", 1), 2));
   }
 }

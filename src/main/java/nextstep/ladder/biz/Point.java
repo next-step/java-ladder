@@ -16,28 +16,20 @@ public class Point {
     return point;
   }
 
-  public static Point of(boolean hasPoint) {
-    return new Point(hasPoint, 0);
-  }
-
-  public static Point of(boolean hasPoint, int position) {
-    return new Point(hasPoint, position);
-  }
-
-  public void move(Chessmen chessmen) {
-    if (chessmen.isHere(position)) {
-      chessmen.moveRight();
-    } else if (chessmen.isLeft(position)) {
-      chessmen.moveLeft();
-    }
-  }
-
   public boolean isLeftPosition(int location) {
     return position == location -1;
   }
 
   public boolean isHerePosition(int location) {
     return position == location;
+  }
+
+  public static Point of(boolean hasPoint) {
+    return new Point(hasPoint, 0);
+  }
+
+  public static Point of(boolean hasPoint, int position) {
+    return new Point(hasPoint, position);
   }
 
   @Override
@@ -66,7 +58,4 @@ public class Point {
             '}';
   }
 
-  public Point createNextPoint(boolean hasPoint) {
-    return new Point(hasPoint, position + 1);
-  }
 }

@@ -14,6 +14,6 @@ class PlayerTest {
 
   @Test
   void asChessmen() {
-    assertThat(new Player("name", 0).asChessmen()).isEqualTo(Chessmen.location(0));
+    assertThat(new Player("name", 0).asChessmen()).isEqualTo(Chessmen.of(new Player("name", 0)));
   }
 }

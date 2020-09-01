@@ -1,17 +1,16 @@
 package nextstep.ladder;
 
+import nextstep.ladder.biz.Chessmen;
+import nextstep.ladder.biz.Ladder;
+import nextstep.ladder.biz.LadderGenerator;
+import nextstep.ladder.ui.LadderRenderer;
+import nextstep.ladder.ui.ViewInput;
+import nextstep.ladder.ui.ViewOutput;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import nextstep.ladder.biz.Chessmen;
-import nextstep.ladder.biz.LadderAnalysis;
-import nextstep.ladder.biz.LadderGenerator;
-import nextstep.ladder.biz.Ladder;
-import nextstep.ladder.ui.LadderRenderer;
-import nextstep.ladder.ui.ViewInput;
-import nextstep.ladder.ui.ViewOutput;
 
 public class LadderGame {
 
@@ -49,15 +48,13 @@ public class LadderGame {
   }
 
   private void announce(Players players, Ladder ladder, Prizes prizes) {
-    LadderAnalysis ladderAnalysis = new LadderAnalysis(ladder);
-
     Player player = responsePlayerOfWinners(players);
     if (players.isIndividual(player)) {
       announceIndividual(players, ladder, prizes, player);
     }
 
     if (players.isAllPlayers(player)) {
-      announceAllPlayers(players, ladder, prizes, ladderAnalysis);
+      announceAllPlayers(players, ladder, prizes);
     }
   }
 
@@ -71,20 +68,10 @@ public class LadderGame {
     announce(players, ladder, prizes);
   }
 
-  private void announceAllPlayers(Players players, Ladder ladder, Prizes prizes, LadderAnalysis ladderAnalysis) {
-//    List<Chessmen> chessPieces = players.chessmenAsList();
-//    chessPieces.forEach(chessmen -> ladderAnalysis.stat(chessmen));
-//    ViewInput.printFinal(chessPieces, prizes);
-
-
-    List<Chessmen> list = players.chessmenAsList().stream()
-            .map(chessmen -> ladder.play(chessmen))
-            .collect(Collectors.toList());
-
-
-
-
-    ViewInput.printFinal(list, prizes);
+  private void announceAllPlayers(Players players, Ladder ladder, Prizes prizes) {
+    ViewInput.printFinal(players.chessmenAsList().stream()
+            .map(ladder::play)
+            .collect(Collectors.toList()), prizes);
   }
 
   private Player responsePlayerOfWinners(Players players) {

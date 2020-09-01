@@ -32,6 +32,6 @@ class PlayersTest {
   @Test
   void chessmenAsList() {
     assertThat(players.chessmenAsList())
-            .isEqualTo(Arrays.asList(Chessmen.location(0), Chessmen.location(1), Chessmen.location(2)));
+            .isEqualTo(Arrays.asList(Chessmen.of(new Player("name0", 0)), Chessmen.of(new Player("name1", 1)), Chessmen.of(new Player("name2", 2))));
   }
 }

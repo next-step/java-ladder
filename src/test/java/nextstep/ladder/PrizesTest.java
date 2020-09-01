@@ -30,7 +30,7 @@ class PrizesTest {
   }
 
   @Test
-  void name() {
-    assertThat(prizes.prizeOf(Chessmen.location(0))).isEqualTo(new Prize("1st", 0));
+  void prizeOf() {
+    assertThat(prizes.prizeOf(Chessmen.of(new Player("name0", 0)))).isEqualTo(new Prize("1st", 0));
   }
 }
