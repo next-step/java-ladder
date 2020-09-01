@@ -9,15 +9,15 @@ public class Point {
         this.point = point;
     }
 
+    public static Point of(boolean point) {
+        return new Point(point);
+    }
+
     public boolean isRight(Point right) {
         if (right == null)
             return false;
 
         return right.toBoolean();
-    }
-
-    public static Point of(boolean point) {
-        return new Point(point);
     }
 
     public boolean toBoolean() {
