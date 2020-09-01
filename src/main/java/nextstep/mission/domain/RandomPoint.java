@@ -6,17 +6,13 @@ public class RandomPoint {
 
     private static final Random DICE = new Random();
 
-    private static boolean store;
-
     private RandomPoint() {}
 
-    public static Point next(int index) {
-        if (index == 0 || store) {
-            store = false;
-            return Point.of(false);
+    public static boolean next(boolean value) {
+        if (value) {
+            return false;
         }
 
-        store = DICE.nextBoolean();
-        return Point.of(store);
+        return DICE.nextBoolean();
     }
 }

@@ -1,9 +1,9 @@
 package nextstep.mission.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -23,9 +23,18 @@ public class Line {
     }
 
     private static List<Point> createPoints(int size) {
-        return IntStream.range(0, size)
-                .mapToObj(RandomPoint::next)
-                .collect(Collectors.toList());
+        List<Point> result = new ArrayList<>();
+        boolean value = false;
+
+        for (int index = 0; index < size; index++) {
+            if (index != 0) {
+                value = RandomPoint.next(value);
+            }
+
+            result.add(Point.of(value));
+        }
+
+        return result;
     }
 
     private void validate(List<Point> points) {
