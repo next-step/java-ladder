@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.utils.LadderValidation;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +16,7 @@ class UserTest {
     void validateLadderNameIsBlank(String name) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() ->{
-                    LadderValidation.validateLadderNameIsBlank(name);
+                    LadderValidation.validateUserNameIsBlank(name);
                 });
     }
 
@@ -26,7 +25,7 @@ class UserTest {
     void validateLadderNameLength() {
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> {
-                    LadderValidation.validateLadderNameLength("hangyeol");
+                    LadderValidation.validateUserNameLength("hangyeol");
                 });
     }
 

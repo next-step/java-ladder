@@ -11,8 +11,8 @@ public class User {
 
     public User(final String name) {
         this.name = name;
-        LadderValidation.validateLadderNameIsBlank(name);
-        LadderValidation.validateLadderNameLength(name);
+        LadderValidation.validateUserNameIsBlank(name);
+        LadderValidation.validateUserNameLength(name);
     }
 
 }
