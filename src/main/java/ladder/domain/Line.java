@@ -24,20 +24,20 @@ public class Line {
     }
 
     public void draw(int position) {
-        Point currentPoint = getCurrentPoint(position);
+        Point curPoint = getCurrentPoint(position);
         Point nextPoint = getNextPoint(position);
 
-        if (!canDrawLine(currentPoint, nextPoint)) {
+        if (!canDrawLine(curPoint, nextPoint)) {
             return;
         }
-        currentPoint.makeOnRight();
+        curPoint.makeOnRight();
         nextPoint.makeOnLeft();
     }
 
     public boolean hasLine(int position) {
-        Point cur = getCurrentPoint(position);
-        Point next = getNextPoint(position);
-        return cur.hasRight() && next.hasLeft();
+        Point curPoint = getCurrentPoint(position);
+        Point nextPoint = getNextPoint(position);
+        return curPoint.hasRight() && nextPoint.hasLeft();
     }
 
     private boolean canDrawLine(Point current, Point next) {
