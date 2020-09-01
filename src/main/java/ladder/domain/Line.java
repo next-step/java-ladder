@@ -6,22 +6,30 @@ import java.util.stream.Collectors;
 
 public class Line {
 
+    private static final int SECOND_POINT_INDEX = 1;
+    private static final int INDEX_LEFT_SIDE = -1;
+    private static final int INDEX_RIGHT_SIDE = 1;
+
     private final List<Point> points = new ArrayList<>();
 
     public Line(int personCount, PointCreator pointCreator) {
 
-        points.add(Point.FALSE);
+        addFirstPoint();
 
-        for (int i = 1; i < personCount; i++) {
-            points.add(nextPoint(getPrevPoint(i), pointCreator));
+        for (int i = SECOND_POINT_INDEX; i < personCount; i++) {
+            points.add(getCurrentPoint(getLeftPoint(i), pointCreator));
         }
     }
 
-    private Point getPrevPoint(int index) {
-        return points.get(index - 1);
+    private void addFirstPoint() {
+        points.add(Point.FALSE);
     }
 
-    private Point nextPoint(Point point, PointCreator pointCreator) {
+    private Point getLeftPoint(int index) {
+        return points.get(index + INDEX_LEFT_SIDE);
+    }
+
+    private Point getCurrentPoint(Point point, PointCreator pointCreator) {
         if (point == Point.TRUE) {
             return Point.FALSE;
         }
@@ -50,7 +58,7 @@ public class Line {
     }
 
     private int right(int index) {
-        return index + 1;
+        return index + INDEX_RIGHT_SIDE;
     }
 
     public int move(int currentIndex) {
@@ -67,10 +75,10 @@ public class Line {
     }
 
     private int moveLeft(int currentIndex) {
-        return currentIndex - 1;
+        return currentIndex + INDEX_LEFT_SIDE;
     }
 
     private int moveRight(int currentIndex) {
-        return currentIndex + 1;
+        return currentIndex + INDEX_RIGHT_SIDE;
     }
 }
