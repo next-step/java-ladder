@@ -1,6 +1,9 @@
 package nextstep.mission.view;
 
-import nextstep.mission.domain.*;
+import nextstep.mission.domain.Ladder;
+import nextstep.mission.domain.Line;
+import nextstep.mission.domain.Participants;
+import nextstep.mission.domain.Point;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,10 +19,8 @@ public class ResultViewer {
     public static final void showLadder(Participants participants, Ladder ladder, List<String> results) {
         System.out.println(participantsToString(participants));
 
-        LadderReader ladderReader = new LadderReader(ladder);
-
-        while (ladderReader.hasNext()) {
-            System.out.println(ResultViewer.lineToString(ladderReader.getLine()));
+        for (Line line : ladder.getLines()) {
+            System.out.println(ResultViewer.lineToString(line));
         }
 
         System.out.println(resultsToString(results));

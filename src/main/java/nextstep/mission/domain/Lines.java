@@ -26,6 +26,10 @@ public class Lines {
         return this.lines.get(position);
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
     public int getResultPosition(int startPosition) {
         int position = getLine(0).nextPosition(startPosition);
 

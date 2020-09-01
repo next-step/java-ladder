@@ -19,6 +19,12 @@ public class LinesTest {
     }
 
     @Test
+    void getLines() {
+        Lines lines = new Lines(1, 1);
+        assertThat(lines.getLines()).hasSize(1);
+    }
+
+    @Test
     void checkHeight() {
         Lines lines = new Lines(1, 1);
         assertThat(lines.checkHeight(1)).isTrue();

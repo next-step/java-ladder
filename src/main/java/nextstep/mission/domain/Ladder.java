@@ -1,5 +1,6 @@
 package nextstep.mission.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
@@ -16,12 +17,8 @@ public class Ladder {
         return new Ladder(participants, height);
     }
 
-    public boolean checkHeight(int height) {
-        return this.lines.checkHeight(height);
-    }
-
-    public Line getLine(int index) {
-        return this.lines.getLine(index);
+    public List<Line> getLines() {
+        return lines.getLines();
     }
 
     public int getResult(String name) {
