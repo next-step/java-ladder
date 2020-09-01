@@ -34,6 +34,16 @@ public class Lambda {
         return total;
     }
 
+    public static int sumAll(List<Integer> numbers, Conditional c) {
+        int total = numbers.stream()
+                .mapToInt(number -> number)
+                .sum();
+        if (c.test(total)) {
+            return total;
+        }
+        return sumAll(numbers);
+    }
+
     public static int sumAllEven(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
@@ -44,6 +54,18 @@ public class Lambda {
         return total;
     }
 
+    public static int sumAllEven(List<Integer> numbers, Conditional c) {
+        int total = numbers.stream()
+                .filter(number -> number % 2 == 0)
+                .mapToInt(number -> number)
+                .sum();
+        if (c.test(total)) {
+            return total;
+        }
+        return sumAllEven(numbers);
+    }
+
+
     public static int sumAllOverThree(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
@@ -52,5 +74,16 @@ public class Lambda {
             }
         }
         return total;
+    }
+
+    public static int sumAllOverThree(List<Integer> numbers, Conditional c) {
+        int total = numbers.stream()
+                .filter(number -> number > 3)
+                .mapToInt(number -> number)
+                .sum();
+        if (c.test(total)) {
+            return total;
+        }
+        return sumAllOverThree(numbers);
     }
 }
