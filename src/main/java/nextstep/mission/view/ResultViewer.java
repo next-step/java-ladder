@@ -70,7 +70,7 @@ public class ResultViewer {
         List<Point> points = line.getPoints();
         return points.stream()
                 .limit(points.size())
-                .map(value -> value.toBoolean() ? LINE : NO_LINE)
+                .map(value -> value.isLeft() ? LINE : NO_LINE)
                 .collect(Collectors.joining(LINE_SHAPE)) + LINE_SHAPE;
     }
 }

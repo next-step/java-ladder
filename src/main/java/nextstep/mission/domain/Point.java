@@ -3,18 +3,34 @@ package nextstep.mission.domain;
 import java.util.Objects;
 
 public class Point {
-    private boolean point;
+    private static final int RIGHT = 1;
+    private static final int LEFT = -1;
+    private static final int CURRENT = 0;
 
-    public Point(boolean point) {
-        this.point = point;
+    private boolean value;
+
+    public Point(boolean value) {
+        this.value = value;
     }
 
-    public static Point of(boolean point) {
-        return new Point(point);
+    public static Point of(boolean value) {
+        return new Point(value);
     }
 
-    public boolean toBoolean() {
-        return point;
+    public int move(Point right) {
+        if (Point.of(true).equals(right)) {
+            return RIGHT;
+        }
+
+        if (value) {
+            return LEFT;
+        }
+
+        return CURRENT;
+    }
+
+    public boolean isLeft() {
+        return value;
     }
 
     @Override
@@ -22,11 +38,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point1 = (Point) o;
-        return point == point1.point;
+        return value == point1.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(value);
     }
 }

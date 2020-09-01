@@ -7,10 +7,6 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Line {
-    private static final int RIGHT = 1;
-    private static final int LEFT = -1;
-    private static final int CURRENT = 0;
-
     private List<Point> points;
 
     public Line(List<Point> points) {
@@ -57,18 +53,7 @@ public class Line {
     }
 
     public int move(int currentPosition) {
-        Point current = getPoint(currentPosition);
-        Point next = getPoint(currentPosition + 1);
-
-        if (next != null && next.toBoolean()) {
-            return RIGHT;
-        }
-
-        if (current.toBoolean()) {
-            return LEFT;
-        }
-
-        return CURRENT;
+        return getPoint(currentPosition).move(getPoint(currentPosition + 1));
     }
 
     public Point getPoint(int position) {
