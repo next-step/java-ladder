@@ -35,14 +35,22 @@ public class Line {
     }
 
     private boolean hasLeftBar(int index) {
-        return points.get(index) == Point.TRUE;
+        return hasBar(index);
     }
 
     private boolean hasRightBar(int index) {
-        if (index + 1 >= points.size()) {
+        if (right(index) >= points.size()) {
             return false;
         }
-        return points.get(index + 1) == Point.TRUE;
+        return hasBar(right(index));
+    }
+
+    private boolean hasBar(int index) {
+        return points.get(index) == Point.TRUE;
+    }
+
+    private int right(int index) {
+        return index + 1;
     }
 
     public int move(int currentIndex) {

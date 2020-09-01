@@ -1,11 +1,9 @@
 package ladder.ui;
 
+import java.util.List;
+
 import ladder.domain.Player;
 import ladder.domain.Reward;
-import ladder.ui.Input;
-import ladder.ui.Output;
-
-import java.util.List;
 
 public class LadderDataInput {
 

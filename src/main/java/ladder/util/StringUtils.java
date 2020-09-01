@@ -10,6 +10,8 @@ public class StringUtils {
     private static final String ERR_MORE_THEN_TWO_ELEMENT = "2개 이상의 요소를 입력해야 합니다.";
     private static final int MINIMUM_LIST_SIZE = 1;
 
+    private StringUtils() {}
+
     public static List<String> splitStringToList(String originalString) {
 
         verifyEmptyString(originalString);
