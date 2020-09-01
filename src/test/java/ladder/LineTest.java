@@ -3,6 +3,7 @@ package ladder;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -29,4 +30,23 @@ public class LineTest {
 
 		assertThat(ladder).isNotNull();
 	}
+
+	@Test
+	public void nextPointTest() {
+		Line line = Line.of(Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
+
+		assertThat(line.next()).isEqualTo(Boolean.TRUE);
+		assertThat(line.next()).isEqualTo(Boolean.FALSE);
+		assertThat(line.next()).isEqualTo(Boolean.TRUE);
+		assertThat(line.next()).isEqualTo(Boolean.FALSE);
+	}
+
+	@Test
+	public void widthTest() {
+		Line line = Line.of(Arrays.asList(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE));
+
+		assertThat(line.getWidth()).isEqualTo(5);
+	}
+
+
 }

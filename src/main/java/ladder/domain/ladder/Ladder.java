@@ -22,4 +22,11 @@ public class Ladder {
 	public int getHeight() {
 		return lines.size();
 	}
+
+	public int play(int indexOfUser) {
+		for (int i = 0; i < lines.size(); i++) {
+			indexOfUser = lines.get(i).move(indexOfUser);
+		}
+		return indexOfUser;
+	}
 }
