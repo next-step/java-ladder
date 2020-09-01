@@ -47,4 +47,13 @@ public class ParticipantsTest {
         assertThat(participants.getPosition("user3")).isEqualTo(2);
         assertThat(participants.getPosition("user4")).isEqualTo(3);
     }
+
+    @Test
+    void getParticipantNumberThrow() {
+        assertThatThrownBy(() ->
+                new Participants(Arrays.asList(
+                        new Participant("user1")
+                )).getPosition("undefined")
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
 }

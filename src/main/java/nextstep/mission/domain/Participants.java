@@ -23,7 +23,7 @@ public class Participants {
         return IntStream.range(0, participants.size())
                 .filter(index -> participants.get(index).equals(new Participant(name)))
                 .findFirst()
-                .orElse(-1);
+                .orElseThrow(() -> new IllegalArgumentException("해당 하는 Participant이 존재하지 않습니다."));
     }
 
     public boolean contains(String name) {
