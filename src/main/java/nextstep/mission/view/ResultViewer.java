@@ -38,10 +38,7 @@ public class ResultViewer {
     }
 
     public static final String selectResult(Ladder ladder, List<String> results, String target) {
-        int participantPosition = ladder.getParticipantPosition(target);
-        int resultPosition = ladder.getResult(participantPosition);
-
-        return results.get(resultPosition);
+        return results.get(ladder.getResult(target));
     }
 
     public static final void showResultAll(Participants participants, Ladder ladder, List<String> results) {

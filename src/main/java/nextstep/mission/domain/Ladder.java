@@ -24,12 +24,8 @@ public class Ladder {
         return this.lines.getLine(index);
     }
 
-    public int getParticipantPosition(String name) {
-        return participants.getPosition(name);
-    }
-
-    public int getResult(int startPosition) {
-        return lines.getResultPosition(startPosition);
+    public int getResult(String name) {
+        return lines.getResultPosition(participants.getPosition(name));
     }
 
     @Override
@@ -44,6 +40,5 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(participants);
     }
-
 
 }
