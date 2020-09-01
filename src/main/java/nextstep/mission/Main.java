@@ -25,18 +25,16 @@ public class Main {
 
         ResultViewer.showLadder(participants, ladder, results);
 
-        System.out.println();
-        String select1 = InputScanner.printMessageAndSelectResult("결과를 보고 싶은 사람은?");
-        System.out.println();
+        String selectCondition = "";
 
-        System.out.println("실행 결과");
-        ResultViewer.showSelectResult(participants, ladder, results, select1);
+        while (!selectCondition.equals("all")) {
+            System.out.println();
+            selectCondition = InputScanner.printMessageAndSelectResult("결과를 보고 싶은 사람은?");
 
-        System.out.println();
-        String select2 = InputScanner.printMessageAndSelectResult("결과를 보고 싶은 사람은?");
-        System.out.println();
+            System.out.println();
+            System.out.println("실행 결과");
 
-        System.out.println("실행 결과");
-        ResultViewer.showSelectResult(participants, ladder, results, select2);
+            ResultViewer.showSelectResult(participants, ladder, results, selectCondition);
+        }
     }
 }
