@@ -6,31 +6,63 @@ import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<LineType> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
-    public Line(int personCount, NextPointRule nextPointRule) {
+    public Line(int personCount, PointCreator pointCreator) {
 
-        points.add(LineType.FALSE);
+        points.add(Point.FALSE);
 
         for (int i = 1; i < personCount; i++) {
-            points.add(nextPoint(prevPoint(i), nextPointRule));
+            points.add(nextPoint(getPrevPoint(i), pointCreator));
         }
     }
 
-    private LineType prevPoint(int index) {
+    private Point getPrevPoint(int index) {
         return points.get(index - 1);
     }
 
-    private LineType nextPoint(LineType lineType, NextPointRule nextPointRule) {
-        if (lineType == LineType.TRUE) {
-            return LineType.FALSE;
+    private Point nextPoint(Point point, PointCreator pointCreator) {
+        if (point == Point.TRUE) {
+            return Point.FALSE;
         }
-        return LineType.of(nextPointRule.createNextPoint());
+        return Point.of(pointCreator.create());
     }
 
-    public List<String> getLineList() {
+    public List<String> getPoints() {
         return points.stream()
-                .map(LineType::lineString)
+                .map(Point::getBar)
                 .collect(Collectors.toList());
+    }
+
+    private boolean hasLeftBar(int index) {
+        return points.get(index) == Point.TRUE;
+    }
+
+    private boolean hasRightBar(int index) {
+        if (index + 1 >= points.size()) {
+            return false;
+        }
+        return points.get(index + 1) == Point.TRUE;
+    }
+
+    public int move(int currentIndex) {
+
+        if (hasLeftBar(currentIndex)) {
+            return moveLeft(currentIndex);
+        }
+
+        if (hasRightBar(currentIndex)) {
+            return moveRight(currentIndex);
+        }
+
+        return currentIndex;
+    }
+
+    private int moveLeft(int currentIndex) {
+        return currentIndex - 1;
+    }
+
+    private int moveRight(int currentIndex) {
+        return currentIndex + 1;
     }
 }

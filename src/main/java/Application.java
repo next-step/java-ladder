@@ -1,5 +1,4 @@
-import ladder.domain.Ladder;
-import ladder.domain.LadderData;
+import ladder.controller.LadderController;
 import ladder.ui.Input;
 import ladder.ui.Output;
 
@@ -7,14 +6,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Application {
+
     public static void main(String[] args) {
 
-        Output output = new StandardOutput();
-        LadderData ladderData = new LadderData(new ScannerInput(), output);
+        LadderController ladderController = LadderController.builder()
+                                                            .input(new ScannerInput())
+                                                            .output(new StandardOutput())
+                                                            .build();
 
-        Ladder ladder = new Ladder(ladderData);
-        output.print(ladder.getNames());
-        output.printMultiLine(ladder.getLadderString());
+        ladderController.printLadder();
+        ladderController.printResult();
     }
 
     private static class ScannerInput implements Input {
