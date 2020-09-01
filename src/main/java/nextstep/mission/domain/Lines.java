@@ -14,6 +14,10 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
+    public Lines(List<Line> lines) {
+        this.lines = lines;
+    }
+
     public boolean checkHeight(int height) {
         return this.lines.size() == height;
     }
