@@ -1,11 +1,18 @@
 package com.hskim.ladder.model;
 
+import com.google.common.collect.ImmutableMap;
 import com.hskim.ladder.ui.LadderResultView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +28,6 @@ public class LineTest {
 
         // when
         ladderResultView.printLine(line.getLadderPoints());
-        System.out.println();
     }
 
     @DisplayName("라인 생성 테스트")
@@ -45,4 +51,29 @@ public class LineTest {
         System.out.println();
         ladderResultView.printLine(line.getLadderPoints());
     }
+
+    @DisplayName("한 라인의 출발점과 도착점을 구하는 로직 테스트")
+    @ParameterizedTest
+    @MethodSource("provideLineAndResult")
+    void getStartEndPointMap(Line line, Map<Integer, Integer> expected) {
+        // when
+        Map<Integer, Integer> result = line.getStartEndPointMap();
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> provideLineAndResult() {
+        return Stream.of(
+                // 0     1     2      3     4
+                // |-----|     |------|     |
+                Arguments.of(new Line(new LadderLineIterator(5), (bound) -> Arrays.asList(1, 3)),
+                        ImmutableMap.of(0, 1, 1, 0, 2, 3, 3, 2, 4, 4)),
+                // 0     1     2      3     4
+                // |     |-----|     |------|
+                Arguments.of(new Line(new LadderLineIterator(5), (bound) -> Arrays.asList(2, 4)),
+                        ImmutableMap.of(0, 0, 1, 2, 2, 1, 3, 4, 4, 3))
+        );
+    }
+
 }
