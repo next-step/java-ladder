@@ -112,7 +112,7 @@ public class LadderGame {
     Ladder ladder = LadderGenerator.generate(players.size(), ladderHeight);
 
     // 출력
-    ViewOutput.printLadder(new LadderRenderer(players, ladder));
+    ViewOutput.printLadder(new LadderRenderer(players, ladder, prizes));
 
     // 발표
     ladderGame.announce(players, ladder, prizes);

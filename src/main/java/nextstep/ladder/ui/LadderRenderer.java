@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import nextstep.ladder.Player;
+import nextstep.ladder.Prize;
 import nextstep.ladder.biz.Ladder;
 import nextstep.ladder.biz.Line;
 import nextstep.ladder.biz.Point;
@@ -16,16 +17,19 @@ public class LadderRenderer implements Renderer {
 
   private List<Player> playerNames;
   private Ladder ladder;
+  private List<Prize> prizes;
 
-  public LadderRenderer(List<Player> playerNames, Ladder ladder) {
+  public LadderRenderer(List<Player> playerNames, Ladder ladder, List<Prize> prizes) {
     this.playerNames = playerNames;
     this.ladder = ladder;
+    this.prizes = prizes;
   }
 
   @Override
   public void render() {
     renderPlayers(playerNames);
     renderLadder(ladder);
+    renderPrizes(prizes);
   }
 
   public void renderLadder(Ladder ladder) {
@@ -40,8 +44,8 @@ public class LadderRenderer implements Renderer {
 
   private String pointToBridge(List<Point> points) {
     return points.stream()
-        .map(this::toBridge)
-        .collect(Collectors.joining(PIER, PIER, PIER));
+            .map(this::toBridge)
+            .collect(Collectors.joining(PIER, PIER, PIER));
   }
 
   private String toBridge(Point point) {
@@ -50,9 +54,18 @@ public class LadderRenderer implements Renderer {
 
   private void renderPlayers(List<Player> playerNames) {
     System.out.println(playerNames.stream()
-        .map(Player::getName)
-        .map(LadderRenderer::center)
-        .collect(Collectors.joining("", "\n", "")));
+            .map(Player::getName)
+            .map(LadderRenderer::center)
+            .collect(Collectors.joining("", "\n", "")));
+  }
+
+  private void renderPrizes(List<Prize> prizes) {
+    System.out.println(
+            prizes.stream()
+                    .map(Prize::getName)
+                    .map(LadderRenderer::center)
+                    .collect(Collectors.joining("", "\n", "")));
+
   }
 
   static String center(String text) {
