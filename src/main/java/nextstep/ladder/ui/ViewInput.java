@@ -94,7 +94,7 @@ public class ViewInput {
   public static void printFinal(List<Chessmen> chessPieces, Prizes prizes) {
     System.out.println("실행 결과");
     chessPieces.forEach(chessmen ->
-            System.out.println(chessmen + ": " + prizes.prizeOf(chessmen))
+            System.out.println(chessmen.getName() + ": " + prizes.prizeOf(chessmen))
     );
   }
 }

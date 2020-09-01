@@ -30,6 +30,14 @@ public class Line {
     return new Line(points.subList(chessmen.getLocation() - 1, chessmen.getLocation() + 1));
   }
 
+  public Chessmen cast(Chessmen chessmen) {
+    return selectableLine(chessmen).getPoints().stream()
+            .filter(Point::hasPoint)
+            .findFirst()
+            .map(chessmen::move)
+            .orElse(chessmen);
+  }
+
   @Override
   public String toString() {
     return "Line{" +

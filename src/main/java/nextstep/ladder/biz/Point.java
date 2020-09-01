@@ -32,6 +32,14 @@ public class Point {
     }
   }
 
+  public boolean isLeftPosition(int location) {
+    return position == location -1;
+  }
+
+  public boolean isHerePosition(int location) {
+    return position == location;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

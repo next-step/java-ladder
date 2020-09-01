@@ -51,31 +51,40 @@ public class LadderGame {
   private void announce(Players players, Ladder ladder, Prizes prizes) {
     LadderAnalysis ladderAnalysis = new LadderAnalysis(ladder);
 
-    Player play = responsePlayerOfWinners(players);
-    if (players.isIndividual(play)) {
-      announceIndividual(players, ladder, prizes, ladderAnalysis, play);
+    Player player = responsePlayerOfWinners(players);
+    if (players.isIndividual(player)) {
+      announceIndividual(players, ladder, prizes, player);
     }
 
-    if (players.isAllPlayers(play)) {
-      announceAllPlayers(players, prizes, ladderAnalysis);
+    if (players.isAllPlayers(player)) {
+      announceAllPlayers(players, ladder, prizes, ladderAnalysis);
     }
   }
 
-  private void announceIndividual(Players players, Ladder ladder, Prizes prizes, LadderAnalysis ladderAnalysis, Player play) {
-    if (players.existPlayer(play)) {
-      Chessmen chessmen = play.asChessmen();
-      ladderAnalysis.stat(chessmen);
+  private void announceIndividual(Players players, Ladder ladder, Prizes prizes, Player player) {
+    if (players.existPlayer(player)) {
+      Chessmen chessmen = ladder.play(Chessmen.of(player));
+
       ViewInput.printIndividual(prizes.prizeOf(chessmen));
     }
 
     announce(players, ladder, prizes);
   }
 
-  private void announceAllPlayers(Players players, Prizes prizes, LadderAnalysis ladderAnalysis) {
-    List<Chessmen> chessPieces = players.chessmenAsList();
-    chessPieces.forEach(chessmen -> ladderAnalysis.stat(chessmen));
+  private void announceAllPlayers(Players players, Ladder ladder, Prizes prizes, LadderAnalysis ladderAnalysis) {
+//    List<Chessmen> chessPieces = players.chessmenAsList();
+//    chessPieces.forEach(chessmen -> ladderAnalysis.stat(chessmen));
+//    ViewInput.printFinal(chessPieces, prizes);
 
-    ViewInput.printFinal(chessPieces, prizes);
+
+    List<Chessmen> list = players.chessmenAsList().stream()
+            .map(chessmen -> ladder.play(chessmen))
+            .collect(Collectors.toList());
+
+
+
+
+    ViewInput.printFinal(list, prizes);
   }
 
   private Player responsePlayerOfWinners(Players players) {

@@ -22,6 +22,18 @@ public class Chessmen {
         this.location = location;
     }
 
+    public Chessmen(Player player, int location) {
+        if (isOnLadder(location)) {
+            throw new IllegalArgumentException("말의 위치가 잘 못되었습니다. ");
+        }
+        this.player = player;
+        this.location = location;
+    }
+
+    public String getName() {
+        return player.getName();
+    }
+
     private boolean isOnLadder(int location) {
         return 0 > location;
     }
@@ -30,12 +42,33 @@ public class Chessmen {
         return location;
     }
 
+    public Chessmen move(Point point) {
+        if (isHere(point)) {
+            return moveRight();
+        } else if (isLeft(point)) {
+            return moveLeft();
+        }
+
+        return this;
+    }
+
+    public boolean isLeft(Point point) {
+        if (isZeroIndex()) {
+            return false;
+        }
+        return point.isLeftPosition(this.location);
+    }
+
+    public boolean isHere(Point point) {
+        return point.isHerePosition(this.location);
+    }
+
     public boolean isHere(int position) {
         return location == position;
     }
 
-    public void moveRight() {
-        ++location;
+    public Chessmen moveRight() {
+        return Chessmen.of(player, ++location);
     }
 
     public boolean isLeft(int position) {
@@ -49,8 +82,8 @@ public class Chessmen {
         return location == 0;
     }
 
-    public void moveLeft() {
-        --location;
+    public Chessmen moveLeft() {
+        return Chessmen.of(player, --location);
     }
 
     public static Chessmen location(int value) {
@@ -58,6 +91,10 @@ public class Chessmen {
     }
     public static Chessmen of(Player player) {
         return new Chessmen(player);
+    }
+
+    private static Chessmen of(Player player, int location) {
+        return new Chessmen(player, location);
     }
 
     @Override
@@ -79,6 +116,6 @@ public class Chessmen {
 
     @Override
     public String toString() {
-        return player.getName() + "[" + player.getLocation() + "]";
+        return player.getName() + "[" + player.getLocation() + "] - current location:" + location;
     }
 }
