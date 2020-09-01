@@ -5,6 +5,8 @@ import java.util.Arrays;
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
+    private static final String EXCEPTION_WORD = "%s는 사칙연산에 해당하지 않는 표현식입니다.";
+
     private String expression;
 
     Expression(String expression) {
@@ -22,13 +24,13 @@ enum Expression {
             }
         }
 
-        throw new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression));
+        throw new IllegalArgumentException(String.format(EXCEPTION_WORD, expression));
     }
 
     static Expression ofWithStream(String expression) {
         return Arrays.stream(values())
                 .filter(expressionValue -> matchExpression(expressionValue, expression))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(EXCEPTION_WORD, expression)));
     }
 }
