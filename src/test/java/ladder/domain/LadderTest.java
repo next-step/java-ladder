@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
     private static final LineGenerator LINE_RANDOM_GENERATOR = new LineRandomGenerator();
-    private static final LineGenerator LINE_REPEAT_GENERATOR = new LineRepeatGenerator();
+    private static final LineGenerator LINE_REPEAT_GENERATOR = new LineRepeatGenerator(true);
 
     @DisplayName("사다리 전체(Lines) 생성 테스트")
     @ParameterizedTest
