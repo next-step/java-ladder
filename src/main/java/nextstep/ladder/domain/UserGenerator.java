@@ -15,7 +15,7 @@ public class UserGenerator {
     }
 
     public static String[] getUserName(String names) {
-        return new StringUtils(names).split();
+        return StringUtils.splitBy(names);
     }
 
 }
