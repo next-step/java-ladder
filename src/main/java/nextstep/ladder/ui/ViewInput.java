@@ -1,6 +1,7 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.Prize;
+import nextstep.ladder.Prizes;
 import nextstep.ladder.biz.Chessmen;
 
 import java.util.Arrays;
@@ -90,10 +91,10 @@ public class ViewInput {
     System.out.println(prize);
   }
 
-  public static void printFinal(List<Chessmen> chessPieces, List<Prize> prizes) {
+  public static void printFinal(List<Chessmen> chessPieces, Prizes prizes) {
     System.out.println("실행 결과");
     chessPieces.forEach(chessmen ->
-            System.out.println(chessmen + ": " + prizes.get(chessmen.getLocation()))
+            System.out.println(chessmen + ": " + prizes.prizeOf(chessmen))
     );
   }
 }

@@ -37,17 +37,18 @@ public class LadderGame {
     return viewInput.requestLadderHeight();
   }
 
-  private List<Prize> responsePrizes(int countOfPrize) {
+  private Prizes responsePrizes(int countOfPrize) {
     return mapToPrizes(viewInput.requestPrizes(countOfPrize));
   }
 
-  public static List<Prize> mapToPrizes(List<String> prizes) {
-    return IntStream.range(0, prizes.size())
-            .mapToObj(i -> new Prize(prizes.get(i), i))
-            .collect(Collectors.toList());
+  public static Prizes mapToPrizes(List<String> prizes) {
+    return new Prizes(
+            IntStream.range(0, prizes.size())
+                    .mapToObj(i -> new Prize(prizes.get(i), i))
+                    .collect(Collectors.toList()));
   }
 
-  private void announce(Players players, Ladder ladder, List<Prize> prizes) {
+  private void announce(Players players, Ladder ladder, Prizes prizes) {
     LadderAnalysis ladderAnalysis = new LadderAnalysis(ladder);
 
     Player play = responsePlayerOfWinners(players);
@@ -60,17 +61,17 @@ public class LadderGame {
     }
   }
 
-  private void announceIndividual(Players players, Ladder ladder, List<Prize> prizes, LadderAnalysis ladderAnalysis, Player play) {
+  private void announceIndividual(Players players, Ladder ladder, Prizes prizes, LadderAnalysis ladderAnalysis, Player play) {
     if (players.existPlayer(play)) {
       Chessmen chessmen = play.asChessmen();
       ladderAnalysis.stat(chessmen);
-      ViewInput.printIndividual(prizes.get(chessmen.getLocation()));
+      ViewInput.printIndividual(prizes.prizeOf(chessmen));
     }
 
     announce(players, ladder, prizes);
   }
 
-  private void announceAllPlayers(Players players, List<Prize> prizes, LadderAnalysis ladderAnalysis) {
+  private void announceAllPlayers(Players players, Prizes prizes, LadderAnalysis ladderAnalysis) {
     List<Chessmen> chessPieces = players.chessmenAsList();
     chessPieces.forEach(chessmen -> ladderAnalysis.stat(chessmen));
 
@@ -87,7 +88,7 @@ public class LadderGame {
     LadderGame ladderGame = new LadderGame();
     Players players = ladderGame.responsePlayer();
     int ladderHeight = ladderGame.responseLadderHeight();
-    List<Prize> prizes = ladderGame.responsePrizes(players.size());
+    Prizes prizes = ladderGame.responsePrizes(players.size());
 
     // 사다리 데이터 생성
     Ladder ladder = LadderGenerator.generate(players.size(), ladderHeight);

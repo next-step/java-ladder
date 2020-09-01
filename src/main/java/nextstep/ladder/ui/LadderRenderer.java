@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import nextstep.ladder.Player;
 import nextstep.ladder.Players;
 import nextstep.ladder.Prize;
+import nextstep.ladder.Prizes;
 import nextstep.ladder.biz.Ladder;
 import nextstep.ladder.biz.Line;
 import nextstep.ladder.biz.Point;
@@ -18,9 +19,9 @@ public class LadderRenderer implements Renderer {
 
   private Players players;
   private Ladder ladder;
-  private List<Prize> prizes;
+  private Prizes prizes;
 
-  public LadderRenderer(Players players, Ladder ladder, List<Prize> prizes) {
+  public LadderRenderer(Players players, Ladder ladder, Prizes prizes) {
     this.players = players;
     this.ladder = ladder;
     this.prizes = prizes;
@@ -59,10 +60,9 @@ public class LadderRenderer implements Renderer {
             .collect(Collectors.joining("", "\n", "")));
   }
 
-  private void renderPrizes(List<Prize> prizes) {
+  private void renderPrizes(Prizes prizes) {
     System.out.println(
-            prizes.stream()
-                    .map(Prize::getName)
+            prizes.nameToList().stream()
                     .map(LadderRenderer::center)
                     .collect(Collectors.joining()));
 
