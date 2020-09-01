@@ -1,6 +1,7 @@
 package com.hskim.ladder.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Ladder {
@@ -40,6 +41,10 @@ public class Ladder {
 
     public List<List<LadderPoint>> getAllPoints() {
         return lines.getLines();
+    }
+
+    public Map<Integer, Integer> getNavigateResult() {
+        return lines.getStartEndPointMap();
     }
 
     @Override

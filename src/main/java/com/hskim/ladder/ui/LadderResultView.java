@@ -2,6 +2,7 @@ package com.hskim.ladder.ui;
 
 import com.google.common.collect.ImmutableMap;
 import com.hskim.ladder.model.LadderPoint;
+import com.hskim.ladder.model.Point;
 
 import java.util.List;
 import java.util.Map;
@@ -14,14 +15,15 @@ public class LadderResultView {
     private static final String NEW_LINE = System.lineSeparator();
     private static final String COLON = ":";
     private static final String WHITE_SPACE = " ";
-    private static final Map<LadderPoint, String> pointStringMap = ImmutableMap.of(
-            LadderPoint.BLANK, " ",
-            LadderPoint.COLUMN, "|",
-            LadderPoint.ROW, "-"
+    private static final Map<Point, String> pointStringMap = ImmutableMap.of(
+            Point.BLANK, " ",
+            Point.COLUMN, "|",
+            Point.ROW, "-"
     );
 
     public void printLine(List<LadderPoint> ladderPoints) {
         ladderPoints.stream()
+                .map(LadderPoint::getCurrentPoint)
                 .map(ladderPoint -> ladderPoint.getPrintString(pointStringMap.get(ladderPoint)))
                 .forEach(System.out::print);
     }

@@ -1,6 +1,7 @@
 package com.hskim.ladder.controller;
 
 import com.hskim.ladder.model.Ladder;
+import com.hskim.ladder.model.LadderGameResult;
 import com.hskim.ladder.model.LadderHeight;
 import com.hskim.ladder.model.LadderUsers;
 import com.hskim.ladder.model.Lines;
@@ -12,12 +13,11 @@ import com.hskim.ladder.model.User;
 import com.hskim.ladder.ui.LadderInputView;
 import com.hskim.ladder.ui.LadderResultView;
 
-import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderConsoleSimulator {
     private static final RowIndexMaker LADDER_MAKE_POLICY = new RandomRowIndexMaker();
-    private static final String INVALID_RESULT_USER = "참여자에 포함되어 있지 않은 유저입니다.";
     private static final String ALL_USER_RESULT_INPUT = "all";
 
     private final LadderInputView ladderInputView;
@@ -25,6 +25,7 @@ public class LadderConsoleSimulator {
     private LadderUsers ladderUsers;
     private Ladder ladder;
     private Rewards rewards;
+    private LadderGameResult ladderGameResult;
 
     public LadderConsoleSimulator(LadderInputView ladderInputView, LadderResultView ladderResultView) {
         this.ladderInputView = ladderInputView;
@@ -72,9 +73,23 @@ public class LadderConsoleSimulator {
     }
 
     public void simulate() {
+        Map<Integer, Integer> navigateResult = ladder.getNavigateResult();
+
+        Map<User, Reward> userRewardMap = navigateResult.keySet()
+                .stream()
+                .collect(LinkedHashMap::new,
+                        (map, key) -> map.put(ladderUsers.getUserByIndex(key),
+                                rewards.getRewardByIndex(navigateResult.get(key))),
+                        Map::putAll);
+
+        ladderGameResult = new LadderGameResult(userRewardMap);
+    }
+
+    public void checkResult() {
         while (true) {
             String resultUserName = getResultUserName();
-            ladderResultView.printSimulateResult(getResultMap(resultUserName));
+            boolean isAll = resultUserName.equals(ALL_USER_RESULT_INPUT);
+            ladderResultView.printSimulateResult(ladderGameResult.getResultMap(resultUserName, isAll));
         }
     }
 
@@ -82,26 +97,16 @@ public class LadderConsoleSimulator {
         ladderInputView.printResultUserPhrase();
         String resultUserName = ladderInputView.getResultUserName();
 
-        if(resultUserName.equals(ALL_USER_RESULT_INPUT)) {
+        if (resultUserName.equals(ALL_USER_RESULT_INPUT)) {
             return resultUserName;
         }
 
         try {
-            validateResultUser(resultUserName);
+            ladderUsers.validateResultUser(resultUserName);
         } catch (Exception e) {
-            System.out.println(INVALID_RESULT_USER);
+            System.out.println(e.getMessage());
         }
 
         return resultUserName;
-    }
-
-    private void validateResultUser(String resultUserName) {
-        if (!ladderUsers.contains(new User(resultUserName))) {
-            throw new IllegalArgumentException(INVALID_RESULT_USER);
-        }
-    }
-
-    private Map<String, String> getResultMap(String resultUserName) {
-        return Collections.emptyMap();
     }
 }

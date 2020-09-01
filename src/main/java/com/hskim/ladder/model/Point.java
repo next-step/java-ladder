@@ -1,13 +1,13 @@
 package com.hskim.ladder.model;
 
-public enum LadderPoint {
+public enum Point {
     BLANK(5),
     COLUMN(1),
     ROW(5);
 
     private final int width;
 
-    LadderPoint(int width) {
+    Point(int width) {
         this.width = width;
     }
 

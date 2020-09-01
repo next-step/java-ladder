@@ -24,4 +24,8 @@ public class Rewards {
                 .map(Reward::getName)
                 .collect(Collectors.toList());
     }
+
+    public Reward getRewardByIndex(int index) {
+        return rewards.get(index);
+    }
 }

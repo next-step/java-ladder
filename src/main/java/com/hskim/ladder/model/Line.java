@@ -2,11 +2,14 @@ package com.hskim.ladder.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Line {
 
-    private List<LadderPoint> ladderPoints = new LinkedList<>();
+    private LinkedList<LadderPoint> ladderPoints = new LinkedList<>();
 
     public Line(LadderLineIterator iterator, RowIndexMaker rowIndexMaker) {
         makePoints(iterator, rowIndexMaker);
@@ -23,23 +26,45 @@ public class Line {
 
     private void setPoint(LadderLineIterator iterator, List<Integer> targets) {
         if (iterator.isOnStartIndex()) {
-            ladderPoints.add(LadderPoint.BLANK);
+            ladderPoints.add(new LadderPoint(null, Point.BLANK, Point.COLUMN));
             return;
         }
+
+        LadderPoint prevPoint = ladderPoints.getLast();
 
         if (iterator.isOnLastIndex()) {
-            ladderPoints.add(LadderPoint.COLUMN);
+            ladderPoints.add(new LadderPoint(prevPoint.getCurrentPoint(), Point.COLUMN, null));
             return;
         }
 
-        ladderPoints.add(LadderPoint.COLUMN);
+        Point nextPoint = iterator.isTargetCounter(targets)
+                ? Point.ROW
+                : Point.BLANK;
 
-        if (iterator.isTargetCounter(targets)) {
-            ladderPoints.add(LadderPoint.ROW);
-            return;
+        ladderPoints.add(new LadderPoint(prevPoint.getCurrentPoint(), Point.COLUMN, nextPoint));
+        ladderPoints.add(new LadderPoint(Point.COLUMN, nextPoint, Point.COLUMN));
+    }
+
+    public Map<Integer, Integer> getStartEndPointMap() {
+        List<LadderPoint> columnList = ladderPoints.stream()
+                .filter(LadderPoint::isColumn)
+                .collect(Collectors.toList());
+
+        return IntStream.range(0, columnList.size())
+                .boxed()
+                .collect(Collectors.toMap(key -> key, key -> getEndPoint(columnList.get(key), key)));
+    }
+
+    private Integer getEndPoint(LadderPoint ladderPoint, Integer startPoint) {
+        if (ladderPoint.isLeftDirection()) {
+            return startPoint - 1;
         }
 
-        ladderPoints.add(LadderPoint.BLANK);
+        if(ladderPoint.isRightDirection()) {
+            return startPoint + 1;
+        }
+
+        return startPoint;
     }
 
     public List<LadderPoint> getLadderPoints() {
