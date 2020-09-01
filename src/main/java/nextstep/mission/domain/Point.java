@@ -13,13 +13,6 @@ public class Point {
         return new Point(point);
     }
 
-    public boolean isRight(Point right) {
-        if (right == null)
-            return false;
-
-        return right.toBoolean();
-    }
-
     public boolean toBoolean() {
         return point;
     }

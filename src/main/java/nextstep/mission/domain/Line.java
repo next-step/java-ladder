@@ -56,7 +56,7 @@ public class Line {
         Point current = getPoint(currentPosition);
         Point next = getPoint(currentPosition + 1);
 
-        if (current.isRight(next)) {
+        if (next != null && next.toBoolean()) {
             return 1;
         }
 
