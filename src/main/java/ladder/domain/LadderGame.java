@@ -31,7 +31,7 @@ public class LadderGame {
         IntStream
                 .range(0, players.getCountOfPlayers() - 1)
                 .forEach(positionOfColumn -> {
-                    if (ladderDrawRule.canDraw()) {
+                    if (ladderDrawRule.isDrawable()) {
                         ladder.drawLine(positionOfLine, positionOfColumn);
                     }
                 });
