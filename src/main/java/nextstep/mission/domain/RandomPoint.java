@@ -15,4 +15,8 @@ public class RandomPoint {
 
         return DICE.nextBoolean();
     }
+
+    public static boolean next() {
+        return next(false);
+    }
 }
