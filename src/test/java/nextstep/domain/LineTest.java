@@ -23,9 +23,9 @@ public class LineTest {
 
     private static Stream<Arguments> drawTransverseBarMethodSource() {
         return Stream.of(
-                Arguments.of(5, new AllDrawTransverseBarStrategy(), new Boolean [] { true, true, true, true, true }),
-                Arguments.of(5, new NotAllDrawTransverseBarStrategy(), new Boolean [] { false, false, false, false, false }),
-                Arguments.of(5, new SwitchDrawTransverseBarStrategy(), new Boolean [] { true, false, true, false, true })
+                Arguments.of(5, new AllDrawTransverseBarStrategy(), new Boolean [] { true, true, true, true }),
+                Arguments.of(5, new NotAllDrawTransverseBarStrategy(), new Boolean [] { false, false, false, false }),
+                Arguments.of(5, new SwitchDrawTransverseBarStrategy(), new Boolean [] { true, false, true, false })
         );
     }
 

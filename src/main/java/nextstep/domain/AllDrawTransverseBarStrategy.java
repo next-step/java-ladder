@@ -10,7 +10,7 @@ public class AllDrawTransverseBarStrategy implements TransverseBarStrategy {
 
     @Override
     public List<Boolean> draw(int countOfPerson) {
-        return IntStream.range(0, countOfPerson)
+        return IntStream.range(0, countOfPerson - 1)
                 .mapToObj(count -> ALL_DRAW)
                 .collect(Collectors.toList());
     }

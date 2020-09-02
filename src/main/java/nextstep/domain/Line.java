@@ -6,12 +6,22 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    public static final SwitchDrawTransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new SwitchDrawTransverseBarStrategy();
+    public static final RandomTransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new RandomTransverseBarStrategy();
 
     private List<Boolean> points;
 
     public Line(int countOfPerson) {
-        this.points = drawTransverseBar(countOfPerson, DEFAULT_TRANSVERSE_BAR_STRATEGY);
+        this(drawTransverseBar(countOfPerson, DEFAULT_TRANSVERSE_BAR_STRATEGY));
+    }
+
+    public Line(List<Boolean> points) {
+//        if (!validateHasOneOrMoreTransverseBar(points)) {
+//            throw new IllegalArgumentException("적어도 하나 이상의 횡단선이 있어야 합니다.");
+//        }
+        if (!validateNotOverlap(points)) {
+            throw new IllegalArgumentException("횡단선이 겹치면 안됩니다.");
+        }
+        this.points = points;
     }
 
     public static boolean validateHasOneOrMoreTransverseBar(List<Boolean> line) {
