@@ -24,15 +24,15 @@ public class Point {
         return right;
     }
 
-    public Point isFirst(boolean right) {
+    public static Point first(boolean right) {
         return new Point(false, right);
     }
 
-    public Point isLast(boolean left) {
+    public static Point last(boolean left) {
         return new Point(left, false);
     }
 
-    public Point next(Point previousPoint, boolean right) {
+    public static Point next(Point previousPoint, boolean right) {
         if (previousPoint.isRight()) {
             return new Point(previousPoint.isRight(), false);
         }
