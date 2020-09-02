@@ -49,7 +49,7 @@ public class Line {
     }
 
     public boolean checkSize(int size) {
-        return this.points.size() == size;
+        return getPoints().size() == size;
     }
 
     public int move(int currentPosition) {
