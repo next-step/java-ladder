@@ -12,6 +12,7 @@ public class OutputView {
     private static final String TRANSVERSE_BAR = "-----";
     private static final String EMPTY_BAR = "     ";
     private static final String PIPE = "|";
+    public static final int PAD_SIZE = 6;
 
     private OutputView() {
 
@@ -21,7 +22,7 @@ public class OutputView {
         System.out.println("실행결과");
         System.out.println();
         persons.stream()
-                .map(person -> StringUtils.padLeft(person.getName(), Constants.MAX_LENGTH + 1))
+                .map(person -> StringUtils.padLeft(person.getName(), PAD_SIZE))
                 .forEach(OutputView::printPerson);
         System.out.println();
         lines.stream()

@@ -23,9 +23,9 @@ public enum PersonValidator {
                 .noneMatch(personValidator -> personValidator.validate(name));
     }
 
-    public static class Constants {
+    private static class Constants {
 
-        public static final int MAX_LENGTH = 5;
+        private static final int MAX_LENGTH = 5;
 
     }
 
