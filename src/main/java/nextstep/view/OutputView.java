@@ -2,7 +2,6 @@ package nextstep.view;
 
 import nextstep.domain.Line;
 import nextstep.domain.Person;
-import nextstep.domain.PersonValidator.Constants;
 import nextstep.domain.StringUtils;
 
 import java.util.List;
