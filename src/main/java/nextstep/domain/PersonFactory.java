@@ -16,14 +16,12 @@ public class PersonFactory {
         return new Person(name);
     }
 
-    public static List<Person> createPersons(String[] names) {
-        return Arrays.stream(names)
-                .map(Person::new)
-                .collect(Collectors.toList());
+    public static List<Person> createPersons(String line) {
+        return createPersons(line.split(DELIMITER));
     }
 
-    public static List<Person> createPersons(String line) {
-        return Arrays.stream(line.split(DELIMITER))
+    public static List<Person> createPersons(String[] names) {
+        return Arrays.stream(names)
                 .map(Person::new)
                 .collect(Collectors.toList());
     }
