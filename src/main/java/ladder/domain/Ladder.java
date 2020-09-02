@@ -14,7 +14,7 @@ public class Ladder {
     private final List<Line> lines;
 
     @Builder
-    public Ladder(int countOfPoints, int countOfLines) {
+    private Ladder(int countOfPoints, int countOfLines) {
             this.countOfPoints = countOfPoints;
             this.lines = generateLines(countOfLines);
     }
@@ -33,7 +33,7 @@ public class Ladder {
         if (prevLine.hasLine(columnPosition)) {
             return;
         }
-        curLine.draw(linePosition);
+        curLine.draw(columnPosition);
     }
 
     private Line pickLine(int linePosition) {
@@ -46,5 +46,9 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public int getCountOfPoints() {
+        return this.countOfPoints;
     }
 }

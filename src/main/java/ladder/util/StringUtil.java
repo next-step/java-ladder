@@ -6,6 +6,8 @@ import java.util.List;
 public class StringUtil {
     private static final String COMMA = ",";
     private static final String EMPTY = "";
+    private static final String BLANK = "";
+    private static final String SPACE = " ";
 
     private StringUtil(){
     }
@@ -18,6 +20,11 @@ public class StringUtil {
         if (isEmpty(text)) {
             throw new IllegalArgumentException("입력 값이 없습니다.");
         }
-        return Arrays.asList(text.trim().split(COMMA));
+        text = removeBlank(text.trim());
+        return Arrays.asList(text.split(COMMA));
+    }
+
+    private static String removeBlank(String input) {
+        return input.replace(SPACE, BLANK);
     }
 }
