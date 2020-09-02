@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static nextstep.ladder.domain.Point.*;
 import static nextstep.ladder.utils.CommonConstant.NUMBER_ONE;
 import static nextstep.ladder.utils.CommonConstant.NUMBER_ZERO;
 
@@ -10,25 +11,23 @@ public class Line {
 
     private List<Point> points;
 
-    public Line() {
+    public Line(int countOfuser, LadderGenerator ladderGenerator) {
+        points = createLine(countOfuser, ladderGenerator);
     }
 
-    public Line(int countOfuser, Point point, LadderGenerator ladderGenerator) {
-        points = createLine(countOfuser, point, ladderGenerator);
-    }
-
-    private List<Point> createLine(int countOfUser, Point point, LadderGenerator ladderGenerator) {
+    private List<Point> createLine(int countOfUser, LadderGenerator ladderGenerator) {
         points = new ArrayList<>();
-        Point firstPoint = point.isFirst(ladderGenerator.right());
+        Point firstPoint = first(ladderGenerator.right());
         points.add(NUMBER_ZERO, firstPoint);
         int count = countOfUser - NUMBER_ONE;
 
         for (int i = NUMBER_ONE; i < count; i++) {
-            Point otherPoint = point.next(point, ladderGenerator.right());
-            points.add(i, otherPoint);
+            Point nextPoint = next(firstPoint, ladderGenerator.right());
+            points.add(i, nextPoint);
+            firstPoint = nextPoint;
         }
 
-        Point lastPoint = point.isLast(ladderGenerator.right());
+        Point lastPoint = last(firstPoint.isRight());
         points.add(count, lastPoint);
         return points;
     }
@@ -37,7 +36,8 @@ public class Line {
         return points.size();
     }
 
-    public Point getPoint(int index) {
+    public Point getPointIndex(int index) {
         return points.get(index);
     }
+
 }

@@ -19,22 +19,36 @@ class LineTest {
     @Test
     @DisplayName("생성한 Line Size 확인")
     void lineSize() {
-        line = new Line(countOfUser, new Point(), new LadderAutoGenerator());
+        line = new Line(countOfUser, new LadderAutoGenerator());
         assertThat(line.size()).isEqualTo(4);
     }
 
     @Test
     @DisplayName("임의의 Ladder Point 생성 - True")
     void ladderGenerateIsTrue() {
-        line = new Line(countOfUser, new Point(), () -> true);
-        assertThat(line.getPoint(0).isRight()).isTrue();
+        line = new Line(countOfUser, () -> true);
+        assertThat(line.getPointIndex(0).isRight()).isTrue();
     }
 
     @Test
     @DisplayName("임의의 Ladder Point 생성 - False")
     void ladderGenerateIsFalse() {
-        line = new Line(countOfUser, new Point(), () -> false);
-        assertThat(line.getPoint(0).isRight()).isFalse();
+        line = new Line(countOfUser, () -> false);
+        assertThat(line.getPointIndex(0).isRight()).isFalse();
+    }
+
+    @Test
+    @DisplayName("1개의 라인 생성 및 사이즈 확인")
+    void createLineSize() {
+        line = new Line(4, () -> false);
+        assertThat(line.size()).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("1개의 라인 생성")
+    void createLine() {
+        line = new Line(4, () -> true);
+        assertThat(line.getPointIndex(0).isRight()).isTrue();
     }
 
 }

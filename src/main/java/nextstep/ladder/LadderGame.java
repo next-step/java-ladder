@@ -1,22 +1,20 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.UserGenerator;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.OutputView;
-
-import java.util.Scanner;
+import nextstep.ladder.view.ResultView;
 
 public class LadderGame {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String joinUsers = InputView.inputGameUser(scanner);
+        String joinUsers = InputView.inputGameUser();
 
-        Users users = new Users(UserGenerator.generateUsers(joinUsers));
+        Users users = Users.from(User.generateUsers(joinUsers));
+        int countOfUser = users.size();
 
-        int ladderHeight = InputView.inputLadderHeight(scanner);
+        int height = InputView.inputLadderHeight();
+        LadderLine ladderLine = LadderLine.of(height, countOfUser, new LadderAutoGenerator());
 
-        OutputView.printGameResult();
+        ResultView.printGameResult(users.getUsers(), ladderLine);
     }
 }
