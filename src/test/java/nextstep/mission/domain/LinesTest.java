@@ -25,12 +25,12 @@ public class LinesTest {
                 Arrays.asList(
                         new Line(
                                 Arrays.asList(
-                                        Point.of(false),
-                                        Point.of(true),
-                                        Point.of(false),
-                                        Point.of(false),
-                                        Point.of(false),
-                                        Point.of(true)
+                                        new Point(0, Direction.of(false, true)),
+                                        new Point(1, Direction.of(true, false)),
+                                        new Point(2, Direction.of(false, false)),
+                                        new Point(3, Direction.of(false, false)),
+                                        new Point(4, Direction.of(false, true)),
+                                        new Point(5, Direction.of(true, false))
                                 )
                         )
                 )

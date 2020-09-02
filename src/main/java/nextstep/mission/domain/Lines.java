@@ -9,7 +9,7 @@ public class Lines {
     private List<Line> lines;
 
     public Lines(int size, int height) {
-        this.lines = Stream.generate(() -> new Line(size))
+        this.lines = Stream.generate(() -> Line.init(size))
                 .limit(height)
                 .collect(Collectors.toList());
     }
@@ -27,10 +27,10 @@ public class Lines {
     }
 
     public int getResultPosition(int startPosition) {
-        int position = getLine(0).nextPosition(startPosition);
+        int position = getLine(0).move(startPosition);
 
         for (int index = 1; index < lines.size(); index++) {
-            position = getLine(index).nextPosition(position);
+            position = getLine(index).move(position);
         }
 
         return position;

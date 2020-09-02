@@ -1,48 +1,51 @@
 package nextstep.mission.domain;
 
-import java.util.Objects;
-
 public class Point {
-    private static final int RIGHT = 1;
-    private static final int LEFT = -1;
-    private static final int CURRENT = 0;
+    private final int index;
+    private final Direction direction;
 
-    private boolean value;
-
-    public Point(boolean value) {
-        this.value = value;
+    public Point(int index, Direction direction) {
+        this.index = index;
+        this.direction = direction;
     }
 
-    public static Point of(boolean value) {
-        return new Point(value);
+    public int move() {
+        if (direction.isRight()) {
+            return index + 1;
+        }
+
+        if (direction.isLeft()) {
+            return index - 1;
+        }
+
+        return this.index;
     }
 
-    public int move(Point right) {
-        if (Point.of(true).equals(right)) {
-            return RIGHT;
-        }
+    public Point next() {
+        return new Point(index + 1, direction.next());
+    }
 
-        if (value) {
-            return LEFT;
-        }
+    public Point next(Boolean right) {
+        return new Point(index + 1, direction.next(right));
+    }
 
-        return CURRENT;
+    public Point last() {
+        return new Point(index + 1, direction.last());
     }
 
     public boolean isLeft() {
-        return value;
+        return direction.isLeft();
+    }
+
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point1 = (Point) o;
-        return value == point1.value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 }
