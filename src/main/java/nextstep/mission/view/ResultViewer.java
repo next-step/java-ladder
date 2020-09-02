@@ -1,6 +1,5 @@
 package nextstep.mission.view;
 
-import nextstep.mission.domain.Ladder;
 import nextstep.mission.domain.Line;
 import nextstep.mission.domain.Participants;
 import nextstep.mission.domain.Point;
@@ -16,31 +15,42 @@ public class ResultViewer {
     public static final String LINE_SHAPE = "|";
     public static final String OUTPUT_FORMAT = "%6s";
 
-    public static final void showLadder(Participants participants, Ladder ladder, List<String> results) {
-        System.out.println(participantsToString(participants));
+    private final LadderPreset ladderPreset;
 
-        for (Line line : ladder.getLines()) {
+    private ResultViewer(LadderPreset ladderPreset) {
+        this.ladderPreset = ladderPreset;
+    }
+
+    public static final ResultViewer make(LadderPreset ladderPreset) {
+        return new ResultViewer(ladderPreset);
+    }
+
+    public final void showLadder() {
+        System.out.println(participantsToString(ladderPreset.getParticipants()));
+
+        for (Line line : ladderPreset.getLadder().getLines()) {
             System.out.println(ResultViewer.lineToString(line));
         }
 
-        System.out.println(resultsToString(results));
+        System.out.println(resultsToString(ladderPreset.getResults()));
     }
 
-    public static final void showSelectResult(Participants participants, Ladder ladder, List<String> results, String target) {
+    public final void showSelectResult(String target) {
         if (target.equals("all")) {
-            System.out.println(selectAllResult(participants, ladder, results));
+            System.out.println(selectAllResult(ladderPreset));
             return;
         }
-        System.out.println(selectResult(ladder, results, target));
+        System.out.println(selectResult(ladderPreset, target));
     }
 
-    private static final String selectResult(Ladder ladder, List<String> results, String target) {
-        return results.get(ladder.getResult(target));
+    private static final String selectResult(LadderPreset ladderPreset, String target) {
+        return ladderPreset.getResults().get(ladderPreset.getLadder().getResult(target));
     }
 
-    private static final String selectAllResult(Participants participants, Ladder ladder, List<String> results) {
+    private static final String selectAllResult(LadderPreset ladderPreset) {
+        Participants participants = ladderPreset.getParticipants();
         return IntStream.range(0, participants.size())
-                .mapToObj(position -> participants.get(position) + " : " + selectResult(ladder, results, String.valueOf(participants.get(position))))
+                .mapToObj(position -> participants.get(position) + " : " + selectResult(ladderPreset, String.valueOf(participants.get(position))))
                 .collect(Collectors.joining("\n"));
 
     }
