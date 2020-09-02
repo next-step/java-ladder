@@ -11,6 +11,10 @@ public class Person {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static boolean validateName(String name) {
         return PersonValidator.validateAll(name);
     }

@@ -6,10 +6,12 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private List<Boolean> points = new ArrayList<>();
+    public static final SwitchDrawTransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new SwitchDrawTransverseBarStrategy();
+
+    private List<Boolean> points;
 
     public Line(int countOfPerson) {
-
+        this.points = drawTransverseBar(countOfPerson, DEFAULT_TRANSVERSE_BAR_STRATEGY);
     }
 
     public static boolean validateHasOneOrMoreTransverseBar(List<Boolean> line) {
