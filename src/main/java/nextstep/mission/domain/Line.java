@@ -24,13 +24,13 @@ public class Line {
 
     private static List<Point> createPoints(int size) {
         List<Point> result = new ArrayList<>();
+
         boolean value = false;
 
-        for (int index = 0; index < size; index++) {
-            if (index != 0) {
-                value = RandomPoint.next(value);
-            }
+        result.add(Point.of(false));
 
+        for (int index = 1; index < size; index++) {
+            value = RandomPoint.next(value);
             result.add(Point.of(value));
         }
 
