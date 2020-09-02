@@ -7,34 +7,34 @@ import java.util.stream.IntStream;
 
 public class LadderGame {
 
-    private final int lines;
+    private final int rows;
     private final Players players;
     private final Ladder ladder;
 
     @Builder
-    public LadderGame(Players players, int lines) {
+    public LadderGame(Players players, int rows) {
         this.players = players;
-        this.lines = lines;
+        this.rows = rows;
         this.ladder = Ladder.builder()
-                .countOfPoints(players.getCountOfPlayers())
-                .countOfLines(lines).build();
+                .rowNumber(rows)
+                .columnNumber(players.getCountOfPlayers())
+                .build();
     }
 
-    public Ladder makeLadder(DrawRule ladderDrawRule) {
+    public Ladder makeLadder(DrawRule drawRule) {
         IntStream
-                .range(0, lines)
-                .forEach(line -> draw(line, ladderDrawRule));
+                .range(0, rows)
+                .forEach(line -> draw(line, drawRule));
         return ladder;
     }
 
-    private void draw(int positionOfLine, DrawRule ladderDrawRule) {
+    private void draw(int rowPosition, DrawRule drawRule) {
         IntStream
                 .range(0, players.getCountOfPlayers() - 1)
-                .forEach(positionOfColumn -> {
-                    if (ladderDrawRule.isDrawable()) {
-                        ladder.drawLine(positionOfLine, positionOfColumn);
+                .forEach(columnPosition -> {
+                    if (drawRule.isDrawable()) {
+                        ladder.drawLine(rowPosition, columnPosition);
                     }
                 });
     }
-
 }

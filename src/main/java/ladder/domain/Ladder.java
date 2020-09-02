@@ -3,52 +3,46 @@ package ladder.domain;
 import lombok.Builder;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    private static final int FIRST_ROW = 0;
 
-    public static final int INIT_POSITION = 0;
-    private final int countOfPoints;
-    private final List<Line> lines;
+    private List<Row> rows;
 
     @Builder
-    private Ladder(int countOfPoints, int countOfLines) {
-            this.countOfPoints = countOfPoints;
-            this.lines = generateLines(countOfLines);
+    public Ladder(int rowNumber, int columnNumber) {
+       this.rows = initLadder(rowNumber, columnNumber);
     }
 
-    private List<Line> generateLines(int linesCount) {
-        List<Line> lines = new ArrayList<>();
-        IntStream.range(0, linesCount)
-                .forEach(line -> lines.add(Line.valueOf(countOfPoints)));
-        return lines;
+    private List<Row> initLadder(int rowNumber, int columnNumber) {
+        List<Row> rows = new ArrayList<>();
+        IntStream.range(0, rowNumber)
+                .forEach(line -> rows.add(Row.valueOf(columnNumber)));
+        return rows;
     }
 
-    public void drawLine(int linePosition, int columnPosition) {
-        Line curLine = pickLine(linePosition);
-        Line prevLine = pickLine(linePosition - 1);
-
-        if (prevLine.hasLine(columnPosition)) {
+    public void drawLine(int rowPosition, int columnPosition) {
+        if (hasLine(rowPosition, columnPosition)) {
             return;
         }
-        curLine.draw(columnPosition);
+        rows.get(rowPosition).drawLine(columnPosition);
     }
 
-    private Line pickLine(int linePosition) {
-        return this.lines.get(getPositivePosition(linePosition));
+    public List<Row> getRows() {
+        return rows;
     }
 
-    private int getPositivePosition(int position) {
-        return position < 0 ? INIT_POSITION : position;
+    public int getSizeOfColumn() {
+        return rows.get(FIRST_ROW).getSize();
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public boolean hasLine(int row, int column) {
+        return rows.get(getUpperRow(row)).hasLine(column);
     }
 
-    public int getCountOfPoints() {
-        return this.countOfPoints;
+    private int getUpperRow(int row) {
+        return row <= 0 ? FIRST_ROW : row-1;
     }
 }

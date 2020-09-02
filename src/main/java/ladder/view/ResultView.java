@@ -21,14 +21,13 @@ public class ResultView {
                         .stream()
                         .map(Player::getName)
                         .collect(Collectors.joining(PLAYER_EMPTY)));
-        System.out.println(ENTER);
     }
 
-    public static void printLadder(Ladder2 ladder2) {
+    public static void printLadder(Ladder ladder) {
         StringBuilder output = new StringBuilder();
-        int sizeOfColumn = ladder2.getSizeOfColumn();
+        int sizeOfColumn = ladder.getSizeOfColumn();
 
-        ladder2.getRows()
+        ladder.getRows()
                 .forEach(row -> {
                     output.append(LADDER_EMPTY);
                     output.append(generateLinePrinting(row, sizeOfColumn - 1));
