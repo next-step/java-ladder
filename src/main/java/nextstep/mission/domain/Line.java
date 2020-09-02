@@ -53,14 +53,12 @@ public class Line {
     }
 
     public int move(int currentPosition) {
-        return getPoint(currentPosition).move(getPoint(currentPosition + 1));
-    }
+        Point currentPoint = points.get(currentPosition);
 
-    public Point getPoint(int position) {
-        if (position < 0 || points.size() <= position)
-            return null;
+        if (currentPosition + 1 == points.size())
+            return currentPoint.move(Point.of(false));
 
-        return points.get(position);
+        return currentPoint.move(points.get(currentPosition + 1));
     }
 
     public int nextPosition(int currentPosition) {
