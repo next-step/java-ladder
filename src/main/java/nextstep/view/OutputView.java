@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println("실행결과");
         System.out.println();
         persons.stream()
-                .map(person -> StringUtils.padRight(person.getName(), Constants.MAX_LENGTH))
+                .map(person -> StringUtils.padLeft(person.getName(), Constants.MAX_LENGTH + 1))
                 .forEach(OutputView::printPerson);
         System.out.println();
         lines.stream()
