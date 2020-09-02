@@ -9,9 +9,9 @@ import java.util.List;
 
 public class OutputView {
 
-    public static final String TRANSVERSE_BAR = "-----";
-    public static final String EMPTY_BAR = "     ";
-    public static final String PIPE = "|";
+    private static final String TRANSVERSE_BAR = "-----";
+    private static final String EMPTY_BAR = "     ";
+    private static final String PIPE = "|";
 
     private OutputView() {
 
@@ -25,7 +25,7 @@ public class OutputView {
                 .forEach(OutputView::printPerson);
         System.out.println();
         lines.stream()
-                .map(line -> line.getPoints())
+                .map(Line::getPoints)
                 .forEach(OutputView::printLines);
     }
 
@@ -36,8 +36,7 @@ public class OutputView {
     private static void printLines(List<Boolean> points) {
         System.out.print(EMPTY_BAR);
         System.out.print(PIPE);
-        points.stream()
-                .forEach(OutputView::printLine);
+        points.forEach(OutputView::printLine);
         System.out.println();
     }
 

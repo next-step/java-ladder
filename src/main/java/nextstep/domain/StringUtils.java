@@ -17,8 +17,4 @@ public class StringUtils {
         return String.format("%-" + n + "s", s);
     }
 
-    public static String padLeft(String s, int n) {
-        return String.format("%" + n + "s", s);
-    }
-
 }

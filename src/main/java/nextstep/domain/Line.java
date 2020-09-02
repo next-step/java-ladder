@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    public static final RandomTransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new RandomTransverseBarStrategy();
+    private static final RandomTransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new RandomTransverseBarStrategy();
 
     private List<Boolean> points;
 
@@ -15,9 +15,6 @@ public class Line {
     }
 
     public Line(List<Boolean> points) {
-//        if (!validateHasOneOrMoreTransverseBar(points)) {
-//            throw new IllegalArgumentException("적어도 하나 이상의 횡단선이 있어야 합니다.");
-//        }
         if (!validateNotOverlap(points)) {
             throw new IllegalArgumentException("횡단선이 겹치면 안됩니다.");
         }
