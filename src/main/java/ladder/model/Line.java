@@ -10,20 +10,17 @@ public class Line {
     private static final int MIN_INDEX = 0;
     private static final int STEP_INTERVAL = 1;
 
-    private final int size;
     private final List<Boolean> steps;
 
     public Line(List<Boolean> steps) {
+        validateLine(steps);
         this.steps = steps;
-        size = steps.size();
-        validateLine();
     }
 
     public Line(int countOfStep, LadderGenerateStrategy generateStrategy) {
         steps = new ArrayList<>();
-        size = countOfStep;
 
-        for (int i = MIN_INDEX; i < size; i++) {
+        for (int i = MIN_INDEX; i < countOfStep; i++) {
             Boolean step = !hasBeforeStep(i) && generateStrategy.generate();
             steps.add(step);
         }
@@ -33,8 +30,8 @@ public class Line {
         return pointIndex > 0 && steps.get(pointIndex - STEP_INTERVAL);
     }
 
-    private void validateLine() {
-        boolean hasInvalidStep = IntStream.range(MIN_INDEX, size)
+    private void validateLine(List<Boolean> steps) {
+        boolean hasInvalidStep = IntStream.range(MIN_INDEX, steps.size())
                                         .anyMatch(i -> steps.get(i) && hasBeforeStep(i));
 
         if (hasInvalidStep) {
@@ -59,13 +56,11 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return size == line.size &&
-                Objects.equals(steps, line.steps);
+        return Objects.equals(steps, line.steps);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(size, steps);
+        return Objects.hash(steps);
     }
-
 }
