@@ -6,8 +6,8 @@ import static java.util.Objects.isNull;
 
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
-    public static final String MORE_THAN_SIZE_MESSAGE = "이름의 최대 글자수는 %d 입니다. : %s";
-    public static final String NOT_EMPTY_NAME_MESSAGE = "이름의 값이 공백 또는 존재하지 않습니다.";
+    private static final String MORE_THAN_SIZE_MESSAGE = "이름의 최대 글자수는 %d 입니다. : %s";
+    private static final String NOT_EMPTY_NAME_MESSAGE = "이름의 값이 공백 또는 존재하지 않습니다.";
 
     private final String name;
 
