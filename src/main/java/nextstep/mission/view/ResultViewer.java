@@ -16,9 +16,11 @@ public class ResultViewer {
     public static final String OUTPUT_FORMAT = "%6s";
 
     private final LadderPreset ladderPreset;
+    private final LadderMap ladderMap;
 
     private ResultViewer(LadderPreset ladderPreset) {
         this.ladderPreset = ladderPreset;
+        this.ladderMap = LadderMap.make(ladderPreset);
     }
 
     public static final ResultViewer make(LadderPreset ladderPreset) {
@@ -37,20 +39,20 @@ public class ResultViewer {
 
     public final void showSelectResult(String target) {
         if (target.equals("all")) {
-            System.out.println(selectAllResult(ladderPreset));
+            System.out.println(selectAllResult(ladderPreset, ladderMap));
             return;
         }
-        System.out.println(selectResult(ladderPreset, target));
+        System.out.println(selectResult(ladderMap, target));
     }
 
-    private static final String selectResult(LadderPreset ladderPreset, String target) {
-        return ladderPreset.getResults().get(ladderPreset.getLadder().getResult(target));
+    private static final String selectResult(LadderMap ladderMap, String target) {
+        return ladderMap.getResult(target);
     }
 
-    private static final String selectAllResult(LadderPreset ladderPreset) {
+    private static final String selectAllResult(LadderPreset ladderPreset, LadderMap ladderMap) {
         Participants participants = ladderPreset.getParticipants();
         return IntStream.range(0, participants.size())
-                .mapToObj(position -> participants.get(position) + " : " + selectResult(ladderPreset, String.valueOf(participants.get(position))))
+                .mapToObj(position -> participants.get(position) + " : " + selectResult(ladderMap, String.valueOf(participants.get(position))))
                 .collect(Collectors.joining("\n"));
 
     }
