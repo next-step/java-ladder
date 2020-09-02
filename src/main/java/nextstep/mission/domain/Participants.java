@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class Participants {
 
-    private List<Participant> participants;
+    private final List<Participant> participants;
 
     public Participants(List<Participant> participants) {
         this.participants = participants;

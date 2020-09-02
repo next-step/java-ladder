@@ -36,11 +36,11 @@ public class LinesTest {
                 )
         );
 
-        assertThat(lines.getResultPosition(0)).isEqualTo(1);
-        assertThat(lines.getResultPosition(1)).isEqualTo(0);
-        assertThat(lines.getResultPosition(2)).isEqualTo(2);
-        assertThat(lines.getResultPosition(3)).isEqualTo(3);
-        assertThat(lines.getResultPosition(4)).isEqualTo(5);
-        assertThat(lines.getResultPosition(5)).isEqualTo(4);
+        assertThat(lines.getResultByPosition(0)).isEqualTo(1);
+        assertThat(lines.getResultByPosition(1)).isEqualTo(0);
+        assertThat(lines.getResultByPosition(2)).isEqualTo(2);
+        assertThat(lines.getResultByPosition(3)).isEqualTo(3);
+        assertThat(lines.getResultByPosition(4)).isEqualTo(5);
+        assertThat(lines.getResultByPosition(5)).isEqualTo(4);
     }
 }

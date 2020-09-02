@@ -28,49 +28,40 @@ public class ResultViewer {
 
     public static final void showSelectResult(Participants participants, Ladder ladder, List<String> results, String target) {
         if (target.equals("all")) {
-            showResultAll(participants, ladder, results);
+            System.out.println(selectAllResult(participants, ladder, results));
             return;
         }
-        showResult(ladder, results, target);
-    }
-
-    public static final void showResult(Ladder ladder, List<String> results, String target) {
         System.out.println(selectResult(ladder, results, target));
     }
 
-    public static final String selectResult(Ladder ladder, List<String> results, String target) {
+    private static final String selectResult(Ladder ladder, List<String> results, String target) {
         return results.get(ladder.getResult(target));
     }
 
-    public static final void showResultAll(Participants participants, Ladder ladder, List<String> results) {
-        System.out.println(selectAllResult(participants, ladder, results));
-    }
-
-    public static final String selectAllResult(Participants participants, Ladder ladder, List<String> results) {
+    private static final String selectAllResult(Participants participants, Ladder ladder, List<String> results) {
         return IntStream.range(0, participants.size())
                 .mapToObj(position -> participants.get(position) + " : " + selectResult(ladder, results, String.valueOf(participants.get(position))))
                 .collect(Collectors.joining("\n"));
 
     }
 
-    public static final String participantsToString(Participants participants) {
+    private static final String participantsToString(Participants participants) {
         return IntStream.range(0, participants.size())
                 .mapToObj(index -> String.format(OUTPUT_FORMAT, participants.get(index)))
                 .collect(Collectors.joining());
     }
 
-    public static final String resultsToString(List<String> results) {
-        return IntStream.range(0, results.size())
-                .mapToObj(index -> String.format(OUTPUT_FORMAT, results.get(index)))
-                .collect(Collectors.joining());
-    }
-
-
-    public static final String lineToString(Line line) {
+    private static final String lineToString(Line line) {
         List<Point> points = line.getPoints();
         return points.stream()
                 .limit(points.size())
                 .map(value -> value.isLeft() ? LINE : NO_LINE)
                 .collect(Collectors.joining(LINE_SHAPE)) + LINE_SHAPE;
+    }
+
+    private static final String resultsToString(List<String> results) {
+        return IntStream.range(0, results.size())
+                .mapToObj(index -> String.format(OUTPUT_FORMAT, results.get(index)))
+                .collect(Collectors.joining());
     }
 }

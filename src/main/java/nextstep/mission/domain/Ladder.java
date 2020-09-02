@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class Ladder {
 
-    private Participants participants;
-    private Lines lines;
+    private final Participants participants;
+    private final Lines lines;
 
     private Ladder(Participants participants, int height) {
         this.participants = participants;
@@ -22,7 +22,7 @@ public class Ladder {
     }
 
     public int getResult(String name) {
-        return lines.getResultPosition(participants.getPosition(name));
+        return lines.getResultByPosition(participants.getPosition(name));
     }
 
     @Override

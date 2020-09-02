@@ -27,11 +27,9 @@ public class Line {
         return new Line(points);
     }
 
-    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
-        for (int i = 1; i < sizeOfPerson - 1; i++) {
-            point = point.next();
-            points.add(point);
-        }
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(RandomPoint.next());
+        points.add(point);
         return point;
     }
 
@@ -40,9 +38,11 @@ public class Line {
         points.add(point);
     }
 
-    private static Point initFirst(List<Point> points) {
-        Point point = Point.first(RandomPoint.next());
-        points.add(point);
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
+        }
         return point;
     }
 

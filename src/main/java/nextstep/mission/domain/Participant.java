@@ -5,9 +5,10 @@ import nextstep.mission.lib.StringUtils;
 import java.util.Objects;
 
 public class Participant {
+
     private static final int NAME_MAX_LENGTH = 5;
 
-    private String name;
+    private final String name;
 
     public Participant(String name) {
         if (StringUtils.isBlank(name)) {

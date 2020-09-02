@@ -1,6 +1,9 @@
 package nextstep.mission.domain;
 
 public class Point {
+    private static final int RIGHT = 1;
+    private static final int LEFT = 1;
+
     private final int index;
     private final Direction direction;
 
@@ -9,36 +12,36 @@ public class Point {
         this.direction = direction;
     }
 
+    public static Point first(Boolean right) {
+        return new Point(0, Direction.first(right));
+    }
+
     public int move() {
         if (direction.isRight()) {
-            return index + 1;
+            return index + RIGHT;
         }
 
         if (direction.isLeft()) {
-            return index - 1;
+            return index - LEFT;
         }
 
         return this.index;
     }
 
     public Point next() {
-        return new Point(index + 1, direction.next());
+        return new Point(index + RIGHT, direction.next());
     }
 
     public Point next(Boolean right) {
-        return new Point(index + 1, direction.next(right));
+        return new Point(index + RIGHT, direction.next(right));
     }
 
     public Point last() {
-        return new Point(index + 1, direction.last());
+        return new Point(index + RIGHT, direction.last());
     }
 
     public boolean isLeft() {
         return direction.isLeft();
-    }
-
-    public static Point first(Boolean right) {
-        return new Point(0, Direction.first(right));
     }
 
     @Override
