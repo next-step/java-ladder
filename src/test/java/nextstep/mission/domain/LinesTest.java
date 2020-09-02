@@ -17,7 +17,6 @@ public class LinesTest {
     void getLine() {
         Lines lines = new Lines(1, 1);
         assertThat(lines.getLine(0)).isNotNull();
-        assertThat(lines.getLine(1)).isNull();
     }
 
     @Test

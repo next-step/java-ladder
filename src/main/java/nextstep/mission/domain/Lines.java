@@ -23,10 +23,6 @@ public class Lines {
     }
 
     public Line getLine(int position) {
-        if (this.lines.size() < position + 1) {
-            return null;
-        }
-
         return this.lines.get(position);
     }
 
