@@ -11,7 +11,7 @@ public class OutputView {
     private static final String TRANSVERSE_BAR = "-----";
     private static final String EMPTY_BAR = "     ";
     private static final String PIPE = "|";
-    public static final int PAD_SIZE = 6;
+    private static final int PAD_SIZE = 6;
 
     private OutputView() {
 
