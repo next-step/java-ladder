@@ -22,7 +22,7 @@ public class Lines {
         return this.lines.size() == height;
     }
 
-    public Line getLine(int position) {
+    private Line getLine(int position) {
         return this.lines.get(position);
     }
 

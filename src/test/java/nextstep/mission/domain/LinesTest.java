@@ -14,12 +14,6 @@ public class LinesTest {
     }
 
     @Test
-    void getLine() {
-        Lines lines = new Lines(1, 1);
-        assertThat(lines.getLine(0)).isNotNull();
-    }
-
-    @Test
     void getLines() {
         Lines lines = new Lines(1, 1);
         assertThat(lines.getLines()).hasSize(1);
