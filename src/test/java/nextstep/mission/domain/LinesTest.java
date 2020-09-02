@@ -20,13 +20,6 @@ public class LinesTest {
     }
 
     @Test
-    void checkHeight() {
-        Lines lines = new Lines(1, 1);
-        assertThat(lines.checkHeight(1)).isTrue();
-        assertThat(lines.checkHeight(2)).isFalse();
-    }
-
-    @Test
     void getResultPosition() {
         Lines lines = new Lines(
                 Arrays.asList(

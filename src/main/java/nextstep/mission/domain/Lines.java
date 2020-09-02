@@ -18,10 +18,6 @@ public class Lines {
         this.lines = lines;
     }
 
-    public boolean checkHeight(int height) {
-        return this.lines.size() == height;
-    }
-
     private Line getLine(int position) {
         return this.lines.get(position);
     }
