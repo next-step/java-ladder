@@ -18,10 +18,9 @@ public class Line {
     }
 
     public static boolean validateNotOverlap(List<Boolean> line) {
-        return !IntStream.range(0, line.size() - 1)
-                .mapToObj(i -> new LineValidateOverlapDto(line.get(i), line.get(i + 1)))
-                .map(LineValidateOverlapDto::isOverlap)
-                .anyMatch(Boolean::booleanValue);
+        return IntStream.range(0, line.size() - 1)
+                .mapToObj(i -> new LineValidateOverlapDto(line.get(i), line.get(i + 1)).isOverlap())
+                .noneMatch(Boolean::booleanValue);
     }
 
     public List<Boolean> getPoints() {

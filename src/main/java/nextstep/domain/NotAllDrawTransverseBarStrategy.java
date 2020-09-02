@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class NotAllDrawTransverseBarStrategy implements TransverseBarStrategy {
 
-    public static final boolean NOT_ALL_DRAW = false;
+    private static final boolean NOT_ALL_DRAW = false;
 
     @Override
     public List<Boolean> draw(int countOfPerson) {

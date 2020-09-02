@@ -6,8 +6,8 @@ import java.util.stream.IntStream;
 
 public class SwitchDrawTransverseBarStrategy implements TransverseBarStrategy {
 
-    public static final int DIVIDE_EVEN = 2;
-    public static final int ZERO = 0;
+    private static final int DIVIDE_EVEN = 2;
+    private static final int ZERO = 0;
 
     @Override
     public List<Boolean> draw(int countOfPerson) {
