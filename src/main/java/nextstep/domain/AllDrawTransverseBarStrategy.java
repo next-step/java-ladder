@@ -1,0 +1,18 @@
+package nextstep.domain;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class AllDrawTransverseBarStrategy implements TransverseBarStrategy {
+
+    public static final boolean ALL_DRAW = true;
+
+    @Override
+    public List<Boolean> draw(int countOfPerson) {
+        return IntStream.range(0, countOfPerson)
+                .mapToObj(count -> ALL_DRAW)
+                .collect(Collectors.toList());
+    }
+
+}
