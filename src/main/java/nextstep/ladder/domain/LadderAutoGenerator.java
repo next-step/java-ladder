@@ -10,4 +10,5 @@ public class LadderAutoGenerator implements LadderGenerator {
     public boolean right() {
         return random.nextBoolean();
     }
+
 }
