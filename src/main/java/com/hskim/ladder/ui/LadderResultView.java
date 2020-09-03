@@ -10,8 +10,6 @@ import java.util.Map;
 public class LadderResultView {
     private static final String LADDER_RESULT_PHRASE = "사다리 결과";
     private static final String REWARD_RESULT_PHRASE = "실행 결과";
-    private static final String USER_ALIGN_FORMAT = "%5s ";
-    private static final String REWARD_ALIGN_FORMAT = "%-5s ";
     private static final String NEW_LINE = System.lineSeparator();
     private static final String COLON = ":";
     private static final String WHITE_SPACE = " ";
@@ -32,10 +30,9 @@ public class LadderResultView {
         System.out.println(NEW_LINE + LADDER_RESULT_PHRASE);
     }
 
-    public void printUserNames(List<String> userNames) {
+    public void printUserNames(String userNameStatus) {
         System.out.print(NEW_LINE);
-        userNames.forEach(userName -> System.out.print(String.format(USER_ALIGN_FORMAT, userName)));
-        System.out.print(NEW_LINE);
+        System.out.println(userNameStatus);
     }
 
     public void printLines(List<List<LadderPoint>> ladder) {
@@ -45,10 +42,8 @@ public class LadderResultView {
         });
     }
 
-    public void printRewards(List<String> rewardNames) {
-        rewardNames.forEach(rewardName -> {
-            System.out.print(String.format(REWARD_ALIGN_FORMAT, rewardName));
-        });
+    public void printRewards(String rewardStatus) {
+        System.out.println(rewardStatus);
         System.out.print(NEW_LINE);
     }
 

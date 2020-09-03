@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class LadderUsers {
     private static final String INVALID_RESULT_USER = "참여자에 포함되어 있지 않은 유저입니다.";
+    private static final String USER_ALIGN_FORMAT = "%5s ";
 
     private final List<User> users;
 
@@ -17,10 +18,11 @@ public class LadderUsers {
         return users.size();
     }
 
-    public List<String> getUserNames() {
+    public String printableUserStatus() {
         return users.stream()
                 .map(User::getName)
-                .collect(Collectors.toList());
+                .map(name -> String.format(USER_ALIGN_FORMAT, name))
+                .collect(Collectors.joining());
     }
 
     public boolean isEqualSize(int size) {

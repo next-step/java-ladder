@@ -67,9 +67,9 @@ public class LadderConsoleSimulator {
 
     public void printInitStatus() {
         ladderResultView.printLadderResultPhrase();
-        ladderResultView.printUserNames(ladderUsers.getUserNames());
+        ladderResultView.printUserNames(ladderUsers.printableUserStatus());
         ladderResultView.printLines(ladder.getAllPoints());
-        ladderResultView.printRewards(rewards.getAllRewardNames());
+        ladderResultView.printRewards(rewards.printableRewardsStatus());
     }
 
     public void simulate() {

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class Rewards {
     private static final String INVALID_REWARDS_SIZE = "유저수 와 보상수가 일치하지 않습니다.";
+    private static final String REWARD_ALIGN_FORMAT = "%-5s ";
 
     private final List<Reward> rewards;
 
@@ -19,10 +20,11 @@ public class Rewards {
         }
     }
 
-    public List<String> getAllRewardNames() {
+    public String printableRewardsStatus() {
         return rewards.stream()
                 .map(Reward::getName)
-                .collect(Collectors.toList());
+                .map(name -> String.format(REWARD_ALIGN_FORMAT, name))
+                .collect(Collectors.joining());
     }
 
     public Reward getRewardByIndex(int index) {
