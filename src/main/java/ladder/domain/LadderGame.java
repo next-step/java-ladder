@@ -16,8 +16,8 @@ public class LadderGame {
         this.players = players;
         this.rows = rows;
         this.ladder = Ladder.builder()
-                .rowNumber(rows)
-                .columnNumber(players.getCountOfPlayers())
+                .rowCount(rows)
+                .columnCount(players.getCountOfPlayers())
                 .build();
     }
 

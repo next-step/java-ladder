@@ -13,13 +13,13 @@ public class Ladder {
     private final List<Row> rows;
 
     @Builder
-    public Ladder(int rowNumber, int columnNumber) {
-       this.rows = initLadder(rowNumber, columnNumber);
+    public Ladder(int rowCount, int columnCount) {
+       this.rows = initLadder(rowCount, columnCount);
     }
 
-    private List<Row> initLadder(int rowNumber, int columnNumber) {
-        return Stream.generate(() -> Row.valueOf(columnNumber))
-                .limit(rowNumber-1)
+    private List<Row> initLadder(int rowCount, int columnCount) {
+        return Stream.generate(() -> Row.valueOf(columnCount))
+                .limit(rowCount-1)
                 .collect(Collectors.toList());
     }
 

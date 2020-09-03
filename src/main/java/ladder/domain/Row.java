@@ -9,9 +9,9 @@ public class Row {
 
     private List<Boolean> lines;
 
-    private Row(int columnNumber) {
+    private Row(int columnCount) {
         lines = Stream.generate(() -> Boolean.FALSE)
-                .limit(columnNumber-1)
+                .limit(columnCount-1)
                 .collect(Collectors.toList());
     }
 

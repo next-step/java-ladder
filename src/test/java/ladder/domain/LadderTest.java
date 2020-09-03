@@ -14,10 +14,10 @@ class LadderTest {
 
     @BeforeAll
     public void setup() {
-        int rowNumber = 3;
-        int columnNumber = 3;
-        ladder = Ladder.builder().rowNumber(rowNumber)
-                .columnNumber(columnNumber)
+        int rowCount = 3;
+        int columnCount = 3;
+        ladder = Ladder.builder().rowCount(rowCount)
+                .columnCount(columnCount)
                 .build();
     }
 
