@@ -24,7 +24,7 @@ public class LadderGame {
     public Ladder makeLadder(DrawRule drawRule) {
         IntStream
                 .range(0, rows)
-                .forEach(line -> draw(line, drawRule));
+                .forEach(row -> draw(row, drawRule));
         return ladder;
     }
 
