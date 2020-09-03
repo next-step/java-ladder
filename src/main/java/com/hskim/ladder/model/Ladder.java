@@ -1,10 +1,10 @@
 package com.hskim.ladder.model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class Ladder {
+    private static final String INVALID_STATE = "사다리가 생성되지 않아 경로를 탐색할 수 없습니다!";
 
     private Lines lines;
     private LadderHeight ladderHeight;
@@ -19,7 +19,7 @@ public class Ladder {
     }
 
     public static class LadderBuilder {
-        private Lines lines;
+        private final Lines lines;
         private LadderHeight ladderHeight;
 
         public LadderBuilder(Lines lines) {
@@ -43,8 +43,12 @@ public class Ladder {
         return lines.getLines();
     }
 
-    public Map<Integer, Integer> getNavigateResult() {
-        return lines.getStartEndPointMap();
+    public RouteInfo<Integer> getNavigateResult() {
+        if (lines.isEmpty()) {
+            throw new IllegalStateException(INVALID_STATE);
+        }
+
+        return RouteInfo.navigateRoutes(lines.getRouteInfoList());
     }
 
     @Override

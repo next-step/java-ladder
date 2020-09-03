@@ -1,16 +1,12 @@
 package com.hskim.ladder.model;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lines {
-    private static final String INVALID_STATE = "사다리가 생성되지 않아 경로를 탐색할 수 없습니다!";
 
     private final List<Line> lines;
 
@@ -32,28 +28,14 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public Map<Integer, Integer> getStartEndPointMap() {
-        if (lines.isEmpty()) {
-            throw new IllegalStateException(INVALID_STATE);
-        }
-
-        List<Map<Integer, Integer>> startEndPointMapList = lines.stream()
-                .map(Line::getStartEndPointMap)
+    public List<RouteInfo<Integer>> getRouteInfoList() {
+        return lines.stream()
+                .map(Line::getRouteInfo)
                 .collect(Collectors.toList());
-
-        Map<Integer, Integer> resultMap = new LinkedHashMap<>();
-
-        for (Map<Integer, Integer> map : startEndPointMapList) {
-            navigate(map.keySet(), map, resultMap);
-        }
-
-        return resultMap;
     }
 
-    private void navigate(Set<Integer> keySet, Map<Integer, Integer> target, Map<Integer, Integer> resultMap) {
-        for (Integer integer : keySet) {
-            resultMap.put(integer, target.get(resultMap.getOrDefault(integer, integer)));
-        }
+    public boolean isEmpty() {
+        return lines.isEmpty();
     }
 
     @Override

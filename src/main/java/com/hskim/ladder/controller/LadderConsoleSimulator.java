@@ -8,6 +8,7 @@ import com.hskim.ladder.model.Lines;
 import com.hskim.ladder.model.RandomRowIndexMaker;
 import com.hskim.ladder.model.Reward;
 import com.hskim.ladder.model.Rewards;
+import com.hskim.ladder.model.RouteInfo;
 import com.hskim.ladder.model.RowIndexMaker;
 import com.hskim.ladder.model.User;
 import com.hskim.ladder.ui.LadderInputView;
@@ -73,13 +74,14 @@ public class LadderConsoleSimulator {
     }
 
     public void simulate() {
-        Map<Integer, Integer> navigateResult = ladder.getNavigateResult();
+        RouteInfo<Integer> navigateResult = ladder.getNavigateResult();
 
-        Map<User, Reward> userRewardMap = navigateResult.keySet()
+        Map<User, Reward> userRewardMap = navigateResult.getRouteMap()
+                .keySet()
                 .stream()
                 .collect(LinkedHashMap::new,
                         (map, key) -> map.put(ladderUsers.getUserByIndex(key),
-                                rewards.getRewardByIndex(navigateResult.get(key))),
+                                rewards.getRewardByIndex(navigateResult.getValue(key))),
                         Map::putAll);
 
         ladderGameResult = new LadderGameResult(userRewardMap);

@@ -2,7 +2,6 @@ package com.hskim.ladder.model;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -45,14 +44,16 @@ public class Line {
         ladderPoints.add(new LadderPoint(Point.COLUMN, nextPoint, Point.COLUMN));
     }
 
-    public Map<Integer, Integer> getStartEndPointMap() {
+    public RouteInfo<Integer> getRouteInfo() {
         List<LadderPoint> columnList = ladderPoints.stream()
                 .filter(LadderPoint::isColumn)
                 .collect(Collectors.toList());
 
-        return IntStream.range(0, columnList.size())
-                .boxed()
-                .collect(Collectors.toMap(key -> key, key -> getEndPoint(columnList.get(key), key)));
+        return new RouteInfo<>(
+                IntStream.range(0, columnList.size())
+                        .boxed()
+                        .collect(Collectors.toMap(key -> key, key -> getEndPoint(columnList.get(key), key)))
+        );
     }
 
     private Integer getEndPoint(LadderPoint ladderPoint, Integer startPoint) {
@@ -60,7 +61,7 @@ public class Line {
             return startPoint - 1;
         }
 
-        if(ladderPoint.isRightDirection()) {
+        if (ladderPoint.isRightDirection()) {
             return startPoint + 1;
         }
 
