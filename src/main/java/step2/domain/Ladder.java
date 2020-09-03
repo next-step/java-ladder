@@ -1,14 +1,20 @@
 package step2.domain;
 
-public class Ladder {
-	private final User user;
-	private final Line line;
+import java.util.ArrayList;
+import java.util.List;
 
-	public Ladder(User user) {
-		this.user = user;
-		this.line = new Line();
+public class Ladder {
+	private final List<Line> lines;
+
+	public Ladder(List<Line> lines) {
+		this.lines = lines;
 	}
 
-
-
+	public static Ladder makeLadder(int countOfPerson, int height) {
+		List<Line> lines = new ArrayList<>();
+		for (int i = 0; i < height; i++) {
+			lines.add(new Line(countOfPerson));
+		}
+		return new Ladder(lines);
+	}
 }

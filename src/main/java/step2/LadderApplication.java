@@ -1,6 +1,6 @@
 package step2;
 
-import step2.domain.Ladders;
+import step2.domain.Game;
 import step2.view.InputView;
 
 public class LadderApplication {
@@ -8,7 +8,7 @@ public class LadderApplication {
 		String[] usersName = InputView.inputUsersName();
 		int ladderHeight = InputView.inputLadderHeight();
 
-		//Ladders ladderList = Ladders.createLadders(usersName, ladderHeight);
+		Game.start(usersName, ladderHeight);
 
 
 	}

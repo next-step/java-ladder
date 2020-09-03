@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 public class Game {
 
-	public void gameStart(String[] names, int height) {
+	public static void start(String[] names, int height) {
 		List<User> users = Arrays.stream(names)
 				.map(User::new)
 				.collect(Collectors.toList());
 
-		Ladders ladders = Ladders.createLadders(users);
+		Ladder ladder = Ladder.makeLadder(users.size(), height);
 	}
 }
