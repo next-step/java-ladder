@@ -1,5 +1,6 @@
 package com.hskim.ladder.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -11,7 +12,7 @@ public class LadderUsers {
     private final List<User> users;
 
     public LadderUsers(List<User> users) {
-        this.users = users;
+        this.users = Collections.unmodifiableList(users);
     }
 
     public int getUserNumber() {

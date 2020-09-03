@@ -1,5 +1,6 @@
 package com.hskim.ladder.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +12,7 @@ public class Rewards {
 
     public Rewards(List<Reward> rewards, LadderUsers ladderUsers) {
         validateSize(rewards, ladderUsers);
-        this.rewards = rewards;
+        this.rewards = Collections.unmodifiableList(rewards);
     }
 
     private void validateSize(List<Reward> rewards, LadderUsers ladderUsers) {
