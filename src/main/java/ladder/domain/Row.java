@@ -1,17 +1,18 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Row {
 
     private List<Boolean> lines;
 
     private Row(int columnNumber) {
-        lines = new ArrayList<>();
-        IntStream.range(0, columnNumber-1)
-                .forEach(i -> lines.add(Boolean.FALSE));
+        lines = Stream.generate(() -> Boolean.FALSE)
+                .limit(columnNumber-1)
+                .collect(Collectors.toList());
     }
 
     public static Row valueOf(int column) {
