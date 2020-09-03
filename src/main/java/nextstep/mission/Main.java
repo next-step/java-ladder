@@ -1,6 +1,7 @@
 package nextstep.mission;
 
 import nextstep.mission.domain.Ladder;
+import nextstep.mission.view.LadderPreset;
 import nextstep.mission.domain.Participants;
 import nextstep.mission.view.InputScanner;
 import nextstep.mission.view.ResultViewer;
@@ -23,7 +24,9 @@ public class Main {
         System.out.println("사다리 결과");
         System.out.println();
 
-        ResultViewer.showLadder(participants, ladder, results);
+        ResultViewer resultViewer = ResultViewer.make(LadderPreset.of(participants, ladder, results));
+
+        resultViewer.showLadder();
 
         String selectCondition = "";
 
@@ -34,7 +37,7 @@ public class Main {
             System.out.println();
             System.out.println("실행 결과");
 
-            ResultViewer.showSelectResult(participants, ladder, results, selectCondition);
+            resultViewer.showSelectResult(selectCondition);
         }
     }
 }

@@ -1,88 +1,55 @@
 package nextstep.mission.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Line {
-    private List<Point> points;
+    private final List<Point> points;
 
     public Line(List<Point> points) {
-        validate(points);
         this.points = points;
     }
 
-    public Line(int size) {
-        this(createPoints(size));
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     public List<Point> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
-    private static List<Point> createPoints(int size) {
-        List<Point> result = new ArrayList<>();
-        boolean value = false;
+    public static Line init(int sizeOfPerson) {
+        List<Point> points = new ArrayList<>();
+        Point point = initFirst(points);
+        point = initBody(sizeOfPerson, points, point);
+        initLast(points, point);
+        return new Line(points);
+    }
 
-        for (int index = 0; index < size; index++) {
-            if (index != 0) {
-                value = RandomPoint.next(value);
-            }
+    private static Point initFirst(List<Point> points) {
+        Point point = Point.first(RandomPoint.next());
+        points.add(point);
+        return point;
+    }
 
-            result.add(Point.of(value));
+    private static void initLast(List<Point> points, Point point) {
+        point = point.last();
+        points.add(point);
+    }
+
+    private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
+        for (int i = 1; i < sizeOfPerson - 1; i++) {
+            point = point.next();
+            points.add(point);
         }
-
-        return result;
-    }
-
-    private void validate(List<Point> points) {
-        IntStream.range(0, points.size() - 1)
-                .forEach(index -> validPoint(points.get(index), points.get(index + 1)));
-    }
-
-    private void validPoint(Point point1, Point point2) {
-        if (point1.equals(Point.of(true)) && point2.equals(Point.of(true))) {
-            throw new IllegalArgumentException("선은 겹칠수 없습니다.");
-        }
-    }
-
-    public boolean checkSize(int size) {
-        return this.points.size() == size;
-    }
-
-    public int move(int currentPosition) {
-        return getPoint(currentPosition).move(getPoint(currentPosition + 1));
-    }
-
-    public Point getPoint(int position) {
-        if (position < 0 || points.size() <= position)
-            return null;
-
-        return points.get(position);
-    }
-
-    public int nextPosition(int currentPosition) {
-        return currentPosition + move(currentPosition);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(points, line.points);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(points);
+        return point;
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(points.toArray());
+        return "Line{" +
+                "points=" + points +
+                '}';
     }
-
 }

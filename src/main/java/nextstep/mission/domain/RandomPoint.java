@@ -8,11 +8,7 @@ public class RandomPoint {
 
     private RandomPoint() {}
 
-    public static boolean next(boolean value) {
-        if (value) {
-            return false;
-        }
-
+    public static boolean next() {
         return DICE.nextBoolean();
     }
 }

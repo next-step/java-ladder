@@ -1,11 +1,13 @@
 package nextstep.mission.domain;
 
+import nextstep.mission.exception.NotFoundException;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Participants {
 
-    private List<Participant> participants;
+    private final List<Participant> participants;
 
     public Participants(List<Participant> participants) {
         this.participants = participants;
@@ -23,7 +25,7 @@ public class Participants {
         return IntStream.range(0, participants.size())
                 .filter(index -> participants.get(index).equals(new Participant(name)))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("해당 하는 Participant이 존재하지 않습니다."));
+                .orElseThrow(() -> new NotFoundException("해당 하는 Participant가 존재하지 않습니다."));
     }
 
     public boolean contains(String name) {

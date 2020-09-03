@@ -1,6 +1,5 @@
 package nextstep.mission.view;
 
-import nextstep.mission.domain.Ladder;
 import nextstep.mission.domain.Line;
 import nextstep.mission.domain.Participants;
 import nextstep.mission.domain.Point;
@@ -16,61 +15,65 @@ public class ResultViewer {
     public static final String LINE_SHAPE = "|";
     public static final String OUTPUT_FORMAT = "%6s";
 
-    public static final void showLadder(Participants participants, Ladder ladder, List<String> results) {
-        System.out.println(participantsToString(participants));
+    private final LadderPreset ladderPreset;
+    private final LadderMap ladderMap;
 
-        for (Line line : ladder.getLines()) {
+    private ResultViewer(LadderPreset ladderPreset) {
+        this.ladderPreset = ladderPreset;
+        this.ladderMap = LadderMap.make(ladderPreset);
+    }
+
+    public static final ResultViewer make(LadderPreset ladderPreset) {
+        return new ResultViewer(ladderPreset);
+    }
+
+    public final void showLadder() {
+        System.out.println(participantsToString(ladderPreset.getParticipants()));
+
+        for (Line line : ladderPreset.getLadder().getLines()) {
             System.out.println(ResultViewer.lineToString(line));
         }
 
-        System.out.println(resultsToString(results));
+        System.out.println(resultsToString(ladderPreset.getResults()));
     }
 
-    public static final void showSelectResult(Participants participants, Ladder ladder, List<String> results, String target) {
+    public final void showSelectResult(String target) {
         if (target.equals("all")) {
-            showResultAll(participants, ladder, results);
+            System.out.println(selectAllResult(ladderPreset, ladderMap));
             return;
         }
-        showResult(ladder, results, target);
+        System.out.println(selectResult(ladderMap, target));
     }
 
-    public static final void showResult(Ladder ladder, List<String> results, String target) {
-        System.out.println(selectResult(ladder, results, target));
+    private static final String selectResult(LadderMap ladderMap, String target) {
+        return ladderMap.getResult(target);
     }
 
-    public static final String selectResult(Ladder ladder, List<String> results, String target) {
-        return results.get(ladder.getResult(target));
-    }
-
-    public static final void showResultAll(Participants participants, Ladder ladder, List<String> results) {
-        System.out.println(selectAllResult(participants, ladder, results));
-    }
-
-    public static final String selectAllResult(Participants participants, Ladder ladder, List<String> results) {
+    private static final String selectAllResult(LadderPreset ladderPreset, LadderMap ladderMap) {
+        Participants participants = ladderPreset.getParticipants();
         return IntStream.range(0, participants.size())
-                .mapToObj(position -> participants.get(position) + " : " + selectResult(ladder, results, String.valueOf(participants.get(position))))
+                .mapToObj(position -> participants.get(position) + " : " + selectResult(ladderMap, String.valueOf(participants.get(position))))
                 .collect(Collectors.joining("\n"));
 
     }
 
-    public static final String participantsToString(Participants participants) {
+    private static final String participantsToString(Participants participants) {
         return IntStream.range(0, participants.size())
                 .mapToObj(index -> String.format(OUTPUT_FORMAT, participants.get(index)))
                 .collect(Collectors.joining());
     }
 
-    public static final String resultsToString(List<String> results) {
-        return IntStream.range(0, results.size())
-                .mapToObj(index -> String.format(OUTPUT_FORMAT, results.get(index)))
-                .collect(Collectors.joining());
-    }
-
-
-    public static final String lineToString(Line line) {
+    private static final String lineToString(Line line) {
         List<Point> points = line.getPoints();
         return points.stream()
                 .limit(points.size())
                 .map(value -> value.isLeft() ? LINE : NO_LINE)
                 .collect(Collectors.joining(LINE_SHAPE)) + LINE_SHAPE;
+    }
+
+    private static final String resultsToString(List<String> results) {
+        return IntStream.range(0, results.size())
+                .mapToObj(index -> String.format(OUTPUT_FORMAT, results.get(index)))
+                .collect(Collectors.joining());
     }
 }
