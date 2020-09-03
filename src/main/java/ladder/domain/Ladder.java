@@ -2,15 +2,15 @@ package ladder.domain;
 
 import lombok.Builder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ladder {
     private static final int FIRST_ROW = 0;
 
-    private List<Row> rows;
+    private final List<Row> rows;
 
     @Builder
     public Ladder(int rowNumber, int columnNumber) {
@@ -18,10 +18,9 @@ public class Ladder {
     }
 
     private List<Row> initLadder(int rowNumber, int columnNumber) {
-        List<Row> rows = new ArrayList<>();
-        IntStream.range(0, rowNumber)
-                .forEach(line -> rows.add(Row.valueOf(columnNumber)));
-        return rows;
+        return Stream.generate(() -> Row.valueOf(columnNumber))
+                .limit(rowNumber-1)
+                .collect(Collectors.toList());
     }
 
     public void drawLine(int rowPosition, int columnPosition) {
