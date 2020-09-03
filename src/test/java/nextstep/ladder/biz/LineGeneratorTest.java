@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import nextstep.ladder.biz.LineGenerator;
 import org.junit.jupiter.api.Test;
 
 public class LineGeneratorTest {
@@ -20,31 +19,31 @@ public class LineGeneratorTest {
 
   @Test
   void nextBoolean() {
-    assertThat(LineGenerator.nextBoolean(true)).isEqualTo(false);
+    assertThat(LineGenerator.nextPoint(Point.of(true), 1)).isEqualTo(Point.of(false, 1));
   }
 
   @Test
   void leastOneIsTrue() {
-    List<Boolean> bridges = Arrays.asList(false, false);
-    LineGenerator.leastOneIsTrue(bridges);
+    List<Point> line = Arrays.asList(Point.of(false, 0), Point.of(false, 1));
+    LineGenerator.leastOneIsTrue(line);
 
-    assertThat(bridges)
-        .isIn(Arrays.asList(true, false),
-            Arrays.asList(false, true));
+    assertThat(line)
+        .isIn(Arrays.asList(Point.of(true, 0), Point.of(false, 1)),
+            Arrays.asList(Point.of(false, 0), Point.of(true, 1)));
   }
 
   @Test
   void createBooleansBy2People() {
     assertThat(LineGenerator.form(2))
-        .isIn(Arrays.asList(true),
-            Arrays.asList(false));
+        .isIn(Arrays.asList(Point.of(true, 0)),
+            Arrays.asList(Point.of(false, 0)));
   }
 
   @Test
   void createBooleansBy3People() {
-    List<Boolean> bridges = LineGenerator.form(3);
-    assertThat(bridges)
-        .isIn(Arrays.asList(true, false),
-            Arrays.asList(false, true));
+    List<Point> line = LineGenerator.form(3);
+    assertThat(line)
+        .isIn(Arrays.asList(Point.of(true, 0), Point.of(false, 1)),
+            Arrays.asList(Point.of(false, 0), Point.of(true, 1)));
   }
 }

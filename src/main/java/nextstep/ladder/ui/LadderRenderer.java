@@ -1,9 +1,13 @@
 package nextstep.ladder.ui;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import nextstep.ladder.Players;
+import nextstep.ladder.Prizes;
 import nextstep.ladder.biz.Ladder;
 import nextstep.ladder.biz.Line;
+import nextstep.ladder.biz.Point;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderRenderer implements Renderer {
 
@@ -11,18 +15,21 @@ public class LadderRenderer implements Renderer {
   private static final String BRIDGE = "--------";
   private static final String PIER = "|";
 
-  private List<String> playerNames;
+  private Players players;
   private Ladder ladder;
+  private Prizes prizes;
 
-  public LadderRenderer(List<String> playerNames, Ladder ladder) {
-    this.playerNames = playerNames;
+  public LadderRenderer(Players players, Ladder ladder, Prizes prizes) {
+    this.players = players;
     this.ladder = ladder;
+    this.prizes = prizes;
   }
 
   @Override
   public void render() {
-    renderPlayers(playerNames);
+    renderPlayers(players);
     renderLadder(ladder);
+    renderPrizes(prizes);
   }
 
   public void renderLadder(Ladder ladder) {
@@ -31,24 +38,32 @@ public class LadderRenderer implements Renderer {
     }
   }
 
-  private void renderLadder(Line points) {
-    System.out.printf("%4s%s\n", "", pointToBridge(points.getLine()));
+  private void renderLadder(Line line) {
+    System.out.printf("%4s%s\n", "", pointToBridge(line.getPoints()));
   }
 
-  private String pointToBridge(List<Boolean> points) {
+  private String pointToBridge(List<Point> points) {
     return points.stream()
-        .map(this::toBridge)
-        .collect(Collectors.joining(PIER, PIER, PIER));
+            .map(this::toBridge)
+            .collect(Collectors.joining(PIER, PIER, PIER));
   }
 
-  private String toBridge(boolean hasBridge) {
-    return hasBridge ? BRIDGE : AIR;
+  private String toBridge(Point point) {
+    return point.hasPoint() ? BRIDGE : AIR;
   }
 
-  private void renderPlayers(List<String> playerNames) {
-    System.out.println(playerNames.stream()
-        .map(LadderRenderer::center)
-        .collect(Collectors.joining("", "\n", "")));
+  private void renderPlayers(Players playerNames) {
+    System.out.println(playerNames.nameAsList().stream()
+            .map(LadderRenderer::center)
+            .collect(Collectors.joining("", "\n", "")));
+  }
+
+  private void renderPrizes(Prizes prizes) {
+    System.out.println(
+            prizes.nameToList().stream()
+                    .map(LadderRenderer::center)
+                    .collect(Collectors.joining()));
+
   }
 
   static String center(String text) {

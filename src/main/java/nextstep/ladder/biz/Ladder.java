@@ -15,14 +15,19 @@ public class Ladder {
     return Collections.unmodifiableList(lines);
   }
 
-  public int ladderHeight() {
+  int ladderHeight() {
     return lines.size();
+  }
+
+  public Chessmen play(Chessmen chessmen) {
+    return lines.stream()
+            .reduce(chessmen, Chessmen::cast, (c1, c2) -> c2);
   }
 
   @Override
   public String toString() {
     return "Ladder{" +
-        "lines=" + lines +
-        '}';
+            "lines=" + lines +
+            '}';
   }
 }

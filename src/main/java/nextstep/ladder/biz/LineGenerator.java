@@ -10,12 +10,12 @@ public class LineGenerator {
   public static final int TWO_PERSON = 2;
   private static final Random random = new Random();
 
-  public static List<Boolean> form(int countOfPerson) {
+  public static List<Point> form(int countOfPerson) {
     if (isTwoPerson(countOfPerson)) {
-      return Arrays.asList(nextBoolean(false));
+      return Arrays.asList(nextPoint(Point.of(false), 0));
     }
 
-    List<Boolean> points = createPoints(countOfPerson);
+    List<Point> points = createPoints(countOfPerson);
     leastOneIsTrue(points);
 
     return points;
@@ -25,30 +25,30 @@ public class LineGenerator {
     return countOfPerson == TWO_PERSON;
   }
 
-  private static List<Boolean> createPoints(int countOfPerson) {
+  private static List<Point> createPoints(int countOfPerson) {
     int bridgeOfCount = countOfPerson - 1;
-    List<Boolean> points = new ArrayList<>();
-    boolean previous = false;
+    List<Point> line = new ArrayList<>();
+    Point previous = Point.of(false);
     for (int i = 0; i < bridgeOfCount; i++) {
-      previous = nextBoolean(previous);
-      points.add(previous);
+      previous = nextPoint(previous, i);
+      line.add(previous);
     }
 
-    return points;
+    return line;
   }
 
-  static boolean nextBoolean(boolean previous) {
-    if (previous) {
-      return false;
+  static Point nextPoint(Point previous, int position) {
+    if (previous.hasPoint()) {
+      return Point.of(false, position);
     }
-    return random.nextBoolean();
+    return Point.of(random.nextBoolean(), position);
   }
 
-  static void leastOneIsTrue(List<Boolean> bridges) {
-    if (bridges.stream().noneMatch(b -> b)) {
+  static void leastOneIsTrue(List<Point> bridges) {
+    if (bridges.stream().noneMatch(Point::hasPoint)) {
       int index = random.ints(0, bridges.size())
           .findFirst().getAsInt();
-      bridges.set(index, true);
+      bridges.set(index, Point.of(true, index));
     }
   }
 }
