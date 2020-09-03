@@ -1,23 +1,16 @@
-#3단계 - 사다리(게임 실행)
+#4단계 - 사다리(리팩토링)
 
-## 기능 요구사항
-* 사다리 실행 결과를 출력해야 한다.
-* 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
+## 리팩토링 목표
+1. 도메인 객체를 직접 VIEW에서 접근해서 출력하는 부분을 개선해 본다. (만들어진 게임 출력부분은 어쩔수 없을듯..?)
+    * 출력용 DTO 생성
+    * 디미터의 법칙을 어기는 것 처럼 보이는 부분을 나름의 기준대로 정리
+2. TestFixture 클래스를 사용해서 테스트 코드에 쓰기위해서 생성자를 public으로 설정 했던 부분 없애기
+3. do-while문 while문으로 교체
 
-## 프로그래밍 요구사항
-* 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
-* 규칙 6: 모든 엔티티를 작게 유지한다.
-* 규칙 7: 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.
 
 ## Feature List
-0. 패키지 명 변경 (step2 -> laddergame)
-1. 코드리뷰 사항 반영
-    * enum ordinal 사용 제거
-    * 인터페이스의 default 메소드로 빠져있던 Predicate 메소드 구현체로 이동 (코드 읽을때 왔다 갔다 거림 최소화)
-    * for문 썼다가 IntStream 썼다가 한 로직 IntStream으로 통일
-2. Prizes 패키지 작성
-    * 생성 할 때 Participants의 수와 사다리 타기 결과의 수가 동일한지 체크 필요
-3. Ladder, Line에 게임 진행에 필요한 메소드 추가
-4. View 클래스에 사다리 타기 결과 입력받는 메소드와, 게임 진행 메소드를 추가
-
+1. GameCriteria, Ladder를 멤버 변수로 갖는 LadderGame 도메인 객체 작성 (기존 main메소드의 클래스였던 LadderGame은 Main으로 명칭 변경)
+2. LadderGame의 게임 결과를 담는 DTO인 GameResult 작성
+3. OutputHere에서 GameCriteria와 Ladder를 직접 쓰던 부분을 LadderGame(만들어진 내용 출력 부분)과 GameResult(사다리 타기 당첨자 출력부분)을 사용하게 변경
+4. 나머지 3단계 코드리뷰 반영 (TestFixture를 활용해서 Line 클래스 default 생성자 유지, do-while문 while문으로 변경)
 

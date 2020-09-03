@@ -1,6 +1,6 @@
 package laddergame.domain.ladder;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.line.Line;
 import laddergame.domain.participant.Participant;
 
@@ -19,7 +19,7 @@ public class Ladder {
 		return lines;
 	}
 
-	public Coordinate playGame(Participant participant) {
+	public Coordinate getParticipantFinalCoordinate(Participant participant) {
 		Coordinate nowCoordinate = participant.getStartCoordinate();
 		for (Line line : lines) {
 			nowCoordinate = line.getNextLineCoordinate(nowCoordinate);

@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.coordinate;
 
 import laddergame.exception.LadderGameException;
 

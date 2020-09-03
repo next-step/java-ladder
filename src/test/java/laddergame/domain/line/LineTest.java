@@ -2,7 +2,7 @@ package laddergame.domain.line;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.direction.Direction;
 import laddergame.domain.point.Point;
 import laddergame.exception.LadderGameException;
@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static laddergame.domain.Coordinate.LINE_START_COORDINATE;
+import static laddergame.domain.coordinate.Coordinate.LINE_START_COORDINATE;
 
 class LineTest {
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.direction.Direction;
 import laddergame.domain.direction.strategy.DiceGenerateStrategy;
 import laddergame.domain.participant.Participant;
@@ -36,8 +36,7 @@ class LineGeneratorTest {
 	@Test
 	void exceptionTest() {
 		Participant solo = new Participant("solo", new Coordinate(0));
-		Participants soloParticipants = new Participants(List.of(solo));
-		assertThrows(LadderGameException.class, () -> lineGenerator.generateLine(soloParticipants));
+		assertThrows(LadderGameException.class, () -> lineGenerator.generateLine(new Participants(List.of(solo))));
 	}
 
 	static Stream<Arguments> provide() {

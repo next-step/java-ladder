@@ -1,10 +1,10 @@
 package laddergame;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.direction.Direction;
 import laddergame.domain.point.Point;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 

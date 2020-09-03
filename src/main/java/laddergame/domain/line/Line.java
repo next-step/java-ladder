@@ -1,6 +1,6 @@
 package laddergame.domain.line;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.point.Point;
 import laddergame.exception.LadderGameException;
 
@@ -20,7 +20,7 @@ public class Line {
 	}
 
 	//ForTest
-	public Line(LinkedList<Point> points) {
+	Line(LinkedList<Point> points) {
 		validatePoints(points);
 		this.points = points;
 	}

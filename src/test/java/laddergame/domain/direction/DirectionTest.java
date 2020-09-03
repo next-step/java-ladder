@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 
 import java.util.stream.Stream;
 
