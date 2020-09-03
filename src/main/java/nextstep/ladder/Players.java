@@ -5,6 +5,7 @@ import nextstep.ladder.biz.Chessmen;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
   private static final Player ALL_PLAYERS = new Player("all", -1);
@@ -49,6 +50,13 @@ public class Players {
 
   public boolean existPlayer(Player player) {
     return players.contains(player);
+  }
+
+  public static Players mapToPlayers(List<String> playerNames) {
+    return new Players(
+            IntStream.range(0, playerNames.size())
+                    .mapToObj(i -> new Player(playerNames.get(i), i))
+                    .collect(Collectors.toList()));
   }
 
   @Override

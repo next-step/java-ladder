@@ -1,7 +1,5 @@
 package nextstep.ladder;
 
-import nextstep.ladder.biz.*;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -12,7 +10,7 @@ class LadderGameTest {
 
   @Test
   void mapToPlayer() {
-    Players players = LadderGame.mapToPlayers(Arrays.asList("one", "two", "three"));
+    Players players = Players.mapToPlayers(Arrays.asList("one", "two", "three"));
 
     assertThat(players).isEqualTo(
             new Players(

@@ -2,8 +2,6 @@ package nextstep.ladder.biz;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.BinaryOperator;
 
 public class Ladder {
 
@@ -23,7 +21,7 @@ public class Ladder {
 
   public Chessmen play(Chessmen chessmen) {
     return lines.stream()
-            .reduce(chessmen, (chessmen1, line) -> line.cast(chessmen1), (c1, c2) -> c2);
+            .reduce(chessmen, Chessmen::cast, (c1, c2) -> c2);
   }
 
   @Override

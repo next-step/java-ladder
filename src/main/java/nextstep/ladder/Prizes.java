@@ -5,6 +5,7 @@ import nextstep.ladder.biz.Chessmen;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Prizes {
 
@@ -25,6 +26,13 @@ public class Prizes {
       throw new IllegalArgumentException("말의 위치가 잘 못 되었습니다.");
     }
     return prizes.get(chessmen.getLocation());
+  }
+
+  public static Prizes mapToPrizes(List<String> prizes) {
+    return new Prizes(
+            IntStream.range(0, prizes.size())
+                    .mapToObj(i -> new Prize(prizes.get(i), i))
+                    .collect(Collectors.toList()));
   }
 
   @Override

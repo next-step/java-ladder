@@ -7,10 +7,8 @@ import nextstep.ladder.ui.LadderRenderer;
 import nextstep.ladder.ui.ViewInput;
 import nextstep.ladder.ui.ViewOutput;
 
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderGame {
 
@@ -22,14 +20,7 @@ public class LadderGame {
   }
 
   private Players responsePlayer() {
-    return mapToPlayers(viewInput.requestPlayerNames());
-  }
-
-  public static Players mapToPlayers(List<String> playerNames) {
-    return new Players(
-            IntStream.range(0, playerNames.size())
-                    .mapToObj(i -> new Player(playerNames.get(i), i))
-                    .collect(Collectors.toList()));
+    return Players.mapToPlayers(viewInput.requestPlayerNames());
   }
 
   private int responseLadderHeight() {
@@ -37,14 +28,7 @@ public class LadderGame {
   }
 
   private Prizes responsePrizes(int countOfPrize) {
-    return mapToPrizes(viewInput.requestPrizes(countOfPrize));
-  }
-
-  public static Prizes mapToPrizes(List<String> prizes) {
-    return new Prizes(
-            IntStream.range(0, prizes.size())
-                    .mapToObj(i -> new Prize(prizes.get(i), i))
-                    .collect(Collectors.toList()));
+    return Prizes.mapToPrizes(viewInput.requestPrizes(countOfPrize));
   }
 
   private void announce(Players players, Ladder ladder, Prizes prizes) {

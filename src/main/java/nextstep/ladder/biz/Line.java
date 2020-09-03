@@ -18,7 +18,7 @@ public class Line {
     return points;
   }
 
-  public Line selectableLine(Chessmen chessmen) {
+  public Line castingLine(Chessmen chessmen) {
     if (chessmen.getLocation() == 0) {
       return new Line(points.subList(0, 1));
     }
@@ -28,14 +28,6 @@ public class Line {
     }
 
     return new Line(points.subList(chessmen.getLocation() - 1, chessmen.getLocation() + 1));
-  }
-
-  public Chessmen cast(Chessmen chessmen) {
-    return selectableLine(chessmen).getPoints().stream()
-            .filter(Point::hasPoint)
-            .findFirst()
-            .map(chessmen::move)
-            .orElse(chessmen);
   }
 
   @Override

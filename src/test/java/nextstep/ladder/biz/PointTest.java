@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PointTest {
 
   @Test
-  void create() {
+  void isEqual() {
     assertThat(Point.of(true)).isEqualTo(Point.of(true));
   }
 

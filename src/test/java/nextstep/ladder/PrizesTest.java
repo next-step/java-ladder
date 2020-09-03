@@ -33,4 +33,10 @@ class PrizesTest {
   void prizeOf() {
     assertThat(prizes.prizeOf(Chessmen.of(new Player("name0", 0)))).isEqualTo(new Prize("1st", 0));
   }
+
+  @Test
+  void mapToPrizes() {
+    assertThat(Prizes.mapToPrizes(Arrays.asList("1st", "2nd", "3rd")))
+            .isEqualTo(prizes);
+  }
 }

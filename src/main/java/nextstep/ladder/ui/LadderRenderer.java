@@ -1,15 +1,13 @@
 package nextstep.ladder.ui;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import nextstep.ladder.Player;
 import nextstep.ladder.Players;
-import nextstep.ladder.Prize;
 import nextstep.ladder.Prizes;
 import nextstep.ladder.biz.Ladder;
 import nextstep.ladder.biz.Line;
 import nextstep.ladder.biz.Point;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderRenderer implements Renderer {
 

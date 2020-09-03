@@ -45,7 +45,7 @@ public class LineGenerator {
   }
 
   static void leastOneIsTrue(List<Point> bridges) {
-    if (bridges.stream().noneMatch(b -> b.hasPoint())) {
+    if (bridges.stream().noneMatch(Point::hasPoint)) {
       int index = random.ints(0, bridges.size())
           .findFirst().getAsInt();
       bridges.set(index, Point.of(true, index));
