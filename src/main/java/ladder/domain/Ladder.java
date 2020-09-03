@@ -35,7 +35,7 @@ public class Ladder {
         return Collections.unmodifiableList(rows);
     }
 
-    public int getSizeOfColumn() {
+    public int getCountOfColumn() {
         return rows.get(FIRST_ROW).getSize();
     }
 

@@ -1,7 +1,7 @@
 package ladder.controller;
 
 import ladder.domain.*;
-import ladder.domain.rule.AlwaysDrawRule;
+import ladder.domain.rule.RandomDrawRule;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -14,7 +14,7 @@ public class LadderController {
                 .players(players)
                 .rows(InputView.inputLineCount())
                 .build();
-        Ladder ladder = ladderGame.makeLadder(new AlwaysDrawRule());
+        Ladder ladder = ladderGame.makeLadder(new RandomDrawRule());
 
         ResultView.printPlayers(players);
         ResultView.printLadder(ladder);

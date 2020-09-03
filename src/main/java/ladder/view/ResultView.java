@@ -25,7 +25,7 @@ public class ResultView {
 
     public static void printLadder(Ladder ladder) {
         StringBuilder output = new StringBuilder();
-        int sizeOfColumn = ladder.getSizeOfColumn();
+        int sizeOfColumn = ladder.getCountOfColumn();
 
         ladder.getRows()
                 .forEach(row -> {
