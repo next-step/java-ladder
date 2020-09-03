@@ -3,6 +3,7 @@ package ladder.domain;
 import lombok.Builder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -31,7 +32,7 @@ public class Ladder {
     }
 
     public List<Row> getRows() {
-        return rows;
+        return Collections.unmodifiableList(rows);
     }
 
     public int getSizeOfColumn() {
