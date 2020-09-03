@@ -1,12 +1,11 @@
 package laddergame.view;
 
-import laddergame.domain.Coordinate;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.participant.Participant;
-import laddergame.domain.participant.Participants;
 import laddergame.domain.point.Point;
-import laddergame.domain.result.Prizes;
 import laddergame.dto.GameCriteria;
+import laddergame.dto.GameResult;
+import laddergame.domain.LadderGame;
 
 import java.util.stream.Collectors;
 
@@ -24,43 +23,36 @@ public class OutputHere {
 
 	private OutputHere() {}
 
-	public static void printPreparedGame(GameCriteria gameCriteria, Ladder ladder) {
+	public static void printPreparedGame(LadderGame ladderGame) {
 		System.out.println(PREPARED_RESULT_MESSAGE);
-		printParticipantsNames(gameCriteria.getParticipants());
-		printLadder(ladder);
-		printPreparedResult(gameCriteria.getPrizes());
-
+		printParticipantsNames(ladderGame.getGameCriteria());
+		printLadder(ladderGame.getLadder());
+		printPreparedResult(ladderGame.getGameCriteria());
 	}
 
-	public static void printLadderGameResult(String name, GameCriteria gameCriteria, Ladder ladder) {
+	public static void printLadderGameResult(String name, GameResult gameResult) {
 		System.out.println(PLAY_RESULT_MESSAGE);
 		if(RESULT_ALL_KEYWORD.equals(name)) {
-			printAllResult(gameCriteria, ladder);
+			printAllResult(gameResult);
 			return;
 		}
-		printResultByName(name, gameCriteria, ladder);
+		printResultByName(name, gameResult);
 	}
 
-	private static void printResultByName(String name, GameCriteria gameCriteria, Ladder ladder) {
-		Participant namedParticipant = gameCriteria.getParticipants().getCoordinateByName(name);
-		Coordinate resultCoordinate = ladder.playGame(namedParticipant);
-		System.out.println(gameCriteria.getPrizes().getResultByResultCoordinate(resultCoordinate));
+	private static void printResultByName(String name, GameResult gameResult) {
+		System.out.println(gameResult.getResultOfSpecificOne(name));
 	}
 
-	private static void printAllResult(GameCriteria gameCriteria, Ladder ladder) {
-		String allResult = gameCriteria.getParticipants()
-							.getParticipants()
+	private static void printAllResult(GameResult gameResult) {
+		String allResult = gameResult.getAllGameResult()
 							.stream()
-							.map(participant -> {
-								Coordinate resultCoordinate = ladder.playGame(participant);
-								return String.format(RESULT_ALL_FORMAT, participant.getName(), gameCriteria.getPrizes().getResultByResultCoordinate(resultCoordinate));
-							})
+							.map(entry -> String.format(RESULT_ALL_FORMAT, entry.getKey(), entry.getValue()))
 							.collect(Collectors.joining(System.lineSeparator()));
 		System.out.println(allResult);
 	}
 
-	private static void printParticipantsNames(Participants participants) {
-		String participantsNames = participants.getParticipants()
+	private static void printParticipantsNames(GameCriteria gameCriteria) {
+		String participantsNames = gameCriteria.getParticipantsAsCollection()
 										.stream()
 										.map(Participant::getName)
 										.map(OutputHere::padToSameLength)
@@ -71,7 +63,8 @@ public class OutputHere {
 	private static void printLadder(Ladder ladder) {
 		String ladderShape = ladder.getLines()
 							.stream()
-							.map(line -> line.getPoints().stream()
+							.map(line -> line.getPoints()
+									.stream()
 									.map(OutputHere::transformPointToString)
 									.collect(Collectors.joining())
 							)
@@ -79,13 +72,15 @@ public class OutputHere {
 		System.out.println(ladderShape);
 	}
 
-	private static void printPreparedResult(Prizes prizes) {
-		String resultsString = prizes.getPrizeNames()
+	private static void printPreparedResult(GameCriteria gameCriteria) {
+		String resultsString = gameCriteria.getPrizesAsCollection()
 								.stream()
 								.map(OutputHere::padToSameLength)
 								.collect(Collectors.joining(HORIZON_ELEMENT_DELIMITER));
 		System.out.println(resultsString);
 	}
+
+
 
 	private static String transformPointToString(Point point) {
 		return POINT_INDICATOR + getAppendSymbol(point);
