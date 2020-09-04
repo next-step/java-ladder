@@ -32,4 +32,11 @@ public class LineTest {
         line.drawNewLine(2, () -> true);
         assertThat(line.draw(()->true)).isEqualTo(false);
     }
+
+    @Test
+    void create_Line_For_Constraint_with_Drawed() {
+        line = new Line();
+        line.drawNewLine(2, () -> false);
+        assertThat(line.draw(()->true)).isEqualTo(true);
+    }
 }

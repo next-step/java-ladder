@@ -19,18 +19,18 @@ public class Line {
 
     public boolean draw(DrawStrategy strategy) {
         boolean drawResult = strategy.draw();
-        if (isEmptyAndDrawed(drawResult) || isRungFalseAndDrawedNow(drawResult)) {
+        if (isEmptyAndDrawn(drawResult) || isRungFalseAndDrawnNow(drawResult)) {
             return true;
         }
         return false;
     }
 
-    private boolean isEmptyAndDrawed(boolean drawResult) {
+    private boolean isEmptyAndDrawn(boolean drawResult) {
         return rungs.isEmpty() && drawResult;
     }
 
-    private boolean isRungFalseAndDrawedNow(boolean drawResult) {
-        return !rungs.get(rungs.size() - 1) && drawResult;
+    private boolean isRungFalseAndDrawnNow(boolean drawResult) {
+        return rungs.size() > 0 && !rungs.get(rungs.size() - 1) && drawResult;
     }
 
     public String printRungs() {
