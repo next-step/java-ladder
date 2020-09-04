@@ -13,7 +13,7 @@ class PointTest {
     @Test
     @DisplayName("첫번째 사다리 좌표 확인")
     void first() {
-        point = new Point().first(true);
+        point = Point.first(true);
         assertThat(point.isLeft()).isFalse();
         assertThat(point.isRight()).isTrue();
     }
@@ -21,7 +21,7 @@ class PointTest {
     @Test
     @DisplayName("마지막 사다리 좌표 확인")
     void last() {
-        point = new Point().last(true);
+        point = Point.last(true);
         assertThat(point.isLeft()).isTrue();
         assertThat(point.isRight()).isFalse();
     }
@@ -30,7 +30,7 @@ class PointTest {
     @DisplayName("다음 좌표 확인")
     void next() {
         Point previousPoint = new Point(false, true);
-        point = new Point().next(previousPoint, false);
+        point = Point.next(previousPoint, false);
         assertThat(point.isLeft()).isTrue();
         assertThat(point.isRight()).isFalse();
     }

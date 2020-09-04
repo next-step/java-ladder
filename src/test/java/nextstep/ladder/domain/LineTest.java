@@ -19,7 +19,7 @@ class LineTest {
     @Test
     @DisplayName("생성한 Line Size 확인")
     void lineSize() {
-        line = new Line(countOfUser, new LadderAutoGenerator());
+        line = new Line(countOfUser, () -> false);
         assertThat(line.size()).isEqualTo(4);
     }
 
