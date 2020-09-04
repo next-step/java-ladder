@@ -8,14 +8,13 @@ public class LineTest {
     @Test
     void create_Line_With_AllLine() {
         Line line = new Line();
-        line.drawNewLine(5, ()->true);
-        assertThat(line.printRungs()).contains("true");
+        assertThat(line.printRungs()).isEqualTo("[]");
     }
 
     @Test
     void create_Line_With_Draw_Strategy() {
         Line line = new Line();
         line.drawNewLine(5,()->true);
-        System.out.println(line.printRungs());
+        assertThat(line.printRungs()).doesNotContain("false");
     }
 }
