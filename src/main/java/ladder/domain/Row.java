@@ -1,8 +1,11 @@
 package ladder.domain;
 
+import ladder.domain.rule.DrawRule;
+
 import java.util.List;
 
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Row {
@@ -11,20 +14,16 @@ public class Row {
 
     private Row(int columnCount) {
         lines = Stream.generate(() -> Boolean.FALSE)
-                .limit(columnCount-1)
+                .limit(columnCount)
                 .collect(Collectors.toList());
     }
 
-    public static Row valueOf(int column) {
+    public static Row of(int column) {
         return new Row(column);
     }
 
-    public void drawLine(int position) {
-        lines.set(position, isDrawable(position));
-    }
-
     public int getSize() {
-        return lines.size() + 1;
+        return lines.size();
     }
 
     public boolean hasLine(int column) {
@@ -37,4 +36,22 @@ public class Row {
         }
         return !lines.get(position - 1);
     }
+
+    public void drawLine(DrawRule drawRule) {
+        IntStream.range(0, lines.size() - 1)
+                 .forEach(columnPosition -> {
+                    if (drawRule.isDrawable()) {
+                        lines.set(columnPosition, isDrawable(columnPosition));
+                    }
+                 });
+    }
+
+
+    /*private void drawLine(int rowPosition, int columnPosition) {
+        if (hasLine(rowPosition, columnPosition)) {
+            return;
+        }
+        rows.get(rowPosition).drawLine(columnPosition);
+    }*/
+
 }

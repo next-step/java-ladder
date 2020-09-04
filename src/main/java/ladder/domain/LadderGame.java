@@ -3,8 +3,6 @@ package ladder.domain;
 import ladder.domain.rule.DrawRule;
 import lombok.Builder;
 
-import java.util.stream.IntStream;
-
 public class LadderGame {
 
     private final int rows;
@@ -22,19 +20,7 @@ public class LadderGame {
     }
 
     public Ladder makeLadder(DrawRule drawRule) {
-        IntStream
-                .range(0, rows)
-                .forEach(row -> draw(row, drawRule));
+        ladder.drawLine(drawRule);
         return ladder;
-    }
-
-    private void draw(int rowPosition, DrawRule drawRule) {
-        IntStream
-                .range(0, players.getCountOfPlayers() - 1)
-                .forEach(columnPosition -> {
-                    if (drawRule.isDrawable()) {
-                        ladder.drawLine(rowPosition, columnPosition);
-                    }
-                });
     }
 }

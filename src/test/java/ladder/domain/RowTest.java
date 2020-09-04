@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.rule.DrawRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +14,11 @@ public class RowTest {
 
         // given
         int columnNumber = 5;
-        Row row = Row.valueOf(columnNumber);
+        Row row = Row.of(columnNumber);
+        DrawRule alwaysDrawRule = () -> true;
 
         // when
-        row.drawLine(0);
+        row.drawLine(alwaysDrawRule);
 
         // then
         assertThat(row.hasLine(0)).isTrue();

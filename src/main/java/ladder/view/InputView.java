@@ -13,7 +13,7 @@ public class InputView {
         return getLine();
     }
 
-    public static int inputLineCount() {
+    public static int inputRowCount() {
         System.out.println("최대 사다리 높이를 입력하세요.");
         return getInt();
     }

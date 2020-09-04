@@ -12,7 +12,7 @@ public class LadderController {
 
         LadderGame ladderGame = LadderGame.builder()
                 .players(players)
-                .rows(InputView.inputLineCount())
+                .rows(InputView.inputRowCount())
                 .build();
         Ladder ladder = ladderGame.makeLadder(new RandomDrawRule());
 

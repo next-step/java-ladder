@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.rule.DrawRule;
 import lombok.Builder;
 
 import java.util.Collections;
@@ -8,8 +9,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ladder {
-    private static final int FIRST_ROW = 0;
 
+    private static final int FIRST_ROW = 0;
     private final List<Row> rows;
 
     @Builder
@@ -18,16 +19,13 @@ public class Ladder {
     }
 
     private List<Row> initLadder(int rowCount, int columnCount) {
-        return Stream.generate(() -> Row.valueOf(columnCount))
-                .limit(rowCount-1)
+        return Stream.generate(() -> Row.of(columnCount))
+                .limit(rowCount)
                 .collect(Collectors.toList());
     }
 
-    public void drawLine(int rowPosition, int columnPosition) {
-        if (hasLine(rowPosition, columnPosition)) {
-            return;
-        }
-        rows.get(rowPosition).drawLine(columnPosition);
+    public void drawLine(DrawRule drawRule) {
+        rows.stream().forEach(row -> row.drawLine(drawRule));
     }
 
     public List<Row> getRows() {
@@ -38,11 +36,4 @@ public class Ladder {
         return rows.get(FIRST_ROW).getSize();
     }
 
-    public boolean hasLine(int row, int column) {
-        return rows.get(getUpperRow(row)).hasLine(column);
-    }
-
-    private int getUpperRow(int row) {
-        return row <= 0 ? FIRST_ROW : row-1;
-    }
 }
