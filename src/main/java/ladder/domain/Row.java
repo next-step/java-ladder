@@ -45,13 +45,4 @@ public class Row {
                     }
                  });
     }
-
-
-    /*private void drawLine(int rowPosition, int columnPosition) {
-        if (hasLine(rowPosition, columnPosition)) {
-            return;
-        }
-        rows.get(rowPosition).drawLine(columnPosition);
-    }*/
-
 }
