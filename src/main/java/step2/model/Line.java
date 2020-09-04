@@ -25,12 +25,20 @@ public class Line {
         return false;
     }
 
-    private boolean isEmptyAndDrawn(boolean drawResult) {
-        return rungs.isEmpty() && drawResult;
+    private boolean isEmptyAndDrawn(boolean drawnResult) {
+        return rungs.isEmpty() && drawnResult;
     }
 
-    private boolean isRungFalseAndDrawnNow(boolean drawResult) {
-        return rungs.size() > 0 && !rungs.get(rungs.size() - 1) && drawResult;
+    private boolean isRungFalseAndDrawnNow(boolean drawnResult) {
+        return isRungsNotEmpty() && isLastRungFalse() && drawnResult;
+    }
+
+    private boolean isLastRungFalse() {
+        return !rungs.get(rungs.size() - 1);
+    }
+
+    private boolean isRungsNotEmpty() {
+        return rungs.size() > 0;
     }
 
     public String printRungs() {
