@@ -18,8 +18,8 @@ class LadderLineTest {
 
     @Test
     void createLadderLine() {
-        LadderLine ladderLine = LadderLine.of(height, countOfUser, new LadderAutoGenerator());
+        LadderLine ladderLine = LadderGenerator.generateLadderLine(height, countOfUser, () -> false);
         assertThat(ladderLine.size()).isEqualTo(5);
-
     }
+
 }

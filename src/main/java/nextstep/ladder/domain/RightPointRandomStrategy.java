@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Random;
 
-public class LadderAutoGenerator implements LadderGenerator {
+public class RightPointRandomStrategy implements RightPointStrategy {
 
     private static final Random random = new Random();
 
@@ -10,5 +10,4 @@ public class LadderAutoGenerator implements LadderGenerator {
     public boolean right() {
         return random.nextBoolean();
     }
-
 }

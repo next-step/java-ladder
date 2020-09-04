@@ -1,7 +1,16 @@
 package nextstep.ladder.domain;
 
-public interface LadderGenerator {
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-    boolean right();
+import static nextstep.ladder.utils.CommonConstant.NUMBER_ZERO;
+
+public class LadderGenerator {
+
+    public static LadderLine generateLadderLine(int height, int countOfUser, RightPointStrategy ladderGenerator) {
+        return new LadderLine(IntStream.range(NUMBER_ZERO, height)
+                .mapToObj(line -> new Line(countOfUser, ladderGenerator))
+                .collect(Collectors.toList()));
+    }
 
 }
