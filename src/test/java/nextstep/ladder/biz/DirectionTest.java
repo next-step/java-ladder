@@ -2,7 +2,6 @@ package nextstep.ladder.biz;
 
 import org.junit.jupiter.api.Test;
 
-import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -45,9 +44,15 @@ class DirectionTest {
   }
 
   @Test
-  public void first() {
-    Direction first = Direction.first(TRUE);
+  public void isLeftOfFirst() {
+    Direction first = Direction.first(true);
     assertThat(first.isLeft()).isEqualTo(false);
+  }
+
+  @Test
+  public void isRightOfFirst() {
+    Direction first = Direction.first(true);
+    assertThat(first.isRight()).isEqualTo(true);
   }
 
   @Test

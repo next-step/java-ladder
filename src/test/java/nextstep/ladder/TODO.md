@@ -28,5 +28,5 @@
 
 ## 4단계 - 사다리(리팩토링)
 1. DirectionTest (#41)
-1. PointTest (#42)
+1. PointTest to LinePointTest(#42)
 1. LadderLineTest (#43) 

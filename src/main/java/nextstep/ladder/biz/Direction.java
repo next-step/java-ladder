@@ -18,6 +18,10 @@ public class Direction {
     return this.left;
   }
 
+  public boolean isRight() {
+    return this.right;
+  }
+
   public Direction next() {
     return of(right, !right);
   }
