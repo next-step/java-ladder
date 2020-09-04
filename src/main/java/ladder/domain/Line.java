@@ -10,36 +10,36 @@ public class Line {
     private static final int INDEX_LEFT_SIDE = -1;
     private static final int INDEX_RIGHT_SIDE = 1;
 
-    private final List<Point> points = new ArrayList<>();
+    private final List<BarType> barTypes = new ArrayList<>();
 
-    public Line(int personCount, PointCreator pointCreator) {
+    public Line(int personCount, BarCreator barCreator) {
 
         addFirstPoint();
 
         for (int i = SECOND_POINT_INDEX; i < personCount; i++) {
-            points.add(getCurrentPoint(getLeftPoint(i), pointCreator));
+            barTypes.add(getCurrentPoint(getLeftPoint(i), barCreator));
         }
     }
 
     private void addFirstPoint() {
-        points.add(Point.FALSE);
+        barTypes.add(BarType.NONE);
     }
 
-    private Point getLeftPoint(int index) {
-        return points.get(index + INDEX_LEFT_SIDE);
+    private BarType getLeftPoint(int index) {
+        return barTypes.get(index + INDEX_LEFT_SIDE);
     }
 
-    private Point getCurrentPoint(Point point, PointCreator pointCreator) {
-        if (point == Point.TRUE) {
-            return Point.FALSE;
+    private BarType getCurrentPoint(BarType barType, BarCreator barCreator) {
+        if (barType == BarType.LEFT) {
+            return BarType.NONE;
         }
-        return Point.of(pointCreator.create());
+        return BarType.of(barCreator.create());
     }
 
-    public List<String> getPoints() {
-        return points.stream()
-                .map(Point::getBar)
-                .collect(Collectors.toList());
+    public List<String> getBarTypes() {
+        return barTypes.stream()
+                       .map(BarType::getBar)
+                       .collect(Collectors.toList());
     }
 
     private boolean hasLeftBar(int index) {
@@ -47,14 +47,14 @@ public class Line {
     }
 
     private boolean hasRightBar(int index) {
-        if (right(index) >= points.size()) {
+        if (right(index) >= barTypes.size()) {
             return false;
         }
         return hasBar(right(index));
     }
 
     private boolean hasBar(int index) {
-        return points.get(index) == Point.TRUE;
+        return barTypes.get(index) == BarType.LEFT;
     }
 
     private int right(int index) {

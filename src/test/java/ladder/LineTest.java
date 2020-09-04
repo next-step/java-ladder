@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.Line;
-import ladder.domain.Point;
+import ladder.domain.BarType;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -17,21 +17,21 @@ public class LineTest {
     public void allTrueLineTest(int personCount) {
 
         Line line = new Line(personCount, () -> true);
-        assertEquals(line.getPoints().size(), personCount);
+        assertEquals(line.getBarTypes().size(), personCount);
 
         List<String> lineList = new ArrayList<>();
 
         for (int i = 0; i < personCount; i++) {
 
             if (i % 2 != 0) {
-                lineList.add(Point.TRUE.getBar());
+                lineList.add(BarType.LEFT.getBar());
                 continue;
             }
 
-            lineList.add(Point.FALSE.getBar());
+            lineList.add(BarType.NONE.getBar());
         }
 
-        assertEquals(lineList, line.getPoints());
+        assertEquals(lineList, line.getBarTypes());
     }
 
     @ParameterizedTest
@@ -39,14 +39,14 @@ public class LineTest {
     public void allFalseLineTest(int personCount) {
 
         Line line = new Line(personCount, () -> false);
-        assertEquals(line.getPoints().size(), personCount);
+        assertEquals(line.getBarTypes().size(), personCount);
 
         List<String> lineList = new ArrayList<>();
 
         for (int i = 0; i < personCount; i++) {
-            lineList.add(Point.FALSE.getBar());
+            lineList.add(BarType.NONE.getBar());
         }
 
-        assertEquals(lineList, line.getPoints());
+        assertEquals(lineList, line.getBarTypes());
     }
 }

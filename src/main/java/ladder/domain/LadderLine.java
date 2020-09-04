@@ -16,7 +16,7 @@ public class LadderLine {
 
     public List<String> toStringList() {
         return lines.stream()
-                    .map(line -> lineToString(line.getPoints()))
+                    .map(line -> lineToString(line.getBarTypes()))
                     .collect(Collectors.toList());
     }
 
