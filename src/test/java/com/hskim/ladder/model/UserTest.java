@@ -34,12 +34,12 @@ public class UserTest {
         });
     }
 
-    @DisplayName("UserName 객체 리스트를 통해 User 객체 리스트를 만드는 로직 테스트")
+    @DisplayName("names 리스트를 통해 User 객체 리스트를 만드는 로직 테스트")
     @ParameterizedTest
     @MethodSource("provideUserNamesAndResult")
     void makeUsersFromNames(List<String> userNames, List<User> expected) {
         // when
-        List<User> result = User.makeUserFromNames(userNames);
+        List<User> result = User.makeUsersFromNames(userNames);
 
         // then
         assertThat(result).isEqualTo(expected);

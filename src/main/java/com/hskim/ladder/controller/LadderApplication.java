@@ -11,7 +11,10 @@ public class LadderApplication {
                 , new LadderResultView());
 
         ladderConsoleSimulator.recruitParticipants();
+        ladderConsoleSimulator.setRewards();
         ladderConsoleSimulator.createLadder();
         ladderConsoleSimulator.printInitStatus();
+        ladderConsoleSimulator.simulate();
+        ladderConsoleSimulator.checkResult();
     }
 }

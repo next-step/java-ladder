@@ -4,14 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class Ladder {
+    private static final String INVALID_STATE = "사다리가 생성되지 않아 경로를 탐색할 수 없습니다!";
 
     private Lines lines;
     private LadderHeight ladderHeight;
-    private LadderUsers ladderUsers;
 
-    public Ladder(LadderHeight ladderHeight, LadderUsers ladderUsers, Lines lines) {
+    public Ladder(LadderHeight ladderHeight, Lines lines) {
         this.ladderHeight = ladderHeight;
-        this.ladderUsers = ladderUsers;
         this.lines = lines;
     }
 
@@ -20,17 +19,11 @@ public class Ladder {
     }
 
     public static class LadderBuilder {
-        private Lines lines;
+        private final Lines lines;
         private LadderHeight ladderHeight;
-        private LadderUsers ladderUsers;
 
         public LadderBuilder(Lines lines) {
             this.lines = lines;
-        }
-
-        public LadderBuilder setLadderUsers(LadderUsers ladderUsers) {
-            this.ladderUsers = ladderUsers;
-            return this;
         }
 
         public LadderBuilder setLadderHeight(LadderHeight ladderHeight) {
@@ -42,7 +35,6 @@ public class Ladder {
             Ladder ladder = new Ladder();
             ladder.lines = lines;
             ladder.ladderHeight = ladderHeight;
-            ladder.ladderUsers = ladderUsers;
             return ladder;
         }
     }
@@ -51,18 +43,25 @@ public class Ladder {
         return lines.getLines();
     }
 
+    public RouteInfo<Integer> getNavigateResult() {
+        if (lines.isEmpty()) {
+            throw new IllegalStateException(INVALID_STATE);
+        }
+
+        return RouteInfo.navigateRoutes(lines.getRouteInfoList());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Ladder)) return false;
         Ladder ladder = (Ladder) o;
         return Objects.equals(ladderHeight, ladder.ladderHeight) &&
-                Objects.equals(ladderUsers, ladder.ladderUsers) &&
                 Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ladderHeight, ladderUsers, lines);
+        return Objects.hash(ladderHeight, lines);
     }
 }
