@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
-    private static final Point START_POINT = Point.of(false);
+    private static final Point START_POINT = Point.valueOf(false);
 
     private final List<Point> points;
 
@@ -33,9 +33,9 @@ public class LadderLine {
 
     private Point makeLine(Point point, PointStrategy pointStrategy) {
         if (point.isPoint()) {
-            return Point.of(false);
+            return Point.valueOf(false);
         }
-        return Point.of(pointStrategy);
+        return Point.strategyOf(pointStrategy);
     }
 
     public List<Point> getPoints() {

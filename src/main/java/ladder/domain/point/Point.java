@@ -11,11 +11,11 @@ public class Point {
         this.point = point;
     }
 
-    public static Point of(Boolean point) {
+    public static Point valueOf(Boolean point) {
         return new Point(point);
     }
 
-    public static Point of(PointStrategy pointStrategy) {
+    public static Point strategyOf(PointStrategy pointStrategy) {
         return new Point(pointStrategy.next());
     }
 

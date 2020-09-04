@@ -20,7 +20,7 @@ class LadderLineTest {
     @DisplayName("LadderLine 객체 생성 테스트")
     @Test
     void createLadderLineTest() {
-        Players players = Players.of("pobi,honux,crong,jk");
+        Players players = Players.ofNames("pobi,honux,crong,jk");
         PointStrategy pointStrategy = () -> false;
 
         LadderLine ladderLine = LadderLine.of(players.size(), pointStrategy);
@@ -38,8 +38,8 @@ class LadderLineTest {
 
     private static Stream<Arguments> createLadderLine() {
         return Stream.of(
-                Arguments.of(LadderLine.of(3, () -> false), Arrays.asList(Point.of(false), Point.of(false), Point.of(false)),
-                Arguments.of(LadderLine.of(3, () -> true)), Arrays.asList(Point.of(false), Point.of(true), Point.of(false)))
+                Arguments.of(LadderLine.of(3, () -> false), Arrays.asList(Point.valueOf(false), Point.valueOf(false), Point.valueOf(false)),
+                Arguments.of(LadderLine.of(3, () -> true)), Arrays.asList(Point.valueOf(false), Point.valueOf(true), Point.valueOf(false)))
         );
     }
 }
