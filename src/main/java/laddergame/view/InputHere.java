@@ -1,10 +1,10 @@
 package laddergame.view;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.ladder.LadderHeight;
 import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
-import laddergame.domain.result.Prizes;
+import laddergame.domain.prize.Prizes;
 import laddergame.dto.GameCriteria;
 
 import java.util.InputMismatchException;
@@ -29,7 +29,7 @@ public class InputHere {
 
 	public static GameCriteria getGameCriteria() {
 		Participants participants = getParticipants();
-		Prizes prizes = getPrizes(participants.getParticipantsCount());
+		Prizes prizes = getPrizes(participants.getCount());
 		LadderHeight ladderHeight = getLadderHeight();
 		return new GameCriteria(participants, prizes, ladderHeight);
 	}

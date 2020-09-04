@@ -1,7 +1,7 @@
 package laddergame.domain.point;
 
 import org.junit.jupiter.api.Test;
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.direction.Direction;
 import laddergame.domain.direction.strategy.DiceGenerateStrategy;
 

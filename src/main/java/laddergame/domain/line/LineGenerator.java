@@ -1,8 +1,7 @@
 package laddergame.domain.line;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.participant.Participants;
-import laddergame.domain.point.Point;
 import laddergame.domain.point.PointGenerator;
 
 import java.util.stream.IntStream;
@@ -22,7 +21,7 @@ public class LineGenerator {
 	}
 
 	public Line generateLine(Participants participants) {
-		int lastIndexOfLine = participants.getParticipantsCount() - 1;
+		int lastIndexOfLine = participants.getCount() - 1;
 		Line newLine = new Line();
 
 		newLine.addPoint(pointGenerator.generateLineStartPoint());

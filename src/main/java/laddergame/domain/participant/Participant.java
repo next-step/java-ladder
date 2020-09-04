@@ -1,6 +1,6 @@
 package laddergame.domain.participant;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.exception.LadderGameException;
 
 import java.util.Objects;
@@ -49,12 +49,11 @@ public class Participant {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Participant that = (Participant) o;
-		return name.equals(that.name) &&
-				startCoordinate.equals(that.startCoordinate);
+		return Objects.equals(name, that.name);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, startCoordinate);
+		return Objects.hash(name);
 	}
 }

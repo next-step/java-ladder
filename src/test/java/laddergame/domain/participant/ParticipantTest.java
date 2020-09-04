@@ -3,7 +3,7 @@ package laddergame.domain.participant;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.exception.LadderGameException;
 
 import static org.assertj.core.api.Assertions.assertThat;

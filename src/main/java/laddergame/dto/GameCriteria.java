@@ -1,8 +1,12 @@
 package laddergame.dto;
 
 import laddergame.domain.ladder.LadderHeight;
+import laddergame.domain.participant.Participant;
 import laddergame.domain.participant.Participants;
-import laddergame.domain.result.Prizes;
+import laddergame.domain.prize.Prizes;
+
+import java.util.Collection;
+import java.util.Set;
 
 public class GameCriteria {
 
@@ -18,6 +22,14 @@ public class GameCriteria {
 
 	public Participants getParticipants() {
 		return participants;
+	}
+
+	public Set<Participant> getParticipantsAsCollection() {
+		return participants.getParticipants();
+	}
+
+	public Collection<String> getPrizesAsCollection() {
+		return prizes.getPrizeNames();
 	}
 
 	public Prizes getPrizes() {

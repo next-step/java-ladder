@@ -1,10 +1,10 @@
 package laddergame.domain.point;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.direction.strategy.DiceGenerateStrategy;
 import laddergame.domain.direction.strategy.DirectionGenerateStrategy;
 
-import static laddergame.domain.Coordinate.LINE_START_COORDINATE;
+import static laddergame.domain.coordinate.Coordinate.LINE_START_COORDINATE;
 
 public class PointGenerator {
 

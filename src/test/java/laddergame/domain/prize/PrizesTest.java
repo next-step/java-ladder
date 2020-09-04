@@ -1,6 +1,6 @@
-package laddergame.domain.result;
+package laddergame.domain.prize;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.exception.LadderGameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

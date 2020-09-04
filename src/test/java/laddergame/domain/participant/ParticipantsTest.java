@@ -1,7 +1,7 @@
 package laddergame.domain.participant;
 
 import org.junit.jupiter.api.Test;
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.exception.LadderGameException;
 
 import java.util.List;

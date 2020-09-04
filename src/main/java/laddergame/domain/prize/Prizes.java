@@ -1,12 +1,9 @@
-package laddergame.domain.result;
+package laddergame.domain.prize;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.exception.LadderGameException;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,9 +18,10 @@ public class Prizes {
 		if(names.length != participantsCount) {
 			throw new LadderGameException(PRIZES_COUNT_SHOULD_EQUAL_PARTICIPANT_COUNT);
 		}
-		this.resultMap = IntStream.range(START_INDEX, names.length)
-							.boxed()
-							.collect(Collectors.toMap(Coordinate::new, index -> names[index], (integer1, integer2) -> integer1, LinkedHashMap::new));
+		LinkedHashMap<Coordinate, String> prizesMap = IntStream.range(START_INDEX, names.length)
+														.boxed()
+														.collect(Collectors.toMap(Coordinate::new, index -> names[index], (integer1, integer2) -> integer1, LinkedHashMap::new));
+		this.resultMap = Collections.unmodifiableMap(prizesMap);
 	}
 
 	public Collection<String> getPrizeNames() {

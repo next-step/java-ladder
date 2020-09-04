@@ -1,6 +1,6 @@
 package laddergame.domain.point;
 
-import laddergame.domain.Coordinate;
+import laddergame.domain.coordinate.Coordinate;
 import laddergame.domain.direction.Direction;
 
 import java.util.Objects;
