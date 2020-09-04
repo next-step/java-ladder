@@ -37,4 +37,12 @@ public class PointDirection {
   public static PointDirection first(boolean right) {
     return new PointDirection(0, Direction.first(right));
   }
+
+  @Override
+  public String toString() {
+    return "PointDirection{" +
+            "index=" + index +
+            ", direction=" + direction +
+            '}';
+  }
 }

@@ -10,6 +10,11 @@ public class LineGenerator {
   public static final int TWO_PERSON = 2;
   private static final Random random = new Random();
 
+  public static boolean nextBoolean() {
+    return random.nextBoolean();
+  }
+
+
   public static List<Point> form(int countOfPerson) {
     if (isTwoPerson(countOfPerson)) {
       return Arrays.asList(nextPoint(Point.of(false), 0));
