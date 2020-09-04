@@ -13,7 +13,7 @@ class UsersTest {
 
     @BeforeEach
     void setUp() {
-        List<User> userNames = User.generateUsers("pobi,tommy,honux,jk,crong");
+        List<User> userNames = UserGenerator.generateUsers("pobi,tommy,honux,jk,crong");
         users = Users.from(userNames);
     }
 

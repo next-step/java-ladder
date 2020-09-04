@@ -24,14 +24,14 @@ class UserTest {
     @Test
     @DisplayName("참여하는 유저 split")
     void userSplit() {
-        String[] users = User.getUserName(names);
+        String[] users = User.splitByUserName(names);
         assertThat(users).contains("pobi", "honux", "crong", "jk");
     }
 
     @Test
     @DisplayName("유저 List Size")
     void userListSize() {
-        List<User> users = User.generateUsers(names);
+        List<User> users = UserGenerator.generateUsers(names);
         assertThat(users).hasSize(4);
     }
 
