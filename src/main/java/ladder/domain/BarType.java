@@ -21,4 +21,9 @@ public enum BarType {
     public String getBar() {
         return bar;
     }
+
+    @Override
+    public String toString() {
+        return bar;
+    }
 }

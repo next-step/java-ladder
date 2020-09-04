@@ -5,28 +5,28 @@ import java.util.stream.Collectors;
 
 public class Ladder {
 
-    private final Player player;
+    private final Participant participant;
     private final Reward reward;
     private final LadderLine ladderLine;
     private final LadderResult ladderResult;
 
-    public Ladder(Player player, Reward reward, int height) {
-        this.player = player;
+    public Ladder(Participant participant, Reward reward, int height) {
+        this.participant = participant;
         this.reward = reward;
-        this.ladderLine = new LadderLine(player.getPlayerCount(), height);
+        this.ladderLine = new LadderLine(participant.getPlayerCount(), height);
         this.ladderResult = new LadderResult();
         setLadderResultData();
     }
 
     private void setLadderResultData() {
-        for (int playerIndex = 0; playerIndex < player.getPlayerCount(); playerIndex++) {
+        for (int playerIndex = 0; playerIndex < participant.getPlayerCount(); playerIndex++) {
             ladderResult.put(playerIndex, ladderLine.getResultOf(playerIndex));
         }
         ladderResult.freezeData();
     }
 
     public List<String> getNames() {
-        return player.getNames();
+        return participant.getNames();
     }
 
     public List<String> getRewardNames() {
@@ -43,14 +43,14 @@ public class Ladder {
 
     private int getRewardIndex(String playerName) {
         return ladderResult.searchRewardIndex(
-                player.getPlayerIndex(playerName));
+            participant.getPlayerIndex(playerName));
     }
 
     public List<String> searchAllReward() {
-        return player.getNames()
-                .stream()
-                .map(this::playerAndRewardToString)
-                .collect(Collectors.toList());
+        return participant.getNames()
+                          .stream()
+                          .map(this::playerAndRewardToString)
+                          .collect(Collectors.toList());
     }
 
     private String playerAndRewardToString(String playerName) {
