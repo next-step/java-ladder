@@ -39,4 +39,12 @@ public class LineTest {
         line.drawNewLine(2, () -> false);
         assertThat(line.draw(()->true)).isEqualTo(true);
     }
+
+    @Test
+    void create_Line_With_N_Count() {
+        line = new Line();
+        line.drawNewLine(4, () -> true);
+        System.out.println(line.printRungs());
+        //assertThat(line.draw(()->true)).isEqualTo(true);
+    }
 }

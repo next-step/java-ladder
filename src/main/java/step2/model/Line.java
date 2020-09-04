@@ -4,17 +4,14 @@ import step2.strategy.DrawStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Line {
     private List<Boolean> rungs = new ArrayList<>();
 
     public void drawNewLine(int countOfPerson, DrawStrategy strategy) {
-        rungs = Stream
-                .generate(() -> draw(strategy))
-                .limit(countOfPerson - 1)
-                .collect(Collectors.toList());
+        for (int loop = 0; loop < countOfPerson - 1; loop++) {
+            rungs.add(draw(strategy));
+        }
     }
 
     public boolean draw(DrawStrategy strategy) {
