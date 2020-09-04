@@ -35,4 +35,10 @@ class PointDirectionTest {
     PointDirection second = PointDirection.first(true).next();
     assertThat(second.move()).isEqualTo(0);
   }
+
+  @Test
+  void last() {
+    PointDirection last = PointDirection.first(true).last();
+    assertThat(last.move()).isEqualTo(0);
+  }
 }

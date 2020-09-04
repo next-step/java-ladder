@@ -30,6 +30,10 @@ public class PointDirection {
     return new PointDirection(index + 1, direction.next(nextRight));
   }
 
+  public PointDirection last() {
+    return new PointDirection(index + 1, direction.last());
+  }
+
   public static PointDirection first(boolean right) {
     return new PointDirection(0, Direction.first(right));
   }
