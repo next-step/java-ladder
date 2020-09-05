@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private static final RandomTransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new RandomTransverseBarStrategy();
+    private static final TransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new RandomTransverseBarStrategy();
 
     private List<Boolean> points;
 
