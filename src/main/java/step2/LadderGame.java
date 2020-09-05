@@ -6,16 +6,18 @@ import step2.view.InputView;
 import step2.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
     public static void main(String[] args) {
-        List<Person> participants = new ArrayList<>();
         String[] nameList = InputView.askNameForLadderGame();
-        for (String name : nameList) {
-            participants.add(new Person(name));
-        }
+        List<Person> participants = Arrays.stream(nameList)
+                .map(Person::new)
+                .collect(Collectors.toList());
+
         int height = InputView.askHeightForLadderGame();
         Ladder ladder = new Ladder(height, participants.size());
         OutputView.printAll(participants, ladder);

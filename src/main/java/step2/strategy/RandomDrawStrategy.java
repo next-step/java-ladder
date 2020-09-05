@@ -9,9 +9,6 @@ public class RandomDrawStrategy implements DrawStrategy{
 
     @Override
     public boolean draw() {
-        if(rand.nextInt(MAXIMUM_BOUND) > RANDOM_CONDITION) {
-            return true;
-        }
-        return false;
+        return rand.nextInt(MAXIMUM_BOUND) > RANDOM_CONDITION;
     }
 }
