@@ -11,7 +11,7 @@ public class SwitchDrawTransverseBarStrategy implements TransverseBarStrategy {
 
     @Override
     public List<Boolean> draw(int countOfPerson) {
-        return IntStream.range(0, countOfPerson - 1)
+        return IntStream.range(ZERO, countOfPerson - 1)
                 .mapToObj(count -> count % DIVIDE_EVEN == ZERO)
                 .collect(Collectors.toList());
     }
