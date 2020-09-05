@@ -18,7 +18,7 @@ public class Person {
     }
 
     public static boolean validateName(String name) {
-        return PersonValidator.validateAll(name);
+        return PersonValidator.validateName(name);
     }
 
     @Override

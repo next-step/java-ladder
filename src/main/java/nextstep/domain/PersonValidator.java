@@ -18,7 +18,7 @@ public enum PersonValidator {
         return personValidate.validate(name);
     }
 
-    public static boolean validateAll(String name) {
+    public static boolean validateName(String name) {
         return Arrays.stream(values())
                 .noneMatch(personValidator -> personValidator.validate(name));
     }
