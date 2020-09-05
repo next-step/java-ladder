@@ -28,6 +28,8 @@ public class OutputView {
 
         printParicipants(game.getParticipants());
         printLadder(game.getLadder());
+
+        writer.printf("\n");
     }
 
     private void printParicipants(Participants participants) {
@@ -36,18 +38,18 @@ public class OutputView {
 
     public void printLadder(Ladder ladder) {
         for (Line line : ladder.getLines()) {
-            writer.println(BLANK);
             line.getPoints()
                     .forEach(this::printPoint);
+            writer.printf("\n");
         }
     }
 
     public void printPoint(Point point) {
-        writer.print(POINT);
+        writer.printf(POINT);
         if (point.getRight()) {
-            writer.print(BRIDGE);
+            writer.printf(BRIDGE);
             return;
         }
-        writer.print(BLANK);
+        writer.printf(BLANK);
     }
 }
