@@ -3,7 +3,9 @@ package nextstep.view;
 import nextstep.domain.LadderResults;
 import nextstep.domain.*;
 
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -56,6 +58,13 @@ public class OutputView {
         System.out.println();
         System.out.println("실행 결과");
         System.out.println(ladderResult.getResult());
+    }
+
+    public static void printLadderTotalResult(Participants participants, LadderResults ladderTotalResults) {
+        System.out.println();
+        System.out.println("실행 결과");
+        IntStream.range(0, participants.getPersonSize())
+                .forEach(index -> System.out.println(MessageFormat.format("{0} : {1}", participants.getPersonName(index), ladderTotalResults.getResult(index))));
     }
 
 }

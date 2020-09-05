@@ -16,6 +16,10 @@ public class LadderResults {
         return ladderResults.get(index);
     }
 
+    public String getResult(int index) {
+        return ladderResults.get(index).getResult();
+    }
+
     public List<LadderResult> getLadderResults() {
         return ladderResults;
     }

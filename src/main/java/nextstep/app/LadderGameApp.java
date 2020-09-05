@@ -4,7 +4,9 @@ import nextstep.domain.*;
 import nextstep.view.InputView;
 import nextstep.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGameApp {
 
@@ -14,7 +16,13 @@ public class LadderGameApp {
         LadderHeight ladderHeight = new LadderHeight(getLadderHeight());
         LadderGameManager ladderGameManager = new LadderGameManager(getLines(participants, ladderHeight));
         OutputView.printLadder(participants, ladderGameManager, ladderResults);
-        LadderResult ladderResult = getLadderResult(participants, ladderResults, ladderGameManager);
+        String personForResult = InputView.receivePersonForResult();
+        if (personForResult.equals("all")) {
+            LadderResults ladderTotalResults = getLadderTotalResults(participants, ladderResults, ladderGameManager);
+            OutputView.printLadderTotalResult(participants, ladderTotalResults);
+            return;
+        }
+        LadderResult ladderResult = getLadderResult(participants, ladderResults, ladderGameManager, personForResult);
         OutputView.printLadderResult(ladderResult);
     }
 
@@ -34,10 +42,17 @@ public class LadderGameApp {
         return LineFactory.createLines(participants, ladderHeight);
     }
 
-    private static LadderResult getLadderResult(Participants participants, LadderResults ladderResults, LadderGameManager ladderGameManager) {
-        int startTrackNumber = participants.getTrackNumberByPersonName(InputView.receivePersonForResult());
+    private static LadderResult getLadderResult(Participants participants, LadderResults ladderResults, LadderGameManager ladderGameManager, String personForResult) {
+        int startTrackNumber = participants.getTrackNumberByPersonName(personForResult);
         int finishTrackNumber = ladderGameManager.start(startTrackNumber);
         return ladderResults.getLadderResult(finishTrackNumber);
+    }
+
+    private static LadderResults getLadderTotalResults(Participants participants, LadderResults ladderResults, LadderGameManager ladderGameManager) {
+        return new LadderResults(participants.getPersons()
+                .stream()
+                .map(person -> getLadderResult(participants, ladderResults, ladderGameManager, person.getName()))
+                .collect(Collectors.toList()));
     }
 
 }
