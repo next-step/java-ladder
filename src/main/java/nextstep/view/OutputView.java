@@ -1,9 +1,6 @@
 package nextstep.view;
 
-import nextstep.domain.Line;
-import nextstep.domain.Participants;
-import nextstep.domain.Person;
-import nextstep.domain.StringUtils;
+import nextstep.domain.*;
 
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class OutputView {
 
     }
 
-    public static void printExecuteResult(List<Person> persons, List<Line> lines) {
+    public static void printExecuteResult(List<Person> persons, List<Line> lines, List<LadderResult> ladderResults) {
         System.out.println("실행결과");
         System.out.println();
         persons.stream()
@@ -28,6 +25,9 @@ public class OutputView {
         lines.stream()
                 .map(Line::getPoints)
                 .forEach(OutputView::printLines);
+        ladderResults.stream()
+                .map(person -> StringUtils.padLeft(person.getResult(), PAD_SIZE))
+                .forEach(OutputView::printPerson);
     }
 
     private static void printPerson(String person) {

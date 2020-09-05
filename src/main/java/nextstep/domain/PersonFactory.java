@@ -12,10 +12,6 @@ public class PersonFactory {
 
     }
 
-    public static Person createPerson(String name) {
-        return new Person(name);
-    }
-
     public static List<Person> createPersons(String line) {
         return createPersons(line.split(DELIMITER));
     }
