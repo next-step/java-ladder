@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-	private static final Random random = new Random();
+	private static final Random RANDOM = new Random();
+	private static final String BLANK = "     |";
+	private static final String LINE = "-----|";
+
 	private final List<Boolean> points = new ArrayList<>();
 
 	public Line(int countOfPerson) {
@@ -15,9 +18,22 @@ public class Line {
 	}
 
 	private boolean createPoint() {
-		if (points.lastIndexOf(true) == points.size() - 1) {
+		if (points.size() != 0 && points.get(points.size()-1)) {
 			return false;
 		}
-		return random.nextBoolean();
+		return RANDOM.nextBoolean();
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Boolean point : points) {
+			if (point) {
+				sb.append(LINE);
+			} else {
+				sb.append(BLANK);
+			}
+		}
+		return sb.toString();
 	}
 }

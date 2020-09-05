@@ -5,12 +5,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
+	private final List<User> users;
 
-	public static void start(String[] names, int height) {
+	public Game(String[] names) {
+		this.users = Arrays.stream(names)
+				.map(User::new)
+				.collect(Collectors.toList());
+	}
+
+
+
+	public Ladder start(int height) {
+		/*
 		List<User> users = Arrays.stream(names)
 				.map(User::new)
 				.collect(Collectors.toList());
-
-		Ladder ladder = Ladder.makeLadder(users.size(), height);
+*/
+		return Ladder.makeLadder(users, height);
 	}
 }
