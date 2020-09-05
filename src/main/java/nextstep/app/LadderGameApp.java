@@ -14,12 +14,8 @@ public class LadderGameApp {
         LadderHeight ladderHeight = new LadderHeight(getLadderHeight());
         LadderGameManager ladderGameManager = new LadderGameManager(getLines(participants, ladderHeight));
         OutputView.printLadder(participants, ladderGameManager, ladderResults);
-        int resultTrackNumber = ladderGameManager.start(getStartTrackNumber(participants));
-        OutputView.printLadderResult(ladderResults.getLadderResults().get(resultTrackNumber));
-    }
-
-    private static int getStartTrackNumber(Participants participants) {
-        return participants.getTrackNumberByPersonName(InputView.receivePersonForResult());
+        LadderResult ladderResult = getLadderResult(participants, ladderResults, ladderGameManager);
+        OutputView.printLadderResult(ladderResult);
     }
 
     private static List<Person> getPersons() {
@@ -36,6 +32,12 @@ public class LadderGameApp {
 
     private static List<Line> getLines(Participants participants, LadderHeight ladderHeight) {
         return LineFactory.createLines(participants, ladderHeight);
+    }
+
+    private static LadderResult getLadderResult(Participants participants, LadderResults ladderResults, LadderGameManager ladderGameManager) {
+        int startTrackNumber = participants.getTrackNumberByPersonName(InputView.receivePersonForResult());
+        int finishTrackNumber = ladderGameManager.start(startTrackNumber);
+        return ladderResults.getLadderResult(finishTrackNumber);
     }
 
 }

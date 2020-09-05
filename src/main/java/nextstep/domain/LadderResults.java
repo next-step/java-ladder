@@ -12,8 +12,12 @@ public class LadderResults {
         this.ladderResults = ladderResults;
     }
 
+    public LadderResult getLadderResult(int index) {
+        return ladderResults.get(index);
+    }
+
     public List<LadderResult> getLadderResults() {
         return ladderResults;
-
     }
+
 }
