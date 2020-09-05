@@ -7,15 +7,9 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private static final TransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new RandomTransverseBarStrategy();
     public static final int FIRST_POINT_INDEX = 0;
-    public static final int LAST_POINT_INDEX = 1;
 
     private final List<Boolean> points;
-
-    public Line(int countOfPerson) {
-        this(countOfPerson, DEFAULT_TRANSVERSE_BAR_STRATEGY);
-    }
 
     public Line(int countOfPerson, TransverseBarStrategy transverseBarStrategy) {
         this(transverseBarStrategy.draw(countOfPerson));
@@ -28,14 +22,46 @@ public class Line {
         this.points = points;
     }
 
+    public boolean isFirstTrack(int trackNumber) {
+        return trackNumber == FIRST_POINT_INDEX;
+    }
+
+    public boolean isLastTrack(int trackNumber) {
+        return trackNumber == points.size();
+    }
+
     private boolean validateNotOverlap(List<Boolean> points) {
-        return IntStream.range(FIRST_POINT_INDEX, points.size() - LAST_POINT_INDEX)
+        return IntStream.range(FIRST_POINT_INDEX, points.size() - 1)
                 .mapToObj(i -> new LineValidateOverlapDto(points.get(i), points.get(i + 1)).isOverlap())
                 .noneMatch(Boolean::booleanValue);
     }
 
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int getNextTrackNumber(int trackNumber) {
+        if (isPossibleMoveLeftTrack(trackNumber)) {
+            return trackNumber - 1;
+        }
+        if (isPossibleMoveRightTrack(trackNumber)) {
+            return trackNumber + 1;
+        }
+        return trackNumber;
+    }
+
+    private boolean isPossibleMoveLeftTrack(int trackNumber) {
+        if (isFirstTrack(trackNumber)) {
+            return false;
+        }
+        return points.get(trackNumber - 1);
+    }
+
+    private boolean isPossibleMoveRightTrack(int trackNumber) {
+        if (isLastTrack(trackNumber)) {
+            return false;
+        }
+        return points.get(trackNumber);
     }
 
     private static class LineValidateOverlapDto {

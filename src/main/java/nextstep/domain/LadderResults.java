@@ -1,4 +1,4 @@
-package nextstep.app;
+package nextstep.domain;
 
 import nextstep.domain.LadderResult;
 

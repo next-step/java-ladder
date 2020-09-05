@@ -1,6 +1,6 @@
 package nextstep.view;
 
-import nextstep.app.LadderResults;
+import nextstep.domain.LadderResults;
 import nextstep.domain.*;
 
 import java.util.List;
@@ -17,17 +17,21 @@ public class OutputView {
     }
 
     public static void printLadder(Participants persons, LadderGameManager lines, LadderResults ladderResults) {
+        printLadder(persons.getPersons(), lines.getLines(), ladderResults.getLadderResults());
+    }
+
+    public static void printLadder(List<Person> persons, List<Line> lines, List<LadderResult> ladderResults) {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println();
-        persons.getPersons().stream()
+        persons.stream()
                 .map(person -> StringUtils.padLeft(person.getName(), PAD_SIZE))
                 .forEach(OutputView::printPerson);
         System.out.println();
-        lines.getLines().stream()
+        lines.stream()
                 .map(Line::getPoints)
                 .forEach(OutputView::printLines);
-        ladderResults.getLadderResults().stream()
+        ladderResults.stream()
                 .map(person -> StringUtils.padLeft(person.getResult(), PAD_SIZE))
                 .forEach(OutputView::printPerson);
     }
