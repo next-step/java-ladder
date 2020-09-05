@@ -12,15 +12,8 @@ public class Game {
 				.map(User::new)
 				.collect(Collectors.toList());
 	}
-
-
-
+	
 	public Ladder start(int height) {
-		/*
-		List<User> users = Arrays.stream(names)
-				.map(User::new)
-				.collect(Collectors.toList());
-*/
 		return Ladder.makeLadder(users, height);
 	}
 }

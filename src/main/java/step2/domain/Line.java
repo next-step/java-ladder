@@ -7,7 +7,7 @@ import java.util.Random;
 public class Line {
 	private static final Random RANDOM = new Random();
 	private static final String BLANK = "     |";
-	private static final String LINE = "-----|";
+	private static final String POINT = "-----|";
 
 	private final List<Boolean> points = new ArrayList<>();
 
@@ -29,7 +29,7 @@ public class Line {
 		StringBuilder sb = new StringBuilder();
 		for (Boolean point : points) {
 			if (point) {
-				sb.append(LINE);
+				sb.append(POINT);
 			} else {
 				sb.append(BLANK);
 			}
