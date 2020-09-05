@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.user;
 
 import nextstep.ladder.utils.LadderValidation;
 import nextstep.ladder.utils.StringUtils;

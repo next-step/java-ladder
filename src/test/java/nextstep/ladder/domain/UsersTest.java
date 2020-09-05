@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.user.User;
+import nextstep.ladder.domain.user.UserGenerator;
+import nextstep.ladder.domain.user.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

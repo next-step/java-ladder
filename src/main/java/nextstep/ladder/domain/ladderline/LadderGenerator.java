@@ -1,4 +1,7 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.ladderline;
+
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.point.RightPointStrategy;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

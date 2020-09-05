@@ -1,8 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderLine;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.User;
+import nextstep.ladder.domain.ladderline.LadderLine;
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.user.User;
 
 import java.util.List;
 import java.util.stream.IntStream;
