@@ -16,8 +16,9 @@ public class OutputView {
 
     }
 
-    public static void printExecuteResult(Participants persons, LadderGameManager lines, LadderResults ladderResults) {
-        System.out.println("실행결과");
+    public static void printLadder(Participants persons, LadderGameManager lines, LadderResults ladderResults) {
+        System.out.println();
+        System.out.println("사다리 결과");
         System.out.println();
         persons.getPersons().stream()
                 .map(person -> StringUtils.padLeft(person.getName(), PAD_SIZE))

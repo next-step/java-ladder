@@ -13,7 +13,7 @@ public class LadderGameApp {
         LadderResults ladderResults = new LadderResults(getLadderResults());
         LadderHeight ladderHeight = new LadderHeight(getLadderHeight());
         LadderGameManager ladderGameManager = new LadderGameManager(getLines(participants, ladderHeight));
-        OutputView.printExecuteResult(participants, ladderGameManager, ladderResults);
+        OutputView.printLadder(participants, ladderGameManager, ladderResults);
     }
 
     private static List<Person> getPersons() {
