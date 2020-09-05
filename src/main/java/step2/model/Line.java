@@ -41,4 +41,8 @@ public class Line {
     public String printRungs() {
         return rungs.toString();
     }
+
+    public List<Boolean> getRungs() {
+        return rungs;
+    }
 }
