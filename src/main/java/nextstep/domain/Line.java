@@ -1,5 +1,6 @@
 package nextstep.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -7,8 +8,10 @@ import java.util.stream.IntStream;
 public class Line {
 
     private static final TransverseBarStrategy DEFAULT_TRANSVERSE_BAR_STRATEGY = new RandomTransverseBarStrategy();
+    public static final int FIRST_POINT_INDEX = 0;
+    public static final int LAST_POINT_INDEX = 1;
 
-    private List<Boolean> points;
+    private final List<Boolean> points;
 
     public Line(int countOfPerson) {
         this(countOfPerson, DEFAULT_TRANSVERSE_BAR_STRATEGY);
@@ -26,13 +29,13 @@ public class Line {
     }
 
     private boolean validateNotOverlap(List<Boolean> points) {
-        return IntStream.range(0, points.size() - 1)
+        return IntStream.range(FIRST_POINT_INDEX, points.size() - LAST_POINT_INDEX)
                 .mapToObj(i -> new LineValidateOverlapDto(points.get(i), points.get(i + 1)).isOverlap())
                 .noneMatch(Boolean::booleanValue);
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     private static class LineValidateOverlapDto {

@@ -33,9 +33,9 @@ public class LineTest {
     @DisplayName("라인 생성")
     @ParameterizedTest
     @MethodSource("createMethod")
-    public void create(int coutOfPerson, TransverseBarStrategy transverseBarStrategy) {
-        Line expect = new Line(coutOfPerson, transverseBarStrategy);
-        Line actual = new Line(coutOfPerson, transverseBarStrategy);
+    public void create(int countOfPerson, TransverseBarStrategy transverseBarStrategy) {
+        Line expect = new Line(countOfPerson, transverseBarStrategy);
+        Line actual = new Line(countOfPerson, transverseBarStrategy);
         assertThat(actual).isEqualTo(expect);
     }
 
