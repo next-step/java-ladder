@@ -1,7 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.ladderline.LadderGenerator;
-import nextstep.ladder.domain.ladderline.LadderLine;
+import nextstep.ladder.domain.line.LadderLineGenerator;
+import nextstep.ladder.domain.line.LadderLine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ class LadderLineTest {
 
     @Test
     void createLadderLine() {
-        LadderLine ladderLine = LadderGenerator.generateLadderLine(height, countOfUser, () -> false);
+        LadderLine ladderLine = LadderLineGenerator.generateLadderLine(height, countOfUser, () -> false);
         assertThat(ladderLine.size()).isEqualTo(5);
     }
 

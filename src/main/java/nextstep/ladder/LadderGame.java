@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.ladderline.LadderGenerator;
-import nextstep.ladder.domain.ladderline.LadderLine;
+import nextstep.ladder.domain.line.LadderLineGenerator;
+import nextstep.ladder.domain.line.LadderLine;
 import nextstep.ladder.domain.point.RightPointRandomStrategy;
 import nextstep.ladder.domain.result.Results;
 import nextstep.ladder.domain.user.UserGenerator;
@@ -23,7 +23,7 @@ public class LadderGame {
         List<String> results = Results.from(ladderResult);
 
         int height = InputView.inputLadderHeight();
-        LadderLine ladderLine = LadderGenerator.generateLadderLine(height, countOfUser, new RightPointRandomStrategy());
+        LadderLine ladderLine = LadderLineGenerator.generateLadderLine(height, countOfUser, new RightPointRandomStrategy());
 
         ResultView.printGameResult(users.getUsers(), ladderLine, results);
     }

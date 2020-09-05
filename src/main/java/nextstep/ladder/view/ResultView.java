@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladderline.LadderLine;
+import nextstep.ladder.domain.line.LadderLine;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.user.User;
 
@@ -41,19 +41,6 @@ public class ResultView {
         System.out.print(user.getName());
     }
 
-    public static void printGameResults(List<String> results) {
-        results.forEach(ResultView::printGameResults);
-        System.out.println();
-    }
-
-    public static void printGameResults(String result) {
-        int widthResult = PRINT_NAME_WIDTH - result.length();
-        for (int i = NUMBER_ZERO; i < widthResult; i++) {
-            System.out.print(SPACE);
-        }
-        System.out.print(result);
-    }
-
     public static void printLines(LadderLine ladderLine) {
         IntStream.range(NUMBER_ZERO, ladderLine.size())
                 .mapToObj(ladderLine::getLine)
@@ -74,5 +61,18 @@ public class ResultView {
 
     private static void printPoint(boolean point) {
         System.out.print((point) ? PRINT_LADDER_LINE_VISIBLE : PRINT_LADDER_LINE_INVISIBLE);
+    }
+
+    public static void printGameResults(List<String> results) {
+        results.forEach(ResultView::printGameResults);
+        System.out.println();
+    }
+
+    public static void printGameResults(String result) {
+        int widthResult = PRINT_NAME_WIDTH - result.length();
+        for (int i = NUMBER_ZERO; i < widthResult; i++) {
+            System.out.print(SPACE);
+        }
+        System.out.print(result);
     }
 }

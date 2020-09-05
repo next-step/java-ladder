@@ -20,5 +20,5 @@ public class Results {
     private static String[] spliyByResult(String result) {
         return StringUtils.splitBy(result);
     }
-    
+
 }
