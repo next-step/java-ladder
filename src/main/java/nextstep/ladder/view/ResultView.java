@@ -16,14 +16,16 @@ public class ResultView {
     private static final String PRINT_LADDER_LINE_VISIBLE = "-----";
     private static final String PRINT_LADDER_LINE_INVISIBLE = "     ";
     private static final int PRINT_NAME_WIDTH = 6;
+    private static final String SPACE = " ";
 
     private ResultView() {
     }
 
-    public static void printGameResult(List<User> users, LadderLine ladderLine) {
+    public static void printGameResult(List<User> users, LadderLine ladderLine, List<String> results) {
         System.out.println(PRINT_GAME_RESULT);
         ResultView.printUserNames(users);
         ResultView.printLines(ladderLine);
+        ResultView.printGameResults(results);
     }
 
     public static void printUserNames(List<User> users) {
@@ -33,10 +35,23 @@ public class ResultView {
 
     private static void printUserName(User user) {
         int result = PRINT_NAME_WIDTH - user.getName().length();
-        for (int i = 0; i < result; i++) {
-            System.out.print(" ");
+        for (int i = NUMBER_ZERO; i < result; i++) {
+            System.out.print(SPACE);
         }
         System.out.print(user.getName());
+    }
+
+    public static void printGameResults(List<String> results) {
+        results.forEach(ResultView::printGameResults);
+        System.out.println();
+    }
+
+    public static void printGameResults(String result) {
+        int widthResult = PRINT_NAME_WIDTH - result.length();
+        for (int i = NUMBER_ZERO; i < widthResult; i++) {
+            System.out.print(SPACE);
+        }
+        System.out.print(result);
     }
 
     public static void printLines(LadderLine ladderLine) {
