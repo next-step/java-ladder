@@ -17,14 +17,6 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("Line 전략주입 테스트 : All true가 나오는 조건이면 false 값은 없는가?")
-    void create_Line_With_Draw_Strategy() {
-        line = new Line();
-        line.drawNewLine(5, () -> true);
-        assertThat(line.printRungs()).doesNotContain("false");
-    }
-
-    @Test
     @DisplayName("Line의 제약조건 : 한 구역의 -----가 그려졌다면 다음 구역은 무조건 Null인가?")
     void create_Line_For_Constraint() {
         line = new Line();
