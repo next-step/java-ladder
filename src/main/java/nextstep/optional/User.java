@@ -1,7 +1,6 @@
 package nextstep.optional;
 
 import java.util.Optional;
-import java.util.OptionalInt;
 
 public class User {
     private String name;
