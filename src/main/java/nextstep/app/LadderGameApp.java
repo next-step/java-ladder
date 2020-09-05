@@ -14,6 +14,12 @@ public class LadderGameApp {
         LadderHeight ladderHeight = new LadderHeight(getLadderHeight());
         LadderGameManager ladderGameManager = new LadderGameManager(getLines(participants, ladderHeight));
         OutputView.printLadder(participants, ladderGameManager, ladderResults);
+        int resultTrackNumber = ladderGameManager.start(getStartTrackNumber(participants));
+        OutputView.printLadderResult(ladderResults.getLadderResults().get(resultTrackNumber));
+    }
+
+    private static int getStartTrackNumber(Participants participants) {
+        return participants.getTrackNumberByPersonName(InputView.receivePersonForResult());
     }
 
     private static List<Person> getPersons() {

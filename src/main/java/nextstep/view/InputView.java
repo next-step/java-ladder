@@ -27,4 +27,11 @@ public class InputView {
         return scanner.nextInt();
     }
 
+    public static String receivePersonForResult() {
+        System.out.println();
+        System.out.println("결과를 보고 싶은 사람은?");
+        scanner.nextLine();
+        return scanner.nextLine();
+    }
+
 }

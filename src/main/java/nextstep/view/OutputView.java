@@ -52,4 +52,10 @@ public class OutputView {
         System.out.print(PIPE);
     }
 
+    public static void printLadderResult(LadderResult ladderResult) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(ladderResult.getResult());
+    }
+
 }
