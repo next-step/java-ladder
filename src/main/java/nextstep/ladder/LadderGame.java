@@ -12,6 +12,8 @@ public class LadderGame {
         Users users = Users.from(UserGenerator.generateUsers(joinUsers));
         int countOfUser = users.size();
 
+        String ladderResult = InputView.inputLadderResult();
+
         int height = InputView.inputLadderHeight();
         LadderLine ladderLine = LadderGenerator.generateLadderLine(height, countOfUser, new RightPointRandomStrategy());
 
