@@ -19,7 +19,7 @@ public class Participants {
         return Collections.unmodifiableList(persons);
     }
 
-    public int size() {
+    public int getPersonSize() {
         return persons.size();
     }
 

@@ -9,11 +9,23 @@ import java.util.List;
 public class LadderGameApp {
 
     public static void main(String[] args) {
-        Participants participants = new Participants(PersonFactory.createPersons(InputView.receivePersons()));
-        LadderResults ladderResults = new LadderResults(LadderResultFactory.createLadderResults(InputView.receiveLadderResults()));
+        Participants participants = new Participants(getPersons());
+        LadderResults ladderResults = new LadderResults(getLadderResults());
         LadderHeight ladderHeight = new LadderHeight(InputView.receiveLadderHeight());
-        LadderGameManager ladderGameManager = new LadderGameManager(LineFactory.createLines(participants.size(), ladderHeight.getLadderHeight()));
-        OutputView.printExecuteResult(participants.getPersons(), ladderGameManager.getLines(), ladderResults.getLadderResults());
+        LadderGameManager ladderGameManager = new LadderGameManager(getLines(participants, ladderHeight));
+        OutputView.printExecuteResult(participants, ladderGameManager, ladderResults);
+    }
+
+    private static List<Person> getPersons() {
+        return PersonFactory.createPersons(InputView.receivePersons());
+    }
+
+    private static List<LadderResult> getLadderResults() {
+        return LadderResultFactory.createLadderResults(InputView.receiveLadderResults());
+    }
+
+    private static List<Line> getLines(Participants participants, LadderHeight ladderHeight) {
+        return LineFactory.createLines(participants, ladderHeight);
     }
 
 }

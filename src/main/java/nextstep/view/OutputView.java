@@ -1,5 +1,6 @@
 package nextstep.view;
 
+import nextstep.app.LadderResults;
 import nextstep.domain.*;
 
 import java.util.List;
@@ -15,17 +16,17 @@ public class OutputView {
 
     }
 
-    public static void printExecuteResult(List<Person> persons, List<Line> lines, List<LadderResult> ladderResults) {
+    public static void printExecuteResult(Participants persons, LadderGameManager lines, LadderResults ladderResults) {
         System.out.println("실행결과");
         System.out.println();
-        persons.stream()
+        persons.getPersons().stream()
                 .map(person -> StringUtils.padLeft(person.getName(), PAD_SIZE))
                 .forEach(OutputView::printPerson);
         System.out.println();
-        lines.stream()
+        lines.getLines().stream()
                 .map(Line::getPoints)
                 .forEach(OutputView::printLines);
-        ladderResults.stream()
+        ladderResults.getLadderResults().stream()
                 .map(person -> StringUtils.padLeft(person.getResult(), PAD_SIZE))
                 .forEach(OutputView::printPerson);
     }

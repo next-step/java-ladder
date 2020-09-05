@@ -14,9 +14,9 @@ public class LineFactory {
         return new Line(countOfPerson);
     }
 
-    public static List<Line> createLines(int countOfPerson, int ladderHeight) {
-        return IntStream.range(0, ladderHeight)
-                .mapToObj(i -> createLine(countOfPerson))
+    public static List<Line> createLines(Participants participants, LadderHeight ladderHeight) {
+        return IntStream.range(0, ladderHeight.getLadderHeight())
+                .mapToObj(i -> createLine(participants.getPersonSize()))
                 .collect(Collectors.toList());
     }
 
