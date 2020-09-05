@@ -1,6 +1,7 @@
 package nextstep.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -17,8 +18,8 @@ public class LineTest {
     @ParameterizedTest
     @MethodSource("drawTransverseBarMethodSource")
     public void drawTransverseBar(int coutOfPerson, TransverseBarStrategy transverseBarStrategy, Boolean[] result) {
-        List<Boolean> line = Line.drawTransverseBar(coutOfPerson, transverseBarStrategy);
-        assertThat(line).containsExactly(result);
+        List<Boolean> points = transverseBarStrategy.draw(coutOfPerson);
+        assertThat(points).containsExactly(result);
     }
 
     private static Stream<Arguments> drawTransverseBarMethodSource() {
@@ -29,36 +30,21 @@ public class LineTest {
         );
     }
 
-    @DisplayName("라인 밸리데이션 - 최소 하나의 횡단선을 가진다.")
+
+    @DisplayName("라인 생성")
     @ParameterizedTest
-    @MethodSource("validateHasOneOrMoreTransverseBarMethodSource")
-    public void validateHasOneOrMore(int coutOfPerson, TransverseBarStrategy transverseBarStrategy, boolean result) {
-        List<Boolean> line = Line.drawTransverseBar(coutOfPerson, transverseBarStrategy);
-        assertThat(Line.validateHasOneOrMoreTransverseBar(line)).isEqualTo(result);
+    @MethodSource("createMethod")
+    public void create(int coutOfPerson, TransverseBarStrategy transverseBarStrategy) {
+        Line expect = new Line(coutOfPerson, transverseBarStrategy);
+        Line actual = new Line(coutOfPerson, transverseBarStrategy);
+        assertThat(actual).isEqualTo(expect);
     }
 
-    private static Stream<Arguments> validateHasOneOrMoreTransverseBarMethodSource() {
+    private static Stream<Arguments> createMethod() {
         return Stream.of(
-                Arguments.of(5, new AllDrawTransverseBarStrategy(), true),
-                Arguments.of(5, new NotAllDrawTransverseBarStrategy(), false),
                 Arguments.of(5, new SwitchDrawTransverseBarStrategy(), true)
         );
     }
 
-    @DisplayName("라인 밸리데이션 - 횡단선이 서로 겹치지 않는다.")
-    @ParameterizedTest
-    @MethodSource("validateNotOverlapMethodSource")
-    public void validateNotOverlap(int coutOfPerson, TransverseBarStrategy transverseBarStrategy, boolean result) {
-        List<Boolean> line = Line.drawTransverseBar(coutOfPerson, transverseBarStrategy);
-        assertThat(Line.validateNotOverlap(line)).isEqualTo(result);
-    }
-
-    private static Stream<Arguments> validateNotOverlapMethodSource() {
-        return Stream.of(
-                Arguments.of(5, new AllDrawTransverseBarStrategy(), false),
-                Arguments.of(5, new NotAllDrawTransverseBarStrategy(), true),
-                Arguments.of(5, new SwitchDrawTransverseBarStrategy(), true)
-        );
-    }
 
 }
