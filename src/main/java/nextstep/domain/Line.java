@@ -20,9 +20,8 @@ public class Line {
         this.points = points;
     }
 
-    public static boolean validateHasOneOrMoreTransverseBar(List<Boolean> line) {
-        return line.stream()
-                .anyMatch(Boolean::booleanValue);
+    public static List<Boolean> drawTransverseBar(int countOfPerson, TransverseBarStrategy transverseBarStrategy) {
+        return transverseBarStrategy.draw(countOfPerson);
     }
 
     public static boolean validateNotOverlap(List<Boolean> line) {
@@ -33,10 +32,6 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return points;
-    }
-
-    public static List<Boolean> drawTransverseBar(int countOfPerson, TransverseBarStrategy transverseBarStrategy) {
-        return transverseBarStrategy.draw(countOfPerson);
     }
 
     private static class LineValidateOverlapDto {
