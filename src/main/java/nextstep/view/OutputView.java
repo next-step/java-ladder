@@ -1,6 +1,7 @@
 package nextstep.view;
 
 import nextstep.domain.Line;
+import nextstep.domain.Participants;
 import nextstep.domain.Person;
 import nextstep.domain.StringUtils;
 
