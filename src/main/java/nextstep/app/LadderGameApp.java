@@ -11,7 +11,7 @@ public class LadderGameApp {
     public static void main(String[] args) {
         Participants participants = new Participants(getPersons());
         LadderResults ladderResults = new LadderResults(getLadderResults());
-        LadderHeight ladderHeight = new LadderHeight(InputView.receiveLadderHeight());
+        LadderHeight ladderHeight = new LadderHeight(getLadderHeight());
         LadderGameManager ladderGameManager = new LadderGameManager(getLines(participants, ladderHeight));
         OutputView.printExecuteResult(participants, ladderGameManager, ladderResults);
     }
@@ -22,6 +22,10 @@ public class LadderGameApp {
 
     private static List<LadderResult> getLadderResults() {
         return LadderResultFactory.createLadderResults(InputView.receiveLadderResults());
+    }
+
+    private static int getLadderHeight() {
+        return InputView.receiveLadderHeight();
     }
 
     private static List<Line> getLines(Participants participants, LadderHeight ladderHeight) {
