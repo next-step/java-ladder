@@ -23,4 +23,8 @@ public class LadderGame {
         ladder.drawLine(drawRule);
         return ladder;
     }
+
+    public LadderResult run() {
+        return ladder.searchLine();
+    }
 }
