@@ -3,7 +3,7 @@ package nextstep.entity;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Entries implements TryCatchable {
+public class Entries {
 
     private final List<Entry> entries;
 
@@ -15,5 +15,9 @@ public class Entries implements TryCatchable {
         return this.entries.stream()
                 .map(Entry::getName)
                 .collect(Collectors.toList());
+    }
+
+    public int getPersonnel() {
+        return entries.size();
     }
 }
