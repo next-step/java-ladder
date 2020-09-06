@@ -1,7 +1,5 @@
 package nextstep.domain;
 
-import nextstep.domain.LadderResult;
-
 import java.util.List;
 
 public class LadderResults {

@@ -1,8 +1,5 @@
 package nextstep.domain;
 
-import nextstep.domain.LadderResult;
-import nextstep.domain.Person;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
