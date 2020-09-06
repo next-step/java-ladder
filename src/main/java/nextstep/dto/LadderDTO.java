@@ -12,11 +12,7 @@ public class LadderDTO {
         this.ladder = ladder;
     }
 
-    public List<String> getEntryNames() {
-        return this.ladder.getEntryNames();
-    }
-
-    public List<List<Boolean>> getResult() {
-        return this.ladder.getResult();
+    public List<List<Boolean>> getLadder() {
+        return this.ladder.getLadderLineStatus();
     }
 }

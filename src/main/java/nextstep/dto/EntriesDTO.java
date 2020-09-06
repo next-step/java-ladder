@@ -14,10 +14,20 @@ public class EntriesDTO implements DTO {
         this.entries = entries;
     }
 
+    public List<String> getEntryNames() {
+        return this.entries.stream()
+                .map(EntryDTO::getName)
+                .collect(Collectors.toList());
+    }
+
     public Entries of() {
         List<Entry> entries = this.entries.stream()
                 .map(EntryDTO::of)
                 .collect(Collectors.toList());
         return new Entries(entries);
+    }
+
+    public int getEntryCount() {
+        return this.entries.size();
     }
 }

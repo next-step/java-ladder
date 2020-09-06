@@ -7,22 +7,17 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private static final int START_INDEX = 0;
-    private final Entries entries;
+    private final Personnel personnel;
     private final List<Line> lines;
 
-    public Ladder(Entries entries, Length length) {
-        this.entries = entries;
-        int personnel = entries.getPersonnel();
+    public Ladder(Personnel personnel, Length length) {
+        this.personnel = personnel;
         this.lines = IntStream.range(START_INDEX, length.getLength())
-                .mapToObj(index -> new Line(personnel))
+                .mapToObj(index -> new Line(personnel.getPersonnel()))
                 .collect(Collectors.toList());
     }
 
-    public List<String> getEntryNames() {
-        return this.entries.getNames();
-    }
-
-    public List<List<Boolean>> getResult() {
+    public List<List<Boolean>> getLadderLineStatus() {
         return this.lines.stream().map(Line::getResult).collect(Collectors.toList());
     }
 }

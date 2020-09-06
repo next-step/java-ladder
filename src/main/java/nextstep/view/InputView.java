@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 public class InputView {
 
-    private static final String NAME_DELIMITER = ",";
+    private static final String ENTRY_DELIMITER = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
     private DTO tryCatch(Supplier<DTO> supplier) {
@@ -28,16 +28,33 @@ public class InputView {
         }
     }
 
-    public DTO inputEntries() {
+    private DTO inputEntries() {
         return tryCatch(() -> {
-            System.out.println("참여할 사람 이름을 입력 하세요. (이름은 쉼표(,)로 구분 하세요.)");
-            String[] names = scanner.nextLine().split(NAME_DELIMITER);
+            String[] inputs = scanner.nextLine().split(ENTRY_DELIMITER);
             System.out.println();
-            List<EntryDTO> entries = Stream.of(names)
+            List<EntryDTO> entries = Stream.of(inputs)
                     .map(String::trim)
                     .map(EntryDTO::new)
                     .collect(Collectors.toList());
             return new EntriesDTO(entries);
+        });
+    }
+
+    public DTO inputStartEntries() {
+        return tryCatch(() -> {
+            System.out.println("참여할 사람 이름을 입력 하세요. (이름은 쉼표(,)로 구분 하세요.)");
+            return this.inputEntries();
+        });
+    }
+
+    public DTO inputResultEntries(int personnel) {
+        return tryCatch(() -> {
+            System.out.println("실행 결과를 입력 하세요. (결과는 쉼표(,)로 구분 하세요.)");
+            EntriesDTO resultEntries = (EntriesDTO) this.inputEntries();
+            if (resultEntries.getEntryCount() != personnel) {
+                throw new IllegalArgumentException("참여한 사람과 수가 같지 않아요.");
+            }
+            return resultEntries;
         });
     }
 

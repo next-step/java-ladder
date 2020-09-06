@@ -14,6 +14,10 @@ public class EntryDTO implements DTO {
         this.name = name;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public Entry of() {
         return new Entry(name);
     }

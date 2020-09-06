@@ -6,6 +6,7 @@ import nextstep.dto.LengthDTO;
 import nextstep.entity.Entries;
 import nextstep.entity.Ladder;
 import nextstep.entity.Length;
+import nextstep.entity.Personnel;
 import nextstep.view.InputView;
 import nextstep.view.ResultView;
 
@@ -15,16 +16,21 @@ public class Controller {
     private static final ResultView resultView = new ResultView();
 
     public static void main(String[] args) {
-        EntriesDTO entriesDTO = (EntriesDTO) inputView.inputEntries();
-        LengthDTO lengthDTO = (LengthDTO) inputView.inputLength();
+        EntriesDTO startEntriesDTO = (EntriesDTO) inputView.inputStartEntries();
+        Entries startEntries = startEntriesDTO.of();
+        Personnel personnel = new Personnel(startEntries.getPersonnel());
 
-        Entries entries = entriesDTO.of();
+        EntriesDTO resultEntriesDTO = (EntriesDTO) inputView.inputResultEntries(personnel.getPersonnel());
+        Entries resultEntries = resultEntriesDTO.of();
+
+        LengthDTO lengthDTO = (LengthDTO) inputView.inputLength();
         Length length = lengthDTO.of();
 
-        Ladder ladder = new Ladder(entries, length);
+        Ladder ladder = new Ladder(personnel, length);
         LadderDTO ladderDTO = new LadderDTO(ladder);
 
-        resultView.printEntryNames(ladderDTO);
-        resultView.printResult(ladderDTO);
+        resultView.printEntryNames(startEntriesDTO);
+        resultView.printLadder(ladderDTO);
+        resultView.printEntryNames(resultEntriesDTO);
     }
 }
