@@ -47,7 +47,7 @@ public class User {
         int result = 1;
         result = prime * result + ((age == null) ? 0 : age.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result; 
+        return result;
     }
 
     @Override

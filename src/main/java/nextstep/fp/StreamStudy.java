@@ -41,7 +41,7 @@ public class StreamStudy {
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
         System.out.println();
         return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
-
+ 
     }
 
     public static long sumAll(List<Integer> numbers) {
