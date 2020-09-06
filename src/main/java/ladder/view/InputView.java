@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.line.Height;
 import ladder.domain.player.Players;
+import ladder.domain.reward.Rewards;
 
 import java.util.Scanner;
 
@@ -24,9 +25,9 @@ public class InputView {
         return Height.of(scanner.nextInt());
     }
 
-    public static String inputResult() {
+    public static Rewards inputReward(int size) {
         System.out.println(INPUT_RESULT_MESSAGE);
-        return scanner.nextLine();
+        return Rewards.ofPrizes(scanner.nextLine(), size);
     }
 
     public static String inputResultPlayer() {

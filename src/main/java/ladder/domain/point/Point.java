@@ -34,8 +34,8 @@ public class Point {
         return new Point(position, false, pointStrategy.next());
     }
 
-    public boolean isRight() {
-        return this.right;
+    public boolean isLeft() {
+        return this.left;
     }
 
     public int move() {
