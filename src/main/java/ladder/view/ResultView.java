@@ -70,7 +70,7 @@ public class ResultView {
     }
 
     private static void validateTarget(String target, GameResult gameResult) {
-        if (!gameResult.hasResult(target) && !TARGET_ALL.equals(target)) {
+        if (!gameResult.getResult(target).isPresent() && !TARGET_ALL.equals(target)) {
             throw new IllegalArgumentException("입력한 참가자 이름이 없습니다.");
         }
     }
