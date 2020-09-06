@@ -31,9 +31,9 @@
  
 ## Step3 사다리 게임실행 (기능요구사항)
 
-- [ ] Step2 피드백 반영
-- [ ] 사다리 실행 결과 출력
-- [ ] InputView - 실행결과를 입력
-- [ ] ResultView - 이름입력시 개인별 결과출력
-- [ ] ResultView - all 입력시 전체 참여자의 결과출력
+- [x] Step2 피드백 반영
+- [x] 사다리 실행 결과 출력
+- [x] InputView - 실행결과를 입력
+- [x] ResultView - 이름입력시 개인별 결과출력
+- [x] ResultView - all 입력시 전체 참여자의 결과출력
 
