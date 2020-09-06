@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,14 @@ public class Users {
 
     public int getSize() {
         return users.size();
+    }
+
+    public void swapUserPoint(int left, int right) {
+        Collections.swap(users, left, right);
+    }
+
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(users);
     }
 
 }

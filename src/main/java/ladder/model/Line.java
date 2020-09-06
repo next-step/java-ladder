@@ -12,11 +12,6 @@ public class Line {
 
     private final List<Boolean> steps;
 
-    public Line(List<Boolean> steps) {
-        validateLine(steps);
-        this.steps = steps;
-    }
-
     public Line(int countOfStep, LadderGenerateStrategy generateStrategy) {
         steps = new ArrayList<>();
 
@@ -39,16 +34,25 @@ public class Line {
         }
     }
 
-    public boolean hasStepBetween(int left, int right) {
-        if (right - left != STEP_INTERVAL) {
-            return false;
-        }
-
-        return steps.get(left);
-    }
-
     public List<Boolean> getSteps() {
         return Collections.unmodifiableList(steps);
+    }
+
+    private boolean hasNextStep(int pointIndex) {
+        validateIndex(pointIndex);
+        return steps.get(pointIndex);
+    }
+
+    private void validateIndex(int pointIndex) {
+        if (pointIndex < 0 || pointIndex >= steps.size()) {
+            throw new IllegalArgumentException("index가 사다리 범위를 벗어났습니다.");
+        }
+    }
+
+    public void processLine(Users users) {
+        IntStream.range(0, steps.size())
+                .filter(this::hasNextStep)
+                .forEach(i -> users.swapUserPoint(i, i + 1));
     }
 
     @Override
@@ -63,4 +67,5 @@ public class Line {
     public int hashCode() {
         return Objects.hash(steps);
     }
+
 }
