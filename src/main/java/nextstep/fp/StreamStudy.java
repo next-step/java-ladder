@@ -21,7 +21,7 @@ public class StreamStudy {
         long count = 0;
         for (String w : words) {
             if (w.length() > 12) count++;
-        } 
+        }
         return count;
     }
 

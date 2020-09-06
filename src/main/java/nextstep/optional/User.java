@@ -31,7 +31,7 @@ public class User {
                 && user.getAge() <= 45)) {
             isInRange = true;
         }
-        return isInRange;
+        return isInRange; 
     }
 
     public static boolean ageIsInRange2(User user) {
