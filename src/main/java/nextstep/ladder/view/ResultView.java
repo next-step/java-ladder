@@ -21,7 +21,7 @@ public class ResultView {
     private static final String SPACE = " ";
     private static final String PRINT_GAME_RESULT = "실행 결과";
     private static final String PRINT_ALL_MEMBER = "all";
-    public static final String PRINT_COMMA = " : ";
+    private static final String PRINT_COMMA = " : ";
 
     private ResultView() {
     }
