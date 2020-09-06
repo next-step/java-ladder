@@ -8,13 +8,22 @@ public class LineTest {
 
     @Test
     void Line_creation_test() {
-        int countOfParticipants = 5;
-        Line line = Line.of(countOfParticipants);
+        Participants participants = Participants.of("pobi,honux,crong,jk");
+        Line line = Line.of(participants);
 
-        Point prev = line.getPoint(0);
-        Point next = line.getPoint(1);
+        int idx = 0;
 
-        assertThat(prev.getRight()).isEqualTo(next.getLeft());
+        Point prev = line.getPoint(idx++);
+        assertThat(prev.getLeft()).isFalse();
+
+        while (!participants.isBeforeLast(idx)) {
+            Point next = line.getPoint(idx++);
+            assertThat(prev.getRight()).isEqualTo(next.getLeft());
+            prev = next;
+        }
+
+        Point last = line.getPoint(idx);
+        assertThat(last.getRight()).isFalse();
     }
 
     @Test
@@ -22,22 +31,5 @@ public class LineTest {
         String input = "pobi";
         assertThatThrownBy(() ->
                 Line.of(Participants.of(input))).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void Line_creation_with_participants() {
-        Participants participants = Participants.of("pobi,honux,crong,jk");
-
-        Line line = Line.of(participants);
-
-        Point prev = line.getPoint(0);
-        assertThat(prev.getLeft()).isFalse();
-
-        for (int i = 1; i < participants.getSize(); ++i) {
-            Point next = line.getPoint(i);
-            assertThat(prev.getRight()).isEqualTo(next.getLeft());
-            prev = next;
-        }
-        assertThat(prev.getRight()).isFalse();
     }
 }

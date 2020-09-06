@@ -13,13 +13,18 @@ public class ParticipantsTest {
         String[] split = input.split(",");
 
         Participants participants = Participants.of(input);
-        assertThat(participants.getSize()).isEqualTo(split.length);
+
+        boolean beforeLast = participants.isBeforeLast(split.length - 1);
+        assertThat(beforeLast).isTrue();
     }
 
     @Test
     void participants_exception_test() {
         String empty = "";
         assertThatThrownBy(() -> Participants.of(empty))
+                .isInstanceOf(NullPointerException.class);
+
+        assertThatThrownBy(() -> Participants.of(null))
                 .isInstanceOf(NullPointerException.class);
 
         String participant = " tdd";

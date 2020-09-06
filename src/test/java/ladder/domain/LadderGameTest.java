@@ -17,7 +17,8 @@ public class LadderGameTest {
         int expectedHeight = ladderGame.getLadder().getLines().size();
         assertThat(height.equals(expectedHeight)).isTrue();
 
-        int expectedSize = ladderGame.getParticipants().getSize();
-        assertThat(names.split(",").length).isEqualTo(expectedSize);
+        int length = names.split(",").length;
+        Participants participants = ladderGame.getParticipants();
+        assertThat(participants.isBeforeLast(length - 1)).isTrue();
     }
 }

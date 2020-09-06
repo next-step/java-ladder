@@ -13,23 +13,6 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(int countOfParticipants) {
-        if (countOfParticipants <= 1) {
-            throw new IllegalArgumentException();
-        }
-        List<Point> points = new ArrayList<>();
-
-        points.add(Point.ofFirstPoint(generate()));
-        for (int pos = 1; pos < countOfParticipants - 1; ++pos) {
-            Point nextPoint = points.get(pos - 1).getNext();
-            points.add(nextPoint);
-        }
-        boolean nextLeft = points.get(countOfParticipants - 2).getRight();
-        points.add(Point.ofLastPoint(nextLeft));
-
-        return new Line(points);
-    }
-
     public static Line of(Participants participants) {
         List<Point> points = new ArrayList<>();
 

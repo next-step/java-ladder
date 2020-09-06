@@ -20,22 +20,21 @@ public class Participants {
         }
 
         String[] names = input.split(DELIMITER);
-        if (names.length < PARTICIPANTS_LIMIT) {
-            throw new IllegalArgumentException("적어도 2명은 참여해야합니다.");
-        }
-
         Set<Participant> participants = Arrays.stream(names)
                 .map(Participant::of)
                 .collect(Collectors.toSet());
 
-        if (participants.size() != names.length) {
-            throw new IllegalArgumentException("중복된 이름이 있습니다.");
-        }
+        validationCheck(participants, names);
         return new Participants(participants);
     }
 
-    public int getSize() {
-        return participants.size();
+    private static void validationCheck(Set<Participant> participants, String[] names) {
+        if (names.length < PARTICIPANTS_LIMIT) {
+            throw new IllegalArgumentException("적어도 2명은 참여해야합니다.");
+        }
+        if (participants.size() != names.length) {
+            throw new IllegalArgumentException("중복된 이름이 있습니다.");
+        }
     }
 
     public boolean isBeforeLast(int size) {
