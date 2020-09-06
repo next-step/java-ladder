@@ -1,5 +1,6 @@
 package step2.model;
 
+import step2.strategy.DrawStrategy;
 import step2.strategy.RandomDrawStrategy;
 
 import java.util.List;
@@ -20,10 +21,10 @@ public class Ladder {
     }
 
 
-    public static Ladder of(Height height, int countOfPeople) {
+    public static Ladder of(Height height, int countOfPeople, DrawStrategy strategy) {
         return Stream.generate(Line::new)
                 .limit(height.getHeight())
-                .peek(it -> it.drawNewLine(countOfPeople, new RandomDrawStrategy()))
+                .peek(it -> it.drawNewLine(countOfPeople, strategy))
                 .collect(collectingAndThen(toList(), Ladder::of))
                 ;
     }

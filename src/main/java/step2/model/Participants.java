@@ -20,7 +20,7 @@ public class Participants {
 
     public static Participants of(String[] names) {
         return Arrays.stream(names)
-                .map(Person::new)
+                .map(Person::valueOf)
                 .collect(collectingAndThen(toList(), Participants::of));
     }
 
