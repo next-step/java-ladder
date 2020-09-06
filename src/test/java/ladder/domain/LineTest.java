@@ -18,23 +18,6 @@ public class LineTest {
     }
 
     @Test
-    void Line_point_iteration_test() {
-        int countOfParticipants = 5;
-
-        Line line = Line.of(countOfParticipants);
-
-        Point prev = line.getPoint(0);
-        assertThat(prev.getLeft()).isFalse();
-
-        for (int i = 1; i < countOfParticipants; ++i) {
-            Point next = line.getPoint(i);
-            assertThat(prev.getRight()).isEqualTo(next.getLeft());
-            prev = next;
-        }
-        assertThat(prev.getRight()).isFalse();
-    }
-
-    @Test
     void Line_exception_test() {
         String input = "pobi";
         assertThatThrownBy(() ->

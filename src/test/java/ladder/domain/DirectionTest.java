@@ -15,4 +15,13 @@ public class DirectionTest {
         Direction direction = Direction.of(true);
         assertThat(direction.getRight()).isFalse();
     }
+
+    @Test
+    void next_dircetion_test() {
+        Direction direction = Direction.of(false, true);
+
+        Direction next = direction.getNext();
+
+        assertThat(next.getLeft()).isEqualTo(direction.getRight());
+    }
 }

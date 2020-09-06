@@ -18,8 +18,16 @@ public class ParticipantsTest {
 
     @Test
     void participants_exception_test() {
-        String input = "";
-        assertThatThrownBy(() -> Participants.of(input))
+        String empty = "";
+        assertThatThrownBy(() -> Participants.of(empty))
                 .isInstanceOf(NullPointerException.class);
+
+        String participant = " tdd";
+        assertThatThrownBy(() -> Participants.of(participant))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        String duplication = "pobi,pobi,tdd,clean";
+        assertThatThrownBy(() -> Participants.of(duplication))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
