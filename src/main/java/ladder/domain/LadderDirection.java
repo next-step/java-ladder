@@ -1,68 +1,49 @@
 package ladder.domain;
 
 import java.util.Arrays;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public enum LadderDirection {
 
-    LEFT{
-        @Override
-        public boolean canMove(Ladder ladder, Position currentPosition) {
-            if(ladder.onFirstColumn(currentPosition)) {
-                return false;
-            }
-            return currentPosition.left().checkLine(ladder);
+    LEFT(((ladder, position) -> {
+        if(ladder.onFirstColumn(position)) {
+            return false;
         }
+        return position.left().checkLine(ladder);
+    }), (position -> position.left().down())),
 
-        @Override
-        public Position move(Position position) {
-            return position.left().down();
+    RIGHT(((ladder, position) -> {
+        if(ladder.onLastColumn(position)) {
+            return false;
         }
-    },
-    RIGHT{
-        @Override
-        public boolean canMove(Ladder ladder, Position currentPosition) {
-            if(ladder.onLastColumn(currentPosition)){
-                return false;
-            }
-            return currentPosition.checkLine(ladder);
-        }
+        return position.checkLine(ladder);
+    }), (position -> position.right().down())),
 
-        @Override
-        public Position move(Position position) {
-            return position.right().down();
+    DOWN(((ladder, position) -> {
+        if(ladder.onFirstColumn(position)) {
+            return !position.checkLine(ladder);
         }
-    },
-    DOWN{
-        @Override
-        public boolean canMove(Ladder ladder, Position currentPosition) {
-            if(ladder.onFirstColumn(currentPosition)) {
-                return !currentPosition.checkLine(ladder);
-            }
-            if(ladder.onLastColumn((currentPosition))) {
-                return !currentPosition.left().checkLine(ladder);
-            }
-            return !currentPosition.left().checkLine(ladder) &&
-                    !currentPosition.checkLine(ladder);
+        if(ladder.onLastColumn((position))) {
+            return !position.left().checkLine(ladder);
         }
+        return !position.left().checkLine(ladder) &&
+                !position.checkLine(ladder);
+    }), (position -> position.down()));
 
-        @Override
-        public Position move(Position position) {
-            return position.down();
-        }
-    };
 
     public static LadderDirection valueOf(Ladder ladder, Position currentPosition) {
         return Arrays.stream(LadderDirection.values())
-                .filter(direction -> direction.canMove(ladder, currentPosition))
+                .filter(ladderDirection2 -> ladderDirection2.canMove.apply(ladder, currentPosition))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    public boolean canMove(Ladder ladder, Position currentPosition) {
-        return false;
+    LadderDirection(BiFunction<Ladder, Position, Boolean> canMove, Function<Position, Position> move) {
+        this.canMove = canMove;
+        this.move = move;
     }
 
-    public Position move(Position position) {
-        return position;
-    }
+    public BiFunction<Ladder, Position, Boolean> canMove;
+    public Function<Position, Position> move;
 }

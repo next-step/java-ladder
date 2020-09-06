@@ -49,7 +49,7 @@ public class Ladder {
                 .build();
         do {
             LadderDirection direction = LadderDirection.valueOf(this, currentPosition);
-            currentPosition = direction.move(currentPosition);
+            currentPosition = direction.move.apply(currentPosition);
         } while (!onDestination(currentPosition));
 
         return currentPosition.getColumn();
@@ -64,7 +64,7 @@ public class Ladder {
     }
 
     public boolean onDestination(Position currentPosition) {
-        return currentPosition.getRow() + 1 == rows.size();
+        return currentPosition.getRow() == rows.size();
     }
 
     public boolean onFirstColumn(Position currentPosition) {

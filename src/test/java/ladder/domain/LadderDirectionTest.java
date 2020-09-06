@@ -27,25 +27,25 @@ class LadderDirectionTest {
     @Test
     @DisplayName("사다리에서 왼쪽으로 이동할 수 있는지 확인 테스트")
     void left_canMove() {
-        assertThat(LadderDirection.LEFT.canMove(ladder, new Position(0, 0))).isFalse();
-        assertThat(LadderDirection.LEFT.canMove(ladder, new Position(0, 1))).isTrue();
-        assertThat(LadderDirection.LEFT.canMove(ladder, new Position(0, 2))).isFalse();
+        assertThat(LadderDirection.LEFT.canMove.apply(ladder, new Position(0, 0))).isFalse();
+        assertThat(LadderDirection.LEFT.canMove.apply(ladder, new Position(0, 1))).isTrue();
+        assertThat(LadderDirection.LEFT.canMove.apply(ladder, new Position(0, 2))).isFalse();
     }
 
     @Test
     @DisplayName("사다리에서 오른쪽으로 이동할 수 있는지 확인 테스트")
     void right_canMove() {
-        assertThat(LadderDirection.RIGHT.canMove(ladder, new Position(0, 0))).isTrue();
-        assertThat(LadderDirection.RIGHT.canMove(ladder, new Position(0, 1))).isFalse();
-        assertThat(LadderDirection.RIGHT.canMove(ladder, new Position(0, 2))).isTrue();
-        assertThat(LadderDirection.RIGHT.canMove(ladder, new Position(0, 3))).isFalse();
+        assertThat(LadderDirection.RIGHT.canMove.apply(ladder, new Position(0, 0))).isTrue();
+        assertThat(LadderDirection.RIGHT.canMove.apply(ladder, new Position(0, 1))).isFalse();
+        assertThat(LadderDirection.RIGHT.canMove.apply(ladder, new Position(0, 2))).isTrue();
+        assertThat(LadderDirection.RIGHT.canMove.apply(ladder, new Position(0, 3))).isFalse();
     }
 
     @Test
     void down_canMove() {
-        assertThat(LadderDirection.DOWN.canMove(ladder, new Position(0, 0))).isFalse();
-        assertThat(LadderDirection.DOWN.canMove(ladder, new Position(0, 1))).isFalse();
-        assertThat(LadderDirection.DOWN.canMove(ladder, new Position(3, 2))).isFalse();
+        assertThat(LadderDirection.DOWN.canMove.apply(ladder, new Position(0, 0))).isFalse();
+        assertThat(LadderDirection.DOWN.canMove.apply(ladder, new Position(0, 1))).isFalse();
+        assertThat(LadderDirection.DOWN.canMove.apply(ladder, new Position(3, 2))).isFalse();
     }
 
 }
