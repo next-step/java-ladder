@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
@@ -16,22 +15,16 @@ class UserTest {
     @ParameterizedTest
     @CsvSource(value = {"test,6"}, delimiter = ',')
     @DisplayName("정상적인 사용자의 생성 테스트")
-    void normalUserTest(String userName, int userNameLength) {
-        StringBuilder fixedLengthUserName = new StringBuilder();
-        String newPrefix = NAME_FIXED_SIX_SPACE.substring(userName.length());
-        fixedLengthUserName.append(userName).append(newPrefix);
-
-        User user = User.join(userName);
-
-        assertThat(user.getFixedLengthUserName()).isEqualTo(fixedLengthUserName.toString());
-        assertThat(user.getFixedLengthUserName().length()).isEqualTo(userNameLength);
+    void normalUserTest(String userName) {
+        User user = User.newInstance(userName);
+        assertThat(user.getUserName()).isEqualTo(User.newInstance(userName));
     }
 
     @Test
     @DisplayName("사용자 이름이 5초과시 에러 테스트")
     void overUserNameLengthTest() {
         assertThatThrownBy(() -> {
-            User.join("CleanCode");
+            User.newInstance("CleanCode");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -9,11 +9,11 @@ import static nextstep.ladder.constant.ExceptionMessage.INVALID_JOIN_USERS_MINIM
 
 public class LadderGameManager {
 
+    private static final int MINIMUM_JOIN_USERS = 2;
+
     private List<User> users = new ArrayList<>();
 
     private int ladderHeight;
-
-    private int MINIMUM_JOIN_USERS = 2;
 
     private LadderGameManager(String[] users, int ladderHeight) {
         genaratorUser(users);
@@ -32,7 +32,7 @@ public class LadderGameManager {
 
     private void genaratorUser(String[] users) {
         for (String user : users) {
-            this.users.add(User.join(user));
+            this.users.add(User.newInstance(user));
         }
     }
 

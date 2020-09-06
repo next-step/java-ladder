@@ -15,6 +15,7 @@ public class ResultView {
     private final String UNIT_LADDER_CHARACTOR = "|";
     private final String UNIT_BRIDGE_CHARACTOR = "-----";
     private final String UNIT_EMPTY_BRIDGE_CHARACTOR = "     ";
+    private final String NAME_FIXED_SIX_SPACE = "      ";
 
     public void showLadderGameResult(Users users, Ladder ladder) {
         System.out.println(PRINT_TEXT_RESULT);
@@ -26,7 +27,7 @@ public class ResultView {
         List<User> userList = users.getUsers();
 
         String userNamesField = userList.stream()
-                .map(user -> user.getFixedLengthUserName())
+                .map(user -> getFixedLengthUserName(user.getUserName()))
                 .reduce("", (userNames, userName) -> userNames + userName);
         System.out.println(userNamesField);
     }
@@ -43,5 +44,13 @@ public class ResultView {
 
     private String printBridge(boolean isBridge) {
         return isBridge ? UNIT_BRIDGE_CHARACTOR : UNIT_EMPTY_BRIDGE_CHARACTOR;
+    }
+
+    private String getFixedLengthUserName(String userName) {
+        StringBuilder fixedLengthUserName = new StringBuilder();
+        String newPrefix = NAME_FIXED_SIX_SPACE.substring(userName.length());
+        fixedLengthUserName.append(userName).append(newPrefix);
+
+        return fixedLengthUserName.toString();
     }
 }

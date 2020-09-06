@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -31,6 +32,6 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 }

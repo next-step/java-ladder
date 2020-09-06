@@ -4,11 +4,9 @@ import static nextstep.ladder.constant.ExceptionMessage.INVALID_USER_NAME_LENGTH
 
 public class User {
 
+    private static final int MAXIMUM_USER_NAME_LENGTH = 5;
+
     private String userName;
-
-    private final String NAME_FIXED_SIX_SPACE = "      ";
-
-    private final int MAXIMUM_USER_NAME_LENGTH = 5;
 
     private User(String userName) {
         this.userName = userName;
@@ -18,17 +16,11 @@ public class User {
         }
     }
 
-    public static User join(String name) {
+    public static User newInstance(String name) {
         return new User(name.trim());
     }
 
-    public String getFixedLengthUserName() {
-        StringBuilder fixedLengthUserName = new StringBuilder();
-        String newPrefix = NAME_FIXED_SIX_SPACE.substring(userName.length());
-        fixedLengthUserName.append(userName).append(newPrefix);
-
-        return fixedLengthUserName.toString();
+    public String getUserName() {
+        return userName;
     }
-
-
 }
