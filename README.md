@@ -29,4 +29,11 @@
 10.ResultView - Ladder 일급컬렉션을 출력한다.
 11.ResultView - Line 일급컬렉션에서 bridge유무에따라 다리를 그린다/빈칸으로둔다.
  
+## Step3 사다리 게임실행 (기능요구사항)
+
+- [ ] Step2 피드백 반영
+- [ ] 사다리 실행 결과 출력
+- [ ] InputView - 실행결과를 입력
+- [ ] ResultView - 이름입력시 개인별 결과출력
+- [ ] ResultView - all 입력시 전체 참여자의 결과출력
 
