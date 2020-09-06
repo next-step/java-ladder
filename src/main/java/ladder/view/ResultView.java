@@ -36,7 +36,7 @@ public class ResultView {
 
     private static void printLadderLine(LadderLine ladderLine) {
         for (Point point : ladderLine.getPoints()) {
-            System.out.print(point.isPoint() ? PRINT_POINT_TRUE : PRINT_POINT_FALSE);
+            System.out.print(point.isRight() ? PRINT_POINT_TRUE : PRINT_POINT_FALSE);
         }
     }
 }

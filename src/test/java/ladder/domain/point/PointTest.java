@@ -1,22 +1,25 @@
 package ladder.domain.point;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
 
     @Test
-    void create() {
-        Point point = Point.valueOf(true);
+    void createFirstPoint() {
+        Point first = Point.first(() -> false);
 
-        assertThat(point).isEqualTo(Point.strategyOf(() -> true));
+        assertThat(first).isEqualTo(Point.first(() -> false));
     }
 
-    @Test
-    void isPoint() {
-        Point point = Point.valueOf(false);
+    @ParameterizedTest
+    @CsvSource({"true, 1", "false,0"})
+    void move(boolean strategy, int expect) {
+        Point first = Point.first(() -> strategy);
 
-        assertThat(point.isPoint()).isFalse();
+        assertThat(first.move()).isEqualTo(expect);
     }
 }

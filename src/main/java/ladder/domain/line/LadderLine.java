@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
-    private static final Point START_POINT = Point.valueOf(false);
-
     private final List<Point> points;
 
     public LadderLine(int playersCount, PointStrategy pointStrategy) {
@@ -22,36 +20,34 @@ public class LadderLine {
 
     public List<Point> createPoints(int playersCount, PointStrategy pointStrategy) {
         List<Point> points = new ArrayList<>();
-        points.add(START_POINT);
 
-        for (int index = 1; index < playersCount; index++) {
-            points.add(makeLine(points.get(index - 1), pointStrategy));
-        }
+        Point point = this.createFirstPoint(points, pointStrategy);
+        point = this.createNextPoints(points, pointStrategy, playersCount, point);
+        this.createLastPoint(points, point);
 
         return points;
     }
 
-    private Point makeLine(Point point, PointStrategy pointStrategy) {
-        if (point.isPoint()) {
-            return Point.valueOf(false);
+    public Point createFirstPoint(List<Point> points, PointStrategy pointStrategy) {
+        Point point = Point.first(pointStrategy);
+        points.add(point);
+        return point;
+    }
+
+    public Point createNextPoints(List<Point> points, PointStrategy pointStrategy, int playersCount, Point point) {
+        for (int i = 1; i < playersCount - 1; i++) {
+            point = point.next(pointStrategy);
+            points.add(point);
         }
-        return Point.strategyOf(pointStrategy);
+        return point;
+    }
+
+    private void createLastPoint(List<Point> points, Point point) {
+        points.add(point.last(point));
     }
 
     public int move(int position) {
-        if (points.get(position).isPoint() && !points.get(position + 1).isPoint()) {
-            return position - 1;
-        }
-
-        if (!points.get(position).isPoint() && points.get(position + 1).isPoint()) {
-            return position + 1;
-        }
-
-        if (!points.get(position).isPoint() && !points.get(position + 1).isPoint()) {
-            return position;
-        }
-
-        throw new IllegalArgumentException("");
+        return points.get(position).move();
     }
 
     public List<Point> getPoints() {
