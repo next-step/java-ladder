@@ -1,9 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderGameManager;
-import nextstep.ladder.domain.LadderGenerator;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
+import nextstep.ladder.util.JudgeLadderResult;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -18,13 +16,29 @@ public class LadderGame {
     }
 
     private void playLadderGame() {
-        LadderGameManager ladderGameManager = inputView.inputLadderGameManager();
+        Users users = Users.create(inputView.inputParticipateUsers());
+        Rewards rewards = Rewards.create(inputView.inputResultReward());
+        LadderHeight ladderHeight = LadderHeight.create(inputView.inputLadderHeight());
 
-        Users users = Users.create(ladderGameManager.getUsers());
-
-        LadderGenerator ladderGenerator = LadderGenerator.create(users.size(), ladderGameManager.getLadderHeight());
+        LadderGenerator ladderGenerator = LadderGenerator.create(users, ladderHeight);
         Ladder ladder = ladderGenerator.make();
 
-        resultView.showLadderGameResult(users, ladder);
+        JudgeLadderResult judgeLadderResult = JudgeLadderResult.newInstance(ladder, users);
+        LadderPositionBoard ladderPositionBoard = judgeLadderResult.judge();
+
+        resultView.showLadderResult(users, ladder, rewards);
+
+        showResultProcess(ladderPositionBoard, rewards);
+    }
+
+    private void showResultProcess(LadderPositionBoard ladderPositionBoard, Rewards rewards) {
+        LadderRewardBoard ladderRewardBoard = LadderRewardBoard.create(ladderPositionBoard, rewards);
+
+        while(true) {
+            String targetUser = inputView.inputShowResultTarget();
+
+            String rewardResult = ladderRewardBoard.showUserReward(targetUser);
+            resultView.showLadderGameResult(rewardResult);
+        }
     }
 }
