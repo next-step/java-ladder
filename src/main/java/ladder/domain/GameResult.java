@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 public class GameResult {
     private final Map<String, String> gameResults;
@@ -14,12 +15,8 @@ public class GameResult {
         return new GameResult(gameResults);
     }
 
-    public boolean hasResult(String player) {
-        return gameResults.keySet().contains(player);
-    }
-
-    public String getResult(String playerName) {
-        return gameResults.get(playerName);
+    public Optional<String> getResult(String playerName) {
+        return Optional.ofNullable(gameResults.get(playerName));
     }
 
     @Override
