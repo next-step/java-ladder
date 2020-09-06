@@ -66,17 +66,17 @@ class LadderTest {
         result.put(1, 1);
         result.put(2, 2);
         result.put(3, 3);
-        LadderResult ladderResult = LadderResult.of(result);
 
         // when & then
-        assertThat(ladder.searchLine()).isEqualTo(ladderResult);
+        assertThat(ladder.searchLine().get(1)).isEqualTo(result.get(1));
+        assertThat(ladder.searchLine().get(3)).isEqualTo(result.get(3));
     }
 
 
     @Test
     @DisplayName("현재 도착지(=마지막 Row) 위에 있는지 확인하는 테스트")
     void on_destination() {
-        assertThat(ladder.onDestination(new Position(3, 0))).isTrue();
+        assertThat(ladder.onDestination(new Position(4, 0))).isTrue();
         assertThat(ladder.onDestination(new Position(1, 0))).isFalse();
     }
 
@@ -88,7 +88,7 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("현재 마지막 Column 위에 있는지 확인하는 테스트")
+    @DisplayName("현재 마지막 Column(List) 위에 있는지 확인하는 테스트")
     void on_lastColumn() {
         assertThat(ladder.onLastColumn(new Position(0, 3))).isTrue();
         assertThat(ladder.onLastColumn(new Position(0, 1))).isFalse();

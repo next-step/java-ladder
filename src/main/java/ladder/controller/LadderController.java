@@ -16,11 +16,11 @@ public class LadderController {
         LadderGame ladderGame = LadderGame.builder()
                 .players(players)
                 .rows(InputView.inputRowCount())
+                .rewards(rewards)
                 .build();
         Ladder ladder = ladderGame.makeLadder(new RandomDrawRule());
 
-        LadderResult ladderResult = ladderGame.run();
-        GameResult gameResult = ladderResult.mappingResult(players, rewards);
+        GameResult gameResult = ladderGame.run();
 
         ResultView.printPlayers(players);
         ResultView.printLadder(ladder);

@@ -1,5 +1,8 @@
 package ladder.domain;
 
+import lombok.Builder;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -7,16 +10,21 @@ import java.util.Optional;
 public class GameResult {
     private final Map<String, String> gameResults;
 
-    private GameResult(Map<String, String> gameResults) {
-        this.gameResults = gameResults;
-    }
-
-    public static GameResult of(Map<String, String> gameResults) {
-        return new GameResult(gameResults);
+    @Builder
+    private GameResult(Map<Integer, Integer> ladderResults, Players players, Rewards rewards) {
+        this.gameResults = mappingResult(ladderResults, players, rewards);
     }
 
     public Optional<String> getResult(String playerName) {
         return Optional.ofNullable(gameResults.get(playerName));
+    }
+
+    public Map<String, String> mappingResult(Map<Integer, Integer> ladderResults, Players players, Rewards rewards) {
+        Map<String, String> result = new HashMap<>();
+        for (int index = 0; index < ladderResults.size(); index++) {
+            result.put(players.getPlayer(index).getName(), rewards.getReward(ladderResults.get(index)));
+        }
+        return result;
     }
 
     @Override
