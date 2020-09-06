@@ -2,7 +2,7 @@ package ladder.ui;
 
 import java.util.List;
 
-import ladder.domain.Participant;
+import ladder.domain.Participants;
 import ladder.domain.Reward;
 
 public class LadderDataInput {
@@ -11,7 +11,7 @@ public class LadderDataInput {
     private static final String MSG_INPUT_REWARD = "실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String MSG_INPUT_LADDER_SIZE = "최대 사다리 높이는 몇 개인가요?";
 
-    private Participant participant;
+    private Participants participants;
     private int height;
     private Reward reward;
 
@@ -23,7 +23,7 @@ public class LadderDataInput {
 
     private void inputNames(Input input, Output output) {
         output.print(MSG_INPUT_PLAYER_NAME);
-        participant = new Participant(input.nextLine());
+        participants = new Participants(input.nextLine());
     }
 
     private void inputReword(Input input, Output output) {
@@ -37,11 +37,11 @@ public class LadderDataInput {
     }
 
     public List<String> getPlayerNames() {
-        return participant.getNames();
+        return participants.getNames();
     }
 
     public int getPlayerCount() {
-        return participant.getNames().size();
+        return participants.getNames().size();
     }
 
     public int getHeight() {
@@ -49,14 +49,14 @@ public class LadderDataInput {
     }
 
     public int getPlayerIndex(String playerName) {
-        return participant.getPlayerIndex(playerName);
+        return participants.getPlayerIndex(playerName);
     }
 
     public Reward getReward() {
         return reward;
     }
 
-    public Participant getParticipant() {
-        return participant;
+    public Participants getParticipant() {
+        return participants;
     }
 }

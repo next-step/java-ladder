@@ -4,7 +4,7 @@ import java.util.List;
 
 import ladder.util.StringUtils;
 
-public class Participant {
+public class Participants {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int INVALID_INDEX = -1;
@@ -14,7 +14,7 @@ public class Participant {
 
     private final List<String> names;
 
-    public Participant(String nameStr) {
+    public Participants(String nameStr) {
         this.names = StringUtils.splitStringToList(nameStr);
         verifyNameLength(names);
     }
