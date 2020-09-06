@@ -22,14 +22,14 @@ class LadderTest {
 				, new User("abc")
 				, new User("heee")
 		);
-
-		ladder = Ladder.makeLadder(users,7);
+		ladder = new Ladder(new Users(users));
+		ladder = ladder.makeLadder(7);
 	}
 
 	@DisplayName(value = "입력한 사용자가 참여자 목록에 포함되어 있는지 확인")
 	@ParameterizedTest
 	@ValueSource(strings = {"DAMI", "mong", "corgi", "abc", "heee"})
 	void userTest(String expected) {
-		assertThat(ladder.users()).contains(expected);
+		assertThat(ladder.getUsersName()).contains(expected);
 	}
 }

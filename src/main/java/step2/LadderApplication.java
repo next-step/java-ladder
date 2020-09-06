@@ -13,7 +13,7 @@ public class LadderApplication {
 		int ladderHeight = InputView.inputLadderHeight();
 
 		Ladder ladder = game.start(ladderHeight);
-		ResultView.printCreatedLadder(ladder);
+		ResultView.printCreatedLadderInfo(ladder);
 
 	}
 }

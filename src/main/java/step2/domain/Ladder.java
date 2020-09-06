@@ -1,35 +1,33 @@
 package step2.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
-	private final List<User> users;
+	private final Users users;
 	private final List<Line> lines;
 
-	public Ladder(List<User> users, List<Line> lines) {
+	public Ladder(Users users) {
 		this.users = users;
-		this.lines = lines;
+		this.lines = new ArrayList<>();
 	}
 
-	public static Ladder makeLadder(List<User> users, int height) {
-		List<Line> lines = new ArrayList<>();
+	public Ladder makeLadder(int height) {
 		for (int i = 0; i < height; i++) {
 			lines.add(new Line(users.size()));
 		}
-		return new Ladder(users, lines);
+		return this;
 	}
 
-	public String users() {
-		return users.stream()
-				.map(user -> String.format("%6s", user.toString()))
-				.collect(Collectors.joining());
+	public List<String> getUsersName() {
+		return users.getUsers().stream()
+				.map(User::toString)
+				.collect(Collectors.toList());
 	}
 
-	public String lines() {
-		StringBuilder sb = new StringBuilder();
-		lines.forEach(line -> sb.append(line.toString()).append(System.lineSeparator()));
-		return sb.toString();
+	public List<Line> getCreatedLadder() {
+		return Collections.unmodifiableList(lines);
 	}
-
 }
