@@ -1,5 +1,7 @@
 package nextstep.domain;
 
+import nextstep.view.InputView;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +9,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("사다리 게임 진행 객체")
 public class LadderGameManagerTest {
+
+    Participants participants;
+
+    @BeforeEach
+    public void setUp() {
+        participants = new Participants(PersonFactory.createPersons("a,b,c,d,e"));
+    }
 
     @DisplayName("생성")
     @Test
