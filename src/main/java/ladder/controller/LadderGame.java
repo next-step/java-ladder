@@ -22,6 +22,7 @@ public class LadderGame {
 
         LadderResults ladderResults = LadderResults.of(players, rewards, ladder);
 
-        printResults(ladderResults);
+        String playerName = inputResultPlayerName();
+        printResults(playerName, ladderResults);
     }
 }

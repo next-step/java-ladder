@@ -30,8 +30,8 @@ public class InputView {
         return Rewards.ofPrizes(scanner.nextLine(), size);
     }
 
-    public static String inputResultPlayer() {
+    public static String inputResultPlayerName() {
         System.out.println(INPUT_RESULT_PLAYER_MESSAGE);
-        return scanner.nextLine();
+        return scanner.next();
     }
 }

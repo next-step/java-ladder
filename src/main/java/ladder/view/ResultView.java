@@ -16,6 +16,7 @@ public class ResultView {
     private static final String PRINT_NAME_FORMAT = "%6s";
     private static final String PRINT_POINT_TRUE = "-----|";
     private static final String PRINT_POINT_FALSE = "     |";
+    private static final String ALL_PLAYERS = "all";
 
     private ResultView() {}
 
@@ -49,11 +50,27 @@ public class ResultView {
         for (Reward reward : rewards.getRewards()) {
             System.out.print(String.format(PRINT_NAME_FORMAT, reward.getPrize()));
         }
+        System.out.println();
     }
 
-    public static void printResults(LadderResults ladderResults) {
+    public static void printResults(String name, LadderResults ladderResults) {
         System.out.println();
         System.out.println(PRINT_RESULT_MESSAGE);
+
+        if(name.equals(ALL_PLAYERS)) {
+            printResultAll(ladderResults);
+            return;
+        }
+
+        printResultByName(name, ladderResults);
+    }
+
+    private static void printResultByName(String name, LadderResults ladderResults) {
+        LadderResult result = ladderResults.findByName(name);
+        System.out.println(result.getRewardPrize());
+    }
+
+    private static void printResultAll(LadderResults ladderResults) {
         for (LadderResult ladderResult : ladderResults.getLadderResults()) {
             System.out.println(ladderResult.toString());
         }

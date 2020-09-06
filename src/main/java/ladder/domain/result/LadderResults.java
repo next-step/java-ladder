@@ -4,11 +4,14 @@ import ladder.domain.line.Ladder;
 import ladder.domain.player.Players;
 import ladder.domain.reward.Rewards;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderResults {
+    private static final String NOT_MATCHES_PLAYER_NAME_MESSAGE = "일치하는 이름이 없습니다.";
+
     private List<LadderResult> ladderResults;
 
     public LadderResults(List<LadderResult> ladderResults) {
@@ -20,16 +23,19 @@ public class LadderResults {
     }
 
     private static List<LadderResult> init(Players players, Rewards rewards, Ladder ladder) {
-        List<LadderResult> ladderResults = new ArrayList<>();
-
-        for (int i = 0; i < players.getPlayers().size(); i++) {
-            ladderResults.add(LadderResult.of(players.findPlayerName(i), rewards.findPrize(ladder.move(i))));
-        }
-
-        return ladderResults;
+        return IntStream.range(0, players.size())
+                .mapToObj(it -> LadderResult.of(players.findPlayerName(it), rewards.findPrize(ladder.move(it))))
+                .collect(Collectors.toList());
     }
 
     public List<LadderResult> getLadderResults() {
         return Collections.unmodifiableList(ladderResults);
+    }
+
+    public LadderResult findByName(String name) {
+        return ladderResults.stream()
+                .filter(it -> it.getPlayerName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_MATCHES_PLAYER_NAME_MESSAGE));
     }
 }
