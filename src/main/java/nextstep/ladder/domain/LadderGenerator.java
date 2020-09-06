@@ -6,21 +6,21 @@ import java.util.List;
 public class LadderGenerator {
 
     private int userCount;
-    private int ladderHeight;
+    private LadderHeight ladderHeight;
 
-    private LadderGenerator(int userCount, int ladderHeight) {
-        this.userCount = userCount;
+    private LadderGenerator(Users users, LadderHeight ladderHeight) {
+        this.userCount = users.size();
         this.ladderHeight = ladderHeight;
     }
 
-    public static LadderGenerator create(int userCount, int ladderHeight) {
-        return new LadderGenerator(userCount, ladderHeight);
+    public static LadderGenerator create(Users users, LadderHeight ladderHeight) {
+        return new LadderGenerator(users, ladderHeight);
     }
 
     public Ladder make() {
         List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < ladderHeight; i++) {
+        for (int i = 0; i < ladderHeight.getLadderHeight(); i++) {
             lines.add(new Line(userCount));
         }
 
