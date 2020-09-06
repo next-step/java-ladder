@@ -4,10 +4,10 @@ import ladder.domain.rule.DrawRule;
 import lombok.Builder;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Ladder {
@@ -31,15 +31,9 @@ public class Ladder {
         rows.stream().forEach(row -> row.drawLine(drawRule));
     }
 
-    public LadderResult searchLine() {
-        Map<Integer, Integer> ladderResult = new HashMap<>();
-
-        for (int startColumn = 0; startColumn < getCountOfColumn(); startColumn++) {
-            int destination = getDestination(startColumn);
-            ladderResult.put(startColumn, destination);
-        }
-
-        return LadderResult.of(ladderResult);
+    public Map<Integer, Integer> searchLine() {
+        return IntStream.range(0, getCountOfColumn()).boxed()
+                .collect(Collectors.toMap(Integer::intValue, this::getDestination));
     }
 
     private int getDestination(int startColumn) {

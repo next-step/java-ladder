@@ -25,6 +25,6 @@ public class LadderGame {
     }
 
     public LadderResult run() {
-        return ladder.searchLine();
+        return LadderResult.of(ladder.searchLine());
     }
 }
