@@ -10,9 +10,9 @@ public class LadderGame {
 
     public static void main(String[] args) {
         String[] nameList = InputView.askNameForLadderGame();
-        Participants people = new Participants(nameList);
+        Participants people = Participants.of(nameList);
         Height height = Height.valueOf(InputView.askHeightForLadderGame());
-        Ladder ladder = new Ladder(height, people.getNumberOfParticipants());
+        Ladder ladder = Ladder.of(height, people.getNumberOfParticipants());
         OutputView.printAll(people, ladder);
     }
 }

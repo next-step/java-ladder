@@ -17,10 +17,7 @@ public class Line {
 
     public boolean draw(DrawStrategy strategy) {
         boolean drawResult = strategy.draw();
-        if (isEmptyAndDrawn(drawResult) || isRungFalseAndDrawnNow(drawResult)) {
-            return true;
-        }
-        return false;
+        return isEmptyAndDrawn(drawResult) || isRungFalseAndDrawnNow(drawResult);
     }
 
     private boolean isEmptyAndDrawn(boolean drawnResult) {

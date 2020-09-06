@@ -11,14 +11,7 @@ import static java.util.stream.Collectors.toList;
 public class Ladder {
     private List<Line> ladder;
 
-    public Ladder(Height height, int countOfPeople) {
-        this.ladder = Stream.generate(Line::new)
-                .limit(height.getHeight())
-                .peek(it -> it.drawNewLine(countOfPeople, new RandomDrawStrategy()))
-                .collect(toList());
-    }
-
-    public Ladder(List<Line> ladder) {
+    private Ladder(List<Line> ladder) {
         this.ladder = ladder;
     }
 
@@ -27,9 +20,9 @@ public class Ladder {
     }
 
 
-    public Ladder of(int height, int countOfPeople) {
+    public static Ladder of(Height height, int countOfPeople) {
         return Stream.generate(Line::new)
-                .limit(height)
+                .limit(height.getHeight())
                 .peek(it -> it.drawNewLine(countOfPeople, new RandomDrawStrategy()))
                 .collect(collectingAndThen(toList(), Ladder::of))
                 ;
