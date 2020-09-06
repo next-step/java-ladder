@@ -11,8 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParticipantsTest {
 
-    Participants participants;
-
     private static Stream<Arguments> provideStringNameForParticipantsTest() {
         return Stream.of(
                 Arguments.of("John,Kim,Jason".split(","), 3)
