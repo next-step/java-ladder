@@ -15,10 +15,12 @@ class RewardsTest {
                     .countOfPlayers(3)
                     .rewardInput(null)
                     .build();
+
             Rewards.builder()
                     .countOfPlayers(3)
                     .rewardInput("")
                     .build();
+
             Rewards.builder()
                     .countOfPlayers(3)
                     .rewardInput("10000,fail")
