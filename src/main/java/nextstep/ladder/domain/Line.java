@@ -34,4 +34,8 @@ public class Line {
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }
+
+    public boolean isPoint(int index) {
+        return points.get(index);
+    }
 }
