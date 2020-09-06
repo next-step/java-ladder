@@ -31,4 +31,8 @@ public class LadderGame {
         ladder.rideLadder(users);
     }
 
+    public LadderResult makeLadderResult(Prizes prizes) {
+        return new LadderResult(users.getUsers(), prizes.getPrizes());
+    }
+
 }
