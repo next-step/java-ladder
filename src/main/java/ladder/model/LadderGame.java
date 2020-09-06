@@ -12,9 +12,9 @@ public class LadderGame {
         this.users = users;
     }
 
-    public static LadderGame of(List<String> userNames, int width, LadderGenerateStrategy ladderGenerateStrategy) {
+    public static LadderGame of(List<String> userNames, int height, LadderGenerateStrategy ladderGenerateStrategy) {
         Users users = Users.of(userNames);
-        Ladder ladder = Ladder.of(width, users.getSize(), ladderGenerateStrategy);
+        Ladder ladder = Ladder.of(height, users.getSize(), ladderGenerateStrategy);
 
         return new LadderGame(ladder, users);
     }
@@ -27,6 +27,8 @@ public class LadderGame {
         return users.getUserNames();
     }
 
-
+    public void play() {
+        ladder.rideLadder(users);
+    }
 
 }

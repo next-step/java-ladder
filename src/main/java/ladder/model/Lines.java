@@ -24,6 +24,10 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
+    public void processLines(Users users) {
+        lines.forEach(line -> line.processLine(users));
+    }
+
     private static void validateLines(int height, int countOfPoints) {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리 높이는 " + MIN_HEIGHT + "이상입니다.");
@@ -33,4 +37,5 @@ public class Lines {
             throw new IllegalArgumentException("사다리 게임 최소 유저수 " + MIN_COUNT_OF_POINTS + "이상입니다.");
         }
     }
+
 }

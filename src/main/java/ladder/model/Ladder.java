@@ -1,7 +1,5 @@
 package ladder.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +18,10 @@ public class Ladder {
 
     public List<Line> getLines() {
         return lines.getLines();
+    }
+
+    protected void rideLadder(Users users) {
+        lines.processLines(users);
     }
 
     @Override
