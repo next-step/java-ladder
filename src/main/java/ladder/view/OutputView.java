@@ -26,13 +26,13 @@ public class OutputView {
     public void printLadderGame(LadderGame game) {
         writer.println(OutputViewMessage.RESULT_START.getMessage());
 
-        printParicipants(game.getParticipants());
+        printParticipants(game.getParticipants());
         printLadder(game.getLadder());
 
         writer.printf("\n");
     }
 
-    private void printParicipants(Participants participants) {
+    private void printParticipants(Participants participants) {
         writer.println(participants.toString());
     }
 

@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Participants {
+    private static final int PARTICIPANTS_LIMIT = 2;
     private static final String DELIMITER = ",";
 
     private final Set<Participant> participants;
@@ -19,7 +20,7 @@ public class Participants {
         }
 
         String[] names = input.split(DELIMITER);
-        if (names.length < 2) {
+        if (names.length < PARTICIPANTS_LIMIT) {
             throw new IllegalArgumentException("적어도 2명은 참여해야합니다.");
         }
 
