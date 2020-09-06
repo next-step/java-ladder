@@ -30,6 +30,14 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public int move(int position) {
+        for (LadderLine line : lines) {
+            position = line.move(position);
+        }
+
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

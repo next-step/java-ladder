@@ -38,6 +38,22 @@ public class LadderLine {
         return Point.strategyOf(pointStrategy);
     }
 
+    public int move(int position) {
+        if (points.get(position).isPoint() && !points.get(position + 1).isPoint()) {
+            return position - 1;
+        }
+
+        if (!points.get(position).isPoint() && points.get(position + 1).isPoint()) {
+            return position + 1;
+        }
+
+        if (!points.get(position).isPoint() && !points.get(position + 1).isPoint()) {
+            return position;
+        }
+
+        throw new IllegalArgumentException("");
+    }
+
     public List<Point> getPoints() {
         return points;
     }

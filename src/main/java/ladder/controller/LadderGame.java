@@ -15,5 +15,6 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(players, height, new RandomPointStrategy());
         printLadderResult(players, ladder);
+
     }
 }
