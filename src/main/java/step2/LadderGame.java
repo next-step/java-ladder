@@ -1,5 +1,6 @@
 package step2;
 
+import step2.model.Height;
 import step2.model.Ladder;
 import step2.model.Person;
 import step2.view.InputView;
@@ -18,8 +19,8 @@ public class LadderGame {
                 .map(Person::new)
                 .collect(Collectors.toList());
 
-        int height = InputView.askHeightForLadderGame();
-        Ladder ladder = new Ladder(height, participants.size());
-        OutputView.printAll(participants, ladder);
+        Height height = new Height(InputView.askHeightForLadderGame());
+        //Ladder ladder = new Ladder(height, participants.size());
+        //OutputView.printAll(participants, ladder);
     }
 }
