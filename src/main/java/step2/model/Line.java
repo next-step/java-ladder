@@ -4,6 +4,7 @@ import step2.strategy.DrawStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Line {
     private List<Boolean> rungs = new ArrayList<>();
@@ -42,7 +43,12 @@ public class Line {
         return rungs.toString();
     }
 
-    public List<Boolean> getRungs() {
-        return rungs;
+    public Boolean getRungOfPosition(int position) {
+        return Optional.of(rungs.get(position))
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public int getNumberOfRung() {
+        return rungs.size();
     }
 }

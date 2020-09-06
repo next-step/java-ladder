@@ -2,6 +2,7 @@ package step2.view;
 
 import step2.model.Ladder;
 import step2.model.Line;
+import step2.model.Participants;
 import step2.model.Person;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class OutputView {
     private static final String RUNG_CONDITION_TRUE = "-----|";
     private static final String RUNG_CONDITION_FALSE = "     |";
 
-    public static void printAll(List<Person> participants, Ladder ladderGame) {
+    public static void printAll(Participants participants, Ladder ladderGame) {
         Banner();
         printNameList(participants);
         printLadder(ladderGame);
@@ -23,13 +24,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printNameList(List<Person> participants) {
-        StringBuffer nameLine = new StringBuffer();
-        for (Person person : participants) {
-            nameLine.append(person.printName());
-            nameLine.append(" ");
-        }
-        System.out.println(nameLine.toString());
+    public static void printNameList(Participants participants) {
+        System.out.println(participants.toString());
     }
 
     public static void printLadder(Ladder ladder) {
@@ -42,8 +38,8 @@ public class OutputView {
     private static void printLine(Line line) {
         StringBuffer lineView = new StringBuffer();
         lineView.append(INITIAL_LINE);
-        for (boolean rung : line.getRungs()) {
-            drawRung(lineView, rung);
+        for (int loop = 0; loop < line.getNumberOfRung(); loop++) {
+            drawRung(lineView, line.getRungOfPosition(loop));
         }
         System.out.println(lineView);
     }
