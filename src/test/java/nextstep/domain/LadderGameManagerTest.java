@@ -11,14 +11,14 @@ public class LadderGameManagerTest {
     @DisplayName("생성")
     @Test
     public void create() {
-        LadderGameManager ladderGameManager = new LadderGameManager(LineFactory.createLines(5, 3));
+        LadderGameManager ladderGameManager = new LadderGameManager(participants, LineFactory.createLines(5, 3));
         assertThat(ladderGameManager.getLines()).hasSize(3);
     }
 
     @DisplayName("트랙 번호 구하기")
     @Test
     public void getNextTrackNumber() {
-        LadderGameManager ladderGameManager = new LadderGameManager(LineFactory.createLines(5, 3, new SwitchDrawTransverseBarStrategy()));
+        LadderGameManager ladderGameManager = new LadderGameManager(participants, LineFactory.createLines(5, 3, new SwitchDrawTransverseBarStrategy()));
         assertThat(ladderGameManager.getNextTrackNumber(0, 0)).isEqualTo(1);
         assertThat(ladderGameManager.getNextTrackNumber(0, 1)).isEqualTo(0);
         assertThat(ladderGameManager.getNextTrackNumber(0, 2)).isEqualTo(3);
@@ -29,7 +29,7 @@ public class LadderGameManagerTest {
     @DisplayName("시작")
     @Test
     public void start() {
-        LadderGameManager ladderGameManager = new LadderGameManager(LineFactory.createLines(5, 3, new SwitchDrawTransverseBarStrategy()));
+        LadderGameManager ladderGameManager = new LadderGameManager(participants, LineFactory.createLines(5, 3, new SwitchDrawTransverseBarStrategy()));
         assertThat(ladderGameManager.start(0)).isEqualTo(1);
         assertThat(ladderGameManager.start(1)).isEqualTo(0);
         assertThat(ladderGameManager.start(2)).isEqualTo(3);

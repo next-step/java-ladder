@@ -22,14 +22,6 @@ public class Line {
         this.points = points;
     }
 
-    public boolean isFirstTrack(int trackNumber) {
-        return trackNumber == FIRST_POINT_INDEX;
-    }
-
-    public boolean isLastTrack(int trackNumber) {
-        return trackNumber == points.size();
-    }
-
     private boolean validateNotOverlap(List<Boolean> points) {
         return IntStream.range(FIRST_POINT_INDEX, points.size() - 1)
                 .mapToObj(i -> new LineValidateOverlapDto(points.get(i), points.get(i + 1)).isOverlap())
@@ -38,30 +30,6 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
-    }
-
-    public int getNextTrackNumber(int trackNumber) {
-        if (isPossibleMoveLeftTrack(trackNumber)) {
-            return trackNumber - 1;
-        }
-        if (isPossibleMoveRightTrack(trackNumber)) {
-            return trackNumber + 1;
-        }
-        return trackNumber;
-    }
-
-    private boolean isPossibleMoveLeftTrack(int trackNumber) {
-        if (isFirstTrack(trackNumber)) {
-            return false;
-        }
-        return points.get(trackNumber - 1);
-    }
-
-    private boolean isPossibleMoveRightTrack(int trackNumber) {
-        if (isLastTrack(trackNumber)) {
-            return false;
-        }
-        return points.get(trackNumber);
     }
 
     private static class LineValidateOverlapDto {
