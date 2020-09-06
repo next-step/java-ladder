@@ -2,7 +2,6 @@ package step2.model;
 
 import step2.strategy.RandomDrawStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 

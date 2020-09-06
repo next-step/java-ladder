@@ -3,12 +3,16 @@ package step2.model;
 public class Height {
     private final int height;
 
-    public Height(int value) {
-        validateParameter(value);
+    private Height(int value) {
         this.height = value;
     }
 
-    private void validateParameter(int value) {
+    public static Height valueOf(int value) {
+        validateParameter(value);
+        return new Height(value);
+    }
+
+    private static void validateParameter(int value) {
         if (value <= 0) {
             throw new IllegalArgumentException();
         }

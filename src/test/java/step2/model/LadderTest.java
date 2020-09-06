@@ -9,7 +9,7 @@ public class LadderTest {
 
     @Test
     void create_Ladder_Collection() {
-        ladder = new Ladder(new Height(4), 4);
+        ladder = new Ladder(Height.valueOf(4), 4);
         assertThat(ladder.getLineOfHeight(0)).isNotNull();
     }
 }

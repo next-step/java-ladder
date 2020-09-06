@@ -11,7 +11,7 @@ public class LadderGame {
     public static void main(String[] args) {
         String[] nameList = InputView.askNameForLadderGame();
         Participants people = new Participants(nameList);
-        Height height = new Height(InputView.askHeightForLadderGame());
+        Height height = Height.valueOf(InputView.askHeightForLadderGame());
         Ladder ladder = new Ladder(height, people.getNumberOfParticipants());
         OutputView.printAll(people, ladder);
     }
