@@ -28,6 +28,10 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
+    public String findPlayerName(int position) {
+        return players.get(position).getName();
+    }
+
     public int size() {
         return players.size();
     }

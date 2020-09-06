@@ -20,4 +20,16 @@ class LadderTest {
 
         assertThat(ladder).isEqualTo(Ladder.of(players, height, pointStrategy));
     }
+
+    @DisplayName("Ladder 이동 테스트")
+    @Test
+    void moveTest() {
+        Players players = Players.ofNames("pobi,honux,crong,jk");
+        Height height = Height.of(5);
+        PointStrategy pointStrategy = () -> false;
+
+        Ladder ladder = Ladder.of(players, height, pointStrategy);
+
+        assertThat(ladder.move(0)).isZero();
+    }
 }
