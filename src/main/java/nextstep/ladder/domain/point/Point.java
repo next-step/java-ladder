@@ -2,6 +2,8 @@ package nextstep.ladder.domain.point;
 
 import nextstep.ladder.utils.LadderValidation;
 
+import java.util.Objects;
+
 public class Point {
 
     private boolean left;
@@ -34,6 +36,20 @@ public class Point {
             return new Point(previousPoint.isRight(), false);
         }
         return new Point(false, right);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return left == point.left &&
+                right == point.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 
 }

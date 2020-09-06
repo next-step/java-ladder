@@ -34,6 +34,19 @@ public class Line {
         return points;
     }
 
+    public int ladderPlayCondition(int position) {
+        if (points.get(position).isRight()) {
+            return position + NUMBER_ONE;
+        }
+        if (position != NUMBER_ZERO && points.get(position - NUMBER_ONE).isRight()) {
+            return position - NUMBER_ONE;
+        }
+        if (position < NUMBER_ZERO) {
+            return NUMBER_ZERO;
+        }
+        return position;
+    }
+
     public int size() {
         return points.size();
     }
