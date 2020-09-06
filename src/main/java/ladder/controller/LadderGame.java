@@ -3,6 +3,7 @@ package ladder.controller;
 import ladder.domain.line.Height;
 import ladder.domain.line.Ladder;
 import ladder.domain.player.Players;
+import ladder.domain.result.LadderResults;
 import ladder.domain.reward.Rewards;
 import ladder.domain.strategy.RandomPointStrategy;
 
@@ -18,5 +19,9 @@ public class LadderGame {
         Ladder ladder = Ladder.of(players, height, new RandomPointStrategy());
         printLadderResult(players, ladder);
         printRewards(rewards);
+
+        LadderResults ladderResults = LadderResults.of(players, rewards, ladder);
+
+        printResults(ladderResults);
     }
 }

@@ -29,8 +29,8 @@ public class Rewards {
         return rewards;
     }
 
-    public Reward findReward(int index) {
-        return rewards.get(index);
+    public String findPrize(int index) {
+        return rewards.get(index).getPrize();
     }
 
     private static List<Reward> splitPrizes(String prizes) {
