@@ -14,7 +14,7 @@ public class InputView {
 
     public static Players inputPlayers() {
         System.out.println(INPUT_PLAYERS_MESSAGE);
-        return Players.of(scanner.nextLine());
+        return Players.ofNames(scanner.nextLine());
     }
 
     public static Height inputHeight() {

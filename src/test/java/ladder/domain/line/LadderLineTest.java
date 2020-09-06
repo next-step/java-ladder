@@ -20,7 +20,7 @@ class LadderLineTest {
     @DisplayName("LadderLine 객체 생성 테스트")
     @Test
     void createLadderLineTest() {
-        Players players = Players.of("pobi,honux,crong,jk");
+        Players players = Players.ofNames("pobi,honux,crong,jk");
         PointStrategy pointStrategy = () -> false;
 
         LadderLine ladderLine = LadderLine.of(players.size(), pointStrategy);

@@ -20,7 +20,7 @@ public class Players {
         return new Players(players);
     }
 
-    public static Players of(String names) {
+    public static Players ofNames(String names) {
         return of(splitNames(names));
     }
 
