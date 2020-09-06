@@ -10,6 +10,10 @@ public class Track {
         this.trackNumber = trackNumber;
     }
 
+    public boolean isTrackNumber(int trackNumber) {
+        return this.trackNumber == trackNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -32,6 +32,10 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
+    public boolean getPoint(int trackNumber) {
+        return points.get(trackNumber);
+    }
+
     private static class LineValidateOverlapDto {
 
         private Boolean leftTransverseBar;
