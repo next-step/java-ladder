@@ -5,34 +5,63 @@ import ladder.domain.strategy.PointStrategy;
 import java.util.Objects;
 
 public class Point {
-    private final boolean point;
+    private final int position;
+    private final boolean left;
+    private final boolean right;
 
-    private Point(Boolean point) {
-        this.point = point;
+    private Point(int position, boolean left, boolean right) {
+        this.position = position;
+        this.left = left;
+        this.right = right;
     }
 
-    public static Point of(Boolean point) {
-        return new Point(point);
+    public static Point first(PointStrategy pointStrategy) {
+        return new Point(0, false, pointStrategy.next());
     }
 
-    public static Point of(PointStrategy pointStrategy) {
-        return new Point(pointStrategy.next());
+    public Point last(Point prevPoint) {
+        return new Point(prevPoint.position + 1, this.right, false);
     }
 
-    public boolean isPoint() {
-        return point;
+    public Point next(PointStrategy pointStrategy) {
+        return next(this.position + 1, pointStrategy);
+    }
+
+    private Point next(int position, PointStrategy pointStrategy) {
+        if (this.right) {
+            return new Point(position, true, false);
+        }
+        return new Point(position, false, pointStrategy.next());
+    }
+
+    public boolean isLeft() {
+        return this.left;
+    }
+
+    public int move() {
+        if (this.left) {
+            return position - 1;
+        }
+
+        if (this.right) {
+            return position + 1;
+        }
+
+        return position;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Point)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Point that = (Point) o;
-        return point == that.point;
+        return position == that.position &&
+                left == that.left &&
+                right == that.right;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point);
+        return Objects.hash(position, left, right);
     }
 }
