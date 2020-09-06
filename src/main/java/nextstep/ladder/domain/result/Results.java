@@ -3,17 +3,18 @@ package nextstep.ladder.domain.result;
 import nextstep.ladder.utils.StringUtils;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Results {
 
     private List<String> results;
 
-    private Results(List<String> results) {
-        this.results = results;
+    public Results(String ladderResult) {
+        this.results = toList(ladderResult);
     }
 
-    public static List<String> from(String result) {
+    public List<String> toList(String result) {
         return Arrays.asList(spliyByResult(result));
     }
 
@@ -21,4 +22,7 @@ public class Results {
         return StringUtils.splitBy(result);
     }
 
+    public List<String> getResults() {
+        return Collections.unmodifiableList(results);
+    }
 }
