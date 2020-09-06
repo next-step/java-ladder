@@ -7,8 +7,6 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    public static final int FIRST_POINT_INDEX = 0;
-
     private final List<Boolean> points;
 
     public Line(int countOfPerson, TransverseBarStrategy transverseBarStrategy) {
@@ -23,9 +21,7 @@ public class Line {
     }
 
     private boolean validateNotOverlap(List<Boolean> points) {
-        return IntStream.range(FIRST_POINT_INDEX, points.size() - 1)
-                .mapToObj(i -> new LineValidateOverlapDto(points.get(i), points.get(i + 1)).isOverlap())
-                .noneMatch(Boolean::booleanValue);
+        return LineValidator.validateNotOverlap(points);
     }
 
     public List<Boolean> getPoints() {
@@ -34,22 +30,6 @@ public class Line {
 
     public boolean getPoint(int trackNumber) {
         return points.get(trackNumber);
-    }
-
-    private static class LineValidateOverlapDto {
-
-        private Boolean leftTransverseBar;
-        private Boolean rightTransverseBar;
-
-        public LineValidateOverlapDto(Boolean leftTransverseBar, Boolean rightTransverseBar) {
-            this.leftTransverseBar = leftTransverseBar;
-            this.rightTransverseBar = rightTransverseBar;
-        }
-
-        public boolean isOverlap() {
-            return leftTransverseBar && rightTransverseBar;
-        }
-
     }
 
     @Override
