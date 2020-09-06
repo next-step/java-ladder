@@ -14,15 +14,8 @@ public class Ladder {
         this.participants = participants;
         this.reward = reward;
         this.ladderLine = new LadderLine(participants.getPlayerCount(), height);
-        this.ladderResult = new LadderResult();
-        setLadderResultData();
-    }
-
-    private void setLadderResultData() {
-        for (int playerIndex = 0; playerIndex < participants.getPlayerCount(); playerIndex++) {
-            ladderResult.put(playerIndex, ladderLine.getResultOf(playerIndex));
-        }
-        ladderResult.freezeData();
+        this.ladderResult = new LadderResult(
+            LadderResultCalculator.calculate(participants.getPlayerCount(), ladderLine));
     }
 
     public List<String> getNames() {

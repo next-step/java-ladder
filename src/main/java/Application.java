@@ -1,9 +1,10 @@
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 import ladder.controller.LadderController;
 import ladder.ui.Input;
 import ladder.ui.Output;
-
-import java.util.List;
-import java.util.Scanner;
 
 public class Application {
 
@@ -33,6 +34,9 @@ public class Application {
     }
 
     private static class StandardOutput implements Output {
+
+        private static final String BLANK = "  ";
+
         @Override
         public void print(String line) {
             System.out.println(line);
@@ -40,7 +44,9 @@ public class Application {
 
         @Override
         public void print(List<String> lineList) {
-            print(String.join("\t", lineList));
+            print(lineList.stream()
+                          .map(line -> String.format("%-5s", line))
+                          .collect(Collectors.joining(BLANK)));
         }
 
         @Override

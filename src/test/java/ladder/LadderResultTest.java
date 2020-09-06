@@ -1,5 +1,8 @@
 package ladder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.LadderResult;
@@ -13,11 +16,13 @@ public class LadderResultTest {
     public void ladderResultDataTest() {
 
         int[] data = new int[] { 1, 0, 3, 2, 4 };
-        LadderResult ladderResult = new LadderResult();
+        Map<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < data.length; i++) {
-            ladderResult.put(i, data[i]);
+            map.put(i, data[i]);
         }
+
+        LadderResult ladderResult = new LadderResult(map);
 
         for (int i = 0; i < data.length; i++) {
             assertEquals(ladderResult.searchRewardIndex(i), data[i]);

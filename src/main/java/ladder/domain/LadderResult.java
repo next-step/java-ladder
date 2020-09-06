@@ -1,6 +1,8 @@
 package ladder.domain;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
 
 public class LadderResult {
 
@@ -8,16 +10,8 @@ public class LadderResult {
 
     private final Map<Integer, Integer> resultData;
 
-    public LadderResult() {
-        resultData = new HashMap<>();
-    }
-
-    public void put(int playerIndex, int rewardIndex) {
-        resultData.put(playerIndex, rewardIndex);
-    }
-
-    public void freezeData() {
-        Collections.unmodifiableMap(resultData);
+    public LadderResult(Map<Integer, Integer> resultData) {
+        this.resultData = Collections.unmodifiableMap(resultData);
     }
 
     public int searchRewardIndex(int playerIndex) {
