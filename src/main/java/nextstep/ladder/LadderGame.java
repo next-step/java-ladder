@@ -26,12 +26,12 @@ public class LadderGame {
         int height = InputView.inputLadderHeight();
         LadderLine ladderLine = LadderLineGenerator.generateLadderLine(height, countOfUser, new RightPointRandomStrategy());
 
-        Map<User, Integer> ladderResults = new LadderResult(users.getUsers()).getLadderResult();
-        ladderLine.goDownALadder(ladderResults);
+        LadderResult ladderResults = new LadderResult(users.getUsers());
+        ladderLine.goDownALadder(ladderResults.getLadderResult());
 
         ResultView.printLadderResult(users.getUsers(), ladderLine, results.getResults());
 
-        ResultView.printGameResult(ladderResults, results.getResults());
+        ResultView.printGameResult(ladderResults.getLadderResult(), results.getResults());
     }
 
 }
