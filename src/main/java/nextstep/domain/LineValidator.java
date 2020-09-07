@@ -8,7 +8,7 @@ public enum LineValidator {
 
     OVERLAP(points -> IntStream.range(Constants.FIRST_POINT_INDEX, points.size() - 1)
             .mapToObj(i -> new LineValidateOverlapDto(points.get(i), points.get(i + 1)).isOverlap())
-            .noneMatch(Boolean::booleanValue))
+            .anyMatch(Boolean::booleanValue))
     ;
 
     private LineValidate lineValidate;
