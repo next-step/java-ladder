@@ -13,8 +13,9 @@ public class LadderTest {
   @DisplayName("|        |")
   @Test
   void chopsticks2X1() {
+    PointDirection first = PointDirection.first(false);
     Ladder ladder = new Ladder(
-            Arrays.asList(new Line(Arrays.asList(Point.of(false, 0))))
+            Arrays.asList(new LadderLine(Arrays.asList(first, first.next(false))))
     );
 
     assertThat(ladder.play(Chessmen.of(new Player("name0", 0)))).isEqualTo(Chessmen.of(new Player("name0", 0)));
@@ -24,81 +25,12 @@ public class LadderTest {
   @DisplayName("|--------|")
   @Test
   void bridge2X1() {
+    PointDirection first = PointDirection.first(true);
     Ladder ladder = new Ladder(
-            Arrays.asList(new Line(Arrays.asList(Point.of(true, 0))))
+            Arrays.asList(new LadderLine(Arrays.asList(first, first.next())))
     );
 
     assertThat(ladder.play(Chessmen.of(new Player("name0", 0)))).isEqualTo(Chessmen.of(new Player("name0", 0), 1));
     assertThat(ladder.play(Chessmen.of(new Player("name1", 1)))).isEqualTo(Chessmen.of(new Player("name1", 1), 0));
-  }
-
-  /**
-   * |   |
-   * |   |
-   */
-  @Test
-  void chopsticks2X2() {
-    Ladder ladder = new Ladder(
-            Arrays.asList(
-                    new Line(Arrays.asList(Point.of(false, 0))),
-                    new Line(Arrays.asList(Point.of(false, 0)))
-            )
-    );
-
-    assertThat(ladder.play(Chessmen.of(new Player("name0", 0)))).isEqualTo(Chessmen.of(new Player("name0", 0)));
-    assertThat(ladder.play(Chessmen.of(new Player("name1", 1)))).isEqualTo(Chessmen.of(new Player("name1", 1)));
-  }
-
-  /**
-   * |---|
-   * |   |
-   */
-  @Test
-  void bridgeIsOne2X2() {
-    Ladder ladder = new Ladder(
-            Arrays.asList(
-                    new Line(Arrays.asList(Point.of(true, 0))),
-                    new Line(Arrays.asList(Point.of(false, 0)))
-            )
-    );
-
-    assertThat(ladder.play(Chessmen.of(new Player("name0", 0))))
-            .isEqualTo(Chessmen.of(new Player("name0", 0), 1));
-    assertThat(ladder.play(Chessmen.of(new Player("name1", 1))))
-            .isEqualTo(Chessmen.of(new Player("name1", 1), 0));
-  }
-
-  /**
-   * |---|
-   * |---|
-   */
-  @Test
-  void bridgeIsTwo2X2() {
-    Ladder ladder = new Ladder(
-            Arrays.asList(
-                    new Line(Arrays.asList(Point.of(true, 0))),
-                    new Line(Arrays.asList(Point.of(true, 0)))
-            )
-    );
-
-    assertThat(ladder.play(Chessmen.of(new Player("name0", 0)))).isEqualTo(Chessmen.of(new Player("name0", 0)));
-    assertThat(ladder.play(Chessmen.of(new Player("name1", 1)))).isEqualTo(Chessmen.of(new Player("name1", 1)));
-  }
-
-  /**
-   * |---|   |
-   * |   |---|
-   */
-  @Test
-  void perBridgeIsOne3X2() {
-    Ladder ladder = new Ladder(
-            Arrays.asList(
-                    new Line(Arrays.asList(Point.of(true, 0), Point.of(false, 1))),
-                    new Line(Arrays.asList(Point.of(false, 0), Point.of(true, 1)))
-            )
-    );
-    assertThat(ladder.play(Chessmen.of(new Player("name0", 0)))).isEqualTo(Chessmen.of(new Player("name0", 0), 2));
-    assertThat(ladder.play(Chessmen.of(new Player("name1", 1)))).isEqualTo(Chessmen.of(new Player("name1", 1), 0));
-    assertThat(ladder.play(Chessmen.of(new Player("name2", 2)))).isEqualTo(Chessmen.of(new Player("name2", 2), 1));
   }
 }

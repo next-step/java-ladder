@@ -22,10 +22,10 @@ public class PointDirection {
     return this.index;
   }
 
+  // Add ME
   public boolean hasPoint() {
     return direction.isRight();
   }
-
 
   public PointDirection next() {
     return new PointDirection(index + 1, direction.next());

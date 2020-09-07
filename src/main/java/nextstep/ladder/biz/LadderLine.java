@@ -3,7 +3,7 @@ package nextstep.ladder.biz;
 import java.util.ArrayList;
 import java.util.List;
 
-import static nextstep.ladder.biz.LineGenerator.nextBoolean;
+import static nextstep.ladder.biz.RandomGenerator.nextBoolean;
 
 public class LadderLine {
 

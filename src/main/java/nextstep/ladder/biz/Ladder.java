@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Ladder {
 
-  private List<Line> lines;
+  private List<LadderLine> lines;
 
-  public Ladder(List<Line> lines) {
+  public Ladder(List<LadderLine> lines) {
     this.lines = lines;
   }
 
-  public List<Line> getLines() {
+  public List<LadderLine> getLines() {
     return Collections.unmodifiableList(lines);
   }
 
@@ -20,8 +20,12 @@ public class Ladder {
   }
 
   public Chessmen play(Chessmen chessmen) {
-    return lines.stream()
-            .reduce(chessmen, Chessmen::cast, (c1, c2) -> c2);
+    int result = chessmen.getLocation();
+    for (LadderLine line : lines) {
+      result = line.move(result);
+    }
+
+    return chessmen.move(result);
   }
 
   @Override
