@@ -15,6 +15,7 @@ public class ResultView {
 
 		ladder.getUsersName()
 				.forEach(name -> System.out.printf("%6s", name));
+		System.out.println();
 		ladder.getCreatedLadder()
 				.forEach(line -> System.out.println(ladderFormat(line.getPoints())));
 	}
@@ -22,12 +23,15 @@ public class ResultView {
 	private static String ladderFormat(List<Boolean> points) {
 		StringBuilder sb = new StringBuilder();
 		for (Boolean point : points) {
-			if (point) {
-				sb.append(POINT);
-			} else {
-				sb.append(BLANK);
-			}
+			sb.append(pointOrBlank(point));
 		}
 		return sb.toString();
+	}
+
+	private static String pointOrBlank(boolean point) {
+		if (point) {
+			return POINT;
+		}
+		return BLANK;
 	}
 }
