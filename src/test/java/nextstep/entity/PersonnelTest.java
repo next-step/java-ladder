@@ -12,6 +12,6 @@ class PersonnelTest {
     @DisplayName("참가자 수 확인")
     @CsvSource(value = {"0,0", "1,1", "2,2"})
     void getPersonnel(int personnel, int expected) {
-        then(new Personnel(personnel).getPersonnel()).isEqualTo(expected);
+        then(Personnel.of(personnel).getPersonnel()).isEqualTo(expected);
     }
 }

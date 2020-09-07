@@ -18,14 +18,14 @@ public class Controller {
     public static void main(String[] args) {
         EntriesDTO startEntriesDTO = inputView.inputStartEntries();
         Entries startEntries = Entries.of(startEntriesDTO.getEntryNames());
-        Personnel personnel = new Personnel(startEntries.getPersonnel());
+        Personnel personnel = Personnel.of(startEntries.getPersonnel());
 
         EntriesDTO resultEntriesDTO = inputView.inputResultEntries(personnel.getPersonnel());
 
         LengthDTO lengthDTO = inputView.inputLength();
         Length length = Length.of(lengthDTO.getLength());
 
-        Ladder ladder = new Ladder(personnel, length);
+        Ladder ladder = Ladder.of(personnel, length);
         LadderDTO ladderDTO = new LadderDTO(ladder);
 
         resultView.printEntryNames(startEntriesDTO);

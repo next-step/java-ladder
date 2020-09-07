@@ -17,11 +17,11 @@ public class Line {
         AtomicBoolean previousHasPedal = new AtomicBoolean(FIRST_PEDAL);
         this.points = IntStream.range(START_INDEX, personnel).mapToObj(index -> {
             if (index == START_INDEX) {
-                return new Point(FIRST_PEDAL);
+                return Point.of(FIRST_PEDAL);
             }
             boolean currentHasPedal = this.generatePedal(previousHasPedal.get());
             previousHasPedal.set(currentHasPedal);
-            return new Point(currentHasPedal);
+            return Point.of(currentHasPedal);
         }).collect(Collectors.toList());
     }
 

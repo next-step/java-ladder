@@ -7,11 +7,9 @@ import java.util.stream.IntStream;
 public class Ladder {
 
     private static final int START_INDEX = 0;
-    private final Personnel personnel;
     private final List<Line> lines;
 
-    public Ladder(Personnel personnel, Length length) {
-        this.personnel = personnel;
+    private Ladder(Personnel personnel, Length length) {
         this.lines = IntStream.range(START_INDEX, length.getLength())
                 .mapToObj(index -> Line.of(personnel.getPersonnel()))
                 .collect(Collectors.toList());
@@ -19,5 +17,9 @@ public class Ladder {
 
     public List<List<Boolean>> getLinesStatus() {
         return this.lines.stream().map(Line::getPedalsStatus).collect(Collectors.toList());
+    }
+
+    public static Ladder of(Personnel personnel, Length length) {
+        return new Ladder(personnel, length);
     }
 }

@@ -12,6 +12,6 @@ class PointTest {
     @DisplayName("페달 여부 확인")
     @CsvSource(value = {"true,true", "false,false"})
     void isPedalExist(boolean hasPedal, boolean expected) {
-        then(new Point(hasPedal).isPedalExist()).isEqualTo(expected);
+        then(Point.of(hasPedal).isPedalExist()).isEqualTo(expected);
     }
 }
