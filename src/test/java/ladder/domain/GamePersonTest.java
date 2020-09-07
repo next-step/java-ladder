@@ -20,7 +20,7 @@ public class GamePersonTest {
     @DisplayName("5자 이상 실패 테스트")
     public void nameLengthOver5() {
         assertThatThrownBy(() -> {
-                GamePerson name = new GamePerson("fdsfdsfs");
+            GamePerson name = new GamePerson("fdsfdsfs");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
