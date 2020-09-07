@@ -9,10 +9,14 @@ public class GamePerson {
     private String name;
 
     public GamePerson(String name) {
-        if(name.length() > NAME_LENGTH) {
+        validationName(name);
+        this.name = name;
+    }
+
+    private void validationName(String name) {
+        if (name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException("사람 이름은 최대 5자까지 등록 가능합니다.");
         }
-        this.name = name;
     }
 
     public String getName() {
