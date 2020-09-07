@@ -25,4 +25,10 @@ public class Ladder {
         return lines;
     }
 
+    public int move(int postion) {
+        for (Line line : lines) {
+            postion = line.move(postion);
+        }
+        return postion;
+    }
 }

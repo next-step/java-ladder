@@ -23,4 +23,16 @@ public class PointTest {
         assertThat(point.getRight()).isEqualTo(nextPoint.getLeft());
     }
 
+    @Test
+    void Point_move_test() {
+
+        Point firstPoint = Point.ofFirstPoint(true);
+        assertThat(firstPoint.move()).isEqualTo(1);
+
+        Point lastPoint = Point.ofLastPoint(true);
+        assertThat(lastPoint.move()).isEqualTo(-1);
+
+        Point point = Point.of(Direction.of(false, false));
+        assertThat(point.move()).isEqualTo(0);
+    }
 }

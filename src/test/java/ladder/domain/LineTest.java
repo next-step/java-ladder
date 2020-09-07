@@ -2,6 +2,9 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -32,5 +35,18 @@ public class LineTest {
         String input = "pobi";
         assertThatThrownBy(() ->
                 Line.of(Participants.of(input))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void Line_move_test() {
+        List<Point> points = new ArrayList<>();
+        points.add(Point.ofFirstPoint(true));
+
+        Line line = Line.of(points);
+
+        int start = 0;
+        int expected = start + 1;
+
+        assertThat(line.move(start)).isEqualTo(expected);
     }
 }

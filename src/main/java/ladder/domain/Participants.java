@@ -1,16 +1,15 @@
 package ladder.domain;
 
-import java.util.Arrays;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Participants {
     private static final int PARTICIPANTS_LIMIT = 2;
     private static final String DELIMITER = ",";
 
-    private final Set<Participant> participants;
+    private final List<Participant> participants;
 
-    public Participants(Set<Participant> participants) {
+    public Participants(List<Participant> participants) {
         this.participants = participants;
     }
 
@@ -22,10 +21,10 @@ public class Participants {
         String[] names = input.split(DELIMITER);
         Set<Participant> participants = Arrays.stream(names)
                 .map(Participant::of)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(LinkedHashSet::new));
 
         validationCheck(participants, names);
-        return new Participants(participants);
+        return new Participants(new ArrayList<>(participants));
     }
 
     private static void validationCheck(Set<Participant> participants, String[] names) {
@@ -41,10 +40,19 @@ public class Participants {
         return participants.size() - 1 == size;
     }
 
+    public boolean isLastParticipant(int position) {
+        return participants.size() == position;
+    }
+
+    public Name findNameByPosition(int position) {
+        String name = participants.get(position).toString();
+        return Name.of(name);
+    }
+
     @Override
     public String toString() {
         return participants.stream()
-                .map(Participant::toString)
+                .map(participant -> String.format("%-7s", participant))
                 .collect(Collectors.joining(""));
     }
 }

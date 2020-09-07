@@ -27,6 +27,10 @@ public class Line {
         return new Line(points);
     }
 
+    public static Line of(List<Point> points) {
+        return new Line(points);
+    }
+
     public Point getPoint(int pos) {
         if (pos >= points.size() || pos < 0) {
             throw new IndexOutOfBoundsException("라인의 범위를 초과하였습니다.");
@@ -36,5 +40,10 @@ public class Line {
 
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int move(int position) {
+        int direction = points.get(position).move();
+        return position + direction;
     }
 }

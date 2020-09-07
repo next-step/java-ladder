@@ -3,7 +3,6 @@ package ladder.domain;
 public class LadderGame {
 
     private final Participants participants;
-
     private final Ladder ladder;
 
     public LadderGame(Participants participants, Ladder ladder) {
@@ -27,5 +26,17 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
+    }
+
+    public LadderResult play() {
+        LadderResult result = LadderResult.of();
+
+        for (int pos = 0; !participants.isLastParticipant(pos); ++pos) {
+            Name name = participants.findNameByPosition(pos);
+            int position = ladder.move(pos);
+
+            result.addResult(name, position);
+        }
+        return result;
     }
 }

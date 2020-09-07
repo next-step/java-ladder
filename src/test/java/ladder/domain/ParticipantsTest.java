@@ -14,8 +14,8 @@ public class ParticipantsTest {
 
         Participants participants = Participants.of(input);
 
-        boolean beforeLast = participants.isBeforeLast(split.length - 1);
-        assertThat(beforeLast).isTrue();
+        boolean isLast = participants.isLastParticipant(split.length);
+        assertThat(isLast).isTrue();
     }
 
     @Test
