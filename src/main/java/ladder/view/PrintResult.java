@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.domain.GamePerson;
-import ladder.domain.Line;
+import ladder.domain.line.Line;
 import ladder.domain.Point;
 
 import java.util.List;
@@ -41,7 +41,8 @@ public class PrintResult {
 
     private static String printName(String name) {
         StringBuilder printValue = new StringBuilder(" ");
-        for (int i = 0; i < SEPERATE_DEFAULT - name.length(); i++) {
+        int countValue = SEPERATE_DEFAULT - name.length();
+        for (int i = 0; i < countValue; i++) {
             printValue.append(" ");
         }
         printValue.append(name);
