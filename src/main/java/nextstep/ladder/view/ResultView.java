@@ -21,7 +21,6 @@ public class ResultView {
     private static final String SPACE = " ";
     private static final String PRINT_GAME_RESULT = "실행 결과";
     private static final String PRINT_ALL_MEMBER = "all";
-    private static final String PRINT_COMMA = " : ";
 
     private ResultView() {
     }
@@ -105,7 +104,7 @@ public class ResultView {
     private static void printAllUser(Map<User, Integer> ladderResults, List<String> result) {
         for (User user : ladderResults.keySet()) {
             int position = ladderResults.get(user);
-            System.out.println(user.getName() + PRINT_COMMA + result.get(position));
+            System.out.println(user.getName() + " : " + result.get(position));
         }
     }
 
