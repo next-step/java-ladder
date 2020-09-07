@@ -1,47 +1,34 @@
 package ladder.domain;
 
-import ladder.util.InputUtil;
 import ladder.view.PrintResult;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderGame {
 
-    private List<GamePerson> names;
-    private List<Line> lines = new ArrayList<>();
-    private int ladderHeight;
+    private List<GamePerson> people;
+    private Ladder ladder;
 
-    public LadderGame(String namesValue) {
-        this(namesValue,1);
+    private LadderGame(List<GamePerson> people, Ladder ladder) {
+        this.people = people;
+        this.ladder = ladder;
     }
 
-    public LadderGame(String namesValue, int ladderHeight) {
-        this.ladderHeight = ladderHeight;
-        names = Arrays.stream(StringSplit.splitWithDelimiter(namesValue))
+    public static LadderGame of(String namesValue, int ladderHeight) {
+        List<GamePerson> people = Arrays.stream(StringSplit.splitWithDelimiter(namesValue))
                 .map(GamePerson::new)
                 .collect(Collectors.toList());
+        return new LadderGame(people, Ladder.of(new LadderHeight(ladderHeight), people.size()));
     }
 
     public void game() {
-        makeLines();
-        PrintResult.printNames(names);
-        PrintResult.makeLadder(lines);
-    }
-
-    public void makeLines() {
-        for(int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(names.size()));
-        }
-    }
-
-    public List<Line> getLines() {
-        return lines;
+        PrintResult.printNames(people);
+        PrintResult.makeLadder(ladder.getLines());
     }
 
     public List getNames() {
-        return names;
+        return people;
     }
 }
