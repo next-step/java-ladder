@@ -13,7 +13,7 @@ public class Line {
     private static final Random RANDOM = new Random();
     private final List<Point> points;
 
-    public Line(int personnel) {
+    private Line(int personnel) {
         AtomicBoolean previousHasPedal = new AtomicBoolean(FIRST_PEDAL);
         this.points = IntStream.range(START_INDEX, personnel).mapToObj(index -> {
             if (index == START_INDEX) {
@@ -33,5 +33,9 @@ public class Line {
 
     private boolean generatePedal(boolean hasPedal) {
         return !hasPedal && RANDOM.nextBoolean();
+    }
+
+    public static Line of(int personnel) {
+        return new Line(personnel);
     }
 }

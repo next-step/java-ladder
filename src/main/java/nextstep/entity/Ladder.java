@@ -13,7 +13,7 @@ public class Ladder {
     public Ladder(Personnel personnel, Length length) {
         this.personnel = personnel;
         this.lines = IntStream.range(START_INDEX, length.getLength())
-                .mapToObj(index -> new Line(personnel.getPersonnel()))
+                .mapToObj(index -> Line.of(personnel.getPersonnel()))
                 .collect(Collectors.toList());
     }
 
