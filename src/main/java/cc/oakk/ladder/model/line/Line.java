@@ -8,8 +8,10 @@ import java.util.stream.IntStream;
 
 import cc.oakk.ladder.model.size.LadderWidth;
 import cc.oakk.ladder.util.ValidationUtils;
+import cc.oakk.ladder.view.printer.Printable;
+import cc.oakk.ladder.view.printer.Printer;
 
-public class Line {
+public class Line implements Printable<Line> {
     protected final LadderWidth width;
     protected final List<MutableConnection> connections;
 
@@ -42,5 +44,10 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(width, connections);
+    }
+
+    @Override
+    public void print(Printer<Line> printer) {
+        printer.print(this);
     }
 }
