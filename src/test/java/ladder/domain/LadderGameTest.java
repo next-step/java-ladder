@@ -3,6 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +28,15 @@ public class LadderGameTest {
     @Test
     @DisplayName("리스트 같은지 체크")
     public void checkList() {
-        LadderGame ladderGame = new LadderGame("test1, test2, test3, test4, test5");
+        LadderGame ladderGame = LadderGame.of("test1, test2, test3, test4, test", 1);
         assertThat(ladderGame.getNames()).isEqualTo(names);
     }
 
     @Test
     @DisplayName("Line 사이즈 체크")
     public void checkLines() {
-        LadderGame ladderGame = new LadderGame("test1, test2, test3, test4, test5", 5);
-        ladderGame.makeLines();
-        assertThat(ladderGame.getLines().size()).isEqualTo(5);
+        Ladder ladder = Ladder.of(new LadderHeight(5), 5);
+        assertThat(ladder.getLines().size()).isEqualTo(5);
+        LadderGame ladderGame = LadderGame.of("test1, test2, test3, test4, test5", 5);
     }
 }
