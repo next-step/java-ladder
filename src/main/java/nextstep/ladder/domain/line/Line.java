@@ -1,9 +1,11 @@
 package nextstep.ladder.domain.line;
 
 import nextstep.ladder.domain.point.Point;
+import nextstep.ladder.domain.point.Position;
 import nextstep.ladder.domain.point.RightPointStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static nextstep.ladder.utils.CommonConstant.NUMBER_ONE;
@@ -35,20 +37,16 @@ public class Line {
     }
 
     public int ladderPlayCondition(int position) {
-        if (points.get(position).isRight()) {
-            return position + NUMBER_ONE;
-        }
-        if (position != NUMBER_ZERO && points.get(position - NUMBER_ONE).isRight()) {
-            return position - NUMBER_ONE;
-        }
-        if (position < NUMBER_ZERO) {
-            return NUMBER_ZERO;
-        }
-        return position;
+        return Position.valueOf(points, position)
+                .move(position);
     }
 
     public int size() {
         return points.size();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     public Point getPointIndex(int index) {
