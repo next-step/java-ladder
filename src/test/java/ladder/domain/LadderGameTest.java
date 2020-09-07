@@ -20,8 +20,18 @@ class LadderGameTest {
         // given
         Players players = Players.of("AAA,BBB,CCC");
         int rows = 5;
+        Rewards rewards = Rewards.builder()
+                .rewardInput("꽝,10000,5000")
+                .countOfPlayers(3)
+                .build();
+
+        LadderGame ladderGame = LadderGame.builder()
+                .players(players)
+                .rows(rows)
+                .rewards(rewards)
+                .build();
+
         DrawRule alwaysDrawRule = () -> true;
-        LadderGame ladderGame = new LadderGame(players, rows);
 
         // when
         Ladder ladder = ladderGame.makeLadder(alwaysDrawRule);
