@@ -10,6 +10,7 @@ public class ExpressionTest {
     @Test
     public void of() {
         assertThat(Expression.PLUS == Expression.of("+")).isTrue();
+        assertThat(Expression.PLUS == Expression.ofWithStream("+")).isTrue();
     }
 
     @Test
@@ -17,6 +18,14 @@ public class ExpressionTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     Expression.of("&");
+                });
+    }
+
+    @Test
+    public void notValidExpressionWithStream() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> {
+                    Expression.ofWithStream("&");
                 });
     }
 }
