@@ -19,7 +19,7 @@ public class Line implements Printable<Line> {
         this.width = new LadderWidth(width);
         this.connections = Collections.unmodifiableList(IntStream.range(0, width - 1)
                                     .boxed()
-                                    .map(v -> new MutableConnection(false))
+                                    .map(dummy -> new MutableConnection(false))
                                     .collect(Collectors.toList()));
     }
 

@@ -17,18 +17,18 @@ public class Ladder {
     public Ladder(int width, int height) {
         this.size = new LadderSize(width, height);
         this.lines = Collections.unmodifiableList(IntStream.range(0, size.height().get()).boxed()
-                            .map(v -> new MutableLine(size.width().get()))
+                            .map(dummy -> new MutableLine(size.width().get()))
                             .collect(Collectors.toList()));
     }
 
     public List<Line> getLines() {
         return lines.stream()
-                .map(v -> (Line) v)
+                .map(line -> (Line) line)
                 .collect(Collectors.toList());
     }
 
     public Ladder initLines(Function<Integer, int[]> eval) {
-        lines.forEach(l -> l.connect(eval.apply(l.width())));
+        lines.forEach(line -> line.connect(eval.apply(line.width())));
         return this;
     }
 }
