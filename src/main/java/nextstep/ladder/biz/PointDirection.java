@@ -22,6 +22,11 @@ public class PointDirection {
     return this.index;
   }
 
+  public boolean hasPoint() {
+    return direction.isRight();
+  }
+
+
   public PointDirection next() {
     return new PointDirection(index + 1, direction.next());
   }

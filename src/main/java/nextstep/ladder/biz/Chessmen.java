@@ -74,6 +74,10 @@ public class Chessmen {
     return Chessmen.of(player, location + 1);
   }
 
+  Chessmen move(int location) {
+    return Chessmen.of(player, location);
+  }
+
   public static Chessmen of(Player player) {
     return new Chessmen(player);
   }

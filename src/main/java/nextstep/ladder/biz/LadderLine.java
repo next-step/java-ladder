@@ -13,6 +13,11 @@ public class LadderLine {
     this.points = points;
   }
 
+  // Add ME
+  public List<PointDirection> getPoints() {
+    return points;
+  }
+
   public int move(int position) {
     return points.get(position).move();
   }

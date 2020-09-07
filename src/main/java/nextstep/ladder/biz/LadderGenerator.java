@@ -13,4 +13,14 @@ public class LadderGenerator {
     return new Ladder(lines);
   }
 
+  public static Ladder2 generate2(int countOfPerson, int ladderHeight) {
+    List<LadderLine> lines = new ArrayList<>();
+    for (int i = 0; i < ladderHeight; i++) {
+      LadderLine init = LadderLine.init(countOfPerson);
+      System.out.println(init);
+      lines.add(init);
+    }
+    return new Ladder2(lines);
+  }
+
 }
