@@ -35,6 +35,9 @@ public class LambdaTest {
     public void sumAll() throws Exception {
         int sum = Lambda.sumAll(numbers);
         assertThat(sum).isEqualTo(21);
+
+        sum = Lambda.sumAll(numbers, v -> v % 2 == 1);
+        assertThat(sum).isEqualTo(9);
     }
 
     @Test
