@@ -25,8 +25,10 @@ public class Line {
         }).collect(Collectors.toList());
     }
 
-    public List<Boolean> getResult() {
-        return this.points.stream().map(Point::isPedalExist).collect(Collectors.toList());
+    public List<Boolean> getPedalsStatus() {
+        return this.points.stream()
+                .map(Point::isPedalExist)
+                .collect(Collectors.toList());
     }
 
     private boolean generatePedal(boolean hasPedal) {

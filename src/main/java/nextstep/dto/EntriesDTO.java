@@ -20,14 +20,14 @@ public class EntriesDTO implements DTO {
                 .collect(Collectors.toList());
     }
 
-    public Entries of() {
-        List<Entry> entries = this.entries.stream()
+    public int getEntryCount() {
+        return this.entries.size();
+    }
+
+    public static Entries of(EntriesDTO entriesDTO) {
+        List<Entry> entries = entriesDTO.entries.stream()
                 .map(EntryDTO::of)
                 .collect(Collectors.toList());
         return new Entries(entries);
-    }
-
-    public int getEntryCount() {
-        return this.entries.size();
     }
 }

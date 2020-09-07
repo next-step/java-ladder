@@ -13,6 +13,6 @@ public class LadderDTO {
     }
 
     public List<List<Boolean>> getLadder() {
-        return this.ladder.getLadderLineStatus();
+        return this.ladder.getLinesStatus();
     }
 }

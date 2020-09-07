@@ -17,7 +17,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public List<List<Boolean>> getLadderLineStatus() {
-        return this.lines.stream().map(Line::getResult).collect(Collectors.toList());
+    public List<List<Boolean>> getLinesStatus() {
+        return this.lines.stream().map(Line::getPedalsStatus).collect(Collectors.toList());
     }
 }

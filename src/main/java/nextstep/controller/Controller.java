@@ -16,15 +16,15 @@ public class Controller {
     private static final ResultView resultView = new ResultView();
 
     public static void main(String[] args) {
-        EntriesDTO startEntriesDTO = (EntriesDTO) inputView.inputStartEntries();
-        Entries startEntries = startEntriesDTO.of();
+        EntriesDTO startEntriesDTO = inputView.inputStartEntries();
+        Entries startEntries = EntriesDTO.of(startEntriesDTO);
         Personnel personnel = new Personnel(startEntries.getPersonnel());
 
-        EntriesDTO resultEntriesDTO = (EntriesDTO) inputView.inputResultEntries(personnel.getPersonnel());
-        Entries resultEntries = resultEntriesDTO.of();
+        EntriesDTO resultEntriesDTO = inputView.inputResultEntries(personnel.getPersonnel());
+        Entries resultEntries = EntriesDTO.of(resultEntriesDTO);
 
-        LengthDTO lengthDTO = (LengthDTO) inputView.inputLength();
-        Length length = lengthDTO.of();
+        LengthDTO lengthDTO = inputView.inputLength();
+        Length length = LengthDTO.of(lengthDTO);
 
         Ladder ladder = new Ladder(personnel, length);
         LadderDTO ladderDTO = new LadderDTO(ladder);

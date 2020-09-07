@@ -28,8 +28,8 @@ public class InputView {
         }
     }
 
-    private DTO inputEntries() {
-        return tryCatch(() -> {
+    private EntriesDTO inputEntries() {
+        return (EntriesDTO) tryCatch(() -> {
             String[] inputs = scanner.nextLine().split(ENTRY_DELIMITER);
             System.out.println();
             List<EntryDTO> entries = Stream.of(inputs)
@@ -40,15 +40,15 @@ public class InputView {
         });
     }
 
-    public DTO inputStartEntries() {
-        return tryCatch(() -> {
+    public EntriesDTO inputStartEntries() {
+        return (EntriesDTO) tryCatch(() -> {
             System.out.println("참여할 사람 이름을 입력 하세요. (이름은 쉼표(,)로 구분 하세요.)");
             return this.inputEntries();
         });
     }
 
-    public DTO inputResultEntries(int personnel) {
-        return tryCatch(() -> {
+    public EntriesDTO inputResultEntries(int personnel) {
+        return (EntriesDTO) tryCatch(() -> {
             System.out.println("실행 결과를 입력 하세요. (결과는 쉼표(,)로 구분 하세요.)");
             EntriesDTO resultEntries = (EntriesDTO) this.inputEntries();
             if (resultEntries.getEntryCount() != personnel) {
@@ -58,8 +58,8 @@ public class InputView {
         });
     }
 
-    public DTO inputLength() {
-        return tryCatch(() -> {
+    public LengthDTO inputLength() {
+        return (LengthDTO) tryCatch(() -> {
             System.out.println("최대 사다리 높이는 몇 개 인가요?");
             int length = Integer.parseInt(scanner.nextLine());
             System.out.println();
