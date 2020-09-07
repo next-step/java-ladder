@@ -1,0 +1,17 @@
+package nextstep.entity;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.assertj.core.api.BDDAssertions.then;
+
+class PersonnelTest {
+
+    @ParameterizedTest
+    @DisplayName("페달 여부 확인")
+    @CsvSource(value = {"0,0", "1,1", "2,2"})
+    void getPersonnel(int personnel, int expected) {
+        then(new Personnel(personnel).getPersonnel()).isEqualTo(expected);
+    }
+}
