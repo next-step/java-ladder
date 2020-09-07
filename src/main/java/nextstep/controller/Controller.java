@@ -21,7 +21,6 @@ public class Controller {
         Personnel personnel = new Personnel(startEntries.getPersonnel());
 
         EntriesDTO resultEntriesDTO = inputView.inputResultEntries(personnel.getPersonnel());
-        Entries resultEntries = EntriesDTO.of(resultEntriesDTO);
 
         LengthDTO lengthDTO = inputView.inputLength();
         Length length = LengthDTO.of(lengthDTO);
