@@ -1,7 +1,5 @@
 package nextstep.dto;
 
-import nextstep.entity.Length;
-
 public class LengthDTO implements DTO {
 
     private final int length;
@@ -17,7 +15,7 @@ public class LengthDTO implements DTO {
         }
     }
 
-    public static Length of(LengthDTO lengthDTO) {
-        return new Length(lengthDTO.length);
+    public int getLength() {
+        return this.length;
     }
 }

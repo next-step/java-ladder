@@ -4,7 +4,7 @@ public class Length {
 
     private final int length;
 
-    public Length(int length) {
+    private Length(int length) {
         validate(length);
         this.length = length;
     }
@@ -17,6 +17,10 @@ public class Length {
 
     public int getLength() {
         return length;
+    }
+
+    public static Length of(int length) {
+        return new Length(length);
     }
 
     @Override

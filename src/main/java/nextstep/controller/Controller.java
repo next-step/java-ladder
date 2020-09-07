@@ -17,13 +17,13 @@ public class Controller {
 
     public static void main(String[] args) {
         EntriesDTO startEntriesDTO = inputView.inputStartEntries();
-        Entries startEntries = EntriesDTO.of(startEntriesDTO);
+        Entries startEntries = Entries.of(startEntriesDTO.getEntryNames());
         Personnel personnel = new Personnel(startEntries.getPersonnel());
 
         EntriesDTO resultEntriesDTO = inputView.inputResultEntries(personnel.getPersonnel());
 
         LengthDTO lengthDTO = inputView.inputLength();
-        Length length = LengthDTO.of(lengthDTO);
+        Length length = Length.of(lengthDTO.getLength());
 
         Ladder ladder = new Ladder(personnel, length);
         LadderDTO ladderDTO = new LadderDTO(ladder);

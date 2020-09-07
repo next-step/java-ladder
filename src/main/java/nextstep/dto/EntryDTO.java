@@ -1,7 +1,5 @@
 package nextstep.dto;
 
-import nextstep.entity.Entry;
-
 public class EntryDTO implements DTO {
 
     private final String name;
@@ -20,9 +18,5 @@ public class EntryDTO implements DTO {
 
     public String getName(){
         return name;
-    }
-
-    public static Entry of(EntryDTO entryDTO) {
-        return new Entry(entryDTO.name);
     }
 }
