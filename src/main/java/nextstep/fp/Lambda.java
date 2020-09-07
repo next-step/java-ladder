@@ -27,15 +27,10 @@ public class Lambda {
     }
 
     private static int sum(List<Integer> numbers, Conditional c){
-        int total = 0;
-
-        for(int num : numbers){
-            if(c.test(num)){
-               total += num;
-            }
-        }
-
-        return total;
+        return numbers.stream()
+                        .filter(c::test)
+                        .mapToInt(Integer::intValue)
+                        .sum();
     }
 
     public static int sumAll(List<Integer> numbers) {
