@@ -1,50 +1,46 @@
 package nextstep.ladder.util;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderPositionBoard;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class JudgeLadderResult {
 
     private Ladder ladder;
 
-    private final LadderPositionBoard ladderPositionBoard;
+    private final Users users;
 
-    private JudgeLadderResult(Ladder ladder, LadderPositionBoard ladderPositionBoard) {
+    private JudgeLadderResult(Ladder ladder, Users users) {
         this.ladder = ladder;
-        this.ladderPositionBoard = ladderPositionBoard;
+        this.users = users;
     }
 
     public static JudgeLadderResult newInstance(Ladder ladder, Users users) {
-        LadderPositionBoard ladderPositionBoard = LadderPositionBoard.create(users);
-        return new JudgeLadderResult(ladder, ladderPositionBoard);
+        return new JudgeLadderResult(ladder, users);
     }
 
-    public LadderPositionBoard judge() {
-        List<Line> ladder = this.ladder.getLadder();
+    public LadderResultBoard judge(boolean isShowOneUser, String target) {
 
-        for(Line line : ladder) {
-            judgePoint(line);
+        LadderResultBoard ladderResultBoard = LadderResultBoard.create();
+        if (!isShowOneUser) {
+            allUserLastPosition(ladderResultBoard, users);
+            return ladderResultBoard;
         }
 
-        return ladderPositionBoard;
+        User user = users.getUsers(target);
+        userLastPosition(ladderResultBoard, user);
+        return ladderResultBoard;
     }
 
-    private void judgePoint(Line line) {
-        List<Boolean> points = line.getPoints();
-
-        for(int i = 0; i < points.size(); i++){
-            switchPosition(line.isPoint(i),i);
+    public void allUserLastPosition(LadderResultBoard ladderResultBoard, Users users) {
+        for (User user : users.getUsers()) {
+            userLastPosition(ladderResultBoard, user);
         }
     }
 
-    private void switchPosition(boolean isExistBridge, int point) {
-        if(isExistBridge) {
-            ladderPositionBoard.switchPosition(point);
-        }
+    public void userLastPosition(LadderResultBoard ladderResultBoard, User user) {
+        ladder.run(user);
+        ladderResultBoard.addUserLastLadderPosition(user);
     }
+
 }
