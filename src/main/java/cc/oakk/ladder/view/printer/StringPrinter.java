@@ -1,5 +1,7 @@
 package cc.oakk.ladder.view.printer;
 
+import cc.oakk.ladder.view.printer.impl.StandardPrinter;
+
 public abstract class StringPrinter<T> implements Printer<T> {
     protected final Printer<String> stringPrinter;
 

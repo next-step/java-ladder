@@ -1,4 +1,6 @@
-package cc.oakk.ladder.view.printer;
+package cc.oakk.ladder.view.printer.impl;
+
+import cc.oakk.ladder.view.printer.Printer;
 
 public class StandardPrinter implements Printer<String> {
     private static StandardPrinter INSTANCE;
