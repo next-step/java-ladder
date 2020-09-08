@@ -1,7 +1,5 @@
 package step04.model;
 
-import com.hskim.ladder.model.User;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

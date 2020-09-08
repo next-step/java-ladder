@@ -2,8 +2,6 @@ package step04.model;
 
 public class Ladder {
 
-    private static final String INVALID_STATE = "사다리가 생성되지 않아 경로를 탐색할 수 없습니다!";
-
     private final LadderHeight ladderHeight;
     private LadderLines ladderLines;
 

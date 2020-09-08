@@ -21,7 +21,7 @@ public class RouteInfo<T> {
             navigate(routeInfo.routeMap, resultMap);
         }
 
-        return new RouteInfo<T>(resultMap);
+        return new RouteInfo<>(resultMap);
     }
 
     private static <T> void navigate(Map<T, T> routeMap, Map<T, T> resultMap) {
