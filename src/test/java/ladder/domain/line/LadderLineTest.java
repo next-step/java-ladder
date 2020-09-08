@@ -29,5 +29,4 @@ class LadderLineTest {
 
         assertThat(ladderLine.move(0)).isZero();
     }
-
 }
