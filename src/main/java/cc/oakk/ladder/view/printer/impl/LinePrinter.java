@@ -10,7 +10,7 @@ public class LinePrinter extends StringPrinter<LineDto> {
     public static final String START = "    ";
     public static final String LINE = "|";
 
-    public static final String LINE_BREAK = "\n";
+    public static final String LINE_BREAK = System.lineSeparator();
 
     public static final String CONNECTED = "-----";
     public static final String NOT_CONNECTED = "     ";
