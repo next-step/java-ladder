@@ -39,7 +39,7 @@ public class Point {
     }
 
     public int move() {
-        if (this.left) {
+        if (isLeft()) {
             return position - 1;
         }
 

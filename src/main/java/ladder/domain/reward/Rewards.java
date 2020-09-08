@@ -1,6 +1,7 @@
 package ladder.domain.reward;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +27,7 @@ public class Rewards {
     }
 
     public List<Reward> getRewards() {
-        return rewards;
+        return Collections.unmodifiableList(rewards);
     }
 
     public String findPrize(int index) {

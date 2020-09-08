@@ -16,7 +16,7 @@ public class LadderGame {
         Rewards rewards = inputReward(players.size());
         Height height = inputHeight();
 
-        Ladder ladder = Ladder.of(players, height, new RandomPointStrategy());
+        Ladder ladder = Ladder.of(players.size(), height, new RandomPointStrategy());
         printLadderResult(players, ladder);
         printRewards(rewards);
 

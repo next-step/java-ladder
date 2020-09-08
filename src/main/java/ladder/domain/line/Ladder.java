@@ -1,6 +1,5 @@
 package ladder.domain.line;
 
-import ladder.domain.player.Players;
 import ladder.domain.strategy.PointStrategy;
 
 import java.util.Collections;
@@ -12,20 +11,20 @@ import java.util.stream.Stream;
 public class Ladder {
     private final List<LadderLine> lines;
 
-    private Ladder(Players players, Height height, PointStrategy pointStrategy) {
-        this.lines = createLines(players, height, pointStrategy);
+    private Ladder(int playersCount, Height height, PointStrategy pointStrategy) {
+        this.lines = createLines(playersCount, height, pointStrategy);
     }
 
-    public static Ladder of(Players players, Height height, PointStrategy pointStrategy) {
-        return new Ladder(players, height, pointStrategy);
+    public static Ladder of(int playersCount, Height height, PointStrategy pointStrategy) {
+        return new Ladder(playersCount, height, pointStrategy);
     }
 
     public List<LadderLine> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
-    private List<LadderLine> createLines(Players players, Height height, PointStrategy pointStrategy) {
-        return Stream.generate(() -> LadderLine.of(players.size(), pointStrategy))
+    private List<LadderLine> createLines(int playersCount, Height height, PointStrategy pointStrategy) {
+        return Stream.generate(() -> LadderLine.of(playersCount, pointStrategy))
                 .limit(height.getSize())
                 .collect(Collectors.toList());
     }

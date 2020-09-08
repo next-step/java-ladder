@@ -10,7 +10,7 @@ import java.util.Objects;
 public class LadderLine {
     private final List<Point> points;
 
-    public LadderLine(int playersCount, PointStrategy pointStrategy) {
+    private LadderLine(int playersCount, PointStrategy pointStrategy) {
         this.points = createPoints(playersCount, pointStrategy);
     }
 
@@ -27,13 +27,13 @@ public class LadderLine {
         return points;
     }
 
-    public Point createFirstPoint(List<Point> points, PointStrategy pointStrategy) {
+    private Point createFirstPoint(List<Point> points, PointStrategy pointStrategy) {
         Point point = Point.first(pointStrategy);
         points.add(point);
         return point;
     }
 
-    public Point createNextPoints(List<Point> points, PointStrategy pointStrategy, int playersCount, Point point) {
+    private Point createNextPoints(List<Point> points, PointStrategy pointStrategy, int playersCount, Point point) {
         for (int i = 1; i < playersCount - 1; i++) {
             point = point.next(pointStrategy);
             points.add(point);

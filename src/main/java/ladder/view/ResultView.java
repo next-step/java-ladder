@@ -53,16 +53,16 @@ public class ResultView {
         System.out.println();
     }
 
-    public static void printResults(String name, LadderResults ladderResults) {
+    public static void printResults(String playerName, LadderResults ladderResults) {
         System.out.println();
         System.out.println(PRINT_RESULT_MESSAGE);
 
-        if(name.equals(ALL_PLAYERS)) {
+        if (ALL_PLAYERS.equals(playerName)) {
             printResultAll(ladderResults);
             return;
         }
 
-        printResultByName(name, ladderResults);
+        printResultByName(playerName, ladderResults);
     }
 
     private static void printResultByName(String name, LadderResults ladderResults) {
