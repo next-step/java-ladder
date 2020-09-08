@@ -1,10 +1,10 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.user;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static nextstep.ladder.domain.User.splitByUserName;
+import static nextstep.ladder.domain.user.User.splitByUserName;
 
 public class UserGenerator {
 

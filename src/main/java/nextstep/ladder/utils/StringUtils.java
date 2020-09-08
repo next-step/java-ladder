@@ -8,7 +8,7 @@ public class StringUtils {
     }
 
     public static String[] splitBy(String inputValue) {
-        return inputValue.split(INPUT_NAME_DELIMITER);
+        return inputValue.trim().split(INPUT_NAME_DELIMITER);
     }
 
 }
