@@ -1,7 +1,11 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.player.Players;
+import ladder.domain.result.GameResults;
+import ladder.domain.reward.Rewards;
 import ladder.domain.rule.RandomDrawRule;
+import ladder.game.Ladder;
+import ladder.game.LadderGame;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -9,22 +13,20 @@ public class LadderController {
 
     public void start() {
         Players players = Players.of(InputView.inputPlayerNames());
-        Rewards rewards = Rewards.builder().rewardInput(InputView.inputRewards())
-                .countOfPlayers(players.getCountOfPlayers())
-                .build();
+        Rewards rewards = Rewards.of(InputView.inputRewards());
 
         LadderGame ladderGame = LadderGame.builder()
                 .players(players)
                 .rows(InputView.inputRowCount())
-                .rewards(rewards)
                 .build();
+
         Ladder ladder = ladderGame.makeLadder(new RandomDrawRule());
 
-        GameResult gameResult = ladderGame.run();
+        ResultView.printAll(players, rewards, ladder);
 
-        ResultView.printPlayers(players);
-        ResultView.printLadder(ladder);
-        ResultView.printRewards(rewards);
-        ResultView.printGameResult(InputView.inputResultTarget(), gameResult);
+        ResultView.printGameResults(GameResults.builder()
+                .rewards(rewards)
+                .positions(ladderGame.run(InputView.inputResultTarget()))
+                .build());
     }
 }
