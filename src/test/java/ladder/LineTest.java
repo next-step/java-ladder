@@ -6,15 +6,17 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import ladder.domain.BarType;
 import ladder.domain.Line;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LineTest {
 
+    private static final String BAR    = "|-----";
+    private static final String PILLAR = "|     ";
+
     @ParameterizedTest
-    @ValueSource(ints = {1, 4, 6, 8, 10, 15, 20})
+    @ValueSource(ints = {3, 4, 6, 8, 10, 15, 20})
     public void allTrueLineTest(int personCount) {
 
         Line line = new Line(personCount, () -> true);
@@ -22,21 +24,23 @@ public class LineTest {
 
         List<String> lineList = new ArrayList<>();
 
-        for (int i = 0; i < personCount; i++) {
+        for (int i = 0; i < personCount - 1; i++) {
 
             if (i % 2 != 0) {
-                lineList.add(BarType.LEFT.getBar());
+                lineList.add(PILLAR);
                 continue;
             }
 
-            lineList.add(BarType.NONE.getBar());
+            lineList.add(BAR);
         }
+
+        lineList.add(PILLAR);
 
         assertEquals(lineList, line.lineToString());
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 4, 6, 8, 10, 15, 20})
+    @ValueSource(ints = {4, 6, 8, 10, 15, 20})
     public void allFalseLineTest(int personCount) {
 
         Line line = new Line(personCount, () -> false);
@@ -45,7 +49,7 @@ public class LineTest {
         List<String> lineList = new ArrayList<>();
 
         for (int i = 0; i < personCount; i++) {
-            lineList.add(BarType.NONE.getBar());
+            lineList.add(PILLAR);
         }
 
         assertEquals(lineList, line.lineToString());

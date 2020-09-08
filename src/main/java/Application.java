@@ -35,7 +35,7 @@ public class Application {
 
     private static class StandardOutput implements Output {
 
-        private static final String BLANK = "  ";
+        private static final String BLANK = " ";
 
         @Override
         public void print(String line) {

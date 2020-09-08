@@ -5,24 +5,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    private static final int SECOND_POINT_INDEX = 1;
-    private static final int INDEX_LEFT_SIDE = -1;
+
     private final List<Point> points = new ArrayList<>();
 
     public Line(int personCount, BarCreator barCreator) {
-        initPoints(personCount, barCreator);
-    }
 
-    private void initPoints(int personCount, BarCreator barCreator) {
-        points.add(Point.first());
-        for (int i = SECOND_POINT_INDEX; i < personCount; i++) {
-            points.add(Point.of(getLeftPoint(i), barCreator));
-            getLeftPoint(i).setDirection(points.get(i));
+        points.add(Point.first(barCreator));
+
+        for (int i = 1; i < personCount - 1; i++) {
+            points.add(Point.next(prevPointDirection(i), barCreator));
         }
+
+        int lastIndex = personCount - 1;
+        points.add(Point.last(prevPointDirection(lastIndex)));
     }
 
-    private Point getLeftPoint(int index) {
-        return points.get(index + INDEX_LEFT_SIDE);
+    public Direction prevPointDirection(int index) {
+        return points.get(index - 1).getDirection();
     }
 
     public List<String> lineToString() {

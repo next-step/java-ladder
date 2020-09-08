@@ -1,9 +1,9 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
-import ladder.ui.LadderDataInput;
 import ladder.domain.LadderFactory;
 import ladder.ui.Input;
+import ladder.ui.LadderDataInput;
 import ladder.ui.Output;
 
 public class LadderController {
@@ -18,7 +18,7 @@ public class LadderController {
     private final Output output;
     private final Ladder ladder;
 
-    LadderController(LadderControllerBuilder builder) {
+    public LadderController(LadderControllerBuilder builder) {
 
         this.input = builder.getInput();
         this.output = builder.getOutput();

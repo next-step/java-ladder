@@ -2,57 +2,42 @@ package ladder.domain;
 
 public class Point {
 
-    private final BarType barType;
-    private Direction direction;
+    private static final String BAR    = "|-----";
+    private static final String PILLAR = "|     ";
 
-    private Point() {
-        this.barType = BarType.NONE;
-        this.direction = Direction.NONE;
+    private final Direction direction;
+
+    private Point(Direction direction) {
+        this.direction = direction;
     }
 
-    private Point(BarType barType) {
-
-        this.barType = barType;
-
-        if (barType == BarType.LEFT) {
-            this.direction = Direction.LEFT;
-            return;
-        }
-
-        this.direction = Direction.NONE;
+    public static Point first(BarCreator barCreator) {
+        return new Point(Direction.leftCorner(barCreator.create()));
     }
 
-    public static Point first() {
-        return new Point();
+    public static Point next(Direction prevDirection, BarCreator barCreator) {
+        return new Point(Direction.of(prevDirection, barCreator.create()));
     }
 
-    public static Point of(Point leftPoint, BarCreator barCreator) {
-        if (leftPoint.getBarType() == BarType.LEFT) {
-            return new Point(BarType.NONE);
-        }
-        return new Point(BarType.of(barCreator.create()));
-    }
-
-    public BarType getBarType() {
-        return barType;
-    }
-
-    public boolean hasBar() {
-        return this.barType == BarType.LEFT;
+    public static Point last(Direction prevDirection) {
+        return new Point(Direction.rightCorner(prevDirection));
     }
 
     @Override
     public String toString() {
-        return barType.toString();
+
+        if (direction.isRight()) {
+            return BAR;
+        }
+
+        return PILLAR;
     }
 
     public int move() {
         return direction.move();
     }
 
-    public void setDirection(Point rightPoint) {
-        if (this.barType == BarType.NONE && rightPoint.hasBar()) {
-            this.direction = Direction.RIGHT;
-        }
+    public Direction getDirection() {
+        return direction;
     }
 }
