@@ -2,21 +2,20 @@ package step04.model;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderLineTest {
+public class LadderLinesTest {
 
-    @DisplayName("사다리 생성 테스트")
-    @RepeatedTest(10)
-    void create() {
+    @DisplayName("출력 테스트")
+    @Test
+    void print() {
         // given
-        LadderLine ladderLine = LadderLine.of(5, new RandomLadderMakeStrategy());
+        LadderLines ladderLines = LadderLines.of(5, 5, new RandomLadderMakeStrategy());
 
-        // then
-        System.out.print(ladderLine.getPrintableLadderLine());
+        // when
+        System.out.println(ladderLines.getPrintableString());
     }
 
     @DisplayName("경로 탐색 테스트")
