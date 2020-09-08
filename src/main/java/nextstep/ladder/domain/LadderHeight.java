@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 public class LadderHeight {
 
-    private int ladderHeight;
+    private final int ladderHeight;
 
     private LadderHeight(int ladderHeight) {
         this.ladderHeight = ladderHeight;
