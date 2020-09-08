@@ -1,50 +1,55 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.LadderLine;
-import nextstep.ladder.domain.line.LadderLineGenerator;
-import nextstep.ladder.domain.result.LadderResult;
-import nextstep.ladder.domain.user.User;
-import nextstep.ladder.domain.user.UserGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderLineTest {
 
-    private int countOfUser;
-    private int height;
-    private LadderResult ladderResult;
-    private List<User> users;
     private LadderLine ladderLine;
-
+    private int countOfUser;
 
     @BeforeEach
     void setUp() {
         countOfUser = 4;
-        height = 5;
-        users = UserGenerator.generateUsers("pobi,honux");
-        ladderResult = new LadderResult(users);
     }
 
     @Test
-    @DisplayName("사다리 라인 생성")
-    void createLadderLine() {
-        ladderLine = LadderLineGenerator.generateLadderLine(height, countOfUser, () -> false);
-        assertThat(ladderLine.size()).isEqualTo(5);
+    @DisplayName("생성한 Line Size 확인")
+    void lineSize() {
+        ladderLine = new LadderLine(countOfUser, () -> false);
+        assertThat(ladderLine.size()).isEqualTo(4);
     }
 
     @Test
-    @DisplayName("User 2명 사다리 진행")
-    void playLadder() {
-        ladderLine = LadderLineGenerator.generateLadderLine(3,2, () -> true);
-        Map<User, Integer> result = ladderLine.goDownALadder(ladderResult.getLadderResult());
-        User user = users.get(0);
-        assertThat(result.get(user)).isEqualTo(1);
+    @DisplayName("임의의 Ladder Point 생성 - True")
+    void ladderGenerateIsTrue() {
+        ladderLine = new LadderLine(countOfUser, () -> true);
+        assertThat(ladderLine.getPointIndex(0).isRight()).isTrue();
+    }
+
+    @Test
+    @DisplayName("임의의 Ladder Point 생성 - False")
+    void ladderGenerateIsFalse() {
+        ladderLine = new LadderLine(countOfUser, () -> false);
+        assertThat(ladderLine.getPointIndex(0).isRight()).isFalse();
+    }
+
+    @Test
+    @DisplayName("1개의 라인 생성 및 사이즈 확인")
+    void createLineSize() {
+        ladderLine = new LadderLine(4, () -> false);
+        assertThat(ladderLine.size()).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("1개의 라인 생성")
+    void createLine() {
+        ladderLine = new LadderLine(4, () -> true);
+        assertThat(ladderLine.getPointIndex(0).isRight()).isTrue();
     }
 
 }

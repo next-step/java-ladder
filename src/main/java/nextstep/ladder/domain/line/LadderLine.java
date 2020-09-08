@@ -1,41 +1,68 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.user.User;
+import nextstep.ladder.domain.point.Point;
+import nextstep.ladder.domain.point.Position;
+import nextstep.ladder.domain.point.RightPointStrategy;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+
+import static nextstep.ladder.utils.CommonConstant.NUMBER_ONE;
+import static nextstep.ladder.utils.CommonConstant.NUMBER_ZERO;
 
 public class LadderLine {
 
-    private List<Line> ladders;
+    private List<Point> points;
 
-    public LadderLine(List<Line> ladders) {
-        this.ladders = ladders;
+    public LadderLine(int countOfuser, RightPointStrategy rightPointStrategy) {
+        points = init(countOfuser, rightPointStrategy);
     }
 
-    public Map<User, Integer> goDownALadder(Map<User, Integer> ladderResult) {
-        for (User user : ladderResult.keySet()) {
-            int position = ladderResult.get(user);
-            position = caculatePosition(ladders, position);
-            ladderResult.put(user, position);
+    private List<Point> init(int countOfUser, RightPointStrategy rightPointStrategy) {
+        points = new ArrayList<>();
+        int count = countOfUser - NUMBER_ONE;
+        Point point = initFirst(rightPointStrategy);
+        point = initBody(count, point, rightPointStrategy);
+        initLast(count, point);
+        return points;
+    }
+
+    public Point initFirst(RightPointStrategy rightPointStrategy) {
+        Point firstPoint = Point.first(rightPointStrategy.right());
+        points.add(NUMBER_ZERO, firstPoint);
+        return firstPoint;
+    }
+
+    public Point initBody(int count, Point point, RightPointStrategy rightPointStrategy) {
+        for (int i = NUMBER_ONE; i < count; i++) {
+            Point nextPoint = Point.next(point, rightPointStrategy.right());
+            points.add(i, nextPoint);
+            point = nextPoint;
         }
-        return ladderResult;
+        return point;
     }
 
-    private int caculatePosition(List<Line> ladders, int position) {
-        for (int i = 0; i < ladders.size(); i++) {
-            Line line = ladders.get(i);
-            position = line.ladderPlayCondition(position);
-        }
-        return position;
+    public void initLast(int count, Point point) {
+        Point lastPoint = Point.last(point.isRight());
+        points.add(count, lastPoint);
     }
 
-    public Line getLine(int index) {
-        return ladders.get(index);
+    public int ladderPlayCondition(int position) {
+        return Position.valueOf(points, position)
+                .move(position);
     }
 
     public int size() {
-        return ladders.size();
+        return points.size();
+    }
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
+    public Point getPointIndex(int index) {
+        return points.get(index);
     }
 
 }

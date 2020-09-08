@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.line.LadderLine;
-import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.line.LadderLines;
 import nextstep.ladder.domain.result.LadderResult;
 import nextstep.ladder.domain.user.User;
 
@@ -25,10 +25,10 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printLadderResult(List<User> users, LadderLine ladderLine, List<String> results) {
+    public static void printLadderResult(List<User> users, LadderLines ladderLines, List<String> results) {
         System.out.println(PRINT_LADDER_RESULT);
         printUserNames(users);
-        printLines(ladderLine);
+        printLines(ladderLines);
         printLadderResults(results);
     }
 
@@ -45,19 +45,19 @@ public class ResultView {
         System.out.print(user.getName());
     }
 
-    public static void printLines(LadderLine ladderLine) {
-        IntStream.range(NUMBER_ZERO, ladderLine.size())
-                .mapToObj(ladderLine::getLine)
+    public static void printLines(LadderLines ladderLines) {
+        IntStream.range(NUMBER_ZERO, ladderLines.size())
+                .mapToObj(ladderLines::getLine)
                 .forEach(line -> {
                     printPoins(line);
                     System.out.println();
                 });
     }
 
-    private static void printPoins(Line line) {
-        IntStream.range(NUMBER_ZERO, line.size())
+    private static void printPoins(LadderLine ladderLine) {
+        IntStream.range(NUMBER_ZERO, ladderLine.size())
                 .forEach(j -> {
-                    boolean point = line.getPointIndex(j).isLeft();
+                    boolean point = ladderLine.getPointIndex(j).isLeft();
                     printPoint(point);
                     System.out.print(PRINT_LADDER_VERTICAL_LINE);
                 });
