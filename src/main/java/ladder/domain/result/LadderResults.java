@@ -27,7 +27,7 @@ public class LadderResults {
 
     private static List<LadderResult> init(Players players, Rewards rewards, Ladder ladder) {
         return IntStream.range(START_POSITION, players.size())
-                .mapToObj(position -> LadderResult.of(players.findPlayerName(position),
+                .mapToObj(position -> LadderResult.of(players.findPlayerName(Position.of(position)),
                         rewards.findPrize(ladder.move(Position.of(position)))))
                 .collect(toList());
     }

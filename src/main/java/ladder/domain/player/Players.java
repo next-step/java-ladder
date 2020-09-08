@@ -1,5 +1,7 @@
 package ladder.domain.player;
 
+import ladder.domain.point.Position;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -28,8 +30,8 @@ public class Players {
         return Collections.unmodifiableList(players);
     }
 
-    public String findPlayerName(int position) {
-        return players.get(position).getName();
+    public String findPlayerName(Position position) {
+        return players.get(position.location()).getName();
     }
 
     public int size() {
