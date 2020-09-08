@@ -14,32 +14,38 @@ public class ResultView {
     private static final String POINT_STRING = "|";
     private static final String RESULT_QUERY_FORMAT = "%s : %s";
 
+    public static void printLadder(List<String> userNames, List<Line> lines, List<String> prizeNames) {
+        printLadderResultPhrase();
+        printLadderElements(userNames);
+        printLadder(lines);
+        printLadderElements(prizeNames);
+    }
 
-    public void printLadderResultPhrase() {
+    private static void printLadderResultPhrase() {
         System.out.println(LADDER_PHRASE);
     }
 
-    public void printResultPhrase() {
+    public static void printResultPhrase() {
         System.out.println(RESUlT_PHRASE);
     }
 
-    public void printLadderElements(List<String> elements) {
-        elements.forEach(this::printElement);
+    private static void printLadderElements(List<String> elements) {
+        elements.forEach(ResultView::printElement);
         System.out.println();
     }
 
-    private void printElement(String name) {
+    private static void printElement(String name) {
         System.out.printf(NAME_FORMAT, name);
     }
 
-    public void printLadder(List<Line> lines) {
+    private static void printLadder(List<Line> lines) {
         lines.forEach(line -> {
             printLine(line.getSteps());
             System.out.println();
         });
     }
 
-    private void printLine(List<Boolean> steps) {
+    private static void printLine(List<Boolean> steps) {
         System.out.print(LADDER_FRONT_STRING);
         System.out.print(POINT_STRING);
 
@@ -49,11 +55,11 @@ public class ResultView {
         });
     }
 
-    private String getStepString(boolean hasStep) {
+    private static String getStepString(boolean hasStep) {
         return hasStep ? STEP_STRING : EMPTY_STEP_STRING;
     }
 
-    public void printResult(String userName, String prizeName) {
+    public static void printResult(String userName, String prizeName) {
         System.out.println(String.format(RESULT_QUERY_FORMAT, userName, prizeName));
     }
 

@@ -10,37 +10,37 @@ public class LadderApplication {
     private static final String ALL_USER_QUERY_STRING = "all";
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        ResultView resultView = new ResultView();
+        List<String> userNames = InputView.getUserNames();
+        List<String> prizeNames = InputView.getPrizeNames();
+        int height = InputView.getHeight();
 
-        List<String> userNames = inputView.getUserNames();
-        List<String> prizeNames = inputView.getPrizeNames();
-        int width = inputView.getWidth();
+        LadderGame ladderGame = LadderGame.of(userNames, height, new RandomGenerateStrategy());
+        Prizes prizes = Prizes.of(prizeNames, ladderGame.getUsersName().size());
 
-        LadderGame ladderGame = LadderGame.of(userNames, width, new RandomGenerateStrategy());
-        Prizes prizes = Prizes.of(prizeNames);
-
-        resultView.printLadderResultPhrase();
-        resultView.printLadderElements(ladderGame.getUsersName());
-        resultView.printLadder(ladderGame.getLines());
-        resultView.printLadderElements(prizes.getPrizeNames());
+        ResultView.printLadder(ladderGame.getUsersName(), ladderGame.getLines(), prizes.getPrizeNames());
 
         while (true) {
-            String resultUserName = inputView.getResultUserName();
+            String resultUserName = InputView.getResultUserName();
+            ResultView.printResultPhrase();
 
             if (ALL_USER_QUERY_STRING.equals(resultUserName)) {
-                userNames.stream()
-                        .map(User::new)
-                        .forEach(user -> {
-                            int point = ladderGame.play(user);
-                            resultView.printResult(user.getName(), prizes.getPrizeByIndex(point).getPrize());
-                        });
+                printGameResultAll(ladderGame, prizes);
                 break;
             }
-            int point = ladderGame.play(new User(resultUserName));
-            resultView.printResult(resultUserName, prizes.getPrizeByIndex(point).getPrize());
+
+            printGameResultWith(resultUserName, ladderGame, prizes);
         }
 
+    }
+
+    public static void printGameResultAll(LadderGame ladderGame, Prizes prizes) {
+        ladderGame.getUsersName()
+                  .forEach(userName -> printGameResultWith(userName, ladderGame, prizes));
+    }
+
+    public static void printGameResultWith(String userName, LadderGame ladderGame, Prizes prizes) {
+        int point = ladderGame.play(new User(userName));
+        ResultView.printResult(userName, prizes.getPrizeByIndex(point).getPrize());
     }
 
 }

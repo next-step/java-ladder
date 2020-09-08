@@ -15,30 +15,30 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public List<String> getUserNames() {
+    public static List<String> getUserNames() {
         System.out.println(INPUT_NAMES_PHRASE);
         return getElements();
     }
 
-    public int getWidth() {
+    public static int getHeight() {
         System.out.println(LADDER_WIDTH_PHRASE);
-        String width = scanner.nextLine();
+        String height = scanner.nextLine();
 
-        return Integer.parseInt(width);
+        return Integer.parseInt(height);
     }
 
-    public List<String> getPrizeNames() {
+    public static List<String> getPrizeNames() {
         System.out.println(INPUT_PRIZES_PHRASE);
         return getElements();
     }
 
-    public String getResultUserName() {
+    public static String getResultUserName() {
         System.out.println();
         System.out.println(RESULT_QUERY_PHRASE);
         return scanner.nextLine();
     }
 
-    private List<String> getElements() {
+    private static List<String> getElements() {
         String elements = scanner.nextLine();
         return Arrays.asList(elements.replaceAll(BLANK_STRING, EMPTY_STRING)
                 .split(DELIMITER_STRING));
