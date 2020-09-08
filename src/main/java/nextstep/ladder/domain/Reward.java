@@ -4,14 +4,13 @@ import java.util.Objects;
 
 import static nextstep.ladder.constant.ExceptionMessage.INVALID_REWARD_LENGTH_UNDER_FIVE;
 
-public class Reward extends Position{
+public class Reward {
 
     private static final int MAXIMUM_REWARD_NAME_LENGTH = 5;
 
     private String reward;
 
-    private Reward(String reward, int position) {
-        super(position);
+    private Reward(String reward) {
         this.reward = reward;
 
         if (reward.length() > MAXIMUM_REWARD_NAME_LENGTH) {
@@ -19,8 +18,8 @@ public class Reward extends Position{
         }
     }
 
-    public static Reward newInstance(String name, int position) {
-        return new Reward(name.trim(), position);
+    public static Reward create(String name) {
+        return new Reward(name.trim());
     }
 
     public String getName() {

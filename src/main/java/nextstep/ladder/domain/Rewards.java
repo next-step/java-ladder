@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,8 +27,8 @@ public class Rewards {
     public static Rewards create(String rewards) {
         String[] splitRewards = StringUtils.split(rewards);
 
-        List<Reward> rewardCollections = IntStream.range(0, splitRewards.length)
-                .mapToObj(index -> Reward.newInstance(splitRewards[index],index))
+        List<Reward> rewardCollections = Arrays.asList(splitRewards).stream()
+                .map(Reward::create)
                 .collect(Collectors.toList());
 
         return new Rewards(rewardCollections);
