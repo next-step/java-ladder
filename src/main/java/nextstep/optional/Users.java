@@ -21,12 +21,4 @@ public class Users {
                 .orElse(DEFAULT_USER);
     }
 
-//    User getUser(String name) {
-//        for (User user : users) {
-//            if (user.matchName(name)) {
-//                return user;
-//            }
-//        }
-//        return DEFAULT_USER;
-//    }
 }
