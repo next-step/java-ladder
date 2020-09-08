@@ -25,7 +25,6 @@ public class InputView {
         return getLine();
     }
 
-
     public static String inputResultTarget() {
         System.out.printf(ENTER);
         System.out.println("결과를 보고 싶은 사람은?");
