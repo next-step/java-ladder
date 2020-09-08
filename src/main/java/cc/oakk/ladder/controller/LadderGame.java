@@ -1,6 +1,6 @@
 package cc.oakk.ladder.controller;
 
-import cc.oakk.ladder.model.Ladder;
+import cc.oakk.ladder.model.ladder.Ladder;
 import cc.oakk.ladder.model.Person;
 import cc.oakk.ladder.model.size.LadderHeight;
 import cc.oakk.ladder.util.RandomUtils;
@@ -33,7 +33,7 @@ public class LadderGame {
         Ladder ladder = new Ladder(persons.size(), height.get());
         initLadder(ladder);
 
-        resultView.printLadder(persons, ladder);
+        resultView.printLadder(persons, ladder.getDto());
     }
 
     private void initLadder(Ladder ladder) {

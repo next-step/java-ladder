@@ -1,10 +1,12 @@
 package cc.oakk.ladder.view.printer.impl;
 
-import cc.oakk.ladder.model.line.Connection;
-import cc.oakk.ladder.model.line.Line;
+import cc.oakk.ladder.model.line.dto.ConnectionDto;
+import cc.oakk.ladder.model.line.dto.LineDto;
 import cc.oakk.ladder.view.printer.StringPrinter;
 
-public class LinePrinter extends StringPrinter<Line> {
+import java.util.List;
+
+public class LinePrinter extends StringPrinter<LineDto> {
     public static final String START = "    ";
     public static final String LINE = "|";
 
@@ -14,18 +16,20 @@ public class LinePrinter extends StringPrinter<Line> {
     public static final String NOT_CONNECTED = "     ";
 
     @Override
-    public void print(Line target) {
+    public void print(LineDto target) {
+        List<ConnectionDto> connections = target.getConnections().getConnections();
+
         stringPrinter.print(START);
-        for (int i = 0; i < target.width() - 1; i++) {
+        for (int i = 0; i < target.getWidth().get() - 1; i++) {
             stringPrinter.print(LINE);
-            printConnection(target.isConnected(i));
+            printConnection(connections.get(i));
         }
         stringPrinter.print(LINE);
         stringPrinter.print(LINE_BREAK);
     }
 
-    private void printConnection(Connection connection) {
-        if (connection.get()) {
+    private void printConnection(ConnectionDto connection) {
+        if (connection.isConnected()) {
             stringPrinter.print(CONNECTED);
             return;
         }
