@@ -15,8 +15,7 @@ class LadderTest {
     void createLadderTest(int userCount, int height) {
         Users users = Users.create("test1,test2,test3,test4");
         LadderHeight ladderHeight = LadderHeight.create(height);
-        LadderGenerator ladderGenerator = LadderGenerator.create(users, ladderHeight);
-        Ladder ladder = ladderGenerator.make();
+        Ladder ladder = Ladder.create(users,ladderHeight);
 
         assertThat(ladder.getLadder()).hasSize(height);
     }
