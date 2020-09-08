@@ -37,3 +37,5 @@
 - [x] ResultView - 이름입력시 개인별 결과출력
 - [x] ResultView - all 입력시 전체 참여자의 결과출력
 
+
+
