@@ -13,13 +13,13 @@ import cc.oakk.ladder.view.printer.Printer;
 
 public class Line implements Printable<Line> {
     protected final LadderWidth width;
-    protected final List<MutableConnection> connections;
+    protected final List<Connection> connections;
 
     public Line(int width) {
         this.width = new LadderWidth(width);
         this.connections = Collections.unmodifiableList(IntStream.range(0, width - 1)
                                     .boxed()
-                                    .map(dummy -> new MutableConnection(false))
+                                    .map(dummy -> new Connection(false))
                                     .collect(Collectors.toList()));
     }
 
@@ -30,6 +30,26 @@ public class Line implements Printable<Line> {
 
     public int width() {
         return width.get();
+    }
+
+    public Line connect(int index) {
+        ValidationUtils.throwIfOutOfListSize(connections, index);
+
+        boolean leftConnected = index != 0 && connections.get(index - 1).get();
+        boolean rightConnected = index != width() - 2 && connections.get(index + 1).get();
+        if (leftConnected || rightConnected) {
+            throw new IllegalArgumentException("두번 연속해 이을 수 없습니다.");
+        }
+
+        connections.get(index).set(true);
+        return this;
+    }
+
+    public Line connect(int... indexs) {
+        for (int index : indexs) {
+            connect(index);
+        }
+        return this;
     }
 
     @Override

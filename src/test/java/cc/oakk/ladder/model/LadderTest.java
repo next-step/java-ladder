@@ -1,6 +1,6 @@
 package cc.oakk.ladder.model;
 
-import cc.oakk.ladder.model.line.MutableLine;
+import cc.oakk.ladder.model.line.Line;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,7 +9,7 @@ public class LadderTest {
     @Test
     public void initLines() {
         Ladder ladder = new Ladder(5, 5);
-        MutableLine comparingLine = new MutableLine(5);
+        Line comparingLine = new Line(5);
         comparingLine.connect(1);
         comparingLine.connect(3);
 

@@ -16,6 +16,11 @@ public class Connection {
         return connected;
     }
 
+    public Connection set(boolean connected) {
+        this.connected = connected;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
