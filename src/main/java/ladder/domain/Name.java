@@ -16,6 +16,10 @@ public class Name {
         return new Name(input);
     }
 
+    public boolean equals(String input) {
+        return name.equals(input);
+    }
+
     @Override
     public int hashCode() {
         return name.hashCode();

@@ -14,7 +14,7 @@ public class Participant {
 
     @Override
     public String toString() {
-        return String.format("%-7s", name);
+        return name.toString();
     }
 
     @Override

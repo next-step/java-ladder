@@ -21,6 +21,7 @@ public class NameTest {
         Name name = Name.of(input);
 
         assertThat(name.equals(Name.of("heesu"))).isTrue();
+        assertThat(name.equals(input)).isTrue();
     }
 
     @Test

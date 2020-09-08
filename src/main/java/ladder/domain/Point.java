@@ -32,4 +32,8 @@ public class Point {
         Direction nextDirection = direction.getNext();
         return new Point(nextDirection);
     }
+
+    public int move() {
+        return direction.getDirection();
+    }
 }

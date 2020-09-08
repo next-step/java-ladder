@@ -1,8 +1,13 @@
 package ladder.domain;
 
+import java.util.Random;
+
 import static ladder.utils.RandomBoolGenerator.generate;
 
 public class Direction {
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
+    private static final int STAY = 0;
 
     private final boolean left;
     private final boolean right;
@@ -11,7 +16,6 @@ public class Direction {
         if (left && right) {
             throw new IllegalArgumentException("연속으로 다리를 만들 수 없습니다.");
         }
-
         this.left = left;
         this.right = right;
     }
@@ -40,5 +44,15 @@ public class Direction {
             return new Direction(true, false);
         }
         return new Direction(false, generate());
+    }
+
+    public int getDirection() {
+        if (left) {
+            return LEFT;
+        }
+        if (right) {
+            return RIGHT;
+        }
+        return STAY;
     }
 }

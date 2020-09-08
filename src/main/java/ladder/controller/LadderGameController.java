@@ -1,6 +1,9 @@
 package ladder.controller;
 
 import ladder.domain.LadderGame;
+import ladder.domain.LadderResult;
+import ladder.domain.Name;
+import ladder.domain.Rewards;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -23,11 +26,16 @@ public class LadderGameController implements GameController {
 
     @Override
     public void startGame() {
-        LadderGame game = LadderGame.of(
-                inputView.getParticipantNames(),
-                inputView.getLadderHeight()
-        );
+        String participantNames = inputView.getParticipantNames();
+        Rewards rewards = Rewards.of(inputView.getRewards());
+        String ladderHeight = inputView.getLadderHeight();
 
-        outputView.printLadderGame(game);
+        LadderGame game = LadderGame.of(participantNames, ladderHeight);
+        outputView.printLadderGame(game, rewards);
+
+        LadderResult result = game.play();
+        Name target = Name.of(inputView.getTargetName());
+
+        outputView.printGameResult(target, result, rewards);
     }
 }

@@ -17,6 +17,11 @@ public class InputView {
         return InnerHolder.INSTANCE;
     }
 
+    public String getRewards() {
+        System.out.println(InputViewMessage.INPUT_FOR_REWARDS.getMessage());
+        return scanner.nextLine();
+    }
+
     public String getParticipantNames() {
         System.out.println(InputViewMessage.INPUT_FOR_NAMES.getMessage());
         return scanner.nextLine();
@@ -24,6 +29,11 @@ public class InputView {
 
     public String getLadderHeight() {
         System.out.println(InputViewMessage.INPUT_FOR_LADDER_HEIGHT.getMessage());
+        return scanner.nextLine();
+    }
+
+    public String getTargetName() {
+        System.out.println(InputViewMessage.INPUT_FOR_TARGET.getMessage());
         return scanner.nextLine();
     }
 }

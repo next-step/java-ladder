@@ -18,4 +18,17 @@ public class LadderTest {
         assertThat(height.equals(ladder.getLines().size())).isTrue();
     }
 
+    @Test
+    void Ladder_move_test() {
+        String names = "pobi,honux,crong,jk";
+        String strHeight = "5";
+
+        Participants participants = Participants.of(names);
+        Height height = Height.of(strHeight);
+        Ladder ladder = Ladder.of(participants, height);
+
+        int first = 0;
+        int expectedPostion = ladder.move(first);
+        assertThat(expectedPostion).isGreaterThanOrEqualTo(first);
+    }
 }
