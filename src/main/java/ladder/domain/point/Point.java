@@ -5,46 +5,37 @@ import ladder.domain.strategy.PointStrategy;
 import java.util.Objects;
 
 public class Point {
-    private final int position;
-    private final boolean left;
-    private final boolean right;
+    private final Position position;
+    private final Direction direction;
 
-    private Point(int position, boolean left, boolean right) {
+    private Point(Position position, Direction direction) {
         this.position = position;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
     public static Point first(PointStrategy pointStrategy) {
-        return new Point(0, false, pointStrategy.next());
+        return new Point(Position.init(), Direction.first(pointStrategy.next()));
     }
 
-    public Point last(Point prevPoint) {
-        return new Point(prevPoint.position + 1, this.right, false);
+    public Point last() {
+        return new Point(position.right(), direction.last());
     }
 
     public Point next(PointStrategy pointStrategy) {
-        return next(this.position + 1, pointStrategy);
+        return new Point(position.right(), direction.next(pointStrategy));
     }
 
-    private Point next(int position, PointStrategy pointStrategy) {
-        if (this.right) {
-            return new Point(position, true, false);
-        }
-        return new Point(position, false, pointStrategy.next());
+    public Direction getDirection() {
+        return direction;
     }
 
-    public boolean isLeft() {
-        return this.left;
-    }
-
-    public int move() {
-        if (isLeft()) {
-            return position - 1;
+    public Position move() {
+        if (direction.isLeft()) {
+            return position.left();
         }
 
-        if (this.right) {
-            return position + 1;
+        if (direction.isRight()) {
+            return position.right();
         }
 
         return position;
@@ -55,13 +46,12 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point that = (Point) o;
-        return position == that.position &&
-                left == that.left &&
-                right == that.right;
+        return Objects.equals(position, that.position) &&
+                Objects.equals(direction, that.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, left, right);
+        return Objects.hash(position, direction);
     }
 }

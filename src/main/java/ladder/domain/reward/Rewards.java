@@ -1,5 +1,7 @@
 package ladder.domain.reward;
 
+import ladder.domain.point.Position;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -30,8 +32,8 @@ public class Rewards {
         return Collections.unmodifiableList(rewards);
     }
 
-    public String findPrize(int index) {
-        return rewards.get(index).getPrize();
+    public String findPrize(Position position) {
+        return rewards.get(position.location()).getPrize();
     }
 
     private static List<Reward> splitPrizes(String prizes) {

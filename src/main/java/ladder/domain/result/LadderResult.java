@@ -3,8 +3,8 @@ package ladder.domain.result;
 import java.util.Objects;
 
 public class LadderResult {
-    private String playerName;
-    private String rewardPrize;
+    private final String playerName;
+    private final String rewardPrize;
 
     private LadderResult(String playerName, String rewardPrize) {
         this.playerName = playerName;
@@ -21,6 +21,10 @@ public class LadderResult {
 
     public String getRewardPrize() {
         return rewardPrize;
+    }
+
+    public boolean isEqualsName(String name) {
+        return playerName.equals(name);
     }
 
     @Override

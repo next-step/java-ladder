@@ -1,5 +1,6 @@
 package ladder.domain.line;
 
+import ladder.domain.point.Position;
 import ladder.domain.strategy.PointStrategy;
 
 import java.util.Collections;
@@ -29,7 +30,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public int move(int position) {
+    public Position move(Position position) {
         for (LadderLine line : lines) {
             position = line.move(position);
         }

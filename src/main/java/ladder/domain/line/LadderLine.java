@@ -1,6 +1,7 @@
 package ladder.domain.line;
 
 import ladder.domain.point.Point;
+import ladder.domain.point.Position;
 import ladder.domain.strategy.PointStrategy;
 
 import java.util.ArrayList;
@@ -11,29 +12,23 @@ public class LadderLine {
     private final List<Point> points;
 
     private LadderLine(int playersCount, PointStrategy pointStrategy) {
-        this.points = createPoints(playersCount, pointStrategy);
+        this.points = firstLine(playersCount, pointStrategy);
     }
 
     public static LadderLine of(int playersCount, PointStrategy pointStrategy) {
         return new LadderLine(playersCount, pointStrategy);
     }
 
-    public List<Point> createPoints(int playersCount, PointStrategy pointStrategy) {
+    public List<Point> firstLine(int playersCount, PointStrategy pointStrategy) {
         List<Point> points = new ArrayList<>();
-        Point point = createFirstPoint(points, pointStrategy);
-        point = createNextPoints(points, pointStrategy, playersCount, point);
-        createLastPoint(points, point);
-
+        Point point = Point.first(pointStrategy);
+        point = generatePoints(points, pointStrategy, playersCount, point);
+        markLastPoint(points, point);
         return points;
     }
 
-    private Point createFirstPoint(List<Point> points, PointStrategy pointStrategy) {
-        Point point = Point.first(pointStrategy);
+    private Point generatePoints(List<Point> points, PointStrategy pointStrategy, int playersCount, Point point) {
         points.add(point);
-        return point;
-    }
-
-    private Point createNextPoints(List<Point> points, PointStrategy pointStrategy, int playersCount, Point point) {
         for (int i = 1; i < playersCount - 1; i++) {
             point = point.next(pointStrategy);
             points.add(point);
@@ -41,12 +36,12 @@ public class LadderLine {
         return point;
     }
 
-    private void createLastPoint(List<Point> points, Point point) {
-        points.add(point.last(point));
+    private void markLastPoint(List<Point> points, Point point) {
+        points.add(point.last());
     }
 
-    public int move(int position) {
-        return points.get(position).move();
+    public Position move(Position position) {
+        return points.get(position.location()).move();
     }
 
     public List<Point> getPoints() {
