@@ -1,8 +1,6 @@
 package ladder.view;
 
-import ladder.model.LadderResult;
 import ladder.model.Line;
-import ladder.model.User;
 
 import java.util.List;
 
@@ -55,13 +53,8 @@ public class ResultView {
         return hasStep ? STEP_STRING : EMPTY_STEP_STRING;
     }
 
-    public void printResult(String target, LadderResult ladderResult) {
-        String prize = ladderResult.getPrizeByUser(new User(target)).getPrize();
-        System.out.println(String.format(RESULT_QUERY_FORMAT, target, prize));
-    }
-
-    public void printAllResults(List<String> userNames, LadderResult ladderResult) {
-        userNames.forEach(userName -> printResult(userName, ladderResult));
+    public void printResult(String userName, String prizeName) {
+        System.out.println(String.format(RESULT_QUERY_FORMAT, userName, prizeName));
     }
 
 }

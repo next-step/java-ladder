@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Line {
     private static final int MIN_INDEX = 0;
@@ -21,16 +20,19 @@ public class Line {
         }
     }
 
-    private boolean hasBeforeStep(int pointIndex) {
-        return pointIndex > 0 && steps.get(pointIndex - STEP_INTERVAL);
+    private boolean hasBeforeStep(int position) {
+        validateIndex(position);
+        return position > 0 && steps.get(position - STEP_INTERVAL);
     }
 
-    private void validateLine(List<Boolean> steps) {
-        boolean hasInvalidStep = IntStream.range(MIN_INDEX, steps.size())
-                                        .anyMatch(i -> steps.get(i) && hasBeforeStep(i));
+    private boolean hasNextStep(int pointIndex) {
+        validateIndex(pointIndex);
+        return pointIndex < steps.size() && steps.get(pointIndex);
+    }
 
-        if (hasInvalidStep) {
-            throw new IllegalArgumentException("인접한 사다리 다리가 있습니다.");
+    private void validateIndex(int pointIndex) {
+        if (pointIndex < 0 || pointIndex > steps.size()) {
+            throw new IllegalArgumentException("index가 사다리 범위를 벗어났습니다.");
         }
     }
 
@@ -38,21 +40,14 @@ public class Line {
         return Collections.unmodifiableList(steps);
     }
 
-    private boolean hasNextStep(int pointIndex) {
-        validateIndex(pointIndex);
-        return steps.get(pointIndex);
-    }
-
-    private void validateIndex(int pointIndex) {
-        if (pointIndex < 0 || pointIndex >= steps.size()) {
-            throw new IllegalArgumentException("index가 사다리 범위를 벗어났습니다.");
+    public int movePoint(int pointIndex) {
+        if (hasNextStep(pointIndex)) {
+            return pointIndex + 1;
         }
-    }
-
-    public void processLine(Users users) {
-        IntStream.range(0, steps.size())
-                .filter(this::hasNextStep)
-                .forEach(i -> users.swapUserPoint(i, i + 1));
+        if (hasBeforeStep(pointIndex)) {
+            return pointIndex - 1;
+        }
+        return pointIndex;
     }
 
     @Override

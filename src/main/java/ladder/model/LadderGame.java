@@ -27,12 +27,8 @@ public class LadderGame {
         return users.getUserNames();
     }
 
-    public void play() {
-        ladder.rideLadder(users);
-    }
-
-    public LadderResult makeLadderResult(Prizes prizes) {
-        return new LadderResult(users.getUsers(), prizes.getPrizes());
+    public int play(User user) {
+        return ladder.rideLadder(users.getUserIndex(user));
     }
 
 }

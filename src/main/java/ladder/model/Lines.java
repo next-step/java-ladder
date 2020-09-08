@@ -24,8 +24,11 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
-    public void processLines(Users users) {
-        lines.forEach(line -> line.processLine(users));
+    public int processLines(int pointIndex) {
+        for (Line line : lines) {
+            pointIndex = line.movePoint(pointIndex);
+        }
+        return pointIndex;
     }
 
     private static void validateLines(int height, int countOfPoints) {

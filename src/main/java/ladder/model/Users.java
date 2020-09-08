@@ -29,8 +29,11 @@ public class Users {
         return users.size();
     }
 
-    public void swapUserPoint(int left, int right) {
-        Collections.swap(users, left, right);
+    public int getUserIndex(User user) {
+        if (!users.contains(user)) {
+            throw new IllegalArgumentException("존재하지 않는 유저입니다.");
+        }
+        return users.indexOf(user);
     }
 
     public List<User> getUsers() {

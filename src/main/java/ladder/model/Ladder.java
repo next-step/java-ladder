@@ -20,8 +20,8 @@ public class Ladder {
         return lines.getLines();
     }
 
-    protected void rideLadder(Users users) {
-        lines.processLines(users);
+    protected int rideLadder(int userPoint) {
+        return lines.processLines(userPoint);
     }
 
     @Override

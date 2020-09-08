@@ -1,6 +1,5 @@
 package ladder.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,14 +18,14 @@ public class Prizes {
         return new Prizes(prizes);
     }
 
-    public List<Prize> getPrizes() {
-        return Collections.unmodifiableList(prizes);
-    }
-
     public List<String> getPrizeNames() {
         return prizes.stream()
                 .map(Prize::getPrize)
                 .collect(Collectors.toList());
+    }
+
+    public Prize getPrizeByIndex(int index) {
+        return prizes.get(index);
     }
 
 }

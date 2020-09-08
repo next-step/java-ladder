@@ -1,9 +1,6 @@
 package ladder;
 
-import ladder.model.LadderGame;
-import ladder.model.LadderResult;
-import ladder.model.Prizes;
-import ladder.model.RandomGenerateStrategy;
+import ladder.model.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -26,19 +23,24 @@ public class LadderApplication {
         resultView.printLadderResultPhrase();
         resultView.printLadderElements(ladderGame.getUsersName());
         resultView.printLadder(ladderGame.getLines());
-
-        ladderGame.play();
-        LadderResult ladderResult = ladderGame.makeLadderResult(prizes);
-
         resultView.printLadderElements(prizes.getPrizeNames());
-        String resultUserName = inputView.getResultUserName();
 
-        if (ALL_USER_QUERY_STRING.equals(resultUserName)) {
-            resultView.printAllResults(userNames, ladderResult);
-            return;
+        while (true) {
+            String resultUserName = inputView.getResultUserName();
+
+            if (ALL_USER_QUERY_STRING.equals(resultUserName)) {
+                userNames.stream()
+                        .map(User::new)
+                        .forEach(user -> {
+                            int point = ladderGame.play(user);
+                            resultView.printResult(user.getName(), prizes.getPrizeByIndex(point).getPrize());
+                        });
+                break;
+            }
+            int point = ladderGame.play(new User(resultUserName));
+            resultView.printResult(resultUserName, prizes.getPrizeByIndex(point).getPrize());
         }
 
-        resultView.printResult(resultUserName, ladderResult);
     }
 
 }
