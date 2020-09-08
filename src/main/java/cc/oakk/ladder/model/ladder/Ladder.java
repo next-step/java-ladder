@@ -22,10 +22,6 @@ public class Ladder {
                             .collect(Collectors.toList()));
     }
 
-    public List<Line> getLines() {
-        return lines;
-    }
-
     public Ladder initLines(Function<Integer, int[]> eval) {
         lines.forEach(line -> line.connect(eval.apply(line.width())));
         return this;
