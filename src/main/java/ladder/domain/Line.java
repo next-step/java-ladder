@@ -17,7 +17,7 @@ public class Line {
         List<Point> points = new ArrayList<>();
 
         points.add(Point.ofFirstPoint(generate()));
-        while (!participants.isBeforeLast(points.size())) {
+        while (!participants.isLastParticipant(points.size() + 1)) {
             Point nextPoint = points.get(points.size() - 1).getNext();
             points.add(nextPoint);
         }

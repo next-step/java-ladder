@@ -3,8 +3,6 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.io.PrintWriter;
-import java.util.Map;
-import java.util.Set;
 
 public class OutputView {
     private static final String ALL = "all";

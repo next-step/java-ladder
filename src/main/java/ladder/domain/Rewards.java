@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Rewards {
     private static final String DELIMITER = ",";
-    private List<String> rewards;
+    private final List<String> rewards;
 
     public Rewards(List<String> rewards) {
         this.rewards = rewards;

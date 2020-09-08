@@ -1,7 +1,5 @@
 package ladder.domain;
 
-import java.util.Random;
-
 import static ladder.utils.RandomBoolGenerator.generate;
 
 public class Direction {

@@ -20,7 +20,7 @@ public class LineTest {
         Point prev = line.getPoint(idx++);
         assertThat(prev.getLeft()).isFalse();
 
-        while (!participants.isBeforeLast(idx)) {
+        while (!participants.isLastParticipant(idx + 1)) {
             Point next = line.getPoint(idx++);
             assertThat(prev.getRight()).isEqualTo(next.getLeft());
             prev = next;

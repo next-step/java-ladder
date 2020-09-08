@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderResultTest {
@@ -9,14 +11,20 @@ class LadderResultTest {
     @Test
     void LadderResult_creation_test() {
         String names = "pobi,honux,crong,jk";
-        String strHeight = "5";
+        LadderResult result = LadderResult.of();
 
-        Participants participants = Participants.of(names);
-        LadderGame ladderGame = LadderGame.of(names, strHeight);
+        int expected = 1;
 
-        LadderResult result = ladderGame.play();
-        int size = result.getAllNames().size();
+        Arrays.stream(names.split(","))
+                .map(Name::of)
+                .forEach(name -> result.addResult(name, expected));
 
-        assertThat(participants.isLastParticipant(size)).isTrue();
+        int actualSize = result.getAllNames().size();
+        int expectedSize = names.split(",").length;
+        assertThat(actualSize).isEqualTo(expectedSize);
+
+        Arrays.stream(names.split(","))
+                .map(Name::of)
+                .forEach(name -> assertThat(result.findResultByName(name)).isEqualTo(expected));
     }
 }
