@@ -1,17 +1,17 @@
 package cc.oakk.ladder.model.line;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
-    @Test
-    public void width() {
-        assertThat(new Line(4).width()).isEqualTo(4);
-        assertThat(new Line(5).width()).isEqualTo(5);
-        assertThat(new Line(6).width()).isEqualTo(6);
-        assertThat(new Line(7).width()).isEqualTo(7);
+    @ParameterizedTest
+    @ValueSource(ints = { 4, 5, 6, 7, 8 })
+    public void width(int width) {
+        assertThat(new Line(width).width()).isEqualTo(width);
     }
 
     @Test
