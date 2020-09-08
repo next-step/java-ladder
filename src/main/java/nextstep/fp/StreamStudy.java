@@ -28,7 +28,7 @@ public class StreamStudy {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
-        // TODO 이 부분에 구현한다.
+
         words.stream()
                 .filter(word -> word.length() > LONG_WORD_CONDITION)
                 .distinct()
@@ -39,7 +39,9 @@ public class StreamStudy {
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
+        System.out.println();
         return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+ 
     }
 
     public static long sumAll(List<Integer> numbers) {

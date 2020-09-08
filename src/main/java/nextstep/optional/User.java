@@ -35,16 +35,16 @@ public class User {
                 && user.getAge() <= MAX_AGE)) {
             isInRange = true;
         }
-        return isInRange;
+        return isInRange; 
     }
 
     public static boolean ageIsInRange2(User user) {
-        return Optional.ofNullable(user)
-                .map(age -> user.age)
-                .filter(age -> age >= MIN_AGE && age <= MAX_AGE)
-                .isPresent();
 
-//         .map(user::getAge) 시 오류가 납니다
+            return Optional.ofNullable(user)
+                    .map(User::getAge)
+                    .filter(age -> age >= 30 && age <= 45)
+                    .isPresent();
+
     }
 
     @Override
