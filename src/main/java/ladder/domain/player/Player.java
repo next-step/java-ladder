@@ -41,8 +41,8 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player that = (Player) o;
-        return Objects.equals(name, that.name);
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
     }
 
     @Override

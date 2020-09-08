@@ -19,8 +19,8 @@ public class Point {
         return new Point(0, false, pointStrategy.next());
     }
 
-    public Point last(Point prevPoint) {
-        return new Point(prevPoint.position + 1, this.right, false);
+    public Point last() {
+        return new Point(position + 1, this.right, false);
     }
 
     public Point next(PointStrategy pointStrategy) {

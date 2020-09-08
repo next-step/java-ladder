@@ -3,14 +3,18 @@ package ladder.domain.reward;
 import java.util.Objects;
 
 public class Reward {
-    private final String prize;
+    private final String name;
 
-    public Reward(String prize) {
-        this.prize = prize;
+    private Reward(String name) {
+        this.name = name;
     }
 
-    public String getPrize() {
-        return prize;
+    public static Reward of(String prize) {
+        return new Reward(prize);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -18,11 +22,11 @@ public class Reward {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reward reward = (Reward) o;
-        return Objects.equals(prize, reward.prize);
+        return Objects.equals(name, reward.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(prize);
+        return Objects.hash(name);
     }
 }

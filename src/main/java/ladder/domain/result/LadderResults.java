@@ -24,7 +24,7 @@ public class LadderResults {
 
     private static List<LadderResult> init(Players players, Rewards rewards, Ladder ladder) {
         return IntStream.range(0, players.size())
-                .mapToObj(it -> LadderResult.of(players.findPlayerName(it), rewards.findPrize(ladder.move(it))))
+                .mapToObj(position -> LadderResult.of(players.findPlayer(position), rewards.findReward(ladder.move(position))))
                 .collect(Collectors.toList());
     }
 
@@ -34,7 +34,7 @@ public class LadderResults {
 
     public LadderResult findByName(String name) {
         return ladderResults.stream()
-                .filter(it -> it.getPlayerName().equals(name))
+                .filter(it -> it.isMatchesName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_MATCHES_PLAYER_NAME_MESSAGE));
     }

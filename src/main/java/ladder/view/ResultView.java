@@ -48,7 +48,7 @@ public class ResultView {
 
     public static void printRewards(Rewards rewards) {
         for (Reward reward : rewards.getRewards()) {
-            System.out.print(String.format(PRINT_NAME_FORMAT, reward.getPrize()));
+            System.out.print(String.format(PRINT_NAME_FORMAT, reward.getName()));
         }
         System.out.println();
     }

@@ -1,31 +1,38 @@
 package ladder.domain.result;
 
+import ladder.domain.player.Player;
+import ladder.domain.reward.Reward;
+
 import java.util.Objects;
 
 public class LadderResult {
-    private String playerName;
-    private String rewardPrize;
+    private Player player;
+    private Reward reward;
 
-    private LadderResult(String playerName, String rewardPrize) {
-        this.playerName = playerName;
-        this.rewardPrize = rewardPrize;
+    private LadderResult(Player player, Reward reward) {
+        this.player = player;
+        this.reward = reward;
     }
 
-    public static LadderResult of(String playerName, String rewardPrize) {
-        return new LadderResult(playerName, rewardPrize);
+    public static LadderResult of(Player player, Reward rewardPrize) {
+        return new LadderResult(player, rewardPrize);
+    }
+
+    public boolean isMatchesName(String name) {
+        return player.getName().equals(name);
     }
 
     public String getPlayerName() {
-        return playerName;
+        return player.getName();
     }
 
     public String getRewardPrize() {
-        return rewardPrize;
+        return reward.getName();
     }
 
     @Override
     public String toString() {
-        return  playerName + " : " + rewardPrize ;
+        return  getPlayerName() + " : " + getRewardPrize() ;
     }
 
     @Override
@@ -33,12 +40,12 @@ public class LadderResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LadderResult result = (LadderResult) o;
-        return Objects.equals(playerName, result.playerName) &&
-                Objects.equals(rewardPrize, result.rewardPrize);
+        return Objects.equals(player, result.player) &&
+                Objects.equals(reward, result.reward);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerName, rewardPrize);
+        return Objects.hash(player, reward);
     }
 }
