@@ -11,6 +11,8 @@ import static ladder.view.InputView.*;
 import static ladder.view.ResultView.*;
 
 public class LadderGame {
+    private static final String ALL_PLAYERS = "all";
+
     public void start() {
         Players players = inputPlayers();
         Rewards rewards = inputReward(players.size());
@@ -22,7 +24,15 @@ public class LadderGame {
 
         LadderResults ladderResults = LadderResults.of(players, rewards, ladder);
 
-        String playerName = inputResultPlayerName();
-        printResults(playerName, ladderResults);
+        while (true) {
+            String playerName = inputResultPlayerName();
+
+            if (ALL_PLAYERS.equals(playerName)) {
+                printResultAll(ladderResults);
+                break;
+            }
+
+            printResultByName(playerName, ladderResults);
+        }
     }
 }

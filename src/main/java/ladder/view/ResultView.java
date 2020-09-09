@@ -16,7 +16,6 @@ public class ResultView {
     private static final String PRINT_NAME_FORMAT = "%6s";
     private static final String PRINT_POINT_TRUE = "-----|";
     private static final String PRINT_POINT_FALSE = "     |";
-    private static final String ALL_PLAYERS = "all";
 
     private ResultView() {}
 
@@ -30,13 +29,13 @@ public class ResultView {
         for (Player player : players.getPlayers()) {
             System.out.print(String.format(PRINT_NAME_FORMAT, player.getName()));
         }
-        System.out.println();
+        printNewLine();
     }
 
     private static void printLadder(Ladder ladder) {
         for (LadderLine line : ladder.getLines()) {
             printLadderLine(line);
-            System.out.println();
+            printNewLine();
         }
     }
 
@@ -50,29 +49,28 @@ public class ResultView {
         for (Reward reward : rewards.getRewards()) {
             System.out.print(String.format(PRINT_NAME_FORMAT, reward.getPrize()));
         }
-        System.out.println();
+        printNewLine();
     }
 
-    public static void printResults(String playerName, LadderResults ladderResults) {
-        System.out.println();
+    public static void printResultByName(String name, LadderResults ladderResults) {
+        printNewLine();
         System.out.println(PRINT_RESULT_MESSAGE);
 
-        if (ALL_PLAYERS.equals(playerName)) {
-            printResultAll(ladderResults);
-            return;
-        }
-
-        printResultByName(playerName, ladderResults);
-    }
-
-    private static void printResultByName(String name, LadderResults ladderResults) {
         LadderResult result = ladderResults.findByName(name);
         System.out.println(result.getRewardPrize());
+        printNewLine();
     }
 
-    private static void printResultAll(LadderResults ladderResults) {
+    public static void printResultAll(LadderResults ladderResults) {
+        printNewLine();
+        System.out.println(PRINT_RESULT_MESSAGE);
+
         for (LadderResult ladderResult : ladderResults.getLadderResults()) {
             System.out.println(ladderResult.toString());
         }
+    }
+
+    private static void printNewLine() {
+        System.out.println();
     }
 }
