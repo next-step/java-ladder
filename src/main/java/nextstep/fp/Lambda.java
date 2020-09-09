@@ -1,8 +1,6 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {

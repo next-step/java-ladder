@@ -2,8 +2,6 @@ package nextstep.optional;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 public class Users {
     static final User DEFAULT_USER = new User("codesquad", 100);
@@ -15,14 +13,9 @@ public class Users {
             new User("honux", 45));
 
     User getUser(String name) {
-        Optional<User> op = Optional.ofNullable(users));
-
-        for (User user : users) {
-            if (user.matchName(name)) {
-                return user;
-            }
-        }
-        return DEFAULT_USER;
+        return users.stream()
+                .filter(e -> e.matchName(name))
+                .findAny()
+                .orElse(DEFAULT_USER);
     }
-
 }
