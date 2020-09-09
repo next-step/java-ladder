@@ -3,7 +3,9 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.line.LadderLine;
 import nextstep.ladder.domain.line.LadderLines;
 import nextstep.ladder.domain.result.LadderResult;
+import nextstep.ladder.domain.result.Results;
 import nextstep.ladder.domain.user.User;
+import nextstep.ladder.domain.user.Users;
 
 import java.util.List;
 import java.util.Map;
@@ -25,14 +27,14 @@ public class ResultView {
     private ResultView() {
     }
 
-    public static void printLadderResult(List<User> users, LadderLines ladderLines, List<String> results) {
+    private static void printLadderResult(List<User> users, LadderLines ladderLines, List<String> results) {
         System.out.println(PRINT_LADDER_RESULT);
         printUserNames(users);
         printLines(ladderLines);
         printLadderResults(results);
     }
 
-    public static void printUserNames(List<User> users) {
+    private static void printUserNames(List<User> users) {
         users.forEach(ResultView::printUserName);
         System.out.println();
     }
@@ -45,7 +47,7 @@ public class ResultView {
         System.out.print(user.getName());
     }
 
-    public static void printLines(LadderLines ladderLines) {
+    private static void printLines(LadderLines ladderLines) {
         IntStream.range(NUMBER_ZERO, ladderLines.size())
                 .mapToObj(ladderLines::getLine)
                 .forEach(line -> {
@@ -67,12 +69,12 @@ public class ResultView {
         System.out.print((point) ? PRINT_LADDER_LINE_VISIBLE : PRINT_LADDER_LINE_INVISIBLE);
     }
 
-    public static void printLadderResults(List<String> results) {
+    private static void printLadderResults(List<String> results) {
         results.forEach(ResultView::printLadderResults);
         System.out.println();
     }
 
-    public static void printLadderResults(String result) {
+    private static void printLadderResults(String result) {
         int widthResult = PRINT_NAME_WIDTH - result.length();
         for (int i = NUMBER_ZERO; i < widthResult; i++) {
             System.out.print(SPACE);
@@ -80,7 +82,7 @@ public class ResultView {
         System.out.print(result);
     }
 
-    public static void printGameResult(Map<User, Integer> ladderResults, List<String> result) {
+    private static void printGameResult(Map<User, Integer> ladderResults, List<String> result) {
         InputView.scanner.nextLine();
         while (true) {
             String gameResult = InputView.inputGameResult();
@@ -106,6 +108,11 @@ public class ResultView {
             int position = ladderResults.get(user);
             System.out.println(user.getName() + " : " + result.get(position));
         }
+    }
+
+    public static void printLadderGame(Users users, LadderLines ladderLines, Results results, LadderResult ladderResult) {
+        printLadderResult(users.getUsers(), ladderLines, results.getResults());
+        printGameResult(ladderResult.getLadderResult(), results.getResults());
     }
 
 }
