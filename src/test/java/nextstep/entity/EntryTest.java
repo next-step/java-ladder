@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -28,6 +27,13 @@ class EntryTest {
         assertThatThrownBy(() -> Entry.of(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 최소 1 글자, 최대 5 글자 까지 부여할 수 있어요.");
+    }
+
+    @Test
+    @DisplayName("참가자 이름 반환 메소드 검증")
+    void getName() {
+        String expected = "pobi";
+        then(Entry.of(expected).getName()).isEqualTo(expected);
     }
 
     @Test
