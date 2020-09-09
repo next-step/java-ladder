@@ -1,15 +1,19 @@
 package ladder;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import ladder.controller.LadderController;
-import ladder.ui.Input;
+import ladder.domain.Ladder;
+import ladder.domain.Participants;
+import ladder.domain.Rewards;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
 public class LadderControllerTest {
 
+    @DisplayName("input, output을 입력하지 않으면 에러 발생")
     @Test
     public void ladderControllerBuildFail() {
 
@@ -17,57 +21,28 @@ public class LadderControllerTest {
                                                                           .build());
     }
 
+    @DisplayName("Controller 생성 성공")
     @Test
-    public void ladderControllerPrintResultFail() {
+    public void ladderControllerProcess() {
 
+        assertThat(LadderController.builder()
+                                   .input(WhenUtils.input("a,b,c", 5))
+                                   .output(WhenUtils.output())
+                                   .build()).isNotNull();
+    }
+
+    @DisplayName("일반적인 Controller 시나리오")
+    @Test
+    public void makeDomainObjects() {
         LadderController ladderController = LadderController.builder()
                                                             .input(WhenUtils.input("a,b,c", 5))
                                                             .output(WhenUtils.output())
                                                             .build();
 
-        ladderController.printLadder();
-        assertThatIllegalArgumentException().isThrownBy(() -> ladderController.printResult());
-    }
+        Participants participants = ladderController.makeParticipants();
+        Ladder ladder = ladderController.makeLadder();
+        Rewards rewards = ladderController.makeRewards();
 
-    @Test
-    public void ladderControllerSuccess() {
-
-        Input input = new Input() {
-
-            private int callCount = 0;
-
-            @Override
-            public int nextInt() {
-                return 5;
-            }
-
-            @Override
-            public String nextLine() {
-
-                callCount++;
-
-                if (callCount <= 2) {
-                    return "a,b,c";
-                }
-
-                if (callCount <= 4) {
-                    return "all";
-                }
-
-                if (callCount <= 5) {
-                    return "a";
-                }
-
-                return "exit";
-            }
-        };
-
-        LadderController ladderController = LadderController.builder()
-                                                            .input(input)
-                                                            .output(WhenUtils.output())
-                                                            .build();
-
-        ladderController.printLadder();
-        ladderController.printResult();
+        ladderController.printLadder(participants, ladder, rewards);
     }
 }

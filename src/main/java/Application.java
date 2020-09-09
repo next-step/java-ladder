@@ -3,6 +3,12 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import ladder.controller.LadderController;
+import ladder.domain.Ladder;
+import ladder.domain.LadderResult;
+import ladder.domain.LadderResultCalculator;
+import ladder.domain.LadderResultMapper;
+import ladder.domain.Participants;
+import ladder.domain.Rewards;
 import ladder.ui.Input;
 import ladder.ui.Output;
 
@@ -15,8 +21,16 @@ public class Application {
                                                             .output(new StandardOutput())
                                                             .build();
 
-        ladderController.printLadder();
-        ladderController.printResult();
+        Participants participants = ladderController.makeParticipants();
+        Ladder ladder = ladderController.makeLadder();
+        Rewards rewards = ladderController.makeRewards();
+
+        ladderController.printLadder(participants, ladder, rewards);
+
+        LadderResult ladderResult = new LadderResult(LadderResultCalculator.calculate(participants.getPlayerCount(), ladder));
+        LadderResultMapper ladderResultMapper = new LadderResultMapper(ladderResult, participants, rewards);
+
+        ladderController.printResult(ladderResultMapper);
     }
 
     private static class ScannerInput implements Input {

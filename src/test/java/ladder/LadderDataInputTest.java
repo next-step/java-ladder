@@ -28,10 +28,10 @@ public class LadderDataInputTest {
         for (int i = 0; i < nameArray.length; i++) {
             assertEquals(nameArray[i], nameList.get(i));
             assertEquals(ladderDataInput.getPlayerIndex(nameArray[i]), i);
-            assertEquals(ladderDataInput.getReward().get(i), nameArray[i]);
+            assertEquals(ladderDataInput.getRewards().get(i), nameArray[i]);
         }
 
-        assertEquals(ladderDataInput.getReward().getNames(), nameList);
+        assertEquals(ladderDataInput.getRewards().getNames(), nameList);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import ladder.util.StringUtils;
@@ -15,7 +16,8 @@ public class Participants {
     private final List<String> names;
 
     public Participants(String nameStr) {
-        this.names = StringUtils.splitStringToList(nameStr);
+        this.names = Collections.unmodifiableList(
+            StringUtils.splitStringToList(nameStr));
         verifyNameLength(names);
     }
 
