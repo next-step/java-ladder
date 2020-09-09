@@ -1,5 +1,6 @@
 package ladder.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,17 @@ public class Users {
 
     public int getSize() {
         return users.size();
+    }
+
+    public int getUserIndex(User user) {
+        if (!users.contains(user)) {
+            throw new IllegalArgumentException("존재하지 않는 유저입니다.");
+        }
+        return users.indexOf(user);
+    }
+
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(users);
     }
 
 }

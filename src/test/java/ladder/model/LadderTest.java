@@ -1,8 +1,5 @@
-package ladder;
+package ladder.model;
 
-import ladder.model.Ladder;
-import ladder.model.LadderGenerateStrategy;
-import ladder.model.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,13 +19,13 @@ class LadderTest {
     private static Stream<Arguments> provideForCreateLadder() {
         return Stream.of(
                 Arguments.of(3, 5, Arrays.asList(
-                            new Line(Arrays.asList(true, false, true, false)),
-                            new Line(Arrays.asList(true, false, true, false)),
-                            new Line(Arrays.asList(true, false, true, false))
-                )),
+                            new Line(4, () -> true),
+                            new Line(4, () -> true),
+                            new Line(4, () -> true))
+                ),
                 Arguments.of(1, 8, Arrays.asList(
-                            new Line(Arrays.asList(true, false, true, false, true, false, true))
-                ))
+                            new Line(7, () -> true))
+                )
         );
     }
 
@@ -38,13 +35,13 @@ class LadderTest {
     public void of(int width, int countOfPoints, List<Line> lines) {
         // given
         LadderGenerateStrategy alwaysGenerateStrategy = () -> true;
-        Ladder expected = new Ladder(lines);
 
         // when
         Ladder ladder = Ladder.of(width, countOfPoints, alwaysGenerateStrategy);
 
         // then
-        assertThat(ladder).isEqualTo(expected);
+        List<Line> lineList = ladder.getLines();
+        assertThat(lineList).isEqualTo(lines);
 
     }
 
