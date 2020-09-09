@@ -1,9 +1,9 @@
-package nextstep.domain;
+package nextstep.domain.line;
 
 import java.util.Collections;
 import java.util.List;
 
-import static nextstep.domain.LadderGameConfig.TRACK_STEP_SIZE;
+import static nextstep.domain.config.LadderGameConfig.TRACK_STEP_SIZE;
 
 public class Lines {
 

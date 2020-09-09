@@ -1,4 +1,4 @@
-package nextstep.domain;
+package nextstep.domain.line;
 
 import java.util.Arrays;
 import java.util.List;

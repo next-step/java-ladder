@@ -1,4 +1,9 @@
-package nextstep.domain;
+package nextstep.domain.line;
+
+import nextstep.domain.ladder.LadderHeight;
+import nextstep.domain.person.Participants;
+import nextstep.domain.line.strategy.RandomTransverseBarStrategy;
+import nextstep.domain.line.strategy.TransverseBarStrategy;
 
 import java.util.List;
 import java.util.stream.Collectors;

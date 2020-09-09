@@ -1,4 +1,4 @@
-package nextstep.domain;
+package nextstep.domain.line.strategy;
 
 import java.util.List;
 import java.util.Random;

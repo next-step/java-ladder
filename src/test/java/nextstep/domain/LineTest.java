@@ -1,5 +1,10 @@
 package nextstep.domain;
 
+import nextstep.domain.line.Line;
+import nextstep.domain.line.strategy.AllDrawTransverseBarStrategy;
+import nextstep.domain.line.strategy.NotAllDrawTransverseBarStrategy;
+import nextstep.domain.line.strategy.SwitchDrawTransverseBarStrategy;
+import nextstep.domain.line.strategy.TransverseBarStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

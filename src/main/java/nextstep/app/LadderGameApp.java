@@ -1,10 +1,14 @@
 package nextstep.app;
 
-import nextstep.domain.*;
+import nextstep.domain.ladder.*;
+import nextstep.domain.line.Line;
+import nextstep.domain.line.LineFactory;
+import nextstep.domain.person.Participants;
+import nextstep.domain.person.Person;
+import nextstep.domain.person.PersonFactory;
 import nextstep.view.InputView;
 import nextstep.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

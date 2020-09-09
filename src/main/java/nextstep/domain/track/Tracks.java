@@ -1,4 +1,4 @@
-package nextstep.domain;
+package nextstep.domain.track;
 
 import java.util.Collections;
 import java.util.List;

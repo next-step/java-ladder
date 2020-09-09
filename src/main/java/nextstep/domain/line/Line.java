@@ -1,4 +1,6 @@
-package nextstep.domain;
+package nextstep.domain.line;
+
+import nextstep.domain.line.strategy.TransverseBarStrategy;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,6 +1,10 @@
 package nextstep.domain;
 
-import nextstep.view.InputView;
+import nextstep.domain.ladder.LadderGameManager;
+import nextstep.domain.line.LineFactory;
+import nextstep.domain.line.strategy.SwitchDrawTransverseBarStrategy;
+import nextstep.domain.person.Participants;
+import nextstep.domain.person.PersonFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

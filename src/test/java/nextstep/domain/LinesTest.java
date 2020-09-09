@@ -1,5 +1,8 @@
 package nextstep.domain;
 
+import nextstep.domain.line.LineFactory;
+import nextstep.domain.line.Lines;
+import nextstep.domain.line.strategy.SwitchDrawTransverseBarStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

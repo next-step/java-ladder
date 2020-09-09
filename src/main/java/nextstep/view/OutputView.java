@@ -1,7 +1,12 @@
 package nextstep.view;
 
-import nextstep.domain.LadderResults;
-import nextstep.domain.*;
+import nextstep.domain.ladder.LadderGameManager;
+import nextstep.domain.ladder.LadderResult;
+import nextstep.domain.ladder.LadderResults;
+import nextstep.domain.line.Line;
+import nextstep.domain.person.Participants;
+import nextstep.domain.person.Person;
+import nextstep.util.StringUtils;
 
 import java.text.MessageFormat;
 import java.util.List;

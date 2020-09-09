@@ -1,4 +1,6 @@
-package nextstep.domain;
+package nextstep.domain.person;
+
+import nextstep.util.StringUtils;
 
 import java.util.Arrays;
 

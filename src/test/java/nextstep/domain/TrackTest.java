@@ -1,5 +1,6 @@
 package nextstep.domain;
 
+import nextstep.domain.track.Track;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package nextstep.domain;
+package nextstep.domain.ladder;
 
 import java.util.List;
 
