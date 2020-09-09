@@ -8,7 +8,15 @@ public class Entries {
     private final List<Entry> entries;
 
     private Entries(List<Entry> entries) {
+        validate(entries);
         this.entries = entries;
+    }
+
+    private void validate(List<Entry> entries) throws IllegalArgumentException {
+        Set<Entry> set = new HashSet<>(entries);
+        if (set.size() != entries.size()) {
+            throw new IllegalArgumentException("중복된 이름이 있어요.");
+        }
     }
 
     public int getPersonnel() {
