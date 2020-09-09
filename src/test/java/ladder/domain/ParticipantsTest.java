@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParticipantsTest {
@@ -16,5 +17,11 @@ public class ParticipantsTest {
         for (int i = 0; i < participants.getNames().size(); i++) {
             assertEquals(participants.getPlayerIndex(participants.getNames().get(i)), i);
         }
+
+        assertThatIllegalArgumentException().isThrownBy(
+            () -> participants.getPlayerIndex("asdfasdfvasdg")
+        );
+
+        assertEquals(participants.getPlayerCount(), names.split(",").length);
     }
 }
