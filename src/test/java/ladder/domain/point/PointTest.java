@@ -20,9 +20,9 @@ class PointTest {
     @DisplayName("Point 이동 테스트")
     @ParameterizedTest
     @CsvSource({"true, 1", "false,0"})
-    void moveTest(boolean strategy, int expect) {
+    void moveTest(boolean strategy, int expected) {
         Point first = Point.first(() -> strategy);
 
-        assertThat(first.move()).isEqualTo(expect);
+        assertThat(first.move()).isEqualTo(Position.of(expected));
     }
 }

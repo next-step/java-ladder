@@ -1,6 +1,7 @@
 package ladder.domain.line;
 
 import ladder.domain.player.Players;
+import ladder.domain.point.Position;
 import ladder.domain.strategy.PointStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,6 @@ class LadderLineTest {
 
         LadderLine ladderLine = LadderLine.of(players.size(), pointStrategy);
 
-        assertThat(ladderLine.move(0)).isZero();
+        assertThat(ladderLine.move(Position.of(0)).location()).isZero();
     }
 }
