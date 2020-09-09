@@ -1,12 +1,10 @@
-package ladder;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import ladder.domain.Line;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,12 +1,10 @@
-package ladder;
+package ladder.domain;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import ladder.domain.LadderResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

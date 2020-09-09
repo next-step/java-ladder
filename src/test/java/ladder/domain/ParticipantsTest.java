@@ -1,9 +1,7 @@
-package ladder;
+package ladder.domain;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import ladder.domain.Participants;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

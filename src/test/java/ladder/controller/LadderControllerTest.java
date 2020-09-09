@@ -1,9 +1,9 @@
-package ladder;
+package ladder.controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import ladder.controller.LadderController;
+import ladder.WhenUtils;
 import ladder.domain.Ladder;
 import ladder.domain.Participants;
 import ladder.domain.Rewards;

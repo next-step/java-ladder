@@ -1,10 +1,10 @@
-package ladder;
+package ladder.ui;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ladder.ui.LadderDataInput;
+import ladder.WhenUtils;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
