@@ -3,15 +3,16 @@ package ladder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import ladder.domain.LadderResult;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderResultTest {
 
+    @DisplayName("LadderResult 테스트")
     @Test
     public void ladderResultDataTest() {
 
@@ -25,13 +26,7 @@ public class LadderResultTest {
         LadderResult ladderResult = new LadderResult(map);
 
         for (int i = 0; i < data.length; i++) {
-            assertEquals(ladderResult.searchRewardIndex(i), data[i]);
+            assertThat(ladderResult.get(i)).isBetween(0, data.length - 1);
         }
-
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> ladderResult.searchRewardIndex(-1));
-
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> ladderResult.searchRewardIndex(data.length));
     }
 }
