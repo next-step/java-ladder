@@ -1,8 +1,6 @@
 package nextstep.view;
 
-import nextstep.domain.ladder.LadderGameManager;
-import nextstep.domain.ladder.LadderResult;
-import nextstep.domain.ladder.LadderResults;
+import nextstep.domain.ladder.*;
 import nextstep.domain.line.Line;
 import nextstep.domain.person.Participants;
 import nextstep.domain.person.Person;
@@ -59,10 +57,10 @@ public class OutputView {
         System.out.print(PIPE);
     }
 
-    public static void printLadderResult(LadderResult ladderResult) {
+    public static void printLadderResult(LadderExecutionResult ladderExecutionResult) {
         System.out.println();
         System.out.println("실행 결과");
-        System.out.println(ladderResult.getResult());
+        System.out.println(ladderExecutionResult.getResult());
     }
 
     public static void printLadderTotalResult(Participants participants, LadderResults ladderTotalResults) {
@@ -70,6 +68,14 @@ public class OutputView {
         System.out.println("실행 결과");
         IntStream.range(0, participants.getPersonSize())
                 .forEach(index -> System.out.println(MessageFormat.format("{0} : {1}", participants.getPersonName(index), ladderTotalResults.getResult(index))));
+    }
+
+    public static void printLadderTotalResult(LadderExecutionResults ladderExecutionResults) {
+        System.out.println();
+        System.out.println("실행 결과");
+        ladderExecutionResults.getLadderExecutionResult()
+                .forEach((name, ladderExecutionResult) -> System.out.println(MessageFormat.format("{0} : {1}", name, ladderExecutionResult.getResult())));
+
     }
 
 }

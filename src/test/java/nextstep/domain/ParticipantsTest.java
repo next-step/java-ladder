@@ -1,6 +1,7 @@
 package nextstep.domain;
 
 import nextstep.domain.person.Participants;
+import nextstep.domain.person.Person;
 import nextstep.domain.person.PersonFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,8 +16,8 @@ public class ParticipantsTest {
     @ParameterizedTest
     @CsvSource(value = { "a,0", "b,1", "c,2", "d,3", "e,4" })
     public void test(String personName, int result) {
-        Participants participants = new Participants(PersonFactory.createPersons("a,b,c,d,e"));
-        assertThat(participants.getTrackNumberByPersonName(personName)).isEqualTo(result);
+        Participants participants = PersonFactory.createPersons("a,b,c,d,e");
+        assertThat(participants.getTrackNumberByPerson(new Person(personName))).isEqualTo(result);
     }
 
 }

@@ -1,23 +1,23 @@
 package nextstep.domain.ladder;
 
-import nextstep.domain.track.Tracks;
 import nextstep.domain.line.Line;
+import nextstep.domain.line.LineFactory;
 import nextstep.domain.line.Lines;
-import nextstep.domain.person.Participants;
+import nextstep.domain.track.Tracks;
 
 import java.util.Collections;
 import java.util.List;
 
-import static nextstep.domain.config.LadderGameConfig.TRACK_STEP_SIZE;
+import static nextstep.domain.line.Lines.TRACK_STEP_SIZE;
 
 public class LadderGameManager {
 
     private final Tracks tracks;
     private final Lines lines;
 
-    public LadderGameManager(Participants participants, List<Line> lines) {
-        this.tracks = new Tracks(participants.getPersonSize());
-        this.lines = new Lines(lines);
+    public LadderGameManager(int countOfPerson, int ladderHeight) {
+        this.tracks = new Tracks(countOfPerson);
+        this.lines = new Lines(LineFactory.createLines(countOfPerson, ladderHeight));
     }
 
     public int start(int trackNumber) {

@@ -11,8 +11,8 @@ public class Participants {
         this.persons = persons;
     }
 
-    public int getTrackNumberByPersonName(String personName) {
-        return persons.indexOf(new Person(personName));
+    public int getTrackNumberByPerson(Person person) {
+        return persons.indexOf(person);
     }
 
     public List<Person> getPersons() {

@@ -22,19 +22,18 @@ public class Tracks {
     }
 
     public boolean isFirstTrack(int trackNumber) {
-        return findTrackAndCompareTrackNumber(new Track(trackNumber), FIRST_TRACK_NUMBER);
+        return findTrack(new Track(trackNumber)).isTrackNumber(FIRST_TRACK_NUMBER);
     }
 
     public boolean isLastTrack(int trackNumber) {
-        return findTrackAndCompareTrackNumber(new Track(trackNumber), tracks.size() - 1);
+        return findTrack(new Track(trackNumber)).isTrackNumber(tracks.size() - 1);
     }
 
-    private boolean findTrackAndCompareTrackNumber(Track searchTarget, int trackNumber) {
-        Track track = tracks.stream()
+    private Track findTrack(Track searchTarget) {
+        return tracks.stream()
                 .filter(searchTarget::equals)
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);
-        return track.isTrackNumber(trackNumber);
     }
 
 }

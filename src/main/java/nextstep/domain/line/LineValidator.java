@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public enum LineValidator {
 
     OVERLAP(points -> IntStream.range(Constants.FIRST_POINT_INDEX, points.size() - 1)
-            .mapToObj(i -> new LineValidateOverlapDto(points.get(i), points.get(i + 1)).isOverlap())
+            .mapToObj(i -> points.get(i) && points.get(i + 1))
             .anyMatch(Boolean::booleanValue))
     ;
 
@@ -24,22 +24,6 @@ public enum LineValidator {
     public static boolean validateNotOverlap(List<Boolean> points) {
         return Arrays.stream(values())
                 .noneMatch(lineValidator -> lineValidator.validate(points));
-    }
-
-    private static class LineValidateOverlapDto {
-
-        private Boolean leftTransverseBar;
-        private Boolean rightTransverseBar;
-
-        public LineValidateOverlapDto(Boolean leftTransverseBar, Boolean rightTransverseBar) {
-            this.leftTransverseBar = leftTransverseBar;
-            this.rightTransverseBar = rightTransverseBar;
-        }
-
-        public boolean isOverlap() {
-            return leftTransverseBar && rightTransverseBar;
-        }
-
     }
 
     private static class Constants {

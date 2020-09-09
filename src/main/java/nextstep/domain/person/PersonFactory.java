@@ -1,7 +1,6 @@
 package nextstep.domain.person;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class PersonFactory {
@@ -12,14 +11,14 @@ public class PersonFactory {
 
     }
 
-    public static List<Person> createPersons(String line) {
+    public static Participants createPersons(String line) {
         return createPersons(line.split(DELIMITER));
     }
 
-    public static List<Person> createPersons(String[] names) {
-        return Arrays.stream(names)
+    public static Participants createPersons(String[] names) {
+        return new Participants(Arrays.stream(names)
                 .map(Person::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
 }

@@ -3,9 +3,9 @@ package nextstep.domain.line;
 import java.util.Collections;
 import java.util.List;
 
-import static nextstep.domain.config.LadderGameConfig.TRACK_STEP_SIZE;
-
 public class Lines {
+
+    public static final int TRACK_STEP_SIZE = 1;
 
     private final List<Line> lines;
 
