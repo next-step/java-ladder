@@ -37,11 +37,10 @@ public class LadderGame {
     }
 
     private void initLadder(Ladder ladder) {
-        ladder.initLines(l -> {
+        ladder.initLines(width -> {
             int even = RandomUtils.nextInt(2);
-            return IntStream.range(0, l - 1)
-                    .filter(i -> i % 2 == even)
-                    .filter(i -> RandomUtils.nextInt(2) == RandomUtils.nextInt(2))
+            return IntStream.range(0, width - 1)
+                    .filter(i -> i % 2 == even && RandomUtils.nextBoolean())
                     .toArray();
         });
     }
