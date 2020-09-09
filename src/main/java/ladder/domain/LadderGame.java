@@ -3,7 +3,9 @@ package ladder.domain;
 import ladder.view.PrintResult;
 
 import java.util.Arrays;
+
 import java.util.Collections;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,7 @@ public class LadderGame {
                 .collect(Collectors.toList());
         return new LadderGame(people, Ladder.of(new LadderHeight(ladderHeight), people.size()));
     }
+
 
     public static LadderGame of2(List<GamePerson> people, Ladder ladder) {
         return new LadderGame(people, ladder);
@@ -46,5 +49,6 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
+
     }
 }

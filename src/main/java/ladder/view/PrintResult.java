@@ -8,15 +8,16 @@ import ladder.domain.Point;
 import java.util.List;
 import java.util.stream.IntStream;
 
+
 public class PrintResult {
 
     private static final int SEPERATE_DEFAULT = 5;
+
     private static final String RESULT_SEPORATOR = " : ";
 
     public static void makeLadder(Ladder ladder) {
         ladder.getLines().stream()
                 .forEach(line -> makeLine(line));
-
     }
 
     public static void makeLine(Line line) {
@@ -78,6 +79,5 @@ public class PrintResult {
     private static void printPrepare() {
         System.out.println("실행 결과");
     }
-
 
 }

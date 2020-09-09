@@ -61,6 +61,7 @@ public class LineTest {
         PrintResult.makeLine(line3);
         Line line4 = Line.of(5, steppingStoneManualLine);
         PrintResult.makeLine(line4);
+
     }
 
 }

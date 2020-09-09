@@ -18,7 +18,6 @@ public class InputUtil {
     public static int returnInteger(String question) {
         System.out.println(question);
         int result = scanner.nextInt();
-
         scanner.nextLine(); //개행문자(엔터)를 제거하기위해 추가
         return result;
     }
