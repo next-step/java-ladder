@@ -37,6 +37,12 @@ public class ConnectionsTest {
     }
 
     @Test
+    public void isConnected_ShouldThrow() {
+        assertThatIllegalArgumentException().isThrownBy(() -> connections.isConnected(-1));
+        assertThatIllegalArgumentException().isThrownBy(() -> connections.isConnected(connections.size()));
+    }
+
+    @Test
     public void connect() {
         assertThat(connections.connect(5).isConnected(5)).isTrue();
     }
@@ -47,10 +53,22 @@ public class ConnectionsTest {
         assertThatIllegalArgumentException().isThrownBy(() -> connections.connect(index));
     }
 
+    @Test
+    public void connect_ShouldThrow_WhenOutOfBounds() {
+        assertThatIllegalArgumentException().isThrownBy(() -> connections.connect(-1));
+        assertThatIllegalArgumentException().isThrownBy(() -> connections.connect(connections.size()));
+    }
+
     @ParameterizedTest
     @ValueSource(ints = { 1, 3 })
     public void disconnect(int index) {
         assertThat(connections.connect(index).isConnected(index)).isTrue();
+    }
+
+    @Test
+    public void disconnect_ShouldThrow_WhenOutOfBounds() {
+        assertThatIllegalArgumentException().isThrownBy(() -> connections.disconnect(-1));
+        assertThatIllegalArgumentException().isThrownBy(() -> connections.disconnect(connections.size()));
     }
 
     @ParameterizedTest
