@@ -26,15 +26,20 @@ public class Connections {
 
     public Connections connect(int index) {
         ValidationUtils.throwIfOutOfListSize(connections, index);
-
-        boolean leftConnected = index != 0 && isConnected(index - 1);
-        boolean rightConnected = index != size() - 1 && isConnected(index + 1);
-        if (leftConnected || rightConnected) {
+        if (isLeftConnected(index) || isRightConnected(index)) {
             throw new IllegalArgumentException("두번 연속해 이을 수 없습니다.");
         }
 
         setConnection(index, true);
         return this;
+    }
+
+    private boolean isRightConnected(int index) {
+        return index != size() - 1 && isConnected(index + 1);
+    }
+
+    private boolean isLeftConnected(int index) {
+        return index != 0 && isConnected(index - 1);
     }
 
     public Connections disconnect(int index) {
