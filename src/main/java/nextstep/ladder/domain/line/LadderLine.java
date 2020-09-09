@@ -35,7 +35,8 @@ public class LadderLine {
     }
 
     public Point initBody(int count, Point point, RightPointStrategy rightPointStrategy) {
-        for (int i = NUMBER_ONE; i < count; i++) {
+        int firstLadderPoint = NUMBER_ONE;
+        for (int i = firstLadderPoint; i < count; i++) {
             Point nextPoint = Point.next(point, rightPointStrategy.right());
             points.add(i, nextPoint);
             point = nextPoint;
