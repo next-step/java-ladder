@@ -2,12 +2,12 @@ package nextstep.ladder.util;
 
 public class StringUtils {
 
-    private final static String USER_SEPERATOR = ",";
+    private final static String SPLIT_SEPERATOR = ",";
 
     private StringUtils() {
     }
 
-    public static String[] splitUsers(String users) {
-        return users.split(USER_SEPERATOR);
+    public static String[] split(String input) {
+        return input.split(SPLIT_SEPERATOR);
     }
 }

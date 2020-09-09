@@ -1,11 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderGameManager;
-
 import java.util.Scanner;
 
-import static nextstep.ladder.constant.PrintMessage.QUESTION_TEXT_JOIN_USERS;
-import static nextstep.ladder.constant.PrintMessage.QUESTION_TEXT_LADDER_HEIGHT;
+import static nextstep.ladder.constant.PrintMessage.*;
 
 public class InputView {
 
@@ -15,17 +12,23 @@ public class InputView {
         this.scanner = new Scanner(System.in);
     }
 
-    public LadderGameManager inputLadderGameManager() {
-        return LadderGameManager.create(inputParticipateUsers(), inputLadderHeight());
-    }
-
-    private String inputParticipateUsers() {
+    public String inputParticipateUsers() {
         System.out.println(QUESTION_TEXT_JOIN_USERS);
         return scanner.nextLine();
     }
 
-    private int inputLadderHeight() {
+    public String inputResultReward() {
+        System.out.println(QUESTION_TEXT_RESULT_REWARD);
+        return scanner.nextLine();
+    }
+
+    public int inputLadderHeight() {
         System.out.println(QUESTION_TEXT_LADDER_HEIGHT);
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public String inputShowResultTarget() {
+        System.out.println(QUESTION_TEXT_RESULT_TARGET);
+        return scanner.nextLine();
     }
 }

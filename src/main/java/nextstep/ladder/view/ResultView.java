@@ -1,32 +1,57 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.User;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
+import nextstep.ladder.util.LadderUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static nextstep.ladder.constant.PrintMessage.PRINT_TEXT_RESULT;
+import static nextstep.ladder.constant.PrintMessage.PRINT_TEXT_LADDER_RESULT;
+import static nextstep.ladder.constant.PrintMessage.PRINT_TEXT_REWARD_RESULT;
 
 public class ResultView {
 
     private final String UNIT_LADDER_CHARACTOR = "|";
     private final String UNIT_BRIDGE_CHARACTOR = "-----";
     private final String UNIT_EMPTY_BRIDGE_CHARACTOR = "     ";
+    private final String NAME_FIXED_SIX_SPACE = "      ";
+    private final String FIELD_SEPERATOR_COLON = " : ";
 
-    public void showLadderGameResult(Users users, Ladder ladder) {
-        System.out.println(PRINT_TEXT_RESULT);
+    public void showLadderResult(Users users, Ladder ladder, Rewards rewards) {
+        System.out.println(PRINT_TEXT_LADDER_RESULT);
         printUsers(users);
         printLadder(ladder);
+        printReward(rewards);
+    }
+
+    public void showLadderGameResult(LadderResultBoard positionBoard, Rewards rewards) {
+        System.out.println(PRINT_TEXT_REWARD_RESULT);
+
+
+        StringBuilder sb = new StringBuilder();
+
+        for(User user : positionBoard.users()){
+            sb.append(user.getUserName())
+                .append(FIELD_SEPERATOR_COLON)
+                .append(rewards.getReward(user.getPosition()).getName())
+                .append("\n");
+        }
+        System.out.println(sb.toString());
+    }
+
+    private void printReward(Rewards rewards) {
+        List<Reward> rewardList = rewards.getRewards();
+
+        String rewardNamesField = rewardList.stream()
+                .map(reward -> getFixedLengthName(reward.getName()))
+                .reduce("", (rewwardNames, rewardName) -> rewwardNames + rewardName);
+        System.out.println(rewardNamesField);
     }
 
     private void printUsers(Users users) {
         List<User> userList = users.getUsers();
 
         String userNamesField = userList.stream()
-                .map(user -> user.getFixedLengthUserName())
+                .map(user -> getFixedLengthName(user.getUserName()))
                 .reduce("", (userNames, userName) -> userNames + userName);
         System.out.println(userNamesField);
     }
@@ -34,14 +59,38 @@ public class ResultView {
     private void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLadder();
         for (Line line : lines) {
-            String lineString = line.getPoints().stream()
-                    .map(point -> printBridge(point))
-                    .collect(Collectors.joining(UNIT_LADDER_CHARACTOR, UNIT_LADDER_CHARACTOR, UNIT_LADDER_CHARACTOR));
-            System.out.println(lineString);
+            System.out.println(printBridge(line));
         }
     }
 
-    private String printBridge(boolean isBridge) {
-        return isBridge ? UNIT_BRIDGE_CHARACTOR : UNIT_EMPTY_BRIDGE_CHARACTOR;
+    private String printBridge(Line line) {
+
+        List<Boolean> points = line.getPoints();
+        StringBuilder sb = new StringBuilder();
+        sb.append(UNIT_LADDER_CHARACTOR);
+
+        boolean isOpenBridge = false;
+        for(int i = 0; i < points.size() - 1; i++) {
+
+            isOpenBridge = LadderUtils.isOpenBridge(isOpenBridge,points.get(i));
+
+            sb.append(printBridge(points.get(i), isOpenBridge));
+            sb.append(UNIT_LADDER_CHARACTOR);
+        }
+
+        return sb.toString();
+    }
+
+
+    private String printBridge(boolean isBridge, boolean isOpen) {
+        return (isBridge && isOpen )? UNIT_BRIDGE_CHARACTOR : UNIT_EMPTY_BRIDGE_CHARACTOR;
+    }
+
+    private String getFixedLengthName(String name) {
+        StringBuilder fixedLengthName = new StringBuilder();
+        String newPrefix = NAME_FIXED_SIX_SPACE.substring(name.length());
+        fixedLengthName.append(name).append(newPrefix);
+
+        return fixedLengthName.toString();
     }
 }

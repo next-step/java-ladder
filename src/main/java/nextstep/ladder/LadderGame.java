@@ -1,9 +1,7 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderGameManager;
-import nextstep.ladder.domain.LadderGenerator;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
+import nextstep.ladder.util.JudgeLadderResult;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -18,13 +16,36 @@ public class LadderGame {
     }
 
     private void playLadderGame() {
-        LadderGameManager ladderGameManager = inputView.inputLadderGameManager();
+        Users users = Users.create(inputView.inputParticipateUsers());
+        Rewards rewards = Rewards.create(inputView.inputResultReward());
+        LadderHeight ladderHeight = LadderHeight.create(inputView.inputLadderHeight());
 
-        Users users = Users.create(ladderGameManager.getUsers());
+        Ladder ladder = Ladder.create(users,ladderHeight);
 
-        LadderGenerator ladderGenerator = LadderGenerator.create(users.size(), ladderGameManager.getLadderHeight());
-        Ladder ladder = ladderGenerator.make();
+        JudgeLadderResult judgeLadderResult = JudgeLadderResult.newInstance(ladder, users);
 
-        resultView.showLadderGameResult(users, ladder);
+        resultView.showLadderResult(users, ladder, rewards);
+
+        showResultProcess(judgeLadderResult, rewards);
     }
+
+    private void showResultProcess(JudgeLadderResult judgeLadderResult , Rewards rewards) {
+        boolean isShowOneUser = true;
+        while(isShowOneUser) {
+            String targetUser = inputView.inputShowResultTarget();
+            isShowOneUser = resultLoop(targetUser);
+
+            LadderResultBoard resultBoard = judgeLadderResult.judge(isShowOneUser, targetUser);
+
+            resultView.showLadderGameResult(resultBoard,rewards);
+        }
+    }
+
+    private boolean resultLoop(String targetUser) {
+        if(targetUser.equals("all")) {
+            return false;
+        }
+        return true;
+    }
+
 }

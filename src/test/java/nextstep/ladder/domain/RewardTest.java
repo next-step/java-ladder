@@ -8,21 +8,22 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class UserTest {
+
+class RewardTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"test,6"}, delimiter = ',')
-    @DisplayName("정상적인 사용자의 생성 테스트")
-    void normalUserTest(String userName) {
-        User user = User.newInstance(userName,0);
-        assertThat(user).isEqualTo(User.newInstance(userName,0));
+    @CsvSource(value = {"test"}, delimiter = ',')
+    @DisplayName("정상적인 상품의 생성 테스트")
+    void normalRewardTest(String name) {
+        Reward reward = Reward.create(name);
+        assertThat(reward).isEqualTo(Reward.create(name));
     }
 
     @Test
-    @DisplayName("사용자 이름이 5초과시 에러 테스트")
-    void overUserNameLengthTest() {
+    @DisplayName("경품 이름이 5초과시 에러 테스트")
+    void overRewardNameLengthTest() {
         assertThatThrownBy(() -> {
-            User.newInstance("CleanCode",0);
+            Reward.create("CleanCode");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
