@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
-    private static final Point START_POINT = Point.of(false);
-
     private final List<Point> points;
 
-    public LadderLine(int playersCount, PointStrategy pointStrategy) {
+    private LadderLine(int playersCount, PointStrategy pointStrategy) {
         this.points = createPoints(playersCount, pointStrategy);
     }
 
@@ -22,20 +20,34 @@ public class LadderLine {
 
     public List<Point> createPoints(int playersCount, PointStrategy pointStrategy) {
         List<Point> points = new ArrayList<>();
-        points.add(START_POINT);
 
-        for (int index = 1; index < playersCount; index++) {
-            points.add(makeLine(points.get(index - 1), pointStrategy));
-        }
+        Point point = this.createFirstPoint(points, pointStrategy);
+        point = this.createNextPoints(points, pointStrategy, playersCount, point);
+        this.createLastPoint(points, point);
 
         return points;
     }
 
-    private Point makeLine(Point point, PointStrategy pointStrategy) {
-        if (point.isPoint()) {
-            return Point.of(false);
+    private Point createFirstPoint(List<Point> points, PointStrategy pointStrategy) {
+        Point point = Point.first(pointStrategy);
+        points.add(point);
+        return point;
+    }
+
+    private Point createNextPoints(List<Point> points, PointStrategy pointStrategy, int playersCount, Point point) {
+        for (int i = 1; i < playersCount - 1; i++) {
+            point = point.next(pointStrategy);
+            points.add(point);
         }
-        return Point.of(pointStrategy);
+        return point;
+    }
+
+    private void createLastPoint(List<Point> points, Point point) {
+        points.add(point.last());
+    }
+
+    public int move(int position) {
+        return points.get(position).move();
     }
 
     public List<Point> getPoints() {

@@ -20,12 +20,16 @@ public class Players {
         return new Players(players);
     }
 
-    public static Players of(String names) {
+    public static Players ofNames(String names) {
         return of(splitNames(names));
     }
 
     public List<Player> getPlayers() {
         return Collections.unmodifiableList(players);
+    }
+
+    public Player findPlayer(int position) {
+        return players.get(position);
     }
 
     public int size() {

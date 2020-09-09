@@ -8,7 +8,7 @@ public class Height {
 
     private final int size;
 
-    public Height(int size) {
+    private Height(int size) {
         validateMinimumSize(size);
         this.size = size;
     }
@@ -18,7 +18,7 @@ public class Height {
     }
 
     private void validateMinimumSize(int size) {
-        if(size < MIN_HEIGHT_SIZE) {
+        if (size < MIN_HEIGHT_SIZE) {
             throw new IllegalArgumentException(String.format(MINIMUM_SIZE_MESSAGE, MIN_HEIGHT_SIZE));
         }
     }

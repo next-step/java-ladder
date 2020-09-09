@@ -3,6 +3,7 @@ package ladder.domain.line;
 import ladder.domain.player.Players;
 import ladder.domain.strategy.PointStrategy;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -11,7 +12,7 @@ import java.util.stream.Stream;
 public class Ladder {
     private final List<LadderLine> lines;
 
-    public Ladder(Players players, Height height, PointStrategy pointStrategy) {
+    private Ladder(Players players, Height height, PointStrategy pointStrategy) {
         this.lines = createLines(players, height, pointStrategy);
     }
 
@@ -20,13 +21,21 @@ public class Ladder {
     }
 
     public List<LadderLine> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     private List<LadderLine> createLines(Players players, Height height, PointStrategy pointStrategy) {
         return Stream.generate(() -> LadderLine.of(players.size(), pointStrategy))
                 .limit(height.getSize())
                 .collect(Collectors.toList());
+    }
+
+    public int move(int position) {
+        for (LadderLine line : lines) {
+            position = line.move(position);
+        }
+
+        return position;
     }
 
     @Override

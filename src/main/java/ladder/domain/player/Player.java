@@ -25,6 +25,10 @@ public class Player {
         return name;
     }
 
+    public boolean isMatchesName(String name) {
+        return this.name.equals(name);
+    }
+
     private void validateLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format(MORE_THAN_SIZE_MESSAGE, MAX_NAME_LENGTH, name));
@@ -41,8 +45,8 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Player that = (Player) o;
-        return Objects.equals(name, that.name);
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
     }
 
     @Override

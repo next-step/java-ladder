@@ -3,6 +3,7 @@ package ladder.domain.player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,5 +25,13 @@ class PlayerTest {
     @ValueSource(strings = {"jhpark", "player"})
     void playerExceptionTest(String name) {
         assertThatIllegalArgumentException().isThrownBy(() -> Player.of(name));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"test,test,true", "test,joy,false"})
+    void isMatchesName(String input, String matchesValue, boolean expect) {
+        Player player = Player.of(input);
+
+        assertThat(player.isMatchesName(matchesValue)).isEqualTo(expect);
     }
 }

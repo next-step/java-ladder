@@ -10,7 +10,7 @@ class PlayersTest {
     @DisplayName("Players 생성 테스트")
     @Test
     void createPlayersTest() {
-        Players players = Players.of("pobi,honux,crong,jk");
+        Players players = Players.ofNames("pobi,honux,crong,jk");
         assertThat(players.getPlayers()).containsExactly(
                 Player.of("pobi"),
                 Player.of("honux"),
