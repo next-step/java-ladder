@@ -14,4 +14,10 @@ class LineTest {
     void getPedalsStatus() {
         then(Line.of(1).getPedalsStatus()).isEqualTo(Collections.singletonList(Boolean.FALSE));
     }
+
+    @Test
+    @DisplayName("인원이 1인 경우 게임 결과 검증")
+    void play() {
+        then(Line.of(1).play(0)).isEqualTo(0);
+    }
 }
