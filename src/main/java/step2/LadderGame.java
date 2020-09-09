@@ -12,6 +12,7 @@ public class LadderGame {
     public static void main(String[] args) {
         String[] nameList = InputView.askNameForLadderGame();
         Participants people = Participants.of(nameList);
+        String[] prizeLocation = InputView.askResultForLadderGame();
         Height height = Height.valueOf(InputView.askHeightForLadderGame());
         Ladder ladder = Ladder.of(height, people.getNumberOfParticipants(), new RandomDrawStrategy());
         OutputView.printAll(people, ladder);
