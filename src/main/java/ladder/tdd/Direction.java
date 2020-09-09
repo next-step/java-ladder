@@ -10,12 +10,11 @@ public class Direction {
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("같은 라인에 인접하게 생성될 수 없습니다.");
         }
 
         this.left = left;
         this.right = right;
-        // System.out.println(this);
     }
 
     public boolean isRight() {
