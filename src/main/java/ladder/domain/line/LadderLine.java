@@ -1,6 +1,7 @@
 package ladder.domain.line;
 
 import ladder.domain.point.Point;
+import ladder.domain.point.Position;
 import ladder.domain.strategy.PointStrategy;
 
 import java.util.ArrayList;
@@ -8,34 +9,49 @@ import java.util.List;
 import java.util.Objects;
 
 public class LadderLine {
-    private static final Point START_POINT = Point.of(false);
+    private static final int FIRST_POINT_INDEX = 0;
+    private static final int EXCEPT_POINT_COUNT = 1;
 
     private final List<Point> points;
 
-    public LadderLine(int playersCount, PointStrategy pointStrategy) {
-        this.points = createPoints(playersCount, pointStrategy);
+    private LadderLine(int playersCount, PointStrategy pointStrategy) {
+        this.points = createLine(playersCount, pointStrategy);
     }
 
     public static LadderLine of(int playersCount, PointStrategy pointStrategy) {
         return new LadderLine(playersCount, pointStrategy);
     }
 
-    public List<Point> createPoints(int playersCount, PointStrategy pointStrategy) {
+    private List<Point> createLine(int playersCount, PointStrategy pointStrategy) {
         List<Point> points = new ArrayList<>();
-        points.add(START_POINT);
 
-        for (int index = 1; index < playersCount; index++) {
-            points.add(makeLine(points.get(index - 1), pointStrategy));
-        }
+        markFirstPoint(points, pointStrategy);
+        generatePoints(points, pointStrategy, playersCount);
+        markLastPoint(points);
 
         return points;
     }
 
-    private Point makeLine(Point point, PointStrategy pointStrategy) {
-        if (point.isPoint()) {
-            return Point.of(false);
+    private void markFirstPoint(List<Point> points, PointStrategy pointStrategy) {
+        points.add(Point.first(pointStrategy));
+    }
+
+    private void generatePoints(List<Point> points, PointStrategy pointStrategy, int playersCount) {
+        Point point = points.get(FIRST_POINT_INDEX);
+
+        for (int i = 1; i < playersCount - EXCEPT_POINT_COUNT; i++) {
+            point = point.next(pointStrategy);
+            points.add(point);
         }
-        return Point.of(pointStrategy);
+    }
+
+    private void markLastPoint(List<Point> points) {
+        Point point = points.get(points.size() - EXCEPT_POINT_COUNT);
+        points.add(point.last());
+    }
+
+    public Position move(Position position) {
+        return points.get(position.location()).move();
     }
 
     public List<Point> getPoints() {
