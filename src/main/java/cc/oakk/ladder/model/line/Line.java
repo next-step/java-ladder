@@ -17,7 +17,7 @@ public class Line implements Printable<LineDto> {
         this.width = new LadderWidth(width);
         this.connections = new Connections(IntStream.range(0, width - 1)
                                     .boxed()
-                                    .map(dummy -> new Connection(false))
+                                    .map(dummy -> Connection.of(false))
                                     .collect(Collectors.toList()));
     }
 
@@ -25,8 +25,8 @@ public class Line implements Printable<LineDto> {
         return new LineDto(width, connections.getDto());
     }
 
-    public Connection isConnected(int index) {
-		return connections.get(index);
+    public boolean isConnected(int index) {
+		return connections.isConnected(index);
 	}
 
     public int width() {
@@ -34,13 +34,7 @@ public class Line implements Printable<LineDto> {
     }
 
     public Line connect(int index) {
-        boolean leftConnected = index != 0 && connections.get(index - 1).get();
-        boolean rightConnected = index != width() - 2 && connections.get(index + 1).get();
-        if (leftConnected || rightConnected) {
-            throw new IllegalArgumentException("두번 연속해 이을 수 없습니다.");
-        }
-
-        connections.get(index).set(true);
+        connections.connect(index);
         return this;
     }
 
