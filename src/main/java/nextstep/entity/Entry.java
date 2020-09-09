@@ -16,6 +16,10 @@ public class Entry {
         }
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public static Entry of(String name) {
         return new Entry(name);
     }
