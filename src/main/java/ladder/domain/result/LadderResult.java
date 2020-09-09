@@ -19,7 +19,7 @@ public class LadderResult {
     }
 
     public boolean isMatchesName(String name) {
-        return player.getName().equals(name);
+        return player.isMatchesName(name);
     }
 
     public String getPlayerName() {

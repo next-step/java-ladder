@@ -25,6 +25,10 @@ public class Player {
         return name;
     }
 
+    public boolean isMatchesName(String name) {
+        return this.name.equals(name);
+    }
+
     private void validateLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format(MORE_THAN_SIZE_MESSAGE, MAX_NAME_LENGTH, name));
