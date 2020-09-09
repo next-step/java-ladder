@@ -24,11 +24,11 @@ public class Position {
         return movement;
     }
 
-    Position left() {
+    public Position left() {
         return new Position(movement - MOVE_SIZE);
     }
 
-    Position right() {
+    public Position right() {
         return new Position(movement + MOVE_SIZE);
     }
 
