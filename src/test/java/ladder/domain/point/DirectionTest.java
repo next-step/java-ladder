@@ -1,9 +1,11 @@
 package ladder.domain.point;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DirectionTest {
 
@@ -33,4 +35,16 @@ class DirectionTest {
         assertThat(direction.move()).isEqualTo(expect);
     }
 
+    @Test
+    void of() {
+        assertThat(Direction.of(true, false)).isEqualTo(Direction.BACK);
+        assertThat(Direction.of(false, true)).isEqualTo(Direction.GO);
+        assertThat(Direction.of(false, false)).isEqualTo(Direction.STAY);
+    }
+
+    @Test
+    void of_invalidValue() {
+        assertThatThrownBy(() -> Direction.of(true, true))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -2,19 +2,36 @@ package ladder.domain.point;
 
 import ladder.domain.strategy.PointStrategy;
 
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-public class Direction {
+public enum Direction {
+    GO(false, true, 1),
+    BACK(true, false, -1),
+    STAY(false, false, 0);
+
+    public static final String INVALID_DIRECTION_MESSAGE = "잘못된 방향입니다.";
+
     private final boolean left;
     private final boolean current;
+    private final int movePoint;
 
-    private Direction(boolean left, boolean current) {
+    Direction(boolean left, boolean current, int movePoint) {
+        if (left && current) {
+            throw new IllegalArgumentException(INVALID_DIRECTION_MESSAGE);
+        }
+
         this.left = left;
         this.current = current;
+        this.movePoint = movePoint;
     }
 
+    private static final Map<String, Direction> directions = Collections.unmodifiableMap(Arrays.stream(values())
+            .collect(Collectors.toMap(it -> toKey(it.left, it.current), Function.identity())));
+
     public static Direction first(PointStrategy pointStrategy) {
-        return new Direction(false, pointStrategy.next());
+        return of(false, pointStrategy.next());
     }
 
     public Direction next(PointStrategy pointStrategy) {
@@ -26,40 +43,27 @@ public class Direction {
     }
 
     private Direction next(boolean next) {
-        return new Direction(current, next);
+        return of(current, next);
     }
 
     public Direction last() {
-        return new Direction(this.current, false);
+        return of(current, false);
     }
 
     public int move() {
-        if (this.left) {
-            return -1;
-        }
+        return movePoint;
+    }
 
-        if (this.current) {
-            return +1;
-        }
+    public static Direction of(boolean left, boolean current) {
+        return Optional.ofNullable(directions.get(toKey(left, current)))
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_DIRECTION_MESSAGE));
+    }
 
-        return 0;
+    private static String toKey(boolean left, boolean current) {
+        return String.format("%s %s", left, current);
     }
 
     public boolean isLeft() {
         return left;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Direction direction = (Direction) o;
-        return left == direction.left &&
-                current == direction.current;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(left, current);
     }
 }
