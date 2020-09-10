@@ -1,9 +1,10 @@
 package step3.view;
 
-import step3.domain.Ladder;
-
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
+import step3.domain.Ladder;
 
 public class ResultView {
 	private static final String BLANK = "     |";
@@ -40,10 +41,16 @@ public class ResultView {
 		}
 		return BLANK;
 	}
+	
+	public static void printGameResult(Map<String, String> resultMap) {
+		System.out.println("실행 결과");
+		resultMap.keySet().forEach(key -> {
+			System.out.println(key + " : " + resultMap.get(key));
+		});
+	}
 
 	public static void printGameResult(String name, String result) {
 		System.out.println("실행 결과");
 		System.out.println(result);
-		
 	}
 }

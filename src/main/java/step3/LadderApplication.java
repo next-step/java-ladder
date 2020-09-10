@@ -21,11 +21,13 @@ public class LadderApplication {
 		ResultView.printCreatedLadderInfo(usersName, ladder, gameResults);
 
 		String name;
-		String result;
-		do {
+		while(true) {
 			name = InputView.inputResultUser();
-			result = game.getUserResult(name);
-			ResultView.printGameResult(name, result);
-		} while(!GAMEOVER_USERNAME.equals(name));
+			if(GAMEOVER_USERNAME.equals(name)) {
+				ResultView.printGameResult(game.getAllUserResult());
+				break;
+			}
+			ResultView.printGameResult(name, game.getUserResult(name));
+		}
 	}
 }

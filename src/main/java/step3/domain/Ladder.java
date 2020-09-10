@@ -32,6 +32,10 @@ public class Ladder {
 				.map(User::toString)
 				.collect(Collectors.toList());
 	}
+	
+	public String getUserName(int index) {
+		return users.getUsers().get(index).toString();
+	}
 
 	public List<Line> getCreatedLadder() {
 		return Collections.unmodifiableList(lines);
