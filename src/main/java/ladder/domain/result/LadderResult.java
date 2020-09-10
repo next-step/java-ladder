@@ -15,10 +15,6 @@ public class LadderResult {
         return new LadderResult(playerName, rewardPrize);
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
     public String getRewardPrize() {
         return rewardPrize;
     }
