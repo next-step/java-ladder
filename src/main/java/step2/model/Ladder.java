@@ -45,7 +45,7 @@ public class Ladder {
 
     private void moveInLine(Line line, Participants people) {
         Arrays.stream(people.toString().split(" "))
-                .peek(it -> line.move(people.findPersonByName(it)))
+                .forEach(it -> line.move(people.findPersonByName(it)))
         ;
     }
 }

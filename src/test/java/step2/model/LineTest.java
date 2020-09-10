@@ -1,12 +1,13 @@
 package step2.model;
 
-import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Morph;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +20,15 @@ public class LineTest {
         return Stream.of(
                 Arguments.of(4, "John", 2, 3),
                 Arguments.of(5, "Jay", 0, 1),
-                Arguments.of(4, "Kim", 3, 2)
+                Arguments.of(4, "Kim", 3, 2),
+                Arguments.of(5, "Rob", 1, 0),
+                Arguments.of(5, "Kim", 4, 4)
+        );
+    }
+
+    private static Stream<Arguments> customLineValueForTest() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(true, false, false, false), "Jay", 3, 3)
         );
     }
 
@@ -35,7 +44,7 @@ public class LineTest {
     void create_Line_For_Constraint() {
         line = new Line();
         line.drawNewLine(2, () -> true);
-        assertThat(line.draw(()->true)).isEqualTo(false);
+        assertThat(line.draw(() -> true)).isEqualTo(false);
     }
 
     @Test
@@ -59,6 +68,16 @@ public class LineTest {
     void create_Line_And_Person_And_Check_The_Position(int value, String name, int position, int expected) {
         line = new Line();
         line.drawNewLine(value, () -> true);
+        Person person = Person.of(name, position);
+        line.move(person);
+        System.out.println(line.printRungs());
+        assertThat(person.printCurrentPosition().getPosition()).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @MethodSource("customLineValueForTest")
+    void create_Line_And_Person_And_Check_The_Position_Custom_Line(List<Boolean> value, String name, int position, int expected) {
+        line = Line.of(value);
         Person person = Person.of(name, position);
         line.move(person);
         System.out.println(line.printRungs());

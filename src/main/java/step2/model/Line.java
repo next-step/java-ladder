@@ -9,6 +9,17 @@ import java.util.Optional;
 public class Line {
     private List<Boolean> rungs = new ArrayList<>();
 
+    public Line() {
+    }
+
+    private Line(List<Boolean> rungs) {
+        this.rungs = rungs;
+    }
+
+    public static Line of(List<Boolean> rungs) {
+        return new Line(rungs);
+    }
+
     public void drawNewLine(int countOfPerson, DrawStrategy strategy) {
         for (int loop = 0; loop < countOfPerson - 1; loop++) {
             rungs.add(draw(strategy));
@@ -51,16 +62,16 @@ public class Line {
 
     public boolean move(Person personByName) {
         Position position = personByName.printCurrentPosition();
+        if (isInTheBound(position)) {
+            compareWithLeftRightSide(personByName);
+            return true;
+        }
         if (isOutOfLeftBound(position)) {
             compareWithRightSide(personByName);
             return true;
         }
         if (isOutOfRightBound(position)) {
             compareWithLeftSide(personByName);
-            return true;
-        }
-        if (isInTheBound(position)) {
-            compareWithLeftRightSide(personByName);
             return true;
         }
         return false;
@@ -91,12 +102,18 @@ public class Line {
     }
 
     private void compareWithLeftRightSide(Person personByName) {
-        Boolean rung = rungs.get(personByName.printCurrentPosition().getLeftPosition());
-        if (rung) {
+        Boolean leftRung = rungs.get(personByName.printCurrentPosition().getLeftPosition());
+        Boolean rightRung = rungs.get(personByName.printCurrentPosition().getPosition());
+
+        if (leftRung && !rightRung) {
             personByName.printCurrentPosition().move(Movement.LEFT);
         }
-        if (!rung) {
+        if (!leftRung && rightRung) {
             personByName.printCurrentPosition().move(Movement.RIGHT);
         }
+        if (!leftRung && !rightRung) {
+            personByName.printCurrentPosition().move(Movement.NONE);
+        }
+
     }
 }
