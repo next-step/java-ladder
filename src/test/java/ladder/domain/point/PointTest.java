@@ -22,4 +22,22 @@ class PointTest {
 
         assertThat(first.move()).isEqualTo(expect);
     }
+
+    @ParameterizedTest
+    @CsvSource({"true, false, 0", "false, true, 2", "false, false, 1"})
+    void move_next(boolean firstStrategy, boolean nextStrategy, int expect) {
+        Point point = Point.first(() -> firstStrategy);
+        point = point.next(() -> nextStrategy);
+
+        assertThat(point.move()).isEqualTo(expect);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"true, 0", "false, 1"})
+    void move_last(boolean firstStrategy, int expect) {
+        Point point = Point.first(() -> firstStrategy);
+        point = point.last();
+
+        assertThat(point.move()).isEqualTo(expect);
+    }
 }
