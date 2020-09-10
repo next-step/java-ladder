@@ -7,7 +7,7 @@ public class Direction {
   private boolean left;
   private boolean right;
 
-  public Direction(boolean left, boolean right) {
+  private Direction(boolean left, boolean right) {
     if (left && right) throw new IllegalStateException("한쪽 방향으로만 갈 수 있습니다.");
 
     this.left = left;

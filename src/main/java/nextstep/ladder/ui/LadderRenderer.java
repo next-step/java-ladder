@@ -34,12 +34,8 @@ public class LadderRenderer implements Renderer {
 
   public void renderLadder(Ladder ladder) {
     for (LadderLine line : ladder.getLines()) {
-      renderLadder(line);
+      System.out.printf("%4s%s\n", "", pointToBridge(line.getPoints()));
     }
-  }
-
-  private void renderLadder(LadderLine line) {
-    System.out.printf("%4s%s\n", "", pointToBridge(line.getPoints()));
   }
 
   private String pointToBridge(List<PointDirection> points) {
