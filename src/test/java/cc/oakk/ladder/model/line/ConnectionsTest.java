@@ -1,6 +1,5 @@
 package cc.oakk.ladder.model.line;
 
-import cc.oakk.ladder.model.line.dto.ConnectionDto;
 import cc.oakk.ladder.model.line.dto.ConnectionsDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -83,11 +82,10 @@ public class ConnectionsTest {
 
     @Test
     public void getDto() {
-        List<ConnectionDto> connectionDtos = booleans.stream()
+        List<Connection> connections = booleans.stream()
                 .map(Connection::of)
-                .map(Connection::getDto)
                 .collect(Collectors.toList());
 
-        assertThat(connections.getDto()).isEqualTo(new ConnectionsDto(connectionDtos));
+        assertThat(this.connections.getDto()).isEqualTo(new ConnectionsDto(connections));
     }
 }

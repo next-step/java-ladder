@@ -1,6 +1,6 @@
 package cc.oakk.ladder.view.printer.impl;
 
-import cc.oakk.ladder.model.line.dto.ConnectionDto;
+import cc.oakk.ladder.model.line.Connection;
 import cc.oakk.ladder.model.line.dto.LineDto;
 import cc.oakk.ladder.view.printer.StringPrinter;
 
@@ -17,7 +17,7 @@ public class LinePrinter extends StringPrinter<LineDto> {
 
     @Override
     public void print(LineDto target) {
-        List<ConnectionDto> connections = target.getConnections().getConnections();
+        List<Connection> connections = target.getConnections().getConnections();
 
         stringPrinter.print(START);
         for (int i = 0; i < target.getWidth().get() - 1; i++) {
@@ -28,8 +28,8 @@ public class LinePrinter extends StringPrinter<LineDto> {
         stringPrinter.print(LINE_BREAK);
     }
 
-    private void printConnection(ConnectionDto connection) {
-        if (connection.isConnected()) {
+    private void printConnection(Connection connection) {
+        if (connection.get()) {
             stringPrinter.print(CONNECTED);
             return;
         }

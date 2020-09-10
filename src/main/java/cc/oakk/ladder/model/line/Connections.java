@@ -1,13 +1,11 @@
 package cc.oakk.ladder.model.line;
 
-import cc.oakk.ladder.model.line.dto.ConnectionDto;
 import cc.oakk.ladder.model.line.dto.ConnectionsDto;
 import cc.oakk.ladder.util.ValidationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Connections {
     private final List<Connection> connections;
@@ -54,10 +52,7 @@ public class Connections {
     }
 
     public ConnectionsDto getDto() {
-        List<ConnectionDto> connectionDtos = connections.stream()
-                .map(Connection::getDto)
-                .collect(Collectors.toList());
-        return new ConnectionsDto(connectionDtos);
+        return new ConnectionsDto(connections);
     }
 
     public int size() {

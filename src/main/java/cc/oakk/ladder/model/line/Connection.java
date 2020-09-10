@@ -1,7 +1,5 @@
 package cc.oakk.ladder.model.line;
 
-import cc.oakk.ladder.model.line.dto.ConnectionDto;
-
 import java.util.Objects;
 
 public class Connection {
@@ -23,10 +21,6 @@ public class Connection {
     
     public boolean get() {
         return connected;
-    }
-
-    public ConnectionDto getDto() {
-        return new ConnectionDto(connected);
     }
 
     @Override
