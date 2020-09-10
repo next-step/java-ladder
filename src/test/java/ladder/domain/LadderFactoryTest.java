@@ -1,11 +1,10 @@
-package ladder;
+package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
-import ladder.domain.Ladder;
-import ladder.ui.LadderDataInput;
-import ladder.domain.LadderFactory;
+import ladder.WhenUtils;
 import ladder.ui.Input;
+import ladder.ui.LadderDataInput;
 import ladder.ui.Output;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,24 +1,43 @@
 package ladder.domain;
 
-public enum Point {
+public class Point {
 
-    TRUE ("-----|"),
-    FALSE("     |");
+    private static final String BAR    = "|-----";
+    private static final String PILLAR = "|     ";
 
-    private final String bar;
+    private final Direction direction;
 
-    Point(String bar) {
-        this.bar = bar;
+    private Point(Direction direction) {
+        this.direction = direction;
     }
 
-    public static Point of(boolean pointType) {
-        if (pointType) {
-            return Point.TRUE;
+    public static Point first(BarCreator barCreator) {
+        return new Point(Direction.leftCorner(barCreator.create()));
+    }
+
+    public static Point next(Direction prevDirection, BarCreator barCreator) {
+        return new Point(Direction.of(prevDirection, barCreator.create()));
+    }
+
+    public static Point last(Direction prevDirection) {
+        return new Point(Direction.rightCorner(prevDirection));
+    }
+
+    @Override
+    public String toString() {
+
+        if (direction.isRight()) {
+            return BAR;
         }
-        return Point.FALSE;
+
+        return PILLAR;
     }
 
-    public String getBar() {
-        return bar;
+    public int move() {
+        return direction.move();
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 }

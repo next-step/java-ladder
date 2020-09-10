@@ -1,10 +1,11 @@
 package ladder.domain;
 
-import ladder.util.StringUtils;
-
+import java.util.Collections;
 import java.util.List;
 
-public class Player {
+import ladder.util.StringUtils;
+
+public class Participants {
 
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int INVALID_INDEX = -1;
@@ -14,8 +15,9 @@ public class Player {
 
     private final List<String> names;
 
-    public Player(String nameStr) {
-        this.names = StringUtils.splitStringToList(nameStr);
+    public Participants(String nameStr) {
+        this.names = Collections.unmodifiableList(
+            StringUtils.splitStringToList(nameStr));
         verifyNameLength(names);
     }
 

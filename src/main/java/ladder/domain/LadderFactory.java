@@ -7,6 +7,6 @@ public class LadderFactory {
     private LadderFactory() { }
 
     public static Ladder of(LadderDataInput ladderDataInput) {
-        return new Ladder(ladderDataInput.getPlayer(), ladderDataInput.getReward(), ladderDataInput.getHeight());
+        return new Ladder(ladderDataInput.getPlayerCount(), ladderDataInput.getHeight());
     }
 }

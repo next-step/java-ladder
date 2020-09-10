@@ -1,6 +1,6 @@
 package ladder.domain;
 
 @FunctionalInterface
-public interface PointCreator {
+public interface BarCreator {
     boolean create();
 }
