@@ -1,8 +1,8 @@
 package step2.model;
 
 import step2.strategy.DrawStrategy;
-import step2.strategy.RandomDrawStrategy;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -35,5 +35,17 @@ public class Ladder {
 
     public int getHeightOfLadder() {
         return ladder.size();
+    }
+
+    public void move(Participants people) {
+        for (Line line : ladder) {
+            moveInLine(line, people);
+        }
+    }
+
+    private void moveInLine(Line line, Participants people) {
+        Arrays.stream(people.toString().split(" "))
+                .forEach(it -> line.move(people.findPersonByName(it)))
+        ;
     }
 }

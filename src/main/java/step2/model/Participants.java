@@ -14,14 +14,15 @@ public class Participants {
         this.participants = participants;
     }
 
-    public static Participants of(List<Person> people) {
+    public static Participants valueOf(List<Person> people) {
         return new Participants(people);
     }
 
-    public static Participants of(String[] names) {
-        return Arrays.stream(names)
-                .map(Person::valueOf)
-                .collect(collectingAndThen(toList(), Participants::of));
+    public static Participants of(List<String> names) {
+        return names.stream()
+                .map(it -> Person.of(it, names.indexOf(it)))
+                .collect(collectingAndThen(toList(), Participants::valueOf))
+                ;
     }
 
     public Person findPersonByName(String name) {
