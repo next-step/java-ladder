@@ -6,48 +6,31 @@ import java.util.Objects;
 
 public class Point {
     private final int position;
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
 
-    private Point(int position, boolean left, boolean right) {
+    private Point(int position, Direction direction) {
         this.position = position;
-        this.left = left;
-        this.right = right;
+        this.direction = direction;
     }
 
     public static Point first(PointStrategy pointStrategy) {
-        return new Point(0, false, pointStrategy.next());
+        return new Point(0, Direction.first(pointStrategy));
     }
 
     public Point last() {
-        return new Point(position + 1, this.right, false);
+        return new Point(position + 1, direction.last());
     }
 
     public Point next(PointStrategy pointStrategy) {
-        return next(this.position + 1, pointStrategy);
-    }
-
-    private Point next(int position, PointStrategy pointStrategy) {
-        if (this.right) {
-            return new Point(position, true, false);
-        }
-        return new Point(position, false, pointStrategy.next());
-    }
-
-    public boolean isLeft() {
-        return this.left;
+        return new Point(this.position + 1, direction.next(pointStrategy));
     }
 
     public int move() {
-        if (this.left) {
-            return position - 1;
-        }
+        return position + direction.move();
+    }
 
-        if (this.right) {
-            return position + 1;
-        }
-
-        return position;
+    public boolean isLeft() {
+        return this.direction.isLeft();
     }
 
     @Override
@@ -56,12 +39,11 @@ public class Point {
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
         return position == point.position &&
-                left == point.left &&
-                right == point.right;
+                Objects.equals(direction, point.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, left, right);
+        return Objects.hash(position, direction);
     }
 }

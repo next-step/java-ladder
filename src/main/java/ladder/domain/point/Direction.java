@@ -2,6 +2,8 @@ package ladder.domain.point;
 
 import ladder.domain.strategy.PointStrategy;
 
+import java.util.Objects;
+
 public class Direction {
     private final boolean left;
     private final boolean current;
@@ -17,10 +19,14 @@ public class Direction {
 
     public Direction next(PointStrategy pointStrategy) {
         if (this.current) {
-            return new Direction(true, false);
+            return next(false);
         }
 
-        return new Direction(false, pointStrategy.next());
+        return next(pointStrategy.next());
+    }
+
+    private Direction next(boolean next) {
+        return new Direction(current, next);
     }
 
     public Direction last() {
@@ -37,5 +43,23 @@ public class Direction {
         }
 
         return 0;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left &&
+                current == direction.current;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, current);
     }
 }
