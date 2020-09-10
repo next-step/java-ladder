@@ -1,4 +1,4 @@
-package cc.oakk.ladder.model;
+package cc.oakk.ladder.model.person;
 
 import org.junit.jupiter.api.Test;
 

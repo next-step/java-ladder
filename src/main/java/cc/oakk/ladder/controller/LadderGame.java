@@ -1,7 +1,7 @@
 package cc.oakk.ladder.controller;
 
 import cc.oakk.ladder.model.ladder.Ladder;
-import cc.oakk.ladder.model.Person;
+import cc.oakk.ladder.model.person.Person;
 import cc.oakk.ladder.model.size.LadderHeight;
 import cc.oakk.ladder.util.RandomUtils;
 import cc.oakk.ladder.util.ValidationUtils;

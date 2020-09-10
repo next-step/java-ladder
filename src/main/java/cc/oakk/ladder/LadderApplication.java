@@ -1,7 +1,7 @@
 package cc.oakk.ladder;
 
 import cc.oakk.ladder.controller.LadderGame;
-import cc.oakk.ladder.model.Person;
+import cc.oakk.ladder.model.person.Person;
 import cc.oakk.ladder.model.line.dto.LineDto;
 import cc.oakk.ladder.view.InputView;
 import cc.oakk.ladder.view.ResultView;

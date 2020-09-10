@@ -1,6 +1,6 @@
 package cc.oakk.ladder.view;
 
-import cc.oakk.ladder.model.Person;
+import cc.oakk.ladder.model.person.Person;
 import cc.oakk.ladder.model.ladder.dto.LadderDto;
 import cc.oakk.ladder.model.line.dto.LineDto;
 import cc.oakk.ladder.view.printer.Printer;
