@@ -9,6 +9,9 @@ public class Game {
 	}
 
 	public void setGameResult(String[] results) {
+		/////////////////
+		this.result = GameResult.of(results);
+		/////////////////
 		this.result = GameResult.of(ladder.getUsersName(), results);
 		validResultSize();
 	}

@@ -2,23 +2,22 @@ package step3.view;
 
 import step3.domain.Ladder;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ResultView {
-	private static final int FIRST = 0;
 	private static final String BLANK = "     |";
 	private static final String POINT = "-----|";
 
 	private ResultView() {}
 
-	public static void printCreatedLadderInfo(Ladder ladder) {
+	public static void printCreatedLadderInfo(String[] usersName, Ladder ladder) {
 		System.out.println("사다리 결과");
 
-		ladder.getUsersName()
+		Arrays.stream(usersName)
 				.forEach(name -> System.out.printf("%6s", name));
 		System.out.println();
 		ladder.getCreatedLadder()
-				.subList(FIRST, ladder.getUsersName().size())
 				.forEach(line -> System.out.println(ladderFormat(line.getPoints())));
 	}
 
@@ -35,5 +34,11 @@ public class ResultView {
 			return POINT;
 		}
 		return BLANK;
+	}
+
+	public static void printGameResult(String name) {
+		System.out.println("실행 결과");
+
+
 	}
 }
