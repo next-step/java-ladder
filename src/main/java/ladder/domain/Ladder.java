@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Ladder(int userCount, Height height) {
         this.lines = generateLines(userCount, height);

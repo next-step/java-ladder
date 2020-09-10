@@ -8,10 +8,8 @@ import ladder.view.ResultView;
 
 public class LadderGame {
     public static void main(String...args) {
-        InputView inputView = new InputView();
-
-        Users users = new Users(inputView.joinUser());
-        Height height = new Height(inputView.ladderHeight());
+        Users users = new Users(InputView.joinUser());
+        Height height = new Height(InputView.ladderHeight());
 
         ResultView.resultLadder(users.getUsers(), new Ladder(users.getUserCount(), height));
     }

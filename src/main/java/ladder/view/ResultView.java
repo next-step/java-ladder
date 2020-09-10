@@ -24,7 +24,7 @@ public class ResultView {
 
     private static void printUserName(List<User> users) {
         users.stream()
-                .map(user -> user.getUserName())
+                .map(User::getUserName)
                 .forEach(name ->
                 System.out.print(String.format(NAME_FORMAT, name) + " "));
     }
@@ -32,11 +32,11 @@ public class ResultView {
     private static void printLadder(Ladder ladder) {
         ladder.getLadder()
                 .stream()
-                .map(ResultView::printLine)
+                .map(ResultView::createLadder)
                 .forEach(System.out::println);
     }
 
-    private static String printLine(Line line){
+    private static String createLadder(Line line){
         return line.getLine()
                 .stream()
                 .map(isLine -> isLine ? LADDER_LINE : LADDER_EMPTY)

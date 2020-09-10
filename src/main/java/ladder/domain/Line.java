@@ -1,11 +1,12 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class Line {
-    private Random random = new Random();
+    private final Random random = new Random();
     private List<Boolean> lines = new ArrayList<>();
 
     public Line(int userCount) {
@@ -29,6 +30,6 @@ public class Line {
     }
 
     public List<Boolean> getLine() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }
