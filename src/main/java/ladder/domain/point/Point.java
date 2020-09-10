@@ -5,28 +5,28 @@ import ladder.domain.strategy.PointStrategy;
 import java.util.Objects;
 
 public class Point {
-    private final int position;
+    private final Position position;
     private final Direction direction;
 
-    private Point(int position, Direction direction) {
+    private Point(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }
 
     public static Point first(PointStrategy pointStrategy) {
-        return new Point(0, Direction.first(pointStrategy));
+        return new Point(Position.first(), Direction.first(pointStrategy));
     }
 
     public Point last() {
-        return new Point(position + 1, direction.last());
+        return new Point(position.next(), direction.last());
     }
 
     public Point next(PointStrategy pointStrategy) {
-        return new Point(this.position + 1, direction.next(pointStrategy));
+        return new Point(position.next(), direction.next(pointStrategy));
     }
 
     public int move() {
-        return position + direction.move();
+        return position.getValue() + direction.move();
     }
 
     public boolean isLeft() {
@@ -38,7 +38,7 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return position == point.position &&
+        return Objects.equals(position, point.position) &&
                 Objects.equals(direction, point.direction);
     }
 
