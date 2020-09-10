@@ -12,20 +12,25 @@ public class ResultView {
 
     private final Printer<Persons> personsPrinter;
     private final Printer<LineDto> linePrinter;
+    private final Printer<Results> resultsPrinter;
     private final Printer<String> stringPrinter;
 
     public ResultView(Printer<Persons> personsPrinter,
-                      Printer<LineDto> linePrinter) {
+                      Printer<LineDto> linePrinter,
+                      Printer<Results> resultsPrinter) {
         this.personsPrinter = personsPrinter;
         this.linePrinter = linePrinter;
+        this.resultsPrinter = resultsPrinter;
         this.stringPrinter = StandardPrinter.getInstance();
     }
 
     public ResultView(Printer<Persons> personsPrinter,
                       Printer<LineDto> linePrinter,
+                      Printer<Results> resultsPrinter,
                       Printer<String> stringPrinter) {
         this.personsPrinter = personsPrinter;
         this.linePrinter = linePrinter;
+        this.resultsPrinter = resultsPrinter;
         this.stringPrinter = stringPrinter;
     }
 
@@ -42,5 +47,9 @@ public class ResultView {
     public void printLadder(LadderDto ladder) {
         stringPrinter.print(LINE_BREAK);
         ladder.getLines().forEach(linePrinter::print);
+    }
+
+    public void printResults(Results results) {
+        resultsPrinter.print(results);
     }
 }
