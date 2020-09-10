@@ -1,36 +1,45 @@
 package cc.oakk.ladder.view;
 
-import cc.oakk.ladder.model.person.Person;
+import cc.oakk.ladder.model.person.Persons;
 import cc.oakk.ladder.model.ladder.dto.LadderDto;
 import cc.oakk.ladder.model.line.dto.LineDto;
+import cc.oakk.ladder.model.result.Results;
 import cc.oakk.ladder.view.printer.Printer;
 import cc.oakk.ladder.view.printer.impl.StandardPrinter;
-
-import java.util.List;
 
 public class ResultView {
     public static final String LINE_BREAK = System.lineSeparator();
 
-    private final Printer<Person> personPrinter;
+    private final Printer<Persons> personsPrinter;
     private final Printer<LineDto> linePrinter;
     private final Printer<String> stringPrinter;
 
-    public ResultView(Printer<Person> personPrinter, Printer<LineDto> linePrinter) {
-        this.personPrinter = personPrinter;
+    public ResultView(Printer<Persons> personsPrinter,
+                      Printer<LineDto> linePrinter) {
+        this.personsPrinter = personsPrinter;
         this.linePrinter = linePrinter;
         this.stringPrinter = StandardPrinter.getInstance();
     }
 
-    public ResultView(Printer<Person> personPrinter, Printer<LineDto> linePrinter, Printer<String> stringPrinter) {
-        this.personPrinter = personPrinter;
+    public ResultView(Printer<Persons> personsPrinter,
+                      Printer<LineDto> linePrinter,
+                      Printer<String> stringPrinter) {
+        this.personsPrinter = personsPrinter;
         this.linePrinter = linePrinter;
         this.stringPrinter = stringPrinter;
     }
 
-    public void printLadder(List<Person> persons, LadderDto ladder) {
-        stringPrinter.print("실행결과" + LINE_BREAK);
+    public void printHeader() {
         stringPrinter.print(LINE_BREAK);
-        persons.forEach(personPrinter::print);
+        stringPrinter.print("실행결과");
+        stringPrinter.print(LINE_BREAK);
+    }
+
+    public void printPersons(Persons persons) {
+        personsPrinter.print(persons);
+    }
+
+    public void printLadder(LadderDto ladder) {
         stringPrinter.print(LINE_BREAK);
         ladder.getLines().forEach(linePrinter::print);
     }
