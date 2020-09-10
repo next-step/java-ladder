@@ -5,17 +5,17 @@ import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
-import ladder.domain.line.Line;
+import ladder.domain.line.LadderLine;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Ladder {
-	private final List<Line> lines;
+	private final List<LadderLine> lines;
 
-	public static Ladder of(List<Line> lines) {
+	public static Ladder of(List<LadderLine> lines) {
 		return new Ladder(lines);
 	}
 
-	public Line getLine(int index) {
+	public LadderLine getLine(int index) {
 		return lines.get(index);
 	}
 
