@@ -8,6 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
+    @Test
+    public void constructor_ShouldThrow_WhenBelowsOrEqualsZero() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Line(0));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Line(-1));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Line(Integer.MIN_VALUE));
+    }
+
     @ParameterizedTest
     @ValueSource(ints = { 4, 5, 6, 7, 8 })
     public void width(int width) {
