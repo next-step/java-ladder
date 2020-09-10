@@ -27,7 +27,7 @@ public class LadderApplication {
 				ResultView.printGameResult(game.getAllUserResult());
 				break;
 			}
-			ResultView.printGameResult(name, game.getUserResult(name));
+			ResultView.printGameResult(game.getUserResult(name));
 		}
 	}
 }

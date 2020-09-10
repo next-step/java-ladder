@@ -27,7 +27,7 @@ public class Ladder {
 		}
 	}
 
-	public List<String> getUsersName() {
+	public List<String> getAllUserName() {
 		return users.getUsers().stream()
 				.map(User::toString)
 				.collect(Collectors.toList());
@@ -42,7 +42,7 @@ public class Ladder {
 	}
 	
 	public boolean containUser(String name) {
-		return this.getUsersName().contains(name);
+		return this.getAllUserName().contains(name);
 	}
 	
 	public int getUserPositionOf(String name) {

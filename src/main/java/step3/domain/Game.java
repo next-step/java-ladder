@@ -19,7 +19,7 @@ public class Game {
 	}
 
 	private void validResultSize() {
-		if (this.results.size() != ladder.getUsersName().size()) {
+		if (this.results.size() != ladder.getAllUserName().size()) {
 			throw new IllegalArgumentException("실행 결과 수는 입력한 참여자 수와 같아야 합니다.");
 		}
 	}
@@ -33,7 +33,6 @@ public class Game {
 		for (int i = 0; i < results.size(); i++) {
 			resultMap.put(ladder.getUserName(i), results.getResultOf(i));
 		}
-		
 		return resultMap;
 	}
 	

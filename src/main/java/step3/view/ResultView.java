@@ -44,12 +44,10 @@ public class ResultView {
 	
 	public static void printGameResult(Map<String, String> resultMap) {
 		System.out.println("실행 결과");
-		resultMap.keySet().forEach(key -> {
-			System.out.println(key + " : " + resultMap.get(key));
-		});
+		resultMap.keySet().forEach(key -> System.out.println(key + " : " + resultMap.get(key)));
 	}
 
-	public static void printGameResult(String name, String result) {
+	public static void printGameResult(String result) {
 		System.out.println("실행 결과");
 		System.out.println(result);
 	}
