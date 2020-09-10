@@ -49,30 +49,33 @@ public class Line {
         return rungs.size();
     }
 
-    public void move(Person personByName) {
-        if (isOutOfLeftBound(personByName)) {
+    public boolean move(Person personByName) {
+        Position position = personByName.printCurrentPosition();
+        if (isOutOfLeftBound(position)) {
             compareWithRightSide(personByName);
+            return true;
         }
-        if (isOutOfRightBound(personByName)) {
+        if (isOutOfRightBound(position)) {
             compareWithLeftSide(personByName);
+            return true;
         }
-        if (isInTheBound(personByName)) {
-            compareWithLeftSide(personByName);
-            compareWithRightSide(personByName);
+        if (isInTheBound(position)) {
+            compareWithLeftRightSide(personByName);
+            return true;
         }
-
+        return false;
     }
 
-    private boolean isInTheBound(Person personByName) {
-        return personByName.printCurrentPosition().getLeftPosition() >= 0 && personByName.printCurrentPosition().getRightPosition() <= rungs.size();
+    private boolean isInTheBound(Position position) {
+        return position.getLeftPosition() >= 0 && position.getRightPosition() <= getNumberOfRung();
     }
 
-    private boolean isOutOfLeftBound(Person personByName) {
-        return personByName.printCurrentPosition().getLeftPosition() < 0;
+    private boolean isOutOfLeftBound(Position position) {
+        return position.getLeftPosition() < 0;
     }
 
-    private boolean isOutOfRightBound(Person personByName) {
-        return personByName.printCurrentPosition().getRightPosition() > rungs.size();
+    private boolean isOutOfRightBound(Position position) {
+        return position.getRightPosition() > getNumberOfRung();
     }
 
     private void compareWithLeftSide(Person personByName) {
@@ -84,6 +87,16 @@ public class Line {
     private void compareWithRightSide(Person person) {
         if (rungs.get(person.printCurrentPosition().getPosition())) {
             person.printCurrentPosition().move(Movement.RIGHT);
+        }
+    }
+
+    private void compareWithLeftRightSide(Person personByName) {
+        Boolean rung = rungs.get(personByName.printCurrentPosition().getLeftPosition());
+        if (rung) {
+            personByName.printCurrentPosition().move(Movement.LEFT);
+        }
+        if (!rung) {
+            personByName.printCurrentPosition().move(Movement.RIGHT);
         }
     }
 }
