@@ -18,6 +18,7 @@ public class LadderGame {
         PrizeLocation prizeLocation = PrizeLocation.of(InputView.askResultForLadderGame());
         Height height = Height.valueOf(InputView.askHeightForLadderGame());
         Ladder ladder = Ladder.of(height, people.getNumberOfParticipants(), new RandomDrawStrategy());
+        ladder.move(people);
         OutputView.printAll(people, ladder);
     }
 }

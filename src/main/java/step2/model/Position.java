@@ -19,4 +19,12 @@ public class Position {
         position += movement.getDirection();
     }
 
+    public int getLeftPosition() {
+        return position - 1;
+    }
+
+    public int getRightPosition() {
+        return position + 1;
+    }
+
 }

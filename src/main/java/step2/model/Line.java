@@ -48,4 +48,42 @@ public class Line {
     public int getNumberOfRung() {
         return rungs.size();
     }
+
+    public void move(Person personByName) {
+        if (isOutOfLeftBound(personByName)) {
+            compareWithRightSide(personByName);
+        }
+        if (isOutOfRightBound(personByName)) {
+            compareWithLeftSide(personByName);
+        }
+        if (isInTheBound(personByName)) {
+            compareWithLeftSide(personByName);
+            compareWithRightSide(personByName);
+        }
+
+    }
+
+    private boolean isInTheBound(Person personByName) {
+        return personByName.printCurrentPosition().getLeftPosition() >= 0 && personByName.printCurrentPosition().getRightPosition() <= rungs.size();
+    }
+
+    private boolean isOutOfLeftBound(Person personByName) {
+        return personByName.printCurrentPosition().getLeftPosition() < 0;
+    }
+
+    private boolean isOutOfRightBound(Person personByName) {
+        return personByName.printCurrentPosition().getRightPosition() > rungs.size();
+    }
+
+    private void compareWithLeftSide(Person personByName) {
+        if (rungs.get(personByName.printCurrentPosition().getLeftPosition())) {
+            personByName.printCurrentPosition().move(Movement.LEFT);
+        }
+    }
+
+    private void compareWithRightSide(Person person) {
+        if (rungs.get(person.printCurrentPosition().getPosition())) {
+            person.printCurrentPosition().move(Movement.RIGHT);
+        }
+    }
 }
