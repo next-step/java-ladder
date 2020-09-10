@@ -1,6 +1,10 @@
-package ladder.domain;
+package ladder.game;
 
+import ladder.domain.player.Players;
 import ladder.domain.rule.DrawRule;
+import ladder.game.Ladder;
+import ladder.game.LadderGame;
+import ladder.tdd.LadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,15 +24,10 @@ class LadderGameTest {
         // given
         Players players = Players.of("AAA,BBB,CCC");
         int rows = 5;
-        Rewards rewards = Rewards.builder()
-                .rewardInput("꽝,10000,5000")
-                .countOfPlayers(3)
-                .build();
 
         LadderGame ladderGame = LadderGame.builder()
                 .players(players)
                 .rows(rows)
-                .rewards(rewards)
                 .build();
 
         DrawRule alwaysDrawRule = () -> true;
@@ -38,17 +37,17 @@ class LadderGameTest {
 
         // then
         assertAll(
-                () -> assertThat(ladder.getRows()).hasSize(rows),
+                () -> assertThat(ladder.getLadderLines()).hasSize(rows),
                 () -> assertThat(ladder.getCountOfColumn()).isEqualTo(players.getCountOfPlayers()),
-                () -> assertThat(getLineCount(ladder.getRows(), FIRST_COLUMN)).isEqualTo(5),
-                () -> assertThat(getLineCount(ladder.getRows(), SECOND_COLUMN)).isEqualTo(0)
+                () -> assertThat(getLineCount(ladder.getLadderLines(), FIRST_COLUMN)).isEqualTo(5),
+                () -> assertThat(getLineCount(ladder.getLadderLines(), SECOND_COLUMN)).isEqualTo(0)
         );
     }
 
-    private int getLineCount(List<Row> rows, int column) {
-        return rows
+    private int getLineCount(List<LadderLine> ladderLines, int column) {
+        return ladderLines
                 .stream()
-                .mapToInt(row -> row.hasLine(column) ? 1 : 0)
+                .mapToInt(ladderLine -> ladderLine.hasLine(column) ? 1 : 0)
                 .sum();
     }
 

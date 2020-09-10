@@ -1,22 +1,30 @@
-package ladder.domain;
+package ladder.domain.player;
 
 import ladder.util.StringUtil;
+import lombok.Builder;
 
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
+    private final int position;
 
-    private Player(String name) {
+    @Builder
+    private Player(String name, int position) {
         validateName(name);
         this.name = name;
-    }
-
-    public static Player of(String name) {
-        return new Player(name);
+        this.position = position;
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public boolean matchName(String inputName) {
+        return this.name.equals(inputName);
     }
 
     private void validateName(String name) {
