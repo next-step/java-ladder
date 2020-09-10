@@ -2,9 +2,11 @@ package nextstep.ladder.domain.result;
 
 
 import nextstep.ladder.domain.user.User;
-import nextstep.ladder.view.ResultView;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static nextstep.ladder.utils.CommonConstant.NUMBER_ZERO;
 import static nextstep.ladder.utils.LadderValidation.INVALID_USER;

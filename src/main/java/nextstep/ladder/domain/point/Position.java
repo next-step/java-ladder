@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.point;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static nextstep.ladder.utils.CommonConstant.NUMBER_ONE;
 import static nextstep.ladder.utils.CommonConstant.NUMBER_ZERO;
