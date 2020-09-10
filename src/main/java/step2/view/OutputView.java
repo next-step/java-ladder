@@ -1,11 +1,6 @@
 package step2.view;
 
-import step2.model.Ladder;
-import step2.model.Line;
-import step2.model.Participants;
-import step2.model.Person;
-
-import java.util.List;
+import step2.model.*;
 
 public class OutputView {
 
@@ -13,10 +8,20 @@ public class OutputView {
     private static final String RUNG_CONDITION_TRUE = "-----|";
     private static final String RUNG_CONDITION_FALSE = "     |";
 
-    public static void printAll(Participants participants, Ladder ladderGame) {
+    public static void printAll(Participants participants, Ladder ladderGame, PrizeLocation prizeLocation) {
         Banner();
         printNameList(participants);
         printLadder(ladderGame);
+        printPrizeList(prizeLocation);
+        //askTheResultofPerson();
+    }
+
+    private static void printPrizeList(PrizeLocation prizeLocation) {
+        System.out.println(prizeLocation.toString());
+    }
+
+    private static void askTheResultofPerson() {
+        System.out.println("결과를 보고 싶은 사람은?");
     }
 
     public static void Banner() {

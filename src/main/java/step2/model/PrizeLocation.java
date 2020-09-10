@@ -2,6 +2,7 @@ package step2.model;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.collectingAndThen;
@@ -37,5 +38,12 @@ public class PrizeLocation {
         if (position >= prizePoistion.size() || position < ZERO_VALUE) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString() {
+        return prizePoistion.stream()
+                .collect(Collectors.joining(" "))
+                ;
     }
 }
