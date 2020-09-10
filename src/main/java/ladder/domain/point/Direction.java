@@ -28,7 +28,7 @@ public enum Direction {
     }
 
     private static final Map<String, Direction> directions = Collections.unmodifiableMap(Arrays.stream(values())
-            .collect(Collectors.toMap(it -> toKey(it.left, it.current), Function.identity())));
+            .collect(Collectors.toMap(direction -> toKey(direction.left, direction.current), Function.identity())));
 
     public static Direction first(PointStrategy pointStrategy) {
         return of(false, pointStrategy.next());
