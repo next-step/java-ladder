@@ -1,17 +1,17 @@
-package nextstep.domain;
+package nextstep.domain.line.strategy;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class NotAllDrawTransverseBarStrategy implements TransverseBarStrategy {
+public class AllDrawTransverseBarStrategy implements TransverseBarStrategy {
 
-    private static final boolean NOT_ALL_DRAW = false;
+    private static final boolean ALL_DRAW = true;
 
     @Override
     public List<Boolean> draw(int countOfPerson) {
         return IntStream.range(0, countOfPerson - 1)
-                .mapToObj(count -> NOT_ALL_DRAW)
+                .mapToObj(count -> ALL_DRAW)
                 .collect(Collectors.toList());
     }
 

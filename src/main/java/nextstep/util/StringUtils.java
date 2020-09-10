@@ -1,4 +1,4 @@
-package nextstep.domain;
+package nextstep.util;
 
 public class StringUtils {
 

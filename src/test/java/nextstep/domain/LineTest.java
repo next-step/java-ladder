@@ -1,5 +1,10 @@
 package nextstep.domain;
 
+import nextstep.domain.line.Line;
+import nextstep.domain.line.strategy.AllDrawTransverseBarStrategy;
+import nextstep.domain.line.strategy.NotAllDrawTransverseBarStrategy;
+import nextstep.domain.line.strategy.SwitchDrawTransverseBarStrategy;
+import nextstep.domain.line.strategy.TransverseBarStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -33,9 +38,9 @@ public class LineTest {
     @DisplayName("라인 생성")
     @ParameterizedTest
     @MethodSource("createMethod")
-    public void create(int coutOfPerson, TransverseBarStrategy transverseBarStrategy) {
-        Line expect = new Line(coutOfPerson, transverseBarStrategy);
-        Line actual = new Line(coutOfPerson, transverseBarStrategy);
+    public void create(int countOfPerson, TransverseBarStrategy transverseBarStrategy) {
+        Line expect = new Line(countOfPerson, transverseBarStrategy);
+        Line actual = new Line(countOfPerson, transverseBarStrategy);
         assertThat(actual).isEqualTo(expect);
     }
 
@@ -44,6 +49,5 @@ public class LineTest {
                 Arguments.of(5, new SwitchDrawTransverseBarStrategy(), true)
         );
     }
-
 
 }

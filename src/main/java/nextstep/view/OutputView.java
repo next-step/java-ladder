@@ -1,10 +1,14 @@
 package nextstep.view;
 
-import nextstep.domain.Line;
-import nextstep.domain.Person;
-import nextstep.domain.StringUtils;
+import nextstep.domain.ladder.*;
+import nextstep.domain.line.Line;
+import nextstep.domain.person.Participants;
+import nextstep.domain.person.Person;
+import nextstep.util.StringUtils;
 
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -17,8 +21,13 @@ public class OutputView {
 
     }
 
-    public static void printExecuteResult(List<Person> persons, List<Line> lines) {
-        System.out.println("실행결과");
+    public static void printLadder(Participants persons, LadderGameManager lines, LadderResults ladderResults) {
+        printLadder(persons.getPersons(), lines.getLines(), ladderResults.getLadderResults());
+    }
+
+    public static void printLadder(List<Person> persons, List<Line> lines, List<LadderResult> ladderResults) {
+        System.out.println();
+        System.out.println("사다리 결과");
         System.out.println();
         persons.stream()
                 .map(person -> StringUtils.padLeft(person.getName(), PAD_SIZE))
@@ -27,6 +36,9 @@ public class OutputView {
         lines.stream()
                 .map(Line::getPoints)
                 .forEach(OutputView::printLines);
+        ladderResults.stream()
+                .map(person -> StringUtils.padLeft(person.getResult(), PAD_SIZE))
+                .forEach(OutputView::printPerson);
     }
 
     private static void printPerson(String person) {
@@ -43,6 +55,27 @@ public class OutputView {
     private static void printLine(Boolean point) {
         System.out.print(point ? TRANSVERSE_BAR : EMPTY_BAR);
         System.out.print(PIPE);
+    }
+
+    public static void printLadderResult(LadderExecutionResult ladderExecutionResult) {
+        System.out.println();
+        System.out.println("실행 결과");
+        System.out.println(ladderExecutionResult.getResult());
+    }
+
+    public static void printLadderTotalResult(Participants participants, LadderResults ladderTotalResults) {
+        System.out.println();
+        System.out.println("실행 결과");
+        IntStream.range(0, participants.getPersonSize())
+                .forEach(index -> System.out.println(MessageFormat.format("{0} : {1}", participants.getPersonName(index), ladderTotalResults.getResult(index))));
+    }
+
+    public static void printLadderTotalResult(LadderExecutionResults ladderExecutionResults) {
+        System.out.println();
+        System.out.println("실행 결과");
+        ladderExecutionResults.getLadderExecutionResult()
+                .forEach((name, ladderExecutionResult) -> System.out.println(MessageFormat.format("{0} : {1}", name, ladderExecutionResult.getResult())));
+
     }
 
 }
