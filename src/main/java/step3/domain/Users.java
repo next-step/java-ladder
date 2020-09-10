@@ -27,4 +27,8 @@ public class Users {
 			Collections.swap(users, userIndex - 1, userIndex);
 		}
 	}
+	
+	public int getPositionOf(String name) {
+		return users.indexOf(new User(name));
+	}
 }

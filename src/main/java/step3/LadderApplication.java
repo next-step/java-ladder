@@ -18,12 +18,14 @@ public class LadderApplication {
 		int ladderHeight = InputView.inputLadderHeight();
 
 		Ladder ladder = game.start(ladderHeight);
-		ResultView.printCreatedLadderInfo(usersName, ladder);
+		ResultView.printCreatedLadderInfo(usersName, ladder, gameResults);
 
 		String name;
+		String result;
 		do {
 			name = InputView.inputResultUser();
-			ResultView.printGameResult(name);
+			result = game.getUserResult(name);
+			ResultView.printGameResult(name, result);
 		} while(!GAMEOVER_USERNAME.equals(name));
 	}
 }

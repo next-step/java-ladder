@@ -11,14 +11,19 @@ public class ResultView {
 
 	private ResultView() {}
 
-	public static void printCreatedLadderInfo(String[] usersName, Ladder ladder) {
+	public static void printCreatedLadderInfo(String[] usersName, Ladder ladder, String[] results) {
 		System.out.println("사다리 결과");
 
 		Arrays.stream(usersName)
 				.forEach(name -> System.out.printf("%6s", name));
 		System.out.println();
+		
 		ladder.getCreatedLadder()
 				.forEach(line -> System.out.println(ladderFormat(line.getPoints())));
+		
+		Arrays.stream(results)
+				.forEach(result -> System.out.printf("%6s", result));
+		System.out.println();
 	}
 
 	private static String ladderFormat(List<Boolean> points) {
@@ -36,9 +41,9 @@ public class ResultView {
 		return BLANK;
 	}
 
-	public static void printGameResult(String name) {
+	public static void printGameResult(String name, String result) {
 		System.out.println("실행 결과");
-
-
+		System.out.println(result);
+		
 	}
 }

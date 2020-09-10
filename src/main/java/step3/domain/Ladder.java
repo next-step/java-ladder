@@ -36,5 +36,13 @@ public class Ladder {
 	public List<Line> getCreatedLadder() {
 		return Collections.unmodifiableList(lines);
 	}
+	
+	public boolean containUser(String name) {
+		return this.getUsersName().contains(name);
+	}
+	
+	public int getUserPositionOf(String name) {
+		return users.getPositionOf(name);
+	}
 
 }
