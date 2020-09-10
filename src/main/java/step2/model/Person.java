@@ -18,7 +18,7 @@ public class Person {
         return new Person(inputName);
     }
 
-    public static Person Of(String inputName, int position) {
+    public static Person of(String inputName, int position) {
         validateNameLength(inputName);
         return new Person(inputName, Position.valueOf(position));
     }

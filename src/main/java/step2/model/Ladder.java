@@ -1,7 +1,6 @@
 package step2.model;
 
 import step2.strategy.DrawStrategy;
-import step2.strategy.RandomDrawStrategy;
 
 import java.util.List;
 import java.util.stream.Stream;

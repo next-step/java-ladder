@@ -32,7 +32,7 @@ public class PersonTest {
     @CsvSource(value = {"Jayce,5,5", "Zig,2,2"})
     @DisplayName("Person 객체 생성 테스트 : Position이 함께 입력될 경우, 정상 생성되는가?")
     void create_Person_With_Position(String name, int position, int expected) {
-        person = Person.Of(name, position);
+        person = Person.of(name, position);
         assertThat(person.printCurrentPosition().getPosition()).isEqualTo(expected);
     }
 }
