@@ -9,7 +9,13 @@ public class Ladder {
         this.ladderHeight = ladderHeight;
     }
 
-    public void setLadderLines(int userNum, LadderMakeStrategy ladderMakeStrategy) {
+    public static Ladder withLines(Ladder ladder, int userNum, LadderMakeStrategy ladderMakeStrategy) {
+        ladder.setLadderLines(userNum, ladderMakeStrategy);
+
+        return ladder;
+    }
+
+    private void setLadderLines(int userNum, LadderMakeStrategy ladderMakeStrategy) {
         this.ladderLines = LadderLines.of(ladderHeight.getLineNum(),
                 userNum, ladderMakeStrategy);
     }

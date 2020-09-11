@@ -10,6 +10,7 @@ import step04.model.RandomLadderMakeStrategy;
 import step04.model.Reward;
 import step04.model.Rewards;
 import step04.model.RouteInfo;
+
 import static step04.ui.LadderInputView.*;
 import static step04.ui.LadderResultView.*;
 
@@ -35,8 +36,8 @@ public class LadderConsoleSimulator {
     }
 
     public void createLadder() {
-        this.ladder = new Ladder(getLadderHeightFromInput());
-        ladder.setLadderLines(ladderUsers.getUserNumber(), LADDER_MAKE_POLICY);
+        this.ladder = Ladder.withLines(new Ladder(getLadderHeightFromInput())
+                , ladderUsers.getUserNumber(), LADDER_MAKE_POLICY);
     }
 
     private LadderHeight getLadderHeightFromInput() {

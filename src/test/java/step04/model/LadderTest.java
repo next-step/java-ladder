@@ -9,8 +9,8 @@ public class LadderTest {
     @Test
     void print() {
         // given
-        Ladder ladder = new Ladder(new LadderHeight(5));
-        ladder.setLadderLines(5, new RandomLadderMakeStrategy());
+        Ladder ladder = Ladder.withLines(new Ladder(new LadderHeight(5)),
+                5, new RandomLadderMakeStrategy());
 
         // when
         System.out.println(ladder.printableLadderStatus());

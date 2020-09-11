@@ -1,8 +1,5 @@
 package step04.controller;
 
-import step04.ui.LadderInputView;
-import step04.ui.LadderResultView;
-
 public class LadderApplication {
 
     public static void main(String[] args) {
