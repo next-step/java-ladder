@@ -19,7 +19,13 @@ public class Point {
     }
 
     public int play(int index) {
-        return leftPedal ? index - 1 : (rightPedal ? index + 1 : index);
+        if (leftPedal) {
+            return index - 1;
+        }
+        if (rightPedal) {
+            return index + 1;
+        }
+        return index;
     }
 
     public static Point of(boolean leftPedal, boolean rightPedal) {
