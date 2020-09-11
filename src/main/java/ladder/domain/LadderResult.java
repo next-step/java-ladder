@@ -6,6 +6,7 @@ import ladder.view.PrintResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,32 +24,6 @@ public class LadderResult {
         if(ladderGame.getPeople().size() != gameReult.size()) {
             throw new IllegalArgumentException("실행결과는 참여할 사람수와 같게 입력해주세요.");
         }
-    }
-
-    public void result() {
-        boolean flag = true;
-        while (flag) {
-            String personResult = InputUtil.returnString("결과를 보고 싶은 사람은?");
-            flag = getResult(personResult);
-        }
-    }
-
-    private boolean getResult(String personResult) {
-        if ("all".equals(personResult)) {
-            getAllResult();
-            return false;
-        }
-        PrintResult.printResult(getPersonResult(personResult));
-        return true;
-    }
-
-    private void getAllResult() {
-        List<String> result = new ArrayList<>();
-        for(int i = 0, length = ladderGame.getPeople().size(); i < length ; i ++)
-        {
-            result.add(getPersonResult(ladderGame.getPeople().get(i).getName()));
-        }
-        PrintResult.printAllResult(ladderGame.getPeople(), result);
     }
 
     public String getPersonResult(String personResult) {
@@ -89,6 +64,11 @@ public class LadderResult {
                 .orElseThrow(() -> new IllegalArgumentException("해당 사람은 게임에 존재하지 않습니다."));
     }
 
+    public LadderGame getLadderGame() {
+        return ladderGame;
+    }
 
-//    public static String
+    public List<String> getGameReult() {
+        return Collections.unmodifiableList(gameReult);
+    }
 }
