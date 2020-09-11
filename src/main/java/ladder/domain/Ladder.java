@@ -26,7 +26,7 @@ public class Ladder {
         return new Ladder(countOfPerson, lines);
     }
 
-    public static Ladder of2(List<Line> lines, int countOfPerson) {
+    public static Ladder of(List<Line> lines, int countOfPerson) {
         return new Ladder(countOfPerson,lines);
     }
 
