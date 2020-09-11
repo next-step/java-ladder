@@ -11,7 +11,7 @@ public class Player {
 
     private final String name;
 
-    public Player(String name) {
+    private Player(String name) {
         validateEmpty(name);
         validateLength(name);
         this.name = name;
