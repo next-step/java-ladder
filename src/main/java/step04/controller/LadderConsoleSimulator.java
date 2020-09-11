@@ -10,8 +10,8 @@ import step04.model.RandomLadderMakeStrategy;
 import step04.model.Reward;
 import step04.model.Rewards;
 import step04.model.RouteInfo;
-import step04.ui.LadderInputView;
-import step04.ui.LadderResultView;
+import static step04.ui.LadderInputView.*;
+import static step04.ui.LadderResultView.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,25 +20,18 @@ public class LadderConsoleSimulator {
     private static final LadderMakeStrategy LADDER_MAKE_POLICY = new RandomLadderMakeStrategy();
     private static final String ALL_USER_RESULT_INPUT = "all";
 
-    private final LadderInputView ladderInputView;
-    private final LadderResultView ladderResultView;
     private LadderUsers ladderUsers;
     private Ladder ladder;
     private Rewards rewards;
     private LadderGameResult ladderGameResult;
-
-    public LadderConsoleSimulator(LadderInputView ladderInputView, LadderResultView ladderResultView) {
-        this.ladderInputView = ladderInputView;
-        this.ladderResultView = ladderResultView;
-    }
 
     public void recruitParticipants() {
         this.ladderUsers = getLadderUsersFromInput();
     }
 
     private LadderUsers getLadderUsersFromInput() {
-        ladderInputView.printParticipantsPhrase();
-        return new LadderUsers(LadderUser.makeUsersFromNames(ladderInputView.getUserInputs()));
+        printParticipantsPhrase();
+        return new LadderUsers(LadderUser.makeUsersFromNames(getUserInputs()));
     }
 
     public void createLadder() {
@@ -47,8 +40,8 @@ public class LadderConsoleSimulator {
     }
 
     private LadderHeight getLadderHeightFromInput() {
-        ladderInputView.printLadderHeightPhrase();
-        return new LadderHeight(ladderInputView.getLadderHeight());
+        printLadderHeightPhrase();
+        return new LadderHeight(getLadderHeight());
     }
 
     public void setRewards() {
@@ -56,15 +49,15 @@ public class LadderConsoleSimulator {
     }
 
     private Rewards getRewardsFromInput() {
-        ladderInputView.printRewardPhrase();
-        return new Rewards(Reward.makeRewardsFromNames(ladderInputView.getUserInputs()), ladderUsers);
+        printRewardPhrase();
+        return new Rewards(Reward.makeRewardsFromNames(getUserInputs()), ladderUsers);
     }
 
     public void printInitStatus() {
-        ladderResultView.printLadderResultPhrase();
-        ladderResultView.printUserNames(ladderUsers.printableUserStatus());
-        ladderResultView.printLadderLines(ladder.printableLadderStatus());
-        ladderResultView.printRewards(rewards.printableRewardsStatus());
+        printLadderResultPhrase();
+        printUserNames(ladderUsers.printableUserStatus());
+        printLadderLines(ladder.printableLadderStatus());
+        printRewards(rewards.printableRewardsStatus());
     }
 
     public void simulate() {
@@ -83,9 +76,9 @@ public class LadderConsoleSimulator {
 
     public void checkResult() {
         while (true) {
-            String resultUserName = getResultUserName();
+            String resultUserName = getResultString();
             boolean isAll = resultUserName.equals(ALL_USER_RESULT_INPUT);
-            ladderResultView.printSimulateResult(ladderGameResult.getResultMap(resultUserName, isAll));
+            printSimulateResult(ladderGameResult.getResultMap(resultUserName, isAll));
 
             if (isAll) {
                 return;
@@ -93,9 +86,9 @@ public class LadderConsoleSimulator {
         }
     }
 
-    private String getResultUserName() {
-        ladderInputView.printResultUserPhrase();
-        String resultUserName = ladderInputView.getResultUserName();
+    private String getResultString() {
+        printResultUserPhrase();
+        String resultUserName = getResultUserName();
 
         if (resultUserName.equals(ALL_USER_RESULT_INPUT)) {
             return resultUserName;
@@ -103,10 +96,10 @@ public class LadderConsoleSimulator {
 
         try {
             ladderUsers.validateResultUser(resultUserName);
+            return resultUserName;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            throw e;
         }
-
-        return resultUserName;
     }
 }

@@ -16,11 +16,11 @@ public class LadderInputView {
     private static final String WHITE_SPACE_REGEX = "\\s+";
     private static final String BLANK_STRING = "";
 
-    public void printParticipantsPhrase() {
+    public static void printParticipantsPhrase() {
         System.out.println(PARTICIPANTS_PHRASE);
     }
 
-    public List<String> getUserInputs() {
+    public static List<String> getUserInputs() {
         String[] userNames = scanner.nextLine()
                 .replaceAll(WHITE_SPACE_REGEX, BLANK_STRING)
                 .split(INPUT_DELIMITER);
@@ -29,25 +29,25 @@ public class LadderInputView {
                 .collect(Collectors.toList());
     }
 
-    public void printRewardPhrase() {
+    public static void printRewardPhrase() {
         System.out.println(NEW_LINE + REWARD_PHRASE);
     }
 
-    public void printLadderHeightPhrase() {
+    public static void printLadderHeightPhrase() {
         System.out.println(NEW_LINE + LADDER_HEIGHT_PHRASE);
     }
 
-    public int getLadderHeight() {
+    public static int getLadderHeight() {
         int result = scanner.nextInt();
         scanner.nextLine();
         return result;
     }
 
-    public void printResultUserPhrase() {
+    public static void printResultUserPhrase() {
         System.out.println(NEW_LINE + RESULT_USER_PHRASE);
     }
 
-    public String getResultUserName() {
+    public static String getResultUserName() {
         return scanner.nextLine();
     }
 }

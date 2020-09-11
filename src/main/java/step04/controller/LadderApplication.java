@@ -6,8 +6,7 @@ import step04.ui.LadderResultView;
 public class LadderApplication {
 
     public static void main(String[] args) {
-        LadderConsoleSimulator ladderConsoleSimulator = new LadderConsoleSimulator(new LadderInputView(),
-                new LadderResultView());
+        LadderConsoleSimulator ladderConsoleSimulator = new LadderConsoleSimulator();
 
         ladderConsoleSimulator.recruitParticipants();
         ladderConsoleSimulator.setRewards();
