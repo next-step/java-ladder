@@ -4,6 +4,8 @@ import ladder.domain.strategy.PointStrategy;
 
 import java.util.Objects;
 
+import static java.lang.Boolean.FALSE;
+
 public class Point {
     private final Position position;
     private final Direction direction;
@@ -18,11 +20,11 @@ public class Point {
     }
 
     public Point last() {
-        return new Point(position.right(), direction.last());
+        return new Point(position.right(), direction.next(FALSE));
     }
 
     public Point next(PointStrategy pointStrategy) {
-        return new Point(position.right(), direction.next(pointStrategy));
+        return new Point(position.right(), direction.next(pointStrategy.next()));
     }
 
     public Direction getDirection() {

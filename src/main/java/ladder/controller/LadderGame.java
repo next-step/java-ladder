@@ -24,15 +24,18 @@ public class LadderGame {
 
         LadderResults ladderResults = LadderResults.of(players, rewards, ladder);
 
-        while (true) {
-            String playerName = inputResultPlayerName();
+        while (shouldContinue(ladderResults));
+    }
 
-            if (ALL_PLAYERS.equals(playerName)) {
-                printResultAll(ladderResults);
-                break;
-            }
+    private boolean shouldContinue(LadderResults ladderResults) {
+        String playerName = inputResultPlayerName();
 
-            printResultByName(playerName, ladderResults);
+        if (ALL_PLAYERS.equals(playerName)) {
+            printResultAll(ladderResults);
+            return false;
         }
+
+        printResultByName(playerName, ladderResults);
+        return true;
     }
 }
