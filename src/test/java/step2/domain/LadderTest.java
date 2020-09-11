@@ -15,14 +15,9 @@ class LadderTest {
 
 	@BeforeAll
 	static void makeLadder() {
-		List<User> users = Arrays.asList(
-				new User("DAMI")
-				, new User("mong")
-				, new User("corgi")
-				, new User("abc")
-				, new User("heee")
-		);
-		ladder = new Ladder(new Users(users));
+		String[] names = {"DAMI", "mong", "corgi", "abc", "heee"};
+
+		ladder = new Ladder(new Users(names));
 		ladder = ladder.makeLadder(7);
 	}
 

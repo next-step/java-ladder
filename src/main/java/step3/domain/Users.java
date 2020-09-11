@@ -1,4 +1,4 @@
-package step2.domain;
+package step3.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,5 +20,15 @@ public class Users {
 
 	public int size() {
 		return this.users.size();
+	}
+
+	public void move(int userIndex, boolean isMove) {
+		if (isMove) {
+			Collections.swap(users, userIndex - 1, userIndex);
+		}
+	}
+	
+	public int getPositionOf(String name) {
+		return users.indexOf(new User(name));
 	}
 }
