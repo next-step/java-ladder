@@ -4,10 +4,9 @@ import ladder.domain.line.Line;
 import ladder.domain.line.LineStrategy;
 import ladder.domain.line.SteppingStoneManualLine;
 import ladder.domain.line.SteppingStoneOthersideLine;
+import ladder.util.StringSplitUtil;
 import ladder.view.PrintResult;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
 import java.util.ArrayList;
@@ -41,13 +40,13 @@ public class LadderResultTest {
         linesValue.add(line4);
         return linesValue;
     }
-    private static List<GamePerson> people = Arrays.stream(StringSplit.splitWithDelimiter("test1, test2, test3, test4"))
+    private static List<GamePerson> people = Arrays.stream(StringSplitUtil.splitWithDelimiter("test1, test2, test3, test4"))
             .map(GamePerson::new)
             .collect(Collectors.toList());
-    private static List<String> gameReult = Arrays.stream(StringSplit.splitWithDelimiter("꽝,5000,꽝,3000"))
+    private static List<String> gameReult = Arrays.stream(StringSplitUtil.splitWithDelimiter("꽝,5000,꽝,3000"))
             .collect(Collectors.toList());
-    private static Ladder ladder = Ladder.of2(lines, 4);
-    private static LadderGame ladderGame = LadderGame.of2(people, ladder);
+    private static Ladder ladder = Ladder.of(lines, 4);
+    private static LadderGame ladderGame = LadderGame.of(people, ladder);
     private static LadderResult ladderResult = new LadderResult(gameReult, ladderGame);
 
 
