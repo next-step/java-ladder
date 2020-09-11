@@ -27,13 +27,6 @@ public class DirectionTest {
 	}
 
 	@Test
-	public void next_random_false() {
-		for (int i = 0; i < 100; i++) {
-			Direction.first(FALSE).next();
-		}
-	}
-
-	@Test
 	public void next_true() {
 		Direction next = Direction.of(TRUE, FALSE).next(TRUE);
 		assertThat(next, is(Direction.of(FALSE, TRUE)));
