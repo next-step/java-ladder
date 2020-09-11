@@ -5,7 +5,9 @@ import ladder.view.PrintResult;
 import ladder.view.ResultView;
 
 import java.util.Arrays;
+
 import java.util.Collections;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,5 +48,6 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
+
     }
 }

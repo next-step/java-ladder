@@ -23,7 +23,9 @@ public class Line {
     }
 
 
+
     private static void validationCountOfPerstion(int countOfPerson) {
+
         if (countOfPerson < MINIMUM_GAME_PEOPLE) {
             throw new IllegalArgumentException("최소 " + MINIMUM_GAME_PEOPLE + "명 이상으로 게임을 진행해주세요.");
         }
