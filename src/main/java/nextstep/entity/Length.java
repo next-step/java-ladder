@@ -5,11 +5,10 @@ public class Length {
     private final int length;
 
     private Length(int length) {
-        validate(length);
         this.length = length;
     }
 
-    private void validate(int length) {
+    private static void validate(int length) {
         if (length < 1) {
             throw new IllegalArgumentException("사다리 높이는 최소 1 단위 까지 부여할 수 있어요.");
         }
@@ -20,6 +19,7 @@ public class Length {
     }
 
     public static Length of(int length) {
+        validate(length);
         return new Length(length);
     }
 
