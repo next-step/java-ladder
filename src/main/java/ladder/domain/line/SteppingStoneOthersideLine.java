@@ -23,10 +23,6 @@ public class SteppingStoneOthersideLine implements LineStrategy {
     }
 
     private boolean next(boolean prevPoint) {
-        boolean next = true;
-        if (prevPoint) {
-            next = false;
-        }
-        return next;
+        return !prevPoint;
     }
 }
