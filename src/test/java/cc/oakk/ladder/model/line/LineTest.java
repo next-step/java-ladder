@@ -8,6 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
+    @Test
+    public void constructor_ShouldThrow_WhenBelowsOrEqualsZero() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Line(0));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Line(-1));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Line(Integer.MIN_VALUE));
+    }
+
     @ParameterizedTest
     @ValueSource(ints = { 4, 5, 6, 7, 8 })
     public void width(int width) {
@@ -17,13 +24,13 @@ public class LineTest {
     @Test
     public void connect() {
         final Line line = new Line(6);
-        assertThat(line.isConnected(0)).isEqualTo(Connection.FALSE);
+        assertThat(line.isConnected(0)).isEqualTo(false);
         line.connect(0);
-        assertThat(line.isConnected(0)).isEqualTo(Connection.TRUE);
+        assertThat(line.isConnected(0)).isEqualTo(true);
 
         line.connect(2, 4);
-        assertThat(line.isConnected(2)).isEqualTo(Connection.TRUE);
-        assertThat(line.isConnected(4)).isEqualTo(Connection.TRUE);
+        assertThat(line.isConnected(2)).isEqualTo(true);
+        assertThat(line.isConnected(4)).isEqualTo(true);
     }
 
     @Test

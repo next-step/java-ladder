@@ -1,16 +1,18 @@
 package cc.oakk.ladder.model.line.dto;
 
+import cc.oakk.ladder.model.line.Connection;
+
 import java.util.List;
 import java.util.Objects;
 
 public class ConnectionsDto {
-    private final List<ConnectionDto> connections;
+    private final List<Connection> connections;
 
-    public ConnectionsDto(List<ConnectionDto> connections) {
+    public ConnectionsDto(List<Connection> connections) {
         this.connections = connections;
     }
 
-    public List<ConnectionDto> getConnections() {
+    public List<Connection> getConnections() {
         return connections;
     }
 

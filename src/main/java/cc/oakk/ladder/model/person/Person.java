@@ -1,8 +1,10 @@
-package cc.oakk.ladder.model;
+package cc.oakk.ladder.model.person;
 
 import cc.oakk.ladder.util.StringUtils;
 import cc.oakk.ladder.view.printer.Printable;
 import cc.oakk.ladder.view.printer.Printer;
+
+import java.util.Objects;
 
 public class Person implements Printable<Person> {
     public static final int MAX_LENGTH = 5;
@@ -22,6 +24,19 @@ public class Person implements Printable<Person> {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override
