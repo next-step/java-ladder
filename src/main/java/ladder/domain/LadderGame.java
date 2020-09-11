@@ -1,6 +1,8 @@
 package ladder.domain;
 
+import ladder.util.StringSplitUtil;
 import ladder.view.PrintResult;
+import ladder.view.ResultView;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,25 +20,23 @@ public class LadderGame {
     }
 
     public static LadderGame of(String namesValue, int ladderHeight) {
-        List<GamePerson> people = Arrays.stream(StringSplit.splitWithDelimiter(namesValue))
+        List<GamePerson> people = Arrays.stream(StringSplitUtil.splitWithDelimiter(namesValue))
                 .map(GamePerson::new)
                 .collect(Collectors.toList());
         return new LadderGame(people, Ladder.of(new LadderHeight(ladderHeight), people.size()));
     }
 
-    public static LadderGame of2(List<GamePerson> people, Ladder ladder) {
+    public static LadderGame of(List<GamePerson> people, Ladder ladder) {
         return new LadderGame(people, ladder);
     }
 
 
     public void game(String resultValue) {
-        PrintResult.printNames(people);
-        PrintResult.makeLadder(ladder);
-        List<String> gameReult = Arrays.stream(StringSplit.splitWithDelimiter(resultValue))
+        List<String> gameReult = Arrays.stream(StringSplitUtil.splitWithDelimiter(resultValue))
                 .collect(Collectors.toList());
-        PrintResult.printResults(gameReult);
         LadderResult ladderResult = new LadderResult(gameReult, this);
-        ladderResult.result();
+        ResultView resultView = new ResultView(ladderResult);
+        resultView.reuslt();
 
     }
 
