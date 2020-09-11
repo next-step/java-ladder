@@ -10,10 +10,16 @@ public class LadderUser {
     private static final String EMPTY_NAME = "유저 이름은 공백이 될 수 없습니다.";
 
     private final String name;
+    private Reward reward;
 
     public LadderUser(String name) {
         validateNameLength(name);
         this.name = name;
+    }
+
+    public LadderUser withReward(Reward reward) {
+        this.reward = reward;
+        return this;
     }
 
     private void validateNameLength(String name) {
@@ -34,6 +40,10 @@ public class LadderUser {
 
     public String getName() {
         return name;
+    }
+
+    public String getRewardName() {
+        return reward.getName();
     }
 
     @Override

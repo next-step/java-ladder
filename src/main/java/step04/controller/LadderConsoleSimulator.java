@@ -9,13 +9,9 @@ import step04.model.LadderUsers;
 import step04.model.RandomLadderMakeStrategy;
 import step04.model.Reward;
 import step04.model.Rewards;
-import step04.model.RouteInfo;
 
 import static step04.ui.LadderInputView.*;
 import static step04.ui.LadderResultView.*;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class LadderConsoleSimulator {
     private static final LadderMakeStrategy LADDER_MAKE_POLICY = new RandomLadderMakeStrategy();
@@ -24,7 +20,6 @@ public class LadderConsoleSimulator {
     private LadderUsers ladderUsers;
     private Ladder ladder;
     private Rewards rewards;
-    private LadderGameResult ladderGameResult;
 
     public void recruitParticipants() {
         this.ladderUsers = getLadderUsersFromInput();
@@ -62,24 +57,14 @@ public class LadderConsoleSimulator {
     }
 
     public void simulate() {
-        RouteInfo<Integer> navigateResult = ladder.getNavigateResult();
-
-        Map<LadderUser, Reward> userRewardMap = navigateResult.getRouteMap()
-                .keySet()
-                .stream()
-                .collect(LinkedHashMap::new,
-                        (map, key) -> map.put(ladderUsers.getUserByIndex(key),
-                                rewards.getRewardByIndex(navigateResult.getValue(key))),
-                        Map::putAll);
-
-        ladderGameResult = new LadderGameResult(userRewardMap);
+        ladderUsers.withRewards(ladder.getNavigateResult(), rewards);
     }
 
     public void checkResult() {
         while (true) {
             String resultUserName = getResultString();
             boolean isAll = resultUserName.equals(ALL_USER_RESULT_INPUT);
-            printSimulateResult(ladderGameResult.getResultMap(resultUserName, isAll));
+            printSimulateResult(ladderUsers.toMap(resultUserName, isAll));
 
             if (isAll) {
                 return;

@@ -1,7 +1,9 @@
 package step04.model;
 
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderUsers {
@@ -29,6 +31,35 @@ public class LadderUsers {
         if (!users.contains(new LadderUser(resultUserName))) {
             throw new IllegalArgumentException(INVALID_RESULT_USER);
         }
+    }
+
+    public LadderUsers withRewards(RouteInfo<Integer> routeInfo, Rewards rewards) {
+        Map<Integer, Integer> routeMap = routeInfo.getRouteMap();
+        routeMap.keySet()
+                .forEach(key -> users.get(key).withReward(rewards.getRewardByIndex(routeMap.get(key))));
+
+        return this;
+    }
+
+    public Map<String, String> toMap(String resultUserName, boolean isAll) {
+        Map<String, String> stringMap = getStringMap();
+
+        if (isAll) {
+            return stringMap;
+        }
+
+        return stringMap.keySet()
+                .stream()
+                .filter(key -> key.equals(resultUserName))
+                .collect(Collectors.toMap(key -> key,
+                        stringMap::get));
+    }
+
+    private Map<String, String> getStringMap() {
+        return users.stream()
+                .collect(LinkedHashMap::new,
+                        (map, key) -> map.put(key.getName(), key.getRewardName()),
+                        Map::putAll);
     }
 
     public boolean isEqualSize(int size) {
