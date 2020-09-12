@@ -2,6 +2,7 @@ package nextstep.entity;
 
 public class Point {
 
+    private static final boolean NO_PEDAL = false;
     private final boolean leftPedal;
     private final boolean rightPedal;
 
@@ -28,7 +29,29 @@ public class Point {
         return index;
     }
 
-    public static Point of(boolean leftPedal, boolean rightPedal) {
+    public static Point of(boolean leftPedal, boolean rightPedal) throws IllegalArgumentException {
+        if (leftPedal && rightPedal) {
+            throw new IllegalArgumentException("좌측과 우측 모두 페달을 생성할 수 없습니다.");
+        }
         return new Point(leftPedal, rightPedal);
+    }
+
+    public Point next(boolean nextRightPedal) {
+        if (this.rightPedal) {
+            return Point.of(true, NO_PEDAL);
+        }
+        return Point.of(NO_PEDAL, nextRightPedal);
+    }
+
+    public static Point getStartPoint(boolean nextRightPedal) {
+        return Point.of(NO_PEDAL, nextRightPedal);
+    }
+
+    public Point getLastPoint() {
+        return Point.of(this.rightPedal, NO_PEDAL);
+    }
+
+    public static Point getSinglePoint() {
+        return Point.of(NO_PEDAL, NO_PEDAL);
     }
 }
