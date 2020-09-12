@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Steps {
+    private static final int MIN_COUNT_OF_POINTS = 2;
 
     private final List<Step> steps;
 
@@ -24,7 +25,7 @@ public class Steps {
     }
 
     private static void validateCountOfSteps(int countOfSteps) {
-        if (countOfSteps < 2) {
+        if (countOfSteps < MIN_COUNT_OF_POINTS) {
             throw new IllegalArgumentException("step은 최소 두 개 이상입니다.");
         }
     }
@@ -50,8 +51,9 @@ public class Steps {
     }
 
     public int move(int position) {
-        validPosition(position);
-        return steps.get(position).move();
+        int nextPosition = steps.get(position).move();
+        validPosition(nextPosition);
+        return nextPosition;
     }
 
     private void validPosition(int position) {
