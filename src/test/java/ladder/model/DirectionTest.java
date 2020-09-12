@@ -2,8 +2,7 @@ package ladder.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class DirectionTest {
 
@@ -30,14 +29,38 @@ public class DirectionTest {
     @Test
     public void move_right() {
         // given
-        Direction left = new Direction(false, false);
+        Direction right = new Direction(false, true);
 
         // when
-        int moveResult = left.move();
+        int moveResult = right.move();
 
         // then
         assertThat(moveResult).isEqualTo(1);
 
+    }
+
+    @Test
+    public void next_when_has_right() {
+        // given
+        Direction left = new Direction(false, true);
+
+        // when
+        Direction result = left.next(true);
+
+        // then
+        assertThat(result).isEqualTo(new Direction(true, false));
+    }
+
+    @Test
+    public void next_when_does_not_has_right() {
+        // given
+        Direction none = new Direction(false, false);
+
+        // when
+        Direction result = none.next(true);
+
+        // then
+        assertThat(result).isEqualTo(new Direction(false, true));
     }
 
 }

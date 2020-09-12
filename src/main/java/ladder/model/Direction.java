@@ -1,5 +1,7 @@
 package ladder.model;
 
+import java.util.Objects;
+
 public class Direction {
 
     private final boolean left;
@@ -27,6 +29,27 @@ public class Direction {
         }
 
         return 0;
+    }
+
+    public Direction next(boolean generateRight) {
+        if (this.right) {
+            return new Direction(true, false);
+        }
+        return new Direction(false, generateRight);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Direction direction = (Direction) o;
+        return left == direction.left &&
+                right == direction.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 
 }
