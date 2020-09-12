@@ -24,14 +24,19 @@ public class InputView {
     public static int receiveLadderHeight() {
         System.out.println();
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
+        return nextInt();
     }
 
     public static String receivePersonForResult() {
         System.out.println();
         System.out.println("결과를 보고 싶은 사람은?");
-        scanner.nextLine();
         return scanner.nextLine();
+    }
+
+    public static int nextInt() {
+        int result = scanner.nextInt();
+        scanner.nextLine();
+        return result;
     }
 
 }
