@@ -15,14 +15,17 @@ public class Line {
         steps = new ArrayList<>();
 
         for (int i = MIN_INDEX; i < countOfStep; i++) {
-            Boolean step = !hasBeforeStep(i) && generateStrategy.generate();
-            steps.add(step);
+            steps.add(generateStep(i, generateStrategy));
         }
     }
 
-    private boolean hasBeforeStep(int position) {
-        validateIndex(position);
-        return position > 0 && steps.get(position - STEP_INTERVAL);
+    private boolean generateStep(int pointIndex, LadderGenerateStrategy generateStrategy) {
+        return !hasBeforeStep(pointIndex) && generateStrategy.generate();
+    }
+
+    private boolean hasBeforeStep(int pointIndex) {
+        validateIndex(pointIndex);
+        return pointIndex > 0 && steps.get(pointIndex - STEP_INTERVAL);
     }
 
     private boolean hasNextStep(int pointIndex) {
