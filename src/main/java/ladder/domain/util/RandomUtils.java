@@ -16,6 +16,10 @@ public class RandomUtils {
 		return RANDOM.nextInt(MAX_VALUE) == MIN_VALUE;
 	}
 
+	public static boolean generatePoint() {
+		return booleanValue();
+	}
+
 	public static int intValue(int maxValue) {
 		return RANDOM.nextInt(maxValue);
 	}

@@ -5,7 +5,8 @@ import java.util.stream.IntStream;
 
 import lombok.NoArgsConstructor;
 
-import ladder.domain.line.Line;
+import ladder.domain.line.LadderLine;
+
 
 @NoArgsConstructor
 public class ShapeFactory {
@@ -17,7 +18,7 @@ public class ShapeFactory {
 																			 .collect(Collectors.joining());
 	private static final Shape NEW_LINE_DRAW_SHAPE = () -> Shape.NEW_LINE;
 
-	public static Shape getBy(Line line) {
+	public static Shape getBy(LadderLine line) {
 		if (!line.hasNext()) {
 			return NEW_LINE_DRAW_SHAPE;
 		}

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 import ladder.domain.ladder.Ladder;
 import ladder.domain.ladder.Names;
-import ladder.domain.line.Line;
+import ladder.domain.line.LadderLine;
 import ladder.domain.playing.Winnings;
 import ladder.view.draw.shape.Shape;
 import ladder.view.draw.shape.ShapeFactory;
@@ -44,10 +44,10 @@ public class DrawingExecutor {
 
 		return IntStream.range(0, height)
 						.mapToObj(i -> drawLine(ladder.getLine(i)))
-						.collect(joining());
+						.collect(joining("\n"));
 	}
 
-	private static String drawLine(Line line) {
+	private static String drawLine(LadderLine line) {
 		int width = line.getWidth();
 
 		return IntStream.range(0, width)
