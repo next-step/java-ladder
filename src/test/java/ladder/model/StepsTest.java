@@ -70,5 +70,4 @@ class StepsTest {
         assertThat(result1).isEqualTo(1);
         assertThat(result2).isEqualTo(0);
     }
-
 }

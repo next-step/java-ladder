@@ -13,10 +13,9 @@ public class Lines {
     public Lines(int height, int countOfPoints, LadderGenerateStrategy ladderGenerateStrategy) {
         validateLines(height, countOfPoints);
         lines = new ArrayList<>();
-        int countOfStep = countOfPoints - 1;
 
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfStep, ladderGenerateStrategy));
+            lines.add(new Line(countOfPoints, ladderGenerateStrategy));
         }
     }
 
