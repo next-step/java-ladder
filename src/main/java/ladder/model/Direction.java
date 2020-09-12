@@ -32,10 +32,14 @@ public class Direction {
     }
 
     public Direction next(boolean generateRight) {
-        if (this.right) {
+        if (isRight()) {
             return new Direction(true, false);
         }
         return new Direction(false, generateRight);
+    }
+
+    public boolean isRight() {
+        return right;
     }
 
     @Override
