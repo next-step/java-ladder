@@ -4,12 +4,13 @@ import ladder.domain.Point;
 
 import java.util.Optional;
 
-public class SteppingStoneManualLine implements LineStrategy {
+public class SteppingStoneOthersideLine implements LineStrategy {
+
     @Override
     public Point makePoint(Point prevPoint, int lastValue) {
         Optional<Point> opPoint = Optional.ofNullable(prevPoint);
         if (!opPoint.isPresent()) {
-            return new Point(false, true);
+            return new Point(false, false);
         }
 
         boolean next = next(prevPoint.isNextPoint());

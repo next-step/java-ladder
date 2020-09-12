@@ -6,7 +6,14 @@ public class LadderHeight {
     private int ladderHeigth;
 
     public LadderHeight(int ladderHeigth) {
+        validationLadderHeight(ladderHeigth);
         this.ladderHeigth = ladderHeigth;
+    }
+
+    private void validationLadderHeight(int ladderHeigth) {
+        if(ladderHeigth < 0) {
+            throw new IllegalArgumentException("음수는 입력이 불가능합니다.");
+        }
     }
 
     public int getLadderHeigth() {

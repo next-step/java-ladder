@@ -9,7 +9,7 @@ public class ManualLineTruePoint implements LineStrategy {
         return truePoint();
     }
 
-    public Point truePoint() {
+    private Point truePoint() {
         return new Point(true, true);
     }
 }

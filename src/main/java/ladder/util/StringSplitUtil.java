@@ -1,9 +1,9 @@
-package ladder.domain;
+package ladder.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringSplit {
+public class StringSplitUtil {
     private static final String DELIMITER = ", |:|,";
     private static final int CUSTOM_DELIMITER_LOCATION = 1;
     private static final int START_CALCULATOR_LOCATION = 2;

@@ -26,6 +26,11 @@ public class Ladder {
         return new Ladder(countOfPerson, lines);
     }
 
+    public static Ladder of(List<Line> lines, int countOfPerson) {
+        return new Ladder(countOfPerson,lines);
+    }
+
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

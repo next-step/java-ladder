@@ -28,8 +28,8 @@ public class LadderGameTest {
     @Test
     @DisplayName("리스트 같은지 체크")
     public void checkList() {
-        LadderGame ladderGame = LadderGame.of("test1, test2, test3, test4, test", 1);
-        assertThat(ladderGame.getNames()).isEqualTo(names);
+        LadderGame ladderGame = LadderGame.of("test1, test2, test3, test4, test5", 1);
+        assertThat(ladderGame.getPeople()).isEqualTo(names);
     }
 
     @Test

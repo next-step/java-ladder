@@ -49,9 +49,19 @@ public class LineTest {
     @Test
     @DisplayName("징검다리테스트")
     public void SteppingStoneManualLineTest() {
-        LineStrategy lineStrategy3 = new SteppingStoneManualLine();
-        Line line = Line.of(7, lineStrategy3);
+        LineStrategy steppingStoneManualLine = new SteppingStoneManualLine();
+        LineStrategy steppingStoneOthersideLine = new SteppingStoneOthersideLine();
+        Line line = Line.of(5, steppingStoneManualLine);
         PrintResult.makeLine(line);
+        Line line1 = Line.of(5, steppingStoneOthersideLine);
+        PrintResult.makeLine(line1);
+        Line line2 = Line.of(5, steppingStoneManualLine);
+        PrintResult.makeLine(line2);
+        Line line3 = Line.of(5, steppingStoneOthersideLine);
+        PrintResult.makeLine(line3);
+        Line line4 = Line.of(5, steppingStoneManualLine);
+        PrintResult.makeLine(line4);
+
     }
 
 }

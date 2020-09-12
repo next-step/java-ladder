@@ -28,11 +28,12 @@ public class RandomLine implements LineStrategy {
         return new Point(prevPoint.isNextPoint(), nextPoint);
     }
 
-    public Point firstPoint() {
+
+    private Point firstPoint() {
         return new Point(false, random.nextBoolean());
     }
 
-    public Point lastPoint(Point prevPoint) {
+    private Point lastPoint(Point prevPoint) {
         return new Point(prevPoint.isNextPoint(), false);
     }
 }
