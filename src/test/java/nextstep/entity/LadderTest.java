@@ -16,7 +16,9 @@ class LadderTest {
         Personnel personnel = Personnel.of(1);
         Length length = Length.of(1);
         List<List<Boolean>> expected = Collections.singletonList(Collections.singletonList(Boolean.FALSE));
-        then(Ladder.of(personnel, length).getLinesStatus()).isEqualTo(expected);
+        Ladder ladder = Ladder.of();
+        ladder.initLadder(personnel, length);
+        then(ladder.getLinesStatus()).isEqualTo(expected);
     }
 
     @Test
@@ -24,12 +26,12 @@ class LadderTest {
     void play() {
         Personnel personnel = Personnel.of(1);
         Length length = Length.of(1);
-        Ladder ladder = Ladder.of(personnel, length);
-
+        Ladder ladder = Ladder.of();
         String entryName = "ent";
         String arrivalName = "arr";
         Entries startEntries = Entries.of(Collections.singletonList(entryName));
         Entries arrivalEntries = Entries.of(Collections.singletonList(arrivalName));
+        ladder.initLadder(personnel, length);
 
         then(ladder.play(startEntries, arrivalEntries).findArrivalName(entryName)).isEqualTo(arrivalName);
     }
