@@ -16,6 +16,19 @@ class LadderTest {
         Personnel personnel = Personnel.of(1);
         Length length = Length.of(1);
         List<List<Boolean>> expected = Collections.singletonList(Collections.singletonList(Boolean.FALSE));
-        then(Ladder.of(personnel, length).getLinesStatus()).isEqualTo(expected);
+        Ladder ladder = Ladder.of();
+        ladder.initLadder(personnel, length);
+        then(ladder.getLinesStatus()).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("인원이 1인 경우 게임 결과 검증")
+    void play() {
+        Personnel personnel = Personnel.of(1);
+        Length length = Length.of(1);
+        Ladder ladder = Ladder.of();
+        ladder.initLadder(personnel, length);
+
+        then(ladder.play(0)).isEqualTo(0);
     }
 }

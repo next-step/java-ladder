@@ -1,18 +1,16 @@
 package nextstep.dto;
 
-import nextstep.entity.Ladder;
-
 import java.util.List;
 
 public class LadderDTO {
 
-    private final Ladder ladder;
+    private final List<List<Boolean>> ladder;
 
-    public LadderDTO(Ladder ladder) {
+    public LadderDTO(List<List<Boolean>> ladder) {
         this.ladder = ladder;
     }
 
     public List<List<Boolean>> getLadder() {
-        return this.ladder.getLinesStatus();
+        return this.ladder;
     }
 }

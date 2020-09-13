@@ -1,41 +1,47 @@
 package nextstep.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
 
-    private static final boolean FIRST_PEDAL = false;
-    private static final int START_INDEX = 0;
+    private static final int START_INDEX = 1;
     private static final Random RANDOM = new Random();
-    private final List<Point> points;
+    private final List<Point> points = new ArrayList<>();
 
     private Line(int personnel) {
-        AtomicBoolean previousHasPedal = new AtomicBoolean(FIRST_PEDAL);
-        this.points = IntStream.range(START_INDEX, personnel).mapToObj(index -> {
-            if (index == START_INDEX) {
-                return Point.of(FIRST_PEDAL);
-            }
-            boolean currentHasPedal = this.generatePedal(previousHasPedal.get());
-            previousHasPedal.set(currentHasPedal);
-            return Point.of(currentHasPedal);
-        }).collect(Collectors.toList());
+        points.add(Point.getStartPoint(RANDOM.nextBoolean()));
+        IntStream.range(START_INDEX, personnel - 1)
+                .forEach(index -> points.add(getCurrentLastPoint().next(RANDOM.nextBoolean())));
+        points.add(getCurrentLastPoint().getLastPoint());
+    }
+
+    private Line() {
+        points.add(Point.getSinglePoint());
+    }
+
+    private Point getCurrentLastPoint() {
+        return points.get(points.size() - 1);
     }
 
     public List<Boolean> getPedalsStatus() {
         return this.points.stream()
-                .map(Point::isPedalExist)
+                .map(Point::hasLeftPedal)
                 .collect(Collectors.toList());
     }
 
-    private boolean generatePedal(boolean hasPedal) {
-        return !hasPedal && RANDOM.nextBoolean();
+    public int play(int index) {
+        Point point = points.get(index);
+        return point.play(index);
     }
 
     public static Line of(int personnel) {
+        if (personnel == 1) {
+            return new Line();
+        }
         return new Line(personnel);
     }
 }

@@ -1,5 +1,7 @@
 package nextstep.dto;
 
+import java.util.Objects;
+
 public class EntryDTO implements DTO {
 
     private final String name;
@@ -18,5 +20,24 @@ public class EntryDTO implements DTO {
 
     public String getName(){
         return name;
+    }
+
+    public static EntryDTO duplicate(EntryDTO entryDTO) {
+        return new EntryDTO(entryDTO.name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EntryDTO entryDTO = (EntryDTO) o;
+
+        return Objects.equals(name, entryDTO.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }
