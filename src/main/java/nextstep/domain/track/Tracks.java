@@ -29,7 +29,7 @@ public class Tracks {
         return findTrack(new Track(trackNumber)).isTrackNumber(tracks.size() - 1);
     }
 
-    private Track findTrack(Track searchTarget) {
+    public Track findTrack(Track searchTarget) {
         return tracks.stream()
                 .filter(searchTarget::equals)
                 .findAny()

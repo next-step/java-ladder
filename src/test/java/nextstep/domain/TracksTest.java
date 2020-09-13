@@ -1,5 +1,6 @@
 package nextstep.domain;
 
+import nextstep.domain.track.Track;
 import nextstep.domain.track.Tracks;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,14 @@ public class TracksTest {
     public void isLastTrack() {
         Tracks tracks = new Tracks(5);
         assertThat(tracks.isLastTrack(4)).isTrue();
+    }
+
+    @DisplayName("트랙 찾기")
+    @Test
+    public void findTrack() {
+        Tracks tracks = new Tracks(5);
+        Track track = new Track(3);
+        assertThat(tracks.findTrack(track)).isEqualTo(track);
     }
 
 }
