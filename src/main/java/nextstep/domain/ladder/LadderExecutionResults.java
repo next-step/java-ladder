@@ -16,8 +16,8 @@ public class LadderExecutionResults {
         return ladderResult;
     }
 
-    public LadderResult getLadderResultByName(Person person) {
-        return ladderResult.get(person);
+    public LadderResult getLadderResultByName(String name) {
+        return ladderResult.get(new Person(name));
     }
 
 }
