@@ -17,7 +17,7 @@ class LineTest {
 	@Test
 	void getPoints() {
 		Line line = Line.init(5);
-		List<Boolean> expected = Arrays.asList(true, true);
+		List<Point> expected = Arrays.asList(new Point(true), new Point(true));
 		assertThat(line.getPoints()).doesNotContainSequence(expected);
 	}
 
@@ -25,7 +25,13 @@ class LineTest {
 	@ParameterizedTest
 	@CsvSource(value = {"0:false", "1:true", "2:false", "3:false", "4:false"}, delimiter = ':')
 	void pointOrNotTest(int index, boolean expected) {
-		List<Boolean> points = new ArrayList<>(Arrays.asList(false, true, false, false, false));
+		List<Point> points = new ArrayList<>(Arrays.asList(
+				new Point(false),
+				new Point(true),
+				new Point(false),
+				new Point(false),
+				new Point(false)
+		));
 		Line line = new Line(points);
 		assertThat(line.isPoint(index)).isEqualTo(expected);
 	}

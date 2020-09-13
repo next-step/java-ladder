@@ -1,6 +1,7 @@
 package step4.view;
 
 import step4.domain.Ladder;
+import step4.domain.Point;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,10 +28,10 @@ public class ResultView {
 		System.out.println();
 	}
 
-	private static String ladderFormat(List<Boolean> points) {
+	private static String ladderFormat(List<Point> points) {
 		StringBuilder sb = new StringBuilder();
-		for (Boolean isPoint : points) {
-			sb.append(pointOrBlank(isPoint));
+		for (Point point : points) {
+			sb.append(pointOrBlank(point.isPoint()));
 		}
 		return sb.toString();
 	}

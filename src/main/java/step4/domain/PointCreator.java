@@ -14,4 +14,8 @@ public class PointCreator {
 		}
 		return RANDOM.nextBoolean();
 	}
+
+	public static boolean createPoint() {
+		return RANDOM.nextBoolean();
+	}
 }

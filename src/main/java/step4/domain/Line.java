@@ -4,28 +4,38 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static step4.domain.PointCreator.createPoint;
-
 public class Line {
-	private final List<Boolean> points;
+	private final List<Point> points;
 
-	public Line(List<Boolean> points) {
+	public Line(List<Point> points) {
 		this.points = points;
 	}
 
 	public static Line init(int countOfPerson) {
-		List<Boolean> points = new ArrayList<>();
-		for (int i = 0; i < countOfPerson; i++) {
-			points.add(createPoint(points));
-		}
-		return new Line(points);
+		List<Point> points2 = new ArrayList<>();
+		Point point = initFirst(points2);
+		initBody(countOfPerson, point, points2);
+		return new Line(points2);
 	}
 
-	public List<Boolean> getPoints() {
-		return Collections.unmodifiableList(this.points);
+	private static Point initFirst(List<Point> points) {
+		Point point = Point.first();
+		points.add(point);
+		return point;
+	}
+
+	private static void initBody(int countOfPerson, Point point, List<Point> points) {
+		for (int i = 1; i < countOfPerson; i++) {
+			point = point.next();
+			points.add(point);
+		}
+	}
+
+	public List<Point> getPoints() {
+		return Collections.unmodifiableList(points);
 	}
 
 	public boolean isPoint(int index) {
-		return points.get(index);
+		return points.get(index).isPoint();
 	}
 }
