@@ -5,6 +5,11 @@ import nextstep.domain.line.Lines;
 import nextstep.domain.line.strategy.SwitchDrawTransverseBarStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,23 +24,37 @@ public class LinesTest {
     }
 
     @DisplayName("왼쪽으로 갈수 있는지 확인")
-    @Test
-    public void isPossibleMoveLeftTrack() {
+    @ParameterizedTest
+    @MethodSource("isPossibleMoveLeftTrackMethod")
+    public void isPossibleMoveLeftTrack(int lineNumber, int trackNumber, boolean result) {
         Lines lines = new Lines(LineFactory.createLines(5, 3, new SwitchDrawTransverseBarStrategy()));
-        assertThat(lines.isPossibleMoveLeftTrack(0, 1)).isTrue();
-        assertThat(lines.isPossibleMoveLeftTrack(0, 2)).isFalse();
-        assertThat(lines.isPossibleMoveLeftTrack(0, 3)).isTrue();
-        assertThat(lines.isPossibleMoveLeftTrack(0, 4)).isFalse();
+        assertThat(lines.isPossibleMoveLeftTrack(lineNumber, trackNumber)).isEqualTo(result);
+    }
+
+    private static Stream<Arguments> isPossibleMoveLeftTrackMethod() {
+        return Stream.of(
+                Arguments.of(0, 1, true),
+                Arguments.of(0, 2, false),
+                Arguments.of(0, 3, true),
+                Arguments.of(0, 4, false)
+        );
     }
 
     @DisplayName("오른쪽으로 갈수 있는지 확인")
-    @Test
-    public void isPossibleMoveRightTrack() {
+    @ParameterizedTest
+    @MethodSource("isPossibleMoveRightTrackMethod")
+    public void isPossibleMoveRightTrack(int lineNumber, int trackNumber, boolean result) {
         Lines lines = new Lines(LineFactory.createLines(5, 3, new SwitchDrawTransverseBarStrategy()));
-        assertThat(lines.isPossibleMoveRightTrack(0, 0)).isTrue();
-        assertThat(lines.isPossibleMoveRightTrack(0, 1)).isFalse();
-        assertThat(lines.isPossibleMoveRightTrack(0, 2)).isTrue();
-        assertThat(lines.isPossibleMoveRightTrack(0, 3)).isFalse();
+        assertThat(lines.isPossibleMoveRightTrack(lineNumber, trackNumber)).isEqualTo(result);
+    }
+
+    private static Stream<Arguments> isPossibleMoveRightTrackMethod() {
+        return Stream.of(
+                Arguments.of(0, 0, true),
+                Arguments.of(0, 1, false),
+                Arguments.of(0, 2, true),
+                Arguments.of(0, 3, false)
+        );
     }
 
 }
