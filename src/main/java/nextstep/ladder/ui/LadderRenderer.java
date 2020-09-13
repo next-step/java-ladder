@@ -4,7 +4,7 @@ import nextstep.ladder.Players;
 import nextstep.ladder.Prizes;
 import nextstep.ladder.biz.Ladder;
 import nextstep.ladder.biz.LadderLine;
-import nextstep.ladder.biz.PointDirection;
+import nextstep.ladder.biz.Point;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,13 +38,13 @@ public class LadderRenderer implements Renderer {
     }
   }
 
-  private String pointToBridge(List<PointDirection> points) {
+  private String pointToBridge(List<Point> points) {
     return points.stream()
             .map(this::toBridge)
             .collect(Collectors.joining(PIER, PIER, ""));
   }
 
-  private String toBridge(PointDirection point) {
+  private String toBridge(Point point) {
     return point.hasPoint() ? BRIDGE : AIR;
   }
 

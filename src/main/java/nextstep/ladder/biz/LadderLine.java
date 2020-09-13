@@ -7,14 +7,14 @@ import static nextstep.ladder.biz.RandomGenerator.nextBoolean;
 
 public class LadderLine {
 
-  private List<PointDirection> points;
+  private List<Point> points;
 
-  public LadderLine(List<PointDirection> points) {
+  public LadderLine(List<Point> points) {
     this.points = points;
   }
 
   // Add ME
-  public List<PointDirection> getPoints() {
+  public List<Point> getPoints() {
     return points;
   }
 
@@ -23,20 +23,20 @@ public class LadderLine {
   }
 
   public static LadderLine init(int sizeOfPerson) {
-    List<PointDirection> points = new ArrayList<>();
-    PointDirection point = initFirst(points);
+    List<Point> points = new ArrayList<>();
+    Point point = initFirst(points);
     point = initBody(sizeOfPerson, points, point);
     initLast(points, point);
     return new LadderLine(points);
   }
 
-  private static PointDirection initFirst(List<PointDirection> points) {
-    PointDirection first = PointDirection.first(nextBoolean());
+  private static Point initFirst(List<Point> points) {
+    Point first = Point.first(nextBoolean());
     points.add(first);
     return first;
   }
 
-  private static PointDirection initBody(int sizeOfPerson, List<PointDirection> points, PointDirection point) {
+  private static Point initBody(int sizeOfPerson, List<Point> points, Point point) {
     for (int i = 1; i < sizeOfPerson - 1; i++) {
       point = point.next();
       points.add(point);
@@ -44,7 +44,7 @@ public class LadderLine {
     return point;
   }
 
-  private static void initLast(List<PointDirection> points, PointDirection previousPoint) {
+  private static void initLast(List<Point> points, Point previousPoint) {
     points.add(previousPoint.last());
   }
 

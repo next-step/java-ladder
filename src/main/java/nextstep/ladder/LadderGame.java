@@ -2,7 +2,6 @@ package nextstep.ladder;
 
 import nextstep.ladder.biz.Chessmen;
 import nextstep.ladder.biz.Ladder;
-import nextstep.ladder.biz.LadderGenerator;
 import nextstep.ladder.ui.LadderRenderer;
 import nextstep.ladder.ui.ViewInput;
 import nextstep.ladder.ui.ViewOutput;
@@ -71,7 +70,7 @@ public class LadderGame {
     Prizes prizes = ladderGame.responsePrizes(players.size());
 
     // 사다리 데이터 생성
-    Ladder ladder = LadderGenerator.generate(players.size(), ladderHeight);
+    Ladder ladder = new Ladder(players.size(), ladderHeight);
 
     // 출력
     ViewOutput.printLadder(new LadderRenderer(players, ladder, prizes));
