@@ -3,7 +3,7 @@ package nextstep.ladder.ui;
 import nextstep.ladder.Players;
 import nextstep.ladder.Prizes;
 import nextstep.ladder.biz.Ladder;
-import nextstep.ladder.biz.Line;
+import nextstep.ladder.biz.LadderLine;
 import nextstep.ladder.biz.Point;
 
 import java.util.List;
@@ -33,19 +33,15 @@ public class LadderRenderer implements Renderer {
   }
 
   public void renderLadder(Ladder ladder) {
-    for (Line line : ladder.getLines()) {
-      renderLadder(line);
+    for (LadderLine line : ladder.getLines()) {
+      System.out.printf("%4s%s\n", "", pointToBridge(line.getPoints()));
     }
-  }
-
-  private void renderLadder(Line line) {
-    System.out.printf("%4s%s\n", "", pointToBridge(line.getPoints()));
   }
 
   private String pointToBridge(List<Point> points) {
     return points.stream()
             .map(this::toBridge)
-            .collect(Collectors.joining(PIER, PIER, PIER));
+            .collect(Collectors.joining(PIER, PIER, ""));
   }
 
   private String toBridge(Point point) {

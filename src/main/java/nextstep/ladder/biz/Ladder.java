@@ -1,27 +1,30 @@
 package nextstep.ladder.biz;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
 
-  private List<Line> lines;
+  private List<LadderLine> lines = new ArrayList<>();
 
-  public Ladder(List<Line> lines) {
-    this.lines = lines;
+  public Ladder(int countOfPerson, int ladderHeight) {
+    for (int i = 0; i < ladderHeight; i++) {
+      lines.add(LadderLine.init(countOfPerson));
+    }
   }
 
-  public List<Line> getLines() {
+  public List<LadderLine> getLines() {
     return Collections.unmodifiableList(lines);
   }
 
-  int ladderHeight() {
-    return lines.size();
-  }
-
   public Chessmen play(Chessmen chessmen) {
-    return lines.stream()
-            .reduce(chessmen, Chessmen::cast, (c1, c2) -> c2);
+    int result = chessmen.getLocation();
+    for (LadderLine line : lines) {
+      result = line.move(result);
+    }
+
+    return chessmen.move(result);
   }
 
   @Override

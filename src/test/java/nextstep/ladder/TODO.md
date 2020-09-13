@@ -21,4 +21,12 @@
 1. 사다리에 결과값 출력하기 (#13)
 1. 일급 일급컬렉션으로 - Players (#14) 
 1. 일급 일급컬렉션으로 - Prizes (#15)
-1. 결과를 만드는 행위를 Line, Ladder 에서 하도록 수정하자. (#16) 
+1. 결과를 만드는 행위를 Line, Ladder 에서 하도록 수정하자. (#16)
+
+
+
+
+## 4단계 - 사다리(리팩토링)
+1. DirectionTest (#41)
+1. PointTest to PointDirection(#42)
+1. LadderLineTest (#43) 

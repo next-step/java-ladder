@@ -33,45 +33,9 @@ public class Chessmen {
     return location;
   }
 
-  public Chessmen cast(Line line) {
-    return line.castingLine(this).getPoints().stream()
-            .filter(Point::hasPoint)
-            .findFirst()
-            .map(this::move)
-            .orElse(this);
-  }
-
-  private Chessmen move(Point point) {
-    if (isHere(point)) {
-      return moveRight();
-    } else if (isLeft(point)) {
-      return moveLeft();
-    }
-
-    return this;
-  }
-
-  private boolean isLeft(Point point) {
-    if (isZeroIndex()) {
-      return false;
-    }
-    return point.isLeftPosition(this.location);
-  }
-
-  private boolean isZeroIndex() {
-    return location == 0;
-  }
-
-  private boolean isHere(Point point) {
-    return point.isHerePosition(this.location);
-  }
-
-  Chessmen moveLeft() {
-    return Chessmen.of(player, location -1);
-  }
-
-  Chessmen moveRight() {
-    return Chessmen.of(player, location + 1);
+  // Add ME
+  Chessmen move(int location) {
+    return Chessmen.of(player, location);
   }
 
   public static Chessmen of(Player player) {

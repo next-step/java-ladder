@@ -1,61 +1,53 @@
 package nextstep.ladder.biz;
 
-import java.util.Objects;
-
 public class Point {
 
-  private final boolean point;
-  private int position;
+  private final int index;
+  private final Direction direction;
 
-  Point(boolean point, int position) {
-    this.point = point;
-    this.position = position;
+  private Point(int index, Direction direction) {
+    this.index = index;
+    this.direction = direction;
   }
 
+  public int move() {
+    if (direction.isRight()) {
+      return index + 1;
+    }
+
+    if (direction.isLeft()) {
+      return index - 1;
+    }
+
+    return this.index;
+  }
+
+  // Add ME
   public boolean hasPoint() {
-    return point;
+    return direction.isRight();
   }
 
-  public boolean isLeftPosition(int location) {
-    return position == location -1;
+  public Point next() {
+    return new Point(index + 1, direction.next());
   }
 
-  public boolean isHerePosition(int location) {
-    return position == location;
+  public Point next(boolean nextRight) {
+    return new Point(index + 1, direction.next(nextRight));
   }
 
-  public static Point of(boolean hasPoint) {
-    return new Point(hasPoint, 0);
+  public Point last() {
+    return new Point(index + 1, direction.last());
   }
 
-  public static Point of(boolean hasPoint, int position) {
-    return new Point(hasPoint, position);
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Point point1 = (Point) o;
-    return point == point1.point &&
-            position == point1.position;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(point, position);
+  public static Point first(boolean right) {
+    return new Point(0, Direction.first(right));
   }
 
   @Override
   public String toString() {
-    return "Point{" +
-            "point=" + point +
-            ", position=" + position +
+    return "PointDirection{" +
+            "index=" + index +
+            ", direction=" + direction +
             '}';
   }
-
 }
