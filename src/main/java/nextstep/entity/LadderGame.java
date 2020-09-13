@@ -7,8 +7,8 @@ public class LadderGame {
     private final Entries startEntries;
     private final Ladder ladder;
 
-    private LadderGame(Entries startEntries, Length length) {
-        this.startEntries = startEntries;
+    private LadderGame(List<String> startEntries, Length length) {
+        this.startEntries = Entries.of(startEntries);
         this.ladder = Ladder.of();
         initLadder(length);
     }
@@ -27,7 +27,7 @@ public class LadderGame {
         return arrivalEntries.getEntryByIndex(ladder.play(targetIndex));
     }
 
-    public static LadderGame of(Entries startEntries, Length length) {
+    public static LadderGame of(List<String> startEntries, Length length) {
         return new LadderGame(startEntries, length);
     }
 }

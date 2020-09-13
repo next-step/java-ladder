@@ -17,10 +17,9 @@ class LadderGameTest {
     @BeforeEach
     public void setUp() {
         entryName = "ent";
-        Entries startEntries = Entries.of(Collections.singletonList(entryName));
         Length length = Length.of(1);
 
-        ladderGame = LadderGame.of(startEntries, length);
+        ladderGame = LadderGame.of(Collections.singletonList(entryName), length);
     }
 
     @Test
