@@ -3,6 +3,7 @@ package nextstep.domain.ladder;
 import nextstep.domain.line.Line;
 import nextstep.domain.line.LineFactory;
 import nextstep.domain.line.Lines;
+import nextstep.domain.line.strategy.TransverseBarStrategy;
 import nextstep.domain.track.Tracks;
 
 import java.util.Collections;
@@ -18,6 +19,11 @@ public class LadderGameManager {
     public LadderGameManager(int countOfPerson, int ladderHeight) {
         this.tracks = new Tracks(countOfPerson);
         this.lines = new Lines(LineFactory.createLines(countOfPerson, ladderHeight));
+    }
+
+    public LadderGameManager(int countOfPerson, int ladderHeight, TransverseBarStrategy transverseBarStrategy) {
+        this.tracks = new Tracks(countOfPerson);
+        this.lines = new Lines(LineFactory.createLines(countOfPerson, ladderHeight, transverseBarStrategy));
     }
 
     public int start(int trackNumber) {

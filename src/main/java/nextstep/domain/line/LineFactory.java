@@ -20,10 +20,6 @@ public class LineFactory {
         return new Line(countOfPerson, transverseBarStrategy);
     }
 
-    public static List<Line> createLines(int countOfPerson, LadderHeight ladderHeight) {
-        return createLines(countOfPerson, ladderHeight.getLadderHeight());
-    }
-
     public static List<Line> createLines(int countOfPerson, int ladderHeight) {
         return createLines(countOfPerson, ladderHeight, DEFAULT_TRANSVERSE_BAR_STRATEGY);
     }
