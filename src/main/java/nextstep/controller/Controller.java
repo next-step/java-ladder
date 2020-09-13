@@ -29,11 +29,10 @@ public class Controller {
         resultView.printLadder(ladderDTO);
         resultView.printEntryNames(arrivalEntriesDTO);
 
-        Entries arrivalEntries = Entries.of(arrivalEntriesDTO.getEntryNames());
-        printResults(startEntriesDTO, arrivalEntries, ladderGame);
+        printResults(startEntriesDTO, arrivalEntriesDTO, ladderGame);
     }
 
-    private static void printResults(EntriesDTO startEntriesDTO, Entries arrivalEntries, LadderGame ladderGame) {
+    private static void printResults(EntriesDTO startEntriesDTO, EntriesDTO arrivalEntries, LadderGame ladderGame) {
         EntriesDTO targetEntries = null;
         while (checkAll(targetEntries)) {
             targetEntries = inputView.inputTargetEntries(startEntriesDTO);

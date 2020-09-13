@@ -22,9 +22,14 @@ public class LadderGame {
         return ladder.getLinesStatus();
     }
 
-    public Entry play(Entry targetEntry, Entries arrivalEntries) {
+    public String play(String targetEntryName, List<String> arrivalEntryNames) {
+        Entry targetEntry = Entry.of(targetEntryName);
+        Entries arrivalEntries = Entries.of(arrivalEntryNames);
+
         int targetIndex = startEntries.getIndexByEntry(targetEntry);
-        return arrivalEntries.getEntryByIndex(ladder.play(targetIndex));
+        Entry arrivalEntry = arrivalEntries.getEntryByIndex(ladder.play(targetIndex));
+
+        return arrivalEntry.getName();
     }
 
     public static LadderGame of(List<String> startEntries, Length length) {
