@@ -1,6 +1,5 @@
 package nextstep.domain.line;
 
-import nextstep.domain.ladder.LadderHeight;
 import nextstep.domain.line.strategy.RandomTransverseBarStrategy;
 import nextstep.domain.line.strategy.TransverseBarStrategy;
 
