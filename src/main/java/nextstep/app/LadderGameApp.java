@@ -21,24 +21,19 @@ public class LadderGameApp {
         LadderGameManager ladderGameManager = new LadderGameManager(participants.getPersonSize(), ladderHeight.getLadderHeight());
         OutputView.printLadder(participants, ladderGameManager, ladderResults);
         LadderExecutionResults ladderExecutionResults = getLadderExecutionResults(participants, ladderGameManager, ladderResults);
-        while (true) {
-            String personForResult = InputView.receivePersonForResult();
-            if (personForResult.equals(ALL)) {
-                OutputView.printLadderTotalResult(ladderExecutionResults);
-                return;
-            }
-            OutputView.printLadderResult(ladderExecutionResults.getLadderResultByName(new Person(personForResult)));
+        String personForResult = InputView.receivePersonForResult();
+        while (!personForResult.equals(ALL)) {
+            OutputView.printLadderResult(ladderExecutionResults.getLadderResultByName(personForResult));
+            personForResult = InputView.receivePersonForResult();
         }
+        OutputView.printLadderTotalResult(ladderExecutionResults);
     }
 
     private static LadderExecutionResults getLadderExecutionResults(Participants participants, LadderGameManager ladderGameManager, LadderResults ladderResults) {
         Map<Person, LadderResult> ladderResult = new HashMap<>();
-        participants.getPersons()
-                .forEach(person -> {
-                    int startTrackNumber = participants.getTrackNumberByPerson(person);
-                    int finishTrackNumber = ladderGameManager.start(startTrackNumber);
-                    ladderResult.put(person, ladderResults.getLadderResult(finishTrackNumber));
-                });
+        participants.getPersons().stream()
+                .map(person -> person.finish(ladderGameManager.start(person.getTrackNumber())))
+                .forEach(person -> ladderResult.put(person, ladderResults.getLadderResult(person.getTrackNumber())));
         return new LadderExecutionResults(ladderResult);
     }
 
