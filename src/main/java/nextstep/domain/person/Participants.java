@@ -19,10 +19,6 @@ public class Participants {
         return Collections.unmodifiableList(persons);
     }
 
-    public String getPersonName(int index) {
-        return persons.get(index).getName();
-    }
-
     public int getPersonSize() {
         return persons.size();
     }
