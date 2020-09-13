@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.model.Line;
+import ladder.model.Step;
 
 import java.util.List;
 
@@ -45,14 +46,18 @@ public class ResultView {
         });
     }
 
-    private static void printLine(List<Boolean> steps) {
+    private static void printLine(List<Step> steps) {
         System.out.print(LADDER_FRONT_STRING);
         System.out.print(POINT_STRING);
 
-        steps.forEach(step -> {
-            System.out.print(getStepString(step));
-            System.out.print(POINT_STRING);
-        });
+        steps.stream()
+                .limit(steps.size() - 1)
+                .forEach(ResultView::printStep);
+    }
+
+    private static void printStep(Step step) {
+        System.out.print(getStepString(step.hasRight()));
+        System.out.print(POINT_STRING);
     }
 
     private static String getStepString(boolean hasStep) {

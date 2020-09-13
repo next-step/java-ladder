@@ -16,7 +16,11 @@ class LineTest {
     public void createLine() {
         // given
         LadderGenerateStrategy condition = () -> true;
-        List<Boolean> expectedSteps = Arrays.asList(true, false, true, false);
+        List<Step> expectedSteps = Arrays.asList(
+                new Step(0, new Direction(false, true)),
+                new Step(1, new Direction(true, false)),
+                new Step(2, new Direction(false, true)),
+                new Step(3, new Direction(true, false)));
 
         // when
         Line line = new Line(4, condition);
@@ -30,7 +34,7 @@ class LineTest {
     public void movePoint_has_step() {
         // given
         LadderGenerateStrategy condition = () -> true;
-        Line line = new Line(1, condition);
+        Line line = new Line(2, condition);
 
         // when
         int result = line.movePoint(0);
@@ -44,7 +48,7 @@ class LineTest {
     public void movePoint_dose_not_have_step() {
         // given
         LadderGenerateStrategy condition = () -> false;
-        Line line = new Line(1, condition);
+        Line line = new Line(2, condition);
 
         // when
         int result = line.movePoint(1);
