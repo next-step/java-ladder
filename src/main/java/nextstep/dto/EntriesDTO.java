@@ -31,6 +31,10 @@ public class EntriesDTO implements DTO {
         return this.entries.size();
     }
 
+    public List<EntryDTO> getEntries() {
+        return this.entries;
+    }
+
     public static EntriesDTO duplicate(EntriesDTO entriesDTO) {
         List<EntryDTO> duplicated = entriesDTO.entries.stream()
                 .map(EntryDTO::duplicate)

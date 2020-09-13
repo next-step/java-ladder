@@ -7,6 +7,8 @@ import nextstep.entity.*;
 import nextstep.view.InputView;
 import nextstep.view.ResultView;
 
+import java.util.Objects;
+
 public class Controller {
 
     private static final InputView inputView = new InputView();
@@ -30,6 +32,18 @@ public class Controller {
         resultView.printEntryNames(arrivalEntriesDTO);
 
         Entries arrivalEntries = Entries.of(arrivalEntriesDTO.getEntryNames());
-        System.out.println(ladderGame.play(Entry.of("1"), arrivalEntries).getName());
+        printResults(startEntriesDTO, arrivalEntries, ladderGame);
+    }
+
+    private static void printResults(EntriesDTO startEntriesDTO, Entries arrivalEntries, LadderGame ladderGame) {
+        EntriesDTO targetEntries = null;
+        while (checkAll(targetEntries)) {
+            targetEntries = inputView.inputTargetEntries(startEntriesDTO);
+            resultView.printPlayResults(targetEntries, arrivalEntries, ladderGame);
+        }
+    }
+
+    private static boolean checkAll(EntriesDTO targetEntries) {
+        return Objects.isNull(targetEntries) || targetEntries.getEntryCount() == 1;
     }
 }

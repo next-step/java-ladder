@@ -22,10 +22,10 @@ public class InputView {
             return supplier.get();
         } catch (NumberFormatException e) {
             System.out.println("숫자만 입력할 수 있어요.");
-            return supplier.get();
+            return tryCatch(supplier);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return supplier.get();
+            return tryCatch(supplier);
         }
     }
 
