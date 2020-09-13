@@ -18,21 +18,18 @@ public class Controller {
         Personnel personnel = Personnel.of(startEntries.getPersonnel());
 
         EntriesDTO arrivalEntriesDTO = inputView.inputArrivalEntries(personnel.getPersonnel());
-        Entries arrivalEntries = Entries.of(arrivalEntriesDTO.getEntryNames());
-
         LengthDTO lengthDTO = inputView.inputLength();
         Length length = Length.of(lengthDTO.getLength());
 
-        LadderGame ladderGame = LadderGame.of(startEntries, arrivalEntries);
+        LadderGame ladderGame = LadderGame.of(startEntries);
         ladderGame.initLadder(length);
         LadderDTO ladderDTO = new LadderDTO(ladderGame.getLinesStatus());
-        PlayResults playResults = ladderGame.play();
 
         resultView.printEntryNames(startEntriesDTO);
         resultView.printLadder(ladderDTO);
         resultView.printEntryNames(arrivalEntriesDTO);
 
-        EntriesDTO targetEntriesDTO = inputView.inputTargetEntries(startEntriesDTO);
-        resultView.printPlayResults(targetEntriesDTO, playResults);
+        Entries arrivalEntries = Entries.of(arrivalEntriesDTO.getEntryNames());
+        System.out.println(ladderGame.play(Entry.of("1"), arrivalEntries).getName());
     }
 }

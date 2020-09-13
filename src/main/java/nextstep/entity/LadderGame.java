@@ -5,12 +5,10 @@ import java.util.List;
 public class LadderGame {
 
     private final Entries startEntries;
-    private final Entries arrivalEntries;
     private final Ladder ladder;
 
-    private LadderGame(Entries startEntries, Entries arrivalEntries) {
+    private LadderGame(Entries startEntries) {
         this.startEntries = startEntries;
-        this.arrivalEntries = arrivalEntries;
         this.ladder = Ladder.of();
     }
 
@@ -23,11 +21,12 @@ public class LadderGame {
         return ladder.getLinesStatus();
     }
 
-    public PlayResults play() {
-        return ladder.play(startEntries, arrivalEntries);
+    public Entry play(Entry targetEntry, Entries arrivalEntries) {
+        int targetIndex = startEntries.getIndexByEntry(targetEntry);
+        return arrivalEntries.getEntryByIndex(ladder.play(targetIndex));
     }
 
-    public static LadderGame of(Entries startEntries, Entries arrivalEntries) {
-        return new LadderGame(startEntries, arrivalEntries);
+    public static LadderGame of(Entries startEntries) {
+        return new LadderGame(startEntries);
     }
 }

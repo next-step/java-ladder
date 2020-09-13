@@ -2,7 +2,6 @@ package nextstep.view;
 
 import nextstep.dto.EntriesDTO;
 import nextstep.dto.LadderDTO;
-import nextstep.entity.PlayResults;
 
 import java.util.List;
 
@@ -29,12 +28,8 @@ public class ResultView {
         System.out.println();
     }
 
-    public void printPlayResults(EntriesDTO targetEntriesDTO, PlayResults playResults) {
+    public void printPlayResults() {
         System.out.println("실행 결과");
-        targetEntriesDTO.getEntryNames().forEach(targetName -> {
-            String arrivalName = playResults.findArrivalName(targetName);
-            System.out.printf(PLAY_RESULT_FORMAT, targetName, arrivalName);
-            System.out.println();
-        });
+//        System.out.printf(PLAY_RESULT_FORMAT, targetName, arrivalName);
     }
 }
