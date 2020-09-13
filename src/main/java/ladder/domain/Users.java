@@ -24,6 +24,10 @@ public class Users {
         return users;
     }
 
+    public int size() {
+        return users.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

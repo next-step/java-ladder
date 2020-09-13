@@ -22,6 +22,6 @@ class UsersTest {
     @Test
     void users_Size_Test() {
         Users users = Users.userNameList("pobi,honux,crong,jk");
-        assertThat(users.getUsers().size()).isEqualTo(4);
+        assertThat(users.size()).isEqualTo(4);
     }
 }
