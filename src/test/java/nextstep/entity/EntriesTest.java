@@ -34,7 +34,9 @@ class EntriesTest {
         Entry first = Entry.of("1st");
         Entry second = Entry.of("2nd");
         Entry third = Entry.of("3rd");
+
         Entries entries = Entries.of(Stream.of("1st", "2nd", "3rd").collect(Collectors.toList()));
+
         then(entries.getEntryByIndex(0)).isEqualTo(first);
         then(entries.getEntryByIndex(1)).isEqualTo(second);
         then(entries.getEntryByIndex(2)).isEqualTo(third);
