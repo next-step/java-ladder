@@ -50,5 +50,4 @@ public class Ladder {
 	public int getUserPositionOf(String name) {
 		return users.getPositionOf(name);
 	}
-
 }
