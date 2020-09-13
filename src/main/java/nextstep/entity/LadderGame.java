@@ -7,12 +7,13 @@ public class LadderGame {
     private final Entries startEntries;
     private final Ladder ladder;
 
-    private LadderGame(Entries startEntries) {
+    private LadderGame(Entries startEntries, Length length) {
         this.startEntries = startEntries;
         this.ladder = Ladder.of();
+        initLadder(length);
     }
 
-    public void initLadder(Length length) {
+    private void initLadder(Length length) {
         Personnel personnel = Personnel.of(startEntries.getPersonnel());
         ladder.initLadder(personnel, length);
     }
@@ -26,7 +27,7 @@ public class LadderGame {
         return arrivalEntries.getEntryByIndex(ladder.play(targetIndex));
     }
 
-    public static LadderGame of(Entries startEntries) {
-        return new LadderGame(startEntries);
+    public static LadderGame of(Entries startEntries, Length length) {
+        return new LadderGame(startEntries, length);
     }
 }

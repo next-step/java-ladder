@@ -20,8 +20,7 @@ class LadderGameTest {
         Entries startEntries = Entries.of(Collections.singletonList(entryName));
         Length length = Length.of(1);
 
-        ladderGame = LadderGame.of(startEntries);
-        ladderGame.initLadder(length);
+        ladderGame = LadderGame.of(startEntries, length);
     }
 
     @Test

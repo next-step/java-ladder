@@ -23,8 +23,7 @@ public class Controller {
         LengthDTO lengthDTO = inputView.inputLength();
         Length length = Length.of(lengthDTO.getLength());
 
-        LadderGame ladderGame = LadderGame.of(startEntries);
-        ladderGame.initLadder(length);
+        LadderGame ladderGame = LadderGame.of(startEntries, length);
         LadderDTO ladderDTO = new LadderDTO(ladderGame.getLinesStatus());
 
         resultView.printEntryNames(startEntriesDTO);
