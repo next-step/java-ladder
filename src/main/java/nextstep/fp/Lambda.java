@@ -27,7 +27,9 @@ public class Lambda {
     }
 
     public static int totalSum(List<Integer> numbers, Conditional conditional) {
-        return numbers.stream().filter(number -> conditional.permitAdd(number)).reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .filter(number -> conditional.permitAdd(number))
+                .reduce(0, (x, y) -> x + y);
     }
 
     public static int sumAll(List<Integer> numbers) {
