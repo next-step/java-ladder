@@ -12,8 +12,6 @@ import cc.oakk.ladder.model.trace.Trace;
 import cc.oakk.ladder.model.trace.TraceResults;
 
 public class Ladder {
-    private static final BinaryOperator<Trace> IDENTITY = (a, b) -> a;
-
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
@@ -35,8 +33,10 @@ public class Ladder {
     }
 
     public Trace trace(Trace of) {
-        return lines.stream()
-                .reduce(of, Trace::move, IDENTITY);
+        for (Line line : lines) {
+            of = of.move(line);
+        }
+        return of;
     }
 
     public TraceResults traceAll() {
