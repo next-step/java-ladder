@@ -1,7 +1,5 @@
 package ladder.refactoring.domain;
 
-import ladder.legacy.domain.Name;
-
 import java.util.Map;
 import java.util.Set;
 

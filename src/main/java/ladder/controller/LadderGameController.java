@@ -1,6 +1,9 @@
 package ladder.controller;
 
-import ladder.refactoring.domain.*;
+import ladder.refactoring.domain.LadderGame;
+import ladder.refactoring.domain.LadderResult;
+import ladder.refactoring.domain.Participant;
+import ladder.refactoring.domain.Rewards;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
