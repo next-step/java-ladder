@@ -6,10 +6,7 @@ public class SteppingStoneOthersidePoint implements PointStrategy {
 
     @Override
     public boolean generatePoint() {
-        if(!first) {
-            first = true;
-            return false;
-        }
-        return true;
+        first = !first;
+        return !first;
     }
 }
