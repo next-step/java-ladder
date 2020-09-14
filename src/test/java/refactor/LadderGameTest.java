@@ -17,11 +17,11 @@ public class LadderGameTest {
     @BeforeEach
     void setUp() {
         names = new ArrayList<GamePerson>();
-        names.add(new GamePerson("test1"));
-        names.add(new GamePerson("test2"));
-        names.add(new GamePerson("test3"));
-        names.add(new GamePerson("test4"));
-        names.add(new GamePerson("test5"));
+        names.add(GamePerson.valueOf("test1"));
+        names.add(GamePerson.valueOf("test2"));
+        names.add(GamePerson.valueOf("test3"));
+        names.add(GamePerson.valueOf("test4"));
+        names.add(GamePerson.valueOf("test5"));
     }
 
     @Test

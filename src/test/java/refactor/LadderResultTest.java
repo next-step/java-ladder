@@ -45,12 +45,12 @@ public class LadderResultTest {
     }
 
     private static List<GamePerson> people = Arrays.stream(StringSplitUtil.splitWithDelimiter("test1, test2, test3, test4"))
-            .map(GamePerson::new)
+            .map(GamePerson::valueOf)
             .collect(Collectors.toList());
     private static List<String> gameReult = Arrays.stream(StringSplitUtil.splitWithDelimiter("꽝,5000,꽝,3000"))
             .collect(Collectors.toList());
 
-    private static Ladder ladder = new Ladder(ladderLines);
+    private static Ladder ladder = Ladder.of(ladderLines);
     private static LadderGame ladderGame = LadderGame.of(people,ladder);
     private static LadderResult ladderResult = new LadderResult(gameReult, ladderGame);
 

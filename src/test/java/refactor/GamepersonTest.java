@@ -11,8 +11,8 @@ public class GamepersonTest {
     @Test
     @DisplayName("객체 생성 비교")
     public void nameEquals() {
-        GamePerson name1 = new GamePerson("test");
-        GamePerson name2 = new GamePerson("test");
+        GamePerson name1 = GamePerson.valueOf("test");
+        GamePerson name2 = GamePerson.valueOf("test");
         assertThat(name1).isEqualTo(name2);
     }
 
@@ -20,7 +20,7 @@ public class GamepersonTest {
     @DisplayName("5자 이상 실패 테스트")
     public void nameLengthOver5() {
         assertThatThrownBy(() -> {
-            GamePerson name = new GamePerson("fdsfdsfs");
+            GamePerson name = GamePerson.valueOf("fdsfdsfs");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
