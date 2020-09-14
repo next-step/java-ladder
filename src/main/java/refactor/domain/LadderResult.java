@@ -30,7 +30,7 @@ public class LadderResult {
     }
 
     public int getPersonLocation(String personResult) {
-        GamePerson gamePerson = new GamePerson(personResult);
+        GamePerson gamePerson = GamePerson.valueOf(personResult);
         validationName(gamePerson);
         return ladderGame.getPeople().indexOf(gamePerson);
     }
