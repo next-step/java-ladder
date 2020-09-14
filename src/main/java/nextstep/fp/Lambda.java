@@ -26,15 +26,8 @@ public class Lambda {
         }).start();
     }
 
-    public static int totalSum(List<Integer> numbers, Conditional conditional){
-        int total = 0;
-        for(int number : numbers){
-            if(conditional.permitAdd(number)){
-                total += number;
-            }
-        }
-
-        return total;
+    public static int totalSum(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream().filter(number -> conditional.permitAdd(number)).reduce(0, (x, y) -> x + y);
     }
 
     public static int sumAll(List<Integer> numbers) {
