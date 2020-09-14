@@ -18,7 +18,7 @@ public class TraceTest {
     @ParameterizedTest
     @CsvSource(value = { "2:1", "1:2", "3:3" }, delimiter = ':')
     public void move(int position, int exceptedPosition) {
-        Line line = new Line(5).connect(1);
+        Line line = Line.of(false, true, false, false);
         assertThat(Trace.of(position).move(line)).isEqualTo(Trace.of(exceptedPosition));
     }
 }

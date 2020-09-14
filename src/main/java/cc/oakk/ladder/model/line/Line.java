@@ -1,8 +1,8 @@
 package cc.oakk.ladder.model.line;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import cc.oakk.ladder.model.line.dto.LineDto;
 import cc.oakk.ladder.model.size.LadderWidth;
@@ -11,38 +11,31 @@ import cc.oakk.ladder.view.printer.Printer;
 
 public class Line implements Printable<LineDto> {
     private final LadderWidth width;
-    private final Connections connections;
+    private final List<Connection> connections;
 
-    public Line(int width) {
+    private Line(int width, List<Connection> connections) {
         this.width = new LadderWidth(width);
-        this.connections = new Connections(IntStream.range(0, width - 1)
-                                    .boxed()
-                                    .map(dummy -> Connection.of(false))
-                                    .collect(Collectors.toList()));
+        this.connections = connections;
+    }
+
+    public static Line of(boolean... connectedPoints) {
+        List<Connection> connections = new ArrayList<>();
+        Connection connection = Connection.start(connectedPoints[0]);
+        connections.add(connection);
+        for (int i = 1; i < connectedPoints.length; i++) {
+            connection = connection.next(connectedPoints[i]);
+            connections.add(connection);
+        }
+        connections.add(connection.end());
+        return new Line(connections.size(), connections);
     }
 
     public LineDto getDto() {
-        return new LineDto(width, connections.getDto());
+        return new LineDto(width, connections);
     }
-
-    public boolean isConnected(int index) {
-		return connections.isConnected(index);
-	}
 
     public int width() {
         return width.get();
-    }
-
-    public Line connect(int index) {
-        connections.connect(index);
-        return this;
-    }
-
-    public Line connect(int... indexs) {
-        for (int index : indexs) {
-            connect(index);
-        }
-        return this;
     }
 
     @Override

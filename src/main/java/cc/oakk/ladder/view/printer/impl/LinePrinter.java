@@ -17,7 +17,7 @@ public class LinePrinter extends StringPrinter<LineDto> {
 
     @Override
     public void print(LineDto target) {
-        List<Connection> connections = target.getConnections().getConnections();
+        List<Connection> connections = target.getConnections();
 
         stringPrinter.print(START);
         for (int i = 0; i < target.getWidth().get() - 1; i++) {
@@ -29,7 +29,7 @@ public class LinePrinter extends StringPrinter<LineDto> {
     }
 
     private void printConnection(Connection connection) {
-        if (connection.get()) {
+        if (connection.isRight()) {
             stringPrinter.print(CONNECTED);
             return;
         }

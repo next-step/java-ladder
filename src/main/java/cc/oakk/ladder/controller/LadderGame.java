@@ -1,6 +1,7 @@
 package cc.oakk.ladder.controller;
 
 import cc.oakk.ladder.model.ladder.Ladder;
+import cc.oakk.ladder.model.ladder.LadderInitializer;
 import cc.oakk.ladder.model.person.Person;
 import cc.oakk.ladder.model.person.Persons;
 import cc.oakk.ladder.model.result.Result;
@@ -8,20 +9,16 @@ import cc.oakk.ladder.model.result.Results;
 import cc.oakk.ladder.model.size.LadderHeight;
 import cc.oakk.ladder.model.trace.Trace;
 import cc.oakk.ladder.model.trace.dto.TraceResultsDto;
-import cc.oakk.ladder.util.RandomUtils;
 import cc.oakk.ladder.view.InputView;
 import cc.oakk.ladder.view.QueryView;
 import cc.oakk.ladder.view.ResultView;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static cc.oakk.ladder.util.ValidationUtils.tryUntilSuccess;
 
 public class LadderGame {
-    public static final Person ALL = new Person("all");
-
     private final InputView inputView;
     private final ResultView resultView;
     private final QueryView queryView;
@@ -37,8 +34,7 @@ public class LadderGame {
         Results results = getResults(persons);
         LadderHeight height = getHeight();
 
-        Ladder ladder = new Ladder(persons.size(), height.get());
-        initLadder(ladder);
+        Ladder ladder = Ladder.of(height.get(), LadderInitializer.random(persons.size()));
 
         resultView.printHeader();
         resultView.printPersons(persons);
@@ -50,7 +46,7 @@ public class LadderGame {
 
     private void query(TraceResultsDto traceResults, Persons persons, Results results) {
         Person wantedPerson = tryUntilSuccess(() -> new Person(queryView.getWantedPerson()), queryView::printError);
-        if (ALL.equals(wantedPerson)) {
+        if (Person.ALL.equals(wantedPerson)) {
             queryView.printTraceResults(traceResults, persons, results);
             return;
         }
@@ -81,12 +77,5 @@ public class LadderGame {
         return tryUntilSuccess(() -> new Persons(Arrays.stream(inputView.getPersonNames())
                 .map(Person::new)
                 .collect(Collectors.toList())), inputView::printError);
-    }
-
-    private void initLadder(Ladder ladder) {
-        ladder.initLines(width -> IntStream.iterate(RandomUtils.nextInt(2), i -> i + 2)
-                .limit(width / 2)
-                .filter(i -> RandomUtils.nextBoolean())
-                .toArray());
     }
 }

@@ -36,11 +36,11 @@ public class Trace {
     }
 
     private boolean isLeftMovable(Line line) {
-        return position != 0 && line.isConnected(position - 1);
+        return position != 0 && line.getDto().getConnections().get(position).isLeft();
     }
 
     private boolean isRightMovable(Line line) {
-        return position != line.width() - 1 && line.isConnected(position);
+        return position != line.width() - 1 && line.getDto().getConnections().get(position).isRight();
     }
 
 	public int get() {

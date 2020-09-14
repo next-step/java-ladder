@@ -3,11 +3,12 @@ package cc.oakk.ladder.model.size;
 import java.util.Objects;
 
 public class LadderWidth {
+    private final static int MIN_WIDTH = 1;
     private final int width;
 
     public LadderWidth(int width) {
-        if (width <= 0) {
-            throw new IllegalArgumentException("0보다 큰 수를 넣어주세요.");
+        if (width <= MIN_WIDTH) {
+            throw new IllegalArgumentException("1보다 큰 수를 넣어주세요.");
         }
         this.width = width;
     }
