@@ -6,6 +6,7 @@ import refactor.view.PrintResult;
 import refactor.view.ResultView;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ public class LadderGame {
 
     public static LadderGame of(String namesValue, int ladderHeight) {
         List<GamePerson> people = Arrays.stream(StringSplitUtil.splitWithDelimiter(namesValue))
-                .map(GamePerson::new)
+                .map(GamePerson::valueOf)
                 .collect(Collectors.toList());
         return new LadderGame(people, Ladder.init(ladderHeight, people.size()));
     }
@@ -43,6 +44,6 @@ public class LadderGame {
     }
 
     public List<GamePerson> getPeople() {
-        return people;
+        return Collections.unmodifiableList(people);
     }
 }
