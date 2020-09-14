@@ -4,21 +4,20 @@ import refactor.domain.pointGenerate.PointStrategy;
 
 public class Point {
     private final int index;
-    private final Direction direction;
+    private final DirectionEnum direction;
 
-    public Point(int index, Direction direction) {
+    private Point(int index, DirectionEnum direction) {
         this.index = index;
         this.direction = direction;
     }
 
     public int move() {
-
-        if (direction.isRight()) {
+        if(direction.equals(DirectionEnum.RIGTH)) {
             return index + 1;
         }
 
-        if (direction.isLeft()) {
-            return index - 1;
+        if(direction.equals(DirectionEnum.LEFT)) {
+            return index -1;
         }
 
         return this.index;
@@ -37,7 +36,7 @@ public class Point {
     }
 
     public static Point first(Boolean right) {
-        return new Point(0, Direction.first(right));
+        return new Point(0, DirectionEnum.first(right));
     }
 
     @Override
@@ -48,7 +47,7 @@ public class Point {
                 '}';
     }
 
-    public Direction getDirection() {
+    public DirectionEnum getDirection() {
         return direction;
     }
 }
