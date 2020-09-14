@@ -7,17 +7,15 @@ public class Point {
         this.direction = Direction.STOP;
     }
 
-    public Point(Point prevPoints) {
-        Direction previousDirection = prevPoints.direction;
-        this.direction = Direction.makeDirection(previousDirection);
-    }
-
-    public boolean isMoveAble(Point previousPoint){
-        return previousPoint.direction == Direction.STOP;
+    public Point(Direction direction) {
+        this.direction = direction;
     }
 
     public Direction getDirection(){
         return direction;
     }
 
+    public Point next(){
+        return new Point(Direction.makeDirection(direction));
+    }
 }

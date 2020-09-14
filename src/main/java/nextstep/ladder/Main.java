@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +12,7 @@ public class Main {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = Integer.parseInt(scanner.nextLine());
 
-        Ladder ladder = new Ladder(users.split(","),height);
+        Ladder ladder = Ladder.of(users.split(","),height);
 
         System.out.println("실행 결과");
 

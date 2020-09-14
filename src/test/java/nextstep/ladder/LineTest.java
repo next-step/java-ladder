@@ -10,7 +10,7 @@ class LineTest {
 
     @Test
     @DisplayName("line 생성 테스트")
-    public void test(){
+    public void createLineTest(){
         Line line = new Line(5);
 
         String lineStr = line.toString();

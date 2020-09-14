@@ -10,16 +10,16 @@ class PointTest {
 
     @Test
     @DisplayName("default 생성 테스트")
-    public void createDefault(){
+    public void createDefaultPointTest(){
         Point point = new Point();
 
         assertThat(point.getDirection().equals(Direction.STOP));
     }
 
     @Test
-    void getDirection() {
+    void createNextPointTest() {
         Point prevPoint = new Point();
-        Point point = new Point(prevPoint);
+        Point point = prevPoint.next();
 
         assertThat(point.getDirection().equals(Direction.RIGTH));
     }

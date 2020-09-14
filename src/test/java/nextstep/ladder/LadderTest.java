@@ -9,11 +9,11 @@ class LadderTest {
 
     @Test
     @DisplayName("ladder 생성 테스트")
-    public void test(){
+    public void createLadderTest(){
         String[] strArr = new String[]{"test1", "test2", "test3","test4"};
         int height = 5;
 
-        Ladder ladder = new Ladder(strArr, height);
+        Ladder ladder = Ladder.of(strArr, height);
 
         System.out.println(ladder.getLadderStr());
     }

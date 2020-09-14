@@ -3,14 +3,14 @@ package nextstep.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class UserTest {
 
     @Test
     @DisplayName("user 생성 테스트")
-    public void createTest(){
+    public void createUserTest(){
         User user = new User("test");
 
         assertThat(user.toString()).isEqualTo("test");
@@ -19,6 +19,8 @@ class UserTest {
     @Test
     @DisplayName("user name 길이 초과 테스트")
     public void exceedUserNametest(){
-        assertThatIllegalArgumentException().isThrownBy(()-> new User("abcdef"));
+        assertThatIllegalArgumentException().isThrownBy(()-> new User("abcdef"))
+                .withMessage("exceeded max user name length");
+
     }
 }

@@ -8,13 +8,9 @@ import java.util.stream.Collectors;
 public class Ladder {
     private List<User> users = new ArrayList<>();
     private List<Line> lines = new ArrayList<>();
-    private final int countOfUsers;
-    private final int ladderHeight;
 
-
-    public Ladder(String[] userStrArr, int ladderHeight) {
-        this.countOfUsers = userStrArr.length;
-        this.ladderHeight = ladderHeight;
+    private Ladder(String[] userStrArr, int ladderHeight) {
+        int countOfUsers = userStrArr.length;
 
         users = Arrays.stream(userStrArr)
                 .map(User::new)
@@ -23,6 +19,10 @@ public class Ladder {
         for(int i = 0; i < ladderHeight ; i ++){
             lines.add(new Line(countOfUsers));
         }
+    }
+
+    public static Ladder of(String[] userStrArr, int ladderHeight){
+        return new Ladder(userStrArr, ladderHeight);
     }
 
     public String getLadderStr(){
