@@ -6,6 +6,8 @@ public class InputUtil {
 
     public static Scanner scanner = new Scanner(System.in);
 
+    private InputUtil() {}
+
     public static String returnString(String question) {
         System.out.println(question);
         return returnStringWithBlank();
