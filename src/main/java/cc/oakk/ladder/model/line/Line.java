@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import cc.oakk.ladder.model.line.dto.LineDto;
 import cc.oakk.ladder.model.size.LadderWidth;
+import cc.oakk.ladder.util.ValidationUtils;
 import cc.oakk.ladder.view.printer.Printable;
 import cc.oakk.ladder.view.printer.Printer;
 
@@ -36,6 +37,11 @@ public class Line implements Printable<LineDto> {
 
     public int width() {
         return width.get();
+    }
+
+    public int move(int position)  {
+        ValidationUtils.throwIfOutOfListSize(connections, position);
+        return connections.get(position).move();
     }
 
     @Override
