@@ -9,13 +9,7 @@ public class LadderGame {
 
     private LadderGame(Entries startEntries, Length length) {
         this.startEntries = startEntries;
-        this.ladder = Ladder.of();
-        initLadder(length);
-    }
-
-    private void initLadder(Length length) {
-        Personnel personnel = Personnel.of(startEntries.getPersonnel());
-        ladder.initLadder(personnel, length);
+        this.ladder = Ladder.of(length, Personnel.of(startEntries.getPersonnel()));
     }
 
     public List<List<Boolean>> getLinesStatus() {

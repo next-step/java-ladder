@@ -1,6 +1,5 @@
 package nextstep.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -8,14 +7,10 @@ import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
-    private Ladder() {
-    }
-
-    public void initLadder(Personnel personnel, Length length) {
-        IntStream.range(0, length.getLength())
-                .forEach(index -> lines.add(Line.of(personnel.getPersonnel())));
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
     public List<List<Boolean>> getLinesStatus() {
@@ -31,7 +26,10 @@ public class Ladder {
         return previousIndex.get();
     }
 
-    public static Ladder of() {
-        return new Ladder();
+    public static Ladder of(Length length, Personnel personnel) {
+        List<Line> lines = IntStream.range(0, length.getLength())
+                .mapToObj(index -> Line.of(personnel.getPersonnel()))
+                .collect(Collectors.toList());
+        return new Ladder(lines);
     }
 }

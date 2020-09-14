@@ -16,8 +16,7 @@ class LadderTest {
         Personnel personnel = Personnel.of(1);
         Length length = Length.of(1);
         List<List<Boolean>> expected = Collections.singletonList(Collections.singletonList(Boolean.FALSE));
-        Ladder ladder = Ladder.of();
-        ladder.initLadder(personnel, length);
+        Ladder ladder = Ladder.of(length, personnel);
         then(ladder.getLinesStatus()).isEqualTo(expected);
     }
 
@@ -26,8 +25,7 @@ class LadderTest {
     void play() {
         Personnel personnel = Personnel.of(1);
         Length length = Length.of(1);
-        Ladder ladder = Ladder.of();
-        ladder.initLadder(personnel, length);
+        Ladder ladder = Ladder.of(length, personnel);
 
         then(ladder.play(0)).isEqualTo(0);
     }
