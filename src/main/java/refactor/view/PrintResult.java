@@ -12,6 +12,9 @@ public class PrintResult {
 
     private static final String RESULT_SEPORATOR = " : ";
 
+    private PrintResult() {
+    }
+
     public static void makeLadder(Ladder ladder) {
         ladder.getLadderLines().stream()
                 .forEach(ladderLine -> makeLadderLine(ladderLine));
@@ -20,14 +23,13 @@ public class PrintResult {
     public static void makeLadderLine(LadderLine ladderLine) {
         ladderLine.getPoints().stream()
                 .map(Point::getDirection)
-                .map(Direction::isLeft)
                 .map(PrintResult::getHorizontalOrNot)
                 .forEach(System.out::print);
         System.out.println();
     }
 
-    private static String getHorizontalOrNot(boolean check) {
-        if (check) {
+    private static String getHorizontalOrNot(DirectionEnum check) {
+        if (check.equals(DirectionEnum.LEFT)) {
             return "-----|";
         }
         return "     |";
