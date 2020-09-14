@@ -32,34 +32,32 @@ public class LadderGame {
     public void start() {
         Persons persons = getPersons();
         Results results = getResults(persons);
-        LadderHeight height = getHeight();
-
-        Ladder ladder = Ladder.of(height.get(), LadderInitializer.random(persons.size()));
+        Ladder ladder = Ladder.of(getHeight().get(), LadderInitializer.random(persons.size()));
 
         resultView.printHeader();
         resultView.printPersons(persons);
         resultView.printLadder(ladder.getDto());
         resultView.printResults(results);
 
-        query(ladder.traceAll().getDto(), persons, results);
+        TraceResultsDto traceResults = ladder.traceAll().getDto();
+        Person wantedPerson;
+        while (!(Person.ALL.equals(wantedPerson = getWantedPerson()))) {
+            printResultOfPerson(persons.find(wantedPerson), traceResults, results);
+        }
+        queryView.printTraceResults(traceResults, persons, results);
     }
 
-    private void query(TraceResultsDto traceResults, Persons persons, Results results) {
-        Person wantedPerson = tryUntilSuccess(() -> new Person(queryView.getWantedPerson()), queryView::printError);
-        if (Person.ALL.equals(wantedPerson)) {
-            queryView.printTraceResults(traceResults, persons, results);
-            return;
-        }
-
-        int indexOfPerson = persons.find(wantedPerson);
+    private void printResultOfPerson(int indexOfPerson, TraceResultsDto traceResults, Results results) {
         if (indexOfPerson == Persons.NOT_FOUND) {
             queryView.printError(new IllegalArgumentException("존재하지 않는 사람입니다."));
-            query(traceResults, persons, results);
             return;
         }
         int indexOfResults = traceResults.getTraceResult(Trace.of(indexOfPerson)).get();
         queryView.printResult(results.get(indexOfResults));
-        query(traceResults, persons, results);
+    }
+
+    private Person getWantedPerson() {
+        return tryUntilSuccess(() -> new Person(queryView.getWantedPerson()), queryView::printError);
     }
 
     private LadderHeight getHeight() {
