@@ -12,10 +12,10 @@ public class Line {
 	}
 
 	public static Line init(int countOfPerson) {
-		List<Point> points2 = new ArrayList<>();
-		Point point = initFirst(points2);
-		initBody(countOfPerson, point, points2);
-		return new Line(points2);
+		List<Point> points = new ArrayList<>();
+		Point point = initFirst(points);
+		initBody(countOfPerson, point, points);
+		return new Line(points);
 	}
 
 	private static Point initFirst(List<Point> points) {
@@ -37,5 +37,12 @@ public class Line {
 
 	public boolean isPoint(int index) {
 		return points.get(index).isPoint();
+	}
+
+	@Override
+	public String toString() {
+		return "Line{" +
+				"points=" + points +
+				'}';
 	}
 }

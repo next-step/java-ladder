@@ -14,6 +14,9 @@ public class Point {
 	}
 
 	public Point next(boolean next) {
+		if (point && next) {
+			throw new IllegalArgumentException("사다리 점은 연속해서 배치할 수 없습니다.");
+		}
 		return new Point(next);
 	}
 
@@ -26,5 +29,12 @@ public class Point {
 
 	public boolean isPoint() {
 		return point;
+	}
+
+	@Override
+	public String toString() {
+		return "Point{" +
+				"point=" + point +
+				'}';
 	}
 }

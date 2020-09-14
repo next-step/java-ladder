@@ -5,7 +5,6 @@ import step4.domain.Point;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class ResultView {
 	private static final String BLANK = "     |";
@@ -43,9 +42,9 @@ public class ResultView {
 		return BLANK;
 	}
 	
-	public static void printGameResult(Map<String, String> resultMap) {
+	public static void printGameResult(List<String> result) {
 		System.out.println("실행 결과");
-		resultMap.keySet().forEach(key -> System.out.println(key + " : " + resultMap.get(key)));
+		result.forEach(System.out::println);
 	}
 
 	public static void printGameResult(String result) {

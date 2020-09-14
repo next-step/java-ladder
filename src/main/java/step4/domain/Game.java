@@ -1,42 +1,34 @@
 package step4.domain;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Game {
-	private static final String GAMEOVER_USERNAME = "all";
-	
 	private final Ladder ladder;
-	private final GameResults results;
+	private final GameResult result;
 
 	public Game(String[] names, String[] results) {
+		validResultSize(names, results);
 		this.ladder = new Ladder(new Users(names));
-		this.results = GameResults.of(results);
-		validResultSize();
+		this.result = GameResult.init(names, results);
 	}
 
-	private void validResultSize() {
-		if (this.results.size() != ladder.getAllUserName().size()) {
+	private void validResultSize(String[] names, String[] results) {
+		if (names.length != results.length) {
 			throw new IllegalArgumentException("실행 결과 수는 입력한 참여자 수와 같아야 합니다.");
 		}
 	}
 	
 	public Ladder start(int height) {
-		return this.ladder.makeLadder(height);
+		Ladder ladder = this.ladder.makeLadder(height);
+		result.putAll(ladder.getAllUserName(), result.values());
+		return ladder;
 	}
 	
-	public Map<String, String> getAllUserResult() {
-		Map<String, String> resultMap = new HashMap<>();
-		for (int i = 0; i < results.size(); i++) {
-			resultMap.put(ladder.getUserName(i), results.getResultOf(i));
-		}
-		return resultMap;
+	public List<String> getAllUserResult() {
+		return result.allResult();
 	}
 	
 	public String getUserResult(String name) {
-		if (!ladder.containUser(name) && !GAMEOVER_USERNAME.equals(name)) {
-			throw new IllegalArgumentException("입력하신 이름은 참여자 목록에 없습니다.");
-		}
-		return results.getResultOf(ladder.getUserPositionOf(name));
+		return result.getResultOf(name);
 	}
 }

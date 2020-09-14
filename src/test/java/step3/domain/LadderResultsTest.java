@@ -1,4 +1,4 @@
-package step4.domain;
+package step3.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class GameResultsTest {
+class LadderResultsTest {
 	private static Stream<Arguments> provideGameResultsSize() {
 		return Stream.of(
 				Arguments.of(new String[] {"10", "0", "1000", "5000"}, 4),
