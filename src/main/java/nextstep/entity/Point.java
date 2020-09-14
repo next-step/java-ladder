@@ -2,56 +2,51 @@ package nextstep.entity;
 
 public class Point {
 
-    private static final boolean NO_PEDAL = false;
-    private final boolean leftPedal;
-    private final boolean rightPedal;
+    private final Direction direction;
 
-    private Point(boolean leftPedal, boolean rightPedal) {
-        this.leftPedal = leftPedal;
-        this.rightPedal = rightPedal;
+    private Point(Direction direction) {
+        this.direction = direction;
     }
 
     public boolean hasLeftPedal() {
-        return this.leftPedal;
+        return direction.isLeft();
     }
 
     public boolean hasRightPedal() {
-        return this.rightPedal;
+        return direction.isRight();
     }
 
     public int play(int index) {
-        if (leftPedal) {
+        if (direction.isLeft()) {
             return index - 1;
         }
-        if (rightPedal) {
+        if (direction.isRight()) {
             return index + 1;
         }
         return index;
     }
 
     public static Point of(boolean leftPedal, boolean rightPedal) throws IllegalArgumentException {
-        if (leftPedal && rightPedal) {
-            throw new IllegalArgumentException("좌측과 우측 모두 페달을 생성할 수 없습니다.");
-        }
-        return new Point(leftPedal, rightPedal);
+        return new Point(Direction.of(leftPedal, rightPedal));
+    }
+
+    public static Point of(Direction direction) throws IllegalArgumentException {
+        return new Point(direction);
     }
 
     public Point next(boolean nextRightPedal) {
-        if (this.rightPedal) {
-            return Point.of(true, NO_PEDAL);
-        }
-        return Point.of(NO_PEDAL, nextRightPedal);
+        return Point.of(direction.next(nextRightPedal));
     }
 
     public static Point getStartPoint(boolean nextRightPedal) {
-        return Point.of(NO_PEDAL, nextRightPedal);
+        return Point.of(Direction.getStartDirection(nextRightPedal));
     }
 
     public Point getLastPoint() {
-        return Point.of(this.rightPedal, NO_PEDAL);
+        return Point.of(direction.getLastDirection());
     }
 
     public static Point getSinglePoint() {
-        return Point.of(NO_PEDAL, NO_PEDAL);
+        return Point.of(Direction.getSingleDirection());
     }
 }
