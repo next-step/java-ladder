@@ -2,9 +2,12 @@ package nextstep.entity;
 
 public class Point {
 
+    private static final int START_INDEX = 0;
+    private final int index;
     private final Direction direction;
 
-    private Point(Direction direction) {
+    private Point(int index, Direction direction) {
+        this.index = index;
         this.direction = direction;
     }
 
@@ -16,37 +19,37 @@ public class Point {
         return direction.isRight();
     }
 
-    public int play(int index) {
+    public int play() {
         if (direction.isLeft()) {
-            return index - 1;
+            return this.index - 1;
         }
         if (direction.isRight()) {
-            return index + 1;
+            return this.index + 1;
         }
-        return index;
+        return this.index;
     }
 
-    public static Point of(boolean leftPedal, boolean rightPedal) throws IllegalArgumentException {
-        return new Point(Direction.of(leftPedal, rightPedal));
+    public static Point of(int index, boolean leftPedal, boolean rightPedal) throws IllegalArgumentException {
+        return new Point(index, Direction.of(leftPedal, rightPedal));
     }
 
-    public static Point of(Direction direction) throws IllegalArgumentException {
-        return new Point(direction);
+    public static Point of(int index, Direction direction) throws IllegalArgumentException {
+        return new Point(index, direction);
     }
 
     public Point next(boolean nextRightPedal) {
-        return Point.of(direction.next(nextRightPedal));
+        return Point.of(this.index + 1, direction.next(nextRightPedal));
     }
 
     public static Point getStartPoint(boolean nextRightPedal) {
-        return Point.of(Direction.getStartDirection(nextRightPedal));
+        return Point.of(START_INDEX, Direction.getStartDirection(nextRightPedal));
     }
 
     public Point getLastPoint() {
-        return Point.of(direction.getLastDirection());
+        return Point.of(this.index + 1, direction.getLastDirection());
     }
 
     public static Point getSinglePoint() {
-        return Point.of(Direction.getSingleDirection());
+        return Point.of(START_INDEX, Direction.getSingleDirection());
     }
 }
