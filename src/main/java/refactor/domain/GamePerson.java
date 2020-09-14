@@ -8,12 +8,17 @@ public class GamePerson {
 
     private String name;
 
-    public GamePerson(String name) {
-        validationName(name);
+    private GamePerson(String name) {
         this.name = name;
     }
 
-    private void validationName(String name) {
+    public static GamePerson valueOf(String name) {
+        validationName(name);
+        return new GamePerson(name);
+    }
+
+
+    private static void validationName(String name) {
         if (name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException("사람 이름은 최대 5자까지 등록 가능합니다.");
         }
