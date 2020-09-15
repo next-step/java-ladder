@@ -1,43 +1,39 @@
 package cc.oakk.ladder.model.line;
 
+import cc.oakk.ladder.model.line.dto.LineDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LineTest {
-    @Test
-    public void constructor_ShouldThrow_WhenBelowsOrEqualsZero() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Line(0));
-        assertThatIllegalArgumentException().isThrownBy(() -> new Line(-1));
-        assertThatIllegalArgumentException().isThrownBy(() -> new Line(Integer.MIN_VALUE));
-    }
-
     @ParameterizedTest
     @ValueSource(ints = { 4, 5, 6, 7, 8 })
     public void width(int width) {
-        assertThat(new Line(width).width()).isEqualTo(width);
+        assertThat(Line.of(new boolean[width - 1]).width()).isEqualTo(width);
     }
 
     @Test
-    public void connect() {
-        final Line line = new Line(6);
-        assertThat(line.isConnected(0)).isEqualTo(false);
-        line.connect(0);
-        assertThat(line.isConnected(0)).isEqualTo(true);
-
-        line.connect(2, 4);
-        assertThat(line.isConnected(2)).isEqualTo(true);
-        assertThat(line.isConnected(4)).isEqualTo(true);
+    public void of() {
+        boolean[] data = new boolean[] { false, true, false, true, false, true };
+        Line line = Line.of(data);
+        LineDto dto = line.getDto();
+        List<Connection> connections = dto.getConnections();
+        for (int i = 0; i < data.length; i++) {
+            assertThat(connections.get(i).isRight()).isEqualTo(data[i]);
+        }
+        assertThat(connections.get(connections.size() - 1).isRight()).isFalse();
     }
 
-    @Test
-    public void connect_ShouldThrow() {
-        final Line line = new Line(4);
-        line.connect(0);
-        assertThatIllegalArgumentException().isThrownBy(() -> line.connect(1));
-        assertThatIllegalArgumentException().isThrownBy(() -> line.connect(3));
+    @ParameterizedTest
+    @CsvSource(value = { "0:0", "1:1", "2:-1", "3:1", "4:-1", "5:0" }, delimiter = ':')
+    public void move(int position, int exceptedResult) {
+        boolean[] data = new boolean[] { false, true, false, true, false, false };
+        Line line = Line.of(data);
+        assertThat(line.move(position)).isEqualTo(exceptedResult);
     }
 }

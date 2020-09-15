@@ -1,35 +1,29 @@
 package cc.oakk.ladder.model.ladder;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BinaryOperator;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import cc.oakk.ladder.model.ladder.dto.LadderDto;
 import cc.oakk.ladder.model.line.Line;
 import cc.oakk.ladder.model.size.LadderHeight;
-import cc.oakk.ladder.model.size.LadderWidth;
 import cc.oakk.ladder.model.trace.Trace;
 import cc.oakk.ladder.model.trace.TraceResults;
 
 public class Ladder {
-    private static final BinaryOperator<Trace> IDENTITY = (a, b) -> a;
-
     private final List<Line> lines;
 
-    public Ladder(int width, int height) {
-        new LadderWidth(width);
-        new LadderHeight(height);
-        this.lines = Collections.unmodifiableList(IntStream.range(0, height).boxed()
-                            .map(dummy -> new Line(width))
-                            .collect(Collectors.toList()));
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    public Ladder initLines(Function<Integer, int[]> eval) {
-        lines.forEach(line -> line.connect(eval.apply(line.width())));
-        return this;
+    public static Ladder of(int height, LadderInitializer initializer) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < new LadderHeight(height).get(); i++) {
+            lines.add(Line.of(initializer.provideConnections(i)));
+        }
+        return new Ladder(lines);
     }
 
     public LadderDto getDto() {
@@ -39,8 +33,10 @@ public class Ladder {
     }
 
     public Trace trace(Trace of) {
-        return lines.stream()
-                .reduce(of, Trace::move, IDENTITY);
+        for (Line line : lines) {
+            of = of.move(line);
+        }
+        return of;
     }
 
     public TraceResults traceAll() {

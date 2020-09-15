@@ -20,23 +20,19 @@ public class LadderTest {
     Ladder ladder;
 
     @ParameterizedTest
-    @CsvSource(value = {  "0:0", "1:0", "0:1", "-1:-1", "1:-1", "-1:1" }, delimiter = ':')
-    public void constructor_ShouldThrow_WhenBelowsOrEqualsZero(int width, int height) {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(width, height));
+    @ValueSource(ints = { 0, -1, Integer.MIN_VALUE })
+    public void constructor_ShouldThrow_WhenBelowsOrEqualsZero(int height) {
+        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.of(height, new LadderInitializer(2, (w, h) -> new boolean[1])));
     }
 
     @BeforeEach
     public void beforeEach() {
-        ladder = new Ladder(5, 5);
-        ladder.initLines(l -> new int[] { 1, 3 });
+        ladder = Ladder.of(5, new LadderInitializer(5, (w, h) -> new boolean[] { false, true, false, true }));
     }
 
     @Test
-    public void getDto_And_initLines() {
-        Line comparingLine = new Line(5);
-        comparingLine.connect(1);
-        comparingLine.connect(3);
-
+    public void getDto() {
+        Line comparingLine = Line.of(false, true, false, true);
         LadderDto ladderDto = new LadderDto(IntStream.range(0, 5).boxed()
                 .map(v -> comparingLine.getDto())
                 .collect(Collectors.toList()));
@@ -44,17 +40,16 @@ public class LadderTest {
         assertThat(ladder.getDto()).isEqualTo(ladderDto);
     }
 
-
     @ParameterizedTest
-    @ValueSource(ints = { 1, 2, 3, 4, 5, 6 })
+    @ValueSource(ints = { 2, 3, 4, 5, 6 })
     public void width(int width) {
-        assertThat(new Ladder(width, 1).width()).isEqualTo(width);
+        assertThat(Ladder.of(1, new LadderInitializer(width, (w, h) -> new boolean[width - 1])).width()).isEqualTo(width);
     }
 
     @ParameterizedTest
     @ValueSource(ints = { 1, 2, 3, 4, 5, 6 })
     public void height(int height) {
-        assertThat(new Ladder(1, height).height()).isEqualTo(height);
+        assertThat(Ladder.of(height, new LadderInitializer(2, (w, h) -> new boolean[1])).height()).isEqualTo(height);
     }
 
     @ParameterizedTest

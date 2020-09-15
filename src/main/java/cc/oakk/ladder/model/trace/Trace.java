@@ -25,22 +25,8 @@ public class Trace {
     }
 
     public Trace move(Line line) {
-        if (isLeftMovable(line)) {
-            return Trace.of(position - 1);
-        }
-        
-        if (isRightMovable(line)) {
-            return Trace.of(position + 1);
-        }
-        return this;
-    }
-
-    private boolean isLeftMovable(Line line) {
-        return position != 0 && line.isConnected(position - 1);
-    }
-
-    private boolean isRightMovable(Line line) {
-        return position != line.width() - 1 && line.isConnected(position);
+        int offset = line.move(position);
+        return of(position + offset);
     }
 
 	public int get() {

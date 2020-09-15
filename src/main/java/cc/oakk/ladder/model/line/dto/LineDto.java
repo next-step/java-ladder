@@ -1,14 +1,16 @@
 package cc.oakk.ladder.model.line.dto;
 
+import cc.oakk.ladder.model.line.Connection;
 import cc.oakk.ladder.model.size.LadderWidth;
 
+import java.util.List;
 import java.util.Objects;
 
 public class LineDto {
     private final LadderWidth width;
-    private final ConnectionsDto connections;
+    private final List<Connection> connections;
 
-    public LineDto(LadderWidth width, ConnectionsDto connections) {
+    public LineDto(LadderWidth width, List<Connection> connections) {
         this.width = width;
         this.connections = connections;
     }
@@ -17,7 +19,7 @@ public class LineDto {
         return width;
     }
 
-    public ConnectionsDto getConnections() {
+    public List<Connection> getConnections() {
         return connections;
     }
 

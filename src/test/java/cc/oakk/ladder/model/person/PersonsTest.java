@@ -37,7 +37,7 @@ public class PersonsTest {
     @ValueSource(ints = { 1, 2, 3, 4, 5, 6 })
     public void size(int size) {
         Persons persons = new Persons(IntStream.range(0, size).boxed()
-                .map(v -> new Person("temp"))
+                .map(v -> new Person(v + ""))
                 .collect(Collectors.toList()));
         assertThat(persons.size()).isEqualTo(size);
     }

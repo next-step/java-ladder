@@ -7,6 +7,7 @@ import cc.oakk.ladder.view.printer.Printer;
 import java.util.Objects;
 
 public class Person implements Printable<Person> {
+    public static final Person ALL = new Person("all");
     public static final int MAX_LENGTH = 5;
 
     private final String name;
