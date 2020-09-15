@@ -20,7 +20,7 @@ public class LadderGame {
         Rewards rewards = Rewards.create(inputView.inputResultReward());
         LadderHeight ladderHeight = LadderHeight.create(inputView.inputLadderHeight());
 
-        Ladder ladder = Ladder.create(users,ladderHeight);
+        Ladder ladder = Ladder.create(users, ladderHeight);
 
         JudgeLadderResult judgeLadderResult = JudgeLadderResult.newInstance(ladder, users);
 
@@ -29,20 +29,20 @@ public class LadderGame {
         showResultProcess(judgeLadderResult, rewards);
     }
 
-    private void showResultProcess(JudgeLadderResult judgeLadderResult , Rewards rewards) {
+    private void showResultProcess(JudgeLadderResult judgeLadderResult, Rewards rewards) {
         boolean isShowOneUser = true;
-        while(isShowOneUser) {
+        while (isShowOneUser) {
             String targetUser = inputView.inputShowResultTarget();
             isShowOneUser = resultLoop(targetUser);
 
             LadderResultBoard resultBoard = judgeLadderResult.judge(isShowOneUser, targetUser);
 
-            resultView.showLadderGameResult(resultBoard,rewards);
+            resultView.showLadderGameResult(resultBoard, rewards);
         }
     }
 
     private boolean resultLoop(String targetUser) {
-        if(targetUser.equals("all")) {
+        if (targetUser.equals("all")) {
             return false;
         }
         return true;

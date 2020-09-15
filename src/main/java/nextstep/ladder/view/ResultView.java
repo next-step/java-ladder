@@ -33,7 +33,7 @@ public class ResultView {
 
         Set<User> users = userPosition.keySet();
 
-        for(User user : users) {
+        for (User user : users) {
             sb.append(user.getUserName())
                     .append(FIELD_SEPERATOR_COLON)
                     .append(rewards.getReward(userPosition.get(user)).getName())
@@ -74,7 +74,7 @@ public class ResultView {
         StringBuilder sb = new StringBuilder();
         sb.append(UNIT_LADDER_CHARACTOR);
 
-        for(int i = 0; i < points.size() - 1; i++) {
+        for (int i = 0; i < points.size() - 1; i++) {
 
             points.get(i).isRight();
 

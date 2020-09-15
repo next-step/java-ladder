@@ -4,7 +4,8 @@ import java.util.*;
 
 public class LadderResultBoard {
 
-    private final Map<User,Integer> resultPositionMap = new HashMap<>();
+    private final Map<User, Integer> resultPositionMap = new HashMap<>();
+
     public LadderResultBoard() {
     }
 
@@ -13,10 +14,10 @@ public class LadderResultBoard {
     }
 
     public void addUserLastLadderPosition(User user, int position) {
-        resultPositionMap.put(user,position);
+        resultPositionMap.put(user, position);
     }
 
-    public Map<User,Integer> resultUsers() {
+    public Map<User, Integer> resultUsers() {
         return Collections.unmodifiableMap(resultPositionMap);
     }
 
