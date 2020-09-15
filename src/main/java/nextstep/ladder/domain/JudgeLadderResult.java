@@ -19,11 +19,19 @@ public class JudgeLadderResult {
 
         LadderResultBoard ladderResultBoard = LadderResultBoard.create();
         if (!isShowOneUser) {
-            allUserLastPosition(ladderResultBoard, users);
-            return ladderResultBoard;
+            return allUserResult(ladderResultBoard);
         }
 
-        User user = users.getUsers(target);
+        return singleUserResult(ladderResultBoard, target);
+    }
+
+    private LadderResultBoard allUserResult(LadderResultBoard ladderResultBoard) {
+        allUserLastPosition(ladderResultBoard, users);
+        return ladderResultBoard;
+    }
+
+    private LadderResultBoard singleUserResult(LadderResultBoard ladderResultBoard, String userName) {
+        User user = users.getUsers(userName);
         userLastPosition(ladderResultBoard, user);
         return ladderResultBoard;
     }
