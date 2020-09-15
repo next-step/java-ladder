@@ -2,11 +2,13 @@ package nextstep.app;
 
 import nextstep.domain.ladder.*;
 import nextstep.domain.person.Participants;
+import nextstep.domain.person.Person;
 import nextstep.domain.person.PersonFactory;
 import nextstep.view.InputView;
 import nextstep.view.OutputView;
 
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGameApp {
 
@@ -18,24 +20,13 @@ public class LadderGameApp {
         LadderHeight ladderHeight = new LadderHeight(InputView.receiveLadderHeight());
         LadderGameManager ladderGameManager = new LadderGameManager(participants.getPersonSize(), ladderHeight.getLadderHeight());
         OutputView.printLadder(participants, ladderGameManager, ladderResults);
-        LadderExecutionResults ladderExecutionResults = getLadderExecutionResults(participants, ladderGameManager, ladderResults);
+        LadderExecutionResults ladderExecutionResults = LadderGameExecutor.getLadderExecutionResults(participants, ladderGameManager, ladderResults);
         String personForResult = InputView.receivePersonForResult();
-        if (personForResult.equals(ALL)) {
-            OutputView.printLadderTotalResult(ladderExecutionResults);
-            return;
+        while (!ALL.equals(personForResult)) {
+            OutputView.printLadderResult(ladderExecutionResults.getLadderResultByName(personForResult));
+            personForResult = InputView.receivePersonForResult();
         }
-        OutputView.printLadderResult(ladderExecutionResults.getLadderResultByName(personForResult));
-    }
-
-    private static LadderExecutionResults getLadderExecutionResults(Participants participants, LadderGameManager ladderGameManager, LadderResults ladderResults) {
-        return new LadderExecutionResults(participants.getPersons()
-                .stream()
-                .map(person -> {
-                    int startTrackNumber = participants.getTrackNumberByPerson(person);
-                    int finishTrackNumber = ladderGameManager.start(startTrackNumber);
-                    return new LadderExecutionResult(person, ladderResults.getLadderResult(finishTrackNumber));
-                })
-                .collect(Collectors.toList()));
+        OutputView.printLadderTotalResult(ladderExecutionResults);
     }
 
 }

@@ -1,7 +1,7 @@
 package nextstep.domain.person;
 
-import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PersonFactory {
 
@@ -16,8 +16,8 @@ public class PersonFactory {
     }
 
     public static Participants createPersons(String[] names) {
-        return new Participants(Arrays.stream(names)
-                .map(Person::new)
+        return new Participants(IntStream.range(0, names.length)
+                .mapToObj(i -> new Person(i, names[i]))
                 .collect(Collectors.toList()));
     }
 

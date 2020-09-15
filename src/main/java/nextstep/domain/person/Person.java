@@ -4,13 +4,23 @@ import java.util.Objects;
 
 public class Person {
 
+    private final int trackNumber;
     private final String name;
 
     public Person(String name) {
+        this(-1, name);
+    }
+
+    public Person(int trackNumber, String name) {
         if (!validateName(name)) {
             throw new IllegalArgumentException("유효하지 않은 이름입니다.");
         }
+        this.trackNumber = trackNumber;
         this.name = name;
+    }
+
+    public int getTrackNumber() {
+        return trackNumber;
     }
 
     public String getName() {
@@ -19,6 +29,10 @@ public class Person {
 
     public static boolean validateName(String name) {
         return PersonValidator.validateName(name);
+    }
+
+    public Person finish(int finishTrackNumber) {
+        return new Person(finishTrackNumber, name);
     }
 
     @Override

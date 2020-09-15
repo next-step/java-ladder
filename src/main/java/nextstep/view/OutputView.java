@@ -1,6 +1,9 @@
 package nextstep.view;
 
-import nextstep.domain.ladder.*;
+import nextstep.domain.ladder.LadderExecutionResults;
+import nextstep.domain.ladder.LadderGameManager;
+import nextstep.domain.ladder.LadderResult;
+import nextstep.domain.ladder.LadderResults;
 import nextstep.domain.line.Line;
 import nextstep.domain.person.Participants;
 import nextstep.domain.person.Person;
@@ -8,7 +11,6 @@ import nextstep.util.StringUtils;
 
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class OutputView {
 
@@ -39,6 +41,7 @@ public class OutputView {
         ladderResults.stream()
                 .map(person -> StringUtils.padLeft(person.getResult(), PAD_SIZE))
                 .forEach(OutputView::printPerson);
+        System.out.println();
     }
 
     private static void printPerson(String person) {
@@ -57,24 +60,17 @@ public class OutputView {
         System.out.print(PIPE);
     }
 
-    public static void printLadderResult(LadderExecutionResult ladderExecutionResult) {
+    public static void printLadderResult(LadderResult ladderResult) {
         System.out.println();
         System.out.println("실행 결과");
-        System.out.println(ladderExecutionResult.getResult());
-    }
-
-    public static void printLadderTotalResult(Participants participants, LadderResults ladderTotalResults) {
-        System.out.println();
-        System.out.println("실행 결과");
-        IntStream.range(0, participants.getPersonSize())
-                .forEach(index -> System.out.println(MessageFormat.format("{0} : {1}", participants.getPersonName(index), ladderTotalResults.getResult(index))));
+        System.out.println(ladderResult.getResult());
     }
 
     public static void printLadderTotalResult(LadderExecutionResults ladderExecutionResults) {
         System.out.println();
         System.out.println("실행 결과");
         ladderExecutionResults.getLadderExecutionResult()
-                .forEach((name, ladderExecutionResult) -> System.out.println(MessageFormat.format("{0} : {1}", name, ladderExecutionResult.getResult())));
+                .forEach((person, ladderExecutionResult) -> System.out.println(MessageFormat.format("{0} : {1}", person.getName(), ladderExecutionResult.getResult())));
 
     }
 

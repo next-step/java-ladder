@@ -1,25 +1,24 @@
 package nextstep.domain.ladder;
 
-import java.util.List;
+import nextstep.domain.person.Person;
+
+import java.util.Collections;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class LadderExecutionResults {
 
-    private final Map<String, LadderExecutionResult> ladderExecutionResult;
+    private final Map<Person, LadderResult> ladderResult;
 
-    public LadderExecutionResults(List<LadderExecutionResult> ladderExecutionResults) {
-        ladderExecutionResult = ladderExecutionResults.stream()
-                .collect(Collectors.toMap(LadderExecutionResult::getName, Function.identity()));
+    public LadderExecutionResults(Map<Person, LadderResult> ladderResult) {
+        this.ladderResult = ladderResult;
     }
 
-    public Map<String, LadderExecutionResult> getLadderExecutionResult() {
-        return ladderExecutionResult;
+    public Map<Person, LadderResult> getLadderExecutionResult() {
+        return Collections.unmodifiableMap(ladderResult);
     }
 
-    public LadderExecutionResult getLadderResultByName(String name) {
-        return ladderExecutionResult.get(name);
+    public LadderResult getLadderResultByName(String name) {
+        return ladderResult.get(new Person(name));
     }
 
 }

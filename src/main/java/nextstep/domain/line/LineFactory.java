@@ -1,6 +1,5 @@
 package nextstep.domain.line;
 
-import nextstep.domain.ladder.LadderHeight;
 import nextstep.domain.line.strategy.RandomTransverseBarStrategy;
 import nextstep.domain.line.strategy.TransverseBarStrategy;
 
@@ -18,10 +17,6 @@ public class LineFactory {
 
     public static Line createLine(int countOfPerson, TransverseBarStrategy transverseBarStrategy) {
         return new Line(countOfPerson, transverseBarStrategy);
-    }
-
-    public static List<Line> createLines(int countOfPerson, LadderHeight ladderHeight) {
-        return createLines(countOfPerson, ladderHeight.getLadderHeight());
     }
 
     public static List<Line> createLines(int countOfPerson, int ladderHeight) {
