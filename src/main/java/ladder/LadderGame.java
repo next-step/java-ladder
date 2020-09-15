@@ -21,7 +21,7 @@ public class LadderGame {
         Map<User, Reward> userRewardMap = new HashMap<>();
         for(User user : users.getUsers()) {
             int position = ladder.downLadder(user.getPosition());
-            Reward reward = rewards.setRewardPosition(position);
+            Reward reward = rewards.getSamePosition(position);
             userRewardMap.put(user, reward);
         }
         Result result = new Result(userRewardMap);
