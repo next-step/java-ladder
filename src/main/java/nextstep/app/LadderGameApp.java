@@ -22,7 +22,7 @@ public class LadderGameApp {
         OutputView.printLadder(participants, ladderGameManager, ladderResults);
         LadderExecutionResults ladderExecutionResults = getLadderExecutionResults(participants, ladderGameManager, ladderResults);
         String personForResult = InputView.receivePersonForResult();
-        while (!personForResult.equals(ALL)) {
+        while (!ALL.equals(personForResult)) {
             OutputView.printLadderResult(ladderExecutionResults.getLadderResultByName(personForResult));
             personForResult = InputView.receivePersonForResult();
         }
