@@ -14,15 +14,15 @@ class UserTest {
     @CsvSource(value = {"test,6"}, delimiter = ',')
     @DisplayName("정상적인 사용자의 생성 테스트")
     void normalUserTest(String userName) {
-        User user = User.newInstance(userName,0);
-        assertThat(user).isEqualTo(User.newInstance(userName,0));
+        User user = User.newInstance(userName);
+        assertThat(user).isEqualTo(User.newInstance(userName));
     }
 
     @Test
     @DisplayName("사용자 이름이 5초과시 에러 테스트")
     void overUserNameLengthTest() {
         assertThatThrownBy(() -> {
-            User.newInstance("CleanCode",0);
+            User.newInstance("CleanCode");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
