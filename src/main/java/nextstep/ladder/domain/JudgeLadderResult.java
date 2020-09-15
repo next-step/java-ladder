@@ -1,8 +1,4 @@
-package nextstep.ladder.util;
-
-import nextstep.ladder.domain.*;
-
-import java.util.List;
+package nextstep.ladder.domain;
 
 public class JudgeLadderResult {
 
@@ -39,8 +35,9 @@ public class JudgeLadderResult {
     }
 
     public void userLastPosition(LadderResultBoard ladderResultBoard, User user) {
-        ladder.run(user);
-        ladderResultBoard.addUserLastLadderPosition(user);
+        int userPosition = users.userIndex(user.getUserName());
+        int lastPosition = ladder.run(userPosition);
+        ladderResultBoard.addUserLastLadderPosition(user, lastPosition);
     }
 
 }
