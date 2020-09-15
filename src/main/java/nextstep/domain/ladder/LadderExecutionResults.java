@@ -2,6 +2,7 @@ package nextstep.domain.ladder;
 
 import nextstep.domain.person.Person;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class LadderExecutionResults {
@@ -13,7 +14,7 @@ public class LadderExecutionResults {
     }
 
     public Map<Person, LadderResult> getLadderExecutionResult() {
-        return ladderResult;
+        return Collections.unmodifiableMap(ladderResult);
     }
 
     public LadderResult getLadderResultByName(String name) {
