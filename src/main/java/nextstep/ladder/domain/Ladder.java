@@ -5,35 +5,34 @@ import java.util.List;
 
 public class Ladder {
 
-    private List<Line> ladder;
+    private List<LadderLine> ladder;
 
-    private Ladder(List<Line> ladder) {
+    private Ladder(List<LadderLine> ladder) {
         this.ladder = ladder;
     }
 
     public static Ladder create(Users users, LadderHeight ladderHeight) {
         int height = ladderHeight.getLadderHeight();
 
-        List<Line> lines = new ArrayList<>();
+        List<LadderLine> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(users.size()));
+            lines.add(LadderLine.init(users.size()));
         }
 
         return new Ladder(lines);
     }
 
-    public List<Line> getLadder() {
+    public List<LadderLine> getLadder() {
         return ladder;
     }
 
-    public void run(User user) {
-        int position = user.getPosition();
+    public int run(int position) {
 
-        for (Line line : ladder) {
+        for (LadderLine line : ladder) {
             position = line.move(position);
         }
 
-        user.updateLastPosition(position);
+        return position;
     }
 }
