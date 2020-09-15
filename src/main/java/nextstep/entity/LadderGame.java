@@ -16,14 +16,12 @@ public class LadderGame {
         return ladder.getLinesStatus();
     }
 
-    public String play(String targetEntryName, List<String> arrivalEntryNames) {
+    public Entry play(String targetEntryName, List<String> arrivalEntryNames) {
         Entry targetEntry = Entry.of(targetEntryName);
         Entries arrivalEntries = Entries.of(arrivalEntryNames);
 
         int targetIndex = startEntries.getIndexByEntry(targetEntry);
-        Entry arrivalEntry = arrivalEntries.getEntryByIndex(ladder.play(targetIndex));
-
-        return arrivalEntry.getName();
+        return arrivalEntries.getEntryByIndex(ladder.play(targetIndex));
     }
 
     public static LadderGame of(List<String> startEntries, Length length) {

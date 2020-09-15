@@ -33,6 +33,6 @@ class LadderGameTest {
     @DisplayName("게임 결과 반환 메소드 검증")
     void play() {
         String arrivalName = "arr";
-        then(ladderGame.play(entryName, Collections.singletonList(arrivalName))).isEqualTo(arrivalName);
+        then(ladderGame.play(entryName, Collections.singletonList(arrivalName))).isEqualTo(Entry.of(arrivalName));
     }
 }
