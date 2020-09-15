@@ -2,10 +2,10 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static nextstep.ladder.constant.ExceptionMessage.INVALID_JOIN_USERS_MINIMIM_SIZE;
 import static nextstep.ladder.constant.ExceptionMessage.NOT_EXIST_USER_NAME;
@@ -28,9 +28,7 @@ public class Users {
     public static Users create(String users) {
         String[] splitUsers = StringUtils.split(users);
 
-        List<User> userCollections = IntStream.range(0, splitUsers.length)
-                .mapToObj(index -> User.newInstance(splitUsers[index], index))
-                .collect(Collectors.toList());
+        List<User> userCollections = Arrays.stream(splitUsers).map(User::newInstance).collect(Collectors.toList());
 
         return new Users(userCollections);
     }
@@ -48,5 +46,10 @@ public class Users {
                 .filter(user -> user.getUserName().equals(userName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_USER_NAME));
+    }
+
+    public int userIndex(String userName) {
+        User user = User.newInstance(userName);
+        return users.indexOf(user);
     }
 }
