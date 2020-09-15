@@ -1,9 +1,8 @@
 package nextstep.view;
 
 import nextstep.dto.EntriesDTO;
+import nextstep.dto.EntryDTO;
 import nextstep.dto.LadderDTO;
-import nextstep.entity.Entry;
-import nextstep.entity.LadderGame;
 
 import java.util.List;
 
@@ -30,11 +29,11 @@ public class ResultView {
         System.out.println();
     }
 
-    public void printPlayResults(EntriesDTO targetEntriesDTO, EntriesDTO arrivalEntries, LadderGame ladderGame) {
+    public void printBeforePlay() {
         System.out.println("실행 결과");
-        targetEntriesDTO.getEntries().forEach(targetEntryDTO -> {
-            Entry arrivalEntry = ladderGame.play(targetEntryDTO.getName(), arrivalEntries.getEntryNames());
-            System.out.printf(PLAY_RESULT_FORMAT, targetEntryDTO.getName(), arrivalEntry.getName());
-        });
+    }
+
+    public void printPlayResult(EntryDTO targetEntryDTO, EntryDTO arrivalEntryDTO) {
+        System.out.printf(PLAY_RESULT_FORMAT, targetEntryDTO.getName(), arrivalEntryDTO.getName());
     }
 }

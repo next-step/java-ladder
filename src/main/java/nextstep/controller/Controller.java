@@ -1,6 +1,7 @@
 package nextstep.controller;
 
 import nextstep.dto.EntriesDTO;
+import nextstep.dto.EntryDTO;
 import nextstep.dto.LadderDTO;
 import nextstep.dto.LengthDTO;
 import nextstep.entity.*;
@@ -29,15 +30,19 @@ public class Controller {
         resultView.printLadder(ladderDTO);
         resultView.printEntryNames(arrivalEntriesDTO);
 
-        printResults(startEntriesDTO, arrivalEntriesDTO, ladderGame);
+        EntriesDTO targetEntriesDTO = null;
+        while (checkAll(targetEntriesDTO)) {
+            targetEntriesDTO = inputView.inputTargetEntries(startEntriesDTO);
+            printResults(targetEntriesDTO, arrivalEntriesDTO, ladderGame);
+        }
     }
 
-    private static void printResults(EntriesDTO startEntriesDTO, EntriesDTO arrivalEntries, LadderGame ladderGame) {
-        EntriesDTO targetEntries = null;
-        while (checkAll(targetEntries)) {
-            targetEntries = inputView.inputTargetEntries(startEntriesDTO);
-            resultView.printPlayResults(targetEntries, arrivalEntries, ladderGame);
-        }
+    private static void printResults(EntriesDTO targetEntriesDTO, EntriesDTO arrivalEntriesDTO, LadderGame ladderGame) {
+        resultView.printBeforePlay();
+        targetEntriesDTO.getEntries().forEach(targetEntryDTO -> {
+            Entry arrivalEntry = ladderGame.play(targetEntryDTO.getName(), arrivalEntriesDTO.getEntryNames());
+            resultView.printPlayResult(targetEntryDTO, new EntryDTO(arrivalEntry.getName()));
+        });
     }
 
     private static boolean checkAll(EntriesDTO targetEntries) {
