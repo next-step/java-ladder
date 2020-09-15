@@ -1,35 +1,35 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
-    private final Random random = new Random();
-    private List<Boolean> lines = new ArrayList<>();
+    private List<Boolean> lines;
 
     public Line(int userCount) {
-        generateLine(userCount);
-    }
-
-    private List<Boolean> generateLine(int userCount) {
-        lines.add(Boolean.FALSE);
-        for(int i = 1; i < userCount; i++) {
-            boolean prevLine = lines.get(i - 1);
-            lines.add(randomLine(prevLine));
-        }
-        return lines;
-    }
-
-    private Boolean randomLine(Boolean existLine) {
-        if(existLine) {
-            return Boolean.FALSE;
-        }
-        return random.nextBoolean();
+        lines = new LineGenerator(userCount).generateLine();
     }
 
     public List<Boolean> getLine() {
         return Collections.unmodifiableList(lines);
+    }
+
+    private boolean isLeft(int position) {
+        return lines.get(position);
+    }
+
+    private boolean isRight(int position) {
+        return position + 1 < lines.size()
+                && lines.get(position + 1);
+    }
+
+    public int move(int position) {
+        if(isLeft(position)) {
+            return --position;
+        }
+        if(isRight(position)) {
+            return ++position;
+        }
+        return position;
     }
 }
