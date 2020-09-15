@@ -1,13 +1,11 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.refactoring.domain.*;
 
 import java.io.PrintWriter;
-import java.util.Map;
-import java.util.Set;
 
 public class OutputView {
-    private static final String ALL = "all";
+    private static final Participant ALL = Participant.of("all");
     private static final String BLANK = "       ";
     private static final String BRIDGE = "-------";
     private static final String POINT = "|";
@@ -44,34 +42,33 @@ public class OutputView {
     }
 
     public void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            line.getPoints()
-                    .forEach(this::printPoint);
+        for (LadderLine line : ladder.getLines()) {
+            line.getPoints().forEach(this::printPoint);
             writer.printf("\n");
         }
     }
 
     public void printPoint(Point point) {
         writer.printf(POINT);
-        if (point.getRight()) {
+        if (point.isRightDirection()) {
             writer.printf(BRIDGE);
             return;
         }
         writer.printf(BLANK);
     }
 
-    public void printGameResult(Name target, LadderResult result, Rewards rewards) {
+    public void printGameResult(Participant target, LadderResult result, Rewards rewards) {
         System.out.println(OutputViewMessage.RESULT_START.getMessage());
 
         if (!target.equals(ALL)) {
-            int position = result.findResultByName(target);
+            int position = result.findResultByParticipant(target);
             writer.println(target + " : " + rewards.getRewardByPosition(position));
             return;
         }
 
-        for (Name name : result.getAllNames()) {
-            int position = result.findResultByName(name);
-            writer.println(name + " : " + rewards.getRewardByPosition(position));
+        for (Participant participant : result.getAllParticipants()) {
+            int position = result.findResultByParticipant(participant);
+            writer.println(participant + " : " + rewards.getRewardByPosition(position));
         }
     }
 }
