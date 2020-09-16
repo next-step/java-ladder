@@ -14,7 +14,7 @@ public class Ladder {
     private Random random = new Random();
 
     public Ladder(int maxHeight, int playsCount) {
-        lines = Stream.generate(() -> new Line(Constants.LADDER_VERTICAL_COUNT(playsCount), () -> random.nextBoolean()))
+        lines = Stream.generate(() -> new Line(playsCount - 1, () -> random.nextBoolean()))
                 .limit(maxHeight)
                 .collect(Collectors.toList());
     }

@@ -13,10 +13,9 @@ import java.util.stream.Collectors;
 
 public class GameManager {
 
-    private List<Player> players;
+    private List<Player> players = new ArrayList<>();
 
     GameManager() {
-        players = new ArrayList<>();
         this.readyGame();
         this.startGame(InputView.getMaxLadderHeight());
     }

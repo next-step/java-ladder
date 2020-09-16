@@ -23,7 +23,7 @@ public class Line {
             return;
         }
 
-        boolean previousConnection = line.get(Constants.LAST_ELEMENT_INDEX(line.size()));
+        boolean previousConnection = line.get(line.size() - 1);
         if (previousConnection) {
             line.add(false);
             return;
