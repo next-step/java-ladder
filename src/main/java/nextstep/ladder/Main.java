@@ -19,7 +19,5 @@ public class Main {
 
         ResultView resultView = ResultView.of(userArr, ladder);
         resultView.printResult();
-        //System.out.println(ladder.getLadderStr());
-
     }
 }

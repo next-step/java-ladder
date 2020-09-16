@@ -61,7 +61,6 @@ public class ResultView {
 
         str.append(userStr).append("\n").append(ladderStr);
 
-
         System.out.println(str.toString());
     }
 
