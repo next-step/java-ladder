@@ -1,9 +1,10 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.*;
-import nextstep.ladder.util.LadderUtils;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static nextstep.ladder.constant.PrintMessage.PRINT_TEXT_LADDER_RESULT;
 import static nextstep.ladder.constant.PrintMessage.PRINT_TEXT_REWARD_RESULT;
@@ -28,13 +29,17 @@ public class ResultView {
 
 
         StringBuilder sb = new StringBuilder();
+        Map<User, Integer> userPosition = positionBoard.resultUsers();
 
-        for(User user : positionBoard.users()){
+        Set<User> users = userPosition.keySet();
+
+        for (User user : users) {
             sb.append(user.getUserName())
-                .append(FIELD_SEPERATOR_COLON)
-                .append(rewards.getReward(user.getPosition()).getName())
-                .append("\n");
+                    .append(FIELD_SEPERATOR_COLON)
+                    .append(rewards.getReward(userPosition.get(user)).getName())
+                    .append("\n");
         }
+
         System.out.println(sb.toString());
     }
 
@@ -57,24 +62,23 @@ public class ResultView {
     }
 
     private void printLadder(Ladder ladder) {
-        List<Line> lines = ladder.getLadder();
-        for (Line line : lines) {
+        List<LadderLine> lines = ladder.getLadder();
+        for (LadderLine line : lines) {
             System.out.println(printBridge(line));
         }
     }
 
-    private String printBridge(Line line) {
+    private String printBridge(LadderLine line) {
 
-        List<Boolean> points = line.getPoints();
+        List<Point> points = line.getPoints();
         StringBuilder sb = new StringBuilder();
         sb.append(UNIT_LADDER_CHARACTOR);
 
-        boolean isOpenBridge = false;
-        for(int i = 0; i < points.size() - 1; i++) {
+        for (int i = 0; i < points.size() - 1; i++) {
 
-            isOpenBridge = LadderUtils.isOpenBridge(isOpenBridge,points.get(i));
+            points.get(i).isRight();
 
-            sb.append(printBridge(points.get(i), isOpenBridge));
+            sb.append(printBridge(points.get(i).isRight()));
             sb.append(UNIT_LADDER_CHARACTOR);
         }
 
@@ -82,8 +86,12 @@ public class ResultView {
     }
 
 
-    private String printBridge(boolean isBridge, boolean isOpen) {
-        return (isBridge && isOpen )? UNIT_BRIDGE_CHARACTOR : UNIT_EMPTY_BRIDGE_CHARACTOR;
+    private String printBridge(boolean isRight) {
+        if (isRight) {
+            return UNIT_BRIDGE_CHARACTOR;
+        }
+
+        return UNIT_EMPTY_BRIDGE_CHARACTOR;
     }
 
     private String getFixedLengthName(String name) {

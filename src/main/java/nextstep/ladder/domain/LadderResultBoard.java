@@ -4,7 +4,7 @@ import java.util.*;
 
 public class LadderResultBoard {
 
-    private final List<User> resultPosition = new ArrayList<>();
+    private final Map<User, Integer> resultPositionMap = new HashMap<>();
 
     public LadderResultBoard() {
     }
@@ -13,12 +13,12 @@ public class LadderResultBoard {
         return new LadderResultBoard();
     }
 
-    public void addUserLastLadderPosition(User user) {
-        resultPosition.add(user);
+    public void addUserLastLadderPosition(User user, int position) {
+        resultPositionMap.put(user, position);
     }
 
-    public List<User> users() {
-        return Collections.unmodifiableList(resultPosition);
+    public Map<User, Integer> resultUsers() {
+        return Collections.unmodifiableMap(resultPositionMap);
     }
 
 }

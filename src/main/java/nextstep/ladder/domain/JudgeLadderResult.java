@@ -1,8 +1,4 @@
-package nextstep.ladder.util;
-
-import nextstep.ladder.domain.*;
-
-import java.util.List;
+package nextstep.ladder.domain;
 
 public class JudgeLadderResult {
 
@@ -23,11 +19,19 @@ public class JudgeLadderResult {
 
         LadderResultBoard ladderResultBoard = LadderResultBoard.create();
         if (!isShowOneUser) {
-            allUserLastPosition(ladderResultBoard, users);
-            return ladderResultBoard;
+            return allUserResult(ladderResultBoard);
         }
 
-        User user = users.getUsers(target);
+        return singleUserResult(ladderResultBoard, target);
+    }
+
+    private LadderResultBoard allUserResult(LadderResultBoard ladderResultBoard) {
+        allUserLastPosition(ladderResultBoard, users);
+        return ladderResultBoard;
+    }
+
+    private LadderResultBoard singleUserResult(LadderResultBoard ladderResultBoard, String userName) {
+        User user = users.getUsers(userName);
         userLastPosition(ladderResultBoard, user);
         return ladderResultBoard;
     }
@@ -39,8 +43,9 @@ public class JudgeLadderResult {
     }
 
     public void userLastPosition(LadderResultBoard ladderResultBoard, User user) {
-        ladder.run(user);
-        ladderResultBoard.addUserLastLadderPosition(user);
+        int userPosition = users.userIndex(user.getUserName());
+        int lastPosition = ladder.run(userPosition);
+        ladderResultBoard.addUserLastLadderPosition(user, lastPosition);
     }
 
 }
