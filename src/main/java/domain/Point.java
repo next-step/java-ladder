@@ -4,20 +4,18 @@ import static utility.generatorPoint.makeDirection;
 
 public class Point {
     private int index;
-    private boolean left;
     private boolean right;
 
-
     public Point(int index, boolean makeDirection) {
-        this.index =index;
-        this.right= makeDirection;
+        this.index = index;
+        this.right = makeDirection;
     }
 
-    public Point next(){
-        if(this.right){
-            return new Point(index+1, false);
+    public Point next() {
+        if (this.right) {
+            return new Point(index + 1, false);
         }
-        return new Point(index+1,makeDirection());
+        return new Point(index + 1, makeDirection());
     }
 
     public boolean isRight() {
@@ -25,7 +23,7 @@ public class Point {
     }
 
     public Point last() {
-        Point last =  new Point(index+1,false);
+        Point last = new Point(index + 1, false);
         return last;
     }
 }

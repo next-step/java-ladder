@@ -7,9 +7,10 @@ import static view.View.*;
 public class UserInput {
     public static Scanner SC = new Scanner(System.in);
 
-    private UserInput(){}
+    private UserInput() {
+    }
 
-    public static String inputUserNamse(){
+    public static String inputUserNamse() {
         System.out.println(NAMES);
         String input = SC.nextLine();
         return input;

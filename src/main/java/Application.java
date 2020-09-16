@@ -10,11 +10,9 @@ public class Application {
         int height = UserInput.inputHeight();
 
         Ladder ladder = new Ladder();
-        ladder.makeLines(inputs,height);
+        ladder.makeLines(inputs, height);
 
         View.showNames(inputs);
         View.showLadder(ladder);
-
-
     }
 }
