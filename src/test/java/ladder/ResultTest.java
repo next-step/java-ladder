@@ -39,7 +39,8 @@ public class ResultTest {
     @DisplayName("설정 안된 회원 에러 나는지")
     public void notUser() {
         assertThatThrownBy(() -> result.getIndividualResult(user3))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("해당 유저의 이름으로 결과를 찾을 수 없습니다.");
     }
 
 }

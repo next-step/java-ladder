@@ -20,7 +20,7 @@ public class Result {
                 .map(Map.Entry::getValue)
                 .findFirst()
                 .map(Reward::getReward)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(() -> new IllegalArgumentException("해당 유저의 이름으로 결과를 찾을 수 없습니다."));
     }
 
 }

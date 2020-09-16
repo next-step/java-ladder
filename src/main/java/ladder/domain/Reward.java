@@ -1,8 +1,8 @@
 package ladder.domain;
 
 public class Reward {
-    private String reward;
-    private int position;
+    private final String reward;
+    private final int position;
 
     public Reward(int position, String reward) {
         this.position = position;
