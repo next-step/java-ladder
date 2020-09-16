@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.domain.Users;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -7,8 +9,13 @@ public class InputView {
     private static final String INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?";
     private static final Scanner sc = new Scanner(System.in);
 
-    public static String inputParticipants() {
+    public static Users inputParticipants() {
         System.out.println(START_MESSAGE);
-        return sc.nextLine();
+        return Users.userNameList(sc.nextLine());
+    }
+
+    public static int inputHeight() {
+        System.out.println(INPUT_LADDER_HEIGHT);
+        return sc.nextInt();
     }
 }
