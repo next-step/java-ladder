@@ -35,7 +35,7 @@ public class Line {
 
     public int play(int index) {
         Point point = points.get(index);
-        return point.play(index);
+        return point.play();
     }
 
     public static Line of(int personnel) {

@@ -7,26 +7,24 @@ public class LadderGame {
     private final Entries startEntries;
     private final Ladder ladder;
 
-    private LadderGame(Entries startEntries) {
+    private LadderGame(Entries startEntries, Length length) {
         this.startEntries = startEntries;
-        this.ladder = Ladder.of();
-    }
-
-    public void initLadder(Length length) {
-        Personnel personnel = Personnel.of(startEntries.getPersonnel());
-        ladder.initLadder(personnel, length);
+        this.ladder = Ladder.of(length, Personnel.of(startEntries.getPersonnel()));
     }
 
     public List<List<Boolean>> getLinesStatus() {
         return ladder.getLinesStatus();
     }
 
-    public Entry play(Entry targetEntry, Entries arrivalEntries) {
+    public Entry play(String targetEntryName, List<String> arrivalEntryNames) {
+        Entry targetEntry = Entry.of(targetEntryName);
+        Entries arrivalEntries = Entries.of(arrivalEntryNames);
+
         int targetIndex = startEntries.getIndexByEntry(targetEntry);
         return arrivalEntries.getEntryByIndex(ladder.play(targetIndex));
     }
 
-    public static LadderGame of(Entries startEntries) {
-        return new LadderGame(startEntries);
+    public static LadderGame of(List<String> startEntries, Length length) {
+        return new LadderGame(Entries.of(startEntries), length);
     }
 }

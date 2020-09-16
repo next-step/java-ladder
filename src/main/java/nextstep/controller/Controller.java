@@ -1,6 +1,7 @@
 package nextstep.controller;
 
 import nextstep.dto.EntriesDTO;
+import nextstep.dto.EntryDTO;
 import nextstep.dto.LadderDTO;
 import nextstep.dto.LengthDTO;
 import nextstep.entity.*;
@@ -16,31 +17,32 @@ public class Controller {
 
     public static void main(String[] args) {
         EntriesDTO startEntriesDTO = inputView.inputStartEntries();
-        Entries startEntries = Entries.of(startEntriesDTO.getEntryNames());
-        Personnel personnel = Personnel.of(startEntries.getPersonnel());
+        Personnel personnel = Personnel.of(startEntriesDTO.getEntryCount());
 
         EntriesDTO arrivalEntriesDTO = inputView.inputArrivalEntries(personnel.getPersonnel());
         LengthDTO lengthDTO = inputView.inputLength();
         Length length = Length.of(lengthDTO.getLength());
 
-        LadderGame ladderGame = LadderGame.of(startEntries);
-        ladderGame.initLadder(length);
+        LadderGame ladderGame = LadderGame.of(startEntriesDTO.getEntryNames(), length);
         LadderDTO ladderDTO = new LadderDTO(ladderGame.getLinesStatus());
 
         resultView.printEntryNames(startEntriesDTO);
         resultView.printLadder(ladderDTO);
         resultView.printEntryNames(arrivalEntriesDTO);
 
-        Entries arrivalEntries = Entries.of(arrivalEntriesDTO.getEntryNames());
-        printResults(startEntriesDTO, arrivalEntries, ladderGame);
+        EntriesDTO targetEntriesDTO = null;
+        while (checkAll(targetEntriesDTO)) {
+            targetEntriesDTO = inputView.inputTargetEntries(startEntriesDTO);
+            printResults(targetEntriesDTO, arrivalEntriesDTO, ladderGame);
+        }
     }
 
-    private static void printResults(EntriesDTO startEntriesDTO, Entries arrivalEntries, LadderGame ladderGame) {
-        EntriesDTO targetEntries = null;
-        while (checkAll(targetEntries)) {
-            targetEntries = inputView.inputTargetEntries(startEntriesDTO);
-            resultView.printPlayResults(targetEntries, arrivalEntries, ladderGame);
-        }
+    private static void printResults(EntriesDTO targetEntriesDTO, EntriesDTO arrivalEntriesDTO, LadderGame ladderGame) {
+        resultView.printBeforePlay();
+        targetEntriesDTO.getEntries().forEach(targetEntryDTO -> {
+            Entry arrivalEntry = ladderGame.play(targetEntryDTO.getName(), arrivalEntriesDTO.getEntryNames());
+            resultView.printPlayResult(targetEntryDTO, new EntryDTO(arrivalEntry.getName()));
+        });
     }
 
     private static boolean checkAll(EntriesDTO targetEntries) {
