@@ -11,7 +11,7 @@ public class LadderTest {
     @DisplayName("Ladder 생성 테스트")
     @Test
     void LadderConstructorTest() {
-        Ladder ladder = new Ladder(5);
+        Ladder ladder = new Ladder(5, 5);
         assertThat(ladder.getLines().size()).isEqualTo(5);
     }
 
