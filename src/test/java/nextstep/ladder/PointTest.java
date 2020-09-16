@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PointTest {
 
@@ -21,6 +20,6 @@ class PointTest {
         Point prevPoint = new Point();
         Point point = prevPoint.next();
 
-        assertThat(point.getDirection().equals(Direction.RIGTH));
+        assertThat(point.getDirection().equals(Direction.RIGHT));
     }
 }

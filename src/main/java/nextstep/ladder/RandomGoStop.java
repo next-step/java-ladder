@@ -10,7 +10,7 @@ public class RandomGoStop {
             return Direction.STOP;
         }
 
-        return Direction.RIGTH;
+        return Direction.RIGHT;
     }
 
     private static boolean isSTOP(){

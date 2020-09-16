@@ -9,35 +9,34 @@ public class Ladder {
     private List<User> users = new ArrayList<>();
     private List<Line> lines = new ArrayList<>();
 
-    private Ladder(String[] userStrArr, int ladderHeight) {
-        int countOfUsers = userStrArr.length;
-
-        users = Arrays.stream(userStrArr)
-                .map(User::new)
-                .collect(Collectors.toList());
+    private Ladder(int countOfUsers, int ladderHeight) {
 
         for(int i = 0; i < ladderHeight ; i ++){
-            lines.add(new Line(countOfUsers));
+            lines.add(Line.of(countOfUsers));
         }
     }
 
-    public static Ladder of(String[] userStrArr, int ladderHeight){
-        return new Ladder(userStrArr, ladderHeight);
+    public static Ladder of(int countOfUsers, int ladderHeight){
+        return new Ladder(countOfUsers, ladderHeight);
     }
 
-    public String getLadderStr(){
-        StringBuilder str = new StringBuilder();
+//    public String getLadderStr(){
+//        StringBuilder str = new StringBuilder();
+//
+//        String userStr = users.stream()
+//                                .map(User::toString)
+//                                .collect(Collectors.joining(" "));
+//
+//        String ladderStr = lines.stream()
+//                                    .map(Line::toString)
+//                                    .collect(Collectors.joining("\n"));
+//
+//        str.append(userStr).append("\n").append(ladderStr);
+//
+//        return str.toString();
+//    }
 
-        String userStr = users.stream()
-                                .map(User::toString)
-                                .collect(Collectors.joining(" "));
-
-        String ladderStr = lines.stream()
-                                    .map(Line::toString)
-                                    .collect(Collectors.joining("\n"));
-
-        str.append(userStr).append("\n").append(ladderStr);
-
-        return str.toString();
+    public List<Line> getLines(){
+        return new ArrayList<>(lines);
     }
 }

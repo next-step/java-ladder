@@ -11,6 +11,6 @@ class RandomGoStopTest {
     @DisplayName("random 생성 테스트")
     public void createRandomTest(){
 
-        assertThat(RandomGoStop.randomGoStop()).isIn(Direction.RIGTH, Direction.STOP);
+        assertThat(RandomGoStop.randomGoStop()).isIn(Direction.RIGHT, Direction.STOP);
     }
 }

@@ -11,7 +11,7 @@ class UserTest {
     @Test
     @DisplayName("user 생성 테스트")
     public void createUserTest(){
-        User user = new User("test");
+        User user = User.of("test");
 
         assertThat(user.toString()).isEqualTo("test");
     }
@@ -19,7 +19,7 @@ class UserTest {
     @Test
     @DisplayName("user name 길이 초과 테스트")
     public void exceedUserNametest(){
-        assertThatIllegalArgumentException().isThrownBy(()-> new User("abcdef"))
+        assertThatIllegalArgumentException().isThrownBy(()-> User.of("abcdef"))
                 .withMessage("exceeded max user name length");
 
     }

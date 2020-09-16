@@ -12,10 +12,14 @@ public class Main {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = Integer.parseInt(scanner.nextLine());
 
-        Ladder ladder = Ladder.of(users.split(","),height);
+        String[] userArr = users.split(",");
+        Ladder ladder = Ladder.of(userArr.length, height);
 
         System.out.println("실행 결과");
 
-        System.out.println(ladder.getLadderStr());
+        ResultView resultView = ResultView.of(userArr, ladder);
+        resultView.printResult();
+        //System.out.println(ladder.getLadderStr());
+
     }
 }
