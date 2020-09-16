@@ -19,6 +19,14 @@ public class Ladder {
         return Collections.unmodifiableList(lineList);
     }
 
+    public int downLadder(final int userPosition) {
+        int currentPosition = userPosition;
+        for(Line line : lines) {
+            currentPosition = line.move(currentPosition);
+        }
+        return currentPosition;
+    }
+
     public List<Line> getLadder(){
         return lines;
     }
