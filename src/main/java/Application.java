@@ -1,11 +1,17 @@
-import util.UserInput;
+import domain.Ladder;
+import utility.UserInput;
+import view.View;
 
 public class Application {
     public static void main(String[] args) {
-        String names[] = UserInput.userNameInput();
+        String names = UserInput.inputUserNamse();
+        String inputs[] = names.split(",");
         int height = UserInput.inputHeight();
-        UserInput.showResult();
 
+        Ladder ladder = new Ladder();
+        ladder.makeLines(inputs, height);
 
+        View.showNames(inputs);
+        View.showLadder(ladder);
     }
 }
