@@ -5,11 +5,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+
+    private static final int WORD_LENGTH_LIMIT = 12;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -18,7 +19,7 @@ public class StreamStudy {
 
         long count = 0;
         for (String w : words) {
-            if (w.length() > 12) count++;
+            if (w.length() > WORD_LENGTH_LIMIT) count++;
         }
         return count;
     }
@@ -31,7 +32,7 @@ public class StreamStudy {
         // TODO 이 부분에 구현한다.
         words.stream()
                 .distinct()
-                .filter(word -> word.length() > 12)
+                .filter(word -> word.length() > WORD_LENGTH_LIMIT)
                 .sorted((a, b) -> b.length() - a.length())
                 .limit(100)
                 .map(String::toLowerCase)
