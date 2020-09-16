@@ -9,6 +9,7 @@ import laddergame.view.ResultView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameManager {
 
@@ -16,14 +17,14 @@ public class GameManager {
 
     GameManager() {
         players = new ArrayList<>();
-        this.startGame(this.readyGame());
+        this.readyGame();
+        this.startGame(InputView.getMaxLadderHeight());
     }
 
-    private int readyGame() {
-        Arrays.stream(InputView.getPlayerNames().split(Constants.PLAYER_NAME_SEPERATOR))
-                .forEach(playerName -> players.add(new Player(playerName)));
-
-        return InputView.getMaxLadderHeight();
+    private void readyGame() {
+        players = Arrays.stream(InputView.getPlayerNames().split(Constants.PLAYER_NAME_SEPERATOR))
+                .map(Player::new)
+                .collect(Collectors.toList());
     }
 
     private void startGame(int maxHeight) {

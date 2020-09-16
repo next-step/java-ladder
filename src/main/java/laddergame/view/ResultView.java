@@ -16,7 +16,7 @@ public class ResultView {
     }
 
     public static void showPlayers(List<Player> players) {
-        players.forEach(player -> System.out.print(player.getName() + Constants.BLANK_SPACE));
+        players.forEach(player -> System.out.print(player.getName() + Constants.PLAYER_BLANK_SPACE));
         System.out.println("");
     }
 
@@ -36,6 +36,6 @@ public class ResultView {
             return;
         }
 
-        System.out.print(Constants.BLANK_SPACE + Constants.LADDER_VERTICAL);
+        System.out.print(Constants.LADDER_BLANK_SPACE + Constants.LADDER_VERTICAL);
     }
 }

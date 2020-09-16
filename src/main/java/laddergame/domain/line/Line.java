@@ -4,8 +4,6 @@ import laddergame.domain.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -13,17 +11,19 @@ public class Line {
 
     public Line(int ladderWidth, Connention probability) {
         line = new ArrayList<>();
-        IntStream.range(Constants.COUNT_ZERO, ladderWidth)
-                .forEach(index -> makeConnections(index, probability));
+
+        for (int i = 0; i < ladderWidth; i++) {
+            makeConnections(probability);
+        }
     }
 
-    private void makeConnections(int index, Connention connention) {
-        if (index == Constants.COUNT_ZERO) {
+    private void makeConnections(Connention connention) {
+        if (line.isEmpty()) {
             line.add(connention.successConnect());
             return;
         }
 
-        boolean previousConnection = line.get(index - Constants.COUNT_ONE);
+        boolean previousConnection = line.get(Constants.LAST_ELEMENT_INDEX(line.size()));
         if (previousConnection) {
             line.add(false);
             return;

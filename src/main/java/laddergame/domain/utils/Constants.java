@@ -11,11 +11,17 @@ public class Constants {
     public static String RESULT = "실행결과";
     public static String LADDER_VERTICAL = "|";
     public static String LADDER_CONNECTION = "-----";
-    public static String BLANK_SPACE = "     ";
+    public static String LADDER_BLANK_SPACE = "     ";
+    public static String PLAYER_BLANK_SPACE = "   ";
 
     // numbers
-    public static int COUNT_ZERO = 0;
-    public static int COUNT_ONE = 1;
-    public static int LADDER_CONNECTION_PROBABILITY = 5;
-    public static int LADDER_CONNECTION_MAX_COUNT = 10;
+    public static int LADDER_VERTICAL_COUNT(int playerCount) {
+        return playerCount - 1;
+    }
+
+    public static int LAST_ELEMENT_INDEX(int size) {
+        return size - 1;
+    }
+
+    public static int PLAYER_NAME_LENGTH_LIMIT = 5;
 }
