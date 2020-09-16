@@ -16,8 +16,8 @@
 - [x] User, Users 생성
 - [x] UserTest, UsersTest
 - [x] Point 생성
-- [ ] Line 생성
-- [ ] PointStrategy 생성
+- [x] Line 생성
+- [x] PointStrategy 생성
 - [ ] Ladder 생성
 - [ ] ResultView 생성
 - [ ] Application 생성
