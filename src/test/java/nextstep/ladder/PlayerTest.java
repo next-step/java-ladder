@@ -12,13 +12,13 @@ public class PlayerTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "honux", "crong", "jk"})
-    @DisplayName("생성자 정상 작동")
+    @DisplayName("팩토리 메소드 정상 작동")
     void create(String name) {
         assertNotNull(Player.of(name));
     }
 
     @Test
-    @DisplayName("생성자 예외 발생")
+    @DisplayName("팩토리 메소드 예외 발생")
     void create_validate() {
         assertThatIllegalArgumentException().isThrownBy(() -> Player.of("abcdef"));
     }
