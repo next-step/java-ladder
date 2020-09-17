@@ -20,4 +20,8 @@ public class Point {
     public static Point of(boolean connection) {
         return POINTS.get(connection);
     }
+
+    public boolean checkConnected(Point next) {
+        return this.connection && next.connection;
+    }
 }
