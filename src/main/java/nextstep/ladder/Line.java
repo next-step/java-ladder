@@ -1,38 +1,48 @@
 package nextstep.ladder;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
 
-    private final List<Point> points;
+    public static final int COUNT_MIN = 2;
 
-    private Line(List<Point> points) {
-        this.points = points;
+    private final List<Point> points = new ArrayList<>();
+    private final int maxOfPoints;
+
+    private Line(int maxOfPoints) {
+        this.maxOfPoints = maxOfPoints;
     }
 
-    public static Line of(List<Boolean> connections) {
-        validateLine(connections);
-        return new Line(mapToPoint(connections));
+    public static Line of(int maxOfPoints) {
+        validateCount(maxOfPoints);
+        return new Line(maxOfPoints);
     }
 
-    private static void validateLine(List<Boolean> connections) {
-        boolean before = false;
-        for (Boolean connection : connections) {
-            before = checkDisconnected(before, connection);
+    private static void validateCount(int maxOfPoints) {
+        if (maxOfPoints < COUNT_MIN) {
+            throw new IllegalArgumentException("최소한의 다리를 생성할 수 없습니다.");
         }
     }
 
-    private static boolean checkDisconnected(boolean before, boolean after) {
-        if (before && after) {
-            throw new IllegalArgumentException("가로 라인은 겹칠 수 없습니다.");
+    public boolean add(Point newPoint) {
+        if (isFull()) {
+            return false;
         }
-        return after;
+        if (!points.isEmpty()) {
+            validateConnection(newPoint);
+        }
+        return points.add(newPoint);
     }
 
-    private static List<Point> mapToPoint(List<Boolean> connections) {
-        return connections.stream()
-                .map(Point::of)
-                .collect(Collectors.toList());
+    private boolean isFull() {
+        return points.size() == maxOfPoints;
+    }
+
+    private void validateConnection(Point newPoint) {
+        Point lastPoint = points.get(points.size() - 1);
+        if (lastPoint.checkConnected(newPoint)) {
+            throw new IllegalArgumentException("가로 라인은 연속적으로 연결될 수 없습니다.");
+        }
     }
 }
