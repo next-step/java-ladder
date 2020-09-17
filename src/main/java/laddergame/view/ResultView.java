@@ -3,20 +3,35 @@ package laddergame.view;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.line.Line;
 import laddergame.domain.player.Player;
+import laddergame.domain.prize.Prize;
 import laddergame.domain.utils.Constants;
 
 import java.util.List;
 
 public class ResultView {
 
-    public static void showResult() {
+    public static void showLadderResult() {
         System.out.println("");
-        System.out.println(Constants.RESULT);
+        System.out.println(Constants.LADDER_RESULT);
         System.out.println("");
+    }
+
+    public static void showGamePrize(String prize) {
+        System.out.println("");
+        System.out.println(Constants.GAME_PRIZE);
+        System.out.println(prize);
+    }
+
+    public static void showGameTotalPrize(List<Player> players) {
     }
 
     public static void showPlayers(List<Player> players) {
         players.forEach(player -> System.out.print(player.getName() + Constants.PLAYER_BLANK_SPACE));
+        System.out.println("");
+    }
+
+    public static void showPrizes(List<Prize> prizes) {
+        prizes.forEach(player -> System.out.print(player.getContent() + Constants.PRIZE_BLANK_SPACE));
         System.out.println("");
     }
 
