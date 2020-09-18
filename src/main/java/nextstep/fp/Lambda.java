@@ -40,7 +40,7 @@ public class Lambda {
 
     private static int sumAll(List<Integer> numbers, Conditional c) {
         return numbers.stream()
-                .filter(number -> c.test(number))
+                .filter(c::test)
                 .reduce(0, Integer::sum);
     }
 }
