@@ -31,9 +31,10 @@ public class StreamStudy {
         words.stream()
                 .filter((val) -> val.trim().length() > 12)
                 .sorted((val1, val2) -> val1.length() - val2.length())
-                .limit(100)
                 .distinct()
-                .forEach((val) -> System.out.println(val.toLowerCase()));
+                .limit(100)
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
 
     }
 
@@ -47,9 +48,9 @@ public class StreamStudy {
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-                    .filter((val) -> val > 3)
-                    .mapToLong((val) -> val * 2)
-                    .reduce((val1, val2) -> val1 + val2)
-                    .orElse(0L);
+                .filter((val) -> val > 3)
+                .mapToLong((val) -> val * 2)
+                .reduce((val1, val2) -> val1 + val2)
+                .orElse(0L);
     }
 }
