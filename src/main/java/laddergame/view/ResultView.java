@@ -7,6 +7,7 @@ import laddergame.domain.prize.Prize;
 import laddergame.domain.utils.Constants;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class ResultView {
 
@@ -16,13 +17,16 @@ public class ResultView {
         System.out.println("");
     }
 
-    public static void showGamePrize(String prize) {
+    public static void showGamePrize(Player player) {
         System.out.println("");
         System.out.println(Constants.GAME_PRIZE);
-        System.out.println(prize);
+        System.out.println(player.getPrize());
     }
 
-    public static void showGameTotalPrize(List<Player> players) {
+    public static void showGameTotalPrize(List<Player> player) {
+        System.out.println("");
+        System.out.println(Constants.GAME_PRIZE);
+        player.forEach(p -> System.out.println(p.getName() + Constants.FINAL_RESULT_SEPERATOR + p.getPrize()));
     }
 
     public static void showPlayers(List<Player> players) {

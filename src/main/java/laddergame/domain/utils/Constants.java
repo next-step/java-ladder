@@ -19,6 +19,7 @@ public class Constants {
     public static String PLAYER_BLANK_SPACE = "   ";
     public static String PRIZE_BLANK_SPACE = "   ";
     public static String ASK_PLAYER_NAME = "결과를 보고 싶은 사람은?";
+    public static String FINAL_RESULT_SEPERATOR = " : ";
 
     // number
     public static int PLAYER_NAME_LENGTH_LIMIT = 5;

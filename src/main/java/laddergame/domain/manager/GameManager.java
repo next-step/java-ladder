@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameManager {
 
     private List<Player> players = new ArrayList<>();
     private List<Prize> prizes = new ArrayList<>();
+    private Ladder ladder;
 
     GameManager() {
         this.readyGame();
@@ -25,9 +27,8 @@ public class GameManager {
     }
 
     private void readyGame() {
-        players = Arrays.stream(InputView.getPlayerNames().split(Constants.PLAYER_NAME_SEPERATOR))
-                .map(Player::new)
-                .collect(Collectors.toList());
+        String[] playerNames = InputView.getPlayerNames().split(Constants.PLAYER_NAME_SEPERATOR);
+        IntStream.range(0, playerNames.length).forEach((index) -> players.add(new Player(index, playerNames[index])));
 
         prizes = Arrays.stream(InputView.getGameResults().split(Constants.GAME_RESULT_SEPERATOR))
                 .map(Prize::new)
@@ -37,7 +38,9 @@ public class GameManager {
     private void startGame(int maxHeight) {
         ResultView.showLadderResult();
         ResultView.showPlayers(players);
-        ResultView.showLadder(new Ladder(maxHeight, players.size()));
+
+        ladder = new Ladder(maxHeight, players.size());
+        ResultView.showLadder(ladder);
         ResultView.showPrizes(prizes);
     }
 
@@ -50,12 +53,18 @@ public class GameManager {
     }
 
     private void showGamePrize(String playerName) {
-        PrizeCalculator prizeCalculator = new PrizeCalculator(prizes);
+        PrizeCalculator prizeCalculator = new PrizeCalculator(prizes, ladder);
         if (playerName.equals(Constants.ALL_PLAYER)) {
             ResultView.showGameTotalPrize(prizeCalculator.calculateTotalPrizes(players));
             return;
         }
-        ResultView.showGamePrize(prizeCalculator.calculateSinglePrize(playerName));
+        ResultView.showGamePrize(prizeCalculator.calculateSinglePrize(findPlayByName(playerName)));
+    }
+
+    private Player findPlayByName(String playerName) {
+        return players.stream()
+                .filter(player -> player.getName().equals(playerName))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("해당 player를 찾을 수 없습니다."));
     }
 
 }

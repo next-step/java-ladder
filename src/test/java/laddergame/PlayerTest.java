@@ -12,7 +12,7 @@ class PlayerTest {
     @Test
     void PlayerConstructorTest(){
         assertThatIllegalArgumentException().isThrownBy(()->{
-            Player player = new Player("abcdef");
+            Player player = new Player(0, "abcdef");
         });
     }
 
