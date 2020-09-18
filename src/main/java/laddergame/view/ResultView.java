@@ -7,7 +7,6 @@ import laddergame.domain.prize.Prize;
 import laddergame.domain.utils.Constants;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class ResultView {
 

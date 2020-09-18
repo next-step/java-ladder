@@ -3,7 +3,6 @@ package laddergame.domain.manager;
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.player.Player;
 import laddergame.domain.prize.Prize;
-import laddergame.domain.prizecalculator.PrizeCalculator;
 import laddergame.domain.utils.Constants;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
@@ -28,7 +27,8 @@ public class GameManager {
 
     private void readyGame() {
         String[] playerNames = InputView.getPlayerNames().split(Constants.PLAYER_NAME_SEPERATOR);
-        IntStream.range(0, playerNames.length).forEach((index) -> players.add(new Player(index, playerNames[index])));
+        IntStream.range(0, playerNames.length)
+                .forEach((index) -> players.add(new Player(index, playerNames[index])));
 
         prizes = Arrays.stream(InputView.getGameResults().split(Constants.GAME_RESULT_SEPERATOR))
                 .map(Prize::new)
@@ -53,12 +53,13 @@ public class GameManager {
     }
 
     private void showGamePrize(String playerName) {
-        PrizeCalculator prizeCalculator = new PrizeCalculator(prizes, ladder);
         if (playerName.equals(Constants.ALL_PLAYER)) {
-            ResultView.showGameTotalPrize(prizeCalculator.calculateTotalPrizes(players));
+            ResultView.showGameTotalPrize(players.stream()
+                    .map(player -> player.climbLadder(ladder, prizes))
+                    .collect(Collectors.toList()));
             return;
         }
-        ResultView.showGamePrize(prizeCalculator.calculateSinglePrize(findPlayByName(playerName)));
+        ResultView.showGamePrize(findPlayByName(playerName).climbLadder(ladder, prizes));
     }
 
     private Player findPlayByName(String playerName) {

@@ -1,7 +1,6 @@
 package laddergame.domain.ladder;
 
 import laddergame.domain.line.Line;
-import laddergame.domain.utils.Constants;
 
 import java.util.List;
 import java.util.Random;

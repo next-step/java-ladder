@@ -1,6 +1,11 @@
 package laddergame.domain.player;
 
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.navigator.Navigator;
+import laddergame.domain.prize.Prize;
 import laddergame.domain.utils.Constants;
+
+import java.util.List;
 
 public class Player {
     private String name;
@@ -13,6 +18,15 @@ public class Player {
         }
         this.position = position;
         this.name = name;
+    }
+
+    public Player climbLadder(Ladder ladder, List<Prize> prizes) {
+        int initialPosition = position;
+        ladder.getLines().forEach(line -> Navigator.movePlayer(line, this));
+
+        prize = prizes.get(this.getPosition()).getContent();
+        position = initialPosition;
+        return this;
     }
 
     public String getName() {
@@ -31,15 +45,7 @@ public class Player {
         position--;
     }
 
-    public void takePrize(String prize) {
-        this.prize = prize;
-    }
-
     public String getPrize() {
         return prize;
-    }
-
-    public void initPosition(int initialPosition) {
-        this.position = initialPosition;
     }
 }
