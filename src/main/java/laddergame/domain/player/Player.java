@@ -22,7 +22,7 @@ public class Player {
 
     public Player climbLadder(Ladder ladder, List<Prize> prizes) {
         int initialPosition = position;
-        ladder.getLines().forEach(line -> Navigator.movePlayer(line, this));
+        ladder.climb(this);
 
         prize = prizes.get(this.getPosition()).getContent();
         position = initialPosition;
