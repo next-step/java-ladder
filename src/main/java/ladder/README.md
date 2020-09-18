@@ -15,3 +15,13 @@
 - [x] 출력 - 유저별 실행 결과 추가
 - [x] 출력 - 전체 실행 결과 추가
 - [x] 테스트 코드 작성
+
+### Step4 사다리 게임 리팩토링
+#### 기능 요구사항
+- [x] 사다리 한 Line 추상화 <br/>
+    - 사다리 Line의 모든 Point 초기화와 이동 담당
+- [x] LadderLine의 두 점과 현재 위치를 Point로 추상화 <br/>
+    - LadderLine에서 위치와 각 점의 방향을 관리
+- [x] 각 Point의 좌/우 방향을 Direction으로 추상화 <br/>
+    - 각 Point의 좌/우 방향 정보를 가짐 <br/>
+    - 현재 Point에서 다음 Point를 생성하는 역할
