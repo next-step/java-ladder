@@ -31,6 +31,14 @@ public class Users {
         return users;
     }
 
+    public int getUserPosition(String userName) {
+        return users.stream()
+                .filter(user -> user.getUserName().equals(userName))
+                .findFirst()
+                .get()
+                .getPosition();
+    }
+
     public int getUserCount() {
         return users.size();
     }
