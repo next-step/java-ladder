@@ -18,13 +18,8 @@ public class LadderGame {
         Ladder ladder = new Ladder(users.getUserCount(), height);
         ResultView.resultLadderGame(users.getUsers(), ladder, rewards);
 
-        Map<User, Reward> userRewardMap = new HashMap<>();
-        for(User user : users.getUsers()) {
-            int position = ladder.downLadder(user.getPosition());
-            Reward reward = rewards.getSamePosition(position);
-            userRewardMap.put(user, reward);
-        }
-        Result result = new Result(userRewardMap);
+        LadderResult ladderResult = new LadderResult(users, rewards, ladder);
+        Result result = ladderResult.downLadder();
 
         ResultView.printWhoGetPrize(inputView.seeResult(), result);
     }

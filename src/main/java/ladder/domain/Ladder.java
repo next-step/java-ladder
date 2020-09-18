@@ -6,28 +6,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<LadderLine> lines;
 
     public Ladder(int userCount, Height height) {
         this.lines = generateLines(userCount, height);
     }
 
-    private List<Line> generateLines(int userCount, Height height) {
-        List<Line> lineList =  IntStream.rangeClosed(Height.MIN_HEIGHT, height.getHeight())
-                                    .mapToObj(count -> new Line(userCount))
+    private List<LadderLine> generateLines(int userCount, Height height) {
+        List<LadderLine> lineList =  IntStream.rangeClosed(Height.MIN_HEIGHT, height.getHeight())
+                                    .mapToObj(count -> LadderLine.init(userCount))
                                     .collect(Collectors.toList());
         return Collections.unmodifiableList(lineList);
     }
 
-    public int downLadder(final int userPosition) {
-        int currentPosition = userPosition;
-        for(Line line : lines) {
-            currentPosition = line.move(currentPosition);
-        }
-        return currentPosition;
-    }
-
-    public List<Line> getLadder(){
+    public List<LadderLine> getLadder(){
         return lines;
     }
 }
