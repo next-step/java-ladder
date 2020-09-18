@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.*;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,8 +9,9 @@ import java.util.stream.Collectors;
 public class ResultView {
     private final static String NAME_FORMAT = "%5s";
     private final static String LADDER_HEIGHT = "|";
-    private final static String LADDER_LINE = "-----";
-    private final static String LADDER_EMPTY = "     ";
+    private final static String LADDER_LINE = "|-----";
+    private final static String LADDER_EMPTY = "|     ";
+    private final static String EMPTY = "     ";
 
     public static void resultLadderGame(List<User> users, Ladder ladder, Rewards rewards) {
         System.out.println("사다리 결과");
@@ -31,15 +33,26 @@ public class ResultView {
     private static void printLadder(Ladder ladder) {
         ladder.getLadder()
                 .stream()
-                .map(ResultView::createLadder)
-                .forEach(System.out::println);
+                .forEach(ladderLine -> {
+                    System.out.print(EMPTY);
+                    createLadder(ladderLine);
+                    System.out.println();
+                });
     }
 
-    private static String createLadder(Line line){
-        return line.getLine()
+    private static void createLadder(LadderLine line){
+        line.getPoints()
                 .stream()
-                .map(isLine -> isLine ? LADDER_LINE : LADDER_EMPTY)
-                .collect(Collectors.joining(LADDER_HEIGHT, "", LADDER_HEIGHT));
+                .forEach(point -> {
+                    System.out.print(lineOrEmpty(point));
+                });
+    }
+
+    private static String lineOrEmpty(Point point) {
+        if(point.getDirection().isRight()) {
+            return LADDER_LINE;
+        }
+        return LADDER_EMPTY;
     }
 
     private static void printResult(Rewards rewards) {
