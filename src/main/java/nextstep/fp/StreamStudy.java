@@ -50,7 +50,6 @@ public class StreamStudy {
         return numbers.stream()
                 .filter((val) -> val > 3)
                 .mapToLong((val) -> val * 2)
-                .reduce((val1, val2) -> val1 + val2)
-                .orElse(0L);
+                .reduce(0L, Long::sum);
     }
 }
