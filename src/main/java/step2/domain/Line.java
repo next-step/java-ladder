@@ -5,6 +5,8 @@ import step2.util.LadderGameUtil;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Line implements Iterable<Boolean>{
@@ -15,17 +17,18 @@ public class Line implements Iterable<Boolean>{
     }
 
     public static Line create(int countOfPerson) {
-        if (countOfPerson < 1) {
-            throw new IllegalArgumentException("라인 생성시 적어도 한명 이상의 사다리게임 참가자가 필요합니다.");
-        }
 
         List<Boolean> pointList = new ArrayList<>();
 
-        for (int i = 0; i < countOfPerson; i++) {
-            pointList.add(checkPointRule(i, pointList));
-        }
+        return IntStream.range(0, countOfPerson)
+                .mapToObj(idx -> checkPointRule(idx, pointList))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Line::new));
+    }
 
-        return new Line(pointList);
+    private static void validLineCreate(int countOfPerson) {
+        if (countOfPerson < 1) {
+            throw new IllegalArgumentException("라인 생성시 적어도 한명 이상의 사다리게임 참가자가 필요합니다.");
+        }
     }
 
     private static boolean checkPointRule(int currentInx, List<Boolean> pointList) {

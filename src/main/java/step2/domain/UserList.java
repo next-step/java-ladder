@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
+
 public class UserList implements Iterable<User>{
 
     private List<User> userList;
@@ -17,12 +19,10 @@ public class UserList implements Iterable<User>{
             throw new IllegalArgumentException("유저 이름 리스트는 필수값 입니다.");
         }
 
-        List<User> userList = Arrays.asList(userNameList.split(","))
+        return  Arrays.asList(userNameList.split(","))
                 .stream()
-                .map(User::of)
-                .collect(Collectors.toList());
-
-        return new UserList(userList);
+                .map(User::valueOf)
+                .collect(Collectors.collectingAndThen(toList(), UserList::new));
     }
 
     public int getTotalParticipantsCount() {
