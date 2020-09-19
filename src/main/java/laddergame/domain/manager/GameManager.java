@@ -2,6 +2,7 @@ package laddergame.domain.manager;
 
 import laddergame.domain.ladder.Ladder;
 import laddergame.domain.player.Player;
+import laddergame.domain.prize.Prize;
 import laddergame.domain.utils.Constants;
 import laddergame.view.InputView;
 import laddergame.view.ResultView;
@@ -10,27 +11,61 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameManager {
 
-    private List<Player> players;
+    private List<Player> players = new ArrayList<>();
+    private List<Prize> prizes = new ArrayList<>();
+    private Ladder ladder;
 
     GameManager() {
-        players = new ArrayList<>();
         this.readyGame();
         this.startGame(InputView.getMaxLadderHeight());
+        this.calculateResult();
     }
 
     private void readyGame() {
-        players = Arrays.stream(InputView.getPlayerNames().split(Constants.PLAYER_NAME_SEPERATOR))
-                .map(Player::new)
+        String[] playerNames = InputView.getPlayerNames().split(Constants.PLAYER_NAME_SEPERATOR);
+        IntStream.range(0, playerNames.length)
+                .forEach((index) -> players.add(new Player(index, playerNames[index])));
+
+        prizes = Arrays.stream(InputView.getGameResults().split(Constants.GAME_RESULT_SEPERATOR))
+                .map(Prize::new)
                 .collect(Collectors.toList());
     }
 
     private void startGame(int maxHeight) {
-        ResultView.showResult();
+        ResultView.showLadderResult();
         ResultView.showPlayers(players);
-        ResultView.showLadder(new Ladder(maxHeight, players.size()));
+
+        ladder = new Ladder(maxHeight, players.size());
+        ResultView.showLadder(ladder);
+        ResultView.showPrizes(prizes);
+    }
+
+    private void calculateResult() {
+        String playerName;
+        do {
+            playerName = InputView.askPlayerName();
+            showGamePrize(playerName);
+        } while (!playerName.equals(Constants.ALL_PLAYER));
+    }
+
+    private void showGamePrize(String playerName) {
+        if (playerName.equals(Constants.ALL_PLAYER)) {
+            ResultView.showGameTotalPrize(players.stream()
+                    .map(player -> player.climbLadder(ladder, prizes))
+                    .collect(Collectors.toList()));
+            return;
+        }
+        ResultView.showGamePrize(findPlayByName(playerName).climbLadder(ladder, prizes));
+    }
+
+    private Player findPlayByName(String playerName) {
+        return players.stream()
+                .filter(player -> player.getName().equals(playerName))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("해당 player를 찾을 수 없습니다."));
     }
 
 }
