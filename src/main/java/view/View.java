@@ -2,7 +2,7 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
-import domain.UserName;
+import domain.User;
 
 import java.util.List;
 
@@ -41,8 +41,8 @@ public class View {
         }
     }
 
-    public static void showNames(List<UserName> userNames) {
-        for (UserName name : userNames) {
+    public static void showNames(List<User> userNames) {
+        for (User name : userNames) {
             System.out.printf("%6s", name.getName());
             System.out.print(SPACE);
         }

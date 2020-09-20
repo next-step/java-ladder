@@ -1,5 +1,5 @@
 import domain.Ladder;
-import domain.UserName;
+import domain.User;
 import utility.UserInput;
 import view.View;
 
@@ -8,7 +8,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
 //        String names = UserInput.inputUserNames();
-        List<UserName> names = UserInput.inputUserNames();
+        List<User> names = UserInput.inputUserNames();
 //        String inputs[] = names.split(",");
 
         String result = UserInput.inputResult();
@@ -22,6 +22,7 @@ public class Application {
         View.showLadder(ladder);
         View.showLadderResult(results);
         //todo : matching  name : result
+        ladder.startGame();
 
 
         String name = UserInput.wantToSeeName();

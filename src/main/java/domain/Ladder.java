@@ -14,16 +14,7 @@ public class Ladder {
         return lines;
     }
 
-/*
-    public void makeLines(String[] inputs, int height) {
-        int countOfPerson = inputs.length;
-
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
-        }
-    }
-*/
-    public void makeLines(List<UserName> userNames, int height) {
+    public void makeLines(List<User> userNames, int height) {
         int countOfPerson = userNames.size();
 
         for (int i = 0; i < height; i++) {
@@ -31,4 +22,12 @@ public class Ladder {
         }
     }
 
+    public void startGame() {
+        for (int i = 0; i < lines.size(); i++) {
+            Point startPoint = lines.get(0).getPoints().get(i);
+            lines.get(0).goDownLadder(startPoint);
+
+        }
+
+    }
 }

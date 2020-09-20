@@ -1,7 +1,6 @@
 package utility;
 
-import domain.UserName;
-import nextstep.optional.User;
+import domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +14,15 @@ public class UserInput {
     private UserInput() {
     }
 
-    public static List<UserName> inputUserNames() {
+    public static List<User> inputUserNames() {
         System.out.println(NAMES);
         String input = SC.nextLine();
         String users[] = input.split(",");
 
-        List<UserName> list = new ArrayList<>();
+        List<User> list = new ArrayList<>();
 
         for (String userName : users) {
-            list.add(new UserName(userName));
+            list.add(new User(userName));
         }
         return list;
     }

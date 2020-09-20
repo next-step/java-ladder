@@ -1,9 +1,10 @@
 package domain;
 
-public class UserName {
+public class User {
     private String name;
+    private String gameResult;
 
-    public UserName(String userName) {
+    public User(String userName) {
         name = userName;
     }
 
