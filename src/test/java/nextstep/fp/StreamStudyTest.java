@@ -45,4 +45,5 @@ public class StreamStudyTest {
         long sum = StreamStudy.sumOverThreeAndDouble(numbers);
         assertThat(sum).isEqualTo(36);
     }
+
 }
