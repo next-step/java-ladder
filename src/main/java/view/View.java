@@ -2,12 +2,16 @@ package view;
 
 import domain.Ladder;
 import domain.Line;
+import domain.UserName;
 
 import java.util.List;
 
 public class View {
     public static final String NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    public static final String RESULT_INPUT= "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
     public static final String HEIGHT = "최대 사다리 높이는 몇 개인가요?";
+    public static final String RESULT_LADDER = "사다리 결과\n";
+    public static final String RESULT_WANT= "결과를 보고 싶은 사람은?\n";
     public static final String RESULT = "실행 결과\n";
     public static final String LINE_COL = "      |";
     public static final String LINE_ROW = "------|";
@@ -24,6 +28,7 @@ public class View {
             System.out.print(LINE_COL);
             getRowLine(line);
         }
+        System.out.println();
     }
 
     private static void getRowLine(Line line) {
@@ -36,10 +41,23 @@ public class View {
         }
     }
 
-    public static void showNames(String[] inputs) {
-        for (String name : inputs) {
-            System.out.printf("%6s", name);
+    public static void showNames(List<UserName> userNames) {
+        for (UserName name : userNames) {
+            System.out.printf("%6s", name.getName());
             System.out.print(SPACE);
         }
+    }
+
+    public static void showLadderResult(String[] results) {
+        for (String result : results) {
+            System.out.printf("%6s",result);
+            System.out.printf(SPACE);
+        }
+        System.out.println();
+    }
+
+    public static void showResult(String name) {
+        System.out.println(RESULT);
+
     }
 }
