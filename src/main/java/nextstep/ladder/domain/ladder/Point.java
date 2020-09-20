@@ -34,6 +34,10 @@ public class Point {
         return location.move(direction);
     }
 
+    boolean isEqualLocation(final Location otherLocation) {
+        return location.equals(otherLocation);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
@@ -46,5 +50,13 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(location, direction);
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "location=" + location +
+                ", direction=" + direction +
+                '}';
     }
 }

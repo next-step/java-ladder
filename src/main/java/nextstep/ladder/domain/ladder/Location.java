@@ -22,7 +22,7 @@ public class Location {
         this.location = location;
     }
 
-    public Location move(final Direction direction) {
+    Location move(final Direction direction) {
         if (direction.isRight()) {
             return toRight();
         }
@@ -52,5 +52,12 @@ public class Location {
     @Override
     public int hashCode() {
         return Objects.hash(location);
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "location=" + location +
+                '}';
     }
 }

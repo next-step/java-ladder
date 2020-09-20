@@ -32,7 +32,7 @@ public class Direction {
     }
 
     public Direction next(final boolean nextRight) {
-        return of(this.right, nextRight);
+        return this.right ? of(true, false) : of(false, nextRight);
     }
 
     public Direction last() {
@@ -59,5 +59,13 @@ public class Direction {
     @Override
     public int hashCode() {
         return Objects.hash(left, right);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 }
