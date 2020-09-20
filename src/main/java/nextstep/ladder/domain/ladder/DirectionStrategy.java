@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.Ladder;
+package nextstep.ladder.domain.ladder;
 
 @FunctionalInterface
 public interface DirectionStrategy {
