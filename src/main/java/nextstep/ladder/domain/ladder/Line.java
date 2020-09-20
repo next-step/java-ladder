@@ -36,7 +36,7 @@ public class Line {
         points.add(point.last());
     }
 
-    public Line(final List<Point> points) {
+    private Line(final List<Point> points) {
         this.points = new ArrayList<>(Collections.unmodifiableList(points));
     }
 
@@ -47,6 +47,10 @@ public class Line {
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new)
                 .move();
+    }
+
+    int sizeOfPoint() {
+        return points.size();
     }
 
     @Override
