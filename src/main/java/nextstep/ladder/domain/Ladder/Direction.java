@@ -6,6 +6,18 @@ public class Direction {
     private final boolean left;
     private final boolean right;
 
+    public static Direction first(final DirectionStrategy directionStrategy) {
+        return first(directionStrategy.generate());
+    }
+
+    public static Direction first(final boolean right) {
+        return of(false, right);
+    }
+
+    public static Direction of(final boolean left, final boolean right) {
+        return new Direction(left, right);
+    }
+
     private Direction(final boolean left, final boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("Direction 은 양쪽 방향을 가질 수 없습니다.");
@@ -13,14 +25,6 @@ public class Direction {
 
         this.left = left;
         this.right = right;
-    }
-
-    public boolean isLeft() {
-        return left;
-    }
-
-    public boolean isRight() {
-        return right;
     }
 
     public Direction next(final DirectionStrategy directionStrategy) {
@@ -35,16 +39,12 @@ public class Direction {
         return of(this.right, false);
     }
 
-    public static Direction first(final DirectionStrategy directionStrategy) {
-        return first(directionStrategy.generate());
+    public boolean isLeft() {
+        return left;
     }
 
-    public static Direction first(final boolean right) {
-        return of(false, right);
-    }
-
-    public static Direction of(final boolean left, final boolean right) {
-        return new Direction(left, right);
+    public boolean isRight() {
+        return right;
     }
 
     @Override
