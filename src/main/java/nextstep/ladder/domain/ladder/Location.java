@@ -4,7 +4,12 @@ import java.util.Objects;
 
 public class Location {
     private static final int MOVEMENT_UNIT = 1;
+    private static final int INIT_LOCATION = 0;
     private final int location;
+
+    public static Location init() {
+        return from(INIT_LOCATION);
+    }
 
     public static Location from(final int location) {
         return new Location(location);
@@ -15,6 +20,17 @@ public class Location {
             throw new IllegalArgumentException("위치 값은 음수가 될 수 없습니다.");
         }
         this.location = location;
+    }
+
+    public Location move(final Direction direction) {
+        if (direction.isRight()) {
+            return toRight();
+        }
+
+        if (direction.isLeft()) {
+            return toLeft();
+        }
+        return this;
     }
 
     public Location toRight() {
