@@ -22,9 +22,8 @@ class DirectionTest {
     @Test
     @DisplayName("Direction 양쪽 방향 생성 시 예외 발생")
     void exceptByCreate() {
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            Direction.of(true, true);
-        }).withMessage("Direction 은 양쪽 방향을 가질 수 없습니다.");
+        assertThatIllegalArgumentException().isThrownBy(() -> Direction.of(true, true))
+                .withMessage("Direction 은 양쪽 방향을 가질 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -54,5 +53,16 @@ class DirectionTest {
         Direction nextDirection = direction.next(false);
 
         assertThat(nextDirection.isRight()).isFalse();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"true,false", "false,true", "false,false"})
+    @DisplayName("DirectionStrategy를 사용한 next, first Direction 생성")
+    void createNextDirectionUsingStrategy(boolean firstDirectionRight, boolean nextDirectionRight) {
+        Direction firstDirection = Direction.first(() -> firstDirectionRight);
+        Direction nextDirection = firstDirection.next(() -> nextDirectionRight);
+
+        assertThat(firstDirection).isEqualTo(Direction.of(false, firstDirectionRight));
+        assertThat(nextDirection).isEqualTo(Direction.of(firstDirectionRight, nextDirectionRight));
     }
 }

@@ -23,6 +23,10 @@ public class Direction {
         return right;
     }
 
+    public Direction next(final DirectionStrategy directionStrategy) {
+        return next(directionStrategy.generate());
+    }
+
     public Direction next(final boolean nextRight) {
         return of(this.right, nextRight);
     }
@@ -31,12 +35,16 @@ public class Direction {
         return of(this.right, false);
     }
 
-    public static Direction of(final boolean left, final boolean right) {
-        return new Direction(left, right);
+    public static Direction first(final DirectionStrategy directionStrategy) {
+        return first(directionStrategy.generate());
     }
 
     public static Direction first(final boolean right) {
         return of(false, right);
+    }
+
+    public static Direction of(final boolean left, final boolean right) {
+        return new Direction(left, right);
     }
 
     @Override
