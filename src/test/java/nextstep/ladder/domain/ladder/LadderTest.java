@@ -19,8 +19,8 @@ class LadderTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"2,3,0,1","2,3,1,0","3,4,0,0"})
-    @DisplayName("")
+    @CsvSource(value = {"2,3,0,1","2,행3,1,0","3,4,0,0"})
+    @DisplayName("사다리 실")
     void play(int sizeOfPoint, int height, int startLocation, int expectedLocation) {
         LineMaterial lineMaterial = LineMaterial.of(sizeOfPoint, () -> true);
         LadderMaterial ladderMaterial = LadderMaterial.of(height, lineMaterial);
