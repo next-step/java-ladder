@@ -12,7 +12,7 @@ public class Direction {
 
     private Direction(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("값이 들어갈 수 없습니다.");
         }
 
         this.left = left;
