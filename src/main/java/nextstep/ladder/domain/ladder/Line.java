@@ -53,6 +53,10 @@ public class Line {
         return points.size();
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     @Override
     public String toString() {
         return "Line{" +

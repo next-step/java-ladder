@@ -31,4 +31,8 @@ public class LadderRewards {
     public LadderReward getReward(Location rewardLocation) {
         return ladderRewards.get(rewardLocation.toInt());
     }
+
+    public List<LadderReward> getLadderRewards() {
+        return new ArrayList<>(ladderRewards);
+    }
 }

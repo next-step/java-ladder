@@ -38,6 +38,10 @@ public class Point {
         return location.equals(otherLocation);
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

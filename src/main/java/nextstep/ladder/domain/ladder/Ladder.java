@@ -46,6 +46,10 @@ public class Ladder {
         return finalLocation;
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
+
     @Override
     public String toString() {
         return "Ladder{" +

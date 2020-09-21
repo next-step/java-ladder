@@ -16,6 +16,14 @@ public class LadderGameResult {
         this.results = new HashMap<>(Collections.unmodifiableMap(results));
     }
 
+    public Map<Player, LadderReward> getResults() {
+        return results;
+    }
+
+    public LadderReward getLadderReward(final String player) {
+        return results.get(new Player(player));
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

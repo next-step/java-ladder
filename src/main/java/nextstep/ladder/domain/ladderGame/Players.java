@@ -25,6 +25,10 @@ public class Players {
         this.players = new ArrayList<>(Collections.unmodifiableList(players));
     }
 
+    public List<Player> getPlayers() {
+        return new ArrayList<>(players);
+    }
+
     public int size() {
         return players.size();
     }

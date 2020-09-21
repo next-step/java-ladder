@@ -3,9 +3,7 @@ package nextstep.ladder.domain.ladderGame;
 import nextstep.ladder.domain.ladder.LadderResult;
 import nextstep.ladder.domain.ladder.Location;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class LadderGameInfo {
@@ -30,5 +28,13 @@ public class LadderGameInfo {
                     result.put(player, reward);
                 });
         return LadderGameResult.from(result);
+    }
+
+    public List<Player> getPlayers() {
+        return players.getPlayers();
+    }
+
+    public List<LadderReward> getLadderRewards() {
+        return new ArrayList<>(ladderRewards.getLadderRewards());
     }
 }
