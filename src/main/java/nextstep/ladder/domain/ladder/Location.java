@@ -41,6 +41,10 @@ public class Location {
         return from(location - MOVEMENT_UNIT);
     }
 
+    public int toInt() {
+        return location;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
