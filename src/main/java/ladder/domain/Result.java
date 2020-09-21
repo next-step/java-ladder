@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Result {
-    private static Map<User, Reward> result;
+    private static Map<User, Reward> result = new HashMap<>();
 
-    public Result() {
-        this.result = new HashMap<>();
+    public Result(User user, Reward reward) {
+        this.result.put(user, reward);
     }
 
     public Result(Map<User, Reward> result) {
@@ -17,10 +17,6 @@ public class Result {
 
     public Map<User, Reward> getResult() {
         return Collections.unmodifiableMap(result);
-    }
-
-    public void addResult(User user, Reward reward) {
-        this.result.put(user, reward);
     }
 
     public static String getIndividualResult(User userName) {

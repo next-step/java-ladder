@@ -39,7 +39,4 @@ public class Rewards {
                 .orElseThrow(IllegalAccessError::new);
     }
 
-    public Reward specificReward(int position) {
-        return rewardList.get(position);
-    }
 }
