@@ -5,6 +5,10 @@ import java.util.Objects;
 public class Player {
     private final String name;
 
+    public static Player from(final String name) {
+        return new Player(name);
+    }
+
     public Player(final String name) {
         verifyPlayerName(name);
         this.name = name;

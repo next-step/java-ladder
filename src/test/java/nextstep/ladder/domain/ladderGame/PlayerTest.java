@@ -12,7 +12,7 @@ class PlayerTest {
     @ValueSource(strings = {"yohan", "jo", "jayde", "tom"})
     @DisplayName("유저 이름은 5글자 까지 부여")
     void create(String input) {
-        assertThat(new Player(input)).isEqualTo(new Player(input));
+        assertThat(Player.from(input)).isEqualTo(Player.from(input));
     }
 
     @ParameterizedTest
@@ -20,7 +20,7 @@ class PlayerTest {
     @DisplayName("유저 이름이 존재하지 않거나 5자리를 초과할 경우 Exception")
     void exceptByCreation(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Player(input);
+            Player.from(input);
         });
     }
 }

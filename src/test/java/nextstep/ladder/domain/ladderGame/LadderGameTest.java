@@ -17,9 +17,9 @@ class LadderGameTest {
     @DisplayName("사다리 게임 실행")
     void play() {
         Ladder ladder = createLadder();
-        Player playerA = new Player("a");
-        Player playerB = new Player("b");
-        Player playerC = new Player("c");
+        Player playerA = Player.from("a");
+        Player playerB = Player.from("b");
+        Player playerC = Player.from("c");
         LadderReward ggang = LadderReward.from("꽝");
         LadderReward lucky = LadderReward.from("당첨");
         LadderReward lucky2 = LadderReward.from("당첨2");

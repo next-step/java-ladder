@@ -21,7 +21,7 @@ public class LadderGameResult {
     }
 
     public LadderReward getLadderReward(final String player) {
-        return results.get(new Player(player));
+        return results.get(Player.from(player));
     }
 
     @Override

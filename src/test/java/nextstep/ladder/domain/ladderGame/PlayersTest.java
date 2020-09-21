@@ -23,6 +23,6 @@ class PlayersTest {
     void getPlayer(int location, String playerName) {
         String playerNames = "crong,pobi,bipo";
         Players players = Players.of(playerNames, ",");
-        assertThat(players.getPlayer(Location.from(location))).isEqualTo(new Player(playerName));
+        assertThat(players.getPlayer(Location.from(location))).isEqualTo(Player.from(playerName));
     }
 }

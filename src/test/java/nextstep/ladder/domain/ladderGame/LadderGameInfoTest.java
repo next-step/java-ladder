@@ -18,8 +18,8 @@ class LadderGameInfoTest {
 
     @BeforeEach
     void setUp() {
-        Player plyaerA = new Player("A");
-        Player plyaerB = new Player("B");
+        Player plyaerA = Player.from("A");
+        Player plyaerB = Player.from("B");
         LadderReward ggang = LadderReward.from("꽝");
         LadderReward lucky = LadderReward.from("당첨");
         ladderGameInfo = new LadderGameInfo(new Players(Arrays.asList(plyaerA, plyaerB)),
@@ -35,8 +35,8 @@ class LadderGameInfoTest {
     @Test
     @DisplayName("참여할 사람과 실행 결과의 수는 같아야 한다.")
     void exceptionByCreation() {
-        Player plyaerA = new Player("A");
-        Player plyaerB = new Player("B");
+        Player plyaerA = Player.from("A");
+        Player plyaerB = Player.from("B");
         LadderReward ggang = LadderReward.from("꽝");
         LadderReward ggang2 = LadderReward.from("꽝");
         LadderReward lucky = LadderReward.from("당첨");
@@ -56,8 +56,8 @@ class LadderGameInfoTest {
         LadderResult ladderResult = new LadderResult(locationResult);
 
         Map<Player,LadderReward> expectedResult = new HashMap<>();
-        expectedResult.put(new Player("A"), LadderReward.from("당첨"));
-        expectedResult.put(new Player("B"), LadderReward.from("꽝"));
+        expectedResult.put(Player.from("A"), LadderReward.from("당첨"));
+        expectedResult.put(Player.from("B"), LadderReward.from("꽝"));
         LadderGameResult expected = LadderGameResult.from(expectedResult);
 
         assertThat(ladderGameInfo.apply(ladderResult)).isEqualTo(expected);
