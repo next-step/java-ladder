@@ -39,6 +39,10 @@ public class Line {
         return points.size() == size;
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

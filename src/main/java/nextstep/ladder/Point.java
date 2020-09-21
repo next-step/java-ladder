@@ -26,6 +26,10 @@ public class Point {
         return this.connection && next.connection;
     }
 
+    public boolean isConnection() {
+        return connection;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
