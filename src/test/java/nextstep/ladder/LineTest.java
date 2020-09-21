@@ -6,11 +6,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static nextstep.ladder.TestUtil.asPointList;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -27,12 +26,6 @@ public class LineTest {
     @DisplayName("팩토리 메소드 예외 발생")
     void create_validate() {
         assertThatIllegalArgumentException().isThrownBy(() -> Line.of(new ArrayList<>()));
-    }
-
-    private static List<Point> asPointList(Boolean... points) {
-        return Arrays.stream(points)
-                .map(Point::of)
-                .collect(Collectors.toList());
     }
 
     @ParameterizedTest
