@@ -1,12 +1,16 @@
 package ladder;
 
+import ladder.domain.LadderLine;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderLineTest {
     @Test
     public void init() {
         int sizeOfPerson = 5;
-        System.out.println(LadderLine.init(sizeOfPerson));
+        assertThat(LadderLine.init(sizeOfPerson).getPoints().size())
+                .isEqualTo(sizeOfPerson);
     }
 
     @Test
