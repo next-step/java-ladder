@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Point {
 
@@ -23,5 +24,18 @@ public class Point {
 
     public boolean checkConnected(Point next) {
         return this.connection && next.connection;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return connection == point.connection;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(connection);
     }
 }

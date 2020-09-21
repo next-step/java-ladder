@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -36,5 +37,18 @@ public class Line {
 
     public boolean isSameSize(int size) {
         return points.size() == size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return points.equals(line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(points);
     }
 }

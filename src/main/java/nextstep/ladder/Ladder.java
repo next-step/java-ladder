@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Ladder {
@@ -35,5 +36,18 @@ public class Ladder {
         if (maybeLine.isPresent()) {
             throw new IllegalArgumentException("Point 개수가 올바르지 않습니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return lines.equals(ladder.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 }
