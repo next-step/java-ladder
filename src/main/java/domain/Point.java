@@ -30,4 +30,5 @@ public class Point {
     public int getIndex() {
         return index;
     }
+
 }

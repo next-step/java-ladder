@@ -47,4 +47,11 @@ public class Line {
     public List<Point> getPoints() {
         return points;
     }
+
+    public void goDownLadder(Point start) {
+        start.isRight();
+
+
+
+    }
 }
