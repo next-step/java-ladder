@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Line {
 
@@ -14,6 +15,7 @@ public class Line {
 
     public static Line of(List<Point> points) {
         validateSize(points);
+        validatePoints(points);
         return new Line(points);
     }
 
@@ -21,5 +23,14 @@ public class Line {
         if (points.size() < MIN_COUNT) {
             throw new IllegalArgumentException("최소 1개 이상의 Point가 필요합니다.");
         }
+    }
+
+    private static void validatePoints(List<Point> points) {
+        IntStream.range(0, points.size() - 1)
+                .filter(index -> points.get(index).checkConnected(points.get(index + 1)))
+                .findAny()
+                .ifPresent(index -> {
+                    throw new IllegalArgumentException("Point가 연속적으로 연결될 수 없습니다.");
+                });
     }
 }
