@@ -18,7 +18,7 @@ public class LadderTest {
     @Test
     @DisplayName("팩토리 메소드 정상 작동")
     void of() {
-        assertNotNull(Ladder.of(height,
+        assertNotNull(Ladder.of(height, countOfPerson,
                 asLine(true, false, true),
                 asLine(false, true, false),
                 asLine(true, false, false),
@@ -28,13 +28,25 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("팩토리 메소드 예외 발생")
-    void of_validate() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.of(height,
+    @DisplayName("팩토리 메소드 예외 발생 - height")
+    void of_validateHeight() {
+        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.of(height, countOfPerson,
                 asLine(true, false, true),
                 asLine(false, true, false),
                 asLine(true, false, false),
                 asLine(false, true, false)
+        ));
+    }
+
+    @Test
+    @DisplayName("팩토리 메소드 예외 발생 - countOfPerson")
+    void of_validateSize() {
+        assertThatIllegalArgumentException().isThrownBy(() -> Ladder.of(height, countOfPerson + 1,
+                asLine(true, false, true),
+                asLine(false, true, false),
+                asLine(true, false, false),
+                asLine(false, true, false),
+                asLine(true, false, true)
         ));
     }
 

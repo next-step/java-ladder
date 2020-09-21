@@ -33,4 +33,8 @@ public class Line {
                     throw new IllegalArgumentException("Point가 연속적으로 연결될 수 없습니다.");
                 });
     }
+
+    public boolean isSameSize(int size) {
+        return points.size() == size;
+    }
 }
