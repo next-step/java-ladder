@@ -1,34 +1,26 @@
 package ladder.domain;
 
 public class LadderResult {
-    private final Users users;
-    private final Rewards rewards;
-    private final Ladder ladder;
+    private Result result;
 
     public LadderResult(Users users, Rewards rewards, Ladder ladder) {
-        this.users = users;
-        this.rewards = rewards;
-        this.ladder = ladder;
+        downLadder(users, rewards, ladder);
     }
 
-    public Reward move(String userName) {
-        int position = users.getUserPosition(userName);
-        for (LadderLine ladderLine : ladder.getLadder()) {
-            position = ladderLine.move(position);
-        }
-
-        return rewards.specificReward(position);
-    }
-
-    public Result downLadder() {
-        Result result = new Result();
+    private void downLadder(Users users, Rewards rewards, Ladder ladder) {
         users.getUsers()
                 .forEach(user -> {
-                    String name = user.getUserName();
-                    Reward reward = move(name);
-                    result.addResult(user, reward);
+                    int position = users.getUserPosition(user.getUserName());
+                    for (LadderLine ladderLine : ladder.getLadder()) {
+                        position = ladderLine.move(position);
+                    }
+                    result = new Result(user, rewards.getRewards().get(position));
                 });
 
+    }
+
+    public Result getResult() {
         return result;
     }
+
 }

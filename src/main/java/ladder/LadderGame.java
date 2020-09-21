@@ -4,9 +4,6 @@ import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class LadderGame {
     public static void main(String...args) {
         InputView inputView = new InputView();
@@ -19,8 +16,7 @@ public class LadderGame {
         ResultView.resultLadderGame(users.getUsers(), ladder, rewards);
 
         LadderResult ladderResult = new LadderResult(users, rewards, ladder);
-        Result result = ladderResult.downLadder();
 
-        ResultView.printWhoGetPrize(inputView.seeResult(), result);
+        ResultView.printWhoGetPrize(inputView.seeResult(), ladderResult.getResult());
     }
 }
