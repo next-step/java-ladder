@@ -1,4 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.factory;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.pattern.PointGenerator;
 
 import java.util.stream.IntStream;
 

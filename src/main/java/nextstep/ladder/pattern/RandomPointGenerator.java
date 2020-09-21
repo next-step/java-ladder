@@ -1,4 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.pattern;
+
+import nextstep.ladder.domain.Point;
 
 import java.util.Random;
 

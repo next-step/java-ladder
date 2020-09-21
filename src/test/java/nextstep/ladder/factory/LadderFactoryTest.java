@@ -1,5 +1,9 @@
-package nextstep.ladder;
+package nextstep.ladder.factory;
 
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Point;
+import nextstep.ladder.pattern.RandomPointGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

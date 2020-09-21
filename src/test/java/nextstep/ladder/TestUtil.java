@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Point;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
