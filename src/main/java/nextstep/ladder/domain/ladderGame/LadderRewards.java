@@ -18,6 +18,9 @@ public class LadderRewards {
     }
 
     public LadderRewards(final List<LadderReward> ladderRewards) {
+        if (ladderRewards.size() < 1) {
+            throw new IllegalArgumentException("LadderReward 수는 하나 이상이어야 합니다.");
+        }
         this.ladderRewards = new ArrayList<>(Collections.unmodifiableList(ladderRewards));
     }
 

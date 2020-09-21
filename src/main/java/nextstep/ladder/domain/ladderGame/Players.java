@@ -19,6 +19,9 @@ public class Players {
     }
 
     public Players(final List<Player> players) {
+        if (players.size() < 1) {
+            throw new IllegalArgumentException("Player 수는 한명 이상이어야 합니다.");
+        }
         this.players = new ArrayList<>(Collections.unmodifiableList(players));
     }
 
