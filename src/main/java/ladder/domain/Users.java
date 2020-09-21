@@ -32,11 +32,12 @@ public class Users {
     }
 
     public int getUserPosition(String userName) {
-        return users.stream()
+        User specificUser = users.stream()
                 .filter(user -> user.getUserName().equals(userName))
                 .findFirst()
-                .get()
-                .getPosition();
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 참여자가 없습니다."));
+
+        return specificUser.getPosition();
     }
 
     public int getUserCount() {
