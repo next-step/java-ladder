@@ -7,9 +7,7 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-//        String names = UserInput.inputUserNames();
         List<User> names = UserInput.inputUserNames();
-//        String inputs[] = names.split(",");
 
         String result = UserInput.inputResult();
         String results[] = result.split(",");
@@ -22,10 +20,9 @@ public class Application {
         View.showLadder(ladder);
         View.showLadderResult(results);
         //todo : matching  name : result
-        ladder.startGame();
-
+        List<User> users =  ladder.startGame(names,results);
 
         String name = UserInput.wantToSeeName();
-        View.showResult(name);
+        View.showResult(users,name);
     }
 }

@@ -14,7 +14,6 @@ public class Line {
         Point point = makeFirstPoint();
         point = makeIntermediatePoint(countOfPerson, point);
         makeEndPoint(point);
-
     }
 
     private void validateInput(int countOfPerson) {
@@ -24,7 +23,7 @@ public class Line {
     }
 
     private Point makeFirstPoint() {
-        Point point = new Point(0, makeDirection());
+        Point point = new Point(0, false, makeDirection());
         points.add(point);
         return point;
     }
@@ -48,10 +47,27 @@ public class Line {
         return points;
     }
 
-    public void goDownLadder(Point start) {
-        start.isRight();
+    public void goDownLadder(List<Line> lines, int index, int height) {
+        if (height == Ladder.LADDER_HEIGHT + 1) {
+            System.out.print("종료 ");
+            System.out.println(index);
+//            return index;
+        }
+        Point start = lines.get(height - 1).getPoints().get(index);
 
+        boolean right = start.isRight();
+        boolean left = start.isLeft();
 
+        if (!right && !left) {
+            goDownLadder(lines, index, height + 1);
+        }
 
+        if (right) {
+            goDownLadder(lines, index + 1, height + 1);
+        }
+        if (left) {
+            goDownLadder(lines, index - 1, height + 1);
+        }
+//        return index;
     }
 }

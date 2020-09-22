@@ -11,4 +11,12 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public void setGameResult(String gameResult) {
+        this.gameResult = gameResult;
+    }
+
+    public String getGameResult() {
+        return gameResult;
+    }
 }
