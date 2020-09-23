@@ -1,26 +1,19 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Ladder {
 
-    private List<Line> lines;
+    private Lines lines;
 
-    private Ladder(List<Line> lines) {
+    private Ladder(Lines lines) {
         this.lines = lines;
-    }
-
-    public static Ladder of(int height, int countOfPerson, Line... lines) {
-        return of(height, countOfPerson, Arrays.asList(lines));
     }
 
     public static Ladder of(int height, int countOfPerson, List<Line> lines) {
         validateHeight(height, lines);
-        validateSize(countOfPerson, lines);
-        return new Ladder(lines);
+        return new Ladder(Lines.of(countOfPerson, lines));
     }
 
     private static void validateHeight(int height, List<Line> lines) {
@@ -29,17 +22,8 @@ public class Ladder {
         }
     }
 
-    private static void validateSize(int countOfPerosn, List<Line> lines) {
-        Optional<Line> maybeLine = lines.stream()
-                .filter(line -> !line.isSameSize(countOfPerosn - 1))
-                .findAny();
-        if (maybeLine.isPresent()) {
-            throw new IllegalArgumentException("Point 개수가 올바르지 않습니다.");
-        }
-    }
-
     public List<Line> getLines() {
-        return lines;
+        return lines.getLines();
     }
 
     @Override
