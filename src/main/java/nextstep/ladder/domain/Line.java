@@ -35,8 +35,10 @@ public class Line {
                 });
     }
 
-    public boolean isSameSize(int size) {
-        return points.size() == size;
+    public void checkCountOfPoints(int size) {
+        if (points.size() != size) {
+            throw new IllegalArgumentException("Point 개수가 올바르지 않습니다.");
+        }
     }
 
     public List<Point> getPoints() {
