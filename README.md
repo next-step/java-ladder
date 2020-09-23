@@ -7,3 +7,29 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+
+## 2단계 - 사다리(생성)
+
+### 기능 정의
+
+- n명의 사람을 위한 h 높이의 사다리를 만든다.
+- 사다리의 라인(가로줄)은 겹치면 안된다.
+
+### 객체 모델링
+
+#### 유저(User)
+
+- (이름)
+- 사다리 게임에 참여하는 사람
+- [ ] 이름이 최대 5글자가 넘지 않는다.
+
+#### 사다리 게임(LadderGame)
+
+- (verticalLineNumber, horizontalLineNumber)
+- `Line[verticalLineNumber][horizontalLineNumber]`
+
+#### 라인(Line)
+
+- ([points])
+- 
