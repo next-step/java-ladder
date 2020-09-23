@@ -19,6 +19,4 @@ public class LadderGame {
 
         ResultView.printLadder(ladder, players);
     }
-
-
 }
