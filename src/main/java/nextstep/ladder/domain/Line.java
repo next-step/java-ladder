@@ -21,6 +21,20 @@ public class Line {
         }
     }
 
+    @Override public String toString() {
+        return "Line{" +
+                "points=" + points +
+                '}';
+    }
+
+    public int getCount() {
+        return points.size();
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
+
     private void addPoint(int index) {
         if (addFalseIfBeforeTrue(index)) return;
         points.add(random.nextBoolean());
@@ -32,16 +46,5 @@ public class Line {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return points.stream()
-                .map(LineRaw::getRawByIsDrawn)
-                .collect(Collectors.joining("", "|", ""));
-    }
-
-    public int getCount() {
-        return points.size();
     }
 }
