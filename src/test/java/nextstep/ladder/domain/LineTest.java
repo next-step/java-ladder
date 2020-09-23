@@ -18,14 +18,15 @@ public class LineTest {
     @Test
     @DisplayName("팩토리 메소드 정상 작동")
     void create() {
-        Line line = Line.of(asPointList(true, false, true));
-        assertNotNull(line);
+        assertNotNull(Line.of(asPointList(true, false, true)));
     }
 
     @Test
     @DisplayName("팩토리 메소드 예외 발생")
     void create_validate() {
-        assertThatIllegalArgumentException().isThrownBy(() -> Line.of(new ArrayList<>()));
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                Line.of(new ArrayList<>())
+        );
     }
 
     @ParameterizedTest
@@ -57,7 +58,9 @@ public class LineTest {
     @MethodSource("provideConnectedPoints")
     @DisplayName("Point 간의 유효성 검사")
     void validatePoints_connected(List<Point> points) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Line.of(points));
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                Line.of(points)
+        );
     }
 
     private static Stream<List<Point>> provideConnectedPoints() {
