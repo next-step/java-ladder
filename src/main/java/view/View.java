@@ -56,8 +56,20 @@ public class View {
         System.out.println();
     }
 
-    public static void showResult(String name) {
+    public static void showResult(List<User> users, String name) {
         System.out.println(RESULT);
+
+        if(name.equals("all")){
+            for (User user : users) {
+                System.out.println(user.getName() +" : "+user.getGameResult());
+            }
+            return;
+        }
+        for (User user : users) {
+            if(name.equals(user.getName())){
+                System.out.println(user.getName() +" : "+user.getGameResult());
+            }
+        }
 
     }
 }

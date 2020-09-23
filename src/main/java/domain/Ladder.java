@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Ladder {
     private List<Line> lines;
+    static int LADDER_HEIGHT;
 
     public Ladder() {
         lines = new ArrayList<>();
@@ -16,18 +17,22 @@ public class Ladder {
 
     public void makeLines(List<User> userNames, int height) {
         int countOfPerson = userNames.size();
+        LADDER_HEIGHT = height;
 
         for (int i = 0; i < height; i++) {
             lines.add(new Line(countOfPerson));
         }
     }
 
-    public void startGame() {
-        for (int i = 0; i < lines.size(); i++) {
-            Point startPoint = lines.get(0).getPoints().get(i);
-            lines.get(0).goDownLadder(startPoint);
+    public List<User> startGame(List<User> users,String[] results) {
 
+        for (int i = 0; i < users.size(); i++) {
+
+            int result = lines.get(0).goDownLadder(this.lines, i, 1);
+            System.out.println(result);
+            users.get(i).setGameResult(results[result]);
+            System.out.println(results[result]);
         }
-
+        return  users;
     }
 }
