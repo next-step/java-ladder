@@ -7,13 +7,11 @@ import java.util.List;
 public class ResultView {
 
     private static final String PRINT_INTERVAL = "%6s";
-    private static final String CONNECTED = "-----|";
-    private static final String DISCONNECTED = "|";
 
     public static void printLadder(Ladder ladder, List<Player> players) {
         System.out.println("실행 결과");
         printNames(players);
-        printLines(ladder);
+        printLadder(ladder);
     }
 
     private static void printNames(List<Player> players) {
@@ -23,25 +21,21 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void printLines(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
+    private static void printLadder(Ladder ladder) {
+        for (Pipes pipes : ladder.convertToPipes()) {
             printByFormat("|");
-            printPoints(line.getPoints());
+            printPipes(pipes.getPipes());
             System.out.println();
         }
     }
 
-    private static void printPoints(List<Point> points) {
-        points.stream()
-                .map(ResultView::mapToString)
+    private static void printPipes(List<Pipe> pipes) {
+        pipes.stream()
+                .map(Pipe::getPipe)
                 .forEach(ResultView::printByFormat);
     }
 
     private static void printByFormat(String value) {
         System.out.printf(PRINT_INTERVAL, value);
-    }
-
-    private static String mapToString(Point point) {
-        return point.isConnection() ? CONNECTED : DISCONNECTED;
     }
 }

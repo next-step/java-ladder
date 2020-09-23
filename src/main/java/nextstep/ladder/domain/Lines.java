@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Lines {
 
@@ -26,8 +27,10 @@ public class Lines {
                 .forEach(line -> line.checkCountOfPoints(countOfPerson - 1));
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<Pipes> convertToPipes() {
+        return lines.stream()
+                .map(Line::convertToPipes)
+                .collect(Collectors.toList());
     }
 
     @Override
