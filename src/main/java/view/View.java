@@ -70,6 +70,5 @@ public class View {
                 System.out.println(user.getName() +" : "+user.getGameResult());
             }
         }
-
     }
 }

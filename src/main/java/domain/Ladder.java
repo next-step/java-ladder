@@ -24,15 +24,11 @@ public class Ladder {
         }
     }
 
-    public List<User> startGame(List<User> users,String[] results) {
-
+    public List<User> startGame(List<User> users, String[] results) {
         for (int i = 0; i < users.size(); i++) {
-
             int result = lines.get(0).goDownLadder(this.lines, i, 1);
-            System.out.println(result);
             users.get(i).setGameResult(results[result]);
-            System.out.println(results[result]);
         }
-        return  users;
+        return users;
     }
 }

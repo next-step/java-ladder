@@ -8,6 +8,7 @@ import static view.View.ONE;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
+    int result;
 
     public Line(int countOfPerson) {
         validateInput(countOfPerson);
@@ -47,11 +48,10 @@ public class Line {
         return points;
     }
 
-    public void goDownLadder(List<Line> lines, int index, int height) {
+    public int goDownLadder(List<Line> lines, int index, int height) {
         if (height == Ladder.LADDER_HEIGHT + 1) {
-            System.out.print("종료 ");
-            System.out.println(index);
-//            return index;
+            result = index;
+            return index;
         }
         Point start = lines.get(height - 1).getPoints().get(index);
 
@@ -68,6 +68,6 @@ public class Line {
         if (left) {
             goDownLadder(lines, index - 1, height + 1);
         }
-//        return index;
+        return result;
     }
 }
