@@ -6,11 +6,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static nextstep.ladder.TestUtil.asPointList;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class LineTest {
@@ -77,5 +79,19 @@ public class LineTest {
                 asPointList(true, true, false, false),
                 asPointList(true, true, false, false)
         );
+    }
+
+    @Test
+    @DisplayName("List<Point>를 Pipes로 변환")
+    void convertToPipes() {
+        // given
+        Line line = Line.of(asPointList(true, false, true));
+
+        // when
+        Pipes actual = line.convertToPipes();
+
+        // then
+        Pipes expected = new Pipes(Arrays.asList(Pipe.CONNECTED, Pipe.DISCONNECTED, Pipe.CONNECTED));
+        assertEquals(actual, expected);
     }
 }

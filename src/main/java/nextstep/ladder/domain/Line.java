@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 public class Line {
 
     public static final int MIN_COUNT = 1;
@@ -41,8 +44,10 @@ public class Line {
         }
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public Pipes convertToPipes() {
+        return points.stream()
+                .map(Pipe::of)
+                .collect(collectingAndThen(toList(), Pipes::new));
     }
 
     @Override
