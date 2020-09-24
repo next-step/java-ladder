@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 public class Line {
 
@@ -48,6 +47,24 @@ public class Line {
         return points.stream()
                 .map(Pipe::of)
                 .collect(collectingAndThen(toList(), Pipes::new));
+    }
+
+    public Direction move(int index) {
+        if (index == 0) {
+            return canMoveToRight(index) ? Direction.RIGHT : Direction.STOP;
+        }
+        if (index == points.size()) {
+            return canMoveToLeft(index) ? Direction.LEFT : Direction.STOP;
+        }
+        return canMoveToLeft(index) ? Direction.LEFT : (canMoveToRight(index) ? Direction.RIGHT : Direction.STOP);
+    }
+
+    public boolean canMoveToLeft(int index) {
+        return points.get(index - 1).isConnection();
+    }
+
+    public boolean canMoveToRight(int index) {
+        return points.get(index).isConnection();
     }
 
     @Override
