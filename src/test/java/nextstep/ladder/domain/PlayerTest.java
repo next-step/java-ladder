@@ -15,14 +15,14 @@ public class PlayerTest {
     @ParameterizedTest
     @CsvSource(value = {"pobi, 0", "honux, 1", "crong, 2", "jk, 3"})
     @DisplayName("팩토리 메소드 정상 작동")
-    void create(String name, int index) {
+    void of(String name, int index) {
         Lane lane = Lane.of(countOfPerson, index);
         assertNotNull(Player.of(name, lane));
     }
 
     @Test
     @DisplayName("팩토리 메소드 예외 발생")
-    void create_validate() {
+    void of_validate() {
         Lane lane = Lane.of(countOfPerson, 0);
         assertThatIllegalArgumentException().isThrownBy(() ->
                 Player.of("abcdef", lane)
