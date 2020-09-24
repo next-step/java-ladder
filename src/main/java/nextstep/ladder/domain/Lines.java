@@ -33,6 +33,11 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
+    public void move(Player player) {
+        lines.stream()
+                .forEach(player::move);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
