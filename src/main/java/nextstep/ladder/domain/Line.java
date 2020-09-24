@@ -59,11 +59,11 @@ public class Line {
         return canMoveToLeft(index) ? Direction.LEFT : (canMoveToRight(index) ? Direction.RIGHT : Direction.STOP);
     }
 
-    public boolean canMoveToLeft(int index) {
+    private boolean canMoveToLeft(int index) {
         return points.get(index - 1).isConnection();
     }
 
-    public boolean canMoveToRight(int index) {
+    private boolean canMoveToRight(int index) {
         return points.get(index).isConnection();
     }
 
