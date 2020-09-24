@@ -3,11 +3,9 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.stream.Stream;
-
+import static nextstep.ladder.TestUtil.asPointList;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,19 +20,17 @@ public class LaneTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideDirectionAndLane")
-    @DisplayName("Direction에 따른 인덱스 변경")
-    void change(int beforeIndex, Direction direction, int afterIndex) {
-        Lane actual = Lane.of(beforeIndex).change(direction);
+    @CsvSource(value = {"0, 1", "1, 0", "2, 3", "3, 2", "4, 4"})
+    @DisplayName("하나의 Line을 이동한 결과 Lane 반환")
+    void move(int beforeIndex, int afterIndex) {
+        // given
+        Line line = Line.of(asPointList(true, false, true, false));
+
+        // when
+        Lane actual = Lane.of(beforeIndex).move(line);
+
+        // then
         Lane expected = Lane.of(afterIndex);
         assertEquals(expected, actual);
-    }
-
-    private static Stream<Arguments> provideDirectionAndLane() {
-        return Stream.of(
-                Arguments.of(0, Direction.RIGHT, 1),
-                Arguments.of(1, Direction.RIGHT, 2),
-                Arguments.of(1, Direction.LEFT, 0)
-        );
     }
 }

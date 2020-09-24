@@ -21,12 +21,13 @@ public class Lane {
         }
     }
 
-    public Lane change(Direction direction) {
+    public Lane move(Line line) {
+        Direction direction = line.move(index);
         switch (direction) {
             case LEFT:
-                return new Lane(index - 1);
+                return Lane.of(index - 1);
             case RIGHT:
-                return new Lane(index + 1);
+                return Lane.of(index + 1);
         }
         return this;
     }
