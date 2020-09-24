@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Player {
 
     public static final int LENGTH_LIMIT = 5;
@@ -21,6 +23,24 @@ public class Player {
         if (name.length() > LENGTH_LIMIT) {
             throw new IllegalArgumentException("이름은 최대 5글자까지 허용합니다.");
         }
+    }
+
+    public void move(Line line) {
+        this.lane = lane.move(line);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return name.equals(player.name) &&
+                lane.equals(player.lane);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, lane);
     }
 
     @Override
