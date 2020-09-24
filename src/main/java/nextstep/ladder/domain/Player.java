@@ -4,7 +4,7 @@ public class Player {
 
     public static final int LENGTH_LIMIT = 5;
 
-    private String name;
+    private final String name;
     private Lane lane;
 
     private Player(String name, Lane lane) {
