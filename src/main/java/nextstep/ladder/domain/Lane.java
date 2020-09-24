@@ -1,33 +1,46 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Lane {
 
-    private final int indexLimit;
     private final int index;
 
-    private Lane(int indexLimit, int index) {
-        this.indexLimit = indexLimit;
+    private Lane(int index) {
         this.index = index;
     }
 
-    public static Lane of(int countOfPerson, int index) {
-        int indexLimit = countOfPerson - 1;
-        validateRange(indexLimit, index);
-        return new Lane(indexLimit, index);
+    public static Lane of(int index) {
+        validateIndex(index);
+        return new Lane(index);
     }
 
-    public Lane move(int index) {
-        validateRange(index);
-        return new Lane(indexLimit, index);
-    }
-
-    private void validateRange(int index) {
-        validateRange(indexLimit, index);
-    }
-
-    private static void validateRange(int indexLimit, int index) {
-        if (index < 0 || index > indexLimit) {
-            throw new IllegalArgumentException("유효한 인덱스 범위를 벗어났습니다.");
+    private static void validateIndex(int index) {
+        if (index < 0) {
+            throw new IllegalArgumentException("index는 0 이상의 값이어야 합니다.");
         }
+    }
+
+    public Lane change(Direction direction) {
+        switch (direction) {
+            case LEFT:
+                return new Lane(index - 1);
+            case RIGHT:
+                return new Lane(index + 1);
+        }
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lane lane = (Lane) o;
+        return index == lane.index;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index);
     }
 }

@@ -2,29 +2,26 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LaneTest {
 
     @Test
-    @DisplayName("팩토리 메소드 정상 작동")
-    void of() {
-        int countOfPerson = 4;
-        assertNotNull(Lane.of(countOfPerson, 0));
-        assertNotNull(Lane.of(countOfPerson, 2));
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 4, 5})
-    @DisplayName("index 범위가 유효한지 검사")
-    void of_validateRange(int index) {
-        int countOfPerson = 4;
+    @DisplayName("팩토리 메소드 유효성 검사")
+    void of_validateIndex() {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                Lane.of(countOfPerson, index)
+                Lane.of(-1)
         );
     }
+
+    @Test
+    @DisplayName("Direction에 따른 인덱스 변경")
+    void change() {
+        Lane actual = Lane.of(0).change(Direction.RIGHT);
+        Lane expected = Lane.of(1);
+        assertEquals(expected, actual);
+    }
+
 }
