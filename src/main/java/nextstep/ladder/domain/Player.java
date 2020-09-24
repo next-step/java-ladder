@@ -5,14 +5,16 @@ public class Player {
     public static final int LENGTH_LIMIT = 5;
 
     private String name;
+    private Lane lane;
 
-    private Player(String name) {
+    private Player(String name, Lane lane) {
         this.name = name;
+        this.lane = lane;
     }
 
-    public static Player of(String name) {
+    public static Player of(String name, Lane lane) {
         validateName(name);
-        return new Player(name);
+        return new Player(name, lane);
     }
 
     private static void validateName(String name) {

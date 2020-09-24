@@ -1,11 +1,15 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.domain.Lane;
 import nextstep.ladder.domain.Player;
 
+import java.net.BindException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class InputView {
 
@@ -18,9 +22,8 @@ public class InputView {
     }
 
     private static List<Player> mapToPlayer(String[] names) {
-        return Arrays.stream(names)
-                .map(String::trim)
-                .map(Player::of)
+        return IntStream.range(0, names.length)
+                .mapToObj(i -> Player.of(names[i].trim(), Lane.of(names.length, i)))
                 .collect(Collectors.toList());
     }
 
