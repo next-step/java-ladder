@@ -49,7 +49,7 @@ public class LadderTest {
     @DisplayName("정상적으로 게임 결과가 도출되는지 검사")
     void run() {
         // given
-        List<Player> actual = providePlayers(0, 1, 2, 3);
+        Players actual = new Players(providePlayers(0, 1, 2, 3));
         List<Line> lines = Arrays.asList(
                 asLine(false, false, true),
                 asLine(false, true, false),
@@ -63,7 +63,7 @@ public class LadderTest {
         ladder.run(actual);
 
         // then
-        List<Player> expected = providePlayers(0, 3, 2, 1);
+        Players expected = new Players(providePlayers(0, 3, 2, 1));
         assertEquals(expected, actual);
     }
 

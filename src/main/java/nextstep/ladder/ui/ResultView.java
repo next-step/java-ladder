@@ -8,9 +8,9 @@ public class ResultView {
 
     private static final String PRINT_INTERVAL = "%6s";
 
-    public static void printLadder(Ladder ladder, List<Player> players, LadderResults results) {
+    public static void printLadder(Ladder ladder, Players players, LadderResults results) {
         System.out.println("실행 결과");
-        printNames(players);
+        printNames(players.getPlayers());
         printLadder(ladder);
         printResults(results);
     }
@@ -39,6 +39,10 @@ public class ResultView {
     private static void printResults(LadderResults results) {
         results.getResults()
                 .forEach(ResultView::printByFormat);
+    }
+
+    public static void printResultOfPlayer(int laneIndex, LadderResults results) {
+
     }
 
     private static void printByFormat(String value) {

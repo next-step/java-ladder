@@ -22,8 +22,8 @@ public class Ladder {
         }
     }
 
-    public void run(List<Player> players) {
-        players.forEach(player -> lines.move(player));
+    public void run(Players players) {
+        players.move(lines);
     }
 
     public List<Pipes> convertToPipes() {
