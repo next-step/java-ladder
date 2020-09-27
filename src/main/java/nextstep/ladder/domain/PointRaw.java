@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.Utils;
+
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -14,11 +16,11 @@ public enum PointRaw {
         this.raw = raw;
     }
 
-    public static String getRawByIsPointExist(Point point, int pointNumber) {
+    public static String getRawByIsPointExist(Leg leg, int pointNumber) {
         return Arrays.stream(values())
-                .filter(e -> e.isExist == point.isExist())
+                .filter(e -> e.isExist == leg.isExist())
                 .map(e -> e.raw)
-                .map(e -> String.join("", Collections.nCopies(pointNumber, e)))
+                .map(e -> Utils.repeat(e, pointNumber))
                 .findFirst()
                 .orElseThrow(AssertionError::new);
     }

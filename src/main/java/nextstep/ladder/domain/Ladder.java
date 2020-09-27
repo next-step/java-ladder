@@ -33,31 +33,38 @@ public class Ladder {
         return lines;
     }
 
-    public void getResultOfUser(int col) {
+    public int getResultByUserOrder(int orderOfUser) {
         int row = 0;
-        int height = lines.size();
-        int width = lines.get(0).getPoints().size();
-        while (true) {
-            Line nowLine = lines.get(row);
-            Point leftPoint = null;
-            Point rightPoint = nowLine.getPoints().get(col);
-            if (col - 1 >= 0) {
-                leftPoint = nowLine.getPoints().get(col - 1);
-            }
-            if (rightPoint.isExist()) {
-                if (col + 1 <= width) {
-                    col++;
-                }
-            } else if (leftPoint != null && leftPoint.isExist()) {
-                col--;
-            }
-
-            System.out.println(String.format("%d : %d", row, col));
-            if (row + 1 == height) {
-                break;
-            }
-            System.out.println(String.format("%d : %d", row, col));
+        int col = orderOfUser;
+        while (!isLastRow(row)) {
+            col = moveCol(row, col);
             row++;
         }
+        return col;
     }
+
+    private boolean isLastRow(int row) {
+        int height = lines.size();
+        return row == height;
+    }
+
+    private int moveCol(int row, int col) {
+        if (isMovableLeft(row, col)) {
+            return col - 1;
+        }
+        if (isMovableRight(row, col)) {
+            return col + 1;
+        }
+
+        return col;
+    }
+
+    private boolean isMovableLeft(int row, int col) {
+        return lines.get(row).isMovableToLeft(col);
+    }
+
+    private boolean isMovableRight(int row, int col) {
+        return lines.get(row).isMovableToRight(col);
+    }
+
 }

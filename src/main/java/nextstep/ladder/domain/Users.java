@@ -12,6 +12,15 @@ public class Users {
         this.users = users;
     }
 
+    public static Users ofByRaw(String usersRaw) {
+        String[] splitUsersRaw = usersRaw.split(",");
+        List<User> users = new ArrayList<>();
+        for (String personRaw : splitUsersRaw) {
+            users.add(new User(personRaw.trim()));
+        }
+        return new Users(users);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,8 +49,16 @@ public class Users {
         return users.size();
     }
 
-    public int maxUserNameLength() {
+    public int getMaxUserNameLength() {
         User max = Collections.max(users);
         return max.getName().length();
+    }
+
+    public int getOrderByUsername(String username) {
+        User findUser = users.stream()
+                .filter(user -> user.getName().equals(username))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("입력하신 유저이름이 없습니다."));
+        return users.indexOf(findUser);
     }
 }

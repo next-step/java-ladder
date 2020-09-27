@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Point> points = new ArrayList<>();
+    private final List<Leg> legs = new ArrayList<>();
 
     public Line(int countOfPersons) {
         if (countOfPersons < 1) {
@@ -13,13 +13,13 @@ public class Line {
         if (countOfPersons == 1) {
             return;
         }
-        points.add(Point.random());
+        legs.add(Leg.random());
     }
 
-    public static Line random(int countOfPersons) {
-        Line line = new Line(countOfPersons);
+    public static Line random(int countOfUsers) {
+        Line line = new Line(countOfUsers);
 
-        for (int i = 1; i < countOfPersons - 1; i++) {
+        for (int i = 1; i < countOfUsers - 1; i++) {
             line.addRandomPoint(i);
         }
         return line;
@@ -28,20 +28,35 @@ public class Line {
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + points +
+                "points=" + legs +
                 '}';
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public List<Leg> getLegs() {
+        return legs;
     }
 
     private void addRandomPoint(int index) {
-        Point beforePoint = points.get(index - 1);
-        if (beforePoint.isExist()) {
-            points.add(Point.ofNotExist());
+        Leg beforeLeg = legs.get(index - 1);
+        if (beforeLeg.isExist()) {
+            legs.add(Leg.ofNotExist());
             return;
         }
-        points.add(Point.random());
+        legs.add(Leg.random());
+    }
+
+    public boolean isMovableToLeft(int nowCol) {
+        if (nowCol - 1 < 0) {
+            return false;
+        }
+        return legs.get(nowCol - 1).isExist();
+    }
+
+    public boolean isMovableToRight(int nowCol) {
+        int countOfUsers = legs.size() + 1;
+        if (nowCol == countOfUsers) {
+            return false;
+        }
+        return legs.get(nowCol).isExist();
     }
 }
