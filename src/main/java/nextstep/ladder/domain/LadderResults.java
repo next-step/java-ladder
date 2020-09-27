@@ -1,14 +1,14 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class LadderResults {
 
-    private final List<String> results;
+    private final Map<Lane, String> results;
 
     private LadderResults(List<String> results) {
-        this.results = results;
+        this.results = convertToMap(results);
     }
 
     public static LadderResults of(int countOfPersons, List<String> results) {
@@ -22,7 +22,18 @@ public class LadderResults {
         }
     }
 
+    private Map<Lane, String> convertToMap(List<String> results) {
+        Map<Lane, String> resultMap = new HashMap<>();
+        IntStream.range(0, results.size())
+                .forEach(i -> resultMap.put(Lane.of(i), results.get(i)));
+        return resultMap;
+    }
+
     public List<String> getResults() {
-        return Collections.unmodifiableList(results);
+        return Collections.unmodifiableList(new ArrayList<>(results.values()));
+    }
+
+    public String getResultByLane(Lane lane) {
+        return results.get(lane);
     }
 }
