@@ -14,7 +14,7 @@ public class Ladder {
 
     public static Ladder of(int countOfPersons, int height) {
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(i -> new Line(countOfPersons))
+                .mapToObj(i -> Line.of(countOfPersons))
                 .collect(Collectors.toList());
 
         return new Ladder(lines);

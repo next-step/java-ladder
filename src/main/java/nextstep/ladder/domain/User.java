@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Comparable<User> {
     private final String name;
 
     public User(String name) {
@@ -21,10 +21,20 @@ public class User {
         return Objects.hash(name);
     }
 
-    @Override public String toString() {
+
+    @Override
+    public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+    @Override
+    public int compareTo(User o) {
+        return Integer.compare(this.name.length(), o.name.length());
+    }
+
+    public String getName() {
+        return name;
     }
 
     private void checkNameNotOver5(String name) {

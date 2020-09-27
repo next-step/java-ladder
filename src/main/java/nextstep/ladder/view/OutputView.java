@@ -1,27 +1,31 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.LineRaw;
+import nextstep.ladder.domain.*;
 
 import java.util.stream.Collectors;
 
 public class OutputView {
+
+    public static final String DIVIDER = "|";
+
     private OutputView() { }
 
-    public static String drawLine(Line line) {
-        return line.getPoints()
+    public static String drawLine(Line line, int maxUserNameLength) {
+        return line.getLine()
                 .stream()
-                .map(LineRaw::getRawByIsDrawn)
-                .collect(Collectors.joining("", "|", ""));
+                .map(point -> PointRaw.getRawByIsPointExist(point, maxUserNameLength))
+                .collect(Collectors.joining(DIVIDER, DIVIDER, DIVIDER));
     }
 
-    public static void drawLadder(Ladder ladder) {
+    public static void drawLadder(Ladder ladder, int maxUserNameLength) {
         String drawnLadder = ladder.getLines()
                 .stream()
-                .map(OutputView::drawLine)
+                .map(line -> drawLine(line, maxUserNameLength))
                 .collect(Collectors.joining("\n"));
 
         System.out.println(drawnLadder);
+    }
+
+    public static void drawUsers(Users users) {
     }
 }
