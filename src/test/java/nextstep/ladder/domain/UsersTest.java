@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.view.UsersRaw;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,9 +15,9 @@ class UsersTest {
     @ParameterizedTest
     @CsvSource(value = {"a,a1,a2:3", "b,b2,b3,b4,b5:5"}, delimiter = ':')
     @DisplayName("입력받은 값에서 유저 생성")
-    void of(String personsRaw, int countOfUsers) {
-        Users users = Users.of(personsRaw);
-        String[] split = personsRaw.split(",");
+    void of(String usersRaw, int countOfUsers) {
+        Users users = UsersRaw.createUsers(usersRaw);
+        String[] split = usersRaw.split(",");
         assertThat(users.toString()).contains(split);
         assertThat(users.countOfUsers()).isEqualTo(countOfUsers);
     }

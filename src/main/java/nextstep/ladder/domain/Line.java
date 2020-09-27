@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Point> line = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPersons) {
         if (countOfPersons < 1) {
@@ -13,14 +13,14 @@ public class Line {
         if (countOfPersons == 1) {
             return;
         }
-        line.add(Point.random());
+        points.add(Point.random());
     }
 
-    public static Line of(int countOfPersons) {
+    public static Line random(int countOfPersons) {
         Line line = new Line(countOfPersons);
 
         for (int i = 1; i < countOfPersons - 1; i++) {
-            line.addPoint(i);
+            line.addRandomPoint(i);
         }
         return line;
     }
@@ -28,24 +28,20 @@ public class Line {
     @Override
     public String toString() {
         return "Line{" +
-                "points=" + line +
+                "points=" + points +
                 '}';
     }
 
-    public int getCount() {
-        return line.size();
+    public List<Point> getPoints() {
+        return points;
     }
 
-    public List<Point> getLine() {
-        return line;
-    }
-
-    private void addPoint(int index) {
-        Point beforePoint = line.get(index - 1);
+    private void addRandomPoint(int index) {
+        Point beforePoint = points.get(index - 1);
         if (beforePoint.isExist()) {
-            line.add(Point.ofNotExist());
+            points.add(Point.ofNotExist());
             return;
         }
-        line.add(Point.random());
+        points.add(Point.random());
     }
 }

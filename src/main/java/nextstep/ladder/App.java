@@ -13,9 +13,9 @@ public class App {
 
         int height = InputView.inputHeight();
 
-        Ladder ladder = Ladder.of(users.countOfUsers(), height);
+        Ladder ladder = Ladder.random(users.countOfUsers(), height);
 
-        OutputView.drawLadder(ladder, users.maxUserNameLength());
+        OutputView.drawLadder(ladder, users);
 
     }
 }

@@ -11,21 +11,22 @@ public class OutputView {
     private OutputView() { }
 
     public static String drawLine(Line line, int maxUserNameLength) {
-        return line.getLine()
+        return line.getPoints()
                 .stream()
                 .map(point -> PointRaw.getRawByIsPointExist(point, maxUserNameLength))
                 .collect(Collectors.joining(DIVIDER, DIVIDER, DIVIDER));
     }
 
-    public static void drawLadder(Ladder ladder, int maxUserNameLength) {
+    public static void drawLadder(Ladder ladder, Users users) {
         String drawnLadder = ladder.getLines()
                 .stream()
-                .map(line -> drawLine(line, maxUserNameLength))
+                .map(line -> drawLine(line, users.maxUserNameLength()))
                 .collect(Collectors.joining("\n"));
 
         System.out.println(drawnLadder);
     }
 
     public static void drawUsers(Users users) {
+
     }
 }
