@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LadderResults {
 
-    private List<String> results;
+    private final List<String> results;
 
     private LadderResults(List<String> results) {
         this.results = results;
