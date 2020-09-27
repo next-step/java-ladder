@@ -29,6 +29,10 @@ public class Player {
         this.lane = lane.move(line);
     }
 
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
