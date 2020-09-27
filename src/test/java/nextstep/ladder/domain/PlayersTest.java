@@ -25,12 +25,6 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("생성자 정상 작동")
-    void of() {
-        assertNotNull(new Players(playerList));
-    }
-
-    @Test
     @DisplayName("문자열에 해당되는 Player 반환 메소드")
     void find() {
         Players players = new Players(playerList);
