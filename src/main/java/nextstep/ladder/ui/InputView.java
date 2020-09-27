@@ -27,7 +27,13 @@ public class InputView {
 
     public static int getHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return SCANNER.nextInt();
+        int height;
+        try {
+            height = Integer.parseInt(SCANNER.nextLine());
+        } catch (NumberFormatException e) {
+            height = getHeight();
+        }
+        return height;
     }
 
     public static List<String> getResults() {
@@ -35,5 +41,10 @@ public class InputView {
         return Arrays.stream(SCANNER.nextLine().split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList());
+    }
+
+    public static String getPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return SCANNER.nextLine().trim();
     }
 }
