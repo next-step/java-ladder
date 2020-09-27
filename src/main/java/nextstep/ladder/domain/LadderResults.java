@@ -23,7 +23,7 @@ public class LadderResults {
     }
 
     private Map<Lane, String> convertToMap(List<String> results) {
-        Map<Lane, String> resultMap = new HashMap<>();
+        Map<Lane, String> resultMap = new LinkedHashMap<>();
         IntStream.range(0, results.size())
                 .forEach(i -> resultMap.put(Lane.of(i), results.get(i)));
         return resultMap;
