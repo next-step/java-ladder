@@ -33,6 +33,10 @@ public class Player {
         return this.name.equals(name);
     }
 
+    public Lane getLane() {
+        return lane.copy();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

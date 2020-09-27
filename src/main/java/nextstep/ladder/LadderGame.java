@@ -19,5 +19,9 @@ public class LadderGame {
         ladder.run(players);
 
         ResultView.printLadder(ladder, players, results);
+
+        while(true) {
+            ResultView.printResultOfPlayer(players.find(InputView.getPlayer()), results);
+        }
     }
 }

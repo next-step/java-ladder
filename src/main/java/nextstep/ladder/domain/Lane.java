@@ -32,6 +32,10 @@ public class Lane {
         return this;
     }
 
+    public Lane copy() {
+        return new Lane(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

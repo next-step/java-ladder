@@ -39,10 +39,11 @@ public class ResultView {
     private static void printResults(LadderResults results) {
         results.getResults()
                 .forEach(ResultView::printByFormat);
+        System.out.println();
     }
 
-    public static void printResultOfPlayer(int laneIndex, LadderResults results) {
-
+    public static void printResultOfPlayer(Player player, LadderResults results) {
+        System.out.println(results.getResultByLane(player.getLane()));
     }
 
     private static void printByFormat(String value) {
