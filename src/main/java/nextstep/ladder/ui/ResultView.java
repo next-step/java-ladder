@@ -8,45 +8,60 @@ public class ResultView {
 
     private static final String PRINT_INTERVAL = "%6s";
 
-    public static void printLadder(Ladder ladder, Players players, LadderResults results) {
-        System.out.println("실행 결과");
-        printNames(players.getPlayers());
-        printLadder(ladder);
-        printResults(results);
+    private final Players players;
+    private final LadderResults results;
+
+    public ResultView(Players players, LadderResults results) {
+        this.players = players;
+        this.results = results;
     }
 
-    private static void printNames(List<Player> players) {
+    public void printLadder(Ladder ladder) {
+        System.out.println("사다리 결과");
+        printNames(players.getPlayers());
+        printPipes(ladder);
+        printResults();
+    }
+
+    private void printNames(List<Player> players) {
         players.stream()
                 .map(Player::toString)
-                .forEach(ResultView::printByFormat);
+                .forEach(this::printByFormat);
         System.out.println();
     }
 
-    private static void printLadder(Ladder ladder) {
+    private void printPipes(Ladder ladder) {
         for (Pipes pipes : ladder.convertToPipes()) {
             printByFormat("|");
-            printPipes(pipes.getPipes());
+            printLine(pipes.getPipes());
             System.out.println();
         }
     }
 
-    private static void printPipes(List<Pipe> pipes) {
+    private void printLine(List<Pipe> pipes) {
         pipes.stream()
                 .map(Pipe::getPipe)
-                .forEach(ResultView::printByFormat);
+                .forEach(this::printByFormat);
     }
 
-    private static void printResults(LadderResults results) {
+    private void printResults() {
         results.getResults()
-                .forEach(ResultView::printByFormat);
+                .forEach(this::printByFormat);
         System.out.println();
     }
 
-    public static void printResultOfPlayer(Player player, LadderResults results) {
-        System.out.println(results.getResultByLane(player.getLane()));
+    public void printResultOfPlayer(String name) {
+        System.out.println(results.getResultByLane(players.find(name).getLane()));
     }
 
-    private static void printByFormat(String value) {
+    public void printResultsOfAll() {
+        players.getPlayers()
+                .forEach(player ->
+                        System.out.printf("%s : %s\n", player, results.getResultByLane(player.getLane()))
+                );
+    }
+
+    private void printByFormat(String value) {
         System.out.printf(PRINT_INTERVAL, value);
     }
 }

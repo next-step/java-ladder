@@ -10,6 +10,8 @@ import nextstep.ladder.ui.ResultView;
 
 public class LadderGame {
 
+    public static final String INPUT_CONDITION = "all";
+
     public static void main(String[] args) {
         Players players = new Players(InputView.getPlayers());
         LadderResults results = LadderResults.of(players.size(), InputView.getResults());
@@ -18,10 +20,16 @@ public class LadderGame {
         Ladder ladder = LadderFactory.generate(height, players.size(), new RandomPointGenerator());
         ladder.run(players);
 
-        ResultView.printLadder(ladder, players, results);
+        ResultView resultView = new ResultView(players, results);
+        resultView.printLadder(ladder);
+        printResults(resultView);
+    }
 
-        while(true) {
-            ResultView.printResultOfPlayer(players.find(InputView.getPlayer()), results);
+    private static void printResults(ResultView resultView) {
+        String name;
+        while(!(name = InputView.getPlayer()).equals(INPUT_CONDITION)) {
+            resultView.printResultOfPlayer(name);
         }
+        resultView.printResultsOfAll();
     }
 }
