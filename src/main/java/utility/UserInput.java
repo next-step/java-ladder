@@ -42,7 +42,7 @@ public class UserInput {
         return input;
     }
 
-    public static String wantToSeeName() {
+    public static String showNameWantToSee() {
         System.out.println(RESULT_WANT);
         String input = SC.nextLine();
 

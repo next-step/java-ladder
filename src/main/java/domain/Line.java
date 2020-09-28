@@ -5,10 +5,11 @@ import java.util.List;
 
 import static utility.generatorPoint.makeDirection;
 import static view.View.ONE;
+import static view.View.ZERO;
 
 public class Line {
     private List<Point> points = new ArrayList<>();
-    int result;
+    private int result;
 
     public Line(int countOfPerson) {
         validateInput(countOfPerson);
@@ -24,7 +25,7 @@ public class Line {
     }
 
     private Point makeFirstPoint() {
-        Point point = new Point(0, false, makeDirection());
+        Point point = new Point(ZERO, false, makeDirection());
         points.add(point);
         return point;
     }
@@ -48,26 +49,29 @@ public class Line {
         return points;
     }
 
-    public int goDownLadder(List<Line> lines, int index, int height) {
-        if (height == Ladder.LADDER_HEIGHT + 1) {
+    int goDownLadder(List<Line> lines, int index, int height) {
+        if (height == Ladder.LADDER_HEIGHT + ONE) {
             result = index;
             return index;
         }
-        Point start = lines.get(height - 1).getPoints().get(index);
+        Point start = getStartPoint(lines, height, index);
 
         boolean right = start.isRight();
         boolean left = start.isLeft();
 
         if (!right && !left) {
-            goDownLadder(lines, index, height + 1);
+            goDownLadder(lines, index, height + ONE);
         }
-
         if (right) {
-            goDownLadder(lines, index + 1, height + 1);
+            goDownLadder(lines, index + ONE, height + ONE);
         }
         if (left) {
-            goDownLadder(lines, index - 1, height + 1);
+            goDownLadder(lines, index - ONE, height + ONE);
         }
         return result;
+    }
+
+    private Point getStartPoint(List<Line> lines, int height, int index) {
+        return lines.get(height - ONE).getPoints().get(index);
     }
 }

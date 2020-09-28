@@ -3,6 +3,9 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static view.View.FIRST_HEIGHT;
+import static view.View.ZERO;
+
 public class Ladder {
     private List<Line> lines;
     static int LADDER_HEIGHT;
@@ -24,11 +27,10 @@ public class Ladder {
         }
     }
 
-    public List<User> startGame(List<User> users, String[] results) {
-        for (int i = 0; i < users.size(); i++) {
-            int result = lines.get(0).goDownLadder(this.lines, i, 1);
-            users.get(i).setGameResult(results[result]);
+    public void startGame(List<User> users, String[] results) {
+        for (int startIndex = 0; startIndex < users.size(); startIndex++) {
+            int result = lines.get(ZERO).goDownLadder(this.lines, startIndex, FIRST_HEIGHT);
+            users.get(startIndex).setGameResult(results[result]);
         }
-        return users;
     }
 }
