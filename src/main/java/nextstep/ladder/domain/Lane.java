@@ -23,13 +23,7 @@ public class Lane {
 
     public Lane move(Line line) {
         Direction direction = line.move(index);
-        switch (direction) {
-            case LEFT:
-                return Lane.of(index - 1);
-            case RIGHT:
-                return Lane.of(index + 1);
-        }
-        return this;
+        return direction.changeLane(index);
     }
 
     public Lane copy() {
