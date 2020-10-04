@@ -10,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
     @ParameterizedTest
-    @ValueSource(ints ={-1,0,1})
-    void 인풋유효성_테스트(int countOfPerson){
-        assertThatThrownBy(()->{
-             new Line(countOfPerson);
+    @ValueSource(ints = {-1, 0, 1})
+    void 인풋유효성_테스트(int countOfPerson) {
+        assertThatThrownBy(() -> {
+            new Line(countOfPerson);
 
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Input size");
@@ -21,7 +21,8 @@ public class LineTest {
 
     @DisplayName("생성된 포인트 개수 테스트")
     @Test
-    void point_size_test(){
+    void point_size_test() {
         assertThat(new Line(5).getPoints().size()).isEqualTo(5);
     }
+
 }
