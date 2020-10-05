@@ -53,8 +53,7 @@ public class Line {
     }
 
     public boolean isMovableToRight(int nowCol) {
-        int countOfUsers = legs.size() + 1;
-        if (nowCol == countOfUsers) {
+        if (nowCol == legs.size()) {
             return false;
         }
         return legs.get(nowCol).isExist();

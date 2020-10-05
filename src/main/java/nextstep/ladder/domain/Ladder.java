@@ -1,70 +1,64 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final Lines lines;
+    private final Users users;
+    private final Results results;
 
-    private Ladder(List<Line> lines) {
+    public Ladder(Lines lines, Users users, Results results) {
         this.lines = lines;
+        this.users = users;
+        this.results = results;
     }
 
-    public static Ladder random(int countOfPersons, int height) {
-        if (height < 1) {
-            throw new IllegalArgumentException("사다리의 높이는 1 이상이여야 합니다.");
-        }
-        List<Line> lines = IntStream.range(0, height)
-                .mapToObj(i -> Line.random(countOfPersons))
-                .collect(Collectors.toList());
-
-        return new Ladder(lines);
+    public static Ladder random(String usersRaw, String resultsRaw, int height) {
+        Users users = Users.ofByRaw(usersRaw);
+        Lines lines = Lines.random(users.countOfUsers(), height);
+        Results result = Results.ofByRaw(resultsRaw);
+        return new Ladder(lines, users, result);
     }
 
-    @Override
-    public String toString() {
-        return "Ladder{" +
-                "lines=" + lines +
-                '}';
+    public Users getUsers() {
+        return users;
     }
 
-    public List<Line> getLines() {
+    public Lines getLines() {
         return lines;
     }
 
-    public int getResultByUserOrder(int orderOfUser) {
+    public Results getResults() {
+        return results;
+    }
+
+    public Results getResultsOfUsers() {
+        for (int i = 0; i < users.getUsers().size(); i++) {
+            Result result = calculateResultByUserOrder(i);
+            String username = users.getUsers().get(i).getName();
+            result.setUsername(username);
+        }
+        return results;
+    }
+
+    public int getMaxUserNameLength() {
+        return users.getMaxUserNameLength();
+    }
+
+    public String getResultByUsername(String username) {
+        int orderByUsername = users.getOrderByUsername(username);
+        Result result = calculateResultByUserOrder(orderByUsername);
+        result.setUsername(username);
+        return result.getResultName();
+    }
+
+    public Result calculateResultByUserOrder(int orderOfUser) {
         int row = 0;
         int col = orderOfUser;
-        while (!isLastRow(row)) {
-            col = moveCol(row, col);
+        while (!lines.isLastRow(row)) {
+            col = lines.moveCol(row, col);
             row++;
         }
-        return col;
+        return results.getResults().get(col);
     }
-
-    private boolean isLastRow(int row) {
-        int height = lines.size();
-        return row == height;
-    }
-
-    private int moveCol(int row, int col) {
-        if (isMovableLeft(row, col)) {
-            return col - 1;
-        }
-        if (isMovableRight(row, col)) {
-            return col + 1;
-        }
-
-        return col;
-    }
-
-    private boolean isMovableLeft(int row, int col) {
-        return lines.get(row).isMovableToLeft(col);
-    }
-
-    private boolean isMovableRight(int row, int col) {
-        return lines.get(row).isMovableToRight(col);
-    }
-
 }

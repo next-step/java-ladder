@@ -3,10 +3,13 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class User implements Comparable<User> {
+    private final int order;
     private final String name;
+    private Result result;
 
-    public User(String name) {
+    public User(int order, String name) {
         checkNameNotOver5(name);
+        this.order = order;
         this.name = name;
     }
 
@@ -35,6 +38,15 @@ public class User implements Comparable<User> {
 
     public String getName() {
         return name;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public Result getResult() {
+
+        return result;
     }
 
     private void checkNameNotOver5(String name) {

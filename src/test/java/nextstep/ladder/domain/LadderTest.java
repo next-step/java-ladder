@@ -6,18 +6,21 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class LadderTest {
 
     @Test
     @DisplayName("사다리타기 결과를 제공한다")
     void ladderResultTest() {
-        String personsRaw = "a,bb,ccc,dd";
-        Users users = Users.ofByRaw(personsRaw);
+        String userRaw = "a,bb,ccc,dd";
+        String resultRaw = "ar,bbr,cccr,ddr";
 
-        Ladder ladder = Ladder.random(users.countOfUsers(), 5);
-        Result result = new Result(Arrays.asList("r1", "r2", "r3", "r4"));
-        OutputView.drawLadderGame(ladder, users, result);
-        ladder.getResultByUserOrder(0);
+        Ladder ladder = Ladder.random(userRaw, resultRaw, 5);
+        Results results = ladder.getResults();
+
+        assertThat(results.getResults()).extracting("resultName")
+                .containsExactly("ar", "bbr", "cccr", "ddr");
     }
 
 }

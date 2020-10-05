@@ -16,7 +16,7 @@ public class Users {
         String[] splitUsersRaw = usersRaw.split(",");
         List<User> users = new ArrayList<>();
         for (String personRaw : splitUsersRaw) {
-            users.add(new User(personRaw.trim()));
+            users.add(new User(users.size(), personRaw.trim()));
         }
         return new Users(users);
     }
