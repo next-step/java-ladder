@@ -5,8 +5,6 @@ import java.util.Objects;
 public class User implements Comparable<User> {
     private final int order;
     private final String name;
-    private Result result;
-
     public User(int order, String name) {
         checkNameNotOver5(name);
         this.order = order;
@@ -40,18 +38,13 @@ public class User implements Comparable<User> {
         return name;
     }
 
-    public int getOrder() {
-        return order;
-    }
-
-    public Result getResult() {
-
-        return result;
-    }
-
     private void checkNameNotOver5(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("이름의 길이는 5를 넘지 않아야 합니다.");
         }
+    }
+
+    public int getOrder() {
+        return order;
     }
 }

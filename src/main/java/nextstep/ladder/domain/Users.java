@@ -59,6 +59,6 @@ public class Users {
                 .filter(user -> user.getName().equals(username))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("입력하신 유저이름이 없습니다."));
-        return users.indexOf(findUser);
+        return findUser.getOrder();
     }
 }
