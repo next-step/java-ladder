@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,5 +77,20 @@ public class LinesTest {
         return asPointList(points).stream()
                 .map(Pipe::of)
                 .collect(collectingAndThen(toList(), Pipes::new));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"pobi, 0, 0", "honux, 1, 3", "crong, 2, 2", "jk, 3, 1"})
+    @DisplayName("각 Line별로 Player의 Lane 이동")
+    void move(String name, int startIndex, int endIndex) {
+        // given
+        Player actual = Player.of(name, Lane.of(startIndex));
+        Lines lines = Lines.of(countOfPerson, lineList);
+
+        // when
+        lines.move(actual);
+
+        Player expected = Player.of(name, Lane.of(endIndex));
+        assertEquals(expected, actual);
     }
 }

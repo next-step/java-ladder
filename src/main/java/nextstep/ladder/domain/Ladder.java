@@ -22,6 +22,10 @@ public class Ladder {
         }
     }
 
+    public void run(Players players) {
+        players.move(lines);
+    }
+
     public List<Pipes> convertToPipes() {
         return lines.convertToPipes();
     }

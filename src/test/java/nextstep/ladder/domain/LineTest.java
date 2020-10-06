@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,5 +94,46 @@ public class LineTest {
         // then
         Pipes expected = new Pipes(Arrays.asList(Pipe.CONNECTED, Pipe.DISCONNECTED, Pipe.CONNECTED));
         assertEquals(actual, expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2})
+    @DisplayName("왼쪽으로 이동")
+    void move_right(int index) {
+        // given
+        Line line = Line.of(asPointList(true, false, true, false));
+
+        // when
+        Direction direction = line.move(index);
+
+        // then
+        assertEquals(Direction.RIGHT, direction);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3})
+    @DisplayName("오른쪽으로 이동")
+    void move_left(int index) {
+        // given
+        Line line = Line.of(asPointList(true, false, true, false));
+
+        // when
+        Direction direction = line.move(index);
+
+        // then
+        assertEquals(Direction.LEFT, direction);
+    }
+
+    @Test
+    @DisplayName("이동하지 않음")
+    void stop() {
+        // given
+        Line line = Line.of(asPointList(true, false, true, false));
+
+        // when
+        Direction direction = line.move(4);
+
+        // then
+        assertEquals(Direction.STOP, direction);
     }
 }
