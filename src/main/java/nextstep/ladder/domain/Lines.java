@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lines {
+    public static final int MIN_HEIGHT = 1;
+
     private final List<Line> lines;
 
     private Lines(List<Line> lines) {
@@ -16,7 +18,7 @@ public class Lines {
     }
 
     public static Lines random(int countOfPersons, int height) {
-        if (height < 1) {
+        if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException("사다리의 높이는 1 이상이여야 합니다.");
         }
         List<Line> lines = IntStream.range(0, height)

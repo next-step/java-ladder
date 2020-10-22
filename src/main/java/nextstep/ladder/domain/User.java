@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class User implements Comparable<User> {
+    public static final int MAX_LENGTH_USERNAME = 5;
     private final int order;
     private final String name;
     public User(int order, String name) {
@@ -39,7 +40,7 @@ public class User implements Comparable<User> {
     }
 
     private void checkNameNotOver5(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_LENGTH_USERNAME) {
             throw new IllegalArgumentException("이름의 길이는 5를 넘지 않아야 합니다.");
         }
     }
