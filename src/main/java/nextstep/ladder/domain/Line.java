@@ -16,7 +16,7 @@ public class Line {
         legs.add(Leg.random());
     }
 
-    public static Line random(int countOfUsers) {
+    public static Line of(int countOfUsers) {
         Line line = new Line(countOfUsers);
 
         for (int i = 1; i < countOfUsers - 1; i++) {

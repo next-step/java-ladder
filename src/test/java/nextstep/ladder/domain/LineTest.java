@@ -12,7 +12,7 @@ class LineTest {
     @ValueSource(ints = {1, 2, 3, 4, 5, 100})
     @DisplayName("사다리 라인(가로줄) 생성 테스트")
     void createHorizontalLineTest(int countOfPersons) {
-        Line line = Line.random(countOfPersons);
+        Line line = Line.of(countOfPersons);
         int lineCount = line.getLegs().size();
 
         assertThat(lineCount).isEqualTo(countOfPersons - 1);

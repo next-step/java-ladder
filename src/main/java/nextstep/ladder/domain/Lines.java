@@ -22,7 +22,7 @@ public class Lines {
             throw new IllegalArgumentException("사다리의 높이는 1 이상이여야 합니다.");
         }
         List<Line> lines = IntStream.range(0, height)
-                .mapToObj(i -> Line.random(countOfPersons))
+                .mapToObj(i -> Line.of(countOfPersons))
                 .collect(Collectors.toList());
 
         return new Lines(lines);
