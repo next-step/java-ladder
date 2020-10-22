@@ -1,19 +1,20 @@
 package nextstep.ladder.domain;
 
 public class Result {
-    private final String resultName;
+    private final Reward reward;
     private String username;
 
-    private Result(String resultName) {
-        this.resultName = resultName;
+    private Result(String username, Reward reward) {
+        this.username = username;
+        this.reward = reward;
     }
 
-    public static Result of(String resultRaw) {
-        return new Result(resultRaw);
+    public static Result of(String username, Reward resultRaw) {
+        return new Result(username, resultRaw);
     }
 
-    public String getResultName() {
-        return resultName;
+    public Reward getReward() {
+        return reward;
     }
 
     public String getUsername() {

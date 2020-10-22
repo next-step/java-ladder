@@ -50,4 +50,13 @@ public class Lines {
         return lines.get(row).isMovableToRight(col);
     }
 
+    public int down(int startIdx) {
+        int row = 0;
+        int col = startIdx;
+        while (!isLastRow(row)) {
+            col = moveCol(row, col);
+            row++;
+        }
+        return col;
+    }
 }

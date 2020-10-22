@@ -20,7 +20,7 @@ public class OutputView {
     public static void drawLadderGame(Ladder ladder) {
         drawUsers(ladder.getUsers(), ladder.getMaxUserNameLength());
         drawLadder(ladder.getLines(), ladder.getMaxUserNameLength());
-        drawResult(ladder.getResults(), ladder.getMaxUserNameLength());
+        drawRewards(ladder.getRewards(), ladder.getMaxUserNameLength());
     }
 
     private static void drawUsers(Users users, int maxUserNameLength) {
@@ -43,8 +43,8 @@ public class OutputView {
         System.out.println(drawnLadder);
     }
 
-    private static void drawResult(Results result, int maxUserNameLength) {
-        String collect = result.getResultNames()
+    private static void drawRewards(Rewards rewards, int maxUserNameLength) {
+        String collect = rewards.getRewards()
                 .stream()
                 .map(e -> String.format(" %-"+maxUserNameLength+"s", e))
                 .collect(Collectors.joining(""));
@@ -56,15 +56,13 @@ public class OutputView {
             printAllResult(ladder);
             return;
         }
-        String result = ladder.getResultByUsername(username);
-        System.out.println(result);
+        Result result = ladder.getResultByUsername(username);
+        System.out.println(result.getReward());
     }
 
     private static void printAllResult(Ladder ladder) {
         Results resultsOfUsers = ladder.getResultsOfUsers();
         resultsOfUsers.getResults()
-                .forEach(result -> {
-                    System.out.println(String.format("%s : %s", result.getUsername(), result.getResultName()));
-                });
+                .forEach(result -> System.out.println(String.format("%s : %s", result.getUsername(), result.getReward())));
     }
 }

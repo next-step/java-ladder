@@ -1,23 +1,24 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
     private final Lines lines;
     private final Users users;
-    private final Results results;
+    private final Rewards rewards;
 
-    public Ladder(Lines lines, Users users, Results results) {
+    public Ladder(Lines lines, Users users, Rewards rewards) {
         this.lines = lines;
         this.users = users;
-        this.results = results;
+        this.rewards = rewards;
     }
 
-    public static Ladder random(String usersRaw, String resultsRaw, int height) {
+    public static Ladder random(String usersRaw, String rewardsRaw, int height) {
         Users users = Users.ofByRaw(usersRaw);
         Lines lines = Lines.random(users.countOfUsers(), height);
-        Results result = Results.ofByRaw(resultsRaw);
-        return new Ladder(lines, users, result);
+        Rewards rewards = Rewards.ofByRaw(rewardsRaw);
+        return new Ladder(lines, users, rewards);
     }
 
     public Users getUsers() {
@@ -28,37 +29,26 @@ public class Ladder {
         return lines;
     }
 
-    public Results getResults() {
-        return results;
+    public Rewards getRewards() {
+        return rewards;
     }
 
     public Results getResultsOfUsers() {
-        for (int i = 0; i < users.getUsers().size(); i++) {
-            Result result = calculateResultByUserOrder(i);
-            String username = users.getUsers().get(i).getName();
-            result.setUsername(username);
+        List<Result> results = new ArrayList<>();
+        for (int idx = 0; idx < users.size(); idx++) {
+            Result result = Result.of(users.findUsernameByIdx(idx), rewards.findByIdx(lines.down(idx)));
+            results.add(result);
         }
-        return results;
+        return new Results(results);
     }
 
     public int getMaxUserNameLength() {
         return users.getMaxUserNameLength();
     }
 
-    public String getResultByUsername(String username) {
-        int orderByUsername = users.getOrderByUsername(username);
-        Result result = calculateResultByUserOrder(orderByUsername);
-        result.setUsername(username);
-        return result.getResultName();
-    }
-
-    public Result calculateResultByUserOrder(int orderOfUser) {
-        int row = 0;
-        int col = orderOfUser;
-        while (!lines.isLastRow(row)) {
-            col = lines.moveCol(row, col);
-            row++;
-        }
-        return results.getResults().get(col);
+    public Result getResultByUsername(String username) {
+        int userIdx = users.getIdxByUsername(username);
+        int col = lines.down(userIdx);
+        return Result.of(username, rewards.findByIdx(col));
     }
 }

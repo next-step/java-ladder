@@ -1,10 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,9 +14,9 @@ class LadderTest {
         String resultRaw = "ar,bbr,cccr,ddr";
 
         Ladder ladder = Ladder.random(userRaw, resultRaw, 5);
-        Results results = ladder.getResults();
+        Rewards rewards = ladder.getRewards();
 
-        assertThat(results.getResults()).extracting("resultName")
+        assertThat(rewards.getRewards()).extracting("reward")
                 .containsExactly("ar", "bbr", "cccr", "ddr");
     }
 

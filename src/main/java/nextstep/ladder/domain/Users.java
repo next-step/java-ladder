@@ -20,6 +20,34 @@ public class Users {
         }
         return new Users(users);
     }
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public int size() {
+        return users.size();
+    }
+
+    public int countOfUsers() {
+        return users.size();
+    }
+
+    public int getMaxUserNameLength() {
+        User max = Collections.max(users);
+        return max.getName().length();
+    }
+
+    public String findUsernameByIdx(int idx) {
+        return users.get(idx).getName();
+    }
+
+    public int getIdxByUsername(String username) {
+        User findUser = users.stream()
+                .filter(user -> user.getName().equals(username))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("입력하신 유저이름이 없습니다."));
+        return findUser.getOrder();
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -39,26 +67,5 @@ public class Users {
         return "Users{" +
                 "users=" + users +
                 '}';
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public int countOfUsers() {
-        return users.size();
-    }
-
-    public int getMaxUserNameLength() {
-        User max = Collections.max(users);
-        return max.getName().length();
-    }
-
-    public int getOrderByUsername(String username) {
-        User findUser = users.stream()
-                .filter(user -> user.getName().equals(username))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("입력하신 유저이름이 없습니다."));
-        return findUser.getOrder();
     }
 }
