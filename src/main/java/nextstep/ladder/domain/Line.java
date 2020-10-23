@@ -2,46 +2,60 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class Line {
-    public static final Random random = new Random();
-
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Leg> legs = new ArrayList<>();
 
     public Line(int countOfPersons) {
-        if (countOfPersons <= 1) {
+        if (countOfPersons < 1) {
+            throw new IllegalStateException("사다리 타기의 최소 인원 수는 1명 입니다.");
+        }
+        if (countOfPersons == 1) {
             return;
         }
-        points.add(random.nextBoolean());
-
-        for (int i = 1; i < countOfPersons - 1; i++) {
-            addPoint(i);
-        }
+        legs.add(Leg.random());
     }
 
-    private void addPoint(int index) {
-        if (addFalseIfBeforeTrue(index)) return;
-        points.add(random.nextBoolean());
-    }
+    public static Line of(int countOfUsers) {
+        Line line = new Line(countOfUsers);
 
-    private boolean addFalseIfBeforeTrue(int index) {
-        if (points.get(index - 1)) {
-            points.add(false);
-            return true;
+        for (int i = 1; i < countOfUsers - 1; i++) {
+            line.addRandomPoint(i);
         }
-        return false;
+        return line;
     }
 
     @Override
     public String toString() {
-        return points.stream()
-                .map(LineRaw::getRawByIsDrawn)
-                .collect(Collectors.joining("", "|", ""));
+        return "Line{" +
+                "points=" + legs +
+                '}';
     }
 
-    public int getCount() {
-        return points.size();
+    public List<Leg> getLegs() {
+        return legs;
+    }
+
+    private void addRandomPoint(int index) {
+        Leg beforeLeg = legs.get(index - 1);
+        if (beforeLeg.isExist()) {
+            legs.add(Leg.ofNotExist());
+            return;
+        }
+        legs.add(Leg.random());
+    }
+
+    public boolean isMovableToLeft(int nowCol) {
+        if (nowCol - 1 < 0) {
+            return false;
+        }
+        return legs.get(nowCol - 1).isExist();
+    }
+
+    public boolean isMovableToRight(int nowCol) {
+        if (nowCol == legs.size()) {
+            return false;
+        }
+        return legs.get(nowCol).isExist();
     }
 }

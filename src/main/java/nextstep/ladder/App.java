@@ -1,25 +1,20 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Users;
-
-import java.util.Scanner;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.OutputView;
 
 public class App {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        String usersRaw = InputView.inputUsers();
+        String resultsRaw = InputView.inputResults();
+        int height = InputView.inputHeight();
 
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요");
+        Ladder ladder = Ladder.random(usersRaw, resultsRaw, height);
 
-        String personsRaw = scanner.nextLine();
-        Users users = Users.of(personsRaw);
+        OutputView.drawLadderGame(ladder);
 
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int height = Integer.parseInt(scanner.nextLine());
-
-        Ladder ladder = Ladder.of(users.countOfUsers(), height);
-
-        System.out.println(ladder);
-
+        String username = InputView.inputUsernameToViewResult();
+        OutputView.printResult(username, ladder);
     }
 }

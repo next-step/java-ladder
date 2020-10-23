@@ -2,27 +2,53 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final Lines lines;
+    private final Users users;
+    private final Rewards rewards;
 
-    protected Ladder(List<Line> lines) {
+    public Ladder(Lines lines, Users users, Rewards rewards) {
         this.lines = lines;
+        this.users = users;
+        this.rewards = rewards;
     }
 
-    public static Ladder of(int countOfPersons, int height) {
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPersons));
+    public static Ladder random(String usersRaw, String rewardsRaw, int height) {
+        Users users = Users.ofByRaw(usersRaw);
+        Lines lines = Lines.random(users.countOfUsers(), height);
+        Rewards rewards = Rewards.ofByRaw(rewardsRaw);
+        return new Ladder(lines, users, rewards);
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
+
+    public Rewards getRewards() {
+        return rewards;
+    }
+
+    public Results getResultsOfUsers() {
+        List<Result> results = new ArrayList<>();
+        for (int idx = 0; idx < users.size(); idx++) {
+            Result result = Result.of(users.findUsernameByIdx(idx), rewards.findByIdx(lines.down(idx)));
+            results.add(result);
         }
-
-        return new Ladder(lines);
+        return new Results(results);
     }
 
-    @Override public String toString() {
-        return lines.stream()
-                .map(Line::toString)
-                .collect(Collectors.joining("\n"));
+    public int getMaxUserNameLength() {
+        return users.getMaxUserNameLength();
+    }
+
+    public Result getResultByUsername(String username) {
+        int userIdx = users.getIdxByUsername(username);
+        int col = lines.down(userIdx);
+        return Result.of(username, rewards.findByIdx(col));
     }
 }
