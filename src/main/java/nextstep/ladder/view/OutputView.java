@@ -10,13 +10,6 @@ public class OutputView {
 
     private OutputView() { }
 
-    public static String drawLine(Line line, int maxUserNameLength) {
-        return line.getLegs()
-                .stream()
-                .map(point -> PointRaw.getRawByIsPointExist(point, maxUserNameLength))
-                .collect(Collectors.joining(DIVIDER, DIVIDER, DIVIDER));
-    }
-
     public static void drawLadderGame(Ladder ladder) {
         drawUsers(ladder.getUsers(), ladder.getMaxUserNameLength());
         drawLadder(ladder.getLines(), ladder.getMaxUserNameLength());
@@ -33,7 +26,7 @@ public class OutputView {
         System.out.println(drawnUsers);
     }
 
-    private static void drawLadder(Lines lines, int maxUserNameLength) {
+    private static void drawLadder(LadderLines lines, int maxUserNameLength) {
         String drawnLadder = lines
                 .getLines()
                 .stream()
@@ -41,6 +34,13 @@ public class OutputView {
                 .collect(Collectors.joining("\n"));
 
         System.out.println(drawnLadder);
+    }
+
+    public static String drawLine(LadderLine line, int maxUserNameLength) {
+        return line.getPoints()
+                .stream()
+                .map(point -> PointRaw.getPointRightRaw(point, maxUserNameLength))
+                .collect(Collectors.joining(DIVIDER, DIVIDER, DIVIDER));
     }
 
     private static void drawRewards(Rewards rewards, int maxUserNameLength) {
