@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final Lines lines;
+    private final LadderLines lines;
     private final Users users;
     private final Rewards rewards;
 
-    public Ladder(Lines lines, Users users, Rewards rewards) {
+    public Ladder(LadderLines lines, Users users, Rewards rewards) {
         this.lines = lines;
         this.users = users;
         this.rewards = rewards;
@@ -16,7 +16,7 @@ public class Ladder {
 
     public static Ladder random(String usersRaw, String rewardsRaw, int height) {
         Users users = Users.ofByRaw(usersRaw);
-        Lines lines = Lines.random(users.countOfUsers(), height);
+        LadderLines lines = LadderLines.of(users.countOfUsers(), height);
         Rewards rewards = Rewards.ofByRaw(rewardsRaw);
         return new Ladder(lines, users, rewards);
     }
@@ -25,7 +25,7 @@ public class Ladder {
         return users;
     }
 
-    public Lines getLines() {
+    public LadderLines getLines() {
         return lines;
     }
 
