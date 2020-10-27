@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import nextstep.ladder.util.Utils;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public enum PointRaw {
     EXIST(true, "-"),
@@ -19,7 +18,7 @@ public enum PointRaw {
 
     public static String getPointRightRaw(Point point, int pointNumber) {
         return Arrays.stream(values())
-                .filter(raw -> raw.isExist == point.isRightDirectionExist())
+                .filter(raw -> raw.isExist == point.isLeftDirectionExist())
                 .map(e -> e.raw)
                 .map(e -> Utils.repeat(e, pointNumber))
                 .findFirst()

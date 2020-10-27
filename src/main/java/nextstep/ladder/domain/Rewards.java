@@ -25,6 +25,9 @@ public class Rewards {
     }
 
     public Reward findByIdx(int idx) {
+        if (rewards.size() == 1) {
+            return rewards.get(0);
+        }
         return rewards.get(idx);
     }
 }

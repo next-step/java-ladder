@@ -38,8 +38,8 @@ public class Point {
         return new Point(index + 1, direction.last());
     }
 
-    public boolean isRightDirectionExist() {
-        return direction.isRight();
+    public boolean isLeftDirectionExist() {
+        return direction.isLeft();
     }
 
     public static Point first(Boolean right) {
