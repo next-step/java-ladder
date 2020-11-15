@@ -1,0 +1,43 @@
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.member.Members;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@DisplayName("결과 화면 테스트")
+public class ResultViewTest {
+    @DisplayName("실행 결과 출력")
+    @Test
+    public void showResult() {
+        StringWriter output = new StringWriter();
+        ResultView resultView = new ResultView(new PrintWriter(output));
+
+        resultView.showResult(Ladder.of(
+                Members.of(Arrays.asList("pobi", "honux", "crong", "jk")),
+                Arrays.asList(
+                        Line.of(Arrays.asList(false, true, false, true)),
+                        Line.of(Arrays.asList(false, false, true, false)),
+                        Line.of(Arrays.asList(false, true, false, false)),
+                        Line.of(Arrays.asList(false, false, true, false)),
+                        Line.of(Arrays.asList(false, true, false, true))
+                )
+        ));
+
+        assertThat(output.toString()).isEqualTo("실행결과\n" +
+                "\n" +
+                "  pobi honux crong    jk\n" +
+                "     |-----|     |-----|\n" +
+                "     |     |-----|     |\n" +
+                "     |-----|     |     |\n" +
+                "     |     |-----|     |\n" +
+                "     |-----|     |-----|\n");
+    }
+}
