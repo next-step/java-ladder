@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.Line;
 
 import java.io.PrintWriter;
 
@@ -39,7 +40,7 @@ public class ResultView {
                 .forEach(this::showLine);
     }
 
-    private void showLine(nextstep.ladder.domain.ladder.Line line) {
+    private void showLine(Line line) {
         line.getPoints().stream()
                 .map(this::convertPointToString)
                 .forEach(output::print);
