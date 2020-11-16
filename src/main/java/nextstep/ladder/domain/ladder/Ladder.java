@@ -2,39 +2,34 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.member.Members;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private static final int MIN_LADDER_HEIGHT = 1;
     private final Members members;
     private final List<Line> lines;
-    private final int height;
+    private final LadderHeight ladderHeight;
 
-    public Ladder(Members members, List<Line> lines) {
+    public Ladder(Members members, List<Line> lines, LadderHeight ladderHeight) {
         this.members = members;
         this.lines = lines;
-        this.height = lines.size();
+        this.ladderHeight = ladderHeight;
     }
 
     public static Ladder of(Members members, List<Line> lines) {
-        return new Ladder(members, lines);
+        return new Ladder(members, lines, LadderHeight.of(lines.size()));
     }
 
     public static Ladder of(Members members, int height) {
-        validateHeight(height);
-        int memberCount = members.getCount();
-        return new Ladder(members, IntStream.range(0, height)
-                .mapToObj(i -> Line.withPerson(memberCount))
-                .collect(Collectors.toList())
-        );
+        return new Ladder(members, createLines(height, members.getCount()), LadderHeight.of(height));
     }
 
-    private static void validateHeight(int height) {
-        if (height < MIN_LADDER_HEIGHT) {
-            throw new InvalidLadderHeightException();
-        }
+    private static List<Line> createLines(int height, int memberCount) {
+        return IntStream.range(0, height)
+                .mapToObj(i -> Line.withPerson(memberCount))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     public int getMembersCount() {
@@ -42,11 +37,11 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     public int getHeight() {
-        return height;
+        return ladderHeight.getHeight();
     }
 
     public List<String> getMemberNames() {

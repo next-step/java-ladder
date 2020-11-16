@@ -1,9 +1,9 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 public class ResultView {
     private static final String HAS_POINT = "-----|";
@@ -17,27 +17,20 @@ public class ResultView {
         this.output = output;
     }
 
-    public void showResult(Ladder ladder) {
-        showTitle();
-        showMemberNames(ladder);
-        showLines(ladder);
-    }
-
-    private void showTitle() {
+    public void showTitle() {
         output.println(TITLE);
         output.println("");
     }
 
-    private void showMemberNames(Ladder ladder) {
-        ladder.getMemberNames().stream()
+    public void showMemberNames(List<String> memberNames) {
+        memberNames.stream()
                 .map(name -> String.format(NAME_FORMAT, name))
                 .forEach(output::print);
         output.println("");
     }
 
-    private void showLines(Ladder ladder) {
-        ladder.getLines()
-                .forEach(this::showLine);
+    public void showLines(List<Line> lines) {
+        lines.forEach(this::showLine);
     }
 
     private void showLine(Line line) {

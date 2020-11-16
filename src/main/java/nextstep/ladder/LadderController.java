@@ -25,7 +25,13 @@ public class LadderController {
     private static void createAndShowLadder(InputView inputView, ResultView resultView) {
         Members members = getInputWithoutException(() -> Members.of(inputView.getMemberNames()));
         Ladder ladder = getInputWithoutException(() -> Ladder.of(members, inputView.getLadderHeight()));
-        resultView.showResult(ladder);
+        showLadder(resultView, ladder);
+    }
+
+    private static void showLadder(ResultView resultView, Ladder ladder) {
+        resultView.showTitle();
+        resultView.showMemberNames(ladder.getMemberNames());
+        resultView.showLines(ladder.getLines());
     }
 
     private static <T> T getInputWithoutException(Supplier<T> inputSupplier) {

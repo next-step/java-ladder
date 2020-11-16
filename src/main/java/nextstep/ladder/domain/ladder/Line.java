@@ -19,9 +19,12 @@ public class Line {
 
     public static Line withPerson(int countOfPerson) {
         Stream<Boolean> pointsStream = Stream.iterate(false, Line::getPoint);
-        return new Line(pointsStream.limit(countOfPerson)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList))
-        );
+        return new Line(createPoints(countOfPerson, pointsStream));
+    }
+
+    private static List<Boolean> createPoints(int countOfPerson, Stream<Boolean> pointsStream) {
+        return pointsStream.limit(countOfPerson)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     private static Boolean getPoint(Boolean hasPrevPoint) {
@@ -36,6 +39,6 @@ public class Line {
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 }
