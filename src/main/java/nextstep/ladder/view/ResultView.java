@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.ladder.LadderLine;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -37,12 +37,12 @@ public class ResultView {
         showNewLine();
     }
 
-    public void showLadder(List<Line> lines) {
-        lines.forEach(this::showLine);
+    public void showLadder(List<LadderLine> ladderLines) {
+        ladderLines.forEach(this::showLine);
     }
 
-    private void showLine(Line line) {
-        line.getPoints().stream()
+    private void showLine(LadderLine ladderLine) {
+        ladderLine.getPoints().stream()
                 .map(this::convertPointToString)
                 .forEach(output::print);
         showNewLine();

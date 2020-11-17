@@ -1,6 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.ladder.LadderLine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,11 +43,11 @@ public class ResultViewTest {
 
         resultView.showLadder(
                 Arrays.asList(
-                        Line.of(Arrays.asList(false, true, false, true)),
-                        Line.of(Arrays.asList(false, false, true, false)),
-                        Line.of(Arrays.asList(false, true, false, false)),
-                        Line.of(Arrays.asList(false, false, true, false)),
-                        Line.of(Arrays.asList(false, true, false, true))
+                        LadderLine.of(Arrays.asList(false, true, false, true)),
+                        LadderLine.of(Arrays.asList(false, false, true, false)),
+                        LadderLine.of(Arrays.asList(false, true, false, false)),
+                        LadderLine.of(Arrays.asList(false, false, true, false)),
+                        LadderLine.of(Arrays.asList(false, true, false, true))
                 ));
 
         assertThat(output.toString()).isEqualTo(

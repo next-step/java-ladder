@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
     private final LadderHeight ladderHeight;
 
-    public Ladder(List<Line> lines, LadderHeight ladderHeight) {
-        this.lines = lines;
+    public Ladder(List<LadderLine> ladderLines, LadderHeight ladderHeight) {
+        this.ladderLines = ladderLines;
         this.ladderHeight = ladderHeight;
     }
 
@@ -18,18 +18,18 @@ public class Ladder {
         return new Ladder(createLines(height, width), LadderHeight.of(height));
     }
 
-    public static Ladder of(List<Line> lines) {
-        return new Ladder(lines, LadderHeight.of(lines.size()));
+    public static Ladder of(List<LadderLine> ladderLines) {
+        return new Ladder(ladderLines, LadderHeight.of(ladderLines.size()));
     }
 
-    private static List<Line> createLines(int height, int width) {
+    private static List<LadderLine> createLines(int height, int width) {
         return IntStream.range(0, height)
-                .mapToObj(i -> Line.ofWidth(width))
+                .mapToObj(i -> LadderLine.ofWidth(width))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<LadderLine> getLadderLines() {
+        return Collections.unmodifiableList(ladderLines);
     }
 
     public int getHeight() {
@@ -39,13 +39,13 @@ public class Ladder {
     public int followFrom(int startPoint) {
         int point = startPoint;
         for (int i = 0; i < ladderHeight.getHeight(); i++) {
-            point = lines.get(i).followFrom(point);
+            point = ladderLines.get(i).followFrom(point);
         }
         return point;
     }
 
     public List<String> followAllLinesToEndPoint(List<String> endPoints) {
-        return IntStream.range(0, lines.get(0).getWidth())
+        return IntStream.range(0, ladderLines.get(0).getWidth())
                 .mapToObj(this::followFrom)
                 .map(endPoints::get)
                 .collect(Collectors.toList());

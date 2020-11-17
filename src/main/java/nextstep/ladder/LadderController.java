@@ -36,7 +36,7 @@ public class LadderController {
     private static void showLadder(Members members, List<String> endPoints, Ladder ladder) {
         resultView.showTitle();
         resultView.showMemberNames(members.getNames());
-        resultView.showLadder(ladder.getLines());
+        resultView.showLadder(ladder.getLadderLines());
         resultView.showEndPoints(endPoints);
     }
 

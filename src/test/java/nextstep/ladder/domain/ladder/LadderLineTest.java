@@ -12,14 +12,14 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("사다리 라인 테스트")
-public class LineTest {
+public class LadderLineTest {
 
     @DisplayName("사다리 라인 생성 테스트")
     @Test
     public void createLine() {
-        Line line = Line.ofWidth(4);
+        LadderLine ladderLine = LadderLine.ofWidth(4);
 
-        List<Boolean> points = line.getPoints();
+        List<Boolean> points = ladderLine.getPoints();
 
         IntStream.range(0, 4).forEach(i -> {
             if (i == 0 || points.get(i - 1)) {
@@ -32,9 +32,9 @@ public class LineTest {
     @ParameterizedTest
     @CsvSource(value = {"0:1", "1:0", "2:3", "3:2", "4:4"}, delimiter = ':')
     public void followLine(int startPoint, int expectedEndPoint) {
-        Line line = Line.of(Arrays.asList(false, true, false, true, false));
+        LadderLine ladderLine = LadderLine.of(Arrays.asList(false, true, false, true, false));
 
-        int endPoint = line.followFrom(startPoint);
+        int endPoint = ladderLine.followFrom(startPoint);
 
         assertThat(endPoint).isEqualTo(expectedEndPoint);
     }
