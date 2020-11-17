@@ -40,7 +40,7 @@ public class ResultViewTest {
         StringWriter output = new StringWriter();
         ResultView resultView = new ResultView(new PrintWriter(output));
 
-        resultView.showLines(
+        resultView.showLadder(
                 Arrays.asList(
                         Line.of(Arrays.asList(false, true, false, true)),
                         Line.of(Arrays.asList(false, false, true, false)),

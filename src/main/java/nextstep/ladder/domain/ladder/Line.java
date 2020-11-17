@@ -8,22 +8,24 @@ import java.util.stream.Stream;
 public class Line {
     private static final double PROBABILTY_HAVING_POINT = 0.5;
     private final List<Boolean> points;
+    private final int width;
 
     public Line(List<Boolean> points) {
         this.points = points;
+        this.width = points.size();
     }
 
     public static Line of(List<Boolean> points) {
         return new Line(points);
     }
 
-    public static Line withPerson(int countOfPerson) {
+    public static Line withPerson(int width) {
         Stream<Boolean> pointsStream = Stream.iterate(false, Line::getPoint);
-        return new Line(createPoints(countOfPerson, pointsStream));
+        return new Line(createPoints(width, pointsStream));
     }
 
-    private static List<Boolean> createPoints(int countOfPerson, Stream<Boolean> pointsStream) {
-        return pointsStream.limit(countOfPerson)
+    private static List<Boolean> createPoints(int width, Stream<Boolean> pointsStream) {
+        return pointsStream.limit(width)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
@@ -40,5 +42,9 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int getWidth() {
+        return width;
     }
 }

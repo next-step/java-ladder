@@ -1,39 +1,27 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.member.Members;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final Members members;
     private final List<Line> lines;
     private final LadderHeight ladderHeight;
 
-    public Ladder(Members members, List<Line> lines, LadderHeight ladderHeight) {
-        this.members = members;
+    public Ladder(List<Line> lines, LadderHeight ladderHeight) {
         this.lines = lines;
         this.ladderHeight = ladderHeight;
     }
 
-    public static Ladder of(Members members, List<Line> lines) {
-        return new Ladder(members, lines, LadderHeight.of(lines.size()));
+    public static Ladder of(int width, int height) {
+        return new Ladder(createLines(height, width), LadderHeight.of(height));
     }
 
-    public static Ladder of(Members members, int height) {
-        return new Ladder(members, createLines(height, members.getCount()), LadderHeight.of(height));
-    }
-
-    private static List<Line> createLines(int height, int memberCount) {
+    private static List<Line> createLines(int height, int width) {
         return IntStream.range(0, height)
-                .mapToObj(i -> Line.withPerson(memberCount))
+                .mapToObj(i -> Line.withPerson(width))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
-    }
-
-    public int getMembersCount() {
-        return members.getCount();
     }
 
     public List<Line> getLines() {
@@ -42,9 +30,5 @@ public class Ladder {
 
     public int getHeight() {
         return ladderHeight.getHeight();
-    }
-
-    public List<String> getMemberNames() {
-        return members.getNames();
     }
 }

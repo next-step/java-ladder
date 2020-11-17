@@ -29,7 +29,7 @@ public class ResultView {
         output.println("");
     }
 
-    public void showLines(List<Line> lines) {
+    public void showLadder(List<Line> lines) {
         lines.forEach(this::showLine);
     }
 
