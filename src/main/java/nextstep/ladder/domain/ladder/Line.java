@@ -19,7 +19,7 @@ public class Line {
         return new Line(points);
     }
 
-    public static Line withPerson(int width) {
+    public static Line ofWidth(int width) {
         Stream<Boolean> pointsStream = Stream.iterate(false, Line::getPoint);
         return new Line(createPoints(width, pointsStream));
     }
@@ -42,6 +42,26 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
+    }
+
+
+    public int followFrom(int point) {
+        if (canFollowLeft(point)) {
+            return point - 1;
+        }
+        if (canFollowRight(point)) {
+            return point + 1;
+        }
+        return point;
+    }
+
+    private boolean canFollowLeft(int point) {
+        return points.get(point);
+    }
+
+    private boolean canFollowRight(int point) {
+        int rightPoint = point + 1;
+        return rightPoint < width && points.get(rightPoint);
     }
 
     public int getWidth() {
