@@ -46,10 +46,14 @@ public class LadderController {
             resultView.showEndPointsOfAllMembers(gameResult.getAll());
             return;
         }
+        showEndPointOfMemberIfExist(gameResult, memberName);
+        showLadderGameResult(gameResult);
+    }
+
+    private static void showEndPointOfMemberIfExist(LadderGameResult gameResult, String memberName) {
         if (gameResult.hasEndPointOfMember(memberName)) {
             resultView.showEndPointOfMember(gameResult.getEndPointOfMember(memberName));
         }
-        showLadderGameResult(gameResult);
     }
 
     private static <T> T getInputWithoutException(Supplier<T> inputSupplier) {
