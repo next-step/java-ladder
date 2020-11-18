@@ -1,4 +1,7 @@
-package step2;
+package step2.domain.ladder;
+
+import step2.domain.ladder.dto.LadderBuildDTO;
+import step2.strategy.MakeLineStrategy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +12,7 @@ import java.util.stream.Collectors;
 public class LadderGame {
 
     public static final String DELIMITER = ",";
+    public static final String SPACE = "";
 
     public static LadderPlayers join(String input) {
         List<String> names = toList(input);
@@ -24,16 +28,16 @@ public class LadderGame {
     }
 
     private static void isValid(String input) {
-        if (Objects.isNull(input) || input.equals("")) {
+        if (Objects.isNull(input) || input.equals(SPACE)) {
             throw new NoSuchElementException();
         }
     }
 
     private static boolean isNotEmpty(String name) {
-        return !name.equals("");
+        return !name.equals(SPACE);
     }
 
-    public static Ladder makeLadder(LadderPlayers players, int height) {
-        return null;
+    public static Ladder makeLadder(LadderBuildDTO buildDTO, MakeLineStrategy strategy) {
+        return new Ladder(buildDTO, strategy);
     }
 }
