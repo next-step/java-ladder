@@ -43,8 +43,7 @@ public class Lambda {
     private static Integer sumByFilterFunction(List<Integer> numbers, Conditional conditional) {
         return numbers.stream()
                 .filter(conditional::test)
-                .reduce(Integer::sum)
-                .orElseThrow(IllegalArgumentException::new);
+                .reduce(0, Integer::sum);
     }
 
 }
