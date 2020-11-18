@@ -1,50 +1,53 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.member.Members;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final Members members;
-    private final List<Line> lines;
+    private final List<LadderLine> ladderLines;
     private final LadderHeight ladderHeight;
 
-    public Ladder(Members members, List<Line> lines, LadderHeight ladderHeight) {
-        this.members = members;
-        this.lines = lines;
+    public Ladder(List<LadderLine> ladderLines, LadderHeight ladderHeight) {
+        this.ladderLines = ladderLines;
         this.ladderHeight = ladderHeight;
     }
 
-    public static Ladder of(Members members, List<Line> lines) {
-        return new Ladder(members, lines, LadderHeight.of(lines.size()));
+    public static Ladder of(int width, int height) {
+        return new Ladder(createLines(height, width), LadderHeight.of(height));
     }
 
-    public static Ladder of(Members members, int height) {
-        return new Ladder(members, createLines(height, members.getCount()), LadderHeight.of(height));
+    public static Ladder of(List<LadderLine> ladderLines) {
+        return new Ladder(ladderLines, LadderHeight.of(ladderLines.size()));
     }
 
-    private static List<Line> createLines(int height, int memberCount) {
+    private static List<LadderLine> createLines(int height, int width) {
         return IntStream.range(0, height)
-                .mapToObj(i -> Line.withPerson(memberCount))
+                .mapToObj(i -> LadderLine.ofWidth(width))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
-    public int getMembersCount() {
-        return members.getCount();
-    }
-
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
+    public List<LadderLine> getLadderLines() {
+        return Collections.unmodifiableList(ladderLines);
     }
 
     public int getHeight() {
         return ladderHeight.getHeight();
     }
 
-    public List<String> getMemberNames() {
-        return members.getNames();
+    public int followFrom(int startPoint) {
+        int point = startPoint;
+        for (int i = 0; i < ladderHeight.getHeight(); i++) {
+            point = ladderLines.get(i).followFrom(point);
+        }
+        return point;
+    }
+
+    public List<String> followAllLinesToEndPoint(List<String> endPoints) {
+        return IntStream.range(0, ladderLines.get(0).getWidth())
+                .mapToObj(this::followFrom)
+                .map(endPoints::get)
+                .collect(Collectors.toList());
     }
 }

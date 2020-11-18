@@ -3,6 +3,7 @@ package nextstep.ladder.domain.member;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Members {
     private static final int MIN_MEMBER_COUNT = 2;
@@ -17,10 +18,14 @@ public class Members {
 
     public static Members of(List<String> names) {
         validateMemberCount(names.size());
-        return new Members(names.stream()
-                .map(Member::of)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList))
+        return new Members(getMembersFromNames(names)
         );
+    }
+
+    private static List<Member> getMembersFromNames(List<String> names) {
+        return IntStream.range(0, names.size())
+                .mapToObj(position -> Member.of(names.get(position), position))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
     private static void validateMemberCount(int memberCount) {
@@ -37,5 +42,17 @@ public class Members {
         return members.stream()
                 .map(Member::getName)
                 .collect(Collectors.toList());
+    }
+
+    public int findMember(MemberName name) {
+        return members.stream()
+                .filter(member -> member.hasName(name))
+                .map(Member::getPosition)
+                .findFirst()
+                .orElseThrow(MemberNotFoundException::new);
+    }
+
+    public String getMemberNameAtPosition(Integer position) {
+        return members.get(position).getName();
     }
 }

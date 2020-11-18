@@ -67,4 +67,54 @@ public class InputViewTest {
 
         assertThat(output.toString()).isEqualTo("최대 사다리 높이는 몇 개인가요?\n");
     }
+
+    @DisplayName("실행결과 입력")
+    @ParameterizedTest
+    @MethodSource("getLadderResults")
+    public void enterLadderResult(String input, String[] output) {
+        InputView inputView = new InputView(new Scanner(input), new PrintWriter(System.out));
+
+        List<String> ladderResult = inputView.getLadderResult();
+
+        assertThat(ladderResult).containsOnly(output);
+    }
+
+    static Stream<Arguments> getLadderResults() {
+        return Stream.of(
+                Arguments.arguments("꽝,5000,꽝,3000", new String[]{"꽝", "5000", "꽝", "3000"}),
+                Arguments.arguments("꽝,5000,꽝", new String[]{"꽝", "5000", "꽝"})
+        );
+    }
+
+    @DisplayName("실행결과 입력시 문구")
+    @Test
+    public void phraseForEnteringLadderResult() {
+        StringWriter output = new StringWriter();
+        InputView inputView = new InputView(new Scanner("5000"), new PrintWriter(output));
+
+        inputView.getLadderResult();
+
+        assertThat(output.toString()).isEqualTo("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)\n");
+    }
+
+    @DisplayName("결과 보고 싶은 사람 입력")
+    @Test
+    public void enterMemberForEndPoint() {
+        InputView inputView = new InputView(new Scanner("name"), new PrintWriter(System.out));
+
+        String name = inputView.getMemberName();
+
+        assertThat(name).isEqualTo("name");
+    }
+
+    @DisplayName("결과 보고 싶은 사람 입력시 문구")
+    @Test
+    public void phraseForEnteringMemberForEndPoint() {
+        StringWriter output = new StringWriter();
+        InputView inputView = new InputView(new Scanner("name"), new PrintWriter(output));
+
+        inputView.getMemberName();
+
+        assertThat(output.toString()).isEqualTo("결과를 보고 싶은 사람은?\n");
+    }
 }

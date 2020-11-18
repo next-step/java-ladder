@@ -3,6 +3,7 @@ package nextstep.ladder.domain.member;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
@@ -40,5 +41,27 @@ public class MembersTest {
                 Collections.singletonList("pobi"),
                 Collections.emptyList()
         );
+    }
+
+    @DisplayName("멤버의 위치 가져오기")
+    @ParameterizedTest
+    @CsvSource(value = {"pobi:0", "jk:3"}, delimiter = ':')
+    public void getMemberIndex(String name, int expectedPosition) {
+        Members members = Members.of(Arrays.asList("pobi", "honux", "crong", "jk"));
+
+        int position = members.findMember(MemberName.of(name));
+
+        assertThat(position).isEqualTo(expectedPosition);
+    }
+
+    @DisplayName("없는 멤버 위치 가져오기")
+    @Test
+    public void getInvalidMemberIndex() {
+        Members members = Members.of(Arrays.asList("pobi", "honux", "crong", "jk"));
+        assertThatThrownBy(() -> {
+            members.findMember(MemberName.of("no"));
+        }).isInstanceOf(MemberNotFoundException.class)
+                .hasMessageContaining("해당 멤버를 찾을 수 없습니다.");
+
     }
 }

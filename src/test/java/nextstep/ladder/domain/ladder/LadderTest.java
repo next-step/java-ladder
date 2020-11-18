@@ -1,30 +1,55 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.member.Members;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("사다리 테스트")
 public class LadderTest {
-    @DisplayName("참여자 수만큼 사다리 생성")
-    @Test
-    public void createLadderWithMember() {
-        Members members = Members.of(Arrays.asList("pobi", "honux", "crong", "jk"));
-
-        Ladder ladder = Ladder.of(members, 5);
-
-        assertThat(ladder.getMembersCount()).isEqualTo(4);
-    }
-
     @DisplayName("주어진 높이로 사다리 생성")
     @Test
     public void createLadderWithHeight() {
-        int height = Ladder.of(Members.of(Arrays.asList("pobi", "honux", "crong", "jk")), 5).getHeight();
+        int height = Ladder.of(4, 5).getHeight();
 
         assertThat(height).isEqualTo(5);
     }
+
+    @DisplayName("사다리 따라가기")
+    @ParameterizedTest
+    @CsvSource(value = {"0:0", "1:3", "2:2", "3:1"}, delimiter = ':')
+    public void followLadder(int startPoint, int expectedEndPoint) {
+        Ladder ladder = Ladder.of(Arrays.asList(LadderLine.of(Arrays.asList(false, true, false, true)),
+                LadderLine.of(Arrays.asList(false, false, true, false)),
+                LadderLine.of(Arrays.asList(false, true, false, false)),
+                LadderLine.of(Arrays.asList(false, false, true, false)),
+                LadderLine.of(Arrays.asList(false, true, false, true))
+        ));
+
+        int endPoint = ladder.followFrom(startPoint);
+
+        assertThat(endPoint).isEqualTo(expectedEndPoint);
+    }
+
+    @DisplayName("입력한 사다리 결과로 변환")
+    @ParameterizedTest
+    @CsvSource(value = {"0:꽝", "1:5000", "2:꽝", "3:5000"}, delimiter = ':')
+    public void convertToEndPointResult(int startPoint, String expectedResult) {
+        Ladder ladder = Ladder.of(Arrays.asList(LadderLine.of(Arrays.asList(false, true, false, true)),
+                LadderLine.of(Arrays.asList(false, false, true, false)),
+                LadderLine.of(Arrays.asList(false, true, false, false)),
+                LadderLine.of(Arrays.asList(false, false, true, false)),
+                LadderLine.of(Arrays.asList(false, true, false, true))
+        ));
+
+        List<String> endPointResult = ladder.followAllLinesToEndPoint(Arrays.asList("꽝", "5000", "꽝", "5000"));
+
+        assertThat(endPointResult.get(startPoint)).isEqualTo(expectedResult);
+    }
+
 }
