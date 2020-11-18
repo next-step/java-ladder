@@ -44,7 +44,7 @@ public class Members {
                 .collect(Collectors.toList());
     }
 
-    public int findMember(MemberName name) {
+    public int findMemberPosition(MemberName name) {
         return members.stream()
                 .filter(member -> member.hasName(name))
                 .map(Member::getPosition)

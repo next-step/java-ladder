@@ -38,8 +38,8 @@ public class Ladder {
 
     public int followFrom(int startPoint) {
         int point = startPoint;
-        for (int i = 0; i < ladderHeight.getHeight(); i++) {
-            point = ladderLines.get(i).followFrom(point);
+        for (LadderLine ladderLine : ladderLines) {
+            point = ladderLine.followFrom(point);
         }
         return point;
     }
