@@ -1,12 +1,12 @@
-package step2;
+package step2.domain.ladder;
 
 import java.util.Objects;
 
-public class LinePoint {
-    private final int x;
-    private final int y;
+public class Point {
+    private final Integer x;
+    private final Integer y;
 
-    public LinePoint(int x, int y) {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -23,9 +23,9 @@ public class LinePoint {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LinePoint linePoint = (LinePoint) o;
-        return x == linePoint.x &&
-                y == linePoint.y;
+        Point point = (Point) o;
+        return Objects.equals(x, point.x) &&
+                Objects.equals(y, point.y);
     }
 
     @Override
