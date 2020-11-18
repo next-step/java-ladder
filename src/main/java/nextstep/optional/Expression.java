@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 enum Expression {
     PLUS("+"), MINUS("-"), TIMES("*"), DIVIDE("/");
 
-    private String expression;
+    private final String expression;
 
     Expression(String expression) {
         this.expression = expression;
@@ -17,7 +17,7 @@ enum Expression {
 
     static Expression of(String expression) {
         return Stream.of(Expression.values())
-                .filter(innerExpression -> expression.equals(innerExpression.expression))
+                .filter(value -> matchExpression(value, expression))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
     }
