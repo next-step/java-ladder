@@ -4,5 +4,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface MakeLineStrategy {
-    List<Boolean> create();
+    List<Boolean> create(int countOfPerson);
 }
