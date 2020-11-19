@@ -1,9 +1,15 @@
 package nextstep.ladder;
 
-public class Lines {
-    private final Line line;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Lines(CountOfPerson countOfPerson) {
-        line = new Line(countOfPerson);
+public class Lines {
+    private final List<Line> lines;
+
+    public Lines(NumberOfParticipants numberOfParticipants, Height height) {
+        lines = new ArrayList<>();
+        for (int i = 0; i < height.value; i++) {
+            lines.add(new Line(numberOfParticipants));
+        }
     }
 }

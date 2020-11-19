@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 public class Height {
-    private final int value;
+    public final int value;
 
     private Height(int value) {
         this.value = value;
