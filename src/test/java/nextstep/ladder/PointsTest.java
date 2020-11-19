@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class PointsTest {
     @Test
@@ -12,5 +13,13 @@ public class PointsTest {
         CountOfPerson countOfPerson = new CountOfPerson(4);
         Points points = new Points(countOfPerson);
         assertThat(points.size()).isEqualTo(countOfPerson.value - 1);
+    }
+
+    @Test
+    @DisplayName("Points값은 연속으로 true가 나오면 안된다.")
+    void linePointerTest() {
+        CountOfPerson countOfPerson = new CountOfPerson(10_000);
+        assertThatCode(() -> new Points(countOfPerson))
+                .doesNotThrowAnyException();
     }
 }
