@@ -16,7 +16,7 @@ public class LineTest {
     }
 
     @Test
-    @DisplayName("Line값은 연속된 true가 나오면 안된다.")
+    @DisplayName("Line의 Points값은 연속된 true가 나오면 안된다.")
     void lineValueTest() {
         CountOfPerson countOfPerson = CountOfPerson.of(10_000);
         assertThatCode(() -> new Line(countOfPerson))
