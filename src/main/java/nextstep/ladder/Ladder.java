@@ -18,10 +18,10 @@ public class Ladder {
         return new Ladder(numberOfParticipants, height);
     }
 
-    public void repeatAsHeight(Runnable runnable, Consumer<Boolean> consumer) {
+    public void repeatAsHeight(Consumer<Boolean> renderPoints, Runnable renderLastPartOfLine) {
         lines.forEach(line -> {
-            line.repeatAsPoints(consumer);
-            runnable.run();
+            line.repeatAsPoints(renderPoints);
+            renderLastPartOfLine.run();
         });
     }
 }

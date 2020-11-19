@@ -43,7 +43,7 @@ public class Line {
         return points.size();
     }
 
-    public void repeatAsPoints(Consumer<Boolean> consumer) {
-        points.forEach(consumer);
+    public void repeatAsPoints(Consumer<Boolean> renderPoints) {
+        points.forEach(renderPoints);
     }
 }
