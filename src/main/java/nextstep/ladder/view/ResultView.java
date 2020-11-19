@@ -1,14 +1,15 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.ladder.LadderLine;
+import nextstep.ladder.domain.ladder.Point;
 
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
 public class ResultView {
-    private static final String HAS_POINT = "-----|";
-    private static final String NO_POINT = "     |";
+    private static final String LEFT_LINE = "-----|";
+    private static final String NO_LEFT_LINE = "     |";
     private static final String TITLE = "사다리 결과";
     private static final String NAME_FORMAT = "%6s";
     private static final String END_POINT_FORMAT = "%-6s";
@@ -48,11 +49,11 @@ public class ResultView {
         showNewLine();
     }
 
-    private String convertPointToString(Boolean hasPoint) {
-        if (hasPoint) {
-            return HAS_POINT;
+    private String convertPointToString(Point point) {
+        if (point.hasLeft()) {
+            return LEFT_LINE;
         }
-        return NO_POINT;
+        return NO_LEFT_LINE;
     }
 
     public void showEndPoints(List<String> endPoints) {

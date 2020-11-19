@@ -19,11 +19,11 @@ public class LadderLineTest {
     public void createLine() {
         LadderLine ladderLine = LadderLine.ofWidth(4);
 
-        List<Boolean> points = ladderLine.getPoints();
+        List<Point> points = ladderLine.getPoints();
 
         IntStream.range(0, 4).forEach(i -> {
-            if (i == 0 || points.get(i - 1)) {
-                assertThat(points.get(i)).isEqualTo(false);
+            if (i == 0 || points.get(i - 1).hasLeft()) {
+                assertThat(points.get(i).hasLeft()).isEqualTo(false);
             }
         });
     }
