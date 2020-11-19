@@ -22,11 +22,8 @@ public class Line {
 
         IntStream.range(1, numberOfParticipants.value - 1)
                 .forEach(index -> {
-                    if (points.get(index - 1)) {
-                        points.add(false);
-                        return;
-                    }
-                    points.add(random.nextBoolean());
+                    Boolean prevPoint = points.get(index - 1);
+                    points.add(prevPoint ? false : random.nextBoolean());
                 });
     }
 
