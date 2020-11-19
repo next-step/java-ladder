@@ -3,6 +3,7 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -42,9 +43,7 @@ public class Line {
         return points.size();
     }
 
-    public void print() {
-        for (Boolean point : points) {
-            System.out.print(point);
-        }
+    public void repeatAsPoints(Consumer<Boolean> consumer) {
+        points.forEach(consumer);
     }
 }

@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.view.ConsoleResultView;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -19,6 +21,7 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(participants.getNumberOfParticipants(), height);
 
-        ladder.print();
+        ConsoleResultView consoleResultView = new ConsoleResultView();
+        consoleResultView.printLadder(ladder);
     }
 }
