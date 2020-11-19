@@ -11,10 +11,14 @@ public class Line {
     private final List<Boolean> points;
     private final Random random = new Random();
 
-    public Line(NumberOfParticipants numberOfParticipants) {
+    private Line(NumberOfParticipants numberOfParticipants) {
         this.points = new ArrayList<>(numberOfParticipants.value - 1);
         setPoints(numberOfParticipants);
         validatePoints();
+    }
+
+    public static Line from(NumberOfParticipants numberOfParticipants) {
+        return new Line(numberOfParticipants);
     }
 
     private void setPoints(NumberOfParticipants numberOfParticipants) {

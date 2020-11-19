@@ -9,7 +9,7 @@ public class Ladder {
     private Ladder(NumberOfParticipants numberOfParticipants, Height height) {
         lines = new ArrayList<>();
         for (int i = 0; i < height.value; i++) {
-            lines.add(new Line(numberOfParticipants));
+            lines.add(Line.from(numberOfParticipants));
         }
     }
 
