@@ -10,16 +10,16 @@ public class Line {
     private final List<Boolean> points;
     private final Random random = new Random();
 
-    public Line(CountOfPerson countOfPerson) {
-        this.points = new ArrayList<>(countOfPerson.value - 1);
-        setPoints(countOfPerson);
+    public Line(NumberOfParticipants numberOfParticipants) {
+        this.points = new ArrayList<>(numberOfParticipants.value - 1);
+        setPoints(numberOfParticipants);
         validatePoints();
     }
 
-    private void setPoints(CountOfPerson countOfPerson) {
+    private void setPoints(NumberOfParticipants numberOfParticipants) {
         points.add(random.nextBoolean());
 
-        IntStream.range(1, countOfPerson.value - 1)
+        IntStream.range(1, numberOfParticipants.value - 1)
                 .forEach(index -> {
                     if (points.get(index - 1)) {
                         points.add(false);

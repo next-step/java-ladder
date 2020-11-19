@@ -15,4 +15,8 @@ public class Participants {
     public static Participants from(List<String> names) {
         return new Participants(names);
     }
+
+    public NumberOfParticipants getNumberOfParticipants() {
+        return NumberOfParticipants.valueOf(names.size());
+    }
 }

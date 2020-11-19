@@ -7,12 +7,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class CountOfPersonTest {
+public class NumberOfParticipantsTest {
     @ParameterizedTest
     @ValueSource(ints = {2, 100})
     @DisplayName("CountOfPerson 생성시에 value값은 2이상의 정수여야 한다.")
     void createTest(int inputValue) {
-        assertThatCode(() -> CountOfPerson.valueOf(inputValue))
+        assertThatCode(() -> NumberOfParticipants.valueOf(inputValue))
                 .doesNotThrowAnyException();
     }
 
@@ -21,7 +21,7 @@ public class CountOfPersonTest {
     @DisplayName("CountOfPerson 생성시에 value값이 2보다 작은 숫자면 throw Exception")
     void createTestInvalidInputValue(int inputValue) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> CountOfPerson.valueOf(inputValue))
-                .withMessage(CountOfPerson.INPUT_VALUE_RANGE_ERR_MSG);
+                .isThrownBy(() -> NumberOfParticipants.valueOf(inputValue))
+                .withMessage(NumberOfParticipants.INPUT_VALUE_RANGE_ERR_MSG);
     }
 }
