@@ -11,16 +11,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    public static final String ERROR_INVALID_LADDER_HEIGHT = "사다리 높이는 0보다 커야 합니다.";
+
     private final List<Line> ladder;
 
-    public Ladder(LadderBuildDTO buildDTO, MakeLineStrategy strategy) {
-        ladder = buildLadder(buildDTO, strategy);
+    private Ladder(List<Line> ladder) {
+        this.ladder = ladder;
     }
 
-    private List<Line> buildLadder(LadderBuildDTO buildDTO, MakeLineStrategy strategy) {
+    public static Ladder of(LadderBuildDTO buildDTO, MakeLineStrategy strategy) {
+        isValidLineHeight(buildDTO.getLineHeight());
+
         return IntStream.range(0, buildDTO.getLineHeight())
-                .mapToObj(index -> new Line(buildDTO.getPlayers().count(), strategy))
-                .collect(Collectors.toList());
+                .mapToObj(index -> Line.of(buildDTO.getPlayers().count(), strategy))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Ladder::new));
     }
 
     public boolean isExistsPoint(Point point) {
@@ -30,5 +34,11 @@ public class Ladder {
 
     public void forEach(Consumer<Line> function) {
         ladder.forEach(function);
+    }
+
+    public static void isValidLineHeight(int lineHeight) {
+        if (lineHeight <= 0) {
+            throw new IllegalArgumentException(ERROR_INVALID_LADDER_HEIGHT);
+        }
     }
 }

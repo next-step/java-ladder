@@ -1,18 +1,24 @@
 package step2.domain.ladder;
 
+import step2.domain.ladder.dto.LinePointsDTO;
 import step2.strategy.MakeLineStrategy;
-import step2.strategy.PrintLadderStrategy;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class Line {
     private final List<Boolean> points;
 
-    public Line(int countOfPerson, MakeLineStrategy strategy) {
-        points = strategy.create(countOfPerson);
+    private Line(List<Boolean> points) {
+        this.points = points;
+    }
+
+    public static Line of(List<Boolean> points) {
+        return new Line(points);
+    }
+
+    public static Line of(int countOfPerson, MakeLineStrategy strategy) {
+        return new Line(strategy.create(countOfPerson));
     }
 
     public boolean isExistsPoint(Point targetPoint) {
@@ -25,15 +31,8 @@ public class Line {
 
     }
 
-    public void forEach(Consumer<Boolean> consumer) {
-        points.forEach(consumer);
+    public LinePointsDTO getPoints() {
+        return new LinePointsDTO(points);
     }
 
-    public String printLine(PrintLadderStrategy strategy, String delimiter) {
-        String collect = points.stream()
-                .map(strategy::get)
-                .collect(Collectors.joining(delimiter));
-
-        return String.format("%s%s%s", delimiter, collect, delimiter);
-    }
 }
