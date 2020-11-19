@@ -17,6 +17,7 @@ public class Line {
         points.add(random.nextBoolean());
         for (int j = 1; j < countOfPerson - 1; j++) {
             if (points.get(j - 1)) {
+                points.add(false);
                 continue;
             }
             points.add(random.nextBoolean());
@@ -25,5 +26,9 @@ public class Line {
 
     public int size() {
         return points.size();
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 }
