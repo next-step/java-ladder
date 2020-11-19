@@ -11,7 +11,7 @@ public class CountOfPerson {
         this.value = value;
     }
 
-    public static CountOfPerson of(int value) {
+    public static CountOfPerson valueOf(int value) {
         return new CountOfPerson(value);
     }
 }

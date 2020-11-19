@@ -7,7 +7,7 @@ public class Height {
         this.value = value;
     }
 
-    public static Height of(int value) {
+    public static Height valueOf(int value) {
         return new Height(value);
     }
 }

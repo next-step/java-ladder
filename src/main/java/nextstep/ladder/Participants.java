@@ -8,7 +8,7 @@ public class Participants {
 
     private Participants(List<String> names) {
         this.names = names.stream()
-                .map(Name::of)
+                .map(Name::valueOf)
                 .collect(Collectors.toList());
     }
 

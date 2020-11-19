@@ -10,6 +10,6 @@ public class NameTest {
     @DisplayName("이름의 유효한 길이는 1글자 이상 5글자 이하")
     void invalidNameTest() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Name.of("123456"));
+                .isThrownBy(() -> Name.valueOf("123456"));
     }
 }

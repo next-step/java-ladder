@@ -9,7 +9,7 @@ public class Name {
         this.value = value;
     }
 
-    public static Name of(String value) {
+    public static Name valueOf(String value) {
         return new Name(value);
     }
 

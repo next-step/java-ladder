@@ -12,7 +12,7 @@ public class CountOfPersonTest {
     @ValueSource(ints = {2, 100})
     @DisplayName("CountOfPerson 생성시에 value값은 2이상의 정수여야 한다.")
     void createTest(int inputValue) {
-        assertThatCode(() -> CountOfPerson.of(inputValue))
+        assertThatCode(() -> CountOfPerson.valueOf(inputValue))
                 .doesNotThrowAnyException();
     }
 
@@ -21,7 +21,7 @@ public class CountOfPersonTest {
     @DisplayName("CountOfPerson 생성시에 value값이 2보다 작은 숫자면 throw Exception")
     void createTestInvalidInputValue(int inputValue) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> CountOfPerson.of(inputValue))
+                .isThrownBy(() -> CountOfPerson.valueOf(inputValue))
                 .withMessage(CountOfPerson.INPUT_VALUE_RANGE_ERR_MSG);
     }
 }
