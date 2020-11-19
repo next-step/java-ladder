@@ -5,7 +5,7 @@ public class CountOfPerson {
     private final int value;
 
     public CountOfPerson(int value) {
-        if (value <= 2) {
+        if (value < 2) {
             throw new IllegalArgumentException(INPUT_VALUE_RANGE_ERR_MSG);
         }
         this.value = value;
