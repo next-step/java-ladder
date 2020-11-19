@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Points {
-    public static final String POINTS_INVALID_VALUE_ERR_MSG = "Points의 값이 연속으로 true일 수 없습니다.";
+    public static final String POINTS_INVALID_VALUE_ERR_MSG = "Points의 값이 연속된 true일 수 없습니다.";
     private final List<Boolean> values;
     private final Random random = new Random();
 
