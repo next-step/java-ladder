@@ -6,15 +6,15 @@ import java.util.List;
 public class Ladder {
     private final List<Line> lines;
 
-    private Ladder(NumberOfParticipants numberOfParticipants, Height height) {
+    private Ladder(Participants participants, Height height) {
         lines = new ArrayList<>();
         for (int i = 0; i < height.value; i++) {
-            lines.add(Line.from(numberOfParticipants));
+            lines.add(Line.from(participants));
         }
     }
 
-    public static Ladder of(NumberOfParticipants numberOfParticipants, Height height) {
-        return new Ladder(numberOfParticipants, height);
+    public static Ladder of(Participants participants, Height height) {
+        return new Ladder(participants, height);
     }
 
     public void repeatAsHeight(LineRenderer lineRenderer) {

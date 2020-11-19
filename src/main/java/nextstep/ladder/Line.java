@@ -12,7 +12,7 @@ public class Line {
     private final Random random = new Random();
 
     private Line(NumberOfParticipants numberOfParticipants) {
-        this.points = new ArrayList<>(numberOfParticipants.value - 1);
+        points = new ArrayList<>(numberOfParticipants.getPointsSize());
         setPoints(numberOfParticipants);
         validatePoints();
     }
@@ -21,10 +21,14 @@ public class Line {
         return new Line(numberOfParticipants);
     }
 
+    public static Line from(Participants participants) {
+        return new Line(participants.getNumberOfParticipants());
+    }
+
     private void setPoints(NumberOfParticipants numberOfParticipants) {
         points.add(random.nextBoolean());
 
-        IntStream.range(1, numberOfParticipants.value - 1)
+        IntStream.range(1, numberOfParticipants.getPointsSize())
                 .forEach(index -> {
                     Boolean prevPoint = points.get(index - 1);
                     points.add(prevPoint ? false : random.nextBoolean());

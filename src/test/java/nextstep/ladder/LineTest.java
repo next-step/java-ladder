@@ -10,9 +10,10 @@ public class LineTest {
     @Test
     @DisplayName("Line의 사이즈는 참가인원보다 1 적어야 한다.")
     void lineSizeTest() {
-        NumberOfParticipants numberOfParticipants = NumberOfParticipants.valueOf(4);
+        int numberOfParticipantsValue = 4;
+        NumberOfParticipants numberOfParticipants = NumberOfParticipants.valueOf(numberOfParticipantsValue);
         Line line = Line.from(numberOfParticipants);
-        assertThat(line.size()).isEqualTo(numberOfParticipants.value - 1);
+        assertThat(line.size()).isEqualTo(numberOfParticipantsValue - 1);
     }
 
     @Test
