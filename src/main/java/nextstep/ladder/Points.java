@@ -3,6 +3,7 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Points {
     public static final String POINTS_INVALID_VALUE_ERR_MSG = "Points의 값이 연속된 true일 수 없습니다.";
@@ -17,20 +18,23 @@ public class Points {
 
     private void setPoints(CountOfPerson countOfPerson) {
         values.add(random.nextBoolean());
-        for (int j = 1; j < countOfPerson.value - 1; j++) {
-            if (values.get(j - 1)) {
-                values.add(false);
-                continue;
-            }
-            values.add(random.nextBoolean());
-        }
+
+        IntStream.range(1, countOfPerson.value - 1)
+                .forEach(index -> {
+                    if (values.get(index - 1)) {
+                        values.add(false);
+                        return;
+                    }
+                    values.add(random.nextBoolean());
+                });
     }
 
     private void validatePoints() {
-        for (int i = 0; i < values.size() - 1; i++) {
-            if (values.get(i) && values.get(i + 1)) {
-                throw new IllegalStateException(POINTS_INVALID_VALUE_ERR_MSG);
-            }
+        boolean hasContinuousTrueValue = IntStream.range(0, values.size() - 1)
+                .anyMatch(index -> values.get(index) && values.get(index + 1));
+
+        if (hasContinuousTrueValue) {
+            throw new IllegalStateException(POINTS_INVALID_VALUE_ERR_MSG);
         }
     }
 
