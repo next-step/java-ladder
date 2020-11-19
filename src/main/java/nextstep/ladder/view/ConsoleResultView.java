@@ -1,15 +1,18 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.Ladder;
+import nextstep.ladder.LineRenderer;
 
 import java.util.function.Consumer;
 
 public class ConsoleResultView implements ResultView {
     @Override
     public void printLadder(Ladder ladder) {
-        StringBuilder sb = new StringBuilder();
-        ladder.repeatAsHeight(renderPoints(sb), renderLastPartOfLine(sb));
-        System.out.println(sb.toString());
+        StringBuilder ladderBuilder = new StringBuilder();
+        LineRenderer lineRenderer = LineRenderer.of(renderPoints(ladderBuilder), renderLastPartOfLine(ladderBuilder));
+        ladder.repeatAsHeight(lineRenderer);
+
+        System.out.println(ladderBuilder.toString());
     }
 
     private Consumer<Boolean> renderPoints(StringBuilder sb) {

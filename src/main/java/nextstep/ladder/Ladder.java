@@ -2,7 +2,6 @@ package nextstep.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class Ladder {
     private final List<Line> lines;
@@ -18,10 +17,7 @@ public class Ladder {
         return new Ladder(numberOfParticipants, height);
     }
 
-    public void repeatAsHeight(Consumer<Boolean> renderPoints, Runnable renderLastPartOfLine) {
-        lines.forEach(line -> {
-            line.repeatAsPoints(renderPoints);
-            renderLastPartOfLine.run();
-        });
+    public void repeatAsHeight(LineRenderer lineRenderer) {
+        lines.forEach(lineRenderer::render);
     }
 }
