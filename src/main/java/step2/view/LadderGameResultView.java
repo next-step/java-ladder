@@ -2,9 +2,10 @@ package step2.view;
 
 import step2.domain.ladder.Ladder;
 import step2.domain.ladder.LadderPlayers;
-import step2.strategy.LadderPrintStrategy;
-import step2.strategy.PrintLadderStrategy;
+import step2.domain.ladder.Line;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LadderGameResultView implements ResultView{
@@ -21,10 +22,25 @@ public class LadderGameResultView implements ResultView{
     public void drawLadder(LadderPlayers players, Ladder ladder) {
         clearStringBuilder();
         append(players.toString());
-        PrintLadderStrategy strategy = new LadderPrintStrategy(HORIZON_LINE_MARKED, HORIZON_LINE_WHITE);
-        ladder.forEach(line-> append(line.printLine(strategy, VERTICAL_LINE)));
+        ladder.forEach(this::drawLine);
 
         System.out.println(sb.toString());
+    }
+
+    private void drawLine(Line line) {
+        List<Boolean> points = line.getPoints().getPoints();
+
+        String collect = points.stream()
+                .map(this::getMarkingCode)
+                .collect(Collectors.joining(VERTICAL_LINE));
+
+        append(String.format("%s%s%s", VERTICAL_LINE, collect, VERTICAL_LINE));
+    }
+
+    private String getMarkingCode(Boolean exists) {
+        return exists
+                ? HORIZON_LINE_MARKED
+                : HORIZON_LINE_WHITE;
     }
 
     private void append(String ...args) {

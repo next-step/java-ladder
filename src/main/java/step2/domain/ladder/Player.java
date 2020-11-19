@@ -4,6 +4,8 @@ import step2.exceptions.OutOfRangePlayerNameException;
 
 public class Player {
     public static final int MAXIMUM_NAME_LENGTH = 5;
+    public static final String ERROR_INVALID_NAME_LENGTH = "이름은 5자 이내여야 합니다.";
+
     private final String name;
 
     public Player(String name) {
@@ -11,9 +13,9 @@ public class Player {
         this.name = name;
     }
 
-    private void isNameSizeUnder5(String name) {
+    public static void isNameSizeUnder5(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new OutOfRangePlayerNameException();
+            throw new OutOfRangePlayerNameException(ERROR_INVALID_NAME_LENGTH);
         }
     }
 

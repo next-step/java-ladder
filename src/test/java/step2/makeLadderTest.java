@@ -10,9 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import step2.domain.ladder.*;
 import step2.domain.ladder.dto.LadderBuildDTO;
 import step2.strategy.MakeLineStrategy;
-import step2.strategy.TestLineMakeStrategy;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -26,38 +24,29 @@ public class makeLadderTest {
 
     @BeforeEach
     void setup() {
-        allTrueStrategy = new TestLineMakeStrategy() {
-            @Override
-            public List<Boolean> create(int countOfPerson) {
-                return IntStream.range(0, countOfPerson - 1)
-                        .mapToObj((index) -> true)
-                        .collect(Collectors.toList());
-            }
-        };
-        allFalseStrategy = new TestLineMakeStrategy() {
-            @Override
-            public List<Boolean> create(int countOfPerson) {
-                return IntStream.range(0, countOfPerson - 1)
-                        .mapToObj((index) -> false)
-                        .collect(Collectors.toList());
-            }
-        };
+        allTrueStrategy = (count)-> IntStream.range(0, count - 1)
+                .mapToObj((index) -> true)
+                .collect(Collectors.toList());
+
+        allFalseStrategy = (count)-> IntStream.range(0, count - 1)
+                .mapToObj((index) -> false)
+                .collect(Collectors.toList());
     }
 
 
     @DisplayName("라인 생성 전략")
     @Test
     void executeLineStrategy() {
-        Line allMarkedLine = new Line(4, (count) -> IntStream.range(0, count - 1).mapToObj(i -> true).collect(Collectors.toList()));
-        Line allUnMarkedLine = new Line(4, (count) -> IntStream.range(0, count - 1).mapToObj(i -> false).collect(Collectors.toList()));
+        Line allMarkedLine = Line.of(4, allTrueStrategy);
+        Line allUnMarkedLine = Line.of(4, allFalseStrategy);
 
-        assertThat(allMarkedLine.isExistsPoint(new Point(1, 1))).isTrue();
-        assertThat(allMarkedLine.isExistsPoint(new Point(2, 1))).isTrue();
-        assertThat(allMarkedLine.isExistsPoint(new Point(3, 1))).isTrue();
+        assertThat(allMarkedLine.isExistsPoint(new Point(0, 0))).isTrue();
+        assertThat(allMarkedLine.isExistsPoint(new Point(1, 0))).isTrue();
+        assertThat(allMarkedLine.isExistsPoint(new Point(2, 0))).isTrue();
 
+        assertThat(allUnMarkedLine.isExistsPoint(new Point(0, 0))).isFalse();
         assertThat(allUnMarkedLine.isExistsPoint(new Point(1, 1))).isFalse();
         assertThat(allUnMarkedLine.isExistsPoint(new Point(2, 2))).isFalse();
-        assertThat(allUnMarkedLine.isExistsPoint(new Point(3, 3))).isFalse();
 
     }
 
@@ -71,8 +60,6 @@ public class makeLadderTest {
         assertThat(ladder.isExistsPoint(new Point(0,0))).isTrue();
         assertThat(ladder.isExistsPoint(new Point(0,1))).isTrue();
         assertThat(ladder.isExistsPoint(new Point(0,2))).isTrue();
-        assertThat(ladder.isExistsPoint(new Point(0,3))).isTrue();
-
     }
 
     private static Stream<Arguments> provideLadderPlayersAndLadderHeight() {
@@ -89,6 +76,6 @@ public class makeLadderTest {
         int ladderHeight = -1;
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LadderGame.makeLadder(new LadderBuildDTO(players, ladderHeight), allTrueStrategy))
-                .withMessage(LadderBuildDTO.ERROR_INVALID_LADDER_HEIGHT);
+                .withMessage(Ladder.ERROR_INVALID_LADDER_HEIGHT);
     }
 }
