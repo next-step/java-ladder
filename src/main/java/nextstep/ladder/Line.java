@@ -41,4 +41,10 @@ public class Line {
     public int size() {
         return points.size();
     }
+
+    public void print() {
+        for (Boolean point : points) {
+            System.out.print(point);
+        }
+    }
 }
