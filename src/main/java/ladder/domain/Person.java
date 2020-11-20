@@ -5,12 +5,12 @@ import ladder.exception.BadNameException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Player {
+public class Person {
     private static final int STANDARD_NAME_LENGTH = 5;
 
     private final String name;
 
-    public Player(String name) {
+    public Person(String name) {
         this.name = name;
         validate();
     }

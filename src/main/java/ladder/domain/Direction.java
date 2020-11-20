@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.Objects;
 
-import static java.lang.Boolean.FALSE;
 import static ladder.domain.PointGenerator.generatePoint;
 
 public class Direction {
@@ -24,7 +23,7 @@ public class Direction {
     }
 
     static Direction first(boolean right) {
-        return of(FALSE, right);
+        return of(false, right);
     }
 
     boolean isRight() {
@@ -41,13 +40,13 @@ public class Direction {
 
     Direction next() {
         if (right) {
-            return next(FALSE);
+            return next(false);
         }
         return next(generatePoint());
     }
 
     public Direction last() {
-        return of(right, FALSE);
+        return of(right, false);
     }
 
     @Override

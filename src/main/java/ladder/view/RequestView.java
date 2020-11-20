@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.dto.request.LadderHeightDto;
-import ladder.dto.request.PlayersDto;
+import ladder.dto.request.PersonsDto;
 import ladder.exception.NanException;
 import ladder.view.printable.QuestionPrintable;
 
@@ -13,9 +13,9 @@ public class RequestView {
 
     private RequestView() {}
 
-    public static PlayersDto askPlayers() {
+    public static PersonsDto askPersons() {
         printQuestion("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return new PlayersDto(Arrays.asList(
+        return new PersonsDto(Arrays.asList(
                 nextLine().split("[ ,]+")
         ));
     }

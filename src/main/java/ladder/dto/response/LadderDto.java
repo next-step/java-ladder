@@ -1,15 +1,15 @@
 package ladder.dto.response;
 
-import ladder.domain.Players;
+import ladder.domain.Persons;
 
 public class LadderDto {
-    private final Players players;
+    private final Persons persons;
 
-    public LadderDto(Players players) {
-        this.players = players;
+    public LadderDto(Persons persons) {
+        this.persons = persons;
     }
 
-    public Players getPlayers() {
-        return players;
+    public Persons getPersons() {
+        return persons;
     }
 }

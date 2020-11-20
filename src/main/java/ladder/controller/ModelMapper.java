@@ -1,20 +1,20 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.Person;
+import ladder.domain.Persons;
 import ladder.view.RequestView;
 
 import java.util.stream.Collectors;
 
-public class ModelMapper {
+class ModelMapper {
     private ModelMapper() {}
 
-    static Players getPlayers() {
-        return new Players(RequestView.askPlayers()
-                .getPlayers()
+    static Persons getPersons() {
+        return new Persons(RequestView.askPersons()
+                .getPersons()
                 .stream()
-                .map(player -> new Player(player))
+                .map(person -> new Person(person))
                 .collect(Collectors.toList())
         );
     }

@@ -1,17 +1,17 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
-import ladder.domain.Players;
+import ladder.domain.Persons;
 import ladder.dto.response.LadderDto;
 import ladder.view.ResponseView;
 
 public class Main {
 
     public static void main(String[] args) {
-        Players players = ModelMapper.getPlayers();
+        Persons persons = ModelMapper.getPersons();
         Ladder ladder = ModelMapper.getLadder();
 
-        LadderDto ladderDto = new LadderDto(players);
+        LadderDto ladderDto = new LadderDto(persons);
         ResponseView.printLadder(ladderDto);
     }
 }

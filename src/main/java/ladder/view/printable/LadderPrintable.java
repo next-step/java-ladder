@@ -16,7 +16,7 @@ public class LadderPrintable extends Printable {
         sb.append("실행결과");
         sb.append(System.lineSeparator());
         sb.append(System.lineSeparator());
-        sb.append(dto.getPlayers());
+        sb.append(dto.getPersons());
         println(sb);
     }
 }
