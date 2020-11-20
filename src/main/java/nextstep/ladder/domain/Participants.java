@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,5 +19,9 @@ public class Participants {
 
     public NumberOfParticipants getNumberOfParticipants() {
         return NumberOfParticipants.valueOf(names.size());
+    }
+
+    public List<Name> getNames() {
+        return new ArrayList<>(names);
     }
 }

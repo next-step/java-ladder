@@ -25,6 +25,7 @@ public class LadderGame {
         Ladder ladder = Ladder.of(participants, height);
 
         ConsoleResultView consoleResultView = new ConsoleResultView();
+        consoleResultView.printParticipants(participants);
         consoleResultView.printLadder(ladder);
     }
 }

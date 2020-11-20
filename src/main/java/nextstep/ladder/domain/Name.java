@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 public class Name {
     public static final String INVALID_NAME_LENGTH_ERR_MSG = "이름은 1글자 이상 5글자 이하만 허용합니다.";
-    private final String value;
+    public final String value;
 
     private Name(String value) {
         validateLength(value.length());
