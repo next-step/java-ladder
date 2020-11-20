@@ -7,6 +7,7 @@ import nextstep.ladder.util.LadderRenderer;
 import java.util.function.Consumer;
 
 public class ConsoleResultView implements ResultView {
+    public static final String HEADER_MSG = "실행 결과";
     private static final String LADDER_STICK = "|";
     private static final String EXIST_POINT = "-----";
     private static final String EMPTY_POINT = "     ";
@@ -23,7 +24,7 @@ public class ConsoleResultView implements ResultView {
     }
 
     private void appendHeader(StringBuilder resultBuilder) {
-        resultBuilder.append("실행 결과").append(System.lineSeparator());
+        resultBuilder.append(HEADER_MSG).append(System.lineSeparator());
     }
 
     private void appendParticipantNames(Participants participants, StringBuilder resultBuilder) {
