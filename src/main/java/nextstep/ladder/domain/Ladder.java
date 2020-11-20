@@ -19,10 +19,10 @@ public class Ladder {
         return new Ladder(participants, height);
     }
 
-    public void linesForEach(Runnable renderFirstPartOfLine, Consumer<Boolean> renderPoint, Runnable renderLastPartOfLine) {
+    public void linesForEach(Runnable renderFirstPartOfLine, Consumer<Boolean> renderPoint, Runnable renderLadderStick, Runnable renderLastPartOfLine) {
         lines.forEach(line -> {
             renderFirstPartOfLine.run();
-            line.pointsForEach(renderPoint);
+            line.pointsForEach(renderPoint, renderLadderStick);
             renderLastPartOfLine.run();
         });
     }

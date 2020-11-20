@@ -29,7 +29,7 @@ public class ConsoleResultView implements ResultView {
     @Override
     public void printLadder(Ladder ladder) {
         StringBuilder ladderBuilder = new StringBuilder();
-        ladder.linesForEach(renderFirstPartOfLine(ladderBuilder), renderPoint(ladderBuilder), renderLastPartOfLine(ladderBuilder));
+        ladder.linesForEach(renderFirstPartOfLine(ladderBuilder), renderPoint(ladderBuilder), renderLadderStick(ladderBuilder), renderLastPartOfLine(ladderBuilder));
         System.out.println(ladderBuilder.toString());
     }
 
@@ -38,10 +38,11 @@ public class ConsoleResultView implements ResultView {
     }
 
     private Consumer<Boolean> renderPoint(StringBuilder ladderBuilder) {
-        return point -> {
-            ladderBuilder.append(point ? EXIST_POINT : EMPTY_POINT);
-            ladderBuilder.append(LADDER_STICK);
-        };
+        return point -> ladderBuilder.append(point ? EXIST_POINT : EMPTY_POINT);
+    }
+
+    private Runnable renderLadderStick(StringBuilder ladderBuilder) {
+        return () -> ladderBuilder.append(LADDER_STICK);
     }
 
     private Runnable renderLastPartOfLine(StringBuilder ladderBuilder) {
