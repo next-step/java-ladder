@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 public class Line {
-    public static final String POINTS_INVALID_VALUE_ERR_MSG = "Points의 값이 연속된 true일 수 없습니다.";
+    public static final String POINTS_INVALID_VALUE_ERR_MSG = "points의 값이 연속된 true일 수 없습니다.";
     private final List<Boolean> points;
 
     private Line(NumberOfParticipants numberOfParticipants, PointsGenerator pointsGenerator) {
