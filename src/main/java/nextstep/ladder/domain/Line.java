@@ -45,10 +45,7 @@ public class Line {
         return points.size();
     }
 
-    public void pointsForEach(Consumer<Boolean> renderPoint, Runnable renderLadderStick) {
-        points.forEach(point -> {
-            renderPoint.accept(point);
-            renderLadderStick.run();
-        });
+    public void pointsForEach(Consumer<Boolean> renderLine) {
+        points.forEach(renderLine::accept);
     }
 }
